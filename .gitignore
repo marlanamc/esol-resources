@@ -38,3 +38,14 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
+# Playwright MCP
+.playwright-mcp/
+
+# Documentation and reference files (not part of website)
+*.md
+*.pdf
+
+# Scripts (not part of website)
+*.py
+*.sh
+
