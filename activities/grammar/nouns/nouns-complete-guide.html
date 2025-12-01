@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nouns - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to nouns with explanations and practice exercises for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .noun-part {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+      color: #6366f1;
+    }
+    
+    .article-part {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+      color: #ec4899;
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .exercise-item input[type="radio"] {
+      margin-right: var(--spacing-sm);
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #6366f1;
+    }
+    
+    .exercise-item label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s;
+    }
+    
+    .exercise-item label:hover {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+    
+    .exercise-item label:has(input[type="radio"]:checked) {
+      background-color: rgba(99, 102, 241, 0.1);
+    }
+    
+    @supports not selector(:has(*)) {
+      .exercise-item input[type="radio"]:checked + span {
+        background-color: rgba(99, 102, 241, 0.1);
+      }
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .usage-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .usage-list li {
+      padding: var(--spacing-sm);
+      margin: var(--spacing-xs) 0;
+      background: var(--color-bg-light);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .usage-list li strong {
+      color: #6366f1;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .progress-indicator {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-xl);
+      text-align: center;
+    }
+    
+    .progress-bar {
+      display: flex;
+      gap: var(--spacing-xs);
+      justify-content: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: all 0.3s;
+    }
+    
+    .progress-dot.active {
+      background: #6366f1;
+      transform: scale(1.2);
+    }
+    
+    .progress-dot.completed {
+      background: #10b981;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .formula-part {
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .example-box {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item label {
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"],
+    [data-theme="dark"] .exercise-item select {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"]:focus,
+    [data-theme="dark"] .exercise-item select:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+    }
+    
+    [data-theme="dark"] .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .explanation-box h3 {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-header {
+      border-bottom-color: #818cf8;
+    }
+    
+    [data-theme="dark"] .exercise-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .usage-list li {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .usage-list li strong {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+      color: #c7d2fe;
+    }
+    
+    [data-theme="dark"] .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    
+    [data-theme="dark"] .tip-box strong {
+      color: #fbbf24;
+    }
+    
+    [data-theme="dark"] .progress-indicator {
+      background: var(--color-bg-light);
+    }
+    
+    [data-theme="dark"] .progress-dot {
+      background: var(--color-border);
+    }
+    
+    [data-theme="dark"] .progress-dot.active {
+      background: #818cf8;
+    }
+    
+    [data-theme="dark"] .progress-dot.completed {
+      background: #34d399;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .progress-indicator,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+      }
+      
+      .activity-title {
+        font-size: 16pt;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      
+      .activity-meta {
+        display: none;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .step-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+      
+      .step-title {
+        color: #000;
+        font-size: 12pt;
+        margin: 0;
+      }
+      
+      .step-number {
+        background: #000;
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 10pt;
+        margin-right: 6px;
+      }
+      
+      .explanation-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      
+      .explanation-box h3,
+      .explanation-box h4 {
+        font-size: 11pt;
+        margin: 4px 0;
+      }
+      
+      .explanation-box p {
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .exercise-title {
+        font-size: 10pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-instructions {
+        font-size: 8pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-item {
+        margin: 3px 0;
+        padding: 2px;
+        background: white;
+        border: none;
+        font-size: 9pt;
+      }
+      
+      .exercise-item label {
+        margin-bottom: 2px;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="text"],
+      .exercise-item select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 0;
+        width: 100%;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="radio"] {
+        margin-right: 4px;
+        width: 12px;
+        height: 12px;
+      }
+      
+      .exercise-item label {
+        padding: 1px 0;
+        margin: 1px 0;
+        font-size: 9pt;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+      
+      .tip-box {
+        background: #fff9e6;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 8pt;
+      }
+      
+      .formula-box {
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        font-size: 9pt;
+      }
+      
+      .formula-part {
+        font-size: 9pt;
+        padding: 2px 4px;
+      }
+      
+      .example-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 9pt;
+      }
+      
+      .example-box .example {
+        margin: 2px 0;
+        padding: 1px;
+        font-size: 9pt;
+      }
+      
+      .usage-list {
+        margin: 4px 0;
+      }
+      
+      .usage-list li {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .usage-list li strong {
+        font-size: 9pt;
+      }
+      
+      .highlight {
+        background: #e0e0e0;
+        padding: 1px 3px;
+        font-size: 9pt;
+      }
+      
+      h1, h2, h3, h4 {
+        margin: 4px 0;
+        page-break-after: avoid;
+      }
+      
+      p {
+        margin: 3px 0;
+      }
+      
+      ul, ol {
+        margin: 4px 0;
+        padding-left: 20px;
+      }
+      
+      li {
+        margin: 2px 0;
+      }
+      
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .grammar-guide {
+        max-width: 100%;
+      }
+      
+      .section {
+        padding: 0;
+        margin: 0;
+      }
+      
+      .usage-list li .example-box {
+        margin-left: 8px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      
+      .usage-list li p {
+        font-size: 8pt;
+        margin: 1px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Nouns</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Nouns - Step-by-Step Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <!-- Print Header (only visible when printing) -->
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn About Nouns Together
+            </h2>
+            <p>We're going to learn about nouns step by step. Don't worry - we'll practice each part before moving to the next. Take your time and work through each section!</p>
+            <p><strong>What is a noun?</strong> A noun is a word that names a person, place, thing, or idea. Examples: <span class="highlight">teacher</span>, <span class="highlight">city</span>, <span class="highlight">book</span>, <span class="highlight">happiness</span>.</p>
+          </div>
+
+          <!-- STEP 1: COUNTABLE VS UNCOUNTABLE NOUNS -->
+          <div class="step-section" id="step1">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">Countable vs Uncountable Nouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What's the difference?</h3>
+              <p>Some nouns you can <strong>count</strong> (one, two, three...) and some you <strong>cannot count</strong>. This is very important because it affects which articles and quantifiers you use!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🔢 Countable Nouns</h4>
+                <p>Countable nouns are things you can count. They have <strong>singular</strong> and <strong>plural</strong> forms.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">one <span class="highlight">book</span> → two <span class="highlight">books</span></div>
+                  <div class="example">one <span class="highlight">student</span> → three <span class="highlight">students</span></div>
+                  <div class="example">one <span class="highlight">apple</span> → five <span class="highlight">apples</span></div>
+                  <div class="example">one <span class="highlight">car</span> → many <span class="highlight">cars</span></div>
+                  <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                    💡 You can use numbers (1, 2, 3...) and "a/an" with countable nouns.
+                  </p>
+                </div>
+
+                <div class="formula-box" style="margin-top: var(--spacing-md);">
+                  <div style="margin-bottom: var(--spacing-sm);">
+                    <span class="formula-part article-part">a/an</span>
+                    <span style="margin: 0 var(--spacing-xs);">+</span>
+                    <span class="formula-part noun-part">countable noun</span>
+                    <span style="margin: 0 var(--spacing-xs);">(singular)</span>
+                  </div>
+                  <div style="margin-top: var(--spacing-md);">
+                    <span class="formula-part noun-part">countable noun</span>
+                    <span style="margin: 0 var(--spacing-xs);">+</span>
+                    <span class="formula-part noun-part">-s/-es</span>
+                    <span style="margin: 0 var(--spacing-xs);">(plural)</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">💧 Uncountable Nouns</h4>
+                <p>Uncountable nouns are things you <strong>cannot count</strong>. They don't have plural forms and you cannot use "a/an" with them.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Common Categories:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>Liquids:</strong> water, milk, coffee, juice</div>
+                    <div><strong>Food:</strong> rice, bread, cheese, sugar</div>
+                    <div><strong>Abstract:</strong> love, happiness, information, advice</div>
+                    <div><strong>Materials:</strong> wood, metal, glass, paper</div>
+                    <div><strong>Weather:</strong> rain, snow, sunshine</div>
+                    <div><strong>Subjects:</strong> English, math, history</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I need <span class="highlight">water</span>. ✅ (NOT "a water" or "waters")</div>
+                  <div class="example">She has <span class="highlight">information</span>. ✅ (NOT "an information" or "informations")</div>
+                  <div class="example">We bought <span class="highlight">rice</span>. ✅ (NOT "a rice" or "rices")</div>
+                  <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                    💡 Use "some", "a lot of", "much", or "a little" with uncountable nouns.
+                  </p>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Ask yourself: "Can I count this?" If yes → countable. If no → uncountable.</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Remember:</strong></p>
+                <ul style="margin: var(--spacing-xs) 0; padding-left: var(--spacing-lg);">
+                  <li>Countable: a/an + singular, or plural form</li>
+                  <li>Uncountable: no "a/an", no plural form, use "some" or "much"</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Practice: Countable vs Uncountable -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Countable or Uncountable?
+              </div>
+              <p class="exercise-instructions">Decide if each noun is countable or uncountable.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I need some _____ for my coffee." (sugar)</label>
+                <select id="countable-1">
+                  <option value="">Choose...</option>
+                  <option value="countable">Countable</option>
+                  <option value="uncountable">Uncountable</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "There are three _____ in the classroom." (desks)</label>
+                <select id="countable-2">
+                  <option value="">Choose...</option>
+                  <option value="countable">Countable</option>
+                  <option value="uncountable">Uncountable</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "I have a lot of _____ about this topic." (information)</label>
+                <select id="countable-3">
+                  <option value="">Choose...</option>
+                  <option value="countable">Countable</option>
+                  <option value="uncountable">Uncountable</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "She bought five _____ at the store." (apples)</label>
+                <select id="countable-4">
+                  <option value="">Choose...</option>
+                  <option value="countable">Countable</option>
+                  <option value="uncountable">Uncountable</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "We need more _____ for the project." (time)</label>
+                <select id="countable-5">
+                  <option value="">Choose...</option>
+                  <option value="countable">Countable</option>
+                  <option value="uncountable">Uncountable</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkCountable()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-countable" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 2: SINGULAR VS PLURAL -->
+          <div class="step-section" id="step2">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Singular vs Plural</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">Understanding Singular and Plural</h3>
+              <p>Singular means <strong>one</strong>. Plural means <strong>more than one</strong>. Most countable nouns form the plural by adding <strong>-s</strong> or <strong>-es</strong>.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Regular Plural Rules</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 1: Add -s</strong>
+                  <div class="example">book → <span class="highlight">books</span></div>
+                  <div class="example">car → <span class="highlight">cars</span></div>
+                  <div class="example">student → <span class="highlight">students</span></div>
+                  <div class="example">teacher → <span class="highlight">teachers</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 2: Add -es (for words ending in -s, -ss, -sh, -ch, -x, -z)</strong>
+                  <div class="example">bus → <span class="highlight">buses</span></div>
+                  <div class="example">class → <span class="highlight">classes</span></div>
+                  <div class="example">dish → <span class="highlight">dishes</span></div>
+                  <div class="example">box → <span class="highlight">boxes</span></div>
+                  <div class="example">watch → <span class="highlight">watches</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 3: Change -y to -ies (for words ending in consonant + y)</strong>
+                  <div class="example">city → <span class="highlight">cities</span></div>
+                  <div class="example">baby → <span class="highlight">babies</span></div>
+                  <div class="example">country → <span class="highlight">countries</span></div>
+                  <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                    💡 Exception: If the word ends in vowel + y, just add -s: day → days, boy → boys
+                  </p>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 4: Change -f/-fe to -ves</strong>
+                  <div class="example">leaf → <span class="highlight">leaves</span></div>
+                  <div class="example">knife → <span class="highlight">knives</span></div>
+                  <div class="example">wife → <span class="highlight">wives</span></div>
+                  <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                    💡 Exception: Some words just add -s: roof → roofs, belief → beliefs
+                  </p>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Most nouns follow these rules, but some have irregular plurals (we'll learn those next!).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Singular vs Plural -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="edit" style="width: 24px; height: 24px;"></i>
+                Practice: Make It Plural
+              </div>
+              <p class="exercise-instructions">Write the plural form of each noun.</p>
+              
+              <div class="exercise-item">
+                <label>1. one book → two _____</label>
+                <input type="text" id="plural-1" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. one box → three _____</label>
+                <input type="text" id="plural-2" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. one city → many _____</label>
+                <input type="text" id="plural-3" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. one leaf → several _____</label>
+                <input type="text" id="plural-4" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. one class → five _____</label>
+                <input type="text" id="plural-5" placeholder="Write the plural form">
+              </div>
+              
+              <button class="check-button" onclick="checkPlural()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-plural" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 3: IRREGULAR PLURALS -->
+          <div class="step-section" id="step3">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2 class="step-title">Irregular Plurals</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are irregular plurals?</h3>
+              <p>Some nouns don't follow the regular rules! They change in special ways. You need to <strong>memorize</strong> these.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🔄 Common Irregular Plurals</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Change the vowel:</strong>
+                  <div class="example">man → <span class="highlight">men</span></div>
+                  <div class="example">woman → <span class="highlight">women</span></div>
+                  <div class="example">foot → <span class="highlight">feet</span></div>
+                  <div class="example">tooth → <span class="highlight">teeth</span></div>
+                  <div class="example">mouse → <span class="highlight">mice</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Add -en or change completely:</strong>
+                  <div class="example">child → <span class="highlight">children</span></div>
+                  <div class="example">ox → <span class="highlight">oxen</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Same form (singular = plural):</strong>
+                  <div class="example">sheep → <span class="highlight">sheep</span></div>
+                  <div class="example">deer → <span class="highlight">deer</span></div>
+                  <div class="example">fish → <span class="highlight">fish</span> (or fishes)</div>
+                  <div class="example">aircraft → <span class="highlight">aircraft</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Words from Latin/Greek:</strong>
+                  <div class="example">cactus → <span class="highlight">cacti</span> (or cactuses)</div>
+                  <div class="example">crisis → <span class="highlight">crises</span></div>
+                  <div class="example">phenomenon → <span class="highlight">phenomena</span></div>
+                  <div class="example">criterion → <span class="highlight">criteria</span></div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">There's no easy rule for irregular plurals - you need to learn them! Practice makes perfect.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Irregular Plurals -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="help-circle" style="width: 24px; height: 24px;"></i>
+                Practice: Irregular Plurals
+              </div>
+              <p class="exercise-instructions">Write the plural form of each irregular noun.</p>
+              
+              <div class="exercise-item">
+                <label>1. one man → two _____</label>
+                <input type="text" id="irregular-1" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. one child → three _____</label>
+                <input type="text" id="irregular-2" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. one foot → two _____</label>
+                <input type="text" id="irregular-3" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. one sheep → many _____</label>
+                <input type="text" id="irregular-4" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. one woman → several _____</label>
+                <input type="text" id="irregular-5" placeholder="Write the plural form">
+              </div>
+              
+              <button class="check-button" onclick="checkIrregular()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-irregular" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4: COMPOUND NOUNS -->
+          <div class="step-section" id="step4">
+            <div class="step-header">
+              <span class="step-number">4</span>
+              <h2 class="step-title">Compound Nouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are compound nouns?</h3>
+              <p>Compound nouns are made from <strong>two or more words</strong> that work together as one noun. They can be written as one word, two words, or with a hyphen.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🔗 Types of Compound Nouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">One word:</strong>
+                  <div class="example"><span class="highlight">toothbrush</span> (tooth + brush)</div>
+                  <div class="example"><span class="highlight">bedroom</span> (bed + room)</div>
+                  <div class="example"><span class="highlight">notebook</span> (note + book)</div>
+                  <div class="example"><span class="highlight">sunshine</span> (sun + shine)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Two words:</strong>
+                  <div class="example"><span class="highlight">post office</span> (post + office)</div>
+                  <div class="example"><span class="highlight">ice cream</span> (ice + cream)</div>
+                  <div class="example"><span class="highlight">bus stop</span> (bus + stop)</div>
+                  <div class="example"><span class="highlight">credit card</span> (credit + card)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Hyphenated:</strong>
+                  <div class="example"><span class="highlight">mother-in-law</span> (mother + in + law)</div>
+                  <div class="example"><span class="highlight">check-in</span> (check + in)</div>
+                  <div class="example"><span class="highlight">well-being</span> (well + being)</div>
+                  <div class="example"><span class="highlight">six-year-old</span> (six + year + old)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Plural Forms of Compound Nouns</h4>
+                <p>Usually, make the <strong>main word</strong> plural (the most important word in the compound).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">toothbrush → <span class="highlight">toothbrushes</span> (main word: brush)</div>
+                  <div class="example">mother-in-law → <span class="highlight">mothers-in-law</span> (main word: mother)</div>
+                  <div class="example">passer-by → <span class="highlight">passers-by</span> (main word: passer)</div>
+                  <div class="example">bus stop → <span class="highlight">bus stops</span> (main word: stop)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">The main word is usually the last word in the compound. Make that word plural!</p>
+              </div>
+            </div>
+
+            <!-- Practice: Compound Nouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="link" style="width: 24px; height: 24px;"></i>
+                Practice: Compound Nouns
+              </div>
+              <p class="exercise-instructions">Write the plural form of each compound noun.</p>
+              
+              <div class="exercise-item">
+                <label>1. one toothbrush → two _____</label>
+                <input type="text" id="compound-1" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. one mother-in-law → three _____</label>
+                <input type="text" id="compound-2" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. one bus stop → many _____</label>
+                <input type="text" id="compound-3" placeholder="Write the plural form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. one passer-by → several _____</label>
+                <input type="text" id="compound-4" placeholder="Write the plural form">
+              </div>
+              
+              <button class="check-button" onclick="checkCompound()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-compound" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 5: COLLECTIVE NOUNS -->
+          <div class="step-section" id="step5">
+            <div class="step-header">
+              <span class="step-number">5</span>
+              <h2 class="step-title">Collective Nouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are collective nouns?</h3>
+              <p>Collective nouns name a <strong>group</strong> of people, animals, or things. They are singular in form but can refer to multiple things.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">👥 Common Collective Nouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Groups of People:</strong>
+                  <div class="example"><span class="highlight">team</span> (a team of players)</div>
+                  <div class="example"><span class="highlight">family</span> (a family of four)</div>
+                  <div class="example"><span class="highlight">class</span> (a class of students)</div>
+                  <div class="example"><span class="highlight">audience</span> (an audience of people)</div>
+                  <div class="example"><span class="highlight">crew</span> (a crew of workers)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Groups of Animals:</strong>
+                  <div class="example"><span class="highlight">herd</span> (a herd of cows)</div>
+                  <div class="example"><span class="highlight">flock</span> (a flock of birds)</div>
+                  <div class="example"><span class="highlight">pack</span> (a pack of wolves)</div>
+                  <div class="example"><span class="highlight">school</span> (a school of fish)</div>
+                  <div class="example"><span class="highlight">pride</span> (a pride of lions)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Groups of Things:</strong>
+                  <div class="example"><span class="highlight">bunch</span> (a bunch of grapes)</div>
+                  <div class="example"><span class="highlight">set</span> (a set of tools)</div>
+                  <div class="example"><span class="highlight">collection</span> (a collection of stamps)</div>
+                  <div class="example"><span class="highlight">pile</span> (a pile of books)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Singular or Plural?</h4>
+                <p>Collective nouns can be tricky! In <strong>British English</strong>, they're often treated as plural. In <strong>American English</strong>, they're usually treated as singular.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">American English (singular):</strong>
+                  <div class="example">The team <span class="highlight">is</span> playing well. ✅</div>
+                  <div class="example">My family <span class="highlight">lives</span> in Boston. ✅</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">British English (can be plural):</strong>
+                  <div class="example">The team <span class="highlight">are</span> playing well. ✅</div>
+                  <div class="example">My family <span class="highlight">live</span> in London. ✅</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">In American English, treat collective nouns as <strong>singular</strong> (use "is", "has", etc.).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Collective Nouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                Practice: Collective Nouns
+              </div>
+              <p class="exercise-instructions">Choose the correct verb form (American English - treat as singular).</p>
+              
+              <div class="exercise-item">
+                <label>1. The team _____ playing well today.</label>
+                <select id="collective-1">
+                  <option value="">Choose...</option>
+                  <option value="is">is</option>
+                  <option value="are">are</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. My family _____ dinner together every night.</label>
+                <select id="collective-2">
+                  <option value="">Choose...</option>
+                  <option value="eat">eat</option>
+                  <option value="eats">eats</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. The class _____ very quiet today.</label>
+                <select id="collective-3">
+                  <option value="">Choose...</option>
+                  <option value="is">is</option>
+                  <option value="are">are</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. A flock of birds _____ flying south.</label>
+                <select id="collective-4">
+                  <option value="">Choose...</option>
+                  <option value="is">is</option>
+                  <option value="are">are</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkCollective()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-collective" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 6: PROPER NOUNS VS COMMON NOUNS -->
+          <div class="step-section" id="step6">
+            <div class="step-header">
+              <span class="step-number">6</span>
+              <h2 class="step-title">Proper Nouns vs Common Nouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What's the difference?</h3>
+              <p><strong>Common nouns</strong> name general things. <strong>Proper nouns</strong> name specific people, places, or things and always start with a <strong>capital letter</strong>.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Common Nouns</h4>
+                <p>Common nouns are general names. They don't start with capital letters (unless at the beginning of a sentence).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">teacher</span> (any teacher)</div>
+                  <div class="example"><span class="highlight">city</span> (any city)</div>
+                  <div class="example"><span class="highlight">book</span> (any book)</div>
+                  <div class="example"><span class="highlight">dog</span> (any dog)</div>
+                  <div class="example"><span class="highlight">country</span> (any country)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🏛️ Proper Nouns</h4>
+                <p>Proper nouns are specific names. They <strong>always</strong> start with capital letters.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">Ms. Johnson</span> (specific teacher)</div>
+                  <div class="example"><span class="highlight">New York</span> (specific city)</div>
+                  <div class="example"><span class="highlight">Harry Potter</span> (specific book)</div>
+                  <div class="example"><span class="highlight">Rover</span> (specific dog's name)</div>
+                  <div class="example"><span class="highlight">Canada</span> (specific country)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📋 Categories of Proper Nouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">People's Names:</strong>
+                  <div class="example"><span class="highlight">John</span>, <span class="highlight">Maria</span>, <span class="highlight">Dr. Smith</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Places:</strong>
+                  <div class="example"><span class="highlight">Paris</span>, <span class="highlight">Mount Everest</span>, <span class="highlight">Pacific Ocean</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Organizations:</strong>
+                  <div class="example"><span class="highlight">United Nations</span>, <span class="highlight">Microsoft</span>, <span class="highlight">Harvard University</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Days, Months, Holidays:</strong>
+                  <div class="example"><span class="highlight">Monday</span>, <span class="highlight">January</span>, <span class="highlight">Christmas</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Languages & Nationalities:</strong>
+                  <div class="example"><span class="highlight">English</span>, <span class="highlight">Spanish</span>, <span class="highlight">American</span></div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Proper nouns = specific names = capital letters. Common nouns = general names = lowercase (unless at sentence start).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Proper vs Common Nouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="type" style="width: 24px; height: 24px;"></i>
+                Practice: Proper or Common?
+              </div>
+              <p class="exercise-instructions">Decide if each noun is proper or common.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I visited Paris last summer." (Paris)</label>
+                <select id="proper-1">
+                  <option value="">Choose...</option>
+                  <option value="proper">Proper Noun</option>
+                  <option value="common">Common Noun</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "The teacher is very kind." (teacher)</label>
+                <select id="proper-2">
+                  <option value="">Choose...</option>
+                  <option value="proper">Proper Noun</option>
+                  <option value="common">Common Noun</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "I read a book about history." (book)</label>
+                <select id="proper-3">
+                  <option value="">Choose...</option>
+                  <option value="proper">Proper Noun</option>
+                  <option value="common">Common Noun</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "My birthday is in December." (December)</label>
+                <select id="proper-4">
+                  <option value="">Choose...</option>
+                  <option value="proper">Proper Noun</option>
+                  <option value="common">Common Noun</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "The dog is playing in the park." (dog)</label>
+                <select id="proper-5">
+                  <option value="">Choose...</option>
+                  <option value="proper">Proper Noun</option>
+                  <option value="common">Common Noun</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkProper()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-proper" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 7: NOUN FORMATION -->
+          <div class="step-section" id="step7">
+            <div class="step-header">
+              <span class="step-number">7</span>
+              <h2 class="step-title">Noun Formation</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">How are nouns formed?</h3>
+              <p>Many nouns are formed by adding <strong>suffixes</strong> (endings) to verbs, adjectives, or other words. Learning these patterns helps you understand and create new nouns!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🔤 Common Noun Suffixes</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-tion / -sion (action or process):</strong>
+                  <div class="example">educate → <span class="highlight">education</span></div>
+                  <div class="example">decide → <span class="highlight">decision</span></div>
+                  <div class="example">inform → <span class="highlight">information</span></div>
+                  <div class="example">discuss → <span class="highlight">discussion</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-ment (action or result):</strong>
+                  <div class="example">develop → <span class="highlight">development</span></div>
+                  <div class="example">govern → <span class="highlight">government</span></div>
+                  <div class="example">improve → <span class="highlight">improvement</span></div>
+                  <div class="example">move → <span class="highlight">movement</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-er / -or (person who does):</strong>
+                  <div class="example">teach → <span class="highlight">teacher</span></div>
+                  <div class="example">act → <span class="highlight">actor</span></div>
+                  <div class="example">write → <span class="highlight">writer</span></div>
+                  <div class="example">visit → <span class="highlight">visitor</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-ness (state or quality):</strong>
+                  <div class="example">happy → <span class="highlight">happiness</span></div>
+                  <div class="example">kind → <span class="highlight">kindness</span></div>
+                  <div class="example">sad → <span class="highlight">sadness</span></div>
+                  <div class="example">ill → <span class="highlight">illness</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-ity (state or quality):</strong>
+                  <div class="example">active → <span class="highlight">activity</span></div>
+                  <div class="example">real → <span class="highlight">reality</span></div>
+                  <div class="example">possible → <span class="highlight">possibility</span></div>
+                  <div class="example">curious → <span class="highlight">curiosity</span></div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-ing (activity or result):</strong>
+                  <div class="example">read → <span class="highlight">reading</span></div>
+                  <div class="example">swim → <span class="highlight">swimming</span></div>
+                  <div class="example">build → <span class="highlight">building</span></div>
+                  <div class="example">paint → <span class="highlight">painting</span></div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Learning suffixes helps you understand new words! If you see "-tion" or "-ment", you know it's probably a noun.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Noun Formation -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="wand-2" style="width: 24px; height: 24px;"></i>
+                Practice: Form the Noun
+              </div>
+              <p class="exercise-instructions">Change each word into a noun using the correct suffix.</p>
+              
+              <div class="exercise-item">
+                <label>1. educate → _____</label>
+                <input type="text" id="formation-1" placeholder="Write the noun form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. happy → _____</label>
+                <input type="text" id="formation-2" placeholder="Write the noun form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. teach → _____</label>
+                <input type="text" id="formation-3" placeholder="Write the noun form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. develop → _____</label>
+                <input type="text" id="formation-4" placeholder="Write the noun form">
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. kind → _____</label>
+                <input type="text" id="formation-5" placeholder="Write the noun form">
+              </div>
+              
+              <button class="check-button" onclick="checkFormation()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-formation" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="progress-indicator">
+            <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">Your Progress</p>
+            <div class="progress-bar">
+              <div class="progress-dot active" id="dot1"></div>
+              <div class="progress-dot" id="dot2"></div>
+              <div class="progress-dot" id="dot3"></div>
+              <div class="progress-dot" id="dot4"></div>
+              <div class="progress-dot" id="dot5"></div>
+              <div class="progress-dot" id="dot6"></div>
+              <div class="progress-dot" id="dot7"></div>
+            </div>
+          </div>
+
+          <!-- Final Review -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✓</span>
+              <h2 class="step-title">Congratulations! You've Completed the Nouns Guide!</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What You've Learned</h3>
+              <p>You've learned about:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                <li>Countable vs uncountable nouns</li>
+                <li>Singular vs plural forms</li>
+                <li>Irregular plurals</li>
+                <li>Compound nouns</li>
+                <li>Collective nouns</li>
+                <li>Proper nouns vs common nouns</li>
+                <li>Noun formation with suffixes</li>
+              </ul>
+              
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Keep Practicing!</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">The more you practice, the better you'll become at using nouns correctly. Try reading English texts and identifying different types of nouns!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Answer keys
+    const answers = {
+      countable: ['uncountable', 'countable', 'uncountable', 'countable', 'uncountable'],
+      plural: ['books', 'boxes', 'cities', 'leaves', 'classes'],
+      irregular: ['men', 'children', 'feet', 'sheep', 'women'],
+      compound: ['toothbrushes', 'mothers-in-law', 'bus stops', 'passers-by'],
+      collective: ['is', 'eats', 'is', 'is'],
+      proper: ['proper', 'common', 'common', 'proper', 'common'],
+      formation: ['education', 'happiness', 'teacher', 'development', 'kindness']
+    };
+
+    function updateProgress(step) {
+      for (let i = 1; i <= 7; i++) {
+        const dot = document.getElementById(`dot${i}`);
+        if (i < step) {
+          dot.classList.add('completed');
+          dot.classList.remove('active');
+        } else if (i === step) {
+          dot.classList.add('active');
+          dot.classList.remove('completed');
+        } else {
+          dot.classList.remove('active', 'completed');
+        }
+      }
+    }
+
+    function normalizeAnswer(answer) {
+      return answer.toLowerCase().trim().replace(/\s+/g, ' ');
+    }
+
+    function checkCountable() {
+      const feedback = document.getElementById('feedback-countable');
+      let correct = 0;
+      let total = 5;
+      
+      answers.countable.forEach((answer, index) => {
+        const select = document.getElementById(`countable-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand countable vs uncountable nouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Countable nouns can be counted (books, apples). Uncountable nouns cannot be counted (water, information, sugar).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(2);
+      }
+    }
+
+    function checkPlural() {
+      const feedback = document.getElementById('feedback-plural');
+      let correct = 0;
+      let total = 5;
+      
+      answers.plural.forEach((answer, index) => {
+        const input = document.getElementById(`plural-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const correctAnswer = normalizeAnswer(answer);
+        
+        if (userAnswer === correctAnswer) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (input.value.trim()) {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! Great job with plural forms!`
+        : `You got ${correct} out of ${total} correct. Remember: Add -s for most nouns, -es for words ending in s/sh/ch/x, change -y to -ies, and -f/-fe to -ves.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(3);
+      }
+    }
+
+    function checkIrregular() {
+      const feedback = document.getElementById('feedback-irregular');
+      let correct = 0;
+      let total = 5;
+      
+      answers.irregular.forEach((answer, index) => {
+        const input = document.getElementById(`irregular-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const correctAnswer = normalizeAnswer(answer);
+        
+        if (userAnswer === correctAnswer) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (input.value.trim()) {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You know your irregular plurals!`
+        : `You got ${correct} out of ${total} correct. Remember: Irregular plurals don't follow regular rules - man→men, child→children, foot→feet, sheep→sheep.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(4);
+      }
+    }
+
+    function checkCompound() {
+      const feedback = document.getElementById('feedback-compound');
+      let correct = 0;
+      let total = 4;
+      
+      answers.compound.forEach((answer, index) => {
+        const input = document.getElementById(`compound-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const correctAnswer = normalizeAnswer(answer);
+        
+        if (userAnswer === correctAnswer) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (input.value.trim()) {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand compound nouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Make the main word plural in compound nouns (toothbrushes, mothers-in-law, bus stops).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(5);
+      }
+    }
+
+    function checkCollective() {
+      const feedback = document.getElementById('feedback-collective');
+      let correct = 0;
+      let total = 4;
+      
+      answers.collective.forEach((answer, index) => {
+        const select = document.getElementById(`collective-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand collective nouns!`
+        : `You got ${correct} out of ${total} correct. Remember: In American English, treat collective nouns as singular (use "is", "eats", etc.).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(6);
+      }
+    }
+
+    function checkProper() {
+      const feedback = document.getElementById('feedback-proper');
+      let correct = 0;
+      let total = 5;
+      
+      answers.proper.forEach((answer, index) => {
+        const select = document.getElementById(`proper-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand proper vs common nouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Proper nouns are specific names (Paris, December) and start with capital letters. Common nouns are general (teacher, book, dog).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    function checkFormation() {
+      const feedback = document.getElementById('feedback-formation');
+      let correct = 0;
+      let total = 5;
+      
+      answers.formation.forEach((answer, index) => {
+        const input = document.getElementById(`formation-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const correctAnswer = normalizeAnswer(answer);
+        
+        if (userAnswer === correctAnswer) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (input.value.trim()) {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `🎉 Perfect! You got all ${total} correct! You understand noun formation! Congratulations on completing the guide!`
+        : `You got ${correct} out of ${total} correct. Remember: educate→education (-tion), happy→happiness (-ness), teach→teacher (-er), develop→development (-ment), kind→kindness (-ness).`;
+      feedback.style.display = 'block';
+    }
+
+    // Initialize progress
+    updateProgress(1);
+  </script>
+</body>
+</html>
+

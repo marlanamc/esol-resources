@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles & Determiners - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to articles and determiners with explanations and practice exercises for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .noun-part {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+      color: #6366f1;
+    }
+    
+    .article-part {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+      color: #ec4899;
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .exercise-item input[type="radio"] {
+      margin-right: var(--spacing-sm);
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #6366f1;
+    }
+    
+    .exercise-item label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s;
+    }
+    
+    .exercise-item label:hover {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+    
+    .exercise-item label:has(input[type="radio"]:checked) {
+      background-color: rgba(99, 102, 241, 0.1);
+    }
+    
+    @supports not selector(:has(*)) {
+      .exercise-item input[type="radio"]:checked + span {
+        background-color: rgba(99, 102, 241, 0.1);
+      }
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .usage-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .usage-list li {
+      padding: var(--spacing-sm);
+      margin: var(--spacing-xs) 0;
+      background: var(--color-bg-light);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .usage-list li strong {
+      color: #6366f1;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .progress-indicator {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-xl);
+      text-align: center;
+    }
+    
+    .progress-bar {
+      display: flex;
+      gap: var(--spacing-xs);
+      justify-content: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: all 0.3s;
+    }
+    
+    .progress-dot.active {
+      background: #6366f1;
+      transform: scale(1.2);
+    }
+    
+    .progress-dot.completed {
+      background: #10b981;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .formula-part {
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .example-box {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item label {
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"],
+    [data-theme="dark"] .exercise-item select {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"]:focus,
+    [data-theme="dark"] .exercise-item select:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+    }
+    
+    [data-theme="dark"] .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .explanation-box h3 {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-header {
+      border-bottom-color: #818cf8;
+    }
+    
+    [data-theme="dark"] .exercise-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .usage-list li {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .usage-list li strong {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+      color: #c7d2fe;
+    }
+    
+    [data-theme="dark"] .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    
+    [data-theme="dark"] .tip-box strong {
+      color: #fbbf24;
+    }
+    
+    [data-theme="dark"] .progress-indicator {
+      background: var(--color-bg-light);
+    }
+    
+    [data-theme="dark"] .progress-dot {
+      background: var(--color-border);
+    }
+    
+    [data-theme="dark"] .progress-dot.active {
+      background: #818cf8;
+    }
+    
+    [data-theme="dark"] .progress-dot.completed {
+      background: #34d399;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .progress-indicator,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+      }
+      
+      .activity-title {
+        font-size: 16pt;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      
+      .activity-meta {
+        display: none;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .step-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+      
+      .step-title {
+        color: #000;
+        font-size: 12pt;
+        margin: 0;
+      }
+      
+      .step-number {
+        background: #000;
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 10pt;
+        margin-right: 6px;
+      }
+      
+      .explanation-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      
+      .explanation-box h3,
+      .explanation-box h4 {
+        font-size: 11pt;
+        margin: 4px 0;
+      }
+      
+      .explanation-box p {
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .exercise-title {
+        font-size: 10pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-instructions {
+        font-size: 8pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-item {
+        margin: 3px 0;
+        padding: 2px;
+        background: white;
+        border: none;
+        font-size: 9pt;
+      }
+      
+      .exercise-item label {
+        margin-bottom: 2px;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="text"],
+      .exercise-item select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 0;
+        width: 100%;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="radio"] {
+        margin-right: 4px;
+        width: 12px;
+        height: 12px;
+      }
+      
+      .exercise-item label {
+        padding: 1px 0;
+        margin: 1px 0;
+        font-size: 9pt;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+      
+      .tip-box {
+        background: #fff9e6;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 8pt;
+      }
+      
+      .formula-box {
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        font-size: 9pt;
+      }
+      
+      .formula-part {
+        font-size: 9pt;
+        padding: 2px 4px;
+      }
+      
+      .example-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 9pt;
+      }
+      
+      .example-box .example {
+        margin: 2px 0;
+        padding: 1px;
+        font-size: 9pt;
+      }
+      
+      .usage-list {
+        margin: 4px 0;
+      }
+      
+      .usage-list li {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .usage-list li strong {
+        font-size: 9pt;
+      }
+      
+      .highlight {
+        background: #e0e0e0;
+        padding: 1px 3px;
+        font-size: 9pt;
+      }
+      
+      h1, h2, h3, h4 {
+        margin: 4px 0;
+        page-break-after: avoid;
+      }
+      
+      p {
+        margin: 3px 0;
+      }
+      
+      ul, ol {
+        margin: 4px 0;
+        padding-left: 20px;
+      }
+      
+      li {
+        margin: 2px 0;
+      }
+      
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .grammar-guide {
+        max-width: 100%;
+      }
+      
+      .section {
+        padding: 0;
+        margin: 0;
+      }
+      
+      .usage-list li .example-box {
+        margin-left: 8px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      
+      .usage-list li p {
+        font-size: 8pt;
+        margin: 1px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Articles & Determiners</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Articles & Determiners - Step-by-Step Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <!-- Print Header (only visible when printing) -->
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn About Articles & Determiners Together
+            </h2>
+            <p>We're going to learn about articles and determiners step by step. Don't worry - we'll practice each part before moving to the next. Take your time and work through each section!</p>
+            <p><strong>What are determiners?</strong> Determiners are words that come before nouns to give more information about them. They help us understand quantity, specificity, and other details about the noun.</p>
+            <p><strong>What are articles?</strong> Articles are a <strong>type of determiner</strong>. The three articles in English are <span class="highlight">a</span>, <span class="highlight">an</span>, and <span class="highlight">the</span>. They help us understand if we're talking about something specific or general.</p>
+            <p><strong>Other determiners</strong> include: <span class="highlight">some</span>, <span class="highlight">any</span>, <span class="highlight">many</span>, <span class="highlight">much</span>, <span class="highlight">few</span>, <span class="highlight">little</span>, <span class="highlight">all</span>, <span class="highlight">every</span>, <span class="highlight">each</span>, <span class="highlight">both</span>, <span class="highlight">neither</span>, <span class="highlight">either</span>, and more.</p>
+            <div class="tip-box" style="margin-top: var(--spacing-md);">
+              <strong>💡 Important:</strong> 
+              <p style="margin: var(--spacing-xs) 0 0 0;">Articles (a, an, the) are not separate from determiners—they are a specific type of determiner. Think of determiners as the big category, and articles as one important group within that category.</p>
+            </div>
+          </div>
+
+          <!-- STEP 1: ARTICLES A/AN/THE -->
+          <div class="step-section" id="step1">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">Articles: A, An, and The</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are articles?</h3>
+              <p>Articles are a <strong>type of determiner</strong>—they are small words that come <strong>before nouns</strong>. There are three articles in English: <strong>a</strong>, <strong>an</strong>, and <strong>the</strong>. They help us understand if we're talking about something <strong>specific</strong> or <strong>general</strong>.</p>
+              <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-sm); color: var(--color-text-muted);">💡 Remember: Articles are determiners, just like "some," "many," and "all" are also determiners. We study articles separately because they are very common and have specific rules.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 A and An (Indefinite Articles)</h4>
+                <p><strong>A</strong> and <strong>an</strong> are used for <strong>general</strong> or <strong>non-specific</strong> things. Use them when you're talking about something for the first time or when it doesn't matter which specific thing you mean.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">When to use A vs An:</strong>
+                  <div style="margin-top: var(--spacing-sm);">
+                    <p><strong>A</strong> = before words that start with a <strong>consonant sound</strong> (b, c, d, f, g, h, j, k, l, m, n, p, q, r, s, t, v, w, x, y, z)</p>
+                    <p><strong>An</strong> = before words that start with a <strong>vowel sound</strong> (a, e, i, o, u)</p>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples with A:</strong>
+                  <div class="example">I need <span class="highlight">a</span> book. (any book, not specific)</div>
+                  <div class="example">She has <span class="highlight">a</span> cat. (one cat, not specific)</div>
+                  <div class="example">He bought <span class="highlight">a</span> car. (one car, general)</div>
+                  <div class="example">I saw <span class="highlight">a</span> dog in the park. (one dog, not specific)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples with An:</strong>
+                  <div class="example">I need <span class="highlight">an</span> apple. (any apple, not specific)</div>
+                  <div class="example">She has <span class="highlight">an</span> umbrella. (one umbrella, not specific)</div>
+                  <div class="example">He is <span class="highlight">an</span> engineer. (one engineer, general)</div>
+                  <div class="example">I saw <span class="highlight">an</span> elephant. (one elephant, not specific)</div>
+                  <div class="example">She is <span class="highlight">an</span> honest person. (h is silent, starts with vowel sound)</div>
+                  <div class="example">I'll be back in <span class="highlight">an</span> hour. (h is silent, starts with vowel sound)</div>
+                </div>
+
+                <div class="tip-box" style="margin-top: var(--spacing-md);">
+                  <strong>💡 Important:</strong> 
+                  <p style="margin: var(--spacing-xs) 0 0 0;">It's about the <strong>sound</strong>, not the letter! Use "an" before words starting with a vowel <strong>sound</strong>:</p>
+                  <ul style="margin: var(--spacing-xs) 0 0 var(--spacing-lg); padding-left: var(--spacing-md);">
+                    <li><strong>an hour</strong> (h is silent, starts with "ow" sound)</li>
+                    <li><strong>an honest person</strong> (h is silent, starts with "on" sound)</li>
+                    <li><strong>an honor</strong> (h is silent, starts with "on" sound)</li>
+                  </ul>
+                  <p style="margin: var(--spacing-xs) 0 0 0;">Use "a" before words starting with a consonant <strong>sound</strong>:</p>
+                  <ul style="margin: var(--spacing-xs) 0 0 var(--spacing-lg); padding-left: var(--spacing-md);">
+                    <li><strong>a university</strong> (u sounds like "you")</li>
+                    <li><strong>a European</strong> (eu sounds like "you")</li>
+                    <li><strong>a house</strong> (h is pronounced)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 The (Definite Article)</h4>
+                <p><strong>The</strong> is used for <strong>specific</strong> things. Use it when:</p>
+                <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                  <li>You're talking about something <strong>already mentioned</strong></li>
+                  <li>The listener <strong>knows which one</strong> you mean</li>
+                  <li>There's only <strong>one</strong> of something</li>
+                  <li>You're talking about something <strong>unique</strong></li>
+                </ul>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I saw <span class="highlight">a</span> cat. <span class="highlight">The</span> cat was black. (first mention = a, second mention = the)</div>
+                  <div class="example">Close <span class="highlight">the</span> door, please. (we know which door)</div>
+                  <div class="example"><span class="highlight">The</span> sun is bright today. (there's only one sun)</div>
+                  <div class="example">I'm reading <span class="highlight">the</span> book you gave me. (specific book)</div>
+                  <div class="example"><span class="highlight">The</span> president gave a speech. (specific president)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">A/An = general, non-specific (any one). The = specific (this one). Use A before consonant sounds, An before vowel sounds.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Articles A/An/The -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Correct Article
+              </div>
+              <p class="exercise-instructions">Choose the correct article (a, an, or the).</p>
+              
+              <div class="exercise-item">
+                <label>1. "I need _____ apple for my lunch."</label>
+                <select id="articles-1">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="an">an</option>
+                  <option value="the">the</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "_____ sun rises in the east."</label>
+                <select id="articles-2">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="an">an</option>
+                  <option value="the">the</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She is _____ honest person."</label>
+                <select id="articles-3">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="an">an</option>
+                  <option value="the">the</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I saw _____ cat. _____ cat was black."</label>
+                <select id="articles-4a">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="an">an</option>
+                  <option value="the">the</option>
+                </select>
+                <select id="articles-4b" style="margin-left: var(--spacing-sm);">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="an">an</option>
+                  <option value="the">the</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "He goes to _____ university in London."</label>
+                <select id="articles-5">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="an">an</option>
+                  <option value="the">the</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkArticles()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-articles" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 2: ZERO ARTICLE -->
+          <div class="step-section" id="step2">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Zero Article (No Article)</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is the zero article?</h3>
+              <p>Sometimes we <strong>don't use any article</strong> before a noun. This is called the <strong>zero article</strong>. We use no article in several situations.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 When to Use Zero Article</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">1. Plural nouns (general meaning):</strong>
+                  <div class="example">I like <span class="highlight">cats</span>. (all cats in general, not specific)</div>
+                  <div class="example"><span class="highlight">Books</span> are expensive. (books in general)</div>
+                  <div class="example">She loves <span class="highlight">flowers</span>. (flowers in general)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">2. Uncountable nouns (general meaning):</strong>
+                  <div class="example">I need <span class="highlight">water</span>. (water in general)</div>
+                  <div class="example">She drinks <span class="highlight">coffee</span> every morning. (coffee in general)</div>
+                  <div class="example"><span class="highlight">Money</span> can't buy happiness. (money in general)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">3. Names of countries, cities, streets (usually):</strong>
+                  <div class="example">I live in <span class="highlight">London</span>.</div>
+                  <div class="example">She visited <span class="highlight">France</span> last year.</div>
+                  <div class="example">He lives on <span class="highlight">Main Street</span>.</div>
+                  <p style="margin-top: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--color-text-muted);">⚠️ Exception: Use "the" with countries that are plural or have "of": the United States, the Netherlands, the United Kingdom</p>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">4. Meals (breakfast, lunch, dinner):</strong>
+                  <div class="example">I had <span class="highlight">breakfast</span> at 8 AM.</div>
+                  <div class="example">What did you eat for <span class="highlight">lunch</span>?</div>
+                  <div class="example">We're having <span class="highlight">dinner</span> together.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">5. Languages and school subjects:</strong>
+                  <div class="example">She speaks <span class="highlight">English</span> fluently.</div>
+                  <div class="example">I study <span class="highlight">mathematics</span> at university.</div>
+                  <div class="example">He teaches <span class="highlight">history</span>.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">6. Sports and activities:</strong>
+                  <div class="example">I play <span class="highlight">tennis</span> on weekends.</div>
+                  <div class="example">She enjoys <span class="highlight">swimming</span>.</div>
+                  <div class="example">They love <span class="highlight">dancing</span>.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">7. Days, months, seasons:</strong>
+                  <div class="example">I'll see you on <span class="highlight">Monday</span>.</div>
+                  <div class="example">My birthday is in <span class="highlight">December</span>.</div>
+                  <div class="example">I love <span class="highlight">spring</span>.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">No article = general meaning, plural nouns, uncountable nouns, names, meals, languages, sports, days/months/seasons. Use articles when you want to be specific!</p>
+              </div>
+            </div>
+
+            <!-- Practice: Zero Article -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="circle-off" style="width: 24px; height: 24px;"></i>
+                Practice: Zero Article
+              </div>
+              <p class="exercise-instructions">Choose the correct option (with or without article).</p>
+              
+              <div class="exercise-item">
+                <label>1. "I like _____ cats."</label>
+                <select id="zero-1">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="the">the</option>
+                  <option value="no article">no article</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She speaks _____ English very well."</label>
+                <select id="zero-2">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="the">the</option>
+                  <option value="no article">no article</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "I had _____ breakfast at 7 AM."</label>
+                <select id="zero-3">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="the">the</option>
+                  <option value="no article">no article</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I'll see you on _____ Monday."</label>
+                <select id="zero-4">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="the">the</option>
+                  <option value="no article">no article</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "She plays _____ tennis every weekend."</label>
+                <select id="zero-5">
+                  <option value="">Choose...</option>
+                  <option value="a">a</option>
+                  <option value="the">the</option>
+                  <option value="no article">no article</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkZero()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-zero" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 3: SOME/ANY/NO -->
+          <div class="step-section" id="step3">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2 class="step-title">Determiners: Some, Any, and No</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are some, any, and no?</h3>
+              <p><strong>Some</strong>, <strong>any</strong>, and <strong>no</strong> are determiners that tell us about <strong>quantity</strong>. They can be used with both countable and uncountable nouns.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Some</h4>
+                <p>Use <strong>some</strong> in:</p>
+                <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                  <li><strong>Positive sentences</strong> (affirmative statements)</li>
+                  <li><strong>Offers</strong> and <strong>requests</strong> (when you expect "yes")</li>
+                  <li>With both <strong>countable</strong> (plural) and <strong>uncountable</strong> nouns</li>
+                </ul>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I have <span class="highlight">some</span> money. (uncountable)</div>
+                  <div class="example">There are <span class="highlight">some</span> books on the table. (countable plural)</div>
+                  <div class="example">Would you like <span class="highlight">some</span> coffee? (offer)</div>
+                  <div class="example">Can I have <span class="highlight">some</span> water? (request)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Any</h4>
+                <p>Use <strong>any</strong> in:</p>
+                <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                  <li><strong>Negative sentences</strong> (with not/no)</li>
+                  <li><strong>Questions</strong></li>
+                  <li>When the answer could be <strong>zero</strong></li>
+                  <li>With both <strong>countable</strong> (plural) and <strong>uncountable</strong> nouns</li>
+                </ul>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I don't have <span class="highlight">any</span> money. (negative)</div>
+                  <div class="example">There aren't <span class="highlight">any</span> books here. (negative)</div>
+                  <div class="example">Do you have <span class="highlight">any</span> questions? (question)</div>
+                  <div class="example">Is there <span class="highlight">any</span> milk left? (question)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 No</h4>
+                <p>Use <strong>no</strong> in:</p>
+                <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                  <li><strong>Positive sentences</strong> with negative meaning</li>
+                  <li>Instead of "not any"</li>
+                  <li>With both <strong>countable</strong> (plural) and <strong>uncountable</strong> nouns</li>
+                </ul>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I have <span class="highlight">no</span> money. (= I don't have any money)</div>
+                  <div class="example">There are <span class="highlight">no</span> books here. (= There aren't any books)</div>
+                  <div class="example">She has <span class="highlight">no</span> time. (= She doesn't have any time)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Some = positive sentences, offers, requests. Any = negative sentences, questions. No = positive sentence with negative meaning (same as "not any").</p>
+              </div>
+            </div>
+
+            <!-- Practice: Some/Any/No -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="hash" style="width: 24px; height: 24px;"></i>
+                Practice: Choose Some, Any, or No
+              </div>
+              <p class="exercise-instructions">Choose the correct determiner.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I have _____ money in my wallet."</label>
+                <select id="someany-1">
+                  <option value="">Choose...</option>
+                  <option value="some">some</option>
+                  <option value="any">any</option>
+                  <option value="no">no</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I don't have _____ time today."</label>
+                <select id="someany-2">
+                  <option value="">Choose...</option>
+                  <option value="some">some</option>
+                  <option value="any">any</option>
+                  <option value="no">no</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "Do you have _____ questions?"</label>
+                <select id="someany-3">
+                  <option value="">Choose...</option>
+                  <option value="some">some</option>
+                  <option value="any">any</option>
+                  <option value="no">no</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "There are _____ students in the classroom."</label>
+                <select id="someany-4">
+                  <option value="">Choose...</option>
+                  <option value="some">some</option>
+                  <option value="any">any</option>
+                  <option value="no">no</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "Would you like _____ tea?"</label>
+                <select id="someany-5">
+                  <option value="">Choose...</option>
+                  <option value="some">some</option>
+                  <option value="any">any</option>
+                  <option value="no">no</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkSomeAny()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-someany" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4: MUCH/MANY/A LOT OF -->
+          <div class="step-section" id="step4">
+            <div class="step-header">
+              <span class="step-number">4</span>
+              <h2 class="step-title">Determiners: Much, Many, A lot of, Lots of</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are much, many, and a lot of?</h3>
+              <p>These determiners tell us about <strong>large quantities</strong>. The choice depends on whether the noun is <strong>countable</strong> or <strong>uncountable</strong>.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Much (Uncountable Nouns)</h4>
+                <p>Use <strong>much</strong> with <strong>uncountable nouns</strong> (things you can't count: water, money, time, information, etc.).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I don't have <span class="highlight">much</span> money. (money = uncountable)</div>
+                  <div class="example">There isn't <span class="highlight">much</span> time left. (time = uncountable)</div>
+                  <div class="example">How <span class="highlight">much</span> water do you need? (water = uncountable)</div>
+                  <p style="margin-top: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--color-text-muted);">💡 Note: "Much" is usually used in negative sentences and questions. In positive sentences, we often use "a lot of" instead.</p>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Many (Countable Nouns)</h4>
+                <p>Use <strong>many</strong> with <strong>countable nouns</strong> (plural: books, students, cars, etc.).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I don't have <span class="highlight">many</span> books. (books = countable plural)</div>
+                  <div class="example">There aren't <span class="highlight">many</span> students here. (students = countable plural)</div>
+                  <div class="example">How <span class="highlight">many</span> apples do you want? (apples = countable plural)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 A lot of / Lots of (Both)</h4>
+                <p>Use <strong>a lot of</strong> or <strong>lots of</strong> with <strong>both countable and uncountable nouns</strong>. They can be used in positive, negative, and question sentences.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I have <span class="highlight">a lot of</span> friends. (countable)</div>
+                  <div class="example">She has <span class="highlight">lots of</span> money. (uncountable)</div>
+                  <div class="example">There are <span class="highlight">a lot of</span> books here. (countable)</div>
+                  <div class="example">I need <span class="highlight">lots of</span> time. (uncountable)</div>
+                  <p style="margin-top: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--color-text-muted);">💡 Note: "Lots of" is more informal than "a lot of".</p>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Much = uncountable nouns (usually negative/questions). Many = countable plural nouns. A lot of/Lots of = both countable and uncountable (all sentence types).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Much/Many/A lot of -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="trending-up" style="width: 24px; height: 24px;"></i>
+                Practice: Choose Much, Many, or A lot of
+              </div>
+              <p class="exercise-instructions">Choose the correct determiner.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I don't have _____ money."</label>
+                <select id="muchmany-1">
+                  <option value="">Choose...</option>
+                  <option value="much">much</option>
+                  <option value="many">many</option>
+                  <option value="a lot of">a lot of</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "There aren't _____ students in class today."</label>
+                <select id="muchmany-2">
+                  <option value="">Choose...</option>
+                  <option value="much">much</option>
+                  <option value="many">many</option>
+                  <option value="a lot of">a lot of</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She has _____ friends."</label>
+                <select id="muchmany-3">
+                  <option value="">Choose...</option>
+                  <option value="much">much</option>
+                  <option value="many">many</option>
+                  <option value="a lot of">a lot of</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "How _____ water do you drink every day?"</label>
+                <select id="muchmany-4">
+                  <option value="">Choose...</option>
+                  <option value="much">much</option>
+                  <option value="many">many</option>
+                  <option value="a lot of">a lot of</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "I need _____ time to finish this."</label>
+                <select id="muchmany-5">
+                  <option value="">Choose...</option>
+                  <option value="much">much</option>
+                  <option value="many">many</option>
+                  <option value="a lot of">a lot of</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkMuchMany()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-muchmany" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 5: FEW/LITTLE/A FEW/A LITTLE -->
+          <div class="step-section" id="step5">
+            <div class="step-header">
+              <span class="step-number">5</span>
+              <h2 class="step-title">Determiners: Few, Little, A few, A little</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are few, little, a few, and a little?</h3>
+              <p>These determiners tell us about <strong>small quantities</strong>. The difference between "few" and "a few" (or "little" and "a little") is about whether the quantity is <strong>negative</strong> (not enough) or <strong>positive</strong> (enough).</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Few vs A few (Countable Nouns)</h4>
+                <p><strong>Few</strong> = negative meaning (not many, not enough). <strong>A few</strong> = positive meaning (some, enough).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I have <span class="highlight">few</span> friends. (= not many, negative - I wish I had more)</div>
+                  <div class="example">I have <span class="highlight">a few</span> friends. (= some, positive - enough for me)</div>
+                  <div class="example">There are <span class="highlight">few</span> students here. (= not many, negative)</div>
+                  <div class="example">There are <span class="highlight">a few</span> students here. (= some, positive)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Little vs A little (Uncountable Nouns)</h4>
+                <p><strong>Little</strong> = negative meaning (not much, not enough). <strong>A little</strong> = positive meaning (some, enough).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I have <span class="highlight">little</span> money. (= not much, negative - I wish I had more)</div>
+                  <div class="example">I have <span class="highlight">a little</span> money. (= some, positive - enough for me)</div>
+                  <div class="example">There is <span class="highlight">little</span> time left. (= not much, negative)</div>
+                  <div class="example">There is <span class="highlight">a little</span> time left. (= some, positive)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Few/Little = negative (not enough). A few/A little = positive (enough). Few/A few = countable nouns. Little/A little = uncountable nouns.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Few/Little/A few/A little -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="trending-down" style="width: 24px; height: 24px;"></i>
+                Practice: Choose Few, Little, A few, or A little
+              </div>
+              <p class="exercise-instructions">Choose the correct determiner.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I have _____ money, so I can't buy that." (negative - not enough)</label>
+                <select id="fewlittle-1">
+                  <option value="">Choose...</option>
+                  <option value="little">little</option>
+                  <option value="a little">a little</option>
+                  <option value="few">few</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I have _____ friends, so I'm happy." (positive - enough)</label>
+                <select id="fewlittle-2">
+                  <option value="">Choose...</option>
+                  <option value="few">few</option>
+                  <option value="a few">a few</option>
+                  <option value="little">little</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "There are _____ students in class today." (countable, negative - not many)</label>
+                <select id="fewlittle-3">
+                  <option value="">Choose...</option>
+                  <option value="few">few</option>
+                  <option value="a few">a few</option>
+                  <option value="little">little</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I need _____ help, please." (uncountable, positive - some)</label>
+                <select id="fewlittle-4">
+                  <option value="">Choose...</option>
+                  <option value="little">little</option>
+                  <option value="a little">a little</option>
+                  <option value="few">few</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "There is _____ time left, so we must hurry." (uncountable, negative - not much)</label>
+                <select id="fewlittle-5">
+                  <option value="">Choose...</option>
+                  <option value="little">little</option>
+                  <option value="a little">a little</option>
+                  <option value="few">few</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkFewLittle()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-fewlittle" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 6: ALL/EVERY/EACH -->
+          <div class="step-section" id="step6">
+            <div class="step-header">
+              <span class="step-number">6</span>
+              <h2 class="step-title">Determiners: All, Every, and Each</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are all, every, and each?</h3>
+              <p>These determiners refer to <strong>complete groups</strong> or <strong>all members</strong> of a group. They have similar meanings but are used differently.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 All</h4>
+                <p>Use <strong>all</strong> to talk about <strong>the whole group together</strong>. It can be used with countable (plural) and uncountable nouns.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">All</span> students must attend. (all students together)</div>
+                  <div class="example"><span class="highlight">All</span> the books are here. (all books together)</div>
+                  <div class="example">I spent <span class="highlight">all</span> my money. (all money together)</div>
+                  <div class="example"><span class="highlight">All</span> of them came. (all people together)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Every</h4>
+                <p>Use <strong>every</strong> to talk about <strong>each individual member</strong> of a group (one by one). Use with <strong>singular countable nouns</strong>.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">Every</span> student must attend. (each individual student)</div>
+                  <div class="example"><span class="highlight">Every</span> book is important. (each individual book)</div>
+                  <div class="example">I go to the gym <span class="highlight">every</span> day. (each individual day)</div>
+                  <div class="example"><span class="highlight">Every</span> person here is friendly. (each individual person)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Each</h4>
+                <p>Use <strong>each</strong> to talk about <strong>individual members separately</strong> (one at a time). Use with <strong>singular countable nouns</strong>.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">Each</span> student received a certificate. (one by one, separately)</div>
+                  <div class="example"><span class="highlight">Each</span> book costs $10. (one by one, separately)</div>
+                  <div class="example">I gave <span class="highlight">each</span> person a gift. (one by one, separately)</div>
+                  <div class="example"><span class="highlight">Each</span> of them has a different opinion. (one by one)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 All vs Every vs Each</h4>
+                <p><strong>All</strong> = the whole group together. <strong>Every</strong> = each individual (focus on the group). <strong>Each</strong> = each individual separately (focus on individuals).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Comparison:</strong>
+                  <div class="example"><span class="highlight">All</span> students passed. (the whole group together)</div>
+                  <div class="example"><span class="highlight">Every</span> student passed. (each individual in the group)</div>
+                  <div class="example"><span class="highlight">Each</span> student passed. (each one separately)</div>
+                  <p style="margin-top: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--color-text-muted);">💡 Note: "Every" and "Each" are often interchangeable, but "each" emphasizes individual members more.</p>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">All = whole group together. Every = each individual (group focus). Each = each individual separately (individual focus). All = plural/uncountable. Every/Each = singular countable.</p>
+              </div>
+            </div>
+
+            <!-- Practice: All/Every/Each -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                Practice: Choose All, Every, or Each
+              </div>
+              <p class="exercise-instructions">Choose the correct determiner.</p>
+              
+              <div class="exercise-item">
+                <label>1. "_____ student must complete the assignment."</label>
+                <select id="allevery-1">
+                  <option value="">Choose...</option>
+                  <option value="All">All</option>
+                  <option value="Every">Every</option>
+                  <option value="Each">Each</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "_____ the books are on the shelf."</label>
+                <select id="allevery-2">
+                  <option value="">Choose...</option>
+                  <option value="All">All</option>
+                  <option value="Every">Every</option>
+                  <option value="Each">Each</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "I gave _____ person a different task." (focus on individuals separately)</label>
+                <select id="allevery-3">
+                  <option value="">Choose...</option>
+                  <option value="all">all</option>
+                  <option value="every">every</option>
+                  <option value="each">each</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "_____ day is a new opportunity."</label>
+                <select id="allevery-4">
+                  <option value="">Choose...</option>
+                  <option value="All">All</option>
+                  <option value="Every">Every</option>
+                  <option value="Each">Each</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "_____ of them has a different opinion."</label>
+                <select id="allevery-5">
+                  <option value="">Choose...</option>
+                  <option value="All">All</option>
+                  <option value="Every">Every</option>
+                  <option value="Each">Each</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkAllEvery()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-allevery" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 7: BOTH/NEITHER/EITHER -->
+          <div class="step-section" id="step7">
+            <div class="step-header">
+              <span class="step-number">7</span>
+              <h2 class="step-title">Determiners: Both, Neither, and Either</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are both, neither, and either?</h3>
+              <p>These determiners are used when talking about <strong>two things</strong> or <strong>two people</strong>. They help us express relationships between two options.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Both</h4>
+                <p>Use <strong>both</strong> to talk about <strong>two things together</strong> (both of them). Use with plural nouns.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">Both</span> students passed the test. (two students together)</div>
+                  <div class="example"><span class="highlight">Both</span> books are interesting. (two books together)</div>
+                  <div class="example"><span class="highlight">Both</span> of them are here. (two people together)</div>
+                  <div class="example">I like <span class="highlight">both</span> options. (two options together)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Neither</h4>
+                <p>Use <strong>neither</strong> to say <strong>not one and not the other</strong> (none of the two). Use with singular nouns. Use <strong>neither...nor</strong> to connect two things.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">Neither</span> student passed. (not one, not the other)</div>
+                  <div class="example"><span class="highlight">Neither</span> book is interesting. (not one, not the other)</div>
+                  <div class="example"><span class="highlight">Neither</span> of them came. (not one, not the other)</div>
+                  <div class="example"><span class="highlight">Neither</span> John <span class="highlight">nor</span> Mary came. (not John, not Mary)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Either</h4>
+                <p>Use <strong>either</strong> to talk about <strong>one of two options</strong> (one or the other). Use with singular nouns. Use <strong>either...or</strong> to connect two options.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">You can choose <span class="highlight">either</span> book. (one of two books)</div>
+                  <div class="example"><span class="highlight">Either</span> student can help you. (one of two students)</div>
+                  <div class="example"><span class="highlight">Either</span> of them is fine. (one of two options)</div>
+                  <div class="example">You can have <span class="highlight">either</span> coffee <span class="highlight">or</span> tea. (one or the other)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Both vs Neither vs Either</h4>
+                <p><strong>Both</strong> = two things together (positive). <strong>Neither</strong> = not one, not the other (negative). <strong>Either</strong> = one of two (choice).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Comparison:</strong>
+                  <div class="example"><span class="highlight">Both</span> students passed. (both of them)</div>
+                  <div class="example"><span class="highlight">Neither</span> student passed. (not one, not the other)</div>
+                  <div class="example"><span class="highlight">Either</span> student can help. (one of them)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Both = two together (plural). Neither = not one, not the other (singular, negative). Either = one of two (singular, choice). Use "neither...nor" and "either...or" to connect two things.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Both/Neither/Either -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="git-branch" style="width: 24px; height: 24px;"></i>
+                Practice: Choose Both, Neither, or Either
+              </div>
+              <p class="exercise-instructions">Choose the correct determiner.</p>
+              
+              <div class="exercise-item">
+                <label>1. "_____ students passed the exam." (two students together)</label>
+                <select id="bothneither-1">
+                  <option value="">Choose...</option>
+                  <option value="Both">Both</option>
+                  <option value="Neither">Neither</option>
+                  <option value="Either">Either</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "_____ book is interesting." (not one, not the other)</label>
+                <select id="bothneither-2">
+                  <option value="">Choose...</option>
+                  <option value="Both">Both</option>
+                  <option value="Neither">Neither</option>
+                  <option value="Either">Either</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "You can choose _____ option." (one of two)</label>
+                <select id="bothneither-3">
+                  <option value="">Choose...</option>
+                  <option value="both">both</option>
+                  <option value="neither">neither</option>
+                  <option value="either">either</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "_____ of them came to the party." (not one, not the other)</label>
+                <select id="bothneither-4">
+                  <option value="">Choose...</option>
+                  <option value="Both">Both</option>
+                  <option value="Neither">Neither</option>
+                  <option value="Either">Either</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "I like _____ movies." (two movies together)</label>
+                <select id="bothneither-5">
+                  <option value="">Choose...</option>
+                  <option value="both">both</option>
+                  <option value="neither">neither</option>
+                  <option value="either">either</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkBothNeither()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-bothneither" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 8: REVIEW & SUMMARY -->
+          <div class="step-section" id="step8">
+            <div class="step-header">
+              <span class="step-number">8</span>
+              <h2 class="step-title">Review & Summary</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">Articles & Determiners Review & Summary</h3>
+              <p>Congratulations! You've learned about articles and determiners. Remember: <strong>articles are a type of determiner</strong>, not separate from determiners. Let's review what you've covered:</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📚 What You've Learned</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Articles (A/An/The)</strong> - A/An = general, non-specific. The = specific. A before consonant sounds, An before vowel sounds.
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I need <span class="highlight">a</span> book. <span class="highlight">The</span> book is interesting.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Zero Article</strong> - No article for plural nouns, uncountable nouns, names, meals, languages, sports, days/months/seasons.
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I like <span class="highlight">cats</span>. She speaks <span class="highlight">English</span>.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Some/Any/No</strong> - Some = positive sentences, offers, requests. Any = negative sentences, questions. No = positive sentence with negative meaning.
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I have <span class="highlight">some</span> money. I don't have <span class="highlight">any</span> time.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>4. Much/Many/A lot of</strong> - Much = uncountable nouns. Many = countable plural nouns. A lot of/Lots of = both (all sentence types).
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I don't have <span class="highlight">much</span> money. There aren't <span class="highlight">many</span> students.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>5. Few/Little/A few/A little</strong> - Few/Little = negative (not enough). A few/A little = positive (enough). Few/A few = countable. Little/A little = uncountable.
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I have <span class="highlight">few</span> friends. I have <span class="highlight">a little</span> money.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>6. All/Every/Each</strong> - All = whole group together. Every = each individual (group focus). Each = each individual separately (individual focus).
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example"><span class="highlight">All</span> students passed. <span class="highlight">Every</span> student passed.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>7. Both/Neither/Either</strong> - Both = two together (plural). Neither = not one, not the other (singular, negative). Either = one of two (singular, choice).
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example"><span class="highlight">Both</span> students passed. <span class="highlight">Neither</span> student passed.</div>
+                    </div>
+                  </li>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Reminders:</strong> 
+                <ul style="margin: var(--spacing-xs) 0; padding-left: var(--spacing-lg);">
+                  <li>A/An = general, The = specific</li>
+                  <li>Some = positive, Any = negative/questions</li>
+                  <li>Much = uncountable, Many = countable plural</li>
+                  <li>Few/Little = negative, A few/A little = positive</li>
+                  <li>All = whole group, Every/Each = individuals</li>
+                  <li>Both = two together, Neither = not either, Either = one of two</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="progress-indicator">
+            <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">Your Progress</p>
+            <div class="progress-bar">
+              <div class="progress-dot active" id="dot1"></div>
+              <div class="progress-dot" id="dot2"></div>
+              <div class="progress-dot" id="dot3"></div>
+              <div class="progress-dot" id="dot4"></div>
+              <div class="progress-dot" id="dot5"></div>
+              <div class="progress-dot" id="dot6"></div>
+              <div class="progress-dot" id="dot7"></div>
+              <div class="progress-dot" id="dot8"></div>
+            </div>
+          </div>
+
+          <!-- Final Review -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✓</span>
+              <h2 class="step-title">Congratulations! You've Completed the Articles & Determiners Guide!</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What You've Learned</h3>
+              <p>You've learned about:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                <li>Articles (A, An, The) and when to use them</li>
+                <li>Zero article (when not to use articles)</li>
+                <li>Some, Any, and No determiners</li>
+                <li>Much, Many, and A lot of</li>
+                <li>Few, Little, A few, and A little</li>
+                <li>All, Every, and Each</li>
+                <li>Both, Neither, and Either</li>
+              </ul>
+              
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Keep Practicing!</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">The more you practice, the better you'll become at using articles and determiners correctly. Try reading English texts and identifying different types of articles and determiners!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Answer keys
+    const answers = {
+      articles: ['an', 'the', 'an', ['a', 'the'], 'a'],
+      zero: ['no article', 'no article', 'no article', 'no article', 'no article'],
+      someany: ['some', 'any', 'any', 'no', 'some'],
+      muchmany: ['much', 'many', 'a lot of', 'much', 'a lot of'],
+      fewlittle: ['little', 'a few', 'few', 'a little', 'little'],
+      allevery: ['Every', 'All', 'each', 'Every', 'Each'],
+      bothneither: ['Both', 'Neither', 'either', 'Neither', 'both']
+    };
+
+    function updateProgress(step) {
+      for (let i = 1; i <= 8; i++) {
+        const dot = document.getElementById(`dot${i}`);
+        if (i < step) {
+          dot.classList.add('completed');
+          dot.classList.remove('active');
+        } else if (i === step) {
+          dot.classList.add('active');
+          dot.classList.remove('completed');
+        } else {
+          dot.classList.remove('active', 'completed');
+        }
+      }
+    }
+
+    function normalizeAnswer(answer) {
+      return answer.toLowerCase().trim().replace(/\s+/g, ' ');
+    }
+
+    function checkArticles() {
+      const feedback = document.getElementById('feedback-articles');
+      let correct = 0;
+      let total = 5;
+      
+      answers.articles.forEach((answer, index) => {
+        if (index === 3) {
+          // Question 4 has two selects
+          const select1 = document.getElementById('articles-4a');
+          const select2 = document.getElementById('articles-4b');
+          if (select1.value === answer[0] && select2.value === answer[1]) {
+            correct++;
+            select1.style.borderColor = '#10b981';
+            select1.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+            select2.style.borderColor = '#10b981';
+            select2.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+          } else if (select1.value || select2.value) {
+            select1.style.borderColor = '#ef4444';
+            select1.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+            select2.style.borderColor = '#ef4444';
+            select2.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+          }
+        } else {
+          const select = document.getElementById(`articles-${index + 1}`);
+          if (select.value === answer) {
+            correct++;
+            select.style.borderColor = '#10b981';
+            select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+          } else if (select.value) {
+            select.style.borderColor = '#ef4444';
+            select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+          }
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand articles!`
+        : `You got ${correct} out of ${total} correct. Remember: A/An = general, non-specific. The = specific. A before consonant sounds, An before vowel sounds.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(2);
+      }
+    }
+
+    function checkZero() {
+      const feedback = document.getElementById('feedback-zero');
+      let correct = 0;
+      let total = 5;
+      
+      answers.zero.forEach((answer, index) => {
+        const select = document.getElementById(`zero-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand zero article!`
+        : `You got ${correct} out of ${total} correct. Remember: No article for plural nouns, uncountable nouns, names, meals, languages, sports, days/months/seasons.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(3);
+      }
+    }
+
+    function checkSomeAny() {
+      const feedback = document.getElementById('feedback-someany');
+      let correct = 0;
+      let total = 5;
+      
+      answers.someany.forEach((answer, index) => {
+        const select = document.getElementById(`someany-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand some, any, and no!`
+        : `You got ${correct} out of ${total} correct. Remember: Some = positive sentences, offers, requests. Any = negative sentences, questions. No = positive sentence with negative meaning.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(4);
+      }
+    }
+
+    function checkMuchMany() {
+      const feedback = document.getElementById('feedback-muchmany');
+      let correct = 0;
+      let total = 5;
+      
+      answers.muchmany.forEach((answer, index) => {
+        const select = document.getElementById(`muchmany-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand much, many, and a lot of!`
+        : `You got ${correct} out of ${total} correct. Remember: Much = uncountable nouns. Many = countable plural nouns. A lot of/Lots of = both (all sentence types).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(5);
+      }
+    }
+
+    function checkFewLittle() {
+      const feedback = document.getElementById('feedback-fewlittle');
+      let correct = 0;
+      let total = 5;
+      
+      answers.fewlittle.forEach((answer, index) => {
+        const select = document.getElementById(`fewlittle-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand few, little, a few, and a little!`
+        : `You got ${correct} out of ${total} correct. Remember: Few/Little = negative (not enough). A few/A little = positive (enough). Few/A few = countable. Little/A little = uncountable.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(6);
+      }
+    }
+
+    function checkAllEvery() {
+      const feedback = document.getElementById('feedback-allevery');
+      let correct = 0;
+      let total = 5;
+      
+      answers.allevery.forEach((answer, index) => {
+        const select = document.getElementById(`allevery-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand all, every, and each!`
+        : `You got ${correct} out of ${total} correct. Remember: All = whole group together. Every = each individual (group focus). Each = each individual separately (individual focus).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    function checkBothNeither() {
+      const feedback = document.getElementById('feedback-bothneither');
+      let correct = 0;
+      let total = 5;
+      
+      answers.bothneither.forEach((answer, index) => {
+        const select = document.getElementById(`bothneither-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `🎉 Perfect! You got all ${total} correct! You understand both, neither, and either! Congratulations on completing the guide!`
+        : `You got ${correct} out of ${total} correct. Remember: Both = two together (plural). Neither = not one, not the other (singular, negative). Either = one of two (singular, choice).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(8);
+      }
+    }
+
+    // Initialize progress
+    updateProgress(1);
+  </script>
+</body>
+</html>
+

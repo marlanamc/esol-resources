@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditionals - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to all conditional types (Zero, First, Second, Third, Mixed) with Unless/As long as/Provided that and Wishes & Regrets for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .if-part {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+      color: #6366f1;
+    }
+    
+    .result-part {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+      color: #ec4899;
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--spacing-lg) 0;
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--spacing-md);
+      text-align: left;
+      border: 1px solid var(--color-border);
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      font-weight: 600;
+    }
+    
+    .comparison-table tr:nth-child(even) {
+      background: var(--color-bg-light);
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .comparison-table {
+      background: var(--color-bg-light);
+    }
+    
+    [data-theme="dark"] .comparison-table th {
+      background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Conditionals</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Complete Guide</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Conditionals - Complete Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn Conditionals Together
+            </h2>
+            <p>Conditionals help us talk about possibilities, hypothetical situations, and consequences. We'll learn all types step by step!</p>
+            <p><strong>What are conditionals?</strong> They are sentences with two parts: an "if" clause (condition) and a main clause (result).</p>
+          </div>
+
+          <!-- OVERVIEW SECTION -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">★</span>
+              <h2 class="step-title">Understanding Conditionals - Overview</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #1e293b; margin-top: 0;">What are conditionals?</h3>
+              <p>Conditionals are sentences that express <strong>if-then</strong> relationships. They have two parts:</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part if-part">IF clause</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part result-part">Main clause</span>
+                </div>
+                <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">
+                  The IF clause = the condition | The Main clause = the result
+                </div>
+              </div>
+
+              <div class="example-box" style="margin-top: var(--spacing-md);">
+                <strong style="color: #1e293b;">Example:</strong>
+                <div class="example">If it <span class="highlight">rains</span>, I <span class="highlight">will stay</span> home.</div>
+                <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">
+                  IF clause: "If it rains" (condition) | Main clause: "I will stay home" (result)
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Types of Conditionals:</h4>
+                
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Type</th>
+                      <th>Use</th>
+                      <th>If Clause</th>
+                      <th>Main Clause</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Zero</strong></td>
+                      <td>General truths, facts</td>
+                      <td>Present Simple</td>
+                      <td>Present Simple</td>
+                    </tr>
+                    <tr>
+                      <td><strong>First</strong></td>
+                      <td>Real future possibilities</td>
+                      <td>Present Simple</td>
+                      <td>Will + base verb</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Second</strong></td>
+                      <td>Unreal present/future</td>
+                      <td>Past Simple</td>
+                      <td>Would + base verb</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Third</strong></td>
+                      <td>Unreal past</td>
+                      <td>Past Perfect</td>
+                      <td>Would have + past participle</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Mixed</strong></td>
+                      <td>Past condition, present result</td>
+                      <td>Past Perfect</td>
+                      <td>Would + base verb</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- ZERO CONDITIONAL -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number">0</span>
+              <h2 class="step-title">Zero Conditional</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">When do we use Zero Conditional?</h3>
+              <p>Zero Conditional is used for <strong>general truths, facts, and things that always happen</strong> when a condition is met.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part if-part">If + Present Simple</span>
+                  <span style="margin: 0 var(--spacing-xs);">,</span>
+                  <span class="formula-part result-part">Present Simple</span>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #1e293b;">Examples:</strong>
+                <div class="example">If you <span class="highlight">heat</span> water to 100°C, it <span class="highlight">boils</span>.</div>
+                <div class="example">If it <span class="highlight">rains</span>, the ground <span class="highlight">gets</span> wet.</div>
+                <div class="example">If I <span class="highlight">don't sleep</span> well, I <span class="highlight">feel</span> tired.</div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Zero Conditional describes things that are <strong>always true</strong> - scientific facts, general rules, or things that happen every time the condition is met.</p>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Zero Conditional
+              </div>
+              <p class="exercise-instructions">Complete the sentences with the correct form of the verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. If you mix red and blue, you _____ (get) purple.</label>
+                <input type="text" id="zero-1" placeholder="get">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. If it _____ (snow), the temperature is below 0°C.</label>
+                <input type="text" id="zero-2" placeholder="snows">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. If you _____ (not eat), you get hungry.</label>
+                <input type="text" id="zero-3" placeholder="don't eat">
+              </div>
+              
+              <button class="check-button" onclick="checkZero()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-zero" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- FIRST CONDITIONAL -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">First Conditional</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">When do we use First Conditional?</h3>
+              <p>First Conditional is used for <strong>real possibilities in the future</strong> - things that might happen.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part if-part">If + Present Simple</span>
+                  <span style="margin: 0 var(--spacing-xs);">,</span>
+                  <span class="formula-part result-part">Will + base verb</span>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #1e293b;">Examples:</strong>
+                <div class="example">If it <span class="highlight">rains</span> tomorrow, I <span class="highlight">will stay</span> home.</div>
+                <div class="example">If you <span class="highlight">study</span> hard, you <span class="highlight">will pass</span> the exam.</div>
+                <div class="example">If she <span class="highlight">doesn't hurry</span>, she <span class="highlight">will be</span> late.</div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">First Conditional talks about <strong>real, possible future situations</strong>. The condition is possible and the result is likely if the condition happens.</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Alternative forms:</strong> You can also use "may", "might", "can", "should" instead of "will"</p>
+                <div class="example">If it rains, I <strong>might stay</strong> home. (less certain)</div>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: First Conditional
+              </div>
+              <p class="exercise-instructions">Complete the sentences with the correct form of the verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. If I _____ (see) him, I _____ (tell) him the news.</label>
+                <input type="text" id="first-1" placeholder="see, will tell">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. If you _____ (not finish) your homework, you _____ (not go) to the party.</label>
+                <input type="text" id="first-2" placeholder="don't finish, won't go">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. If it _____ (be) sunny tomorrow, we _____ (have) a picnic.</label>
+                <input type="text" id="first-3" placeholder="is, will have">
+              </div>
+              
+              <button class="check-button" onclick="checkFirst()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-first" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- SECOND CONDITIONAL -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Second Conditional</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">When do we use Second Conditional?</h3>
+              <p>Second Conditional is used for <strong>unreal or unlikely situations</strong> in the present or future - things that probably won't happen, or imaginary situations.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part if-part">If + Past Simple</span>
+                  <span style="margin: 0 var(--spacing-xs);">,</span>
+                  <span class="formula-part result-part">Would + base verb</span>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #1e293b;">Examples:</strong>
+                <div class="example">If I <span class="highlight">won</span> the lottery, I <span class="highlight">would travel</span> around the world.</div>
+                <div class="example">If I <span class="highlight">were</span> you, I <span class="highlight">would study</span> harder.</div>
+                <div class="example">If it <span class="highlight">rained</span> tomorrow, we <span class="highlight">would cancel</span> the picnic.</div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Second Conditional talks about <strong>hypothetical, unlikely, or imaginary situations</strong>. Notice: we use "were" (not "was") for all subjects in formal English.</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Compare:</strong></p>
+                <ul style="margin: var(--spacing-xs) 0; padding-left: var(--spacing-lg);">
+                  <li>First: "If it rains, I will stay home" (real possibility)</li>
+                  <li>Second: "If it rained, I would stay home" (unlikely/imaginary)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Second Conditional
+              </div>
+              <p class="exercise-instructions">Complete the sentences with the correct form of the verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. If I _____ (have) more time, I _____ (learn) Spanish.</label>
+                <input type="text" id="second-1" placeholder="had, would learn">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. If she _____ (be) rich, she _____ (buy) a big house.</label>
+                <input type="text" id="second-2" placeholder="were/was, would buy">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. If I _____ (know) the answer, I _____ (tell) you.</label>
+                <input type="text" id="second-3" placeholder="knew, would tell">
+              </div>
+              
+              <button class="check-button" onclick="checkSecond()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-second" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- THIRD CONDITIONAL -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2 class="step-title">Third Conditional</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">When do we use Third Conditional?</h3>
+              <p>Third Conditional is used for <strong>unreal situations in the past</strong> - things that didn't happen, but we imagine what would have happened if they had.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part if-part">If + Past Perfect</span>
+                  <span style="margin: 0 var(--spacing-xs);">,</span>
+                  <span class="formula-part result-part">Would have + past participle</span>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #1e293b;">Examples:</strong>
+                <div class="example">If I <span class="highlight">had studied</span> harder, I <span class="highlight">would have passed</span> the exam.</div>
+                <div class="example">If she <span class="highlight">had left</span> earlier, she <span class="highlight">would have caught</span> the train.</div>
+                <div class="example">If we <span class="highlight">had known</span> about the party, we <span class="highlight">would have come</span>.</div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Third Conditional is used for <strong>regrets, criticism, or imagining different past outcomes</strong>. The situation is completely in the past and cannot be changed.</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Common use:</strong> Expressing regrets - "If I had done X, Y would have happened"</p>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Third Conditional
+              </div>
+              <p class="exercise-instructions">Complete the sentences with the correct form of the verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. If I _____ (wake up) earlier, I _____ (not miss) the bus.</label>
+                <input type="text" id="third-1" placeholder="had woken, wouldn't have missed">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. If you _____ (tell) me, I _____ (help) you.</label>
+                <input type="text" id="third-2" placeholder="had told, would have helped">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. If it _____ (not rain), we _____ (go) to the beach.</label>
+                <input type="text" id="third-3" placeholder="hadn't rained, would have gone">
+              </div>
+              
+              <button class="check-button" onclick="checkThird()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-third" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- MIXED CONDITIONALS -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">M</span>
+              <h2 class="step-title">Mixed Conditionals</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">When do we use Mixed Conditionals?</h3>
+              <p>Mixed Conditionals combine different time references - usually a <strong>past condition</strong> with a <strong>present result</strong>.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part if-part">If + Past Perfect</span>
+                  <span style="margin: 0 var(--spacing-xs);">,</span>
+                  <span class="formula-part result-part">Would + base verb</span>
+                </div>
+                <div style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">
+                  Past condition → Present result
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #1e293b;">Examples:</strong>
+                <div class="example">If I <span class="highlight">had studied</span> harder in school, I <span class="highlight">would have</span> a better job now.</div>
+                <div class="example">If she <span class="highlight">had taken</span> that job, she <span class="highlight">would be</span> living in Paris today.</div>
+                <div class="example">If you <span class="highlight">had listened</span> to my advice, you <span class="highlight">wouldn't be</span> in trouble now.</div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Mixed Conditionals connect a <strong>past action</strong> with a <strong>present consequence</strong>. The past action affects the present situation.</p>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Mixed Conditionals
+              </div>
+              <p class="exercise-instructions">Complete the sentences with the correct form of the verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. If I _____ (learn) to drive when I was younger, I _____ (drive) to work now.</label>
+                <input type="text" id="mixed-1" placeholder="had learned, would drive">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. If she _____ (not move) to London, she _____ (not speak) English so well.</label>
+                <input type="text" id="mixed-2" placeholder="hadn't moved, wouldn't speak">
+              </div>
+              
+              <button class="check-button" onclick="checkMixed()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-mixed" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- UNLESS / AS LONG AS / PROVIDED THAT -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">U</span>
+              <h2 class="step-title">Unless / As long as / Provided that</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">Alternative conditional words</h3>
+              <p>These words can replace "if" in conditional sentences, each with a slightly different meaning.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Unless</h4>
+                <p><strong>Meaning:</strong> "If...not" or "except if" - introduces a negative condition</p>
+                <div class="example-box">
+                  <div class="example">Unless you study, you won't pass. = If you don't study, you won't pass.</div>
+                  <div class="example">I won't go unless you come too. = I won't go if you don't come.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 As long as</h4>
+                <p><strong>Meaning:</strong> "on condition that" or "provided that" - emphasizes the condition must be met</p>
+                <div class="example-box">
+                  <div class="example">You can come as long as you're quiet. = You can come if you're quiet.</div>
+                  <div class="example">As long as it doesn't rain, we'll have a picnic.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Provided that / Providing that</h4>
+                <p><strong>Meaning:</strong> "on condition that" - more formal than "as long as"</p>
+                <div class="example-box">
+                  <div class="example">I'll help you provided that you try your best.</div>
+                  <div class="example">You can use my car provided that you drive carefully.</div>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Unless</strong> = negative condition (if...not)</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>As long as / Provided that</strong> = positive condition (if)</p>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Unless / As long as / Provided that
+              </div>
+              <p class="exercise-instructions">Choose the correct word to complete each sentence.</p>
+              
+              <div class="exercise-item">
+                <label>1. I won't go to the party _____ you come with me.</label>
+                <select id="unless-1">
+                  <option value="">Choose...</option>
+                  <option value="unless">unless</option>
+                  <option value="as long as">as long as</option>
+                  <option value="provided that">provided that</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. You can borrow my book _____ you return it next week.</label>
+                <select id="unless-2">
+                  <option value="">Choose...</option>
+                  <option value="unless">unless</option>
+                  <option value="as long as">as long as</option>
+                  <option value="provided that">provided that</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. _____ you finish your homework, you can't watch TV.</label>
+                <select id="unless-3">
+                  <option value="">Choose...</option>
+                  <option value="unless">unless</option>
+                  <option value="as long as">as long as</option>
+                  <option value="provided that">provided that</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkUnless()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-unless" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- WISHES AND REGRETS -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">W</span>
+              <h2 class="step-title">Wishes and Regrets</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">Expressing wishes and regrets</h3>
+              <p>We use "wish" and "if only" to express desires, regrets, and things we want to be different.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Wish + Past Simple (Present wishes)</h4>
+                <p><strong>Use:</strong> To express wishes about the present (things we want to be different now)</p>
+                <div class="example-box">
+                  <div class="example">I wish I <span class="highlight">had</span> more time. (I don't have enough time now)</div>
+                  <div class="example">I wish I <span class="highlight">were</span> taller. (I'm not tall now)</div>
+                  <div class="example">She wishes she <span class="highlight">knew</span> how to drive. (She doesn't know now)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Wish + Past Perfect (Past regrets)</h4>
+                <p><strong>Use:</strong> To express regrets about the past (things we wish had happened differently)</p>
+                <div class="example-box">
+                  <div class="example">I wish I <span class="highlight">had studied</span> harder. (I didn't study hard in the past)</div>
+                  <div class="example">I wish I <span class="highlight">hadn't said</span> that. (I said something I regret)</div>
+                  <div class="example">She wishes she <span class="highlight">had taken</span> that job. (She didn't take it)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 If only</h4>
+                <p><strong>Use:</strong> Similar to "wish" but stronger - expresses stronger feelings</p>
+                <div class="example-box">
+                  <div class="example">If only I <span class="highlight">had</span> more money!</div>
+                  <div class="example">If only I <span class="highlight">hadn't made</span> that mistake!</div>
+                </div>
+              </div>
+
+              <div class="tip-box">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Wish + Past Simple</strong> = present wishes (things we want to change now)</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>Wish + Past Perfect</strong> = past regrets (things we wish had been different)</p>
+                <p style="margin: var(--spacing-xs) 0 0 0;"><strong>If only</strong> = stronger than "wish"</p>
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Wishes and Regrets
+              </div>
+              <p class="exercise-instructions">Complete the sentences with the correct form of the verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. I wish I _____ (speak) French fluently.</label>
+                <input type="text" id="wish-1" placeholder="spoke">
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. I wish I _____ (not eat) so much yesterday.</label>
+                <input type="text" id="wish-2" placeholder="hadn't eaten">
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. If only I _____ (have) more free time!</label>
+                <input type="text" id="wish-3" placeholder="had">
+              </div>
+              
+              <button class="check-button" onclick="checkWish()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-wish" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- FINAL QUIZ -->
+          <div class="step-section">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✓</span>
+              <h2 class="step-title">Final Practice Quiz</h2>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+                Choose the Correct Conditional Type
+              </div>
+              <p class="exercise-instructions">Read each sentence and choose which type of conditional it is.</p>
+              
+              <div class="exercise-item">
+                <label>1. "If water freezes, it becomes ice."</label>
+                <select id="quiz-1">
+                  <option value="">Choose...</option>
+                  <option value="zero">Zero Conditional</option>
+                  <option value="first">First Conditional</option>
+                  <option value="second">Second Conditional</option>
+                  <option value="third">Third Conditional</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "If I had more money, I would buy a car."</label>
+                <select id="quiz-2">
+                  <option value="">Choose...</option>
+                  <option value="zero">Zero Conditional</option>
+                  <option value="first">First Conditional</option>
+                  <option value="second">Second Conditional</option>
+                  <option value="third">Third Conditional</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "If it rains tomorrow, I will bring an umbrella."</label>
+                <select id="quiz-3">
+                  <option value="">Choose...</option>
+                  <option value="zero">Zero Conditional</option>
+                  <option value="first">First Conditional</option>
+                  <option value="second">Second Conditional</option>
+                  <option value="third">Third Conditional</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "If I had studied harder, I would have passed the exam."</label>
+                <select id="quiz-4">
+                  <option value="">Choose...</option>
+                  <option value="zero">Zero Conditional</option>
+                  <option value="first">First Conditional</option>
+                  <option value="second">Second Conditional</option>
+                  <option value="third">Third Conditional</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkQuiz()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-quiz" class="feedback"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    function normalizeAnswer(answer) {
+      return answer.toLowerCase().trim().replace(/\s+/g, ' ').replace(/[.,!?]/g, '');
+    }
+
+    function checkZero() {
+      const feedback = document.getElementById('feedback-zero');
+      let correct = 0;
+      let total = 3;
+      const answers = ['get', 'snows', "don't eat"];
+      
+      answers.forEach((answer, index) => {
+        const input = document.getElementById(`zero-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        if (userAnswer === normalizeAnswer(answer)) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: Zero Conditional uses Present Simple in both clauses.`;
+      feedback.style.display = 'block';
+    }
+
+    function checkFirst() {
+      const feedback = document.getElementById('feedback-first');
+      let correct = 0;
+      let total = 3;
+      const answers = [
+        ['see', 'will tell'],
+        ["don't finish", "won't go"],
+        ['is', 'will have']
+      ];
+      
+      answers.forEach((answerPair, index) => {
+        const input = document.getElementById(`first-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const answer1 = normalizeAnswer(answerPair[0]);
+        const answer2 = normalizeAnswer(answerPair[1]);
+        const fullAnswer = normalizeAnswer(answerPair.join(', '));
+        
+        if (userAnswer.includes(answer1) && userAnswer.includes(answer2)) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: First Conditional uses Present Simple in the if clause and Will + base verb in the main clause.`;
+      feedback.style.display = 'block';
+    }
+
+    function checkSecond() {
+      const feedback = document.getElementById('feedback-second');
+      let correct = 0;
+      let total = 3;
+      const answers = [
+        ['had', 'would learn'],
+        ['were', 'would buy'],
+        ['knew', 'would tell']
+      ];
+      
+      answers.forEach((answerPair, index) => {
+        const input = document.getElementById(`second-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const answer1 = normalizeAnswer(answerPair[0]);
+        const answer2 = normalizeAnswer(answerPair[1]);
+        
+        let isCorrect = false;
+        if (index === 1) {
+          // Accept both "were" and "was" for question 2
+          isCorrect = (userAnswer.includes('were') || userAnswer.includes('was')) && userAnswer.includes(answer2);
+        } else {
+          isCorrect = userAnswer.includes(answer1) && userAnswer.includes(answer2);
+        }
+        
+        if (isCorrect) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: Second Conditional uses Past Simple in the if clause and Would + base verb in the main clause.`;
+      feedback.style.display = 'block';
+    }
+
+    function checkThird() {
+      const feedback = document.getElementById('feedback-third');
+      let correct = 0;
+      let total = 3;
+      const answers = [
+        ['had woken', "wouldn't have missed"],
+        ['had told', 'would have helped'],
+        ["hadn't rained", 'would have gone']
+      ];
+      
+      answers.forEach((answerPair, index) => {
+        const input = document.getElementById(`third-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const answer1 = normalizeAnswer(answerPair[0]);
+        const answer2 = normalizeAnswer(answerPair[1]);
+        
+        if (userAnswer.includes(answer1) && userAnswer.includes(answer2)) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: Third Conditional uses Past Perfect in the if clause and Would have + past participle in the main clause.`;
+      feedback.style.display = 'block';
+    }
+
+    function checkMixed() {
+      const feedback = document.getElementById('feedback-mixed');
+      let correct = 0;
+      let total = 2;
+      const answers = [
+        ['had learned', 'would drive'],
+        ["hadn't moved", "wouldn't speak"]
+      ];
+      
+      answers.forEach((answerPair, index) => {
+        const input = document.getElementById(`mixed-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        const answer1 = normalizeAnswer(answerPair[0]);
+        const answer2 = normalizeAnswer(answerPair[1]);
+        
+        if (userAnswer.includes(answer1) && userAnswer.includes(answer2)) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: Mixed Conditionals use Past Perfect in the if clause and Would + base verb in the main clause.`;
+      feedback.style.display = 'block';
+    }
+
+    function checkUnless() {
+      const feedback = document.getElementById('feedback-unless');
+      let correct = 0;
+      let total = 3;
+      const answers = ['unless', 'as long as', 'unless'];
+      
+      answers.forEach((answer, index) => {
+        const select = document.getElementById(`unless-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: "unless" = if...not, "as long as" = if (positive condition).`;
+      feedback.style.display = 'block';
+    }
+
+    function checkWish() {
+      const feedback = document.getElementById('feedback-wish');
+      let correct = 0;
+      let total = 3;
+      const answers = ['spoke', "hadn't eaten", 'had'];
+      
+      answers.forEach((answer, index) => {
+        const input = document.getElementById(`wish-${index + 1}`);
+        const userAnswer = normalizeAnswer(input.value);
+        if (userAnswer === normalizeAnswer(answer)) {
+          correct++;
+          input.style.borderColor = '#10b981';
+          input.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          input.style.borderColor = '#ef4444';
+          input.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct!`
+        : `You got ${correct} out of ${total} correct. Remember: Wish + Past Simple for present wishes, Wish + Past Perfect for past regrets.`;
+      feedback.style.display = 'block';
+    }
+
+    function checkQuiz() {
+      const feedback = document.getElementById('feedback-quiz');
+      let correct = 0;
+      let total = 4;
+      const answers = ['zero', 'second', 'first', 'third'];
+      const explanations = [
+        '✅ Correct! Zero Conditional - general truth (water always becomes ice when it freezes).',
+        '✅ Correct! Second Conditional - unreal present situation (I don\'t have more money).',
+        '✅ Correct! First Conditional - real future possibility (it might rain tomorrow).',
+        '✅ Correct! Third Conditional - unreal past situation (I didn\'t study harder).'
+      ];
+      
+      answers.forEach((answer, index) => {
+        const select = document.getElementById(`quiz-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      
+      let feedbackHTML = '';
+      if (correct === total) {
+        feedbackHTML = `🎉 <strong>Perfect Score!</strong> You got all ${total} questions correct! You really understand conditionals!`;
+      } else {
+        feedbackHTML = `<strong>You got ${correct} out of ${total} correct.</strong><br><br>`;
+        feedbackHTML += '<strong>Review your answers:</strong><br>';
+        
+        answers.forEach((answer, index) => {
+          const select = document.getElementById(`quiz-${index + 1}`);
+          if (!select.value || select.value !== answer) {
+            feedbackHTML += `<br><strong>Question ${index + 1}:</strong> ${explanations[index]}`;
+          }
+        });
+      }
+      
+      feedback.innerHTML = feedbackHTML;
+      feedback.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
+

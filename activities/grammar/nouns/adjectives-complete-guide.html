@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjectives - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to adjectives with explanations and practice exercises for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .progress-indicator {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-xl);
+      text-align: center;
+    }
+    
+    .progress-bar {
+      display: flex;
+      gap: var(--spacing-xs);
+      justify-content: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: all 0.3s;
+    }
+    
+    .progress-dot.active {
+      background: #6366f1;
+      transform: scale(1.2);
+    }
+    
+    .progress-dot.completed {
+      background: #10b981;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .formula-part {
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .example-box {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item label {
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"],
+    [data-theme="dark"] .exercise-item select {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"]:focus,
+    [data-theme="dark"] .exercise-item select:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+    }
+    
+    [data-theme="dark"] .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .explanation-box h3 {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-header {
+      border-bottom-color: #818cf8;
+    }
+    
+    [data-theme="dark"] .exercise-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+      color: #c7d2fe;
+    }
+    
+    [data-theme="dark"] .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    
+    [data-theme="dark"] .tip-box strong {
+      color: #fbbf24;
+    }
+    
+    [data-theme="dark"] .progress-indicator {
+      background: var(--color-bg-light);
+    }
+    
+    [data-theme="dark"] .progress-dot {
+      background: var(--color-border);
+    }
+    
+    [data-theme="dark"] .progress-dot.active {
+      background: #818cf8;
+    }
+    
+    [data-theme="dark"] .progress-dot.completed {
+      background: #34d399;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .progress-indicator,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+      }
+      
+      .activity-title {
+        font-size: 16pt;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      
+      .activity-meta {
+        display: none;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .step-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+      
+      .step-title {
+        color: #000;
+        font-size: 12pt;
+        margin: 0;
+      }
+      
+      .step-number {
+        background: #000;
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 10pt;
+        margin-right: 6px;
+      }
+      
+      .explanation-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      
+      .explanation-box h3,
+      .explanation-box h4 {
+        font-size: 11pt;
+        margin: 4px 0;
+      }
+      
+      .explanation-box p {
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .exercise-title {
+        font-size: 10pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-instructions {
+        font-size: 8pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-item {
+        margin: 3px 0;
+        padding: 2px;
+        background: white;
+        border: none;
+        font-size: 9pt;
+      }
+      
+      .exercise-item label {
+        margin-bottom: 2px;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="text"],
+      .exercise-item select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 0;
+        width: 100%;
+        font-size: 9pt;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+      
+      .tip-box {
+        background: #fff9e6;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 8pt;
+      }
+      
+      .formula-box {
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        font-size: 9pt;
+      }
+      
+      .formula-part {
+        font-size: 9pt;
+        padding: 2px 4px;
+      }
+      
+      .example-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 9pt;
+      }
+      
+      .example-box .example {
+        margin: 2px 0;
+        padding: 1px;
+        font-size: 9pt;
+      }
+      
+      .highlight {
+        background: #e0e0e0;
+        padding: 1px 3px;
+        font-size: 9pt;
+      }
+      
+      h1, h2, h3, h4 {
+        margin: 4px 0;
+        page-break-after: avoid;
+      }
+      
+      p {
+        margin: 3px 0;
+      }
+      
+      ul, ol {
+        margin: 4px 0;
+        padding-left: 20px;
+      }
+      
+      li {
+        margin: 2px 0;
+      }
+      
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .grammar-guide {
+        max-width: 100%;
+      }
+      
+      .section {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Adjectives</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Adjectives - Step-by-Step Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <!-- Print Header (only visible when printing) -->
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn About Adjectives Together
+            </h2>
+            <p>We're going to learn about adjectives step by step. Don't worry - we'll practice each part before moving to the next. Take your time and work through each section!</p>
+            <p><strong>What is an adjective?</strong> An adjective is a word that describes or modifies a noun. It tells us more about the noun - what it's like, how it looks, feels, or behaves. Examples: <span class="highlight">big</span>, <span class="highlight">beautiful</span>, <span class="highlight">happy</span>, <span class="highlight">tall</span>, <span class="highlight">interesting</span>, <span class="highlight">red</span>.</p>
+          </div>
+
+          <!-- STEP 1: COMPARATIVE ADJECTIVES -->
+          <div class="step-section" id="step1">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">Comparative Adjectives</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are comparative adjectives?</h3>
+              <p>Comparative adjectives compare <strong>two</strong> things or people. They show which one has more or less of a quality. We use <strong>"than"</strong> after comparative adjectives.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 How to Form Comparatives</h4>
+                
+                <div class="formula-box">
+                  <div style="margin-bottom: var(--spacing-sm);">
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); color: #6366f1;">Short adjectives (1-2 syllables)</span>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); color: #ec4899;">adjective + -er</span>
+                  </div>
+                  <div>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); color: #6366f1;">Long adjectives (3+ syllables)</span>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); color: #ec4899;">more + adjective</span>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Short Adjectives (add -er):</strong>
+                  <div class="example">tall → <span class="highlight">taller</span> (The building is taller than the tree.)</div>
+                  <div class="example">big → <span class="highlight">bigger</span> (This box is bigger than that one.)</div>
+                  <div class="example">happy → <span class="highlight">happier</span> (She is happier than her sister.)</div>
+                  <div class="example">easy → <span class="highlight">easier</span> (Math is easier than physics.)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Long Adjectives (use "more"):</strong>
+                  <div class="example">beautiful → <span class="highlight">more beautiful</span> (The sunset is more beautiful than the sunrise.)</div>
+                  <div class="example">interesting → <span class="highlight">more interesting</span> (This book is more interesting than that one.)</div>
+                  <div class="example">comfortable → <span class="highlight">more comfortable</span> (This chair is more comfortable than that one.)</div>
+                  <div class="example">expensive → <span class="highlight">more expensive</span> (The car is more expensive than the bike.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Spelling Rules for -er</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 1: Add -er</strong>
+                  <div class="example">tall → taller, fast → faster, small → smaller</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 2: Ends in -e → add -r</strong>
+                  <div class="example">nice → nicer, large → larger, safe → safer</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 3: Ends in -y → change -y to -ier</strong>
+                  <div class="example">happy → happier, easy → easier, busy → busier</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 4: One vowel + one consonant → double consonant + -er</strong>
+                  <div class="example">big → bigger, hot → hotter, thin → thinner</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Use comparative adjectives with "than" to compare two things. Short adjectives = add -er. Long adjectives = use "more".</p>
+              </div>
+            </div>
+
+            <!-- Practice: Comparative Adjectives -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Comparative Form
+              </div>
+              <p class="exercise-instructions">Choose the correct comparative form of the adjective.</p>
+              
+              <div class="exercise-item">
+                <label>1. "This car is _____ than that one." (expensive)</label>
+                <select id="comparative-1">
+                  <option value="">Choose...</option>
+                  <option value="expensiver">expensiver</option>
+                  <option value="more expensive">more expensive</option>
+                  <option value="expensive">expensive</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She is _____ than her brother." (tall)</label>
+                <select id="comparative-2">
+                  <option value="">Choose...</option>
+                  <option value="taller">taller</option>
+                  <option value="more tall">more tall</option>
+                  <option value="tallest">tallest</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "This test is _____ than the last one." (easy)</label>
+                <select id="comparative-3">
+                  <option value="">Choose...</option>
+                  <option value="easyer">easyer</option>
+                  <option value="easier">easier</option>
+                  <option value="more easy">more easy</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "The movie was _____ than the book." (interesting)</label>
+                <select id="comparative-4">
+                  <option value="">Choose...</option>
+                  <option value="interestinger">interestinger</option>
+                  <option value="more interesting">more interesting</option>
+                  <option value="interesting">interesting</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "It's _____ today than yesterday." (hot)</label>
+                <select id="comparative-5">
+                  <option value="">Choose...</option>
+                  <option value="hoter">hoter</option>
+                  <option value="hotter">hotter</option>
+                  <option value="more hot">more hot</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkComparative()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-comparative" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 2: SUPERLATIVE ADJECTIVES -->
+          <div class="step-section" id="step2">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Superlative Adjectives</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are superlative adjectives?</h3>
+              <p>Superlative adjectives compare <strong>three or more</strong> things or people. They show which one has the most or least of a quality. We use <strong>"the"</strong> before superlative adjectives.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 How to Form Superlatives</h4>
+                
+                <div class="formula-box">
+                  <div style="margin-bottom: var(--spacing-sm);">
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); color: #6366f1;">Short adjectives (1-2 syllables)</span>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); color: #ec4899;">the + adjective + -est</span>
+                  </div>
+                  <div>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); color: #6366f1;">Long adjectives (3+ syllables)</span>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); color: #ec4899;">the + most + adjective</span>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Short Adjectives (add -est):</strong>
+                  <div class="example">tall → <span class="highlight">the tallest</span> (He is the tallest person in the room.)</div>
+                  <div class="example">big → <span class="highlight">the biggest</span> (This is the biggest building in the city.)</div>
+                  <div class="example">happy → <span class="highlight">the happiest</span> (She is the happiest person I know.)</div>
+                  <div class="example">easy → <span class="highlight">the easiest</span> (This is the easiest test I've taken.)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Long Adjectives (use "the most"):</strong>
+                  <div class="example">beautiful → <span class="highlight">the most beautiful</span> (She is the most beautiful woman in the world.)</div>
+                  <div class="example">interesting → <span class="highlight">the most interesting</span> (This is the most interesting book I've read.)</div>
+                  <div class="example">comfortable → <span class="highlight">the most comfortable</span> (This is the most comfortable chair.)</div>
+                  <div class="example">expensive → <span class="highlight">the most expensive</span> (That is the most expensive car in the showroom.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Spelling Rules for -est</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 1: Add -est</strong>
+                  <div class="example">tall → the tallest, fast → the fastest, small → the smallest</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 2: Ends in -e → add -st</strong>
+                  <div class="example">nice → the nicest, large → the largest, safe → the safest</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 3: Ends in -y → change -y to -iest</strong>
+                  <div class="example">happy → the happiest, easy → the easiest, busy → the busiest</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 4: One vowel + one consonant → double consonant + -est</strong>
+                  <div class="example">big → the biggest, hot → the hottest, thin → the thinnest</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Use superlative adjectives with "the" to compare three or more things. Short adjectives = add -est. Long adjectives = use "the most".</p>
+              </div>
+            </div>
+
+            <!-- Practice: Superlative Adjectives -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Superlative Form
+              </div>
+              <p class="exercise-instructions">Choose the correct superlative form of the adjective.</p>
+              
+              <div class="exercise-item">
+                <label>1. "This is _____ car in the showroom." (expensive)</label>
+                <select id="superlative-1">
+                  <option value="">Choose...</option>
+                  <option value="the expensivest">the expensivest</option>
+                  <option value="the most expensive">the most expensive</option>
+                  <option value="the expensive">the expensive</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "He is _____ student in the class." (tall)</label>
+                <select id="superlative-2">
+                  <option value="">Choose...</option>
+                  <option value="the tallest">the tallest</option>
+                  <option value="the most tall">the most tall</option>
+                  <option value="the taller">the taller</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "This is _____ problem I've ever had." (easy)</label>
+                <select id="superlative-3">
+                  <option value="">Choose...</option>
+                  <option value="the easyest">the easyest</option>
+                  <option value="the easiest">the easiest</option>
+                  <option value="the most easy">the most easy</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "That was _____ movie I've ever seen." (interesting)</label>
+                <select id="superlative-4">
+                  <option value="">Choose...</option>
+                  <option value="the interestingest">the interestingest</option>
+                  <option value="the most interesting">the most interesting</option>
+                  <option value="the interesting">the interesting</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "This is _____ day of the year." (hot)</label>
+                <select id="superlative-5">
+                  <option value="">Choose...</option>
+                  <option value="the hotest">the hotest</option>
+                  <option value="the hottest">the hottest</option>
+                  <option value="the most hot">the most hot</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkSuperlative()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-superlative" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 3: IRREGULAR COMPARATIVES AND SUPERLATIVES -->
+          <div class="step-section" id="step3">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2 class="step-title">Irregular Comparatives and Superlatives</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are irregular comparatives and superlatives?</h3>
+              <p>Some adjectives don't follow the regular rules. They have <strong>completely different forms</strong> for comparative and superlative. You need to memorize these!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📋 Common Irregular Forms</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Irregular Comparatives and Superlatives:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>good</strong> → better → best</div>
+                    <div><strong>bad</strong> → worse → worst</div>
+                    <div><strong>far</strong> → farther/further → farthest/furthest</div>
+                    <div><strong>little</strong> → less → least</div>
+                    <div><strong>much/many</strong> → more → most</div>
+                    <div><strong>old</strong> → older/elder → oldest/eldest</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">This pizza is <span class="highlight">good</span>, but that one is <span class="highlight">better</span>. The best pizza is at Mario's.</div>
+                  <div class="example">The weather is <span class="highlight">bad</span> today, but yesterday was <span class="highlight">worse</span>. Last week was the <span class="highlight">worst</span>.</div>
+                  <div class="example">I live <span class="highlight">far</span> from school. She lives <span class="highlight">farther</span>. He lives the <span class="highlight">farthest</span>.</div>
+                  <div class="example">I have <span class="highlight">little</span> money. You have <span class="highlight">less</span>. He has the <span class="highlight">least</span>.</div>
+                  <div class="example">I have <span class="highlight">many</span> books. You have <span class="highlight">more</span>. She has the <span class="highlight">most</span>.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Special Notes</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Farther vs Further:</strong>
+                  <div class="example"><span class="highlight">Farther</span> = physical distance (The store is farther than the school.)</div>
+                  <div class="example"><span class="highlight">Further</span> = abstract distance (We need to discuss this further.)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Older vs Elder:</strong>
+                  <div class="example"><span class="highlight">Older</span> = general use (She is older than me.)</div>
+                  <div class="example"><span class="highlight">Elder</span> = family relationships (My elder brother lives in London.)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Memorize irregular forms: good→better→best, bad→worse→worst, far→farther→farthest, little→less→least, much/many→more→most.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Irregular Comparatives and Superlatives -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="alert-triangle" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Irregular Form
+              </div>
+              <p class="exercise-instructions">Choose the correct irregular comparative or superlative form.</p>
+              
+              <div class="exercise-item">
+                <label>1. "This test was _____ than the last one." (good)</label>
+                <select id="irregular-1">
+                  <option value="">Choose...</option>
+                  <option value="gooder">gooder</option>
+                  <option value="better">better</option>
+                  <option value="more good">more good</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "That was the _____ movie I've ever seen." (bad)</label>
+                <select id="irregular-2">
+                  <option value="">Choose...</option>
+                  <option value="baddest">baddest</option>
+                  <option value="worst">worst</option>
+                  <option value="most bad">most bad</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She has _____ books than I do." (many)</label>
+                <select id="irregular-3">
+                  <option value="">Choose...</option>
+                  <option value="manyer">manyer</option>
+                  <option value="more">more</option>
+                  <option value="most">most</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "This is the _____ I can do." (little)</label>
+                <select id="irregular-4">
+                  <option value="">Choose...</option>
+                  <option value="littlest">littlest</option>
+                  <option value="least">least</option>
+                  <option value="less">less</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "He lives _____ from here than she does." (far)</label>
+                <select id="irregular-5">
+                  <option value="">Choose...</option>
+                  <option value="farer">farer</option>
+                  <option value="farther">farther</option>
+                  <option value="farthest">farthest</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkIrregular()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-irregular" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4: ADJECTIVE ORDER -->
+          <div class="step-section" id="step4">
+            <div class="step-header">
+              <span class="step-number">4</span>
+              <h2 class="step-title">Adjective Order</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is adjective order?</h3>
+              <p>When you use <strong>more than one adjective</strong> before a noun, they must follow a specific order. Native speakers follow this order naturally, but learners need to memorize it!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📋 The Order of Adjectives</h4>
+                
+                <div class="formula-box">
+                  <div style="text-align: left; padding: var(--spacing-md);">
+                    <div style="margin: var(--spacing-xs) 0;"><strong>1. Opinion</strong> (beautiful, ugly, nice, horrible)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>2. Size</strong> (big, small, tall, short)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>3. Age</strong> (old, new, young, ancient)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>4. Shape</strong> (round, square, long, thin)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>5. Color</strong> (red, blue, green, black)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>6. Origin</strong> (American, French, Chinese, Italian)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>7. Material</strong> (wooden, plastic, metal, cotton)</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>8. Purpose</strong> (sleeping bag, racing car, coffee cup)</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">a <span class="highlight">beautiful big old red Italian</span> car</div>
+                  <div class="example">a <span class="highlight">nice small round wooden</span> table</div>
+                  <div class="example">a <span class="highlight">horrible tall thin</span> man</div>
+                  <div class="example">a <span class="highlight">comfortable large new blue</span> sofa</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Memory Tip:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Remember: O-S-A-S-C-O-M-P (Opinion, Size, Age, Shape, Color, Origin, Material, Purpose). You don't need to use all categories - just follow the order!</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adjective Order -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="list-ordered" style="width: 24px; height: 24px;"></i>
+                Practice: Put Adjectives in Order
+              </div>
+              <p class="exercise-instructions">Put the adjectives in the correct order.</p>
+              
+              <div class="exercise-item">
+                <label>1. "She bought a _____ car." (red, beautiful, Italian, new)</label>
+                <select id="order-1">
+                  <option value="">Choose...</option>
+                  <option value="beautiful new red Italian">beautiful new red Italian</option>
+                  <option value="new beautiful Italian red">new beautiful Italian red</option>
+                  <option value="Italian beautiful new red">Italian beautiful new red</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I saw a _____ dog." (big, black, old)</label>
+                <select id="order-2">
+                  <option value="">Choose...</option>
+                  <option value="big old black">big old black</option>
+                  <option value="old big black">old big black</option>
+                  <option value="black big old">black big old</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "He has a _____ table." (round, wooden, small)</label>
+                <select id="order-3">
+                  <option value="">Choose...</option>
+                  <option value="small round wooden">small round wooden</option>
+                  <option value="round small wooden">round small wooden</option>
+                  <option value="wooden small round">wooden small round</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkOrder()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-order" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 5: -ED VS -ING ADJECTIVES -->
+          <div class="step-section" id="step5">
+            <div class="step-header">
+              <span class="step-number">5</span>
+              <h2 class="step-title">-ed vs -ing Adjectives</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What's the difference between -ed and -ing adjectives?</h3>
+              <p>Many adjectives can end in <strong>-ed</strong> or <strong>-ing</strong>. The difference is about <strong>who feels</strong> the emotion or quality.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 The Key Difference</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-ed adjectives</strong> = describe how <strong>people feel</strong>
+                  <div class="example">I am <span class="highlight">bored</span>. (I feel bored.)</div>
+                  <div class="example">She is <span class="highlight">tired</span>. (She feels tired.)</div>
+                  <div class="example">They are <span class="highlight">excited</span>. (They feel excited.)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">-ing adjectives</strong> = describe what <strong>causes</strong> the feeling
+                  <div class="example">The movie is <span class="highlight">boring</span>. (The movie causes boredom.)</div>
+                  <div class="example">The work is <span class="highlight">tiring</span>. (The work causes tiredness.)</div>
+                  <div class="example">The news is <span class="highlight">exciting</span>. (The news causes excitement.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📋 Common -ed and -ing Adjectives</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm);">
+                    <div><strong>-ed:</strong> bored, tired, excited, interested, surprised, confused, worried, disappointed</div>
+                    <div><strong>-ing:</strong> boring, tiring, exciting, interesting, surprising, confusing, worrying, disappointing</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">More Examples:</strong>
+                  <div class="example">I'm <span class="highlight">interested</span> in science. Science is <span class="highlight">interesting</span>.</div>
+                  <div class="example">She was <span class="highlight">surprised</span> by the news. The news was <span class="highlight">surprising</span>.</div>
+                  <div class="example">He is <span class="highlight">confused</span> about the problem. The problem is <span class="highlight">confusing</span>.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">-ed = how people feel (I am bored). -ing = what causes the feeling (The movie is boring).</p>
+              </div>
+            </div>
+
+            <!-- Practice: -ed vs -ing Adjectives -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="heart" style="width: 24px; height: 24px;"></i>
+                Practice: Choose -ed or -ing
+              </div>
+              <p class="exercise-instructions">Choose the correct form (-ed or -ing).</p>
+              
+              <div class="exercise-item">
+                <label>1. "I'm very _____ in learning English."</label>
+                <select id="ed-ing-1">
+                  <option value="">Choose...</option>
+                  <option value="interesting">interesting</option>
+                  <option value="interested">interested</option>
+                  <option value="interest">interest</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "The movie was very _____."</label>
+                <select id="ed-ing-2">
+                  <option value="">Choose...</option>
+                  <option value="bored">bored</option>
+                  <option value="boring">boring</option>
+                  <option value="bore">bore</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She was _____ by the test results."</label>
+                <select id="ed-ing-3">
+                  <option value="">Choose...</option>
+                  <option value="surprising">surprising</option>
+                  <option value="surprised">surprised</option>
+                  <option value="surprise">surprise</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "This math problem is very _____."</label>
+                <select id="ed-ing-4">
+                  <option value="">Choose...</option>
+                  <option value="confused">confused</option>
+                  <option value="confusing">confusing</option>
+                  <option value="confuse">confuse</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "We were _____ about the trip."</label>
+                <select id="ed-ing-5">
+                  <option value="">Choose...</option>
+                  <option value="exciting">exciting</option>
+                  <option value="excited">excited</option>
+                  <option value="excite">excite</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkEdIng()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-ed-ing" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 6: GRADABLE VS NON-GRADABLE ADJECTIVES -->
+          <div class="step-section" id="step6">
+            <div class="step-header">
+              <span class="step-number">6</span>
+              <h2 class="step-title">Gradable vs Non-Gradable Adjectives</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are gradable and non-gradable adjectives?</h3>
+              <p>Some adjectives can have <strong>different degrees</strong> (very, quite, extremely). Others are <strong>absolute</strong> - they're either true or false, with no degrees.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Gradable Adjectives</h4>
+                <p>Gradable adjectives can have different degrees. You can use <strong>very, quite, rather, extremely</strong> with them.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">very <span class="highlight">hot</span>, quite <span class="highlight">tall</span>, rather <span class="highlight">expensive</span>, extremely <span class="highlight">beautiful</span></div>
+                  <div class="example">Common gradable adjectives: big, small, hot, cold, happy, sad, good, bad, interesting, boring</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Non-Gradable Adjectives</h4>
+                <p>Non-gradable adjectives are absolute - they're either true or false. Use <strong>absolutely, completely, totally</strong> with them (NOT very).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">absolutely <span class="highlight">perfect</span>, completely <span class="highlight">wrong</span>, totally <span class="highlight">impossible</span></div>
+                  <div class="example">Common non-gradable adjectives: perfect, impossible, dead, alive, unique, empty, full, finished</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Gradable = use very/quite (very hot). Non-gradable = use absolutely/completely (absolutely perfect, NOT very perfect).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Gradable vs Non-Gradable -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="gauge" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Correct Intensifier
+              </div>
+              <p class="exercise-instructions">Choose the correct intensifier (very/quite or absolutely/completely).</p>
+              
+              <div class="exercise-item">
+                <label>1. "The test was _____ difficult."</label>
+                <select id="gradable-1">
+                  <option value="">Choose...</option>
+                  <option value="very">very</option>
+                  <option value="absolutely">absolutely</option>
+                  <option value="completely">completely</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "The answer is _____ wrong."</label>
+                <select id="gradable-2">
+                  <option value="">Choose...</option>
+                  <option value="very">very</option>
+                  <option value="completely">completely</option>
+                  <option value="quite">quite</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She is _____ beautiful."</label>
+                <select id="gradable-3">
+                  <option value="">Choose...</option>
+                  <option value="absolutely">absolutely</option>
+                  <option value="very">very</option>
+                  <option value="totally">totally</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "The room is _____ empty."</label>
+                <select id="gradable-4">
+                  <option value="">Choose...</option>
+                  <option value="very">very</option>
+                  <option value="completely">completely</option>
+                  <option value="quite">quite</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkGradable()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-gradable" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 7: TOO / ENOUGH / VERY / QUITE -->
+          <div class="step-section" id="step7">
+            <div class="step-header">
+              <span class="step-number">7</span>
+              <h2 class="step-title">Too / Enough / Very / Quite</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">How to use Too, Enough, Very, and Quite</h3>
+              <p>These words modify adjectives and have different meanings. Let's learn when to use each one!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Too</h4>
+                <p><strong>Too</strong> = more than necessary, more than wanted (negative meaning).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">This coffee is <span class="highlight">too hot</span>. (It's hotter than I want.)</div>
+                  <div class="example">The bag is <span class="highlight">too heavy</span>. (It's heavier than I can carry.)</div>
+                  <div class="example">She is <span class="highlight">too young</span> to drive. (She's younger than the required age.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Enough</h4>
+                <p><strong>Enough</strong> = sufficient, adequate. It comes <strong>after</strong> the adjective.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">This coffee is <span class="highlight">hot enough</span>. (It's sufficiently hot.)</div>
+                  <div class="example">She is <span class="highlight">old enough</span> to drive. (She's sufficiently old.)</div>
+                  <div class="example">I'm not <span class="highlight">tall enough</span> to reach it. (I'm not sufficiently tall.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Very</h4>
+                <p><strong>Very</strong> = to a high degree, extremely (neutral meaning).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">This coffee is <span class="highlight">very hot</span>. (It's extremely hot.)</div>
+                  <div class="example">She is <span class="highlight">very tall</span>. (She's extremely tall.)</div>
+                  <div class="example">The test was <span class="highlight">very difficult</span>. (It was extremely difficult.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Quite</h4>
+                <p><strong>Quite</strong> = fairly, rather, to a certain degree (moderate meaning).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">This coffee is <span class="highlight">quite hot</span>. (It's fairly hot.)</div>
+                  <div class="example">She is <span class="highlight">quite tall</span>. (She's rather tall.)</div>
+                  <div class="example">The test was <span class="highlight">quite difficult</span>. (It was fairly difficult.)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Points:</strong> 
+                <ul style="margin: var(--spacing-xs) 0; padding-left: var(--spacing-lg);">
+                  <li><strong>Too</strong> = more than wanted (too hot = hotter than I want)</li>
+                  <li><strong>Enough</strong> = sufficient (hot enough = sufficiently hot) - comes AFTER adjective</li>
+                  <li><strong>Very</strong> = extremely (very hot = extremely hot)</li>
+                  <li><strong>Quite</strong> = fairly/rather (quite hot = fairly hot)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Practice: Too / Enough / Very / Quite -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+                Practice: Choose Too, Enough, Very, or Quite
+              </div>
+              <p class="exercise-instructions">Choose the correct word.</p>
+              
+              <div class="exercise-item">
+                <label>1. "This coffee is _____ hot. I can't drink it."</label>
+                <select id="intensifier-1">
+                  <option value="">Choose...</option>
+                  <option value="too">too</option>
+                  <option value="very">very</option>
+                  <option value="quite">quite</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She is _____ old to drive." (sufficiently old)</label>
+                <select id="intensifier-2">
+                  <option value="">Choose...</option>
+                  <option value="old enough">old enough</option>
+                  <option value="too old">too old</option>
+                  <option value="very old">very old</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "The movie was _____ interesting." (extremely interesting)</label>
+                <select id="intensifier-3">
+                  <option value="">Choose...</option>
+                  <option value="very">very</option>
+                  <option value="too">too</option>
+                  <option value="quite">quite</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "The test was _____ difficult, but I passed." (fairly difficult)</label>
+                <select id="intensifier-4">
+                  <option value="">Choose...</option>
+                  <option value="very">very</option>
+                  <option value="too">too</option>
+                  <option value="quite">quite</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "I'm not _____ to reach the shelf." (sufficiently tall)</label>
+                <select id="intensifier-5">
+                  <option value="">Choose...</option>
+                  <option value="tall enough">tall enough</option>
+                  <option value="too tall">too tall</option>
+                  <option value="very tall">very tall</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkIntensifier()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-intensifier" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="progress-indicator">
+            <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">Your Progress</p>
+            <div class="progress-bar">
+              <div class="progress-dot active" id="dot1"></div>
+              <div class="progress-dot" id="dot2"></div>
+              <div class="progress-dot" id="dot3"></div>
+              <div class="progress-dot" id="dot4"></div>
+              <div class="progress-dot" id="dot5"></div>
+              <div class="progress-dot" id="dot6"></div>
+              <div class="progress-dot" id="dot7"></div>
+            </div>
+          </div>
+
+          <!-- Final Review -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✓</span>
+              <h2 class="step-title">Congratulations! You've Completed the Adjectives Guide!</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What You've Learned</h3>
+              <p>You've learned about:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                <li>Comparative adjectives (comparing two things)</li>
+                <li>Superlative adjectives (comparing three or more things)</li>
+                <li>Irregular comparatives and superlatives</li>
+                <li>Adjective order (OSASCOMP)</li>
+                <li>-ed vs -ing adjectives</li>
+                <li>Gradable vs non-gradable adjectives</li>
+                <li>Too, Enough, Very, and Quite</li>
+              </ul>
+              
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Keep Practicing!</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">The more you practice, the better you'll become at using adjectives correctly. Try reading English texts and identifying different types of adjectives!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Answer keys
+    const answers = {
+      comparative: ['more expensive', 'taller', 'easier', 'more interesting', 'hotter'],
+      superlative: ['the most expensive', 'the tallest', 'the easiest', 'the most interesting', 'the hottest'],
+      irregular: ['better', 'worst', 'more', 'least', 'farther'],
+      order: ['beautiful new red Italian', 'big old black', 'small round wooden'],
+      edIng: ['interested', 'boring', 'surprised', 'confusing', 'excited'],
+      gradable: ['very', 'completely', 'very', 'completely'],
+      intensifier: ['too', 'old enough', 'very', 'quite', 'tall enough']
+    };
+
+    function updateProgress(step) {
+      for (let i = 1; i <= 7; i++) {
+        const dot = document.getElementById(`dot${i}`);
+        if (i < step) {
+          dot.classList.add('completed');
+          dot.classList.remove('active');
+        } else if (i === step) {
+          dot.classList.add('active');
+          dot.classList.remove('completed');
+        } else {
+          dot.classList.remove('active', 'completed');
+        }
+      }
+    }
+
+    function checkComparative() {
+      const feedback = document.getElementById('feedback-comparative');
+      let correct = 0;
+      let total = 5;
+      
+      answers.comparative.forEach((answer, index) => {
+        const select = document.getElementById(`comparative-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand comparative adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: Short adjectives = add -er. Long adjectives = use "more".`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(2);
+      }
+    }
+
+    function checkSuperlative() {
+      const feedback = document.getElementById('feedback-superlative');
+      let correct = 0;
+      let total = 5;
+      
+      answers.superlative.forEach((answer, index) => {
+        const select = document.getElementById(`superlative-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand superlative adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: Short adjectives = add -est. Long adjectives = use "the most".`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(3);
+      }
+    }
+
+    function checkIrregular() {
+      const feedback = document.getElementById('feedback-irregular');
+      let correct = 0;
+      let total = 5;
+      
+      answers.irregular.forEach((answer, index) => {
+        const select = document.getElementById(`irregular-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand irregular comparatives and superlatives!`
+        : `You got ${correct} out of ${total} correct. Remember: good→better→best, bad→worse→worst, far→farther→farthest, little→less→least, much/many→more→most.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(4);
+      }
+    }
+
+    function checkOrder() {
+      const feedback = document.getElementById('feedback-order');
+      let correct = 0;
+      let total = 3;
+      
+      answers.order.forEach((answer, index) => {
+        const select = document.getElementById(`order-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adjective order!`
+        : `You got ${correct} out of ${total} correct. Remember: Opinion, Size, Age, Shape, Color, Origin, Material, Purpose (OSASCOMP).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(5);
+      }
+    }
+
+    function checkEdIng() {
+      const feedback = document.getElementById('feedback-ed-ing');
+      let correct = 0;
+      let total = 5;
+      
+      answers.edIng.forEach((answer, index) => {
+        const select = document.getElementById(`ed-ing-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand -ed vs -ing adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: -ed = how people feel (I am bored). -ing = what causes the feeling (The movie is boring).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(6);
+      }
+    }
+
+    function checkGradable() {
+      const feedback = document.getElementById('feedback-gradable');
+      let correct = 0;
+      let total = 4;
+      
+      answers.gradable.forEach((answer, index) => {
+        const select = document.getElementById(`gradable-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand gradable vs non-gradable adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: Gradable = use very/quite. Non-gradable = use absolutely/completely.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    function checkIntensifier() {
+      const feedback = document.getElementById('feedback-intensifier');
+      let correct = 0;
+      let total = 5;
+      
+      answers.intensifier.forEach((answer, index) => {
+        const select = document.getElementById(`intensifier-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `🎉 Perfect! You got all ${total} correct! You understand Too, Enough, Very, and Quite! Congratulations on completing the guide!`
+        : `You got ${correct} out of ${total} correct. Remember: Too = more than wanted, Enough = sufficient (after adjective), Very = extremely, Quite = fairly/rather.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    // Initialize progress
+    updateProgress(1);
+  </script>
+</body>
+</html>
