@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pronouns - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to pronouns with explanations and practice exercises for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .noun-part {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+      color: #6366f1;
+    }
+    
+    .article-part {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+      color: #ec4899;
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .exercise-item input[type="radio"] {
+      margin-right: var(--spacing-sm);
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #6366f1;
+    }
+    
+    .exercise-item label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s;
+    }
+    
+    .exercise-item label:hover {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+    
+    .exercise-item label:has(input[type="radio"]:checked) {
+      background-color: rgba(99, 102, 241, 0.1);
+    }
+    
+    @supports not selector(:has(*)) {
+      .exercise-item input[type="radio"]:checked + span {
+        background-color: rgba(99, 102, 241, 0.1);
+      }
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .usage-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .usage-list li {
+      padding: var(--spacing-sm);
+      margin: var(--spacing-xs) 0;
+      background: var(--color-bg-light);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .usage-list li strong {
+      color: #6366f1;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .progress-indicator {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-xl);
+      text-align: center;
+    }
+    
+    .progress-bar {
+      display: flex;
+      gap: var(--spacing-xs);
+      justify-content: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: all 0.3s;
+    }
+    
+    .progress-dot.active {
+      background: #6366f1;
+      transform: scale(1.2);
+    }
+    
+    .progress-dot.completed {
+      background: #10b981;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .formula-part {
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .example-box {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item label {
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"],
+    [data-theme="dark"] .exercise-item select {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"]:focus,
+    [data-theme="dark"] .exercise-item select:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+    }
+    
+    [data-theme="dark"] .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .explanation-box h3 {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-header {
+      border-bottom-color: #818cf8;
+    }
+    
+    [data-theme="dark"] .exercise-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .usage-list li {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .usage-list li strong {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+      color: #c7d2fe;
+    }
+    
+    [data-theme="dark"] .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    
+    [data-theme="dark"] .tip-box strong {
+      color: #fbbf24;
+    }
+    
+    [data-theme="dark"] .progress-indicator {
+      background: var(--color-bg-light);
+    }
+    
+    [data-theme="dark"] .progress-dot {
+      background: var(--color-border);
+    }
+    
+    [data-theme="dark"] .progress-dot.active {
+      background: #818cf8;
+    }
+    
+    [data-theme="dark"] .progress-dot.completed {
+      background: #34d399;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .progress-indicator,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+      }
+      
+      .activity-title {
+        font-size: 16pt;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      
+      .activity-meta {
+        display: none;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .step-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+      
+      .step-title {
+        color: #000;
+        font-size: 12pt;
+        margin: 0;
+      }
+      
+      .step-number {
+        background: #000;
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 10pt;
+        margin-right: 6px;
+      }
+      
+      .explanation-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      
+      .explanation-box h3,
+      .explanation-box h4 {
+        font-size: 11pt;
+        margin: 4px 0;
+      }
+      
+      .explanation-box p {
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .exercise-title {
+        font-size: 10pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-instructions {
+        font-size: 8pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-item {
+        margin: 3px 0;
+        padding: 2px;
+        background: white;
+        border: none;
+        font-size: 9pt;
+      }
+      
+      .exercise-item label {
+        margin-bottom: 2px;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="text"],
+      .exercise-item select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 0;
+        width: 100%;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="radio"] {
+        margin-right: 4px;
+        width: 12px;
+        height: 12px;
+      }
+      
+      .exercise-item label {
+        padding: 1px 0;
+        margin: 1px 0;
+        font-size: 9pt;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+      
+      .tip-box {
+        background: #fff9e6;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 8pt;
+      }
+      
+      .formula-box {
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        font-size: 9pt;
+      }
+      
+      .formula-part {
+        font-size: 9pt;
+        padding: 2px 4px;
+      }
+      
+      .example-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 9pt;
+      }
+      
+      .example-box .example {
+        margin: 2px 0;
+        padding: 1px;
+        font-size: 9pt;
+      }
+      
+      .usage-list {
+        margin: 4px 0;
+      }
+      
+      .usage-list li {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .usage-list li strong {
+        font-size: 9pt;
+      }
+      
+      .highlight {
+        background: #e0e0e0;
+        padding: 1px 3px;
+        font-size: 9pt;
+      }
+      
+      h1, h2, h3, h4 {
+        margin: 4px 0;
+        page-break-after: avoid;
+      }
+      
+      p {
+        margin: 3px 0;
+      }
+      
+      ul, ol {
+        margin: 4px 0;
+        padding-left: 20px;
+      }
+      
+      li {
+        margin: 2px 0;
+      }
+      
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .grammar-guide {
+        max-width: 100%;
+      }
+      
+      .section {
+        padding: 0;
+        margin: 0;
+      }
+      
+      .usage-list li .example-box {
+        margin-left: 8px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+      }
+      
+      .usage-list li p {
+        font-size: 8pt;
+        margin: 1px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Pronouns</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Pronouns - Step-by-Step Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <!-- Print Header (only visible when printing) -->
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn About Pronouns Together
+            </h2>
+            <p>We're going to learn about pronouns step by step. Don't worry - we'll practice each part before moving to the next. Take your time and work through each section!</p>
+            <p><strong>What is a pronoun?</strong> A pronoun is a word that replaces a noun to avoid repetition. Instead of saying "John went to the store. John bought milk. John came home," we say "John went to the store. <span class="highlight">He</span> bought milk. <span class="highlight">He</span> came home." Examples: <span class="highlight">I</span>, <span class="highlight">you</span>, <span class="highlight">he</span>, <span class="highlight">she</span>, <span class="highlight">it</span>, <span class="highlight">we</span>, <span class="highlight">they</span>, <span class="highlight">this</span>, <span class="highlight">that</span>, <span class="highlight">who</span>, <span class="highlight">which</span>.</p>
+          </div>
+
+          <!-- STEP 1: PERSONAL PRONOUNS -->
+          <div class="step-section" id="step1">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">Personal Pronouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are personal pronouns?</h3>
+              <p>Personal pronouns replace people or things. They have different forms depending on whether they're the <strong>subject</strong> (doing the action) or <strong>object</strong> (receiving the action) of a sentence.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">👤 Subject Pronouns</h4>
+                <p>Subject pronouns are used when the pronoun is the subject (who/what does the action) of the sentence.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Subject Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>I</strong> - first person singular</div>
+                    <div><strong>You</strong> - second person (singular/plural)</div>
+                    <div><strong>He</strong> - third person masculine singular</div>
+                    <div><strong>She</strong> - third person feminine singular</div>
+                    <div><strong>It</strong> - third person neuter singular</div>
+                    <div><strong>We</strong> - first person plural</div>
+                    <div><strong>They</strong> - third person plural</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">I</span> like pizza.</div>
+                  <div class="example"><span class="highlight">You</span> are my friend.</div>
+                  <div class="example"><span class="highlight">He</span> plays soccer.</div>
+                  <div class="example"><span class="highlight">She</span> studies English.</div>
+                  <div class="example"><span class="highlight">It</span> is raining.</div>
+                  <div class="example"><span class="highlight">We</span> go to school.</div>
+                  <div class="example"><span class="highlight">They</span> live here.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🎯 Object Pronouns</h4>
+                <p>Object pronouns are used when the pronoun is the object (receives the action) of the sentence.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Object Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>Me</strong> - first person singular</div>
+                    <div><strong>You</strong> - second person (singular/plural)</div>
+                    <div><strong>Him</strong> - third person masculine singular</div>
+                    <div><strong>Her</strong> - third person feminine singular</div>
+                    <div><strong>It</strong> - third person neuter singular</div>
+                    <div><strong>Us</strong> - first person plural</div>
+                    <div><strong>Them</strong> - third person plural</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">She called <span class="highlight">me</span>.</div>
+                  <div class="example">I see <span class="highlight">you</span>.</div>
+                  <div class="example">They helped <span class="highlight">him</span>.</div>
+                  <div class="example">He loves <span class="highlight">her</span>.</div>
+                  <div class="example">We found <span class="highlight">it</span>.</div>
+                  <div class="example">She invited <span class="highlight">us</span>.</div>
+                  <div class="example">I know <span class="highlight">them</span>.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Subject pronouns = who does the action (I, you, he, she, it, we, they). Object pronouns = who receives the action (me, you, him, her, it, us, them).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Personal Pronouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Correct Pronoun
+              </div>
+              <p class="exercise-instructions">Choose the correct personal pronoun (subject or object).</p>
+              
+              <div class="exercise-item">
+                <label>1. "_____ is my teacher." (referring to a woman)</label>
+                <select id="personal-1">
+                  <option value="">Choose...</option>
+                  <option value="She">She</option>
+                  <option value="Her">Her</option>
+                  <option value="He">He</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I saw _____ yesterday." (referring to a man)</label>
+                <select id="personal-2">
+                  <option value="">Choose...</option>
+                  <option value="he">he</option>
+                  <option value="him">him</option>
+                  <option value="his">his</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "_____ are my friends." (referring to multiple people)</label>
+                <select id="personal-3">
+                  <option value="">Choose...</option>
+                  <option value="They">They</option>
+                  <option value="Them">Them</option>
+                  <option value="Their">Their</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "Can you help _____?" (referring to yourself)</label>
+                <select id="personal-4">
+                  <option value="">Choose...</option>
+                  <option value="I">I</option>
+                  <option value="me">me</option>
+                  <option value="my">my</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "_____ went to the store together." (referring to yourself and others)</label>
+                <select id="personal-5">
+                  <option value="">Choose...</option>
+                  <option value="We">We</option>
+                  <option value="Us">Us</option>
+                  <option value="Our">Our</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkPersonal()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-personal" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 2: POSSESSIVE PRONOUNS -->
+          <div class="step-section" id="step2">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Possessive Pronouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are possessive pronouns?</h3>
+              <p>Possessive pronouns show <strong>ownership</strong> or <strong>possession</strong>. They replace a noun + possessive adjective. For example, instead of saying "This is <strong>my book</strong>," you can say "This is <strong>mine</strong>."</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📋 Possessive Pronouns</h4>
+                <p>Possessive pronouns stand alone - they don't need a noun after them.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Possessive Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>Mine</strong> - my + noun</div>
+                    <div><strong>Yours</strong> - your + noun</div>
+                    <div><strong>His</strong> - his + noun</div>
+                    <div><strong>Hers</strong> - her + noun</div>
+                    <div><strong>Its</strong> - its + noun (rare)</div>
+                    <div><strong>Ours</strong> - our + noun</div>
+                    <div><strong>Theirs</strong> - their + noun</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">This book is <span class="highlight">mine</span>. (This book is my book.)</div>
+                  <div class="example">That car is <span class="highlight">yours</span>. (That car is your car.)</div>
+                  <div class="example">The blue bag is <span class="highlight">hers</span>. (The blue bag is her bag.)</div>
+                  <div class="example">These keys are <span class="highlight">theirs</span>. (These keys are their keys.)</div>
+                  <div class="example">The house is <span class="highlight">ours</span>. (The house is our house.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">⚠️ Don't Confuse: Possessive Adjectives vs Possessive Pronouns</h4>
+                <p><strong>Possessive adjectives</strong> come BEFORE a noun. <strong>Possessive pronouns</strong> REPLACE the noun.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Comparison:</strong>
+                  <div class="example">This is <span class="highlight">my</span> book. (possessive adjective + noun)</div>
+                  <div class="example">This book is <span class="highlight">mine</span>. (possessive pronoun - no noun needed)</div>
+                  <div class="example">That is <span class="highlight">your</span> pen. (possessive adjective + noun)</div>
+                  <div class="example">That pen is <span class="highlight">yours</span>. (possessive pronoun - no noun needed)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Possessive pronouns = mine, yours, his, hers, ours, theirs. They stand alone - no noun after them!</p>
+              </div>
+            </div>
+
+            <!-- Practice: Possessive Pronouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="key" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Possessive Pronoun
+              </div>
+              <p class="exercise-instructions">Choose the correct possessive pronoun.</p>
+              
+              <div class="exercise-item">
+                <label>1. "This phone belongs to me. It's _____."</label>
+                <select id="possessive-1">
+                  <option value="">Choose...</option>
+                  <option value="my">my</option>
+                  <option value="mine">mine</option>
+                  <option value="me">me</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "Those books belong to them. They're _____."</label>
+                <select id="possessive-2">
+                  <option value="">Choose...</option>
+                  <option value="their">their</option>
+                  <option value="theirs">theirs</option>
+                  <option value="them">them</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "The red car belongs to her. It's _____."</label>
+                <select id="possessive-3">
+                  <option value="">Choose...</option>
+                  <option value="her">her</option>
+                  <option value="hers">hers</option>
+                  <option value="she">she</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "This house belongs to us. It's _____."</label>
+                <select id="possessive-4">
+                  <option value="">Choose...</option>
+                  <option value="our">our</option>
+                  <option value="ours">ours</option>
+                  <option value="us">us</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "That bag belongs to you. It's _____."</label>
+                <select id="possessive-5">
+                  <option value="">Choose...</option>
+                  <option value="your">your</option>
+                  <option value="yours">yours</option>
+                  <option value="you">you</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkPossessive()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-possessive" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 3: REFLEXIVE PRONOUNS -->
+          <div class="step-section" id="step3">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2 class="step-title">Reflexive Pronouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are reflexive pronouns?</h3>
+              <p>Reflexive pronouns refer back to the <strong>subject</strong> of the sentence. They're used when the subject and object are the same person or thing. They end in <strong>-self</strong> (singular) or <strong>-selves</strong> (plural).</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🪞 Reflexive Pronouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Reflexive Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>Myself</strong> - I</div>
+                    <div><strong>Yourself</strong> - you (singular)</div>
+                    <div><strong>Himself</strong> - he</div>
+                    <div><strong>Herself</strong> - she</div>
+                    <div><strong>Itself</strong> - it</div>
+                    <div><strong>Ourselves</strong> - we</div>
+                    <div><strong>Yourselves</strong> - you (plural)</div>
+                    <div><strong>Themselves</strong> - they</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I cut <span class="highlight">myself</span> while cooking. (I cut I)</div>
+                  <div class="example">She taught <span class="highlight">herself</span> English. (She taught she)</div>
+                  <div class="example">We enjoyed <span class="highlight">ourselves</span> at the party. (We enjoyed we)</div>
+                  <div class="example">They hurt <span class="highlight">themselves</span> playing soccer. (They hurt they)</div>
+                  <div class="example">You should take care of <span class="highlight">yourself</span>. (You take care of you)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 When to Use Reflexive Pronouns</h4>
+                <p>Use reflexive pronouns when:</p>
+                <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                  <li>The subject and object are the same person/thing</li>
+                  <li>For emphasis (to emphasize who did something)</li>
+                  <li>After certain verbs (enjoy, hurt, teach, cut, etc.)</li>
+                </ul>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">For Emphasis:</strong>
+                  <div class="example">I <span class="highlight">myself</span> saw it happen. (I, and no one else)</div>
+                  <div class="example">The president <span class="highlight">himself</span> came to the meeting. (The president, personally)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Reflexive pronouns = myself, yourself, himself, herself, itself, ourselves, yourselves, themselves. Use them when the subject and object are the same!</p>
+              </div>
+            </div>
+
+            <!-- Practice: Reflexive Pronouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="repeat" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Reflexive Pronoun
+              </div>
+              <p class="exercise-instructions">Choose the correct reflexive pronoun.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I need to take care of _____."</label>
+                <select id="reflexive-1">
+                  <option value="">Choose...</option>
+                  <option value="me">me</option>
+                  <option value="myself">myself</option>
+                  <option value="my">my</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She taught _____ how to play piano."</label>
+                <select id="reflexive-2">
+                  <option value="">Choose...</option>
+                  <option value="her">her</option>
+                  <option value="herself">herself</option>
+                  <option value="she">she</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "We enjoyed _____ at the beach."</label>
+                <select id="reflexive-3">
+                  <option value="">Choose...</option>
+                  <option value="us">us</option>
+                  <option value="ourselves">ourselves</option>
+                  <option value="our">our</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "They hurt _____ while playing."</label>
+                <select id="reflexive-4">
+                  <option value="">Choose...</option>
+                  <option value="them">them</option>
+                  <option value="themselves">themselves</option>
+                  <option value="their">their</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "You should be proud of _____."</label>
+                <select id="reflexive-5">
+                  <option value="">Choose...</option>
+                  <option value="you">you</option>
+                  <option value="yourself">yourself</option>
+                  <option value="your">your</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkReflexive()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-reflexive" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4: RELATIVE PRONOUNS -->
+          <div class="step-section" id="step4">
+            <div class="step-header">
+              <span class="step-number">4</span>
+              <h2 class="step-title">Relative Pronouns & Relative Clauses</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are relative pronouns?</h3>
+              <p>Relative pronouns connect a <strong>relative clause</strong> (a part of a sentence that gives more information) to the main sentence. They refer back to a noun mentioned earlier.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🔗 Common Relative Pronouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Relative Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>Who</strong> - for people (subject)</div>
+                    <div><strong>Whom</strong> - for people (object)</div>
+                    <div><strong>Which</strong> - for things/animals</div>
+                    <div><strong>That</strong> - for people/things/animals</div>
+                    <div><strong>Whose</strong> - shows possession</div>
+                    <div><strong>Where</strong> - for places</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">The woman <span class="highlight">who</span> lives next door is a teacher. (who = subject)</div>
+                  <div class="example">The book <span class="highlight">which</span> I bought is interesting. (which = thing)</div>
+                  <div class="example">The car <span class="highlight">that</span> he drives is red. (that = thing)</div>
+                  <div class="example">The student <span class="highlight">whose</span> bag was stolen reported it. (whose = possession)</div>
+                  <div class="example">This is the place <span class="highlight">where</span> I was born. (where = place)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Who vs Whom</h4>
+                <p><strong>Who</strong> = subject (does the action). <strong>Whom</strong> = object (receives the action).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">The person <span class="highlight">who</span> called me is my friend. (who = subject, does "called")</div>
+                  <div class="example">The person <span class="highlight">whom</span> I called is my friend. (whom = object, receives "called")</div>
+                  <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                    💡 Tip: In modern English, "who" is often used instead of "whom" in informal speech, but "whom" is correct for formal writing.
+                  </p>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Which vs That</h4>
+                <p><strong>That</strong> = defining relative clause (essential information). <strong>Which</strong> = non-defining relative clause (extra information, needs commas).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Defining (That - no commas):</strong>
+                  <div class="example">The book <span class="highlight">that</span> I read was interesting. (essential - which book?)</div>
+                  <div class="example">The car <span class="highlight">that</span> he bought is expensive. (essential - which car?)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Non-Defining (Which - with commas):</strong>
+                  <div class="example">My car, <span class="highlight">which</span> is red, is very fast. (extra info - we already know which car)</div>
+                  <div class="example">The book, <span class="highlight">which</span> I finished yesterday, was great. (extra info)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Defining vs Non-Defining Relative Clauses</h4>
+                <p><strong>Defining</strong> clauses give essential information (you can't remove them). <strong>Non-defining</strong> clauses give extra information (you can remove them, use commas).</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Defining (no commas):</strong>
+                  <div class="example">Students <span class="highlight">who study hard</span> get good grades. (essential - which students?)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Non-Defining (with commas):</strong>
+                  <div class="example">My brother, <span class="highlight">who lives in Paris</span>, is a doctor. (extra info - we know who my brother is)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Who/whom = people, Which = things, That = people/things, Whose = possession, Where = places. Use "that" for essential info, "which" with commas for extra info.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Relative Pronouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="link-2" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Relative Pronoun
+              </div>
+              <p class="exercise-instructions">Choose the correct relative pronoun.</p>
+              
+              <div class="exercise-item">
+                <label>1. "The person _____ called me is my teacher."</label>
+                <select id="relative-1">
+                  <option value="">Choose...</option>
+                  <option value="who">who</option>
+                  <option value="whom">whom</option>
+                  <option value="which">which</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "The book _____ I read was interesting."</label>
+                <select id="relative-2">
+                  <option value="">Choose...</option>
+                  <option value="who">who</option>
+                  <option value="which">which</option>
+                  <option value="where">where</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "The student _____ bag was stolen reported it."</label>
+                <select id="relative-3">
+                  <option value="">Choose...</option>
+                  <option value="who">who</option>
+                  <option value="whose">whose</option>
+                  <option value="which">which</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "This is the place _____ I was born."</label>
+                <select id="relative-4">
+                  <option value="">Choose...</option>
+                  <option value="which">which</option>
+                  <option value="where">where</option>
+                  <option value="that">that</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "The person _____ I met yesterday is very nice."</label>
+                <select id="relative-5">
+                  <option value="">Choose...</option>
+                  <option value="who">who</option>
+                  <option value="whom">whom</option>
+                  <option value="which">which</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkRelative()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-relative" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 5: DEMONSTRATIVE PRONOUNS -->
+          <div class="step-section" id="step5">
+            <div class="step-header">
+              <span class="step-number">5</span>
+              <h2 class="step-title">Demonstrative Pronouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are demonstrative pronouns?</h3>
+              <p>Demonstrative pronouns point to or identify specific things. They show <strong>which</strong> thing you're talking about and whether it's <strong>near</strong> or <strong>far</strong>, <strong>singular</strong> or <strong>plural</strong>.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📍 Demonstrative Pronouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Demonstrative Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>This</strong> - near, singular</div>
+                    <div><strong>That</strong> - far, singular</div>
+                    <div><strong>These</strong> - near, plural</div>
+                    <div><strong>Those</strong> - far, plural</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">This</span> is my book. (near me, one book)</div>
+                  <div class="example"><span class="highlight">That</span> is your car. (far from me, one car)</div>
+                  <div class="example"><span class="highlight">These</span> are my keys. (near me, multiple keys)</div>
+                  <div class="example"><span class="highlight">Those</span> are your friends. (far from me, multiple friends)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">⚠️ Don't Confuse: Demonstrative Pronouns vs Demonstrative Adjectives</h4>
+                <p><strong>Demonstrative pronouns</strong> stand alone (no noun after them). <strong>Demonstrative adjectives</strong> come before a noun.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Comparison:</strong>
+                  <div class="example"><span class="highlight">This</span> is expensive. (pronoun - stands alone)</div>
+                  <div class="example"><span class="highlight">This</span> book is expensive. (adjective - before noun)</div>
+                  <div class="example"><span class="highlight">Those</span> are mine. (pronoun - stands alone)</div>
+                  <div class="example"><span class="highlight">Those</span> shoes are mine. (adjective - before noun)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">This/That = singular (near/far), These/Those = plural (near/far). When they stand alone = pronouns. When before a noun = adjectives.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Demonstrative Pronouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="pointer" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Demonstrative Pronoun
+              </div>
+              <p class="exercise-instructions">Choose the correct demonstrative pronoun.</p>
+              
+              <div class="exercise-item">
+                <label>1. "_____ is my pen." (pointing to a pen near you)</label>
+                <select id="demonstrative-1">
+                  <option value="">Choose...</option>
+                  <option value="This">This</option>
+                  <option value="That">That</option>
+                  <option value="These">These</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "_____ are my books." (pointing to books near you)</label>
+                <select id="demonstrative-2">
+                  <option value="">Choose...</option>
+                  <option value="This">This</option>
+                  <option value="That">That</option>
+                  <option value="These">These</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "_____ is your bag." (pointing to a bag far away)</label>
+                <select id="demonstrative-3">
+                  <option value="">Choose...</option>
+                  <option value="This">This</option>
+                  <option value="That">That</option>
+                  <option value="Those">Those</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "_____ are your keys." (pointing to keys far away)</label>
+                <select id="demonstrative-4">
+                  <option value="">Choose...</option>
+                  <option value="That">That</option>
+                  <option value="These">These</option>
+                  <option value="Those">Those</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkDemonstrative()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-demonstrative" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 6: INDEFINITE PRONOUNS -->
+          <div class="step-section" id="step6">
+            <div class="step-header">
+              <span class="step-number">6</span>
+              <h2 class="step-title">Indefinite Pronouns</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are indefinite pronouns?</h3>
+              <p>Indefinite pronouns refer to people or things <strong>without being specific</strong>. They don't refer to a particular person or thing. Examples: <strong>some</strong>, <strong>any</strong>, <strong>no</strong>, <strong>every</strong>, <strong>each</strong>, <strong>all</strong>.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">🔢 Common Indefinite Pronouns</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Some/Any/No/Every + body/one/thing/where:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>Somebody/Someone</strong> - a person</div>
+                    <div><strong>Something</strong> - a thing</div>
+                    <div><strong>Somewhere</strong> - a place</div>
+                    <div><strong>Anybody/Anyone</strong> - any person</div>
+                    <div><strong>Anything</strong> - any thing</div>
+                    <div><strong>Anywhere</strong> - any place</div>
+                    <div><strong>Nobody/No one</strong> - no person</div>
+                    <div><strong>Nothing</strong> - no thing</div>
+                    <div><strong>Nowhere</strong> - no place</div>
+                    <div><strong>Everybody/Everyone</strong> - all people</div>
+                    <div><strong>Everything</strong> - all things</div>
+                    <div><strong>Everywhere</strong> - all places</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Other Common Indefinite Pronouns:</strong>
+                  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                    <div><strong>All</strong> - everything/everyone</div>
+                    <div><strong>Each</strong> - every one separately</div>
+                    <div><strong>Both</strong> - two things together</div>
+                    <div><strong>Either</strong> - one of two</div>
+                    <div><strong>Neither</strong> - not one or the other</div>
+                    <div><strong>Many</strong> - a large number</div>
+                    <div><strong>Much</strong> - a large amount</div>
+                    <div><strong>Few</strong> - a small number</div>
+                    <div><strong>Little</strong> - a small amount</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example"><span class="highlight">Someone</span> called you. (a person, not specific)</div>
+                  <div class="example">I need <span class="highlight">something</span> to eat. (a thing, not specific)</div>
+                  <div class="example"><span class="highlight">Everyone</span> is here. (all people)</div>
+                  <div class="example">I don't know <span class="highlight">anyone</span> here. (any person)</div>
+                  <div class="example"><span class="highlight">Nothing</span> happened. (no thing)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Some vs Any</h4>
+                <p><strong>Some</strong> = positive sentences, offers, requests. <strong>Any</strong> = negative sentences, questions.</p>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I have <span class="highlight">some</span> money. (positive)</div>
+                  <div class="example">I don't have <span class="highlight">any</span> money. (negative)</div>
+                  <div class="example">Do you have <span class="highlight">any</span> questions? (question)</div>
+                  <div class="example">Would you like <span class="highlight">some</span> coffee? (offer)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Indefinite pronouns = some, any, no, every, each, all + body/one/thing/where. They refer to non-specific people or things!</p>
+              </div>
+            </div>
+
+            <!-- Practice: Indefinite Pronouns -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="help-circle" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Indefinite Pronoun
+              </div>
+              <p class="exercise-instructions">Choose the correct indefinite pronoun.</p>
+              
+              <div class="exercise-item">
+                <label>1. "_____ called you while you were out."</label>
+                <select id="indefinite-1">
+                  <option value="">Choose...</option>
+                  <option value="Someone">Someone</option>
+                  <option value="Anyone">Anyone</option>
+                  <option value="No one">No one</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I don't know _____ in this class."</label>
+                <select id="indefinite-2">
+                  <option value="">Choose...</option>
+                  <option value="someone">someone</option>
+                  <option value="anyone">anyone</option>
+                  <option value="everyone">everyone</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "_____ is ready for the test."</label>
+                <select id="indefinite-3">
+                  <option value="">Choose...</option>
+                  <option value="Everyone">Everyone</option>
+                  <option value="Anyone">Anyone</option>
+                  <option value="No one">No one</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I need _____ to drink."</label>
+                <select id="indefinite-4">
+                  <option value="">Choose...</option>
+                  <option value="something">something</option>
+                  <option value="anything">anything</option>
+                  <option value="nothing">nothing</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "There's _____ in the fridge."</label>
+                <select id="indefinite-5">
+                  <option value="">Choose...</option>
+                  <option value="something">something</option>
+                  <option value="anything">anything</option>
+                  <option value="nothing">nothing</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkIndefinite()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-indefinite" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 7: REVIEW & SUMMARY -->
+          <div class="step-section" id="step7">
+            <div class="step-header">
+              <span class="step-number">7</span>
+              <h2 class="step-title">Review & Summary</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">Pronouns Review & Summary</h3>
+              <p>Congratulations! You've learned about all the main types of pronouns. Let's review what you've covered:</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📚 What You've Learned</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Personal Pronouns</strong> - Replace people/things (I, you, he, she, it, we, they, me, him, her, us, them)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Subject: <span class="highlight">I</span> like pizza. Object: She called <span class="highlight">me</span>.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Possessive Pronouns</strong> - Show ownership (mine, yours, his, hers, ours, theirs)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">This book is <span class="highlight">mine</span>. That car is <span class="highlight">yours</span>.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Reflexive Pronouns</strong> - Refer back to subject (myself, yourself, himself, herself, itself, ourselves, yourselves, themselves)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I cut <span class="highlight">myself</span>. She taught <span class="highlight">herself</span> English.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>4. Relative Pronouns</strong> - Connect clauses (who, whom, which, that, whose, where)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">The woman <span class="highlight">who</span> lives next door is a teacher. The book <span class="highlight">which</span> I bought is interesting.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>5. Demonstrative Pronouns</strong> - Point to things (this, that, these, those)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example"><span class="highlight">This</span> is my book. <span class="highlight">Those</span> are your keys.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>6. Indefinite Pronouns</strong> - Refer to non-specific people/things (some, any, no, every, each, all + body/one/thing/where)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example"><span class="highlight">Someone</span> called you. I need <span class="highlight">something</span> to eat.</div>
+                    </div>
+                  </li>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Reminders:</strong> 
+                <ul style="margin: var(--spacing-xs) 0; padding-left: var(--spacing-lg);">
+                  <li>Subject pronouns = who does the action (I, you, he, she, it, we, they)</li>
+                  <li>Object pronouns = who receives the action (me, you, him, her, it, us, them)</li>
+                  <li>Who = subject, Whom = object (for people)</li>
+                  <li>That = essential info, Which = extra info (with commas)</li>
+                  <li>This/That = singular, These/Those = plural</li>
+                  <li>Some = positive, Any = negative/questions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="progress-indicator">
+            <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">Your Progress</p>
+            <div class="progress-bar">
+              <div class="progress-dot active" id="dot1"></div>
+              <div class="progress-dot" id="dot2"></div>
+              <div class="progress-dot" id="dot3"></div>
+              <div class="progress-dot" id="dot4"></div>
+              <div class="progress-dot" id="dot5"></div>
+              <div class="progress-dot" id="dot6"></div>
+              <div class="progress-dot" id="dot7"></div>
+            </div>
+          </div>
+
+          <!-- Final Review -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✓</span>
+              <h2 class="step-title">Congratulations! You've Completed the Pronouns Guide!</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What You've Learned</h3>
+              <p>You've learned about:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                <li>Personal pronouns (subject and object)</li>
+                <li>Possessive pronouns</li>
+                <li>Reflexive pronouns</li>
+                <li>Relative pronouns and relative clauses</li>
+                <li>Which vs that, Who vs whom</li>
+                <li>Demonstrative pronouns</li>
+                <li>Indefinite pronouns</li>
+              </ul>
+              
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Keep Practicing!</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">The more you practice, the better you'll become at using pronouns correctly. Try reading English texts and identifying different types of pronouns!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Answer keys
+    const answers = {
+      personal: ['She', 'him', 'They', 'me', 'We'],
+      possessive: ['mine', 'theirs', 'hers', 'ours', 'yours'],
+      reflexive: ['myself', 'herself', 'ourselves', 'themselves', 'yourself'],
+      relative: ['who', 'which', 'whose', 'where', 'whom'],
+      demonstrative: ['This', 'These', 'That', 'Those'],
+      indefinite: ['Someone', 'anyone', 'Everyone', 'something', 'something']
+    };
+
+    function updateProgress(step) {
+      for (let i = 1; i <= 7; i++) {
+        const dot = document.getElementById(`dot${i}`);
+        if (i < step) {
+          dot.classList.add('completed');
+          dot.classList.remove('active');
+        } else if (i === step) {
+          dot.classList.add('active');
+          dot.classList.remove('completed');
+        } else {
+          dot.classList.remove('active', 'completed');
+        }
+      }
+    }
+
+    function normalizeAnswer(answer) {
+      return answer.toLowerCase().trim().replace(/\s+/g, ' ');
+    }
+
+    function checkPersonal() {
+      const feedback = document.getElementById('feedback-personal');
+      let correct = 0;
+      let total = 5;
+      
+      answers.personal.forEach((answer, index) => {
+        const select = document.getElementById(`personal-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand personal pronouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Subject pronouns (I, you, he, she, it, we, they) do the action. Object pronouns (me, you, him, her, it, us, them) receive the action.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(2);
+      }
+    }
+
+    function checkPossessive() {
+      const feedback = document.getElementById('feedback-possessive');
+      let correct = 0;
+      let total = 5;
+      
+      answers.possessive.forEach((answer, index) => {
+        const select = document.getElementById(`possessive-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand possessive pronouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Possessive pronouns (mine, yours, his, hers, ours, theirs) stand alone - no noun after them!`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(3);
+      }
+    }
+
+    function checkReflexive() {
+      const feedback = document.getElementById('feedback-reflexive');
+      let correct = 0;
+      let total = 5;
+      
+      answers.reflexive.forEach((answer, index) => {
+        const select = document.getElementById(`reflexive-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand reflexive pronouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Reflexive pronouns (myself, yourself, himself, herself, itself, ourselves, yourselves, themselves) refer back to the subject!`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(4);
+      }
+    }
+
+    function checkRelative() {
+      const feedback = document.getElementById('feedback-relative');
+      let correct = 0;
+      let total = 5;
+      
+      answers.relative.forEach((answer, index) => {
+        const select = document.getElementById(`relative-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand relative pronouns!`
+        : `You got ${correct} out of ${total} correct. Remember: Who/whom = people, Which = things, That = people/things, Whose = possession, Where = places.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(5);
+      }
+    }
+
+    function checkDemonstrative() {
+      const feedback = document.getElementById('feedback-demonstrative');
+      let correct = 0;
+      let total = 4;
+      
+      answers.demonstrative.forEach((answer, index) => {
+        const select = document.getElementById(`demonstrative-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand demonstrative pronouns!`
+        : `You got ${correct} out of ${total} correct. Remember: This/That = singular (near/far), These/Those = plural (near/far).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(6);
+      }
+    }
+
+    function checkIndefinite() {
+      const feedback = document.getElementById('feedback-indefinite');
+      let correct = 0;
+      let total = 5;
+      
+      answers.indefinite.forEach((answer, index) => {
+        const select = document.getElementById(`indefinite-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `🎉 Perfect! You got all ${total} correct! You understand indefinite pronouns! Congratulations on completing the guide!`
+        : `You got ${correct} out of ${total} correct. Remember: Someone/anyone/everyone/no one = people, Something/anything/everything/nothing = things. Some = positive, Any = negative/questions.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    // Initialize progress
+    updateProgress(1);
+  </script>
+</body>
+</html>
+

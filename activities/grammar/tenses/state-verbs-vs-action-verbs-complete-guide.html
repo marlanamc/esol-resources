@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State Verbs vs Action Verbs - Complete Guide | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete guide to understanding state verbs vs action verbs - a key concept for understanding continuous forms in English.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #8b5cf6;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .comparison-card {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-md) 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .comparison-card.state {
+      border-left: 4px solid #ef4444;
+    }
+    
+    .comparison-card.action {
+      border-left: 4px solid #10b981;
+    }
+    
+    .comparison-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .comparison-name {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      margin: 0;
+    }
+    
+    .comparison-card.state .comparison-name {
+      color: #ef4444;
+    }
+    
+    .comparison-card.action .comparison-name {
+      color: #10b981;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #1e293b;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #1e293b;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .highlight.correct {
+      background: rgba(16, 185, 129, 0.15);
+    }
+    
+    .highlight.incorrect {
+      background: rgba(239, 68, 68, 0.15);
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--spacing-sm);
+      text-align: left;
+      border: 1px solid var(--color-border);
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      font-weight: 600;
+      color: #1e293b;
+    }
+    
+    .comparison-table .state-col {
+      background: rgba(239, 68, 68, 0.05);
+    }
+    
+    .comparison-table .action-col {
+      background: rgba(16, 185, 129, 0.05);
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .comparison-card {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item select {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .explanation-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .step-title {
+      color: #a78bfa;
+    }
+    
+    [data-theme="dark"] .exercise-title {
+      color: #a78bfa;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .comparison-card {
+        border: 1px solid #ccc;
+        margin: 6px 0;
+        padding: 6px;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html#verb-tenses">Verb Tenses</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>State Verbs vs Action Verbs</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">State Verbs vs Action Verbs - Complete Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Understanding State Verbs vs Action Verbs
+            </h2>
+            <p>This is a <strong>key concept</strong> for understanding continuous forms in English! Some verbs describe <strong>states</strong> (how things are) and some describe <strong>actions</strong> (what we do). This difference is crucial because <strong>state verbs don't use continuous forms</strong>!</p>
+            <p><strong>Why is this important?</strong> You can't say "I am liking pizza" or "I am knowing the answer" - these are mistakes! Understanding state vs action verbs will help you avoid these common errors.</p>
+          </div>
+
+          <!-- QUICK COMPARISON -->
+          <div class="step-section">
+            <div class="step-header">
+              <h2 class="step-title">Quick Comparison</h2>
+            </div>
+
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th class="state-col">State Verbs</th>
+                  <th class="action-col">Action Verbs</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>What they describe</strong></td>
+                  <td class="state-col">States, feelings, thoughts, senses</td>
+                  <td class="action-col">Actions, activities, movements</td>
+                </tr>
+                <tr>
+                  <td><strong>Can use continuous?</strong></td>
+                  <td class="state-col">❌ NO (never use -ing)</td>
+                  <td class="action-col">✅ YES (when happening now)</td>
+                </tr>
+                <tr>
+                  <td><strong>Examples</strong></td>
+                  <td class="state-col">like, know, want, see, have (own)</td>
+                  <td class="action-col">run, eat, study, work, play</td>
+                </tr>
+                <tr>
+                  <td><strong>Sentence example</strong></td>
+                  <td class="state-col">I <span class="highlight">like</span> pizza. ✅<br>I am liking pizza. ❌</td>
+                  <td class="action-col">I <span class="highlight">eat</span> pizza. ✅<br>I <span class="highlight">am eating</span> pizza. ✅</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- STATE VERBS SECTION -->
+          <div class="step-section">
+            <div class="comparison-card state">
+              <div class="comparison-header">
+                <h3 class="comparison-name">🔴 State Verbs</h3>
+              </div>
+
+              <div class="explanation-box" style="background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2);">
+                <h4 style="color: #ef4444; margin-top: 0;">What are state verbs?</h4>
+                <p>State verbs describe <strong>states, feelings, thoughts, senses, or possession</strong>. These verbs describe <strong>how things ARE</strong>, not what we DO. They are <strong>NOT used in continuous forms</strong> (no -ing form).</p>
+                
+                <div class="tip-box" style="margin-top: var(--spacing-md);">
+                  <strong>⚠️ Important Rule:</strong> 
+                  <p style="margin: var(--spacing-xs) 0 0 0;">State verbs <strong>NEVER</strong> use continuous forms. You can't say "I am liking", "I am knowing", "I am wanting" - these are always wrong!</p>
+                </div>
+              </div>
+
+              <h4 style="color: #ef4444; margin-top: var(--spacing-lg);">Categories of State Verbs:</h4>
+
+              <div class="example-box">
+                <strong style="color: #ef4444;">1. Feelings & Emotions</strong>
+                <div class="example">like, love, hate, prefer, want, need, wish</div>
+                <div class="example">✅ I <span class="highlight">like</span> chocolate.</div>
+                <div class="example">❌ I am liking chocolate. (WRONG!)</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #ef4444;">2. Thoughts & Mental States</strong>
+                <div class="example">know, understand, believe, think (opinion), remember, forget, realize</div>
+                <div class="example">✅ She <span class="highlight">knows</span> the answer.</div>
+                <div class="example">❌ She is knowing the answer. (WRONG!)</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #ef4444;">3. Senses</strong>
+                <div class="example">see, hear, smell, taste, feel (sensation)</div>
+                <div class="example">✅ I <span class="highlight">see</span> a bird.</div>
+                <div class="example">❌ I am seeing a bird. (WRONG - unless meaning "meeting")</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #ef4444;">4. Possession & Ownership</strong>
+                <div class="example">have, own, belong, possess</div>
+                <div class="example">✅ They <span class="highlight">have</span> a car.</div>
+                <div class="example">❌ They are having a car. (WRONG - unless meaning "experiencing")</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #ef4444;">5. States of Being</strong>
+                <div class="example">be, seem, appear, look (appearance), sound</div>
+                <div class="example">✅ You <span class="highlight">seem</span> tired.</div>
+                <div class="example">❌ You are seeming tired. (WRONG!)</div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Remember:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Some verbs can be BOTH state and action verbs, depending on the meaning! For example:</p>
+                <ul style="margin: var(--spacing-xs) 0; padding-left: var(--spacing-lg);">
+                  <li><strong>have</strong> = state verb when meaning "own" (I have a car) ✅</li>
+                  <li><strong>have</strong> = action verb when meaning "experience" (I'm having fun) ✅</li>
+                  <li><strong>think</strong> = state verb when meaning "believe" (I think it's good) ✅</li>
+                  <li><strong>think</strong> = action verb when meaning "consider" (I'm thinking about it) ✅</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- ACTION VERBS SECTION -->
+          <div class="step-section">
+            <div class="comparison-card action">
+              <div class="comparison-header">
+                <h3 class="comparison-name">🟢 Action Verbs</h3>
+              </div>
+
+              <div class="explanation-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
+                <h4 style="color: #10b981; margin-top: 0;">What are action verbs?</h4>
+                <p>Action verbs describe <strong>actions, activities, or movements</strong>. These verbs describe <strong>what we DO</strong>. They <strong>CAN use continuous forms</strong> when the action is happening now or was happening in the past.</p>
+              </div>
+
+              <h4 style="color: #10b981; margin-top: var(--spacing-lg);">Categories of Action Verbs:</h4>
+
+              <div class="example-box">
+                <strong style="color: #10b981;">1. Physical Actions</strong>
+                <div class="example">run, walk, jump, sit, stand, dance</div>
+                <div class="example">✅ I <span class="highlight">run</span> every morning. (habit)</div>
+                <div class="example">✅ I <span class="highlight">am running</span> now. (happening now)</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #10b981;">2. Daily Activities</strong>
+                <div class="example">eat, drink, cook, clean, wash, brush</div>
+                <div class="example">✅ She <span class="highlight">eats</span> breakfast at 8 AM. (habit)</div>
+                <div class="example">✅ She <span class="highlight">is eating</span> breakfast now. (happening now)</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #10b981;">3. Work & Study</strong>
+                <div class="example">work, study, read, write, learn, teach</div>
+                <div class="example">✅ They <span class="highlight">study</span> English. (habit)</div>
+                <div class="example">✅ They <span class="highlight">are studying</span> English now. (happening now)</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #10b981;">4. Communication</strong>
+                <div class="example">speak, talk, listen, say, tell, ask</div>
+                <div class="example">✅ He <span class="highlight">speaks</span> Spanish. (ability)</div>
+                <div class="example">✅ He <span class="highlight">is speaking</span> Spanish now. (happening now)</div>
+              </div>
+
+              <div class="example-box">
+                <strong style="color: #10b981;">5. Leisure Activities</strong>
+                <div class="example">play, watch, listen, sing, draw, paint</div>
+                <div class="example">✅ We <span class="highlight">play</span> soccer on weekends. (habit)</div>
+                <div class="example">✅ We <span class="highlight">are playing</span> soccer now. (happening now)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRACTICE EXERCISES -->
+          <div class="step-section">
+            <div class="step-header">
+              <h2 class="step-title">Practice Exercises</h2>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="help-circle" style="width: 24px; height: 24px;"></i>
+                Exercise 1: State Verb or Action Verb?
+              </div>
+              <p class="exercise-instructions">Read each sentence and decide if the verb is a state verb or action verb.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I like pizza."</label>
+                <select id="ex1-1">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She is eating pizza."</label>
+                <select id="ex1-2">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "I know the answer."</label>
+                <select id="ex1-3">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "They are studying English."</label>
+                <select id="ex1-4">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "I want a new car."</label>
+                <select id="ex1-5">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>6. "He is running in the park."</label>
+                <select id="ex1-6">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>7. "We have three cats."</label>
+                <select id="ex1-7">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>8. "She is having a party."</label>
+                <select id="ex1-8">
+                  <option value="">Choose...</option>
+                  <option value="state">State Verb</option>
+                  <option value="action">Action Verb</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkExercise1()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-ex1" class="feedback"></div>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="x-circle" style="width: 24px; height: 24px;"></i>
+                Exercise 2: Find the Mistakes
+              </div>
+              <p class="exercise-instructions">Some of these sentences are correct, and some have mistakes. Identify which sentences are WRONG (use state verbs incorrectly).</p>
+              
+              <div class="exercise-item">
+                <label>1. "I am liking this movie."</label>
+                <select id="ex2-1">
+                  <option value="">Choose...</option>
+                  <option value="correct">Correct ✅</option>
+                  <option value="wrong">Wrong ❌</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She is knowing how to swim."</label>
+                <select id="ex2-2">
+                  <option value="">Choose...</option>
+                  <option value="correct">Correct ✅</option>
+                  <option value="wrong">Wrong ❌</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "They are playing soccer."</label>
+                <select id="ex2-3">
+                  <option value="">Choose...</option>
+                  <option value="correct">Correct ✅</option>
+                  <option value="wrong">Wrong ❌</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I am wanting to go home."</label>
+                <select id="ex2-4">
+                  <option value="">Choose...</option>
+                  <option value="correct">Correct ✅</option>
+                  <option value="wrong">Wrong ❌</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "He is understanding the lesson."</label>
+                <select id="ex2-5">
+                  <option value="">Choose...</option>
+                  <option value="correct">Correct ✅</option>
+                  <option value="wrong">Wrong ❌</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkExercise2()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-ex2" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- SUMMARY -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%); border-color: #1e293b;">
+            <div class="step-header">
+              <h2 class="step-title">Key Points to Remember</h2>
+            </div>
+
+            <div class="explanation-box">
+              <ul style="list-style: none; padding: 0;">
+                <li style="padding: var(--spacing-sm); margin: var(--spacing-xs) 0; background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-sm); border-left: 3px solid #ef4444;">
+                  <strong>🔴 State Verbs:</strong> Describe states, feelings, thoughts, senses. <strong>NEVER use continuous forms</strong> (no -ing).
+                </li>
+                <li style="padding: var(--spacing-sm); margin: var(--spacing-xs) 0; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-sm); border-left: 3px solid #10b981;">
+                  <strong>🟢 Action Verbs:</strong> Describe actions and activities. <strong>CAN use continuous forms</strong> when happening now.
+                </li>
+                <li style="padding: var(--spacing-sm); margin: var(--spacing-xs) 0; background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-sm); border-left: 3px solid #f59e0b;">
+                  <strong>⚠️ Common Mistakes:</strong> Never say "I am liking", "I am knowing", "I am wanting" - these are always wrong!
+                </li>
+                <li style="padding: var(--spacing-sm); margin: var(--spacing-xs) 0; background: rgba(139, 92, 246, 0.1); border-radius: var(--radius-sm); border-left: 3px solid #8b5cf6;">
+                  <strong>💡 Some verbs can be both:</strong> Some verbs like "have" and "think" can be state OR action verbs depending on meaning.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    const answers = {
+      ex1: ['state', 'action', 'state', 'action', 'state', 'action', 'state', 'action'],
+      ex2: ['wrong', 'wrong', 'correct', 'wrong', 'wrong']
+    };
+
+    function checkExercise1() {
+      const feedback = document.getElementById('feedback-ex1');
+      let correct = 0;
+      let total = 8;
+      const explanations = [
+        '✅ Correct! "like" is a state verb (feeling).',
+        '✅ Correct! "eating" is an action verb (activity).',
+        '✅ Correct! "know" is a state verb (thought).',
+        '✅ Correct! "studying" is an action verb (activity).',
+        '✅ Correct! "want" is a state verb (desire).',
+        '✅ Correct! "running" is an action verb (movement).',
+        '✅ Correct! "have" (meaning "own") is a state verb.',
+        '✅ Correct! "having" (meaning "experiencing/doing") is an action verb.'
+      ];
+      
+      answers.ex1.forEach((answer, index) => {
+        const select = document.getElementById(`ex1-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value !== '') {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      let feedbackHTML = '';
+      if (correct === total) {
+        feedbackHTML = `🎉 <strong>Perfect!</strong> You got all ${total} correct! You understand the difference between state and action verbs!`;
+      } else {
+        feedbackHTML = `<strong>You got ${correct} out of ${total} correct.</strong><br><br>`;
+        answers.ex1.forEach((answer, index) => {
+          const select = document.getElementById(`ex1-${index + 1}`);
+          if (select.value !== answer && select.value !== '') {
+            feedbackHTML += `<br>${explanations[index]}`;
+          }
+        });
+      }
+      feedback.innerHTML = feedbackHTML;
+      feedback.style.display = 'block';
+    }
+
+    function checkExercise2() {
+      const feedback = document.getElementById('feedback-ex2');
+      let correct = 0;
+      let total = 5;
+      const explanations = [
+        '❌ Wrong! "like" is a state verb - should be "I like this movie."',
+        '❌ Wrong! "know" is a state verb - should be "She knows how to swim."',
+        '✅ Correct! "playing" is an action verb, so continuous form is correct.',
+        '❌ Wrong! "want" is a state verb - should be "I want to go home."',
+        '❌ Wrong! "understand" is a state verb - should be "He understands the lesson."'
+      ];
+      
+      answers.ex2.forEach((answer, index) => {
+        const select = document.getElementById(`ex2-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value !== '') {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      let feedbackHTML = '';
+      if (correct === total) {
+        feedbackHTML = `🎉 <strong>Perfect!</strong> You found all the mistakes! You understand when state verbs are used incorrectly!`;
+      } else {
+        feedbackHTML = `<strong>You got ${correct} out of ${total} correct.</strong><br><br>`;
+        answers.ex2.forEach((answer, index) => {
+          const select = document.getElementById(`ex2-${index + 1}`);
+          if (select.value !== answer && select.value !== '') {
+            feedbackHTML += `<br>${explanations[index]}`;
+          }
+        });
+      }
+      feedback.innerHTML = feedbackHTML;
+      feedback.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
+

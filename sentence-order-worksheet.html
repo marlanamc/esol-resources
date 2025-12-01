@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentence Order Worksheet - ESOL Teacher Resources</title>
+  <meta name="description" content="Worksheet for practicing sentence order: Who + Verb + What + Where + When">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .sentence-part {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: var(--font-size-sm);
+      margin: 0 2px;
+      border: 1px solid;
+    }
+    
+    .sentence-part.who {
+      /* WHO color from cards.html: #9fd4ff */
+      background-color: rgba(159, 212, 255, 0.3);
+      border-color: rgba(47, 142, 220, 0.6);
+      color: #1e5a8a;
+    }
+    
+    .sentence-part.verb {
+      /* VERB color from cards.html: #b9f0a8 */
+      background-color: rgba(185, 240, 168, 0.3);
+      border-color: rgba(77, 168, 81, 0.6);
+      color: #0d5d3f;
+    }
+    
+    .sentence-part.what {
+      /* WHAT color from cards.html: #ffd9a1 */
+      background-color: rgba(255, 217, 161, 0.3);
+      border-color: rgba(231, 155, 51, 0.6);
+      color: #8b4a00;
+    }
+    
+    .sentence-part.where {
+      /* WHERE color from cards.html: #cfb6ff */
+      background-color: rgba(207, 182, 255, 0.3);
+      border-color: rgba(139, 111, 232, 0.6);
+      color: #4a1e8a;
+    }
+    
+    .sentence-part.when {
+      /* WHEN color from cards.html: #ffb6c8 */
+      background-color: rgba(255, 182, 200, 0.3);
+      border-color: rgba(227, 106, 134, 0.6);
+      color: #8a1e2e;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: var(--spacing-sm);
+      text-align: left;
+      border: 1px solid var(--color-border);
+    }
+    
+    .comparison-table th {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+      font-weight: 600;
+      color: #6366f1;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white !important;
+        color: black !important;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide],
+      .activity-meta {
+        display: none !important;
+      }
+      
+      .activity-title {
+        font-size: 16pt !important;
+        margin-bottom: 6px !important;
+        page-break-after: avoid;
+        font-weight: bold;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+        page-break-after: avoid;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 10px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 10pt;
+        margin-bottom: 3px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 12px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 3px;
+      }
+      
+      .step-section {
+        border: none !important;
+        margin: 8px 0;
+        padding: 0;
+        background: white !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+      
+      .step-header {
+        border-bottom: 1.5px solid #000 !important;
+        margin-bottom: 6px;
+        padding-bottom: 3px;
+        page-break-after: avoid;
+      }
+      
+      .step-title {
+        font-size: 13pt !important;
+        color: black !important;
+        margin: 0;
+        font-weight: bold;
+      }
+      
+      .explanation-box {
+        border: none !important;
+        background: white !important;
+        padding: 4px 0;
+        margin: 6px 0;
+      }
+      
+      .explanation-box h3 {
+        font-size: 11pt !important;
+        margin-bottom: 4px;
+        font-weight: bold;
+      }
+      
+      .explanation-box h4 {
+        font-size: 10pt !important;
+        margin-bottom: 2px;
+        margin-top: 4px;
+        font-weight: bold;
+        page-break-after: avoid;
+      }
+      
+      .what-section {
+        page-break-before: always !important;
+      }
+      
+      .explanation-box p {
+        margin-bottom: 2px;
+        font-size: 9pt;
+        line-height: 1.2;
+      }
+      
+      .explanation-box ul {
+        margin-top: 2px;
+        margin-bottom: 2px;
+        padding-left: 18px;
+      }
+      
+      .explanation-box li {
+        margin-bottom: 1px;
+        font-size: 9pt;
+        line-height: 1.2;
+      }
+      
+      .example-box {
+        border: 1px solid #ddd !important;
+        background: #f9f9f9 !important;
+        padding: 4px;
+        margin: 4px 0;
+      }
+      
+      .example-box .example {
+        font-size: 9pt;
+        margin: 2px 0;
+        padding: 2px;
+      }
+      
+      .example-box p {
+        font-size: 8pt;
+        margin: 2px 0;
+      }
+      
+      .exercise-section {
+        background: white !important;
+        border: none !important;
+        padding: 0;
+        margin: 4px 0;
+        page-break-inside: avoid;
+      }
+      
+      .exercise-section[style*="background"] {
+        background: white !important;
+        border-left: 2px solid #000 !important;
+        padding-left: 4px;
+        margin: 4px 0;
+      }
+      
+      .exercise-item {
+        border: none !important;
+        background: white !important;
+        padding: 1px 0;
+        margin: 2px 0;
+      }
+      
+      .exercise-item input[type="text"] {
+        border-bottom: 1px solid #000 !important;
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+        background: transparent !important;
+        padding: 1px 3px;
+        margin-top: 1px;
+        display: inline-block;
+        min-width: 200px;
+      }
+      
+      .exercise-item label {
+        font-size: 9pt;
+        margin-bottom: 1px;
+      }
+      
+      .exercise-item p {
+        font-size: 8pt;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        line-height: 1.2;
+      }
+      
+      .exercise-title {
+        font-size: 11pt !important;
+        color: black !important;
+        margin-bottom: 2px;
+        page-break-after: avoid;
+        font-weight: bold;
+      }
+      
+      .exercise-instructions {
+        font-size: 8.5pt;
+        margin-bottom: 2px;
+        line-height: 1.2;
+      }
+      
+      .comparison-table {
+        border: 1px solid #000;
+        margin: 4px 0;
+        font-size: 8.5pt;
+        width: 100%;
+      }
+      
+      .comparison-table th {
+        background: #e5e5e5 !important;
+        border: 1px solid #000;
+        padding: 2px 3px;
+        font-weight: bold;
+        font-size: 8.5pt;
+      }
+      
+      .comparison-table td {
+        border: 1px solid #000;
+        padding: 2px 3px;
+        font-size: 8.5pt;
+        line-height: 1.2;
+      }
+      
+      .sentence-part {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        font-size: 8pt;
+        padding: 2px 4px;
+      }
+      
+      .sentence-part.who {
+        /* WHO color from cards.html: #9fd4ff */
+        background-color: rgba(159, 212, 255, 0.3) !important;
+        border: 1px solid rgba(47, 142, 220, 0.6) !important;
+        color: #1e5a8a !important;
+      }
+      
+      .sentence-part.verb {
+        /* VERB color from cards.html: #b9f0a8 */
+        background-color: rgba(185, 240, 168, 0.3) !important;
+        border: 1px solid rgba(77, 168, 81, 0.6) !important;
+        color: #0d5d3f !important;
+      }
+      
+      .sentence-part.what {
+        /* WHAT color from cards.html: #ffd9a1 */
+        background-color: rgba(255, 217, 161, 0.3) !important;
+        border: 1px solid rgba(231, 155, 51, 0.6) !important;
+        color: #8b4a00 !important;
+      }
+      
+      .sentence-part.where {
+        /* WHERE color from cards.html: #cfb6ff */
+        background-color: rgba(207, 182, 255, 0.3) !important;
+        border: 1px solid rgba(139, 111, 232, 0.6) !important;
+        color: #4a1e8a !important;
+      }
+      
+      .sentence-part.when {
+        /* WHEN color from cards.html: #ffb6c8 */
+        background-color: rgba(255, 182, 200, 0.3) !important;
+        border: 1px solid rgba(227, 106, 134, 0.6) !important;
+        color: #8a1e2e !important;
+      }
+      
+      .tip-box {
+        border: 1px solid #000 !important;
+        background: white !important;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 9pt;
+      }
+      
+      .tip-box strong {
+        font-weight: bold;
+      }
+      
+      .highlight {
+        background: #e5e5e5 !important;
+        padding: 1px 3px;
+        font-weight: bold;
+      }
+      
+      h3 {
+        font-size: 11pt !important;
+        margin-bottom: 4px;
+        margin-top: 6px;
+      }
+      
+      p {
+        margin-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="activities/grammar/index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="activities/writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="activities/speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="activities/vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="activity-header">
+          <h1 class="activity-title">Sentence Order Worksheet</h1>
+          <div class="activity-meta">
+            <span>Type: Worksheet</span>
+            <span>Level: Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- SENTENCE ORDER SECTION -->
+          <div class="step-section">
+            <div class="step-header">
+              <h2 class="step-title">Sentence Order: Who + Verb + What + Where + When</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3>Quick Review</h3>
+              <p>English sentences usually follow this order:</p>
+              <div class="example-box" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);">
+                <div class="example" style="font-size: var(--font-size-lg); font-weight: 600; text-align: center; padding: var(--spacing-md);">
+                  <span class="sentence-part who">WHO</span> + 
+                  <span class="sentence-part verb">VERB</span> + 
+                  <span class="sentence-part what">WHAT</span> + 
+                  <span class="sentence-part where">WHERE</span> + 
+                  <span class="sentence-part when">WHEN</span>
+                </div>
+              </div>
+              
+              <p style="margin-top: var(--spacing-md);"><strong>Important Rules:</strong></p>
+              <ul style="margin-left: var(--spacing-lg); margin-top: var(--spacing-sm);">
+                <li><strong>WHO + VERB always stay together.</strong> You can move WHEN or WHERE, but do not put them between WHO and VERB.</li>
+                <li><strong>WHAT comes directly after the verb</strong> most of the time.</li>
+                <li><strong>WHEN usually comes at the end</strong>, unless you move it to the beginning.</li>
+                <li><strong>WHERE and WHEN can go before WHO</strong>, but you <strong>must add a comma</strong> after them when they're at the beginning.</li>
+                <li><strong>WHERE is optional</strong> - you don't always need both WHERE and WHEN in every sentence.</li>
+              </ul>
+            </div>
+
+            <div class="explanation-box" style="margin-top: var(--spacing-md);">
+              <h3>Understanding Each Part</h3>
+              
+              <div style="margin-top: var(--spacing-sm);">
+                <h4 style="color: #1e5a8a; margin-bottom: 2px; display: flex; align-items: center; gap: var(--spacing-xs);">
+                  <span class="sentence-part who">WHO</span>
+                  <span style="font-size: var(--font-size-base); font-weight: 600;">Subject of the sentence</span>
+                </h4>
+                <p style="margin-bottom: 2px; font-size: var(--font-size-sm);">WHO is the subject - the person or thing doing the action. It can be:</p>
+                <ul style="margin-left: var(--spacing-lg); margin-top: 2px; margin-bottom: 4px;">
+                  <li style="margin-bottom: 1px;"><strong>Pronoun</strong> - I, you, he, she, they, we</li>
+                  <li style="margin-bottom: 1px;"><strong>Possessive + Noun</strong> - my friend, your teacher, his sister</li>
+                  <li style="margin-bottom: 1px;"><strong>Article + Noun</strong> - a student, an apple, the teacher</li>
+                  <li style="margin-bottom: 1px;"><strong>Noun</strong> - John, Maria, students</li>
+                </ul>
+                <p style="margin-top: 2px; font-style: italic; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                  <strong>Examples:</strong> She, My friend, The students
+                </p>
+              </div>
+
+              <div style="margin-top: var(--spacing-sm);">
+                <h4 style="color: #0d5d3f; margin-bottom: 2px; display: flex; align-items: center; gap: var(--spacing-xs);">
+                  <span class="sentence-part verb">VERB</span>
+                  <span style="font-size: var(--font-size-base); font-weight: 600;">Action or state</span>
+                </h4>
+                <p style="margin-bottom: 2px; font-size: var(--font-size-sm);">VERB is the action or state. It can be:</p>
+                <ul style="margin-left: var(--spacing-lg); margin-top: 2px; margin-bottom: 4px;">
+                  <li style="margin-bottom: 1px;"><strong>V1 / V1-3rd alone</strong> - eat/eats, work/works</li>
+                  <li style="margin-bottom: 1px;"><strong>V2 alone</strong> - ate, worked, went</li>
+                  <li style="margin-bottom: 1px;"><strong>Helper + Verb</strong> - do/does/did/will + eat</li>
+                  <li style="margin-bottom: 1px;"><strong>To Be + V-ing</strong> - am/is/are + eating</li>
+                  <li style="margin-bottom: 1px;"><strong>Have/Has/Had + V3</strong> - has + eaten</li>
+                  <li style="margin-bottom: 1px;"><strong>Have/Has/Had + been + V-ing</strong> - has been eating</li>
+                </ul>
+                <p style="margin-top: 2px; font-style: italic; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                  <strong>Examples:</strong> eats, is studying, will go
+                </p>
+              </div>
+
+              <div class="what-section" style="margin-top: var(--spacing-sm);">
+                <h4 style="color: #8b4a00; margin-bottom: 2px; display: flex; align-items: center; gap: var(--spacing-xs);">
+                  <span class="sentence-part what">WHAT</span>
+                  <span style="font-size: var(--font-size-base); font-weight: 600;">Object or thing</span>
+                </h4>
+                <p style="margin-bottom: 2px; font-size: var(--font-size-sm);">WHAT is the object - the thing or person receiving the action. It can be:</p>
+                <ul style="margin-left: var(--spacing-lg); margin-top: 2px; margin-bottom: 4px;">
+                  <li style="margin-bottom: 1px;"><strong>Noun</strong> - pizza, book, homework</li>
+                  <li style="margin-bottom: 1px;"><strong>Determiner + Noun</strong> - a book, the pizza</li>
+                  <li style="margin-bottom: 1px;"><strong>Object Pronoun</strong> - me, you, him, her, us, them</li>
+                </ul>
+                <p style="margin-top: 2px; font-style: italic; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                  <strong>Examples:</strong> pizza, the keys, them, me
+                </p>
+                <p style="margin-top: 2px; font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                  <strong>Note:</strong> When the object is a person, we use object pronouns (me, you, him, her, us, them) as the WHAT part. Example: "My friend helped <span class="sentence-part what">me</span>."
+                </p>
+              </div>
+
+              <div style="margin-top: var(--spacing-sm);">
+                <h4 style="color: #4a1e8a; margin-bottom: 2px; display: flex; align-items: center; gap: var(--spacing-xs);">
+                  <span class="sentence-part where">WHERE</span>
+                  <span style="font-size: var(--font-size-base); font-weight: 600;">Place (usually after WHAT or at end)</span>
+                </h4>
+                <p style="margin-bottom: 2px; font-size: var(--font-size-sm);">WHERE tells us the place. It can be:</p>
+                <ul style="margin-left: var(--spacing-lg); margin-top: 2px; margin-bottom: 4px;">
+                  <li style="margin-bottom: 1px;"><strong>Preposition + Noun</strong> - at home, in the park</li>
+                  <li style="margin-bottom: 1px;"><strong>Preposition + Proper Noun</strong> - in Boston, at Starbucks</li>
+                  <li style="margin-bottom: 1px;"><strong>Adverb</strong> - here, there, everywhere</li>
+                </ul>
+                <p style="margin-top: 2px; font-style: italic; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                  <strong>Examples:</strong> At the park, we played soccer. / We played soccer at the park.
+                </p>
+              </div>
+
+              <div style="margin-top: var(--spacing-sm);">
+                <h4 style="color: #8a1e2e; margin-bottom: 2px; display: flex; align-items: center; gap: var(--spacing-xs);">
+                  <span class="sentence-part when">WHEN</span>
+                  <span style="font-size: var(--font-size-base); font-weight: 600;">Time (beginning or end of sentence)</span>
+                </h4>
+                <p style="margin-bottom: 2px; font-size: var(--font-size-sm);">WHEN tells us the time. It can be:</p>
+                <ul style="margin-left: var(--spacing-lg); margin-top: 2px; margin-bottom: 4px;">
+                  <li style="margin-bottom: 1px;"><strong>Time word</strong> - now, today, yesterday</li>
+                  <li style="margin-bottom: 1px;"><strong>Time phrase</strong> - every day, last night</li>
+                  <li style="margin-bottom: 1px;"><strong>Preposition + Time</strong> - at 3pm, on Monday</li>
+                </ul>
+                <p style="margin-top: 2px; font-style: italic; color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                  <strong>Examples:</strong> Yesterday, I studied English. / I studied English yesterday.
+                </p>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <div class="example"><strong>Standard order:</strong> <span class="sentence-part who">She</span> <span class="sentence-part verb">studied</span> <span class="sentence-part what">English</span> <span class="sentence-part where">at the library</span> <span class="sentence-part when">yesterday</span>.</div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">WHAT comes directly after the verb. WHEN comes at the end.</p>
+              
+              <div class="example" style="margin-top: var(--spacing-md);"><strong>WHEN before WHO:</strong> <span class="sentence-part when">Last night</span><span style="margin-left: 2px;">,</span> <span class="sentence-part who">we</span> <span class="sentence-part verb">watched</span> <span class="sentence-part what">a movie</span> <span class="sentence-part where">at home</span>.</div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">(Always add a comma after a WHEN expression at the beginning.)</p>
+              
+              <div class="example" style="margin-top: var(--spacing-md);"><strong>WHERE before WHO:</strong> <span class="sentence-part where">On the bus</span><span style="margin-left: 2px;">,</span> <span class="sentence-part who">he</span> <span class="sentence-part verb">listens</span> <span class="sentence-part what">to music</span> <span class="sentence-part when">every day</span>.</div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">(Always add a comma after a WHERE expression at the beginning.)</p>
+              
+              <div class="example" style="margin-top: var(--spacing-md);"><strong>Both WHERE and WHEN before WHO:</strong> <span class="sentence-part when">Tomorrow</span> <span class="sentence-part where">at the restaurant</span><span style="margin-left: 2px;">,</span> <span class="sentence-part who">I</span> <span class="sentence-part verb">will meet</span> <span class="sentence-part what">my friend</span>.</div>
+              
+              <div class="example" style="margin-top: var(--spacing-md);"><strong>WHERE is optional:</strong> <span class="sentence-part who">He</span> <span class="sentence-part verb">cooked</span> <span class="sentence-part what">dinner</span> <span class="sentence-part when">last night</span>. (No WHERE needed)</div>
+              <div class="example"><span class="sentence-part who">My sister</span> <span class="sentence-part verb">works</span> <span class="sentence-part what">at a hospital</span> <span class="sentence-part where">in the city</span>. (No WHEN needed)</div>
+              
+              <div class="example" style="margin-top: var(--spacing-md);"><strong>WHAT can be a person (object pronoun):</strong> <span class="sentence-part when">Yesterday</span><span style="margin-left: 2px;">,</span> <span class="sentence-part who">my friend</span> <span class="sentence-part verb">helped</span> <span class="sentence-part what">me</span>.</div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">When the object is a person, use object pronouns (me, you, him, her, us, them) as WHAT.</p>
+            </div>
+
+            <div class="tip-box" style="margin-top: var(--spacing-md); padding: var(--spacing-sm);">
+              <strong>⚠️ Important:</strong> WHO + VERB always stay together. You can move WHEN or WHERE, but do not put them between WHO and VERB.<br>
+              <strong>Example:</strong> ❌ Last week, she at the gym exercised. ✔️ Last week, she exercised at the gym.
+            </div>
+
+            <div class="exercise-section" style="margin-top: var(--spacing-md); background: rgba(239, 68, 68, 0.05); border-left: 3px solid #ef4444;">
+              <h3 class="exercise-title" style="color: #dc2626; margin-bottom: var(--spacing-xs);">
+                <i data-lucide="alert-circle" style="width: 20px; height: 20px;"></i>
+                Incorrect Sentences to Avoid
+              </h3>
+              <div class="example-box" style="background: white; margin-top: var(--spacing-xs);">
+                <div class="example" style="color: #dc2626;">❌ She yesterday studied English at the library.</div>
+                <div class="example" style="color: #16a34a; margin-top: 2px;">✔️ She studied English at the library yesterday.</div>
+                
+                <div class="example" style="color: #dc2626; margin-top: var(--spacing-xs);">❌ In the park we played soccer last weekend. (Missing comma.)</div>
+                <div class="example" style="color: #16a34a; margin-top: 2px;">✔️ In the park, we played soccer last weekend.</div>
+                
+                <div class="example" style="color: #dc2626; margin-top: var(--spacing-xs);">❌ They cooked today dinner at home.</div>
+                <div class="example" style="color: #16a34a; margin-top: 2px;">✔️ They cooked dinner today at home.</div>
+                
+                <div class="example" style="color: #dc2626; margin-top: var(--spacing-xs);">❌ He watched at the cinema last night a movie.</div>
+                <div class="example" style="color: #16a34a; margin-top: 2px;">✔️ He watched a movie at the cinema last night.</div>
+              </div>
+            </div>
+
+            <div class="explanation-box" style="margin-top: var(--spacing-md);">
+              <h3>Correct Patterns - All Possible Options</h3>
+              <table class="comparison-table" style="margin-top: var(--spacing-xs);">
+                <thead>
+                  <tr>
+                    <th>Pattern</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="sentence-part who">WHO</span> + <span class="sentence-part verb">VERB</span> + <span class="sentence-part what">WHAT</span> + <span class="sentence-part where">WHERE</span> + <span class="sentence-part when">WHEN</span></td>
+                    <td>They played soccer in the park last weekend.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sentence-part when">WHEN</span> + <span class="sentence-part who">WHO</span> + <span class="sentence-part verb">VERB</span> + <span class="sentence-part what">WHAT</span> + <span class="sentence-part where">WHERE</span></td>
+                    <td>Last night, we watched a movie at home.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sentence-part where">WHERE</span> + <span class="sentence-part who">WHO</span> + <span class="sentence-part verb">VERB</span> + <span class="sentence-part what">WHAT</span> + <span class="sentence-part when">WHEN</span></td>
+                    <td>At the café, she met her friend yesterday.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sentence-part when">WHEN</span> + <span class="sentence-part where">WHERE</span> + <span class="sentence-part who">WHO</span> + <span class="sentence-part verb">VERB</span> + <span class="sentence-part what">WHAT</span></td>
+                    <td>Tomorrow at the restaurant, I will order pizza.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="sentence-part where">WHERE</span> + <span class="sentence-part when">WHEN</span> + <span class="sentence-part who">WHO</span> + <span class="sentence-part verb">VERB</span> + <span class="sentence-part what">WHAT</span></td>
+                    <td>In the library this morning, he read a book.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="explanation-box" style="margin-top: var(--spacing-md);">
+              <h3>Questions</h3>
+              <p style="margin-bottom: var(--spacing-xs);">Questions follow similar rules, but the order changes slightly:</p>
+              
+              <p style="margin-top: var(--spacing-sm); margin-bottom: var(--spacing-xs);"><strong>1. Yes/No Questions:</strong> VERB comes before WHO</p>
+              <div class="example-box" style="background: white; margin-top: var(--spacing-xs);">
+                <div class="example"><strong>Statement:</strong> <span class="sentence-part who">She</span> <span class="sentence-part verb">studied</span> <span class="sentence-part what">English</span> <span class="sentence-part where">at the library</span> <span class="sentence-part when">last night</span>.</div>
+                <div class="example" style="margin-top: var(--spacing-xs);"><strong>Question:</strong> <span class="sentence-part verb">Did</span> <span class="sentence-part who">she</span> <span class="sentence-part verb">study</span> <span class="sentence-part what">English</span> <span class="sentence-part where">at the library</span> <span class="sentence-part when">last night</span>?</div>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">Pattern: VERB + WHO + VERB + WHAT + WHERE + WHEN</p>
+              </div>
+
+              <p style="margin-top: var(--spacing-sm); margin-bottom: var(--spacing-xs);"><strong>2. WH- Questions:</strong> Question word replaces WHO/WHAT/WHERE/WHEN and comes first</p>
+              <div class="example-box" style="background: white; margin-top: var(--spacing-xs);">
+                <div class="example"><strong>WHO question:</strong> <span class="sentence-part" style="background-color: rgba(128, 128, 128, 0.2); border-color: rgba(128, 128, 128, 0.5); color: #555;">Who</span> <span class="sentence-part verb">did</span> <span class="sentence-part who">they</span> <span class="sentence-part verb">speak with</span> <span class="sentence-part where">on the phone</span>?</div>
+                <div class="example" style="margin-top: var(--spacing-xs);"><strong>WHAT question:</strong> <span class="sentence-part" style="background-color: rgba(128, 128, 128, 0.2); border-color: rgba(128, 128, 128, 0.5); color: #555;">What</span> <span class="sentence-part verb">did</span> <span class="sentence-part who">they</span> <span class="sentence-part verb">play</span> <span class="sentence-part where">in the park</span> <span class="sentence-part when">this morning</span>?</div>
+                <div class="example" style="margin-top: var(--spacing-xs);"><strong>WHERE question:</strong> <span class="sentence-part" style="background-color: rgba(128, 128, 128, 0.2); border-color: rgba(128, 128, 128, 0.5); color: #555;">Where</span> <span class="sentence-part verb">did</span> <span class="sentence-part who">he</span> <span class="sentence-part verb">watch</span> <span class="sentence-part what">the movie</span> <span class="sentence-part when">last weekend</span>?</div>
+                <div class="example" style="margin-top: var(--spacing-xs);"><strong>WHEN question:</strong> <span class="sentence-part" style="background-color: rgba(128, 128, 128, 0.2); border-color: rgba(128, 128, 128, 0.5); color: #555;">When</span> <span class="sentence-part verb">did</span> <span class="sentence-part who">you</span> <span class="sentence-part verb">meet</span> <span class="sentence-part what">your friend</span> <span class="sentence-part where">at the café</span>?</div>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">Pattern: Question Word + VERB + WHO + VERB + (WHAT/WHERE/WHEN)</p>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-sm); padding: var(--spacing-sm);">
+                <strong>💡 Remember:</strong> In questions, the question word (who/what/where/when) replaces that part of the sentence. The question word always comes first, then the verb, then the rest follows the same order rules.
+              </div>
+            </div>
+
+            <div class="exercise-section">
+              <h3 class="exercise-title">
+                <i data-lucide="edit" style="width: 20px; height: 20px;"></i>
+                Exercise 1: Put the words in the correct order
+              </h3>
+              <p class="exercise-instructions">Rearrange the words to make correct sentences. Remember: Who + Verb + What + Where + When (or Where/When can go before Who with a comma)</p>
+              
+              <div class="exercise-item">
+                <label>1. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);" placeholder="Example: bought / I / a car / last week"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">bought / I / a car / last week</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">studies / Maria / at the library / every day</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">met / They / their friends / at the park / yesterday</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">will buy / We / groceries / at the supermarket / tomorrow</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">is reading / She / a magazine / in the living room / right now</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>6. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">went / Yesterday / I / to the beach / with my family</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>7. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">cooked / My mother / dinner / in the kitchen / last night</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>8. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">will meet / Tomorrow / we / at the café / for coffee</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADVANCED TENSES ACTIVITY -->
+          <div class="step-section">
+            <div class="step-header">
+              <h2 class="step-title">Exercise 2: Advanced Tenses - Simple and Continuous</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3>Review: Advanced Simple and Continuous Tenses</h3>
+              <p>Now practice sentence order with more advanced simple and continuous tenses. Remember the same rules: <span class="sentence-part who">WHO</span> + <span class="sentence-part verb">VERB</span> + <span class="sentence-part what">WHAT</span> + <span class="sentence-part where">WHERE</span> + <span class="sentence-part when">WHEN</span></p>
+              
+              <table class="comparison-table" style="margin-top: var(--spacing-md);">
+                <thead>
+                  <tr>
+                    <th>Tense</th>
+                    <th>Form</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Past Simple</strong></td>
+                    <td>past form of verb</td>
+                    <td>I <strong>visited</strong> my grandmother last weekend.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Past Continuous</strong></td>
+                    <td>was/were + verb-ing</td>
+                    <td>I <strong>was studying</strong> when the phone rang.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Future Simple</strong></td>
+                    <td>will + base verb</td>
+                    <td>I <strong>will call</strong> you tomorrow evening.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Future Continuous</strong></td>
+                    <td>will be + verb-ing</td>
+                    <td>At 8pm, I <strong>will be having</strong> dinner.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="exercise-section">
+              <h3 class="exercise-title">
+                <i data-lucide="edit" style="width: 20px; height: 20px;"></i>
+                Put the words in the correct order with advanced tenses
+              </h3>
+              <p class="exercise-instructions">Rearrange the words to make correct sentences. Pay attention to the tense and remember: Who + Verb + What + Where + When. Some are questions!</p>
+              
+              <div class="exercise-item">
+                <label>1. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">was cooking / My sister / dinner / in the kitchen / when I arrived</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">will travel / Next summer / we / to Japan / with our family</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">Were / you / studying / at the library / when I called?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">will be working / At 3pm tomorrow / I / on my presentation / in the office</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">bought / Last week / she / a new laptop / from the electronics store</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>6. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">What / will / you / be doing / at the beach / this time tomorrow?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>7. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">was reading / I / a book / in the library / when the fire alarm went off</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>8. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">Where / will / he / send / the report / tomorrow morning?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>9. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">were playing / They / soccer / at the park / all afternoon yesterday</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>10. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">When / were / they / playing / soccer / at the park?</p>
+              </div>
+            </div>
+
+            <div class="tip-box" style="margin-top: var(--spacing-lg);">
+              <strong>💡 Remember:</strong> When you have <strong>2 verbs</strong> (like modal + main verb, or helping verb + main verb), they stay together as the VERB part. Examples: "can go", "should study", "will be working", "was cooking"
+            </div>
+
+            <div class="exercise-section" style="margin-top: var(--spacing-lg);">
+              <h3 class="exercise-title">
+                <i data-lucide="edit" style="width: 20px; height: 20px;"></i>
+                Exercise 3: Correct the Incorrect Sentences
+              </h3>
+              <p class="exercise-instructions">Each sentence below has a mistake in word order. Write the corrected sentence. Some are questions, and some have adverbs of frequency. Remember: Who + Verb + What + Where + When!</p>
+              
+              <div class="exercise-item">
+                <label>1. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ Did groceries you buy at the supermarket yesterday?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ I always you help with your homework at the library.</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ Where you did meet your best friend for the first time?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ We usually the museum visit in the city center on weekends.</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ Was studying she always for the exam at the library?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>6. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ I never this project finished at the office on time.</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>7. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ What you will be doing usually at the beach?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>8. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ They often to concerts go at the stadium on weekends.</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>9. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ When you were usually working at home?</p>
+              </div>
+              
+              <div class="exercise-item">
+                <label>10. <input type="text" style="width: 100%; margin-top: var(--spacing-xs);"></label>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-top: var(--spacing-xs);">❌ My friend sometimes me helps with my car at the garage.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
+

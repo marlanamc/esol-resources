@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adverbs - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to adverbs with explanations and practice exercises for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .progress-indicator {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-xl);
+      text-align: center;
+    }
+    
+    .progress-bar {
+      display: flex;
+      gap: var(--spacing-xs);
+      justify-content: center;
+      margin-top: var(--spacing-sm);
+    }
+    
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: all 0.3s;
+    }
+    
+    .progress-dot.active {
+      background: #6366f1;
+      transform: scale(1.2);
+    }
+    
+    .progress-dot.completed {
+      background: #10b981;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    /* Dark Mode Styles */
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .formula-part {
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .example-box {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item label {
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"],
+    [data-theme="dark"] .exercise-item select {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"]:focus,
+    [data-theme="dark"] .exercise-item select:focus {
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+    }
+    
+    [data-theme="dark"] .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .explanation-box h3 {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .step-header {
+      border-bottom-color: #818cf8;
+    }
+    
+    [data-theme="dark"] .exercise-title {
+      color: #818cf8;
+    }
+    
+    [data-theme="dark"] .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+      color: #c7d2fe;
+    }
+    
+    [data-theme="dark"] .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    
+    [data-theme="dark"] .tip-box strong {
+      color: #fbbf24;
+    }
+    
+    [data-theme="dark"] .progress-indicator {
+      background: var(--color-bg-light);
+    }
+    
+    [data-theme="dark"] .progress-dot {
+      background: var(--color-border);
+    }
+    
+    [data-theme="dark"] .progress-dot.active {
+      background: #818cf8;
+    }
+    
+    [data-theme="dark"] .progress-dot.completed {
+      background: #34d399;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .progress-indicator,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+      }
+      
+      .activity-title {
+        font-size: 16pt;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      
+      .activity-meta {
+        display: none;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .step-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+      
+      .step-title {
+        color: #000;
+        font-size: 12pt;
+        margin: 0;
+      }
+      
+      .step-number {
+        background: #000;
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 10pt;
+        margin-right: 6px;
+      }
+      
+      .explanation-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      
+      .explanation-box h3,
+      .explanation-box h4 {
+        font-size: 11pt;
+        margin: 4px 0;
+      }
+      
+      .explanation-box p {
+        margin: 3px 0;
+        font-size: 9pt;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .exercise-title {
+        font-size: 10pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-instructions {
+        font-size: 8pt;
+        margin-bottom: 4px;
+      }
+      
+      .exercise-item {
+        margin: 3px 0;
+        padding: 2px;
+        background: white;
+        border: none;
+        font-size: 9pt;
+      }
+      
+      .exercise-item label {
+        margin-bottom: 2px;
+        font-size: 9pt;
+      }
+      
+      .exercise-item input[type="text"],
+      .exercise-item select {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 0;
+        width: 100%;
+        font-size: 9pt;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+      
+      .tip-box {
+        background: #fff9e6;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 8pt;
+      }
+      
+      .formula-box {
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        font-size: 9pt;
+      }
+      
+      .formula-part {
+        font-size: 9pt;
+        padding: 2px 4px;
+      }
+      
+      .example-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 4px;
+        margin: 4px 0;
+        font-size: 9pt;
+      }
+      
+      .example-box .example {
+        margin: 2px 0;
+        padding: 1px;
+        font-size: 9pt;
+      }
+      
+      .highlight {
+        background: #e0e0e0;
+        padding: 1px 3px;
+        font-size: 9pt;
+      }
+      
+      h1, h2, h3, h4 {
+        margin: 4px 0;
+        page-break-after: avoid;
+      }
+      
+      p {
+        margin: 3px 0;
+      }
+      
+      ul, ol {
+        margin: 4px 0;
+        padding-left: 20px;
+      }
+      
+      li {
+        margin: 2px 0;
+      }
+      
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+      
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .grammar-guide {
+        max-width: 100%;
+      }
+      
+      .section {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Adverbs</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Adverbs - Step-by-Step Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Worksheet
+          </button>
+        </div>
+
+        <!-- Print Header (only visible when printing) -->
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn About Adverbs Together
+            </h2>
+            <p>We're going to learn about adverbs step by step. Don't worry - we'll practice each part before moving to the next. Take your time and work through each section!</p>
+            <p><strong>What is an adverb?</strong> An adverb is a word that describes or modifies a verb, an adjective, or another adverb. It tells us <strong>how</strong>, <strong>when</strong>, <strong>where</strong>, <strong>how often</strong>, or <strong>to what degree</strong> something happens. Examples: <span class="highlight">quickly</span>, <span class="highlight">always</span>, <span class="highlight">very</span>, <span class="highlight">here</span>, <span class="highlight">carefully</span>, <span class="highlight">often</span>.</p>
+          </div>
+
+          <!-- STEP 1: ADVERBS OF MANNER -->
+          <div class="step-section" id="step1">
+            <div class="step-header">
+              <span class="step-number">1</span>
+              <h2 class="step-title">Adverbs of Manner</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are adverbs of manner?</h3>
+              <p>Adverbs of manner describe <strong>how</strong> something happens or is done. They answer the question "How?" Most adverbs of manner are formed by adding <strong>-ly</strong> to adjectives.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 How to Form Adverbs of Manner</h4>
+                
+                <div class="formula-box">
+                  <div style="margin-bottom: var(--spacing-sm);">
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); color: #6366f1;">Most adjectives</span>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); color: #ec4899;">adjective + -ly</span>
+                  </div>
+                  <div>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%); color: #6366f1;">Adjectives ending in -y</span>
+                    <span class="formula-part" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%); color: #ec4899;">change -y to -ily</span>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Regular Formation (add -ly):</strong>
+                  <div class="example">quick → <span class="highlight">quickly</span> (She runs quickly.)</div>
+                  <div class="example">careful → <span class="highlight">carefully</span> (He drives carefully.)</div>
+                  <div class="example">slow → <span class="highlight">slowly</span> (Walk slowly.)</div>
+                  <div class="example">beautiful → <span class="highlight">beautifully</span> (She sings beautifully.)</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Adjectives ending in -y (change to -ily):</strong>
+                  <div class="example">easy → <span class="highlight">easily</span> (She solved it easily.)</div>
+                  <div class="example">happy → <span class="highlight">happily</span> (They lived happily.)</div>
+                  <div class="example">angry → <span class="highlight">angrily</span> (He spoke angrily.)</div>
+                  <div class="example">busy → <span class="highlight">busily</span> (She worked busily.)</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Irregular Adverbs of Manner</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Some adverbs don't end in -ly:</strong>
+                  <div class="example"><span class="highlight">well</span> (not "goodly") - She speaks English well.</div>
+                  <div class="example"><span class="highlight">fast</span> (same as adjective) - He runs fast.</div>
+                  <div class="example"><span class="highlight">hard</span> (same as adjective) - She works hard.</div>
+                  <div class="example"><span class="highlight">late</span> (same as adjective) - He arrived late.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Adverbs of manner usually come after the verb or after the object. Most are formed by adding -ly to adjectives. Remember: good → well (not "goodly").</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverbs of Manner -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="lightbulb" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Adverb of Manner
+              </div>
+              <p class="exercise-instructions">Choose the correct adverb form.</p>
+              
+              <div class="exercise-item">
+                <label>1. "She speaks English _____." (good)</label>
+                <select id="manner-1">
+                  <option value="">Choose...</option>
+                  <option value="goodly">goodly</option>
+                  <option value="well">well</option>
+                  <option value="good">good</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "He drives _____." (careful)</label>
+                <select id="manner-2">
+                  <option value="">Choose...</option>
+                  <option value="careful">careful</option>
+                  <option value="carefully">carefully</option>
+                  <option value="carefuly">carefuly</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She solved the problem _____." (easy)</label>
+                <select id="manner-3">
+                  <option value="">Choose...</option>
+                  <option value="easily">easily</option>
+                  <option value="easyly">easyly</option>
+                  <option value="easy">easy</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "He runs very _____." (fast)</label>
+                <select id="manner-4">
+                  <option value="">Choose...</option>
+                  <option value="fastly">fastly</option>
+                  <option value="fast">fast</option>
+                  <option value="fastily">fastily</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "They sang _____." (beautiful)</label>
+                <select id="manner-5">
+                  <option value="">Choose...</option>
+                  <option value="beautiful">beautiful</option>
+                  <option value="beautifully">beautifully</option>
+                  <option value="beautifuly">beautifuly</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkManner()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-manner" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 2: ADVERBS OF FREQUENCY -->
+          <div class="step-section" id="step2">
+            <div class="step-header">
+              <span class="step-number">2</span>
+              <h2 class="step-title">Adverbs of Frequency</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are adverbs of frequency?</h3>
+              <p>Adverbs of frequency tell us <strong>how often</strong> something happens. They answer the question "How often?" Common adverbs of frequency include: always, usually, often, sometimes, rarely, never.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Common Adverbs of Frequency</h4>
+                
+                <div class="formula-box">
+                  <div style="text-align: left; padding: var(--spacing-md);">
+                    <div style="margin: var(--spacing-xs) 0;"><strong>100%:</strong> always</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>90%:</strong> usually, normally</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>70%:</strong> often, frequently</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>50%:</strong> sometimes</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>30%:</strong> occasionally</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>10%:</strong> rarely, seldom</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>0%:</strong> never</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I <span class="highlight">always</span> brush my teeth in the morning.</div>
+                  <div class="example">She <span class="highlight">usually</span> arrives on time.</div>
+                  <div class="example">We <span class="highlight">often</span> go to the park.</div>
+                  <div class="example">They <span class="highlight">sometimes</span> eat out.</div>
+                  <div class="example">He <span class="highlight">rarely</span> watches TV.</div>
+                  <div class="example">I <span class="highlight">never</span> smoke.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Position of Adverbs of Frequency</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">With "be" verb:</strong> After the verb "be"
+                  <div class="example">She is <span class="highlight">always</span> late. (NOT: She always is late.)</div>
+                  <div class="example">They are <span class="highlight">usually</span> happy.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">With other verbs:</strong> Before the main verb
+                  <div class="example">I <span class="highlight">always</span> drink coffee. (NOT: I drink always coffee.)</div>
+                  <div class="example">She <span class="highlight">often</span> goes shopping.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">With auxiliary verbs:</strong> After the auxiliary verb
+                  <div class="example">I have <span class="highlight">never</span> been to Paris.</div>
+                  <div class="example">She can <span class="highlight">always</span> help you.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Adverbs of frequency usually come before the main verb, but after "be" verbs. Remember: "always" = 100%, "never" = 0%.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverbs of Frequency -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="repeat" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Adverb of Frequency
+              </div>
+              <p class="exercise-instructions">Choose the correct adverb of frequency and position.</p>
+              
+              <div class="exercise-item">
+                <label>1. "She _____ late for class." (100% of the time)</label>
+                <select id="frequency-1">
+                  <option value="">Choose...</option>
+                  <option value="always is">always is</option>
+                  <option value="is always">is always</option>
+                  <option value="always">always</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I _____ to the gym." (70% of the time)</label>
+                <select id="frequency-2">
+                  <option value="">Choose...</option>
+                  <option value="often go">often go</option>
+                  <option value="go often">go often</option>
+                  <option value="often">often</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "They _____ eat breakfast." (50% of the time)</label>
+                <select id="frequency-3">
+                  <option value="">Choose...</option>
+                  <option value="sometimes">sometimes</option>
+                  <option value="always">always</option>
+                  <option value="never">never</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "He has _____ been to Japan." (0% of the time)</label>
+                <select id="frequency-4">
+                  <option value="">Choose...</option>
+                  <option value="never">never</option>
+                  <option value="always">always</option>
+                  <option value="often">often</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "We _____ watch movies on weekends." (90% of the time)</label>
+                <select id="frequency-5">
+                  <option value="">Choose...</option>
+                  <option value="usually">usually</option>
+                  <option value="rarely">rarely</option>
+                  <option value="never">never</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkFrequency()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-frequency" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 3: ADVERBS OF DEGREE -->
+          <div class="step-section" id="step3">
+            <div class="step-header">
+              <span class="step-number">3</span>
+              <h2 class="step-title">Adverbs of Degree</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are adverbs of degree?</h3>
+              <p>Adverbs of degree tell us <strong>to what extent</strong> or <strong>how much</strong> something happens. They modify adjectives, verbs, or other adverbs. Common adverbs of degree include: very, quite, too, enough, extremely, rather, fairly, pretty, almost, completely.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Common Adverbs of Degree</h4>
+                
+                <div class="formula-box">
+                  <div style="text-align: left; padding: var(--spacing-md);">
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Very strong:</strong> extremely, absolutely, completely, totally</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Strong:</strong> very, really, quite</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Moderate:</strong> fairly, rather, pretty</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Almost:</strong> almost, nearly</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Too much:</strong> too</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Sufficient:</strong> enough</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">The test was <span class="highlight">very</span> difficult.</div>
+                  <div class="example">She is <span class="highlight">extremely</span> talented.</div>
+                  <div class="example">It's <span class="highlight">quite</span> cold today.</div>
+                  <div class="example">The coffee is <span class="highlight">too</span> hot.</div>
+                  <div class="example">I'm <span class="highlight">almost</span> finished.</div>
+                  <div class="example">She's <span class="highlight">pretty</span> good at math.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Position of Adverbs of Degree</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Before adjectives:</strong>
+                  <div class="example">She is <span class="highlight">very</span> beautiful.</div>
+                  <div class="example">It's <span class="highlight">quite</span> expensive.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Before adverbs:</strong>
+                  <div class="example">She speaks <span class="highlight">very</span> quickly.</div>
+                  <div class="example">He drives <span class="highlight">quite</span> carefully.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Before verbs:</strong>
+                  <div class="example">I <span class="highlight">really</span> like pizza.</div>
+                  <div class="example">She <span class="highlight">almost</span> forgot.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Special: "Enough" comes AFTER:</strong>
+                  <div class="example">She is old <span class="highlight">enough</span> to drive.</div>
+                  <div class="example">I don't have money <span class="highlight">enough</span>. (or: enough money)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Adverbs of degree usually come before adjectives and adverbs, but "enough" comes after. "Very" = strong degree, "quite" = moderate degree, "too" = excessive.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverbs of Degree -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="gauge" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Adverb of Degree
+              </div>
+              <p class="exercise-instructions">Choose the correct adverb of degree.</p>
+              
+              <div class="exercise-item">
+                <label>1. "The test was _____ difficult." (strong degree)</label>
+                <select id="degree-1">
+                  <option value="">Choose...</option>
+                  <option value="very">very</option>
+                  <option value="too">too</option>
+                  <option value="enough">enough</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "She is old _____ to drive." (sufficient)</label>
+                <select id="degree-2">
+                  <option value="">Choose...</option>
+                  <option value="enough">enough</option>
+                  <option value="very">very</option>
+                  <option value="quite">quite</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "The coffee is _____ hot. I can't drink it." (excessive)</label>
+                <select id="degree-3">
+                  <option value="">Choose...</option>
+                  <option value="too">too</option>
+                  <option value="very">very</option>
+                  <option value="enough">enough</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I'm _____ finished with my homework." (almost complete)</label>
+                <select id="degree-4">
+                  <option value="">Choose...</option>
+                  <option value="almost">almost</option>
+                  <option value="very">very</option>
+                  <option value="completely">completely</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "She speaks English _____ well." (moderate degree)</label>
+                <select id="degree-5">
+                  <option value="">Choose...</option>
+                  <option value="quite">quite</option>
+                  <option value="too">too</option>
+                  <option value="enough">enough</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkDegree()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-degree" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 4: ADVERBS OF TIME -->
+          <div class="step-section" id="step4">
+            <div class="step-header">
+              <span class="step-number">4</span>
+              <h2 class="step-title">Adverbs of Time</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are adverbs of time?</h3>
+              <p>Adverbs of time tell us <strong>when</strong> something happens. They answer the question "When?" Common adverbs of time include: now, then, today, yesterday, tomorrow, soon, already, yet, still, before, after, early, late.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Common Adverbs of Time</h4>
+                
+                <div class="formula-box">
+                  <div style="text-align: left; padding: var(--spacing-md);">
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Present:</strong> now, today, currently</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Past:</strong> yesterday, then, before, earlier</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Future:</strong> tomorrow, soon, later, next</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Duration:</strong> still, yet, already, just</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Sequence:</strong> first, next, then, finally</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">I'm studying <span class="highlight">now</span>.</div>
+                  <div class="example">She arrived <span class="highlight">yesterday</span>.</div>
+                  <div class="example">We'll leave <span class="highlight">soon</span>.</div>
+                  <div class="example">Have you finished <span class="highlight">yet</span>?</div>
+                  <div class="example">I've <span class="highlight">already</span> eaten.</div>
+                  <div class="example">He's <span class="highlight">still</span> working.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Position of Adverbs of Time</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Usually at the end:</strong>
+                  <div class="example">I'll call you <span class="highlight">tomorrow</span>.</div>
+                  <div class="example">She left <span class="highlight">yesterday</span>.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Can be at the beginning:</strong>
+                  <div class="example"><span class="highlight">Today</span>, I'm going shopping.</div>
+                  <div class="example"><span class="highlight">Yesterday</span>, we visited the museum.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">"Still", "yet", "already" have special positions:</strong>
+                  <div class="example">I'm <span class="highlight">still</span> waiting. (after "be")</div>
+                  <div class="example">I <span class="highlight">still</span> love you. (before main verb)</div>
+                  <div class="example">Have you finished <span class="highlight">yet</span>? (at the end)</div>
+                  <div class="example">I've <span class="highlight">already</span> done it. (after auxiliary)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Adverbs of time usually come at the end of the sentence, but can come at the beginning for emphasis. "Still", "yet", and "already" have specific positions.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverbs of Time -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="clock" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Adverb of Time
+              </div>
+              <p class="exercise-instructions">Choose the correct adverb of time.</p>
+              
+              <div class="exercise-item">
+                <label>1. "I'll finish my homework _____." (in the near future)</label>
+                <select id="time-1">
+                  <option value="">Choose...</option>
+                  <option value="soon">soon</option>
+                  <option value="yesterday">yesterday</option>
+                  <option value="already">already</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "Have you seen that movie _____?" (up to now)</label>
+                <select id="time-2">
+                  <option value="">Choose...</option>
+                  <option value="yet">yet</option>
+                  <option value="already">already</option>
+                  <option value="still">still</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She's _____ studying for the test." (continuing)</label>
+                <select id="time-3">
+                  <option value="">Choose...</option>
+                  <option value="still">still</option>
+                  <option value="yet">yet</option>
+                  <option value="already">already</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I've _____ eaten lunch." (before now)</label>
+                <select id="time-4">
+                  <option value="">Choose...</option>
+                  <option value="already">already</option>
+                  <option value="yet">yet</option>
+                  <option value="still">still</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "We arrived _____." (the day before today)</label>
+                <select id="time-5">
+                  <option value="">Choose...</option>
+                  <option value="yesterday">yesterday</option>
+                  <option value="tomorrow">tomorrow</option>
+                  <option value="today">today</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkTime()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-time" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 5: ADVERBS OF PLACE -->
+          <div class="step-section" id="step5">
+            <div class="step-header">
+              <span class="step-number">5</span>
+              <h2 class="step-title">Adverbs of Place</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are adverbs of place?</h3>
+              <p>Adverbs of place tell us <strong>where</strong> something happens. They answer the question "Where?" Common adverbs of place include: here, there, everywhere, somewhere, anywhere, nowhere, inside, outside, upstairs, downstairs, nearby, far, away.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Common Adverbs of Place</h4>
+                
+                <div class="formula-box">
+                  <div style="text-align: left; padding: var(--spacing-md);">
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Location:</strong> here, there</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Direction:</strong> up, down, in, out, away, back</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Indefinite:</strong> everywhere, somewhere, anywhere, nowhere</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Position:</strong> inside, outside, upstairs, downstairs</div>
+                    <div style="margin: var(--spacing-xs) 0;"><strong>Distance:</strong> nearby, far, away</div>
+                  </div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Examples:</strong>
+                  <div class="example">Come <span class="highlight">here</span>.</div>
+                  <div class="example">Put it <span class="highlight">there</span>.</div>
+                  <div class="example">I looked <span class="highlight">everywhere</span> for my keys.</div>
+                  <div class="example">Let's go <span class="highlight">inside</span>.</div>
+                  <div class="example">She lives <span class="highlight">nearby</span>.</div>
+                  <div class="example">The store is <span class="highlight">far</span> away.</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Position of Adverbs of Place</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Usually at the end:</strong>
+                  <div class="example">I'll meet you <span class="highlight">there</span>.</div>
+                  <div class="example">Put the book <span class="highlight">here</span>.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Can be at the beginning:</strong>
+                  <div class="example"><span class="highlight">Here</span> is your coffee.</div>
+                  <div class="example"><span class="highlight">There</span> goes the bus.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">After the object:</strong>
+                  <div class="example">I put the keys <span class="highlight">inside</span>.</div>
+                  <div class="example">She walked <span class="highlight">away</span>.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Adverbs of place usually come at the end of the sentence. "Here" and "there" can come at the beginning for emphasis.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverbs of Place -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="map-pin" style="width: 24px; height: 24px;"></i>
+                Practice: Choose the Adverb of Place
+              </div>
+              <p class="exercise-instructions">Choose the correct adverb of place.</p>
+              
+              <div class="exercise-item">
+                <label>1. "Come _____. I need to talk to you." (to this location)</label>
+                <select id="place-1">
+                  <option value="">Choose...</option>
+                  <option value="here">here</option>
+                  <option value="there">there</option>
+                  <option value="everywhere">everywhere</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I've looked _____ for my phone." (in all places)</label>
+                <select id="place-2">
+                  <option value="">Choose...</option>
+                  <option value="everywhere">everywhere</option>
+                  <option value="somewhere">somewhere</option>
+                  <option value="nowhere">nowhere</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "Let's go _____. It's cold outside." (into a building)</label>
+                <select id="place-3">
+                  <option value="">Choose...</option>
+                  <option value="inside">inside</option>
+                  <option value="outside">outside</option>
+                  <option value="away">away</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "The restaurant is _____ from here." (not close)</label>
+                <select id="place-4">
+                  <option value="">Choose...</option>
+                  <option value="far">far</option>
+                  <option value="nearby">nearby</option>
+                  <option value="here">here</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "I can't find my keys _____. They're gone!" (in no place)</label>
+                <select id="place-5">
+                  <option value="">Choose...</option>
+                  <option value="anywhere">anywhere</option>
+                  <option value="nowhere">nowhere</option>
+                  <option value="somewhere">somewhere</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkPlace()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-place" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 6: ADVERB POSITION -->
+          <div class="step-section" id="step6">
+            <div class="step-header">
+              <span class="step-number">6</span>
+              <h2 class="step-title">Adverb Position</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">Where do adverbs go in a sentence?</h3>
+              <p>Adverb position depends on the <strong>type of adverb</strong> and the <strong>type of verb</strong> in the sentence. Let's learn the general rules!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 General Rules for Adverb Position</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">1. With "be" verb:</strong> After "be"
+                  <div class="example">She is <span class="highlight">always</span> late.</div>
+                  <div class="example">They are <span class="highlight">here</span>.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">2. With other verbs:</strong> Before the main verb
+                  <div class="example">I <span class="highlight">always</span> drink coffee.</div>
+                  <div class="example">She <span class="highlight">often</span> goes shopping.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">3. With auxiliary verbs:</strong> After the auxiliary verb
+                  <div class="example">I have <span class="highlight">never</span> been to Paris.</div>
+                  <div class="example">She can <span class="highlight">always</span> help you.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">4. Adverbs of manner:</strong> Usually after the verb or object
+                  <div class="example">She speaks <span class="highlight">quickly</span>.</div>
+                  <div class="example">He drives the car <span class="highlight">carefully</span>.</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">5. Adverbs of time/place:</strong> Usually at the end
+                  <div class="example">I'll call you <span class="highlight">tomorrow</span>.</div>
+                  <div class="example">Meet me <span class="highlight">here</span>.</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Remember: After "be", before main verbs, after auxiliary verbs. Adverbs of manner go after verbs, adverbs of time/place go at the end.</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverb Position -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="move" style="width: 24px; height: 24px;"></i>
+                Practice: Put the Adverb in the Correct Position
+              </div>
+              <p class="exercise-instructions">Choose where the adverb should go in the sentence.</p>
+              
+              <div class="exercise-item">
+                <label>1. "She _____ late for class." (always, with "be" verb)</label>
+                <select id="position-1">
+                  <option value="">Choose...</option>
+                  <option value="is always">is always</option>
+                  <option value="always is">always is</option>
+                  <option value="is always late">is always late</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "I _____ to the gym." (often, with regular verb)</label>
+                <select id="position-2">
+                  <option value="">Choose...</option>
+                  <option value="often go">often go</option>
+                  <option value="go often">go often</option>
+                  <option value="go to often">go to often</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She speaks English _____." (well, adverb of manner)</label>
+                <select id="position-3">
+                  <option value="">Choose...</option>
+                  <option value="well">well</option>
+                  <option value="speaks well">speaks well</option>
+                  <option value="well speaks">well speaks</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "I'll finish my homework _____." (tomorrow, adverb of time)</label>
+                <select id="position-4">
+                  <option value="">Choose...</option>
+                  <option value="tomorrow">tomorrow</option>
+                  <option value="tomorrow finish">tomorrow finish</option>
+                  <option value="finish tomorrow">finish tomorrow</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "He has _____ been to Japan." (never, with auxiliary verb)</label>
+                <select id="position-5">
+                  <option value="">Choose...</option>
+                  <option value="never has">never has</option>
+                  <option value="has never">has never</option>
+                  <option value="has been never">has been never</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkPosition()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-position" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STEP 7: ADVERB FORMATION -->
+          <div class="step-section" id="step7">
+            <div class="step-header">
+              <span class="step-number">7</span>
+              <h2 class="step-title">Adverb Formation</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">How are adverbs formed?</h3>
+              <p>Most adverbs are formed from adjectives by adding <strong>-ly</strong>. However, there are some spelling rules and exceptions to remember!</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Spelling Rules for -ly</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 1: Add -ly</strong>
+                  <div class="example">quick → quickly, careful → carefully, slow → slowly</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 2: Ends in -y → change -y to -ily</strong>
+                  <div class="example">easy → easily, happy → happily, angry → angrily</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 3: Ends in -le → change -le to -ly</strong>
+                  <div class="example">simple → simply, gentle → gently, terrible → terribly</div>
+                </div>
+
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Rule 4: Ends in -ic → add -ally</strong>
+                  <div class="example">basic → basically, automatic → automatically, dramatic → dramatically</div>
+                </div>
+              </div>
+
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📝 Irregular Adverbs</h4>
+                
+                <div class="example-box" style="margin-top: var(--spacing-md);">
+                  <strong style="color: #1e293b;">Some adverbs don't follow the -ly rule:</strong>
+                  <div class="example">good → <span class="highlight">well</span> (NOT "goodly")</div>
+                  <div class="example">fast → <span class="highlight">fast</span> (same as adjective)</div>
+                  <div class="example">hard → <span class="highlight">hard</span> (same as adjective)</div>
+                  <div class="example">late → <span class="highlight">late</span> (same as adjective)</div>
+                  <div class="example">early → <span class="highlight">early</span> (same as adjective)</div>
+                </div>
+              </div>
+
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Key Point:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Most adverbs = adjective + -ly. Remember spelling changes: -y → -ily, -le → -ly, -ic → -ally. Some adverbs are irregular (good → well).</p>
+              </div>
+            </div>
+
+            <!-- Practice: Adverb Formation -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="wand-2" style="width: 24px; height: 24px;"></i>
+                Practice: Form the Adverb
+              </div>
+              <p class="exercise-instructions">Choose the correct adverb form.</p>
+              
+              <div class="exercise-item">
+                <label>1. "She speaks English _____." (good)</label>
+                <select id="formation-1">
+                  <option value="">Choose...</option>
+                  <option value="goodly">goodly</option>
+                  <option value="well">well</option>
+                  <option value="good">good</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "He solved the problem _____." (easy)</label>
+                <select id="formation-2">
+                  <option value="">Choose...</option>
+                  <option value="easily">easily</option>
+                  <option value="easyly">easyly</option>
+                  <option value="easy">easy</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "She explained it _____." (simple)</label>
+                <select id="formation-3">
+                  <option value="">Choose...</option>
+                  <option value="simply">simply</option>
+                  <option value="simplely">simplely</option>
+                  <option value="simple">simple</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>4. "The system works _____." (automatic)</label>
+                <select id="formation-4">
+                  <option value="">Choose...</option>
+                  <option value="automatically">automatically</option>
+                  <option value="automaticly">automaticly</option>
+                  <option value="automatic">automatic</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>5. "He runs very _____." (fast)</label>
+                <select id="formation-5">
+                  <option value="">Choose...</option>
+                  <option value="fastly">fastly</option>
+                  <option value="fast">fast</option>
+                  <option value="fastily">fastily</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkFormation()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-formation" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- Progress Indicator -->
+          <div class="progress-indicator">
+            <p style="margin: 0; color: var(--color-text-muted); font-size: var(--font-size-sm);">Your Progress</p>
+            <div class="progress-bar">
+              <div class="progress-dot active" id="dot1"></div>
+              <div class="progress-dot" id="dot2"></div>
+              <div class="progress-dot" id="dot3"></div>
+              <div class="progress-dot" id="dot4"></div>
+              <div class="progress-dot" id="dot5"></div>
+              <div class="progress-dot" id="dot6"></div>
+              <div class="progress-dot" id="dot7"></div>
+            </div>
+          </div>
+
+          <!-- Final Review -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">✓</span>
+              <h2 class="step-title">Congratulations! You've Completed the Adverbs Guide!</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What You've Learned</h3>
+              <p>You've learned about:</p>
+              <ul style="margin: var(--spacing-md) 0; padding-left: var(--spacing-xl);">
+                <li>Adverbs of manner (how something happens)</li>
+                <li>Adverbs of frequency (how often something happens)</li>
+                <li>Adverbs of degree (to what extent)</li>
+                <li>Adverbs of time (when something happens)</li>
+                <li>Adverbs of place (where something happens)</li>
+                <li>Adverb position (where adverbs go in sentences)</li>
+                <li>Adverb formation (how to make adverbs from adjectives)</li>
+              </ul>
+              
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Keep Practicing!</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">The more you practice, the better you'll become at using adverbs correctly. Try reading English texts and identifying different types of adverbs!</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Answer keys
+    const answers = {
+      manner: ['well', 'carefully', 'easily', 'fast', 'beautifully'],
+      frequency: ['is always', 'often go', 'sometimes', 'never', 'usually'],
+      degree: ['very', 'enough', 'too', 'almost', 'quite'],
+      time: ['soon', 'yet', 'still', 'already', 'yesterday'],
+      place: ['here', 'everywhere', 'inside', 'far', 'nowhere'],
+      position: ['is always', 'often go', 'well', 'tomorrow', 'has never'],
+      formation: ['well', 'easily', 'simply', 'automatically', 'fast']
+    };
+
+    function updateProgress(step) {
+      for (let i = 1; i <= 7; i++) {
+        const dot = document.getElementById(`dot${i}`);
+        if (i < step) {
+          dot.classList.add('completed');
+          dot.classList.remove('active');
+        } else if (i === step) {
+          dot.classList.add('active');
+          dot.classList.remove('completed');
+        } else {
+          dot.classList.remove('active', 'completed');
+        }
+      }
+    }
+
+    function checkManner() {
+      const feedback = document.getElementById('feedback-manner');
+      let correct = 0;
+      let total = 5;
+      
+      answers.manner.forEach((answer, index) => {
+        const select = document.getElementById(`manner-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adverbs of manner!`
+        : `You got ${correct} out of ${total} correct. Remember: Most adverbs = adjective + -ly. Good → well (not "goodly").`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(2);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand comparative adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: Short adjectives = add -er. Long adjectives = use "more".`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(2);
+      }
+    }
+
+    function checkFrequency() {
+      const feedback = document.getElementById('feedback-frequency');
+      let correct = 0;
+      let total = 5;
+      
+      answers.frequency.forEach((answer, index) => {
+        const select = document.getElementById(`frequency-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adverbs of frequency!`
+        : `You got ${correct} out of ${total} correct. Remember: Adverbs of frequency come before main verbs but after "be" verbs.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(3);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand superlative adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: Short adjectives = add -est. Long adjectives = use "the most".`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(3);
+      }
+    }
+
+    function checkDegree() {
+      const feedback = document.getElementById('feedback-degree');
+      let correct = 0;
+      let total = 5;
+      
+      answers.degree.forEach((answer, index) => {
+        const select = document.getElementById(`degree-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adverbs of degree!`
+        : `You got ${correct} out of ${total} correct. Remember: Adverbs of degree come before adjectives/adverbs. "Enough" comes after.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(4);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand irregular comparatives and superlatives!`
+        : `You got ${correct} out of ${total} correct. Remember: good→better→best, bad→worse→worst, far→farther→farthest, little→less→least, much/many→more→most.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(4);
+      }
+    }
+
+    function checkTime() {
+      const feedback = document.getElementById('feedback-time');
+      let correct = 0;
+      let total = 5;
+      
+      answers.time.forEach((answer, index) => {
+        const select = document.getElementById(`time-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adverbs of time!`
+        : `You got ${correct} out of ${total} correct. Remember: Adverbs of time usually come at the end. "Still", "yet", "already" have special positions.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(5);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adjective order!`
+        : `You got ${correct} out of ${total} correct. Remember: Opinion, Size, Age, Shape, Color, Origin, Material, Purpose (OSASCOMP).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(5);
+      }
+    }
+
+    function checkPlace() {
+      const feedback = document.getElementById('feedback-place');
+      let correct = 0;
+      let total = 5;
+      
+      answers.place.forEach((answer, index) => {
+        const select = document.getElementById(`place-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adverbs of place!`
+        : `You got ${correct} out of ${total} correct. Remember: Adverbs of place usually come at the end of the sentence.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(6);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand -ed vs -ing adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: -ed = how people feel (I am bored). -ing = what causes the feeling (The movie is boring).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(6);
+      }
+    }
+
+    function checkPosition() {
+      const feedback = document.getElementById('feedback-position');
+      let correct = 0;
+      let total = 5;
+      
+      answers.position.forEach((answer, index) => {
+        const select = document.getElementById(`position-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand adverb position!`
+        : `You got ${correct} out of ${total} correct. Remember: After "be", before main verbs, after auxiliary verbs.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! You understand gradable vs non-gradable adjectives!`
+        : `You got ${correct} out of ${total} correct. Remember: Gradable = use very/quite. Non-gradable = use absolutely/completely.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    function checkFormation() {
+      const feedback = document.getElementById('feedback-formation');
+      let correct = 0;
+      let total = 5;
+      
+      answers.formation.forEach((answer, index) => {
+        const select = document.getElementById(`formation-${index + 1}`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `🎉 Perfect! You got all ${total} correct! You understand adverb formation! Congratulations on completing the guide!`
+        : `You got ${correct} out of ${total} correct. Remember: Most adverbs = adjective + -ly. -y → -ily, -le → -ly, -ic → -ally. Some are irregular (good → well).`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }`);
+        if (select.value === answer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else if (select.value) {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `🎉 Perfect! You got all ${total} correct! You understand Too, Enough, Very, and Quite! Congratulations on completing the guide!`
+        : `You got ${correct} out of ${total} correct. Remember: Too = more than wanted, Enough = sufficient (after adjective), Very = extremely, Quite = fairly/rather.`;
+      feedback.style.display = 'block';
+      
+      if (correct === total) {
+        updateProgress(7);
+      }
+    }
+
+    // Initialize progress
+    updateProgress(1);
+  </script>
+</body>
+</html>

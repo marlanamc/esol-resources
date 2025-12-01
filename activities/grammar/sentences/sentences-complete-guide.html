@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentences - Complete Guide & Practice | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete step-by-step guide to sentence structure, types, and forms with explanations and practice exercises for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="grammar">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .grammar-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .step-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .step-title {
+      color: #1e293b;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .formula-box {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      text-align: center;
+    }
+    
+    .formula-part {
+      display: inline-block;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      margin: 2px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border);
+    }
+    
+    .subject-part {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+      color: #6366f1;
+    }
+    
+    .verb-part {
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+      color: #ec4899;
+    }
+    
+    .object-part {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+      color: #10b981;
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item select,
+    .exercise-item textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item select:focus,
+    .exercise-item textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .exercise-item input[type="radio"] {
+      margin-right: var(--spacing-sm);
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #6366f1;
+    }
+    
+    .exercise-item label:has(input[type="radio"]) {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s;
+    }
+    
+    .exercise-item label:has(input[type="radio"]):hover {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+    
+    .exercise-item label:has(input[type="radio"]:checked) {
+      background-color: rgba(99, 102, 241, 0.1);
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .usage-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .usage-list li {
+      padding: var(--spacing-sm);
+      margin: var(--spacing-xs) 0;
+      background: var(--color-bg-light);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .usage-list li strong {
+      color: #6366f1;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .print-header .name-line {
+        font-size: 11pt;
+        margin-bottom: 4px;
+      }
+      
+      .print-header .blank-line {
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        min-width: 250px;
+        margin-left: 4px;
+        height: 14px;
+      }
+      
+      .print-header .date-line {
+        font-size: 10pt;
+        margin-top: 4px;
+      }
+      
+      .activity-header {
+        margin-bottom: 8px;
+      }
+      
+      .activity-title {
+        font-size: 16pt;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      
+      .activity-meta {
+        display: none;
+      }
+      
+      .step-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+      
+      .step-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+      }
+      
+      .step-title {
+        color: #000;
+        font-size: 12pt;
+        margin: 0;
+      }
+      
+      .step-number {
+        background: #000;
+        color: white;
+        width: 24px;
+        height: 24px;
+        font-size: 10pt;
+        margin-right: 6px;
+      }
+      
+      .explanation-box {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+      }
+      
+      .exercise-section {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 6px;
+        margin: 6px 0;
+        page-break-inside: auto;
+      }
+      
+      .exercise-item input[type="text"],
+      .exercise-item select,
+      .exercise-item textarea {
+        border: none;
+        border-bottom: 1px solid #000;
+        background: transparent;
+        padding: 2px 0;
+        width: 100%;
+        font-size: 9pt;
+      }
+      
+      .feedback {
+        display: none !important;
+      }
+    }
+    
+    [data-theme="dark"] .step-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    [data-theme="dark"] .formula-box {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .example-box {
+      background: var(--color-bg);
+      border-color: rgba(129, 140, 248, 0.3);
+    }
+    
+    [data-theme="dark"] .exercise-section {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+    }
+    
+    [data-theme="dark"] .exercise-item {
+      background: var(--color-bg);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+    
+    [data-theme="dark"] .exercise-item input[type="text"],
+    [data-theme="dark"] .exercise-item select,
+    [data-theme="dark"] .exercise-item textarea {
+      background: var(--color-bg-light);
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../index.html">Grammar</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Sentences</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Sentences - Complete Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Guide
+          </button>
+        </div>
+
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="grammar-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn About Sentences Together
+            </h2>
+            <p>This guide will help you understand all types of sentences in English. We'll cover question forms, statements, imperatives, simple sentences, compound sentences, complex sentences, and more. Take your time and work through each section!</p>
+            <p><strong>What is a sentence?</strong> A sentence is a group of words that expresses a complete thought. It has a subject and a verb, and it makes sense on its own.</p>
+          </div>
+
+          <!-- QUESTION FORMS SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); border-color: #6366f1;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">?</span>
+              <h2 class="step-title">Question Forms</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #1e293b; margin-top: 0;">What are questions?</h3>
+              <p>Questions are sentences that ask for information. There are many different types of questions in English, and each has its own structure.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Types of Questions:</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Yes/No Questions</strong> - Questions that can be answered with "yes" or "no"
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Do you like coffee? → Yes, I do. / No, I don't.</div>
+                      <div class="example">Is she a teacher? → Yes, she is. / No, she isn't.</div>
+                      <div class="example">Can you swim? → Yes, I can. / No, I can't.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Structure: Auxiliary verb (do/does/did/is/are/can) + subject + main verb + ?
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Wh- Questions</strong> - Questions that start with question words (what, where, when, who, why, how)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">What is your name? → My name is Maria.</div>
+                      <div class="example">Where do you live? → I live in Boston.</div>
+                      <div class="example">When did you arrive? → I arrived yesterday.</div>
+                      <div class="example">Why are you studying English? → Because I need it for work.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Structure: Question word + auxiliary verb + subject + main verb + ?
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Question Tags</strong> - Short questions added to the end of statements
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">You like coffee, <span class="highlight">don't you</span>? → Yes, I do.</div>
+                      <div class="example">She isn't coming, <span class="highlight">is she</span>? → No, she isn't.</div>
+                      <div class="example">They can swim, <span class="highlight">can't they</span>? → Yes, they can.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Rule: If the statement is positive, the tag is negative. If the statement is negative, the tag is positive.
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>4. Indirect Questions</strong> - Polite questions that start with phrases like "Could you tell me...", "Do you know..."
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Direct: Where is the station?</div>
+                      <div class="example">Indirect: <span class="highlight">Could you tell me</span> where the station is?</div>
+                      <div class="example">Direct: What time does it start?</div>
+                      <div class="example">Indirect: <span class="highlight">Do you know</span> what time it starts?</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Note: In indirect questions, the word order changes - no question mark inversion!
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>5. Subject vs Object Questions</strong> - Questions about the subject vs questions about the object
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Subject question: <span class="highlight">Who</span> called you? (Who = subject, no auxiliary verb)</div>
+                      <div class="example">Object question: <span class="highlight">Who</span> did you call? (Who = object, needs auxiliary verb)</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Subject questions don't use auxiliary verbs. Object questions do!
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>6. Embedded Questions</strong> - Questions inside other sentences
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I wonder <span class="highlight">where she went</span>.</div>
+                      <div class="example">Can you tell me <span class="highlight">what time it is</span>?</div>
+                      <div class="example">I don't know <span class="highlight">why he left</span>.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Embedded questions use statement word order (subject + verb), not question word order.
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>7. Negative Questions</strong> - Questions with "not"
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Don't you like coffee? (surprised or expecting yes)</div>
+                      <div class="example">Isn't she coming? (surprised or expecting yes)</div>
+                      <div class="example">Haven't you finished yet? (surprised or expecting yes)</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Negative questions often show surprise or expectation.
+                      </p>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+
+            <!-- Practice: Question Forms -->
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="help-circle" style="width: 24px; height: 24px;"></i>
+                Practice: Identify Question Types
+              </div>
+              <p class="exercise-instructions">Read each question and identify its type.</p>
+              
+              <div class="exercise-item">
+                <label>1. "What time is it?"</label>
+                <select id="question-type-1">
+                  <option value="">Choose...</option>
+                  <option value="yesno">Yes/No Question</option>
+                  <option value="wh">Wh- Question</option>
+                  <option value="tag">Question Tag</option>
+                  <option value="indirect">Indirect Question</option>
+                  <option value="negative">Negative Question</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>2. "You like pizza, don't you?"</label>
+                <select id="question-type-2">
+                  <option value="">Choose...</option>
+                  <option value="yesno">Yes/No Question</option>
+                  <option value="wh">Wh- Question</option>
+                  <option value="tag">Question Tag</option>
+                  <option value="indirect">Indirect Question</option>
+                  <option value="negative">Negative Question</option>
+                </select>
+              </div>
+              
+              <div class="exercise-item">
+                <label>3. "Could you tell me where the library is?"</label>
+                <select id="question-type-3">
+                  <option value="">Choose...</option>
+                  <option value="yesno">Yes/No Question</option>
+                  <option value="wh">Wh- Question</option>
+                  <option value="tag">Question Tag</option>
+                  <option value="indirect">Indirect Question</option>
+                  <option value="negative">Negative Question</option>
+                </select>
+              </div>
+              
+              <button class="check-button" onclick="checkQuestionTypes()">
+                <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+                Check My Answers
+              </button>
+              <div id="feedback-questions" class="feedback"></div>
+            </div>
+          </div>
+
+          <!-- STATEMENTS SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">📝</span>
+              <h2 class="step-title">Statements</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What are statements?</h3>
+              <p>Statements are sentences that give information. They can be affirmative (positive) or negative.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #10b981; margin-bottom: var(--spacing-md);">📌 Types of Statements:</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Affirmative Statements</strong> - Positive statements that say something is true
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I like coffee.</div>
+                      <div class="example">She works at a hospital.</div>
+                      <div class="example">They study English every day.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Structure: Subject + verb + (object/complement)
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Negative Statements</strong> - Statements that say something is not true
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I don't like coffee.</div>
+                      <div class="example">She doesn't work here.</div>
+                      <div class="example">They didn't come yesterday.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Structure: Subject + don't/doesn't/didn't + base verb + (object)
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Double Negatives</strong> - Using two negative words (usually incorrect in English)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">❌ I don't have no money. (incorrect)</div>
+                      <div class="example">✅ I don't have any money. (correct)</div>
+                      <div class="example">❌ I can't see nothing. (incorrect)</div>
+                      <div class="example">✅ I can't see anything. (correct)</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 In English, we avoid double negatives. Use "any" instead of "no" after "don't/doesn't".
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>4. Statement Word Order</strong> - The correct order of words in statements
+                    <div class="formula-box">
+                      <div style="margin-bottom: var(--spacing-sm);">
+                        <span class="formula-part subject-part">Subject</span>
+                        <span style="margin: 0 var(--spacing-xs);">+</span>
+                        <span class="formula-part verb-part">Verb</span>
+                        <span style="margin: 0 var(--spacing-xs);">+</span>
+                        <span class="formula-part object-part">Object/Complement</span>
+                      </div>
+                    </div>
+                    <div class="example-box" style="margin-top: var(--spacing-md);">
+                      <div class="example">I (subject) + eat (verb) + breakfast (object).</div>
+                      <div class="example">She (subject) + is (verb) + a teacher (complement).</div>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- IMPERATIVES SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.05) 0%, rgba(219, 39, 119, 0.05) 100%); border-color: #ec4899;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">⚡</span>
+              <h2 class="step-title">Imperatives</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #ec4899; margin-top: 0;">What are imperatives?</h3>
+              <p>Imperatives are sentences that give commands, instructions, or make requests. They usually don't have a subject - the subject "you" is understood.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #ec4899; margin-bottom: var(--spacing-md);">📌 Types of Imperatives:</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Positive Imperatives</strong> - Commands or requests to do something
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Close the door.</div>
+                      <div class="example">Please sit down.</div>
+                      <div class="example">Be quiet!</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Structure: (Please) + base verb + (object)
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Negative Imperatives</strong> - Commands or requests NOT to do something
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Don't close the door.</div>
+                      <div class="example">Please don't smoke here.</div>
+                      <div class="example">Don't be late!</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Structure: Don't + base verb + (object)
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Polite Imperatives</strong> - Using "please" or modal verbs to be more polite
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Please close the window.</div>
+                      <div class="example">Could you help me?</div>
+                      <div class="example">Would you mind opening the door?</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Adding "please" or using modals makes imperatives more polite.
+                      </p>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>4. Sequence Words in Imperatives</strong> - Using words like "first", "then", "next", "finally"
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">First, mix the ingredients. Then, bake for 30 minutes. Finally, let it cool.</div>
+                      <div class="example">Next, add the sugar. After that, stir well.</div>
+                      <p style="margin: var(--spacing-xs) 0 0 0; font-size: var(--font-size-sm); color: var(--color-text-muted); font-style: italic;">
+                        💡 Sequence words help organize instructions in order.
+                      </p>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIMPLE SENTENCES SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); border-color: #6366f1;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">1</span>
+              <h2 class="step-title">Simple Sentences</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #1e293b; margin-top: 0;">What are simple sentences?</h3>
+              <p>Simple sentences have one independent clause. They contain a subject and a verb and express a complete thought.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part subject-part">Subject</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part verb-part">Verb</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part object-part">(Object/Complement)</span>
+                </div>
+              </div>
+              
+              <div class="example-box" style="margin-top: var(--spacing-md);">
+                <strong style="color: #1e293b;">Examples:</strong>
+                <div class="example">I (subject) + eat (verb) + breakfast (object).</div>
+                <div class="example">She (subject) + is (verb) + a teacher (complement).</div>
+                <div class="example">They (subject) + study (verb) + English (object).</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMPOUND SENTENCES SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">2</span>
+              <h2 class="step-title">Compound Sentences</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What are compound sentences?</h3>
+              <p>Compound sentences join two or more independent clauses with coordinating conjunctions (and, but, or, so).</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part subject-part">Independent Clause 1</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part verb-part">Coordinating Conjunction</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part object-part">Independent Clause 2</span>
+                </div>
+              </div>
+              
+              <div class="example-box" style="margin-top: var(--spacing-md);">
+                <strong style="color: #10b981;">Coordinating Conjunctions:</strong>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-sm); margin-top: var(--spacing-sm);">
+                  <div><strong>And</strong> - addition</div>
+                  <div><strong>But</strong> - contrast</div>
+                  <div><strong>Or</strong> - choice</div>
+                  <div><strong>So</strong> - result</div>
+                </div>
+              </div>
+              
+              <div class="example-box" style="margin-top: var(--spacing-md);">
+                <strong style="color: #10b981;">Examples:</strong>
+                <div class="example">I like coffee, <span class="highlight">and</span> she likes tea.</div>
+                <div class="example">He wanted to go, <span class="highlight">but</span> he was too tired.</div>
+                <div class="example">You can stay here, <span class="highlight">or</span> you can leave.</div>
+                <div class="example">It was raining, <span class="highlight">so</span> we stayed inside.</div>
+              </div>
+              
+              <div class="tip-box" style="margin-top: var(--spacing-lg);">
+                <strong>💡 Punctuation:</strong> 
+                <p style="margin: var(--spacing-xs) 0 0 0;">Use a comma before the coordinating conjunction when joining two independent clauses.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMPLEX SENTENCES SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%); border-color: #1e293b;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);">3</span>
+              <h2 class="step-title">Complex Sentences</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #1e293b; margin-top: 0;">What are complex sentences?</h3>
+              <p>Complex sentences have one independent clause and one or more dependent (subordinate) clauses. Dependent clauses cannot stand alone.</p>
+              
+              <div class="formula-box">
+                <div style="margin-bottom: var(--spacing-sm);">
+                  <span class="formula-part subject-part">Independent Clause</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part verb-part">Subordinating Conjunction</span>
+                  <span style="margin: 0 var(--spacing-xs);">+</span>
+                  <span class="formula-part object-part">Dependent Clause</span>
+                </div>
+              </div>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Types of Dependent Clauses:</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Adverbial Clauses</strong> - Clauses that function as adverbs (time, reason, purpose, result, contrast)
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Time: I'll call you <span class="highlight">when I arrive</span>.</div>
+                      <div class="example">Reason: She left early <span class="highlight">because she was tired</span>.</div>
+                      <div class="example">Purpose: I studied hard <span class="highlight">so that I could pass</span>.</div>
+                      <div class="example">Result: It was so cold <span class="highlight">that I wore a coat</span>.</div>
+                      <div class="example">Contrast: <span class="highlight">Although it was raining</span>, we went outside.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Noun Clauses</strong> - Clauses that function as nouns
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">I know <span class="highlight">that you are right</span>.</div>
+                      <div class="example">I wonder <span class="highlight">where she went</span>.</div>
+                      <div class="example">Tell me <span class="highlight">what you want</span>.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Adjective Clauses (Relative Clauses)</strong> - Clauses that describe nouns
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">The book <span class="highlight">that I bought</span> is interesting.</div>
+                      <div class="example">The woman <span class="highlight">who lives next door</span> is a doctor.</div>
+                      <div class="example">The place <span class="highlight">where we met</span> is closed now.</div>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- COMPOUND-COMPLEX SENTENCES SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(217, 119, 6, 0.05) 100%); border-color: #f59e0b;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">4</span>
+              <h2 class="step-title">Compound-Complex Sentences</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #f59e0b; margin-top: 0;">What are compound-complex sentences?</h3>
+              <p>Compound-complex sentences combine compound and complex structures. They have at least two independent clauses and at least one dependent clause.</p>
+              
+              <div class="example-box" style="margin-top: var(--spacing-md);">
+                <strong style="color: #f59e0b;">Examples:</strong>
+                <div class="example">I wanted to go to the party, <span class="highlight">but</span> I stayed home <span class="highlight">because I was sick</span>.</div>
+                <div class="example">She studied hard, <span class="highlight">and</span> she passed the exam <span class="highlight">that was very difficult</span>.</div>
+                <div class="example"><span class="highlight">Although it was late</span>, we continued working, <span class="highlight">and</span> we finished the project.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LINKING WORDS AND CONNECTORS SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%); border-color: #6366f1;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">🔗</span>
+              <h2 class="step-title">Linking Words and Connectors</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #1e293b; margin-top: 0;">What are linking words?</h3>
+              <p>Linking words (connectors) connect ideas and show relationships between parts of sentences or between sentences.</p>
+              
+              <div style="margin: var(--spacing-lg) 0;">
+                <h4 style="color: #1e293b; margin-bottom: var(--spacing-md);">📌 Types of Connectors:</h4>
+                
+                <div class="usage-list" style="margin-top: var(--spacing-md);">
+                  <li>
+                    <strong>1. Addition Connectors</strong> - Add more information
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">And, Moreover, Furthermore, In addition, Also</div>
+                      <div class="example">I like coffee. <span class="highlight">Moreover</span>, I like tea.</div>
+                      <div class="example">She speaks English. <span class="highlight">In addition</span>, she speaks Spanish.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>2. Contrast Connectors</strong> - Show difference or opposition
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">But, However, Although, Despite, In spite of, Whereas</div>
+                      <div class="example">I wanted to go, <span class="highlight">but</span> I was too tired.</div>
+                      <div class="example">It was raining. <span class="highlight">However</span>, we went outside.</div>
+                      <div class="example"><span class="highlight">Although</span> it was cold, we went swimming.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>3. Cause and Effect Connectors</strong> - Show reason and result
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">Because, So, Therefore, As a result, Consequently, Since</div>
+                      <div class="example">It was raining, <span class="highlight">so</span> we stayed inside.</div>
+                      <div class="example">She studied hard. <span class="highlight">Therefore</span>, she passed the exam.</div>
+                      <div class="example"><span class="highlight">Because</span> I was tired, I went to bed early.</div>
+                    </div>
+                  </li>
+                  
+                  <li style="margin-top: var(--spacing-md);">
+                    <strong>4. Sequence Connectors</strong> - Show order or time
+                    <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                      <div class="example">First, Second, Then, Next, Finally, After that, Meanwhile</div>
+                      <div class="example"><span class="highlight">First</span>, mix the ingredients. <span class="highlight">Then</span>, bake for 30 minutes. <span class="highlight">Finally</span>, let it cool.</div>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SENTENCE TYPES BY FUNCTION SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(5, 150, 105, 0.05) 100%); border-color: #10b981;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">📋</span>
+              <h2 class="step-title">Sentence Types by Function</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #10b981; margin-top: 0;">What are sentence functions?</h3>
+              <p>Sentences can be classified by their function - what they do or what purpose they serve.</p>
+              
+              <div class="usage-list" style="margin-top: var(--spacing-md);">
+                <li>
+                  <strong>1. Declarative Sentences</strong> - Make statements or give information (end with a period)
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">I like coffee.</div>
+                    <div class="example">She is a teacher.</div>
+                  </div>
+                </li>
+                
+                <li style="margin-top: var(--spacing-md);">
+                  <strong>2. Interrogative Sentences</strong> - Ask questions (end with a question mark)
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">Do you like coffee?</div>
+                    <div class="example">Where is she?</div>
+                  </div>
+                </li>
+                
+                <li style="margin-top: var(--spacing-md);">
+                  <strong>3. Imperative Sentences</strong> - Give commands or make requests (end with a period or exclamation mark)
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">Close the door.</div>
+                    <div class="example">Please sit down.</div>
+                  </div>
+                </li>
+                
+                <li style="margin-top: var(--spacing-md);">
+                  <strong>4. Exclamatory Sentences</strong> - Express strong emotion (end with an exclamation mark)
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">What a beautiful day!</div>
+                    <div class="example">How amazing!</div>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </div>
+
+          <!-- SENTENCE STRUCTURE ISSUES SECTION -->
+          <div class="step-section" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(220, 38, 38, 0.05) 100%); border-color: #ef4444;">
+            <div class="step-header">
+              <span class="step-number" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">⚠️</span>
+              <h2 class="step-title">Sentence Structure Issues</h2>
+            </div>
+
+            <div class="explanation-box" style="background: white;">
+              <h3 style="color: #ef4444; margin-top: 0;">Common Sentence Problems</h3>
+              <p>Here are common mistakes to avoid when writing sentences.</p>
+              
+              <div class="usage-list" style="margin-top: var(--spacing-md);">
+                <li>
+                  <strong>1. Run-on Sentences</strong> - Two or more independent clauses joined incorrectly
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">❌ I like coffee she likes tea. (incorrect - missing punctuation)</div>
+                    <div class="example">✅ I like coffee, and she likes tea. (correct)</div>
+                    <div class="example">✅ I like coffee. She likes tea. (correct)</div>
+                  </div>
+                </li>
+                
+                <li style="margin-top: var(--spacing-md);">
+                  <strong>2. Sentence Fragments</strong> - Incomplete sentences that don't express a complete thought
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">❌ Because I was tired. (fragment - incomplete thought)</div>
+                    <div class="example">✅ Because I was tired, I went to bed early. (complete sentence)</div>
+                  </div>
+                </li>
+                
+                <li style="margin-top: var(--spacing-md);">
+                  <strong>3. Parallel Structure</strong> - Using the same grammatical form for items in a list
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">❌ I like reading, to write, and swimming. (not parallel)</div>
+                    <div class="example">✅ I like reading, writing, and swimming. (parallel - all gerunds)</div>
+                    <div class="example">✅ I like to read, to write, and to swim. (parallel - all infinitives)</div>
+                  </div>
+                </li>
+                
+                <li style="margin-top: var(--spacing-md);">
+                  <strong>4. Sentence Variety</strong> - Using different sentence types and lengths
+                  <div class="example-box" style="margin-top: var(--spacing-xs); margin-left: var(--spacing-md);">
+                    <div class="example">Good writing uses a mix of simple, compound, and complex sentences.</div>
+                    <div class="example">Vary sentence length to keep writing interesting.</div>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Answer keys
+    const answers = {
+      questionTypes: {
+        'question-type-1': 'wh',
+        'question-type-2': 'tag',
+        'question-type-3': 'indirect'
+      }
+    };
+
+    function checkQuestionTypes() {
+      const feedback = document.getElementById('feedback-questions');
+      let correct = 0;
+      let total = 3;
+      
+      const results = answers.questionTypes;
+      
+      Object.keys(results).forEach(id => {
+        const select = document.getElementById(id);
+        const userAnswer = select.value;
+        const correctAnswer = results[id];
+        
+        if (userAnswer === correctAnswer) {
+          correct++;
+          select.style.borderColor = '#10b981';
+          select.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+        } else {
+          select.style.borderColor = '#ef4444';
+          select.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+        }
+      });
+      
+      feedback.className = `feedback ${correct === total ? 'correct' : 'incorrect'}`;
+      feedback.innerHTML = correct === total 
+        ? `✅ Perfect! You got all ${total} correct! Great job identifying question types!`
+        : `You got ${correct} out of ${total} correct. Keep practicing!`;
+      feedback.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

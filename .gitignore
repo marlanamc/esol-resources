@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+

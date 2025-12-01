@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Routines Worksheet - Present Perfect Practice | ESOL Teacher Resources</title>
+  <meta name="description"
+    content="Worksheet for practicing present perfect with already, yet, and just using daily routines.">
+  <link rel="stylesheet" href="../../../assets/css/main.css">
+  <style>
+    @page {
+      margin: 0.5in;
+    }
+
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.1rem;
+      font-family: Arial, sans-serif;
+      line-height: 1.2;
+      background: white;
+      font-size: 0.9rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.1rem;
+      border-bottom: 2px solid #6366f1;
+    }
+
+    .header h1 {
+      margin: 0 0 0.15rem 0;
+      color: #0f172a;
+      font-size: 1.3rem;
+    }
+
+    .header p {
+      margin: 0;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .student-info {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+      padding: 0.1rem;
+      background: #f8fafc;
+      border-radius: 4px;
+    }
+
+    .info-field {
+      flex: 1;
+    }
+
+    .info-field label {
+      display: block;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-field input {
+      width: 100%;
+      padding: 0.1rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .section {
+      margin-bottom: 0.25rem;
+      page-break-inside: avoid;
+    }
+
+    .section.keep-with-next {
+      page-break-after: avoid;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.15rem;
+      padding-bottom: 0.1rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .routines-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .routine-box {
+      border: 1px solid #e2e8f0;
+      border-top: 4px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.6rem 0.65rem;
+      background: white;
+      box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08);
+    }
+
+    .routine-box.sarah {
+      border-top-color: #ec4899;
+    }
+
+    .routine-box.henry {
+      border-top-color: #06b6d4;
+    }
+
+    .routine-box.abigail {
+      border-top-color: #8b5cf6;
+    }
+
+    .routine-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      min-height: 64px;
+    }
+
+    .routine-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      justify-content: center;
+    }
+
+    .person-icon {
+      font-size: 1.2rem;
+    }
+
+    .routine-name {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .routine-role {
+      margin: 0;
+      color: #475569;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .routine-divider {
+      border-bottom: 1px solid #e2e8f0;
+      margin: 0.3rem 0 0.25rem 0;
+    }
+
+    .routine-list {
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .routine-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.92rem;
+    }
+
+    .routine-item .time {
+      font-weight: 700;
+      min-width: 70px;
+      color: #312e81;
+    }
+
+    .routine-item .activity {
+      color: #0f172a;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    .routine-box.sarah .routine-name,
+    .routine-box.sarah .time {
+      color: #ec4899;
+    }
+
+    .routine-box.henry .routine-name,
+    .routine-box.henry .time {
+      color: #06b6d4;
+    }
+
+    .routine-box.abigail .routine-name,
+    .routine-box.abigail .time {
+      color: #8b5cf6;
+    }
+
+    .exercise-box {
+      margin-bottom: 0.25rem;
+      padding: 0.35rem;
+      background: #f8fafc;
+      border-radius: 4px;
+      border-left: 3px solid #6366f1;
+      page-break-inside: avoid;
+    }
+
+    .exercise-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+
+    .exercise-time {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #6366f1;
+    }
+
+    .exercise-instruction {
+      font-size: 0.8rem;
+      color: #64748b;
+      font-style: italic;
+    }
+
+    .writing-grid {
+      display: grid;
+      gap: 0.3rem;
+    }
+
+    .writing-item {
+      background: white;
+      padding: 0.3rem;
+      border-radius: 4px;
+      border: 1px solid;
+    }
+
+    .writing-item.sarah {
+      border-color: #ec4899;
+    }
+
+    .writing-item.henry {
+      border-color: #06b6d4;
+    }
+
+    .writing-item.abigail {
+      border-color: #8b5cf6;
+    }
+
+    .writing-item h4 {
+      margin: 0 0 0.3rem 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .writing-item.sarah h4 {
+      color: #ec4899;
+    }
+
+    .writing-item.henry h4 {
+      color: #06b6d4;
+    }
+
+    .writing-item.abigail h4 {
+      color: #8b5cf6;
+    }
+
+    .writing-lines {
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    .writing-line {
+      border-bottom: 1px solid #cbd5e1;
+      min-height: 0.9rem;
+      padding-bottom: 0.1rem;
+    }
+
+    .reference-box {
+      background: #fef3c7;
+      border: 1px solid #fbbf24;
+      border-radius: 4px;
+      padding: 0.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .reference-box h3 {
+      margin: 0 0 0.3rem 0;
+      color: #92400e;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .reference-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4rem;
+    }
+
+    .reference-item {
+      background: white;
+      padding: 0.4rem;
+      border-radius: 4px;
+      border-left: 3px solid;
+    }
+
+    .reference-item.already {
+      border-left-color: #10b981;
+    }
+
+    .reference-item.yet {
+      border-left-color: #ef4444;
+    }
+
+    .reference-item.just {
+      border-left-color: #f59e0b;
+    }
+
+    .reference-item strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .reference-item.already strong {
+      color: #10b981;
+    }
+
+    .reference-item.yet strong {
+      color: #ef4444;
+    }
+
+    .reference-item.just strong {
+      color: #f59e0b;
+    }
+
+    /* Color highlighting for time expressions in text */
+    .already-color {
+      color: #10b981;
+      font-weight: 800;
+    }
+
+    .yet-color {
+      color: #ef4444;
+      font-weight: 800;
+    }
+
+    .just-color {
+      color: #f59e0b;
+      font-weight: 800;
+    }
+
+    .reference-item p {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #475569;
+    }
+
+    .reference-item .example {
+      margin-top: 0.25rem;
+      font-style: italic;
+      color: #64748b;
+      font-size: 0.7rem;
+    }
+
+    @media print {
+      body {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .no-print {
+        display: none;
+      }
+
+      .section {
+        page-break-inside: avoid;
+      }
+
+      .exercise-box {
+        page-break-inside: avoid;
+        background: white;
+      }
+
+      .reference-box {
+        background: white;
+      }
+
+      .section-title {
+        margin-bottom: 0.1rem;
+      }
+
+      .verb-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+        background: white;
+        border-radius: 6px;
+        overflow: hidden;
+        font-size: 0.95rem;
+      }
+
+      .verb-table th,
+      .verb-table td {
+        padding: 0.5rem 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .verb-table th {
+        background: #f1f5f9;
+        font-weight: 700;
+        color: #475569;
+        font-size: 0.9rem;
+      }
+
+      .verb-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .verb-table .base {
+        font-weight: 600;
+        color: #0f172a;
+      }
+
+      .verb-table .past {
+        color: #64748b;
+      }
+
+      .verb-table .participle {
+        color: #6366f1;
+        font-weight: 700;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Daily Routines Practice</h1>
+    <p>Present Perfect with Already, Yet & Just</p>
+  </div>
+
+  <div class="student-info">
+    <div class="info-field">
+      <label>Name:</label>
+      <input type="text">
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">⚡ Quick Reference</h2>
+    <div class="reference-box">
+      <h3>⚡ Remember These Words:</h3>
+      <div class="reference-grid">
+        <div class="reference-item just">
+          <strong>JUST</strong>
+          <p>Very recently (a few minutes ago)</p>
+          <div class="example">"She has <span class="just-color">just</span> eaten lunch"</div>
+        </div>
+        <div class="reference-item already">
+          <strong>ALREADY</strong>
+          <p>Before now (completed)</p>
+          <div class="example">"He has <span class="already-color">already</span> woken up"</div>
+        </div>
+
+
+        <div class="reference-item yet">
+          <strong>YET</strong>
+          <p>Not happened (but expected)</p>
+          <div class="example">"She hasn't eaten <span class="yet-color">yet</span>"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reference-box" style="margin-top: 0.3rem; background: #f0f9ff; border-color: #0ea5e9;">
+      <h3 style="color: #0369a1;">📚 Irregular Verb Guide</h3>
+      <table class="verb-table">
+        <thead>
+          <tr>
+            <th>Base Form</th>
+            <th>Past Simple</th>
+            <th>Past Participle (Have/Has + ...)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="base">wake</td>
+            <td class="past">woke</td>
+            <td class="participle">woken</td>
+          </tr>
+          <tr>
+            <td class="base">eat</td>
+            <td class="past">ate</td>
+            <td class="participle">eaten</td>
+          </tr>
+          <tr>
+            <td class="base">go</td>
+            <td class="past">went</td>
+            <td class="participle">gone</td>
+          </tr>
+          <tr>
+            <td class="base">leave</td>
+            <td class="past">left</td>
+            <td class="participle">left</td>
+          </tr>
+          <tr>
+            <td class="base">take</td>
+            <td class="past">took</td>
+            <td class="participle">taken</td>
+          </tr>
+          <tr>
+            <td class="base">get</td>
+            <td class="past">got</td>
+            <td class="participle">gotten</td>
+          </tr>
+          <tr>
+            <td class="base">have</td>
+            <td class="past">had</td>
+            <td class="participle">had</td>
+          </tr>
+          <tr>
+            <td class="base">lead</td>
+            <td class="past">led</td>
+            <td class="participle">led</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section keep-with-next">
+    <h2 class="section-title">📅 Daily Routines</h2>
+    <p style="margin-bottom: 0.5rem; color: #475569;">Study the daily schedules of Sarah, Henry, and Abigail below. You
+      will use this information to write sentences.</p>
+
+    <div class="routines-container">
+      <div class="routine-box sarah">
+        <div class="routine-header">
+          <div class="routine-header-left">
+            <span class="person-icon">👤</span>
+            <div class="routine-name">Sarah 💼</div>
+          </div>
+          <div class="routine-role">Corporate Manager</div>
+        </div>
+        <div class="routine-divider"></div>
+        <div class="routine-list">
+          <div class="routine-item"><span class="time">6:00 AM</span><span class="activity">☕ Wake up</span></div>
+          <div class="routine-item"><span class="time">6:30 AM</span><span class="activity">🥐 Eat breakfast</span></div>
+          <div class="routine-item"><span class="time">7:00 AM</span><span class="activity">🚗 Leave for work</span></div>
+          <div class="routine-item"><span class="time">9:00 AM</span><span class="activity">💻 Start work</span></div>
+          <div class="routine-item"><span class="time">11:00 AM</span><span class="activity">📊 Lead team meeting</span></div>
+          <div class="routine-item"><span class="time">12:00 PM</span><span class="activity">🥗 Eat lunch</span></div>
+          <div class="routine-item"><span class="time">5:00 PM</span><span class="activity">📝 Finish work</span></div>
+          <div class="routine-item"><span class="time">6:00 PM</span><span class="activity">🏋️ Go to gym</span></div>
+          <div class="routine-item"><span class="time">7:30 PM</span><span class="activity">🍽️ Eat dinner</span></div>
+          <div class="routine-item"><span class="time">10:00 PM</span><span class="activity">😴 Go to bed</span></div>
+        </div>
+      </div>
+
+      <div class="routine-box henry">
+        <div class="routine-header">
+          <div class="routine-header-left">
+            <span class="person-icon">👤</span>
+            <div class="routine-name">Henry 👨‍🍳</div>
+          </div>
+          <div class="routine-role">Restaurant Chef</div>
+        </div>
+        <div class="routine-divider"></div>
+        <div class="routine-list">
+          <div class="routine-item"><span class="time">7:00 AM</span><span class="activity">⏰ Wake up</span></div>
+          <div class="routine-item"><span class="time">7:30 AM</span><span class="activity">🐕 Walk the dog</span></div>
+          <div class="routine-item"><span class="time">8:00 AM</span><span class="activity">🍳 Eat breakfast</span></div>
+          <div class="routine-item"><span class="time">8:30 AM</span><span class="activity">🚙 Leave for work</span></div>
+          <div class="routine-item"><span class="time">10:00 AM</span><span class="activity">🔪 Start prep work</span></div>
+          <div class="routine-item"><span class="time">12:00 PM</span><span class="activity">🍕 Lunch service</span></div>
+          <div class="routine-item"><span class="time">3:00 PM</span><span class="activity">🥤 Take a break</span></div>
+          <div class="routine-item"><span class="time">5:00 PM</span><span class="activity">🍝 Dinner service</span></div>
+          <div class="routine-item"><span class="time">10:00 PM</span><span class="activity">🏠 Arrive home</span></div>
+          <div class="routine-item"><span class="time">11:00 PM</span><span class="activity">😴 Go to bed</span></div>
+        </div>
+      </div>
+
+      <div class="routine-box abigail">
+        <div class="routine-header">
+          <div class="routine-header-left">
+            <span class="person-icon">👤</span>
+            <div class="routine-name">Abigail 🐾</div>
+          </div>
+          <div class="routine-role">Dog Walking Business Owner</div>
+        </div>
+        <div class="routine-divider"></div>
+        <div class="routine-list">
+          <div class="routine-item"><span class="time">5:30 AM</span><span class="activity">🌅 Wake up</span></div>
+          <div class="routine-item"><span class="time">6:00 AM</span><span class="activity">🏃‍♀️ Go jogging</span></div>
+          <div class="routine-item"><span class="time">7:00 AM</span><span class="activity">🥞 Eat breakfast</span></div>
+          <div class="routine-item"><span class="time">8:00 AM</span><span class="activity">🐕 Start morning dog walks</span></div>
+          <div class="routine-item"><span class="time">12:00 PM</span><span class="activity">🥙 Eat lunch</span></div>
+          <div class="routine-item"><span class="time">2:00 PM</span><span class="activity">💅 Get nails done</span></div>
+          <div class="routine-item"><span class="time">3:30 PM</span><span class="activity">☕ Coffee date with friend</span></div>
+          <div class="routine-item"><span class="time">5:00 PM</span><span class="activity">🐶 Evening dog walks</span></div>
+          <div class="routine-item"><span class="time">7:00 PM</span><span class="activity">🍲 Eat dinner</span></div>
+          <div class="routine-item"><span class="time">9:30 PM</span><span class="activity">😴 Go to bed</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="section">
+    <h2 class="section-title">✍️ Writing Practice</h2>
+
+    <!-- Guided Example: 6:45 AM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">🌟 Guided Example: 6:45 AM</div>
+        <div class="exercise-instruction">Let's do Sarah together!</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line">Sarah has <span class="already-color">already</span> woken up.</div>
+            <div class="writing-line">She has <span class="just-color">just</span> eaten breakfast.</div>
+            <div class="writing-line">She hasn't left for work <span class="yet-color">yet</span>.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Exercise 1: 6:05 AM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">⏰ 6:05 AM</div>
+        <div class="exercise-instruction">Early morning! Who has woken up?</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item henry">
+          <h4>Henry</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item abigail">
+          <h4>Abigail</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Exercise 3: 7:35 AM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">⏰ 7:35 AM</div>
+        <div class="exercise-instruction">Use "just" for someone who recently finished an activity!</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item henry">
+          <h4>Henry</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item abigail">
+          <h4>Abigail</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exercise 4: 12:15 PM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">⏰ 12:15 PM</div>
+        <div class="exercise-instruction">It's lunchtime! Who has eaten and who hasn't?</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item henry">
+          <h4>Henry</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item abigail">
+          <h4>Abigail</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exercise 5: 5:05 PM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">⏰ 5:05 PM</div>
+        <div class="exercise-instruction">End of the workday! Who just finished? Who is still working?</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item henry">
+          <h4>Henry</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item abigail">
+          <h4>Abigail</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exercise 6: 7:35 PM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">⏰ 7:35 PM</div>
+        <div class="exercise-instruction">Evening time! What activities have they completed?</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item henry">
+          <h4>Henry</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item abigail">
+          <h4>Abigail</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exercise 7: 10:05 PM -->
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <div class="exercise-time">⏰ 10:05 PM</div>
+        <div class="exercise-instruction">Late evening! Who's getting ready for bed? Who's still awake?</div>
+      </div>
+      <div class="writing-grid">
+        <div class="writing-item sarah">
+          <h4>Sarah</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item henry">
+          <h4>Henry</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="writing-item abigail">
+          <h4>Abigail</h4>
+          <div class="writing-lines">
+            <div class="writing-line"></div>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Auto-fill today's date if printing
+    window.addEventListener('beforeprint', () => {
+      const dateInputs = document.querySelectorAll('input[placeholder*="date"]');
+      dateInputs.forEach(input => {
+        if (!input.value) {
+          const today = new Date().toLocaleDateString();
+          input.value = today;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

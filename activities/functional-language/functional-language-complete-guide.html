@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functional Language - Complete Guide | ESOL Teacher Resources</title>
+  <meta name="description" content="Complete guide to functional language covering making suggestions, giving advice, making requests, offering help, apologizing, expressing opinions, and more for intermediate learners.">
+  <meta name="activity-type" content="guide">
+  <meta name="activity-level" content="intermediate">
+  <meta name="activity-category" content="functional-language">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .functional-guide {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .category-section {
+      background: white;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-xl);
+      margin: var(--spacing-2xl) 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    
+    .category-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      margin-right: var(--spacing-md);
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid #6366f1;
+    }
+    
+    .category-title {
+      color: #6366f1;
+      font-size: var(--font-size-xl);
+      margin: 0;
+    }
+    
+    .explanation-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius-md);
+    }
+    
+    .phrases-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .phrases-box h4 {
+      color: #6366f1;
+      margin-top: 0;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .phrase-item {
+      margin: var(--spacing-sm) 0;
+      padding: var(--spacing-sm);
+      background: white;
+      border-radius: var(--radius-sm);
+      border-left: 3px solid #6366f1;
+    }
+    
+    .phrase-item strong {
+      color: #6366f1;
+      display: block;
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .example-box {
+      background: var(--color-bg-light);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    
+    .example-box .example {
+      margin: var(--spacing-xs) 0;
+      padding: var(--spacing-xs);
+      font-style: italic;
+    }
+    
+    .exercise-section {
+      background: var(--color-bg-light);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+    
+    .exercise-title {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: #6366f1;
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-lg);
+    }
+    
+    .exercise-instructions {
+      color: var(--color-text-muted);
+      margin-bottom: var(--spacing-md);
+      font-style: italic;
+    }
+    
+    .exercise-item {
+      margin: var(--spacing-md) 0;
+      padding: var(--spacing-md);
+      background: white;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+    }
+    
+    .exercise-item label {
+      display: block;
+      margin-bottom: var(--spacing-xs);
+      font-weight: 500;
+    }
+    
+    .exercise-item input[type="text"],
+    .exercise-item textarea {
+      width: 100%;
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+    }
+    
+    .exercise-item input[type="text"]:focus,
+    .exercise-item textarea:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .exercise-item input[type="radio"] {
+      margin-right: var(--spacing-sm);
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      accent-color: #6366f1;
+    }
+    
+    .exercise-item label {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-xs);
+      border-radius: var(--radius-sm);
+      transition: background-color 0.2s;
+    }
+    
+    .exercise-item label:hover {
+      background-color: rgba(99, 102, 241, 0.05);
+    }
+    
+    .check-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: var(--spacing-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+    
+    .check-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .feedback {
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-radius: var(--radius-sm);
+      display: none;
+    }
+    
+    .feedback.correct {
+      background: rgba(16, 185, 129, 0.1);
+      border-left: 3px solid #10b981;
+      color: #10b981;
+    }
+    
+    .feedback.incorrect {
+      background: rgba(239, 68, 68, 0.1);
+      border-left: 3px solid #ef4444;
+      color: #ef4444;
+    }
+    
+    .highlight {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    
+    .tip-box {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+      padding: var(--spacing-md);
+      margin: var(--spacing-md) 0;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .tip-box strong {
+      color: #f59e0b;
+    }
+    
+    .print-button {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      cursor: pointer;
+      margin: var(--spacing-md) 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      font-size: var(--font-size-base);
+    }
+    
+    .print-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .print-header {
+      display: none;
+    }
+    
+    @media print {
+      @page {
+        margin: 0.4in 0.5in;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+      
+      body {
+        background: white;
+        color: black;
+        font-size: 10pt;
+        line-height: 1.3;
+      }
+      
+      .site-header,
+      .breadcrumbs,
+      .check-button,
+      .theme-toggle,
+      .mobile-menu-toggle,
+      .nav,
+      footer,
+      .print-button,
+      i[data-lucide] {
+        display: none !important;
+      }
+      
+      .print-header {
+        display: block;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #000;
+      }
+      
+      .category-section {
+        border: 1px solid #ccc;
+        margin: 8px 0;
+        padding: 8px;
+        background: white;
+        box-shadow: none;
+        page-break-inside: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../../index.html" class="site-logo">ESOL Teacher Resources</a>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <button class="theme-toggle" aria-label="Toggle dark mode" type="button">
+            <i data-lucide="moon" class="icon"></i>
+          </button>
+          <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" type="button">
+            <i data-lucide="menu" class="icon"></i>
+          </button>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../grammar/index.html" class="nav-link">GRAMMAR</a>
+            </li>
+            <li class="nav-item">
+              <a href="../writing-reading/index.html" class="nav-link">WRITING/READING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../speaking/index.html" class="nav-link">SPEAKING</a>
+            </li>
+            <li class="nav-item">
+              <a href="../vocab/index.html" class="nav-link">VOCAB</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="../../index.html">Home</a>
+          <span class="breadcrumbs-separator">/</span>
+          <a href="../speaking/index.html">Speaking</a>
+          <span class="breadcrumbs-separator">/</span>
+          <span>Functional Language</span>
+        </div>
+
+        <div class="activity-header">
+          <h1 class="activity-title">Functional Language - Complete Guide</h1>
+          <div class="activity-meta">
+            <span class="activity-badge badge-guide">Complete Guide</span>
+            <span class="activity-level">Intermediate</span>
+          </div>
+          <button class="print-button" onclick="window.print()">
+            <i data-lucide="printer" style="width: 18px; height: 18px;"></i>
+            Print Guide
+          </button>
+        </div>
+
+        <!-- Print Header (only visible when printing) -->
+        <div class="print-header">
+          <div class="name-line">
+            <strong>Name:</strong> <span class="blank-line"></span>
+          </div>
+          <div class="date-line">
+            <strong>Date:</strong> <span class="blank-line"></span>
+          </div>
+        </div>
+
+        <div class="functional-guide">
+          
+          <!-- Introduction -->
+          <div class="explanation-box">
+            <h2 style="color: #1e293b; margin-top: 0;">
+              <i data-lucide="book-open" style="width: 20px; height: 20px; display: inline-block; vertical-align: middle;"></i>
+              Welcome! Let's Learn Functional Language Together
+            </h2>
+            <p>Functional language helps you communicate effectively in real-life situations. This guide covers 12 essential categories of functional language that you'll use every day in English conversations.</p>
+            <p><strong>What is Functional Language?</strong> Functional language includes phrases and expressions we use to accomplish specific communication goals - like making suggestions, giving advice, apologizing, or expressing opinions. These are the "tools" you need for successful communication!</p>
+            <p>Each section includes common phrases, examples, and practice exercises. Work through each category at your own pace!</p>
+          </div>
+
+          <!-- Category 1: Making Suggestions -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">1</span>
+              <h2 class="category-title">Making Suggestions</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are suggestions?</h3>
+              <p>Suggestions are ideas or proposals you offer to someone. They can be about activities, solutions, or alternatives. The key is to be <strong>polite</strong> and give the other person a choice.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Making Suggestions</h4>
+              
+              <div class="phrase-item">
+                <strong>Suggesting activities:</strong>
+                <div>• <span class="highlight">How about</span> going to the cinema?</div>
+                <div>• <span class="highlight">What about</span> having a coffee?</div>
+                <div>• <span class="highlight">Why don't we</span> go for a walk?</div>
+                <div>• <span class="highlight">Let's</span> try that new restaurant.</div>
+                <div>• <span class="highlight">Shall we</span> meet at 3pm?</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Suggesting solutions:</strong>
+                <div>• <span class="highlight">You could</span> try calling them.</div>
+                <div>• <span class="highlight">Why don't you</span> ask for help?</div>
+                <div>• <span class="highlight">Have you thought about</span> talking to your teacher?</div>
+                <div>• <span class="highlight">I suggest</span> taking a break.</div>
+                <div>• <span class="highlight">It might be a good idea to</span> start early.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Polite suggestions:</strong>
+                <div>• <span class="highlight">Perhaps you could</span> consider this option.</div>
+                <div>• <span class="highlight">Maybe we should</span> think about it.</div>
+                <div>• <span class="highlight">I was wondering if</span> you'd like to join us.</div>
+                <div>• <span class="highlight">Would you like to</span> come with us?</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Activity:</strong> "How about we go to the park this afternoon?"</div>
+              <div class="example"><strong>Solution:</strong> "You could try restarting your computer if it's not working."</div>
+              <div class="example"><strong>Alternative:</strong> "Instead of taking the bus, why don't we walk?"</div>
+              <div class="example"><strong>Polite:</strong> "I was wondering if you'd like to join us for dinner."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Use "How about" and "What about" with <strong>-ing</strong> forms or nouns. Use "Why don't we/you" with the <strong>base form</strong> of the verb.
+            </div>
+          </div>
+
+          <!-- Category 2: Giving Advice -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">2</span>
+              <h2 class="category-title">Giving Advice</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is advice?</h3>
+              <p>Advice is recommendations or suggestions you give to help someone. Advice can be <strong>formal</strong> (professional, serious) or <strong>informal</strong> (friendly, casual).</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Giving Advice</h4>
+              
+              <div class="phrase-item">
+                <strong>Informal advice:</strong>
+                <div>• <span class="highlight">You should</span> study more.</div>
+                <div>• <span class="highlight">You ought to</span> get some rest.</div>
+                <div>• <span class="highlight">You'd better</span> hurry up.</div>
+                <div>• <span class="highlight">If I were you, I'd</span> call them.</div>
+                <div>• <span class="highlight">I think you should</span> try harder.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Formal advice:</strong>
+                <div>• <span class="highlight">I would recommend</span> that you arrive early.</div>
+                <div>• <span class="highlight">My advice would be to</span> prepare thoroughly.</div>
+                <div>• <span class="highlight">It would be advisable to</span> check the details.</div>
+                <div>• <span class="highlight">I suggest</span> consulting an expert.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Soft advice (less direct):</strong>
+                <div>• <span class="highlight">You might want to</span> consider this.</div>
+                <div>• <span class="highlight">Have you considered</span> asking for help?</div>
+                <div>• <span class="highlight">It might be worth</span> trying this approach.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Informal:</strong> "You should get more sleep. You look tired."</div>
+              <div class="example"><strong>Formal:</strong> "I would recommend that you submit your application before the deadline."</div>
+              <div class="example"><strong>Soft:</strong> "You might want to think about taking a break."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Use "should" for general advice, "ought to" for moral advice, and "had better" for urgent advice or warnings.
+            </div>
+          </div>
+
+          <!-- Category 3: Making Requests -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">3</span>
+              <h2 class="category-title">Making Requests</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What are requests?</h3>
+              <p>Requests are polite ways to ask someone to do something for you. The level of politeness depends on the situation and your relationship with the person.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Making Requests</h4>
+              
+              <div class="phrase-item">
+                <strong>Polite requests:</strong>
+                <div>• <span class="highlight">Could you</span> help me, please?</div>
+                <div>• <span class="highlight">Can you</span> pass me the salt?</div>
+                <div>• <span class="highlight">Would you mind</span> closing the window?</div>
+                <div>• <span class="highlight">Would you be able to</span> send me the file?</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Formal requests:</strong>
+                <div>• <span class="highlight">I would be grateful if you could</span> assist me.</div>
+                <div>• <span class="highlight">I wonder if you could</span> help me with this.</div>
+                <div>• <span class="highlight">Would it be possible for you to</span> check this?</div>
+                <div>• <span class="highlight">I would appreciate it if</span> you could reply soon.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Responding to requests:</strong>
+                <div>• <strong>Accepting:</strong> "Of course!" / "Sure, no problem!" / "I'd be happy to."</div>
+                <div>• <strong>Declining politely:</strong> "I'm sorry, but I can't." / "I'm afraid I can't help right now."</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Polite:</strong> "Could you please turn down the music?"</div>
+              <div class="example"><strong>Formal:</strong> "I would be grateful if you could provide me with more information."</div>
+              <div class="example"><strong>Response:</strong> "Of course! I'll do it right away."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> "Would you mind" is followed by <strong>-ing</strong> form. "Could you" and "Can you" are followed by the <strong>base form</strong> of the verb.
+            </div>
+          </div>
+
+          <!-- Category 4: Offering Help -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">4</span>
+              <h2 class="category-title">Offering Help</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is offering help?</h3>
+              <p>Offering help means volunteering to assist someone. It's a friendly and polite way to show you care and are willing to support others.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Offering Help</h4>
+              
+              <div class="phrase-item">
+                <strong>Offering assistance:</strong>
+                <div>• <span class="highlight">Can I help you</span> with that?</div>
+                <div>• <span class="highlight">Would you like some help</span> with your bags?</div>
+                <div>• <span class="highlight">Do you need a hand</span> with that?</div>
+                <div>• <span class="highlight">Let me help you</span> with that.</div>
+                <div>• <span class="highlight">I can help you</span> if you want.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Accepting offers:</strong>
+                <div>• "Yes, please! That would be great."</div>
+                <div>• "Thank you! I'd appreciate that."</div>
+                <div>• "That's very kind of you, thank you."</div>
+                <div>• "Yes, if you don't mind."</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Declining offers politely:</strong>
+                <div>• "No, thank you. I'm fine."</div>
+                <div>• "That's very kind, but I can manage."</div>
+                <div>• "Thanks, but I've got it."</div>
+                <div>• "I appreciate the offer, but I'm okay."</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Offering solutions:</strong>
+                <div>• <span class="highlight">I could help you</span> solve this problem.</div>
+                <div>• <span class="highlight">Maybe I can</span> give you some advice.</div>
+                <div>• <span class="highlight">If you like, I can</span> show you how to do it.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Offering:</strong> "Can I help you carry those boxes?"</div>
+              <div class="example"><strong>Accepting:</strong> "Yes, please! That would be very helpful."</div>
+              <div class="example"><strong>Declining:</strong> "No, thank you. I can manage, but thanks for offering!"</div>
+            </div>
+          </div>
+
+          <!-- Category 5: Apologizing -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">5</span>
+              <h2 class="category-title">Apologizing</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is apologizing?</h3>
+              <p>Apologizing means saying sorry when you've done something wrong or caused a problem. The formality depends on how serious the situation is.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Apologizing</h4>
+              
+              <div class="phrase-item">
+                <strong>Informal apologies:</strong>
+                <div>• <span class="highlight">Sorry!</span> / <span class="highlight">I'm sorry!</span></div>
+                <div>• <span class="highlight">My bad!</span> (very informal)</div>
+                <div>• <span class="highlight">Oops, sorry!</span></div>
+                <div>• <span class="highlight">I'm really sorry</span> about that.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Formal apologies:</strong>
+                <div>• <span class="highlight">I apologize</span> for the inconvenience.</div>
+                <div>• <span class="highlight">I sincerely apologize</span> for my mistake.</div>
+                <div>• <span class="highlight">Please accept my apologies</span> for the delay.</div>
+                <div>• <span class="highlight">I would like to apologize</span> for the error.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Accepting apologies:</strong>
+                <div>• "That's okay." / "It's fine."</div>
+                <div>• "Don't worry about it."</div>
+                <div>• "No problem." / "It's all right."</div>
+                <div>• "Apology accepted." (more formal)</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Making excuses (explaining):</strong>
+                <div>• "I'm sorry, <span class="highlight">but</span> I was stuck in traffic."</div>
+                <div>• "Sorry, <span class="highlight">I didn't mean to</span> upset you."</div>
+                <div>• "I apologize. <span class="highlight">It wasn't my intention</span> to cause problems."</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Informal:</strong> "Sorry I'm late! I missed the bus."</div>
+              <div class="example"><strong>Formal:</strong> "I sincerely apologize for the delay in responding to your email."</div>
+              <div class="example"><strong>With excuse:</strong> "I'm sorry, but I couldn't come because I was ill."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> When apologizing, it's often good to explain what happened, but don't make too many excuses. A sincere apology is usually enough.
+            </div>
+          </div>
+
+          <!-- Category 6: Expressing Opinions -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">6</span>
+              <h2 class="category-title">Expressing Opinions</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is expressing opinions?</h3>
+              <p>Expressing opinions means sharing your thoughts, beliefs, or views about something. Opinions can be <strong>strong</strong> (very certain) or <strong>weak</strong> (uncertain or cautious).</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Expressing Opinions</h4>
+              
+              <div class="phrase-item">
+                <strong>Strong opinions:</strong>
+                <div>• <span class="highlight">I strongly believe</span> that education is important.</div>
+                <div>• <span class="highlight">I'm convinced that</span> this is the right choice.</div>
+                <div>• <span class="highlight">I'm certain that</span> we can solve this.</div>
+                <div>• <span class="highlight">There's no doubt</span> that this is true.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Weak opinions (cautious):</strong>
+                <div>• <span class="highlight">I think</span> it might be a good idea.</div>
+                <div>• <span class="highlight">I suppose</span> that could work.</div>
+                <div>• <span class="highlight">It seems to me</span> that this is possible.</div>
+                <div>• <span class="highlight">I'm not sure, but</span> I think...</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Neutral opinions:</strong>
+                <div>• <span class="highlight">I think</span> that's a good idea.</div>
+                <div>• <span class="highlight">In my opinion,</span> we should wait.</div>
+                <div>• <span class="highlight">I believe</span> this is the best option.</div>
+                <div>• <span class="highlight">From my point of view,</span> this makes sense.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Strong:</strong> "I strongly believe that everyone should learn a second language."</div>
+              <div class="example"><strong>Weak:</strong> "I think it might be better to wait, but I'm not sure."</div>
+              <div class="example"><strong>Neutral:</strong> "In my opinion, this restaurant has the best food in town."</div>
+            </div>
+          </div>
+
+          <!-- Category 7: Agreeing and Disagreeing -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">7</span>
+              <h2 class="category-title">Agreeing and Disagreeing</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is agreeing and disagreeing?</h3>
+              <p>Agreeing means showing you have the same opinion. Disagreeing means showing you have a different opinion. It's important to be <strong>polite</strong> when disagreeing!</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Agreeing and Disagreeing</h4>
+              
+              <div class="phrase-item">
+                <strong>Agreement phrases:</strong>
+                <div>• <span class="highlight">I agree</span> with you.</div>
+                <div>• <span class="highlight">That's exactly what I think!</span></div>
+                <div>• <span class="highlight">You're absolutely right.</span></div>
+                <div>• <span class="highlight">I couldn't agree more.</span></div>
+                <div>• <span class="highlight">That's a good point.</span></div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Disagreement phrases (polite):</strong>
+                <div>• <span class="highlight">I see what you mean, but</span> I think...</div>
+                <div>• <span class="highlight">I understand your point, however</span>...</div>
+                <div>• <span class="highlight">I'm not sure I agree</span> with that.</div>
+                <div>• <span class="highlight">I respectfully disagree.</span></div>
+                <div>• <span class="highlight">I'm afraid I don't agree.</span></div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Partial agreement:</strong>
+                <div>• <span class="highlight">I agree up to a point, but</span>...</div>
+                <div>• <span class="highlight">That's partly true, however</span>...</div>
+                <div>• <span class="highlight">I see your point, but</span> I also think...</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Agreeing:</strong> "I completely agree! That's a great idea."</div>
+              <div class="example"><strong>Disagreeing politely:</strong> "I see what you mean, but I think we should consider other options."</div>
+              <div class="example"><strong>Partial agreement:</strong> "I agree up to a point, but I think we need more information."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> When disagreeing, it's polite to acknowledge the other person's opinion first (e.g., "I see what you mean, but...") before stating your own view.
+            </div>
+          </div>
+
+          <!-- Category 8: Expressing Problems -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">8</span>
+              <h2 class="category-title">Expressing Problems</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is expressing problems?</h3>
+              <p>Expressing problems means describing difficulties, issues, or challenges you're facing. This is important for getting help or explaining situations.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Expressing Problems</h4>
+              
+              <div class="phrase-item">
+                <strong>Describing problems:</strong>
+                <div>• <span class="highlight">I'm having trouble with</span> my computer.</div>
+                <div>• <span class="highlight">There's a problem with</span> the printer.</div>
+                <div>• <span class="highlight">I'm having difficulty</span> understanding this.</div>
+                <div>• <span class="highlight">Something's wrong with</span> my phone.</div>
+                <div>• <span class="highlight">I can't</span> seem to figure this out.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Problem vocabulary:</strong>
+                <div>• <strong>Issue:</strong> "There's an issue with the booking."</div>
+                <div>• <strong>Difficulty:</strong> "I'm experiencing some difficulties."</div>
+                <div>• <strong>Trouble:</strong> "I'm having trouble accessing the website."</div>
+                <div>• <strong>Challenge:</strong> "This is quite a challenge."</div>
+                <div>• <strong>Problem:</strong> "We have a problem here."</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Problem structures:</strong>
+                <div>• <span class="highlight">The problem is that</span> I can't find my keys.</div>
+                <div>• <span class="highlight">What's wrong is</span> the system isn't working.</div>
+                <div>• <span class="highlight">The issue is</span> we don't have enough time.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Describing:</strong> "I'm having trouble connecting to the internet."</div>
+              <div class="example"><strong>Stating:</strong> "The problem is that I've lost my wallet."</div>
+              <div class="example"><strong>Explaining:</strong> "There's an issue with my order - it hasn't arrived yet."</div>
+            </div>
+          </div>
+
+          <!-- Category 9: Discussing Options -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">9</span>
+              <h2 class="category-title">Discussing Options</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is discussing options?</h3>
+              <p>Discussing options means talking about different choices or possibilities. This is useful when making decisions together or exploring alternatives.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Discussing Options</h4>
+              
+              <div class="phrase-item">
+                <strong>Presenting options:</strong>
+                <div>• <span class="highlight">We have several options:</span> we could go to the beach, or we could visit a museum.</div>
+                <div>• <span class="highlight">One option is</span> to leave early.</div>
+                <div>• <span class="highlight">Another possibility is</span> to wait until tomorrow.</div>
+                <div>• <span class="highlight">We could either</span> stay here <span class="highlight">or</span> go somewhere else.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Comparing options:</strong>
+                <div>• <span class="highlight">Option A is better than</span> Option B because...</div>
+                <div>• <span class="highlight">This one is more</span> expensive <span class="highlight">than</span> that one.</div>
+                <div>• <span class="highlight">Compared to</span> the other choice, this seems better.</div>
+                <div>• <span class="highlight">On the one hand</span>... <span class="highlight">on the other hand</span>...</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Choosing between options:</strong>
+                <div>• <span class="highlight">I prefer</span> the first option.</div>
+                <div>• <span class="highlight">I'd rather</span> go with Option B.</div>
+                <div>• <span class="highlight">Let's go with</span> the cheaper option.</div>
+                <div>• <span class="highlight">I think we should choose</span> the second one.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Presenting:</strong> "We have two options: we could take the train or drive there."</div>
+              <div class="example"><strong>Comparing:</strong> "On the one hand, the train is faster, but on the other hand, driving is cheaper."</div>
+              <div class="example"><strong>Choosing:</strong> "I'd rather take the train because it's more comfortable."</div>
+            </div>
+          </div>
+
+          <!-- Category 10: Making Decisions -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">10</span>
+              <h2 class="category-title">Making Decisions</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is making decisions?</h3>
+              <p>Making decisions means choosing between different options. Decision-making language helps you discuss choices and state your final decision.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Making Decisions</h4>
+              
+              <div class="phrase-item">
+                <strong>Decision-making language:</strong>
+                <div>• <span class="highlight">I've decided to</span> study abroad.</div>
+                <div>• <span class="highlight">I've made up my mind</span> - I'm going to quit.</div>
+                <div>• <span class="highlight">I've chosen</span> the blue one.</div>
+                <div>• <span class="highlight">My decision is</span> to wait.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Weighing pros and cons:</strong>
+                <div>• <span class="highlight">The advantages are</span>... <span class="highlight">the disadvantages are</span>...</div>
+                <div>• <span class="highlight">On the plus side</span>... <span class="highlight">on the minus side</span>...</div>
+                <div>• <span class="highlight">The pros are</span>... <span class="highlight">the cons are</span>...</div>
+                <div>• <span class="highlight">One benefit is</span>... <span class="highlight">one drawback is</span>...</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Stating decisions:</strong>
+                <div>• <span class="highlight">I've decided that</span> we should go.</div>
+                <div>• <span class="highlight">After thinking about it, I've decided to</span> stay.</div>
+                <div>• <span class="highlight">My final decision is</span> to accept the offer.</div>
+                <div>• <span class="highlight">I've come to the conclusion that</span> this is best.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Weighing:</strong> "On the plus side, it's closer to work, but on the minus side, it's more expensive."</div>
+              <div class="example"><strong>Deciding:</strong> "After thinking about it, I've decided to accept the job offer."</div>
+              <div class="example"><strong>Stating:</strong> "I've made up my mind - I'm going to study medicine."</div>
+            </div>
+          </div>
+
+          <!-- Category 11: Giving Instructions -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">11</span>
+              <h2 class="category-title">Giving Instructions</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is giving instructions?</h3>
+              <p>Giving instructions means telling someone how to do something step by step. Clear instructions help people understand what to do.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Giving Instructions</h4>
+              
+              <div class="phrase-item">
+                <strong>Step-by-step instructions:</strong>
+                <div>• <span class="highlight">First,</span> turn on the computer.</div>
+                <div>• <span class="highlight">Next,</span> open the program.</div>
+                <div>• <span class="highlight">Then,</span> click on the file.</div>
+                <div>• <span class="highlight">After that,</span> save your work.</div>
+                <div>• <span class="highlight">Finally,</span> close the program.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Imperative forms (commands):</strong>
+                <div>• <span class="highlight">Turn</span> left at the corner.</div>
+                <div>• <span class="highlight">Mix</span> the ingredients together.</div>
+                <div>• <span class="highlight">Don't forget</span> to save your work.</div>
+                <div>• <span class="highlight">Make sure</span> you lock the door.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Sequence words:</strong>
+                <div>• <span class="highlight">First</span> / <span class="highlight">Firstly</span></div>
+                <div>• <span class="highlight">Second</span> / <span class="highlight">Secondly</span></div>
+                <div>• <span class="highlight">Next</span> / <span class="highlight">Then</span></div>
+                <div>• <span class="highlight">After that</span> / <span class="highlight">Following that</span></div>
+                <div>• <span class="highlight">Finally</span> / <span class="highlight">Lastly</span></div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Clear instructions:</strong>
+                <div>• <span class="highlight">Make sure you</span> check everything.</div>
+                <div>• <span class="highlight">Be careful to</span> follow the steps.</div>
+                <div>• <span class="highlight">Remember to</span> turn it off when finished.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Step-by-step:</strong> "First, preheat the oven. Next, mix the ingredients. Then, pour into a pan. Finally, bake for 30 minutes."</div>
+              <div class="example"><strong>Imperative:</strong> "Turn right at the traffic lights, then go straight for 200 meters."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Use sequence words (First, Next, Then, Finally) to make instructions clear and easy to follow. Imperative forms (base verb) are common for instructions.
+            </div>
+          </div>
+
+          <!-- Category 12: Expressing Feelings -->
+          <div class="category-section">
+            <div class="category-header">
+              <span class="category-number">12</span>
+              <h2 class="category-title">Expressing Feelings</h2>
+            </div>
+
+            <div class="explanation-box">
+              <h3 style="color: #1e293b; margin-top: 0;">What is expressing feelings?</h3>
+              <p>Expressing feelings means talking about your emotions and how you feel. This helps others understand your emotional state and respond appropriately.</p>
+            </div>
+
+            <div class="phrases-box">
+              <h4>Common Phrases for Expressing Feelings</h4>
+              
+              <div class="phrase-item">
+                <strong>Emotions vocabulary:</strong>
+                <div>• <strong>Happy:</strong> delighted, thrilled, overjoyed, pleased</div>
+                <div>• <strong>Sad:</strong> upset, disappointed, down, miserable</div>
+                <div>• <strong>Angry:</strong> furious, annoyed, irritated, frustrated</div>
+                <div>• <strong>Worried:</strong> anxious, concerned, nervous, stressed</div>
+                <div>• <strong>Excited:</strong> thrilled, enthusiastic, eager, pumped</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Describing feelings:</strong>
+                <div>• <span class="highlight">I feel</span> happy about this.</div>
+                <div>• <span class="highlight">I'm feeling</span> a bit anxious.</div>
+                <div>• <span class="highlight">I'm</span> really excited!</div>
+                <div>• <span class="highlight">I'm not feeling</span> very well today.</div>
+                <div>• <span class="highlight">This makes me feel</span> frustrated.</div>
+              </div>
+
+              <div class="phrase-item">
+                <strong>Emotional responses:</strong>
+                <div>• <span class="highlight">I'm so happy</span> that you came!</div>
+                <div>• <span class="highlight">I'm really disappointed</span> about the result.</div>
+                <div>• <span class="highlight">I'm thrilled</span> to hear the news.</div>
+                <div>• <span class="highlight">I'm worried</span> about the exam.</div>
+                <div>• <span class="highlight">I'm frustrated</span> with this situation.</div>
+              </div>
+            </div>
+
+            <div class="example-box">
+              <h4 style="color: #1e293b; margin-top: 0;">Examples in Context</h4>
+              <div class="example"><strong>Describing:</strong> "I feel really happy about getting the job."</div>
+              <div class="example"><strong>Expressing:</strong> "I'm so excited about the trip next week!"</div>
+              <div class="example"><strong>Explaining:</strong> "I'm feeling a bit anxious about the presentation tomorrow."</div>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Tip:</strong> Use "I feel" + adjective or "I'm feeling" + adjective to describe emotions. Use "I'm" + adjective for current emotional states.
+            </div>
+          </div>
+
+          <!-- Practice Section -->
+          <div class="category-section" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);">
+            <div class="category-header">
+              <span class="category-number">★</span>
+              <h2 class="category-title">Practice: Mixed Functional Language</h2>
+            </div>
+
+            <div class="exercise-section">
+              <div class="exercise-title">
+                <i data-lucide="edit" style="width: 24px; height: 24px;"></i>
+                Complete the Sentences
+              </div>
+              <p class="exercise-instructions">Choose the best functional language phrase to complete each sentence.</p>
+
+              <div class="exercise-item">
+                <label>1. "___________ we go to the cinema tonight?"</label>
+                <label><input type="radio" name="q1" value="a"> a) How about</label>
+                <label><input type="radio" name="q1" value="b"> b) I suggest</label>
+                <label><input type="radio" name="q1" value="c"> c) You should</label>
+                <div class="feedback" id="feedback-q1"></div>
+              </div>
+
+              <div class="exercise-item">
+                <label>2. "I'm sorry, but I ___________ help you right now."</label>
+                <label><input type="radio" name="q2" value="a"> a) can</label>
+                <label><input type="radio" name="q2" value="b"> b) can't</label>
+                <label><input type="radio" name="q2" value="c"> c) could</label>
+                <div class="feedback" id="feedback-q2"></div>
+              </div>
+
+              <div class="exercise-item">
+                <label>3. "___________ you mind closing the window?"</label>
+                <label><input type="radio" name="q3" value="a"> a) Could</label>
+                <label><input type="radio" name="q3" value="b"> b) Would</label>
+                <label><input type="radio" name="q3" value="c"> c) Can</label>
+                <div class="feedback" id="feedback-q3"></div>
+              </div>
+
+              <div class="exercise-item">
+                <label>4. "I ___________ what you mean, but I disagree."</label>
+                <label><input type="radio" name="q4" value="a"> a) see</label>
+                <label><input type="radio" name="q4" value="b"> b) think</label>
+                <label><input type="radio" name="q4" value="c"> c) believe</label>
+                <div class="feedback" id="feedback-q4"></div>
+              </div>
+
+              <div class="exercise-item">
+                <label>5. "First, turn on the computer. _________, open the program."</label>
+                <label><input type="radio" name="q5" value="a"> a) Then</label>
+                <label><input type="radio" name="q5" value="b"> b) Finally</label>
+                <label><input type="radio" name="q5" value="c"> c) After that</label>
+                <div class="feedback" id="feedback-q5"></div>
+              </div>
+
+              <button class="check-button" onclick="checkAnswers()">
+                <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+                Check Answers
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="background-color: var(--color-bg-gray); padding: var(--spacing-xl) 0; margin-top: var(--spacing-3xl);">
+    <div class="container text-center">
+      <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+        ESOL Teacher Resources - Free materials for English language educators
+      </p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Check answers function
+    function checkAnswers() {
+      const answers = {
+        'q1': 'a',
+        'q2': 'b',
+        'q3': 'b',
+        'q4': 'a',
+        'q5': 'a'
+      };
+
+      Object.keys(answers).forEach(questionId => {
+        const selected = document.querySelector(`input[name="${questionId}"]:checked`);
+        const feedback = document.getElementById(`feedback-${questionId}`);
+        
+        if (selected) {
+          if (selected.value === answers[questionId]) {
+            feedback.textContent = '✓ Correct!';
+            feedback.className = 'feedback correct';
+            feedback.style.display = 'block';
+          } else {
+            feedback.textContent = '✗ Incorrect. Try again!';
+            feedback.className = 'feedback incorrect';
+            feedback.style.display = 'block';
+          }
+        } else {
+          feedback.textContent = 'Please select an answer.';
+          feedback.className = 'feedback incorrect';
+          feedback.style.display = 'block';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
