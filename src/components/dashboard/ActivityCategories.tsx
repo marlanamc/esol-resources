@@ -34,9 +34,15 @@ interface ActivityCategoriesProps {
     activities: Activity[];
     completedActivityIds?: Set<string>;
     progressMap?: Record<string, number>;
+    showEmpty?: boolean;
 }
 
-export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activities, completedActivityIds = new Set(), progressMap }) => {
+export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
+    activities,
+    completedActivityIds = new Set(),
+    progressMap,
+    showEmpty = false
+}) => {
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubCategories, setExpandedSubCategories] = useState<Set<string>>(new Set());
 
@@ -292,26 +298,28 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
         }
     ];
 
-    // Hide any categories (and their subcategories) that have zero activities
-    const filteredCategories = categories
-        .map(category => {
-            const filteredSubCategories = category.subCategories
-                ? category.subCategories
-                    .map(sub => ({
-                        ...sub,
-                        subCategories: sub.subCategories
-                            ? sub.subCategories.filter(subSub => (subSub.activities?.length || 0) > 0)
-                            : undefined
-                    }))
-                    .filter(sub => getSubCategoryCount(sub) > 0)
-                : undefined;
+    const filteredCategories = showEmpty
+        ? categories
+        : categories
+            // Hide any categories (and their subcategories) that have zero activities
+            .map(category => {
+                const filteredSubCategories = category.subCategories
+                    ? category.subCategories
+                        .map(sub => ({
+                            ...sub,
+                            subCategories: sub.subCategories
+                                ? sub.subCategories.filter(subSub => (subSub.activities?.length || 0) > 0)
+                                : undefined
+                        }))
+                        .filter(sub => getSubCategoryCount(sub) > 0)
+                    : undefined;
 
-            return {
-                ...category,
-                subCategories: filteredSubCategories
-            };
-        })
-        .filter(cat => getCategoryCount(cat) > 0);
+                return {
+                    ...category,
+                    subCategories: filteredSubCategories
+                };
+            })
+            .filter(cat => getCategoryCount(cat) > 0);
 
     const getProgress = (id: string) => {
         const value = progressMap?.[id];

@@ -4,27 +4,20 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
-import { StatCard, Badge, BottomNav } from "@/components/ui";
+import { BottomNav } from "@/components/ui";
 import {
     HomeIcon,
     BookOpenIcon,
     TrophyIcon,
     UserIcon,
-    ClipboardIcon,
-    CheckCircleIcon,
-    BarChartIcon,
     UsersIcon
 } from "@/components/icons/Icons";
 import {
-    DashboardHeader,
-    AssignmentCard,
-    ActivityBrowseGrid,
     MiniCalendar,
     CalendarEvent,
     UpcomingEventsList,
     TodaysAssignments,
-    ActivityCategories,
-    TeacherActivityCategories
+    ActivityCategories
 } from "@/components/dashboard";
 
 type TeacherAssignment = {
@@ -129,7 +122,6 @@ export default async function DashboardPage() {
             orderBy: { createdAt: "desc" },
         }) as TeacherClass[];
 
-        const classNameById = new Map(classes.map((cls: TeacherClass) => [cls.id, cls.name]));
         const studentMap = new Map<string, StudentSummary>();
         classes.forEach((cls) => {
             cls.enrollments.forEach((enrollment) => {
@@ -139,30 +131,12 @@ export default async function DashboardPage() {
             });
         });
         const students = Array.from(studentMap.values());
-        const today = new Date();
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
 
         const allActivities = await prisma.activity.findMany({
             orderBy: { createdAt: "desc" },
         });
-
-        const defaultClassId = classes[0]?.id || null;
-        const activityAssignmentMap = defaultClassId
-            ? classes[0].assignments.reduce((acc, assignment) => {
-                if (!acc[assignment.activityId]) {
-                    acc[assignment.activityId] = assignment.id;
-                }
-                return acc;
-            }, {} as Record<string, string>)
-            : {};
-
-        // Get all featured assignments to show which activities are featured
-        const featuredAssignmentIds = new Set(
-            allAssignments
-                .filter(a => a.isFeatured)
-                .map(a => a.activityId)
-        );
 
         const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
             id: assignment.id,
@@ -198,74 +172,58 @@ export default async function DashboardPage() {
         return (
             <div className="min-h-screen bg-bg">
                 {/* Header */}
-                {/* Header */}
-                <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50 transition-all">
-                    <div className="container mx-auto max-w-[1800px] py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                        <div className="animate-fade-in-up">
-                            <h1 className="text-3xl md:text-4xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">
-                                ESOL 3 Class Companion
-                            </h1>
-                            <p className="text-sm font-medium text-text-muted mt-1 ml-1">
-                                Teacher Dashboard
-                            </p>
+                <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
+                    <div className="max-w-[1800px] mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                        <div className="hidden sm:block">
+                            <p className="font-bold text-primary tracking-widest uppercase text-xs">ESOL 3 Class Companion</p>
+                        </div>
+                        <div className="block sm:hidden">
+                            {/* Mobile Logo Placeholder */}
+                            <span className="font-display font-bold text-xl text-primary">CC</span>
                         </div>
                         <div className="flex items-center gap-4 animate-fade-in-up delay-100">
                             <span className="hidden sm:inline text-sm font-medium text-text-muted">
-                                Welcome, <span className="text-text font-bold">{session.user?.name}</span>
+                                {session.user?.name}
                             </span>
                             <LogoutButton />
                         </div>
                     </div>
                 </header>
 
-                <main className="container mx-auto max-w-[1800px] pt-8 pb-24 md:pb-8 px-4 sm:px-6 lg:px-8 space-y-10">
-                    {/* Activities & Calendar Row */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        {/* Activity Library */}
-                        <section className="lg:col-span-2 animate-fade-in-up delay-400">
-                            <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-2xl font-bold font-display text-text flex items-center gap-2">
-                                    Activity Library
-                                </h2>
-                                <div className="flex gap-2">
-                                    <Link
-                                        href="/dashboard/activities/new"
-                                        className="px-5 py-2.5 text-white text-sm font-semibold transition-all hover:brightness-110 hover:shadow-md bg-gradient-to-r from-primary to-primary-light shadow-sm rounded-xl active:scale-95"
-                                    >
-                                        + Create
-                                    </Link>
-                                    <Link
-                                        href="/dashboard/activities"
-                                        className="px-5 py-2.5 text-sm font-semibold border transition-all text-text border-border/40 bg-white rounded-xl hover:bg-bg-light hover:shadow-sm"
-                                    >
-                                        View All →
-                                    </Link>
-                                </div>
+                <main className="container mx-auto pt-8 pb-24 md:pb-12 px-4 sm:px-6 lg:px-10 max-w-[1800px]">
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        {/* Main Content Area - Left Side */}
+                        <div className="lg:col-span-3 space-y-8">
+                            {/* Welcome Header */}
+                            <div className="animate-fade-in-up">
+                                <h1 className="text-3xl font-display font-bold text-text mb-2">
+                                    Welcome, {session.user?.name}!
+                                </h1>
                             </div>
 
-                        {/* Featured Assignments */}
-                        <TodaysAssignments
-                            title="Featured Assignments"
-                            ctaLabel="Open"
-                            initialAssignments={featuredAssignmentsForDisplay}
-                        />
-
-                            {allActivities.length === 0 ? (
-                                <div className="border-2 border-dashed h-48 flex items-center justify-center border-border/40 rounded-2xl bg-white/50">
-                                    <p className="text-text-muted font-medium">No activities created yet</p>
-                                </div>
-                            ) : (
-                                <TeacherActivityCategories
-                                    activities={allActivities}
-                                    featuredActivityIds={featuredAssignmentIds}
-                                    defaultClassId={defaultClassId}
-                                    activityAssignmentMap={activityAssignmentMap}
+                            {/* Featured Assignments (styled like student view) */}
+                            <section className="animate-fade-in-up delay-100">
+                                <TodaysAssignments
+                                    title="Featured Assignments"
+                                    ctaLabel="Open"
+                                    initialAssignments={featuredAssignmentsForDisplay}
                                 />
-                            )}
-                        </section>
+                            </section>
 
-                        {/* Calendar */}
-                        <aside className="animate-fade-in-up delay-300">
+                            {/* All Activities - Organized by Category */}
+                            <section className="animate-fade-in-up delay-200">
+                                <div className="flex items-center justify-between mb-6">
+                                    <h2 className="text-2xl font-bold font-display text-text flex items-center gap-3">
+                                        <span className="w-2 h-8 rounded-full bg-secondary/80"></span>
+                                        All Activities
+                                    </h2>
+                                </div>
+                                <ActivityCategories activities={allActivities} completedActivityIds={new Set()} showEmpty />
+                            </section>
+                        </div>
+
+                        {/* Calendar & Important Pages Sidebar */}
+                        <aside className="animate-fade-in-up delay-100">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
@@ -285,6 +243,12 @@ export default async function DashboardPage() {
                                             className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
                                         >
                                             Add Event to Calendar
+                                        </Link>
+                                        <Link
+                                            href="/dashboard/activities/new"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
+                                        >
+                                            Create Activity
                                         </Link>
                                         <Link
                                             href="/dashboard/passwords"
