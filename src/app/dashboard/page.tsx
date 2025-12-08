@@ -478,7 +478,7 @@ export default async function DashboardPage() {
                             </h1>
                             <Link
                                 href="/dashboard/stats/student"
-                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-full shadow-sm hover:brightness-110 active:scale-95 transition"
+                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-secondary rounded-full shadow-sm hover:brightness-110 active:scale-95 transition"
                             >
                                 <TrophyIcon className="w-4 h-4" />
                                 View progress
