@@ -418,13 +418,13 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         );
 
         const totalAssignments = allAssignments.length;
-        const completedAssignments = submissions.filter((s) => s.status === "submitted" || s.status === "graded").length;
+        const completedAssignments = submissions.filter((s: { status: string }) => s.status === "submitted" || s.status === "graded").length;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const pendingAssignments = totalAssignments - completedAssignments;
 
-        const gradedSubmissions = submissions.filter((s) => s.status === "graded" && s.score !== null);
+        const gradedSubmissions = submissions.filter((s: { status: string; score: number | null }) => s.status === "graded" && s.score !== null);
         const averageScore = gradedSubmissions.length > 0
-            ? Math.round(gradedSubmissions.reduce((sum, s) => sum + (s.score || 0), 0) / gradedSubmissions.length)
+            ? Math.round(gradedSubmissions.reduce((sum, s: { score: number | null }) => sum + (s.score || 0), 0) / gradedSubmissions.length)
             : null;
 
         const classIds = enrollments.map(e => e.classId);
