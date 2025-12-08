@@ -51,7 +51,7 @@ export default function LoginForm() {
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        placeholder="ricardo"
+                        placeholder="username"
                         className="w-full px-4 py-3 border-2 rounded-xl transition-all outline-none"
                         style={{
                             borderColor: '#d9cfc0',
