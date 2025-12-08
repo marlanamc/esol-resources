@@ -29,6 +29,35 @@ import {
     TeacherActivityCategories
 } from "@/components/dashboard";
 
+type TeacherAssignment = {
+    id: string;
+    title: string | null;
+    activityId: string;
+    activity: {
+        id: string;
+        title: string;
+        description: string | null;
+        type: string;
+    };
+    isFeatured: boolean;
+    dueDate: Date | null;
+};
+
+type TeacherClass = {
+    id: string;
+    name: string;
+    description: string | null;
+    enrollments: { id: string }[];
+    assignments: TeacherAssignment[];
+    calendarEvents: {
+        id: string;
+        title: string;
+        date: Date;
+        endDate: Date | null;
+        type: string;
+    }[];
+};
+
 interface DashboardPageProps {
     searchParams?: { [key: string]: string | string[] | undefined };
 }
@@ -62,12 +91,12 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 calendarEvents: true,
             },
             orderBy: { createdAt: "desc" },
-        });
+        }) as TeacherClass[];
 
         const classNameById = new Map(classes.map((cls) => [cls.id, cls.name]));
         const today = new Date();
-        const allAssignments = classes.flatMap(c => c.assignments);
-        const featuredAssignments = allAssignments.filter(a => a.isFeatured);
+        const allAssignments = classes.flatMap((c) => c.assignments);
+        const featuredAssignments = allAssignments.filter((a) => a.isFeatured);
 
         const allActivities = await prisma.activity.findMany({
             orderBy: { createdAt: "desc" },
