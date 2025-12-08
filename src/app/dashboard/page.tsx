@@ -477,7 +477,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
         const upcomingAssignments = allAssignments
             .filter((a) => {
-                const submission = submissionMap.get(`${userId}-${a.activityId}-${a.id}`);
+                const submission = submissionMap.get(`${userId}-${a.activityId}-${a.id}`) as
+                    | { status?: string }
+                    | undefined;
                 return !submission || submission.status === "pending";
             })
             .sort((a, b) => {
