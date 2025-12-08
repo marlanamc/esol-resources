@@ -33,6 +33,7 @@ type TeacherAssignment = {
     id: string;
     title: string | null;
     activityId: string;
+    classId: string;
     activity: {
         id: string;
         title: string;
