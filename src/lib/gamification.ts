@@ -225,7 +225,7 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
   });
 
   // Add rank and rank change
-  return students.map((student, index) => ({
+  return students.map((student: { lastWeekRank: number | null }, index: number) => ({
     ...student,
     rank: index + 1,
     rankChange: student.lastWeekRank ? student.lastWeekRank - (index + 1) : null,
