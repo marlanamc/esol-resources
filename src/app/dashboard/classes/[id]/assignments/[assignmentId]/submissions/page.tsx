@@ -84,7 +84,7 @@ export default async function SubmissionsPage({ params }: Props) {
                 <div className="px-4 py-6 sm:px-0">
                     <SubmissionsList
                         assignment={assignment}
-                        students={assignment.class.enrollments.map((enrollment) => enrollment.student)}
+                        students={assignment.class.enrollments.map((enrollment: { student: any }) => enrollment.student)}
                     />
                 </div>
             </main>
