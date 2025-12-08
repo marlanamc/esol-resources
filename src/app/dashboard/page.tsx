@@ -207,21 +207,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                             <span className="hidden sm:inline text-sm font-medium text-text-muted">
                                 Welcome, <span className="text-text font-bold">{session.user?.name}</span>
                             </span>
-                            {!showStats ? (
-                                <Link
-                                    href="/dashboard?view=stats"
-                                    className="text-xs font-semibold text-primary underline decoration-primary/50 underline-offset-4"
-                                >
-                                    View stats (private)
-                                </Link>
-                            ) : (
-                                <Link
-                                    href="/dashboard"
-                                    className="text-xs font-semibold text-primary underline decoration-primary/50 underline-offset-4"
-                                >
-                                    Hide stats
-                                </Link>
-                            )}
                             <LogoutButton />
                         </div>
                     </div>
