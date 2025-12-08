@@ -36,7 +36,7 @@ file:./prisma/dev.db
 ### 3. NEXTAUTH_URL (Optional but recommended)
 Your production URL:
 ```
-https://your-app-name.vercel.app
+https://esol-resources-tau.vercel.app
 ```
 
 ## How to Set Environment Variables in Vercel
@@ -49,9 +49,19 @@ https://your-app-name.vercel.app
    - **Environment**: Select all (Production, Preview, Development)
    - Click **Save**
 
-4. Repeat for `DATABASE_URL` and `NEXTAUTH_URL`
+4. Add `DATABASE_URL`:
+   - **Key**: `DATABASE_URL`
+   - **Value**: `file:./prisma/dev.db` (for SQLite) or your production database URL
+   - **Environment**: Select all
+   - Click **Save**
 
-5. After adding variables, **redeploy** your application for changes to take effect
+5. Add `NEXTAUTH_URL`:
+   - **Key**: `NEXTAUTH_URL`
+   - **Value**: `https://esol-resources-tau.vercel.app`
+   - **Environment**: Production (or all if you want)
+   - Click **Save**
+
+6. After adding variables, **redeploy** your application for changes to take effect
 
 ## Local Development Setup
 
