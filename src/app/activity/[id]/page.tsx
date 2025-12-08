@@ -5,10 +5,10 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Script from "next/script";
 import { isInteractiveGuideContent, isLegacyGuideContent, parseActivityContent } from "@/types/activity";
-import { Badge } from "@/components/ui/Badge";
 import ActivityRenderer from "@/components/ActivityRenderer";
 import SubmissionForm from "@/components/SubmissionForm";
 import LogoutButton from "@/components/LogoutButton";
+import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -81,6 +81,19 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         });
     }
 
+    const progressRecord = await prisma.activityProgress.findUnique({
+        where: {
+            userId_activityId: {
+                userId,
+                activityId: id,
+            },
+        },
+        select: {
+            progress: true,
+        },
+    });
+    const progressValue = progressRecord?.progress ?? 0;
+
     // Parse content once
     let parsedContent: any = null;
     try {
@@ -115,9 +128,10 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             <p className="text-sm text-gray-600 ml-0 mt-1 line-clamp-2">{activity.description}</p>
                         )}
                     </div>
-                    <div className="ml-4 flex-shrink-0">
-                        <LogoutButton />
-                    </div>
+                <div className="ml-4 flex-shrink-0 flex items-center gap-3">
+                    <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                    <LogoutButton />
+                </div>
                 </header>
 
                 {/* Full Screen Guide */}
@@ -154,7 +168,10 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         </h1>
 
                         {/* Logout Button */}
-                        <LogoutButton />
+                        <div className="flex items-center gap-3">
+                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            <LogoutButton />
+                        </div>
                     </div>
                 </div>
             </header>

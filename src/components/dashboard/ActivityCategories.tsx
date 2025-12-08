@@ -33,9 +33,10 @@ interface Category {
 interface ActivityCategoriesProps {
     activities: Activity[];
     completedActivityIds?: Set<string>;
+    progressMap?: Record<string, number>;
 }
 
-export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activities, completedActivityIds = new Set() }) => {
+export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activities, completedActivityIds = new Set(), progressMap }) => {
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubCategories, setExpandedSubCategories] = useState<Set<string>>(new Set());
 
@@ -312,6 +313,11 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
         })
         .filter(cat => getCategoryCount(cat) > 0);
 
+    const getProgress = (id: string) => {
+        const value = progressMap?.[id];
+        return typeof value === "number" ? value : 0;
+    };
+
     return (
         <div className="space-y-4">
             {filteredCategories.map((category, idx) => {
@@ -424,7 +430,8 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                             {isSubSubExpanded && subSubCategory.activities.length > 0 && (
                                                                                 <div className="pl-20 pr-4 pb-3 space-y-2">
                                                                                     {subSubCategory.activities.map((activity) => {
-                                                                                        const isCompleted = completedActivityIds.has(activity.id);
+                                                                                        const progressValue = getProgress(activity.id);
+                                                                                        const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
                                                                                         return (
                                                                                             <Link
                                                                                                 key={activity.id}
@@ -452,6 +459,11 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                                                         <span className="px-2 py-0.5 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
                                                                                                             {activity.type}
                                                                                                         </span>
+                                                                                                        {progressValue > 0 && (
+                                                                                                            <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+                                                                                                                {progressValue}%
+                                                                                                            </span>
+                                                                                                        )}
 
                                                                                                     </div>
                                                                                                 </div>
@@ -468,7 +480,8 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                             // No sub-subcategories - show activities directly
                                                             <div className="pl-12 pr-4 pb-4 space-y-2">
                                                                 {subCategory.activities.map((activity) => {
-                                                                    const isCompleted = completedActivityIds.has(activity.id);
+                                                                    const progressValue = getProgress(activity.id);
+                                                                    const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
                                                                     return (
                                                                         <Link
                                                                             key={activity.id}
@@ -496,6 +509,11 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                                     <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
                                                                                         {activity.type}
                                                                                     </span>
+                                                                                    {progressValue > 0 && (
+                                                                                        <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+                                                                                            {progressValue}%
+                                                                                        </span>
+                                                                                    )}
                                                                                 </div>
                                                                             </div>
                                                                         </Link>
@@ -513,7 +531,8 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                     <div className="p-4 space-y-2">
                                         {category.activities.length > 0 ? (
                                             category.activities.map((activity) => {
-                                                const isCompleted = completedActivityIds.has(activity.id);
+                                            const progressValue = getProgress(activity.id);
+                                            const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
                                                 return (
                                                     <Link
                                                         key={activity.id}
@@ -541,6 +560,11 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                 <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
                                                                     {activity.type}
                                                                 </span>
+                                                            {progressValue > 0 && (
+                                                                <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
+                                                                    {progressValue}%
+                                                                </span>
+                                                            )}
                                                             </div>
                                                         </div>
                                                     </Link>
