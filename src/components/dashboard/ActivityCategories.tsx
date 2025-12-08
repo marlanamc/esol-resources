@@ -440,8 +440,8 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                                                     }`}
                                                                                             >
                                                                                                 {isCompleted && (
-                                                                                                    <div className="absolute top-2 right-2">
-                                                                                                        <div className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center">
+                                                                                        <div className="absolute top-3 right-3">
+                                                                                            <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                                                                                                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                                                                             </svg>
@@ -455,7 +455,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                                                             {activity.title}
                                                                                                         </h4>
                                                                                                     </div>
-                                                                                                    <div className="ml-3 flex items-center gap-1.5">
+                                                                                                    <div className="ml-3 flex items-center gap-1.5 pr-8">
                                                                                                         <span className="px-2 py-0.5 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
                                                                                                             {activity.type}
                                                                                                         </span>
@@ -491,7 +491,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                         >
                                                                             {isCompleted && (
                                                                                 <div className="absolute top-2 right-2">
-                                                                                    <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center">
+                                                                                    <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                                                                                         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                                                         </svg>
@@ -505,7 +505,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({ activiti
                                                                                         {activity.title}
                                                                                     </h4>
                                                                                 </div>
-                                                                                <div className="ml-4 flex items-center gap-2">
+                                                                                <div className="ml-4 flex items-center gap-2 pr-10">
                                                                                     <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
                                                                                         {activity.type}
                                                                                     </span>
