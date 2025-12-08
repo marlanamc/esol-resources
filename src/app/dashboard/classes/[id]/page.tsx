@@ -46,7 +46,9 @@ export default async function ClassDetailPage({ params }: Props) {
 
     // Check if user has access (teacher or enrolled student)
     const isTeacher = userRole === "teacher" && classItem.teacherId === userId;
-    const isEnrolled = classItem.enrollments.some((e) => e.studentId === userId);
+    const isEnrolled = classItem.enrollments.some(
+        (enrollment: { studentId: string }) => enrollment.studentId === userId
+    );
 
     if (!isTeacher && !isEnrolled) {
         redirect("/dashboard");
