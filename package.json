@@ -9,8 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "db:seed": "node prisma/seed.js",
-    "import:simple-tenses": "node scripts/import-simple-tenses.mjs",
-    "postinstall": "prisma generate"
+    "import:simple-tenses": "node scripts/import-simple-tenses.mjs"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
