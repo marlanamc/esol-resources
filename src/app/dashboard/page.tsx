@@ -28,6 +28,7 @@ import {
     ActivityCategories,
     TeacherActivityCategories
 } from "@/components/dashboard";
+import { StudentPasswordManager } from "@/components/StudentPasswordManager";
 
 type TeacherAssignment = {
     id: string;
@@ -44,11 +45,18 @@ type TeacherAssignment = {
     dueDate: Date | null;
 };
 
+type StudentSummary = {
+    id: string;
+    username: string;
+    name: string | null;
+    mustChangePassword: boolean;
+};
+
 type TeacherClass = {
     id: string;
     name: string;
     description: string | null;
-    enrollments: { id: string }[];
+    enrollments: { id: string; student: StudentSummary }[];
     assignments: TeacherAssignment[];
     calendarEvents: {
         id: string;
@@ -109,7 +117,14 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             include: {
                 enrollments: {
                     include: {
-                        student: true,
+                        student: {
+                            select: {
+                                id: true,
+                                username: true,
+                                name: true,
+                                mustChangePassword: true,
+                            },
+                        },
                     },
                 },
                 assignments: {
@@ -123,6 +138,15 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         }) as TeacherClass[];
 
         const classNameById = new Map(classes.map((cls: TeacherClass) => [cls.id, cls.name]));
+        const studentMap = new Map<string, StudentSummary>();
+        classes.forEach((cls) => {
+            cls.enrollments.forEach((enrollment) => {
+                if (enrollment.student) {
+                    studentMap.set(enrollment.student.id, enrollment.student);
+                }
+            });
+        });
+        const students = Array.from(studentMap.values());
         const today = new Date();
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
@@ -243,6 +267,11 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                             </div>
                         </section>
                     )}
+
+                    {/* Student password management */}
+                    <section className="animate-fade-in-up delay-250">
+                        <StudentPasswordManager students={students} />
+                    </section>
 
                     {/* Activities & Calendar Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
