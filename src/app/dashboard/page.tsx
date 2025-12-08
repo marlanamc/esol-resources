@@ -176,19 +176,6 @@ export default async function DashboardPage() {
             },
             submissions: [],
         }));
-
-        const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
-            id: assignment.id,
-            title: assignment.title,
-            activityId: assignment.activityId,
-            activity: {
-                title: assignment.activity.title,
-                description: assignment.activity.description,
-                // fall back to type if category missing to keep badge styling
-                category: (assignment.activity as any).category || assignment.activity.type || null,
-            },
-            submissions: [],
-        }));
         const calendarEvents: CalendarEvent[] = [
             ...allAssignments
                 .filter(a => a.dueDate)
