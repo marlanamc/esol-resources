@@ -208,7 +208,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                             </div>
                                             <div className="flex gap-2 flex-wrap">
                                                 <Link
-                                                    href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
+                                                    href={`/activity/${assignment.activity.id}?assignment=${assignment.id}`}
                                                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                                                 >
                                                     {isTeacher ? "View" : "Start"}
