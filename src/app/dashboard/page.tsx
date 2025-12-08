@@ -422,10 +422,18 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const pendingAssignments = totalAssignments - completedAssignments;
 
-        const gradedSubmissions = submissions.filter((s: { status: string; score: number | null }) => s.status === "graded" && s.score !== null);
-        const averageScore = gradedSubmissions.length > 0
-            ? Math.round(gradedSubmissions.reduce((sum, s: { score: number | null }) => sum + (s.score || 0), 0) / gradedSubmissions.length)
-            : null;
+        const gradedSubmissions = submissions.filter(
+            (s: { status: string; score: number | null }) => s.status === "graded" && s.score !== null
+        );
+        const averageScore =
+            gradedSubmissions.length > 0
+                ? Math.round(
+                      gradedSubmissions.reduce(
+                          (sum: number, s: { score: number | null }) => sum + (s.score || 0),
+                          0
+                      ) / gradedSubmissions.length
+                  )
+                : null;
 
         const classIds = enrollments.map(e => e.classId);
         const featuredAssignments = classIds.length === 0 ? [] : await prisma.assignment.findMany({
