@@ -71,11 +71,14 @@ export default async function StatsPage() {
         })
         : [];
 
-    const progressByStudent = progressEntries.reduce<Record<string, Record<string, number>>>((acc, entry: { userId: string; activityId: string; progress: number }) => {
-        if (!acc[entry.userId]) acc[entry.userId] = {};
-        acc[entry.userId][entry.activityId] = entry.progress;
-        return acc;
-    }, {});
+    const progressByStudent = (progressEntries as Array<{ userId: string; activityId: string; progress: number }>).reduce(
+        (acc: Record<string, Record<string, number>>, entry) => {
+            if (!acc[entry.userId]) acc[entry.userId] = {};
+            acc[entry.userId][entry.activityId] = entry.progress;
+            return acc;
+        },
+        {} as Record<string, Record<string, number>>
+    );
 
     const overallProgress: Record<string, number> = {};
     if (studentIds.length > 0) {
