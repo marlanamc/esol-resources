@@ -22,9 +22,15 @@ interface FeaturedAssignment {
 
 interface Props {
     initialAssignments?: FeaturedAssignment[];
+    title?: string;
+    ctaLabel?: string;
 }
 
-export const TodaysAssignments: React.FC<Props> = ({ initialAssignments }) => {
+export const TodaysAssignments: React.FC<Props> = ({
+    initialAssignments,
+    title = "Today's Assignments",
+    ctaLabel = "Start Activity",
+}) => {
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
     const [loading, setLoading] = useState(true);
 
@@ -55,7 +61,7 @@ export const TodaysAssignments: React.FC<Props> = ({ initialAssignments }) => {
     if (loading) {
         return (
             <div className="mb-8">
-                <h2 className="text-2xl font-display font-bold text-text mb-4">Today's Assignments</h2>
+                <h2 className="text-2xl font-display font-bold text-text mb-4">{title}</h2>
                 <div className="animate-pulse bg-bg-light rounded-xl h-32"></div>
             </div>
         );
@@ -64,7 +70,7 @@ export const TodaysAssignments: React.FC<Props> = ({ initialAssignments }) => {
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                <h2 className="text-2xl font-display font-bold text-text mb-4">Today's Assignments</h2>
+                <h2 className="text-2xl font-display font-bold text-text mb-4">{title}</h2>
                 <div className="bg-gradient-to-br from-bg-light to-white rounded-xl p-8 text-center border border-border/60 shadow-sm">
                     <div className="text-4xl mb-3">✨</div>
                     <p className="text-text-muted font-medium">No featured assignments right now</p>
@@ -76,7 +82,7 @@ export const TodaysAssignments: React.FC<Props> = ({ initialAssignments }) => {
 
     return (
         <div className="mb-8">
-            <h2 className="text-2xl font-display font-bold text-text mb-4">Today's Assignments</h2>
+            <h2 className="text-2xl font-display font-bold text-text mb-4">{title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {assignments.map((assignment, index) => {
                     const submission = assignment.submissions[0];
@@ -136,7 +142,7 @@ export const TodaysAssignments: React.FC<Props> = ({ initialAssignments }) => {
                                     href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
                                     className="inline-flex items-center justify-center px-8 py-3 text-base font-bold transition-all hover:shadow-lg active:scale-95 rounded-lg bg-primary text-white hover:bg-primary/90 mt-auto self-end"
                                 >
-                                    {isCompleted ? 'Review' : 'Start Activity'}
+                                    {isCompleted ? 'Review' : ctaLabel}
                                 </Link>
                             </div>
                         </div>
