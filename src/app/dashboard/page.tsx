@@ -170,6 +170,19 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 .filter(a => a.isFeatured)
                 .map(a => a.activityId)
         );
+
+        const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
+            id: assignment.id,
+            title: assignment.title,
+            activityId: assignment.activityId,
+            activity: {
+                title: assignment.activity.title,
+                description: assignment.activity.description,
+                // fall back to type if category missing to keep badge styling
+                category: (assignment.activity as any).category || assignment.activity.type || null,
+            },
+            submissions: [],
+        }));
         const calendarEvents: CalendarEvent[] = [
             ...allAssignments
                 .filter(a => a.dueDate)
@@ -277,61 +290,11 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                             </div>
 
                         {/* Featured Assignments */}
-                        <div className="mb-8">
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-xl font-bold font-display text-text">Featured Assignments</h3>
-                                {featuredAssignments.length > 0 && (
-                                    <span className="text-xs text-text-muted">
-                                        Showing {featuredAssignments.length}
-                                    </span>
-                                )}
-                            </div>
-                            {featuredAssignments.length === 0 ? (
-                                <div className="border border-border/40 rounded-xl p-5 bg-white/60 text-text-muted text-sm">
-                                    No featured assignments yet. Use "Assign" on an activity to feature it.
-                                </div>
-                            ) : (
-                                <div className="grid gap-4">
-                                    {featuredAssignments.map((assignment) => (
-                                        <div
-                                            key={assignment.id}
-                                            className="border border-primary/20 bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-xl p-4 shadow-sm"
-                                        >
-                                            <div className="flex justify-between items-start gap-3">
-                                                <div className="space-y-1">
-                                                    <p className="text-xs font-semibold text-accent uppercase tracking-wide">Featured</p>
-                                                    <h4 className="text-lg font-semibold text-text">
-                                                        {assignment.title || assignment.activity.title}
-                                                    </h4>
-                                                    <p className="text-sm text-text-muted line-clamp-2">
-                                                        {assignment.activity.description}
-                                                    </p>
-                                                    <div className="flex items-center gap-3 text-xs text-text-muted">
-                                                        <span className="px-2 py-0.5 rounded-full bg-white/70 border border-border/50">
-                                                            {assignment.activity.type}
-                                                        </span>
-                                                        {assignment.dueDate && (
-                                                            <span>
-                                                                Due: {new Date(assignment.dueDate).toLocaleDateString()}
-                                                            </span>
-                                                        )}
-                                                        <span>
-                                                            Class: {classNameById.get(assignment.classId) || "Class"}
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <Link
-                                                    href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                                    className="px-3 py-1.5 text-xs font-semibold transition-all rounded-lg shadow-sm bg-primary text-white hover:brightness-110 hover:shadow-md"
-                                                >
-                                                    Open
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
+                        <TodaysAssignments
+                            title="Featured Assignments"
+                            ctaLabel="Open"
+                            initialAssignments={featuredAssignmentsForDisplay}
+                        />
 
                             {allActivities.length === 0 ? (
                                 <div className="border-2 border-dashed h-48 flex items-center justify-center border-border/40 rounded-2xl bg-white/50">
