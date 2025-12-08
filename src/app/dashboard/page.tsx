@@ -505,7 +505,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             }
         });
 
-        const completedActivityIds = new Set(completedActivities.map(s => s.activityId));
+        const completedActivityIds = new Set(completedActivities.map((s: { activityId: string }) => s.activityId));
 
         return (
             <div className="min-h-screen bg-bg">
