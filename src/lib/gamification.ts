@@ -144,7 +144,9 @@ export async function checkAndAwardAchievements(userId: string) {
   if (!user) return [];
 
   const allAchievements = await prisma.achievement.findMany();
-  const earnedAchievementIds = new Set(user.achievements.map((ua) => ua.achievementId));
+  const earnedAchievementIds = new Set(
+    user.achievements.map((ua: { achievementId: string }) => ua.achievementId)
+  );
   const newlyEarned: string[] = [];
 
   for (const achievement of allAchievements) {
