@@ -201,10 +201,17 @@ export default async function DashboardPage() {
                         {/* Main Content Area - Left Side */}
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
-                            <div className="animate-fade-in-up">
+                            <div className="animate-fade-in-up flex items-center justify-between gap-3 flex-wrap">
                                 <h1 className="text-3xl font-display font-bold text-text mb-2">
                                     Welcome, {session.user?.name}!
                                 </h1>
+                                <Link
+                                    href="/dashboard/stats/student"
+                                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-full shadow-sm hover:brightness-110 active:scale-95 transition"
+                                >
+                                    <TrophyIcon className="w-4 h-4" />
+                                    View progress
+                                </Link>
                             </div>
 
                             {/* Featured Assignments (styled like student view) */}
