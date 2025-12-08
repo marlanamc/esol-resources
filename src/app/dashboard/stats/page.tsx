@@ -6,6 +6,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StatCard, BottomNav } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon } from "@/components/icons/Icons";
+import { TeacherStudentStatsPanel } from "@/components/dashboard/TeacherStudentStatsPanel";
 
 export default async function StatsPage() {
     const session = await getServerSession(authOptions);
@@ -24,7 +25,17 @@ export default async function StatsPage() {
     const classes = await prisma.class.findMany({
         where: { teacherId: userId },
         include: {
-            enrollments: true,
+            enrollments: {
+                include: {
+                    student: {
+                        select: {
+                            id: true,
+                            name: true,
+                            username: true,
+                        }
+                    }
+                }
+            },
             assignments: true,
         },
         orderBy: { createdAt: "desc" },
@@ -33,7 +44,49 @@ export default async function StatsPage() {
     const allAssignments = classes.flatMap((c) => c.assignments);
     const allActivities = await prisma.activity.findMany({
         orderBy: { createdAt: "desc" },
+        select: {
+            id: true,
+            title: true,
+            category: true,
+            type: true,
+        },
     });
+
+    const students = Array.from(
+        new Map(
+            classes.flatMap((c) =>
+                c.enrollments
+                    .filter((e) => e.student)
+                    .map((e) => [e.student.id, e.student])
+            )
+        ).values()
+    );
+
+    const studentIds = students.map((s) => s.id);
+
+    const progressEntries = studentIds.length
+        ? await (prisma as any).activityProgress.findMany({
+            where: { userId: { in: studentIds } },
+            select: { userId: true, activityId: true, progress: true },
+        })
+        : [];
+
+    const progressByStudent = progressEntries.reduce<Record<string, Record<string, number>>>((acc, entry: { userId: string; activityId: string; progress: number }) => {
+        if (!acc[entry.userId]) acc[entry.userId] = {};
+        acc[entry.userId][entry.activityId] = entry.progress;
+        return acc;
+    }, {});
+
+    const overallProgress: Record<string, number> = {};
+    if (studentIds.length > 0) {
+        allActivities.forEach((activity) => {
+            const sum = studentIds.reduce((total, sid) => {
+                const val = progressByStudent[sid]?.[activity.id] ?? 0;
+                return total + val;
+            }, 0);
+            overallProgress[activity.id] = Math.round(sum / studentIds.length);
+        });
+    }
 
     return (
         <div className="min-h-screen bg-bg">
@@ -94,6 +147,21 @@ export default async function StatsPage() {
                             className="delay-400"
                         />
                     </div>
+                </section>
+
+                <section className="animate-fade-in-up delay-150">
+                    {students.length === 0 ? (
+                        <div className="border border-dashed border-border/50 rounded-xl p-6 bg-white/70 text-text-muted text-sm">
+                            No students yet. Add students to your classes to view stats.
+                        </div>
+                    ) : (
+                        <TeacherStudentStatsPanel
+                            students={students}
+                            activities={allActivities}
+                            progressByStudent={progressByStudent}
+                            overallProgress={overallProgress}
+                        />
+                    )}
                 </section>
             </main>
 
