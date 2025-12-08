@@ -25,3 +25,4 @@ UPDATE "User" SET "mustChangePassword" = false WHERE "username" = 'teacher';
 PRAGMA foreign_keys=ON;
 PRAGMA defer_foreign_keys=OFF;
 
+
