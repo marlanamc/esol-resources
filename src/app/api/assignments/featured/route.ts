@@ -13,12 +13,12 @@ export async function GET(request: NextRequest) {
         const userId = (session.user as any)?.id;
 
         // Get student's enrolled classes
-        const enrollments = await prisma.classEnrollment.findMany({
+        const enrollments: { classId: string }[] = await prisma.classEnrollment.findMany({
             where: { studentId: userId },
             select: { classId: true }
         });
 
-        const classIds = enrollments.map(e => e.classId);
+        const classIds = enrollments.map((enrollment) => enrollment.classId);
 
         // Get featured assignments for those classes
         const featuredAssignments = classIds.length === 0 ? [] : await prisma.assignment.findMany({
