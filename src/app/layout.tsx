@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 const fraunces = Fraunces({
   variable: "--font-display",
@@ -32,6 +34,23 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "Class Companion",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: "cover",
+  },
+  themeColor: "#d97757",
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -45,6 +64,8 @@ export default function RootLayout({
         className={`${fraunces.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
       >
         <Providers>{children}</Providers>
+        <ServiceWorkerRegistration />
+        <PWAInstallPrompt />
       </body>
     </html>
   );
