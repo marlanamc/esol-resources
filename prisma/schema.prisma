@@ -1,0 +1,158 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  name      String?
+  password  String   // Hashed password
+  role      String   @default("student") // student, teacher
+  mustChangePassword Boolean @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Gamification fields
+  points           Int      @default(0)
+  currentStreak    Int      @default(0)
+  longestStreak    Int      @default(0)
+  lastActivityDate DateTime?
+  weeklyPoints     Int      @default(0) // Reset every week
+  lastWeekRank     Int?     // Previous week's rank
+
+  // Relations
+  submissions Submission[]
+  classes     ClassEnrollment[]
+  createdClasses Class[] @relation("ClassTeacher")
+  achievements UserAchievement[]
+  calendarEventsCreated CalendarEvent[]
+}
+
+model Class {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  code        String   @unique // Class code for students to join
+  teacher     User     @relation("ClassTeacher", fields: [teacherId], references: [id])
+  teacherId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  enrollments ClassEnrollment[]
+  assignments Assignment[]
+  calendarEvents CalendarEvent[]
+}
+
+model ClassEnrollment {
+  id        String   @id @default(cuid())
+  class     Class    @relation(fields: [classId], references: [id])
+  classId   String
+  student   User     @relation(fields: [studentId], references: [id])
+  studentId String
+  joinedAt  DateTime @default(now())
+  
+  @@unique([classId, studentId])
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  type        String   // quiz, worksheet, slides, game, guide, resource
+  category    String?  // grammar, vocab, speaking, writing-reading
+  level       String?  // beginner, intermediate, advanced
+  content     String   // JSON content for the activity structure
+  createdBy   String?  // User ID of creator (null for legacy activities)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  submissions Submission[]
+  assignments Assignment[]
+}
+
+model Assignment {
+  id          String   @id @default(cuid())
+  class       Class    @relation(fields: [classId], references: [id])
+  classId     String
+  activity    Activity @relation(fields: [activityId], references: [id])
+  activityId  String
+  title       String?
+  instructions String?
+  dueDate     DateTime?
+  isFeatured  Boolean  @default(false) // Featured assignments appear in "Today's Assignments"
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  submissions Submission[]
+}
+
+model Submission {
+  id         String   @id @default(cuid())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  activity   Activity @relation(fields: [activityId], references: [id])
+  activityId String
+  assignment Assignment? @relation(fields: [assignmentId], references: [id])
+  assignmentId String?
+  content    String   // JSON content of the submission
+  score      Int?
+  feedback   String?
+  status     String   @default("pending") // pending, submitted, graded
+  pointsAwarded Int    @default(0) // Points earned for this submission
+  completedAt DateTime? // When the submission was marked as completed/graded
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([userId, activityId, assignmentId])
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  name        String   // e.g., "First Steps", "Week Warrior", "Quiz Master"
+  description String   // What the achievement is for
+  icon        String   // Emoji or icon identifier
+  type        String   // streak, points, quiz, activity
+  requirement Int      // Number needed to unlock (e.g., 7 for "7-day streak")
+  points      Int      @default(0) // Bonus points for earning this
+  createdAt   DateTime @default(now())
+
+  // Relations
+  userAchievements UserAchievement[]
+}
+
+model CalendarEvent {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  date        DateTime
+  endDate     DateTime?
+  type        String   @default("holiday") // holiday, event, reminder
+  class       Class    @relation(fields: [classId], references: [id])
+  classId     String
+  createdBy   User?    @relation(fields: [createdById], references: [id])
+  createdById String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model UserAchievement {
+  id            String      @id @default(cuid())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  achievementId String
+  earnedAt      DateTime    @default(now())
+
+  @@unique([userId, achievementId])
+}

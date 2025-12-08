@@ -1,0 +1,51 @@
+import type { Metadata } from "next";
+import { Fraunces, DM_Sans, Caveat } from "next/font/google";
+import "./globals.css";
+import Providers from "@/components/Providers";
+
+const fraunces = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const caveat = Caveat({
+  variable: "--font-handwritten",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: "Class Companion - ESOL Learning Hub",
+  description: "An interactive classroom companion for ESOL students and teachers. Practice grammar, build vocabulary, compete with classmates, and track your progress.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Class Companion",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${fraunces.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
+      >
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  );
+}

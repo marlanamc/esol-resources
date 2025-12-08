@@ -1,0 +1,114 @@
+import { PrismaClient } from '@prisma/client';
+import { presentSimpleContent } from '../src/content/grammar/present-simple';
+import { pastSimpleContent } from '../src/content/grammar/past-simple';
+import { futureSimpleContent } from '../src/content/grammar/future-simple';
+import { presentContinuousContent } from '../src/content/grammar/present-continuous';
+import { pastContinuousContent } from '../src/content/grammar/past-continuous';
+import { futureContinuousContent } from '../src/content/grammar/future-continuous';
+
+const prisma = new PrismaClient();
+
+async function main() {
+  console.log('🧹 Cleaning up existing activities...');
+
+  // Delete all existing activities
+  await prisma.activity.deleteMany({});
+  console.log('✅ Removed all existing activities');
+
+  console.log('\n📚 Adding Simple Tense Guides...');
+
+  // Present Simple
+  const presentSimple = await prisma.activity.create({
+    data: {
+      title: 'Present Simple - Complete Step-by-Step Guide',
+      description: 'Learn Present Simple tense with step-by-step lessons covering meaning, usage, positive/negative/question forms, time expressions, and interactive exercises.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'beginner',
+      content: JSON.stringify(presentSimpleContent)
+    }
+  });
+  console.log('✅ Added:', presentSimple.title);
+
+  // Past Simple
+  const pastSimple = await prisma.activity.create({
+    data: {
+      title: 'Past Simple - Complete Step-by-Step Guide',
+      description: 'Master Past Simple tense including regular and irregular verbs, positive/negative/question forms, and time expressions with interactive practice.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'beginner',
+      content: JSON.stringify(pastSimpleContent)
+    }
+  });
+  console.log('✅ Added:', pastSimple.title);
+
+  // Future Simple
+  const futureSimple = await prisma.activity.create({
+    data: {
+      title: 'Future Simple - Complete Step-by-Step Guide',
+      description: 'Learn Future Simple (will) for predictions, promises, and spontaneous decisions with clear examples and interactive exercises.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'beginner',
+      content: JSON.stringify(futureSimpleContent)
+    }
+  });
+  console.log('✅ Added:', futureSimple.title);
+
+  console.log('\n📚 Adding Continuous Tense Guides...');
+
+  // Present Continuous
+  const presentContinuous = await prisma.activity.create({
+    data: {
+      title: 'Present Continuous - Complete Step-by-Step Guide',
+      description: 'Learn Present Continuous for actions happening now and temporary situations with step-by-step lessons and practice exercises.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'beginner',
+      content: JSON.stringify(presentContinuousContent)
+    }
+  });
+  console.log('✅ Added:', presentContinuous.title);
+
+  // Past Continuous
+  const pastContinuous = await prisma.activity.create({
+    data: {
+      title: 'Past Continuous - Complete Step-by-Step Guide',
+      description: 'Master Past Continuous for actions in progress in the past and interrupted actions with interactive exercises.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(pastContinuousContent)
+    }
+  });
+  console.log('✅ Added:', pastContinuous.title);
+
+  // Future Continuous
+  const futureContinuous = await prisma.activity.create({
+    data: {
+      title: 'Future Continuous - Complete Step-by-Step Guide',
+      description: 'Learn Future Continuous for actions that will be in progress at specific future times with clear examples and practice.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(futureContinuousContent)
+    }
+  });
+  console.log('✅ Added:', futureContinuous.title);
+
+  console.log('\n✨ Dashboard updated successfully!');
+  console.log(`\nAdded ${6} tense guides:`);
+  console.log('  - 3 Simple tenses (Present, Past, Future)');
+  console.log('  - 3 Continuous tenses (Present, Past, Future)');
+  console.log('\nYou can now view all activities at: /dashboard');
+}
+
+main()
+  .catch((e) => {
+    console.error('❌ Error:', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
