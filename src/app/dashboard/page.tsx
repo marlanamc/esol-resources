@@ -17,11 +17,9 @@ import {
 } from "@/components/icons/Icons";
 import {
     DashboardHeader,
-    StatsOverview,
     AssignmentCard,
     ActivityBrowseGrid,
     MiniCalendar,
-    CreateCalendarEventForm,
     CalendarEvent,
     UpcomingEventsList,
     TodaysAssignments,
@@ -94,11 +92,7 @@ type StudentEnrollment = {
     };
 };
 
-interface DashboardPageProps {
-    searchParams?: { [key: string]: string | string[] | undefined };
-}
-
-export default async function DashboardPage({ searchParams }: DashboardPageProps) {
+export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -109,7 +103,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
     const userId = (session.user as any)?.id;
 
     if (userRole === "teacher") {
-        const showStats = searchParams?.view === "stats";
         // Teacher Dashboard
         const classes = await prisma.class.findMany({
             where: { teacherId: userId },
@@ -183,6 +176,19 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             },
             submissions: [],
         }));
+
+        const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
+            id: assignment.id,
+            title: assignment.title,
+            activityId: assignment.activityId,
+            activity: {
+                title: assignment.activity.title,
+                description: assignment.activity.description,
+                // fall back to type if category missing to keep badge styling
+                category: (assignment.activity as any).category || assignment.activity.type || null,
+            },
+            submissions: [],
+        }));
         const calendarEvents: CalendarEvent[] = [
             ...allAssignments
                 .filter(a => a.dueDate)
@@ -226,45 +232,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                 </header>
 
                 <main className="container mx-auto max-w-[1800px] pt-8 pb-24 md:pb-8 px-4 sm:px-6 lg:px-8 space-y-10">
-                    {/* Stats Overview (hidden by default to mirror student view) */}
-                    {showStats && (
-                        <section className="animate-fade-in-up delay-200">
-                            <h2 className="text-2xl font-bold mb-6 font-display text-text flex items-center gap-2">
-                                Overview
-                            </h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <StatCard
-                                    label="Total Classes"
-                                    value={classes.length}
-                                    icon={<UsersIcon className="w-full h-full" />}
-                                    color="primary"
-                                    className="delay-100"
-                                />
-                                <StatCard
-                                    label="Total Students"
-                                    value={classes.reduce((sum, c) => sum + c.enrollments.length, 0)}
-                                    icon={<UserIcon className="w-full h-full" />}
-                                    color="secondary"
-                                    className="delay-200"
-                                />
-                                <StatCard
-                                    label="Assignments"
-                                    value={allAssignments.length}
-                                    icon={<ClipboardIcon className="w-full h-full" />}
-                                    color="warning"
-                                    className="delay-300"
-                                />
-                                <StatCard
-                                    label="Activities"
-                                    value={allActivities.length}
-                                    icon={<BookOpenIcon className="w-full h-full" />}
-                                    color="accent"
-                                    className="delay-400"
-                                />
-                            </div>
-                        </section>
-                    )}
-
                     {/* Activities & Calendar Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Activity Library */}
@@ -323,15 +290,11 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
 
                                 <UpcomingEventsList events={calendarEvents} />
 
-                                <div id="add-event">
-                                    <CreateCalendarEventForm classes={classes.map(c => ({ id: c.id, name: c.name }))} />
-                                </div>
-
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
                                     <div className="flex flex-col gap-2">
                                         <Link
-                                            href="#add-event"
+                                            href="/dashboard/calendar/new"
                                             className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
                                         >
                                             Add Event to Calendar
@@ -343,7 +306,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                                             Reset Student Passwords
                                         </Link>
                                         <Link
-                                            href="/dashboard?view=stats"
+                                            href="/dashboard/stats"
                                             className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
                                         >
                                             Student Stats
