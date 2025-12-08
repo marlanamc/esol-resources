@@ -14,6 +14,8 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
     const sections = content.sections || [];
     const totalSteps = sections.length;
     const currentSection = sections[currentStep];
+    const canGoPrev = currentStep > 0;
+    const canGoNext = currentStep < totalSteps - 1;
 
     // Keyboard navigation
     useEffect(() => {
@@ -33,17 +35,19 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
     if (totalSteps === 0) return <div>No content available.</div>;
 
+    const progressPercent = totalSteps > 0 ? Math.round(((currentStep + 1) / totalSteps) * 100) : 0;
+
     return (
-        <div className="fixed inset-0 bg-bg z-fixed flex flex-col h-screen w-screen overflow-hidden text-text font-body selection:bg-primary/20">
+        <div className="fixed inset-0 bg-bg z-fixed flex flex-col h-screen w-screen text-text font-body selection:bg-primary/20 overflow-y-auto lg:overflow-hidden">
             {/* Header */}
-            <header className="flex-none h-16 px-6 border-b border-border/60 bg-white/80 backdrop-blur-md flex items-center justify-between z-10">
+            <header className="flex-none h-14 sm:h-16 px-4 sm:px-6 border-b border-border/60 bg-white/80 backdrop-blur-md flex items-center justify-between z-10">
                 <div className="flex items-center gap-4">
-                    <h1 className="text-lg font-display font-bold text-text truncate max-w-md">
+                    <h1 className="text-base sm:text-lg font-display font-bold text-text truncate max-w-md">
                         {title || "Grammar Presentation Mode"}
                     </h1>
                 </div>
 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4 sm:gap-6">
                     <span className="text-sm font-semibold text-text-muted tracking-wide">
                         {currentStep + 1} / {totalSteps}
                     </span>
@@ -58,34 +62,39 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 </div>
             </header>
 
+            {/* Progress bar for small screens */}
+            <div className="lg:hidden h-1 w-full bg-border/60">
+                <div className="h-full bg-primary transition-all" style={{ width: `${progressPercent}%` }} />
+            </div>
+
             {/* Main Content Area - Split Screen */}
-            <div className="flex-1 flex min-h-0 relative">
+            <div className="flex-1 flex min-h-0 relative flex-col gap-6 lg:gap-0 lg:flex-row">
                 {/* Navigation Arrows (Floating) */}
                 <button
                     onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
-                    disabled={currentStep === 0}
-                    className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-border transition-all hover:scale-110 active:scale-95 text-primary ${currentStep === 0 ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    disabled={!canGoPrev}
+                    className={`hidden lg:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-all hover:scale-110 active:scale-95 text-primary ${!canGoPrev ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
                 </button>
 
                 <button
                     onClick={() => setCurrentStep(prev => Math.min(totalSteps - 1, prev + 1))}
-                    disabled={currentStep === totalSteps - 1}
-                    className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-lg border border-border transition-all hover:scale-110 active:scale-95 text-primary ${currentStep === totalSteps - 1 ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    disabled={!canGoNext}
+                    className={`hidden lg:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-all hover:scale-110 active:scale-95 text-primary ${!canGoNext ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
                 </button>
 
                 {/* Left Panel: Theory/Content */}
-                <div className="flex-1 overflow-y-auto w-1/2 p-8 md:p-12 lg:pl-24 lg:pr-12 flex flex-col justify-center bg-white/50">
-                    <div className="max-w-xl mx-auto w-full animate-fade-in-up">
+                <div className="flex-1 overflow-visible lg:overflow-y-auto w-full lg:w-1/2 p-5 sm:p-7 lg:pl-24 lg:pr-12 flex flex-col justify-center bg-white/70">
+                    <div className="max-w-2xl mx-auto w-full animate-fade-in-up space-y-4 sm:space-y-6">
                         {currentSection.stepNumber && (
                             <span className="inline-block text-xs font-bold tracking-widest text-primary uppercase mb-4 border-b-2 border-primary/20 pb-1">
                                 Part {currentSection.stepNumber}
                             </span>
                         )}
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-primary mb-8 leading-tight">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary mb-6 md:mb-8 leading-tight">
                             {currentSection.title}
                         </h2>
 
@@ -124,10 +133,10 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 </div>
 
                 {/* Right Panel: Practice/Interaction */}
-                <div className="flex-1 overflow-y-auto w-1/2 bg-bg-light/30 border-l border-border/60 p-8 md:p-12 lg:pr-24 lg:pl-12 flex flex-col justify-center">
-                    <div className="max-w-xl mx-auto w-full animate-fade-in-up delay-100">
+                <div className="flex-1 overflow-visible lg:overflow-y-auto w-full lg:w-1/2 bg-bg-light/40 border-t lg:border-t-0 lg:border-l border-border/60 p-5 sm:p-7 lg:pr-24 lg:pl-12 flex flex-col justify-center">
+                    <div className="max-w-2xl mx-auto w-full animate-fade-in-up delay-100 space-y-4 sm:space-y-6">
                         {currentSection.exercises && currentSection.exercises.length > 0 ? (
-                            <div className="bg-white rounded-3xl p-8 shadow-xl border border-white/60 relative overflow-hidden">
+                            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-white/60 relative overflow-hidden">
                                 {/* Decorative blob */}
                                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -152,6 +161,28 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                         )}
                     </div>
                 </div>
+            </div>
+            </div>
+
+            {/* Mobile Controls */}
+            <div className="lg:hidden border-t border-border/60 bg-white/95 backdrop-blur px-4 py-3 flex items-center justify-between gap-3 sticky bottom-0">
+                <button
+                    onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
+                    disabled={!canGoPrev}
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all ${canGoPrev ? "bg-bg-light text-text hover:bg-border/40" : "bg-border text-text-muted cursor-not-allowed"}`}
+                >
+                    Prev
+                </button>
+                <div className="text-sm font-semibold text-text-muted">
+                    {currentStep + 1} / {totalSteps}
+                </div>
+                <button
+                    onClick={() => setCurrentStep(prev => Math.min(totalSteps - 1, prev + 1))}
+                    disabled={!canGoNext}
+                    className={`px-4 py-2 rounded-lg font-semibold transition-all ${canGoNext ? "bg-primary text-white shadow-sm hover:brightness-110" : "bg-border text-text-muted cursor-not-allowed"}`}
+                >
+                    Next
+                </button>
             </div>
         </div>
     );

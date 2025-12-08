@@ -134,9 +134,9 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     }, [activityId, currentIndex, total]);
 
     return (
-        <div className="w-full max-w-4xl mx-auto px-4 py-4">
+        <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 py-4 touch-manipulation">
             {/* Controls & Settings */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4 bg-white p-4 rounded-xl shadow-sm border border-[var(--color-border)]">
+            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4 bg-white p-4 rounded-2xl shadow-sm border border-[var(--color-border)]">
                 {/* Playback Controls */}
                 <div className="flex items-center space-x-2">
                     <div className="text-sm font-medium text-[var(--color-text-muted)] mr-4">
@@ -198,10 +198,10 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             </div>
 
             {/* Navigation Controls - Moved above card */}
-            <div className="flex items-center justify-center mb-4 space-x-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center mb-4 gap-3 sm:space-x-6">
                 <button
                     onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                    className="p-4 rounded-full bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2"
+                    className="p-4 rounded-full bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 w-full sm:w-auto"
                     aria-label="Previous card"
                 >
                     <ChevronLeftIcon className="w-6 h-6" />
@@ -209,14 +209,14 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
 
                 <button
                     onClick={(e) => { e.stopPropagation(); handleFlip(); }}
-                    className="px-8 py-3 rounded-full bg-[var(--color-text)] text-white font-medium shadow-lg hover:bg-black hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[var(--color-text)] focus:ring-offset-2 min-w-[160px]"
+                    className="px-8 py-3 rounded-full bg-[var(--color-text)] text-white font-medium shadow-lg hover:bg-black hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[var(--color-text)] focus:ring-offset-2 min-w-[160px] w-full sm:w-auto"
                 >
                     {isFlipped ? "Flip Back" : "Flip Card"}
                 </button>
 
                 <button
                     onClick={(e) => { e.stopPropagation(); goNext(); }}
-                    className="p-4 rounded-full bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2"
+                    className="p-4 rounded-full bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 w-full sm:w-auto"
                     aria-label="Next card"
                 >
                     <ChevronRightIcon className="w-6 h-6" />
@@ -224,7 +224,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             </div>
 
             {/* Card Container */}
-            <div className="relative w-full aspect-[4/3] md:aspect-[16/9] perspective-1000 group cursor-pointer" onClick={handleFlip}>
+            <div className="relative w-full aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/9] max-h-[70vh] perspective-1000 group cursor-pointer" onClick={handleFlip}>
                 {/* The Card Inner wrapper that rotates */}
                 <div
                     className={`relative w-full h-full duration-500 transform-style-3d transition-transform ease-in-out ${isFlipped ? "rotate-y-180" : ""
