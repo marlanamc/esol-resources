@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "db:seed": "node prisma/seed.js",
+    "db:migrate": "prisma migrate deploy",
     "import:simple-tenses": "node scripts/import-simple-tenses.mjs"
   },
   "prisma": {
