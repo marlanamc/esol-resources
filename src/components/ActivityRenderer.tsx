@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
-import type { Activity } from "@prisma/client";
 import type {
     ActivityContent,
     Exercise,
@@ -27,7 +26,15 @@ import FillInBlankGame from "./ui/FillInBlankGame";
 import MatchingGame from "./ui/MatchingGame";
 
 interface Props {
-    activity: Activity;
+    activity: {
+        id: string;
+        title: string;
+        description: string | null;
+        content: string;
+        type: string;
+        category?: string | null;
+        level?: string | null;
+    };
 }
 
 export default function ActivityRenderer({ activity }: Props) {
