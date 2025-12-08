@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
         }
 
         const isEnrolled = assignment.class.enrollments.some(
-            (e) => e.studentId === userId
+            (enrollment: { studentId: string }) => enrollment.studentId === userId
         );
 
         if (!isEnrolled) {
@@ -145,6 +145,7 @@ export async function PUT(request: NextRequest) {
         );
     }
 }
+
 
 
 
