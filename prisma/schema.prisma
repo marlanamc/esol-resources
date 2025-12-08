@@ -34,6 +34,7 @@ model User {
   createdClasses Class[] @relation("ClassTeacher")
   achievements UserAchievement[]
   calendarEventsCreated CalendarEvent[]
+  activityProgress ActivityProgress[]
 }
 
 model Class {
@@ -78,6 +79,21 @@ model Activity {
   // Relations
   submissions Submission[]
   assignments Assignment[]
+  progress ActivityProgress[]
+}
+
+model ActivityProgress {
+  id          String   @id @default(cuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  activity    Activity @relation(fields: [activityId], references: [id])
+  activityId  String
+  progress    Int      @default(0) // 0-100
+  status      String   @default("in_progress") // in_progress, completed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, activityId])
 }
 
 model Assignment {

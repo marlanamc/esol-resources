@@ -28,7 +28,6 @@ import {
     ActivityCategories,
     TeacherActivityCategories
 } from "@/components/dashboard";
-import { StudentPasswordManager } from "@/components/StudentPasswordManager";
 
 type TeacherAssignment = {
     id: string;
@@ -268,11 +267,6 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                         </section>
                     )}
 
-                    {/* Student password management */}
-                    <section className="animate-fade-in-up delay-250">
-                        <StudentPasswordManager students={students} />
-                    </section>
-
                     {/* Activities & Calendar Row */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Activity Library */}
@@ -382,6 +376,19 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                                 <UpcomingEventsList events={calendarEvents} />
 
                                 <CreateCalendarEventForm classes={classes.map(c => ({ id: c.id, name: c.name }))} />
+
+                                <div className="pt-4 mt-4 border-t border-border/40">
+                                    <h3 className="text-sm font-semibold text-text mb-2">Need to reset a student password?</h3>
+                                    <p className="text-xs text-text-muted mb-3">
+                                        Open the dedicated password management page to update student passwords quickly.
+                                    </p>
+                                    <Link
+                                        href="/dashboard/passwords"
+                                        className="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-primary rounded-lg shadow-sm hover:brightness-110 active:scale-95"
+                                    >
+                                        Manage passwords
+                                    </Link>
+                                </div>
                             </div>
                         </aside>
                     </div>
@@ -522,6 +529,15 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             orderBy: { createdAt: "desc" },
         });
 
+        const progressEntries = await prisma.activityProgress.findMany({
+            where: { userId },
+            select: { activityId: true, progress: true },
+        });
+        const progressMap = progressEntries.reduce<Record<string, number>>((acc, p) => {
+            acc[p.activityId] = p.progress;
+            return acc;
+        }, {});
+
         // Get student's completed activities
         const completedActivities = await prisma.submission.findMany({
             where: {
@@ -583,7 +599,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                                         All Activities
                                     </h2>
                                 </div>
-                                <ActivityCategories activities={allActivities} completedActivityIds={completedActivityIds} />
+                                <ActivityCategories activities={allActivities} completedActivityIds={completedActivityIds} progressMap={progressMap} />
                             </section>
                         </div>
 

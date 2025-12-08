@@ -11,9 +11,10 @@ interface ActivityBrowseGridProps {
         category?: string | null;
         level?: string | null;
     }[];
+    progressMap?: Record<string, number>;
 }
 
-export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activities }) => {
+export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activities, progressMap }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up delay-400">
             {activities.map((activity, idx) => (
@@ -39,7 +40,11 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                         {/* Category & Level Script */}
                         <div className="flex items-center justify-between mb-3 text-xs font-semibold text-text-muted uppercase tracking-widest">
                             <span>{activity.category || 'General'}</span>
-
+                            {typeof progressMap?.[activity.id] === "number" && (
+                                <span className="text-[11px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                    {progressMap[activity.id]}% done
+                                </span>
+                            )}
                         </div>
 
                         {/* Content */}
