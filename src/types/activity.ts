@@ -1,0 +1,214 @@
+export type ActivityType =
+    | "quiz"
+    | "worksheet"
+    | "slides"
+    | "guide"
+    | "game"
+    | "resource";
+
+export type FormulaPartType = "subject" | "verb" | "object" | "other";
+
+export interface FormulaPart {
+    text: string;
+    type?: FormulaPartType;
+}
+
+export type ExerciseItem =
+    | {
+        type: "text";
+        label: string;
+        placeholder?: string;
+        correctAnswer?: string;
+        expectedAnswer?: string;
+    }
+    | {
+        type: "select";
+        label: string;
+        options: string[];
+        expectedAnswer?: string;
+    }
+    | {
+        type: "radio";
+        label: string;
+        options: Array<{ value: string; label: string }>;
+        expectedAnswer?: string;
+    }
+    | {
+        type: "word-scramble";
+        label: string;
+        words: string[];
+        correctAnswer: string;
+        hint?: string;
+    };
+
+export interface Exercise {
+    title: string;
+    instructions?: string;
+    items: ExerciseItem[];
+    id?: string; // For tracking completion
+}
+
+export interface UsageMeaning {
+    title: string;
+    description: string;
+    examples: Array<{
+        sentence: string;
+        explanation?: string;
+    }>;
+}
+
+export interface ComparisonRow {
+    label: string;
+    left: string;
+    right: string;
+}
+
+export interface TimeExpression {
+    word: string;
+    usage: string;
+    examples: string[];
+}
+
+export interface VerbTable {
+    title: string;
+    headers: string[];
+    rows: string[][];
+}
+
+export interface InteractiveGuideSection {
+    id?: string; // For tracking progress
+    stepNumber?: number;
+    title: string;
+    icon?: string; // Emoji or icon name
+    explanation?: string;
+    formula?: FormulaPart[];
+    examples?: string[];
+    exercises?: Exercise[];
+    usageMeanings?: UsageMeaning[]; // For meaning sections
+    comparison?: {
+        title: string;
+        leftLabel: string;
+        rightLabel: string;
+        rows: ComparisonRow[];
+    };
+    timeExpressions?: TimeExpression[];
+    verbTable?: VerbTable;
+    tipBox?: {
+        title: string;
+        content: string;
+    };
+    timeline?: {
+        title: string;
+        description: string;
+        events: Array<{
+            label: string;
+            order: number;
+            tenseLabel: string;
+        }>;
+    };
+}
+
+export interface LegacyGuideMetadata {
+    source: "legacy";
+    originalFile: string;
+    [key: string]: unknown;
+}
+
+export interface MiniQuizQuestion {
+    id: string;
+    question: string;
+    options: Array<{ value: string; label: string }>;
+    correctAnswer: string;
+    explanation?: string;
+}
+
+export interface InteractiveGuideContent {
+    type: "interactive-guide";
+    sections: InteractiveGuideSection[];
+    miniQuiz?: MiniQuizQuestion[]; // Optional final comprehension check
+    tableOfContents?: boolean; // Show TOC
+    metadata?: LegacyGuideMetadata;
+}
+
+export type LegacyGuideContent = InteractiveGuideContent & {
+    metadata: LegacyGuideMetadata;
+};
+
+export interface QuizQuestion {
+    id?: string | number;
+    question: string;
+    type?: "text" | "multiple" | "single" | "radio" | "checkbox";
+    options?: string[];
+}
+
+export interface QuizContent {
+    questions: QuizQuestion[];
+}
+
+export interface WorksheetSection {
+    title?: string;
+    instructions?: string;
+    content?: string;
+}
+
+export interface WorksheetContent {
+    sections?: WorksheetSection[];
+    content?: string;
+}
+
+export interface SlidesContent {
+    slides?: unknown[];
+}
+
+export interface GuideSection {
+    heading: string;
+    content: string;
+}
+
+export interface GuideContent {
+    title?: string;
+    sections?: GuideSection[];
+    content?: string;
+    metadata?: LegacyGuideMetadata;
+}
+
+export type ActivityContent =
+    | QuizContent
+    | WorksheetContent
+    | GuideContent
+    | InteractiveGuideContent
+    | LegacyGuideContent
+    | SlidesContent
+    | Record<string, unknown>;
+
+export interface LegacyGuideResponse {
+    html: string;
+    styles: string[];
+    scripts: string[];
+    source: string;
+}
+
+export function parseActivityContent(raw: string): ActivityContent | null {
+    try {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+            return parsed as ActivityContent;
+        }
+    } catch {
+        // ignore
+    }
+    return null;
+}
+
+export function isInteractiveGuideContent(value: unknown): value is InteractiveGuideContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "interactive-guide" && Array.isArray(candidate["sections"]);
+}
+
+export function isLegacyGuideContent(value: unknown): value is LegacyGuideContent {
+    if (!isInteractiveGuideContent(value)) return false;
+    const candidate = value as InteractiveGuideContent;
+    const meta = candidate.metadata;
+    return !!meta && meta.source === "legacy" && typeof meta.originalFile === "string";
+}

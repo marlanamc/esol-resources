@@ -1,0 +1,833 @@
+@import "tailwindcss";
+
+/* ============================================
+   ESOL Class Companion - Design System
+   Warm Educational Modernism (Tailwind v4)
+   ============================================ */
+
+/* Tailwind v4 Theme - Define all design tokens */
+@theme {
+  /* Colors - Primary (Academic Terracotta - deeper, richer) */
+  --color-primary: #c86b51;
+  --color-primary-dark: #a6523a;
+  --color-primary-light: #e59a84;
+
+  /* Colors - Secondary (Library Sage - more muted) */
+  --color-secondary: #6e9176;
+  --color-secondary-dark: #56725c;
+  --color-secondary-light: #9dbca3;
+
+  /* Colors - Accent (Parchment Gold) */
+  --color-accent: #e9c46a;
+  --color-accent-dark: #cba342;
+  --color-accent-light: #f4e4a8;
+
+  /* Semantic Colors */
+  --color-success: #6e9176;
+  --color-warning: #e76f51;
+  --color-error: #d64045;
+  --color-info: #4a8ca0;
+
+  /* Text Colors - High Contrast Academic */
+  --color-text: #1a202c;
+  /* Slate-900 */
+  --color-text-muted: #5e6b7d;
+  /* Slate-500 mixed with blue */
+  --color-text-light: #94a3b8;
+
+  /* Background Colors - Premium Paper */
+  --color-bg: #fdfbf7;
+  /* Very subtle warm white "Isabelline" */
+  --color-bg-light: #f4f1ea;
+  --color-bg-gray: #e9e6df;
+
+  /* Border Colors - Crisp and defined */
+  --color-border: #e2ddd5;
+  --color-border-dark: #c8c2b7;
+
+  /* White for buttons */
+  --color-white: #ffffff;
+
+  /* Font Families - will be set by Next.js */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-handwritten: var(--font-caveat), cursive;
+
+  /* Border Radius - Sophisticated (slightly tighter) */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows - Premium Elevation */
+  --shadow-sm: 0 1px 2px rgba(26, 32, 44, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(26, 32, 44, 0.05), 0 2px 4px -1px rgba(26, 32, 44, 0.03);
+  --shadow-lg: 0 10px 15px -3px rgba(26, 32, 44, 0.05), 0 4px 6px -2px rgba(26, 32, 44, 0.025);
+  --shadow-xl: 0 20px 25px -5px rgba(26, 32, 44, 0.05), 0 10px 10px -5px rgba(26, 32, 44, 0.02);
+}
+
+:root {
+  /* No changes needed here, using @theme */
+}
+
+/* Subtle paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+}
+
+
+/* ========== Typography ========== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+h5,
+h6 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+}
+
+a:not([class]) {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:not([class]):hover {
+  color: var(--color-primary-dark);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+strong,
+b {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+/* ========== Mobile-Optimized Touch Targets ========== */
+/* Apply minimum touch target to buttons and form controls for accessibility */
+button:not(.icon-button),
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input:not([type="button"]):not([type="submit"]):not([type="reset"]),
+select,
+textarea {
+  min-height: 44px;
+}
+
+/* Only apply min-width to button-like elements */
+button:not(.icon-button),
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  min-width: 44px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: inherit;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+/* ========== Animations ========== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-3deg);
+  }
+
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* ========== Utility Classes ========== */
+.handwritten {
+  font-family: var(--font-handwritten);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.underline-accent {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -4px;
+  right: -4px;
+  height: 10px;
+  background: var(--color-accent);
+  opacity: 0.5;
+  z-index: -1;
+  transform: rotate(-1deg);
+  border-radius: 2px;
+}
+
+/* Container styles are now handled by Tailwind's container utility */
+/* Configured in tailwind.config.ts */
+
+/* Utility to push CTA to the bottom inside flex columns */
+.mt-auto {
+  margin-top: auto;
+}
+
+/* ========== Mobile Bottom Navigation ========== */
+.bottom-nav-spacer {
+  height: var(--bottom-nav-height);
+}
+
+/* ========== Loading States ========== */
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--color-bg-gray) 0%,
+      var(--color-bg-light) 50%,
+      var(--color-bg-gray) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ========== Accessibility ========== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-primary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: 0 0 var(--radius-md) 0;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* ========== Focus Visible Styles ========== */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ========== Grammar Reader Styles ========== */
+
+/* Prose content for explanation panels */
+.prose {
+  max-width: 65ch;
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+}
+
+.prose h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.prose p {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* Scrollbar styling for grammar reader panels */
+.explanation-panel::-webkit-scrollbar,
+.practice-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.explanation-panel::-webkit-scrollbar-track,
+.practice-panel::-webkit-scrollbar-track {
+  background: var(--color-bg-light);
+}
+
+.explanation-panel::-webkit-scrollbar-thumb,
+.practice-panel::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-dark);
+  border-radius: 4px;
+}
+
+.explanation-panel::-webkit-scrollbar-thumb:hover,
+.practice-panel::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary);
+}
+
+/* ========== Grammar Reader: cleaner explanation content ========== */
+.grammar-reader-container .explanation-content {
+  color: var(--color-text);
+  background: transparent;
+}
+
+.grammar-reader-container .explanation-content h1,
+.grammar-reader-container .explanation-content h2,
+.grammar-reader-container .explanation-content h3,
+.grammar-reader-container .explanation-content h4 {
+  color: var(--color-text);
+  margin-bottom: 0.35em;
+}
+
+.grammar-reader-container .explanation-content p {
+  margin: 0.65em 0;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.grammar-reader-container .explanation-content mark {
+  background: rgba(244, 211, 94, 0.35);
+  color: var(--color-text);
+  padding: 0 0.3em;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1px rgba(244, 211, 94, 0.7);
+}
+
+.grammar-reader-container .explanation-content strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.grammar-reader-container .explanation-content table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(217, 119, 87, 0.08);
+}
+
+.grammar-reader-container .explanation-content th,
+.grammar-reader-container .explanation-content td {
+  border: 1px solid var(--color-border);
+  padding: 0.85rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.grammar-reader-container .explanation-content th {
+  background: rgba(217, 119, 87, 0.08);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.grammar-reader-container .explanation-content hr {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 1.25rem 0;
+}
+
+.grammar-reader-container .explanation-content ul,
+.grammar-reader-container .explanation-content ol {
+  margin: 0.75em 0 0.75em 1.25em;
+  color: var(--color-text);
+  line-height: 1.7;
+}
+
+/* Pull in a bit of the old “book” feel */
+.grammar-reader-container .grammar-reader-split-screen {
+  border: 1px solid var(--color-border);
+  box-shadow: 0 14px 38px rgba(217, 119, 87, 0.12);
+}
+
+.grammar-reader-container .explanation-panel {
+  background: #ffffff;
+}
+
+.grammar-reader-container .practice-panel {
+  background: var(--color-bg-light);
+}
+
+.grammar-reader-container .explanation-content h1,
+.grammar-reader-container .explanation-content h2 {
+  color: var(--color-primary);
+}
+
+.grammar-reader-container .explanation-content h3,
+.grammar-reader-container .explanation-content h4 {
+  color: var(--color-text);
+}
+
+/* Enhanced kbd styling for keyboard shortcuts */
+kbd {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--color-text);
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Floating navigation buttons - responsive adjustments */
+@media (max-width: 1024px) {
+  /* On tablets and smaller, move buttons slightly inward to avoid edge interference */
+  .grammar-reader-container button.fixed {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .grammar-reader-container button.fixed svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* On mobile, make buttons smaller */
+  .grammar-reader-container button.fixed {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .grammar-reader-container button.fixed svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Hide tooltips on mobile (touch devices) */
+  .grammar-reader-container button.fixed .absolute {
+    display: none !important;
+  }
+}
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========== Print Styles ========== */
+@media print {
+  body::before {
+    display: none;
+  }
+
+  @page {
+    margin: 1cm;
+  }
+
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* ========== Responsive Typography ========== */
+@media (min-width: 640px) {
+  :root {
+    --font-size-base: 17px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 42px;
+    --font-size-4xl: 56px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --font-size-xl: 26px;
+    --font-size-2xl: 38px;
+    --font-size-3xl: 56px;
+    --font-size-4xl: 72px;
+  }
+}
+
+/* ========== Safe Area Insets (iOS notches, etc.) ========== */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+
+  .bottom-nav {
+    padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+  }
+}
+/* ========== Interactive Guide Rich Content ========== */
+
+.explanation-box {
+  background: white;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.tip-box {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: var(--color-text);
+}
+
+.tip-box strong {
+  color: #d97706; /* amber-600 */
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.highlight {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #4f46e5; /* indigo-600 */
+}
+
+.highlight-past-perfect {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #db2777; /* pink-600 */
+}
+
+.highlight-past-simple {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #059669; /* emerald-600 */
+}
+
+.example-box {
+  background: var(--color-bg-light);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.example-box .example {
+  margin: var(--spacing-xs) 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.formula-box {
+  background: white;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.formula-part {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-md);
+  margin: 4px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-display);
+}
+
+.formula-part.subject-part {
+  background: #eff6ff; /* blue-50 */
+  color: #1e40af; /* blue-800 */
+  border-color: #dbeafe;
+}
+
+.formula-part.verb-part {
+  background: #fef2f2; /* red-50 */
+  color: #991b1b; /* red-800 */
+  border-color: #fee2e2;
+}
+
+.formula-part.object-part {
+  background: #f0fdf4; /* green-50 */
+  color: #166534; /* green-800 */
+  border-color: #dcfce7;
+}
+
+.usage-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: usage-counter;
+}
+
+.usage-list li {
+  position: relative;
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+  margin: var(--spacing-md) 0;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.usage-list li::before {
+  counter-increment: usage-counter;
+  content: counter(usage-counter);
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

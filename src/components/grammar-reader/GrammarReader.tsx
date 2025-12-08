@@ -1,0 +1,392 @@
+"use client";
+
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import type { InteractiveGuideContent, InteractiveGuideSection } from "@/types/activity";
+import { Button } from "@/components/ui/Button";
+import { SectionHeader } from "./SectionHeader";
+import { ExplanationPanel } from "./ExplanationPanel";
+import { PracticePanel } from "./PracticePanel";
+import { ProgressBar } from "./ProgressBar";
+import { TableOfContents } from "./TableOfContents";
+import { MiniQuizSection } from "./MiniQuizSection";
+import Link from "next/link";
+
+interface GrammarReaderProps {
+    content: InteractiveGuideContent;
+    onComplete?: () => void;
+}
+
+export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
+    const storageKey = "grammarReader:present-perfect:unlocked";
+    const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+    const [completedSections, setCompletedSections] = useState<Set<string>>(
+        new Set()
+    );
+    const [exerciseAnswers, setExerciseAnswers] = useState<
+        Record<string, Record<number, string>>
+    >({});
+    const [showTOC, setShowTOC] = useState(false);
+    const [showQuiz, setShowQuiz] = useState(false);
+    const [unlockedPractice, setUnlockedPractice] = useState<Set<string>>(new Set());
+    const practicePanelRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        try {
+            const stored = typeof window !== "undefined" ? localStorage.getItem(storageKey) : null;
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                if (Array.isArray(parsed)) {
+                    setUnlockedPractice(new Set(parsed));
+                }
+            }
+        } catch {
+            // ignore storage errors
+        }
+    }, [storageKey]);
+
+    const currentSection = showQuiz
+        ? null
+        : content.sections[currentSectionIndex];
+    const currentSectionKey = currentSection?.id || `section-${currentSectionIndex}`;
+    const currentHasExercises =
+        !!currentSection?.exercises && currentSection.exercises.length > 0;
+    const practiceUnlocked = currentHasExercises
+        ? unlockedPractice.has(currentSectionKey)
+        : true;
+    const showPracticeColumn = practiceUnlocked || !currentHasExercises;
+
+    const isFirstSection = currentSectionIndex === 0;
+    const isLastSection = currentSectionIndex === content.sections.length - 1;
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "ArrowRight" && !isLastSection) {
+                handleNext();
+            } else if (e.key === "ArrowLeft" && !isFirstSection) {
+                handlePrevious();
+            } else if (e.key === "Escape" && showTOC) {
+                setShowTOC(false);
+            } else if (e.key === "Escape" && showQuiz) {
+                setShowQuiz(false);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [currentSectionIndex, isFirstSection, isLastSection, showTOC, showQuiz]);
+
+    const handleNext = useCallback(() => {
+        if (!isLastSection) {
+            // Mark current section as completed
+            if (currentSection?.id) {
+                setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
+            }
+            setCurrentSectionIndex((prev) => prev + 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        } else if (content.miniQuiz && !showQuiz) {
+            // Show quiz after last section
+            if (currentSection?.id) {
+                setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
+            }
+            setShowQuiz(true);
+        }
+    }, [currentSectionIndex, isLastSection, currentSection, content.miniQuiz, showQuiz]);
+
+    const handlePrevious = useCallback(() => {
+        if (showQuiz) {
+            setShowQuiz(false);
+        } else if (!isFirstSection) {
+            setCurrentSectionIndex((prev) => prev - 1);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    }, [isFirstSection, showQuiz]);
+
+    const handleSectionComplete = useCallback(() => {
+        if (currentSection?.id) {
+            setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
+        }
+    }, [currentSection]);
+
+    const handleUnlockExercises = useCallback(() => {
+        if (!currentSectionKey || !currentHasExercises) return;
+        setUnlockedPractice((prev) => {
+            const next = new Set(prev);
+            next.add(currentSectionKey);
+            return next;
+        });
+    }, [currentHasExercises, currentSectionKey]);
+
+    useEffect(() => {
+        try {
+            if (typeof window !== "undefined") {
+                localStorage.setItem(storageKey, JSON.stringify(Array.from(unlockedPractice)));
+            }
+        } catch {
+            // ignore storage errors
+        }
+    }, [storageKey, unlockedPractice]);
+
+    useEffect(() => {
+        if (practiceUnlocked && showPracticeColumn && practicePanelRef.current) {
+            practicePanelRef.current.focus();
+        }
+    }, [practiceUnlocked, showPracticeColumn]);
+
+    const handleAnswerChange = useCallback(
+        (exerciseId: string, itemIndex: number, value: string) => {
+            setExerciseAnswers((prev) => ({
+                ...prev,
+                [exerciseId]: {
+                    ...(prev[exerciseId] || {}),
+                    [itemIndex]: value,
+                },
+            }));
+        },
+        []
+    );
+
+    const handleJumpToSection = useCallback((index: number) => {
+        setCurrentSectionIndex(index);
+        setShowTOC(false);
+        setShowQuiz(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
+    const handleQuizComplete = useCallback(() => {
+        setShowQuiz(false);
+        if (onComplete) {
+            onComplete();
+        }
+    }, [onComplete]);
+
+    return (
+        <div className="grammar-reader-container min-h-screen bg-bg">
+            {/* Main Content Container - Everything in one card */}
+            <div className="container mx-auto px-4 py-4">
+                <div className="grammar-reader-split-screen bg-white rounded-xl shadow-lg border border-border overflow-hidden">
+                    {/* Compact Header: Breadcrumb + Progress + TOC */}
+                    <div className="border-b border-border bg-bg-light">
+                        <div className="px-6 py-3 group">
+                            {/* Top Row: Breadcrumb and TOC Button */}
+                            <div className="flex items-center justify-between gap-4 mb-3">
+                                <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
+                                    <a
+                                        href="/dashboard/activities"
+                                        className="text-primary hover:underline flex-shrink-0"
+                                    >
+                                        Activities
+                                    </a>
+                                    <span className="text-text-muted flex-shrink-0">/</span>
+                                    <a
+                                        href="/dashboard/activities?category=grammar"
+                                        className="text-primary hover:underline flex-shrink-0"
+                                    >
+                                        Grammar
+                                    </a>
+                                    <span className="text-text-muted flex-shrink-0">/</span>
+                                    <span className="text-text font-medium flex-shrink-0">Present Perfect</span>
+                                </nav>
+
+                                <div className="flex items-center gap-2 flex-shrink-0">
+                                    <Link
+                                        href="/dashboard"
+                                        className="text-xs text-primary hover:text-primary-dark px-3 py-1 rounded-full border border-border hover:border-primary transition-colors bg-white shadow-sm"
+                                    >
+                                        Home
+                                    </Link>
+                                    {/* TOC Button */}
+                                    {content.tableOfContents && (
+                                        <button
+                                            onClick={() => setShowTOC(!showTOC)}
+                                            className="flex-shrink-0 text-xs text-primary hover:text-primary-dark flex items-center gap-1 px-2 py-1 rounded hover:bg-white transition-colors"
+                                        >
+                                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                                                />
+                                            </svg>
+                                            {showTOC ? "Hide" : "Show"} TOC
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Progress Bar - Compact (hidden until hover) */}
+                            <div className="transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 group-focus-within:max-h-20 group-focus-within:opacity-100">
+                                <ProgressBar
+                                    total={content.sections.length}
+                                    current={currentSectionIndex}
+                                    completed={completedSections.size}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Table of Contents - Expandable */}
+                        {content.tableOfContents && showTOC && (
+                            <div className="px-6 pb-4 border-t border-border">
+                                <div className="pt-4">
+                                    <TableOfContents
+                                        sections={content.sections}
+                                        onSelectSection={handleJumpToSection}
+                                        currentIndex={currentSectionIndex}
+                                        completedSections={completedSections}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Mini Quiz Section */}
+                    {showQuiz && content.miniQuiz && (
+                        <div className="p-6">
+                            <MiniQuizSection
+                                questions={content.miniQuiz}
+                                onComplete={handleQuizComplete}
+                            />
+                        </div>
+                    )}
+
+                    {/* Main Content: Split Screen Layout */}
+                    {!showQuiz && currentSection && (
+                        <>
+                            {/* Section Header */}
+                            <SectionHeader
+                                section={currentSection}
+                                sectionNumber={currentSectionIndex + 1}
+                                totalSections={content.sections.length}
+                            />
+
+                            {/* Split Screen Content */}
+                            {showPracticeColumn ? (
+                                <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+                                    {/* Left Side: Explanation */}
+                                    <ExplanationPanel
+                                        section={currentSection}
+                                        onUnlockExercises={handleUnlockExercises}
+                                        practiceUnlocked={practiceUnlocked}
+                                        hasExercises={currentHasExercises}
+                                        withRightBorder
+                                        className="w-full"
+                                    />
+
+                                    {/* Right Side: Practice */}
+                                    <div
+                                        ref={practicePanelRef}
+                                        tabIndex={-1}
+                                        aria-live="polite"
+                                        className="outline-none"
+                                    >
+                                        <PracticePanel
+                                            section={currentSection}
+                                            answers={exerciseAnswers}
+                                            onAnswerChange={handleAnswerChange}
+                                            onSectionComplete={handleSectionComplete}
+                                            unlocked={practiceUnlocked}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 min-h-[400px] justify-items-center px-4">
+                                    <ExplanationPanel
+                                        section={currentSection}
+                                        onUnlockExercises={handleUnlockExercises}
+                                        practiceUnlocked={practiceUnlocked}
+                                        hasExercises={currentHasExercises}
+                                        withRightBorder={false}
+                                        className="w-full max-w-5xl"
+                                    />
+                                </div>
+                            )}
+                        </>
+                    )}
+
+                    {/* Section Counter Footer - Just shows current section */}
+                    {!showTOC && (
+                        <div className="px-6 py-3 border-t border-border bg-bg-light">
+                            <div className="text-center">
+                                <div className="text-sm text-text-muted">
+                                    {showQuiz
+                                        ? "Mini Quiz"
+                                        : `Section ${currentSectionIndex + 1} of ${content.sections.length}`}
+                                </div>
+                                {/* Keyboard Shortcuts Hint */}
+                                <div className="text-xs text-text-muted mt-2">
+                                    <p>
+                                        Use <kbd className="px-2 py-1 bg-white rounded border border-border">←</kbd>{" "}
+                                        and <kbd className="px-2 py-1 bg-white rounded border border-border">→</kbd>{" "}
+                                        to navigate
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Floating Navigation Buttons - Outside the card, on sides */}
+                {!showTOC && (
+                    <>
+                        {/* Previous Button - Left Side */}
+                        {(!showQuiz && !isFirstSection) || showQuiz ? (
+                            <button
+                                onClick={handlePrevious}
+                                disabled={!showQuiz && isFirstSection}
+                                className="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-border hover:border-primary hover:bg-primary hover:text-white transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-border disabled:hover:text-text"
+                                aria-label="Previous section"
+                            >
+                                <svg
+                                    className="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M15 19l-7-7 7-7"
+                                    />
+                                </svg>
+                                <span className="absolute left-full ml-3 px-3 py-2 bg-text text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                    Previous
+                                </span>
+                            </button>
+                        ) : null}
+
+                        {/* Next Button - Right Side */}
+                        <button
+                            onClick={handleNext}
+                            disabled={showQuiz && !content.miniQuiz}
+                            className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark hover:scale-110 transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            aria-label="Next section"
+                        >
+                            <svg
+                                className="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 5l7 7-7 7"
+                                />
+                            </svg>
+                            <span className="absolute right-full mr-3 px-3 py-2 bg-text text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                {isLastSection && content.miniQuiz && !showQuiz
+                                    ? "Take Quiz"
+                                    : showQuiz
+                                        ? "Finish"
+                                        : "Next"}
+                            </span>
+                        </button>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+}
