@@ -302,7 +302,7 @@ export async function getUserGamificationStats(userId: string) {
     rank: rank > 0 ? rank : null,
     lastWeekRank: user.lastWeekRank,
     rankChange: user.lastWeekRank && rank > 0 ? user.lastWeekRank - rank : null,
-    achievements: user.achievements.map((ua) => ({
+    achievements: user.achievements.map((ua: { achievement: { id: string; name: string; description: string; icon: string }; earnedAt: Date }) => ({
       id: ua.achievement.id,
       name: ua.achievement.name,
       description: ua.achievement.description,
