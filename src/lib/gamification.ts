@@ -292,7 +292,7 @@ export async function getUserGamificationStats(userId: string) {
     select: { id: true },
   });
 
-  const rank = allStudents.findIndex((s) => s.id === userId) + 1;
+  const rank = allStudents.findIndex((s: { id: string }) => s.id === userId) + 1;
 
   return {
     points: user.points,
