@@ -170,7 +170,18 @@ export default async function ClassDetailPage({ params }: Props) {
                             </div>
                         ) : (
                             <div className="space-y-4">
-                                {classItem.assignments.map((assignment) => (
+                                {classItem.assignments.map((assignment: {
+                                    id: string;
+                                    title: string | null;
+                                    activity: {
+                                        id: string;
+                                        title: string;
+                                        description: string | null;
+                                        type: string;
+                                    };
+                                    isFeatured: boolean;
+                                    dueDate: Date | null;
+                                }) => (
                                     <div key={assignment.id} className="bg-white shadow rounded-lg p-6">
                                         <div className="flex items-start justify-between">
                                             <div className="flex-1">
