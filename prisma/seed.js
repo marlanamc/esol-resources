@@ -32,10 +32,9 @@ async function upsertUser(username, name, role = 'student', mustChangePassword =
     return prisma.user.upsert({
         where: { username },
         update: {
+            // Don't overwrite existing passwords or mustChangePassword flags
             name,
-            password: passwordHash,
             role,
-            mustChangePassword,
         },
         create: {
             username,
@@ -396,7 +395,12 @@ Q: Proof of training or education — **qualification**`,
 Q: A problem that gets in the way of your goal — **obstacle**
 Q: Something that makes it hard to focus — **distraction**
 Q: Someone you can trust — **reliable**
-Q: To review or check again — **go over**`,
+Q: To review or check again — **go over**
+Q: Something that helps you — **beneficial**
+Q: Something that is not good for you — **harmful**
+Q: To focus or pay close attention — **concentrate**
+Q: To become better — **improve**
+Q: Someone quiet and shy — **reserved**`,
             createdBy: teacher.id,
         },
         create: {
@@ -429,7 +433,17 @@ Q: To review or check again — **go over**`,
 Q: To move to a new place — **relocate**
 Q: A section on a website you can click — **tab**
 Q: Not required to pay — **waived**
-Q: Classes or programs to help you learn work skills — **job training**`,
+Q: Classes or programs to help you learn work skills — **job training**
+Q: To find your way or move through a place or website — **navigate**
+Q: Very quickly or needing fast help — **urgently**
+Q: An event to collect money for a cause — **fundraiser**
+Q: A building where legal matters happen — **courthouse**
+Q: A beginner-level job — **entry-level**
+Q: Not too expensive; low cost — **affordable**
+Q: Money or things given to help others — **donation**
+Q: Known or accepted by others — **recognized**
+Q: Official papers that allow you to do something — **permits**
+Q: City or town leaders who manage community services — **local government**`,
             createdBy: teacher.id,
         },
         create: {
@@ -462,7 +476,17 @@ Q: Classes or programs to help you learn work skills — **job training**`,
 Q: A trick to steal money or cheat someone — **scam**
 Q: Special parts or qualities of a product — **features**
 Q: Small payments made over time — **installments**
-Q: A written promise to fix or replace a product — **warranty**`,
+Q: A written promise to fix or replace a product — **warranty**
+Q: The act of putting something in and making it ready to use — **installation**
+Q: Already part of the price or group — **included**
+Q: Bad points; things that make something less good — **disadvantages**
+Q: To end or stop being good after a certain time — **expire**
+Q: A store that sells products at lower prices — **outlet**
+Q: Extra money earned from selling something — **commission**
+Q: A special offer to help sell a product — **promotion**
+Q: Something or someone you can trust to work well — **reliable**
+Q: The name of a product or company — **brand**
+Q: A company that gives you a service (like internet or phone) — **service provider**`,
             createdBy: teacher.id,
         },
         create: {
@@ -495,7 +519,15 @@ Q: A written promise to fix or replace a product — **warranty**`,
 Q: A legal contract for renting property — **lease**
 Q: Someone who rents a home or apartment — **tenant**
 Q: Empty or available for rent — **vacant**
-Q: Basic services in a home (electricity, water, gas) — **utilities**`,
+Q: Basic services in a home (electricity, water, gas) — **utilities**
+Q: Having a lot of room; large and open inside — **spacious**
+Q: A person who owns a property and rents it to other people — **landlord**
+Q: Something equal in value, amount, or meaning — **equivalent**
+Q: Strong and not likely to change suddenly; dependable — **stable**
+Q: Land or buildings that someone owns — **property**
+Q: The work needed to keep something in good condition — **maintenance**
+Q: To look at carefully before renting — **inspect**
+Q: To keep something in good condition — **maintain**`,
             createdBy: teacher.id,
         },
         create: {
@@ -528,7 +560,12 @@ Q: Basic services in a home (electricity, water, gas) — **utilities**`,
 Q: Careful and focused on small things — **detail-oriented**
 Q: Belief in yourself — **self-confidence**
 Q: Things you like more than others — **preferences**
-Q: Happening quickly — **fast-paced**`,
+Q: Happening quickly — **fast-paced**
+Q: In a stressful situation — **under pressure**
+Q: The place or situation around you — **environment**
+Q: Before something else — **prior**
+Q: A job or position someone has — **role**
+Q: Strong excitement or interest — **enthusiasm**`,
             createdBy: teacher.id,
         },
         create: {
@@ -561,7 +598,12 @@ Q: Happening quickly — **fast-paced**`,
 Q: Wanting to be successful or achieve goals — **ambitious**
 Q: Polite and respectful behavior — **courtesy**
 Q: To find and bring new people into a company or group — **recruit**
-Q: To accept a new responsibility or job — **take on**`,
+Q: To accept a new responsibility or job — **take on**
+Q: The way a person acts — **behavior**
+Q: To say what you think is wrong with something — **criticize**
+Q: Following rules very closely; not flexible — **strict**
+Q: Money taken out of your paycheck for taxes or other costs — **deductions**
+Q: To organize people or activities so they work well together — **coordinate**`,
             createdBy: teacher.id,
         },
         create: {
@@ -594,7 +636,17 @@ Q: To accept a new responsibility or job — **take on**`,
 Q: Feeling very sad or unhappy — **depressed**
 Q: Organs that filter waste from your blood — **kidneys**
 Q: Swollen, red, or painful — **inflamed**
-Q: Pain or swelling in the joints — **arthritis**`,
+Q: Pain or swelling in the joints — **arthritis**
+Q: Having germs that make you sick — **infected**
+Q: A doctor for children — **pediatrician**
+Q: The organ that holds urine — **bladder**
+Q: The organ that cleans your blood — **liver**
+Q: The organ that helps with digestion and sugar control — **pancreas**
+Q: Places where bones meet (like knees or elbows) — **joints**
+Q: Blood vessels that carry blood away from the heart — **arteries**
+Q: Parts of the body that help you move — **muscles**
+Q: Hard parts inside your body that give shape and support — **bones**
+Q: A sudden problem in the brain when blood flow is blocked or a vessel breaks — **stroke**`,
             createdBy: teacher.id,
         },
         create: {
@@ -627,7 +679,17 @@ Q: Pain or swelling in the joints — **arthritis**`,
 Q: Not being able to stop doing or using something harmful — **addiction**
 Q: Having enough water in your body — **hydration**
 Q: Extreme tiredness caused by too much work or stress — **burnout**
-Q: A routine plan, often for health or fitness — **regimen**`,
+Q: A routine plan, often for health or fitness — **regimen**
+Q: How you feel about yourself — **self-esteem**
+Q: To keep something going over time — **sustain**
+Q: Related to fun or relaxing activities — **recreational**
+Q: Not too much or too little — **moderation**
+Q: Ways to handle stress or problems — **coping skills**
+Q: Thin fibers that carry signals between the brain and other parts of the body; also feelings of stress — **nerves**
+Q: The part of a person that thinks, feels, and remembers — **mind**
+Q: Walking for exercise, usually in nature or on trails — **hiking**
+Q: An activity you enjoy that relaxes you — **hobby**
+Q: To remove harmful or addictive substances from the body — **detox**`,
             createdBy: teacher.id,
         },
         create: {
