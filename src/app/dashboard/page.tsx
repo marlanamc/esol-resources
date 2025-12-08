@@ -203,7 +203,7 @@ export default async function DashboardPage() {
                             {/* Welcome Header */}
                             <div className="animate-fade-in-up flex items-center justify-between gap-3 flex-wrap">
                                 <h1 className="text-3xl font-display font-bold text-text mb-2">
-                                    Welcome, {session.user?.name}!
+                                    Welcome, {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}!
                                 </h1>
                                 <Link
                                     href="/dashboard/stats/student"
