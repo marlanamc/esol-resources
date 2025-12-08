@@ -162,7 +162,6 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                     </div>
                 </div>
             </div>
-            </div>
 
             {/* Mobile Controls */}
             <div className="lg:hidden border-t border-border/60 bg-white/95 backdrop-blur px-4 py-3 flex items-center justify-between gap-3 sticky bottom-0">
