@@ -409,10 +409,12 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             : [];
 
         const submissionMap = new Map(
-            submissions.map((s) => [
-                `${s.userId}-${s.activityId}-${s.assignmentId ?? ""}`,
-                s,
-            ])
+            submissions.map(
+                (s: { userId: string; activityId: string; assignmentId: string | null; status: string }) => [
+                    `${s.userId}-${s.activityId}-${s.assignmentId ?? ""}`,
+                    s,
+                ]
+            )
         );
 
         const totalAssignments = allAssignments.length;
