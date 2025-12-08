@@ -93,10 +93,10 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             orderBy: { createdAt: "desc" },
         }) as TeacherClass[];
 
-        const classNameById = new Map(classes.map((cls) => [cls.id, cls.name]));
+        const classNameById = new Map(classes.map((cls: TeacherClass) => [cls.id, cls.name]));
         const today = new Date();
-        const allAssignments = classes.flatMap((c) => c.assignments);
-        const featuredAssignments = allAssignments.filter((a) => a.isFeatured);
+        const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
+        const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
 
         const allActivities = await prisma.activity.findMany({
             orderBy: { createdAt: "desc" },
