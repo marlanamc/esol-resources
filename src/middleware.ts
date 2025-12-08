@@ -3,19 +3,28 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
     function middleware(req) {
-        const token = req.nextauth.token as any;
+        try {
+            const token = req.nextauth?.token as any;
 
-        // Force password change flow
-        const isResetPage = req.nextUrl.pathname.startsWith("/password-reset");
-        if (token?.mustChangePassword && !isResetPage) {
-            const url = req.nextUrl.clone();
-            url.pathname = "/password-reset";
-            return NextResponse.redirect(url);
-        }
-        if (!token?.mustChangePassword && isResetPage) {
-            const url = req.nextUrl.clone();
-            url.pathname = "/dashboard";
-            return NextResponse.redirect(url);
+            // Force password change flow
+            const isResetPage = req.nextUrl.pathname.startsWith("/password-reset");
+            if (token?.mustChangePassword && !isResetPage) {
+                const url = req.nextUrl.clone();
+                url.pathname = "/password-reset";
+                return NextResponse.redirect(url);
+            }
+            if (!token?.mustChangePassword && isResetPage) {
+                const url = req.nextUrl.clone();
+                url.pathname = "/dashboard";
+                return NextResponse.redirect(url);
+            }
+            
+            // Return response to continue
+            return NextResponse.next();
+        } catch (error) {
+            console.error('[Middleware] Error:', error);
+            // If middleware fails, allow request to continue
+            return NextResponse.next();
         }
     },
     {
@@ -28,4 +37,6 @@ export default withAuth(
     }
 );
 
-export const config = { matcher: ["/dashboard/:path*", "/password-reset"] };
+export const config = { 
+    matcher: ["/dashboard/:path*", "/password-reset"] 
+};
