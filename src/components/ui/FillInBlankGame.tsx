@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { saveActivityProgress } from "@/lib/activityProgress";
 
 interface FillInBlankQuestion {
     id: number;
@@ -10,9 +11,10 @@ interface FillInBlankQuestion {
 
 interface Props {
     contentStr: string;
+    activityId?: string;
 }
 
-export default function FillInBlankGame({ contentStr }: Props) {
+export default function FillInBlankGame({ contentStr, activityId }: Props) {
     const questions = parseQuestions(contentStr);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -21,7 +23,7 @@ export default function FillInBlankGame({ contentStr }: Props) {
     const [showExplanation, setShowExplanation] = useState(false);
 
     const currentQuestion = questions[currentIndex];
-    const progress = ((currentIndex + 1) / questions.length) * 100;
+    const progress = ((currentIndex + (selectedAnswer ? 1 : 0)) / questions.length) * 100;
 
     const handleAnswerSelect = (answer: string) => {
         if (selectedAnswer) return; // Already answered
@@ -34,6 +36,12 @@ export default function FillInBlankGame({ contentStr }: Props) {
             setScore(score + 1);
         }
     };
+
+    useEffect(() => {
+        if (!activityId || questions.length === 0) return;
+        const value = Math.round(progress);
+        void saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress");
+    }, [activityId, progress, questions.length]);
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
@@ -50,6 +58,9 @@ export default function FillInBlankGame({ contentStr }: Props) {
         setIsCorrect(null);
         setScore(0);
         setShowExplanation(false);
+        if (activityId) {
+            void saveActivityProgress(activityId, 0, "in_progress");
+        }
     };
 
     if (questions.length === 0) {

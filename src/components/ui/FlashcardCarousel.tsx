@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { saveActivityProgress } from "@/lib/activityProgress";
 
 /**
  * FlashcardData interface matching the parser output in ActivityRenderer
@@ -14,11 +15,12 @@ interface FlashcardData {
 
 interface FlashcardCarouselProps {
     cards: FlashcardData[];
+    activityId?: string;
 }
 
 type CardMode = "term-first" | "def-first";
 
-export default function FlashcardCarousel({ cards }: FlashcardCarouselProps) {
+export default function FlashcardCarousel({ cards, activityId }: FlashcardCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [order, setOrder] = useState(cards.map((_, i) => i));
@@ -124,6 +126,12 @@ export default function FlashcardCarousel({ cards }: FlashcardCarouselProps) {
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [goNext, goPrev]);
+
+    useEffect(() => {
+        if (!activityId || total === 0) return;
+        const percent = Math.round(((currentIndex + 1) / total) * 100);
+        void saveActivityProgress(activityId, percent, percent >= 100 ? "completed" : "in_progress");
+    }, [activityId, currentIndex, total]);
 
     return (
         <div className="w-full max-w-4xl mx-auto px-4 py-4">

@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { saveActivityProgress } from "@/lib/activityProgress";
 
 interface MatchPair {
     id: number;
@@ -14,9 +15,10 @@ interface ShuffledItem {
 
 interface Props {
     contentStr: string;
+    activityId?: string;
 }
 
-export default function MatchingGame({ contentStr }: Props) {
+export default function MatchingGame({ contentStr, activityId }: Props) {
     // Memoize pairs to prevent recalculation on every render
     const pairs = useMemo(() => parsePairs(contentStr), [contentStr]);
 
@@ -27,6 +29,12 @@ export default function MatchingGame({ contentStr }: Props) {
     const [matches, setMatches] = useState<Map<number, number>>(new Map());
     const [incorrect, setIncorrect] = useState<Set<string>>(new Set());
     const [isComplete, setIsComplete] = useState(false);
+
+    useEffect(() => {
+        if (!activityId || pairs.length === 0) return;
+        const progress = Math.round((matches.size / pairs.length) * 100);
+        void saveActivityProgress(activityId, progress, progress >= 100 ? "completed" : "in_progress");
+    }, [activityId, matches, pairs.length]);
 
     // Initialize shuffled items only when pairs change
     useEffect(() => {

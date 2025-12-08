@@ -66,12 +66,12 @@ export default function ActivityRenderer({ activity }: Props) {
         case "game":
             // Detect game type based on content format
             if (activity.content?.includes("Q:") && activity.content?.includes("OPTIONS:")) {
-                return <FillInBlankGame contentStr={activity.content} />;
+                return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
             } else if (activity.content?.includes("::")) {
-                return <MatchingGame contentStr={activity.content} />;
+                return <MatchingGame contentStr={activity.content} activityId={activity.id} />;
             }
             // Default to flashcards
-            return <FlashcardRenderer contentStr={activity.content} />;
+            return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
         case "resource":
             return <ResourceRenderer contentStr={activity.content} />;
         default:
@@ -394,13 +394,13 @@ function ResourceRenderer({ contentStr }: { contentStr: string }) {
     );
 }
 
-function FlashcardRenderer({ contentStr }: { contentStr: string }) {
+function FlashcardRenderer({ contentStr, activityId }: { contentStr: string; activityId?: string }) {
     const cards = parseFlashcards(contentStr);
     if (!cards || cards.length === 0) {
         return <ResourceRenderer contentStr={contentStr} />;
     }
 
-    return <FlashcardCarousel cards={cards} />;
+    return <FlashcardCarousel cards={cards} activityId={activityId} />;
 }
 
 // function FlashcardCarousel({ cards }: { cards: Array<{ front: string; back: string }> }) {
