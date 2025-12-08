@@ -124,7 +124,14 @@ export default async function ClassDetailPage({ params }: Props) {
                                             </tr>
                                         </thead>
                                         <tbody className="bg-white divide-y divide-gray-200">
-                                            {classItem.enrollments.map((enrollment) => (
+                                            {classItem.enrollments.map((enrollment: {
+                                                id: string;
+                                                student: {
+                                                    name: string | null;
+                                                    username: string;
+                                                };
+                                                joinedAt: Date;
+                                            }) => (
                                                 <tr key={enrollment.id}>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                                         {enrollment.student.name || "No name"}
