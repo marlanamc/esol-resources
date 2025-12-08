@@ -30,6 +30,8 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     const [incorrect, setIncorrect] = useState<Set<string>>(new Set());
     const [isComplete, setIsComplete] = useState(false);
 
+    const progress = pairs.length ? Math.round((matches.size / pairs.length) * 100) : 0;
+
     useEffect(() => {
         if (!activityId || pairs.length === 0) return;
         const progress = Math.round((matches.size / pairs.length) * 100);
@@ -132,7 +134,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     }
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-4">
+        <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4">
             {/* Header */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
                 <div className="flex items-center justify-between">
@@ -144,6 +146,12 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 <p className="text-sm text-gray-600 mt-2">
                     Click a term, then click its matching definition. All matches must be correct!
                 </p>
+                <div className="mt-3 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                        className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                    />
+                </div>
             </div>
 
             {/* Matching Grid */}

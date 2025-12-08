@@ -223,8 +223,8 @@ export default async function DashboardPage() {
                                 />
                             </section>
 
-                            {/* All Activities - Organized by Category */}
-                            <section className="animate-fade-in-up delay-200">
+                            {/* All Activities - Organized by Category (hide on mobile to declutter) */}
+                            <section className="animate-fade-in-up delay-200 hidden md:block">
                                 <div className="flex items-center justify-between mb-6">
                                     <h2 className="text-2xl font-bold font-display text-text flex items-center gap-3">
                                         <span className="w-2 h-8 rounded-full bg-secondary/80"></span>
@@ -235,8 +235,8 @@ export default async function DashboardPage() {
                             </section>
                         </div>
 
-                        {/* Calendar & Important Pages Sidebar */}
-                        <aside className="animate-fade-in-up delay-100">
+                        {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
+                        <aside className="animate-fade-in-up delay-100 hidden md:block">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
@@ -251,6 +251,12 @@ export default async function DashboardPage() {
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
                                     <div className="flex flex-col gap-2">
+                                        <Link
+                                            href="/dashboard/leaderboard"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
+                                        >
+                                            Leaderboard
+                                        </Link>
                                         <Link
                                             href="/dashboard/calendar/new"
                                             className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
@@ -287,8 +293,8 @@ export default async function DashboardPage() {
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
                         { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
-                        { href: '/dashboard/classes', label: 'Classes', icon: <UsersIcon /> },
-                        { href: '/dashboard/profile', label: 'Profile', icon: <UserIcon /> },
+                        { href: '/dashboard/calendar', label: 'Calendar', icon: <UsersIcon /> },
+                        { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: <TrophyIcon /> },
                     ]}
                 />
             </div>
@@ -490,8 +496,8 @@ export default async function DashboardPage() {
                                 <TodaysAssignments initialAssignments={featuredAssignments} />
                             </section>
 
-                            {/* All Activities - Organized by Category */}
-                            <section className="animate-fade-in-up delay-200">
+                            {/* All Activities - Organized by Category (hide on mobile to declutter) */}
+                            <section className="animate-fade-in-up delay-200 hidden md:block">
                                 <div className="flex items-center justify-between mb-6">
                                     <h2 className="text-2xl font-bold font-display text-text flex items-center gap-3">
                                         <span className="w-2 h-8 rounded-full bg-secondary/80"></span>
@@ -502,8 +508,8 @@ export default async function DashboardPage() {
                             </section>
                         </div>
 
-                        {/* Calendar & Stats Sidebar - Right Side */}
-                        <aside className="animate-fade-in-up delay-100">
+                        {/* Calendar & Stats Sidebar - Right Side (hidden on mobile) */}
+                        <aside className="animate-fade-in-up delay-100 hidden md:block">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
@@ -515,6 +521,23 @@ export default async function DashboardPage() {
 
                                 <UpcomingEventsList events={calendarEvents} />
 
+                                <div className="pt-4 mt-4 border-t border-border/40 space-y-3">
+                                    <div className="flex items-center justify-between">
+                                        <h3 className="text-sm font-semibold text-text">Leaderboard</h3>
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">New</span>
+                                    </div>
+                                    <p className="text-sm text-text-muted">
+                                        See weekly points, streaks, and how you stack up with classmates.
+                                    </p>
+                                    <Link
+                                        href="/dashboard/leaderboard"
+                                        className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-semibold text-white bg-primary rounded-lg shadow-sm hover:brightness-110 active:scale-95 transition w-full"
+                                    >
+                                        <TrophyIcon className="w-4 h-4" />
+                                        View Leaderboard
+                                    </Link>
+                                </div>
+
                             </div>
                         </aside>
                     </div>
@@ -525,8 +548,8 @@ export default async function DashboardPage() {
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
                         { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
+                        { href: '/dashboard/calendar', label: 'Calendar', icon: <UsersIcon /> },
                         { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: <TrophyIcon /> },
-                        { href: '/dashboard/profile', label: 'Profile', icon: <UserIcon /> },
                     ]}
                 />
             </div>

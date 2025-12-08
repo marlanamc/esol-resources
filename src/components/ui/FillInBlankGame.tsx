@@ -75,7 +75,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
     const isComplete = selectedAnswer !== null && isLastQuestion;
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4">
             {/* Header with Progress */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-4">
                 <div className="flex items-center justify-between mb-3">
@@ -96,7 +96,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
             </div>
 
             {/* Question Card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8 mb-6">
                 {/* Question Text */}
                 <div className="mb-8">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-relaxed">
@@ -104,7 +104,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                             <span key={idx}>
                                 {part}
                                 {idx < arr.length - 1 && (
-                                    <span className="inline-block min-w-[120px] border-b-4 border-dashed border-[var(--color-primary)] mx-2 pb-1"></span>
+                                    <span className="inline-block min-w-[88px] sm:min-w-[140px] border-b-4 border-dashed border-[var(--color-primary)] mx-2 pb-1"></span>
                                 )}
                             </span>
                         ))}
@@ -210,11 +210,11 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
                 {!isLastQuestion && selectedAnswer && (
                     <button
                         onClick={handleNext}
-                        className="px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                        className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
                     >
                         Next Question →
                     </button>
@@ -222,7 +222,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                 {isComplete && (
                     <button
                         onClick={handleRestart}
-                        className="px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl"
+                        className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl"
                     >
                         Try Again
                     </button>
