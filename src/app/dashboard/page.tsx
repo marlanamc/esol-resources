@@ -77,6 +77,13 @@ type StudentEnrollment = {
             isFeatured: boolean;
             dueDate: Date | null;
         }[];
+        calendarEvents: {
+            id: string;
+            title: string;
+            date: Date;
+            endDate: Date | null;
+            type: string;
+        }[];
     };
 };
 
@@ -445,8 +452,8 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                     type: (a.title || a.activity.title || "").toLowerCase().includes("quiz") ? "quiz" as const : "due" as const,
                     title: `${a.title || a.activity.title || "Assignment"}`,
                 })),
-            ...enrollments.flatMap((enrollment) =>
-                enrollment.class.calendarEvents.map((ev) => ({
+            ...enrollments.flatMap((enrollment: StudentEnrollment) =>
+                enrollment.class.calendarEvents.map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string }) => ({
                     date: ev.date,
                     endDate: ev.endDate || null,
                     type: (ev.type as CalendarEvent["type"]) || "holiday",
