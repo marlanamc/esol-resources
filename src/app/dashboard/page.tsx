@@ -360,7 +360,7 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
             },
         });
 
-        const allAssignments = enrollments.flatMap((enrollment) =>
+        const allAssignments = enrollments.flatMap((enrollment: { class: TeacherClass }) =>
             enrollment.class.assignments.map((assignment) => ({
                 ...assignment,
                 className: enrollment.class.name,
