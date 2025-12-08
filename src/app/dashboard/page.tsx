@@ -59,6 +59,27 @@ type TeacherClass = {
     }[];
 };
 
+type StudentEnrollment = {
+    classId: string;
+    class: {
+        name: string;
+        assignments: {
+            id: string;
+            title: string | null;
+            activityId: string;
+            classId: string;
+            activity: {
+                id: string;
+                title: string;
+                description: string | null;
+                type: string;
+            };
+            isFeatured: boolean;
+            dueDate: Date | null;
+        }[];
+    };
+};
+
 interface DashboardPageProps {
     searchParams?: { [key: string]: string | string[] | undefined };
 }
@@ -358,9 +379,9 @@ export default async function DashboardPage({ searchParams }: DashboardPageProps
                     },
                 },
             },
-        });
+        }) as StudentEnrollment[];
 
-        const allAssignments = enrollments.flatMap((enrollment: { class: TeacherClass }) =>
+        const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>
             enrollment.class.assignments.map((assignment) => ({
                 ...assignment,
                 className: enrollment.class.name,
