@@ -7,15 +7,15 @@ export const presentSimpleContent: InteractiveGuideContent = {
         // Introduction Section
         {
             id: "introduction",
-            title: "Welcome! Let's Learn Present Simple Together",
+            title: "Present Simple: The Grammar You Use Every Day",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">We're going to learn Present Simple step by step. Don't worry - we'll practice each part before moving to the next!</p>
+                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about how you describe your daily life. "I work downtown." "Coffee costs too much." "My phone dies every afternoon." That's Present Simple! You already use it - now let's master it.</p>
                 </div>
 
-                <h3>What is Present Simple?</h3>
-                <p>It's used to talk about habits, routines, facts, and things that are always true.</p>
+                <h3>Why This Matters</h3>
+                <p>Present Simple is your go-to tense for talking about reality: your job, your habits, things that drive you crazy, things you love. It's the backbone of everyday English.</p>
             `,
         },
 
@@ -23,130 +23,130 @@ export const presentSimpleContent: InteractiveGuideContent = {
         {
             id: "meaning-usage",
             stepNumber: 1,
-            title: "When Do We Use Present Simple? Understanding the Meaning",
+            title: "When Real Life Needs Present Simple",
             icon: "⭐",
             explanation: `
-                <h3>Why is meaning important?</h3>
-                <p>Knowing the <strong>structure</strong> (how to form sentences) is important, but understanding the <strong>meaning</strong> (when and why to use Present Simple) helps you use it correctly in real life!</p>
+                <h3>The "Why" Matters More Than the "How"</h3>
+                <p>Grammar rules are boring. But understanding <strong>when</strong> native speakers use Present Simple? That's the difference between sounding fluent and sounding like a textbook.</p>
             `,
             usageMeanings: [
                 {
-                    title: "🔄 1. Habits & Routines",
+                    title: "🔄 1. Habits & Routines (The Real Ones)",
                     description:
-                        "Things you do regularly or repeatedly",
+                        "Things you actually do regularly - not the gym membership you never use",
                     examples: [
                         {
-                            sentence: "I <strong>wake up</strong> at 7 AM every day.",
+                            sentence: "I <strong>check</strong> my phone the second I wake up.",
                             explanation:
-                                "✓ Actions that happen regularly, not just once",
+                                "✓ That habit you won't admit to your therapist",
                         },
                         {
-                            sentence: "She <strong>goes</strong> to the gym three times a week.",
-                            explanation: "✓ Regular repeated actions",
+                            sentence: "My neighbor's dog <strong>barks</strong> at exactly 6 AM. Every. Single. Morning.",
+                            explanation: "✓ Annoying repeated actions (unfortunately also Present Simple!)",
                         },
                         {
-                            sentence: "They <strong>have</strong> dinner together every evening.",
-                            explanation: "✓ Daily routines",
+                            sentence: "She <strong>drinks</strong> three cups of coffee before noon.",
+                            explanation: "✓ Daily survival tactics",
                         },
                     ],
                 },
                 {
-                    title: "🌍 2. Facts & General Truths",
+                    title: "🌍 2. Facts & Universal Truths",
                     description:
-                        "Things that are always true",
+                        "Things everyone agrees on (unlike politics)",
                     examples: [
                         {
-                            sentence: "Water <strong>boils</strong> at 100 degrees Celsius.",
+                            sentence: "Coffee <strong>tastes</strong> better at 85°C - ask any barista.",
                             explanation:
-                                "✓ Scientific facts",
+                                "✓ Professional wisdom that's universally true",
                         },
                         {
-                            sentence: "The sun <strong>rises</strong> in the east.",
+                            sentence: "The last slice of pizza always <strong>tastes</strong> the best.",
                             explanation:
-                                "✓ Universal truths that don't change",
+                                "✓ Universal truths we can all relate to",
                         },
                         {
-                            sentence: "Birds <strong>fly</strong>.",
-                            explanation: "✓ General facts about the world",
+                            sentence: "Wi-Fi <strong>stops</strong> working the moment you need it most.",
+                            explanation: "✓ Modern life facts",
                         },
                     ],
                 },
                 {
-                    title: "🏠 3. Permanent Situations",
+                    title: "💼 3. Your Life Situation",
                     description:
-                        "Things that are true for a long time",
+                        "The basics: where you live, what you do, who you are",
                     examples: [
                         {
-                            sentence: "I <strong>live</strong> in Boston.",
+                            sentence: "I <strong>work</strong> in IT support - yes, I've tried turning it off and on again.",
                             explanation:
-                                "✓ Situations that don't change often",
+                                "✓ Your job (even if you're already updating your resume)",
                         },
                         {
-                            sentence: "She <strong>works</strong> as a teacher.",
-                            explanation: "✓ Jobs and professions",
+                            sentence: "She <strong>manages</strong> a team of fifteen people who all need \"just five minutes.\"",
+                            explanation: "✓ Work situations that aren't temporary",
                         },
                         {
-                            sentence: "He <strong>speaks</strong> three languages.",
+                            sentence: "My commute <strong>takes</strong> an hour each way.",
                             explanation:
-                                "✓ Abilities and skills",
+                                "✓ Life circumstances that feel permanent",
                         },
                     ],
                 },
                 {
-                    title: "📅 4. Scheduled Events (Timetables)",
-                    description: "Fixed schedules",
+                    title: "📅 4. Schedules & Timetables",
+                    description: "Fixed times that won't change (usually)",
                     examples: [
                         {
-                            sentence: "The train <strong>leaves</strong> at 8:30 AM.",
+                            sentence: "The team meeting <strong>starts</strong> at 9 AM sharp.",
                             explanation:
-                                "✓ Fixed times on timetables",
+                                "✓ Scheduled events - time to grab coffee first",
                         },
                         {
-                            sentence: "Class <strong>starts</strong> at 9:00.",
+                            sentence: "My shift <strong>ends</strong> at 6, but my inbox <strong>doesn't</strong> know that.",
                             explanation:
-                                "✓ Scheduled start times",
+                                "✓ Official schedules vs. reality",
                         },
                         {
-                            sentence: "The store <strong>opens</strong> at 10 AM.",
-                            explanation: "✓ Regular opening times",
+                            sentence: "The grocery store <strong>closes</strong> at 10 PM, right when I remember I need milk.",
+                            explanation: "✓ Fixed business hours that impact your life",
                         },
                     ],
                 },
                 {
-                    title: "❤️ 5. Likes, Dislikes & Opinions",
-                    description: "What you think or feel",
+                    title: "❤️ 5. Feelings, Opinions & Preferences",
+                    description: "What you think, feel, love, or can't stand",
                     examples: [
                         {
-                            sentence: "I <strong>like</strong> chocolate.",
+                            sentence: "I <strong>hate</strong> when people reply-all to company-wide emails.",
                             explanation:
-                                "✓ Preferences that are generally true",
+                                "✓ Strong feelings that are consistently true",
                         },
                         {
-                            sentence: "She <strong>hates</strong> vegetables.",
-                            explanation: "✓ Feelings and opinions",
+                            sentence: "She <strong>loves</strong> true crime podcasts but <strong>refuses</strong> to listen before bed.",
+                            explanation: "✓ Personal preferences and boundaries",
                         },
                         {
-                            sentence: "We <strong>prefer</strong> tea to coffee.",
-                            explanation: "✓ Personal preferences",
+                            sentence: "We <strong>prefer</strong> remote work - the commute is just too much.",
+                            explanation: "✓ Opinions that shape your decisions",
                         },
                     ],
                 },
             ],
             tipBox: {
-                title: "💡 Key Point",
+                title: "💡 The Real Difference",
                 content:
-                    "Present Simple describes things that are general, repeated, or always true. It's NOT for actions happening right now (that's Present Continuous).",
+                    "Present Simple = general truth or habit. NOT for what's happening right this second (that's Present Continuous). Think: 'I work downtown' (job) vs 'I'm working on a project' (right now).",
             },
             exercises: [
                 {
                     id: "ex-meaning-1",
-                    title: "Practice: Why Do We Use Present Simple Here?",
+                    title: "Practice: Why Present Simple Here?",
                     instructions:
-                        "Read each sentence and choose why we use Present Simple. Think about the meaning!",
+                        "Read each real-life sentence and identify WHY we use Present Simple. Think about the meaning!",
                     items: [
                         {
                             type: "radio",
-                            label: '1. "I drink coffee every morning."',
+                            label: '"I grab coffee on my way to work every morning."',
                             options: [
                                 {
                                     value: "habit",
@@ -154,26 +154,26 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "fact",
-                                    label: "Fact/General Truth",
+                                    label: "Fact/Universal Truth",
                                 },
                                 {
                                     value: "permanent",
-                                    label: "Permanent Situation",
+                                    label: "Life Situation",
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Scheduled Event",
+                                    label: "Schedule/Timetable",
                                 },
                                 {
                                     value: "preference",
-                                    label: "Likes/Dislikes/Preferences",
+                                    label: "Feeling/Opinion/Preference",
                                 },
                             ],
                             expectedAnswer: "habit",
                         },
                         {
                             type: "radio",
-                            label: '2. "The Earth revolves around the sun."',
+                            label: '"Traffic always gets worse after 4 PM."',
                             options: [
                                 {
                                     value: "habit",
@@ -181,26 +181,26 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "fact",
-                                    label: "Fact/General Truth",
+                                    label: "Fact/Universal Truth",
                                 },
                                 {
                                     value: "permanent",
-                                    label: "Permanent Situation",
+                                    label: "Life Situation",
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Scheduled Event",
+                                    label: "Schedule/Timetable",
                                 },
                                 {
                                     value: "preference",
-                                    label: "Likes/Dislikes/Preferences",
+                                    label: "Feeling/Opinion/Preference",
                                 },
                             ],
                             expectedAnswer: "fact",
                         },
                         {
                             type: "radio",
-                            label: '3. "The bus leaves at 6:00 PM."',
+                            label: '"The last train leaves at 11:45 PM."',
                             options: [
                                 {
                                     value: "habit",
@@ -208,26 +208,26 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "fact",
-                                    label: "Fact/General Truth",
+                                    label: "Fact/Universal Truth",
                                 },
                                 {
                                     value: "permanent",
-                                    label: "Permanent Situation",
+                                    label: "Life Situation",
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Scheduled Event",
+                                    label: "Schedule/Timetable",
                                 },
                                 {
                                     value: "preference",
-                                    label: "Likes/Dislikes/Preferences",
+                                    label: "Feeling/Opinion/Preference",
                                 },
                             ],
                             expectedAnswer: "scheduled",
                         },
                         {
                             type: "radio",
-                            label: '4. "I love pizza."',
+                            label: '"I can\'t stand crowded subways during rush hour."',
                             options: [
                                 {
                                     value: "habit",
@@ -235,19 +235,19 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "fact",
-                                    label: "Fact/General Truth",
+                                    label: "Fact/Universal Truth",
                                 },
                                 {
                                     value: "permanent",
-                                    label: "Permanent Situation",
+                                    label: "Life Situation",
                                 },
                                 {
                                     value: "scheduled",
-                                    label: "Scheduled Event",
+                                    label: "Schedule/Timetable",
                                 },
                                 {
                                     value: "preference",
-                                    label: "Likes/Dislikes/Preferences",
+                                    label: "Feeling/Opinion/Preference",
                                 },
                             ],
                             expectedAnswer: "preference",
@@ -261,110 +261,110 @@ export const presentSimpleContent: InteractiveGuideContent = {
         {
             id: "step-1-positive",
             stepNumber: 2,
-            title: "How to Form Present Simple (Positive Sentences)",
+            title: "How to Form It: Positive Sentences",
             explanation: `
-                <h3>The Formula</h3>
-                <p>Present Simple has <strong>different forms</strong> depending on the subject!</p>
+                <h3>The Pattern Everyone Uses</h3>
+                <p>Good news: Present Simple is straightforward. Just watch out for one tricky part - that <strong>-s ending</strong> for he/she/it.</p>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
-                { text: "(+s/es for he/she/it)", type: "other" },
+                { text: "(+s/es for he/she/it only!)", type: "other" },
             ],
             examples: [
-                "I work at a school.",
-                "You study English.",
-                "He works at a hospital. (add -s)",
-                "She teaches math. (add -es)",
-                "It rains a lot here.",
-                "We live in Boston.",
-                "They play soccer.",
+                "I work from home three days a week.",
+                "You sound exactly like my manager.",
+                "He commutes two hours each day. (note the -s)",
+                "She runs the weekly team meeting. (note the -s)",
+                "It takes forever to get through security.",
+                "We meet deadlines... sometimes.",
+                "They share an office that's way too small.",
             ],
             tipBox: {
-                title: "💡 The -s Rule",
+                title: "💡 The One Rule Everyone Forgets",
                 content:
-                    "Add -s or -es ONLY for he, she, it! Not for I, you, we, they.",
+                    "Add -s or -es ONLY for he, she, it! Not for I, you, we, they. Native speakers mess this up all the time too - you're not alone.",
             },
             verbTable: {
-                title: "Adding -s or -es: The Rules",
-                headers: ["Rule", "Examples"],
+                title: "That Annoying -s/-es Ending: The Rules",
+                headers: ["When", "Examples"],
                 rows: [
-                    ["Most verbs: add -s", "work → works, play → plays, eat → eats"],
-                    ["Verbs ending in -s, -sh, -ch, -x, -o: add -es", "go → goes, watch → watches, wash → washes"],
-                    ["Verbs ending in consonant + y: change y to i, add -es", "study → studies, try → tries, fly → flies"],
-                    ["Verbs ending in vowel + y: just add -s", "play → plays, enjoy → enjoys, say → says"],
-                    ["Irregular: have → has", "He has a car. She has two cats."],
+                    ["Most verbs: just add -s", "work → works, need → needs, drive → drives"],
+                    ["Ends in -s, -sh, -ch, -x, -o: add -es", "miss → misses, push → pushes, teach → teaches, fix → fixes, go → goes"],
+                    ["Ends in consonant + y: change to -ies", "try → tries, study → studies, worry → worries"],
+                    ["Ends in vowel + y: just add -s", "pay → pays, enjoy → enjoys, say → says"],
+                    ["The weird one: have → has", "He has three meetings today. She has my login info."],
                 ],
             },
             exercises: [
                 {
                     id: "ex-positive-1",
-                    title: "Exercise 1: Add -s or -es?",
+                    title: "Exercise 1: Add the Right Ending",
                     instructions:
-                        "Complete each sentence with the correct form of the verb for he/she/it.",
+                        "Complete each sentence with the correct form for he/she/it. Think about the -s/-es rules!",
                     items: [
                         {
                             type: "text",
-                            label: "1. She ___ (work) at a hospital.",
-                            placeholder: "verb + s/es",
-                            expectedAnswer: "works",
+                            label: "1. My boss ___ (reply) to emails at midnight.",
+                            placeholder: "verb + s/es/ies",
+                            expectedAnswer: "replies",
                         },
                         {
                             type: "text",
-                            label: "2. He ___ (watch) TV every night.",
+                            label: "2. The printer ___ (jam) at least once a day.",
                             placeholder: "verb + s/es",
-                            expectedAnswer: "watches",
+                            expectedAnswer: "jams",
                         },
                         {
                             type: "text",
-                            label: "3. It ___ (rain) a lot in April.",
+                            label: "3. She ___ (teach) English to new employees.",
                             placeholder: "verb + s/es",
-                            expectedAnswer: "rains",
+                            expectedAnswer: "teaches",
                         },
                         {
                             type: "text",
-                            label: "4. She ___ (study) English.",
-                            placeholder: "verb + s/es",
-                            expectedAnswer: "studies",
+                            label: "4. He ___ (worry) too much about deadlines.",
+                            placeholder: "verb + s/es/ies",
+                            expectedAnswer: "worries",
                         },
                         {
                             type: "text",
-                            label: "5. He ___ (have) a dog.",
-                            placeholder: "verb + s/es",
+                            label: "5. My coworker ___ (have) all the office gossip.",
+                            placeholder: "irregular!",
                             expectedAnswer: "has",
                         },
                     ],
                 },
                 {
                     id: "ex-positive-2",
-                    title: "Exercise 2: Write Complete Sentences",
+                    title: "Exercise 2: Real-Life Sentences",
                     instructions:
-                        "Write sentences in Present Simple. Remember to add -s/es for he/she/it!",
+                        "Complete these sentences about everyday life. Watch for he/she/it!",
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (like) chocolate.",
-                            placeholder: "complete the sentence",
-                            expectedAnswer: "like",
+                            label: "1. I ___ (need) more coffee before meetings.",
+                            placeholder: "I, you, we, they = no -s",
+                            expectedAnswer: "need",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (go) to school every day.",
-                            placeholder: "complete the sentence",
-                            expectedAnswer: "goes",
+                            label: "2. The office ___ (close) at 6 PM on Fridays.",
+                            placeholder: "he/she/it = add -s or -es",
+                            expectedAnswer: "closes",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (play) soccer on weekends.",
-                            placeholder: "complete the sentence",
-                            expectedAnswer: "play",
+                            label: "3. They ___ (order) lunch from the same place every Tuesday.",
+                            placeholder: "I, you, we, they = no -s",
+                            expectedAnswer: "order",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (teach) math.",
-                            placeholder: "complete the sentence",
-                            expectedAnswer: "teaches",
+                            label: "4. She ___ (manage) the whole department by herself.",
+                            placeholder: "he/she/it = add -s or -es",
+                            expectedAnswer: "manages",
                         },
                     ],
                 },
@@ -375,13 +375,13 @@ export const presentSimpleContent: InteractiveGuideContent = {
         {
             id: "step-2-negative",
             stepNumber: 3,
-            title: "Negative Form",
+            title: "Negative Form: When You Don't",
             explanation: `
-                <h3>How to Make Negative Sentences</h3>
-                <p>To make Present Simple negative, we use <strong>do not (don't)</strong> or <strong>does not (doesn't)</strong>:</p>
+                <h3>Saying "No" in English</h3>
+                <p>To make Present Simple negative, use <strong>don't</strong> or <strong>doesn't</strong>. Pick the right one and you're golden:</p>
                 <ul>
-                    <li>Use <strong>don't</strong> with I, you, we, they</li>
-                    <li>Use <strong>doesn't</strong> with he, she, it</li>
+                    <li><strong>don't</strong> = I, you, we, they</li>
+                    <li><strong>doesn't</strong> = he, she, it</li>
                 </ul>
             `,
             formula: [
@@ -389,57 +389,57 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "don't/doesn't", type: "verb" },
                 { text: "+", type: "other" },
-                { text: "base verb", type: "verb" },
+                { text: "base verb (no -s!)", type: "verb" },
             ],
             examples: [
-                "I don't like coffee.",
-                "You don't work here.",
-                "He doesn't eat meat.",
-                "She doesn't speak French.",
-                "It doesn't rain much here.",
-                "We don't have a car.",
-                "They don't play tennis.",
+                "I don't answer work emails after 7 PM.",
+                "You don't need to CC everyone on that.",
+                "He doesn't drink coffee - only energy drinks.",
+                "She doesn't tolerate being late to meetings.",
+                "It doesn't matter if you send it today or tomorrow.",
+                "We don't have meetings on Fridays.",
+                "They don't offer remote work at that company.",
             ],
             tipBox: {
-                title: "⚠️ Important!",
+                title: "⚠️ Critical Mistake to Avoid",
                 content:
-                    "When you use doesn't, the main verb goes back to the base form (NO -s). Example: She doesn't work (NOT doesn't works)",
+                    "When you use doesn't, the main verb goes back to the base form. Say: 'She doesn't work' NOT 'She doesn't works'. The -s is in 'doesn't' already!",
             },
             exercises: [
                 {
                     id: "ex-negative-1",
-                    title: "Exercise 3: Negative Sentences",
-                    instructions: "Make these sentences negative. Use don't or doesn't.",
+                    title: "Exercise 3: Making It Negative",
+                    instructions: "Complete the negative sentences. Use don't or doesn't + base verb.",
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not like) vegetables.",
+                            label: "1. I ___ (understand) half of what my boss says in meetings.",
                             placeholder: "don't/doesn't + base verb",
-                            expectedAnswer: "don't like",
+                            expectedAnswer: "don't understand",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not work) on Sundays.",
+                            label: "2. She ___ (check) her email on weekends.",
                             placeholder: "don't/doesn't + base verb",
-                            expectedAnswer: "doesn't work",
+                            expectedAnswer: "doesn't check",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not have) a car.",
+                            label: "3. They ___ (have) a dress code at that office.",
                             placeholder: "don't/doesn't + base verb",
                             expectedAnswer: "don't have",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (not speak) Spanish.",
+                            label: "4. The Wi-Fi ___ (work) in the conference room.",
                             placeholder: "don't/doesn't + base verb",
-                            expectedAnswer: "doesn't speak",
+                            expectedAnswer: "doesn't work",
                         },
                         {
                             type: "text",
-                            label: "5. We ___ (not watch) TV in the morning.",
+                            label: "5. We ___ (start) projects without a clear deadline.",
                             placeholder: "don't/doesn't + base verb",
-                            expectedAnswer: "don't watch",
+                            expectedAnswer: "don't start",
                         },
                     ],
                 },
@@ -450,13 +450,13 @@ export const presentSimpleContent: InteractiveGuideContent = {
         {
             id: "step-3-questions",
             stepNumber: 4,
-            title: "Question Form",
+            title: "Question Form: How to Ask",
             explanation: `
-                <h3>How to Make Questions</h3>
-                <p>To make questions in Present Simple, put <strong>Do</strong> or <strong>Does</strong> at the beginning:</p>
+                <h3>Asking Questions</h3>
+                <p>Put <strong>Do</strong> or <strong>Does</strong> at the beginning to make a question:</p>
                 <ul>
-                    <li>Use <strong>Do</strong> with I, you, we, they</li>
-                    <li>Use <strong>Does</strong> with he, she, it</li>
+                    <li><strong>Do</strong> = I, you, we, they</li>
+                    <li><strong>Does</strong> = he, she, it</li>
                 </ul>
             `,
             formula: [
@@ -464,58 +464,58 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "subject", type: "subject" },
                 { text: "+", type: "other" },
-                { text: "base verb", type: "verb" },
+                { text: "base verb (no -s!)", type: "verb" },
                 { text: "?", type: "other" },
             ],
             examples: [
-                "Do you like coffee?",
-                "Do they work here?",
-                "Does he speak English?",
-                "Does she live in Boston?",
-                "Does it rain a lot?",
-                "Do we have time?",
+                "Do you work remotely or in the office?",
+                "Do they allow dogs in the workplace?",
+                "Does he report directly to the CEO?",
+                "Does she know about the budget cuts?",
+                "Does it really take that long to approve?",
+                "Do we have a meeting this afternoon?",
             ],
             tipBox: {
-                title: "💡 Remember",
+                title: "💡 Same Rule as Negatives",
                 content:
-                    "Use the base verb in questions - NO -s! Example: Does she work? (NOT Does she works?)",
+                    "In questions, use the base verb - no -s! Say: 'Does she work?' NOT 'Does she works?' The 'does' already shows it's he/she/it.",
             },
             exercises: [
                 {
                     id: "ex-questions-1",
-                    title: "Exercise 4: Making Questions",
+                    title: "Exercise 4: Asking Questions",
                     instructions:
-                        "Write questions in Present Simple. Start with Do or Does.",
+                        "Form questions using Do or Does. Remember: base verb only!",
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you ___ (like) pizza?",
+                            label: "1. ___ you ___ (prefer) morning or afternoon shifts?",
                             placeholder: "Do/Does + subject + base verb",
-                            expectedAnswer: "Do you like",
+                            expectedAnswer: "Do you prefer",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (work) here?",
+                            label: "2. ___ she ___ (know) about the new policy?",
                             placeholder: "Do/Does + subject + base verb",
-                            expectedAnswer: "Does she work",
+                            expectedAnswer: "Does she know",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they ___ (speak) English?",
+                            label: "3. ___ they ___ (offer) health insurance?",
                             placeholder: "Do/Does + subject + base verb",
-                            expectedAnswer: "Do they speak",
+                            expectedAnswer: "Do they offer",
                         },
                         {
                             type: "text",
-                            label: "4. ___ he ___ (have) a car?",
+                            label: "4. ___ he ___ (commute) from Boston?",
                             placeholder: "Do/Does + subject + base verb",
-                            expectedAnswer: "Does he have",
+                            expectedAnswer: "Does he commute",
                         },
                         {
                             type: "text",
-                            label: "5. ___ it ___ (rain) a lot here?",
+                            label: "5. ___ it ___ (make) sense to wait until Monday?",
                             placeholder: "Do/Does + subject + base verb",
-                            expectedAnswer: "Does it rain",
+                            expectedAnswer: "Does it make",
                         },
                     ],
                 },
@@ -525,69 +525,71 @@ export const presentSimpleContent: InteractiveGuideContent = {
         // Time Expressions
         {
             id: "time-expressions",
-            title: "Time Expressions with Present Simple",
+            title: "Time Words That Signal Present Simple",
             icon: "⏰",
             explanation: `
-                <h3>Common Time Words</h3>
-                <p>These words and phrases are often used with Present Simple to show how often something happens:</p>
+                <h3>Your Clue Words</h3>
+                <p>When you hear these words and phrases, you know Present Simple is coming. They tell you how often something happens:</p>
             `,
             timeExpressions: [
                 {
                     word: "Frequency Adverbs",
-                    usage: "always, usually, often, sometimes, rarely, never",
+                    usage: "always, usually, often, sometimes, rarely, never, hardly ever",
                     examples: [
-                        "I always wake up at 7 AM.",
-                        "She usually drinks coffee.",
-                        "They sometimes eat out.",
-                        "He never smokes.",
+                        "My alarm always goes off at 6:30 AM.",
+                        "She usually takes the 8:05 train.",
+                        "They rarely finish on time.",
+                        "I never answer unknown numbers.",
                     ],
                 },
                 {
                     word: "Time Phrases",
-                    usage: "every day/week/month/year, once/twice a week, three times a month",
+                    usage: "every day/week/month/year, once/twice a week, three times a day",
                     examples: [
-                        "I go to the gym every day.",
-                        "We have meetings twice a week.",
-                        "She visits her parents once a month.",
+                        "I grab coffee every morning on my way in.",
+                        "We have stand-up meetings twice a week.",
+                        "She visits her family once a month.",
+                        "The system backs up every night at midnight.",
                     ],
                 },
                 {
-                    word: "Days & Times",
-                    usage: "on Mondays, in the morning, at night, on weekends",
+                    word: "Specific Times",
+                    usage: "on Mondays, in the morning/afternoon/evening, at night, on weekends",
                     examples: [
-                        "I work on Mondays.",
-                        "He exercises in the morning.",
-                        "They go out on weekends.",
+                        "I work from home on Wednesdays.",
+                        "He goes to the gym in the morning before work.",
+                        "They do inventory on weekends.",
+                        "The cleaning crew comes in at night.",
                     ],
                 },
             ],
             tipBox: {
-                title: "📍 Word Order",
+                title: "📍 Where to Put Frequency Adverbs",
                 content:
-                    "Frequency adverbs (always, usually, etc.) usually go BEFORE the main verb but AFTER the verb 'to be'. Example: I always eat breakfast. / I am always hungry.",
+                    "Put frequency adverbs (always, usually, etc.) BEFORE the main verb: 'I always check my calendar first.' BUT after 'be': 'I am always early to meetings.'",
             },
             exercises: [
                 {
                     id: "ex-time-1",
                     title: "Practice: Using Time Expressions",
-                    instructions: "Complete the sentences with the time expression in the correct position.",
+                    instructions: "Put the time expression in the correct place in the sentence.",
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ drink coffee in the morning. (always)",
-                            placeholder: "place 'always' correctly",
+                            label: "1. I ___ forget to mute myself on video calls. (always)",
+                            placeholder: "where does 'always' go?",
                             expectedAnswer: "always",
                         },
                         {
                             type: "text",
-                            label: "2. She goes to the gym ___ . (twice a week)",
-                            placeholder: "place 'twice a week' correctly",
-                            expectedAnswer: "twice a week",
+                            label: "2. She checks her inbox ___ . (every 10 minutes)",
+                            placeholder: "where does the time phrase go?",
+                            expectedAnswer: "every 10 minutes",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ eat out on weekends. (usually)",
-                            placeholder: "place 'usually' correctly",
+                            label: "3. They ___ order lunch from the same restaurant. (usually)",
+                            placeholder: "where does 'usually' go?",
                             expectedAnswer: "usually",
                         },
                     ],
@@ -599,73 +601,73 @@ export const presentSimpleContent: InteractiveGuideContent = {
         {
             id: "step-4-mixed",
             stepNumber: 5,
-            title: "Mixed Practice: All Forms Together",
+            title: "Put It All Together: Mixed Practice",
             explanation: `
-                <h3>Put It All Together!</h3>
-                <p>Now let's practice positive, negative, and question forms. Pay attention to whether you need to add -s, use don't/doesn't, or do/does!</p>
+                <h3>Real-World Application</h3>
+                <p>Now let's mix positive, negative, and question forms. This is how you'll use it in actual conversations!</p>
             `,
             exercises: [
                 {
                     id: "ex-mixed-1",
-                    title: "Exercise 5: Mixed Forms",
+                    title: "Exercise 5: Mix of All Forms",
                     instructions:
-                        "Complete the sentences with the correct form of Present Simple.",
+                        "Complete these sentences with the correct form of Present Simple.",
                     items: [
                         {
                             type: "text",
-                            label: "1. She ___ (work) at a hospital. (positive)",
-                            placeholder: "Present Simple positive",
-                            expectedAnswer: "works",
+                            label: "1. My manager ___ (send) emails at 11 PM. (positive)",
+                            placeholder: "think about the subject",
+                            expectedAnswer: "sends",
                         },
                         {
                             type: "text",
-                            label: "2. They ___ (not like) coffee. (negative)",
-                            placeholder: "Present Simple negative",
-                            expectedAnswer: "don't like",
+                            label: "2. I ___ (not drink) coffee after 3 PM. (negative)",
+                            placeholder: "use don't/doesn't",
+                            expectedAnswer: "don't drink",
                         },
                         {
                             type: "text",
-                            label: "3. ___ you ___ (speak) English? (question)",
-                            placeholder: "Present Simple question",
-                            expectedAnswer: "Do you speak",
+                            label: "3. ___ you ___ (commute) by train? (question)",
+                            placeholder: "start with Do/Does",
+                            expectedAnswer: "Do you commute",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (not have) a car. (negative)",
-                            placeholder: "Present Simple negative",
-                            expectedAnswer: "doesn't have",
+                            label: "4. The system ___ (not save) automatically. (negative)",
+                            placeholder: "use don't/doesn't",
+                            expectedAnswer: "doesn't save",
                         },
                         {
                             type: "text",
-                            label: "5. ___ she ___ (live) in Boston? (question)",
-                            placeholder: "Present Simple question",
-                            expectedAnswer: "Does she live",
+                            label: "5. ___ she ___ (handle) client complaints? (question)",
+                            placeholder: "start with Do/Does",
+                            expectedAnswer: "Does she handle",
                         },
                     ],
                 },
                 {
                     id: "ex-mixed-2",
-                    title: "Exercise 6: Write Your Own Sentences",
+                    title: "Exercise 6: Write About Your Life",
                     instructions:
-                        "Write complete sentences about yourself using Present Simple.",
+                        "Write complete sentences about your actual daily life using Present Simple.",
                     items: [
                         {
                             type: "text",
-                            label: "1. Write a positive sentence about your daily routine:",
-                            placeholder: "I usually...",
-                            expectedAnswer: "I usually wake up at 7 AM",
+                            label: "1. What's one thing you do every single day? (positive)",
+                            placeholder: "I always...",
+                            expectedAnswer: "I check my phone first thing",
                         },
                         {
                             type: "text",
-                            label: "2. Write a negative sentence about something you don't like:",
+                            label: "2. What's something you absolutely don't do? (negative)",
                             placeholder: "I don't...",
-                            expectedAnswer: "I don't like vegetables",
+                            expectedAnswer: "I don't cook on weekdays",
                         },
                         {
                             type: "text",
-                            label: "3. Write a question about someone's habits:",
-                            placeholder: "Do you...?",
-                            expectedAnswer: "Do you exercise every day",
+                            label: "3. Ask about someone's routine: (question)",
+                            placeholder: "Do you...? or Does he/she...?",
+                            expectedAnswer: "Do you work from home",
                         },
                     ],
                 },
@@ -675,70 +677,72 @@ export const presentSimpleContent: InteractiveGuideContent = {
         // Summary Section
         {
             id: "summary",
-            title: "Summary: Key Points to Remember",
+            title: "Quick Reference: Everything You Need",
             icon: "✓",
             explanation: `
-                <h3>What You've Learned</h3>
+                <h3>Bookmark This Page</h3>
+                <p>Here's your cheat sheet for Present Simple:</p>
                 <ul class="list-disc pl-6 space-y-2">
-                    <li><strong>When to Use:</strong> Habits, routines, facts, permanent situations, scheduled events, likes/dislikes</li>
+                    <li><strong>When to Use:</strong> Habits, routines, facts, your job/life situation, schedules, opinions</li>
                     <li><strong>Positive Form:</strong>
                         <ul class="list-disc pl-6 mt-2">
-                            <li>I/You/We/They + base verb (I work, They play)</li>
-                            <li>He/She/It + verb + s/es (She works, He watches)</li>
+                            <li>I/You/We/They + base verb → "I work, They drive"</li>
+                            <li>He/She/It + verb + s/es → "She works, He watches"</li>
                         </ul>
                     </li>
                     <li><strong>Negative Form:</strong>
                         <ul class="list-disc pl-6 mt-2">
-                            <li>I/You/We/They + don't + base verb (I don't work)</li>
-                            <li>He/She/It + doesn't + base verb (She doesn't work)</li>
+                            <li>I/You/We/They + don't + base verb → "I don't work"</li>
+                            <li>He/She/It + doesn't + base verb → "She doesn't work"</li>
                         </ul>
                     </li>
                     <li><strong>Question Form:</strong>
                         <ul class="list-disc pl-6 mt-2">
-                            <li>Do + I/you/we/they + base verb? (Do you work?)</li>
-                            <li>Does + he/she/it + base verb? (Does she work?)</li>
+                            <li>Do + I/you/we/they + base verb? → "Do you work?"</li>
+                            <li>Does + he/she/it + base verb? → "Does she work?"</li>
                         </ul>
                     </li>
-                    <li><strong>Time Expressions:</strong> always, usually, often, sometimes, never, every day, twice a week, on Mondays, etc.</li>
-                    <li><strong>Important Rules:</strong>
+                    <li><strong>Time Clues:</strong> always, usually, every day, twice a week, on Mondays, in the morning</li>
+                    <li><strong>Common Mistakes:</strong>
                         <ul class="list-disc pl-6 mt-2">
-                            <li>Only add -s/es for he/she/it in positive sentences</li>
-                            <li>Use base verb (no -s) in negatives and questions</li>
-                            <li>have → has (irregular for he/she/it)</li>
+                            <li>❌ She work → ✅ She works (add -s for he/she/it)</li>
+                            <li>❌ He don't → ✅ He doesn't (use doesn't with he/she/it)</li>
+                            <li>❌ Does she works? → ✅ Does she work? (base verb in questions)</li>
+                            <li>❌ She doesn't works → ✅ She doesn't work (base verb after doesn't)</li>
                         </ul>
                     </li>
                 </ul>
             `,
             tipBox: {
-                title: "💡 Final Tip",
+                title: "💡 Your Homework",
                 content:
-                    "Practice makes perfect! Try to notice when people use Present Simple in everyday conversations. Pay attention to the -s ending and when they use do/does/don't/doesn't.",
+                    "Listen for Present Simple in real conversations today. Notice when people add -s and when they use do/don't/does/doesn't. You'll start hearing the patterns everywhere!",
             },
         },
     ],
 
-    // Mini Quiz for comprehension
+    // Mini Quiz
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which sentence is correct?",
+            question: "Which sentence is correct for talking about someone's job?",
             options: [
                 {
                     value: "a",
-                    label: "She work at a hospital.",
+                    label: "She work as a nurse at City Hospital.",
                 },
                 {
                     value: "b",
-                    label: "She works at a hospital.",
+                    label: "She works as a nurse at City Hospital.",
                 },
                 {
                     value: "c",
-                    label: "She working at a hospital.",
+                    label: "She working as a nurse at City Hospital.",
                 },
             ],
             correctAnswer: "b",
             explanation:
-                "We add -s for he/she/it in Present Simple positive sentences. 'She works' is correct.",
+                "For he/she/it in Present Simple positive sentences, add -s to the verb. 'She works' is correct because it's talking about her permanent job situation.",
         },
         {
             id: "quiz-2",
@@ -746,74 +750,74 @@ export const presentSimpleContent: InteractiveGuideContent = {
             options: [
                 {
                     value: "a",
-                    label: "He don't like coffee.",
+                    label: "My boss don't answer emails on weekends.",
                 },
                 {
                     value: "b",
-                    label: "He doesn't likes coffee.",
+                    label: "My boss doesn't answers emails on weekends.",
                 },
                 {
                     value: "c",
-                    label: "He doesn't like coffee.",
+                    label: "My boss doesn't answer emails on weekends.",
                 },
             ],
             correctAnswer: "c",
             explanation:
-                "Use 'doesn't' with he/she/it, and the main verb stays in base form (like, not likes). 'He doesn't like coffee' is correct.",
+                "Use 'doesn't' with he/she/it, and keep the main verb in base form (answer, not answers). 'Doesn't answer' is correct.",
         },
         {
             id: "quiz-3",
-            question: "Which question is correct?",
+            question: "Which question is grammatically correct?",
             options: [
                 {
                     value: "a",
-                    label: "Do she speak English?",
+                    label: "Do your coworker commute by train?",
                 },
                 {
                     value: "b",
-                    label: "Does she speaks English?",
+                    label: "Does your coworker commutes by train?",
                 },
                 {
                     value: "c",
-                    label: "Does she speak English?",
+                    label: "Does your coworker commute by train?",
                 },
             ],
             correctAnswer: "c",
             explanation:
-                "Use 'Does' with he/she/it, and the main verb stays in base form (speak, not speaks). 'Does she speak English?' is correct.",
+                "Use 'Does' with he/she/it (like 'coworker'), and keep the main verb in base form (commute, not commutes). 'Does your coworker commute?' is correct.",
         },
         {
             id: "quiz-4",
-            question: "When do we use Present Simple?",
+            question: "When should you use Present Simple?",
             options: [
                 {
                     value: "a",
-                    label: "For actions happening right now",
+                    label: "For something happening right now at this moment",
                 },
                 {
                     value: "b",
-                    label: "For habits, routines, and facts",
+                    label: "For habits, regular actions, and facts",
                 },
                 {
                     value: "c",
-                    label: "For actions that happened yesterday",
+                    label: "For something that happened last week",
                 },
             ],
             correctAnswer: "b",
             explanation:
-                "Present Simple is used for habits, routines, facts, and things that are generally true - not for actions happening at this moment.",
+                "Present Simple describes habits, routines, facts, and things that are generally true - not for actions happening at this exact moment (that's Present Continuous) or past events (that's Past Simple).",
         },
         {
             id: "quiz-5",
-            question: "Which time expression is commonly used with Present Simple?",
+            question: "Which time expression typically goes with Present Simple?",
             options: [
-                { value: "a", label: "yesterday" },
-                { value: "b", label: "now" },
-                { value: "c", label: "every day" },
+                { value: "a", label: "right now" },
+                { value: "b", label: "yesterday" },
+                { value: "c", label: "every morning" },
             ],
             correctAnswer: "c",
             explanation:
-                "'Every day' is a time expression that shows regular habits, which is perfect for Present Simple. 'Yesterday' is for Past Simple, and 'now' is for Present Continuous.",
+                "'Every morning' signals a regular habit, which is perfect for Present Simple. 'Right now' is for Present Continuous, and 'yesterday' is for Past Simple.",
         },
     ],
 };
