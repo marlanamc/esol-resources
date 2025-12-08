@@ -67,7 +67,13 @@ export default async function ClassesIndexPage() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {classes.map((cls) => (
+                        {classes.map((cls: {
+                            id: string;
+                            name: string;
+                            description: string | null;
+                            enrollments: { id: string }[];
+                            assignments: { id: string }[];
+                        }) => (
                             <Card key={cls.id} className="p-4 border border-border/40 shadow-sm bg-white/80">
                                 <div className="flex items-center justify-between mb-2">
                                     <h2 className="text-lg font-bold text-text">{cls.name}</h2>
@@ -104,5 +110,6 @@ export default async function ClassesIndexPage() {
         </div>
     );
 }
+
 
 
