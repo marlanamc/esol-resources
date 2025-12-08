@@ -185,6 +185,12 @@ export default async function DashboardPage() {
                             <span className="hidden sm:inline text-sm font-medium text-text-muted">
                                 {session.user?.name}
                             </span>
+                            <Link
+                                href="/dashboard/stats/student"
+                                className="text-xs font-semibold text-primary underline decoration-primary/50 underline-offset-4"
+                            >
+                                View progress
+                            </Link>
                             <LogoutButton />
                         </div>
                     </div>
@@ -404,14 +410,18 @@ export default async function DashboardPage() {
             orderBy: { createdAt: "desc" },
         });
 
-        const progressEntries = await prisma.activityProgress.findMany({
+        // Activity progress (may be missing in older prisma clients, so cast)
+        const progressEntries = await (prisma as any).activityProgress.findMany({
             where: { userId },
             select: { activityId: true, progress: true },
         });
-        const progressMap = progressEntries.reduce<Record<string, number>>((acc, p) => {
-            acc[p.activityId] = p.progress;
-            return acc;
-        }, {});
+        const progressMap = (progressEntries as Array<{ activityId: string; progress: number }>).reduce<Record<string, number>>(
+            (acc: Record<string, number>, p: { activityId: string; progress: number }) => {
+                acc[p.activityId] = p.progress;
+                return acc;
+            },
+            {}
+        );
 
         // Get student's completed activities
         const completedActivities = await prisma.submission.findMany({
