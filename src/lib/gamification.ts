@@ -163,7 +163,7 @@ export async function checkAndAwardAchievements(userId: string) {
         shouldAward = user.points >= achievement.requirement;
         break;
       case 'quiz':
-        const perfectQuizzes = user.submissions.filter((s) => s.score === 100).length;
+        const perfectQuizzes = user.submissions.filter((s: { score: number | null }) => s.score === 100).length;
         shouldAward = perfectQuizzes >= achievement.requirement;
         break;
       case 'activity':
