@@ -13,9 +13,7 @@ export default async function ActivitiesPage() {
     }
 
     const userRole = (session.user as any)?.role;
-    if (userRole !== "teacher") {
-        redirect("/dashboard");
-    }
+    const isTeacher = userRole === "teacher";
 
     const activities = await prisma.activity.findMany({
         orderBy: { createdAt: "desc" },
@@ -35,15 +33,17 @@ export default async function ActivitiesPage() {
                         </Link>
                         <h1 className="text-3xl font-bold text-gray-900">Activity Library</h1>
                     </div>
-                    <div className="flex gap-4">
-                        <Link
-                            href="/dashboard/activities/new"
-                            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-                        >
-                            + Create Activity
-                        </Link>
-                        <LogoutButton />
-                    </div>
+                    {isTeacher && (
+                        <div className="flex gap-4">
+                            <Link
+                                href="/dashboard/activities/new"
+                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                            >
+                                + Create Activity
+                            </Link>
+                            <LogoutButton />
+                        </div>
+                    )}
                 </div>
             </header>
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -91,12 +91,14 @@ export default async function ActivitiesPage() {
                     {activities.length === 0 ? (
                         <div className="border-4 border-dashed border-gray-200 rounded-lg h-64 flex flex-col items-center justify-center">
                             <p className="text-gray-500 mb-4">No activities yet. Create your first activity!</p>
-                            <Link
-                                href="/dashboard/activities/new"
-                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
-                            >
-                                Create Activity
-                            </Link>
+                            {isTeacher && (
+                                <Link
+                                    href="/dashboard/activities/new"
+                                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
+                                >
+                                    Create Activity
+                                </Link>
+                            )}
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
