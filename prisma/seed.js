@@ -349,11 +349,16 @@ async function main() {
             type: 'game',
             category: 'Flash Cards',
             level: 'intermediate',
-            content: `Q: The reason or drive behind someone's actions or goals — **motivation**
-Q: Proof of training or education — **qualification**
+            content: `Q: Your life experiences and history — **background**
+Q: The process of signing up for school or services — **registration**
+Q: Education, training, or skills that prepare a person for a specific job or trade — **vocational**
+Q: The reason or drive behind someone's actions or goals — **motivation**
 Q: The process of change from one situation to another — **transition**
+Q: The act of coming to a new country to live permanently — **immigration**
 Q: Dedication to a task, goal, or promise — **commitment**
-Q: Something that blocks or makes it difficult to move forward — **barrier**`,
+Q: Something that blocks or makes it difficult to move forward — **barrier**
+Q: A chance to do something or achieve success — **opportunity**
+Q: Proof of training or education — **qualification**`,
             createdBy: teacher.id,
         },
         create: {
@@ -363,11 +368,16 @@ Q: Something that blocks or makes it difficult to move forward — **barrier**`,
             type: 'game',
             category: 'Flash Cards',
             level: 'intermediate',
-            content: `Q: The reason or drive behind someone's actions or goals — **motivation**
-Q: Proof of training or education — **qualification**
+            content: `Q: Your life experiences and history — **background**
+Q: The process of signing up for school or services — **registration**
+Q: Education, training, or skills that prepare a person for a specific job or trade — **vocational**
+Q: The reason or drive behind someone's actions or goals — **motivation**
 Q: The process of change from one situation to another — **transition**
+Q: The act of coming to a new country to live permanently — **immigration**
 Q: Dedication to a task, goal, or promise — **commitment**
-Q: Something that blocks or makes it difficult to move forward — **barrier**`,
+Q: Something that blocks or makes it difficult to move forward — **barrier**
+Q: A chance to do something or achieve success — **opportunity**
+Q: Proof of training or education — **qualification**`,
             createdBy: teacher.id,
         },
     });
