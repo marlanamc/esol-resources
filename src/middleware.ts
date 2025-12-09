@@ -37,6 +37,6 @@ export default withAuth(
     }
 );
 
-export const config = { 
-    matcher: ["/dashboard/:path*", "/password-reset"] 
+export const config = {
+    matcher: ["/dashboard/:path*", "/password-reset", "/activity/:path*"]
 };
