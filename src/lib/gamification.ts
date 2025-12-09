@@ -182,8 +182,11 @@ export async function getTimeframedLeaderboard(
 ) {
   const since = getRangeStart(range);
 
-  // First, get all students
-  const studentWhere: any = { role: 'student' };
+  // First, get all students (excluding test accounts)
+  const studentWhere: any = { 
+    role: 'student',
+    username: { not: 'marlie' }, // Exclude test account from leaderboard
+  };
   if (classId) {
     studentWhere.classes = { some: { classId } };
   }
@@ -198,11 +201,12 @@ export async function getTimeframedLeaderboard(
     },
   });
 
-  // Then get points from ledger for this timeframe
+  // Then get points from ledger for this timeframe (excluding test accounts)
   const whereLedger: any = {
     createdAt: { gte: since },
     user: {
       role: 'student',
+      username: { not: 'marlie' }, // Exclude test account from leaderboard
     },
   };
 
@@ -232,8 +236,11 @@ export async function getTimeframedLeaderboard(
     lastWeekRank: student.lastWeekRank,
   }));
 
+  // Filter out students with 0 points - only rank students who have earned points
+  const studentsWithPoints = rankings.filter((r) => r.points > 0);
+
   // Sort by points descending, then by name for ties
-  rankings.sort((a, b) => {
+  studentsWithPoints.sort((a, b) => {
     if (b.points !== a.points) {
       return b.points - a.points;
     }
@@ -241,7 +248,7 @@ export async function getTimeframedLeaderboard(
   });
 
   // Apply limit and add rank
-  const limitedRankings = rankings.slice(0, limit);
+  const limitedRankings = studentsWithPoints.slice(0, limit);
 
   return limitedRankings.map((r, idx) => ({
     id: r.userId,
@@ -328,6 +335,7 @@ export async function checkAndAwardAchievements(userId: string) {
 export async function getWeeklyLeaderboard(limit: number = 10, classId?: string) {
   const whereClause: any = {
     role: 'student',
+    username: { not: 'marlie' }, // Exclude test account from leaderboard
   };
 
   // If classId provided, filter by students in that class
@@ -340,7 +348,10 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
   }
 
   const students = await prisma.user.findMany({
-    where: whereClause,
+    where: {
+      ...whereClause,
+      weeklyPoints: { gt: 0 }, // Only include students with points > 0
+    },
     orderBy: {
       weeklyPoints: 'desc',
     },
@@ -415,9 +426,12 @@ export async function getUserGamificationStats(userId: string) {
 
   if (!user) return null;
 
-  // Get user's rank in weekly leaderboard
+  // Get user's rank in weekly leaderboard (excluding test accounts)
   const allStudents = await prisma.user.findMany({
-    where: { role: 'student' },
+    where: { 
+      role: 'student',
+      username: { not: 'marlie' }, // Exclude test account from leaderboard
+    },
     orderBy: { weeklyPoints: 'desc' },
     select: { id: true },
   });

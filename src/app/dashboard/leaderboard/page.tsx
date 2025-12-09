@@ -104,10 +104,10 @@ export default function LeaderboardPage() {
       </header>
 
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
-        {/* User's Rank Card */}
-        {userRank && (
+        {/* User's Rank Card - Only show if user has points and appears in leaderboard */}
+        {userRank && leaderboard.some((entry) => entry.rank === userRank) && (
           <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: '#ffffff', borderColor: '#d97757', boxShadow: '0 4px 12px rgba(217, 119, 87, 0.15)' }}>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
               <div>
                 <p className="text-sm font-semibold mb-1" style={{ color: '#7ba884' }}>
                   Your Rank
@@ -116,13 +116,14 @@ export default function LeaderboardPage() {
                   {getRankIcon(userRank, hasNonZeroScores)}
                 </p>
               </div>
-              {leaderboard.find((_, i) => i + 1 === userRank)?.rankChange && (
-                <div className="text-right">
+              {leaderboard.find((entry) => entry.rank === userRank)?.rankChange && (
+                <div className="mt-4 sm:mt-0 sm:text-right">
                   <p className="text-sm" style={{ color: '#5a6b7f' }}>
                     From last week
                   </p>
                   {(() => {
-                    const change = getRankChangeIndicator(leaderboard.find((_, i) => i + 1 === userRank)?.rankChange || null);
+                    const userEntry = leaderboard.find((entry) => entry.rank === userRank);
+                    const change = getRankChangeIndicator(userEntry?.rankChange || null);
                     return change ? (
                       <p className="text-2xl font-bold" style={{ color: change.color }}>
                         {change.icon} {change.text}
@@ -189,21 +190,17 @@ export default function LeaderboardPage() {
         )}
 
         {/* Full Leaderboard */}
-        <div className="border rounded-2xl overflow-hidden" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1)' }}>
-          <div className="border-b-2 p-4" style={{ backgroundColor: '#f5f1e8', borderColor: '#d9cfc0' }}>
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
-                All Rankings
-              </h2>
-              {!hasNonZeroScores && (
-                <p className="text-xs font-semibold" style={{ color: '#8996a6' }}>
-                  All players tied at #1 until someone earns points
-                </p>
-              )}
+        {leaderboard.length > 0 ? (
+          <div className="border rounded-2xl overflow-hidden" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1)' }}>
+            <div className="border-b-2 p-4" style={{ backgroundColor: '#f5f1e8', borderColor: '#d9cfc0' }}>
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                  All Rankings
+                </h2>
+              </div>
             </div>
-          </div>
-          <div className="divide-y" style={{ borderColor: '#ede7db' }}>
-            {leaderboard.map((entry) => {
+            <div className="divide-y" style={{ borderColor: '#ede7db' }}>
+              {leaderboard.map((entry) => {
               const rankColors = getRankColor(entry.rank);
               const rankChange = getRankChangeIndicator(entry.rankChange);
               const isUserRow = entry.rank === userRank;
@@ -259,18 +256,17 @@ export default function LeaderboardPage() {
                   )}
                 </div>
               );
-            })}
+              })}
+            </div>
           </div>
-        </div>
-
-        {leaderboard.length === 0 && (
-          <div className="text-center py-12">
+        ) : (
+          <div className="border rounded-2xl overflow-hidden text-center py-12" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1)' }}>
             <TrophyIcon className="w-16 h-16 mx-auto mb-4" style={{ color: '#d9cfc0' }} />
             <p className="text-lg font-medium mb-2" style={{ color: '#5a6b7f' }}>
-              No leaderboard data yet
+              No rankings yet
             </p>
             <p className="text-sm" style={{ color: '#8996a6' }}>
-              Complete activities to earn points and climb the ranks!
+              Students will appear here once they earn points. Complete activities to climb the ranks!
             </p>
           </div>
         )}
