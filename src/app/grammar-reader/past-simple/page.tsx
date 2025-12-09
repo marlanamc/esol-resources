@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PastSimplePage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={pastSimpleContent} />
+            <GrammarReader content={pastSimpleContent} completionKey="past-simple" />
         </div>
     );
 }

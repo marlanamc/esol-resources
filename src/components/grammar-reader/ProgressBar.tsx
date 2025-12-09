@@ -29,17 +29,7 @@ export function ProgressBar({ total, current, completed }: ProgressBarProps) {
                 </motion.span>
             </div>
 
-            {/* Traditional progress bar with animated fill */}
-            <div className="relative h-2 bg-border rounded-full overflow-hidden mb-3">
-                <motion.div
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-success to-primary rounded-full"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${percentage}%` }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                />
-            </div>
-
-            {/* Section dots with icons */}
+            {/* Single segmented bar with per-section states */}
             <div className="flex items-center gap-1.5 mb-3">
                 {Array.from({ length: total }).map((_, index) => {
                     const isCompleted = index < completed;
@@ -50,7 +40,7 @@ export function ProgressBar({ total, current, completed }: ProgressBarProps) {
                             key={index}
                             className={`relative flex-1 min-w-0 h-2.5 rounded-full flex items-center justify-center ${
                                 isCompleted
-                                    ? "bg-success"
+                                    ? "bg-gradient-to-r from-success to-primary"
                                     : isCurrent
                                     ? "bg-primary"
                                     : "bg-border"

@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { getWeeklyLeaderboard } from '@/lib/gamification';
+import { getTimeframedLeaderboard, LeaderboardRange } from '@/lib/gamification';
 
 /**
  * GET /api/gamification/leaderboard
- * Get the weekly leaderboard
+ * Get the leaderboard for a timeframe (day, week, month)
  */
 export async function GET(req: NextRequest) {
   try {
@@ -17,8 +17,10 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const classId = searchParams.get('classId');
     const limit = parseInt(searchParams.get('limit') || '20');
+    const timeframeParam = (searchParams.get('timeframe') || 'week').toLowerCase() as LeaderboardRange;
+    const timeframe: LeaderboardRange = ['day', 'week', 'month'].includes(timeframeParam) ? timeframeParam : 'week';
 
-    const leaderboard = await getWeeklyLeaderboard(limit, classId || undefined);
+    const leaderboard = await getTimeframedLeaderboard(timeframe, limit, classId || undefined);
 
     return NextResponse.json({ leaderboard });
   } catch (error) {

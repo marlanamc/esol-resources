@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContinuousTensesReviewPage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={continuousTensesReviewContent} />
+            <GrammarReader content={continuousTensesReviewContent} completionKey="continuous-tenses-review" />
         </div>
     );
 }

@@ -14,7 +14,7 @@ async function main() {
   // Add the Present Perfect guide
   const presentPerfectGuide = await prisma.activity.create({
     data: {
-      title: 'Present Perfect - Complete Step-by-Step Guide',
+      title: 'Present Perfect Guide',
       description: 'Complete guide to Present Perfect tense with numbered sections for easy navigation. Includes meaning, past participles, forms (positive, negative, questions), and time expressions (for/since, already/yet/just, ever/never) with interactive exercises.',
       type: 'guide',
       category: 'grammar',

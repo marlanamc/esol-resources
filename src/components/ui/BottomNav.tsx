@@ -21,7 +21,10 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
     <>
       <div className="bottom-nav-spacer md:hidden" />
       <nav className="fixed bottom-0 left-0 right-0 bg-white border-t-2 shadow-lg md:hidden bottom-nav" style={{ borderColor: 'var(--color-border)', zIndex: 'var(--z-fixed)' }}>
-        <div className="grid grid-cols-4 h-16">
+        <div
+          className="grid h-16"
+          style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+        >
           {items.map((item) => {
             const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
 

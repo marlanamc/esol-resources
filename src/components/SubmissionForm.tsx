@@ -74,14 +74,8 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
 
     return (
         <div>
-            <h3 className="text-lg font-semibold mb-4">Your Submission</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label htmlFor="submission" className="block text-sm font-medium text-gray-700 mb-2">
-                        {existingSubmission?.status === "submitted" 
-                            ? "Update your submission:" 
-                            : "Enter your work:"}
-                    </label>
                     <textarea
                         id="submission"
                         value={submissionContent}
@@ -122,6 +116,7 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
         </div>
     );
 }
+
 
 
 

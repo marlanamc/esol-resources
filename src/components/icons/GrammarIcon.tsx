@@ -4,6 +4,7 @@ import {
   Scale,
   Clock,
   Timer,
+  Repeat,
   Star,
   CheckCircle2,
   Pencil,
@@ -26,6 +27,7 @@ const iconMap: Record<string, LucideIcon> = {
   '⚖️': Scale,           // Comparisons, balancing concepts
   '⏳': Clock,           // Time-related content, duration
   '⏰': Timer,           // Time expressions, deadlines
+  '🔄': Repeat,         // Reviews, loops, refreshers
   '📝': Pencil,          // Writing, practice, exercises
   '🧠': Brain,           // Quiz, thinking, comprehension
   '📘': BookMarked,      // Lessons, study material

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PresentSimplePage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={presentSimpleContent} />
+            <GrammarReader content={presentSimpleContent} completionKey="present-simple" />
         </div>
     );
 }

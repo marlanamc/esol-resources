@@ -20,7 +20,7 @@ async function main() {
   // Present Simple
   const presentSimple = await prisma.activity.create({
     data: {
-      title: 'Present Simple - Complete Step-by-Step Guide',
+      title: 'Present Simple Guide',
       description: 'Learn Present Simple tense with step-by-step lessons covering meaning, usage, positive/negative/question forms, time expressions, and interactive exercises.',
       type: 'guide',
       category: 'grammar',
@@ -33,7 +33,7 @@ async function main() {
   // Past Simple
   const pastSimple = await prisma.activity.create({
     data: {
-      title: 'Past Simple - Complete Step-by-Step Guide',
+      title: 'Past Simple Guide',
       description: 'Master Past Simple tense including regular and irregular verbs, positive/negative/question forms, and time expressions with interactive practice.',
       type: 'guide',
       category: 'grammar',
@@ -46,7 +46,7 @@ async function main() {
   // Future Simple
   const futureSimple = await prisma.activity.create({
     data: {
-      title: 'Future Simple - Complete Step-by-Step Guide',
+      title: 'Future Simple Guide',
       description: 'Learn Future Simple (will) for predictions, promises, and spontaneous decisions with clear examples and interactive exercises.',
       type: 'guide',
       category: 'grammar',
@@ -61,7 +61,7 @@ async function main() {
   // Present Continuous
   const presentContinuous = await prisma.activity.create({
     data: {
-      title: 'Present Continuous - Complete Step-by-Step Guide',
+      title: 'Present Continuous Guide',
       description: 'Learn Present Continuous for actions happening now and temporary situations with step-by-step lessons and practice exercises.',
       type: 'guide',
       category: 'grammar',
@@ -74,7 +74,7 @@ async function main() {
   // Past Continuous
   const pastContinuous = await prisma.activity.create({
     data: {
-      title: 'Past Continuous - Complete Step-by-Step Guide',
+      title: 'Past Continuous Guide',
       description: 'Master Past Continuous for actions in progress in the past and interrupted actions with interactive exercises.',
       type: 'guide',
       category: 'grammar',
@@ -87,7 +87,7 @@ async function main() {
   // Future Continuous
   const futureContinuous = await prisma.activity.create({
     data: {
-      title: 'Future Continuous - Complete Step-by-Step Guide',
+      title: 'Future Continuous Guide',
       description: 'Learn Future Continuous for actions that will be in progress at specific future times with clear examples and practice.',
       type: 'guide',
       category: 'grammar',

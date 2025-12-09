@@ -136,95 +136,71 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     return (
         <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 py-4 touch-manipulation">
             {/* Controls & Settings */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4 bg-white p-4 rounded-2xl shadow-sm border border-[var(--color-border)]">
-                {/* Playback Controls */}
-                <div className="flex items-center space-x-2">
-                    <div className="text-sm font-medium text-[var(--color-text-muted)] mr-4">
-                        Card <span className="text-[var(--color-primary)] font-bold">{currentIndex + 1}</span> / {total}
-                    </div>
-                    <button
-                        onClick={shuffleOrder}
-                        className={`p-2 rounded-full hover:bg-[var(--color-bg-light)] transition-colors text-[var(--color-text-muted)] hover:text-[var(--color-primary)] ${isShuffling ? "animate-spin" : ""}`}
-                        title="Shuffle Cards"
-                    >
-                        <ShuffleIcon className="w-5 h-5" />
-                    </button>
-                    <button
-                        onClick={resetOrder}
-                        className="p-2 rounded-full hover:bg-[var(--color-bg-light)] transition-colors text-[var(--color-text-muted)] hover:text-[var(--color-primary)]"
-                        title="Reset Order"
-                    >
-                        <RefreshCwIcon className="w-5 h-5" />
-                    </button>
-                </div>
+            <div className="mb-6">
+                <div className="bg-white rounded-2xl shadow-md border-2 border-[var(--color-border)] p-3 sm:p-4 flex flex-col gap-3">
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                        <div className="text-base sm:text-lg font-bold text-[var(--color-text)] flex items-center gap-1">
+                            <span>Card</span>
+                            <span className="text-[var(--color-primary)] text-xl sm:text-2xl">{currentIndex + 1}</span>
+                            <span className="text-[var(--color-text-muted)]">/</span>
+                            <span className="text-[var(--color-text-muted)]">{total}</span>
+                        </div>
 
-                {/* Filters / Toggles */}
-                <div className="flex flex-wrap items-center gap-4">
-                    {/* Mode Toggle */}
-                    <div className="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200">
-                        <button
-                            onClick={() => { setMode("term-first"); setIsFlipped(false); }}
-                            className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${mode === "term-first" ? "!bg-[#f97316] !text-white shadow-md" : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"}`}
-                        >
-                            Term First
-                        </button>
-                        <button
-                            onClick={() => { setMode("def-first"); setIsFlipped(false); }}
-                            className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 ${mode === "def-first" ? "!bg-[#f97316] !text-white shadow-md" : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"}`}
-                        >
-                            Definition First
-                        </button>
-                    </div>
+                        <div className="flex items-center gap-2">
+                            <button
+                                onClick={shuffleOrder}
+                                className={`p-3 rounded-xl bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] transition-all text-[var(--color-text)] hover:text-[var(--color-primary)] min-h-[44px] min-w-[44px] ${isShuffling ? "animate-spin" : ""}`}
+                                title="Shuffle Cards"
+                            >
+                                <ShuffleIcon className="w-5 h-5" />
+                            </button>
+                            <button
+                                onClick={resetOrder}
+                                className="p-3 rounded-xl bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] transition-all text-[var(--color-text)] hover:text-[var(--color-primary)] min-h-[44px] min-w-[44px]"
+                                title="Reset Order"
+                            >
+                                <RefreshCwIcon className="w-5 h-5" />
+                            </button>
+                        </div>
 
-                    {/* Content Checkbox */}
-                    <label className="flex items-center space-x-2 cursor-pointer text-sm text-[var(--color-text)] font-medium">
-                        <input
-                            type="checkbox"
-                            checked={showExample}
-                            onChange={(e) => setShowExample(e.target.checked)}
-                            className="rounded border-[var(--color-border)] text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
-                        />
-                        <span>Show Example</span>
-                    </label>
+                        <div className="flex items-center bg-[var(--color-bg-light)] rounded-xl p-1.5 border border-[var(--color-border)] shadow-sm">
+                            <button
+                                onClick={() => { setMode("term-first"); setIsFlipped(false); }}
+                                className={`px-4 sm:px-5 py-2 text-sm font-bold rounded-lg transition-all duration-200 min-h-[40px] whitespace-nowrap ${mode === "term-first" ? "!bg-[var(--color-primary)] !text-white shadow-lg" : "text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-white"}`}
+                            >
+                                Term First
+                            </button>
+                            <button
+                                onClick={() => { setMode("def-first"); setIsFlipped(false); }}
+                                className={`px-4 sm:px-5 py-2 text-sm font-bold rounded-lg transition-all duration-200 min-h-[40px] whitespace-nowrap ${mode === "def-first" ? "!bg-[var(--color-primary)] !text-white shadow-lg" : "text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-white"}`}
+                            >
+                                Definition First
+                            </button>
+                        </div>
+
+                        <label className="flex items-center justify-center gap-2 sm:gap-3 cursor-pointer bg-white px-4 sm:px-5 py-2.5 rounded-xl border border-[var(--color-border)] shadow-sm hover:border-[var(--color-primary)] transition-all min-h-[40px]">
+                            <input
+                                type="checkbox"
+                                checked={showExample}
+                                onChange={(e) => setShowExample(e.target.checked)}
+                                className="w-5 h-5 rounded border-2 border-[var(--color-border)] text-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 cursor-pointer"
+                            />
+                            <span className="text-sm font-bold text-[var(--color-text)]">Show Example</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
             {/* Progress Bar */}
-            <div className="h-1.5 w-full bg-[var(--color-border)] rounded-full mb-4 overflow-hidden">
+            <div className="h-2 sm:h-2.5 w-full bg-[var(--color-bg-light)] rounded-full mb-6 overflow-hidden shadow-inner">
                 <div
-                    className="h-full bg-[var(--color-primary)] transition-all duration-300 ease-out"
+                    className="h-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] transition-all duration-500 ease-out shadow-sm"
                     style={{ width: `${((currentIndex + 1) / total) * 100}%` }}
                 />
             </div>
 
-            {/* Navigation Controls - Moved above card */}
-            <div className="flex flex-col sm:flex-row items-center justify-center mb-4 gap-3 sm:space-x-6">
-                <button
-                    onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                    className="p-4 rounded-full bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 w-full sm:w-auto"
-                    aria-label="Previous card"
-                >
-                    <ChevronLeftIcon className="w-6 h-6" />
-                </button>
-
-                <button
-                    onClick={(e) => { e.stopPropagation(); handleFlip(); }}
-                    className="px-8 py-3 rounded-full bg-[var(--color-text)] text-white font-medium shadow-lg hover:bg-black hover:shadow-xl hover:-translate-y-0.5 transition-all text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[var(--color-text)] focus:ring-offset-2 min-w-[160px] w-full sm:w-auto"
-                >
-                    {isFlipped ? "Flip Back" : "Flip Card"}
-                </button>
-
-                <button
-                    onClick={(e) => { e.stopPropagation(); goNext(); }}
-                    className="p-4 rounded-full bg-white border border-[var(--color-border)] shadow-sm hover:shadow-md hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 w-full sm:w-auto"
-                    aria-label="Next card"
-                >
-                    <ChevronRightIcon className="w-6 h-6" />
-                </button>
-            </div>
-
             {/* Card Container */}
-            <div className="relative w-full aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/9] max-h-[70vh] perspective-1000 group cursor-pointer" onClick={handleFlip}>
+            <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] max-h-[65vh] perspective-1000 group cursor-pointer mb-6" onClick={handleFlip}>
                 {/* The Card Inner wrapper that rotates */}
                 <div
                     className={`relative w-full h-full duration-500 transform-style-3d transition-transform ease-in-out ${isFlipped ? "rotate-y-180" : ""
@@ -250,7 +226,31 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                 </div>
             </div>
 
+            {/* Navigation Controls - Below card */}
+            <div className="flex items-center justify-center gap-4 sm:gap-6">
+                <button
+                    onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                    className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[var(--color-border)] shadow-lg hover:shadow-xl hover:bg-[var(--color-bg-light)] hover:border-[var(--color-primary)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 min-h-[56px] min-w-[56px] active:scale-95"
+                    aria-label="Previous card"
+                >
+                    <ChevronLeftIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+                </button>
 
+                <button
+                    onClick={(e) => { e.stopPropagation(); handleFlip(); }}
+                    className="px-8 sm:px-12 py-4 sm:py-5 rounded-2xl bg-[var(--color-text)] text-white font-bold shadow-xl hover:bg-black hover:shadow-2xl hover:-translate-y-1 transition-all text-base sm:text-lg focus:outline-none focus:ring-4 focus:ring-[var(--color-text)] focus:ring-offset-2 min-h-[56px] active:scale-95"
+                >
+                    {isFlipped ? "Flip Back" : "Flip Card"}
+                </button>
+
+                <button
+                    onClick={(e) => { e.stopPropagation(); goNext(); }}
+                    className="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[var(--color-border)] shadow-lg hover:shadow-xl hover:bg-[var(--color-bg-light)] hover:border-[var(--color-primary)] text-[var(--color-text)] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 min-h-[56px] min-w-[56px] active:scale-95"
+                    aria-label="Next card"
+                >
+                    <ChevronRightIcon className="w-6 h-6 sm:w-7 sm:h-7" />
+                </button>
+            </div>
 
             <style jsx global>{`
         .perspective-1000 {
@@ -278,37 +278,37 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
 
     const containerClasses = theme === "colored"
         // Back/Colored theme (Sage Green Background)
-        ? "bg-[var(--color-secondary)] text-white shadow-[0_8px_30px_rgb(110,145,118,0.25)] border-transparent"
-        // Front/Light theme (White Background) 
-        : "bg-white text-[var(--color-text)] shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-[var(--color-border)]";
+        ? "bg-[var(--color-secondary)] text-white shadow-2xl border-2 border-[var(--color-secondary)]"
+        // Front/Light theme (White Background)
+        : "bg-white text-[var(--color-text)] shadow-2xl border-2 border-[var(--color-border)]";
 
     const labelClasses = theme === "colored"
-        ? "bg-white/20 text-white backdrop-blur-sm"
-        : "bg-[var(--color-bg-light)] text-[var(--color-text-muted)]";
+        ? "bg-white/25 text-white backdrop-blur-sm border border-white/40"
+        : "bg-[var(--color-bg-light)] text-[var(--color-text-muted)] border border-[var(--color-border)]";
 
     const titleClasses = theme === "colored"
         ? "text-white"
         : "text-[var(--color-text)]";
 
     return (
-        <div className={`h-full w-full rounded-2xl flex flex-col items-center justify-center p-8 md:p-12 hover:shadow-xl transition-shadow ${containerClasses}`}>
+        <div className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-all ${containerClasses}`}>
             {/* Top Label */}
-            <div className="absolute top-6 left-6">
-                <span className={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${labelClasses}`}>
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
+                <span className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>
                     {content.type}
                 </span>
             </div>
 
             {/* Content */}
-            <div className="text-center w-full max-w-3xl flex flex-col gap-6">
-                <h3 className={`text-3xl md:text-5xl font-bold leading-tight ${titleClasses}`}>
+            <div className="text-center w-full max-w-3xl flex flex-col gap-4 sm:gap-6">
+                <h3 className={`text-2xl sm:text-4xl md:text-5xl font-bold leading-tight font-display ${titleClasses}`}>
                     {content.text}
                 </h3>
 
                 {/* Example Section */}
                 {content.example && (
-                    <div className={`mt-4 pt-4 border-t ${theme === "colored" ? "border-white/20" : "border-[var(--color-border)]"}`}>
-                        <p className={`text-lg md:text-xl italic ${theme === "colored" ? "text-white/90" : "text-[var(--color-text-muted)]"}`}>
+                    <div className={`mt-2 sm:mt-4 pt-4 sm:pt-6 border-t-2 ${theme === "colored" ? "border-white/30" : "border-[var(--color-border)]"}`}>
+                        <p className={`text-base sm:text-lg md:text-xl italic leading-relaxed ${theme === "colored" ? "text-white/95" : "text-[var(--color-text-muted)]"}`}>
                             "{content.example}"
                         </p>
                     </div>
@@ -316,8 +316,8 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
             </div>
 
             {/* Click Hint */}
-            <div className="absolute bottom-6 text-xs font-semibold tracking-widest uppercase opacity-50">
-                {variant === "front" ? "Click to Flip" : ""}
+            <div className="absolute bottom-4 sm:bottom-6 text-[10px] sm:text-xs font-bold tracking-widest uppercase opacity-40">
+                {variant === "front" ? "Tap to Flip" : ""}
             </div>
         </div>
     );

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function FutureSimplePage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={futureSimpleContent} />
+            <GrammarReader content={futureSimpleContent} completionKey="future-simple" />
         </div>
     );
 }

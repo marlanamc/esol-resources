@@ -582,38 +582,66 @@ function parseFlashcards(contentStr: string): Array<FlashcardData> {
         .map((l) => l.trim())
         .filter(Boolean);
 
+    const clean = (text?: string) =>
+        (text || "")
+            // Strip common Markdown emphasis wrappers
+            .replace(/^\*\*(.+)\*\*$/i, "$1")
+            .replace(/^\*(.+)\*$/i, "$1")
+            .replace(/^__(.+)__$/i, "$1")
+            .replace(/^_(.+)_$/i, "$1")
+            .trim();
+
     const cards: Array<FlashcardData> = [];
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        // Matches "1) Term — Definition" pattern
-        const match = line.match(/^\d+\)\s*(.+?)\s+—\s+(.*)$/);
 
-        // Also support "Q: Definition — Term" format, with optional leading dash
-        // "Q: The reason or drive ... — **motivation**"
-        const qMatch = line.match(/^(?:-\s*)?Q:\s*(.+?)\s+—\s+\**(.+?)\**$/);
+        // Support "1) Term — Definition — Example" or "1) Term — Definition"
+        const numberedMatch = line.match(/^\d+\)\s*(.+)$/);
+        // Support "Q: Definition — Term — Example"
+        const qMatch = line.match(/^(?:-\s*)?Q:\s*(.+)$/i);
 
-        if (match) {
-            const term = match[1].trim();
-            const definition = match[2].trim();
-            let example: string | undefined;
+        const parseSegments = (raw: string) => {
+            const parts = raw
+                .split("—")
+                .map((p) => p.trim())
+                .filter(Boolean);
+            if (parts.length < 2) return null;
+            const term = qMatch ? parts[1] : parts[0];
+            const definition = qMatch ? parts[0] : parts[1];
+            const example = parts[2] || undefined;
+            return { term, definition, example };
+        };
+
+        if (numberedMatch) {
+            const segments = parseSegments(numberedMatch[1]);
+            if (!segments) continue;
+            let { term, definition, example } = segments;
             const next = lines[i + 1];
-            if (next && /^example:/i.test(next)) {
+            if (!example && next && /^example:/i.test(next)) {
                 example = next.replace(/^example:\s*/i, "").trim();
                 i += 1;
             }
-            cards.push({ id: `card-${i}`, term, definition, example });
+            cards.push({
+                id: `card-${i}`,
+                term: clean(term),
+                definition: clean(definition),
+                example: example ? clean(example) : undefined
+            });
         } else if (qMatch) {
-            const definition = qMatch[1].trim();
-            const term = qMatch[2].trim(); // Term is essentially the answer here
-            let example: string | undefined;
-            // Examples typically follow in the same block if present, but the MD format for "Flash Cards" section 
-            // seems to be single lines. If there are examples, they might be on the next line.
+            const segments = parseSegments(qMatch[1]);
+            if (!segments) continue;
+            let { term, definition, example } = segments;
             const next = lines[i + 1];
-            if (next && /^example:/i.test(next)) {
+            if (!example && next && /^example:/i.test(next)) {
                 example = next.replace(/^example:\s*/i, "").trim();
                 i += 1;
             }
-            cards.push({ id: `card-${i}`, term, definition, example });
+            cards.push({
+                id: `card-${i}`,
+                term: clean(term),
+                definition: clean(definition),
+                example: example ? clean(example) : undefined
+            });
         }
     }
     return cards;

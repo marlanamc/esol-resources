@@ -9,13 +9,14 @@ import { TimeExpressionsList } from "./TimeExpressionsList";
 import { VerbTableDisplay } from "./VerbTableDisplay";
 import { TipBox } from "./TipBox";
 import { TimelineVisual } from "./TimelineVisual";
+import { LockKeyhole, CheckCircle2 } from "lucide-react";
 
 interface ExplanationPanelProps {
     section: InteractiveGuideSection;
     onUnlockExercises: () => void;
     practiceUnlocked: boolean;
     hasExercises: boolean;
-    withRightBorder?: boolean;
+    variant?: 'split' | 'full';
     className?: string;
 }
 
@@ -24,14 +25,27 @@ export function ExplanationPanel({
     onUnlockExercises,
     practiceUnlocked,
     hasExercises,
-    withRightBorder = true,
+    variant = 'split',
     className = "",
 }: ExplanationPanelProps) {
+    const isFull = variant === 'full';
+
     return (
         <div
-            className={`explanation-panel bg-white p-8 overflow-y-auto max-h-[600px] ${withRightBorder ? "border-r border-border" : "border border-border"} ${className}`}
+            className={`explanation-panel bg-white ${
+                isFull 
+                    ? "p-8 md:p-12 min-h-[500px]" 
+                    : "p-8 overflow-y-auto max-h-[600px] border-r border-border"
+            } ${className}`}
         >
-            <div className="prose prose-lg max-w-none">
+            {/* Center content when in full mode or no exercises */}
+            <div className={`prose prose-lg ${
+                isFull 
+                    ? "max-w-4xl mx-auto" 
+                    : !hasExercises 
+                        ? "mx-auto max-w-3xl" 
+                        : "max-w-none"
+            }`}>
                 {/* Main Explanation */}
                 {section.explanation && (
                     <div
@@ -74,18 +88,51 @@ export function ExplanationPanel({
             </div>
 
             {/* Reading completion gate for practice */}
-            {hasExercises && (
-                <div className="mt-8 pt-4 border-t border-border">
-                    <p className="text-sm text-text-muted mb-3">
-                        Finished reading this section? Unlock the practice exercises on the right. They will appear alongside the text so you can reference both.
-                    </p>
-                    <Button
-                        variant={practiceUnlocked ? "secondary" : "primary"}
-                        onClick={onUnlockExercises}
-                        className="w-full"
-                    >
-                        {practiceUnlocked ? "Exercises unlocked" : "Completed reading – show exercises"}
-                    </Button>
+            {hasExercises && !practiceUnlocked && (
+                <div className="mt-8 pt-6">
+                    <div className="relative overflow-hidden bg-primary/5 border border-primary/10 rounded-2xl p-6 sm:p-8 text-center group hover:border-primary/20 transition-colors duration-300">
+                        {/* Decorative background elements */}
+                        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+                        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+
+                        <div className="relative flex flex-col items-center gap-4 z-10">
+                            <div className="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-black/5 group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
+                                <LockKeyhole className="w-8 h-8 text-primary" />
+                            </div>
+                            
+                            <div className="space-y-1 max-w-sm">
+                                <h3 className="text-xl font-display font-bold text-text">
+                                    Ready to practice?
+                                </h3>
+                                <p className="text-text-muted">
+                                    Unlock the exercises to test your understanding of this section.
+                                </p>
+                            </div>
+
+                            <div className="pt-2">
+                                <Button
+                                    variant="primary"
+                                    onClick={onUnlockExercises}
+                                    className="px-8 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
+                                >
+                                    <LockKeyhole className="w-4 h-4" />
+                                    Unlock Exercises
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Already unlocked state */}
+            {hasExercises && practiceUnlocked && (
+                <div className="mt-8 pt-6">
+                    <div className="bg-success/10 border-2 border-success/30 rounded-2xl p-4 text-center flex items-center justify-center gap-2">
+                        <CheckCircle2 className="w-5 h-5 text-success" />
+                        <p className="text-sm font-medium text-success">
+                            Exercises unlocked — visible on the right →
+                        </p>
+                    </div>
                 </div>
             )}
         </div>
