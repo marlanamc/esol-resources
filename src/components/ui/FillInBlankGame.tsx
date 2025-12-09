@@ -23,7 +23,12 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
     const [showExplanation, setShowExplanation] = useState(false);
 
     const currentQuestion = questions[currentIndex];
-    const progress = ((currentIndex + (selectedAnswer ? 1 : 0)) / questions.length) * 100;
+    const isLastQuestion = currentIndex === questions.length - 1;
+    const isComplete = selectedAnswer !== null && isLastQuestion;
+
+    // Calculate progress: count answered questions (current + 1 if answered)
+    const answeredCount = currentIndex + (selectedAnswer ? 1 : 0);
+    const progress = (answeredCount / questions.length) * 100;
 
     const handleAnswerSelect = (answer: string) => {
         if (selectedAnswer) return; // Already answered
@@ -42,6 +47,13 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
         const value = Math.round(progress);
         void saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress");
     }, [activityId, progress, questions.length]);
+
+    // Save 100% progress when quiz is completed
+    useEffect(() => {
+        if (isComplete && activityId) {
+            void saveActivityProgress(activityId, 100, "completed");
+        }
+    }, [isComplete, activityId]);
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
@@ -70,9 +82,6 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
             </div>
         );
     }
-
-    const isLastQuestion = currentIndex === questions.length - 1;
-    const isComplete = selectedAnswer !== null && isLastQuestion;
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
