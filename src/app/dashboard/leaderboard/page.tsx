@@ -135,9 +135,9 @@ export default function LeaderboardPage() {
           </div>
         )}
 
-        {/* Top 3 Podium (hide if everyone is at 0) */}
+        {/* Top 3 Podium (hide on mobile, hide if everyone is at 0) */}
         {leaderboard.length >= 3 && hasNonZeroScores && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             {/* Second Place */}
             <div className="pt-3 sm:pt-10">
               <div className="border-2 rounded-2xl p-4 text-center" style={{ backgroundColor: getRankColor(2).bg, borderColor: getRankColor(2).border }}>
