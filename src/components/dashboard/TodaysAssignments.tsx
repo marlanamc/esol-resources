@@ -82,7 +82,7 @@ export const TodaysAssignments: React.FC<Props> = ({
 
     return (
         <div className="mb-8">
-            <h2 className="text-4xl sm:text-3xl font-display font-bold text-text mb-6 flex items-center gap-3 leading-tight">
+            <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-6 flex items-center gap-3 leading-tight">
                 <span className="w-1.5 h-8 rounded-full bg-primary"></span>
                 {title}
             </h2>
