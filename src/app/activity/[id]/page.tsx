@@ -175,55 +175,13 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     </div>
                 </div>
             </header>
-            <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-                <div className="px-4 py-6 sm:px-0 space-y-6">
-                    {/* Assignment Info */}
-                    {assignment && (
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <h2 className="text-lg font-semibold text-blue-900">
-                                        Assignment: {assignment.title || activity.title}
-                                    </h2>
-                                    <p className="text-sm text-blue-700 mt-1">
-                                        Class: {assignment.class.name}
-                                    </p>
-                                    {assignment.instructions && (
-                                        <p className="text-sm text-blue-600 mt-2">{assignment.instructions}</p>
-                                    )}
-                                    {assignment.dueDate && (
-                                        <p className="text-xs text-blue-500 mt-2">
-                                            Due: {new Date(assignment.dueDate).toLocaleString()}
-                                        </p>
-                                    )}
-                                </div>
-                                {submission && (
-                                    <span className={`px-3 py-1 text-sm font-semibold rounded-full ${submission.status === 'graded' ? 'bg-green-100 text-green-800' :
-                                        submission.status === 'submitted' ? 'bg-blue-100 text-blue-800' :
-                                            'bg-yellow-100 text-yellow-800'
-                                        }`}>
-                                        {submission.status.charAt(0).toUpperCase() + submission.status.slice(1)}
-                                    </span>
-                                )}
-                            </div>
-                        </div>
-                    )}
+                <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+                    <div className="px-4 py-6 sm:px-0 space-y-6">
 
                     {/* Activity Content */}
                     <div className="bg-white shadow sm:rounded-lg p-6">
                         <ActivityRenderer activity={activity} />
                     </div>
-
-                    {/* Submission Form (for students with assignments) */}
-                    {assignment && userRole === "student" && (
-                        <div className="bg-white shadow sm:rounded-lg p-6">
-                            <SubmissionForm
-                                activityId={id}
-                                assignmentId={assignmentId!}
-                                existingSubmission={submission}
-                            />
-                        </div>
-                    )}
 
                     {/* Submission Status */}
                     {submission && submission.status === "graded" && (

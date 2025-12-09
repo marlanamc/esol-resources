@@ -1,5 +1,6 @@
 import type { ExerciseItem } from "@/types/activity";
 import { sanitizeHtml } from "@/utils/sanitize";
+import { emphasizeVerb } from "@/utils/emphasizeVerb";
 
 interface SelectExerciseProps {
     item: Extract<ExerciseItem, { type: "select" }>;
@@ -21,7 +22,7 @@ export function SelectExercise({
     return (
         <div className="select-exercise">
             <label className="block mb-2">
-                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
+                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
             </label>
             <select
                 value={userAnswer}

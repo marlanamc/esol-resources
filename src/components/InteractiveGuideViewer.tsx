@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import type { InteractiveGuideContent, FormulaPart, Exercise, ExerciseItem } from "@/types/activity";
+import { emphasizeVerb } from "@/utils/emphasizeVerb";
 
 interface Props {
     content: InteractiveGuideContent;
@@ -191,17 +192,27 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
 function FormulaBadge({ part }: { part: FormulaPart }) {
     const colors = {
-        subject: "bg-blue-100 text-blue-800 border-blue-200",
-        verb: "bg-red-100 text-red-800 border-red-200",
-        object: "bg-green-100 text-green-800 border-green-200",
-        other: "bg-gray-100 text-gray-800 border-gray-200"
+        subject: "bg-blue-50 text-blue-900 border-blue-200",
+        verb: "bg-amber-50 text-amber-900 border-amber-200",
+        ing: "bg-orange-50 text-orange-900 border-orange-200",
+        helper: "bg-purple-50 text-purple-900 border-purple-200",
+        object: "bg-emerald-50 text-emerald-900 border-emerald-200",
+        other: "bg-slate-50 text-slate-800 border-slate-200"
     };
 
-    // Fallback if type is missing or unknown
-    const style = colors[part.type as keyof typeof colors] || colors.other;
+    const isHelperVerb =
+        part.type === "verb" &&
+        /\b(am|is|are|was|were|do|does|did|have|has|will|won't|shall|should|would|could|can|may|might|didn't|don't|doesn't|haven't|hasn't|won't)\b/i.test(
+            part.text.trim()
+        );
+
+    const isIngVerb = part.type === "verb" && /\b\w+ing\b/i.test(part.text.trim());
+
+    const style =
+        colors[(isHelperVerb ? "helper" : isIngVerb ? "ing" : part.type) as keyof typeof colors] || colors.other;
 
     return (
-        <span className={`px-4 py-2 rounded-xl border-2 text-sm font-bold shadow-sm ${style}`}>
+        <span className={`inline-flex items-center justify-center px-5 py-3 rounded-2xl border-2 text-base font-semibold shadow-sm ${style}`}>
             {part.text}
         </span>
     );
@@ -267,7 +278,5 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
 // Replaces **bold** with bold spans, and maybe [highlight] with colored badges if convention exists.
 // For now, just bolding.
 function highlightGrammar(text: string) {
-    // This is a naive implementation. In a real app we might parse markdown or specific tokens.
-    // Assuming simple plain text for now, but could be enhanced.
-    return text;
+    return emphasizeVerb(text);
 }

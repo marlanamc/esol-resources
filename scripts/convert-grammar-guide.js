@@ -86,11 +86,11 @@ console.log(`✅ Created: ${routePath}`);
 
 // Generate seed entry
 console.log(`\n📝 Add this to prisma/seed.js:\n`);
-console.log(`    // Create ${tenseName} Complete Guide
+console.log(`    // Create ${tenseName} Guide
     const ${camelCaseName}Guide = await prisma.activity.upsert({
         where: { id: '${outputName}-guide' },
         update: {
-            title: '${tenseName} - Complete Step-by-Step Guide',
+            title: '${tenseName} Guide',
             description: 'Complete guide to ${tenseName} tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -102,7 +102,7 @@ console.log(`    // Create ${tenseName} Complete Guide
         },
         create: {
             id: '${outputName}-guide',
-            title: '${tenseName} - Complete Step-by-Step Guide',
+            title: '${tenseName} Guide',
             description: 'Complete guide to ${tenseName} tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',

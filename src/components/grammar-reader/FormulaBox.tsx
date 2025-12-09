@@ -8,27 +8,43 @@ interface FormulaBoxProps {
 }
 
 const colorMap = {
-    subject: "bg-primary/10 text-primary border-primary/20",
-    verb: "bg-warning/10 text-warning border-warning/20",
-    object: "bg-success/10 text-success border-success/20",
-    other: "bg-bg-light text-text-muted border-border",
+    subject: "bg-blue-50 text-blue-900 border-blue-200",
+    verb: "bg-amber-50 text-amber-900 border-amber-200",
+    ing: "bg-orange-50 text-orange-900 border-orange-200",
+    helper: "bg-purple-50 text-purple-900 border-purple-200",
+    object: "bg-emerald-50 text-emerald-900 border-emerald-200",
+    other: "bg-slate-50 text-slate-800 border-slate-200",
+};
+
+const isHelperVerb = (text: string, type?: FormulaPart["type"]) => {
+    if (type !== "verb") return false;
+    return /\b(am|is|are|was|were|do|does|did|have|has|will|won't|shall|should|would|could|can|may|might|didn't|don't|doesn't|haven't|hasn't|won't)\b/i.test(
+        text.trim()
+    );
 };
 
 export function FormulaBox({ parts }: FormulaBoxProps) {
     return (
         <motion.div
-            className="formula-box bg-white border-2 border-border rounded-lg p-6 my-6 text-center shadow-sm"
+            className="formula-box bg-white/90 border-2 border-primary/25 rounded-2xl px-7 py-6 sm:px-8 sm:py-7 my-6 text-center shadow-lg backdrop-blur"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
-            <div className="flex items-center justify-center gap-2 flex-wrap">
+            <div className="flex items-center justify-center gap-3 flex-wrap">
                 {parts.map((part, index) => (
                     <motion.span
                         key={index}
-                        className={`formula-part px-3 py-2 rounded-md font-semibold border text-sm ${colorMap[part.type || "other"]
-                            }`}
+                        className={`formula-part px-5 py-3 rounded-2xl font-bold border-2 text-base sm:text-lg shadow-sm ${
+                            colorMap[
+                                isHelperVerb(part.text, part.type)
+                                    ? "helper"
+                                    : part.type === "verb" && /\b\w+ing\b/i.test(part.text.trim())
+                                        ? "ing"
+                                        : part.type || "other"
+                            ]
+                        }`}
                         initial={{ opacity: 0, y: 20, scale: 0.8 }}
                         whileInView={{ opacity: 1, y: 0, scale: 1 }}
                         viewport={{ once: true }}

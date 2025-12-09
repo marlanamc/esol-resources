@@ -107,13 +107,20 @@ export default async function CalendarPage() {
             </header>
 
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6 pb-24 md:pb-12">
-                <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-4 sm:p-6">
-                    <MiniCalendar events={calendarEvents} />
+                {/* Calendar - Centered */}
+                <div className="flex justify-center">
+                    <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-md">
+                        <MiniCalendar events={calendarEvents} />
+                    </div>
                 </div>
 
+                {/* Upcoming Events - Full Width */}
                 <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-4 sm:p-6">
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-lg font-semibold text-text">Upcoming</h2>
+                        <h2 className="text-xl font-bold font-display text-text flex items-center gap-3">
+                            <span className="w-1.5 h-6 rounded-full bg-primary"></span>
+                            Upcoming
+                        </h2>
                     </div>
                     <UpcomingEventsList events={calendarEvents} />
                 </div>

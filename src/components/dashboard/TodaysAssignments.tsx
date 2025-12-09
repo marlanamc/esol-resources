@@ -28,7 +28,7 @@ interface Props {
 
 export const TodaysAssignments: React.FC<Props> = ({
     initialAssignments,
-    title = "Today's Assignments",
+    title = "This Week's Activities",
     ctaLabel = "Start Activity",
 }) => {
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
@@ -61,7 +61,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (loading) {
         return (
             <div className="mb-8">
-                <h2 className="text-2xl font-display font-bold text-text mb-4">{title}</h2>
+                <h2 className="text-4xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
                 <div className="animate-pulse bg-bg-light rounded-xl h-32"></div>
             </div>
         );
@@ -70,7 +70,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                <h2 className="text-2xl font-display font-bold text-text mb-4">{title}</h2>
+                <h2 className="text-4xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
                 <div className="bg-gradient-to-br from-bg-light to-white rounded-xl p-8 text-center border border-border/60 shadow-sm">
                     <div className="text-4xl mb-3">✨</div>
                     <p className="text-text-muted font-medium">No featured assignments right now</p>
@@ -82,37 +82,51 @@ export const TodaysAssignments: React.FC<Props> = ({
 
     return (
         <div className="mb-8">
-            <h2 className="text-2xl font-display font-bold text-text mb-4">{title}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <h2 className="text-4xl sm:text-3xl font-display font-bold text-text mb-6 flex items-center gap-3 leading-tight">
+                <span className="w-1.5 h-8 rounded-full bg-primary"></span>
+                {title}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {assignments.map((assignment, index) => {
                     const submission = assignment.submissions[0];
                     const isCompleted = submission?.completedAt;
                     const categoryKey = (assignment.activity.category || '').toLowerCase();
                     const categoryStyles: Record<string, { label: string; bg: string; text: string; border: string }> = {
-                        vocab: { label: 'Vocab', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' },
-                        vocabulary: { label: 'Vocab', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' },
-                        grammar: { label: 'Grammar', bg: '#fdece8', text: '#c24a32', border: '#e76f51' },
-                        reading: { label: 'Reading', bg: '#e8f6f3', text: '#217f72', border: '#2a9d8f' },
-                        writing: { label: 'Writing', bg: '#eef6ee', text: '#4f7b55', border: '#7ba884' },
-                        pronunciation: { label: 'Pronunciation', bg: '#f1e9f7', text: '#5b3c86', border: '#6a4c93' },
-                        speaking: { label: 'Speaking', bg: '#fff3e6', text: '#c4681a', border: '#f5a524' },
-                        listening: { label: 'Listening', bg: '#e8f7f6', text: '#1b7d73', border: '#2a9d8f' },
-                        default: { label: 'Vocab', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' }
+                        vocab: { label: 'VOCAB', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' },
+                        vocabulary: { label: 'VOCAB', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' },
+                        grammar: { label: 'GRAMMAR', bg: '#fdece8', text: '#c24a32', border: '#e76f51' },
+                        reading: { label: 'READING', bg: '#e8f6f3', text: '#217f72', border: '#2a9d8f' },
+                        writing: { label: 'WRITING', bg: '#eef6ee', text: '#4f7b55', border: '#7ba884' },
+                        pronunciation: { label: 'PRONUNCIATION', bg: '#f1e9f7', text: '#5b3c86', border: '#6a4c93' },
+                        speaking: { label: 'SPEAKING', bg: '#fff3e6', text: '#c4681a', border: '#f5a524' },
+                        listening: { label: 'LISTENING', bg: '#e8f7f6', text: '#1b7d73', border: '#2a9d8f' },
+                        default: { label: 'VOCAB', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' }
                     };
                     const categoryStyle = categoryStyles[categoryKey] || categoryStyles.default;
+                    const rawTitle = assignment.title || assignment.activity.title;
+                    const displayTitle = rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide');
 
                     return (
                         <div
                             key={assignment.id}
-                            className="relative bg-white rounded-xl p-6 border border-border/60 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 group flex flex-col h-full"
+                            className="relative bg-white rounded-2xl p-6 sm:p-8 border-2 border-border/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group flex flex-col min-h-[200px]"
                             style={{
                                 animationDelay: `${index * 100}ms`
                             }}
                         >
-                            {/* Type badge */}
-                            <div className="absolute top-4 right-4">
+                            {/* Badges row */}
+                            <div className="flex items-start justify-between gap-2 mb-5">
+                                {/* Completion badge */}
+                                {isCompleted && (
+                                    <div className="bg-secondary text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5">
+                                        <span className="text-sm">✓</span>
+                                        <span>Done</span>
+                                    </div>
+                                )}
+
+                                {/* Type badge */}
                                 <div
-                                    className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md border"
+                                    className="px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm border-2 ml-auto"
                                     style={{
                                         backgroundColor: categoryStyle.bg,
                                         color: categoryStyle.text,
@@ -123,24 +137,14 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 </div>
                             </div>
 
-                            {/* Completion badge */}
-                            {isCompleted && (
-                                <div className="absolute top-4 left-4">
-                                    <div className="bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-md flex items-center gap-1">
-                                        <span>✓</span>
-                                        <span>Completed</span>
-                                    </div>
-                                </div>
-                            )}
-
-                            <div className={`${isCompleted ? 'mt-8' : 'mt-8 sm:mt-0'} flex flex-col h-full`}>
-                                <h3 className="text-2xl font-bold text-text group-hover:text-primary transition-colors mb-2 font-display pr-24">
-                                    {assignment.title || assignment.activity.title}
+                            <div className="flex flex-col h-full flex-1">
+                                <h3 className="text-3xl sm:text-2xl font-bold text-text group-hover:text-primary transition-colors mb-auto font-display leading-tight">
+                                    {displayTitle}
                                 </h3>
 
                                 <Link
                                     href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                    className="inline-flex items-center justify-center px-8 py-3 text-base font-bold transition-all hover:shadow-lg active:scale-95 rounded-lg bg-primary text-white hover:bg-primary/90 mt-auto self-end"
+                                    className="inline-flex items-center justify-center px-8 py-4 text-lg sm:text-xl font-bold transition-all hover:shadow-xl active:scale-95 rounded-2xl bg-primary text-white hover:brightness-110 mt-6 w-full sm:w-auto sm:self-end min-h-[56px]"
                                 >
                                     {isCompleted ? 'Review' : ctaLabel}
                                 </Link>

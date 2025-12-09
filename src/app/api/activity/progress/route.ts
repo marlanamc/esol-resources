@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { awardPoints } from "@/lib/gamification";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -18,15 +19,26 @@ export async function POST(request: Request) {
 
     const value = typeof progress === "number" ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
 
+    const userId = (session.user as any).id;
+
+    const existing = await prisma.activityProgress.findUnique({
+        where: {
+            userId_activityId: {
+                userId,
+                activityId,
+            },
+        },
+    });
+
     const record = await prisma.activityProgress.upsert({
         where: {
             userId_activityId: {
-                userId: (session.user as any).id,
+                userId,
                 activityId,
             },
         },
         create: {
-            userId: (session.user as any).id,
+            userId,
             activityId,
             progress: value,
             status,
@@ -37,7 +49,13 @@ export async function POST(request: Request) {
         },
     });
 
+    // Award a small amount of points the first time this activity reaches 100%
+    if ((existing?.progress ?? 0) < 100 && value >= 100) {
+        await awardPoints(userId, 1, `Completed activity ${activityId}`);
+    }
+
     return NextResponse.json({ ok: true, progress: record.progress, status: record.status });
 }
+
 
 

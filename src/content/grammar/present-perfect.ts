@@ -7,32 +7,61 @@ export const presentPerfectContent: InteractiveGuideContent = {
         // Introduction Section
         {
             id: "introduction",
-            title: "Welcome! Let's Learn Present Perfect",
+            title: "Present Perfect: Past Meets Right Now",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
                     <h3 style="margin-top: 0; color: #6366f1; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Present Perfect <strong style="color: #c86b51;">connects the PAST to the PRESENT</strong></p>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Perfect <strong style="color: #c86b51;">connects your past experiences to right now</strong>: projects you've done, habits that started before today, and fresh results you can still see.</p>
                 </div>
 
-                <h3>What is Present Perfect?</h3>
-                <p>We use it to talk about:</p>
-                <ul style="list-style: none; padding-left: 0;">
-                    <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">
-                        ✓ <strong>Experiences</strong> in your life
-                    </li>
-                    <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">
-                        ✓ <strong>Actions that continue</strong> to now
-                    </li>
-                    <li style="padding: 0.5rem; margin: 0.5rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">
-                        ✓ <strong>Recent actions</strong> with results now
-                    </li>
+                <h3>Real-Life Uses</h3>
+                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): “I’ve led three product launches.”</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: “She has worked remotely since 2021.”</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: “We’ve just deployed the fix—it’s live.”</li>
                 </ul>
 
                 <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
                     <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #c86b51; font-size: 1.125rem;">have/has + past participle</span></p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "ex-intro-pp-1",
+                    title: "Quick Check: Connected to Now?",
+                    instructions: "Choose the sentences that fit Present Perfect because they connect to now.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"She has finished the report, so it’s ready to send."',
+                            options: [
+                                { value: "yes", label: "Yes, present result" },
+                                { value: "no", label: "No, finished past with time" },
+                            ],
+                            expectedAnswer: "yes",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I visited Madrid in 2019."',
+                            options: [
+                                { value: "yes", label: "Yes, connected to now" },
+                                { value: "no", label: "No, specific finished past time" },
+                            ],
+                            expectedAnswer: "no",
+                        },
+                        {
+                            type: "radio",
+                            label: '"We have worked here since 2020."',
+                            options: [
+                                { value: "yes", label: "Yes, started in past, continues now" },
+                                { value: "no", label: "No, only past" },
+                            ],
+                            expectedAnswer: "yes",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -48,60 +77,53 @@ export const presentPerfectContent: InteractiveGuideContent = {
             usageMeanings: [
                 {
                     title: "🌍 1. Life Experiences",
-                    description:
-                        "Things you've done (no specific time)",
+                    description: "Things you've done at some point in life (no exact time given)",
                     examples: [
                         {
-                            sentence: "I <strong>have been</strong> to Paris <strong>three times</strong>.",
-                            explanation:
-                                "✓ We DON'T say when",
+                            sentence: "I <strong>have led</strong> three product launches.",
+                            explanation: "✓ Experience without a specific date",
                         },
                         {
-                            sentence: "She <strong>has never seen</strong> snow.",
-                            explanation: "✓ Her experience up to now",
+                            sentence: "She <strong>has never tried</strong> sushi, but she <strong>has tasted</strong> every office snack.",
+                            explanation: "✓ 'Never' shows zero experience up to now",
                         },
                     ],
                 },
                 {
                     title: "⏰ 2. Actions That Continue NOW",
-                    description:
-                        "Started in past + STILL happening (use 'for' or 'since')",
+                    description: "Started before now and still true (use 'for' or 'since')",
                     examples: [
                         {
-                            sentence: "I <strong>have lived</strong> in Boston <strong>for 5 years</strong>.",
-                            explanation:
-                                "PAST: Started 5 years ago → NOW: Still live there",
+                            sentence: "I <strong>have worked</strong> remotely <strong>since 2021</strong>.",
+                            explanation: "✓ Started in 2021 and still working from home",
                         },
                         {
-                            sentence: "She <strong>has worked</strong> here <strong>since 2020</strong>.",
-                            explanation:
-                                "PAST: Started 2020 → NOW: Still works there",
+                            sentence: "He <strong>has managed</strong> our support team <strong>for five years</strong>.",
+                            explanation: "✓ Duration that reaches now",
                         },
                     ],
                 },
                 {
                     title: "🆕 3. Recent Actions",
-                    description:
-                        "Just happened! (use 'just', 'already', 'yet')",
+                    description: "Just happened and we see the result now (use 'just', 'already', 'yet')",
                     examples: [
                         {
-                            sentence: "I <strong>have just finished</strong> my homework.",
-                            explanation: "✓ Very recently!",
+                            sentence: "We <strong>have just deployed</strong> the fix—refresh the page.",
+                            explanation: "✓ Result is visible now",
                         },
                         {
-                            sentence: "She <strong>has already eaten</strong> lunch.",
-                            explanation: "✓ Earlier than expected",
+                            sentence: "She <strong>has already sent</strong> the proposal.",
+                            explanation: "✓ Done earlier than expected",
                         },
                     ],
                 },
                 {
                     title: "🔢 4. Multiple Times",
-                    description:
-                        "Happened several times in your life",
+                    description: "Repeated actions up to now",
                     examples: [
                         {
-                            sentence: "I <strong>have seen</strong> that movie <strong>twice</strong>.",
-                            explanation: "✓ Two times up to now",
+                            sentence: "I <strong>have restarted</strong> the router <strong>four times today</strong>.",
+                            explanation: "✓ Many times in the current time period",
                         },
                     ],
                 },
@@ -110,14 +132,12 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Something happened → we see the result NOW",
                     examples: [
                         {
-                            sentence: "I <strong>have lost</strong> my keys.",
-                            explanation:
-                                "PAST: Lost them → NOW: Can't find them!",
+                            sentence: "I <strong>have lost</strong> my badge, so security won't let me in.",
+                            explanation: "PAST: lost badge → NOW: can't enter",
                         },
                         {
-                            sentence: "She <strong>has broken</strong> her leg.",
-                            explanation:
-                                "PAST: Broke it → NOW: It's broken",
+                            sentence: "He <strong>has spilled</strong> coffee on the keyboard, and it's not typing now.",
+                            explanation: "PAST: spill → NOW: broken keyboard",
                         },
                     ],
                 },
@@ -1049,6 +1069,17 @@ export const presentPerfectContent: InteractiveGuideContent = {
             correctAnswer: "a",
             explanation:
                 "The correct negative form is 'hasn't' (has not) + past participle. We use 'hasn't' with 'she' (third person singular).",
+        },
+        {
+            id: "quiz-6",
+            question: "Which question is best for asking about life experience (no time given)?",
+            options: [
+                { value: "a", label: "Did you ever visit Japan?" },
+                { value: "b", label: "Have you ever visited Japan?" },
+                { value: "c", label: "Are you ever visiting Japan?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Life experience with no time uses Present Perfect: Have you ever visited…?",
         },
     ],
 };

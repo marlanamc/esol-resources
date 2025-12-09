@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function FutureContinuousPage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={futureContinuousContent} />
+            <GrammarReader content={futureContinuousContent} completionKey="future-continuous" />
         </div>
     );
 }

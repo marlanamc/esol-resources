@@ -5,12 +5,15 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { BottomNav } from "@/components/ui";
+import UserProfileDropdown from "@/components/UserProfileDropdown";
 import {
     HomeIcon,
     BookOpenIcon,
     TrophyIcon,
     UserIcon,
-    UsersIcon
+    UsersIcon,
+    ClipboardIcon,
+    BarChartIcon
 } from "@/components/icons/Icons";
 import {
     MiniCalendar,
@@ -174,24 +177,24 @@ export default async function DashboardPage() {
                 {/* Header */}
                 <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
                     <div className="max-w-[1800px] mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                        <div className="hidden sm:block">
-                            <p className="font-bold text-primary tracking-widest uppercase text-xs">ESOL 3 Class Companion</p>
+                        <div className="flex-1">
+                            <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
+                                ESOL CLASS<br className="sm:hidden" /> COMPANION
+                            </p>
                         </div>
-                        <div className="block sm:hidden">
-                            {/* Mobile Logo Placeholder */}
-                            <span className="font-display font-bold text-xl text-primary">CC</span>
-                        </div>
-                        <div className="flex items-center gap-4 animate-fade-in-up delay-100">
-                            <span className="hidden sm:inline text-sm font-medium text-text-muted">
-                                {session.user?.name}
-                            </span>
+                        <div className="flex items-center gap-3 animate-fade-in-up delay-100">
                             <Link
-                                href="/dashboard/stats/student"
-                                className="text-xs font-semibold text-primary underline decoration-primary/50 underline-offset-4"
+                                href="/dashboard/leaderboard"
+                                className="inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
+                                style={{ 
+                                    backgroundColor: '#88A392',
+                                    borderColor: '#7a9384',
+                                }}
                             >
-                                View progress
+                                <TrophyIcon className="w-4 h-4" />
+                                Leaderboard
                             </Link>
-                            <LogoutButton />
+                            <UserProfileDropdown userName={session.user?.name || ""} />
                         </div>
                     </div>
                 </header>
@@ -201,17 +204,10 @@ export default async function DashboardPage() {
                         {/* Main Content Area - Left Side */}
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
-                            <div className="animate-fade-in-up flex items-center justify-between gap-3 flex-wrap">
-                                <h1 className="text-3xl font-display font-bold text-text mb-2">
+                            <div className="animate-fade-in-up">
+                                <h1 className="text-5xl sm:text-4xl font-display font-bold text-text mb-2 leading-tight">
                                     Welcome, {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}!
                                 </h1>
-                                <Link
-                                    href="/dashboard/stats/student"
-                                    className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-primary rounded-full shadow-sm hover:brightness-110 active:scale-95 transition"
-                                >
-                                    <TrophyIcon className="w-4 h-4" />
-                                    View progress
-                                </Link>
                             </div>
 
                             {/* Featured Assignments (styled like student view) */}
@@ -253,38 +249,48 @@ export default async function DashboardPage() {
                                     <div className="flex flex-col gap-2">
                                         <Link
                                             href="/dashboard/leaderboard"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
                                         >
-                                            Leaderboard
+                                            <TrophyIcon className="w-4 h-4" />
+                                            <span>Leaderboard</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/calendar/new"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
                                         >
-                                            Add Event to Calendar
+                                            <UsersIcon className="w-4 h-4" />
+                                            <span>Add Event to Calendar</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/activities/new"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
                                         >
-                                            Create Activity
+                                            <BookOpenIcon className="w-4 h-4" />
+                                            <span>Create Activity</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/passwords"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-white bg-primary rounded-lg shadow-sm hover:brightness-110 active:scale-95"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
                                         >
-                                            Reset Student Passwords
+                                            <ClipboardIcon className="w-4 h-4" />
+                                            <span>Reset Student Passwords</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/stats"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
                                         >
-                                            Student Stats
+                                            <BarChartIcon className="w-4 h-4" />
+                                            <span>Student Stats</span>
                                         </Link>
                                     </div>
                                 </div>
                             </div>
                         </aside>
+                    </div>
+
+                    {/* Logout Button at Bottom */}
+                    <div className="max-w-[1800px] mx-auto mt-12 pb-8 px-4 sm:px-6 lg:px-10 flex justify-center md:justify-end">
+                        <LogoutButton />
                     </div>
                 </main>
 
@@ -457,18 +463,24 @@ export default async function DashboardPage() {
                 {/* Header */}
                 <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
                     <div className="max-w-[1800px] mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-                        <div className="hidden sm:block">
-                            <p className="font-bold text-primary tracking-widest uppercase text-xs">ESOL 3 Class Companion</p>
+                        <div className="flex-1">
+                            <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
+                                ESOL CLASS<br className="sm:hidden" /> COMPANION
+                            </p>
                         </div>
-                        <div className="block sm:hidden">
-                            {/* Mobile Logo Placeholder */}
-                            <span className="font-display font-bold text-xl text-primary">CC</span>
-                        </div>
-                        <div className="flex items-center gap-4 animate-fade-in-up delay-100">
-                            <span className="hidden sm:inline text-sm font-medium text-text-muted">
-                                {session.user?.name}
-                            </span>
-                            <LogoutButton />
+                        <div className="flex items-center gap-3 animate-fade-in-up delay-100">
+                            <Link
+                                href="/dashboard/leaderboard"
+                                className="inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
+                                style={{ 
+                                    backgroundColor: '#88A392',
+                                    borderColor: '#7a9384',
+                                }}
+                            >
+                                <TrophyIcon className="w-4 h-4" />
+                                Leaderboard
+                            </Link>
+                            <UserProfileDropdown userName={session.user?.name || ""} />
                         </div>
                     </div>
                 </header>
@@ -478,20 +490,13 @@ export default async function DashboardPage() {
                         {/* Main Content Area - Left Side */}
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
-                        <div className="animate-fade-in-up flex items-center justify-between gap-3 flex-wrap">
-                            <h1 className="text-3xl font-display font-bold text-text mb-2">
+                        <div className="animate-fade-in-up">
+                            <h1 className="text-5xl sm:text-4xl font-display font-bold text-text mb-2 leading-tight">
                                 Welcome, {session.user?.name}!
                             </h1>
-                            <Link
-                                href="/dashboard/stats/student"
-                                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-secondary rounded-full shadow-sm hover:brightness-110 active:scale-95 transition"
-                            >
-                                <TrophyIcon className="w-4 h-4" />
-                                View progress
-                            </Link>
                         </div>
 
-                            {/* Today's Assignments */}
+                            {/* This Week's Activities */}
                             <section className="animate-fade-in-up delay-100">
                                 <TodaysAssignments initialAssignments={featuredAssignments} />
                             </section>
@@ -521,26 +526,12 @@ export default async function DashboardPage() {
 
                                 <UpcomingEventsList events={calendarEvents} />
 
-                                <div className="pt-4 mt-4 border-t border-border/40 space-y-3">
-                                    <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-semibold text-text">Leaderboard</h3>
-                                        <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">New</span>
-                                    </div>
-                                    <p className="text-sm text-text-muted">
-                                        See weekly points, streaks, and how you stack up with classmates.
-                                    </p>
-                                    <Link
-                                        href="/dashboard/leaderboard"
-                                        className="inline-flex items-center justify-center gap-2 px-3 py-2 text-sm font-semibold text-white bg-primary rounded-lg shadow-sm hover:brightness-110 active:scale-95 transition w-full"
-                                    >
-                                        <TrophyIcon className="w-4 h-4" />
-                                        View Leaderboard
-                                    </Link>
-                                </div>
+                                
 
                             </div>
                         </aside>
                     </div>
+
                 </main>
 
                 {/* Mobile Bottom Nav - Student */}

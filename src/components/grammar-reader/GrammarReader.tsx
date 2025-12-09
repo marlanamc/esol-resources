@@ -14,9 +14,10 @@ import Link from "next/link";
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
     onComplete?: () => void;
+    completionKey?: string;
 }
 
-export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
+export function GrammarReader({ content, onComplete, completionKey }: GrammarReaderProps) {
     const storageKey = "grammarReader:present-perfect:unlocked";
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [completedSections, setCompletedSections] = useState<Set<string>>(
@@ -29,6 +30,22 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
     const [showQuiz, setShowQuiz] = useState(false);
     const [unlockedPractice, setUnlockedPractice] = useState<Set<string>>(new Set());
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
+    const [awardSent, setAwardSent] = useState(false);
+
+    const awardCompletion = useCallback(async () => {
+        if (!completionKey || awardSent) return;
+        try {
+            await fetch("/api/grammar/complete", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ slug: completionKey }),
+            });
+        } catch {
+            // non-blocking; user still reached completion
+        } finally {
+            setAwardSent(true);
+        }
+    }, [completionKey, awardSent]);
 
     useEffect(() => {
         try {
@@ -53,7 +70,9 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
     const practiceUnlocked = currentHasExercises
         ? unlockedPractice.has(currentSectionKey)
         : true;
-    const showPracticeColumn = practiceUnlocked || !currentHasExercises;
+    
+    // Only show split layout if exercises exist AND are unlocked
+    const showSplitLayout = currentHasExercises && practiceUnlocked;
 
     const isFirstSection = currentSectionIndex === 0;
     const isLastSection = currentSectionIndex === content.sections.length - 1;
@@ -90,8 +109,17 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
                 setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
             }
             setShowQuiz(true);
+        } else if (!content.miniQuiz) {
+            // Completed without quiz
+            if (currentSection?.id) {
+                setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
+            }
+            void awardCompletion();
+            if (onComplete) {
+                onComplete();
+            }
         }
-    }, [currentSectionIndex, isLastSection, currentSection, content.miniQuiz, showQuiz]);
+    }, [isLastSection, currentSection, content.miniQuiz, showQuiz, awardCompletion, onComplete]);
 
     const handlePrevious = useCallback(() => {
         if (showQuiz) {
@@ -128,10 +156,10 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
     }, [storageKey, unlockedPractice]);
 
     useEffect(() => {
-        if (practiceUnlocked && showPracticeColumn && practicePanelRef.current) {
+        if (practiceUnlocked && showSplitLayout && practicePanelRef.current) {
             practicePanelRef.current.focus();
         }
-    }, [practiceUnlocked, showPracticeColumn]);
+    }, [practiceUnlocked, showSplitLayout]);
 
     const handleAnswerChange = useCallback(
         (exerciseId: string, itemIndex: number, value: string) => {
@@ -155,10 +183,11 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
 
     const handleQuizComplete = useCallback(() => {
         setShowQuiz(false);
+        void awardCompletion();
         if (onComplete) {
             onComplete();
         }
-    }, [onComplete]);
+    }, [awardCompletion, onComplete]);
 
     return (
         <div className="grammar-reader-container min-h-screen bg-bg">
@@ -261,7 +290,7 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
                             />
 
                             {/* Split Screen Content */}
-                            {showPracticeColumn ? (
+                            {showSplitLayout ? (
                                 <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
                                     {/* Left Side: Explanation */}
                                     <ExplanationPanel
@@ -269,7 +298,7 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
                                         onUnlockExercises={handleUnlockExercises}
                                         practiceUnlocked={practiceUnlocked}
                                         hasExercises={currentHasExercises}
-                                        withRightBorder
+                                        variant="split"
                                         className="w-full"
                                     />
 
@@ -290,14 +319,14 @@ export function GrammarReader({ content, onComplete }: GrammarReaderProps) {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 min-h-[400px] justify-items-center px-4">
+                                <div className="w-full min-h-[500px]">
                                     <ExplanationPanel
                                         section={currentSection}
                                         onUnlockExercises={handleUnlockExercises}
                                         practiceUnlocked={practiceUnlocked}
                                         hasExercises={currentHasExercises}
-                                        withRightBorder={false}
-                                        className="w-full max-w-5xl"
+                                        variant="full"
+                                        className="w-full"
                                     />
                                 </div>
                             )}

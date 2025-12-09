@@ -33,7 +33,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 {
                     title: "🔄 1. Habits & Routines (The Real Ones)",
                     description:
-                        "Things you actually do regularly - not the gym membership you never use",
+                        "Things you actually do regularly, not the gym membership you never use",
                     examples: [
                         {
                             sentence: "I <strong>check</strong> my phone the second I wake up.",
@@ -56,7 +56,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         "Things everyone agrees on (unlike politics)",
                     examples: [
                         {
-                            sentence: "Coffee <strong>tastes</strong> better at 85°C - ask any barista.",
+                            sentence: "Coffee <strong>tastes</strong> better at 185°F, ask any barista.",
                             explanation:
                                 "✓ Professional wisdom that's universally true",
                         },
@@ -77,7 +77,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         "The basics: where you live, what you do, who you are",
                     examples: [
                         {
-                            sentence: "I <strong>work</strong> in IT support - yes, I've tried turning it off and on again.",
+                            sentence: "I <strong>work</strong> in IT support. Yes, I've tried turning it off and on again.",
                             explanation:
                                 "✓ Your job (even if you're already updating your resume)",
                         },
@@ -126,7 +126,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                             explanation: "✓ Personal preferences and boundaries",
                         },
                         {
-                            sentence: "We <strong>prefer</strong> remote work - the commute is just too much.",
+                            sentence: "We <strong>prefer</strong> remote work. The commute is just too much.",
                             explanation: "✓ Opinions that shape your decisions",
                         },
                     ],
@@ -394,7 +394,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
             examples: [
                 "I don't answer work emails after 7 PM.",
                 "You don't need to CC everyone on that.",
-                "He doesn't drink coffee - only energy drinks.",
+                "He doesn't drink coffee, only energy drinks.",
                 "She doesn't tolerate being late to meetings.",
                 "It doesn't matter if you send it today or tomorrow.",
                 "We don't have meetings on Fridays.",
@@ -725,99 +725,58 @@ export const presentSimpleContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which sentence is correct for talking about someone's job?",
+            question: "Which sentence is correct (subject-verb agreement + tense)?",
             options: [
-                {
-                    value: "a",
-                    label: "She work as a nurse at City Hospital.",
-                },
-                {
-                    value: "b",
-                    label: "She works as a nurse at City Hospital.",
-                },
-                {
-                    value: "c",
-                    label: "She working as a nurse at City Hospital.",
-                },
+                { value: "a", label: "She work downtown and answer emails at midnight." },
+                { value: "b", label: "She works downtown and answers emails at midnight." },
+                { value: "c", label: "She is work downtown and answer emails at midnight." },
             ],
             correctAnswer: "b",
-            explanation:
-                "For he/she/it in Present Simple positive sentences, add -s to the verb. 'She works' is correct because it's talking about her permanent job situation.",
+            explanation: "He/She/It needs -s on the main verb in Present Simple: works, answers.",
         },
         {
             id: "quiz-2",
-            question: "Which negative sentence is correct?",
+            question: "Choose the correct negative sentence.",
             options: [
-                {
-                    value: "a",
-                    label: "My boss don't answer emails on weekends.",
-                },
-                {
-                    value: "b",
-                    label: "My boss doesn't answers emails on weekends.",
-                },
-                {
-                    value: "c",
-                    label: "My boss doesn't answer emails on weekends.",
-                },
+                { value: "a", label: "The office don't close early on Fridays." },
+                { value: "b", label: "The office doesn't closes early on Fridays." },
+                { value: "c", label: "The office doesn't close early on Fridays." },
             ],
             correctAnswer: "c",
-            explanation:
-                "Use 'doesn't' with he/she/it, and keep the main verb in base form (answer, not answers). 'Doesn't answer' is correct.",
+            explanation: "Use doesn't + base verb (no -s on the main verb).",
         },
         {
             id: "quiz-3",
-            question: "Which question is grammatically correct?",
+            question: "Pick the correct question form.",
             options: [
-                {
-                    value: "a",
-                    label: "Do your coworker commute by train?",
-                },
-                {
-                    value: "b",
-                    label: "Does your coworker commutes by train?",
-                },
-                {
-                    value: "c",
-                    label: "Does your coworker commute by train?",
-                },
+                { value: "a", label: "Does your team have stand-up at 9?" },
+                { value: "b", label: "Do your team has stand-up at 9?" },
+                { value: "c", label: "Do your team have stand-up at 9?" },
             ],
-            correctAnswer: "c",
-            explanation:
-                "Use 'Does' with he/she/it (like 'coworker'), and keep the main verb in base form (commute, not commutes). 'Does your coworker commute?' is correct.",
+            correctAnswer: "a",
+            explanation: "'Team' is singular here, so use Does + base verb: Does your team have…?",
         },
         {
             id: "quiz-4",
-            question: "When should you use Present Simple?",
+            question: "Which sentence correctly places the frequency adverb?",
             options: [
-                {
-                    value: "a",
-                    label: "For something happening right now at this moment",
-                },
-                {
-                    value: "b",
-                    label: "For habits, regular actions, and facts",
-                },
-                {
-                    value: "c",
-                    label: "For something that happened last week",
-                },
+                { value: "a", label: "I check always my calendar first." },
+                { value: "b", label: "I always check my calendar first." },
+                { value: "c", label: "Always I check my calendar first." },
             ],
             correctAnswer: "b",
-            explanation:
-                "Present Simple describes habits, routines, facts, and things that are generally true - not for actions happening at this exact moment (that's Present Continuous) or past events (that's Past Simple).",
+            explanation: "Frequency adverbs go before the main verb: I always check…",
         },
         {
             id: "quiz-5",
-            question: "Which time expression typically goes with Present Simple?",
+            question: "Which sentence uses the right tense for a habit (not now)?",
             options: [
-                { value: "a", label: "right now" },
-                { value: "b", label: "yesterday" },
-                { value: "c", label: "every morning" },
+                { value: "a", label: "I'm answering email every morning at 7." },
+                { value: "b", label: "I answer email every morning at 7." },
+                { value: "c", label: "I answered email every morning at 7." },
             ],
-            correctAnswer: "c",
-            explanation:
-                "'Every morning' signals a regular habit, which is perfect for Present Simple. 'Right now' is for Present Continuous, and 'yesterday' is for Past Simple.",
+            correctAnswer: "b",
+            explanation: "Habits/routines use Present Simple: I answer…; not continuous or past.",
         },
     ],
 };

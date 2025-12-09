@@ -2,6 +2,7 @@
 
 import type { ExerciseItem } from "@/types/activity";
 import { sanitizeHtml } from "@/utils/sanitize";
+import { emphasizeVerb } from "@/utils/emphasizeVerb";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 
@@ -30,7 +31,7 @@ export function RadioExercise({
             transition={{ duration: 0.3 }}
         >
             <div className="mb-3">
-                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
+                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
             </div>
             <div className="space-y-2">
                 {item.options.map((option, index) => {

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PastContinuousPage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={pastContinuousContent} />
+            <GrammarReader content={pastContinuousContent} completionKey="past-continuous" />
         </div>
     );
 }

@@ -46,6 +46,12 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubCategories, setExpandedSubCategories] = useState<Set<string>>(new Set());
 
+    const displayTitle = (title: string) =>
+        title
+            .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
+            .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
+            .trim();
+
     const toggleCategory = (categoryName: string) => {
         const newExpanded = new Set(expandedCategories);
         if (newExpanded.has(categoryName)) {
@@ -381,18 +387,18 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                 <div key={subKey}>
                                                     <button
                                                         onClick={() => toggleSubCategory(subKey)}
-                                                        className="w-full flex items-center justify-between p-4 pl-8 hover:bg-white/50 transition-colors group"
+                                                        className="w-full flex items-center justify-between p-4 pl-6 hover:bg-white/50 transition-colors group text-left"
                                                     >
-                                                        <div className="flex items-center gap-3">
-                                                            <span className="text-base font-semibold text-text group-hover:text-primary transition-colors">
+                                                        <div className="flex items-center gap-3 flex-1 min-w-0">
+                                                            <span className="text-base font-semibold text-text group-hover:text-primary transition-colors text-left">
                                                                 {subCategory.name}
                                                             </span>
-                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-1 rounded-full">
+                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-1 rounded-full shrink-0">
                                                                 {getSubCategoryCount(subCategory)}
                                                             </span>
                                                         </div>
                                                         <svg
-                                                            className={`w-5 h-5 text-text-muted transition-transform duration-300 ${isSubExpanded ? 'rotate-180' : ''}`}
+                                                            className={`w-5 h-5 text-text-muted transition-transform duration-300 shrink-0 ml-2 ${isSubExpanded ? 'rotate-180' : ''}`}
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -444,37 +450,45 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                                             <Link
                                                                                                 key={activity.id}
                                                                                                 href={`/activity/${activity.id}`}
-                                                                                                className={`block bg-white rounded-lg p-3 hover:shadow-md transition-all duration-200 border hover:border-primary/40 group relative ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+                                                                                                className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
                                                                                                     }`}
                                                                                             >
                                                                                                 {isCompleted && (
-                                                                                        <div className="absolute top-3 right-3">
-                                                                                            <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
+                                                                                                    <div className="absolute top-3 right-3">
+                                                                                                        <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                                                                                                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                                                                             </svg>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 )}
-                                                                                                <div className="flex items-center justify-between">
-                                                                                                    <div className="flex-1 min-w-0 pr-6">
-                                                                                                        <h4 className={`text-sm font-semibold group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
+                                                                                                <div className="flex items-start gap-3">
+                                                                                                    <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                                                                                                    <div className="flex-1 min-w-0">
+                                                                                                        <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
                                                                                                             }`}>
-                                                                                                            {activity.title}
+                                                                                                            {displayTitle(activity.title)}
                                                                                                         </h4>
-                                                                                                    </div>
-                                                                                                    <div className="ml-3 flex items-center gap-1.5 pr-8">
-                                                                                                        <span className="px-2 py-0.5 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
-                                                                                                            {activity.type}
-                                                                                                        </span>
-                                                                                                        {progressValue > 0 && (
-                                                                                                            <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
-                                                                                                                {progressValue}%
+                                                                                                        <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                                                                                                            <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                                                                                                {activity.type}
                                                                                                             </span>
-                                                                                                        )}
-
+                                                                                                            {progressValue > 0 && (
+                                                                                                                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
+                                                                                                                    {progressValue}% done
+                                                                                                                </span>
+                                                                                                            )}
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
+                                                                                                {progressValue > 0 && (
+                                                                                                    <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
+                                                                                                        <div
+                                                                                                            className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
+                                                                                                            style={{ width: `${Math.min(progressValue, 100)}%` }}
+                                                                                                        />
+                                                                                                    </div>
+                                                                                                )}
                                                                                             </Link>
                                                                                         );
                                                                                     })}
@@ -494,36 +508,45 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                         <Link
                                                                             key={activity.id}
                                                                             href={`/activity/${activity.id}`}
-                                                                            className={`block bg-white rounded-lg p-4 hover:shadow-md transition-all duration-200 border hover:border-primary/40 group relative ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+                                                                            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
                                                                                 }`}
                                                                         >
                                                                             {isCompleted && (
-                                                                                <div className="absolute top-2 right-2">
-                                                                                    <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center shadow-sm">
-                                                                                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                <div className="absolute top-3 right-3">
+                                                                                    <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
+                                                                                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                                                         </svg>
                                                                                     </div>
                                                                                 </div>
                                                                             )}
-                                                                            <div className="flex items-center justify-between">
-                                                                                <div className="flex-1 min-w-0 pr-8">
-                                                                                    <h4 className={`font-semibold group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
+                                                                            <div className="flex items-start gap-3">
+                                                                                <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                                                                                <div className="flex-1 min-w-0">
+                                                                                    <h4 className={`font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
                                                                                         }`}>
-                                                                                        {activity.title}
+                                                                                        {displayTitle(activity.title)}
                                                                                     </h4>
-                                                                                </div>
-                                                                                <div className="ml-4 flex items-center gap-2 pr-10">
-                                                                                    <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
-                                                                                        {activity.type}
-                                                                                    </span>
-                                                                                    {progressValue > 0 && (
-                                                                                        <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
-                                                                                            {progressValue}%
+                                                                                    <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                                                                                        <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                                                                            {activity.type}
                                                                                         </span>
-                                                                                    )}
+                                                                                        {progressValue > 0 && (
+                                                                                            <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
+                                                                                                {progressValue}% done
+                                                                                            </span>
+                                                                                        )}
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+                                                                            {progressValue > 0 && (
+                                                                                <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
+                                                                                    <div
+                                                                                        className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
+                                                                                        style={{ width: `${Math.min(progressValue, 100)}%` }}
+                                                                                    />
+                                                                                </div>
+                                                                            )}
                                                                         </Link>
                                                                     );
                                                                 })}
@@ -545,36 +568,45 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                     <Link
                                                         key={activity.id}
                                                         href={`/activity/${activity.id}`}
-                                                        className={`block bg-white rounded-lg p-4 hover:shadow-md transition-all duration-200 border hover:border-primary/40 group relative ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+                                                        className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
                                                             }`}
                                                     >
                                                         {isCompleted && (
-                                                            <div className="absolute top-2 right-2">
-                                                                <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center">
-                                                                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <div className="absolute top-3 right-3">
+                                                                <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
+                                                                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                                                     </svg>
                                                                 </div>
                                                             </div>
                                                         )}
-                                                        <div className="flex items-center justify-between">
-                                                            <div className="flex-1 min-w-0 pr-8">
-                                                                <h4 className={`font-semibold group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
+                                                        <div className="flex items-start gap-3">
+                                                            <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                                                            <div className="flex-1 min-w-0">
+                                                                <h4 className={`font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
                                                                     }`}>
-                                                                    {activity.title}
+                                                                    {displayTitle(activity.title)}
                                                                 </h4>
-                                                            </div>
-                                                            <div className="ml-4 flex items-center gap-2">
-                                                                <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
-                                                                    {activity.type}
-                                                                </span>
-                                                            {progressValue > 0 && (
-                                                                <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-full">
-                                                                    {progressValue}%
-                                                                </span>
-                                                            )}
+                                                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                                                                    <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                                                        {activity.type}
+                                                                    </span>
+                                                                {progressValue > 0 && (
+                                                                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
+                                                                        {progressValue}% done
+                                                                    </span>
+                                                                )}
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        {progressValue > 0 && (
+                                                            <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
+                                                                <div
+                                                                    className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
+                                                                    style={{ width: `${Math.min(progressValue, 100)}%` }}
+                                                                />
+                                                            </div>
+                                                        )}
                                                     </Link>
                                                 );
                                             })

@@ -16,3 +16,4 @@ export async function saveActivityProgress(activityId: string, progress: number,
     }
 }
 
+

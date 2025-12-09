@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function SimpleTensesReviewPage() {
     return (
         <div className="min-h-screen bg-bg">
-            <GrammarReader content={simpleTensesReviewContent} />
+            <GrammarReader content={simpleTensesReviewContent} completionKey="simple-tenses-review" />
         </div>
     );
 }

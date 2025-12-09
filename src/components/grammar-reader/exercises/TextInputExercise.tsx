@@ -2,6 +2,7 @@
 
 import type { ExerciseItem } from "@/types/activity";
 import { sanitizeHtml } from "@/utils/sanitize";
+import { emphasizeVerb } from "@/utils/emphasizeVerb";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Sparkles } from "lucide-react";
 
@@ -30,7 +31,7 @@ export function TextInputExercise({
             transition={{ duration: 0.3 }}
         >
             <label className="block mb-2">
-                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
+                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
             </label>
             <motion.div
                 animate={submitted && isIncorrect ? { x: [-10, 10, -10, 10, 0] } : {}}

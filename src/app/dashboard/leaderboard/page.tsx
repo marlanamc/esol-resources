@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { TrophyIcon, FlameIcon, StarIcon, SparklesIcon } from '@/components/icons/Icons';
+import Link from 'next/link';
 import { Badge } from '@/components/ui';
 
 interface LeaderboardEntry {
@@ -25,7 +26,7 @@ export default function LeaderboardPage() {
 
   const fetchLeaderboard = async () => {
     try {
-      const response = await fetch('/api/gamification/leaderboard');
+      const response = await fetch(`/api/gamification/leaderboard`);
       const data = await response.json();
       setLeaderboard(data.leaderboard || []);
 
@@ -47,7 +48,9 @@ export default function LeaderboardPage() {
     return { bg: '#ffffff', border: '#d9cfc0', text: '#2b3a4a' };
   };
 
-  const getRankIcon = (rank: number) => {
+  const getRankIcon = (rank: number, hasScores: boolean = true) => {
+    // When everyone is at 0, display a tie at #1 for clarity
+    if (!hasScores) return '#1';
     if (rank === 1) return '🥇';
     if (rank === 2) return '🥈';
     if (rank === 3) return '🥉';
@@ -64,19 +67,30 @@ export default function LeaderboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#fef9f3' }}>
-        <div className="text-center">
+        <div className="text-center px-6">
           <TrophyIcon className="w-16 h-16 mx-auto mb-4 animate-bounce" style={{ color: '#d97757' }} />
-          <p style={{ color: '#5a6b7f' }}>Loading leaderboard...</p>
+          <p className="text-base sm:text-lg" style={{ color: '#5a6b7f' }}>Loading leaderboard...</p>
         </div>
       </div>
     );
   }
 
+  const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#fef9f3' }}>
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
-        <div className="container mx-auto py-4 px-4 flex items-center gap-4">
+        <div className="container mx-auto py-4 px-4 sm:px-6 flex items-center gap-4">
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Dashboard
+          </Link>
           <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
           <div>
             <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
@@ -89,17 +103,17 @@ export default function LeaderboardPage() {
         </div>
       </header>
 
-      <main className="container mx-auto py-6 px-4 space-y-6 pb-24 md:pb-8">
+      <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
         {/* User's Rank Card */}
         {userRank && (
-          <div className="border-2 rounded-2xl p-6" style={{ backgroundColor: '#ffffff', borderColor: '#d97757', boxShadow: '0 4px 12px rgba(217, 119, 87, 0.15)' }}>
+          <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: '#ffffff', borderColor: '#d97757', boxShadow: '0 4px 12px rgba(217, 119, 87, 0.15)' }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold mb-1" style={{ color: '#7ba884' }}>
                   Your Rank
                 </p>
                 <p className="text-4xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#d97757' }}>
-                  {getRankIcon(userRank)}
+                  {getRankIcon(userRank, hasNonZeroScores)}
                 </p>
               </div>
               {leaderboard.find((_, i) => i + 1 === userRank)?.rankChange && (
@@ -121,11 +135,11 @@ export default function LeaderboardPage() {
           </div>
         )}
 
-        {/* Top 3 Podium */}
-        {leaderboard.length >= 3 && (
-          <div className="grid grid-cols-3 gap-4 mb-8">
+        {/* Top 3 Podium (hide if everyone is at 0) */}
+        {leaderboard.length >= 3 && hasNonZeroScores && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             {/* Second Place */}
-            <div className="pt-12">
+            <div className="pt-3 sm:pt-10">
               <div className="border-2 rounded-2xl p-4 text-center" style={{ backgroundColor: getRankColor(2).bg, borderColor: getRankColor(2).border }}>
                 <div className="text-4xl mb-2">🥈</div>
                 <p className="font-bold text-lg truncate" style={{ color: '#2b3a4a' }}>
@@ -141,7 +155,7 @@ export default function LeaderboardPage() {
 
             {/* First Place */}
             <div>
-              <div className="border-2 rounded-2xl p-6 text-center" style={{ backgroundColor: getRankColor(1).bg, borderColor: getRankColor(1).border, boxShadow: '0 8px 24px rgba(255, 215, 0, 0.3)' }}>
+              <div className="border-2 rounded-2xl p-5 sm:p-6 text-center" style={{ backgroundColor: getRankColor(1).bg, borderColor: getRankColor(1).border, boxShadow: '0 8px 24px rgba(255, 215, 0, 0.3)' }}>
                 <div className="text-6xl mb-2">🥇</div>
                 <p className="font-bold text-xl truncate" style={{ color: '#2b3a4a' }}>
                   {leaderboard[0].name}
@@ -158,7 +172,7 @@ export default function LeaderboardPage() {
             </div>
 
             {/* Third Place */}
-            <div className="pt-12">
+            <div className="pt-3 sm:pt-10">
               <div className="border-2 rounded-2xl p-4 text-center" style={{ backgroundColor: getRankColor(3).bg, borderColor: getRankColor(3).border }}>
                 <div className="text-4xl mb-2">🥉</div>
                 <p className="font-bold text-lg truncate" style={{ color: '#2b3a4a' }}>
@@ -177,9 +191,16 @@ export default function LeaderboardPage() {
         {/* Full Leaderboard */}
         <div className="border rounded-2xl overflow-hidden" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1)' }}>
           <div className="border-b-2 p-4" style={{ backgroundColor: '#f5f1e8', borderColor: '#d9cfc0' }}>
-            <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
-              All Rankings
-            </h2>
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                All Rankings
+              </h2>
+              {!hasNonZeroScores && (
+                <p className="text-xs font-semibold" style={{ color: '#8996a6' }}>
+                  All players tied at #1 until someone earns points
+                </p>
+              )}
+            </div>
           </div>
           <div className="divide-y" style={{ borderColor: '#ede7db' }}>
             {leaderboard.map((entry) => {
@@ -190,7 +211,7 @@ export default function LeaderboardPage() {
               return (
                 <div
                   key={entry.id}
-                  className={`p-4 flex items-center justify-between transition-all ${isUserRow ? 'border-l-4' : ''}`}
+                  className={`p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 transition-all ${isUserRow ? 'border-l-4' : ''}`}
                   style={{
                     backgroundColor: isUserRow ? 'rgba(217, 119, 87, 0.05)' : 'transparent',
                     borderLeftColor: isUserRow ? '#d97757' : 'transparent',
@@ -199,7 +220,7 @@ export default function LeaderboardPage() {
                   <div className="flex items-center gap-4 flex-1">
                     <div className="w-12 text-center">
                       <span className="text-2xl font-bold" style={{ color: rankColors.text }}>
-                        {getRankIcon(entry.rank)}
+                        {getRankIcon(entry.rank, hasNonZeroScores)}
                       </span>
                     </div>
                     <div className="flex-1">
@@ -211,7 +232,7 @@ export default function LeaderboardPage() {
                           </span>
                         )}
                       </p>
-                      <div className="flex items-center gap-3 mt-1">
+                      <div className="flex items-center flex-wrap gap-3 mt-1">
                         <div className="flex items-center gap-1 text-sm" style={{ color: '#5a6b7f' }}>
                           <SparklesIcon size={16} />
                           <span>{entry.weeklyPoints} pts</span>
@@ -226,8 +247,8 @@ export default function LeaderboardPage() {
                     </div>
                   </div>
                   {rankChange && (
-                    <div className="text-right">
-                      <div className="flex items-center gap-1 text-lg font-bold" style={{ color: rankChange.color }}>
+                    <div className="text-left sm:text-right">
+                      <div className="flex items-center gap-1 text-lg font-bold sm:justify-end" style={{ color: rankChange.color }}>
                         <span>{rankChange.icon}</span>
                         <span className="text-sm">{Math.abs(entry.rankChange || 0)}</span>
                       </div>
