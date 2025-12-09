@@ -136,7 +136,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     const [showSettings, setShowSettings] = useState(false);
 
     return (
-        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:relative md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4">
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4">
             {/* Top Bar - Progress & Settings */}
             <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -205,8 +205,8 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             )}
 
             {/* Card Container - Takes up remaining space */}
-            <div className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer" onClick={handleFlip}>
-                <div className="w-full h-full max-w-2xl max-h-[600px]">
+            <div className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer md:py-8" onClick={handleFlip}>
+                <div className="w-full h-full max-w-2xl max-h-[600px] md:aspect-[4/3]">
                     <div
                         className={`relative w-full h-full duration-500 transform-style-3d transition-transform ease-in-out ${isFlipped ? "rotate-y-180" : ""}`}
                     >
