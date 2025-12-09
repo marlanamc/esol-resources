@@ -13,7 +13,8 @@ import {
     UserIcon,
     UsersIcon,
     ClipboardIcon,
-    BarChartIcon
+    BarChartIcon,
+    CalendarIcon
 } from "@/components/icons/Icons";
 import {
     MiniCalendar,
@@ -242,7 +243,7 @@ export default async function DashboardPage() {
 
                                 <MiniCalendar events={calendarEvents} />
 
-                                <UpcomingEventsList events={calendarEvents} />
+                                <UpcomingEventsList events={calendarEvents} allowDelete={true} />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
@@ -299,7 +300,7 @@ export default async function DashboardPage() {
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
                         { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
-                        { href: '/dashboard/calendar', label: 'Calendar', icon: <UsersIcon /> },
+                        { href: '/dashboard/calendar', label: 'Calendar', icon: <CalendarIcon /> },
                         { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: <TrophyIcon /> },
                     ]}
                 />
@@ -524,7 +525,7 @@ export default async function DashboardPage() {
 
                                 <MiniCalendar events={calendarEvents} />
 
-                                <UpcomingEventsList events={calendarEvents} />
+                                <UpcomingEventsList events={calendarEvents} allowDelete={false} />
 
                                 
 
@@ -539,7 +540,7 @@ export default async function DashboardPage() {
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
                         { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
-                        { href: '/dashboard/calendar', label: 'Calendar', icon: <UsersIcon /> },
+                        { href: '/dashboard/calendar', label: 'Calendar', icon: <CalendarIcon /> },
                         { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: <TrophyIcon /> },
                     ]}
                 />
