@@ -61,7 +61,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (loading) {
         return (
             <div className="mb-8">
-                <h2 className="text-4xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
+                <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
                 <div className="animate-pulse bg-bg-light rounded-xl h-32"></div>
             </div>
         );
@@ -70,7 +70,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                <h2 className="text-4xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
+                <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
                 <div className="bg-gradient-to-br from-bg-light to-white rounded-xl p-8 text-center border border-border/60 shadow-sm">
                     <div className="text-4xl mb-3">✨</div>
                     <p className="text-text-muted font-medium">No featured assignments right now</p>

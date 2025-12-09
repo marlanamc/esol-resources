@@ -185,8 +185,8 @@ export default async function DashboardPage() {
                         <div className="flex items-center gap-3 animate-fade-in-up delay-100">
                             <Link
                                 href="/dashboard/leaderboard"
-                                className="inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
-                                style={{ 
+                                className="hidden md:inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
+                                style={{
                                     backgroundColor: '#88A392',
                                     borderColor: '#7a9384',
                                 }}
@@ -471,8 +471,8 @@ export default async function DashboardPage() {
                         <div className="flex items-center gap-3 animate-fade-in-up delay-100">
                             <Link
                                 href="/dashboard/leaderboard"
-                                className="inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
-                                style={{ 
+                                className="hidden md:inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
+                                style={{
                                     backgroundColor: '#88A392',
                                     borderColor: '#7a9384',
                                 }}
@@ -491,7 +491,7 @@ export default async function DashboardPage() {
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
                         <div className="animate-fade-in-up">
-                            <h1 className="text-5xl sm:text-4xl font-display font-bold text-text mb-2 leading-tight">
+                            <h1 className="text-4xl sm:text-4xl font-display font-bold text-text mb-2 leading-tight">
                                 Welcome, {session.user?.name}!
                             </h1>
                         </div>
