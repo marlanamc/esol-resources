@@ -170,18 +170,18 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             {/* Settings Panel - Collapsible */}
             {showSettings && (
                 <div className="flex-shrink-0 bg-[var(--color-bg-light)] border-b-2 border-[var(--color-border)] px-4 py-4 flex flex-col gap-3">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-0 bg-white rounded-lg p-1 border-2 border-[var(--color-border)]">
                         <button
                             onClick={() => { setMode("term-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-lg transition-all ${mode === "term-first" ? "bg-[var(--color-primary)] text-white" : "bg-white text-[var(--color-text-muted)]"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all ${mode === "term-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
                         >
                             Term First
                         </button>
                         <button
                             onClick={() => { setMode("def-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-lg transition-all ${mode === "def-first" ? "bg-[var(--color-primary)] text-white" : "bg-white text-[var(--color-text-muted)]"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all ${mode === "def-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
                         >
-                            Def First
+                            Definition First
                         </button>
                     </div>
                     <div className="flex items-center gap-2">

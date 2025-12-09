@@ -369,7 +369,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     },
                     {
                         label: "Time Words",
-                        left: "ever, never, already, yet, just, for, since",
+                        left: "ever, never, already, yet, just, still, for, since",
                         right: "yesterday, last week, in 2020, ago, when I was young",
                     },
                     {
@@ -736,16 +736,16 @@ export const presentPerfectContent: InteractiveGuideContent = {
             ],
         },
 
-        // Time Expressions (Already / Just / Yet)
+        // Time Expressions (Already / Just / Yet / Still)
         {
             id: "time-already-just-yet",
-            title: "Already, Just, or Yet?",
+            title: "Already, Just, Yet, or Still?",
             icon: "⏰",
             explanation: `
                 <h3>Recent Actions and Expectations</h3>
-                <p><strong>Already</strong> = earlier than expected. <strong>Just</strong> = a moment ago. <strong>Yet</strong> = expected, but not happened (or asking if it happened).</p>
-                <p><strong>Placement:</strong> "already/just" go between have/has and the past participle (I <strong>have just finished</strong>); "yet" goes at the end (I haven't finished <strong>yet</strong>).</p>
-                <p><strong>Sentence types:</strong> "already" and "just" in affirmatives (sometimes questions); "yet" in negatives and questions.</p>
+                <p><strong>Already</strong> = earlier than expected. <strong>Just</strong> = a moment ago. <strong>Yet</strong> = expected, but not happened (or asking if it happened). <strong>Still</strong> = continues to not happen (emphasizes the negative continues).</p>
+                <p><strong>Placement:</strong> "already/just" go between have/has and the past participle (I <strong>have just finished</strong>); "yet" goes at the end (I haven't finished <strong>yet</strong>); "still" goes before haven't/hasn't (I <strong>still haven't</strong> finished).</p>
+                <p><strong>Sentence types:</strong> "already" and "just" in affirmatives (sometimes questions); "yet" in negatives and questions; "still" in negatives to emphasize continuation.</p>
             `,
             timeExpressions: [
                 {
@@ -772,42 +772,63 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         "I haven't eaten lunch yet.",
                     ],
                 },
+                {
+                    word: "Still",
+                    usage: "Emphasizes that something continues to not happen (used with negatives)",
+                    examples: [
+                        "I still haven't finished my Christmas shopping.",
+                        "She still hasn't called me back.",
+                        "They still haven't decided where to go.",
+                    ],
+                },
             ],
             exercises: [
                 {
                     id: "ex-time-already-just-yet-1",
-                    title: "Choose: already / just / yet",
+                    title: "Choose: already / just / yet / still",
                     instructions: "Select the best time word for each sentence.",
                     items: [
                         {
                             type: "select",
                             label: "1. I have ___ finished my homework.",
-                            options: ["Choose...", "already", "just", "yet"],
+                            options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "already",
                         },
                         {
                             type: "select",
                             label: "2. She hasn't eaten lunch ___.",
-                            options: ["Choose...", "already", "just", "yet"],
+                            options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "yet",
                         },
                         {
                             type: "select",
                             label: "3. We have ___ arrived, so we can start.",
-                            options: ["Choose...", "already", "just", "yet"],
+                            options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "just",
                         },
                         {
                             type: "select",
                             label: "4. Have you finished your project ___?",
-                            options: ["Choose...", "already", "just", "yet"],
+                            options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "yet",
                         },
                         {
                             type: "select",
                             label: "5. He has ___ taken the test and is waiting outside.",
-                            options: ["Choose...", "already", "just", "yet"],
+                            options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "already",
+                        },
+                        {
+                            type: "select",
+                            label: "6. I ___ haven't finished my Christmas shopping.",
+                            options: ["Choose...", "already", "just", "yet", "still"],
+                            expectedAnswer: "still",
+                        },
+                        {
+                            type: "select",
+                            label: "7. She ___ hasn't called me back about the job.",
+                            options: ["Choose...", "already", "just", "yet", "still"],
+                            expectedAnswer: "still",
                         },
                     ],
                 },
@@ -965,7 +986,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             <li>Past actions with present results</li>
                         </ol>
                     </li>
-                    <li><strong>Time Expressions:</strong> for, since, already, yet, just, ever, never</li>
+                    <li><strong>Time Expressions:</strong> for, since, already, yet, just, still, ever, never</li>
                     <li><strong>Negative:</strong> haven't/hasn't + past participle</li>
                     <li><strong>Questions:</strong> Have/Has + subject + past participle?</li>
                     <li><strong>vs Past Simple:</strong> Present Perfect = connection to NOW. Past Simple = finished action with specific time.</li>
@@ -1055,7 +1076,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "'Yesterday' is a specific past time, so we use Past Simple. Present Perfect uses words like 'already', 'just', 'yet', 'ever', 'never', 'for', 'since'.",
+                "'Yesterday' is a specific past time, so we use Past Simple. Present Perfect uses words like 'already', 'just', 'yet', 'still', 'ever', 'never', 'for', 'since'.",
         },
         {
             id: "quiz-5",
