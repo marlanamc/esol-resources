@@ -87,11 +87,11 @@ async function main() {
         });
     }
 
-    // Create Present Perfect Complete Guide
+    // Create Present Perfect Guide
     const presentPerfectGuide = await prisma.activity.upsert({
         where: { id: 'present-perfect-guide' },
         update: {
-            title: 'Present Perfect - Complete Step-by-Step Guide',
+            title: 'Present Perfect Guide',
             description: 'Complete guide to Present Perfect tense with numbered sections for easy navigation. Includes meaning, past participles, forms (positive, negative, questions), and time expressions (for/since, already/yet/just, ever/never) with interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -103,7 +103,7 @@ async function main() {
         },
         create: {
             id: 'present-perfect-guide',
-            title: 'Present Perfect - Complete Step-by-Step Guide',
+            title: 'Present Perfect Guide',
             description: 'Complete guide to Present Perfect tense with numbered sections for easy navigation. Includes meaning, past participles, forms (positive, negative, questions), and time expressions (for/since, already/yet/just, ever/never) with interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -115,11 +115,11 @@ async function main() {
         },
     });
 
-    // Create Present Simple Complete Guide
+    // Create Present Simple Guide
     const presentSimpleGuide = await prisma.activity.upsert({
         where: { id: 'present-simple-guide' },
         update: {
-            title: 'Present Simple - Complete Step-by-Step Guide',
+            title: 'Present Simple Guide',
             description: 'Complete guide to Present Simple tense with numbered sections for easy navigation. Includes meaning and usage, forms (positive, negative, questions), spelling rules for -s/es endings, and time expressions with interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -131,7 +131,7 @@ async function main() {
         },
         create: {
             id: 'present-simple-guide',
-            title: 'Present Simple - Complete Step-by-Step Guide',
+            title: 'Present Simple Guide',
             description: 'Complete guide to Present Simple tense with numbered sections for easy navigation. Includes meaning and usage, forms (positive, negative, questions), spelling rules for -s/es endings, and time expressions with interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -143,11 +143,11 @@ async function main() {
         },
     });
 
-    // Create Past Simple Complete Guide
+    // Create Past Simple Guide
     const pastSimpleGuide = await prisma.activity.upsert({
         where: { id: 'past-simple-guide' },
         update: {
-            title: 'Past Simple - Complete Step-by-Step Guide',
+            title: 'Past Simple Guide',
             description: 'Complete guide to Past Simple tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -159,7 +159,7 @@ async function main() {
         },
         create: {
             id: 'past-simple-guide',
-            title: 'Past Simple - Complete Step-by-Step Guide',
+            title: 'Past Simple Guide',
             description: 'Complete guide to Past Simple tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -171,11 +171,11 @@ async function main() {
         },
     });
 
-    // Create Future Simple Complete Guide
+    // Create Future Simple Guide
     const futureSimpleGuide = await prisma.activity.upsert({
         where: { id: 'future-simple-guide' },
         update: {
-            title: 'Future Simple - Complete Step-by-Step Guide',
+            title: 'Future Simple Guide',
             description: 'Complete guide to Future Simple tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -187,7 +187,7 @@ async function main() {
         },
         create: {
             id: 'future-simple-guide',
-            title: 'Future Simple - Complete Step-by-Step Guide',
+            title: 'Future Simple Guide',
             description: 'Complete guide to Future Simple tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -199,11 +199,11 @@ async function main() {
         },
     });
 
-    // Create Present Continuous Complete Guide
+    // Create Present Continuous Guide
     const presentContinuousGuide = await prisma.activity.upsert({
         where: { id: 'present-continuous-guide' },
         update: {
-            title: 'Present Continuous - Complete Step-by-Step Guide',
+            title: 'Present Continuous Guide',
             description: 'Complete guide to Present Continuous tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -215,7 +215,7 @@ async function main() {
         },
         create: {
             id: 'present-continuous-guide',
-            title: 'Present Continuous - Complete Step-by-Step Guide',
+            title: 'Present Continuous Guide',
             description: 'Complete guide to Present Continuous tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -227,11 +227,11 @@ async function main() {
         },
     });
 
-    // Create Past Continuous Complete Guide
+    // Create Past Continuous Guide
     const pastContinuousGuide = await prisma.activity.upsert({
         where: { id: 'past-continuous-guide' },
         update: {
-            title: 'Past Continuous - Complete Step-by-Step Guide',
+            title: 'Past Continuous Guide',
             description: 'Complete guide to Past Continuous tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -243,7 +243,7 @@ async function main() {
         },
         create: {
             id: 'past-continuous-guide',
-            title: 'Past Continuous - Complete Step-by-Step Guide',
+            title: 'Past Continuous Guide',
             description: 'Complete guide to Past Continuous tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -255,11 +255,11 @@ async function main() {
         },
     });
 
-    // Create Future Continuous Complete Guide
+    // Create Future Continuous Guide
     const futureContinuousGuide = await prisma.activity.upsert({
         where: { id: 'future-continuous-guide' },
         update: {
-            title: 'Future Continuous - Complete Step-by-Step Guide',
+            title: 'Future Continuous Guide',
             description: 'Complete guide to Future Continuous tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -271,7 +271,7 @@ async function main() {
         },
         create: {
             id: 'future-continuous-guide',
-            title: 'Future Continuous - Complete Step-by-Step Guide',
+            title: 'Future Continuous Guide',
             description: 'Complete guide to Future Continuous tense with numbered sections for easy navigation. Includes meaning, forms, and interactive exercises.',
             type: 'guide',
             category: 'grammar',
@@ -344,39 +344,77 @@ async function main() {
         where: { id: 'vocab-september-flashcards' },
         update: {
             title: 'Unit 1: Flash Cards',
-            description: 'Vocabulary flashcards for September unit - Personal Daily Life',
+            description: 'Unit 1 flash cards: Getting to Know You',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 1: Flash Cards',
             level: 'intermediate',
-            content: `Q: Your life experiences and history — **background**
-Q: The process of signing up for school or services — **registration**
-Q: Education, training, or skills that prepare a person for a specific job or trade — **vocational**
-Q: The reason or drive behind someone's actions or goals — **motivation**
-Q: The process of change from one situation to another — **transition**
-Q: The act of coming to a new country to live permanently — **immigration**
-Q: Dedication to a task, goal, or promise — **commitment**
-Q: Something that blocks or makes it difficult to move forward — **barrier**
-Q: A chance to do something or achieve success — **opportunity**
-Q: Proof of training or education — **qualification**`,
+            content: `1) background — your life experiences and history
+   Example: Her art background helps her design posters quickly.
+
+2) registration — the process of signing up for school or services
+   Example: Online registration closes on Friday.
+
+3) vocational — education/training that prepares you for a specific job
+   Example: He joined a vocational program to become a mechanic.
+
+4) motivation — the reason or drive behind someone's actions or goals
+   Example: Her motivation for studying English is to get a better job.
+
+5) transition — the process of change from one situation to another
+   Example: Moving to a new country can be a big transition.
+
+6) immigration — moving to a new country to live permanently
+   Example: Her immigration story inspires her classmates.
+
+7) commitment — dedication to a task, goal, or promise
+   Example: His commitment to homework shows in his grades.
+
+8) barrier — something that blocks or makes it difficult to move forward
+   Example: Lack of childcare is a barrier to attending class.
+
+9) opportunity — a chance to do something or achieve success
+   Example: The job fair is an opportunity to meet employers.
+
+10) qualification — proof of training or education
+   Example: She needs a qualification to apply for the nursing program.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-september-flashcards',
             title: 'Unit 1: Flash Cards',
-            description: 'Vocabulary flashcards for September unit - Personal Daily Life',
+            description: 'Unit 1 flash cards: Getting to Know You',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 1: Flash Cards',
             level: 'intermediate',
-            content: `Q: Your life experiences and history — **background**
-Q: The process of signing up for school or services — **registration**
-Q: Education, training, or skills that prepare a person for a specific job or trade — **vocational**
-Q: The reason or drive behind someone's actions or goals — **motivation**
-Q: The process of change from one situation to another — **transition**
-Q: The act of coming to a new country to live permanently — **immigration**
-Q: Dedication to a task, goal, or promise — **commitment**
-Q: Something that blocks or makes it difficult to move forward — **barrier**
-Q: A chance to do something or achieve success — **opportunity**
-Q: Proof of training or education — **qualification**`,
+            content: `1) background — your life experiences and history
+   Example: Her art background helps her design posters quickly.
+
+2) registration — the process of signing up for school or services
+   Example: Online registration closes on Friday.
+
+3) vocational — education/training that prepares you for a specific job
+   Example: He joined a vocational program to become a mechanic.
+
+4) motivation — the reason or drive behind someone's actions or goals
+   Example: Her motivation for studying English is to get a better job.
+
+5) transition — the process of change from one situation to another
+   Example: Moving to a new country can be a big transition.
+
+6) immigration — moving to a new country to live permanently
+   Example: Her immigration story inspires her classmates.
+
+7) commitment — dedication to a task, goal, or promise
+   Example: His commitment to homework shows in his grades.
+
+8) barrier — something that blocks or makes it difficult to move forward
+   Example: Lack of childcare is a barrier to attending class.
+
+9) opportunity — a chance to do something or achieve success
+   Example: The job fair is an opportunity to meet employers.
+
+10) qualification — proof of training or education
+   Example: She needs a qualification to apply for the nursing program.`,
             createdBy: teacher.id,
         },
     });
@@ -387,34 +425,77 @@ Q: Proof of training or education — **qualification**`,
         where: { id: 'vocab-october-flashcards' },
         update: {
             title: 'Unit 2: Flash Cards',
-            description: 'Vocabulary flashcards for October unit - Daily Life in the Community',
+            description: 'Unit 2 flash cards: Daily Life in the Community',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 2: Flash Cards',
             level: 'intermediate',
-            content: `Q: Friendly and likes to meet people — **outgoing**
-Q: A problem that gets in the way of your goal — **obstacle**
-Q: Something that makes it hard to focus — **distraction**
-Q: Someone you can trust — **reliable**
-Q: To review or check again — **go over**
-Q: Something that helps you — **beneficial**
-Q: Something that is not good for you — **harmful**
-Q: To focus or pay close attention — **concentrate**
-Q: To become better — **improve**
-Q: Someone quiet and shy — **reserved**`,
+            content: `1) obstacle — something that blocks your way or makes progress difficult
+   Example: Language was an obstacle at first, but she overcame it.
+
+2) reliable — trustworthy and dependable
+   Example: He is a reliable worker who is never late.
+
+3) beneficial — helpful or advantageous
+   Example: Exercise is beneficial for your health.
+
+4) harmful — causing damage or injury
+   Example: Smoking is harmful to your lungs.
+
+5) distraction — something that takes your attention away
+   Example: My phone is a distraction when I study.
+
+6) concentrate — to focus all your attention on something
+   Example: I need silence to concentrate on my homework.
+
+7) improve — to make or become better
+   Example: She wants to improve her English skills.
+
+8) go over — to review or examine something
+   Example: Let's go over the lesson one more time.
+
+9) outgoing — friendly and sociable
+   Example: She is very outgoing and makes friends easily.
+
+10) reserved — quiet and not showing emotions openly
+   Example: He is more reserved and prefers to listen.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-october-flashcards',
             title: 'Unit 2: Flash Cards',
-            description: 'Vocabulary flashcards for October unit - Daily Life in the Community',
+            description: 'Unit 2 flash cards: Daily Life in the Community',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 2: Flash Cards',
             level: 'intermediate',
-            content: `Q: Friendly and likes to meet people — **outgoing**
-Q: A problem that gets in the way of your goal — **obstacle**
-Q: Something that makes it hard to focus — **distraction**
-Q: Someone you can trust — **reliable**
-Q: To review or check again — **go over**`,
+            content: `1) obstacle — something that blocks your way or makes progress difficult
+   Example: Language was an obstacle at first, but she overcame it.
+
+2) reliable — trustworthy and dependable
+   Example: He is a reliable worker who is never late.
+
+3) beneficial — helpful or advantageous
+   Example: Exercise is beneficial for your health.
+
+4) harmful — causing damage or injury
+   Example: Smoking is harmful to your lungs.
+
+5) distraction — something that takes your attention away
+   Example: My phone is a distraction when I study.
+
+6) concentrate — to focus all your attention on something
+   Example: I need silence to concentrate on my homework.
+
+7) improve — to make or become better
+   Example: She wants to improve her English skills.
+
+8) go over — to review or examine something
+   Example: Let's go over the lesson one more time.
+
+9) outgoing — friendly and sociable
+   Example: She is very outgoing and makes friends easily.
+
+10) reserved — quiet and not showing emotions openly
+   Example: He is more reserved and prefers to listen.`,
             createdBy: teacher.id,
         },
     });
@@ -425,39 +506,77 @@ Q: To review or check again — **go over**`,
         where: { id: 'vocab-november-flashcards' },
         update: {
             title: 'Unit 3: Flash Cards',
-            description: 'Vocabulary flashcards for November unit',
+            description: 'Unit 3 flash cards: Community Participation',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 3: Flash Cards',
             level: 'intermediate',
-            content: `Q: Small tasks outside the home, like shopping or mailing letters — **errands**
-Q: To move to a new place — **relocate**
-Q: A section on a website you can click — **tab**
-Q: Not required to pay — **waived**
-Q: Classes or programs to help you learn work skills — **job training**
-Q: To find your way or move through a place or website — **navigate**
-Q: Very quickly or needing fast help — **urgently**
-Q: An event to collect money for a cause — **fundraiser**
-Q: A building where legal matters happen — **courthouse**
-Q: A beginner-level job — **entry-level**
-Q: Not too expensive; low cost — **affordable**
-Q: Money or things given to help others — **donation**
-Q: Known or accepted by others — **recognized**
-Q: Official papers that allow you to do something — **permits**
-Q: City or town leaders who manage community services — **local government**`,
+            content: `1) waived — not required to pay
+   Example: The fee was waived for low-income families.
+
+2) tab — a section on a website you can click
+   Example: Click the 'Contact' tab to find our phone number.
+
+3) errands — short trips to accomplish tasks
+   Example: I need to run some errands after work.
+
+4) navigate — to find your way or move through a place or website
+   Example: She learned to navigate the bus system.
+
+5) urgently — very quickly or needing fast help
+   Example: We need this done urgently.
+
+6) fundraiser — an event to raise money for a cause
+   Example: The school held a fundraiser for new books.
+
+7) courthouse — a building where legal cases are heard
+   Example: We went to the courthouse to file paperwork.
+
+8) entry-level — suitable for beginners with little experience
+   Example: He found an entry-level job at the warehouse.
+
+9) affordable — reasonably priced; not too expensive
+   Example: We're looking for affordable housing.
+
+10) relocate — to move to a new place
+   Example: The company will relocate to a bigger office.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-november-flashcards',
             title: 'Unit 3: Flash Cards',
-            description: 'Vocabulary flashcards for November unit',
+            description: 'Unit 3 flash cards: Community Participation',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 3: Flash Cards',
             level: 'intermediate',
-            content: `Q: Small tasks outside the home, like shopping or mailing letters — **errands**
-Q: To move to a new place — **relocate**
-Q: A section on a website you can click — **tab**
-Q: Not required to pay — **waived**
-Q: Classes or programs to help you learn work skills — **job training**`,
+            content: `1) waived — not required to pay
+   Example: The fee was waived for low-income families.
+
+2) tab — a section on a website you can click
+   Example: Click the 'Contact' tab to find our phone number.
+
+3) errands — short trips to accomplish tasks
+   Example: I need to run some errands after work.
+
+4) navigate — to find your way or move through a place or website
+   Example: She learned to navigate the bus system.
+
+5) urgently — very quickly or needing fast help
+   Example: We need this done urgently.
+
+6) fundraiser — an event to raise money for a cause
+   Example: The school held a fundraiser for new books.
+
+7) courthouse — a building where legal cases are heard
+   Example: We went to the courthouse to file paperwork.
+
+8) entry-level — suitable for beginners with little experience
+   Example: He found an entry-level job at the warehouse.
+
+9) affordable — reasonably priced; not too expensive
+   Example: We're looking for affordable housing.
+
+10) relocate — to move to a new place
+   Example: The company will relocate to a bigger office.`,
             createdBy: teacher.id,
         },
     });
@@ -468,39 +587,77 @@ Q: Classes or programs to help you learn work skills — **job training**`,
         where: { id: 'vocab-december-flashcards' },
         update: {
             title: 'Unit 4: Flash Cards',
-            description: 'Vocabulary flashcards for December unit',
+            description: 'Unit 4 flash cards: Consumer Smarts',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 4: Flash Cards',
             level: 'intermediate',
-            content: `Q: Money returned after you return a product — **refund**
-Q: A trick to steal money or cheat someone — **scam**
-Q: Special parts or qualities of a product — **features**
-Q: Small payments made over time — **installments**
-Q: A written promise to fix or replace a product — **warranty**
-Q: The act of putting something in and making it ready to use — **installation**
-Q: Already part of the price or group — **included**
-Q: Bad points; things that make something less good — **disadvantages**
-Q: To end or stop being good after a certain time — **expire**
-Q: A store that sells products at lower prices — **outlet**
-Q: Extra money earned from selling something — **commission**
-Q: A special offer to help sell a product — **promotion**
-Q: Something or someone you can trust to work well — **reliable**
-Q: The name of a product or company — **brand**
-Q: A company that gives you a service (like internet or phone) — **service provider**`,
+            content: `1) installation — the process of setting up equipment
+   Example: The installation of the new AC takes two hours.
+
+2) included — part of the package or price
+   Example: Breakfast is included in the hotel rate.
+
+3) disadvantages — unfavorable conditions or drawbacks
+   Example: What are the disadvantages of this plan?
+
+4) refund — money returned after a purchase
+   Example: I got a full refund for the defective product.
+
+5) scam — a dishonest scheme or fraud
+   Example: That email is a scam—don't click it.
+
+6) warranty — a guarantee for repairs or replacements
+   Example: The laptop comes with a one-year warranty.
+
+7) expire — to come to an end or no longer be valid
+   Example: My coupon will expire next week.
+
+8) outlet — a store selling goods at reduced prices
+   Example: We shop at the outlet for deals.
+
+9) installments — payments made in parts over time
+   Example: You can pay in monthly installments.
+
+10) commission — a payment based on sales made
+   Example: She earns a commission on each sale.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-december-flashcards',
             title: 'Unit 4: Flash Cards',
-            description: 'Vocabulary flashcards for December unit',
+            description: 'Unit 4 flash cards: Consumer Smarts',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 4: Flash Cards',
             level: 'intermediate',
-            content: `Q: Money returned after you return a product — **refund**
-Q: A trick to steal money or cheat someone — **scam**
-Q: Special parts or qualities of a product — **features**
-Q: Small payments made over time — **installments**
-Q: A written promise to fix or replace a product — **warranty**`,
+            content: `1) installation — the process of setting up equipment
+   Example: The installation of the new AC takes two hours.
+
+2) included — part of the package or price
+   Example: Breakfast is included in the hotel rate.
+
+3) disadvantages — unfavorable conditions or drawbacks
+   Example: What are the disadvantages of this plan?
+
+4) refund — money returned after a purchase
+   Example: I got a full refund for the defective product.
+
+5) scam — a dishonest scheme or fraud
+   Example: That email is a scam—don't click it.
+
+6) warranty — a guarantee for repairs or replacements
+   Example: The laptop comes with a one-year warranty.
+
+7) expire — to come to an end or no longer be valid
+   Example: My coupon will expire next week.
+
+8) outlet — a store selling goods at reduced prices
+   Example: We shop at the outlet for deals.
+
+9) installments — payments made in parts over time
+   Example: You can pay in monthly installments.
+
+10) commission — a payment based on sales made
+   Example: She earns a commission on each sale.`,
             createdBy: teacher.id,
         },
     });
@@ -511,37 +668,77 @@ Q: A written promise to fix or replace a product — **warranty**`,
         where: { id: 'vocab-january-flashcards' },
         update: {
             title: 'Unit 5: Flash Cards',
-            description: 'Vocabulary flashcards for January unit',
+            description: 'Unit 5 flash cards: Housing',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 5: Flash Cards',
             level: 'intermediate',
-            content: `Q: Money paid in advance to protect against damage — **deposit**
-Q: A legal contract for renting property — **lease**
-Q: Someone who rents a home or apartment — **tenant**
-Q: Empty or available for rent — **vacant**
-Q: Basic services in a home (electricity, water, gas) — **utilities**
-Q: Having a lot of room; large and open inside — **spacious**
-Q: A person who owns a property and rents it to other people — **landlord**
-Q: Something equal in value, amount, or meaning — **equivalent**
-Q: Strong and not likely to change suddenly; dependable — **stable**
-Q: Land or buildings that someone owns — **property**
-Q: The work needed to keep something in good condition — **maintenance**
-Q: To look at carefully before renting — **inspect**
-Q: To keep something in good condition — **maintain**`,
+            content: `1) spacious — having plenty of room
+   Example: The apartment is very spacious and bright.
+
+2) deposit — money paid upfront as security
+   Example: The landlord requires a security deposit.
+
+3) utilities — services like water, gas, and electricity
+   Example: Utilities are not included in the rent.
+
+4) tenant — a person who rents property
+   Example: The tenant must pay rent on the first.
+
+5) landlord — the owner of rental property
+   Example: Call the landlord if something breaks.
+
+6) equivalent — equal in value or meaning
+   Example: This is equivalent to two months' rent.
+
+7) stable — steady and not likely to change
+   Example: He has a stable job and good income.
+
+8) lease — a rental agreement or contract
+   Example: We signed a one-year lease.
+
+9) property — land or buildings owned by someone
+   Example: The property includes a garage.
+
+10) maintenance — the upkeep and repair of something
+   Example: Maintenance of the building is the landlord's job.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-january-flashcards',
             title: 'Unit 5: Flash Cards',
-            description: 'Vocabulary flashcards for January unit',
+            description: 'Unit 5 flash cards: Housing',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 5: Flash Cards',
             level: 'intermediate',
-            content: `Q: Money paid in advance to protect against damage — **deposit**
-Q: A legal contract for renting property — **lease**
-Q: Someone who rents a home or apartment — **tenant**
-Q: Empty or available for rent — **vacant**
-Q: Basic services in a home (electricity, water, gas) — **utilities**`,
+            content: `1) spacious — having plenty of room
+   Example: The apartment is very spacious and bright.
+
+2) deposit — money paid upfront as security
+   Example: The landlord requires a security deposit.
+
+3) utilities — services like water, gas, and electricity
+   Example: Utilities are not included in the rent.
+
+4) tenant — a person who rents property
+   Example: The tenant must pay rent on the first.
+
+5) landlord — the owner of rental property
+   Example: Call the landlord if something breaks.
+
+6) equivalent — equal in value or meaning
+   Example: This is equivalent to two months' rent.
+
+7) stable — steady and not likely to change
+   Example: He has a stable job and good income.
+
+8) lease — a rental agreement or contract
+   Example: We signed a one-year lease.
+
+9) property — land or buildings owned by someone
+   Example: The property includes a garage.
+
+10) maintenance — the upkeep and repair of something
+   Example: Maintenance of the building is the landlord's job.`,
             createdBy: teacher.id,
         },
     });
@@ -552,34 +749,77 @@ Q: Basic services in a home (electricity, water, gas) — **utilities**`,
         where: { id: 'vocab-february-flashcards' },
         update: {
             title: 'Unit 6: Flash Cards',
-            description: 'Vocabulary flashcards for February unit',
+            description: 'Unit 6 flash cards: Workforce Preparation',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 6: Flash Cards',
             level: 'intermediate',
-            content: `Q: Able to speak a language easily and well — **fluent**
-Q: Careful and focused on small things — **detail-oriented**
-Q: Belief in yourself — **self-confidence**
-Q: Things you like more than others — **preferences**
-Q: Happening quickly — **fast-paced**
-Q: In a stressful situation — **under pressure**
-Q: The place or situation around you — **environment**
-Q: Before something else — **prior**
-Q: A job or position someone has — **role**
-Q: Strong excitement or interest — **enthusiasm**`,
+            content: `1) under pressure — experiencing stress or urgency
+   Example: She works well under pressure.
+
+2) fast-paced — moving or happening quickly
+   Example: This is a fast-paced work environment.
+
+3) environment — the surroundings or conditions
+   Example: We have a friendly work environment.
+
+4) prior — existing or coming before
+   Example: Do you have prior experience in sales?
+
+5) detail-oriented — careful about small details
+   Example: This job requires a detail-oriented person.
+
+6) fluent — able to speak smoothly and easily
+   Example: She is fluent in Spanish and English.
+
+7) preferences — things you like better than others
+   Example: What are your schedule preferences?
+
+8) role — a job or position
+   Example: What is your role in the company?
+
+9) self-confidence — belief in your own abilities
+   Example: Building self-confidence takes practice.
+
+10) enthusiasm — strong excitement or interest
+   Example: She showed great enthusiasm in the interview.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-february-flashcards',
             title: 'Unit 6: Flash Cards',
-            description: 'Vocabulary flashcards for February unit',
+            description: 'Unit 6 flash cards: Workforce Preparation',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 6: Flash Cards',
             level: 'intermediate',
-            content: `Q: Able to speak a language easily and well — **fluent**
-Q: Careful and focused on small things — **detail-oriented**
-Q: Belief in yourself — **self-confidence**
-Q: Things you like more than others — **preferences**
-Q: Happening quickly — **fast-paced**`,
+            content: `1) under pressure — experiencing stress or urgency
+   Example: She works well under pressure.
+
+2) fast-paced — moving or happening quickly
+   Example: This is a fast-paced work environment.
+
+3) environment — the surroundings or conditions
+   Example: We have a friendly work environment.
+
+4) prior — existing or coming before
+   Example: Do you have prior experience in sales?
+
+5) detail-oriented — careful about small details
+   Example: This job requires a detail-oriented person.
+
+6) fluent — able to speak smoothly and easily
+   Example: She is fluent in Spanish and English.
+
+7) preferences — things you like better than others
+   Example: What are your schedule preferences?
+
+8) role — a job or position
+   Example: What is your role in the company?
+
+9) self-confidence — belief in your own abilities
+   Example: Building self-confidence takes practice.
+
+10) enthusiasm — strong excitement or interest
+   Example: She showed great enthusiasm in the interview.`,
             createdBy: teacher.id,
         },
     });
@@ -590,34 +830,77 @@ Q: Happening quickly — **fast-paced**`,
         where: { id: 'vocab-march-flashcards' },
         update: {
             title: 'Unit 7: Flash Cards',
-            description: 'Vocabulary flashcards for March unit',
+            description: 'Unit 7 flash cards: Career Awareness',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 7: Flash Cards',
             level: 'intermediate',
-            content: `Q: The total money you earn before taxes or deductions — **gross pay**
-Q: Wanting to be successful or achieve goals — **ambitious**
-Q: Polite and respectful behavior — **courtesy**
-Q: To find and bring new people into a company or group — **recruit**
-Q: To accept a new responsibility or job — **take on**
-Q: The way a person acts — **behavior**
-Q: To say what you think is wrong with something — **criticize**
-Q: Following rules very closely; not flexible — **strict**
-Q: Money taken out of your paycheck for taxes or other costs — **deductions**
-Q: To organize people or activities so they work well together — **coordinate**`,
+            content: `1) behavior — the way someone acts
+   Example: Professional behavior is important at work.
+
+2) criticize — to point out faults or problems
+   Example: Don't criticize without offering solutions.
+
+3) ambitious — having strong desires for success
+   Example: She is ambitious and wants to be a manager.
+
+4) courtesy — polite and respectful behavior
+   Example: He always treats customers with courtesy.
+
+5) strict — demanding exact obedience to rules
+   Example: The supervisor is strict about punctuality.
+
+6) gross pay — total earnings before deductions
+   Example: My gross pay is $2,000 per month.
+
+7) deductions — amounts subtracted from pay
+   Example: Deductions include taxes and insurance.
+
+8) coordinate — to organize and arrange activities
+   Example: I coordinate meetings for the team.
+
+9) recruit — to hire or enlist new people
+   Example: The company will recruit new employees.
+
+10) take on — to accept a new responsibility
+   Example: She's ready to take on more tasks.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-march-flashcards',
             title: 'Unit 7: Flash Cards',
-            description: 'Vocabulary flashcards for March unit',
+            description: 'Unit 7 flash cards: Career Awareness',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 7: Flash Cards',
             level: 'intermediate',
-            content: `Q: The total money you earn before taxes or deductions — **gross pay**
-Q: Wanting to be successful or achieve goals — **ambitious**
-Q: Polite and respectful behavior — **courtesy**
-Q: To find and bring new people into a company or group — **recruit**
-Q: To accept a new responsibility or job — **take on**`,
+            content: `1) behavior — the way someone acts
+   Example: Professional behavior is important at work.
+
+2) criticize — to point out faults or problems
+   Example: Don't criticize without offering solutions.
+
+3) ambitious — having strong desires for success
+   Example: She is ambitious and wants to be a manager.
+
+4) courtesy — polite and respectful behavior
+   Example: He always treats customers with courtesy.
+
+5) strict — demanding exact obedience to rules
+   Example: The supervisor is strict about punctuality.
+
+6) gross pay — total earnings before deductions
+   Example: My gross pay is $2,000 per month.
+
+7) deductions — amounts subtracted from pay
+   Example: Deductions include taxes and insurance.
+
+8) coordinate — to organize and arrange activities
+   Example: I coordinate meetings for the team.
+
+9) recruit — to hire or enlist new people
+   Example: The company will recruit new employees.
+
+10) take on — to accept a new responsibility
+   Example: She's ready to take on more tasks.`,
             createdBy: teacher.id,
         },
     });
@@ -628,39 +911,77 @@ Q: To accept a new responsibility or job — **take on**`,
         where: { id: 'vocab-april-flashcards' },
         update: {
             title: 'Unit 8: Flash Cards',
-            description: 'Vocabulary flashcards for April unit',
+            description: 'Unit 8 flash cards: Health',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 8: Flash Cards',
             level: 'intermediate',
-            content: `Q: A doctor for the heart — **cardiologist**
-Q: Feeling very sad or unhappy — **depressed**
-Q: Organs that filter waste from your blood — **kidneys**
-Q: Swollen, red, or painful — **inflamed**
-Q: Pain or swelling in the joints — **arthritis**
-Q: Having germs that make you sick — **infected**
-Q: A doctor for children — **pediatrician**
-Q: The organ that holds urine — **bladder**
-Q: The organ that cleans your blood — **liver**
-Q: The organ that helps with digestion and sugar control — **pancreas**
-Q: Places where bones meet (like knees or elbows) — **joints**
-Q: Blood vessels that carry blood away from the heart — **arteries**
-Q: Parts of the body that help you move — **muscles**
-Q: Hard parts inside your body that give shape and support — **bones**
-Q: A sudden problem in the brain when blood flow is blocked or a vessel breaks — **stroke**`,
+            content: `1) infected — affected by harmful bacteria or viruses
+   Example: The wound became infected.
+
+2) depressed — feeling very sad or hopeless
+   Example: He felt depressed after losing his job.
+
+3) inflamed — red, swollen, and painful
+   Example: Her throat is inflamed from the infection.
+
+4) pediatrician — a doctor for children
+   Example: The pediatrician checked the baby's growth.
+
+5) cardiologist — a heart doctor
+   Example: The cardiologist performed a heart test.
+
+6) bladder — organ that stores urine
+   Example: She has a bladder infection.
+
+7) liver — organ that filters blood
+   Example: Alcohol can damage your liver.
+
+8) kidneys — organs that filter waste from your blood
+   Example: Drink water to keep your kidneys healthy.
+
+9) pancreas — organ that produces insulin
+   Example: Diabetes affects the pancreas.
+
+10) stroke — when blood flow to the brain is blocked
+   Example: High blood pressure can cause a stroke.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-april-flashcards',
             title: 'Unit 8: Flash Cards',
-            description: 'Vocabulary flashcards for April unit',
+            description: 'Unit 8 flash cards: Health',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 8: Flash Cards',
             level: 'intermediate',
-            content: `Q: A doctor for the heart — **cardiologist**
-Q: Feeling very sad or unhappy — **depressed**
-Q: Organs that filter waste from your blood — **kidneys**
-Q: Swollen, red, or painful — **inflamed**
-Q: Pain or swelling in the joints — **arthritis**`,
+            content: `1) infected — affected by harmful bacteria or viruses
+   Example: The wound became infected.
+
+2) depressed — feeling very sad or hopeless
+   Example: He felt depressed after losing his job.
+
+3) inflamed — red, swollen, and painful
+   Example: Her throat is inflamed from the infection.
+
+4) pediatrician — a doctor for children
+   Example: The pediatrician checked the baby's growth.
+
+5) cardiologist — a heart doctor
+   Example: The cardiologist performed a heart test.
+
+6) bladder — organ that stores urine
+   Example: She has a bladder infection.
+
+7) liver — organ that filters blood
+   Example: Alcohol can damage your liver.
+
+8) kidneys — organs that filter waste from your blood
+   Example: Drink water to keep your kidneys healthy.
+
+9) pancreas — organ that produces insulin
+   Example: Diabetes affects the pancreas.
+
+10) stroke — when blood flow to the brain is blocked
+   Example: High blood pressure can cause a stroke.`,
             createdBy: teacher.id,
         },
     });
@@ -671,39 +992,77 @@ Q: Pain or swelling in the joints — **arthritis**`,
         where: { id: 'vocab-may-flashcards' },
         update: {
             title: 'Unit 9: Flash Cards',
-            description: 'Vocabulary flashcards for May unit',
+            description: 'Unit 9 flash cards: Holistic Wellness',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 9: Flash Cards',
             level: 'intermediate',
-            content: `Q: Overall health and happiness — **well-being**
-Q: Not being able to stop doing or using something harmful — **addiction**
-Q: Having enough water in your body — **hydration**
-Q: Extreme tiredness caused by too much work or stress — **burnout**
-Q: A routine plan, often for health or fitness — **regimen**
-Q: How you feel about yourself — **self-esteem**
-Q: To keep something going over time — **sustain**
-Q: Related to fun or relaxing activities — **recreational**
-Q: Not too much or too little — **moderation**
-Q: Ways to handle stress or problems — **coping skills**
-Q: Thin fibers that carry signals between the brain and other parts of the body; also feelings of stress — **nerves**
-Q: The part of a person that thinks, feels, and remembers — **mind**
-Q: Walking for exercise, usually in nature or on trails — **hiking**
-Q: An activity you enjoy that relaxes you — **hobby**
-Q: To remove harmful or addictive substances from the body — **detox**`,
+            content: `1) addiction — dependence on a harmful substance or activity
+   Example: He is recovering from alcohol addiction.
+
+2) self-esteem — confidence in your own worth
+   Example: Positive feedback boosts self-esteem.
+
+3) sustain — to maintain or keep going
+   Example: Exercise helps sustain energy levels.
+
+4) recreational — done for enjoyment and relaxation
+   Example: Swimming is a recreational activity.
+
+5) well-being — the state of being healthy and happy
+   Example: Meditation improves well-being.
+
+6) regimen — a systematic plan or routine
+   Example: She follows a daily exercise regimen.
+
+7) hydration — the process of drinking enough water
+   Example: Proper hydration is important in hot weather.
+
+8) moderation — avoiding excess; keeping balance
+   Example: Eat sweets in moderation.
+
+9) coping skills — strategies for dealing with stress
+   Example: Therapy teaches coping skills for anxiety.
+
+10) burnout — extreme physical, mental, or emotional tiredness caused by too much work, stress, or lack of rest
+   Example: Work burnout is common in healthcare.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-may-flashcards',
             title: 'Unit 9: Flash Cards',
-            description: 'Vocabulary flashcards for May unit',
+            description: 'Unit 9 flash cards: Holistic Wellness',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 9: Flash Cards',
             level: 'intermediate',
-            content: `Q: Overall health and happiness — **well-being**
-Q: Not being able to stop doing or using something harmful — **addiction**
-Q: Having enough water in your body — **hydration**
-Q: Extreme tiredness caused by too much work or stress — **burnout**
-Q: A routine plan, often for health or fitness — **regimen**`,
+            content: `1) addiction — dependence on a harmful substance or activity
+   Example: He is recovering from alcohol addiction.
+
+2) self-esteem — confidence in your own worth
+   Example: Positive feedback boosts self-esteem.
+
+3) sustain — to maintain or keep going
+   Example: Exercise helps sustain energy levels.
+
+4) recreational — done for enjoyment and relaxation
+   Example: Swimming is a recreational activity.
+
+5) well-being — the state of being healthy and happy
+   Example: Meditation improves well-being.
+
+6) regimen — a systematic plan or routine
+   Example: She follows a daily exercise regimen.
+
+7) hydration — the process of drinking enough water
+   Example: Proper hydration is important in hot weather.
+
+8) moderation — avoiding excess; keeping balance
+   Example: Eat sweets in moderation.
+
+9) coping skills — strategies for dealing with stress
+   Example: Therapy teaches coping skills for anxiety.
+
+10) burnout — extreme physical, mental, or emotional tiredness caused by too much work, stress, or lack of rest
+   Example: Work burnout is common in healthcare.`,
             createdBy: teacher.id,
         },
     });
@@ -714,27 +1073,41 @@ Q: A routine plan, often for health or fitness — **regimen**`,
         where: { id: 'vocab-june-flashcards' },
         update: {
             title: 'Unit 10: Flash Cards',
-            description: 'Vocabulary flashcards for June unit',
+            description: 'Unit 10 flash cards: Future Academic Goals',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 10: Flash Cards',
             level: 'intermediate',
-            content: `Q: Meeting people to share information and opportunities — **networking**
-Q: Improving yourself over time — **personal growth**
-Q: Choosing the best action from different options — **decision-making**
-Q: Learning to grow in your career — **professional development**`,
+            content: `1) personal growth — improvement and development of yourself
+   Example: Reading promotes personal growth.
+
+2) networking — building professional relationships
+   Example: Networking helps you find job opportunities.
+
+3) decision-making — the process of making choices
+   Example: Good decision-making requires careful thought.
+
+4) professional development — improving job-related skills
+   Example: The workshop focuses on professional development.`,
             createdBy: teacher.id,
         },
         create: {
             id: 'vocab-june-flashcards',
             title: 'Unit 10: Flash Cards',
-            description: 'Vocabulary flashcards for June unit',
+            description: 'Unit 10 flash cards: Future Academic Goals',
             type: 'game',
-            category: 'Flash Cards',
+            category: 'Unit 10: Flash Cards',
             level: 'intermediate',
-            content: `Q: Meeting people to share information and opportunities — **networking**
-Q: Improving yourself over time — **personal growth**
-Q: Choosing the best action from different options — **decision-making**
-Q: Learning to grow in your career — **professional development**`,
+            content: `1) personal growth — improvement and development of yourself
+   Example: Reading promotes personal growth.
+
+2) networking — building professional relationships
+   Example: Networking helps you find job opportunities.
+
+3) decision-making — the process of making choices
+   Example: Good decision-making requires careful thought.
+
+4) professional development — improving job-related skills
+   Example: The workshop focuses on professional development.`,
             createdBy: teacher.id,
         },
     });
