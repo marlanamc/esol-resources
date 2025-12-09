@@ -13,6 +13,21 @@ export const POINTS = {
 /**
  * Award points to a user and update their total
  */
+async function logPointsLedger(userId: string, points: number, reason: string, source: string = 'system') {
+  try {
+    await prisma.pointsLedger.create({
+      data: {
+        userId,
+        points,
+        reason,
+        source,
+      },
+    });
+  } catch (err) {
+    console.error('[Gamification] Failed to log points ledger entry', err);
+  }
+}
+
 export async function awardPoints(userId: string, points: number, reason: string = '') {
   const user = await prisma.user.update({
     where: { id: userId },
@@ -21,6 +36,8 @@ export async function awardPoints(userId: string, points: number, reason: string
       weeklyPoints: { increment: points },
     },
   });
+
+  await logPointsLedger(userId, points, reason || 'Points awarded', 'award');
 
   console.log(`[Gamification] Awarded ${points} points to user ${userId} for: ${reason}`);
 
@@ -87,6 +104,16 @@ export async function updateStreak(userId: string): Promise<{ streakUpdated: boo
         weeklyPoints: { increment: pointsAwarded },
       },
     });
+    if (pointsAwarded > 0) {
+      await logPointsLedger(
+        userId,
+        pointsAwarded,
+        newStreak % 7 === 0 && pointsAwarded > POINTS.DAILY_STREAK
+          ? 'Streak + weekly bonus'
+          : 'Streak bonus',
+        'streak'
+      );
+    }
   } else {
     // Update last activity date even if streak wasn't updated
     await prisma.user.update({
@@ -121,6 +148,109 @@ export function calculateActivityPoints(score: number | null, activityType: stri
   }
 
   return points;
+}
+
+export type LeaderboardRange = 'day' | 'week' | 'month';
+
+function getRangeStart(range: LeaderboardRange) {
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  switch (range) {
+    case 'day':
+      return startOfToday;
+    case 'week': {
+      const start = new Date(startOfToday);
+      start.setDate(start.getDate() - 6); // last 7 days including today
+      return start;
+    }
+    case 'month':
+    default: {
+      return new Date(now.getFullYear(), now.getMonth(), 1); // beginning of current month
+    }
+  }
+}
+
+/**
+ * Get leaderboard for a given timeframe using the points ledger.
+ * Shows all students, merging ledger data with students who have no points yet.
+ */
+export async function getTimeframedLeaderboard(
+  range: LeaderboardRange = 'week',
+  limit: number = 10,
+  classId?: string
+) {
+  const since = getRangeStart(range);
+
+  // First, get all students
+  const studentWhere: any = { role: 'student' };
+  if (classId) {
+    studentWhere.classes = { some: { classId } };
+  }
+
+  const allStudents = await prisma.user.findMany({
+    where: studentWhere,
+    select: {
+      id: true,
+      name: true,
+      currentStreak: true,
+      lastWeekRank: true,
+    },
+  });
+
+  // Then get points from ledger for this timeframe
+  const whereLedger: any = {
+    createdAt: { gte: since },
+    user: {
+      role: 'student',
+    },
+  };
+
+  if (classId) {
+    whereLedger.user.classes = {
+      some: {
+        classId,
+      },
+    };
+  }
+
+  const grouped = await prisma.pointsLedger.groupBy({
+    by: ['userId'],
+    where: whereLedger,
+    _sum: { points: true },
+  });
+
+  // Create a map of userId -> points from ledger
+  const pointsMap = new Map(grouped.map((entry) => [entry.userId, entry._sum.points || 0]));
+
+  // Combine all students with their points (0 if not in ledger)
+  const rankings = allStudents.map((student) => ({
+    userId: student.id,
+    points: pointsMap.get(student.id) || 0,
+    name: student.name || 'Student',
+    currentStreak: student.currentStreak,
+    lastWeekRank: student.lastWeekRank,
+  }));
+
+  // Sort by points descending, then by name for ties
+  rankings.sort((a, b) => {
+    if (b.points !== a.points) {
+      return b.points - a.points;
+    }
+    return a.name.localeCompare(b.name);
+  });
+
+  // Apply limit and add rank
+  const limitedRankings = rankings.slice(0, limit);
+
+  return limitedRankings.map((r, idx) => ({
+    id: r.userId,
+    name: r.name,
+    weeklyPoints: r.points,
+    currentStreak: r.currentStreak || 0,
+    rank: idx + 1,
+    rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - (idx + 1) : null) : null,
+  }));
 }
 
 /**
