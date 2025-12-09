@@ -109,24 +109,24 @@ export const TodaysAssignments: React.FC<Props> = ({
                     return (
                         <div
                             key={assignment.id}
-                            className="relative bg-white rounded-2xl p-6 sm:p-8 border-2 border-border/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group flex flex-col min-h-[200px]"
+                            className="relative bg-white rounded-2xl p-4 sm:p-8 border-2 border-border/30 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group flex flex-col"
                             style={{
                                 animationDelay: `${index * 100}ms`
                             }}
                         >
                             {/* Badges row */}
-                            <div className="flex items-start justify-between gap-2 mb-5">
+                            <div className="flex items-start justify-between gap-2 mb-3 sm:mb-5">
                                 {/* Completion badge */}
                                 {isCompleted && (
-                                    <div className="bg-secondary text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1.5">
-                                        <span className="text-sm">✓</span>
+                                    <div className="bg-secondary text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                                        <span className="text-xs sm:text-sm">✓</span>
                                         <span>Done</span>
                                     </div>
                                 )}
 
                                 {/* Type badge */}
                                 <div
-                                    className="px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm border-2 ml-auto"
+                                    className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider shadow-sm border-2 ml-auto"
                                     style={{
                                         backgroundColor: categoryStyle.bg,
                                         color: categoryStyle.text,
@@ -138,13 +138,13 @@ export const TodaysAssignments: React.FC<Props> = ({
                             </div>
 
                             <div className="flex flex-col h-full flex-1">
-                                <h3 className="text-3xl sm:text-2xl font-bold text-text group-hover:text-primary transition-colors mb-auto font-display leading-tight">
+                                <h3 className="text-2xl sm:text-2xl font-bold text-text group-hover:text-primary transition-colors mb-auto font-display leading-tight">
                                     {displayTitle}
                                 </h3>
 
                                 <Link
                                     href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                    className="inline-flex items-center justify-center px-8 py-4 text-lg sm:text-xl font-bold transition-all hover:shadow-xl active:scale-95 rounded-2xl bg-primary text-white hover:brightness-110 mt-6 w-full sm:w-auto sm:self-end min-h-[56px]"
+                                    className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-xl font-bold transition-all hover:shadow-xl active:scale-95 rounded-2xl bg-primary text-white hover:brightness-110 mt-4 sm:mt-6 w-full sm:w-auto sm:self-end"
                                 >
                                     {isCompleted ? 'Review' : ctaLabel}
                                 </Link>
