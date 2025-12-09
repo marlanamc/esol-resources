@@ -75,28 +75,39 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
     const isComplete = selectedAnswer !== null && isLastQuestion;
 
     return (
-        <div className="max-w-4xl mx-auto px-3 sm:px-4 py-4">
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
             {/* Header with Progress */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-4">
-                <div className="flex items-center justify-between mb-3">
-                    <div className="text-sm font-medium text-gray-600">
-                        Question <span className="text-[var(--color-primary)] font-bold">{currentIndex + 1}</span> of {questions.length}
+            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4 flex items-center gap-3">
+                {/* Back button - only on mobile */}
+                <button
+                    onClick={() => window.history.back()}
+                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors md:hidden flex-shrink-0"
+                    aria-label="Go back"
+                >
+                    <XIcon className="w-6 h-6 text-gray-600" />
+                </button>
+                <div className="flex-1">
+                    <div className="flex items-center justify-between mb-3">
+                        <div className="text-sm font-medium text-gray-600">
+                            Question <span className="text-[var(--color-primary)] font-bold">{currentIndex + 1}</span> of {questions.length}
+                        </div>
+                        <div className="text-sm font-medium text-gray-600">
+                            Score: <span className="text-green-600 font-bold">{score}</span> / {questions.length}
+                        </div>
                     </div>
-                    <div className="text-sm font-medium text-gray-600">
-                        Score: <span className="text-green-600 font-bold">{score}</span> / {questions.length}
+                    {/* Progress Bar */}
+                    <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                            style={{ width: `${progress}%` }}
+                        />
                     </div>
-                </div>
-                {/* Progress Bar */}
-                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-[var(--color-primary)] transition-all duration-300"
-                        style={{ width: `${progress}%` }}
-                    />
                 </div>
             </div>
 
-            {/* Question Card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8 mb-6">
+            {/* Question Card - Scrollable on mobile */}
+            <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
+                <div className="bg-white md:rounded-2xl shadow-lg border-0 md:border border-gray-200 p-6 sm:p-8 mb-6">
                 {/* Question Text */}
                 <div className="mb-8">
                     <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-relaxed">
@@ -207,28 +218,39 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                         </p>
                     </div>
                 )}
-            </div>
+                </div>
 
-            {/* Navigation Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-                {!isLastQuestion && selectedAnswer && (
-                    <button
-                        onClick={handleNext}
-                        className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                    >
-                        Next Question →
-                    </button>
-                )}
-                {isComplete && (
-                    <button
-                        onClick={handleRestart}
-                        className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl"
-                    >
-                        Try Again
-                    </button>
-                )}
+                {/* Navigation Buttons */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                    {!isLastQuestion && selectedAnswer && (
+                        <button
+                            onClick={handleNext}
+                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                        >
+                            Next Question →
+                        </button>
+                    )}
+                    {isComplete && (
+                        <button
+                            onClick={handleRestart}
+                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl"
+                        >
+                            Try Again
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
+    );
+}
+
+// XIcon component
+function XIcon({ className }: { className?: string }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
     );
 }
 

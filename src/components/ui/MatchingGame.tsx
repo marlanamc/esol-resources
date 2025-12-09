@@ -134,28 +134,39 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     }
 
     return (
-        <div className="max-w-6xl mx-auto px-3 sm:px-4 py-4">
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-6xl md:mx-auto md:px-3 md:py-4">
             {/* Header */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
-                <div className="flex items-center justify-between">
-                    <h2 className="text-xl font-bold text-gray-900">Match the Terms to Their Definitions</h2>
-                    <div className="text-sm font-medium text-gray-600">
-                        Matched: <span className="text-green-600 font-bold">{matches.size}</span> / {pairs.length}
+            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4 flex items-center justify-between">
+                {/* Back button - only on mobile */}
+                <button
+                    onClick={() => window.history.back()}
+                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors md:hidden"
+                    aria-label="Go back"
+                >
+                    <XIcon className="w-6 h-6 text-gray-600" />
+                </button>
+                <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-lg sm:text-xl font-bold text-gray-900">Match the Terms to Their Definitions</h2>
+                        <div className="text-sm font-medium text-gray-600">
+                            Matched: <span className="text-green-600 font-bold">{matches.size}</span> / {pairs.length}
+                        </div>
                     </div>
-                </div>
-                <p className="text-sm text-gray-600 mt-2">
-                    Click a term, then click its matching definition. All matches must be correct!
-                </p>
-                <div className="mt-3 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                        className="h-full bg-[var(--color-primary)] transition-all duration-300"
-                        style={{ width: `${progress}%` }}
-                    />
+                    <p className="text-sm text-gray-600 mt-2">
+                        Click a term, then click its matching definition. All matches must be correct!
+                    </p>
+                    <div className="mt-3 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                            style={{ width: `${progress}%` }}
+                        />
+                    </div>
                 </div>
             </div>
 
-            {/* Matching Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            {/* Matching Grid - Scrollable on mobile */}
+            <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 {/* Terms Column */}
                 <div className="space-y-3">
                     <h3 className="text-lg font-semibold text-gray-700 mb-3">Terms</h3>
@@ -226,14 +237,16 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
             )}
 
-            {/* Reset Button */}
-            <div className="flex justify-center">
-                <button
-                    onClick={handleReset}
-                    className="px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl"
-                >
-                    Reset & Shuffle
-                </button>
+                {/* Reset Button */}
+                <div className="flex justify-center">
+                    <button
+                        onClick={handleReset}
+                        className="px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl"
+                    >
+                        Reset & Shuffle
+                    </button>
+                </div>
+                </div>
             </div>
 
             <style jsx>{`
@@ -247,6 +260,16 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
         }
       `}</style>
         </div>
+    );
+}
+
+// XIcon component
+function XIcon({ className }: { className?: string }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
     );
 }
 

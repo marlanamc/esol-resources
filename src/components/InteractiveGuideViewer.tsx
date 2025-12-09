@@ -43,6 +43,16 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
             {/* Header */}
             <header className="flex-none h-14 sm:h-16 px-4 sm:px-6 border-b border-border/60 bg-white/80 backdrop-blur-md flex items-center justify-between z-10">
                 <div className="flex items-center gap-4">
+                    {/* Back button - only on mobile when no onClose */}
+                    {!onClose && (
+                        <button
+                            onClick={() => window.history.back()}
+                            className="p-2 -ml-2 text-text-muted hover:text-primary transition-colors rounded-full hover:bg-primary/10 md:hidden"
+                            aria-label="Go back"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                        </button>
+                    )}
                     <h1 className="text-base sm:text-lg font-display font-bold text-text truncate max-w-md">
                         {title || "Grammar Presentation Mode"}
                     </h1>
