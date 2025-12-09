@@ -140,6 +140,14 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             {/* Top Bar - Progress & Settings */}
             <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">
+                    {/* Back button - only on mobile */}
+                    <button
+                        onClick={() => window.history.back()}
+                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors md:hidden"
+                        aria-label="Go back"
+                    >
+                        <XIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
+                    </button>
                     <div className="text-sm font-bold text-[var(--color-text-muted)]">
                         {currentIndex + 1} / {total}
                     </div>
@@ -376,6 +384,15 @@ function SettingsIcon({ className }: { className?: string }) {
             <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24"/>
             <path d="M1 12h6m6 0h6"/>
             <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24"/>
+        </svg>
+    );
+}
+
+function XIcon({ className }: { className?: string }) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
     );
 }
