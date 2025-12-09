@@ -122,7 +122,7 @@ export default async function CalendarPage() {
                             Upcoming
                         </h2>
                     </div>
-                    <UpcomingEventsList events={calendarEvents} />
+                    <UpcomingEventsList events={calendarEvents} allowDelete={userRole === 'teacher'} />
                 </div>
             </main>
         </div>
