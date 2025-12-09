@@ -31,6 +31,18 @@ export function GrammarReader({ content, onComplete, completionKey }: GrammarRea
     const [unlockedPractice, setUnlockedPractice] = useState<Set<string>>(new Set());
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
     const [awardSent, setAwardSent] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    // Detect if we're on desktop (md breakpoint: 768px)
+    useEffect(() => {
+        const checkDesktop = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+        
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
 
     const awardCompletion = useCallback(async () => {
         if (!completionKey || awardSent) return;
@@ -200,19 +212,19 @@ export function GrammarReader({ content, onComplete, completionKey }: GrammarRea
                             {/* Top Row: Breadcrumb and TOC Button */}
                             <div className="flex items-center justify-between gap-4 mb-3">
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
-                                    <a
-                                        href="/dashboard/activities"
+                                    <Link
+                                        href={isDesktop ? "/dashboard" : "/dashboard/activities"}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
                                         Activities
-                                    </a>
+                                    </Link>
                                     <span className="text-text-muted flex-shrink-0">/</span>
-                                    <a
-                                        href="/dashboard/activities?category=grammar"
+                                    <Link
+                                        href={isDesktop ? "/dashboard" : "/dashboard/activities?category=grammar"}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
                                         Grammar
-                                    </a>
+                                    </Link>
                                     <span className="text-text-muted flex-shrink-0">/</span>
                                     <span className="text-text font-medium flex-shrink-0">Present Perfect</span>
                                 </nav>

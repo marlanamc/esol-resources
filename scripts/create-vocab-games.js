@@ -169,21 +169,38 @@ function generateFillBlankContent(month, data) {
 
     let content = "";
 
-    // Take 5-6 words for fill-in-blank (not too many)
-    const selectedWords = data.words.slice(0, Math.min(6, data.words.length));
+    // Include ALL words for fill-in-blank questions
+    const selectedWords = data.words;
 
     for (const word of selectedWords) {
         // Create a question using the example sentence
-        const sentence = word.ex.replace(word.term, "_____");
+        // Replace the first occurrence of the term (case-insensitive) with blank
+        const termLower = word.term.toLowerCase();
+        const exLower = word.ex.toLowerCase();
+        const firstIndex = exLower.indexOf(termLower);
+        
+        let sentence;
+        if (firstIndex !== -1) {
+            // Replace first occurrence, preserving original case
+            const before = word.ex.substring(0, firstIndex);
+            const match = word.ex.substring(firstIndex, firstIndex + word.term.length);
+            const after = word.ex.substring(firstIndex + word.term.length);
+            sentence = before + "_____" + after;
+        } else {
+            // If term not found in example, create a simple sentence
+            sentence = `Fill in the blank: ${word.term} means ${word.def}.`;
+        }
 
-        // Generate 3 wrong options from other words in the same unit
-        const wrongOptions = data.words
-            .filter(w => w.term !== word.term)
+        // Generate wrong options from other words in the same unit
+        // Use up to 3 wrong options, or fewer if not enough words available
+        const availableWords = data.words.filter(w => w.term !== word.term);
+        const numWrongOptions = Math.min(3, availableWords.length);
+        const wrongOptions = availableWords
             .sort(() => 0.5 - Math.random())
-            .slice(0, 3)
+            .slice(0, numWrongOptions)
             .map(w => w.term);
 
-        // Combine and shuffle all options
+        // Combine and shuffle all options (ensure at least 2 options total)
         const allOptions = [word.term, ...wrongOptions].sort(() => 0.5 - Math.random());
 
         content += `Q: ${sentence}\n`;

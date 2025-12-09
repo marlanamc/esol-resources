@@ -38,6 +38,37 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
         void saveActivityProgress(activityId, progress, progress >= 100 ? "completed" : "in_progress");
     }, [activityId, matches, pairs.length]);
 
+    // Inject shake animation styles and mobile improvements
+    useEffect(() => {
+        const styleId = 'matching-game-shake-styles';
+        if (document.getElementById(styleId)) return; // Already injected
+
+        const style = document.createElement('style');
+        style.id = styleId;
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+            .animate-shake {
+                animation: shake 0.5s;
+            }
+            .touch-manipulation {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+        `;
+        document.head.appendChild(style);
+
+        return () => {
+            const existingStyle = document.getElementById(styleId);
+            if (existingStyle) {
+                document.head.removeChild(existingStyle);
+            }
+        };
+    }, []);
+
     // Initialize shuffled items only when pairs change
     useEffect(() => {
         if (pairs.length === 0) return;
@@ -136,40 +167,46 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-6xl md:mx-auto md:px-3 md:py-4">
             {/* Header */}
-            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4 flex items-center justify-between">
-                {/* Back button - only on mobile */}
-                <button
-                    onClick={() => window.history.back()}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors md:hidden"
-                    aria-label="Go back"
-                >
-                    <XIcon className="w-6 h-6 text-gray-600" />
-                </button>
-                <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-lg sm:text-xl font-bold text-gray-900">Match the Terms to Their Definitions</h2>
-                        <div className="text-sm font-medium text-gray-600">
-                            Matched: <span className="text-green-600 font-bold">{matches.size}</span> / {pairs.length}
+            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
+                <div className="flex items-start gap-3">
+                    {/* Back button - only on mobile */}
+                    <button
+                        onClick={() => window.history.back()}
+                        className="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors md:hidden touch-manipulation"
+                        aria-label="Go back"
+                    >
+                        <XIcon className="w-6 h-6 text-gray-600" />
+                    </button>
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 leading-tight">
+                                Match Terms to Definitions
+                            </h2>
+                            <div className="text-sm font-medium text-gray-600 whitespace-nowrap">
+                                <span className="text-green-600 font-bold">{matches.size}</span> / {pairs.length} matched
+                            </div>
                         </div>
-                    </div>
-                    <p className="text-sm text-gray-600 mt-2">
-                        Click a term, then click its matching definition. All matches must be correct!
-                    </p>
-                    <div className="mt-3 h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-[var(--color-primary)] transition-all duration-300"
-                            style={{ width: `${progress}%` }}
-                        />
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3">
+                            Tap a term, then tap its matching definition.
+                        </p>
+                        <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                                style={{ width: `${progress}%` }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Matching Grid - Scrollable on mobile */}
-            <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-4 md:px-0 md:py-4 md:overflow-visible" style={{ WebkitOverflowScrolling: 'touch' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                 {/* Terms Column */}
-                <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-3">Terms</h3>
+                <div className="space-y-2.5 md:space-y-3">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
+                        Terms
+                    </h3>
                     {terms.map((term) => {
                         const isMatched = matches.has(term.id);
                         const isSelected = selectedTerm === term.id;
@@ -180,16 +217,16 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                 key={term.id}
                                 onClick={() => handleTermClick(term.id)}
                                 disabled={isMatched}
-                                className={`w-full p-4 rounded-xl border-2 font-medium text-left transition-all ${isMatched
-                                    ? "bg-green-50 border-green-400 text-green-900 opacity-50 cursor-not-allowed"
+                                className={`w-full min-h-[56px] md:min-h-[64px] p-3 md:p-4 rounded-xl border-2 font-medium text-left transition-all touch-manipulation active:scale-[0.98] ${isMatched
+                                    ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed"
                                     : isSelected
-                                        ? "!bg-orange-600 !border-orange-700 border-[3px] text-white shadow-xl scale-105 font-bold"
-                                        : "bg-white border-gray-300 text-gray-900 hover:border-orange-400 hover:shadow-md"
+                                        ? "!bg-orange-600 !border-orange-700 border-[3px] text-white shadow-lg scale-[1.02] font-bold"
+                                        : "bg-white border-gray-300 text-gray-900 active:border-orange-400 active:shadow-md"
                                     } ${isShaking ? "animate-shake" : ""}`}
                             >
-                                <div className="flex items-center justify-between">
-                                    <span className="text-lg">{term.text}</span>
-                                    {isMatched && <span className="text-green-600 text-xl">✓</span>}
+                                <div className="flex items-center justify-between gap-2">
+                                    <span className="text-sm md:text-base lg:text-lg break-words flex-1">{term.text}</span>
+                                    {isMatched && <span className="text-green-600 text-xl md:text-2xl flex-shrink-0">✓</span>}
                                 </div>
                             </button>
                         );
@@ -197,8 +234,10 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
 
                 {/* Definitions Column */}
-                <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-gray-700 mb-3">Definitions</h3>
+                <div className="space-y-2.5 md:space-y-3">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
+                        Definitions
+                    </h3>
                     {definitions.map((def) => {
                         const isMatched = Array.from(matches.values()).includes(def.id);
                         const isSelected = selectedDef === def.id;
@@ -209,16 +248,16 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                 key={def.id}
                                 onClick={() => handleDefClick(def.id)}
                                 disabled={isMatched}
-                                className={`w-full p-4 rounded-xl border-2 font-medium text-left transition-all ${isMatched
-                                    ? "bg-green-50 border-green-400 text-green-900 opacity-50 cursor-not-allowed"
+                                className={`w-full min-h-[56px] md:min-h-[64px] p-3 md:p-4 rounded-xl border-2 font-medium text-left transition-all touch-manipulation active:scale-[0.98] ${isMatched
+                                    ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed"
                                     : isSelected
-                                        ? "!bg-orange-600 !border-orange-700 border-[3px] text-white shadow-xl scale-105 font-bold"
-                                        : "bg-white border-gray-300 text-gray-900 hover:border-orange-400 hover:shadow-md"
+                                        ? "!bg-orange-600 !border-orange-700 border-[3px] text-white shadow-lg scale-[1.02] font-bold"
+                                        : "bg-white border-gray-300 text-gray-900 active:border-orange-400 active:shadow-md"
                                     } ${isShaking ? "animate-shake" : ""}`}
                             >
-                                <div className="flex items-center justify-between">
-                                    <span className="text-base">{def.text}</span>
-                                    {isMatched && <span className="text-green-600 text-xl">✓</span>}
+                                <div className="flex items-center justify-between gap-2">
+                                    <span className="text-sm md:text-base break-words flex-1">{def.text}</span>
+                                    {isMatched && <span className="text-green-600 text-xl md:text-2xl flex-shrink-0">✓</span>}
                                 </div>
                             </button>
                         );
@@ -226,39 +265,27 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
             </div>
 
-            {/* Completion Message */}
-            {isComplete && (
-                <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl mb-6">
-                    <div className="text-6xl mb-4">🎉</div>
-                    <h2 className="text-4xl font-bold mb-2">Perfect Match!</h2>
-                    <p className="text-xl text-white/90">
-                        You've matched all {pairs.length} terms correctly!
-                    </p>
-                </div>
-            )}
+                {/* Completion Message */}
+                {isComplete && (
+                    <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl md:rounded-2xl p-6 md:p-8 text-center shadow-xl mb-4 md:mb-6 mx-3 md:mx-0">
+                        <div className="text-4xl md:text-6xl mb-3 md:mb-4">🎉</div>
+                        <h2 className="text-2xl md:text-4xl font-bold mb-2">Perfect Match!</h2>
+                        <p className="text-base md:text-xl text-white/90">
+                            You've matched all {pairs.length} terms correctly!
+                        </p>
+                    </div>
+                )}
 
                 {/* Reset Button */}
-                <div className="flex justify-center">
+                <div className="flex justify-center px-3 md:px-0 pb-4 md:pb-0">
                     <button
                         onClick={handleReset}
-                        className="px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all shadow-lg hover:shadow-xl"
+                        className="w-full md:w-auto min-h-[48px] px-6 md:px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg active:bg-gray-900 hover:bg-gray-800 transition-all shadow-lg active:shadow-xl touch-manipulation text-base md:text-sm"
                     >
                         Reset & Shuffle
                     </button>
                 </div>
-                </div>
             </div>
-
-            <style jsx>{`
-                        @keyframes shake {
-                            0 %, 100 % { transform: translateX(0); }
-                            25 % { transform: translateX(-10px); }
-                            75 % { transform: translateX(10px); }
-                        }
-        .animate - shake {
-                        animation: shake 0.5s;
-        }
-      `}</style>
         </div>
     );
 }

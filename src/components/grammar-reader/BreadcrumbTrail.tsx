@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import type { InteractiveGuideSection } from "@/types/activity";
 
 interface BreadcrumbTrailProps {
@@ -15,23 +19,36 @@ export function BreadcrumbTrail({
     onJumpToSection,
     showQuiz,
 }: BreadcrumbTrailProps) {
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    // Detect if we're on desktop (md breakpoint: 768px)
+    useEffect(() => {
+        const checkDesktop = () => {
+            setIsDesktop(window.innerWidth >= 768);
+        };
+        
+        checkDesktop();
+        window.addEventListener('resize', checkDesktop);
+        return () => window.removeEventListener('resize', checkDesktop);
+    }, []);
+
     return (
         <div className="breadcrumb-trail bg-white border-b border-border sticky top-0 z-50 shadow-sm">
             <div className="container mx-auto px-4 py-3">
                 <nav className="flex items-center gap-2 text-sm overflow-x-auto">
-                    <a
-                        href="/dashboard/activities"
+                    <Link
+                        href={isDesktop ? "/dashboard" : "/dashboard/activities"}
                         className="text-primary hover:underline flex-shrink-0"
                     >
                         Activities
-                    </a>
+                    </Link>
                     <span className="text-text-muted flex-shrink-0">/</span>
-                    <a
-                        href="/dashboard/activities?category=grammar"
+                    <Link
+                        href={isDesktop ? "/dashboard" : "/dashboard/activities?category=grammar"}
                         className="text-primary hover:underline flex-shrink-0"
                     >
                         Grammar
-                    </a>
+                    </Link>
                     <span className="text-text-muted flex-shrink-0">/</span>
                     <span className="text-text font-medium flex-shrink-0">Present Perfect</span>
 
