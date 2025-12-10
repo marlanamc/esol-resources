@@ -7,7 +7,6 @@ import Script from "next/script";
 import { isInteractiveGuideContent, isLegacyGuideContent, parseActivityContent } from "@/types/activity";
 import ActivityRenderer from "@/components/ActivityRenderer";
 import SubmissionForm from "@/components/SubmissionForm";
-import LogoutButton from "@/components/LogoutButton";
 import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
 
 interface Props {
@@ -126,10 +125,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
                                 {activity.title}
                             </h1>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                                <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
-                                <LogoutButton />
-                            </div>
+                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                         </div>
                         {activity.description && (
                             <p className="text-xs text-gray-600 line-clamp-1">{activity.description}</p>
@@ -149,9 +145,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                                 <p className="text-sm text-gray-600 ml-0 mt-1 line-clamp-2">{activity.description}</p>
                             )}
                         </div>
-                        <div className="ml-4 flex-shrink-0 flex items-center gap-3">
+                        <div className="ml-4 flex-shrink-0">
                             <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
-                            <LogoutButton />
                         </div>
                     </div>
                 </header>
@@ -184,7 +179,6 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                                 </svg>
                                 Back
                             </Link>
-                            <LogoutButton />
                         </div>
                         <div className="flex items-center justify-between gap-2">
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0">
@@ -212,11 +206,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             {activity.title}
                         </h1>
 
-                        {/* Logout Button */}
-                        <div className="flex items-center gap-3">
-                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
-                            <LogoutButton />
-                        </div>
+                        {/* Progress Badge */}
+                        <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                     </div>
                 </div>
             </header>
