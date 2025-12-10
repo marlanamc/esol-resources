@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
@@ -14,7 +14,7 @@ export async function GET(
 
     const teacherId = (session.user as any).id;
     const userRole = (session.user as any).role;
-    const studentId = params.id;
+    const { id: studentId } = await params;
 
     // Verify teacher has access to this student (student is in one of their classes)
     if (userRole === "teacher") {
@@ -43,7 +43,6 @@ export async function GET(
             weeklyPoints: true,
             currentStreak: true,
             longestStreak: true,
-            lastStreakDate: true,
             createdAt: true
         }
     });

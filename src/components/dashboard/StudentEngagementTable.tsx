@@ -11,7 +11,6 @@ interface Student {
     weeklyPoints: number;
     currentStreak: number;
     longestStreak: number;
-    lastStreakDate: Date | null;
     lastActive: Date | null;
     favoriteActivity?: string;
     activitiesToday: number;

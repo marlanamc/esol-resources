@@ -73,7 +73,6 @@ export default async function StatsPage() {
             weeklyPoints: true,
             currentStreak: true,
             longestStreak: true,
-            lastStreakDate: true,
         },
         orderBy: { name: 'asc' }
     });
