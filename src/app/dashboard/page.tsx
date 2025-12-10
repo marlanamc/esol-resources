@@ -449,11 +449,11 @@ export default async function DashboardPage() {
         // Activity progress (may be missing in older prisma clients, so cast)
         const progressEntries = await (prisma as any).activityProgress.findMany({
             where: { userId },
-            select: { activityId: true, progress: true },
+            select: { activityId: true, progress: true, categoryData: true },
         });
-        const progressMap = (progressEntries as Array<{ activityId: string; progress: number }>).reduce<Record<string, number>>(
-            (acc: Record<string, number>, p: { activityId: string; progress: number }) => {
-                acc[p.activityId] = p.progress;
+        const progressMap = (progressEntries as Array<{ activityId: string; progress: number; categoryData?: string }>).reduce<Record<string, { progress: number; categoryData?: string }>>(
+            (acc: Record<string, { progress: number; categoryData?: string }>, p: { activityId: string; progress: number; categoryData?: string }) => {
+                acc[p.activityId] = { progress: p.progress, categoryData: p.categoryData };
                 return acc;
             },
             {}
