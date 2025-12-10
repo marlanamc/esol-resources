@@ -2,7 +2,7 @@
   "name": "Class Companion - ESOL Learning Hub",
   "short_name": "Class Companion",
   "description": "Interactive classroom companion for ESOL students and teachers",
-  "start_url": "/",
+  "start_url": "/dashboard",
   "display": "standalone",
   "background_color": "#fef9f3",
   "theme_color": "#d97757",
