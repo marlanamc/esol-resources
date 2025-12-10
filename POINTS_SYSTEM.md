@@ -40,7 +40,8 @@
 ## Current Leaderboard System
 
 ### Weekly Leaderboard
-- Resets every week (currently manual)
+- **Week runs Tuesday - Monday** (to match class schedule)
+- Resets every Tuesday (currently manual - run `node scripts/reset-weekly-points.js`)
 - Shows top students by weekly points
 - Tracks rank changes from previous week
 - Students with tied scores receive the same rank
