@@ -218,7 +218,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                 onClick={() => handleTermClick(term.id)}
                                 disabled={isMatched}
                                 className={`w-full min-h-[56px] md:min-h-[64px] p-3 md:p-4 rounded-xl border-2 font-medium text-left transition-all touch-manipulation active:scale-[0.98] ${isMatched
-                                    ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed"
+                                    ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed ring-2 ring-yellow-300 ring-opacity-50"
                                     : isSelected
                                         ? "!bg-yellow-400 !border-yellow-500 border-[3px] text-gray-900 shadow-lg scale-[1.02] font-bold"
                                         : "bg-white border-gray-300 text-gray-900 active:border-yellow-400 active:shadow-md"
@@ -249,7 +249,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                 onClick={() => handleDefClick(def.id)}
                                 disabled={isMatched}
                                 className={`w-full min-h-[56px] md:min-h-[64px] p-3 md:p-4 rounded-xl border-2 font-medium text-left transition-all touch-manipulation active:scale-[0.98] ${isMatched
-                                    ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed"
+                                    ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed ring-2 ring-yellow-300 ring-opacity-50"
                                     : isSelected
                                         ? "!bg-yellow-400 !border-yellow-500 border-[3px] text-gray-900 shadow-lg scale-[1.02] font-bold"
                                         : "bg-white border-gray-300 text-gray-900 active:border-yellow-400 active:shadow-md"
