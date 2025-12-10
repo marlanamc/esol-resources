@@ -290,8 +290,8 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
     // Using globals: --color-bg (whiteish), --color-primary (terracotta), --color-secondary (sage)
 
     const containerClasses = theme === "colored"
-        // Back/Colored theme (Sage Green Background)
-        ? "bg-[var(--color-secondary)] text-white shadow-2xl border-2 border-[var(--color-secondary)]"
+        // Back/Colored theme (Sage Green Background - lighter opacity)
+        ? "bg-[var(--color-secondary)]/90 text-white shadow-2xl border-2 border-[var(--color-secondary)]/90"
         // Front/Light theme (White Background)
         : "bg-white text-[var(--color-text)] shadow-2xl border-2 border-[var(--color-border)]";
 
