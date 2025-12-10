@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 interface Student {
     id: string;
-    name: string;
+    name: string | null;
     username: string;
     points: number;
     weeklyPoints: number;
@@ -31,7 +31,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
     // Filter and sort students
     const filteredAndSortedStudents = useMemo(() => {
         let filtered = students.filter(student =>
-            student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            (student.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
             student.username.toLowerCase().includes(searchQuery.toLowerCase())
         );
 
@@ -40,7 +40,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
 
             switch (sortField) {
                 case 'name':
-                    compareValue = a.name.localeCompare(b.name);
+                    compareValue = (a.name || '').localeCompare(b.name || '');
                     break;
                 case 'streak':
                     compareValue = (a.currentStreak || 0) - (b.currentStreak || 0);
@@ -176,7 +176,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
                                                 className="flex flex-col hover:text-primary transition-colors"
                                             >
                                                 <span className="font-medium text-text">
-                                                    {student.name}
+                                                    {student.name || 'No name'}
                                                 </span>
                                                 <span className="text-xs text-text-muted">
                                                     @{student.username}
