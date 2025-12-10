@@ -17,11 +17,18 @@ export default function LoginForm() {
         setIsLoading(true);
 
         try {
-            const result = await signIn("credentials", {
+            // Add timeout to prevent hanging
+            const timeoutPromise = new Promise((_, reject) => 
+                setTimeout(() => reject(new Error('Login timeout')), 10000)
+            );
+
+            const signInPromise = signIn("credentials", {
                 username,
                 password,
                 redirect: false,
             });
+
+            const result = await Promise.race([signInPromise, timeoutPromise]) as any;
 
             if (result?.error) {
                 console.error('[Login] Error:', result.error);
@@ -32,9 +39,13 @@ export default function LoginForm() {
             } else {
                 setError("Login failed. Please try again.");
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error('[Login] Exception:', error);
-            setError("An error occurred. Please try again.");
+            if (error?.message === 'Login timeout') {
+                setError("Login is taking too long. Please check your connection and try again.");
+            } else {
+                setError("An error occurred. Please try again.");
+            }
         } finally {
             setIsLoading(false);
         }
