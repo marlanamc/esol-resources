@@ -199,11 +199,11 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
             </div>
 
-            {/* Matching Grid - Scrollable on mobile */}
-            <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-4 md:px-0 md:py-4 md:overflow-visible" style={{ WebkitOverflowScrolling: 'touch' }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+            {/* Matching Grid - Horizontal scroll on mobile, side-by-side on desktop */}
+            <div className="flex-1 overflow-x-auto overflow-y-auto overscroll-contain md:overflow-visible px-3 py-4 md:px-0 md:py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
+                <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-w-max md:min-w-0">
                 {/* Terms Column */}
-                <div className="space-y-2.5 md:space-y-3">
+                <div className="space-y-2.5 md:space-y-3 w-[85vw] md:w-auto flex-shrink-0">
                     <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
                         Terms
                     </h3>
@@ -220,8 +220,8 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                 className={`w-full min-h-[56px] md:min-h-[64px] p-3 md:p-4 rounded-xl border-2 font-medium text-left transition-all touch-manipulation active:scale-[0.98] ${isMatched
                                     ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed"
                                     : isSelected
-                                        ? "!bg-orange-600 !border-orange-700 border-[3px] text-white shadow-lg scale-[1.02] font-bold"
-                                        : "bg-white border-gray-300 text-gray-900 active:border-orange-400 active:shadow-md"
+                                        ? "!bg-yellow-400 !border-yellow-500 border-[3px] text-gray-900 shadow-lg scale-[1.02] font-bold"
+                                        : "bg-white border-gray-300 text-gray-900 active:border-yellow-400 active:shadow-md"
                                     } ${isShaking ? "animate-shake" : ""}`}
                             >
                                 <div className="flex items-center justify-between gap-2">
@@ -234,7 +234,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
 
                 {/* Definitions Column */}
-                <div className="space-y-2.5 md:space-y-3">
+                <div className="space-y-2.5 md:space-y-3 w-[85vw] md:w-auto flex-shrink-0">
                     <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
                         Definitions
                     </h3>
@@ -251,8 +251,8 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                 className={`w-full min-h-[56px] md:min-h-[64px] p-3 md:p-4 rounded-xl border-2 font-medium text-left transition-all touch-manipulation active:scale-[0.98] ${isMatched
                                     ? "bg-green-50 border-green-400 text-green-900 opacity-60 cursor-not-allowed"
                                     : isSelected
-                                        ? "!bg-orange-600 !border-orange-700 border-[3px] text-white shadow-lg scale-[1.02] font-bold"
-                                        : "bg-white border-gray-300 text-gray-900 active:border-orange-400 active:shadow-md"
+                                        ? "!bg-yellow-400 !border-yellow-500 border-[3px] text-gray-900 shadow-lg scale-[1.02] font-bold"
+                                        : "bg-white border-gray-300 text-gray-900 active:border-yellow-400 active:shadow-md"
                                     } ${isShaking ? "animate-shake" : ""}`}
                             >
                                 <div className="flex items-center justify-between gap-2">
