@@ -143,12 +143,35 @@ async function main() {
   });
   console.log('✅ Added:', continuousTensesReview.title);
 
+  console.log('\n🎮 Adding Games...');
+
+  // Numbers Game
+  const numbersGameContent = JSON.stringify({
+    type: 'numbers-game',
+    category: 'Basic Numbers (0-99)'
+  });
+
+  const numbersGame = await prisma.activity.create({
+    data: {
+      id: 'numbers-game',
+      title: 'Numbers to English Words',
+      description: 'Practice converting numbers to their English word equivalents. Choose from various categories including basic numbers, hundreds, thousands, ordinals, and years.',
+      category: 'numbers',
+      type: 'game',
+      level: 'beginner',
+      content: numbersGameContent,
+    }
+  });
+  console.log('✅ Added:', numbersGame.title);
+
   console.log('\n✨ Dashboard updated successfully!');
   console.log(`\nAdded ${9} grammar guides:`);
   console.log('  - 3 Simple tenses (Present, Past, Future)');
   console.log('  - 3 Continuous tenses (Present, Past, Future)');
   console.log('  - 1 Perfect tense (Present Perfect)');
   console.log('  - 2 Review guides (Simple Tenses, Continuous Tenses)');
+  console.log(`\nAdded 1 game:`);
+  console.log('  - Numbers to English Words');
   console.log('\nYou can now view all activities at: /dashboard');
 }
 

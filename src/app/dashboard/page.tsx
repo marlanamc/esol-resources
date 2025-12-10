@@ -21,7 +21,8 @@ import {
     CalendarEvent,
     UpcomingEventsList,
     TodaysAssignments,
-    ActivityCategories
+    ActivityCategories,
+    TeacherActivityCategories
 } from "@/components/dashboard";
 
 type TeacherAssignment = {
@@ -142,6 +143,16 @@ export default async function DashboardPage() {
             orderBy: { createdAt: "desc" },
         });
 
+        // Get featured activity IDs and assignment map for TeacherActivityCategories
+        const featuredActivityIds = new Set(featuredAssignments.map((a: TeacherAssignment) => a.activityId));
+        const activityAssignmentMap: Record<string, string> = {};
+        featuredAssignments.forEach((assignment: TeacherAssignment) => {
+            activityAssignmentMap[assignment.activityId] = assignment.id;
+        });
+
+        // Get default class ID (first class or null)
+        const defaultClassId = classes.length > 0 ? classes[0]!.id : null;
+
         const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
             id: assignment.id,
             title: assignment.title,
@@ -228,7 +239,12 @@ export default async function DashboardPage() {
                                         All Activities
                                     </h2>
                                 </div>
-                                <ActivityCategories activities={allActivities} completedActivityIds={new Set()} showEmpty />
+                                <TeacherActivityCategories 
+                                    activities={allActivities} 
+                                    featuredActivityIds={featuredActivityIds}
+                                    defaultClassId={defaultClassId}
+                                    activityAssignmentMap={activityAssignmentMap}
+                                />
                             </section>
                         </div>
 

@@ -24,6 +24,7 @@ import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
 import FlashcardCarousel from "./ui/FlashcardCarousel";
 import FillInBlankGame from "./ui/FillInBlankGame";
 import MatchingGame from "./ui/MatchingGame";
+import NumbersGame from "./ui/NumbersGame";
 
 interface Props {
     activity: {
@@ -65,6 +66,16 @@ export default function ActivityRenderer({ activity }: Props) {
             return <GuideRenderer content={content as GuideContent} />;
         case "game":
             // Detect game type based on content format
+            // Check for numbers game JSON format
+            try {
+                const parsed = JSON.parse(activity.content);
+                if (parsed && typeof parsed === 'object' && parsed.type === 'numbers-game') {
+                    return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
+                }
+            } catch {
+                // Not JSON, continue with other checks
+            }
+            // Check for fill-in-blank format
             if (activity.content?.includes("Q:") && activity.content?.includes("OPTIONS:")) {
                 return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
             } else if (activity.content?.includes("::")) {

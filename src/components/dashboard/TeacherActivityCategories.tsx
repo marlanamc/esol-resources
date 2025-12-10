@@ -10,6 +10,7 @@ interface Activity {
     type: string;
     category: string | null;
     level: string | null;
+    content?: string;
 }
 
 interface SubSubCategory {
@@ -249,7 +250,32 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         {
             name: 'Numbers',
             color: '#4a90e2', // blue
-            activities: activities.filter(a => a.category === 'numbers' || a.category === 'number')
+            subCategories: [
+                {
+                    name: 'Games',
+                    activities: activities.filter(a => {
+                        // Filter for numbers game activities
+                        // Check type and category first
+                        if (a.type !== 'game') return false;
+                        if (a.category !== 'numbers' && a.category !== 'number') return false;
+                        
+                        // Check if it's a numbers game by checking content
+                        if (!a.content) return false;
+                        
+                        try {
+                            const content = JSON.parse(a.content);
+                            return content && typeof content === 'object' && content.type === 'numbers-game';
+                        } catch {
+                            // If content is not valid JSON, it's not a numbers game
+                            return false;
+                        }
+                    })
+                }
+            ],
+            activities: activities.filter(a => 
+                (a.category === 'numbers' || a.category === 'number') && 
+                a.type !== 'game'
+            )
         },
         {
             name: 'Reading',
