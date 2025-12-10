@@ -39,6 +39,11 @@ interface StudentAnalytics {
                 completed: number;
                 activities: any[];
             };
+            numbers: {
+                avgProgress: number;
+                completed: number;
+                activities: any[];
+            };
             other: {
                 avgProgress: number;
                 completed: number;
@@ -252,12 +257,31 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 </div>
                                 <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
                                     <div
-                                        className="h-full bg-blue-500 transition-all duration-300"
+                                        className="h-full bg-[#e76f51] transition-all duration-300"
                                         style={{ width: `${data.progress.byCategory.grammar.avgProgress}%` }}
                                     />
                                 </div>
                                 <div className="text-xs text-text-muted mt-1">
                                     {data.progress.byCategory.grammar.avgProgress}% average progress
+                                </div>
+                            </div>
+
+                            {/* Numbers */}
+                            <div>
+                                <div className="flex items-center justify-between mb-2">
+                                    <span className="font-medium text-text">Numbers</span>
+                                    <span className="text-sm text-text-muted">
+                                        {data.progress.byCategory.numbers.completed} completed
+                                    </span>
+                                </div>
+                                <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
+                                    <div
+                                        className="h-full bg-blue-500 transition-all duration-300"
+                                        style={{ width: `${data.progress.byCategory.numbers.avgProgress}%` }}
+                                    />
+                                </div>
+                                <div className="text-xs text-text-muted mt-1">
+                                    {data.progress.byCategory.numbers.avgProgress}% average progress
                                 </div>
                             </div>
 
