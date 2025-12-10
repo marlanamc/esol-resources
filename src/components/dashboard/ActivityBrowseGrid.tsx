@@ -39,7 +39,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                     <div className="p-6 flex flex-col flex-1">
                         {/* Category & Level Script */}
                         <div className="flex items-center justify-between mb-3 text-xs font-semibold text-text-muted uppercase tracking-widest">
-                            <span>{activity.category || 'General'}</span>
+                            <span>{activity.category === 'numbers' || activity.category === 'number' ? 'NUMBERS' : activity.category?.toUpperCase() || 'GENERAL'}</span>
                             {typeof progressMap?.[activity.id] === "number" && (
                                 <span className="text-[11px] px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">
                                     {progressMap[activity.id]}% done
