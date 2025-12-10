@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StatCard, BottomNav } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon } from "@/components/icons/Icons";
-import { TeacherStudentStatsPanel } from "@/components/dashboard/TeacherStudentStatsPanel";
+import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
 
 export default async function StatsPage() {
     const session = await getServerSession(authOptions);
@@ -52,44 +52,74 @@ export default async function StatsPage() {
         },
     });
 
-    const students = Array.from(
-        new Map(
-            classes.flatMap((c) =>
-                c.enrollments
-                    .filter((e) => e.student)
-                    .map((e) => [e.student.id, e.student])
-            )
-        ).values()
-    );
+    // Get unique students with full gamification data
+    const students = await prisma.user.findMany({
+        where: {
+            id: {
+                in: Array.from(
+                    new Set(
+                        classes.flatMap((c) =>
+                            c.enrollments.map((e) => e.student.id)
+                        )
+                    )
+                )
+            }
+        },
+        select: {
+            id: true,
+            name: true,
+            username: true,
+            points: true,
+            weeklyPoints: true,
+            currentStreak: true,
+            longestStreak: true,
+            lastStreakDate: true,
+        },
+        orderBy: { name: 'asc' }
+    });
 
     const studentIds = students.map((s) => s.id);
 
-    const progressEntries = studentIds.length
-        ? await (prisma as any).activityProgress.findMany({
+    // Get last activity for each student from points ledger
+    const recentActivity = studentIds.length
+        ? await prisma.pointsLedger.groupBy({
+            by: ['userId'],
             where: { userId: { in: studentIds } },
-            select: { userId: true, activityId: true, progress: true },
+            _max: { createdAt: true }
         })
         : [];
 
-    const progressByStudent = (progressEntries as Array<{ userId: string; activityId: string; progress: number }>).reduce(
-        (acc: Record<string, Record<string, number>>, entry) => {
-            if (!acc[entry.userId]) acc[entry.userId] = {};
-            acc[entry.userId][entry.activityId] = entry.progress;
-            return acc;
-        },
-        {} as Record<string, Record<string, number>>
-    );
+    const lastActiveMap = recentActivity.reduce((acc, entry) => {
+        acc[entry.userId] = entry._max.createdAt;
+        return acc;
+    }, {} as Record<string, Date | null>);
 
-    const overallProgress: Record<string, number> = {};
-    if (studentIds.length > 0) {
-        allActivities.forEach((activity) => {
-            const sum = studentIds.reduce((total, sid) => {
-                const val = progressByStudent[sid]?.[activity.id] ?? 0;
-                return total + val;
-            }, 0);
-            overallProgress[activity.id] = Math.round(sum / studentIds.length);
-        });
-    }
+    // Get activity counts for "today"
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const activitiesToday = studentIds.length
+        ? await prisma.pointsLedger.groupBy({
+            by: ['userId'],
+            where: {
+                userId: { in: studentIds },
+                createdAt: { gte: today }
+            },
+            _count: true
+        })
+        : [];
+
+    const activitiesTodayMap = activitiesToday.reduce((acc, entry) => {
+        acc[entry.userId] = entry._count;
+        return acc;
+    }, {} as Record<string, number>);
+
+    // Enrich students with last active and activity counts
+    const enrichedStudents = students.map(student => ({
+        ...student,
+        lastActive: lastActiveMap[student.id] || null,
+        activitiesToday: activitiesTodayMap[student.id] || 0
+    }));
 
     return (
         <div className="min-h-screen bg-bg">
@@ -153,17 +183,12 @@ export default async function StatsPage() {
                 </section>
 
                 <section className="animate-fade-in-up delay-150">
-                    {students.length === 0 ? (
+                    {enrichedStudents.length === 0 ? (
                         <div className="border border-dashed border-border/50 rounded-xl p-6 bg-white/70 text-text-muted text-sm">
                             No students yet. Add students to your classes to view stats.
                         </div>
                     ) : (
-                        <TeacherStudentStatsPanel
-                            students={students}
-                            activities={allActivities}
-                            progressByStudent={progressByStudent}
-                            overallProgress={overallProgress}
-                        />
+                        <StudentEngagementTable students={enrichedStudents} />
                     )}
                 </section>
             </main>

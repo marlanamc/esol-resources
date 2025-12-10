@@ -127,14 +127,22 @@ export default async function ClassDetailPage({ params }: Props) {
                                             {classItem.enrollments.map((enrollment: {
                                                 id: string;
                                                 student: {
+                                                    id: string;
                                                     name: string | null;
                                                     username: string;
+                                                    points?: number | null;
+                                                    currentStreak?: number | null;
                                                 };
                                                 joinedAt: Date;
                                             }) => (
-                                                <tr key={enrollment.id}>
+                                                <tr key={enrollment.id} className="hover:bg-gray-50">
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                                        {enrollment.student.name || "No name"}
+                                                        <Link
+                                                            href={`/dashboard/students/${enrollment.student.id}`}
+                                                            className="text-indigo-600 hover:text-indigo-900 hover:underline"
+                                                        >
+                                                            {enrollment.student.name || "No name"}
+                                                        </Link>
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                         {enrollment.student.username}
