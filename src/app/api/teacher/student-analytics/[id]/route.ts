@@ -140,10 +140,21 @@ export async function GET(
     const lastActive = pointsHistory.length > 0 ? pointsHistory[0].createdAt : null;
 
     // Group activities by category for progress overview
+    // Vocabulary activities are identified by ID pattern (vocab-*) or category
     const progressByCategory = {
-        vocab: activityProgress.filter(p => p.activity.category === 'vocab'),
+        vocab: activityProgress.filter(p => 
+            p.activity.category === 'vocab' || 
+            p.activity.category === 'vocabulary' ||
+            (p.activity.id && p.activity.id.startsWith('vocab-'))
+        ),
         grammar: activityProgress.filter(p => p.activity.category === 'grammar'),
-        other: activityProgress.filter(p => p.activity.category !== 'vocab' && p.activity.category !== 'grammar')
+        other: activityProgress.filter(p => {
+            const isVocab = p.activity.category === 'vocab' || 
+                           p.activity.category === 'vocabulary' ||
+                           (p.activity.id && p.activity.id.startsWith('vocab-'));
+            const isGrammar = p.activity.category === 'grammar';
+            return !isVocab && !isGrammar;
+        })
     };
 
     // Calculate average progress per category

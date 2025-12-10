@@ -261,26 +261,6 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 </div>
                             </div>
 
-                            {/* Other */}
-                            {data.progress.byCategory.other.activities.length > 0 && (
-                                <div>
-                                    <div className="flex items-center justify-between mb-2">
-                                        <span className="font-medium text-text">Other</span>
-                                        <span className="text-sm text-text-muted">
-                                            {data.progress.byCategory.other.completed} completed
-                                        </span>
-                                    </div>
-                                    <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
-                                        <div
-                                            className="h-full bg-purple-500 transition-all duration-300"
-                                            style={{ width: `${data.progress.byCategory.other.avgProgress}%` }}
-                                        />
-                                    </div>
-                                    <div className="text-xs text-text-muted mt-1">
-                                        {data.progress.byCategory.other.avgProgress}% average progress
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
