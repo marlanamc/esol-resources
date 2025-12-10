@@ -289,12 +289,15 @@ export async function getTimeframedLeaderboard(
   const limitedRankings = studentsWithPoints.slice(0, limit);
 
   return limitedRankings.map((r, idx) => {
-    // Find the rank: same as previous if points are equal, otherwise idx + 1
+    // Find the rank: same as first student with same points, otherwise idx + 1
     let rank = idx + 1;
-    if (idx > 0 && limitedRankings[idx - 1].points === r.points) {
-      // Find the rank of the previous entry
-      const prevResult = limitedRankings[idx - 1];
-      rank = limitedRankings.slice(0, idx).findIndex(lr => lr.points === prevResult.points) + 1;
+    if (idx > 0) {
+      // Check if any previous student has the same points
+      const firstWithSamePoints = limitedRankings.findIndex(lr => lr.points === r.points);
+      if (firstWithSamePoints < idx) {
+        // Use the rank of the first student with these points
+        rank = firstWithSamePoints + 1;
+      }
     }
 
     return {
@@ -419,11 +422,15 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
       student: { id: string; lastWeekRank: number | null; weeklyPoints: number },
       index: number
     ) => {
-      // Find the rank: same as previous if points are equal, otherwise index + 1
+      // Find the rank: same as first student with same points, otherwise index + 1
       let rank = index + 1;
-      if (index > 0 && students[index - 1].weeklyPoints === student.weeklyPoints) {
-        // Find the rank of the first student with these points
-        rank = students.findIndex(s => s.weeklyPoints === student.weeklyPoints) + 1;
+      if (index > 0) {
+        // Check if any previous student has the same points
+        const firstWithSamePoints = students.findIndex(s => s.weeklyPoints === student.weeklyPoints);
+        if (firstWithSamePoints < index) {
+          // Use the rank of the first student with these points
+          rank = firstWithSamePoints + 1;
+        }
       }
 
       return {
