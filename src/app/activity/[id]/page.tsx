@@ -116,22 +116,44 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         return (
             <div className="fixed inset-0 bg-gray-50 flex flex-col overflow-hidden">
                 {/* Minimal Header */}
-                <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-10 flex-shrink-0">
-                    <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-4 mb-1">
-                            <Link href="/dashboard" className="text-indigo-600 hover:text-indigo-900 text-sm font-medium whitespace-nowrap">
-                                &larr; Back to Dashboard
+                <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 z-10 flex-shrink-0">
+                    {/* Mobile Layout: Stacked */}
+                    <div className="flex flex-col gap-2 sm:hidden">
+                        <div className="flex items-center justify-between gap-2">
+                            <Link href="/dashboard" className="text-indigo-600 hover:text-indigo-900 text-sm font-medium whitespace-nowrap flex-shrink-0">
+                                &larr; Back
                             </Link>
-                            <h1 className="text-xl font-bold text-gray-900 truncate">{activity.title}</h1>
+                            <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
+                                {activity.title}
+                            </h1>
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                                <LogoutButton />
+                            </div>
                         </div>
                         {activity.description && (
-                            <p className="text-sm text-gray-600 ml-0 mt-1 line-clamp-2">{activity.description}</p>
+                            <p className="text-xs text-gray-600 line-clamp-1">{activity.description}</p>
                         )}
                     </div>
-                <div className="ml-4 flex-shrink-0 flex items-center gap-3">
-                    <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
-                    <LogoutButton />
-                </div>
+
+                    {/* Desktop Layout: Horizontal */}
+                    <div className="hidden sm:flex items-center justify-between">
+                        <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-4 mb-1">
+                                <Link href="/dashboard" className="text-indigo-600 hover:text-indigo-900 text-sm font-medium whitespace-nowrap">
+                                    &larr; Back to Dashboard
+                                </Link>
+                                <h1 className="text-xl font-bold text-gray-900 truncate">{activity.title}</h1>
+                            </div>
+                            {activity.description && (
+                                <p className="text-sm text-gray-600 ml-0 mt-1 line-clamp-2">{activity.description}</p>
+                            )}
+                        </div>
+                        <div className="ml-4 flex-shrink-0 flex items-center gap-3">
+                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            <LogoutButton />
+                        </div>
+                    </div>
                 </header>
 
                 {/* Full Screen Guide */}
@@ -150,7 +172,30 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         <div className="min-h-screen bg-gray-50">
             <header className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between">
+                    {/* Mobile Layout: Stacked */}
+                    <div className="flex flex-col gap-3 sm:hidden">
+                        <div className="flex items-center justify-between">
+                            <Link
+                                href="/dashboard"
+                                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                                Back
+                            </Link>
+                            <LogoutButton />
+                        </div>
+                        <div className="flex items-center justify-between gap-2">
+                            <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0">
+                                {activity.title}
+                            </h1>
+                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                        </div>
+                    </div>
+
+                    {/* Desktop Layout: Horizontal */}
+                    <div className="hidden sm:flex items-center justify-between">
                         {/* Back Button */}
                         <Link
                             href="/dashboard"

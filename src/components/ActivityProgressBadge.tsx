@@ -20,11 +20,11 @@ export function ActivityProgressBadge({ activityId, initialProgress = 0, userRol
 
     return (
         <div
-            className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border ${color}`}
+            className={`inline-flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold border ${color}`}
             aria-label={`Progress ${progress}%`}
         >
             <span>{progress}%</span>
-            <span className="uppercase tracking-wide">Done</span>
+            <span className="uppercase tracking-wide hidden sm:inline">Done</span>
         </div>
     );
 }
