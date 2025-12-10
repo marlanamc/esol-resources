@@ -201,9 +201,9 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
 
             {/* Matching Grid - Horizontal scroll on mobile, side-by-side on desktop */}
             <div className="flex-1 overflow-x-auto overflow-y-auto overscroll-contain md:overflow-visible px-3 py-4 md:px-0 md:py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
-                <div className="flex md:grid md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6 min-w-max md:min-w-0">
+                <div className="flex md:grid md:grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-6 min-w-max md:min-w-0">
                 {/* Terms Column */}
-                <div className="space-y-2.5 md:space-y-3 w-[85vw] md:w-auto flex-shrink-0">
+                <div className="space-y-2 md:space-y-3 w-[90vw] md:w-auto flex-shrink-0">
                     <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
                         Terms
                     </h3>
@@ -234,7 +234,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
 
                 {/* Definitions Column */}
-                <div className="space-y-2.5 md:space-y-3 w-[85vw] md:w-auto flex-shrink-0">
+                <div className="space-y-2 md:space-y-3 w-[90vw] md:w-auto flex-shrink-0">
                     <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
                         Definitions
                     </h3>
