@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface NavItem {
   href: string;
@@ -16,11 +16,24 @@ interface BottomNavProps {
 
 export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleTouchStart = (e: React.TouchEvent, href: string) => {
+    e.preventDefault();
+    router.push(href);
+  };
 
   return (
     <>
       <div className="bottom-nav-spacer md:hidden" />
-      <nav className="fixed bottom-0 left-0 right-0 bg-white border-t-2 shadow-lg md:hidden bottom-nav" style={{ borderColor: 'var(--color-border)', zIndex: 'var(--z-fixed)' }}>
+      <nav 
+        className="fixed bottom-0 left-0 right-0 bg-white border-t-2 shadow-lg md:hidden bottom-nav touch-manipulation" 
+        style={{ 
+          borderColor: 'var(--color-border)', 
+          zIndex: 'var(--z-fixed)',
+          touchAction: 'manipulation'
+        }}
+      >
         <div
           className="grid h-16"
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
@@ -32,19 +45,24 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex flex-col items-center justify-center gap-1 transition-all duration-200 ${
+                onTouchStart={(e) => handleTouchStart(e, item.href)}
+                className={`flex flex-col items-center justify-center gap-1 transition-all duration-150 cursor-pointer touch-manipulation relative ${
                   isActive
                     ? ''
                     : 'active:scale-95'
                 }`}
-                style={{ color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)' }}
+                style={{ 
+                  color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                  touchAction: 'manipulation',
+                  WebkitTapHighlightColor: 'transparent'
+                }}
               >
-                <div className={`w-6 h-6 transition-transform duration-200 ${isActive ? 'scale-110' : ''}`}>
+                <div className={`w-6 h-6 transition-transform duration-150 pointer-events-none ${isActive ? 'scale-110' : ''}`}>
                   {item.icon}
                 </div>
-                <span className="text-xs font-medium">{item.label}</span>
+                <span className="text-xs font-medium pointer-events-none">{item.label}</span>
                 {isActive && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full" style={{ background: 'var(--color-primary)' }} />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full pointer-events-none" style={{ background: 'var(--color-primary)' }} />
                 )}
               </Link>
             );
