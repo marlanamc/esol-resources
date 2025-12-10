@@ -95,6 +95,8 @@ export const TodaysAssignments: React.FC<Props> = ({
                         vocab: { label: 'VOCAB', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' },
                         vocabulary: { label: 'VOCAB', bg: '#fef3e7', text: '#b45b1c', border: '#f4a261' },
                         grammar: { label: 'GRAMMAR', bg: '#fdece8', text: '#c24a32', border: '#e76f51' },
+                        numbers: { label: 'NUMBERS', bg: '#e3f2fd', text: '#1e5aa8', border: '#4a90e2' },
+                        number: { label: 'NUMBERS', bg: '#e3f2fd', text: '#1e5aa8', border: '#4a90e2' },
                         reading: { label: 'READING', bg: '#e8f6f3', text: '#217f72', border: '#2a9d8f' },
                         writing: { label: 'WRITING', bg: '#eef6ee', text: '#4f7b55', border: '#7ba884' },
                         pronunciation: { label: 'PRONUNCIATION', bg: '#f1e9f7', text: '#5b3c86', border: '#6a4c93' },
