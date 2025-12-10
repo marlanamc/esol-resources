@@ -85,3 +85,4 @@ console.log('Created placeholder PNG icons (1x1 pixels)');
 console.log('Open public/icon-generator.html in a browser to generate proper icons,');
 console.log('or replace icon-192.png and icon-512.png with your actual icon files.');
 
+

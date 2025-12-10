@@ -11,6 +11,9 @@ export const POINTS = {
   FLASHCARDS: 2,
   MATCHING_GAME: 3,
   FILL_IN_BLANK: 5,
+  NUMBERS_GAME: 5, // Base points for numbers game
+  NUMBERS_GAME_PERFECT: 5, // Bonus for 100% accuracy (total: 10)
+  NUMBERS_GAME_HIGH: 2, // Bonus for 90%+ accuracy (total: 7)
   GRAMMAR_GUIDE: 10,
   ACTIVITY_COMPLETION: 5, // Default fallback
 
@@ -30,13 +33,15 @@ export function getActivityPoints(activityType: string, activityId?: string): nu
   const type = activityType.toLowerCase();
 
   if (type === 'game') {
-    // For games, check the ID to determine game type
+    // For games, check the ID or content to determine game type
     if (activityId?.includes('flashcard')) {
       return POINTS.FLASHCARDS;
     } else if (activityId?.includes('matching')) {
       return POINTS.MATCHING_GAME;
     } else if (activityId?.includes('fillblank') || activityId?.includes('fill-blank')) {
       return POINTS.FILL_IN_BLANK;
+    } else if (activityId === 'numbers-game' || activityId?.includes('numbers-game')) {
+      return POINTS.NUMBERS_GAME; // Base points, accuracy bonus calculated separately
     }
     return POINTS.ACTIVITY_COMPLETION; // Default for unknown games
   } else if (type === 'guide') {
