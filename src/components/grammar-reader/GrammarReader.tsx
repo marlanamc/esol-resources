@@ -74,9 +74,10 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         const sectionsCompleted = completedSections.size;
 
         // Calculate progress based on sections viewed and completed
-        // Weight: 50% for viewing sections, 50% for completing them
-        const viewProgress = (sectionsViewed / totalSections) * 50;
-        const completionProgress = (sectionsCompleted / totalSections) * 50;
+        // Weight: 20% for viewing sections, 80% for completing exercises
+        // This prioritizes actually doing the work over just clicking through
+        const viewProgress = (sectionsViewed / totalSections) * 20;
+        const completionProgress = (sectionsCompleted / totalSections) * 80;
         const totalProgress = Math.round(viewProgress + completionProgress);
 
         void saveActivityProgress(activityId, totalProgress, totalProgress >= 100 ? "completed" : "in_progress");
