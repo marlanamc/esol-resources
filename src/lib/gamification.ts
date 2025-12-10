@@ -239,7 +239,7 @@ export async function getTimeframedLeaderboard(
   // Filter out students with 0 points - only rank students who have earned points
   const studentsWithPoints = rankings.filter((r) => r.points > 0);
 
-  // Sort by points descending, then by name for ties
+  // Sort by points descending, then by name alphabetically for display order
   studentsWithPoints.sort((a, b) => {
     if (b.points !== a.points) {
       return b.points - a.points;
@@ -247,17 +247,27 @@ export async function getTimeframedLeaderboard(
     return a.name.localeCompare(b.name);
   });
 
-  // Apply limit and add rank
+  // Apply limit and add rank (same rank for ties)
   const limitedRankings = studentsWithPoints.slice(0, limit);
 
-  return limitedRankings.map((r, idx) => ({
-    id: r.userId,
-    name: r.name,
-    weeklyPoints: r.points,
-    currentStreak: r.currentStreak || 0,
-    rank: idx + 1,
-    rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - (idx + 1) : null) : null,
-  }));
+  return limitedRankings.map((r, idx) => {
+    // Find the rank: same as previous if points are equal, otherwise idx + 1
+    let rank = idx + 1;
+    if (idx > 0 && limitedRankings[idx - 1].points === r.points) {
+      // Find the rank of the previous entry
+      const prevResult = limitedRankings[idx - 1];
+      rank = limitedRankings.slice(0, idx).findIndex(lr => lr.points === prevResult.points) + 1;
+    }
+
+    return {
+      id: r.userId,
+      name: r.name,
+      weeklyPoints: r.points,
+      currentStreak: r.currentStreak || 0,
+      rank: rank,
+      rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - rank : null) : null,
+    };
+  });
 }
 
 /**
@@ -365,16 +375,25 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
     },
   });
 
-  // Add rank and rank change
+  // Add rank and rank change (same rank for ties)
   return students.map(
     (
-      student: { id: string; lastWeekRank: number | null },
+      student: { id: string; lastWeekRank: number | null; weeklyPoints: number },
       index: number
-    ) => ({
-      ...student,
-      rank: index + 1,
-      rankChange: student.lastWeekRank ? student.lastWeekRank - (index + 1) : null,
-    })
+    ) => {
+      // Find the rank: same as previous if points are equal, otherwise index + 1
+      let rank = index + 1;
+      if (index > 0 && students[index - 1].weeklyPoints === student.weeklyPoints) {
+        // Find the rank of the first student with these points
+        rank = students.findIndex(s => s.weeklyPoints === student.weeklyPoints) + 1;
+      }
+
+      return {
+        ...student,
+        rank: rank,
+        rankChange: student.lastWeekRank ? student.lastWeekRank - rank : null,
+      };
+    }
   );
 }
 
