@@ -247,6 +247,11 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
             activities: []
         },
         {
+            name: 'Numbers',
+            color: '#4a90e2', // blue
+            activities: activities.filter(a => a.category === 'numbers' || a.category === 'number')
+        },
+        {
             name: 'Reading',
             color: '#2a9d8f', // teal
             activities: activities.filter(a => a.category === 'reading' || a.category === 'writing-reading')

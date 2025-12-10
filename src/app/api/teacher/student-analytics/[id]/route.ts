@@ -148,12 +148,17 @@ export async function GET(
             (p.activity.id && p.activity.id.startsWith('vocab-'))
         ),
         grammar: activityProgress.filter(p => p.activity.category === 'grammar'),
+        numbers: activityProgress.filter(p => 
+            p.activity.category === 'numbers' || 
+            p.activity.category === 'number'
+        ),
         other: activityProgress.filter(p => {
             const isVocab = p.activity.category === 'vocab' || 
                            p.activity.category === 'vocabulary' ||
                            (p.activity.id && p.activity.id.startsWith('vocab-'));
             const isGrammar = p.activity.category === 'grammar';
-            return !isVocab && !isGrammar;
+            const isNumbers = p.activity.category === 'numbers' || p.activity.category === 'number';
+            return !isVocab && !isGrammar && !isNumbers;
         })
     };
 
@@ -189,6 +194,11 @@ export async function GET(
                     activities: progressByCategory.grammar,
                     avgProgress: calculateAvg(progressByCategory.grammar),
                     completed: progressByCategory.grammar.filter(p => p.status === 'completed').length
+                },
+                numbers: {
+                    activities: progressByCategory.numbers,
+                    avgProgress: calculateAvg(progressByCategory.numbers),
+                    completed: progressByCategory.numbers.filter(p => p.status === 'completed').length
                 },
                 other: {
                     activities: progressByCategory.other,
