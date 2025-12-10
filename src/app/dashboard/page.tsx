@@ -498,17 +498,15 @@ export default async function DashboardPage() {
                 </header>
 
                 <main className="container mx-auto pt-8 pb-24 md:pb-12 px-4 sm:px-6 lg:px-10 max-w-[1800px]">
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                        {/* Main Content Area - Left Side */}
-                        <div className="lg:col-span-3 space-y-8">
-                            {/* Welcome Header */}
-                        <div className="animate-fade-in-up">
+                    {/* Welcome Header with Stats (Desktop: horizontal, Mobile: stacked) */}
+                    <div className="animate-fade-in-up mb-8 lg:flex lg:items-start lg:justify-between lg:gap-6">
+                        <div className="flex-1">
                             <h1 className="text-4xl sm:text-4xl font-display font-bold text-text mb-4 leading-tight">
                                 Welcome, {session.user?.name}!
                             </h1>
 
-                            {/* Streak & Points Stats */}
-                            <div className="flex flex-wrap gap-3">
+                            {/* Streak & Points Stats - Show on mobile, hide on desktop (will show in header area) */}
+                            <div className="flex flex-wrap gap-3 lg:hidden">
                                 {/* Streak Counter */}
                                 {currentUser && currentUser.currentStreak > 0 && (
                                     <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
@@ -543,6 +541,47 @@ export default async function DashboardPage() {
                                 )}
                             </div>
                         </div>
+
+                        {/* Desktop Stats Badges - Show next to welcome on desktop */}
+                        <div className="hidden lg:flex flex-wrap gap-3 items-start">
+                            {/* Streak Counter */}
+                            {currentUser && currentUser.currentStreak > 0 && (
+                                <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                    <span className="text-2xl">🔥</span>
+                                    <div>
+                                        <div className="text-sm font-semibold opacity-90">Streak</div>
+                                        <div className="text-xl font-bold">{currentUser.currentStreak} {currentUser.currentStreak === 1 ? 'day' : 'days'}</div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Weekly Points */}
+                            {currentUser && currentUser.weeklyPoints > 0 && (
+                                <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                    <span className="text-2xl">⭐</span>
+                                    <div>
+                                        <div className="text-sm font-semibold opacity-90">This Week</div>
+                                        <div className="text-xl font-bold">{currentUser.weeklyPoints} points</div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Total Points */}
+                            {currentUser && currentUser.points > 0 && (
+                                <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                    <span className="text-2xl">🏆</span>
+                                    <div>
+                                        <div className="text-sm font-semibold opacity-90">Total Points</div>
+                                        <div className="text-xl font-bold">{currentUser.points}</div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        {/* Main Content Area - Left Side */}
+                        <div className="lg:col-span-3 space-y-8">
 
                             {/* This Week's Activities */}
                             <section className="animate-fade-in-up delay-100">
