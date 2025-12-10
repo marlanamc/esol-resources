@@ -8,13 +8,14 @@ import StudentDetailView from "@/components/dashboard/StudentDetailView";
 export default async function StudentDetailPage({
     params
 }: {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
         redirect("/login");
     }
 
+    const { id: studentId } = await params;
     const userRole = (session.user as any).role;
     const teacherId = (session.user as any).id;
 
@@ -26,7 +27,7 @@ export default async function StudentDetailPage({
     // Verify teacher has access to this student
     const enrollment = await prisma.classEnrollment.findFirst({
         where: {
-            studentId: params.id,
+            studentId: studentId,
             class: {
                 teacherId
             }
@@ -107,7 +108,7 @@ export default async function StudentDetailPage({
                 </div>
 
                 {/* Student detail view component */}
-                <StudentDetailView studentId={params.id} />
+                <StudentDetailView studentId={studentId} />
             </div>
         </div>
     );
