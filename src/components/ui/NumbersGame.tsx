@@ -58,19 +58,19 @@ const ORDINAL_NUMBERS: Record<number, string> = {
 
 const ROUND_NUMBERS = [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000, 100000, 1000000, 1000000000, 1000000000000];
 
-const CATEGORIES: Record<string, { min?: number; max?: number; type?: string }> = {
-    'Basic Numbers (0-99)': { min: 0, max: 99 },
-    'Hundreds (100-999)': { min: 100, max: 999 },
-    'One Thousand to Ten Thousand (1,000-9,999)': { min: 1000, max: 9999 },
-    'Ten Thousands (10,000-99,999)': { min: 10000, max: 99999 },
-    'Hundred Thousands (100,000-999,999)': { min: 100000, max: 999999 },
-    'Millions': { min: 1000000, max: 999999999 },
-    'Billions': { min: 1000000000, max: 999999999999 },
-    'Trillions': { min: 1000000000000, max: 999999999999999 },
-    'Round Numbers (1,000 | 5 million | 1 billion)': { type: 'round' },
-    'All Cardinal Numbers (Random Ranges)': { type: 'all' },
-    'Ordinal Numbers (1st, 2nd, 3rd...)': { type: 'ordinal' },
-    'Years (1100-2099)': { type: 'years' }
+const CATEGORIES: Record<string, { min?: number; max?: number; type?: string; questionsPerRound?: number }> = {
+    'Basic Numbers (0-99)': { min: 0, max: 99, questionsPerRound: 10 },
+    'Hundreds (100-999)': { min: 100, max: 999, questionsPerRound: 10 },
+    'One Thousand to Ten Thousand (1,000-9,999)': { min: 1000, max: 9999, questionsPerRound: 8 },
+    'Ten Thousands (10,000-99,999)': { min: 10000, max: 99999, questionsPerRound: 8 },
+    'Hundred Thousands (100,000-999,999)': { min: 100000, max: 999999, questionsPerRound: 7 },
+    'Millions': { min: 1000000, max: 999999999, questionsPerRound: 6 },
+    'Billions': { min: 1000000000, max: 999999999999, questionsPerRound: 5 },
+    'Trillions': { min: 1000000000000, max: 999999999999999, questionsPerRound: 5 },
+    'Round Numbers (1,000 | 5 million | 1 billion)': { type: 'round', questionsPerRound: 8 },
+    'All Cardinal Numbers (Random Ranges)': { type: 'all', questionsPerRound: 8 },
+    'Ordinal Numbers (1st, 2nd, 3rd...)': { type: 'ordinal', questionsPerRound: 10 },
+    'Years (1100-2099)': { type: 'years', questionsPerRound: 10 }
 };
 
 function parseContent(contentStr: string): NumbersGameContent {
@@ -186,6 +186,7 @@ function normalizeAnswer(answer: string): string {
     return answer.toLowerCase()
         .replace(/-/g, ' ')  // Remove dashes but keep commas
         .replace(/\s*,\s*/g, ' ')  // Replace commas (with optional spaces) with single space
+        .replace(/\band\b/g, '')  // Remove "and" to accept both "one hundred five" and "one hundred and five"
         .replace(/\s+/g, ' ')  // Normalize multiple spaces to single space
         .trim();
 }
@@ -207,9 +208,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
         correctAnswer: '',
         incorrect: 0
     });
-    
-    const QUESTIONS_PER_ROUND = 10;
-    
+
     const [userAnswer, setUserAnswer] = useState('');
     const [feedback, setFeedback] = useState('');
     const [showFeedback, setShowFeedback] = useState(false);
@@ -219,6 +218,9 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
     const [settings, setSettings] = useState({
         category: content.category || 'Basic Numbers (0-99)'
     });
+
+    // Get questions per round based on current category
+    const QUESTIONS_PER_ROUND = CATEGORIES[settings.category]?.questionsPerRound || 10;
     
     const inputRef = useRef<HTMLInputElement>(null);
 
