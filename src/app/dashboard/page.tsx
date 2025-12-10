@@ -498,52 +498,14 @@ export default async function DashboardPage() {
                 </header>
 
                 <main className="container mx-auto pt-8 pb-24 md:pb-12 px-4 sm:px-6 lg:px-10 max-w-[1800px]">
-                    {/* Welcome Header with Stats (Desktop: horizontal, Mobile: stacked) */}
-                    <div className="animate-fade-in-up mb-8 lg:flex lg:items-start lg:justify-between lg:gap-6">
-                        <div className="flex-1">
-                            <h1 className="text-4xl sm:text-4xl font-display font-bold text-text mb-4 leading-tight">
-                                Welcome, {session.user?.name}!
-                            </h1>
+                    {/* Welcome Header */}
+                    <div className="animate-fade-in-up mb-8">
+                        <h1 className="text-4xl sm:text-4xl font-display font-bold text-text mb-4 leading-tight">
+                            Welcome, {session.user?.name}!
+                        </h1>
 
-                            {/* Streak & Points Stats - Show on mobile, hide on desktop (will show in header area) */}
-                            <div className="flex flex-wrap gap-3 lg:hidden">
-                                {/* Streak Counter */}
-                                {currentUser && currentUser.currentStreak > 0 && (
-                                    <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">🔥</span>
-                                        <div>
-                                            <div className="text-sm font-semibold opacity-90">Streak</div>
-                                            <div className="text-xl font-bold">{currentUser.currentStreak} {currentUser.currentStreak === 1 ? 'day' : 'days'}</div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Weekly Points */}
-                                {currentUser && currentUser.weeklyPoints > 0 && (
-                                    <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">⭐</span>
-                                        <div>
-                                            <div className="text-sm font-semibold opacity-90">This Week</div>
-                                            <div className="text-xl font-bold">{currentUser.weeklyPoints} points</div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Total Points */}
-                                {currentUser && currentUser.points > 0 && (
-                                    <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">🏆</span>
-                                        <div>
-                                            <div className="text-sm font-semibold opacity-90">Total Points</div>
-                                            <div className="text-xl font-bold">{currentUser.points}</div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Desktop Stats Badges - Show next to welcome on desktop */}
-                        <div className="hidden lg:flex flex-wrap gap-3 items-start">
+                        {/* Streak & Points Stats - Show on mobile only, on desktop they're in sidebar */}
+                        <div className="flex flex-wrap gap-3 lg:hidden">
                             {/* Streak Counter */}
                             {currentUser && currentUser.currentStreak > 0 && (
                                 <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
@@ -601,7 +563,44 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar & Stats Sidebar - Right Side (hidden on mobile) */}
-                        <aside className="animate-fade-in-up delay-100 hidden md:block">
+                        <aside className="animate-fade-in-up delay-100 hidden md:block space-y-5">
+                            {/* Desktop Stats Badges - Above calendar */}
+                            <div className="flex flex-col gap-3">
+                                {/* Streak Counter */}
+                                {currentUser && currentUser.currentStreak > 0 && (
+                                    <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                        <span className="text-2xl">🔥</span>
+                                        <div>
+                                            <div className="text-sm font-semibold opacity-90">Streak</div>
+                                            <div className="text-xl font-bold">{currentUser.currentStreak} {currentUser.currentStreak === 1 ? 'day' : 'days'}</div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Weekly Points */}
+                                {currentUser && currentUser.weeklyPoints > 0 && (
+                                    <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                        <span className="text-2xl">⭐</span>
+                                        <div>
+                                            <div className="text-sm font-semibold opacity-90">This Week</div>
+                                            <div className="text-xl font-bold">{currentUser.weeklyPoints} points</div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Total Points */}
+                                {currentUser && currentUser.points > 0 && (
+                                    <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                        <span className="text-2xl">🏆</span>
+                                        <div>
+                                            <div className="text-sm font-semibold opacity-90">Total Points</div>
+                                            <div className="text-xl font-bold">{currentUser.points}</div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Calendar Card */}
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
