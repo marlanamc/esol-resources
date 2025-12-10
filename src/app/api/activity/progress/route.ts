@@ -11,7 +11,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { activityId, progress = 100, status = progress >= 100 ? "completed" : "in_progress", accuracy } = await request.json();
+    const { activityId, progress = 100, status = progress >= 100 ? "completed" : "in_progress", accuracy, category } = await request.json();
 
     if (!activityId || typeof activityId !== "string") {
         return NextResponse.json({ error: "activityId is required" }, { status: 400 });
@@ -60,21 +60,51 @@ export async function POST(request: Request) {
         if (activity) {
             let points = getActivityPoints(activity.type, activityId);
             
-            // Special handling for numbers game - award accuracy-based bonus
+            // Special handling for numbers game - award difficulty-based points
             if (activityId === 'numbers-game' || activityId?.includes('numbers-game')) {
-                const basePoints = POINTS.NUMBERS_GAME;
+                // Determine difficulty based on category
+                const categoryStr = (category || '').toLowerCase();
+                let basePoints: number;
+                let perfectBonus: number;
+                let highBonus: number;
+                
+                // Easy: Basic Numbers (0-99), Round Numbers
+                if (categoryStr.includes('basic numbers') || categoryStr.includes('round numbers')) {
+                    basePoints = POINTS.NUMBERS_GAME_EASY;
+                    perfectBonus = POINTS.NUMBERS_GAME_PERFECT_EASY;
+                    highBonus = POINTS.NUMBERS_GAME_HIGH_EASY;
+                }
+                // Medium: Hundreds (100-999), Ordinal Numbers
+                else if ((categoryStr.includes('hundreds') && categoryStr.includes('100-999')) || categoryStr.includes('ordinal numbers')) {
+                    basePoints = POINTS.NUMBERS_GAME_MEDIUM;
+                    perfectBonus = POINTS.NUMBERS_GAME_PERFECT_MEDIUM;
+                    highBonus = POINTS.NUMBERS_GAME_HIGH_MEDIUM;
+                }
+                // Medium-Hard: One Thousand to Ten Thousand, Ten Thousands
+                else if (categoryStr.includes('one thousand to ten thousand') || categoryStr.includes('ten thousands')) {
+                    basePoints = POINTS.NUMBERS_GAME_MEDIUM_HARD;
+                    perfectBonus = POINTS.NUMBERS_GAME_PERFECT_MEDIUM_HARD;
+                    highBonus = POINTS.NUMBERS_GAME_HIGH_MEDIUM_HARD;
+                }
+                // Hard: Hundred Thousands, Millions, Billions, Trillions, Years, All Cardinal
+                else {
+                    basePoints = POINTS.NUMBERS_GAME_HARD;
+                    perfectBonus = POINTS.NUMBERS_GAME_PERFECT_HARD;
+                    highBonus = POINTS.NUMBERS_GAME_HIGH_HARD;
+                }
+                
                 let bonusPoints = 0;
                 
                 // Award accuracy-based bonus if accuracy is provided
                 if (typeof accuracy === 'number') {
                     if (accuracy === 100) {
-                        bonusPoints = POINTS.NUMBERS_GAME_PERFECT; // +10 for perfect score
+                        bonusPoints = perfectBonus;
                     } else if (accuracy >= 90) {
-                        bonusPoints = POINTS.NUMBERS_GAME_HIGH; // +5 for 90%+
+                        bonusPoints = highBonus;
                     }
                 } else {
                     // Fallback: if no accuracy provided but completed, award perfect bonus
-                    bonusPoints = POINTS.NUMBERS_GAME_PERFECT;
+                    bonusPoints = perfectBonus;
                 }
                 
                 points = basePoints + bonusPoints;

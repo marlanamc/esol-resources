@@ -11,9 +11,24 @@ export const POINTS = {
   FLASHCARDS: 2,
   MATCHING_GAME: 3,
   FILL_IN_BLANK: 5,
-  NUMBERS_GAME: 5, // Base points for numbers game
-  NUMBERS_GAME_PERFECT: 5, // Bonus for 100% accuracy (total: 10)
-  NUMBERS_GAME_HIGH: 2, // Bonus for 90%+ accuracy (total: 7)
+  // Numbers game base points by difficulty
+  NUMBERS_GAME_EASY: 3, // Basic (0-99), Round Numbers
+  NUMBERS_GAME_MEDIUM: 5, // Hundreds, Ordinal
+  NUMBERS_GAME_MEDIUM_HARD: 7, // Thousands, Ten Thousands
+  NUMBERS_GAME_HARD: 10, // Hundred Thousands, Millions, Billions, Trillions, Years, All
+  
+  // Numbers game bonuses by difficulty
+  NUMBERS_GAME_PERFECT_EASY: 2, // +2 for perfect (total: 5)
+  NUMBERS_GAME_HIGH_EASY: 1, // +1 for 90%+ (total: 4)
+  
+  NUMBERS_GAME_PERFECT_MEDIUM: 3, // +3 for perfect (total: 8)
+  NUMBERS_GAME_HIGH_MEDIUM: 2, // +2 for 90%+ (total: 7)
+  
+  NUMBERS_GAME_PERFECT_MEDIUM_HARD: 5, // +5 for perfect (total: 12)
+  NUMBERS_GAME_HIGH_MEDIUM_HARD: 3, // +3 for 90%+ (total: 10)
+  
+  NUMBERS_GAME_PERFECT_HARD: 7, // +7 for perfect (total: 17)
+  NUMBERS_GAME_HIGH_HARD: 4, // +4 for 90%+ (total: 14)
   GRAMMAR_GUIDE: 10,
   ACTIVITY_COMPLETION: 5, // Default fallback
 
@@ -41,7 +56,9 @@ export function getActivityPoints(activityType: string, activityId?: string): nu
     } else if (activityId?.includes('fillblank') || activityId?.includes('fill-blank')) {
       return POINTS.FILL_IN_BLANK;
     } else if (activityId === 'numbers-game' || activityId?.includes('numbers-game')) {
-      return POINTS.NUMBERS_GAME; // Base points, accuracy bonus calculated separately
+      // Numbers game points are calculated based on difficulty in the API route
+      // Return a default value here (will be overridden with difficulty-based calculation)
+      return POINTS.NUMBERS_GAME_EASY; // Default fallback, actual points calculated in API route
     }
     return POINTS.ACTIVITY_COMPLETION; // Default for unknown games
   } else if (type === 'guide') {

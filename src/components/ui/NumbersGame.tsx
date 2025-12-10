@@ -255,7 +255,8 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
             activityId, 
             100, // Round complete = 100% progress
             "completed",
-            overallAccuracy
+            overallAccuracy,
+            settings.category // Pass category for difficulty-based points
         );
     }, [activityId, isRoundComplete, gameStarted, gameState.score, gameState.questionCount]);
 
