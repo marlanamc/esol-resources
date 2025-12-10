@@ -523,7 +523,7 @@ export default async function DashboardPage() {
                                     <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
                                         <span className="text-2xl">🏆</span>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">Total Points</div>
+                                            <div className="text-sm font-semibold opacity-90">Total</div>
                                             <div className="text-xl font-bold">{currentUser.points} points</div>
                                         </div>
                                     </div>
@@ -562,7 +562,7 @@ export default async function DashboardPage() {
                                     <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
                                         <span className="text-2xl">🏆</span>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">Total Points</div>
+                                            <div className="text-sm font-semibold opacity-90">Total</div>
                                             <div className="text-xl font-bold">{currentUser.points} points</div>
                                         </div>
                                     </div>
