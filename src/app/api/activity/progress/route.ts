@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
     const userId = (session.user as any).id;
 
-    const existing = await prisma.activityProgress.findUnique({
+    const existing = await (prisma.activityProgress as any).findUnique({
         where: {
             userId_activityId: {
                 userId,
@@ -30,7 +30,36 @@ export async function POST(request: Request) {
         },
     });
 
-    const record = await prisma.activityProgress.upsert({
+    // Handle category data updates for activities with categories (like Numbers Game)
+    let updatedCategoryData: string | undefined;
+    if (category && accuracy !== undefined) {
+        // Client sent a category update - merge with existing category data
+        const currentData = existing?.categoryData
+            ? JSON.parse(existing.categoryData)
+            : {};
+
+        // Check if this category was already completed
+        const wasCategoryCompleted = currentData[category]?.completed || false;
+
+        // Update or add this category's progress
+        currentData[category] = {
+            completed: value >= 100,
+            accuracy: accuracy,
+            completedAt: value >= 100 ? new Date().toISOString() : currentData[category]?.completedAt,
+            attempts: (currentData[category]?.attempts || 0) + 1
+        };
+
+        updatedCategoryData = JSON.stringify(currentData);
+
+        // Calculate overall progress based on categories completed
+        const totalCategories = Object.keys(currentData).length;
+        const completedCategories = Object.values(currentData).filter((c: any) => c.completed).length;
+
+        // Don't override progress to 100% unless explicitly set - keep category-based progress
+        // Only set to 100 if this specific category round is complete
+    }
+
+    const record = await (prisma.activityProgress as any).upsert({
         where: {
             userId_activityId: {
                 userId,
@@ -42,15 +71,23 @@ export async function POST(request: Request) {
             activityId,
             progress: value,
             status,
+            categoryData: updatedCategoryData
         },
         update: {
             progress: value,
             status,
+            ...(updatedCategoryData && { categoryData: updatedCategoryData })
         },
     });
 
-    // Award points based on activity type the first time this activity reaches 100%
-    if ((existing?.progress ?? 0) < 100 && value >= 100) {
+    // Award points based on activity type
+    // For activities with categories, award points per category completion
+    // For other activities, award points the first time reaching 100%
+    const shouldAwardPoints = category
+        ? (value >= 100 && updatedCategoryData && !(existing?.categoryData && JSON.parse(existing.categoryData)[category]?.completed))
+        : ((existing?.progress ?? 0) < 100 && value >= 100);
+
+    if (shouldAwardPoints) {
         // Get the activity to determine type
         const activity = await prisma.activity.findUnique({
             where: { id: activityId },
@@ -59,8 +96,8 @@ export async function POST(request: Request) {
 
         if (activity) {
             let points = getActivityPoints(activity.type, activityId);
-            
-            // Special handling for numbers game - award difficulty-based points
+
+            // Special handling for numbers game - award difficulty-based points per category
             if (activityId === 'numbers-game' || activityId?.includes('numbers-game')) {
                 // Determine difficulty based on category
                 const categoryStr = (category || '').toLowerCase();

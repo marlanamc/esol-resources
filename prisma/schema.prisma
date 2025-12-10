@@ -91,6 +91,7 @@ model ActivityProgress {
   activityId  String
   progress    Int      @default(0) // 0-100
   status      String   @default("in_progress") // in_progress, completed
+  categoryData String?  @db.Text // JSON string for per-category tracking
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

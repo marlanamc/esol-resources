@@ -254,13 +254,13 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
             : 0;
         
         void saveActivityProgress(
-            activityId, 
+            activityId,
             100, // Round complete = 100% progress
             "completed",
             overallAccuracy,
-            settings.category // Pass category for difficulty-based points
+            settings.category // Pass category for per-category progress tracking
         );
-    }, [activityId, isRoundComplete, gameStarted, gameState.score, gameState.questionCount]);
+    }, [activityId, isRoundComplete, gameStarted, gameState.score, gameState.questionCount, settings.category]);
 
     const generateNumber = () => {
         const category = CATEGORIES[settings.category];

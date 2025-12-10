@@ -34,7 +34,7 @@ interface Category {
 interface ActivityCategoriesProps {
     activities: Activity[];
     completedActivityIds?: Set<string>;
-    progressMap?: Record<string, number>;
+    progressMap?: Record<string, { progress: number; categoryData?: string }>;
     showEmpty?: boolean;
 }
 
@@ -359,8 +359,22 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             .filter(cat => getCategoryCount(cat) > 0);
 
     const getProgress = (id: string) => {
-        const value = progressMap?.[id];
-        return typeof value === "number" ? value : 0;
+        const data = progressMap?.[id];
+        return data?.progress ?? 0;
+    };
+
+    const getCategoryProgressText = (id: string) => {
+        const data = progressMap?.[id];
+        if (!data?.categoryData) return null;
+
+        try {
+            const categories = JSON.parse(data.categoryData);
+            const completed = Object.values(categories).filter((c: any) => c?.completed).length;
+            const total = Object.keys(categories).length;
+            return `${completed}/${total} categories`;
+        } catch {
+            return null;
+        }
     };
 
     return (
@@ -381,10 +395,6 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                         {/* Main Category Header */}
                         <button
                             onClick={() => toggleCategory(category.name)}
-                            onTouchStart={(e) => {
-                                e.preventDefault();
-                                toggleCategory(category.name);
-                            }}
                             className="w-full flex items-center justify-between p-5 hover:bg-bg-light/30 transition-colors group cursor-pointer touch-manipulation"
                             style={{
                                 borderLeft: `4px solid ${category.color}`,
@@ -423,10 +433,6 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                 <div key={subKey}>
                                                     <button
                                                         onClick={() => toggleSubCategory(subKey)}
-                                                        onTouchStart={(e) => {
-                                                            e.preventDefault();
-                                                            toggleSubCategory(subKey);
-                                                        }}
                                                         className="w-full flex items-center justify-between p-4 pl-6 hover:bg-white/50 transition-colors group text-left cursor-pointer touch-manipulation"
                                                         style={{
                                                             touchAction: 'manipulation'
@@ -464,10 +470,6 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                         <div key={subSubKey}>
                                                                             <button
                                                                                 onClick={() => toggleSubCategory(subSubKey)}
-                                                                                onTouchStart={(e) => {
-                                                                                    e.preventDefault();
-                                                                                    toggleSubCategory(subSubKey);
-                                                                                }}
                                                                                 className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
                                                                                 style={{
                                                                                     touchAction: 'manipulation'
@@ -525,7 +527,9 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                                                             </span>
                                                                                                             {progressValue > 0 && (
                                                                                                                 <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                                                                    {progressValue}% done
+                                                                                                                    {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
+                                                                                                                        ? getCategoryProgressText(activity.id)
+                                                                                                                        : `${progressValue}% done`}
                                                                                                                 </span>
                                                                                                             )}
                                                                                                         </div>
@@ -583,7 +587,9 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                                         </span>
                                                                                         {progressValue > 0 && (
                                                                                             <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                                                {progressValue}% done
+                                                                                                {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
+                                                                                                    ? getCategoryProgressText(activity.id)
+                                                                                                    : `${progressValue}% done`}
                                                                                             </span>
                                                                                         )}
                                                                                     </div>
@@ -643,7 +649,9 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                     </span>
                                                                 {progressValue > 0 && (
                                                                     <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                        {progressValue}% done
+                                                                        {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
+                                                                            ? getCategoryProgressText(activity.id)
+                                                                            : `${progressValue}% done`}
                                                                     </span>
                                                                 )}
                                                                 </div>

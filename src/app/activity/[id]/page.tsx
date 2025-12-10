@@ -8,6 +8,7 @@ import { isInteractiveGuideContent, isLegacyGuideContent, parseActivityContent }
 import ActivityRenderer from "@/components/ActivityRenderer";
 import SubmissionForm from "@/components/SubmissionForm";
 import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
+import { CategoryProgressDisplay } from "@/components/CategoryProgressDisplay";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -80,7 +81,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         });
     }
 
-    const progressRecord = await prisma.activityProgress.findUnique({
+    const progressRecord = await (prisma.activityProgress as any).findUnique({
         where: {
             userId_activityId: {
                 userId,
@@ -89,9 +90,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         },
         select: {
             progress: true,
+            categoryData: true,
         },
     });
     const progressValue = progressRecord?.progress ?? 0;
+    const categoryData = progressRecord?.categoryData;
 
     // Parse content once
     let parsedContent: any = null;
@@ -218,6 +221,28 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     <div className="bg-white shadow sm:rounded-lg p-6">
                         <ActivityRenderer activity={activity} />
                     </div>
+
+                    {/* Category Progress for Numbers Game */}
+                    {id === 'numbers-game' && categoryData && (
+                        <CategoryProgressDisplay
+                            activityId={id}
+                            categoryNames={[
+                                'Basic Numbers (0-99)',
+                                'Hundreds (100-999)',
+                                'One Thousand to Ten Thousand (1,000-9,999)',
+                                'Ten Thousands (10,000-99,999)',
+                                'Hundred Thousands (100,000-999,999)',
+                                'Millions',
+                                'Billions',
+                                'Trillions',
+                                'Round Numbers (1,000 | 5 million | 1 billion)',
+                                'All Cardinal Numbers (Random Ranges)',
+                                'Ordinal Numbers (1st, 2nd, 3rd...)',
+                                'Years (1100-2099)'
+                            ]}
+                            initialCategoryData={categoryData}
+                        />
+                    )}
 
                     {/* Submission Status */}
                     {submission && submission.status === "graded" && (
