@@ -459,6 +459,17 @@ export default async function DashboardPage() {
             completedActivities.map((s: { activityId: string }) => s.activityId)
         );
 
+        // Get user's streak data
+        const currentUser = await prisma.user.findUnique({
+            where: { id: userId },
+            select: {
+                currentStreak: true,
+                longestStreak: true,
+                points: true,
+                weeklyPoints: true,
+            }
+        });
+
         return (
             <div className="min-h-screen bg-bg">
                 {/* Header */}
@@ -492,9 +503,45 @@ export default async function DashboardPage() {
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
                         <div className="animate-fade-in-up">
-                            <h1 className="text-4xl sm:text-4xl font-display font-bold text-text mb-2 leading-tight">
+                            <h1 className="text-4xl sm:text-4xl font-display font-bold text-text mb-4 leading-tight">
                                 Welcome, {session.user?.name}!
                             </h1>
+
+                            {/* Streak & Points Stats */}
+                            <div className="flex flex-wrap gap-3">
+                                {/* Streak Counter */}
+                                {currentUser && currentUser.currentStreak > 0 && (
+                                    <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                        <span className="text-2xl">🔥</span>
+                                        <div>
+                                            <div className="text-sm font-semibold opacity-90">Streak</div>
+                                            <div className="text-xl font-bold">{currentUser.currentStreak} {currentUser.currentStreak === 1 ? 'day' : 'days'}</div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Weekly Points */}
+                                {currentUser && currentUser.weeklyPoints > 0 && (
+                                    <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                        <span className="text-2xl">⭐</span>
+                                        <div>
+                                            <div className="text-sm font-semibold opacity-90">This Week</div>
+                                            <div className="text-xl font-bold">{currentUser.weeklyPoints} points</div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Total Points */}
+                                {currentUser && currentUser.points > 0 && (
+                                    <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
+                                        <span className="text-2xl">🏆</span>
+                                        <div>
+                                            <div className="text-sm font-semibold opacity-90">Total Points</div>
+                                            <div className="text-xl font-bold">{currentUser.points}</div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                             {/* This Week's Activities */}
