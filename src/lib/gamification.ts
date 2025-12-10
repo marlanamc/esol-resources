@@ -4,11 +4,49 @@ import { prisma } from './prisma';
 export const POINTS = {
   QUIZ_COMPLETION: 10,
   QUIZ_PERFECT_SCORE: 20, // Bonus for 100%
-  ACTIVITY_COMPLETION: 5,
+  QUIZ_HIGH_SCORE: 10, // 90%+
+  QUIZ_GOOD_SCORE: 5, // 80%+
+
+  // Activity type points (tiered by difficulty)
+  FLASHCARDS: 2,
+  MATCHING_GAME: 3,
+  FILL_IN_BLANK: 5,
+  GRAMMAR_GUIDE: 10,
+  ACTIVITY_COMPLETION: 5, // Default fallback
+
+  // Streaks
   DAILY_STREAK: 5,
   WEEKLY_STREAK: 25,
+
+  // Achievements
   ACHIEVEMENT_BONUS: 50,
 } as const;
+
+/**
+ * Get points for completing an activity based on its type
+ */
+export function getActivityPoints(activityType: string, activityId?: string): number {
+  // Check activity type
+  const type = activityType.toLowerCase();
+
+  if (type === 'game') {
+    // For games, check the ID to determine game type
+    if (activityId?.includes('flashcard')) {
+      return POINTS.FLASHCARDS;
+    } else if (activityId?.includes('matching')) {
+      return POINTS.MATCHING_GAME;
+    } else if (activityId?.includes('fillblank') || activityId?.includes('fill-blank')) {
+      return POINTS.FILL_IN_BLANK;
+    }
+    return POINTS.ACTIVITY_COMPLETION; // Default for unknown games
+  } else if (type === 'guide') {
+    return POINTS.GRAMMAR_GUIDE;
+  } else if (type === 'quiz') {
+    return POINTS.QUIZ_COMPLETION;
+  }
+
+  return POINTS.ACTIVITY_COMPLETION; // Default
+}
 
 /**
  * Award points to a user and update their total
