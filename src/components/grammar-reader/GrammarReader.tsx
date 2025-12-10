@@ -10,14 +10,16 @@ import { ProgressBar } from "./ProgressBar";
 import { TableOfContents } from "./TableOfContents";
 import { MiniQuizSection } from "./MiniQuizSection";
 import Link from "next/link";
+import { saveActivityProgress } from "@/lib/activityProgress";
 
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
     onComplete?: () => void;
     completionKey?: string;
+    activityId?: string;
 }
 
-export function GrammarReader({ content, onComplete, completionKey }: GrammarReaderProps) {
+export function GrammarReader({ content, onComplete, completionKey, activityId }: GrammarReaderProps) {
     const storageKey = "grammarReader:present-perfect:unlocked";
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [completedSections, setCompletedSections] = useState<Set<string>>(
@@ -52,12 +54,33 @@ export function GrammarReader({ content, onComplete, completionKey }: GrammarRea
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ slug: completionKey }),
             });
+            // Also save 100% progress if activityId is provided
+            if (activityId) {
+                await saveActivityProgress(activityId, 100, "completed");
+            }
         } catch {
             // non-blocking; user still reached completion
         } finally {
             setAwardSent(true);
         }
-    }, [completionKey, awardSent]);
+    }, [completionKey, awardSent, activityId]);
+
+    // Track progress as user navigates through sections
+    useEffect(() => {
+        if (!activityId || content.sections.length === 0) return;
+
+        const totalSections = content.sections.length;
+        const sectionsViewed = currentSectionIndex + 1;
+        const sectionsCompleted = completedSections.size;
+
+        // Calculate progress based on sections viewed and completed
+        // Weight: 50% for viewing sections, 50% for completing them
+        const viewProgress = (sectionsViewed / totalSections) * 50;
+        const completionProgress = (sectionsCompleted / totalSections) * 50;
+        const totalProgress = Math.round(viewProgress + completionProgress);
+
+        void saveActivityProgress(activityId, totalProgress, totalProgress >= 100 ? "completed" : "in_progress");
+    }, [activityId, currentSectionIndex, completedSections.size, content.sections.length]);
 
     useEffect(() => {
         try {

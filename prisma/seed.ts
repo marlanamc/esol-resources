@@ -5,6 +5,9 @@ import { futureSimpleContent } from '../src/content/grammar/future-simple';
 import { presentContinuousContent } from '../src/content/grammar/present-continuous';
 import { pastContinuousContent } from '../src/content/grammar/past-continuous';
 import { futureContinuousContent } from '../src/content/grammar/future-continuous';
+import { presentPerfectContent } from '../src/content/grammar/present-perfect';
+import { simpleTensesReviewContent } from '../src/content/grammar/simple-tenses-review';
+import { continuousTensesReviewContent } from '../src/content/grammar/continuous-tenses-review';
 
 const prisma = new PrismaClient();
 
@@ -97,10 +100,55 @@ async function main() {
   });
   console.log('✅ Added:', futureContinuous.title);
 
+  console.log('\n📚 Adding Perfect Tenses...');
+
+  // Present Perfect
+  const presentPerfect = await prisma.activity.create({
+    data: {
+      title: 'Present Perfect Guide',
+      description: 'Master Present Perfect for life experiences, recent actions, and unfinished time periods with clear explanations and practice.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(presentPerfectContent)
+    }
+  });
+  console.log('✅ Added:', presentPerfect.title);
+
+  console.log('\n📚 Adding Review Guides...');
+
+  // Simple Tenses Review
+  const simpleTensesReview = await prisma.activity.create({
+    data: {
+      title: 'Simple Tenses Review',
+      description: 'Comprehensive review of Present Simple, Past Simple, and Future Simple tenses with comparison exercises.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'beginner',
+      content: JSON.stringify(simpleTensesReviewContent)
+    }
+  });
+  console.log('✅ Added:', simpleTensesReview.title);
+
+  // Continuous Tenses Review
+  const continuousTensesReview = await prisma.activity.create({
+    data: {
+      title: 'Continuous Tenses Review',
+      description: 'Comprehensive review of Present Continuous, Past Continuous, and Future Continuous tenses with comparison exercises.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(continuousTensesReviewContent)
+    }
+  });
+  console.log('✅ Added:', continuousTensesReview.title);
+
   console.log('\n✨ Dashboard updated successfully!');
-  console.log(`\nAdded ${6} tense guides:`);
+  console.log(`\nAdded ${9} grammar guides:`);
   console.log('  - 3 Simple tenses (Present, Past, Future)');
   console.log('  - 3 Continuous tenses (Present, Past, Future)');
+  console.log('  - 1 Perfect tense (Present Perfect)');
+  console.log('  - 2 Review guides (Simple Tenses, Continuous Tenses)');
   console.log('\nYou can now view all activities at: /dashboard');
 }
 
