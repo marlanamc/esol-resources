@@ -524,7 +524,7 @@ export default async function DashboardPage() {
                                         <span className="text-2xl">🏆</span>
                                         <div>
                                             <div className="text-sm font-semibold opacity-90">Total Points</div>
-                                            <div className="text-xl font-bold">{currentUser.points}</div>
+                                            <div className="text-xl font-bold">{currentUser.points} points</div>
                                         </div>
                                     </div>
                                 )}
@@ -563,7 +563,7 @@ export default async function DashboardPage() {
                                         <span className="text-2xl">🏆</span>
                                         <div>
                                             <div className="text-sm font-semibold opacity-90">Total Points</div>
-                                            <div className="text-xl font-bold">{currentUser.points}</div>
+                                            <div className="text-xl font-bold">{currentUser.points} points</div>
                                         </div>
                                     </div>
                                 )}
