@@ -501,12 +501,12 @@ export default async function DashboardPage() {
                     {/* Welcome Header */}
                     <div className="animate-fade-in-up mb-8">
                         {/* Desktop: Welcome + Stats horizontal */}
-                        <div className="hidden lg:flex items-center justify-between gap-6">
-                            <h1 className="text-4xl font-display font-bold text-text leading-tight">
+                        <div className="hidden lg:flex items-center gap-4">
+                            <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0">
                                 Welcome, {session.user?.name}!
                             </h1>
 
-                            <div className="flex gap-3 flex-shrink-0">
+                            <div className="flex gap-3">
                                 {/* Weekly Points */}
                                 {currentUser && currentUser.weeklyPoints > 0 && (
                                     <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
