@@ -138,66 +138,44 @@ export default function LeaderboardPage() {
 
         {/* Top 3 Podium (hide on mobile, hide if everyone is at 0) */}
         {leaderboard.some(entry => entry.rank <= 3) && hasNonZeroScores && (() => {
-          // Find students by rank (not array index) to handle ties correctly
-          const rank1 = leaderboard.find(entry => entry.rank === 1);
-          const rank2 = leaderboard.find(entry => entry.rank === 2);
-          const rank3 = leaderboard.find(entry => entry.rank === 3);
+          // Get all students in top 3 ranks (handles ties)
+          const rank1Students = leaderboard.filter(entry => entry.rank === 1);
+          const rank2Students = leaderboard.filter(entry => entry.rank === 2);
+          const rank3Students = leaderboard.filter(entry => entry.rank === 3);
+          const topStudents = [...rank1Students, ...rank2Students, ...rank3Students];
 
           return (
-            <div className="hidden md:grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-              {/* Second Place */}
-              {rank2 && (
-                <div className="pt-3 sm:pt-10">
-                  <div className="border-2 rounded-2xl p-4 text-center" style={{ backgroundColor: getRankColor(2).bg, borderColor: getRankColor(2).border }}>
-                    <div className="text-4xl mb-2">🥈</div>
+            <div className="hidden md:flex flex-wrap justify-center gap-4 mb-8">
+              {/* Display students in rank order (1st, then all 2nd, then all 3rd) */}
+              {topStudents.map((student) => (
+                <div key={student.id} className="flex-shrink-0">
+                  <div
+                    className="border-2 rounded-2xl p-4 text-center min-w-[180px]"
+                    style={{
+                      backgroundColor: getRankColor(student.rank).bg,
+                      borderColor: getRankColor(student.rank).border,
+                      boxShadow: student.rank === 1 ? '0 8px 24px rgba(255, 215, 0, 0.3)' : undefined
+                    }}
+                  >
+                    <div className={student.rank === 1 ? "text-5xl mb-2" : "text-4xl mb-2"}>
+                      {getRankIcon(student.rank)}
+                    </div>
                     <p className="font-bold text-lg truncate" style={{ color: '#2b3a4a' }}>
-                      {rank2.name}
+                      {student.name}
                     </p>
+                    {student.rank === 1 && (
+                      <p className="text-sm mt-1" style={{ color: '#7ba884' }}>
+                        Champion
+                      </p>
+                    )}
                     <div className="mt-2">
-                      <Badge variant="secondary">
-                        {rank2.weeklyPoints} pts
+                      <Badge variant={student.rank === 1 ? "warning" : "secondary"}>
+                        {student.weeklyPoints} pts
                       </Badge>
                     </div>
                   </div>
                 </div>
-              )}
-
-              {/* First Place */}
-              {rank1 && (
-                <div>
-                  <div className="border-2 rounded-2xl p-5 sm:p-6 text-center" style={{ backgroundColor: getRankColor(1).bg, borderColor: getRankColor(1).border, boxShadow: '0 8px 24px rgba(255, 215, 0, 0.3)' }}>
-                    <div className="text-6xl mb-2">🥇</div>
-                    <p className="font-bold text-xl truncate" style={{ color: '#2b3a4a' }}>
-                      {rank1.name}
-                    </p>
-                    <p className="text-sm mt-1" style={{ color: '#7ba884' }}>
-                      Champion
-                    </p>
-                    <div className="mt-3">
-                      <Badge variant="warning">
-                        {rank1.weeklyPoints} pts
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Third Place */}
-              {rank3 && (
-                <div className="pt-3 sm:pt-10">
-                  <div className="border-2 rounded-2xl p-4 text-center" style={{ backgroundColor: getRankColor(3).bg, borderColor: getRankColor(3).border }}>
-                    <div className="text-4xl mb-2">🥉</div>
-                    <p className="font-bold text-lg truncate" style={{ color: '#2b3a4a' }}>
-                      {rank3.name}
-                    </p>
-                    <div className="mt-2">
-                      <Badge variant="warning">
-                        {rank3.weeklyPoints} pts
-                      </Badge>
-                    </div>
-                  </div>
-                </div>
-              )}
+              ))}
             </div>
           );
         })()}
