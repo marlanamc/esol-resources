@@ -350,21 +350,26 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                         {/* Main Category Header */}
                         <button
                             onClick={() => toggleCategory(category.name)}
-                            className="w-full flex items-center justify-between p-5 hover:bg-bg-light/30 transition-colors group"
+                            onTouchStart={(e) => {
+                                e.preventDefault();
+                                toggleCategory(category.name);
+                            }}
+                            className="w-full flex items-center justify-between p-5 hover:bg-bg-light/30 transition-colors group cursor-pointer touch-manipulation"
                             style={{
-                                borderLeft: `4px solid ${category.color}`
+                                borderLeft: `4px solid ${category.color}`,
+                                touchAction: 'manipulation'
                             }}
                         >
                             <div className="flex items-center gap-4">
-                                <h3 className="text-xl font-bold font-display text-text group-hover:text-primary transition-colors">
+                                <h3 className="text-xl font-bold font-display text-text group-hover:text-primary transition-colors pointer-events-none">
                                     {category.name}
                                 </h3>
-                                <span className="text-sm text-text-muted font-medium bg-bg-light px-3 py-1 rounded-full">
+                                <span className="text-sm text-text-muted font-medium bg-bg-light px-3 py-1 rounded-full pointer-events-none">
                                     {totalActivities} {totalActivities === 1 ? 'activity' : 'activities'}
                                 </span>
                             </div>
                             <svg
-                                className={`w-6 h-6 text-text-muted transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
+                                className={`w-6 h-6 text-text-muted transition-transform duration-300 pointer-events-none ${isExpanded ? 'rotate-180' : ''}`}
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -387,18 +392,25 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                 <div key={subKey}>
                                                     <button
                                                         onClick={() => toggleSubCategory(subKey)}
-                                                        className="w-full flex items-center justify-between p-4 pl-6 hover:bg-white/50 transition-colors group text-left"
+                                                        onTouchStart={(e) => {
+                                                            e.preventDefault();
+                                                            toggleSubCategory(subKey);
+                                                        }}
+                                                        className="w-full flex items-center justify-between p-4 pl-6 hover:bg-white/50 transition-colors group text-left cursor-pointer touch-manipulation"
+                                                        style={{
+                                                            touchAction: 'manipulation'
+                                                        }}
                                                     >
                                                         <div className="flex items-center gap-3 flex-1 min-w-0">
-                                                            <span className="text-base font-semibold text-text group-hover:text-primary transition-colors text-left">
+                                                            <span className="text-base font-semibold text-text group-hover:text-primary transition-colors text-left pointer-events-none">
                                                                 {subCategory.name}
                                                             </span>
-                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-1 rounded-full shrink-0">
+                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-1 rounded-full shrink-0 pointer-events-none">
                                                                 {getSubCategoryCount(subCategory)}
                                                             </span>
                                                         </div>
                                                         <svg
-                                                            className={`w-5 h-5 text-text-muted transition-transform duration-300 shrink-0 ml-2 ${isSubExpanded ? 'rotate-180' : ''}`}
+                                                            className={`w-5 h-5 text-text-muted transition-transform duration-300 shrink-0 ml-2 pointer-events-none ${isSubExpanded ? 'rotate-180' : ''}`}
                                                             fill="none"
                                                             stroke="currentColor"
                                                             viewBox="0 0 24 24"
@@ -421,18 +433,25 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                                         <div key={subSubKey}>
                                                                             <button
                                                                                 onClick={() => toggleSubCategory(subSubKey)}
-                                                                                className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group"
+                                                                                onTouchStart={(e) => {
+                                                                                    e.preventDefault();
+                                                                                    toggleSubCategory(subSubKey);
+                                                                                }}
+                                                                                className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
+                                                                                style={{
+                                                                                    touchAction: 'manipulation'
+                                                                                }}
                                                                             >
                                                                                 <div className="flex items-center gap-2">
-                                                                                    <span className="text-sm font-medium text-text group-hover:text-primary transition-colors">
+                                                                                    <span className="text-sm font-medium text-text group-hover:text-primary transition-colors pointer-events-none">
                                                                                         {subSubCategory.name}
                                                                                     </span>
-                                                                                    <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full">
+                                                                                    <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full pointer-events-none">
                                                                                         {subSubCategory.activities.length}
                                                                                     </span>
                                                                                 </div>
                                                                                 <svg
-                                                                                    className={`w-4 h-4 text-text-muted transition-transform duration-300 ${isSubSubExpanded ? 'rotate-180' : ''}`}
+                                                                                    className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-180' : ''}`}
                                                                                     fill="none"
                                                                                     stroke="currentColor"
                                                                                     viewBox="0 0 24 24"
