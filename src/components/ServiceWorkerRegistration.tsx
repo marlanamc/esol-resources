@@ -9,14 +9,36 @@ export default function ServiceWorkerRegistration() {
       'serviceWorker' in navigator &&
       process.env.NODE_ENV === 'production'
     ) {
+      let registration: ServiceWorkerRegistration | null = null;
+      let updateInterval: NodeJS.Timeout | null = null;
+
+      const checkForUpdates = () => {
+        if (registration) {
+          registration.update().catch((error) => {
+            console.error('Error checking for service worker updates:', error);
+          });
+        }
+      };
+
       navigator.serviceWorker
-        .register('/sw.js')
-        .then((registration) => {
-          console.log('Service Worker registered successfully:', registration.scope);
+        .register('/sw.js', { updateViaCache: 'none' })
+        .then((reg) => {
+          registration = reg;
+          console.log('Service Worker registered successfully:', reg.scope);
+
+          // Check if there's already a waiting service worker
+          if (reg.waiting && navigator.serviceWorker.controller) {
+            console.log('Waiting service worker found on page load');
+            window.dispatchEvent(
+              new CustomEvent('swUpdateAvailable', {
+                detail: { waitingWorker: reg.waiting }
+              })
+            );
+          }
 
           // Listen for updates
-          registration.addEventListener('updatefound', () => {
-            const newWorker = registration.installing;
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
 
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
@@ -39,14 +61,28 @@ export default function ServiceWorkerRegistration() {
             }
           });
 
-          // Check for updates periodically
-          setInterval(() => {
-            registration.update();
-          }, 60 * 60 * 1000); // Check every hour
+          // Check for updates immediately on page load
+          checkForUpdates();
+
+          // Check for updates when window regains focus
+          window.addEventListener('focus', checkForUpdates);
+
+          // Check for updates periodically (every hour)
+          updateInterval = setInterval(() => {
+            checkForUpdates();
+          }, 60 * 60 * 1000);
         })
         .catch((error) => {
           console.error('Service Worker registration failed:', error);
         });
+
+      // Cleanup function
+      return () => {
+        if (updateInterval) {
+          clearInterval(updateInterval);
+        }
+        window.removeEventListener('focus', checkForUpdates);
+      };
     }
   }, []);
 
