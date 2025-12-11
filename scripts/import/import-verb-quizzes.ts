@@ -92,7 +92,9 @@ async function main() {
           description: `Irregular Verb Quiz - ${Object.keys(weekData.verbs).join(', ')}`,
           date: new Date(weekData.due_date),
           type: 'quiz',
-          createdBy: teacher.id
+          createdBy: {
+            connect: { id: teacher.id }
+          }
         }
       });
       console.log(`   📅 Calendar event created\n`);

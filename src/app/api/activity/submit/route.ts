@@ -83,8 +83,7 @@ export async function POST(request: Request) {
         await awardPoints(
             userId,
             points,
-            `Completed: ${activity?.title || activityId}`,
-            'activity'
+            `Completed: ${activity?.title || activityId}`
         );
     }
 
