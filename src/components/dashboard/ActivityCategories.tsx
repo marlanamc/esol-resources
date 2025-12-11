@@ -332,6 +332,29 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             name: 'Pronunciation',
             color: '#6a4c93', // purple
             activities: activities.filter(a => a.category === 'pronunciation')
+        },
+        {
+            name: 'Quizzes',
+            color: '#c86b51', // terracotta
+            activities: activities.filter(a => {
+                if (a.category !== 'quizzes') return false;
+
+                // Only show released quizzes to students
+                try {
+                    const content = JSON.parse(a.content || '{}');
+                    return content.released === true;
+                } catch {
+                    return false;
+                }
+            })
+                .sort((a, b) => {
+                    // Sort by week number (Week 1, Week 2, etc.)
+                    const getWeekNum = (title: string) => {
+                        const match = title.match(/Week (\d+)/);
+                        return match ? parseInt(match[1]) : 999;
+                    };
+                    return getWeekNum(a.title || '') - getWeekNum(b.title || '');
+                })
         }
     ];
 

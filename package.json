@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit",
     "db:seed": "node prisma/seed.js",
     "db:migrate": "prisma migrate deploy",
-    "import:simple-tenses": "node scripts/import-simple-tenses.mjs"
+    "import:simple-tenses": "node scripts/import-simple-tenses.mjs",
+    "import:verb-quizzes": "npx tsx scripts/import/import-verb-quizzes.ts",
+    "delete:verb-quizzes": "npx tsx scripts/import/delete-verb-quizzes.ts"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -39,6 +41,7 @@
     "eslint-config-next": "16.0.7",
     "prisma": "^6.19.0",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
