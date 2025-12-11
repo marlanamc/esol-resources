@@ -81,26 +81,11 @@ async function main() {
 
     console.log(`✅ Created ${weekName} (Activity ID: ${activity.id})`);
     console.log(`   - Due date: ${weekData.due_date}`);
-    console.log(`   - Verbs: ${Object.keys(weekData.verbs).join(', ')}`);
+    console.log(`   - Verbs: ${Object.keys(weekData.verbs).join(', ')}\n`);
     importCount++;
 
-    // Create a calendar event for the due date
-    try {
-      await prisma.calendarEvent.create({
-        data: {
-          title: `${weekName} Quiz Due`,
-          description: `Irregular Verb Quiz - ${Object.keys(weekData.verbs).join(', ')}`,
-          date: new Date(weekData.due_date),
-          type: 'quiz',
-          createdBy: {
-            connect: { id: teacher.id }
-          }
-        }
-      });
-      console.log(`   📅 Calendar event created\n`);
-    } catch (error) {
-      console.log(`   ⚠️  Could not create calendar event (may already exist)\n`);
-    }
+    // Note: Calendar events are class-specific, so not creating global events
+    // Teachers can create calendar events when assigning quizzes to classes
   }
 
   console.log('\n📊 Import Summary:');
