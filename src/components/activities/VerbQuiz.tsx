@@ -7,7 +7,7 @@ import { CheckCircle2, Loader2 } from 'lucide-react';
 
 interface VerbQuizProps {
   content: VerbQuizContent;
-  activityId: number;
+  activityId: string;
   onComplete: (answers: VerbQuizAnswers, score: number) => void;
   isSubmitting?: boolean;
 }
