@@ -17,18 +17,6 @@ async function main() {
 
   console.log(`✅ Deleted ${deleteResult.count} verb quiz activities\n`);
 
-  // Delete associated calendar events
-  const calendarResult = await prisma.calendarEvent.deleteMany({
-    where: {
-      title: {
-        contains: 'Quiz Due'
-      },
-      type: 'quiz'
-    }
-  });
-
-  console.log(`✅ Deleted ${calendarResult.count} calendar events\n`);
-
   console.log('✨ Cleanup complete! You can now run the import script again.\n');
 }
 
