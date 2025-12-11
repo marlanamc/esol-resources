@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
 import bcrypt from "bcryptjs";
+import { trackLogin } from "./gamification";
 
 export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || "development-secret-change-in-production",
@@ -38,6 +39,12 @@ export const authOptions: NextAuthOptions = {
                     }
 
                     console.log(`[Auth] Successful login: ${user.username} (${user.role})`);
+                    
+                    // Track login for activity calendar
+                    trackLogin(user.id).catch(err => {
+                        console.error('[Auth] Failed to track login:', err);
+                    });
+                    
                     return {
                         id: user.id,
                         email: null,

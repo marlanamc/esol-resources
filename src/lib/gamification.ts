@@ -88,6 +88,38 @@ async function logPointsLedger(userId: string, points: number, reason: string, s
   }
 }
 
+/**
+ * Track user login activity (for activity calendar)
+ * Creates a PointsLedger entry with 0 points to track login dates
+ */
+export async function trackLogin(userId: string) {
+  try {
+    // Check if we already have a login entry for today
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const existingLogin = await prisma.pointsLedger.findFirst({
+      where: {
+        userId,
+        source: 'login',
+        createdAt: {
+          gte: today,
+          lt: tomorrow,
+        },
+      },
+    });
+
+    // Only create if we don't have a login entry for today
+    if (!existingLogin) {
+      await logPointsLedger(userId, 0, 'Daily login', 'login');
+    }
+  } catch (err) {
+    console.error('[Gamification] Failed to track login', err);
+  }
+}
+
 export async function awardPoints(userId: string, points: number, reason: string = '') {
   const user = await prisma.user.update({
     where: { id: userId },

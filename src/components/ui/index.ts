@@ -3,3 +3,5 @@ export { Card } from './Card';
 export { Badge } from './Badge';
 export { StatCard } from './StatCard';
 export { BottomNav } from './BottomNav';
+export { StreakCalendar } from './StreakCalendar';
+export { ActivityTimeline } from './ActivityTimeline';
