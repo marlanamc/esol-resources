@@ -25,6 +25,8 @@ import FlashcardCarousel from "./ui/FlashcardCarousel";
 import FillInBlankGame from "./ui/FillInBlankGame";
 import MatchingGame from "./ui/MatchingGame";
 import NumbersGame from "./ui/NumbersGame";
+import VerbQuizContainer from "./activities/VerbQuizContainer";
+import { VerbQuizContent } from "@/types/verb-quiz";
 
 interface Props {
     activity: {
@@ -51,7 +53,7 @@ export default function ActivityRenderer({ activity }: Props) {
 
     switch (activity.type) {
         case "quiz":
-            return <QuizRenderer content={content as QuizContent} />;
+            return <QuizRenderer content={content as QuizContent} activityId={activity.id} />;
         case "worksheet":
             return <WorksheetRenderer content={content as WorksheetContent} />;
         case "slides":
@@ -91,8 +93,15 @@ export default function ActivityRenderer({ activity }: Props) {
     }
 }
 
-function QuizRenderer({ content }: { content: QuizContent }) {
-    const questions = content.questions || [];
+function QuizRenderer({ content, activityId }: { content: QuizContent | VerbQuizContent; activityId: string }) {
+    // Check if this is a verb quiz
+    if (content && typeof content === 'object' && 'type' in content && content.type === 'verb-quiz') {
+        return <VerbQuizContainer content={content as VerbQuizContent} activityId={activityId} />;
+    }
+
+    // Regular quiz renderer
+    const quizContent = content as QuizContent;
+    const questions = quizContent.questions || [];
 
     return (
         <div className="space-y-6">

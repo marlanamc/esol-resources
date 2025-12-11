@@ -291,11 +291,60 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
             name: 'Pronunciation',
             color: '#6a4c93', // purple
             activities: activities.filter(a => a.category === 'pronunciation')
+        },
+        {
+            name: 'Quizzes',
+            color: '#c86b51', // terracotta
+            activities: activities.filter(a => a.category === 'quizzes')
+                .sort((a, b) => {
+                    // Sort by week number (Week 1, Week 2, etc.)
+                    const getWeekNum = (title: string) => {
+                        const match = title.match(/Week (\d+)/);
+                        return match ? parseInt(match[1]) : 999;
+                    };
+                    return getWeekNum(a.title || '') - getWeekNum(b.title || '');
+                })
         }
     ];
 
     const ActivityCard = ({ activity }: { activity: Activity }) => {
         const isFeatured = featuredIds.has(activity.id);
+        const [isReleasing, setIsReleasing] = React.useState(false);
+
+        // Check if this is a verb quiz and if it's released
+        let isQuiz = false;
+        let isReleased = false;
+        try {
+            const content = JSON.parse(activity.content || '{}');
+            isQuiz = content.type === 'verb-quiz';
+            isReleased = content.released === true;
+        } catch {}
+
+        const handleRelease = async () => {
+            setIsReleasing(true);
+            try {
+                const res = await fetch('/api/quiz/release', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        activityId: activity.id,
+                        released: !isReleased
+                    })
+                });
+
+                if (!res.ok) {
+                    throw new Error('Failed to update release status');
+                }
+
+                // Refresh the page to show updated status
+                window.location.reload();
+            } catch (error) {
+                console.error(error);
+                alert('Failed to update quiz release status');
+            } finally {
+                setIsReleasing(false);
+            }
+        };
 
         const handleAssign = async () => {
             if (!defaultClassId || assigningId) return;
@@ -419,6 +468,21 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                                         } ${assigningId === activity.id ? 'opacity-70' : ''}`}
                                 >
                                     {assigningId === activity.id ? 'Assigning...' : 'Assign'}
+                                </button>
+                            )}
+                            {isQuiz && (
+                                <button
+                                    type="button"
+                                    onClick={handleRelease}
+                                    disabled={isReleasing}
+                                    className={`px-4 py-2 text-white text-sm font-semibold transition-all rounded-full shadow-sm inline-flex items-center justify-center ${
+                                        isReleased
+                                            ? 'bg-gray-500 hover:bg-gray-600'
+                                            : 'bg-terracotta hover:brightness-110'
+                                    } hover:shadow-md hover:-translate-y-0.5 ${isReleasing ? 'opacity-70' : ''}`}
+                                    style={{ backgroundColor: isReleased ? undefined : '#c86b51' }}
+                                >
+                                    {isReleasing ? 'Updating...' : isReleased ? 'Hide Quiz' : 'Release Quiz'}
                                 </button>
                             )}
                         </div>
