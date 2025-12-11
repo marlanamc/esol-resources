@@ -18,9 +18,9 @@ export default async function ActivitiesPage() {
         where: { userId },
         select: { activityId: true, progress: true },
     });
-    const progressMap = (progressEntries as Array<{ activityId: string; progress: number }>).reduce<Record<string, number>>(
+    const progressMap = (progressEntries as Array<{ activityId: string; progress: number }>).reduce<Record<string, { progress: number; categoryData?: string }>>(
         (acc, p) => {
-            acc[p.activityId] = p.progress;
+            acc[p.activityId] = { progress: p.progress };
             return acc;
         },
         {}

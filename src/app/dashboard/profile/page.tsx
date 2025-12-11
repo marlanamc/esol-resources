@@ -157,7 +157,7 @@ export default async function ProfilePage() {
             activityName: entry.reason || 'Activity completed',
             points: entry.points,
             completedAt: entry.createdAt,
-            reason: entry.source !== 'award' ? entry.source : undefined,
+            reason: entry.source !== 'award' && entry.source ? entry.source : undefined,
         }));
 
     // Student view
