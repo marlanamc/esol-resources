@@ -14,7 +14,9 @@ import {
     UsersIcon,
     ClipboardIcon,
     BarChartIcon,
-    CalendarIcon
+    CalendarIcon,
+    StarIcon,
+    FlameIcon
 } from "@/components/icons/Icons";
 import {
     MiniCalendar,
@@ -525,22 +527,26 @@ export default async function DashboardPage() {
                             <div className="flex gap-3">
                                 {/* Weekly Points */}
                                 {currentUser && currentUser.weeklyPoints > 0 && (
-                                    <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">⭐</span>
+                                    <div className="bg-white border-2 border-primary/20 px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 group">
+                                        <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                                            <StarIcon className="text-primary" size={20} />
+                                        </div>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">This Week</div>
-                                            <div className="text-xl font-bold">{currentUser.weeklyPoints} points</div>
+                                            <div className="text-xs font-bold uppercase tracking-wide text-text-muted">This Week</div>
+                                            <div className="text-lg font-bold text-text">{currentUser.weeklyPoints} <span className="text-sm font-semibold text-text-muted">points</span></div>
                                         </div>
                                     </div>
                                 )}
 
                                 {/* Total Points */}
                                 {currentUser && currentUser.points > 0 && (
-                                    <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">🏆</span>
+                                    <div className="bg-white border-2 border-secondary/20 px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 group">
+                                        <div className="p-2 bg-secondary/10 rounded-lg group-hover:bg-secondary/20 transition-colors">
+                                            <TrophyIcon className="text-secondary" size={20} />
+                                        </div>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">Total</div>
-                                            <div className="text-xl font-bold">{currentUser.points} points</div>
+                                            <div className="text-xs font-bold uppercase tracking-wide text-text-muted">Total</div>
+                                            <div className="text-lg font-bold text-text">{currentUser.points} <span className="text-sm font-semibold text-text-muted">points</span></div>
                                         </div>
                                     </div>
                                 )}
@@ -555,31 +561,37 @@ export default async function DashboardPage() {
 
                             <div className="flex flex-wrap gap-3">
                                 {currentUser && currentUser.currentStreak > 0 && (
-                                    <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">🔥</span>
+                                    <div className="bg-white border-2 border-orange-500/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
+                                        <div className="p-1.5 bg-orange-500/10 rounded-lg">
+                                            <FlameIcon className="text-orange-500" size={18} />
+                                        </div>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">Streak</div>
-                                            <div className="text-xl font-bold">{currentUser.currentStreak} {currentUser.currentStreak === 1 ? 'day' : 'days'}</div>
+                                            <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">Streak</div>
+                                            <div className="text-base font-bold text-text">{currentUser.currentStreak} <span className="text-xs font-semibold text-text-muted">{currentUser.currentStreak === 1 ? 'day' : 'days'}</span></div>
                                         </div>
                                     </div>
                                 )}
 
                                 {currentUser && currentUser.weeklyPoints > 0 && (
-                                    <div className="bg-gradient-to-r from-[var(--color-primary)] to-[#d4865a] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">⭐</span>
+                                    <div className="bg-white border-2 border-primary/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
+                                        <div className="p-1.5 bg-primary/10 rounded-lg">
+                                            <StarIcon className="text-primary" size={18} />
+                                        </div>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">This Week</div>
-                                            <div className="text-xl font-bold">{currentUser.weeklyPoints} points</div>
+                                            <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">This Week</div>
+                                            <div className="text-base font-bold text-text">{currentUser.weeklyPoints} <span className="text-xs font-semibold text-text-muted">points</span></div>
                                         </div>
                                     </div>
                                 )}
 
                                 {currentUser && currentUser.points > 0 && (
-                                    <div className="bg-gradient-to-r from-[var(--color-secondary)] to-[#6d8577] text-white px-4 py-2 rounded-xl shadow-md flex items-center gap-2">
-                                        <span className="text-2xl">🏆</span>
+                                    <div className="bg-white border-2 border-secondary/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
+                                        <div className="p-1.5 bg-secondary/10 rounded-lg">
+                                            <TrophyIcon className="text-secondary" size={18} />
+                                        </div>
                                         <div>
-                                            <div className="text-sm font-semibold opacity-90">Total</div>
-                                            <div className="text-xl font-bold">{currentUser.points} points</div>
+                                            <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">Total</div>
+                                            <div className="text-base font-bold text-text">{currentUser.points} <span className="text-xs font-semibold text-text-muted">points</span></div>
                                         </div>
                                     </div>
                                 )}

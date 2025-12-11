@@ -18,7 +18,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleTouchStart = (e: React.TouchEvent, href: string) => {
+  const handleClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     router.push(href);
   };
@@ -45,13 +45,13 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
               <Link
                 key={item.href}
                 href={item.href}
-                onTouchStart={(e) => handleTouchStart(e, item.href)}
+                onClick={(e) => handleClick(e, item.href)}
                 className={`flex flex-col items-center justify-center gap-1 transition-all duration-150 cursor-pointer touch-manipulation relative ${
                   isActive
                     ? ''
                     : 'active:scale-95'
                 }`}
-                style={{ 
+                style={{
                   color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)',
                   touchAction: 'manipulation',
                   WebkitTapHighlightColor: 'transparent'

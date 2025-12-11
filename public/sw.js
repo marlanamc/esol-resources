@@ -1,5 +1,7 @@
 // Service Worker for Class Companion PWA
-const CACHE_NAME = 'class-companion-v1';
+// IMPORTANT: Increment version number with each deployment to trigger updates
+// Example: v1 -> v2 -> v3, etc.
+const CACHE_NAME = 'class-companion-v2';
 const urlsToCache = [
   '/',
   '/dashboard',
@@ -18,7 +20,15 @@ self.addEventListener('install', (event) => {
         console.log('Cache failed:', err);
       })
   );
-  self.skipWaiting(); // Activate immediately
+  // Don't skip waiting automatically - let user decide when to update
+  // self.skipWaiting() will be called when user clicks "Update Now"
+});
+
+// Listen for message from app to skip waiting
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 // Activate event - clean up old caches

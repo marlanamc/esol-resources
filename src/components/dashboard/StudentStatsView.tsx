@@ -51,10 +51,16 @@ function statusLabel(progress: number) {
 }
 
 export function StudentStatsView({ activities }: Props) {
-    const [tab, setTab] = useState<"vocab" | "grammar" | "other">("vocab");
+    const [tab, setTab] = useState<"vocab" | "grammar" | "numbers" | "other">("vocab");
 
-    const { vocabUnits, grammarActivities, otherActivities } = useMemo(() => {
-        const vocab = activities.filter((a) => (a.category || "").includes("vocab"));
+    const { vocabUnits, grammarActivities, numbersActivities, otherActivities } = useMemo(() => {
+        const vocab = activities.filter((a) => {
+            const category = (a.category || "").toLowerCase();
+            return category.includes("vocab") ||
+                   category.includes("vocabulary") ||
+                   category.includes("unit") ||
+                   category.includes("flash cards");
+        });
         const vocabUnits: GroupedUnit[] = Object.values(
             vocab.reduce<Record<string, GroupedUnit>>((acc, activity) => {
                 const label = getUnitLabel(activity);
@@ -65,11 +71,20 @@ export function StudentStatsView({ activities }: Props) {
         ).sort((a, b) => a.unitLabel.localeCompare(b.unitLabel));
 
         const grammarActivities = activities.filter((a) => a.category === "grammar");
-        const otherActivities = activities.filter(
-            (a) => !((a.category || "").includes("vocab") || a.category === "grammar")
+        const numbersActivities = activities.filter((a) =>
+            (a.category || "").toLowerCase().includes("numbers")
         );
+        const otherActivities = activities.filter((a) => {
+            const category = (a.category || "").toLowerCase();
+            return !category.includes("vocab") &&
+                   !category.includes("vocabulary") &&
+                   !category.includes("unit") &&
+                   !category.includes("flash cards") &&
+                   !category.includes("grammar") &&
+                   !category.includes("numbers");
+        });
 
-        return { vocabUnits, grammarActivities, otherActivities };
+        return { vocabUnits, grammarActivities, numbersActivities, otherActivities };
     }, [activities]);
 
     const renderActivity = (activity: ActivityStat) => {
@@ -109,6 +124,7 @@ export function StudentStatsView({ activities }: Props) {
                 {[
                     { key: "vocab", label: "Vocabulary" },
                     { key: "grammar", label: "Grammar" },
+                    { key: "numbers", label: "Numbers" },
                     { key: "other", label: "Other" },
                 ].map(({ key, label }) => (
                     <button
@@ -148,6 +164,12 @@ export function StudentStatsView({ activities }: Props) {
             {tab === "grammar" && (
                 <div className="space-y-2">
                     {grammarActivities.length === 0 ? emptyState : grammarActivities.map(renderActivity)}
+                </div>
+            )}
+
+            {tab === "numbers" && (
+                <div className="space-y-2">
+                    {numbersActivities.length === 0 ? emptyState : numbersActivities.map(renderActivity)}
                 </div>
             )}
 

@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "@/components/Providers";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
+import PWAUpdateNotification from "@/components/PWAUpdateNotification";
 
 const fraunces = Fraunces({
   variable: "--font-display",
@@ -68,6 +69,7 @@ export default function RootLayout({
         <Providers>{children}</Providers>
         <ServiceWorkerRegistration />
         <PWAInstallPrompt />
+        <PWAUpdateNotification />
       </body>
     </html>
   );
