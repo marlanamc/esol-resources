@@ -457,10 +457,14 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     title: "Real-Life Conversations",
                     instructions: "Complete these natural English conversations.",
                     items: [
-                        { type: "text", label: "1. \"What time ___ (you/start) work?\" \"I ___ (start) at 8 AM every day.\"", expectedAnswer: "do you start / start" },
-                        { type: "text", label: "2. \"___ (you/see) the new movie?\" \"No, I ___ (not see) it yet.\"", expectedAnswer: "Did you see / didn't see" },
-                        { type: "text", label: "3. \"___ (they/come) to the party?\" \"Yes, they ___ (promise) to bring dessert.\"", expectedAnswer: "Will they come / will promise" },
-                        { type: "text", label: "4. \"Why ___ (she/look) so tired?\" \"She ___ (work) late last night.\"", expectedAnswer: "does she look / worked" },
+                        { type: "text", label: "1a. \"What time ___ (you/start) work?\"", expectedAnswer: "do you start" },
+                        { type: "text", label: "1b. \"I ___ (start) at 8 AM every day.\"", expectedAnswer: "start" },
+                        { type: "text", label: "2a. \"___ (you/see) the new movie?\"", expectedAnswer: "Did you see" },
+                        { type: "text", label: "2b. \"No, I ___ (not see) it yet.\"", expectedAnswer: "didn't see" },
+                        { type: "text", label: "3a. \"___ (they/come) to the party?\"", expectedAnswer: "Will they come" },
+                        { type: "text", label: "3b. \"Yes, they ___ (promise) to bring dessert.\"", expectedAnswer: "will promise" },
+                        { type: "text", label: "4a. \"Why ___ (she/look) so tired?\"", expectedAnswer: "does she look" },
+                        { type: "text", label: "4b. \"She ___ (work) late last night.\"", expectedAnswer: "worked" },
                     ],
                 },
                 {
