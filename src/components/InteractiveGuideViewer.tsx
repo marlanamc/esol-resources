@@ -99,7 +99,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
                 {/* Left Panel: Theory/Content */}
                 <div className="flex-1 overflow-visible lg:overflow-y-auto w-full lg:w-1/2 p-5 sm:p-7 lg:pl-24 lg:pr-12 flex flex-col justify-center bg-white/70">
-                    <div className="max-w-2xl mx-auto w-full animate-fade-in-up space-y-4 sm:space-y-6">
+                    <div className="w-full lg:max-w-2xl lg:mx-auto animate-fade-in-up space-y-4 sm:space-y-6">
                         {currentSection.stepNumber && (
                             <span className="inline-block text-xs font-bold tracking-widest text-primary uppercase mb-4 border-b-2 border-primary/20 pb-1">
                                 Part {currentSection.stepNumber}
@@ -145,7 +145,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
                 {/* Right Panel: Practice/Interaction */}
                 <div className="flex-1 overflow-visible lg:overflow-y-auto w-full lg:w-1/2 bg-bg-light/40 border-t lg:border-t-0 lg:border-l border-border/60 p-5 sm:p-7 lg:pr-24 lg:pl-12 flex flex-col justify-center">
-                    <div className="max-w-2xl mx-auto w-full animate-fade-in-up delay-100 space-y-4 sm:space-y-6">
+                    <div className="w-full lg:max-w-2xl lg:mx-auto animate-fade-in-up delay-100 space-y-4 sm:space-y-6">
                         {currentSection.exercises && currentSection.exercises.length > 0 ? (
                             <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-white/60 relative overflow-hidden">
                                 {/* Decorative blob */}
