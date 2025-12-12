@@ -47,7 +47,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I'll be sleeping at midnight."',
+                            label: "\"I'll be sleeping at midnight.\"",
                             options: [
                                 { value: "in-progress-future", label: "In progress at a future time" },
                                 { value: "promise", label: "Promise" },
@@ -57,7 +57,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"She'll be cooking when you arrive."',
+                            label: "\"She'll be cooking when you arrive.\"",
                             options: [
                                 { value: "overlap", label: "Overlapping future action" },
                                 { value: "decision-now", label: "Decision made now" },
@@ -67,7 +67,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We'll be on vacation next week."',
+                            label: "\"We'll be on vacation next week.\"",
                             options: [
                                 { value: "availability", label: "Setting future availability/context" },
                                 { value: "habit", label: "Routine" },
