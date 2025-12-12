@@ -218,7 +218,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 <p>Present Continuous shows what's happening this moment. The formula is simple: swap 'be' for the time.</p>
             `,
             formula: [
-                { text: "Present Continuous", type: "tense" },
+                { text: "Present Continuous", type: "other" },
                 { text: "=", type: "other" },
                 { text: "am/is/are", type: "verb" },
                 { text: "+", type: "other" },
@@ -272,7 +272,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 <p>Past Continuous shows what was happening at a specific past time. Same pattern, just past 'be'.</p>
             `,
             formula: [
-                { text: "Past Continuous", type: "tense" },
+                { text: "Past Continuous", type: "other" },
                 { text: "=", type: "other" },
                 { text: "was/were", type: "verb" },
                 { text: "+", type: "other" },
@@ -314,7 +314,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 <p>Future Continuous shows what will be happening at a future time. will + be + verb-ing.</p>
             `,
             formula: [
-                { text: "Future Continuous", type: "tense" },
+                { text: "Future Continuous", type: "other" },
                 { text: "=", type: "other" },
                 { text: "will be", type: "verb" },
                 { text: "+", type: "other" },
