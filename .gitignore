@@ -46,3 +46,17 @@ next-env.d.ts
 # database backups
 backup-*.json
 *.backup.json
+prisma/backups/*.db
+prisma/backups/*.db.bak
+
+# database files (dev only - prod uses external DB)
+prisma/dev.db
+prisma/dev.db-journal
+
+# temporary and working files
+*.tmp
+*~
+._*
+
+# playwright MCP artifacts
+.playwright-mcp/

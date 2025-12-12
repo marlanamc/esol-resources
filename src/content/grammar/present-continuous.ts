@@ -10,7 +10,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
             icon: "📚",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(92, 142, 222, 0.1) 0%, rgba(255, 207, 86, 0.1) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.1rem; margin: 0;">Think video calls, typing an email, waiting for your coffee to brew. Present Continuous is the tense for what you're <strong>doing right this second</strong> or what's <strong>temporary</strong> in your life.</p>
+                    <p style="font-size: 1.1rem; margin: 0;">Look around. What's happening right this second? The TV is playing. Someone is cooking. Your phone is charging. Present Continuous is the tense for <strong>what's in motion RIGHT NOW</strong> or what's <strong>just temporary</strong> in your life.</p>
                 </div>
             `,
         },
@@ -29,15 +29,15 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     description: "Things in progress as you speak",
                     examples: [
                         {
-                            sentence: "I <strong>am answering</strong> emails while my coffee cools.",
+                            sentence: "I <strong>am watching</strong> TV while my dinner cooks.",
                             explanation: "✓ In-progress action this moment",
                         },
                         {
-                            sentence: "She <strong>is presenting</strong> on Zoom, and her Wi-Fi <strong>is freezing</strong> again.",
-                            explanation: "✓ Ongoing action + classic tech fail",
+                            sentence: "She <strong>is talking</strong> on the phone, and her kid <strong>is yelling</strong> in the background.",
+                            explanation: "✓ Ongoing action + the reality of life",
                         },
                         {
-                            sentence: "They <strong>are waiting</strong> for the printer to stop jamming.",
+                            sentence: "They <strong>are waiting</strong> for the bus that's late again.",
                             explanation: "✓ Still happening right now",
                         },
                     ],
@@ -47,16 +47,16 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     description: "Short-term arrangements or phases",
                     examples: [
                         {
-                            sentence: "I'm <strong>staying</strong> with my sister this month while my place gets fixed.",
+                            sentence: "I'm <strong>staying</strong> with my sister this month while my apartment gets painted.",
                             explanation: "✓ Temporary living situation",
                         },
                         {
-                            sentence: "He <strong>is covering</strong> night shifts this week.",
+                            sentence: "He <strong>is working</strong> the closing shift this week.",
                             explanation: "✓ Short-term schedule",
                         },
                         {
-                            sentence: "We <strong>are testing</strong> a new remote-work policy this quarter.",
-                            explanation: "✓ Temporary trial, not permanent",
+                            sentence: "We <strong>are trying</strong> a new recipe for dinner tonight.",
+                            explanation: "✓ Temporary experiment, not our usual",
                         },
                     ],
                 },
@@ -65,11 +65,11 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     description: "Arranged future plans (similar to 'going to')",
                     examples: [
                         {
-                            sentence: "I'm <strong>meeting</strong> the client at 3 PM.",
+                            sentence: "I'm <strong>meeting</strong> my friend for coffee at 3 PM.",
                             explanation: "✓ Scheduled soon",
                         },
                         {
-                            sentence: "They're <strong>launching</strong> the update tonight.",
+                            sentence: "They're <strong>going</strong> to the movies tonight.",
                             explanation: "✓ Near-future arrangement",
                         },
                     ],
@@ -78,7 +78,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Quick Contrast",
                 content:
-                    "Present Simple = routines and facts. Present Continuous = happening now or just for a while. 'I work in IT' (general). 'I'm working late tonight' (temporary).",
+                    "Present Simple = routines and facts. Present Continuous = happening now or just for a while. 'I work nights' (general). 'I'm working the day shift this week' (temporary).",
             },
             exercises: [
                 {
@@ -88,7 +88,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"She is presenting on Zoom right now."',
+                            label: '"She is talking on the phone right now."',
                             options: [
                                 { value: "now", label: "Action happening now" },
                                 { value: "habit", label: "Habit/routine" },
@@ -98,7 +98,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I’m staying with my sister this month."',
+                            label: '"I'm staying with my sister this month."',
                             options: [
                                 { value: "temporary", label: "Temporary situation" },
                                 { value: "fact", label: "Permanent fact" },
@@ -108,7 +108,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We’re meeting the client at 3 PM."',
+                            label: '"We're meeting for lunch at 3 PM."',
                             options: [
                                 { value: "near-future", label: "Arranged near-future plan" },
                                 { value: "habit", label: "Habit" },
@@ -133,12 +133,12 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { text: "verb-ing", type: "verb" },
             ],
             examples: [
-                "I am running the weekly report right now.",
-                "You are talking to the IT help desk.",
-                "He is fixing the Wi-Fi router again.",
-                "She is grabbing coffee before the meeting.",
-                "We are onboarding three new hires today.",
-                "They are testing the new feature on staging.",
+                "I am washing the dishes right now.",
+                "You are listening to music on your headphones.",
+                "He is fixing his car in the driveway.",
+                "She is making dinner for the family.",
+                "We are watching the game on TV.",
+                "They are playing soccer in the park.",
             ],
             verbTable: {
                 title: "Spelling Rules for -ing",
@@ -155,9 +155,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 1: What Are They Doing?",
                     instructions: "Use am/is/are + verb-ing to show actions in progress.",
                     items: [
-                        { type: "text", label: "1. I ___ (finish) this slide deck right now.", placeholder: "am/is/are + ing", expectedAnswer: "am finishing" },
-                        { type: "text", label: "2. She ___ (present) to the team at the moment.", placeholder: "am/is/are + ing", expectedAnswer: "is presenting" },
-                        { type: "text", label: "3. They ___ (wait) for the train that is late again.", placeholder: "am/is/are + ing", expectedAnswer: "are waiting" },
+                        { type: "text", label: "1. I ___ (clean) my room right now.", placeholder: "am/is/are + ing", expectedAnswer: "am cleaning" },
+                        { type: "text", label: "2. She ___ (cook) dinner for everyone at the moment.", placeholder: "am/is/are + ing", expectedAnswer: "is cooking" },
+                        { type: "text", label: "3. They ___ (wait) for the bus that is late again.", placeholder: "am/is/are + ing", expectedAnswer: "are waiting" },
                     ],
                 },
             ],
@@ -175,9 +175,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { text: "verb-ing", type: "verb" },
             ],
             examples: [
-                "I'm not checking email during dinner tonight.",
-                "He isn't commuting this week; he's working from home.",
-                "They aren't using that software anymore.",
+                "I'm not eating meat this month—I'm trying something new.",
+                "He isn't taking the early shift this week.",
+                "They aren't going to the party tonight.",
             ],
             exercises: [
                 {
@@ -185,9 +185,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What's NOT Happening",
                     instructions: "Use am/is/are not + verb-ing.",
                     items: [
-                        { type: "text", label: "1. I ___ (not answer) messages after 8 PM.", placeholder: "am/is/are not + ing", expectedAnswer: "am not answering" },
-                        { type: "text", label: "2. She ___ (not travel) this month.", placeholder: "am/is/are not + ing", expectedAnswer: "is not traveling" },
-                        { type: "text", label: "3. They ___ (not join) the meeting right now.", placeholder: "am/is/are not + ing", expectedAnswer: "are not joining" },
+                        { type: "text", label: "1. I ___ (not eat) sugar this month.", placeholder: "am/is/are not + ing", expectedAnswer: "am not eating" },
+                        { type: "text", label: "2. She ___ (not work) today—it's her day off.", placeholder: "am/is/are not + ing", expectedAnswer: "is not working" },
+                        { type: "text", label: "3. They ___ (not come) to the party tonight.", placeholder: "am/is/are not + ing", expectedAnswer: "are not coming" },
                     ],
                 },
             ],
@@ -206,9 +206,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { text: "?", type: "other" },
             ],
             examples: [
-                "Are you joining the call now?",
-                "Is he sharing his screen?",
-                "Are they ordering lunch for everyone?",
+                "Are you coming to dinner tonight?",
+                "Is he watching the game?",
+                "Are they making pizza for everyone?",
             ],
             exercises: [
                 {
@@ -216,9 +216,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 3: Ask About Right Now",
                     instructions: "Form questions with am/is/are + subject + verb-ing.",
                     items: [
-                        { type: "text", label: "1. ___ you ___ (work) from home today?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Are you working" },
-                        { type: "text", label: "2. ___ she ___ (take) notes on this?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Is she taking" },
-                        { type: "text", label: "3. ___ they ___ (test) the new app right now?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Are they testing" },
+                        { type: "text", label: "1. ___ you ___ (go) to the store today?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Are you going" },
+                        { type: "text", label: "2. ___ she ___ (make) coffee for everyone?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Is she making" },
+                        { type: "text", label: "3. ___ they ___ (watch) the movie right now?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Are they watching" },
                     ],
                 },
             ],
@@ -241,8 +241,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly shows an action in progress?",
             options: [
-                { value: "a", label: "I answer emails right now." },
-                { value: "b", label: "I am answering emails right now." },
+                { value: "a", label: "I watch TV right now." },
+                { value: "b", label: "I am watching TV right now." },
             ],
             correctAnswer: "b",
             explanation: "Use am/is/are + verb-ing for actions happening at this moment.",
@@ -273,12 +273,12 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Pick the sentence that shows a temporary situation (not permanent).",
             options: [
-                { value: "a", label: "She manages the support team." },
-                { value: "b", label: "She is managing the support team this quarter." },
-                { value: "c", label: "She managed the support team last year." },
+                { value: "a", label: "She works at the restaurant." },
+                { value: "b", label: "She is working the morning shift this week." },
+                { value: "c", label: "She worked at the restaurant last year." },
             ],
             correctAnswer: "b",
-            explanation: "Present Continuous fits temporary/short-term arrangements: is managing this quarter.",
+            explanation: "Present Continuous fits temporary/short-term arrangements: is working the morning shift this week.",
         },
     ],
 };

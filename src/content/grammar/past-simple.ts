@@ -11,11 +11,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
             icon: "📚",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(103, 119, 239, 0.1) 0%, rgba(255, 179, 71, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think of all the things you already did: you sent that late-night email, you forgot to mute on the video call, you survived Monday. Past Simple is how you tell those stories.</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think of all the things you already did: you woke up late, you ate breakfast too fast, you missed the bus, you survived another day. Past Simple is how you tell those stories.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
-                <p>Past Simple is for actions that are finished. They're done, shipped, over. You use it every time you report what happened at work, explain a tech fail, or share what actually went down last weekend.</p>
+                <p>Past Simple is for actions that are finished. They're done, over, in the past. You use it every time you tell someone what happened yesterday, explain why you're late, or share what you did last weekend.</p>
             `,
         },
 
@@ -35,15 +35,15 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     description: "You can point to when it happened: yesterday, last night, in 2022, two days ago",
                     examples: [
                         {
-                            sentence: "I <strong>signed</strong> the contract yesterday at 4:58 PM.",
-                            explanation: "✓ Clear past time, task is done",
+                            sentence: "I <strong>woke up</strong> at 6 AM yesterday morning.",
+                            explanation: "✓ Clear past time, action is done",
                         },
                         {
-                            sentence: "My boss <strong>sent</strong> a 'quick email' at midnight.",
-                            explanation: "✓ One action, finished (and rude)",
+                            sentence: "She <strong>called</strong> her mom last night after dinner.",
+                            explanation: "✓ One action, finished",
                         },
                         {
-                            sentence: "The meeting <strong>ended</strong> early because the Wi-Fi <strong>crashed</strong>.",
+                            sentence: "The party <strong>ended</strong> early because it <strong>started</strong> raining.",
                             explanation: "✓ Both actions are over",
                         },
                     ],
@@ -53,15 +53,15 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     description: "Things you used to do regularly, but not anymore",
                     examples: [
                         {
-                            sentence: "I <strong>took</strong> the 6:10 train every morning before we went remote.",
+                            sentence: "I <strong>walked</strong> to work every morning when I <strong>lived</strong> closer.",
                             explanation: "✓ Past routine that ended",
                         },
                         {
-                            sentence: "Last year, I <strong>cooked</strong> dinner every night. This year, I <strong>ordered</strong> takeout.",
+                            sentence: "Last year, I <strong>cooked</strong> dinner every night. This year, I <strong>order</strong> takeout more.",
                             explanation: "✓ Habit that changed",
                         },
                         {
-                            sentence: "She <strong>called</strong> her mom every Sunday when she <strong>lived</strong> abroad.",
+                            sentence: "She <strong>called</strong> her mom every Sunday when she <strong>lived</strong> in another country.",
                             explanation: "✓ Regular action in a finished time period",
                         },
                     ],
@@ -71,15 +71,15 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     description: "Telling what happened, step by step",
                     examples: [
                         {
-                            sentence: "I <strong>opened</strong> my laptop, the Wi-Fi <strong>died</strong>, and I <strong>restarted</strong> the router like a hero.",
+                            sentence: "I <strong>woke up</strong> late, <strong>skipped</strong> breakfast, and <strong>ran</strong> to catch the bus.",
                             explanation: "✓ A sequence of completed actions",
                         },
                         {
-                            sentence: "We <strong>finished</strong> the project, <strong>sent</strong> the report, and <strong>celebrated</strong> with cold pizza.",
+                            sentence: "We <strong>cleaned</strong> the house, <strong>cooked</strong> dinner, and <strong>watched</strong> a movie together.",
                             explanation: "✓ Past events in order",
                         },
                         {
-                            sentence: "He <strong>overslept</strong>, <strong>missed</strong> the train, and <strong>walked</strong> to work in the rain.",
+                            sentence: "He <strong>overslept</strong>, <strong>missed</strong> the bus, and <strong>walked</strong> to work in the rain.",
                             explanation: "✓ Storytelling of a bad morning",
                         },
                     ],
@@ -98,7 +98,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I signed the contract yesterday at 4:58 PM."',
+                            label: '"I woke up at 6 AM yesterday morning."',
                             options: [
                                 { value: "timestamp", label: "Finished action with a time" },
                                 { value: "habit", label: "Ongoing habit" },
@@ -108,7 +108,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We finished the project and celebrated with pizza."',
+                            label: '"We cleaned the house and cooked dinner together."',
                             options: [
                                 { value: "sequence", label: "Story/sequence of events" },
                                 { value: "unfinished", label: "Still happening now" },
@@ -118,7 +118,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I took the 6:10 train every morning before we went remote."',
+                            label: '"I walked to work every morning when I lived closer."',
                             options: [
                                 { value: "past-habit", label: "Past habit that ended" },
                                 { value: "present-habit", label: "Current habit" },
@@ -139,7 +139,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Two Types of Past Simple Verbs</h3>
                 <p><strong>Regular verbs:</strong> Add -ed. Easy.</p>
-                <p><strong>Irregular verbs:</strong> Change form completely. Memorize them like your work passwords.</p>
+                <p><strong>Irregular verbs:</strong> Change form completely. You just have to memorize these—there's no shortcut.</p>
             `,
             verbTable: {
                 title: "Common Irregular Past Simple Verbs",
@@ -217,43 +217,43 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { text: "past verb", type: "verb" },
             ],
             examples: [
-                "I wrapped up the report before the deadline.",
-                "You fixed the Wi-Fi in record time.",
-                "He sent the deck at 11:59 PM.",
-                "She ordered pizza after the night shift.",
-                "It rained right when the commute started.",
-                "We finished the onboarding in two days.",
-                "They booked the flights last week.",
+                "I finished my homework before dinner.",
+                "You fixed the car in record time.",
+                "He called his friend at 11 PM last night.",
+                "She ordered pizza after her shift ended.",
+                "It rained right when I left the house.",
+                "We cleaned the entire apartment in two hours.",
+                "They bought groceries last week.",
             ],
             exercises: [
                 {
                     id: "ex-positive-1",
                     title: "Exercise 1: Make It Past",
-                    instructions: "Change each verb to Past Simple. Think real-life work/life moments.",
+                    instructions: "Change each verb to Past Simple. Think about everyday moments.",
                     items: [
                         {
                             type: "text",
-                            label: "1. I (finish) ___ a 10-hour shift yesterday.",
+                            label: "1. I (finish) ___ my shift at 9 PM yesterday.",
                             placeholder: "past simple",
                             expectedAnswer: "finished",
                         },
                         {
                             type: "text",
-                            label: "2. She (send) ___ the client the deck at 11:59 PM.",
+                            label: "2. She (make) ___ breakfast for everyone this morning.",
                             placeholder: "past simple",
-                            expectedAnswer: "sent",
+                            expectedAnswer: "made",
                         },
                         {
                             type: "text",
-                            label: "3. They (lose) ___ Wi-Fi during the demo.",
+                            label: "3. They (lose) ___ their keys last week.",
                             placeholder: "past simple",
                             expectedAnswer: "lost",
                         },
                         {
                             type: "text",
-                            label: "4. We (celebrate) ___ with pizza after the launch.",
+                            label: "4. We (eat) ___ pizza after the game.",
                             placeholder: "past simple",
-                            expectedAnswer: "celebrated",
+                            expectedAnswer: "ate",
                         },
                     ],
                 },
@@ -278,10 +278,10 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { text: "base verb", type: "verb" },
             ],
             examples: [
-                "I didn't check emails after 7 PM last night.",
-                "She didn't join the call yesterday.",
-                "They didn't fix the printer last week.",
-                "We didn't see the new hire at orientation.",
+                "I didn't eat breakfast this morning—I woke up too late.",
+                "She didn't go to the party last night.",
+                "They didn't fix the sink last week.",
+                "We didn't see our neighbors at the park yesterday.",
             ],
             exercises: [
                 {
@@ -291,19 +291,19 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I (not reply) ___ to messages after dinner.",
+                            label: "1. I (not sleep) ___ well last night.",
                             placeholder: "didn't + base verb",
-                            expectedAnswer: "didn't reply",
+                            expectedAnswer: "didn't sleep",
                         },
                         {
                             type: "text",
-                            label: "2. He (not join) ___ the team lunch yesterday.",
+                            label: "2. He (not go) ___ to work yesterday.",
                             placeholder: "didn't + base verb",
-                            expectedAnswer: "didn't join",
+                            expectedAnswer: "didn't go",
                         },
                         {
                             type: "text",
-                            label: "3. They (not finish) ___ the report before Friday.",
+                            label: "3. They (not finish) ___ dinner before 8 PM.",
                             placeholder: "didn't + base verb",
                             expectedAnswer: "didn't finish",
                         },
@@ -330,34 +330,34 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { text: "?", type: "other" },
             ],
             examples: [
-                "Did you mute yourself during the call?",
-                "Did she submit the ticket yesterday?",
-                "Did they catch the last train home?",
-                "Did he back up the files before the crash?",
+                "Did you eat breakfast this morning?",
+                "Did she call you yesterday?",
+                "Did they catch the last bus home?",
+                "Did he finish his homework before bed?",
             ],
             exercises: [
                 {
                     id: "ex-questions-1",
                     title: "Exercise 3: Ask About Yesterday",
-                    instructions: "Write Past Simple questions about real-life situations.",
+                    instructions: "Write Past Simple questions about everyday situations.",
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you (catch) the last train last night?",
+                            label: "1. ___ you (catch) the bus this morning?",
                             placeholder: "Did + subject + base verb",
                             expectedAnswer: "Did you catch",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she (remember) to mute herself?",
+                            label: "2. ___ she (buy) milk at the store?",
                             placeholder: "Did + subject + base verb",
-                            expectedAnswer: "Did she remember",
+                            expectedAnswer: "Did she buy",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they (finish) the slides before the meeting?",
+                            label: "3. ___ they (watch) the game last night?",
                             placeholder: "Did + subject + base verb",
-                            expectedAnswer: "Did they finish",
+                            expectedAnswer: "Did they watch",
                         },
                     ],
                 },
@@ -389,9 +389,9 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly uses Past Simple with an irregular verb?",
             options: [
-                { value: "a", label: "I goed to the meeting yesterday." },
-                { value: "b", label: "I went to the meeting yesterday." },
-                { value: "c", label: "I go to the meeting yesterday." },
+                { value: "a", label: "I goed to the store yesterday." },
+                { value: "b", label: "I went to the store yesterday." },
+                { value: "c", label: "I go to the store yesterday." },
             ],
             correctAnswer: "b",
             explanation: "Irregular verb go → went; matches past time word 'yesterday.'",
@@ -400,20 +400,20 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which negative sentence is correct (watch the main verb form)?",
             options: [
-                { value: "a", label: "She didn't checked her email on Sunday." },
-                { value: "b", label: "She didn't check her email on Sunday." },
-                { value: "c", label: "She no checked her email on Sunday." },
+                { value: "a", label: "She didn't called her friend on Sunday." },
+                { value: "b", label: "She didn't call her friend on Sunday." },
+                { value: "c", label: "She no called her friend on Sunday." },
             ],
             correctAnswer: "b",
-            explanation: "After 'didn't', the main verb stays in base form: didn't check.",
+            explanation: "After 'didn't', the main verb stays in base form: didn't call.",
         },
         {
             id: "quiz-3",
             question: "Which question is correct in Past Simple?",
             options: [
-                { value: "a", label: "Did they finished the report last night?" },
-                { value: "b", label: "Did they finish the report last night?" },
-                { value: "c", label: "They finished the report last night?" },
+                { value: "a", label: "Did they finished dinner last night?" },
+                { value: "b", label: "Did they finish dinner last night?" },
+                { value: "c", label: "They finished dinner last night?" },
             ],
             correctAnswer: "b",
             explanation: "Questions use Did + subject + base verb: 'Did they finish...?'",
@@ -433,9 +433,9 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-5",
             question: "Choose the correct Past Simple form with a time expression.",
             options: [
-                { value: "a", label: "I have finished the deck last night." },
-                { value: "b", label: "I finished the deck last night." },
-                { value: "c", label: "I finish the deck last night." },
+                { value: "a", label: "I have finished my homework last night." },
+                { value: "b", label: "I finished my homework last night." },
+                { value: "c", label: "I finish my homework last night." },
             ],
             correctAnswer: "b",
             explanation: "Specific past time ('last night') needs Past Simple: finished.",

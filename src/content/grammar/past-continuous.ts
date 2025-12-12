@@ -25,11 +25,11 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     description: "Show what was happening at an exact past moment",
                     examples: [
                         {
-                            sentence: "I <strong>was uploading</strong> the report at 11:58 PM.",
+                            sentence: "I <strong>was sleeping</strong> at midnight when you called.",
                             explanation: "✓ Ongoing action at a specific past time",
                         },
                         {
-                            sentence: "They <strong>were fixing</strong> the Wi-Fi while we <strong>were waiting</strong> in the lobby.",
+                            sentence: "They <strong>were cooking</strong> while we <strong>were watching</strong> TV.",
                             explanation: "✓ Background actions in progress",
                         },
                     ],
@@ -39,19 +39,19 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     description: "A longer action stopped by a shorter one",
                     examples: [
                         {
-                            sentence: "She <strong>was presenting</strong> when the power <strong>went</strong> out.",
-                            explanation: "✓ Presenting = in progress; power outage = interruption",
+                            sentence: "She <strong>was walking</strong> home when it <strong>started</strong> raining.",
+                            explanation: "✓ Walking = in progress; rain = interruption",
                         },
                         {
-                            sentence: "We <strong>were drafting</strong> the email when the client <strong>called</strong> back.",
-                            explanation: "✓ Drafting = longer; call = interruption",
+                            sentence: "We <strong>were eating</strong> dinner when someone <strong>knocked</strong> on the door.",
+                            explanation: "✓ Eating = longer action; knock = interruption",
                         },
                     ],
                 },
             ],
             tipBox: {
                 title: "💡 Quick Contrast",
-                content: "Past Continuous = in-progress background. Past Simple = completed event. 'I was typing when the laptop died.'",
+                content: "Past Continuous = in-progress background. Past Simple = completed event. 'I was cooking when the fire alarm went off.'",
             },
             exercises: [
                 {
@@ -61,7 +61,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"She was presenting when the power went out."',
+                            label: '"She was walking when it started raining."',
                             options: [
                                 { value: "interrupted", label: "Interrupted action in progress" },
                                 { value: "finished", label: "Finished one-time action" },
@@ -71,7 +71,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"They were testing the app at 3 PM yesterday."',
+                            label: '"They were sleeping at 3 AM yesterday."',
                             options: [
                                 { value: "time-in-progress", label: "Action in progress at a past time" },
                                 { value: "completed", label: "Completed past action" },
@@ -81,7 +81,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I was commuting when the train stopped."',
+                            label: '"I was driving when my phone rang."',
                             options: [
                                 { value: "interrupted", label: "Interrupted action" },
                                 { value: "habit", label: "Habit" },
@@ -106,12 +106,12 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { text: "verb-ing", type: "verb" },
             ],
             examples: [
-                "I was replying to emails all morning.",
-                "You were holding the door when the boxes arrived.",
-                "He was updating the slides at midnight.",
-                "She was commuting when the train stopped.",
-                "We were testing the app during the outage.",
-                "They were celebrating after the launch party.",
+                "I was sleeping when you called last night.",
+                "You were standing by the door when I saw you.",
+                "He was cooking dinner at 7 PM.",
+                "She was walking to work when the bus passed her.",
+                "We were watching a movie when the power went out.",
+                "They were playing outside when it started raining.",
             ],
             exercises: [
                 {
@@ -119,8 +119,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 1: Describe What Was Happening",
                     instructions: "Use was/were + verb-ing.",
                     items: [
-                        { type: "text", label: "1. I ___ (finish) the report at 10 PM.", placeholder: "was/were + ing", expectedAnswer: "was finishing" },
-                        { type: "text", label: "2. They ___ (set) up the projector before the meeting.", placeholder: "was/were + ing", expectedAnswer: "were setting" },
+                        { type: "text", label: "1. I ___ (clean) the kitchen at 8 PM.", placeholder: "was/were + ing", expectedAnswer: "was cleaning" },
+                        { type: "text", label: "2. They ___ (play) soccer when the storm started.", placeholder: "was/were + ing", expectedAnswer: "were playing" },
                         { type: "text", label: "3. We ___ (wait) for the bus when it started raining.", placeholder: "was/were + ing", expectedAnswer: "were waiting" },
                     ],
                 },
@@ -139,8 +139,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { text: "verb-ing", type: "verb" },
             ],
             examples: [
-                "I wasn't checking messages during dinner.",
-                "They weren't paying attention when the alarm went off.",
+                "I wasn't sleeping when you called—I was reading.",
+                "They weren't paying attention when the teacher spoke.",
             ],
             exercises: [
                 {
@@ -148,8 +148,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What Wasn't Happening",
                     instructions: "Use wasn't/weren't + verb-ing.",
                     items: [
-                        { type: "text", label: "1. She ___ (not listen) when you explained.", placeholder: "wasn't/weren't + ing", expectedAnswer: "wasn't listening" },
-                        { type: "text", label: "2. We ___ (not use) the old password anymore.", placeholder: "wasn't/weren't + ing", expectedAnswer: "weren't using" },
+                        { type: "text", label: "1. She ___ (not listen) when you called her name.", placeholder: "wasn't/weren't + ing", expectedAnswer: "wasn't listening" },
+                        { type: "text", label: "2. We ___ (not watch) TV—we were talking.", placeholder: "wasn't/weren't + ing", expectedAnswer: "weren't watching" },
                     ],
                 },
             ],
@@ -168,9 +168,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { text: "?", type: "other" },
             ],
             examples: [
-                "Were you working late last night?",
-                "Was she driving when you called?",
-                "Were they testing the feature during the outage?",
+                "Were you sleeping when I knocked?",
+                "Was she cooking when you arrived?",
+                "Were they playing outside when it started raining?",
             ],
         },
         {
@@ -202,9 +202,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence fits 'action in progress at a past time'?",
             options: [
-                { value: "a", label: "I worked on the deck yesterday." },
-                { value: "b", label: "I was working on the deck at 9 PM yesterday." },
-                { value: "c", label: "I work on the deck at 9 PM yesterday." },
+                { value: "a", label: "I cleaned the house yesterday." },
+                { value: "b", label: "I was cleaning the house at 9 PM yesterday." },
+                { value: "c", label: "I clean the house at 9 PM yesterday." },
             ],
             correctAnswer: "b",
             explanation: "Past Continuous highlights what was happening at a specific past time.",
@@ -224,9 +224,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Which sentence is NOT a good Past Continuous use?",
             options: [
-                { value: "a", label: "She was knowing the answer during the quiz." },
+                { value: "a", label: "She was knowing the answer during the test." },
                 { value: "b", label: "She was studying when I called." },
-                { value: "c", label: "They were driving when the alert popped up." },
+                { value: "c", label: "They were walking when it started raining." },
             ],
             correctAnswer: "a",
             explanation: "Stative verbs like know typically avoid continuous; use 'She knew the answer.'",

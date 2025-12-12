@@ -10,7 +10,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
             icon: "📚",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(133, 196, 255, 0.12) 0%, rgba(255, 189, 118, 0.12) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-bottom: 1.25rem;">
-                    <p style="margin: 0; font-size: 1.05rem;">Future Simple is your crystal ball for quick decisions, promises, and predictions. “I’ll send that email.” “She’ll join the call.” “It’ll rain during the commute.”</p>
+                    <p style="margin: 0; font-size: 1.05rem;">Future Simple is your crystal ball for quick decisions, promises, and predictions. "I'll call you later." "She'll help you." "It'll rain tomorrow."</p>
                 </div>
             `,
         },
@@ -26,15 +26,15 @@ export const futureSimpleContent: InteractiveGuideContent = {
             usageMeanings: [
                 {
                     title: "🔮 1. Predictions",
-                    description: "What we think will happen (weather, tech, coworkers)",
+                    description: "What we think will happen (weather, life, the future)",
                     examples: [
                         {
-                            sentence: "It <strong>will rain</strong> right when I leave the office.",
+                            sentence: "It <strong>will rain</strong> tomorrow afternoon.",
                             explanation: "✓ Weather prediction",
                         },
                         {
-                            sentence: "The Wi‑Fi <strong>will drop</strong> during the all-hands—just wait.",
-                            explanation: "✓ Tech-life prediction",
+                            sentence: "The bus <strong>will be</strong> late again—it always is.",
+                            explanation: "✓ Life prediction based on experience",
                         },
                     ],
                 },
@@ -43,11 +43,11 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     description: "Things you commit to do",
                     examples: [
                         {
-                            sentence: "I <strong>will help</strong> you debug after lunch.",
+                            sentence: "I <strong>will help</strong> you move this weekend.",
                             explanation: "✓ Offer",
                         },
                         {
-                            sentence: "I <strong>will email</strong> you the slides tonight.",
+                            sentence: "I <strong>will call</strong> you after work tonight.",
                             explanation: "✓ Promise",
                         },
                     ],
@@ -79,7 +79,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I’ll call the client now."',
+                            label: '"I'll call you after work."',
                             options: [
                                 { value: "promise", label: "Promise/offer" },
                                 { value: "plan", label: "Pre-planned schedule" },
@@ -89,7 +89,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"It will rain during the commute."',
+                            label: '"It will rain tomorrow."',
                             options: [
                                 { value: "prediction", label: "Prediction" },
                                 { value: "decision", label: "Decision right now" },
@@ -99,7 +99,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We’ll order pizza. Who’s in?"',
+                            label: '"I'm hungry. I'll make a sandwich."',
                             options: [
                                 { value: "decision", label: "Decision made now" },
                                 { value: "schedule", label: "Fixed schedule" },
@@ -128,13 +128,13 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { text: "base verb", type: "verb" },
             ],
             examples: [
-                "I will finish the report before noon.",
-                "You will see the updated doc in your inbox.",
-                "He will join the video call from the airport.",
-                "She will present the slides this afternoon.",
-                "It will take longer if the Wi‑Fi drops again.",
-                "We will grab coffee before the meeting.",
-                "They will book the conference room.",
+                "I will finish my homework before dinner.",
+                "You will love this movie—it's so good.",
+                "He will call you when he gets home.",
+                "She will bring the cake to the party.",
+                "It will take longer if the traffic is bad.",
+                "We will meet at the park tomorrow.",
+                "They will visit us next month.",
             ],
             tipBox: {
                 title: "✏️ Contractions",
@@ -144,25 +144,25 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 {
                     id: "ex-positive-1",
                     title: "Exercise 1: Say What You'll Do",
-                    instructions: "Complete with will + base verb (realistic work/life plans).",
+                    instructions: "Complete with will + base verb (everyday plans).",
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (send) the updated deck tonight.",
+                            label: "1. I ___ (call) you tonight after dinner.",
                             placeholder: "will + verb",
-                            expectedAnswer: "will send",
+                            expectedAnswer: "will call",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (cover) my shift on Friday.",
+                            label: "2. She ___ (bring) snacks to the party.",
                             placeholder: "will + verb",
-                            expectedAnswer: "will cover",
+                            expectedAnswer: "will bring",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (order) lunch for the whole team.",
+                            label: "3. They ___ (help) us move next weekend.",
                             placeholder: "will + verb",
-                            expectedAnswer: "will order",
+                            expectedAnswer: "will help",
                         },
                     ],
                 },
@@ -185,10 +185,10 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { text: "base verb", type: "verb" },
             ],
             examples: [
-                "I won't schedule meetings after 6 PM.",
-                "She won't reply-all this time (hopefully).",
-                "They won't push code on Friday night.",
-                "It won't ship without QA approval.",
+                "I won't eat sugar this week—I'm trying to be healthier.",
+                "She won't go to the party tonight.",
+                "They won't leave before 9 PM.",
+                "It won't rain tomorrow, according to the weather.",
             ],
             exercises: [
                 {
@@ -198,21 +198,21 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not join) the late call.",
+                            label: "1. I ___ (not go) to bed late tonight.",
                             placeholder: "won't + verb",
-                            expectedAnswer: "won't join",
+                            expectedAnswer: "won't go",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not share) the draft before noon.",
+                            label: "2. She ___ (not buy) anything expensive this month.",
                             placeholder: "won't + verb",
-                            expectedAnswer: "won't share",
+                            expectedAnswer: "won't buy",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not deploy) without testing.",
+                            label: "3. They ___ (not leave) without saying goodbye.",
                             placeholder: "won't + verb",
-                            expectedAnswer: "won't deploy",
+                            expectedAnswer: "won't leave",
                         },
                     ],
                 },
@@ -236,10 +236,10 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { text: "?", type: "other" },
             ],
             examples: [
-                "Will you join the 9 AM stand-up?",
-                "Will she present the numbers?",
-                "Will it crash if we add more users?",
-                "Will they approve the budget?",
+                "Will you come to dinner tonight?",
+                "Will she bring her kids to the party?",
+                "Will it be cold tomorrow?",
+                "Will they visit us next week?",
             ],
             exercises: [
                 {
@@ -249,21 +249,21 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you ___ (join) the kickoff call?",
+                            label: "1. ___ you ___ (come) to the party Saturday?",
                             placeholder: "Will + subject + verb",
-                            expectedAnswer: "Will you join",
+                            expectedAnswer: "Will you come",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (lead) the demo?",
+                            label: "2. ___ she ___ (help) us with the cooking?",
                             placeholder: "Will + subject + verb",
-                            expectedAnswer: "Will she lead",
+                            expectedAnswer: "Will she help",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they ___ (cover) the weekend shift?",
+                            label: "3. ___ they ___ (arrive) before 7 PM?",
                             placeholder: "Will + subject + verb",
-                            expectedAnswer: "Will they cover",
+                            expectedAnswer: "Will they arrive",
                         },
                     ],
                 },
@@ -297,9 +297,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly uses 'will' (base verb)?",
             options: [
-                { value: "a", label: "I will to send the file now." },
-                { value: "b", label: "I will send the file now." },
-                { value: "c", label: "I will sending the file now." },
+                { value: "a", label: "I will to call you now." },
+                { value: "b", label: "I will call you now." },
+                { value: "c", label: "I will calling you now." },
             ],
             correctAnswer: "b",
             explanation: "Future Simple: will + base verb (no 'to', no -ing).",
@@ -330,9 +330,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Choose 'will' vs a different tense: Which needs 'will'?",
             options: [
-                { value: "a", label: "The train leaves at 7:10 AM." },
-                { value: "b", label: "I’ll get the door—that’s the delivery." },
-                { value: "c", label: "I’m meeting the client at 3 PM." },
+                { value: "a", label: "The bus leaves at 7:10 AM." },
+                { value: "b", label: "I'll answer the door—someone's knocking." },
+                { value: "c", label: "I'm meeting my friend at 3 PM." },
             ],
             correctAnswer: "b",
             explanation: "Spontaneous decision → will. A) timetable uses Present Simple; C) arranged plan uses Present Continuous.",
