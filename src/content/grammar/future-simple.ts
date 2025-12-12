@@ -79,7 +79,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I'll call you after work."',
+                            label: "\"I'll call you after work.\"",
                             options: [
                                 { value: "promise", label: "Promise/offer" },
                                 { value: "plan", label: "Pre-planned schedule" },
@@ -89,7 +89,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"It will rain tomorrow."',
+                            label: "\"It will rain tomorrow.\"",
                             options: [
                                 { value: "prediction", label: "Prediction" },
                                 { value: "decision", label: "Decision right now" },
@@ -99,7 +99,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I'm hungry. I'll make a sandwich."',
+                            label: "\"I'm hungry. I'll make a sandwich.\"",
                             options: [
                                 { value: "decision", label: "Decision made now" },
                                 { value: "schedule", label: "Fixed schedule" },

@@ -88,7 +88,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"She is talking on the phone right now."',
+                            label: "\"She is talking on the phone right now.\"",
                             options: [
                                 { value: "now", label: "Action happening now" },
                                 { value: "habit", label: "Habit/routine" },
@@ -98,7 +98,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I'm staying with my sister this month."',
+                            label: "\"I'm staying with my sister this month.\"",
                             options: [
                                 { value: "temporary", label: "Temporary situation" },
                                 { value: "fact", label: "Permanent fact" },
@@ -108,7 +108,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We're meeting for lunch at 3 PM."',
+                            label: "\"We're meeting for lunch at 3 PM.\"",
                             options: [
                                 { value: "near-future", label: "Arranged near-future plan" },
                                 { value: "habit", label: "Habit" },
