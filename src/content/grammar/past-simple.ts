@@ -176,25 +176,21 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. go → ___",
-                            placeholder: "irregular form",
                             expectedAnswer: "went",
                         },
                         {
                             type: "text",
                             label: "2. work → ___",
-                            placeholder: "regular form",
                             expectedAnswer: "worked",
                         },
                         {
                             type: "text",
                             label: "3. study → ___",
-                            placeholder: "regular form (watch spelling)",
                             expectedAnswer: "studied",
                         },
                         {
                             type: "text",
                             label: "4. have → ___",
-                            placeholder: "irregular form",
                             expectedAnswer: "had",
                         },
                     ],
@@ -234,25 +230,21 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. I (finish) ___ my shift at 9 PM yesterday.",
-                            placeholder: "past simple",
                             expectedAnswer: "finished",
                         },
                         {
                             type: "text",
                             label: "2. She (make) ___ breakfast for everyone this morning.",
-                            placeholder: "past simple",
                             expectedAnswer: "made",
                         },
                         {
                             type: "text",
                             label: "3. They (lose) ___ their keys last week.",
-                            placeholder: "past simple",
                             expectedAnswer: "lost",
                         },
                         {
                             type: "text",
                             label: "4. We (eat) ___ pizza after the game.",
-                            placeholder: "past simple",
                             expectedAnswer: "ate",
                         },
                     ],
@@ -292,19 +284,16 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. I (not sleep) ___ well last night.",
-                            placeholder: "didn't + base verb",
                             expectedAnswer: "didn't sleep",
                         },
                         {
                             type: "text",
                             label: "2. He (not go) ___ to work yesterday.",
-                            placeholder: "didn't + base verb",
                             expectedAnswer: "didn't go",
                         },
                         {
                             type: "text",
                             label: "3. They (not finish) ___ dinner before 8 PM.",
-                            placeholder: "didn't + base verb",
                             expectedAnswer: "didn't finish",
                         },
                     ],
@@ -344,19 +333,16 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. ___ you (catch) the bus this morning?",
-                            placeholder: "Did + subject + base verb",
                             expectedAnswer: "Did you catch",
                         },
                         {
                             type: "text",
                             label: "2. ___ she (buy) milk at the store?",
-                            placeholder: "Did + subject + base verb",
                             expectedAnswer: "Did she buy",
                         },
                         {
                             type: "text",
                             label: "3. ___ they (watch) the game last night?",
-                            placeholder: "Did + subject + base verb",
                             expectedAnswer: "Did they watch",
                         },
                     ],

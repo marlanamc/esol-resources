@@ -149,19 +149,16 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. I ___ (call) you tonight after dinner.",
-                            placeholder: "will + verb",
                             expectedAnswer: "will call",
                         },
                         {
                             type: "text",
                             label: "2. She ___ (bring) snacks to the party.",
-                            placeholder: "will + verb",
                             expectedAnswer: "will bring",
                         },
                         {
                             type: "text",
                             label: "3. They ___ (help) us move next weekend.",
-                            placeholder: "will + verb",
                             expectedAnswer: "will help",
                         },
                     ],
@@ -199,19 +196,16 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. I ___ (not go) to bed late tonight.",
-                            placeholder: "won't + verb",
                             expectedAnswer: "won't go",
                         },
                         {
                             type: "text",
                             label: "2. She ___ (not buy) anything expensive this month.",
-                            placeholder: "won't + verb",
                             expectedAnswer: "won't buy",
                         },
                         {
                             type: "text",
                             label: "3. They ___ (not leave) without saying goodbye.",
-                            placeholder: "won't + verb",
                             expectedAnswer: "won't leave",
                         },
                     ],
@@ -250,19 +244,16 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. ___ you ___ (come) to the party Saturday?",
-                            placeholder: "Will + subject + verb",
                             expectedAnswer: "Will you come",
                         },
                         {
                             type: "text",
                             label: "2. ___ she ___ (help) us with the cooking?",
-                            placeholder: "Will + subject + verb",
                             expectedAnswer: "Will she help",
                         },
                         {
                             type: "text",
                             label: "3. ___ they ___ (arrive) before 7 PM?",
-                            placeholder: "Will + subject + verb",
                             expectedAnswer: "Will they arrive",
                         },
                     ],

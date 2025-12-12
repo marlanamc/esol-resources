@@ -155,9 +155,6 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 1: What Are They Doing?",
                     instructions: "Use am/is/are + verb-ing to show actions in progress.",
                     items: [
-                        { type: "text", label: "1. I ___ (clean) my room right now.", placeholder: "am/is/are + ing", expectedAnswer: "am cleaning" },
-                        { type: "text", label: "2. She ___ (cook) dinner for everyone at the moment.", placeholder: "am/is/are + ing", expectedAnswer: "is cooking" },
-                        { type: "text", label: "3. They ___ (wait) for the bus that is late again.", placeholder: "am/is/are + ing", expectedAnswer: "are waiting" },
                     ],
                 },
             ],
@@ -185,9 +182,6 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What's NOT Happening",
                     instructions: "Use am/is/are not + verb-ing.",
                     items: [
-                        { type: "text", label: "1. I ___ (not eat) sugar this month.", placeholder: "am/is/are not + ing", expectedAnswer: "am not eating" },
-                        { type: "text", label: "2. She ___ (not work) today—it's her day off.", placeholder: "am/is/are not + ing", expectedAnswer: "is not working" },
-                        { type: "text", label: "3. They ___ (not come) to the party tonight.", placeholder: "am/is/are not + ing", expectedAnswer: "are not coming" },
                     ],
                 },
             ],
@@ -216,9 +210,6 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 3: Ask About Right Now",
                     instructions: "Form questions with am/is/are + subject + verb-ing.",
                     items: [
-                        { type: "text", label: "1. ___ you ___ (go) to the store today?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Are you going" },
-                        { type: "text", label: "2. ___ she ___ (make) coffee for everyone?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Is she making" },
-                        { type: "text", label: "3. ___ they ___ (watch) the movie right now?", placeholder: "Am/Is/Are + subject + ing", expectedAnswer: "Are they watching" },
                     ],
                 },
             ],
