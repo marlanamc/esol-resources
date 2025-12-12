@@ -444,6 +444,12 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     title: "Complete the Sentences",
                     instructions: "Fill in the correct simple tense form.",
                     items: [
+                        { type: "text", label: "1. I ___ (not drink) coffee after 3 PM. (negative present)", expectedAnswer: "don't drink" },
+                        { type: "text", label: "2. She ___ (call) her parents every Sunday. (positive present)", expectedAnswer: "calls" },
+                        { type: "text", label: "3. They ___ (finish) the project yesterday. (positive past)", expectedAnswer: "finished" },
+                        { type: "text", label: "4. I ___ (not see) the movie last week. (negative past)", expectedAnswer: "didn't see" },
+                        { type: "text", label: "5. ___ you ___ (help) me tomorrow? (question future)", expectedAnswer: "Will you help" },
+                        { type: "text", label: "6. He ___ (not work) on Fridays. (negative present)", expectedAnswer: "doesn't work" },
                     ],
                 },
                 {
@@ -451,6 +457,10 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     title: "Real-Life Conversations",
                     instructions: "Complete these natural English conversations.",
                     items: [
+                        { type: "text", label: "1. \"What time ___ (you/start) work?\" \"I ___ (start) at 8 AM every day.\"", expectedAnswer: "do you start / start" },
+                        { type: "text", label: "2. \"___ (you/see) the new movie?\" \"No, I ___ (not see) it yet.\"", expectedAnswer: "Did you see / didn't see" },
+                        { type: "text", label: "3. \"___ (they/come) to the party?\" \"Yes, they ___ (promise) to bring dessert.\"", expectedAnswer: "Will they come / will promise" },
+                        { type: "text", label: "4. \"Why ___ (she/look) so tired?\" \"She ___ (work) late last night.\"", expectedAnswer: "does she look / worked" },
                     ],
                 },
                 {
@@ -458,6 +468,9 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     title: "Write About Your Week",
                     instructions: "Write complete sentences about your actual routine using different simple tenses.",
                     items: [
+                        { type: "text", label: "1. What's something you do every day? (Present Simple)", expectedAnswer: "I check my email every morning" },
+                        { type: "text", label: "2. What did you do yesterday? (Past Simple)", expectedAnswer: "I finished my work yesterday" },
+                        { type: "text", label: "3. What's one thing you'll do tomorrow? (Future Simple)", expectedAnswer: "I will call my friend tomorrow" },
                     ],
                 },
             ],
