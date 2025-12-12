@@ -252,6 +252,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Present Continuous: What Are They Doing?",
                     instructions: "Use am/is/are + verb-ing to show actions in progress right now.",
                     items: [
+                        { type: "text", label: "1. I ___ (clean) my room at the moment.", expectedAnswer: "am cleaning" },
+                        { type: "text", label: "2. She ___ (cook) dinner for everyone.", expectedAnswer: "is cooking" },
+                        { type: "text", label: "3. They ___ (wait) for the bus that's late.", expectedAnswer: "are waiting" },
+                        { type: "text", label: "4. He ___ (fix) his computer right now.", expectedAnswer: "is fixing" },
+                        { type: "text", label: "5. We ___ (watch) a movie together.", expectedAnswer: "are watching" },
                     ],
                 },
                 {
@@ -259,6 +264,10 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Present Continuous: Negative & Questions",
                     instructions: "Complete with the correct negative or question form.",
                     items: [
+                        { type: "text", label: "1. I ___ (not study) right now - I'm too tired.", expectedAnswer: "am not studying" },
+                        { type: "text", label: "2. ___ you ___ (listen) to music?", expectedAnswer: "Are you listening" },
+                        { type: "text", label: "3. She ___ (not work) today - it's her day off.", expectedAnswer: "is not working" },
+                        { type: "text", label: "4. ___ they ___ (play) soccer now?", expectedAnswer: "Are they playing" },
                     ],
                 },
             ],
@@ -294,6 +303,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Past Continuous: What Was Happening?",
                     instructions: "Use was/were + verb-ing to show past ongoing actions.",
                     items: [
+                        { type: "text", label: "1. I ___ (walk) home when it started raining.", expectedAnswer: "was walking" },
+                        { type: "text", label: "2. She ___ (study) when her phone rang.", expectedAnswer: "was studying" },
+                        { type: "text", label: "3. They ___ (play) soccer at 3 PM yesterday.", expectedAnswer: "were playing" },
+                        { type: "text", label: "4. He ___ (cook) dinner when I arrived.", expectedAnswer: "was cooking" },
+                        { type: "text", label: "5. We ___ (wait) for the bus when it finally came.", expectedAnswer: "were waiting" },
                     ],
                 },
                 {
@@ -301,6 +315,10 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Past Continuous: Negative & Questions",
                     instructions: "Complete with the correct negative or question form.",
                     items: [
+                        { type: "text", label: "1. I ___ (not sleep) when the alarm went off.", expectedAnswer: "was not sleeping" },
+                        { type: "text", label: "2. ___ you ___ (work) late last night?", expectedAnswer: "Were you working" },
+                        { type: "text", label: "3. She ___ (not listen) to music while studying.", expectedAnswer: "was not listening" },
+                        { type: "text", label: "4. ___ they ___ (watch) TV when you called?", expectedAnswer: "Were they watching" },
                     ],
                 },
             ],
@@ -336,6 +354,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Future Continuous: What Will Be Happening?",
                     instructions: "Use will be + verb-ing to show future ongoing actions.",
                     items: [
+                        { type: "text", label: "1. I ___ (sleep) when you arrive tonight.", expectedAnswer: "will be sleeping" },
+                        { type: "text", label: "2. She ___ (work) late tomorrow.", expectedAnswer: "will be working" },
+                        { type: "text", label: "3. They ___ (travel) next month.", expectedAnswer: "will be traveling" },
+                        { type: "text", label: "4. He ___ (wait) for us at the station.", expectedAnswer: "will be waiting" },
+                        { type: "text", label: "5. We ___ (study) when you call.", expectedAnswer: "will be studying" },
                     ],
                 },
                 {
@@ -343,6 +366,10 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Future Continuous: Negative & Questions",
                     instructions: "Complete with the correct negative or question form.",
                     items: [
+                        { type: "text", label: "1. I ___ (not work) tomorrow - it's Saturday.", expectedAnswer: "won't be working" },
+                        { type: "text", label: "2. ___ you ___ (sleep) when I call?", expectedAnswer: "Will you be sleeping" },
+                        { type: "text", label: "3. She ___ (not travel) during the summer.", expectedAnswer: "won't be traveling" },
+                        { type: "text", label: "4. ___ they ___ (wait) for us?", expectedAnswer: "Will they be waiting" },
                     ],
                 },
             ],

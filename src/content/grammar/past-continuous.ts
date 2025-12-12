@@ -119,6 +119,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 1: Describe What Was Happening",
                     instructions: "Use was/were + verb-ing.",
                     items: [
+                        { type: "text", label: "1. I ___ (clean) the kitchen at 8 PM.", expectedAnswer: "was cleaning" },
+                        { type: "text", label: "2. They ___ (play) soccer when the storm started.", expectedAnswer: "were playing" },
+                        { type: "text", label: "3. We ___ (wait) for the bus when it started raining.", expectedAnswer: "were waiting" },
                     ],
                 },
             ],
@@ -145,6 +148,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What Wasn't Happening",
                     instructions: "Use wasn't/weren't + verb-ing.",
                     items: [
+                        { type: "text", label: "1. She ___ (not listen) when you called her name.", expectedAnswer: "wasn't listening" },
+                        { type: "text", label: "2. We ___ (not watch) TV—we were talking.", expectedAnswer: "weren't watching" },
                     ],
                 },
             ],
