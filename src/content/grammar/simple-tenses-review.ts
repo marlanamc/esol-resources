@@ -174,7 +174,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <p>Each simple tense has its own formula. The good news: they're all straightforward once you know the rules!</p>
             `,
             formula: [
-                { text: "Present Simple", type: "tense" },
+                { text: "Present Simple", type: "other" },
                 { text: "=", type: "other" },
                 { text: "subject", type: "subject" },
                 { text: "+", type: "other" },
@@ -240,7 +240,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             stepNumber: 3,
             title: "Past Simple Forms",
             formula: [
-                { text: "Past Simple", type: "tense" },
+                { text: "Past Simple", type: "other" },
                 { text: "=", type: "other" },
                 { text: "subject", type: "subject" },
                 { text: "+", type: "other" },
@@ -304,7 +304,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             stepNumber: 4,
             title: "Future Simple Forms",
             formula: [
-                { text: "Future Simple", type: "tense" },
+                { text: "Future Simple", type: "other" },
                 { text: "=", type: "other" },
                 { text: "subject", type: "subject" },
                 { text: "+", type: "other" },
