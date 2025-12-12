@@ -456,15 +456,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "🚨 Common Continuous Mistakes to Avoid",
-                content: `
-                    <ul class="space-y-1">
-                        <li>❌ I am work → ✅ I am working (must add -ing)</li>
-                        <li>❌ I was ran → ✅ I was running (verb-ing, not past form)</li>
-                        <li>❌ I will working → ✅ I will be working (will be + verb-ing)</li>
-                        <li>❌ She was study → ✅ She was studying (-ying for study)</li>
-                        <li>❌ They are run → ✅ They are running (double consonant + -ing)</li>
-                    </ul>
-                `,
+                content: "❌ I am work → ✅ I am working (must add -ing). ❌ I was ran → ✅ I was running (verb-ing, not past form). ❌ I will working → ✅ I will be working (will be + verb-ing). ❌ She was study → ✅ She was studying (-ying for study). ❌ They are run → ✅ They are running (double consonant + -ing).",
             },
         },
     ],

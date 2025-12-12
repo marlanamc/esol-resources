@@ -515,15 +515,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "🚨 Common Mistakes to Avoid",
-                content: `
-                    <ul class="space-y-1">
-                        <li>❌ She work downtown → ✅ She works downtown (add -s for he/she/it)</li>
-                        <li>❌ He don't like coffee → ✅ He doesn't like coffee (doesn't with he/she/it)</li>
-                        <li>❌ Does she works? → ✅ Does she work? (base verb in questions)</li>
-                        <li>❌ She didn't worked → ✅ She didn't work (base verb after didn't)</li>
-                        <li>❌ I will going → ✅ I will go (no -ing with will)</li>
-                    </ul>
-                `,
+                content: "❌ She work downtown → ✅ She works downtown (add -s for he/she/it). ❌ He don't like coffee → ✅ He doesn't like coffee (doesn't with he/she/it). ❌ Does she works? → ✅ Does she work? (base verb in questions). ❌ She didn't worked → ✅ She didn't work (base verb after didn't). ❌ I will going → ✅ I will go (no -ing with will).",
             },
         },
     ],
