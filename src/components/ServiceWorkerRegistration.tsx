@@ -4,10 +4,16 @@ import { useEffect } from 'react';
 
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
+    // Only register service worker on mobile devices
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
     if (
       typeof window !== 'undefined' &&
       'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production'
+      process.env.NODE_ENV === 'production' &&
+      isMobile
     ) {
       let registration: ServiceWorkerRegistration | null = null;
       let updateInterval: NodeJS.Timeout | null = null;
