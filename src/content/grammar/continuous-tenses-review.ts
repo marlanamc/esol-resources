@@ -22,9 +22,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 title: "Continuous Tenses: When to Use Each",
                 headers: ["Tense", "When to Use", "Example"],
                 rows: [
-                    ["Present Continuous", "Happening now / temporary", "I'm troubleshooting the Wi‑Fi right now."],
-                    ["Past Continuous", "In progress at a past time", "I was commuting when the train stopped."],
-                    ["Future Continuous", "In progress at a future time", "I'll be presenting when you join the call."],
+                    ["Present Continuous", "Happening now / temporary", "I'm watching TV right now."],
+                    ["Past Continuous", "In progress at a past time", "I was walking when it started raining."],
+                    ["Future Continuous", "In progress at a future time", "I'll be sleeping when you arrive."],
                 ],
             },
             explanation: `
@@ -40,7 +40,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I ___ (fix) the printer right now."',
+                            label: "\"I ___ (make) dinner right now.\"",
                             options: [
                                 { value: "present", label: "Present Continuous" },
                                 { value: "past", label: "Past Continuous" },
@@ -50,7 +50,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"She ___ (drive) when the alert popped up."',
+                            label: "\"She ___ (drive) when her phone rang.\"",
                             options: [
                                 { value: "present", label: "Present Continuous" },
                                 { value: "past", label: "Past Continuous" },
@@ -60,7 +60,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"They ___ (present) at 2 PM tomorrow."',
+                            label: "\"They ___ (play) soccer at 2 PM tomorrow.\"",
                             options: [
                                 { value: "present", label: "Present Continuous" },
                                 { value: "past", label: "Past Continuous" },
@@ -93,9 +93,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "Present Continuous (negative): I ___ (not join) the call right now.",
+                            label: "Present Continuous (negative): I ___ (not watch) TV right now.",
                             placeholder: "am/is/are + not + verb-ing",
-                            expectedAnswer: "am not joining the call right now",
+                            expectedAnswer: "am not watching TV right now",
                         },
                         {
                             type: "text",
@@ -105,9 +105,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "Future Continuous (positive): They ___ (work) during the outage window.",
+                            label: "Future Continuous (positive): They ___ (travel) during the holidays.",
                             placeholder: "will be + verb-ing",
-                            expectedAnswer: "will be working during the outage window",
+                            expectedAnswer: "will be traveling during the holidays",
                         },
                     ],
                 },
@@ -122,9 +122,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 title: "Choose the Correct Tense",
                 instructions: "Complete with the correct continuous tense (now / past / future).",
                 items: [
-                    { type: "text", label: "1. I ___ (restart) the router right now.", placeholder: "continuous tense", expectedAnswer: "am restarting" },
-                    { type: "text", label: "2. She ___ (drive) when the alert popped up.", placeholder: "continuous tense", expectedAnswer: "was driving" },
-                    { type: "text", label: "3. They ___ (present) at 2 PM tomorrow.", placeholder: "continuous tense", expectedAnswer: "will be presenting" },
+                    { type: "text", label: "1. I ___ (cook) dinner right now.", placeholder: "continuous tense", expectedAnswer: "am cooking" },
+                    { type: "text", label: "2. She ___ (drive) when her phone rang.", placeholder: "continuous tense", expectedAnswer: "was driving" },
+                    { type: "text", label: "3. They ___ (play) soccer at 2 PM tomorrow.", placeholder: "continuous tense", expectedAnswer: "will be playing" },
                 ],
             }],
         },
@@ -158,9 +158,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence shows a past action interrupted by another?",
             options: [
-                { value: "a", label: "I was drafting the email when my laptop died." },
-                { value: "b", label: "I draft the email when my laptop died." },
-                { value: "c", label: "I will be drafting the email when my laptop died." },
+                { value: "a", label: "I was cooking when the fire alarm went off." },
+                { value: "b", label: "I cook when the fire alarm went off." },
+                { value: "c", label: "I will be cooking when the fire alarm went off." },
             ],
             correctAnswer: "a",
             explanation: "Past Continuous for the ongoing action; Past Simple for the interruption.",
@@ -169,9 +169,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Which is the best choice to show overlap with a future event?",
             options: [
-                { value: "a", label: "She will present when you join." },
-                { value: "b", label: "She will be presenting when you join." },
-                { value: "c", label: "She presents when you join." },
+                { value: "a", label: "She will cook when you arrive." },
+                { value: "b", label: "She will be cooking when you arrive." },
+                { value: "c", label: "She cooks when you arrive." },
             ],
             correctAnswer: "b",
             explanation: "Future Continuous shows the action in progress during another future event.",
