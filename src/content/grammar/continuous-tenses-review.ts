@@ -401,7 +401,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Real-Life Conversations",
                     instructions: "Complete these natural English conversations using continuous tenses.",
                     items: [
-                        { type: "text", label: "1. \"What ___ (you/do) right now?\" \"I ___ (clean) the kitchen.\"", expectedAnswer: "are you doing / am cleaning" },
+                        { type: "text", label: "1a. \"What ___ (you/do) right now?\"", expectedAnswer: "are you doing" },
+                        { type: "text", label: "1b. \"I ___ (clean) the kitchen.\"", expectedAnswer: "am cleaning" },
                         { type: "text", label: "2. \"Where were you yesterday?\" \"I ___ (shop) when you called.\"", expectedAnswer: "was shopping" },
                         { type: "text", label: "3. \"Will you be home tonight?\" \"Yes, I ___ (work) from home.\"", expectedAnswer: "will be working" },
                         { type: "text", label: "4. \"Why is she so tired?\" \"She ___ (study) all night for the exam.\"", expectedAnswer: "was studying" },
