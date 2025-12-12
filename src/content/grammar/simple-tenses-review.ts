@@ -22,14 +22,14 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 title: "Simple Tenses: When to Use Each",
                 headers: ["Tense", "When to Use", "Example"],
                 rows: [
-                    ["Present Simple", "Habits, facts, your job/life situation", "I start my shift at 7 AM."],
-                    ["Past Simple", "Finished actions in a finished time", "I submitted the report yesterday."],
-                    ["Future Simple", "Quick decisions, promises, predictions", "I'll send the deck tonight."],
+                    ["Present Simple", "Habits, facts, your daily life", "I start my shift at 7 AM."],
+                    ["Past Simple", "Finished actions in a finished time", "I called my mom yesterday."],
+                    ["Future Simple", "Quick decisions, promises, predictions", "I'll bring snacks tonight."],
                 ],
             },
             explanation: `
                 <h3>Key Differences</h3>
-                <p><strong>Present Simple:</strong> Routines and realities that stick (your job, your commute, your opinions).</p>
+                <p><strong>Present Simple:</strong> Routines and realities that stick (your schedule, your habits, your opinions).</p>
                 <p><strong>Past Simple:</strong> Finished actions with a time stamp (yesterday, last week, in 2022).</p>
                 <p><strong>Future Simple:</strong> Quick calls about the future (I'll help, it'll rain, we'll see).</p>
             `,
@@ -41,7 +41,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"She submits the report every Friday."',
+                            label: "\"She calls her mom every Friday.\"",
                             options: [
                                 { value: "present", label: "Present Simple" },
                                 { value: "past", label: "Past Simple" },
@@ -51,7 +51,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"They launched the app last night."',
+                            label: "\"They watched the game last night.\"",
                             options: [
                                 { value: "present", label: "Present Simple" },
                                 { value: "past", label: "Past Simple" },
@@ -61,7 +61,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I’ll cover the morning shift tomorrow."',
+                            label: "\"I'll cover the morning shift tomorrow.\"",
                             options: [
                                 { value: "present", label: "Present Simple" },
                                 { value: "past", label: "Past Simple" },
@@ -106,9 +106,9 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "Future Simple (positive): They ___ send the invite.",
+                            label: "Future Simple (positive): They ___ bring food.",
                             placeholder: "will + base verb",
-                            expectedAnswer: "will send the invite",
+                            expectedAnswer: "will bring food",
                         },
                     ],
                 },
@@ -123,9 +123,9 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 title: "Choose the Correct Tense",
                 instructions: "Pick the right tense for the meaning and time clue.",
                 items: [
-                    { type: "text", label: "1. I ___ (grab) coffee before every meeting.", placeholder: "which tense?", expectedAnswer: "grab" },
-                    { type: "text", label: "2. She ___ (lose) Wi‑Fi during yesterday's call.", placeholder: "which tense?", expectedAnswer: "lost" },
-                    { type: "text", label: "3. They ___ (send) the slides tonight.", placeholder: "which tense?", expectedAnswer: "will send" },
+                    { type: "text", label: "1. I ___ (drink) coffee every morning.", placeholder: "which tense?", expectedAnswer: "drink" },
+                    { type: "text", label: "2. She ___ (lose) her phone yesterday.", placeholder: "which tense?", expectedAnswer: "lost" },
+                    { type: "text", label: "3. They ___ (bring) dessert tonight.", placeholder: "which tense?", expectedAnswer: "will bring" },
                 ],
             }],
         },
@@ -137,8 +137,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <h3>Remember</h3>
                 <ul class="list-disc pl-6">
                     <li><strong>Present Simple:</strong> Habits & facts (I start, she works)</li>
-                    <li><strong>Past Simple:</strong> Finished past (I shipped, they tested)</li>
-                    <li><strong>Future Simple:</strong> Decisions/promises (I'll join, we'll fix it)</li>
+                    <li><strong>Past Simple:</strong> Finished past (I called, they watched)</li>
+                    <li><strong>Future Simple:</strong> Decisions/promises (I'll help, we'll bring it)</li>
                 </ul>
             `,
         },
@@ -157,7 +157,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Which tense fits: 'I ___ the slides last night.'",
+            question: "Which tense fits: 'I ___ my homework last night.'",
             options: [
                 { value: "a", label: "finish" },
                 { value: "b", label: "will finish" },
