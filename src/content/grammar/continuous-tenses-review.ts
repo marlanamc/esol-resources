@@ -361,6 +361,12 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Complete the Sentences",
                     instructions: "Fill in the correct continuous tense form.",
                     items: [
+                        { type: "text", label: "1. I ___ (not work) right now - I'm on break. (present negative)", expectedAnswer: "am not working" },
+                        { type: "text", label: "2. She ___ (study) when the power went out. (past positive)", expectedAnswer: "was studying" },
+                        { type: "text", label: "3. ___ you ___ (sleep) when I call tonight? (future question)", expectedAnswer: "Will you be sleeping" },
+                        { type: "text", label: "4. They ___ (not travel) during the holidays this year. (future negative)", expectedAnswer: "won't be traveling" },
+                        { type: "text", label: "5. He ___ (cook) dinner when I arrived home. (past positive)", expectedAnswer: "was cooking" },
+                        { type: "text", label: "6. We ___ (watch) a movie right now. (present positive)", expectedAnswer: "are watching" },
                     ],
                 },
                 {
@@ -368,6 +374,10 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Real-Life Conversations",
                     instructions: "Complete these natural English conversations using continuous tenses.",
                     items: [
+                        { type: "text", label: "1. \"What ___ (you/do) right now?\" \"I ___ (clean) the kitchen.\"", expectedAnswer: "are you doing / am cleaning" },
+                        { type: "text", label: "2. \"Where were you yesterday?\" \"I ___ (shop) when you called.\"", expectedAnswer: "was shopping" },
+                        { type: "text", label: "3. \"Will you be home tonight?\" \"Yes, I ___ (work) from home.\"", expectedAnswer: "will be working" },
+                        { type: "text", label: "4. \"Why is she so tired?\" \"She ___ (study) all night for the exam.\"", expectedAnswer: "was studying" },
                     ],
                 },
                 {
@@ -375,6 +385,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Write About Your Life",
                     instructions: "Write complete sentences about your actual life using continuous tenses.",
                     items: [
+                        { type: "text", label: "1. What's something you're doing right now? (Present Continuous)", expectedAnswer: "I am sitting at my desk right now" },
+                        { type: "text", label: "2. What were you doing at a specific time yesterday? (Past Continuous)", expectedAnswer: "I was eating dinner at 7 PM yesterday" },
+                        { type: "text", label: "3. What will you be doing at a specific future time? (Future Continuous)", expectedAnswer: "I will be sleeping at midnight tomorrow" },
                     ],
                 },
             ],
