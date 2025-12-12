@@ -56,7 +56,7 @@ const cleanTitle = (title: string) => {
 
 export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
     return (
-        <div className="usage-meanings-list space-y-6 my-8">
+        <div className="usage-meanings-list space-y-4 md:space-y-6 my-6 md:my-8">
             {meanings.map((meaning, index) => {
                 const Icon = getIconForMeaning(meaning.title);
                 const title = cleanTitle(meaning.title);
@@ -75,33 +75,33 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                         }}
                     >
                         {/* Card with gradient border effect */}
-                        <div className="relative bg-gradient-to-br from-white to-bg-light border-2 border-border rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                        <div className="relative bg-gradient-to-br from-white to-bg-light border-2 border-border rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
                             {/* Subtle gradient background accent */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl -z-10 transform translate-x-32 -translate-y-32" />
 
                             {/* Header with icon and title */}
-                            <div className="flex items-baseline gap-4 mb-4">
+                            <div className="flex items-baseline gap-3 md:gap-4 mb-4">
                                 <motion.div
-                                    className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center shadow-md"
+                                    className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-primary to-accent rounded-xl md:rounded-2xl flex items-center justify-center shadow-md"
                                     style={{ marginTop: '0.375rem' }}
                                     whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    <Icon className="w-7 h-7 text-white" />
+                                    <Icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
                                 </motion.div>
 
-                                <div className="flex-1">
-                                    <h4 className="!text-2xl md:!text-3xl lg:!text-4xl font-bold text-text mb-2 font-display leading-tight">
+                                <div className="flex-1 min-w-0">
+                                    <h4 className="!text-xl md:!text-2xl lg:!text-3xl font-bold text-text mb-2 font-display leading-tight">
                                         {title}
                                     </h4>
-                                    <p className="text-lg text-text-muted leading-relaxed">
+                                    <p className="text-base md:text-lg text-text-muted leading-relaxed">
                                         {meaning.description}
                                     </p>
                                 </div>
                             </div>
 
                             {/* Examples with staggered animation */}
-                            <div className="space-y-3 mt-5">
+                            <div className="space-y-2 md:space-y-3 mt-4 md:mt-5">
                                 {meaning.examples.map((example, exIdx) => (
                                     <motion.div
                                         key={exIdx}
@@ -115,19 +115,19 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                         }}
                                     >
                                         {/* Example card with hover effect */}
-                                        <div className="relative bg-white rounded-xl p-4 border-l-4 border-primary shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
+                                        <div className="relative bg-white rounded-xl p-3 md:p-4 border-l-4 border-primary shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
                                             {/* Arrow indicator on hover */}
                                             <motion.div
-                                                className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover/example:opacity-100 transition-opacity"
+                                                className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover/example:opacity-100 transition-opacity"
                                                 initial={{ x: -10 }}
                                                 whileHover={{ x: 0 }}
                                             >
                                                 <ArrowRight className="w-4 h-4 text-primary" />
                                             </motion.div>
 
-                                            <div className="pl-6">
+                                            <div className="pl-2 md:pl-6">
                                                 <p
-                                                    className="text-base text-text font-medium leading-relaxed"
+                                                    className="text-sm md:text-base text-text font-medium leading-relaxed"
                                                     dangerouslySetInnerHTML={{ __html: sanitizeHtml(example.sentence) }}
                                                 />
                                                 {example.explanation && (
@@ -138,8 +138,8 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                                         viewport={{ once: true }}
                                                         transition={{ delay: 0.2 }}
                                                     >
-                                                        <Sparkles className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                                                        <p className="text-sm text-text-muted italic flex-1">
+                                                        <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-accent flex-shrink-0 mt-0.5" />
+                                                        <p className="text-xs md:text-sm text-text-muted italic flex-1">
                                                             {example.explanation.replace('✓', '').trim()}
                                                         </p>
                                                     </motion.div>
