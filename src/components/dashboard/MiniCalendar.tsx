@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 export type CalendarEvent = {
     id?: string;
@@ -16,47 +16,14 @@ interface MiniCalendarProps {
 }
 
 export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
-    const [today, setToday] = useState(() => new Date());
+    // Calculate today fresh on every render to avoid caching issues
+    const today = new Date();
+
     const [viewDate, setViewDate] = useState(() => {
         const d = new Date();
         d.setDate(1);
         return d;
     });
-
-    // Update today's date when the day changes
-    useEffect(() => {
-        const checkDateChange = () => {
-            const now = new Date();
-            const currentDay = now.getDate();
-            const todayDay = today.getDate();
-            const currentMonth = now.getMonth();
-            const todayMonth = today.getMonth();
-            const currentYear = now.getFullYear();
-            const todayYear = today.getFullYear();
-
-            // If the date has changed, update it
-            if (currentDay !== todayDay || currentMonth !== todayMonth || currentYear !== todayYear) {
-                setToday(now);
-            }
-        };
-
-        // Check every minute if the date has changed
-        const interval = setInterval(checkDateChange, 60000);
-
-        // Also check when the user comes back to the tab
-        const handleVisibilityChange = () => {
-            if (!document.hidden) {
-                checkDateChange();
-            }
-        };
-
-        document.addEventListener('visibilitychange', handleVisibilityChange);
-
-        return () => {
-            clearInterval(interval);
-            document.removeEventListener('visibilitychange', handleVisibilityChange);
-        };
-    }, [today]);
 
     const viewMonth = viewDate.getMonth();
     const viewYear = viewDate.getFullYear();
