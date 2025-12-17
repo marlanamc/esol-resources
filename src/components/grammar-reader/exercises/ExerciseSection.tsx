@@ -73,9 +73,6 @@ export function ExerciseSection({
                 {exercise.instructions && (
                     <p className="text-sm text-text-muted italic">{exercise.instructions}</p>
                 )}
-                <p className="text-xs text-text-muted mt-2 bg-bg-light px-3 py-2 rounded border border-border inline-block">
-                    💡 Don't worry about capitalization or extra spaces - we'll handle that for you!
-                </p>
             </div>
 
             <div className="space-y-4">

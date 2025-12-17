@@ -2,14 +2,17 @@
 
 import { sanitizeHtml } from "@/utils/sanitize";
 import { emphasizeVerb } from "@/utils/emphasizeVerb";
+import { emphasizeExampleByFormula } from "@/utils/emphasizeExampleByFormula";
+import type { FormulaPart } from "@/types/activity";
 import { motion } from "framer-motion";
 import { FileText, Check } from "lucide-react";
 
 interface ExampleBoxProps {
     examples: string[];
+    formulaParts?: FormulaPart[];
 }
 
-export function ExampleBox({ examples }: ExampleBoxProps) {
+export function ExampleBox({ examples, formulaParts }: ExampleBoxProps) {
     return (
         <motion.div
             className="example-box relative bg-gradient-to-br from-success/5 to-primary/5 border-2 border-success/20 rounded-2xl p-6 my-6 overflow-hidden"
@@ -60,7 +63,13 @@ export function ExampleBox({ examples }: ExampleBoxProps) {
                             <div className="pl-6">
                                 <p
                                     className="text-base text-text leading-relaxed"
-                                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(example)) }}
+                                    dangerouslySetInnerHTML={{
+                                        __html: sanitizeHtml(
+                                            formulaParts?.length
+                                                ? emphasizeExampleByFormula(example, formulaParts)
+                                                : emphasizeVerb(example)
+                                        ),
+                                    }}
                                 />
                             </div>
 
