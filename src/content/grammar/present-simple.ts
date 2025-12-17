@@ -146,7 +146,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I grab coffee on my way to work every morning."',
+                            label: '"My daughter practices violin for an hour every afternoon."',
                             options: [
                                 {
                                     value: "habit",
@@ -173,7 +173,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"Traffic always gets worse after 4 PM."',
+                            label: '"Ice melts faster when you add salt to it."',
                             options: [
                                 {
                                     value: "habit",
@@ -200,7 +200,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The last train leaves at 11:45 PM."',
+                            label: '"The museum opens at 10 AM on Saturdays."',
                             options: [
                                 {
                                     value: "habit",
@@ -227,7 +227,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I can\'t stand crowded subways during rush hour."',
+                            label: '"I absolutely love hiking in the mountains, but I hate camping."',
                             options: [
                                 {
                                     value: "habit",
@@ -306,27 +306,27 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. My boss ___ (reply) to emails at midnight.",
-                            expectedAnswer: "replies",
+                            label: "1. The bakery down the street ___ (supply) fresh bread to local restaurants.",
+                            expectedAnswer: "supplies",
                         },
                         {
                             type: "text",
-                            label: "2. The printer ___ (jam) at least once a day.",
-                            expectedAnswer: "jams",
+                            label: "2. My neighbor's cat ___ (scratch) anyone who tries to pet it.",
+                            expectedAnswer: "scratches",
                         },
                         {
                             type: "text",
-                            label: "3. She ___ (teach) English to new employees.",
-                            expectedAnswer: "teaches",
+                            label: "3. The museum ___ (display) ancient artifacts from Egypt.",
+                            expectedAnswer: "displays",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (worry) too much about deadlines.",
-                            expectedAnswer: "worries",
+                            label: "4. He ___ (carry) his grandmother's photo everywhere he goes.",
+                            expectedAnswer: "carries",
                         },
                         {
                             type: "text",
-                            label: "5. My coworker ___ (have) all the office gossip.",
+                            label: "5. This brand of chocolate ___ (have) the best reputation in Europe.",
                             expectedAnswer: "has",
                         },
                     ],
@@ -339,23 +339,23 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (need) more coffee before meetings.",
-                            expectedAnswer: "need",
+                            label: "1. We ___ (recycle) all our glass bottles and cardboard boxes.",
+                            expectedAnswer: "recycle",
                         },
                         {
                             type: "text",
-                            label: "2. The office ___ (close) at 6 PM on Fridays.",
-                            expectedAnswer: "closes",
+                            label: "2. The library ___ (lend) up to 10 books per person at a time.",
+                            expectedAnswer: "lends",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (order) lunch from the same place every Tuesday.",
-                            expectedAnswer: "order",
+                            label: "3. My kids ___ (play) soccer at the park every Saturday morning.",
+                            expectedAnswer: "play",
                         },
                         {
                             type: "text",
-                            label: "4. She ___ (manage) the whole department by herself.",
-                            expectedAnswer: "manages",
+                            label: "4. She ___ (volunteer) at the animal shelter twice a month.",
+                            expectedAnswer: "volunteers",
                         },
                     ],
                 },
@@ -404,28 +404,28 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (understand) half of what my boss says in meetings.",
-                            expectedAnswer: "don't understand",
+                            label: "1. My brother ___ (eat) vegetables unless I hide them in the sauce.",
+                            expectedAnswer: "doesn't eat",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (check) her email on weekends.",
-                            expectedAnswer: "doesn't check",
+                            label: "2. We ___ (travel) internationally because of our dog's health issues.",
+                            expectedAnswer: "don't travel",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (have) a dress code at that office.",
-                            expectedAnswer: "don't have",
+                            label: "3. The local pool ___ (open) during winter months.",
+                            expectedAnswer: "doesn't open",
                         },
                         {
                             type: "text",
-                            label: "4. The Wi-Fi ___ (work) in the conference room.",
-                            expectedAnswer: "doesn't work",
+                            label: "4. I ___ (remember) names very well, but I never forget a face.",
+                            expectedAnswer: "don't remember",
                         },
                         {
                             type: "text",
-                            label: "5. We ___ (start) projects without a clear deadline.",
-                            expectedAnswer: "don't start",
+                            label: "5. They ___ (allow) photography inside the temple.",
+                            expectedAnswer: "don't allow",
                         },
                     ],
                 },
@@ -475,28 +475,28 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you ___ (prefer) morning or afternoon shifts?",
-                            expectedAnswer: "Do you prefer",
+                            label: "1. ___ your parents ___ (celebrate) their anniversary in June?",
+                            expectedAnswer: "Do your parents celebrate",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (know) about the new policy?",
-                            expectedAnswer: "Does she know",
+                            label: "2. ___ this train ___ (stop) at Central Station?",
+                            expectedAnswer: "Does this train stop",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they ___ (offer) health insurance?",
-                            expectedAnswer: "Do they offer",
+                            label: "3. ___ you ___ (belong) to any sports clubs or fitness centers?",
+                            expectedAnswer: "Do you belong",
                         },
                         {
                             type: "text",
-                            label: "4. ___ he ___ (commute) from Boston?",
-                            expectedAnswer: "Does he commute",
+                            label: "4. ___ the restaurant ___ (serve) vegetarian options?",
+                            expectedAnswer: "Does the restaurant serve",
                         },
                         {
                             type: "text",
-                            label: "5. ___ it ___ (make) sense to wait until Monday?",
-                            expectedAnswer: "Does it make",
+                            label: "5. ___ it ___ (rain) a lot during springtime in your country?",
+                            expectedAnswer: "Does it rain",
                         },
                     ],
                 },
@@ -557,18 +557,18 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ forget to mute myself on video calls. (always)",
+                            label: "1. My grandmother ___ calls me on Sunday evenings. (always)",
                             expectedAnswer: "always",
                         },
                         {
                             type: "text",
-                            label: "2. She checks her inbox ___ . (every 10 minutes)",
-                            expectedAnswer: "every 10 minutes",
+                            label: "2. The farmers market sets up in the town square ___ . (twice a week)",
+                            expectedAnswer: "twice a week",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ order lunch from the same restaurant. (usually)",
-                            expectedAnswer: "usually",
+                            label: "3. We ___ go hiking when the weather is nice. (often)",
+                            expectedAnswer: "often",
                         },
                     ],
                 },
@@ -593,28 +593,28 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. My manager ___ (send) emails at 11 PM. (positive)",
-                            expectedAnswer: "sends",
+                            label: "1. The corner pharmacy ___ (deliver) medications to elderly patients. (positive)",
+                            expectedAnswer: "delivers",
                         },
                         {
                             type: "text",
-                            label: "2. I ___ (not drink) coffee after 3 PM. (negative)",
-                            expectedAnswer: "don't drink",
+                            label: "2. My son ___ (not eat) anything green unless it's candy. (negative)",
+                            expectedAnswer: "doesn't eat",
                         },
                         {
                             type: "text",
-                            label: "3. ___ you ___ (commute) by train? (question)",
-                            expectedAnswer: "Do you commute",
+                            label: "3. ___ the hotel ___ (include) breakfast in the room rate? (question)",
+                            expectedAnswer: "Does the hotel include",
                         },
                         {
                             type: "text",
-                            label: "4. The system ___ (not save) automatically. (negative)",
-                            expectedAnswer: "doesn't save",
+                            label: "4. We ___ (not celebrate) Halloween because of our religious beliefs. (negative)",
+                            expectedAnswer: "don't celebrate",
                         },
                         {
                             type: "text",
-                            label: "5. ___ she ___ (handle) client complaints? (question)",
-                            expectedAnswer: "Does she handle",
+                            label: "5. ___ your neighbor ___ (take) care of your plants when you travel? (question)",
+                            expectedAnswer: "Does your neighbor take",
                         },
                     ],
                 },
@@ -627,17 +627,17 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "1. What's one thing you do every single day? (positive)",
-                            expectedAnswer: "I check my phone first thing",
+                            expectedAnswer: "I walk my dog in the morning",
                         },
                         {
                             type: "text",
                             label: "2. What's something you absolutely don't do? (negative)",
-                            expectedAnswer: "I don't cook on weekdays",
+                            expectedAnswer: "I don't eat spicy food",
                         },
                         {
                             type: "text",
                             label: "3. Ask about someone's routine: (question)",
-                            expectedAnswer: "Do you work from home",
+                            expectedAnswer: "Do you exercise regularly",
                         },
                     ],
                 },
@@ -697,20 +697,20 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence is correct (subject-verb agreement + tense)?",
             options: [
-                { value: "a", label: "She work downtown and answer emails at midnight." },
-                { value: "b", label: "She works downtown and answers emails at midnight." },
-                { value: "c", label: "She is work downtown and answer emails at midnight." },
+                { value: "a", label: "My aunt collect antique furniture and display them in her shop." },
+                { value: "b", label: "My aunt collects antique furniture and displays them in her shop." },
+                { value: "c", label: "My aunt is collect antique furniture and display them in her shop." },
             ],
             correctAnswer: "b",
-            explanation: "He/She/It needs -s on the main verb in Present Simple: works, answers.",
+            explanation: "He/She/It needs -s on the main verb in Present Simple: collects, displays.",
         },
         {
             id: "quiz-2",
             question: "Choose the correct negative sentence.",
             options: [
-                { value: "a", label: "The office don't close early on Fridays." },
-                { value: "b", label: "The office doesn't closes early on Fridays." },
-                { value: "c", label: "The office doesn't close early on Fridays." },
+                { value: "a", label: "The gym don't offer yoga classes on Sundays." },
+                { value: "b", label: "The gym doesn't offers yoga classes on Sundays." },
+                { value: "c", label: "The gym doesn't offer yoga classes on Sundays." },
             ],
             correctAnswer: "c",
             explanation: "Use doesn't + base verb (no -s on the main verb).",
@@ -719,34 +719,34 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Pick the correct question form.",
             options: [
-                { value: "a", label: "Does your team have stand-up at 9?" },
-                { value: "b", label: "Do your team has stand-up at 9?" },
-                { value: "c", label: "Do your team have stand-up at 9?" },
+                { value: "a", label: "Does your family celebrate Thanksgiving together?" },
+                { value: "b", label: "Do your family celebrates Thanksgiving together?" },
+                { value: "c", label: "Do your family celebrate Thanksgiving together?" },
             ],
             correctAnswer: "a",
-            explanation: "'Team' is singular here, so use Does + base verb: Does your team have…?",
+            explanation: "'Family' is singular here, so use Does + base verb: Does your family celebrate…?",
         },
         {
             id: "quiz-4",
             question: "Which sentence correctly places the frequency adverb?",
             options: [
-                { value: "a", label: "I check always my calendar first." },
-                { value: "b", label: "I always check my calendar first." },
-                { value: "c", label: "Always I check my calendar first." },
+                { value: "a", label: "My sister visits always her in-laws on holidays." },
+                { value: "b", label: "My sister always visits her in-laws on holidays." },
+                { value: "c", label: "Always my sister visits her in-laws on holidays." },
             ],
             correctAnswer: "b",
-            explanation: "Frequency adverbs go before the main verb: I always check…",
+            explanation: "Frequency adverbs go before the main verb: always visits…",
         },
         {
             id: "quiz-5",
             question: "Which sentence uses the right tense for a habit (not now)?",
             options: [
-                { value: "a", label: "I'm answering email every morning at 7." },
-                { value: "b", label: "I answer email every morning at 7." },
-                { value: "c", label: "I answered email every morning at 7." },
+                { value: "a", label: "I'm reading the newspaper every Sunday morning." },
+                { value: "b", label: "I read the newspaper every Sunday morning." },
+                { value: "c", label: "I readed the newspaper every Sunday morning." },
             ],
             correctAnswer: "b",
-            explanation: "Habits/routines use Present Simple: I answer…; not continuous or past.",
+            explanation: "Habits/routines use Present Simple: I read…; not continuous or past.",
         },
     ],
 };

@@ -122,7 +122,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I am watching TV right now while cooking dinner."',
+                            label: '"The baby is sleeping in the nursery while I prepare her bottle."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -134,7 +134,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I\'m staying with my parents this week."',
+                            label: '"My uncle is renting an apartment while his house is being renovated."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -146,7 +146,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I was driving when the accident happened."',
+                            label: '"The hikers were climbing the trail when the thunderstorm started."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -158,7 +158,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I\'ll be working when you call tonight."',
+                            label: '"The volunteers will be serving lunch when the guests arrive."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -187,13 +187,13 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"She ___ (work) late when I called her." (past ongoing)',
+                            label: '"My sister ___ (practice) piano when the power went out." (past ongoing)',
                             options: [
-                                { value: "is working", label: "is working" },
-                                { value: "was working", label: "was working" },
-                                { value: "will be working", label: "will be working" },
+                                { value: "is practicing", label: "is practicing" },
+                                { value: "was practicing", label: "was practicing" },
+                                { value: "will be practicing", label: "will be practicing" },
                             ],
-                            expectedAnswer: "was working",
+                            expectedAnswer: "was practicing",
                         },
                         {
                             type: "radio",
@@ -252,11 +252,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Present Continuous: What Are They Doing?",
                     instructions: "Use am/is/are + verb-ing to show actions in progress right now.",
                     items: [
-                        { type: "text", label: "1. I ___ (clean) my room at the moment.", expectedAnswer: "am cleaning" },
-                        { type: "text", label: "2. She ___ (cook) dinner for everyone.", expectedAnswer: "is cooking" },
-                        { type: "text", label: "3. They ___ (wait) for the bus that's late.", expectedAnswer: "are waiting" },
-                        { type: "text", label: "4. He ___ (fix) his computer right now.", expectedAnswer: "is fixing" },
-                        { type: "text", label: "5. We ___ (watch) a movie together.", expectedAnswer: "are watching" },
+                        { type: "text", label: "1. The gardener ___ (trim) the hedges at the moment.", expectedAnswer: "is trimming" },
+                        { type: "text", label: "2. My grandchildren ___ (build) a fort with blankets and pillows.", expectedAnswer: "are building" },
+                        { type: "text", label: "3. The neighbors ___ (host) a barbecue in their backyard right now.", expectedAnswer: "are hosting" },
+                        { type: "text", label: "4. The artist ___ (paint) a mural on the community center wall.", expectedAnswer: "is painting" },
+                        { type: "text", label: "5. We ___ (explore) the historic district with a tour guide.", expectedAnswer: "are exploring" },
                     ],
                 },
                 {
@@ -264,10 +264,10 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Present Continuous: Negative & Questions",
                     instructions: "Complete with the correct negative or question form.",
                     items: [
-                        { type: "text", label: "1. I ___ (not study) right now - I'm too tired.", expectedAnswer: "am not studying" },
-                        { type: "text", label: "2. ___ you ___ (listen) to music?", expectedAnswer: "Are you listening" },
-                        { type: "text", label: "3. She ___ (not work) today - it's her day off.", expectedAnswer: "is not working" },
-                        { type: "text", label: "4. ___ they ___ (play) soccer now?", expectedAnswer: "Are they playing" },
+                        { type: "text", label: "1. The library ___ (not offer) late hours during summer break.", expectedAnswer: "is not offering" },
+                        { type: "text", label: "2. ___ your daughter ___ (apply) to graduate schools this semester?", expectedAnswer: "Is your daughter applying" },
+                        { type: "text", label: "3. The museum ___ (not charge) admission this weekend for the anniversary.", expectedAnswer: "is not charging" },
+                        { type: "text", label: "4. ___ the neighbors ___ (renovate) their kitchen right now?", expectedAnswer: "Are the neighbors renovating" },
                     ],
                 },
             ],

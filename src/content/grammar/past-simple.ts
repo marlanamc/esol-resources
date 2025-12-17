@@ -98,7 +98,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I woke up at 6 AM yesterday morning."',
+                            label: '"My daughter graduated from college in May 2023."',
                             options: [
                                 { value: "timestamp", label: "Finished action with a time" },
                                 { value: "habit", label: "Ongoing habit" },
@@ -108,7 +108,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We cleaned the house and cooked dinner together."',
+                            label: '"We packed our bags, locked the door, and drove to the airport."',
                             options: [
                                 { value: "sequence", label: "Story/sequence of events" },
                                 { value: "unfinished", label: "Still happening now" },
@@ -118,7 +118,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I walked to work every morning when I lived closer."',
+                            label: '"She played tennis three times a week before she injured her knee."',
                             options: [
                                 { value: "past-habit", label: "Past habit that ended" },
                                 { value: "present-habit", label: "Current habit" },
@@ -229,23 +229,23 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I (finish) ___ my shift at 9 PM yesterday.",
-                            expectedAnswer: "finished",
+                            label: "1. The museum (close) ___ early yesterday due to a power outage.",
+                            expectedAnswer: "closed",
                         },
                         {
                             type: "text",
-                            label: "2. She (make) ___ breakfast for everyone this morning.",
-                            expectedAnswer: "made",
+                            label: "2. My nephew (build) ___ a treehouse with his grandfather last summer.",
+                            expectedAnswer: "built",
                         },
                         {
                             type: "text",
-                            label: "3. They (lose) ___ their keys last week.",
-                            expectedAnswer: "lost",
+                            label: "3. The neighbors (move) ___ to a different state three months ago.",
+                            expectedAnswer: "moved",
                         },
                         {
                             type: "text",
-                            label: "4. We (eat) ___ pizza after the game.",
-                            expectedAnswer: "ate",
+                            label: "4. I (find) ___ a twenty dollar bill on the sidewalk this morning.",
+                            expectedAnswer: "found",
                         },
                     ],
                 },
@@ -283,18 +283,18 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I (not sleep) ___ well last night.",
-                            expectedAnswer: "didn't sleep",
+                            label: "1. The concert (not start) ___ on time because of technical problems.",
+                            expectedAnswer: "didn't start",
                         },
                         {
                             type: "text",
-                            label: "2. He (not go) ___ to work yesterday.",
-                            expectedAnswer: "didn't go",
+                            label: "2. My sister (not pass) ___ her driving test on the first try.",
+                            expectedAnswer: "didn't pass",
                         },
                         {
                             type: "text",
-                            label: "3. They (not finish) ___ dinner before 8 PM.",
-                            expectedAnswer: "didn't finish",
+                            label: "3. We (not bring) ___ umbrellas, and it rained all afternoon.",
+                            expectedAnswer: "didn't bring",
                         },
                     ],
                 },
@@ -332,18 +332,18 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you (catch) the bus this morning?",
-                            expectedAnswer: "Did you catch",
+                            label: "1. ___ your son (win) his soccer match on Saturday?",
+                            expectedAnswer: "Did your son win",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she (buy) milk at the store?",
-                            expectedAnswer: "Did she buy",
+                            label: "2. ___ the dentist (give) you any painkillers after the procedure?",
+                            expectedAnswer: "Did the dentist give",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they (watch) the game last night?",
-                            expectedAnswer: "Did they watch",
+                            label: "3. ___ you (remember) to water the plants before we left?",
+                            expectedAnswer: "Did you remember",
                         },
                     ],
                 },
@@ -375,34 +375,34 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly uses Past Simple with an irregular verb?",
             options: [
-                { value: "a", label: "I goed to the store yesterday." },
-                { value: "b", label: "I went to the store yesterday." },
-                { value: "c", label: "I go to the store yesterday." },
+                { value: "a", label: "The kids drawed pictures at the art class yesterday." },
+                { value: "b", label: "The kids drew pictures at the art class yesterday." },
+                { value: "c", label: "The kids draw pictures at the art class yesterday." },
             ],
             correctAnswer: "b",
-            explanation: "Irregular verb go → went; matches past time word 'yesterday.'",
+            explanation: "Irregular verb draw → drew; matches past time word 'yesterday.'",
         },
         {
             id: "quiz-2",
             question: "Which negative sentence is correct (watch the main verb form)?",
             options: [
-                { value: "a", label: "She didn't called her friend on Sunday." },
-                { value: "b", label: "She didn't call her friend on Sunday." },
-                { value: "c", label: "She no called her friend on Sunday." },
+                { value: "a", label: "My grandparents didn't traveled to Europe last year." },
+                { value: "b", label: "My grandparents didn't travel to Europe last year." },
+                { value: "c", label: "My grandparents no traveled to Europe last year." },
             ],
             correctAnswer: "b",
-            explanation: "After 'didn't', the main verb stays in base form: didn't call.",
+            explanation: "After 'didn't', the main verb stays in base form: didn't travel.",
         },
         {
             id: "quiz-3",
             question: "Which question is correct in Past Simple?",
             options: [
-                { value: "a", label: "Did they finished dinner last night?" },
-                { value: "b", label: "Did they finish dinner last night?" },
-                { value: "c", label: "They finished dinner last night?" },
+                { value: "a", label: "Did the festival attracted many visitors last weekend?" },
+                { value: "b", label: "Did the festival attract many visitors last weekend?" },
+                { value: "c", label: "The festival attracted many visitors last weekend?" },
             ],
             correctAnswer: "b",
-            explanation: "Questions use Did + subject + base verb: 'Did they finish...?'",
+            explanation: "Questions use Did + subject + base verb: 'Did the festival attract...?'",
         },
         {
             id: "quiz-4",
@@ -419,12 +419,12 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-5",
             question: "Choose the correct Past Simple form with a time expression.",
             options: [
-                { value: "a", label: "I have finished my homework last night." },
-                { value: "b", label: "I finished my homework last night." },
-                { value: "c", label: "I finish my homework last night." },
+                { value: "a", label: "The bakery has opened at 6 AM this morning." },
+                { value: "b", label: "The bakery opened at 6 AM this morning." },
+                { value: "c", label: "The bakery opens at 6 AM this morning." },
             ],
             correctAnswer: "b",
-            explanation: "Specific past time ('last night') needs Past Simple: finished.",
+            explanation: "Specific past time ('this morning') needs Past Simple: opened.",
         },
     ],
 };

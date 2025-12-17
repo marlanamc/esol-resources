@@ -116,7 +116,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I\'ll pick up coffee on my way in."',
+                            label: '"I\'ll water the garden before it gets too hot."',
                             options: [
                                 { value: "present", label: "Present Simple - Habit/Routine" },
                                 { value: "past", label: "Past Simple - Finished action" },
@@ -133,33 +133,33 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"The meeting ___ at 2 PM every Tuesday." (fixed schedule)',
+                            label: '"The farmers market ___ at 8 AM every Saturday." (fixed schedule)',
                             options: [
-                                { value: "starts", label: "starts" },
-                                { value: "started", label: "started" },
-                                { value: "will start", label: "will start" },
+                                { value: "opens", label: "opens" },
+                                { value: "opened", label: "opened" },
+                                { value: "will open", label: "will open" },
                             ],
-                            expectedAnswer: "starts",
+                            expectedAnswer: "opens",
                         },
                         {
                             type: "radio",
-                            label: '"She ___ her keys in the office yesterday." (finished action)',
+                            label: '"The neighbors ___ their house three months ago." (finished action)',
                             options: [
-                                { value: "leaves", label: "leaves" },
-                                { value: "left", label: "left" },
-                                { value: "will leave", label: "will leave" },
+                                { value: "renovate", label: "renovate" },
+                                { value: "renovated", label: "renovated" },
+                                { value: "will renovate", label: "will renovate" },
                             ],
-                            expectedAnswer: "left",
+                            expectedAnswer: "renovated",
                         },
                         {
                             type: "radio",
-                            label: '"___ you ___ the report by Friday?" (promise about future)',
+                            label: '"___ the kids ___ their science project by next week?" (promise about future)',
                             options: [
-                                { value: "Will you finish", label: "Will you finish" },
-                                { value: "Do you finish", label: "Do you finish" },
-                                { value: "Did you finish", label: "Did you finish" },
+                                { value: "Will the kids complete", label: "Will the kids complete" },
+                                { value: "Do the kids complete", label: "Do the kids complete" },
+                                { value: "Did the kids complete", label: "Did the kids complete" },
                             ],
-                            expectedAnswer: "Will you finish",
+                            expectedAnswer: "Will the kids complete",
                         },
                     ],
                 },
@@ -208,27 +208,27 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. My boss ___ (reply) to emails at midnight.",
-                            expectedAnswer: "replies",
+                            label: "1. The corner store ___ (carry) organic produce from local farms.",
+                            expectedAnswer: "carries",
                         },
                         {
                             type: "text",
-                            label: "2. The printer ___ (jam) at least once a day.",
-                            expectedAnswer: "jams",
+                            label: "2. My nephew ___ (study) marine biology at university.",
+                            expectedAnswer: "studies",
                         },
                         {
                             type: "text",
-                            label: "3. She ___ (teach) English to new employees.",
-                            expectedAnswer: "teaches",
+                            label: "3. The art gallery ___ (display) contemporary paintings every month.",
+                            expectedAnswer: "displays",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (worry) too much about deadlines.",
+                            label: "4. She ___ (worry) about her elderly parents living alone.",
                             expectedAnswer: "worries",
                         },
                         {
                             type: "text",
-                            label: "5. My coworker ___ (have) all the office gossip.",
+                            label: "5. My neighbor ___ (have) two golden retrievers that love everyone.",
                             expectedAnswer: "has",
                         },
                     ],
