@@ -79,7 +79,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "\"I'll call you after work.\"",
+                            label: "\"I'll pick up your prescription from the pharmacy on my way home.\"",
                             options: [
                                 { value: "promise", label: "Promise/offer" },
                                 { value: "plan", label: "Pre-planned schedule" },
@@ -89,7 +89,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"It will rain tomorrow.\"",
+                            label: "\"The cherry blossoms will bloom in early April.\"",
                             options: [
                                 { value: "prediction", label: "Prediction" },
                                 { value: "decision", label: "Decision right now" },
@@ -99,7 +99,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"I'm hungry. I'll make a sandwich.\"",
+                            label: "\"Someone's at the door. I'll get it.\"",
                             options: [
                                 { value: "decision", label: "Decision made now" },
                                 { value: "schedule", label: "Fixed schedule" },
@@ -148,18 +148,18 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (call) you tonight after dinner.",
-                            expectedAnswer: "will call",
+                            label: "1. The museum ___ (open) a new exhibit about ancient Rome next month.",
+                            expectedAnswer: "will open",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (bring) snacks to the party.",
-                            expectedAnswer: "will bring",
+                            label: "2. My parents ___ (celebrate) their 30th anniversary in Hawaii.",
+                            expectedAnswer: "will celebrate",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (help) us move next weekend.",
-                            expectedAnswer: "will help",
+                            label: "3. The doctor ___ (see) you in about 15 minutes.",
+                            expectedAnswer: "will see",
                         },
                     ],
                 },
@@ -195,18 +195,18 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not go) to bed late tonight.",
-                            expectedAnswer: "won't go",
+                            label: "1. The library ___ (not accept) donations of old magazines anymore.",
+                            expectedAnswer: "won't accept",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not buy) anything expensive this month.",
-                            expectedAnswer: "won't buy",
+                            label: "2. My brother ___ (not lend) me his car after what happened last time.",
+                            expectedAnswer: "won't lend",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not leave) without saying goodbye.",
-                            expectedAnswer: "won't leave",
+                            label: "3. The flowers ___ (not survive) if we don't water them soon.",
+                            expectedAnswer: "won't survive",
                         },
                     ],
                 },
@@ -243,18 +243,18 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you ___ (come) to the party Saturday?",
-                            expectedAnswer: "Will you come",
+                            label: "1. ___ the store ___ (have) that toy in stock by Christmas?",
+                            expectedAnswer: "Will the store have",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (help) us with the cooking?",
-                            expectedAnswer: "Will she help",
+                            label: "2. ___ your daughter ___ (study) abroad next semester?",
+                            expectedAnswer: "Will your daughter study",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they ___ (arrive) before 7 PM?",
-                            expectedAnswer: "Will they arrive",
+                            label: "3. ___ the neighbors ___ (adopt) another rescue dog?",
+                            expectedAnswer: "Will the neighbors adopt",
                         },
                     ],
                 },

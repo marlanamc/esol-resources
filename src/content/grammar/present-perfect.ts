@@ -468,28 +468,28 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (visit) Paris three times.",
-                            expectedAnswer: "have visited",
+                            label: "1. The museum ___ (win) several international awards for its architecture.",
+                            expectedAnswer: "has won",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (finish) her homework.",
-                            expectedAnswer: "has finished",
+                            label: "2. My grandparents ___ (own) this house since 1985.",
+                            expectedAnswer: "have owned",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (live) here for 5 years.",
-                            expectedAnswer: "have lived",
+                            label: "3. We ___ (adopt) three rescue animals over the years.",
+                            expectedAnswer: "have adopted",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (see) that movie before.",
-                            expectedAnswer: "has seen",
+                            label: "4. She ___ (climb) Mount Everest—it's on her bucket list.",
+                            expectedAnswer: "has climbed",
                         },
                         {
                             type: "text",
-                            label: "5. We ___ (study) English since 2020.",
-                            expectedAnswer: "have studied",
+                            label: "5. The neighbors ___ (plant) a cherry tree that blooms beautifully every spring.",
+                            expectedAnswer: "have planted",
                         },
                     ],
                 },
@@ -501,18 +501,18 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (eat) sushi many times.",
-                            expectedAnswer: "have eaten",
+                            label: "1. The local bakery ___ (serve) fresh croissants since it opened in 2015.",
+                            expectedAnswer: "has served",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (be) to Japan twice.",
-                            expectedAnswer: "has been",
+                            label: "2. My son ___ (break) his arm twice playing football.",
+                            expectedAnswer: "has broken",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (work) together for 3 years.",
-                            expectedAnswer: "have worked",
+                            label: "3. We ___ (volunteer) at the animal shelter for several months now.",
+                            expectedAnswer: "have volunteered",
                         },
                     ],
                 },
@@ -555,28 +555,28 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not visit) Japan.",
-                            expectedAnswer: "haven't visited",
+                            label: "1. The city ___ (not repair) the potholes on our street yet.",
+                            expectedAnswer: "hasn't repaired",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not finish) her homework yet.",
-                            expectedAnswer: "hasn't finished",
+                            label: "2. My daughter ___ (not decide) which university to attend.",
+                            expectedAnswer: "hasn't decided",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not see) that movie.",
-                            expectedAnswer: "haven't seen",
+                            label: "3. We ___ (not hear) back from the insurance company.",
+                            expectedAnswer: "haven't heard",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (not eat) lunch yet.",
-                            expectedAnswer: "hasn't eaten",
+                            label: "4. The landlord ___ (not fix) the heating system yet.",
+                            expectedAnswer: "hasn't fixed",
                         },
                         {
                             type: "text",
-                            label: "5. We ___ (not be) to that restaurant.",
-                            expectedAnswer: "haven't been",
+                            label: "5. They ___ (not announce) the winner of the competition.",
+                            expectedAnswer: "haven't announced",
                         },
                     ],
                 },
@@ -615,28 +615,28 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you (visit) Paris?",
-                            expectedAnswer: "Have you visited",
+                            label: "1. ___ the plumber (arrive) to fix the leak?",
+                            expectedAnswer: "Has the plumber arrived",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she (finish) her homework?",
-                            expectedAnswer: "Has she finished",
+                            label: "2. ___ your parents (celebrate) their golden anniversary yet?",
+                            expectedAnswer: "Have your parents celebrated",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they (see) that movie?",
-                            expectedAnswer: "Have they seen",
+                            label: "3. ___ the neighbors (complain) about the noise?",
+                            expectedAnswer: "Have the neighbors complained",
                         },
                         {
                             type: "text",
-                            label: "4. ___ he (eat) lunch yet?",
-                            expectedAnswer: "Has he eaten",
+                            label: "4. ___ she ever (ride) a motorcycle?",
+                            expectedAnswer: "Has she ever ridden",
                         },
                         {
                             type: "text",
-                            label: "5. ___ you ever (be) to Japan?",
-                            expectedAnswer: "Have you ever been",
+                            label: "5. ___ you (donate) to any charities this year?",
+                            expectedAnswer: "Have you donated",
                         },
                     ],
                 },
@@ -719,11 +719,19 @@ export const presentPerfectContent: InteractiveGuideContent = {
             title: "Already, Just, Yet, or Still?",
             icon: "⏰",
             explanation: `
-                <h3>Recent Actions and Expectations</h3>
-                <p><strong>Already</strong> = earlier than expected. <strong>Just</strong> = a moment ago. <strong>Yet</strong> = expected, but not happened (or asking if it happened). <strong>Still</strong> = continues to not happen (emphasizes the negative continues).</p>
-                <p><strong>Placement:</strong> "already/just" go between have/has and the past participle (I <strong>have just finished</strong>); "yet" goes at the end (I haven't finished <strong>yet</strong>); "still" goes before haven't/hasn't (I <strong>still haven't</strong> finished).</p>
-                <p><strong>Sentence types:</strong> "already" and "just" in affirmatives (sometimes questions); "yet" in negatives and questions; "still" in negatives to emphasize continuation.</p>
+                <h3>Time Words: Already, Just, Yet, Still</h3>
+                <p>These four words help you express timing and expectations with Present Perfect. Each one has a specific meaning and placement in the sentence.</p>
             `,
+            verbTable: {
+                title: "Quick Reference Guide",
+                headers: ["Word", "Meaning", "Placement in Sentence", "Used In"],
+                rows: [
+                    ["already", "Earlier than expected; sooner than you thought", "Between have/has and past participle → I have already finished", "✓ Positive statements\n✓ Sometimes questions"],
+                    ["just", "A moment ago; very recently", "Between have/has and past participle → She has just arrived", "✓ Positive statements"],
+                    ["yet", "Expected to happen but hasn't (or asking if it happened)", "At the end of the sentence → I haven't eaten yet / Have you finished yet?", "✓ Questions\n✓ Negatives"],
+                    ["still", "Continues to not happen; emphasizes the ongoing negative", "Before haven't/hasn't → I still haven't finished", "✓ Negatives only\n(emphasizes frustration)"],
+                ],
+            },
             timeExpressions: [
                 {
                     word: "Already",

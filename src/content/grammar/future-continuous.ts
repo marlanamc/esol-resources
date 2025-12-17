@@ -101,8 +101,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 title: "Exercise 1: Picture the Future",
                 instructions: "Complete with will be + verb-ing.",
                 items: [
-                    { type: "text", label: "1. I ___ (do) laundry all afternoon.", expectedAnswer: "will be doing" },
-                    { type: "text", label: "2. They ___ (travel) at this time next week.", expectedAnswer: "will be traveling" },
+                    { type: "text", label: "1. The volunteers ___ (serve) meals at the shelter all day Saturday.", expectedAnswer: "will be serving" },
+                    { type: "text", label: "2. My sister ___ (perform) in the theater production this time tomorrow.", expectedAnswer: "will be performing" },
                 ],
             }],
         },

@@ -98,7 +98,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"I'm staying with my sister this month.\"",
+                            label: "\"My parents are renovating their bathroom this summer.\"",
                             options: [
                                 { value: "temporary", label: "Temporary situation" },
                                 { value: "fact", label: "Permanent fact" },
@@ -108,7 +108,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"We're meeting for lunch at 3 PM.\"",
+                            label: "\"The kids are performing in the school play tomorrow evening.\"",
                             options: [
                                 { value: "near-future", label: "Arranged near-future plan" },
                                 { value: "habit", label: "Habit" },
@@ -155,9 +155,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 1: What Are They Doing?",
                     instructions: "Use am/is/are + verb-ing to show actions in progress.",
                     items: [
-                        { type: "text", label: "1. I ___ (clean) my room right now.", expectedAnswer: "am cleaning" },
-                        { type: "text", label: "2. She ___ (cook) dinner for everyone at the moment.", expectedAnswer: "is cooking" },
-                        { type: "text", label: "3. They ___ (wait) for the bus that is late again.", expectedAnswer: "are waiting" },
+                        { type: "text", label: "1. The baby ___ (sleep) peacefully in her crib right now.", expectedAnswer: "is sleeping" },
+                        { type: "text", label: "2. My neighbors ___ (plant) a vegetable garden in their backyard.", expectedAnswer: "are planting" },
+                        { type: "text", label: "3. I ___ (take) guitar lessons every Tuesday this semester.", expectedAnswer: "am taking" },
                     ],
                 },
             ],
@@ -185,9 +185,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What's NOT Happening",
                     instructions: "Use am/is/are not + verb-ing.",
                     items: [
-                        { type: "text", label: "1. I ___ (not eat) sugar this month.", expectedAnswer: "am not eating" },
-                        { type: "text", label: "2. She ___ (not work) today—it's her day off.", expectedAnswer: "is not working" },
-                        { type: "text", label: "3. They ___ (not come) to the party tonight.", expectedAnswer: "are not coming" },
+                        { type: "text", label: "1. The museum ___ (not charge) admission fees this weekend.", expectedAnswer: "is not charging" },
+                        { type: "text", label: "2. We ___ (not travel) internationally this year because of budget constraints.", expectedAnswer: "are not traveling" },
+                        { type: "text", label: "3. My son ___ (not listen) to my advice about his college applications.", expectedAnswer: "is not listening" },
                     ],
                 },
             ],
@@ -216,9 +216,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 3: Ask About Right Now",
                     instructions: "Form questions with am/is/are + subject + verb-ing.",
                     items: [
-                        { type: "text", label: "1. ___ you ___ (go) to the store today?", expectedAnswer: "Are you going" },
-                        { type: "text", label: "2. ___ she ___ (make) coffee for everyone?", expectedAnswer: "Is she making" },
-                        { type: "text", label: "3. ___ they ___ (watch) the movie right now?", expectedAnswer: "Are they watching" },
+                        { type: "text", label: "1. ___ the library ___ (offer) free workshops this month?", expectedAnswer: "Is the library offering" },
+                        { type: "text", label: "2. ___ your grandparents ___ (visit) from overseas next week?", expectedAnswer: "Are your grandparents visiting" },
+                        { type: "text", label: "3. ___ the city ___ (repair) the sidewalks in our neighborhood?", expectedAnswer: "Is the city repairing" },
                     ],
                 },
             ],
@@ -273,12 +273,12 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Pick the sentence that shows a temporary situation (not permanent).",
             options: [
-                { value: "a", label: "She works at the restaurant." },
-                { value: "b", label: "She is working the morning shift this week." },
-                { value: "c", label: "She worked at the restaurant last year." },
+                { value: "a", label: "My uncle lives in Canada." },
+                { value: "b", label: "My uncle is living in a hotel while his house is being renovated." },
+                { value: "c", label: "My uncle lived in Canada last decade." },
             ],
             correctAnswer: "b",
-            explanation: "Present Continuous fits temporary/short-term arrangements: is working the morning shift this week.",
+            explanation: "Present Continuous fits temporary/short-term arrangements: is living in a hotel while his house is being renovated.",
         },
     ],
 };
