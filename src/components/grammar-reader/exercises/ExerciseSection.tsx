@@ -24,16 +24,21 @@ export function ExerciseSection({
     const [submitted, setSubmitted] = useState(false);
     const [results, setResults] = useState<Record<number, boolean>>({});
 
+    // Normalize answer: lowercase, trim, and replace multiple spaces with single space
+    const normalizeAnswer = (answer: string) => {
+        return answer.toLowerCase().trim().replace(/\s+/g, ' ');
+    };
+
     const handleCheck = () => {
         const newResults: Record<number, boolean> = {};
         exercise.items.forEach((item, index) => {
-            const userAnswer = (answers[index] || "").toLowerCase().trim();
+            const userAnswer = normalizeAnswer(answers[index] || "");
 
             if (item.type === "word-scramble") {
-                const correctAnswer = item.correctAnswer.toLowerCase().trim();
+                const correctAnswer = normalizeAnswer(item.correctAnswer);
                 newResults[index] = userAnswer === correctAnswer;
             } else {
-                const expectedAnswer = (item.expectedAnswer || "").toLowerCase().trim();
+                const expectedAnswer = normalizeAnswer(item.expectedAnswer || "");
                 newResults[index] = userAnswer === expectedAnswer;
             }
         });
@@ -68,6 +73,9 @@ export function ExerciseSection({
                 {exercise.instructions && (
                     <p className="text-sm text-text-muted italic">{exercise.instructions}</p>
                 )}
+                <p className="text-xs text-text-muted mt-2 bg-bg-light px-3 py-2 rounded border border-border inline-block">
+                    💡 Don't worry about capitalization or extra spaces - we'll handle that for you!
+                </p>
             </div>
 
             <div className="space-y-4">
