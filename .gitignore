@@ -60,3 +60,17 @@ prisma/dev.db-journal
 
 # playwright MCP artifacts
 .playwright-mcp/
+
+# utility scripts and one-offs
+check-*.js
+reset-*.js
+*-password.js
+
+# QR codes and images not in public/
+qrcode_*.png
+
+# legacy projects (Flask app, etc.)
+ESOL_LMS/
+
+# temporary documentation
+vocab-comparison.md
