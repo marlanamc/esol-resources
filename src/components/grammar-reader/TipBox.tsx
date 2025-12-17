@@ -60,11 +60,11 @@ function highlightKeywords(text: string): React.ReactNode {
         if (match.index > lastIndex) {
             result.push(text.substring(lastIndex, match.index));
         }
-        // Add bold keyword
+        // Add highlighted keyword
         result.push(
-            <strong key={`bold-${i}`} className="font-bold text-text">
+            <span key={`bold-${i}`} className="font-bold text-warning">
                 {match.text}
-            </strong>
+            </span>
         );
         lastIndex = match.index + match.text.length;
     });
