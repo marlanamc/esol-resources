@@ -12,14 +12,14 @@ export const presentPerfectContent: InteractiveGuideContent = {
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
                     <h3 style="margin-top: 0; color: #6366f1; font-size: 1.25rem;">🎯 The Big Idea</h3>
-                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Perfect <strong style="color: #c86b51;">connects your past experiences to right now</strong>: projects you've done, habits that started before today, and fresh results you can still see.</p>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Present Perfect <strong style="color: #c86b51;">connects your past experiences to right now</strong>: places you've been, things you've done, changes that happened and you can still see the results.</p>
                 </div>
 
                 <h3>Real-Life Uses</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): “I’ve led three product launches.”</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: “She has worked remotely since 2021.”</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: “We’ve just deployed the fix—it’s live.”</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): "I've been to Paris three times."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: "She has lived here since 2021."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: "I've just finished my homework—finally!"</li>
                 </ul>
 
                 <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
@@ -34,7 +34,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"She has finished the report, so it’s ready to send."',
+                            label: '"I have just finished my homework, so I can go out now."',
                             options: [
                                 { value: "yes", label: "Yes, present result" },
                                 { value: "no", label: "No, finished past with time" },
@@ -52,7 +52,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We have worked here since 2020."',
+                            label: '"We have lived here since 2020."',
                             options: [
                                 { value: "yes", label: "Yes, started in past, continues now" },
                                 { value: "no", label: "No, only past" },
@@ -80,11 +80,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Things you've done at some point in life (no exact time given)",
                     examples: [
                         {
-                            sentence: "I <strong>have led</strong> three product launches.",
+                            sentence: "I <strong>have been</strong> to Paris three times.",
                             explanation: "✓ Experience without a specific date",
                         },
                         {
-                            sentence: "She <strong>has never tried</strong> sushi, but she <strong>has tasted</strong> every office snack.",
+                            sentence: "She <strong>has never tried</strong> sushi, but she <strong>has eaten</strong> pizza 100 times.",
                             explanation: "✓ 'Never' shows zero experience up to now",
                         },
                     ],
@@ -94,11 +94,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Started before now and still true (use 'for' or 'since')",
                     examples: [
                         {
-                            sentence: "I <strong>have worked</strong> remotely <strong>since 2021</strong>.",
-                            explanation: "✓ Started in 2021 and still working from home",
+                            sentence: "I <strong>have lived</strong> in this apartment <strong>since 2021</strong>.",
+                            explanation: "✓ Started in 2021 and still living there",
                         },
                         {
-                            sentence: "He <strong>has managed</strong> our support team <strong>for five years</strong>.",
+                            sentence: "He <strong>has studied</strong> English <strong>for five years</strong>.",
                             explanation: "✓ Duration that reaches now",
                         },
                     ],
@@ -108,11 +108,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Just happened and we see the result now (use 'just', 'already', 'yet')",
                     examples: [
                         {
-                            sentence: "We <strong>have just deployed</strong> the fix—refresh the page.",
+                            sentence: "I <strong>have just finished</strong> my homework—finally!",
                             explanation: "✓ Result is visible now",
                         },
                         {
-                            sentence: "She <strong>has already sent</strong> the proposal.",
+                            sentence: "She <strong>has already eaten</strong> all the cookies.",
                             explanation: "✓ Done earlier than expected",
                         },
                     ],
@@ -122,7 +122,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Repeated actions up to now",
                     examples: [
                         {
-                            sentence: "I <strong>have restarted</strong> the router <strong>four times today</strong>.",
+                            sentence: "I <strong>have watched</strong> that show <strong>five times</strong> and I still cry at the ending.",
                             explanation: "✓ Many times in the current time period",
                         },
                     ],
@@ -132,12 +132,12 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Something happened → we see the result NOW",
                     examples: [
                         {
-                            sentence: "I <strong>have lost</strong> my badge, so security won't let me in.",
-                            explanation: "PAST: lost badge → NOW: can't enter",
+                            sentence: "I <strong>have lost</strong> my keys again—third time this month!",
+                            explanation: "PAST: lost keys → NOW: can't find them",
                         },
                         {
-                            sentence: "He <strong>has spilled</strong> coffee on the keyboard, and it's not typing now.",
-                            explanation: "PAST: spill → NOW: broken keyboard",
+                            sentence: "Someone <strong>has eaten</strong> my leftovers, and now I have nothing for lunch.",
+                            explanation: "PAST: ate the food → NOW: hungry with no lunch",
                         },
                     ],
                 },

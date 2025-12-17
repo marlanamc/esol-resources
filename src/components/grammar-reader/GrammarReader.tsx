@@ -228,7 +228,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     return (
         <div className="grammar-reader-container min-h-screen bg-bg">
             {/* Main Content Container - Everything in one card */}
-            <div className="container mx-auto px-4 py-4">
+            <div className="container mx-auto px-4 py-4 pb-24 md:pb-4">
                 <div className="grammar-reader-split-screen bg-white rounded-xl shadow-lg border border-border overflow-hidden">
                     {/* Compact Header: Breadcrumb + Progress + TOC */}
                     <div className="border-b border-border bg-bg-light">
@@ -399,7 +399,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <button
                                 onClick={handlePrevious}
                                 disabled={!showQuiz && isFirstSection}
-                                className="fixed left-4 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-border hover:border-primary hover:bg-primary hover:text-white transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-border disabled:hover:text-text"
+                                className="fixed left-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-border hover:border-primary hover:bg-primary hover:text-white transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-border disabled:hover:text-text"
                                 aria-label="Previous section"
                             >
                                 <svg
@@ -425,7 +425,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         <button
                             onClick={handleNext}
                             disabled={showQuiz && !content.miniQuiz}
-                            className="fixed right-4 top-1/2 -translate-y-1/2 z-50 w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark hover:scale-110 transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="fixed right-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark hover:scale-110 transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             aria-label="Next section"
                         >
                             <svg
