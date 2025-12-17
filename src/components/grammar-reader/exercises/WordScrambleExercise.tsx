@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Lightbulb, RotateCcw } from "lucide-react";
 import type { ExerciseItem } from "@/types/activity";
@@ -22,27 +22,56 @@ export function WordScrambleExercise({
     submitted,
     onChange,
 }: WordScrambleExerciseProps) {
-    const [selectedWords, setSelectedWords] = useState<Set<number>>(new Set());
+    const itemKey = useMemo(
+        () => `${item.label}__${item.correctAnswer}__${item.words.join(" ")}`,
+        [item.label, item.correctAnswer, item.words]
+    );
+
+    const [scrambledIndices, setScrambledIndices] = useState<number[]>([]);
+    const [selectedOrder, setSelectedOrder] = useState<number[]>([]);
+
+    const isSelected = useMemo(() => new Set(selectedOrder), [selectedOrder]);
+
+    const shuffleIndices = (length: number) => {
+        const indices = Array.from({ length }, (_, i) => i);
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        // Avoid showing the correct order.
+        if (indices.every((v, i) => v === i) && indices.length > 1) {
+            [indices[0], indices[1]] = [indices[1], indices[0]];
+        }
+        return indices;
+    };
+
+    useEffect(() => {
+        setScrambledIndices(shuffleIndices(item.words.length));
+        setSelectedOrder([]);
+        onChange("");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [itemKey]);
+
+    // When the parent resets the answer (Try Again), clear selections too.
+    useEffect(() => {
+        if (!submitted && !userAnswer && selectedOrder.length > 0) {
+            setSelectedOrder([]);
+        }
+    }, [submitted, userAnswer, selectedOrder.length]);
 
     const handleWordClick = (index: number) => {
         if (submitted) return;
 
-        const newSelected = new Set(selectedWords);
-        if (newSelected.has(index)) {
-            newSelected.delete(index);
-        } else {
-            newSelected.add(index);
-        }
-        setSelectedWords(newSelected);
-
-        // Build sentence from selected words in order
-        const selected = Array.from(newSelected).sort((a, b) => a - b);
-        const sentence = selected.map((i) => item.words[i]).join(" ");
-        onChange(sentence);
+        setSelectedOrder((current) => {
+            const alreadySelected = current.includes(index);
+            const next = alreadySelected ? current.filter((i) => i !== index) : [...current, index];
+            onChange(next.map((i) => item.words[i]).join(" "));
+            return next;
+        });
     };
 
     const handleClear = () => {
-        setSelectedWords(new Set());
+        setSelectedOrder([]);
         onChange("");
     };
 
@@ -61,21 +90,18 @@ export function WordScrambleExercise({
             <div className="word-cards bg-bg-light border-2 border-dashed border-border rounded-lg p-4 mb-4">
                 <p className="text-xs text-text-muted mb-3">Click words to select them in order:</p>
                 <div className="flex flex-wrap gap-2">
-                    {item.words.map((word, index) => {
-                        const isSelected = selectedWords.has(index);
-                        const selectionOrder = isSelected
-                            ? Array.from(selectedWords)
-                                .sort((a, b) => a - b)
-                                .indexOf(index) + 1
-                            : null;
+                    {(scrambledIndices.length ? scrambledIndices : item.words.map((_, i) => i)).map((originalIndex, index) => {
+                        const word = item.words[originalIndex];
+                        const selectedPos = selectedOrder.indexOf(originalIndex);
+                        const selectionOrder = selectedPos !== -1 ? selectedPos + 1 : null;
 
                         return (
                             <motion.button
                                 key={index}
                                 type="button"
-                                onClick={() => handleWordClick(index)}
+                                onClick={() => handleWordClick(originalIndex)}
                                 disabled={submitted}
-                                className={`word-card px-4 py-2 rounded-lg font-semibold text-sm transition-all ${isSelected
+                                className={`word-card px-4 py-2 rounded-lg font-semibold text-sm transition-all ${isSelected.has(originalIndex)
                                         ? "bg-primary text-white shadow-md border-2 border-primary"
                                         : "bg-white text-primary border-2 border-primary"
                                     } ${submitted ? "cursor-not-allowed opacity-60" : "cursor-pointer"

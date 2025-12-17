@@ -66,7 +66,7 @@ export function ExplanationPanel({
 
                 {/* Examples */}
                 {section.examples && section.examples.length > 0 && (
-                    <ExampleBox examples={section.examples} />
+                    <ExampleBox examples={section.examples} formulaParts={section.formula} />
                 )}
 
                 {/* Comparison Table */}

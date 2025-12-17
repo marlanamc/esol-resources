@@ -730,6 +730,21 @@ kbd {
   box-shadow: var(--shadow-sm);
 }
 
+.example-box .eg-subject {
+  color: #1e40af; /* blue-800 */
+  font-weight: 700;
+}
+
+.example-box .eg-helper {
+  color: #6d28d9; /* purple-700 */
+  font-weight: 700;
+}
+
+.example-box .eg-verb {
+  color: #c2410c; /* orange-700 */
+  font-weight: 700;
+}
+
 .formula-box {
   background: white;
   border: 2px solid var(--color-border);
