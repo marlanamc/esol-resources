@@ -1,10 +1,9 @@
 // Service Worker for Class Companion PWA
 // IMPORTANT: Increment version number with each deployment to trigger updates
 // Example: v1 -> v2 -> v3, etc.
-const CACHE_NAME = 'class-companion-v2';
+const CACHE_NAME = 'class-companion-v3';
 const urlsToCache = [
   '/',
-  '/dashboard',
   '/login',
   '/manifest.json',
 ];
@@ -65,6 +64,12 @@ self.addEventListener('fetch', (event) => {
 
   // Skip API requests (always use network)
   if (event.request.url.includes('/api/')) {
+    return;
+  }
+
+  // Skip dashboard routes (need fresh data with current date)
+  if (event.request.url.includes('/dashboard')) {
+    event.respondWith(fetch(event.request));
     return;
   }
 
