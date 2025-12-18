@@ -103,6 +103,28 @@ After seeding, you can log in with:
 - **Achievement**: Unlockable badges and milestones
 - **UserAchievement**: Tracks which achievements each user has earned
 
+## Deployment
+
+### Updating Content for Students
+
+When you add new activities or content, students using the PWA need to receive the update. The app checks for updates every 5 minutes, but you must increment the cache version:
+
+1. Open `public/sw.js`
+2. Update the `CACHE_VERSION` constant:
+```javascript
+const CACHE_VERSION = '2024-12-18-v1'; // Change date or increment version
+```
+3. Commit and deploy
+
+Students will see an "Update Available" notification within 5 minutes of opening the app. After 2 dismissals, a full-screen modal ensures they update.
+
+### Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+- `POSTGRES_URL` - Database connection string
+- `NEXTAUTH_SECRET` - Auth secret (generate with `openssl rand -base64 32`)
+- `CRON_SECRET` - Secret for weekly points reset cron job
+
 ## Development
 
 ### Database Migrations
