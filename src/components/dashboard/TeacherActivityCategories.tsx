@@ -135,49 +135,119 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                     subCategories: [
                         {
                             name: 'Simple',
-                            activities: activities.filter(a =>
-                                a.title?.toLowerCase().includes('simple') &&
-                                !a.title?.toLowerCase().includes('vs') &&
-                                !a.title?.toLowerCase().includes('review') &&
-                                a.category === 'grammar'
-                            )
+                            activities: activities
+                                .filter(a => {
+                                    const title = a.title?.toLowerCase() || '';
+                                    // Include Simple tenses OR Simple Tenses Review
+                                    return title.includes('simple') &&
+                                        !title.includes('vs') &&
+                                        a.category === 'grammar';
+                                })
+                                .sort((a, b) => {
+                                    const titleA = a.title?.toLowerCase() || '';
+                                    const titleB = b.title?.toLowerCase() || '';
+                                    const order = ['present', 'past', 'future', 'review'];
+                                    const getOrder = (title: string) => {
+                                        for (let i = 0; i < order.length; i++) {
+                                            if (title.includes(order[i])) return i;
+                                        }
+                                        return order.length;
+                                    };
+                                    return getOrder(titleA) - getOrder(titleB);
+                                })
                         },
                         {
                             name: 'Continuous',
-                            activities: activities.filter(a =>
-                                a.title?.toLowerCase().includes('continuous') &&
-                                !a.title?.toLowerCase().includes('vs') &&
-                                !a.title?.toLowerCase().includes('review') &&
-                                !a.title?.toLowerCase().includes('perfect continuous') &&
-                                a.category === 'grammar'
-                            )
+                            activities: activities
+                                .filter(a => {
+                                    const title = a.title?.toLowerCase() || '';
+                                    // Include Continuous tenses (not perfect continuous) OR Continuous Tenses Review
+                                    const isContinuous = title.includes('continuous') &&
+                                        !title.includes('perfect continuous') &&
+                                        !title.includes('vs');
+                                    return isContinuous && a.category === 'grammar';
+                                })
+                                .sort((a, b) => {
+                                    const titleA = a.title?.toLowerCase() || '';
+                                    const titleB = b.title?.toLowerCase() || '';
+                                    const order = ['present', 'past', 'future', 'review'];
+                                    const getOrder = (title: string) => {
+                                        for (let i = 0; i < order.length; i++) {
+                                            if (title.includes(order[i])) return i;
+                                        }
+                                        return order.length;
+                                    };
+                                    return getOrder(titleA) - getOrder(titleB);
+                                })
                         },
                         {
                             name: 'Perfect',
-                            activities: activities.filter(a =>
-                                a.title?.toLowerCase().includes('perfect') &&
-                                !a.title?.toLowerCase().includes('continuous') &&
-                                !a.title?.toLowerCase().includes('vs') &&
-                                !a.title?.toLowerCase().includes('review') &&
-                                a.category === 'grammar'
-                            )
+                            activities: activities
+                                .filter(a => {
+                                    const title = a.title?.toLowerCase() || '';
+                                    // Include Perfect tenses (not continuous) OR Perfect Tenses Review
+                                    const isPerfectTense = title.includes('perfect') &&
+                                        !title.includes('continuous') &&
+                                        !title.includes('vs');
+                                    const isPerfectReview = title.includes('perfect tenses review') &&
+                                        !title.includes('continuous');
+                                    return (isPerfectTense || isPerfectReview) && a.category === 'grammar';
+                                })
+                                .sort((a, b) => {
+                                    const titleA = a.title?.toLowerCase() || '';
+                                    const titleB = b.title?.toLowerCase() || '';
+                                    const order = ['present', 'past', 'future', 'review'];
+                                    const getOrder = (title: string) => {
+                                        for (let i = 0; i < order.length; i++) {
+                                            if (title.includes(order[i])) return i;
+                                        }
+                                        return order.length;
+                                    };
+                                    return getOrder(titleA) - getOrder(titleB);
+                                })
                         },
                         {
                             name: 'Perfect Continuous',
-                            activities: activities.filter(a =>
-                                a.title?.toLowerCase().includes('perfect continuous') &&
-                                !a.title?.toLowerCase().includes('review') &&
-                                a.category === 'grammar'
-                            )
+                            activities: activities
+                                .filter(a => {
+                                    const title = a.title?.toLowerCase() || '';
+                                    // Include Perfect Continuous tenses OR Perfect Continuous Review
+                                    return title.includes('perfect continuous') && a.category === 'grammar';
+                                })
+                                .sort((a, b) => {
+                                    const titleA = a.title?.toLowerCase() || '';
+                                    const titleB = b.title?.toLowerCase() || '';
+                                    const order = ['present', 'past', 'future', 'review'];
+                                    const getOrder = (title: string) => {
+                                        for (let i = 0; i < order.length; i++) {
+                                            if (title.includes(order[i])) return i;
+                                        }
+                                        return order.length;
+                                    };
+                                    return getOrder(titleA) - getOrder(titleB);
+                                })
                         },
                         {
                             name: 'Mixed/All Tenses',
-                            activities: activities.filter(a =>
-                                (a.title?.toLowerCase().includes('vs') ||
-                                    a.title?.toLowerCase().includes('review') ||
-                                    a.title?.toLowerCase().includes('tenses')) &&
-                                a.category === 'grammar'
-                            )
+                            activities: activities.filter(a => {
+                                const title = a.title?.toLowerCase() || '';
+                                // Exclude all tense-specific reviews (they belong in their own categories)
+                                const isSimpleReview = title.includes('simple') && title.includes('review');
+                                const isContinuousReview = title.includes('continuous') && title.includes('review') && !title.includes('perfect');
+                                const isPerfectReview = title.includes('perfect') && title.includes('review');
+                                const isPerfectContinuousReview = title.includes('perfect continuous') && title.includes('review');
+
+                                return (
+                                    (title.includes('vs') ||
+                                        title.includes('review') ||
+                                        title.includes('tenses')) &&
+                                    a.category === 'grammar' &&
+                                    !isSimpleReview &&
+                                    !isContinuousReview &&
+                                    !isPerfectReview &&
+                                    !isPerfectContinuousReview
+                                );
+                            })
                         },
                         {
                             name: 'Verb Forms',

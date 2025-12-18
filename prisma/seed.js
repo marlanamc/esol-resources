@@ -367,6 +367,180 @@ async function main() {
         },
     });
 
+    // Create Future Perfect Guide
+    const futurePerfectGuide = await prisma.activity.upsert({
+        where: { id: 'future-perfect-guide' },
+        update: {
+            title: 'Future Perfect Guide',
+            description: 'Learn Future Perfect for actions that will be complete before a future deadline or point in time.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/future-perfect'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'future-perfect-guide',
+            title: 'Future Perfect Guide',
+            description: 'Learn Future Perfect for actions that will be complete before a future deadline or point in time.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/future-perfect'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Future Perfect guide added:', futurePerfectGuide.title);
+
+    // Create Present Perfect Continuous Guide
+    const presentPerfectContinuousGuide = await prisma.activity.upsert({
+        where: { id: 'present-perfect-continuous-guide' },
+        update: {
+            title: 'Present Perfect Continuous Guide',
+            description: 'Learn Present Perfect Continuous for emphasizing duration of ongoing actions up to now.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/present-perfect-continuous'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'present-perfect-continuous-guide',
+            title: 'Present Perfect Continuous Guide',
+            description: 'Learn Present Perfect Continuous for emphasizing duration of ongoing actions up to now.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/present-perfect-continuous'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Present Perfect Continuous guide added:', presentPerfectContinuousGuide.title);
+
+    // Create Past Perfect Continuous Guide
+    const pastPerfectContinuousGuide = await prisma.activity.upsert({
+        where: { id: 'past-perfect-continuous-guide' },
+        update: {
+            title: 'Past Perfect Continuous Guide',
+            description: 'Master Past Perfect Continuous for showing duration of actions before another past event.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'advanced',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/past-perfect-continuous'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'past-perfect-continuous-guide',
+            title: 'Past Perfect Continuous Guide',
+            description: 'Master Past Perfect Continuous for showing duration of actions before another past event.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'advanced',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/past-perfect-continuous'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Past Perfect Continuous guide added:', pastPerfectContinuousGuide.title);
+
+    // Create Future Perfect Continuous Guide
+    const futurePerfectContinuousGuide = await prisma.activity.upsert({
+        where: { id: 'future-perfect-continuous-guide' },
+        update: {
+            title: 'Future Perfect Continuous Guide',
+            description: 'Learn Future Perfect Continuous for duration of actions up to a future point (milestones and anniversaries).',
+            type: 'guide',
+            category: 'grammar',
+            level: 'advanced',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/future-perfect-continuous'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'future-perfect-continuous-guide',
+            title: 'Future Perfect Continuous Guide',
+            description: 'Learn Future Perfect Continuous for duration of actions up to a future point (milestones and anniversaries).',
+            type: 'guide',
+            category: 'grammar',
+            level: 'advanced',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/future-perfect-continuous'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Future Perfect Continuous guide added:', futurePerfectContinuousGuide.title);
+
+    // Create Perfect Tenses Review Guide
+    const perfectTensesReviewGuide = await prisma.activity.upsert({
+        where: { id: 'perfect-tenses-review-guide' },
+        update: {
+            title: 'Perfect Tenses Review - Complete Guide',
+            description: 'Comprehensive review of Present Perfect, Past Perfect, and Future Perfect with commonly confused tense comparisons.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/perfect-tenses-review'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'perfect-tenses-review-guide',
+            title: 'Perfect Tenses Review - Complete Guide',
+            description: 'Comprehensive review of Present Perfect, Past Perfect, and Future Perfect with commonly confused tense comparisons.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/perfect-tenses-review'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Perfect Tenses Review guide added:', perfectTensesReviewGuide.title);
+
+    // Create Perfect Continuous Tenses Review Guide
+    const perfectContinuousTensesReviewGuide = await prisma.activity.upsert({
+        where: { id: 'perfect-continuous-tenses-review-guide' },
+        update: {
+            title: 'Perfect Continuous Tenses Review - Complete Guide',
+            description: 'Comprehensive review of all Perfect Continuous tenses with duration focus and common mistakes.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'advanced',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/perfect-continuous-tenses-review'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'perfect-continuous-tenses-review-guide',
+            title: 'Perfect Continuous Tenses Review - Complete Guide',
+            description: 'Comprehensive review of all Perfect Continuous tenses with duration focus and common mistakes.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'advanced',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/perfect-continuous-tenses-review'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Perfect Continuous Tenses Review guide added:', perfectContinuousTensesReviewGuide.title);
+
     // Update Vocab September Flashcards
     const vocabSeptemberFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-september-flashcards' },

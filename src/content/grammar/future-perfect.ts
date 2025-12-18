@@ -1,0 +1,565 @@
+import type { InteractiveGuideContent } from "@/types/activity";
+
+export const futurePerfectContent: InteractiveGuideContent = {
+    type: "interactive-guide",
+    tableOfContents: true,
+    sections: [
+        // Introduction Section
+        {
+            id: "introduction",
+            title: "Future Perfect: What Will Be Done By Then",
+            icon: "📚",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #06b6d4; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Future Perfect looks ahead to a point in the future and says: <strong style="color: #06b6d4;">"By then, this action will be complete."</strong> It's like standing in the future and looking back at what's done.</p>
+                </div>
+
+                <h3>Real-Life Uses</h3>
+                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Deadlines</strong>: "I will have finished the order by 5 PM."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Milestones</strong>: "By next year, she will have worked here for 10 years."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">✓ <strong>Predictions about completion</strong>: "They will have left by the time we arrive."</li>
+                </ul>
+
+                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #06b6d4; font-size: 1.125rem;">will have + past participle</span></p>
+                </div>
+            `,
+        },
+
+        // Meaning & Usage Section
+        {
+            id: "meaning-usage",
+            stepNumber: 1,
+            title: "When Real Life Needs Future Perfect",
+            icon: "⭐",
+            explanation: `
+                <h3>The Key Question: "Will it be done BY THEN?"</h3>
+                <p>Future Perfect always involves a <strong>deadline</strong> or <strong>future reference point</strong>. You're saying an action will be complete before that point.</p>
+            `,
+            usageMeanings: [
+                {
+                    title: "⏰ 1. Actions Complete Before a Deadline",
+                    description: "Something will be finished before a specific future time",
+                    examples: [
+                        {
+                            sentence: "I <strong>will have finished</strong> my shift <strong>by 6 PM</strong>.",
+                            explanation: "✓ Deadline: 6 PM. Action complete before then.",
+                        },
+                        {
+                            sentence: "She <strong>will have cleaned</strong> the kitchen <strong>before the manager arrives</strong>.",
+                            explanation: "✓ Deadline: manager's arrival. Kitchen done first.",
+                        },
+                        {
+                            sentence: "They <strong>will have prepared</strong> all the orders <strong>by lunchtime</strong>.",
+                            explanation: "✓ Deadline: lunchtime. Orders ready before.",
+                        },
+                    ],
+                },
+                {
+                    title: "📅 2. Duration Up to a Future Point",
+                    description: "How long something will have lasted by a future time",
+                    examples: [
+                        {
+                            sentence: "By next month, I <strong>will have worked</strong> here <strong>for five years</strong>.",
+                            explanation: "✓ Duration reaching a milestone",
+                        },
+                        {
+                            sentence: "By December, she <strong>will have lived</strong> in this city <strong>for a decade</strong>.",
+                            explanation: "✓ Length of time up to a future point",
+                        },
+                    ],
+                },
+                {
+                    title: "🔮 3. Predictions About Completion",
+                    description: "Guessing what will be done by a certain time",
+                    examples: [
+                        {
+                            sentence: "The bus <strong>will have left</strong> by the time you get there.",
+                            explanation: "✓ Prediction: bus gone before you arrive",
+                        },
+                        {
+                            sentence: "Don't worry—they <strong>will have eaten</strong> by now.",
+                            explanation: "✓ Assumption about what's already done",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 The 'By' Clue",
+                content: "Future Perfect almost always uses 'by' (by tomorrow, by next week, by the time...). If you see 'by + future time,' think Future Perfect!",
+            },
+            exercises: [
+                {
+                    id: "ex-usage-fp-1",
+                    title: "Practice: Why Future Perfect Here?",
+                    instructions: "Choose the best reason we use Future Perfect in each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I will have finished the report by Friday."',
+                            options: [
+                                { value: "deadline", label: "Action complete before a deadline" },
+                                { value: "habit", label: "Regular habit" },
+                                { value: "now", label: "Happening right now" },
+                            ],
+                            expectedAnswer: "deadline",
+                        },
+                        {
+                            type: "radio",
+                            label: '"By next year, she will have worked here for 20 years."',
+                            options: [
+                                { value: "duration", label: "Duration up to a future point" },
+                                { value: "prediction", label: "Simple prediction" },
+                                { value: "past", label: "Past action" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The store will have closed by the time we get there."',
+                            options: [
+                                { value: "prediction", label: "Prediction about completion" },
+                                { value: "schedule", label: "Fixed schedule" },
+                                { value: "habit", label: "Daily routine" },
+                            ],
+                            expectedAnswer: "prediction",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Timeline Visualization
+        {
+            id: "timeline",
+            stepNumber: 2,
+            title: "Timeline: Looking Back from the Future",
+            icon: "⏰",
+            explanation: `
+                <h3>Understanding Future Perfect Visually</h3>
+                <p>Imagine standing at a future point and looking back. The action is already complete from that perspective.</p>
+
+                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                    <h4 style="text-align: center; margin-top: 0;">Timeline: Action Complete Before Future Point</h4>
+
+                    <div style="display: flex; align-items: center; justify-content: space-around; position: relative; margin: 2rem 0;">
+                        <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 4px; background: linear-gradient(to right, #cbd5e1, #06b6d4, #a855f7); transform: translateY(-50%); z-index: 0;"></div>
+
+                        <div style="position: relative; z-index: 1; text-align: center;">
+                            <div style="width: 70px; height: 70px; border-radius: 50%; background: #cbd5e1; color: #1e293b; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; border: 4px solid white; margin: 0 auto;">
+                                NOW
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: #64748b;">Present</div>
+                        </div>
+
+                        <div style="position: relative; z-index: 1; text-align: center;">
+                            <div style="width: 80px; height: 80px; border-radius: 50%; background: #06b6d4; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3); margin: 0 auto; text-align: center; padding: 0.25rem;">
+                                ACTION<br/>DONE
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: #06b6d4; font-weight: 600;">Completed</div>
+                        </div>
+
+                        <div style="position: relative; z-index: 1; text-align: center;">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #a855f7; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3); margin: 0 auto; text-align: center; padding: 0.25rem;">
+                                BY<br/>THEN
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.75rem; color: #a855f7; font-weight: 600;">Future Point</div>
+                        </div>
+                    </div>
+
+                    <div style="background: #f0fdfa; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> I <span style="color: #06b6d4; font-weight: 600;">will have finished</span> my shift <span style="color: #a855f7; font-weight: 600;">by 6 PM</span>.</p>
+                    </div>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 The Key Difference",
+                content: "Future Simple (will finish) = action happens at future time. Future Perfect (will have finished) = action COMPLETE BEFORE future time.",
+            },
+        },
+
+        // Positive Form
+        {
+            id: "step-positive",
+            stepNumber: 3,
+            title: "Positive Form",
+            explanation: `
+                <h3>The Formula</h3>
+                <p>Future Perfect is formed with: <strong>will have + past participle</strong></p>
+                <p>Same for all subjects—no changes needed!</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            I <span style="color: #06b6d4; font-weight: 600;">will have finished</span> my shift by 6 PM.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            She <span style="color: #06b6d4; font-weight: 600;">will have cleaned</span> the equipment before the next shift.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            They <span style="color: #06b6d4; font-weight: 600;">will have completed</span> the order by noon.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            By next year, we <span style="color: #06b6d4; font-weight: 600;">will have saved</span> enough for a vacation.
+                        </div>
+                    </div>
+                </div>
+            `,
+            formula: [
+                { text: "Subject", type: "subject" },
+                { text: "+", type: "other" },
+                { text: "will have", type: "verb" },
+                { text: "+", type: "other" },
+                { text: "past participle", type: "verb" },
+            ],
+            tipBox: {
+                title: "💡 Contraction",
+                content: "In speech, we often contract: I'll have, you'll have, she'll have, etc.",
+            },
+            exercises: [
+                {
+                    id: "ex-positive-1",
+                    title: "Exercise 1: Complete with Future Perfect",
+                    instructions: "Use will have + past participle to show actions complete before a deadline.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. By the time you arrive, I ___ (cook) dinner.",
+                            expectedAnswer: "will have cooked",
+                        },
+                        {
+                            type: "text",
+                            label: "2. She ___ (finish) her training by next month.",
+                            expectedAnswer: "will have finished",
+                        },
+                        {
+                            type: "text",
+                            label: "3. They ___ (leave) by the time we get there.",
+                            expectedAnswer: "will have left",
+                        },
+                        {
+                            type: "text",
+                            label: "4. By December, he ___ (work) here for 5 years.",
+                            expectedAnswer: "will have worked",
+                        },
+                        {
+                            type: "text",
+                            label: "5. The factory ___ (produce) 1000 units by Friday.",
+                            expectedAnswer: "will have produced",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Negative Form
+        {
+            id: "step-negative",
+            stepNumber: 4,
+            title: "Negative Form",
+            explanation: `
+                <h3>How to Make Negative Sentences</h3>
+                <p>Use <strong>will not have (won't have)</strong> + past participle.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            I <span style="color: #06b6d4; font-weight: 600;">won't have finished</span> by 5 PM—there's too much work.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            She <span style="color: #06b6d4; font-weight: 600;">won't have arrived</span> by the time the meeting starts.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            They <span style="color: #06b6d4; font-weight: 600;">won't have completed</span> the repairs by Monday.
+                        </div>
+                    </div>
+                </div>
+            `,
+            formula: [
+                { text: "Subject", type: "subject" },
+                { text: "+", type: "other" },
+                { text: "won't have", type: "verb" },
+                { text: "+", type: "other" },
+                { text: "past participle", type: "verb" },
+            ],
+            exercises: [
+                {
+                    id: "ex-negative-1",
+                    title: "Exercise 2: Make It Negative",
+                    instructions: "Use won't have + past participle.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. I ___ (not finish) the order by closing time.",
+                            expectedAnswer: "won't have finished",
+                        },
+                        {
+                            type: "text",
+                            label: "2. She ___ (not arrive) before the bus leaves.",
+                            expectedAnswer: "won't have arrived",
+                        },
+                        {
+                            type: "text",
+                            label: "3. They ___ (not save) enough money by summer.",
+                            expectedAnswer: "won't have saved",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Question Form
+        {
+            id: "step-questions",
+            stepNumber: 5,
+            title: "Question Form",
+            explanation: `
+                <h3>How to Make Questions</h3>
+                <p>Put <strong>Will</strong> at the beginning: Will + subject + have + past participle?</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> you <span style="color: #06b6d4; font-weight: 600;">have finished</span> by 6 PM?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> she <span style="color: #06b6d4; font-weight: 600;">have completed</span> the training by next week?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> they <span style="color: #06b6d4; font-weight: 600;">have left</span> by the time we arrive?
+                        </div>
+                    </div>
+                </div>
+            `,
+            formula: [
+                { text: "Will", type: "verb" },
+                { text: "+", type: "other" },
+                { text: "subject", type: "subject" },
+                { text: "+", type: "other" },
+                { text: "have + past participle", type: "verb" },
+                { text: "?", type: "other" },
+            ],
+            exercises: [
+                {
+                    id: "ex-questions-1",
+                    title: "Exercise 3: Ask About Completion",
+                    instructions: "Form questions with Will + subject + have + past participle.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. ___ you ___ (finish) by the time I get back?",
+                            expectedAnswer: "Will you have finished",
+                        },
+                        {
+                            type: "text",
+                            label: "2. ___ she ___ (complete) the order by noon?",
+                            expectedAnswer: "Will she have completed",
+                        },
+                        {
+                            type: "text",
+                            label: "3. ___ they ___ (arrive) before the store closes?",
+                            expectedAnswer: "Will they have arrived",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-1",
+                    title: "Exercise 4: Conjugation Practice",
+                    instructions: "Complete the conjugation chart for the verb 'finish' with the subject 'I'.",
+                    items: [
+                        { type: "text", label: "Affirmative: I ___ have finished", expectedAnswer: "will" },
+                        { type: "text", label: "Negative: I ___ have finished", expectedAnswer: "won't" },
+                        { type: "text", label: "Question: ___ I have finished?", expectedAnswer: "Will" },
+                    ],
+                },
+                {
+                    id: "ex-error-correction-1",
+                    title: "Exercise 5: Error Correction",
+                    instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. I will have finish the work by tomorrow.", expectedAnswer: "I will have finished the work by tomorrow" },
+                        { type: "text", label: "2. She will has completed the training by Friday.", expectedAnswer: "She will have completed the training by Friday" },
+                        { type: "text", label: "3. They won't have arrive by 6 PM.", expectedAnswer: "They won't have arrived by 6 PM" },
+                    ],
+                },
+            ],
+        },
+
+        // Common Mistakes Section
+        {
+            id: "common-mistakes",
+            title: "Common Mistakes: Future Perfect vs Other Tenses",
+            icon: "⚠️",
+            explanation: `
+                <h3>Don't Confuse These!</h3>
+                <p>Future Perfect is often confused with Future Simple and Present Perfect. Here's how to tell them apart:</p>
+            `,
+            comparison: {
+                title: "Future Perfect vs Future Simple",
+                leftLabel: "Future Perfect",
+                rightLabel: "Future Simple",
+                rows: [
+                    {
+                        label: "Meaning",
+                        left: "Action COMPLETE before a future point",
+                        right: "Action happens at a future time",
+                    },
+                    {
+                        label: "Time Focus",
+                        left: "BY a deadline (before)",
+                        right: "AT a time (when)",
+                    },
+                    {
+                        label: "Example",
+                        left: "I will have finished BY 6 PM. (done before 6)",
+                        right: "I will finish AT 6 PM. (finish happens at 6)",
+                    },
+                    {
+                        label: "Example",
+                        left: "She will have left by the time you arrive.",
+                        right: "She will leave when you arrive.",
+                    },
+                ],
+            },
+            exercises: [
+                {
+                    id: "ex-comparison-1",
+                    title: "Practice: Future Perfect or Future Simple?",
+                    instructions: "Choose the correct tense based on the meaning.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I ___ the report BY Friday." (complete before Friday)',
+                            options: [
+                                { value: "will have finished", label: "will have finished" },
+                                { value: "will finish", label: "will finish" },
+                            ],
+                            expectedAnswer: "will have finished",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I ___ the report ON Friday." (action happens Friday)',
+                            options: [
+                                { value: "will have finished", label: "will have finished" },
+                                { value: "will finish", label: "will finish" },
+                            ],
+                            expectedAnswer: "will finish",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The bus ___ by the time we get there." (already gone)',
+                            options: [
+                                { value: "will have left", label: "will have left" },
+                                { value: "will leave", label: "will leave" },
+                            ],
+                            expectedAnswer: "will have left",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The bus ___ at 3 PM." (scheduled departure)',
+                            options: [
+                                { value: "will have left", label: "will have left" },
+                                { value: "will leave", label: "will leave" },
+                            ],
+                            expectedAnswer: "will leave",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Summary
+        {
+            id: "summary",
+            title: "Summary: Key Points",
+            icon: "✓",
+            explanation: `
+                <h3>What You've Learned</h3>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>When to Use:</strong> Actions complete BEFORE a future deadline or point</li>
+                    <li><strong>Key Signal:</strong> "by" (by tomorrow, by next week, by the time...)</li>
+                    <li><strong>Positive:</strong> Subject + will have + past participle</li>
+                    <li><strong>Negative:</strong> Subject + won't have + past participle</li>
+                    <li><strong>Questions:</strong> Will + subject + have + past participle?</li>
+                    <li><strong>Common Time Words:</strong> by tomorrow, by next week, by the time, by then, before</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "🎯 Remember",
+                content: "Future Perfect = looking back from a future point. Ask: 'Will it be DONE by then?' If yes, use Future Perfect!",
+            },
+        },
+    ],
+
+    miniQuiz: [
+        {
+            id: "quiz-1",
+            question: "Which sentence correctly uses Future Perfect?",
+            options: [
+                { value: "a", label: "I will have finish the work by tomorrow." },
+                { value: "b", label: "I will have finished the work by tomorrow." },
+                { value: "c", label: "I will finished the work by tomorrow." },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Perfect: will have + past participle (finished).",
+        },
+        {
+            id: "quiz-2",
+            question: "Choose the correct negative form.",
+            options: [
+                { value: "a", label: "She won't have arrived by 6 PM." },
+                { value: "b", label: "She will haven't arrived by 6 PM." },
+                { value: "c", label: "She won't has arrived by 6 PM." },
+            ],
+            correctAnswer: "a",
+            explanation: "Negative: won't have + past participle.",
+        },
+        {
+            id: "quiz-3",
+            question: "Which question is correct?",
+            options: [
+                { value: "a", label: "Will you have finished by tomorrow?" },
+                { value: "b", label: "Will you has finished by tomorrow?" },
+                { value: "c", label: "Have you will finished by tomorrow?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question: Will + subject + have + past participle.",
+        },
+        {
+            id: "quiz-4",
+            question: "When do we use Future Perfect instead of Future Simple?",
+            options: [
+                { value: "a", label: "When the action happens AT a specific time" },
+                { value: "b", label: "When the action is complete BEFORE a deadline" },
+                { value: "c", label: "When talking about habits" },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Perfect = action complete BEFORE a future point. Future Simple = action happens AT a future time.",
+        },
+        {
+            id: "quiz-5",
+            question: "Choose the best sentence for: 'complete before the deadline'",
+            options: [
+                { value: "a", label: "I will finish the order by 5 PM." },
+                { value: "b", label: "I will have finished the order by 5 PM." },
+                { value: "c", label: "I finished the order by 5 PM." },
+            ],
+            correctAnswer: "b",
+            explanation: "'By 5 PM' signals a deadline → Future Perfect shows completion before that point.",
+        },
+    ],
+};

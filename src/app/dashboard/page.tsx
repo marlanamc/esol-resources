@@ -484,9 +484,24 @@ export default async function DashboardPage() {
                 currentStreak: true,
                 longestStreak: true,
                 points: true,
-                weeklyPoints: true,
             }
         });
+
+        // Calculate actual weekly points from PointsLedger (last 7 days)
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        
+        const weeklyPointsData = await prisma.pointsLedger.aggregate({
+            where: {
+                userId,
+                createdAt: { gte: oneWeekAgo },
+            },
+            _sum: {
+                points: true,
+            },
+        });
+        
+        const actualWeeklyPoints = weeklyPointsData._sum.points || 0;
 
         return (
             <div className="min-h-screen bg-bg">
@@ -526,14 +541,14 @@ export default async function DashboardPage() {
 
                             <div className="flex gap-3">
                                 {/* Weekly Points */}
-                                {currentUser && currentUser.weeklyPoints > 0 && (
+                                {actualWeeklyPoints > 0 && (
                                     <div className="bg-white border-2 border-primary/20 px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 group">
                                         <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                                             <StarIcon className="text-primary" size={20} />
                                         </div>
                                         <div>
                                             <div className="text-xs font-bold uppercase tracking-wide text-text-muted">This Week</div>
-                                            <div className="text-lg font-bold text-text">{currentUser.weeklyPoints} <span className="text-sm font-semibold text-text-muted">points</span></div>
+                                            <div className="text-lg font-bold text-text">{actualWeeklyPoints} <span className="text-sm font-semibold text-text-muted">points</span></div>
                                         </div>
                                     </div>
                                 )}
@@ -572,14 +587,14 @@ export default async function DashboardPage() {
                                     </div>
                                 )}
 
-                                {currentUser && currentUser.weeklyPoints > 0 && (
+                                {actualWeeklyPoints > 0 && (
                                     <div className="bg-white border-2 border-primary/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
                                         <div className="p-1.5 bg-primary/10 rounded-lg">
                                             <StarIcon className="text-primary" size={18} />
                                         </div>
                                         <div>
                                             <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">This Week</div>
-                                            <div className="text-base font-bold text-text">{currentUser.weeklyPoints} <span className="text-xs font-semibold text-text-muted">points</span></div>
+                                            <div className="text-base font-bold text-text">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">points</span></div>
                                         </div>
                                     </div>
                                 )}

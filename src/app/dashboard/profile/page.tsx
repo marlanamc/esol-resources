@@ -217,7 +217,7 @@ export default async function ProfilePage() {
                                 </div>
                                 <div>
                                     <h2 className="text-xl font-bold text-text">Activity Calendar</h2>
-                                    <p className="text-sm text-text-muted">Your activity over the last 12 weeks</p>
+                                    <p className="text-sm text-text-muted">Your recent activity</p>
                                 </div>
                             </div>
                             <StreakCalendar
