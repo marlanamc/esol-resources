@@ -124,21 +124,42 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "step-positive",
             stepNumber: 2,
             title: "Positive Form",
-            explanation: `<p>Formula: <strong>am/is/are + verb-ing</strong>. Same for all subjects—just swap am/is/are.</p>`,
+            explanation: `
+                <p>Formula: <strong>am/is/are + verb-ing</strong>. Same for all subjects—just swap am/is/are.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(240, 180, 90, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(240, 180, 90, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            I <span style="color: #f0b45a; font-weight: 600;">am washing</span> the dishes right now.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            You <span style="color: #f0b45a; font-weight: 600;">are listening</span> to music on your headphones.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            He <span style="color: #f0b45a; font-weight: 600;">is fixing</span> his car in the driveway.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            She <span style="color: #f0b45a; font-weight: 600;">is making</span> dinner for the family.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            We <span style="color: #f0b45a; font-weight: 600;">are watching</span> the game on TV.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            They <span style="color: #f0b45a; font-weight: 600;">are playing</span> soccer in the park.
+                        </div>
+                    </div>
+                </div>
+            `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
                 { text: "am/is/are", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "verb-ing", type: "verb" },
-            ],
-            examples: [
-                "I am washing the dishes right now.",
-                "You are listening to music on your headphones.",
-                "He is fixing his car in the driveway.",
-                "She is making dinner for the family.",
-                "We are watching the game on TV.",
-                "They are playing soccer in the park.",
             ],
             verbTable: {
                 title: "Spelling Rules for -ing",
@@ -166,18 +187,33 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "step-negative",
             stepNumber: 3,
             title: "Negative Form",
-            explanation: `<p>Add <strong>not</strong> after am/is/are to show something is NOT happening.</p>`,
+            explanation: `
+                <p>Add <strong>not</strong> after am/is/are to show something is NOT happening.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(240, 180, 90, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(240, 180, 90, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            I<span style="color: #f0b45a; font-weight: 600;">'m not eating</span> meat this month—I'm trying something new.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            He <span style="color: #f0b45a; font-weight: 600;">isn't taking</span> the early shift this week.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            They <span style="color: #f0b45a; font-weight: 600;">aren't going</span> to the party tonight.
+                        </div>
+                    </div>
+                </div>
+            `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
                 { text: "am/is/are not", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "verb-ing", type: "verb" },
-            ],
-            examples: [
-                "I'm not eating meat this month—I'm trying something new.",
-                "He isn't taking the early shift this week.",
-                "They aren't going to the party tonight.",
             ],
             exercises: [
                 {
@@ -196,7 +232,27 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "step-questions",
             stepNumber: 4,
             title: "Question Form",
-            explanation: `<p>Flip am/is/are to the front to ask about actions in progress.</p>`,
+            explanation: `
+                <p>Flip am/is/are to the front to ask about actions in progress.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(240, 180, 90, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(240, 180, 90, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            <span style="color: #f0b45a; font-weight: 600;">Are</span> you <span style="color: #f0b45a; font-weight: 600;">coming</span> to dinner tonight?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            <span style="color: #f0b45a; font-weight: 600;">Is</span> he <span style="color: #f0b45a; font-weight: 600;">watching</span> the game?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(240, 180, 90, 0.1);">
+                            <span style="color: #f0b45a; font-weight: 600;">Are</span> they <span style="color: #f0b45a; font-weight: 600;">making</span> pizza for everyone?
+                        </div>
+                    </div>
+                </div>
+            `,
             formula: [
                 { text: "Am/Is/Are", type: "verb" },
                 { text: "+", type: "other" },
@@ -204,11 +260,6 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "verb-ing", type: "verb" },
                 { text: "?", type: "other" },
-            ],
-            examples: [
-                "Are you coming to dinner tonight?",
-                "Is he watching the game?",
-                "Are they making pizza for everyone?",
             ],
             exercises: [
                 {
@@ -219,6 +270,38 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         { type: "text", label: "1. ___ the library ___ (offer) free workshops this month?", expectedAnswer: "Is the library offering" },
                         { type: "text", label: "2. ___ your grandparents ___ (visit) from overseas next week?", expectedAnswer: "Are your grandparents visiting" },
                         { type: "text", label: "3. ___ the city ___ (repair) the sidewalks in our neighborhood?", expectedAnswer: "Is the city repairing" },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-1",
+                    title: "Exercise 4: Conjugation Practice",
+                    instructions: "Complete the conjugation chart for the verb 'eat' with the subject 'they'.",
+                    items: [
+                        { type: "text", label: "Affirmative: They ___ eating", expectedAnswer: "are" },
+                        { type: "text", label: "Negative: They ___ eating", expectedAnswer: "aren't" },
+                        { type: "text", label: "Question: ___ they eating?", expectedAnswer: "Are" },
+                    ],
+                },
+                {
+                    id: "ex-error-correction-1",
+                    title: "Exercise 5: Error Correction",
+                    instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. She is cook dinner right now.", expectedAnswer: "She is cooking dinner right now" },
+                        { type: "text", label: "2. They is watching a movie.", expectedAnswer: "They are watching a movie" },
+                        { type: "text", label: "3. I'm not go to the party tonight.", expectedAnswer: "I'm not going to the party tonight" },
+                        { type: "text", label: "4. Are you come with us?", expectedAnswer: "Are you coming with us" },
+                        { type: "text", label: "5. He working on a new project.", expectedAnswer: "He is working on a new project" },
+                    ],
+                },
+                {
+                    id: "ex-transformation-1",
+                    title: "Exercise 6: Transformation Practice",
+                    instructions: "Change each sentence as instructed.",
+                    items: [
+                        { type: "text", label: "1. Make negative: I am studying for my exam.", expectedAnswer: "I am not studying for my exam" },
+                        { type: "text", label: "2. Make a question: She is working from home today.", expectedAnswer: "Is she working from home today" },
+                        { type: "text", label: "3. Make affirmative: They aren't traveling this summer.", expectedAnswer: "They are traveling this summer" },
                     ],
                 },
             ],

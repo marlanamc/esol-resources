@@ -20,6 +20,91 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             `,
         },
         {
+            id: "timeline-visualization",
+            title: "Timeline: The Three Simple Tenses",
+            icon: "⏰",
+            explanation: `
+                <div style="max-width: 700px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2);">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600;">
+                        Simple tenses separate time into three distinct moments
+                    </p>
+
+                    <!-- Timeline with three circles -->
+                    <div style="position: relative; display: flex; justify-content: space-between; align-items: center; margin: 3rem 0; padding: 0 2rem;">
+                        <!-- Gradient connecting line -->
+                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #8b5cf6 50%, #06b6d4 100%); transform: translateY(-50%); z-index: 0;"></div>
+
+                        <!-- Past circle -->
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #fb923c 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem;">
+                                PAST<br/>Simple
+                            </div>
+                            <div style="margin-top: 1rem; font-size: 0.875rem; color: #d97757; font-weight: 600;">
+                                yesterday
+                            </div>
+                        </div>
+
+                        <!-- Present/NOW circle -->
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem;">
+                                PRESENT<br/>Simple
+                            </div>
+                            <div style="margin-top: 1rem; font-size: 0.875rem; color: #8b5cf6; font-weight: 600;">
+                                every day
+                            </div>
+                        </div>
+
+                        <!-- Future circle -->
+                        <div style="position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%); border: 4px solid #fff; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4); display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-weight: 700; font-size: 0.875rem; line-height: 1.3; padding: 0.5rem;">
+                                FUTURE<br/>Simple
+                            </div>
+                            <div style="margin-top: 1rem; font-size: 0.875rem; color: #06b6d4; font-weight: 600;">
+                                tomorrow
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example sentences grid -->
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem;">
+                        <!-- Past example -->
+                        <div style="background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                            <div style="font-weight: 700; color: #d97757; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                PAST
+                            </div>
+                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4;">
+                                I <span style="color: #f59e0b; font-weight: 700;">walked</span> to work
+                            </div>
+                        </div>
+
+                        <!-- Present example -->
+                        <div style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                            <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                PRESENT
+                            </div>
+                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4;">
+                                I <span style="color: #8b5cf6; font-weight: 700;">walk</span> to work
+                            </div>
+                        </div>
+
+                        <!-- Future example -->
+                        <div style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #06b6d4;">
+                            <div style="font-weight: 700; color: #06b6d4; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                                FUTURE
+                            </div>
+                            <div style="color: #2b3a4a; font-size: 0.9rem; line-height: 1.4;">
+                                I <span style="color: #06b6d4; font-weight: 700;">will walk</span> to work
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 The Big Picture",
+                content: "Simple tenses are like three separate rooms in a house—each one is completely independent. Past Simple finished yesterday. Present Simple happens every day. Future Simple will happen tomorrow. They don't overlap or connect—they just describe different times.",
+            },
+        },
+        {
             id: "comparison",
             stepNumber: 1,
             title: "When Real Life Needs Each Simple Tense",
@@ -34,15 +119,15 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     description: "For habits, facts, and things that don't change much",
                     examples: [
                         {
-                            sentence: "I <strong>start</strong> work at 8 AM every day.",
+                            sentence: "I <span style=\"color: #8b5cf6; font-weight: 600;\">start</span> work at 8 AM every day.",
                             explanation: "✓ Your regular schedule (not 'I'm starting work')",
                         },
                         {
-                            sentence: "She <strong>loves</strong> coffee more than meetings.",
+                            sentence: "She <span style=\"color: #8b5cf6; font-weight: 600;\">loves</span> coffee more than meetings.",
                             explanation: "✓ Feelings and preferences that stay true",
                         },
                         {
-                            sentence: "The store <strong>closes</strong> at 9 PM on weekdays.",
+                            sentence: "The store <span style=\"color: #8b5cf6; font-weight: 600;\">closes</span> at 9 PM on weekdays.",
                             explanation: "✓ Fixed timetables and schedules",
                         },
                     ],
@@ -52,15 +137,15 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     description: "For completed actions with a clear time reference",
                     examples: [
                         {
-                            sentence: "I <strong>called</strong> my mom yesterday afternoon.",
+                            sentence: "I <span style=\"color: #f59e0b; font-weight: 600;\">called</span> my mom yesterday afternoon.",
                             explanation: "✓ Specific finished time + finished action",
                         },
                         {
-                            sentence: "They <strong>visited</strong> Paris last summer.",
+                            sentence: "They <span style=\"color: #f59e0b; font-weight: 600;\">visited</span> Paris last summer.",
                             explanation: "✓ Completed trips and experiences",
                         },
                         {
-                            sentence: "She <strong>finished</strong> the project on Friday.",
+                            sentence: "She <span style=\"color: #f59e0b; font-weight: 600;\">finished</span> the project on Friday.",
                             explanation: "✓ Done and dusted with a time stamp",
                         },
                     ],
@@ -70,15 +155,15 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     description: "For spontaneous plans, promises, and predictions",
                     examples: [
                         {
-                            sentence: "I<strong>'ll bring</strong> the snacks tonight.",
+                            sentence: "I<span style=\"color: #06b6d4; font-weight: 600;\">'ll bring</span> the snacks tonight.",
                             explanation: "✓ Spontaneous offer (not 'I'm bringing')",
                         },
                         {
-                            sentence: "It <strong>will rain</strong> tomorrow, I can feel it.",
+                            sentence: "It <span style=\"color: #06b6d4; font-weight: 600;\">will rain</span> tomorrow, I can feel it.",
                             explanation: "✓ Quick predictions based on current evidence",
                         },
                         {
-                            sentence: "We <strong>won't finish</strong> until next week.",
+                            sentence: "We <span style=\"color: #06b6d4; font-weight: 600;\">won't finish</span> until next week.",
                             explanation: "✓ Negative predictions about the future",
                         },
                     ],
@@ -467,14 +552,195 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         { type: "text", label: "4b. \"She ___ (work) late last night.\"", expectedAnswer: "worked" },
                     ],
                 },
+            ],
+        },
+        {
+            id: "verb-conjugation",
+            stepNumber: 4,
+            title: "Verb Conjugation Practice: Master All Forms",
+            icon: "📊",
+            explanation: `
+                <h3>Complete Verb Conjugation Charts</h3>
+                <p>Practice conjugating verbs across all three simple tenses and all three forms (affirmative, negative, question). This is how you build true fluency!</p>
+
+                <div style="background: rgba(139, 92, 246, 0.05); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid rgba(139, 92, 246, 0.3);">
+                    <p style="margin: 0;"><strong>💡 Tip:</strong> For third-person singular (he/she/it) in Present Simple, remember to add -s or -es to the base verb!</p>
+                </div>
+            `,
+            exercises: [
                 {
-                    id: "ex-mixed-3",
-                    title: "Write About Your Week",
-                    instructions: "Write complete sentences about your actual routine using different simple tenses.",
+                    id: "ex-conjugation-present",
+                    title: "Present Simple Conjugation Chart",
+                    instructions: "Complete the conjugation chart for the verb 'work' in Present Simple with the subject 'she'.",
                     items: [
-                        { type: "text", label: "1. What's something you do every day? (Present Simple)", expectedAnswer: "I check my email every morning" },
-                        { type: "text", label: "2. What did you do yesterday? (Past Simple)", expectedAnswer: "I finished my work yesterday" },
-                        { type: "text", label: "3. What's one thing you'll do tomorrow? (Future Simple)", expectedAnswer: "I will call my friend tomorrow" },
+                        { type: "text", label: "Affirmative: She ___", expectedAnswer: "works" },
+                        { type: "text", label: "Negative: She ___ work", expectedAnswer: "doesn't" },
+                        { type: "text", label: "Question: ___ she work?", expectedAnswer: "Does" },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-past",
+                    title: "Past Simple Conjugation Chart",
+                    instructions: "Complete the conjugation chart for the verb 'visit' in Past Simple with the subject 'they'.",
+                    items: [
+                        { type: "text", label: "Affirmative: They ___", expectedAnswer: "visited" },
+                        { type: "text", label: "Negative: They ___ visit", expectedAnswer: "didn't" },
+                        { type: "text", label: "Question: ___ they visit?", expectedAnswer: "Did" },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-future",
+                    title: "Future Simple Conjugation Chart",
+                    instructions: "Complete the conjugation chart for the verb 'help' in Future Simple with the subject 'I'.",
+                    items: [
+                        { type: "text", label: "Affirmative: I ___ help", expectedAnswer: "will" },
+                        { type: "text", label: "Negative: I ___ help", expectedAnswer: "won't" },
+                        { type: "text", label: "Question: ___ I help?", expectedAnswer: "Will" },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-mixed-1",
+                    title: "Mixed Tenses: Verb 'study'",
+                    instructions: "Conjugate the verb 'study' with the subject 'he' in all three simple tenses (affirmative form only).",
+                    items: [
+                        { type: "text", label: "Present Simple: He ___", expectedAnswer: "studies" },
+                        { type: "text", label: "Past Simple: He ___", expectedAnswer: "studied" },
+                        { type: "text", label: "Future Simple: He ___ study", expectedAnswer: "will" },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-mixed-2",
+                    title: "Mixed Forms: Verb 'go'",
+                    instructions: "Conjugate the irregular verb 'go' with the subject 'we' in all three forms of Past Simple.",
+                    items: [
+                        { type: "text", label: "Affirmative: We ___", expectedAnswer: "went" },
+                        { type: "text", label: "Negative: We ___ go", expectedAnswer: "didn't" },
+                        { type: "text", label: "Question: ___ we go?", expectedAnswer: "Did" },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-challenge",
+                    title: "Full Conjugation Challenge: Verb 'write'",
+                    instructions: "Complete the full conjugation chart for 'write' with subject 'you' across all simple tenses and forms.",
+                    items: [
+                        { type: "text", label: "Present Simple - Affirmative: You ___", expectedAnswer: "write" },
+                        { type: "text", label: "Present Simple - Negative: You ___ write", expectedAnswer: "don't" },
+                        { type: "text", label: "Present Simple - Question: ___ you write?", expectedAnswer: "Do" },
+                        { type: "text", label: "Past Simple - Affirmative: You ___", expectedAnswer: "wrote" },
+                        { type: "text", label: "Past Simple - Negative: You ___ write", expectedAnswer: "didn't" },
+                        { type: "text", label: "Past Simple - Question: ___ you write?", expectedAnswer: "Did" },
+                        { type: "text", label: "Future Simple - Affirmative: You ___ write", expectedAnswer: "will" },
+                        { type: "text", label: "Future Simple - Negative: You ___ write", expectedAnswer: "won't" },
+                        { type: "text", label: "Future Simple - Question: ___ you write?", expectedAnswer: "Will" },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "advanced-practice",
+            stepNumber: 5,
+            title: "Advanced Practice: Real-World Challenges",
+            icon: "🎯",
+            explanation: `
+                <h3>Test Your Mastery</h3>
+                <p>These exercises mix all three simple tenses in authentic scenarios. This is where you prove you can think like a native speaker!</p>
+            `,
+            exercises: [
+                {
+                    id: "ex-error-correction-1",
+                    title: "Error Correction: Fix the Mistakes",
+                    instructions: "Each sentence has ONE grammar mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. She don't work on weekends anymore.", expectedAnswer: "She doesn't work on weekends anymore" },
+                        { type: "text", label: "2. They visited the museum last Sunday and loves the exhibits.", expectedAnswer: "They visited the museum last Sunday and loved the exhibits" },
+                        { type: "text", label: "3. I will calling you tomorrow morning.", expectedAnswer: "I will call you tomorrow morning" },
+                        { type: "text", label: "4. Does your brother works at the hospital?", expectedAnswer: "Does your brother work at the hospital" },
+                        { type: "text", label: "5. We didn't went to the party last night.", expectedAnswer: "We didn't go to the party last night" },
+                    ],
+                },
+                {
+                    id: "ex-transformation-1",
+                    title: "Transformation Practice",
+                    instructions: "Change each sentence as instructed. Keep the same meaning!",
+                    items: [
+                        { type: "text", label: "1. Make negative: The train arrives at 6 PM.", expectedAnswer: "The train doesn't arrive at 6 PM" },
+                        { type: "text", label: "2. Make a question: She finished the report yesterday.", expectedAnswer: "Did she finish the report yesterday" },
+                        { type: "text", label: "3. Make negative: They will attend the conference.", expectedAnswer: "They won't attend the conference" },
+                        { type: "text", label: "4. Make a question: You drink coffee every morning.", expectedAnswer: "Do you drink coffee every morning" },
+                    ],
+                },
+                {
+                    id: "ex-contextual-1",
+                    title: "Real-Life Story: Complete the Paragraph",
+                    instructions: "Fill in the blanks with the correct form of the verb in parentheses. Choose the right simple tense!",
+                    items: [
+                        { type: "text", label: "1. Every morning, I ___ (wake) up at 7 AM.", expectedAnswer: "wake" },
+                        { type: "text", label: "2. Yesterday, I ___ (oversleep) and missed my alarm.", expectedAnswer: "overslept" },
+                        { type: "text", label: "3. Tomorrow, I ___ (set) two alarms to make sure it doesn't happen again!", expectedAnswer: "will set" },
+                        { type: "text", label: "4. Usually, I ___ (eat) breakfast at home.", expectedAnswer: "eat" },
+                        { type: "text", label: "5. But last week, I ___ (grab) coffee at the café instead.", expectedAnswer: "grabbed" },
+                        { type: "text", label: "6. Next time, I ___ (try) their new breakfast sandwich.", expectedAnswer: "will try" },
+                    ],
+                },
+                {
+                    id: "ex-contextual-2",
+                    title: "Email Practice: Choose the Right Tense",
+                    instructions: "Complete this work email with the correct simple tense.",
+                    items: [
+                        { type: "text", label: "Hi team, I ___ (send) you the meeting notes right now.", expectedAnswer: "am sending" },
+                        { type: "text", label: "We ___ (discuss) the new project yesterday.", expectedAnswer: "discussed" },
+                        { type: "text", label: "The deadline ___ (be) next Friday.", expectedAnswer: "is" },
+                        { type: "text", label: "I ___ (share) the final draft tomorrow morning.", expectedAnswer: "will share" },
+                        { type: "text", label: "Please ___ (review) it when you have time.", expectedAnswer: "review" },
+                    ],
+                },
+                {
+                    id: "ex-mixed-challenge",
+                    title: "Mixed Tense Challenge",
+                    instructions: "Read the situation and choose ALL correct answers. Some questions may have multiple correct options.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Talking about your regular commute to work:",
+                            options: [
+                                { value: "a", label: "I drive to work every day." },
+                                { value: "b", label: "I drove to work every day." },
+                                { value: "c", label: "I will drive to work every day." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Describing what happened at a party you attended last weekend:",
+                            options: [
+                                { value: "a", label: "We dance all night." },
+                                { value: "b", label: "We danced all night." },
+                                { value: "c", label: "We will dance all night." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Making a spontaneous promise to help your friend:",
+                            options: [
+                                { value: "a", label: "I help you move next week." },
+                                { value: "b", label: "I helped you move next week." },
+                                { value: "c", label: "I'll help you move next week." },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-time-expressions",
+                    title: "Time Expression Practice",
+                    instructions: "Match the time expression with the correct simple tense verb form.",
+                    items: [
+                        { type: "text", label: "1. last night → I ___ (watch) a movie.", expectedAnswer: "watched" },
+                        { type: "text", label: "2. every Saturday → She ___ (volunteer) at the shelter.", expectedAnswer: "volunteers" },
+                        { type: "text", label: "3. tomorrow → They ___ (announce) the winner.", expectedAnswer: "will announce" },
+                        { type: "text", label: "4. three years ago → We ___ (move) to this city.", expectedAnswer: "moved" },
+                        { type: "text", label: "5. next month → I ___ (start) my new job.", expectedAnswer: "will start" },
                     ],
                 },
             ],

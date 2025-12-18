@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { awardPoints, updateStreak, calculateActivityPoints, checkAndAwardAchievements } from '@/lib/gamification';
+import { awardPoints, updateStreak, calculateQuizPoints, getActivityPoints, checkAndAwardAchievements } from '@/lib/gamification';
 import { prisma } from '@/lib/prisma';
 
 /**
@@ -39,7 +39,11 @@ export async function POST(req: NextRequest) {
     }
 
     // Calculate points based on activity type and score
-    const points = calculateActivityPoints(score, activityType || 'activity');
+    // For quizzes, use score-based calculation; for other activities, use type-based
+    const isQuiz = activityType?.toLowerCase() === 'quiz';
+    const points = isQuiz 
+      ? calculateQuizPoints(score) 
+      : getActivityPoints(activityType || 'activity', submission.activityId);
 
     // Award points
     await awardPoints(userId, points, `Completed activity ${submission.activityId}`);

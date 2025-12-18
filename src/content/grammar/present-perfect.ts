@@ -235,6 +235,105 @@ export const presentPerfectContent: InteractiveGuideContent = {
             ],
         },
 
+        // Timeline Visualization Section
+        {
+            id: "timeline-visualization",
+            stepNumber: 2,
+            title: "Timeline: Past → Present Connection",
+            icon: "⏰",
+            explanation: `
+                <h3>Understanding the Connection</h3>
+                <p>Present Perfect is all about how a <strong>past action</strong> connects to the <strong>present moment</strong>. Let's see it visually:</p>
+
+                <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                    <h4 style="text-align: center; margin-top: 0;">Timeline: Past Action → Present Connection</h4>
+
+                    <div style="display: flex; align-items: center; justify-content: space-between; position: relative; margin: 2rem 0; padding: 0 2rem;">
+                        <div style="position: absolute; top: 50%; left: 15%; right: 15%; height: 4px; background: linear-gradient(to right, #6366f1, #8b5cf6); transform: translateY(-50%); z-index: 0;">
+                            <div style="position: absolute; right: -8px; top: -6px; width: 0; height: 0; border-left: 10px solid #8b5cf6; border-top: 7px solid transparent; border-bottom: 7px solid transparent;"></div>
+                        </div>
+
+                        <div style="position: relative; z-index: 1; text-align: center; flex: 1;">
+                            <div style="width: 90px; height: 90px; border-radius: 50%; background: #6366f1; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.125rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); margin: 0 auto;">
+                                PAST
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #6366f1;">Past Action</div>
+                            <div style="font-size: 0.75rem; color: #64748b;">Lost keys</div>
+                        </div>
+
+                        <div style="position: relative; z-index: 1; text-align: center; flex: 1;">
+                            <div style="width: 110px; height: 110px; border-radius: 50%; background: #8b5cf6; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; border: 5px solid white; box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4); margin: 0 auto;">
+                                <div>NOW</div>
+                                <div style="font-size: 0.75rem; font-weight: 500; margin-top: 0.25rem;">Present Result</div>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.875rem; font-weight: 600; color: #8b5cf6;">Still Can't Find Them</div>
+                        </div>
+                    </div>
+
+                    <div style="background: #f5f3ff; padding: 1rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                        <p style="margin: 0; text-align: center;"><strong>Example:</strong> I <span style="color: #6366f1; font-weight: 600;">have lost</span> my keys → <span style="color: #8b5cf6; font-weight: 600;">I can't open the door NOW</span></p>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 1rem; background: #fef9f3; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        <p style="margin: 0; font-size: 0.875rem;"><strong>📍 Key Idea:</strong> The past action creates a situation that exists NOW. The exact time doesn't matter—what matters is the present connection!</p>
+                    </div>
+                </div>
+
+                <h3>More Visual Examples</h3>
+                <div style="margin: 1rem 0;">
+                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.75rem; border-left: 4px solid #6366f1;">
+                        <p style="margin: 0;"><strong>Example 1:</strong> She <span style="color: #6366f1; font-weight: 600;">has broken</span> her arm (past) → <span style="color: #8b5cf6; font-weight: 600;">She can't write NOW</span> (present result)</p>
+                    </div>
+                    <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                        <p style="margin: 0;"><strong>Example 2:</strong> They <span style="color: #6366f1; font-weight: 600;">have moved</span> to Boston (past) → <span style="color: #8b5cf6; font-weight: 600;">They live in Boston NOW</span> (present state)</p>
+                    </div>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Why This Matters",
+                content: "Present Perfect is unique because it CONNECTS past to present. Unlike Past Simple (which is just 'finished and done'), Present Perfect shows how the past still affects NOW.",
+            },
+            exercises: [
+                {
+                    id: "ex-timeline-pp-1",
+                    title: "Practice: Identify the Present Connection",
+                    instructions: "For each Present Perfect sentence, identify the present result/relevance.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I have lost my wallet.",
+                            options: [
+                                { value: "a", label: "I can't pay for lunch NOW" },
+                                { value: "b", label: "I lost it yesterday" },
+                                { value: "c", label: "I will find it tomorrow" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "She has broken her arm.",
+                            options: [
+                                { value: "a", label: "She broke it last week" },
+                                { value: "b", label: "She can't write NOW" },
+                                { value: "c", label: "She will heal soon" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "They have moved to Boston.",
+                            options: [
+                                { value: "a", label: "They moved last month" },
+                                { value: "b", label: "They will live in Boston" },
+                                { value: "c", label: "They live in Boston NOW" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                    ],
+                },
+            ],
+        },
+
         // Past Participle Section
         {
             id: "past-participle",
@@ -439,6 +538,30 @@ export const presentPerfectContent: InteractiveGuideContent = {
             explanation: `
                 <h3>The Formula</h3>
                 <p>Present Perfect is formed with: <strong>have/has + past participle</strong></p>
+
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            I <span style="color: #f59e0b; font-weight: 600;">have finished</span> my homework.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            She <span style="color: #f59e0b; font-weight: 600;">has been</span> to Paris.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            They <span style="color: #f59e0b; font-weight: 600;">have lived</span> here for 5 years.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            He <span style="color: #f59e0b; font-weight: 600;">has seen</span> that movie.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            We <span style="color: #f59e0b; font-weight: 600;">have studied</span> English.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -446,13 +569,6 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 { text: "have/has", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "past participle", type: "verb" },
-            ],
-            examples: [
-                "I have finished my homework.",
-                "She has been to Paris.",
-                "They have lived here for 5 years.",
-                "He has seen that movie.",
-                "We have studied English.",
             ],
             tipBox: {
                 title: "💡 Remember",
@@ -527,6 +643,24 @@ export const presentPerfectContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Make Negative Sentences</h3>
                 <p>To make Present Perfect negative, add <strong>'not'</strong> after 'have/has':</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            I <span style="color: #f59e0b; font-weight: 600;">have not</span> (haven't) <span style="color: #f59e0b; font-weight: 600;">finished</span> my homework.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            She <span style="color: #f59e0b; font-weight: 600;">has not</span> (hasn't) <span style="color: #f59e0b; font-weight: 600;">been</span> to Paris.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            They <span style="color: #f59e0b; font-weight: 600;">have not</span> (haven't) <span style="color: #f59e0b; font-weight: 600;">seen</span> that movie.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -536,11 +670,6 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 { text: "not", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "past participle", type: "verb" },
-            ],
-            examples: [
-                "I have not (haven't) finished my homework.",
-                "She has not (hasn't) been to Paris.",
-                "They have not (haven't) seen that movie.",
             ],
             tipBox: {
                 title: "💡 Short Forms",
@@ -591,6 +720,27 @@ export const presentPerfectContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Make Questions</h3>
                 <p>To make questions, put <strong>'Have/Has'</strong> before the subject:</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Have</span> you <span style="color: #f59e0b; font-weight: 600;">finished</span> your homework?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Has</span> she <span style="color: #f59e0b; font-weight: 600;">been</span> to Paris?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Have</span> they <span style="color: #f59e0b; font-weight: 600;">seen</span> that movie?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Has</span> he <span style="color: #f59e0b; font-weight: 600;">eaten</span> lunch?
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Have/Has", type: "verb" },
@@ -599,12 +749,6 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "past participle", type: "verb" },
                 { text: "?", type: "other" },
-            ],
-            examples: [
-                "Have you finished your homework?",
-                "Has she been to Paris?",
-                "Have they seen that movie?",
-                "Has he eaten lunch?",
             ],
             exercises: [
                 {

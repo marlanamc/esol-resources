@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, getActivityPoints, POINTS } from "@/lib/gamification";
+import { awardPoints, getActivityPoints, POINTS, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -152,6 +152,10 @@ export async function POST(request: Request) {
             // Fallback if activity not found (shouldn't happen)
             await awardPoints(userId, 5, `Completed activity ${activityId}`);
         }
+
+        // Update streak and check for achievements after awarding points
+        await updateStreak(userId);
+        await checkAndAwardAchievements(userId);
     }
 
     return NextResponse.json({ ok: true, progress: record.progress, status: record.status });

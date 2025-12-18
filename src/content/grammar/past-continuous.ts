@@ -93,9 +93,119 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 },
             ],
         },
+
+        // Timeline Visualization Section
+        {
+            id: "timeline-visualization",
+            stepNumber: 2,
+            title: "Timeline: Seeing the Interruption",
+            icon: "⏰",
+            explanation: `
+                <h3>Understanding the Interrupted Action</h3>
+                <p>Past Continuous shows a <strong>longer action in progress</strong> that gets interrupted by a <strong>shorter, sudden event</strong>. Let's see it visually:</p>
+
+                <div style="background: white; border: 2px solid #f0b45a; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                    <h4 style="text-align: center; margin-top: 0;">Timeline: The Interrupted Action</h4>
+
+                    <p style="text-align: center; color: #64748b; font-size: 0.95rem; margin-bottom: 2rem;">Past Continuous shows a <strong>longer action in progress</strong> that gets interrupted by a <strong>shorter, sudden event</strong>.</p>
+
+                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 2rem 0;">
+                        <div style="position: relative; height: 50px; background: linear-gradient(to right, rgba(240, 180, 90, 0.2), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.2)); border-radius: 25px; border: 3px solid #f0b45a; display: flex; align-items: center; padding: 0 2rem;">
+                            <span style="color: #7c5d0a; font-weight: 600; font-size: 0.875rem;">I was walking home...</span>
+                            <div style="position: absolute; left: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(-5px, -50%);"></div>
+                            <div style="position: absolute; right: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(5px, -50%);"></div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 0.5rem;">
+                            <span style="font-size: 0.75rem; color: #f0b45a; font-weight: 600;">Past Continuous = Ongoing Background Action</span>
+                        </div>
+
+                        <div style="position: absolute; top: 0; left: 60%; transform: translateX(-50%);">
+                            <div style="width: 3px; height: 80px; background: #d97757; position: relative;">
+                                <div style="position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d97757;"></div>
+                            </div>
+                            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: #d97757; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(217, 119, 87, 0.4); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 1.5rem;">
+                                ⚡
+                            </div>
+                            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; color: #d97757; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                                It started raining
+                            </div>
+                            <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #94a3b8;">
+                                Past Simple = Interruption
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: #fef3e7; padding: 1.25rem; border-radius: 0.5rem; margin-top: 3.5rem; border-left: 4px solid #f0b45a;">
+                        <p style="margin: 0; text-align: center; font-size: 1rem;">
+                            <strong>Full Sentence:</strong> I <span style="background: rgba(240, 180, 90, 0.3); color: #f0b45a; font-weight: 700; padding: 2px 8px; border-radius: 4px;">was walking</span> home when it <span style="background: rgba(217, 119, 87, 0.3); color: #d97757; font-weight: 700; padding: 2px 8px; border-radius: 4px;">started</span> raining.
+                        </p>
+                        <p style="margin: 0.75rem 0 0 0; text-align: center; font-size: 0.875rem; color: #64748b;">
+                            The longer action (<span style="color: #f0b45a; font-weight: 600;">walking</span>) was in progress. Then the shorter event (<span style="color: #d97757; font-weight: 600;">started raining</span>) interrupted it.
+                        </p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem;">
+                        <div style="background: #f8fafc; padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a;">
+                            <p style="margin: 0; font-size: 0.875rem;">She <span style="color: #f0b45a; font-weight: 600;">was studying</span> when her phone <span style="color: #d97757; font-weight: 600;">rang</span>.</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a;">
+                            <p style="margin: 0; font-size: 0.875rem;">We <span style="color: #f0b45a; font-weight: 600;">were eating</span> dinner when someone <span style="color: #d97757; font-weight: 600;">knocked</span> on the door.</p>
+                        </div>
+                        <div style="background: #f8fafc; padding: 0.875rem; border-radius: 0.5rem; border-left: 3px solid #f0b45a;">
+                            <p style="margin: 0; font-size: 0.875rem;">They <span style="color: #f0b45a; font-weight: 600;">were playing</span> soccer when the coach <span style="color: #d97757; font-weight: 600;">arrived</span>.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: #fef9f3; border-left: 4px solid #d97757; border-radius: 0.25rem;">
+                        <p style="margin: 0; font-size: 0.875rem;"><strong>🎯 The Pattern:</strong> Past Continuous (was/were + verb-ing) = the background scene. Past Simple (verb-ed) = the sudden event that interrupts. This is THE most common use of Past Continuous!</p>
+                    </div>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 The 'When' Pattern",
+                content: "The word 'when' is your clue: 'I was walking WHEN it started raining.' The 'when' introduces the interrupting event (Past Simple), while the main clause shows what was in progress (Past Continuous).",
+            },
+            exercises: [
+                {
+                    id: "ex-timeline-pc-1",
+                    title: "Practice: Identify the Interruption",
+                    instructions: "In each sentence, which action is the ONGOING action (Past Continuous) and which is the INTERRUPTION (Past Simple)?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I was cooking when the fire alarm went off.",
+                            options: [
+                                { value: "a", label: "Ongoing: cooking (PC), Interruption: alarm went off (PS)" },
+                                { value: "b", label: "Ongoing: alarm went off (PC), Interruption: cooking (PS)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "She was reading when her friend called.",
+                            options: [
+                                { value: "a", label: "Ongoing: reading (PC), Interruption: called (PS)" },
+                                { value: "b", label: "Ongoing: called (PC), Interruption: reading (PS)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "They were watching TV when the power went out.",
+                            options: [
+                                { value: "a", label: "Ongoing: watching TV (PC), Interruption: power went out (PS)" },
+                                { value: "b", label: "Ongoing: power went out (PC), Interruption: watching TV (PS)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
         {
             id: "step-positive",
-            stepNumber: 2,
+            stepNumber: 3,
             title: "Positive Form",
             explanation: `<p>Formula: <strong>was/were + verb-ing</strong>. Same pattern for everyone—just choose was or were.</p>`,
             formula: [
@@ -128,7 +238,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-negative",
-            stepNumber: 3,
+            stepNumber: 4,
             title: "Negative Form",
             explanation: `<p>Add <strong>not</strong> after was/were to show what wasn't happening.</p>`,
             formula: [
@@ -156,7 +266,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-questions",
-            stepNumber: 4,
+            stepNumber: 5,
             title: "Question Form",
             explanation: `<p>Flip was/were to the front to ask about what was going on.</p>`,
             formula: [
