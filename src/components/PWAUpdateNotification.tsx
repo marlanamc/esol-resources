@@ -1,15 +1,16 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
+import { RefreshCw, Sparkles } from 'lucide-react';
 
 export default function PWAUpdateNotification() {
   const [showUpdate, setShowUpdate] = useState(false);
   const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [dismissCount, setDismissCount] = useState(0);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      // Listen for custom event from ServiceWorkerRegistration
       const handleUpdateAvailable = (event: Event) => {
         const customEvent = event as CustomEvent;
         setWaitingWorker(customEvent.detail.waitingWorker);
@@ -26,64 +27,116 @@ export default function PWAUpdateNotification() {
 
   const handleUpdate = () => {
     if (waitingWorker) {
-      // Tell the waiting service worker to skip waiting and activate immediately
+      setIsUpdating(true);
       waitingWorker.postMessage({ type: 'SKIP_WAITING' });
 
-      // Listen for the controller change and reload
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         window.location.reload();
       });
+
+      // Fallback reload after 3 seconds if controllerchange doesn't fire
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     }
   };
 
   const handleDismiss = () => {
-    // Temporarily hide the banner, but it will reappear on next page load
-    // This is intentional - we want students to eventually update
+    const newCount = dismissCount + 1;
+    setDismissCount(newCount);
     setShowUpdate(false);
 
-    // Re-show after 5 minutes if they haven't updated
+    // Progressively shorter delays - students WILL update eventually
+    // 1st dismiss: 2 minutes, 2nd: 1 minute, 3rd+: 30 seconds
+    const delay = newCount === 1 ? 2 * 60 * 1000 : newCount === 2 ? 60 * 1000 : 30 * 1000;
+    
     setTimeout(() => {
       setShowUpdate(true);
-    }, 5 * 60 * 1000);
+    }, delay);
   };
 
   if (!showUpdate) return null;
 
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg border-t-4 border-blue-400 animate-in slide-in-from-bottom duration-300">
-      <div className="container mx-auto px-4 py-3 sm:py-4">
-        <div className="flex items-center justify-between gap-4">
-          {/* Message */}
-          <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center">
-              <span className="text-2xl sm:text-3xl">🎓</span>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-semibold text-sm sm:text-base">
-                New activities available!
-              </p>
-              <p className="text-xs sm:text-sm text-blue-100 hidden sm:block">
-                Update now to see the latest content
-              </p>
-            </div>
+  // After 2 dismisses, show a more urgent full-screen modal
+  if (dismissCount >= 2) {
+    return (
+      <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center animate-in zoom-in-95 duration-300">
+          <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+            <Sparkles className="w-8 h-8 text-white" />
           </div>
+          <h2 className="text-xl font-bold text-text mb-2">
+            New Content Available! 🎉
+          </h2>
+          <p className="text-text-muted mb-6">
+            Your teacher added new activities. Update now to see them!
+          </p>
+          <button
+            onClick={handleUpdate}
+            disabled={isUpdating}
+            className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2"
+          >
+            {isUpdating ? (
+              <>
+                <RefreshCw className="w-5 h-5 animate-spin" />
+                Updating...
+              </>
+            ) : (
+              <>
+                <RefreshCw className="w-5 h-5" />
+                Update Now
+              </>
+            )}
+          </button>
+          <button
+            onClick={handleDismiss}
+            className="mt-3 text-sm text-text-muted hover:text-text"
+          >
+            Remind me later
+          </button>
+        </div>
+      </div>
+    );
+  }
 
-          {/* Buttons */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={handleUpdate}
-              className="bg-white text-blue-700 hover:bg-blue-50 font-semibold px-4 sm:px-6 py-2 sm:py-2.5 min-h-[44px] rounded-lg transition-colors text-sm sm:text-base shadow-md hover:shadow-lg active:scale-95 transform"
-            >
-              Update Now
-            </button>
-            <button
-              onClick={handleDismiss}
-              className="text-white/80 hover:text-white hover:bg-white/10 p-2 min-w-[44px] min-h-[44px] rounded-lg transition-colors flex items-center justify-center"
-              aria-label="Dismiss"
-            >
-              <X className="w-5 h-5" />
-            </button>
+  // Standard bottom banner for first dismisses
+  return (
+    <div className="fixed bottom-20 md:bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm z-[9999]">
+      <div className="bg-white rounded-2xl shadow-2xl border-2 border-primary/20 p-4 animate-in slide-in-from-bottom duration-300">
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+            <Sparkles className="w-6 h-6 text-white" />
           </div>
+          <div className="flex-1 min-w-0">
+            <p className="font-bold text-text text-base">
+              New activities available!
+            </p>
+            <p className="text-sm text-text-muted mt-0.5">
+              Tap to get the latest content
+            </p>
+          </div>
+        </div>
+        <div className="flex gap-2 mt-4">
+          <button
+            onClick={handleUpdate}
+            disabled={isUpdating}
+            className="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2"
+          >
+            {isUpdating ? (
+              <>
+                <RefreshCw className="w-4 h-4 animate-spin" />
+                Updating...
+              </>
+            ) : (
+              'Update Now'
+            )}
+          </button>
+          <button
+            onClick={handleDismiss}
+            className="px-4 py-3 rounded-xl text-text-muted hover:bg-bg-light transition-colors font-medium"
+          >
+            Later
+          </button>
         </div>
       </div>
     </div>

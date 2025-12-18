@@ -19,7 +19,7 @@ export function PracticePanel({
     const hasExercises = section.exercises && section.exercises.length > 0;
 
     return (
-        <div className="practice-panel bg-bg-light p-8 overflow-y-auto max-h-[600px]">
+        <div className="practice-panel bg-bg-light p-4 sm:p-8 overflow-y-auto max-h-[50vh] lg:max-h-[600px]">
             {hasExercises && !unlocked ? (
                 <div className="h-full flex items-center justify-center text-center">
                     <div className="max-w-md space-y-2">

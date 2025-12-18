@@ -1,26 +1,34 @@
 // Service Worker for Class Companion PWA
-// IMPORTANT: Increment version number with each deployment to trigger updates
-// Example: v1 -> v2 -> v3, etc.
-const CACHE_NAME = 'class-companion-v3';
-const urlsToCache = [
-  '/',
-  '/login',
+// Cache version is based on build time - auto-increments on each deployment
+const CACHE_VERSION = '2024-12-17-v1'; // Update this with each deployment
+const CACHE_NAME = `class-companion-${CACHE_VERSION}`;
+
+// Only cache essential shell files - content should be network-first
+const SHELL_CACHE = [
   '/manifest.json',
 ];
 
-// Install event - cache resources
+// Routes that should ALWAYS use network-first (fresh content)
+const NETWORK_FIRST_ROUTES = [
+  '/dashboard',
+  '/activity',
+  '/grammar-reader',
+  '/api/',
+];
+
+// Install event - cache shell resources
 self.addEventListener('install', (event) => {
+  console.log('[SW] Installing new version:', CACHE_VERSION);
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        return cache.addAll(urlsToCache);
+        return cache.addAll(SHELL_CACHE);
       })
       .catch((err) => {
-        console.log('Cache failed:', err);
+        console.log('[SW] Cache failed:', err);
       })
   );
   // Don't skip waiting automatically - let user decide when to update
-  // self.skipWaiting() will be called when user clicks "Update Now"
 });
 
 // Listen for message from app to skip waiting
@@ -49,54 +57,83 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - NETWORK-FIRST for content, cache-first only for static assets
 self.addEventListener('fetch', (event) => {
   // Skip non-GET requests
   if (event.request.method !== 'GET') {
     return;
   }
 
-  // Never cache the service worker file itself - always fetch from network
-  if (event.request.url.includes('/sw.js')) {
+  const url = new URL(event.request.url);
+
+  // Never cache the service worker file itself
+  if (url.pathname === '/sw.js') {
     event.respondWith(fetch(event.request));
     return;
   }
 
-  // Skip API requests (always use network)
-  if (event.request.url.includes('/api/')) {
-    return;
-  }
+  // Check if this is a network-first route (content that should always be fresh)
+  const isNetworkFirst = NETWORK_FIRST_ROUTES.some(route => url.pathname.startsWith(route));
 
-  // Skip dashboard routes (need fresh data with current date)
-  if (event.request.url.includes('/dashboard')) {
-    event.respondWith(fetch(event.request));
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request).then((response) => {
-          // Don't cache if not a valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-
-          // Clone the response
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then((cache) => {
+  if (isNetworkFirst) {
+    // NETWORK-FIRST: Try network, fall back to cache
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Cache successful responses for offline fallback
+          if (response && response.status === 200) {
+            const responseToCache = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseToCache);
             });
-
+          }
           return response;
+        })
+        .catch(() => {
+          // Network failed, try cache
+          return caches.match(event.request);
+        })
+    );
+    return;
+  }
+
+  // For static assets (JS, CSS, images) - STALE-WHILE-REVALIDATE
+  // Serve from cache immediately, but update cache in background
+  if (url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff2?)$/)) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then((cache) => {
+        return cache.match(event.request).then((cachedResponse) => {
+          const fetchPromise = fetch(event.request).then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              cache.put(event.request, networkResponse.clone());
+            }
+            return networkResponse;
+          }).catch(() => cachedResponse);
+
+          // Return cached response immediately, or wait for network
+          return cachedResponse || fetchPromise;
         });
       })
+    );
+    return;
+  }
+
+  // For HTML pages - NETWORK-FIRST with cache fallback
+  event.respondWith(
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200) {
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+        return response;
+      })
       .catch(() => {
-        // Return offline page if available
-        return caches.match('/');
+        return caches.match(event.request).then((cachedResponse) => {
+          return cachedResponse || caches.match('/');
+        });
       })
   );
 });
