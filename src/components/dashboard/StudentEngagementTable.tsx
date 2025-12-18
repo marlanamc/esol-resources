@@ -99,7 +99,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
     const SortButton = ({ field, label }: { field: SortField; label: string }) => (
         <button
             onClick={() => handleSort(field)}
-            className="flex items-center gap-1 hover:text-primary transition-colors"
+            className="flex items-center gap-1 hover:text-primary transition-colors min-h-[44px] py-2"
         >
             {label}
             {sortField === field && (
@@ -119,15 +119,98 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
                     placeholder="Search students by name or username..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-2 min-h-[44px] border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <div className="text-xs text-text-muted mt-2">
                     Showing {filteredAndSortedStudents.length} of {students.length} students
                 </div>
             </div>
 
-            {/* Table */}
-            <div className="overflow-x-auto">
+            {/* Mobile Card View */}
+            <div className="md:hidden divide-y divide-border">
+                {filteredAndSortedStudents.length === 0 ? (
+                    <div className="px-4 py-8 text-center text-text-muted">
+                        {searchQuery ? 'No students found matching your search' : 'No students yet'}
+                    </div>
+                ) : (
+                    filteredAndSortedStudents.map((student) => {
+                        const activeToday = isActiveToday(student.lastActive);
+                        const hasStreak = (student.currentStreak || 0) >= 7;
+                        const inactive = !student.lastActive ||
+                            (new Date().getTime() - student.lastActive.getTime()) > 3 * 86400000;
+
+                        return (
+                            <Link
+                                key={student.id}
+                                href={`/dashboard/students/${student.id}`}
+                                className="block p-4 hover:bg-bg-light transition-colors"
+                            >
+                                <div className="flex items-start justify-between mb-3">
+                                    <div className="flex-1 min-w-0">
+                                        <div className="font-medium text-text truncate">
+                                            {student.name || 'No name'}
+                                        </div>
+                                        <div className="text-xs text-text-muted">
+                                            @{student.username}
+                                        </div>
+                                    </div>
+                                    <div className="ml-3 flex-shrink-0">
+                                        {activeToday ? (
+                                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-medium">
+                                                ✓ Active
+                                            </span>
+                                        ) : inactive ? (
+                                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium">
+                                                ⚠️ Inactive
+                                            </span>
+                                        ) : (
+                                            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gray-50 text-gray-700 text-xs font-medium">
+                                                • Idle
+                                            </span>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3 text-sm">
+                                    <div className="flex items-center justify-between px-3 py-2 bg-bg-light rounded-md">
+                                        <span className="text-text-muted text-xs">Streak</span>
+                                        <div className="flex items-center gap-1">
+                                            <span className={`font-semibold ${hasStreak ? 'text-orange-600' : 'text-text'}`}>
+                                                {student.currentStreak || 0}
+                                            </span>
+                                            {hasStreak && <span>🔥</span>}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center justify-between px-3 py-2 bg-bg-light rounded-md">
+                                        <span className="text-text-muted text-xs">Total Pts</span>
+                                        <span className="font-semibold text-text">
+                                            {student.points || 0}
+                                        </span>
+                                    </div>
+
+                                    <div className="flex items-center justify-between px-3 py-2 bg-bg-light rounded-md">
+                                        <span className="text-text-muted text-xs">This Week</span>
+                                        <span className={`font-semibold ${(student.weeklyPoints || 0) > 0 ? 'text-emerald-600' : 'text-text-muted'}`}>
+                                            +{student.weeklyPoints || 0}
+                                        </span>
+                                    </div>
+
+                                    <div className="flex items-center justify-between px-3 py-2 bg-bg-light rounded-md">
+                                        <span className="text-text-muted text-xs">Last Active</span>
+                                        <span className="text-text text-xs">
+                                            {getLastActiveText(student.lastActive)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
+                        );
+                    })
+                )}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto">
                 <table className="w-full">
                     <thead className="bg-bg-light border-b border-border">
                         <tr>

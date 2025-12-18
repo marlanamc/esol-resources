@@ -71,7 +71,7 @@ export default function PWAInstallPrompt() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 z-50 animate-fade-in-up">
+    <div className="fixed bottom-20 md:bottom-4 left-4 right-4 sm:left-auto sm:right-4 sm:w-96 z-50 animate-fade-in-up">
       <div className="bg-white border-2 border-primary/20 rounded-2xl shadow-xl p-4 sm:p-6">
         <div className="flex items-start gap-4">
           <div className="flex-1">
@@ -84,13 +84,13 @@ export default function PWAInstallPrompt() {
             <div className="flex gap-2">
               <button
                 onClick={handleInstallClick}
-                className="px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:brightness-110 transition text-sm"
+                className="px-4 py-2 min-h-[44px] bg-primary text-white font-semibold rounded-lg hover:brightness-110 transition text-sm"
               >
                 Install
               </button>
               <button
                 onClick={handleDismiss}
-                className="px-4 py-2 border border-border text-text-muted font-medium rounded-lg hover:bg-bg-light transition text-sm"
+                className="px-4 py-2 min-h-[44px] border border-border text-text-muted font-medium rounded-lg hover:bg-bg-light transition text-sm"
               >
                 Maybe Later
               </button>
@@ -98,7 +98,7 @@ export default function PWAInstallPrompt() {
           </div>
           <button
             onClick={handleDismiss}
-            className="text-text-muted hover:text-text transition p-1"
+            className="text-text-muted hover:text-text transition p-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
             aria-label="Close"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

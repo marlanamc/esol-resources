@@ -81,7 +81,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Previous month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth - 1, 1))}
-                        className="text-xs font-semibold text-text-muted border border-border/60 rounded-md px-3 py-1.5 hover:bg-bg-light"
+                        className="text-xs font-semibold text-text-muted border border-border/60 rounded-md px-3 py-2 min-h-[44px] min-w-[44px] hover:bg-bg-light flex items-center justify-center"
                     >
                         ←
                     </button>
@@ -89,7 +89,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Next month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth + 1, 1))}
-                        className="text-xs font-semibold text-text-muted border border-border/60 rounded-md px-3 py-1.5 hover:bg-bg-light"
+                        className="text-xs font-semibold text-text-muted border border-border/60 rounded-md px-3 py-2 min-h-[44px] min-w-[44px] hover:bg-bg-light flex items-center justify-center"
                     >
                         →
                     </button>
