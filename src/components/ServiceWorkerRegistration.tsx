@@ -4,24 +4,21 @@ import { useEffect } from 'react';
 
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
-    // Only register service worker on mobile devices
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-
+    // Register service worker on ALL devices (not just mobile)
+    // This ensures consistent behavior and update notifications everywhere
     if (
       typeof window !== 'undefined' &&
       'serviceWorker' in navigator &&
-      process.env.NODE_ENV === 'production' &&
-      isMobile
+      process.env.NODE_ENV === 'production'
     ) {
       let registration: ServiceWorkerRegistration | null = null;
       let updateInterval: NodeJS.Timeout | null = null;
 
       const checkForUpdates = () => {
         if (registration) {
+          console.log('[SW] Checking for updates...');
           registration.update().catch((error) => {
-            console.error('Error checking for service worker updates:', error);
+            console.error('[SW] Error checking for updates:', error);
           });
         }
       };
@@ -30,11 +27,11 @@ export default function ServiceWorkerRegistration() {
         .register('/sw.js', { updateViaCache: 'none' })
         .then((reg) => {
           registration = reg;
-          console.log('Service Worker registered successfully:', reg.scope);
+          console.log('[SW] Registered successfully:', reg.scope);
 
           // Check if there's already a waiting service worker
           if (reg.waiting && navigator.serviceWorker.controller) {
-            console.log('Waiting service worker found on page load');
+            console.log('[SW] Update waiting on page load');
             window.dispatchEvent(
               new CustomEvent('swUpdateAvailable', {
                 detail: { waitingWorker: reg.waiting }
@@ -48,15 +45,11 @@ export default function ServiceWorkerRegistration() {
 
             if (newWorker) {
               newWorker.addEventListener('statechange', () => {
-                // When the new service worker is installed and waiting
                 if (
                   newWorker.state === 'installed' &&
                   navigator.serviceWorker.controller
                 ) {
-                  // Notify the app that an update is available
-                  console.log('New service worker available! Notifying user...');
-
-                  // Dispatch custom event that PWAUpdateNotification listens for
+                  console.log('[SW] New version available!');
                   window.dispatchEvent(
                     new CustomEvent('swUpdateAvailable', {
                       detail: { waitingWorker: newWorker }
@@ -67,27 +60,38 @@ export default function ServiceWorkerRegistration() {
             }
           });
 
-          // Check for updates immediately on page load
+          // Check for updates immediately
           checkForUpdates();
 
-          // Check for updates when window regains focus
+          // Check for updates when window regains focus (user returns to app)
           window.addEventListener('focus', checkForUpdates);
 
-          // Check for updates periodically (every hour)
+          // Check for updates when coming back online
+          window.addEventListener('online', checkForUpdates);
+
+          // Check for updates every 5 MINUTES (not every hour)
+          // This ensures students get new content quickly
           updateInterval = setInterval(() => {
             checkForUpdates();
-          }, 60 * 60 * 1000);
+          }, 5 * 60 * 1000);
+
+          // Also check on visibility change (when tab becomes visible)
+          document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+              checkForUpdates();
+            }
+          });
         })
         .catch((error) => {
-          console.error('Service Worker registration failed:', error);
+          console.error('[SW] Registration failed:', error);
         });
 
-      // Cleanup function
       return () => {
         if (updateInterval) {
           clearInterval(updateInterval);
         }
         window.removeEventListener('focus', checkForUpdates);
+        window.removeEventListener('online', checkForUpdates);
       };
     }
   }, []);

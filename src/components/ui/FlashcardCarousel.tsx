@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 
 /**
@@ -30,6 +30,11 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     const [mode, setMode] = useState<CardMode>("term-first");
     const [showExample, setShowExample] = useState(true);
     const [studiedCards, setStudiedCards] = useState<Set<number>>(new Set()); // Track cards that were actually flipped
+
+    // Touch/swipe handling
+    const touchStartX = useRef<number | null>(null);
+    const touchStartY = useRef<number | null>(null);
+    const [swipeOffset, setSwipeOffset] = useState(0);
 
     const total = cards.length;
     const currentCard = cards[order[currentIndex]];
@@ -118,6 +123,41 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
         setOrder(cards.map((_, i) => i));
         setCurrentIndex(0);
         setIsFlipped(false);
+    };
+
+    // Touch handlers for swipe gestures
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        if (touchStartX.current === null || touchStartY.current === null) return;
+        
+        const deltaX = e.touches[0].clientX - touchStartX.current;
+        const deltaY = e.touches[0].clientY - touchStartY.current;
+        
+        // Only track horizontal swipes (ignore vertical scrolling)
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            setSwipeOffset(deltaX);
+        }
+    };
+
+    const handleTouchEnd = () => {
+        const SWIPE_THRESHOLD = 50; // Minimum distance for a swipe
+        
+        if (swipeOffset > SWIPE_THRESHOLD) {
+            // Swiped right - go to previous card
+            goPrev();
+        } else if (swipeOffset < -SWIPE_THRESHOLD) {
+            // Swiped left - go to next card
+            goNext();
+        }
+        
+        // Reset
+        touchStartX.current = null;
+        touchStartY.current = null;
+        setSwipeOffset(0);
     };
 
     useEffect(() => {
@@ -220,10 +260,17 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             )}
 
             {/* Card Container - Takes up remaining space */}
-            <div className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer md:py-8" onClick={handleFlip}>
+            <div 
+                className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer md:py-8" 
+                onClick={handleFlip}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
                 <div className="w-full h-full max-w-2xl max-h-[600px] md:aspect-[4/3]">
                     <div
                         className={`relative w-full h-full duration-500 transform-style-3d transition-transform ease-in-out ${isFlipped ? "rotate-y-180" : ""}`}
+                        style={{ transform: swipeOffset !== 0 ? `translateX(${swipeOffset}px) ${isFlipped ? 'rotateY(180deg)' : ''}` : undefined }}
                     >
                         {/* Front Face */}
                         <div className="absolute inset-0 w-full h-full backface-hidden">
