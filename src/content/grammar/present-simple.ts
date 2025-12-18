@@ -36,9 +36,9 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         "Things you actually do regularly, not the gym membership you never use",
                     examples: [
                         {
-                            sentence: "I <strong>check</strong> my phone the second I wake up.",
+                            sentence: "I <strong>set</strong> my alarm for 5 AM every workday.",
                             explanation:
-                                "✓ That habit you won't admit to your therapist",
+                                "✓ That early morning routine we all know",
                         },
                         {
                             sentence: "My neighbor's dog <strong>barks</strong> at exactly 6 AM. Every. Single. Morning.",
@@ -66,7 +66,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 "✓ Universal truths we can all relate to",
                         },
                         {
-                            sentence: "Wi-Fi <strong>stops</strong> working the moment you need it most.",
+                            sentence: "The bus <strong>comes</strong> late when you need it most.",
                             explanation: "✓ Modern life facts",
                         },
                     ],
@@ -77,12 +77,12 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         "The basics: where you live, what you do, who you are",
                     examples: [
                         {
-                            sentence: "I <strong>work</strong> in IT support. Yes, I've tried turning it off and on again.",
+                            sentence: "I <strong>work</strong> at the food processing plant on the night shift.",
                             explanation:
-                                "✓ Your job (even if you're already updating your resume)",
+                                "✓ Your job and where you work",
                         },
                         {
-                            sentence: "She <strong>manages</strong> a team of fifteen people who all need \"just five minutes.\"",
+                            sentence: "She <strong>supervises</strong> the kitchen staff at the restaurant downtown.",
                             explanation: "✓ Work situations that aren't temporary",
                         },
                         {
@@ -102,7 +102,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                                 "✓ Scheduled events - time to grab coffee first",
                         },
                         {
-                            sentence: "My shift <strong>ends</strong> at 6, but my inbox <strong>doesn't</strong> know that.",
+                            sentence: "My shift <strong>ends</strong> at 6, but sometimes we <strong>stay</strong> late to finish orders.",
                             explanation:
                                 "✓ Official schedules vs. reality",
                         },
@@ -117,7 +117,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     description: "What you think, feel, love, or can't stand",
                     examples: [
                         {
-                            sentence: "I <strong>hate</strong> when people reply-all to company-wide emails.",
+                            sentence: "I <strong>hate</strong> when the break room microwave smells like fish.",
                             explanation:
                                 "✓ Strong feelings that are consistently true",
                         },
@@ -126,7 +126,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                             explanation: "✓ Personal preferences and boundaries",
                         },
                         {
-                            sentence: "We <strong>prefer</strong> remote work. The commute is just too much.",
+                            sentence: "We <strong>prefer</strong> the day shift. The night shift is too tiring.",
                             explanation: "✓ Opinions that shape your decisions",
                         },
                     ],
@@ -273,7 +273,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I <span style="color: #8b5cf6; font-weight: 600;">work</span> from home three days a week.
+                            I <span style="color: #8b5cf6; font-weight: 600;">work</span> double shifts on weekends.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
                             You <span style="color: #8b5cf6; font-weight: 600;">sound</span> exactly like my manager.
@@ -282,16 +282,16 @@ export const presentSimpleContent: InteractiveGuideContent = {
                             He <span style="color: #8b5cf6; font-weight: 600;">commutes</span> two hours each day. <em style="color: #d97757;">(note the -s)</em>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #8b5cf6; font-weight: 600;">runs</span> the weekly team meeting. <em style="color: #d97757;">(note the -s)</em>
+                            She <span style="color: #8b5cf6; font-weight: 600;">checks</span> the equipment every morning before we start. <em style="color: #d97757;">(note the -s)</em>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
                             It <span style="color: #8b5cf6; font-weight: 600;">takes</span> forever to get through security.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            We <span style="color: #8b5cf6; font-weight: 600;">meet</span> deadlines... sometimes.
+                            We <span style="color: #8b5cf6; font-weight: 600;">finish</span> our orders before the lunch rush.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            They <span style="color: #8b5cf6; font-weight: 600;">share</span> an office that's way too small.
+                            They <span style="color: #8b5cf6; font-weight: 600;">clean</span> the kitchen at the end of every shift.
                         </div>
                     </div>
                 </div>
@@ -403,25 +403,25 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            I <span style="color: #8b5cf6; font-weight: 600;">don't answer</span> work emails after 7 PM.
+                            I <span style="color: #8b5cf6; font-weight: 600;">don't work</span> on Sundays—that's my day off.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            You <span style="color: #8b5cf6; font-weight: 600;">don't need</span> to CC everyone on that.
+                            You <span style="color: #8b5cf6; font-weight: 600;">don't need</span> to clock in until 7 AM.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
                             He <span style="color: #8b5cf6; font-weight: 600;">doesn't drink</span> coffee, only energy drinks.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            She <span style="color: #8b5cf6; font-weight: 600;">doesn't tolerate</span> being late to meetings.
+                            She <span style="color: #8b5cf6; font-weight: 600;">doesn't take</span> breaks during the busy hours.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
                             It <span style="color: #8b5cf6; font-weight: 600;">doesn't matter</span> if you send it today or tomorrow.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            We <span style="color: #8b5cf6; font-weight: 600;">don't have</span> meetings on Fridays.
+                            We <span style="color: #8b5cf6; font-weight: 600;">don't get</span> overtime pay on holidays.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            They <span style="color: #8b5cf6; font-weight: 600;">don't offer</span> remote work at that company.
+                            They <span style="color: #8b5cf6; font-weight: 600;">don't allow</span> cell phones on the factory floor.
                         </div>
                     </div>
                 </div>
@@ -494,22 +494,22 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     </div>
                     <div style="display: flex; flex-direction: column; gap: 1rem;">
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> you <span style="color: #8b5cf6; font-weight: 600;">work</span> remotely or in the office?
+                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> you <span style="color: #8b5cf6; font-weight: 600;">work</span> the morning shift or the evening shift?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> they <span style="color: #8b5cf6; font-weight: 600;">allow</span> dogs in the workplace?
+                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> they <span style="color: #8b5cf6; font-weight: 600;">provide</span> uniforms at your job?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> he <span style="color: #8b5cf6; font-weight: 600;">report</span> directly to the CEO?
+                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> he <span style="color: #8b5cf6; font-weight: 600;">work</span> in the kitchen or on the production line?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> she <span style="color: #8b5cf6; font-weight: 600;">know</span> about the budget cuts?
+                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> she <span style="color: #8b5cf6; font-weight: 600;">know</span> how to operate the forklift?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> it really <span style="color: #8b5cf6; font-weight: 600;">take</span> that long to approve?
+                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> it <span style="color: #8b5cf6; font-weight: 600;">take</span> long to learn the safety procedures?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
-                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> we <span style="color: #8b5cf6; font-weight: 600;">have</span> a meeting this afternoon?
+                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> we <span style="color: #8b5cf6; font-weight: 600;">get</span> a break before the dinner rush?
                         </div>
                     </div>
                 </div>
@@ -589,7 +589,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     usage: "every day/week/month/year, once/twice a week, three times a day",
                     examples: [
                         "I grab coffee every morning on my way in.",
-                        "We have stand-up meetings twice a week.",
+                        "We have safety training twice a week.",
                         "She visits her family once a month.",
                         "The system backs up every night at midnight.",
                     ],
@@ -598,7 +598,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     word: "Specific Times",
                     usage: "on Mondays, in the morning/afternoon/evening, at night, on weekends",
                     examples: [
-                        "I work from home on Wednesdays.",
+                        "I work overtime on Wednesdays.",
                         "He goes to the gym in the morning before work.",
                         "They do inventory on weekends.",
                         "The cleaning crew comes in at night.",
@@ -608,28 +608,28 @@ export const presentSimpleContent: InteractiveGuideContent = {
             tipBox: {
                 title: "📍 Where to Put Frequency Adverbs",
                 content:
-                    "Put frequency adverbs (always, usually, etc.) BEFORE the main verb: 'I always check my calendar first.' BUT after 'be': 'I am always early to meetings.'",
+                    "Put frequency adverbs (always, usually, etc.) BEFORE the main verb: 'I always check the schedule first.' BUT after 'be': 'I am always early for my shift.'",
             },
             exercises: [
                 {
                     id: "ex-time-1",
                     title: "Practice: Using Time Expressions",
-                    instructions: "Put the time expression in the correct place in the sentence.",
+                    instructions: "Rewrite the sentence with the time expression in the correct position.",
                     items: [
                         {
                             type: "text",
-                            label: "1. My grandmother ___ calls me on Sunday evenings. (always)",
-                            expectedAnswer: "always",
+                            label: "1. My grandmother calls me on Sunday evenings. (always) → My grandmother ___",
+                            expectedAnswer: "always calls me on Sunday evenings",
                         },
                         {
                             type: "text",
-                            label: "2. The farmers market sets up in the town square ___ . (twice a week)",
-                            expectedAnswer: "twice a week",
+                            label: "2. The farmers market sets up in the town square. (twice a week) → The farmers market ___",
+                            expectedAnswer: "sets up in the town square twice a week",
                         },
                         {
                             type: "text",
-                            label: "3. We ___ go hiking when the weather is nice. (often)",
-                            expectedAnswer: "often",
+                            label: "3. We go to the park when the weather is nice. (often) → We ___",
+                            expectedAnswer: "often go to the park when the weather is nice",
                         },
                     ],
                 },

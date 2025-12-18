@@ -6,8 +6,15 @@ import { presentContinuousContent } from '../src/content/grammar/present-continu
 import { pastContinuousContent } from '../src/content/grammar/past-continuous';
 import { futureContinuousContent } from '../src/content/grammar/future-continuous';
 import { presentPerfectContent } from '../src/content/grammar/present-perfect';
+import { pastPerfectContent } from '../src/content/grammar/past-perfect';
+import { futurePerfectContent } from '../src/content/grammar/future-perfect';
+import { presentPerfectContinuousContent } from '../src/content/grammar/present-perfect-continuous';
+import { pastPerfectContinuousContent } from '../src/content/grammar/past-perfect-continuous';
+import { futurePerfectContinuousContent } from '../src/content/grammar/future-perfect-continuous';
 import { simpleTensesReviewContent } from '../src/content/grammar/simple-tenses-review';
 import { continuousTensesReviewContent } from '../src/content/grammar/continuous-tenses-review';
+import { perfectTensesReviewContent } from '../src/content/grammar/perfect-tenses-review';
+import { perfectContinuousTensesReviewContent } from '../src/content/grammar/perfect-continuous-tenses-review';
 
 const prisma = new PrismaClient();
 
@@ -115,6 +122,73 @@ async function main() {
   });
   console.log('✅ Added:', presentPerfect.title);
 
+  // Past Perfect
+  const pastPerfect = await prisma.activity.create({
+    data: {
+      title: 'Past Perfect Guide',
+      description: 'Master Past Perfect for showing which action happened first when telling stories about the past.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(pastPerfectContent)
+    }
+  });
+  console.log('✅ Added:', pastPerfect.title);
+
+  // Future Perfect
+  const futurePerfect = await prisma.activity.create({
+    data: {
+      title: 'Future Perfect Guide',
+      description: 'Learn Future Perfect for actions that will be complete before a future deadline or point in time.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(futurePerfectContent)
+    }
+  });
+  console.log('✅ Added:', futurePerfect.title);
+
+  console.log('\n📚 Adding Perfect Continuous Tenses...');
+
+  // Present Perfect Continuous
+  const presentPerfectContinuous = await prisma.activity.create({
+    data: {
+      title: 'Present Perfect Continuous Guide',
+      description: 'Learn Present Perfect Continuous for emphasizing duration of ongoing actions up to now.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(presentPerfectContinuousContent)
+    }
+  });
+  console.log('✅ Added:', presentPerfectContinuous.title);
+
+  // Past Perfect Continuous
+  const pastPerfectContinuous = await prisma.activity.create({
+    data: {
+      title: 'Past Perfect Continuous Guide',
+      description: 'Master Past Perfect Continuous for showing duration of actions before another past event.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'advanced',
+      content: JSON.stringify(pastPerfectContinuousContent)
+    }
+  });
+  console.log('✅ Added:', pastPerfectContinuous.title);
+
+  // Future Perfect Continuous
+  const futurePerfectContinuous = await prisma.activity.create({
+    data: {
+      title: 'Future Perfect Continuous Guide',
+      description: 'Learn Future Perfect Continuous for duration of actions up to a future point (milestones and anniversaries).',
+      type: 'guide',
+      category: 'grammar',
+      level: 'advanced',
+      content: JSON.stringify(futurePerfectContinuousContent)
+    }
+  });
+  console.log('✅ Added:', futurePerfectContinuous.title);
+
   console.log('\n📚 Adding Review Guides...');
 
   // Simple Tenses Review
@@ -143,6 +217,32 @@ async function main() {
   });
   console.log('✅ Added:', continuousTensesReview.title);
 
+  // Perfect Tenses Review
+  const perfectTensesReview = await prisma.activity.create({
+    data: {
+      title: 'Perfect Tenses Review',
+      description: 'Comprehensive review of Present Perfect, Past Perfect, and Future Perfect with commonly confused tense comparisons.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(perfectTensesReviewContent)
+    }
+  });
+  console.log('✅ Added:', perfectTensesReview.title);
+
+  // Perfect Continuous Tenses Review
+  const perfectContinuousTensesReview = await prisma.activity.create({
+    data: {
+      title: 'Perfect Continuous Tenses Review',
+      description: 'Comprehensive review of all Perfect Continuous tenses with duration focus and common mistakes.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'advanced',
+      content: JSON.stringify(perfectContinuousTensesReviewContent)
+    }
+  });
+  console.log('✅ Added:', perfectContinuousTensesReview.title);
+
   console.log('\n🎮 Adding Games...');
 
   // Numbers Game
@@ -165,11 +265,12 @@ async function main() {
   console.log('✅ Added:', numbersGame.title);
 
   console.log('\n✨ Dashboard updated successfully!');
-  console.log(`\nAdded ${9} grammar guides:`);
+  console.log(`\nAdded ${17} grammar guides:`);
   console.log('  - 3 Simple tenses (Present, Past, Future)');
   console.log('  - 3 Continuous tenses (Present, Past, Future)');
-  console.log('  - 1 Perfect tense (Present Perfect)');
-  console.log('  - 2 Review guides (Simple Tenses, Continuous Tenses)');
+  console.log('  - 3 Perfect tenses (Present, Past, Future)');
+  console.log('  - 3 Perfect Continuous tenses (Present, Past, Future)');
+  console.log('  - 4 Review guides (Simple, Continuous, Perfect, Perfect Continuous)');
   console.log(`\nAdded 1 game:`);
   console.log('  - Numbers to English Words');
   console.log('\nYou can now view all activities at: /dashboard');

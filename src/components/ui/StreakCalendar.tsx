@@ -3,7 +3,7 @@
 import React from 'react';
 
 interface StreakCalendarProps {
-  activityDates: Date[]; // Array of dates when user was active
+  activityDates: Array<Date | string>; // Array of dates when user was active
   className?: string;
 }
 
@@ -11,42 +11,62 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
   activityDates,
   className = '',
 }) => {
-  // Get last 12 weeks (84 days) for display
   const today = new Date();
+  const MS_PER_DAY = 1000 * 60 * 60 * 24;
+  
+  // Start from December 1, 2025 (app launch date)
+  const appLaunchDate = new Date(2025, 11, 1); // December 1, 2025
+  const daysSinceLaunch = Math.ceil((today.getTime() - appLaunchDate.getTime()) / MS_PER_DAY);
+  const DAYS_TO_SHOW = Math.max(daysSinceLaunch, 30); // At least 30 days, or days since launch
+
+  const getLocalDateKey = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const todayKey = getLocalDateKey(today);
+
+  // Calculate start date based on fixed range
   const startDate = new Date(today);
-  startDate.setDate(today.getDate() - 83); // 12 weeks ago
+  startDate.setDate(today.getDate() - DAYS_TO_SHOW);
 
   // Create a map of dates with activity
   const activityMap = new Map<string, number>();
   activityDates.forEach(date => {
-    const dateKey = new Date(date).toISOString().split('T')[0];
+    const dateKey = getLocalDateKey(new Date(date));
     activityMap.set(dateKey, (activityMap.get(dateKey) || 0) + 1);
   });
 
-  // Generate weeks array (each week is an array of 7 days)
+  // Generate weeks array - each week is a column with exactly 7 days (Sun-Sat)
+  // Start from the Sunday of the week containing appLaunchDate
+  const firstSunday = new Date(appLaunchDate);
+  firstSunday.setDate(appLaunchDate.getDate() - appLaunchDate.getDay());
+  
+  // End at the Saturday of the current week
+  const lastSaturday = new Date(today);
+  lastSaturday.setDate(today.getDate() + (6 - today.getDay()));
+  
+  // Calculate number of weeks
+  const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+  const numWeeks = Math.ceil((lastSaturday.getTime() - firstSunday.getTime() + 1) / msPerWeek);
+  
   const weeks: Date[][] = [];
-  let currentWeek: Date[] = [];
-
-  // Start from the beginning of the week containing startDate
-  const firstDay = new Date(startDate);
-  const dayOfWeek = firstDay.getDay();
-  firstDay.setDate(firstDay.getDate() - dayOfWeek);
-
-  for (let i = 0; i < 84; i++) {
-    const date = new Date(firstDay);
-    date.setDate(firstDay.getDate() + i);
-
-    currentWeek.push(date);
-
-    if (currentWeek.length === 7) {
-      weeks.push(currentWeek);
-      currentWeek = [];
+  for (let w = 0; w < numWeeks; w++) {
+    const week: Date[] = [];
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(firstSunday);
+      date.setDate(firstSunday.getDate() + (w * 7) + d);
+      week.push(date);
     }
+    weeks.push(week);
   }
+  
 
   // Get activity level for styling (0 = none, 1-3 = low to high)
   const getActivityLevel = (date: Date): number => {
-    const dateKey = date.toISOString().split('T')[0];
+    const dateKey = getLocalDateKey(date);
     const count = activityMap.get(dateKey) || 0;
     if (count === 0) return 0;
     if (count <= 2) return 1;
@@ -91,25 +111,35 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
         {/* Calendar grid with day labels */}
         <div className="flex gap-3 md:gap-4">
           {/* Day labels */}
-          <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 text-xs md:text-sm text-text-muted justify-start pt-0.5">
+          <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 text-xs md:text-sm text-text-muted justify-start pt-0.5">
             {dayLabels.map((day, i) => (
-              <div key={i} className="h-3.5 md:h-4 lg:h-5 flex items-center w-8 md:w-10 lg:w-12">
+              <div key={i} className="h-3.5 md:h-4 lg:h-5 xl:h-6 flex items-center w-8 md:w-10 lg:w-12">
                 {day.slice(0, 3)}
               </div>
             ))}
           </div>
 
           {/* Calendar weeks */}
-          <div className="flex-1 overflow-x-auto">
-            <div className="flex gap-1.5 md:gap-2 lg:gap-3 xl:gap-4">
+          <div className="flex-1">
+            <div className="flex gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
               {weeks.map((week, weekIndex) => (
                 <div key={weekIndex} className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
                   {/* Days in week */}
                   {week.map((date, dayIndex) => {
+                    const dateKey = getLocalDateKey(date);
+                    const isToday = dateKey === todayKey;
+                    const isFuture = dateKey > todayKey;
                     const level = getActivityLevel(date);
-                    const isToday = date.toISOString().split('T')[0] === today.toISOString().split('T')[0];
-                    const dateKey = date.toISOString().split('T')[0];
                     const activityCount = activityMap.get(dateKey) || 0;
+
+                    if (isFuture) {
+                      return (
+                        <div
+                          key={dayIndex}
+                          className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 opacity-0"
+                        />
+                      );
+                    }
 
                     return (
                       <div

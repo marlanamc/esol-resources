@@ -51,7 +51,7 @@ const getIconForMeaning = (title: string) => {
 
 // Extract clean title without emojis
 const cleanTitle = (title: string) => {
-    return title.replace(/[📚⭐🔄🌍💼📅❤️⚖️⏳⏰📝🧠📘✓✅💡🎉👍🆕🔢➡️]/g, '').trim();
+    return title.replace(/[📚⭐🔄🌍💼📅❤️⚖️⏳⏰📝🧠📘✓✅💡🎉👍🆕🔢➡️🔵🟠🔷🟡🟢🟣🔴]/g, '').trim();
 };
 
 export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
