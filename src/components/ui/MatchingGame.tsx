@@ -172,7 +172,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                     {/* Back button - only on mobile */}
                     <button
                         onClick={() => window.history.back()}
-                        className="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors md:hidden touch-manipulation"
+                        className="p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors md:hidden touch-manipulation"
                         aria-label="Go back"
                     >
                         <XIcon className="w-6 h-6 text-gray-600" />
@@ -199,12 +199,13 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
             </div>
 
-            {/* Matching Grid - Horizontal scroll on mobile, side-by-side on desktop */}
-            <div className="flex-1 overflow-x-auto overflow-y-auto overscroll-contain md:overflow-visible px-3 py-4 md:px-0 md:py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
-                <div className="flex md:grid md:grid-cols-2 gap-2 md:gap-4 mb-4 md:mb-6 min-w-max md:min-w-0">
+            {/* Matching Grid - Stacked on mobile, side-by-side on desktop */}
+            <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-4 md:px-0 md:py-4" style={{ WebkitOverflowScrolling: 'touch' }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
                 {/* Terms Column */}
-                <div className="space-y-2 md:space-y-3 w-[90vw] md:w-auto flex-shrink-0">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
+                <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3 flex items-center gap-2">
+                        <span className="inline-block w-6 h-6 bg-blue-500 text-white rounded-full text-center text-sm font-bold leading-6">1</span>
                         Terms
                     </h3>
                     {terms.map((term) => {
@@ -234,8 +235,9 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 </div>
 
                 {/* Definitions Column */}
-                <div className="space-y-2 md:space-y-3 w-[90vw] md:w-auto flex-shrink-0">
-                    <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3">
+                <div className="space-y-2 md:space-y-3">
+                    <h3 className="text-base md:text-lg font-semibold text-gray-700 mb-2 md:mb-3 flex items-center gap-2">
+                        <span className="inline-block w-6 h-6 bg-green-500 text-white rounded-full text-center text-sm font-bold leading-6">2</span>
                         Definitions
                     </h3>
                     {definitions.map((def) => {

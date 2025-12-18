@@ -70,6 +70,10 @@
   /* Z-Index Layers */
   --z-fixed: 100;
   /* Bottom nav and other fixed UI elements */
+
+  /* Layout */
+  --bottom-nav-height: 64px;
+  /* Height of mobile bottom navigation (h-16 = 64px) */
 }
 
 :root {

@@ -72,13 +72,13 @@ export default function PWAUpdateNotification() {
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={handleUpdate}
-              className="bg-white text-blue-700 hover:bg-blue-50 font-semibold px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg transition-colors text-sm sm:text-base shadow-md hover:shadow-lg active:scale-95 transform"
+              className="bg-white text-blue-700 hover:bg-blue-50 font-semibold px-4 sm:px-6 py-2 sm:py-2.5 min-h-[44px] rounded-lg transition-colors text-sm sm:text-base shadow-md hover:shadow-lg active:scale-95 transform"
             >
               Update Now
             </button>
             <button
               onClick={handleDismiss}
-              className="text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-lg transition-colors"
+              className="text-white/80 hover:text-white hover:bg-white/10 p-2 min-w-[44px] min-h-[44px] rounded-lg transition-colors flex items-center justify-center"
               aria-label="Dismiss"
             >
               <X className="w-5 h-5" />
