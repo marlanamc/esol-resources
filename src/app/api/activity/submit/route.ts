@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints } from "@/lib/gamification";
+import { awardPoints, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -85,6 +85,10 @@ export async function POST(request: Request) {
             points,
             `Completed: ${activity?.title || activityId}`
         );
+
+        // Update streak and check for achievements
+        await updateStreak(userId);
+        await checkAndAwardAchievements(userId);
     }
 
     return NextResponse.json({

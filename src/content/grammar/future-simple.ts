@@ -119,6 +119,36 @@ export const futureSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Form Future Simple (Positive)</h3>
                 <p>Formula: <strong>will + base verb</strong>. Same for every subject—no extra endings.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            I <span style="color: #06b6d4; font-weight: 600;">will finish</span> my homework before dinner.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            You <span style="color: #06b6d4; font-weight: 600;">will love</span> this movie—it's so good.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            He <span style="color: #06b6d4; font-weight: 600;">will call</span> you when he gets home.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            She <span style="color: #06b6d4; font-weight: 600;">will bring</span> the cake to the party.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            It <span style="color: #06b6d4; font-weight: 600;">will take</span> longer if the traffic is bad.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            We <span style="color: #06b6d4; font-weight: 600;">will meet</span> at the park tomorrow.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            They <span style="color: #06b6d4; font-weight: 600;">will visit</span> us next month.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -126,15 +156,6 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { text: "will", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
-            ],
-            examples: [
-                "I will finish my homework before dinner.",
-                "You will love this movie—it's so good.",
-                "He will call you when he gets home.",
-                "She will bring the cake to the party.",
-                "It will take longer if the traffic is bad.",
-                "We will meet at the park tomorrow.",
-                "They will visit us next month.",
             ],
             tipBox: {
                 title: "✏️ Contractions",
@@ -173,6 +194,27 @@ export const futureSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Make Negative Sentences</h3>
                 <p>Use <strong>will not (won't)</strong> + base verb.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            I <span style="color: #06b6d4; font-weight: 600;">won't eat</span> sugar this week—I'm trying to be healthier.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            She <span style="color: #06b6d4; font-weight: 600;">won't go</span> to the party tonight.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            They <span style="color: #06b6d4; font-weight: 600;">won't leave</span> before 9 PM.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            It <span style="color: #06b6d4; font-weight: 600;">won't rain</span> tomorrow, according to the weather.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -180,12 +222,6 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { text: "won't", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
-            ],
-            examples: [
-                "I won't eat sugar this week—I'm trying to be healthier.",
-                "She won't go to the party tonight.",
-                "They won't leave before 9 PM.",
-                "It won't rain tomorrow, according to the weather.",
             ],
             exercises: [
                 {
@@ -220,6 +256,27 @@ export const futureSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Make Questions</h3>
                 <p>Put <strong>Will</strong> at the beginning.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> you <span style="color: #06b6d4; font-weight: 600;">come</span> to dinner tonight?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> she <span style="color: #06b6d4; font-weight: 600;">bring</span> her kids to the party?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> it <span style="color: #06b6d4; font-weight: 600;">be</span> cold tomorrow?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> they <span style="color: #06b6d4; font-weight: 600;">visit</span> us next week?
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Will", type: "verb" },
@@ -228,12 +285,6 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
                 { text: "?", type: "other" },
-            ],
-            examples: [
-                "Will you come to dinner tonight?",
-                "Will she bring her kids to the party?",
-                "Will it be cold tomorrow?",
-                "Will they visit us next week?",
             ],
             exercises: [
                 {
@@ -256,6 +307,51 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             label: "3. ___ the neighbors ___ (adopt) another rescue dog?",
                             expectedAnswer: "Will the neighbors adopt",
                         },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-1",
+                    title: "Exercise 4: Conjugation Practice",
+                    instructions: "Complete the conjugation chart for the verb 'help' with the subject 'she'.",
+                    items: [
+                        { type: "text", label: "Affirmative: She ___ help", expectedAnswer: "will" },
+                        { type: "text", label: "Negative: She ___ help", expectedAnswer: "won't" },
+                        { type: "text", label: "Question: ___ she help?", expectedAnswer: "Will" },
+                    ],
+                },
+                {
+                    id: "ex-error-correction-1",
+                    title: "Exercise 5: Error Correction",
+                    instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. She will going to the party tomorrow.", expectedAnswer: "She will go to the party tomorrow" },
+                        { type: "text", label: "2. They won't comes to the meeting.", expectedAnswer: "They won't come to the meeting" },
+                        { type: "text", label: "3. Will you helps me with this project?", expectedAnswer: "Will you help me with this project" },
+                        { type: "text", label: "4. I will to call you later.", expectedAnswer: "I will call you later" },
+                        { type: "text", label: "5. He don't will arrive until midnight.", expectedAnswer: "He won't arrive until midnight" },
+                    ],
+                },
+                {
+                    id: "ex-transformation-1",
+                    title: "Exercise 6: Transformation Practice",
+                    instructions: "Change each sentence as instructed. Keep the same meaning!",
+                    items: [
+                        { type: "text", label: "1. Make negative: I will attend the conference next month.", expectedAnswer: "I won't attend the conference next month" },
+                        { type: "text", label: "2. Make a question: She will finish the report by Friday.", expectedAnswer: "Will she finish the report by Friday" },
+                        { type: "text", label: "3. Make affirmative: They won't travel this summer.", expectedAnswer: "They will travel this summer" },
+                        { type: "text", label: "4. Make negative: The weather will be sunny tomorrow.", expectedAnswer: "The weather won't be sunny tomorrow" },
+                    ],
+                },
+                {
+                    id: "ex-contextual-1",
+                    title: "Exercise 7: Making Predictions",
+                    instructions: "Complete these predictions about the future. Use Future Simple!",
+                    items: [
+                        { type: "text", label: "1. I think it ___ (rain) later tonight.", expectedAnswer: "will rain" },
+                        { type: "text", label: "2. The team ___ (not win) without their star player.", expectedAnswer: "won't win" },
+                        { type: "text", label: "3. ___ the price of gas ___ (go) up next month?", expectedAnswer: "Will the price of gas go" },
+                        { type: "text", label: "4. My parents ___ (visit) us during the holidays.", expectedAnswer: "will visit" },
+                        { type: "text", label: "5. I'm sure you ___ (love) this restaurant!", expectedAnswer: "will love" },
                     ],
                 },
             ],

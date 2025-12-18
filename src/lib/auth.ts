@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { trackLogin } from "./gamification";
 
 export const authOptions: NextAuthOptions = {
-    secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET || "development-secret-change-in-production",
+    secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET,
     providers: [
         CredentialsProvider({
             name: "Credentials",

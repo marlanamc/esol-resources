@@ -115,6 +115,34 @@ async function main() {
         },
     });
 
+    // Create Past Perfect Guide
+    const pastPerfectGuide = await prisma.activity.upsert({
+        where: { id: 'past-perfect-guide' },
+        update: {
+            title: 'Past Perfect Guide',
+            description: 'Master Past Perfect with the TWO-VERB rule. Learn how to show which of two past actions happened first with timeline visualization, four sentence patterns (when/before/after/by the time), forms (positive, negative, questions), and interactive exercises.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/past-perfect'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'past-perfect-guide',
+            title: 'Past Perfect Guide',
+            description: 'Master Past Perfect with the TWO-VERB rule. Learn how to show which of two past actions happened first with timeline visualization, four sentence patterns (when/before/after/by the time), forms (positive, negative, questions), and interactive exercises.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/past-perfect'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+
     // Create Present Simple Guide
     const presentSimpleGuide = await prisma.activity.upsert({
         where: { id: 'present-simple-guide' },
@@ -1116,6 +1144,7 @@ async function main() {
     console.log('✅ Seeded database with teacher, ESOL 3 class, students, and grammar guides');
     console.log('👥 Students added:', students.length);
     console.log('📚 Present Perfect guide added:', presentPerfectGuide.title);
+    console.log('📚 Past Perfect guide added:', pastPerfectGuide.title);
     console.log('📚 Present Simple guide added:', presentSimpleGuide.title);
     console.log('📚 Past Simple guide added:', pastSimpleGuide.title);
     console.log('📚 Future Simple guide added:', futureSimpleGuide.title);

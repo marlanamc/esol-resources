@@ -1,23 +1,32 @@
 import { prisma } from './prisma';
 
 // Points awarded for different actions
+// Philosophy: Points should reflect TIME and EFFORT, not just clicking through
+// - Quick activities (flashcards): Low base, requires studying all cards
+// - Interactive activities (matching, fill-blank): Medium, requires actual work
+// - Comprehensive activities (grammar guides): Higher, but requires completing exercises
+// - Quizzes: Score-based, no points for just attempting
 export const POINTS = {
-  QUIZ_COMPLETION: 10,
-  QUIZ_PERFECT_SCORE: 20, // Bonus for 100%
-  QUIZ_HIGH_SCORE: 10, // 90%+
-  QUIZ_GOOD_SCORE: 5, // 80%+
+  // Quiz points are ONLY awarded based on score, not completion
+  // No base points for just taking a quiz - must earn through accuracy
+  QUIZ_PERFECT_SCORE: 15, // 100% = 15 points
+  QUIZ_HIGH_SCORE: 10, // 90-99% = 10 points
+  QUIZ_GOOD_SCORE: 5, // 80-89% = 5 points
+  QUIZ_PASSING_SCORE: 2, // 70-79% = 2 points
+  // Below 70% = 0 points (need to study more!)
 
-  // Activity type points (tiered by difficulty)
-  FLASHCARDS: 2,
-  MATCHING_GAME: 3,
-  FILL_IN_BLANK: 5,
+  // Activity type points (tiered by effort required)
+  FLASHCARDS: 3, // Must flip ALL cards to complete
+  MATCHING_GAME: 5, // Requires matching all pairs
+  FILL_IN_BLANK: 7, // Requires answering all questions
+  
   // Numbers game base points by difficulty
   NUMBERS_GAME_EASY: 3, // Basic (0-99), Round Numbers
   NUMBERS_GAME_MEDIUM: 5, // Hundreds, Ordinal
   NUMBERS_GAME_MEDIUM_HARD: 7, // Thousands, Ten Thousands
   NUMBERS_GAME_HARD: 10, // Hundred Thousands, Millions, Billions, Trillions, Years, All
   
-  // Numbers game bonuses by difficulty
+  // Numbers game bonuses by difficulty (accuracy-based)
   NUMBERS_GAME_PERFECT_EASY: 2, // +2 for perfect (total: 5)
   NUMBERS_GAME_HIGH_EASY: 1, // +1 for 90%+ (total: 4)
   
@@ -29,14 +38,18 @@ export const POINTS = {
   
   NUMBERS_GAME_PERFECT_HARD: 7, // +7 for perfect (total: 17)
   NUMBERS_GAME_HIGH_HARD: 4, // +4 for 90%+ (total: 14)
-  GRAMMAR_GUIDE: 10,
-  ACTIVITY_COMPLETION: 5, // Default fallback
+  
+  // Grammar guides: Points only awarded after completing exercises
+  // The /api/grammar/complete endpoint should only be called after exercises are done
+  GRAMMAR_GUIDE: 8,
+  
+  ACTIVITY_COMPLETION: 3, // Default fallback (reduced from 5)
 
-  // Streaks
+  // Streaks - reward consistency
   DAILY_STREAK: 5,
   WEEKLY_STREAK: 25,
 
-  // Achievements
+  // Achievements - milestone rewards
   ACHIEVEMENT_BONUS: 50,
 } as const;
 
@@ -64,7 +77,9 @@ export function getActivityPoints(activityType: string, activityId?: string): nu
   } else if (type === 'guide') {
     return POINTS.GRAMMAR_GUIDE;
   } else if (type === 'quiz') {
-    return POINTS.QUIZ_COMPLETION;
+    // Quiz points are score-based, not completion-based
+    // Return 0 here - actual points calculated in calculateQuizPoints()
+    return 0;
   }
 
   return POINTS.ACTIVITY_COMPLETION; // Default
@@ -220,26 +235,25 @@ export async function updateStreak(userId: string): Promise<{ streakUpdated: boo
 }
 
 /**
- * Calculate points for a quiz/activity based on score
+ * Calculate points for a quiz based on score
+ * Points are ONLY awarded based on accuracy - no participation points
  */
-export function calculateActivityPoints(score: number | null, activityType: string): number {
-  if (score === null) return POINTS.ACTIVITY_COMPLETION;
+export function calculateQuizPoints(score: number | null): number {
+  if (score === null) return 0;
 
-  let points = POINTS.QUIZ_COMPLETION;
-
-  // Perfect score bonus
+  // Score-based points only - must earn through accuracy
   if (score === 100) {
-    points += POINTS.QUIZ_PERFECT_SCORE;
-  }
-
-  // Additional points based on score tiers
-  if (score >= 90) {
-    points += 10;
+    return POINTS.QUIZ_PERFECT_SCORE; // 15 points
+  } else if (score >= 90) {
+    return POINTS.QUIZ_HIGH_SCORE; // 10 points
   } else if (score >= 80) {
-    points += 5;
+    return POINTS.QUIZ_GOOD_SCORE; // 5 points
+  } else if (score >= 70) {
+    return POINTS.QUIZ_PASSING_SCORE; // 2 points
   }
-
-  return points;
+  
+  // Below 70% = 0 points - need to study more!
+  return 0;
 }
 
 export type LeaderboardRange = 'day' | 'week' | 'month';
@@ -378,7 +392,9 @@ export async function checkAndAwardAchievements(userId: string) {
         },
       },
       submissions: {
-        where: { status: 'graded' },
+        where: { 
+          status: { in: ['submitted', 'graded'] } // Count both submitted and graded
+        },
       },
     },
   });

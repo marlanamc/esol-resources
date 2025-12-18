@@ -83,18 +83,33 @@ export const futureContinuousContent: InteractiveGuideContent = {
             id: "step-positive",
             stepNumber: 2,
             title: "Positive Form",
-            explanation: `<p>Formula: <strong>will be + verb-ing</strong>. Same for every subject.</p>`,
+            explanation: `
+                <p>Formula: <strong>will be + verb-ing</strong>. Same for every subject.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            I <span style="color: #06b6d4; font-weight: 600;">will be sleeping</span> at 10 PM.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            She <span style="color: #06b6d4; font-weight: 600;">will be driving</span> when you call.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            They <span style="color: #06b6d4; font-weight: 600;">will be watching</span> the game tonight.
+                        </div>
+                    </div>
+                </div>
+            `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
                 { text: "will be", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "verb-ing", type: "verb" },
-            ],
-            examples: [
-                "I will be sleeping at 10 PM.",
-                "She will be driving when you call.",
-                "They will be watching the game tonight.",
             ],
             exercises: [{
                 id: "ex-1",
@@ -110,7 +125,24 @@ export const futureContinuousContent: InteractiveGuideContent = {
             id: "step-negative",
             stepNumber: 3,
             title: "Negative Form",
-            explanation: `<p>Use <strong>won't be + verb-ing</strong> to show what will NOT be happening.</p>`,
+            explanation: `
+                <p>Use <strong>won't be + verb-ing</strong> to show what will NOT be happening.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            I <span style="color: #06b6d4; font-weight: 600;">won't be answering</span> my phone during the movie.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            They <span style="color: #06b6d4; font-weight: 600;">won't be</span> home this weekend.
+                        </div>
+                    </div>
+                </div>
+            `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
@@ -118,13 +150,29 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "verb-ing", type: "verb" },
             ],
-            examples: ["I won't be answering my phone during the movie.", "They won't be home this weekend."],
         },
         {
             id: "step-questions",
             stepNumber: 4,
             title: "Question Form",
-            explanation: `<p>Flip 'Will' to the front: <strong>Will + subject + be + verb-ing?</strong></p>`,
+            explanation: `
+                <p>Flip 'Will' to the front: <strong>Will + subject + be + verb-ing?</strong></p>
+
+                <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> you <span style="color: #06b6d4; font-weight: 600;">be coming</span> to dinner tomorrow?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(6, 182, 212, 0.1);">
+                            <span style="color: #06b6d4; font-weight: 600;">Will</span> she <span style="color: #06b6d4; font-weight: 600;">be sleeping</span> at midnight?
+                        </div>
+                    </div>
+                </div>
+            `,
             formula: [
                 { text: "Will", type: "verb" },
                 { text: "+", type: "other" },
@@ -133,7 +181,38 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { text: "be + verb-ing", type: "verb" },
                 { text: "?", type: "other" },
             ],
-            examples: ["Will you be coming to dinner tomorrow?", "Will she be sleeping at midnight?"],
+            exercises: [
+                {
+                    id: "ex-conjugation-1",
+                    title: "Exercise 1: Conjugation Practice",
+                    instructions: "Complete the conjugation chart for the verb 'work' with the subject 'I'.",
+                    items: [
+                        { type: "text", label: "Affirmative: I ___ be working", expectedAnswer: "will" },
+                        { type: "text", label: "Negative: I ___ be working", expectedAnswer: "won't" },
+                        { type: "text", label: "Question: ___ I be working?", expectedAnswer: "Will" },
+                    ],
+                },
+                {
+                    id: "ex-practice-1",
+                    title: "Exercise 2: Future Actions in Progress",
+                    instructions: "Complete the sentences with Future Continuous.",
+                    items: [
+                        { type: "text", label: "1. At 9 PM tonight, I ___ (watch) my favorite show.", expectedAnswer: "will be watching" },
+                        { type: "text", label: "2. This time tomorrow, she ___ (fly) to Paris.", expectedAnswer: "will be flying" },
+                        { type: "text", label: "3. They ___ (not work) during the holidays.", expectedAnswer: "won't be working" },
+                    ],
+                },
+                {
+                    id: "ex-error-correction-1",
+                    title: "Exercise 3: Error Correction",
+                    instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. I will be sleep at midnight.", expectedAnswer: "I will be sleeping at midnight" },
+                        { type: "text", label: "2. She won't be come to the party.", expectedAnswer: "She won't be coming to the party" },
+                        { type: "text", label: "3. Will you be work tomorrow at 5 PM?", expectedAnswer: "Will you be working tomorrow at 5 PM" },
+                    ],
+                },
+            ],
         },
         {
             id: "summary",

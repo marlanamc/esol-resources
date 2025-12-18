@@ -206,20 +206,41 @@ export const pastSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Form Past Simple (Positive)</h3>
                 <p>Use the past form of the verb (same for all subjects!). Report what already happened and move on.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            I <span style="color: #f59e0b; font-weight: 600;">finished</span> my homework before dinner.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            You <span style="color: #f59e0b; font-weight: 600;">fixed</span> the car in record time.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            He <span style="color: #f59e0b; font-weight: 600;">called</span> his friend at 11 PM last night.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            She <span style="color: #f59e0b; font-weight: 600;">ordered</span> pizza after her shift ended.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            It <span style="color: #f59e0b; font-weight: 600;">rained</span> right when I left the house.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            We <span style="color: #f59e0b; font-weight: 600;">cleaned</span> the entire apartment in two hours.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            They <span style="color: #f59e0b; font-weight: 600;">bought</span> groceries last week.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
                 { text: "past verb", type: "verb" },
-            ],
-            examples: [
-                "I finished my homework before dinner.",
-                "You fixed the car in record time.",
-                "He called his friend at 11 PM last night.",
-                "She ordered pizza after her shift ended.",
-                "It rained right when I left the house.",
-                "We cleaned the entire apartment in two hours.",
-                "They bought groceries last week.",
             ],
             exercises: [
                 {
@@ -261,6 +282,27 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>How to Make Negative Sentences</h3>
                 <p>Use <strong>did not (didn't)</strong> + base verb.</p>
                 <p><strong>Important:</strong> The main verb returns to base form. The <em>did</em> already shows the past.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            I <span style="color: #f59e0b; font-weight: 600;">didn't eat</span> breakfast this morning—I woke up too late.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            She <span style="color: #f59e0b; font-weight: 600;">didn't go</span> to the party last night.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            They <span style="color: #f59e0b; font-weight: 600;">didn't fix</span> the sink last week.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            We <span style="color: #f59e0b; font-weight: 600;">didn't see</span> our neighbors at the park yesterday.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -268,12 +310,6 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { text: "didn't", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
-            ],
-            examples: [
-                "I didn't eat breakfast this morning—I woke up too late.",
-                "She didn't go to the party last night.",
-                "They didn't fix the sink last week.",
-                "We didn't see our neighbors at the park yesterday.",
             ],
             exercises: [
                 {
@@ -309,6 +345,27 @@ export const pastSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Make Questions</h3>
                 <p>Put <strong>Did</strong> at the beginning, then subject + base verb.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(245, 158, 11, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Did</span> you <span style="color: #f59e0b; font-weight: 600;">eat</span> breakfast this morning?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Did</span> she <span style="color: #f59e0b; font-weight: 600;">call</span> you yesterday?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Did</span> they <span style="color: #f59e0b; font-weight: 600;">catch</span> the last bus home?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
+                            <span style="color: #f59e0b; font-weight: 600;">Did</span> he <span style="color: #f59e0b; font-weight: 600;">finish</span> his homework before bed?
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Did", type: "verb" },
@@ -317,12 +374,6 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
                 { text: "?", type: "other" },
-            ],
-            examples: [
-                "Did you eat breakfast this morning?",
-                "Did she call you yesterday?",
-                "Did they catch the last bus home?",
-                "Did he finish his homework before bed?",
             ],
             exercises: [
                 {
@@ -344,6 +395,100 @@ export const pastSimpleContent: InteractiveGuideContent = {
                             type: "text",
                             label: "3. ___ you (remember) to water the plants before we left?",
                             expectedAnswer: "Did you remember",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-conjugation-1",
+                    title: "Exercise 4: Conjugation Practice",
+                    instructions: "Complete the conjugation chart for the verb 'call' with the subject 'they'.",
+                    items: [
+                        { type: "text", label: "Affirmative: They ___", expectedAnswer: "called" },
+                        { type: "text", label: "Negative: They ___ call", expectedAnswer: "didn't" },
+                        { type: "text", label: "Question: ___ they call?", expectedAnswer: "Did" },
+                    ],
+                },
+                {
+                    id: "ex-irregular-practice",
+                    title: "Exercise 5: Irregular Verb Practice",
+                    instructions: "Write the Past Simple form of these irregular verbs.",
+                    items: [
+                        { type: "text", label: "1. buy → ___", expectedAnswer: "bought" },
+                        { type: "text", label: "2. teach → ___", expectedAnswer: "taught" },
+                        { type: "text", label: "3. feel → ___", expectedAnswer: "felt" },
+                        { type: "text", label: "4. bring → ___", expectedAnswer: "brought" },
+                        { type: "text", label: "5. catch → ___", expectedAnswer: "caught" },
+                    ],
+                },
+                {
+                    id: "ex-error-correction-1",
+                    title: "Exercise 6: Error Correction",
+                    instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. She didn't went to the party last night.", expectedAnswer: "She didn't go to the party last night" },
+                        { type: "text", label: "2. They eated dinner at a new restaurant yesterday.", expectedAnswer: "They ate dinner at a new restaurant yesterday" },
+                        { type: "text", label: "3. Did you saw the news this morning?", expectedAnswer: "Did you see the news this morning" },
+                        { type: "text", label: "4. He buyed a new car last month.", expectedAnswer: "He bought a new car last month" },
+                        { type: "text", label: "5. We didn't finished the project on time.", expectedAnswer: "We didn't finish the project on time" },
+                    ],
+                },
+                {
+                    id: "ex-transformation-1",
+                    title: "Exercise 7: Transformation Practice",
+                    instructions: "Change each sentence as instructed. Keep the same meaning!",
+                    items: [
+                        { type: "text", label: "1. Make negative: I visited my grandparents last weekend.", expectedAnswer: "I didn't visit my grandparents last weekend" },
+                        { type: "text", label: "2. Make a question: She finished her homework yesterday.", expectedAnswer: "Did she finish her homework yesterday" },
+                        { type: "text", label: "3. Make affirmative: They didn't travel abroad last year.", expectedAnswer: "They traveled abroad last year" },
+                        { type: "text", label: "4. Make negative: The movie started at 7 PM.", expectedAnswer: "The movie didn't start at 7 PM" },
+                    ],
+                },
+                {
+                    id: "ex-contextual-1",
+                    title: "Exercise 8: Story Time - Complete the Narrative",
+                    instructions: "Complete this story about last weekend. Use Past Simple!",
+                    items: [
+                        { type: "text", label: "1. Last Saturday, I ___ (wake) up early.", expectedAnswer: "woke" },
+                        { type: "text", label: "2. I ___ (make) breakfast.", expectedAnswer: "made" },
+                        { type: "text", label: "3. Then I ___ (go) to the park with my dog.", expectedAnswer: "went" },
+                        { type: "text", label: "4. We ___ (not stay) long because it started raining.", expectedAnswer: "didn't stay" },
+                        { type: "text", label: "5. When I got home, I ___ (call) my friend.", expectedAnswer: "called" },
+                    ],
+                },
+                {
+                    id: "ex-mixed-practice",
+                    title: "Exercise 9: Mixed Practice",
+                    instructions: "Choose the correct Past Simple form.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "The kids ___ their room yesterday.",
+                            options: [
+                                { value: "clean", label: "clean" },
+                                { value: "cleaned", label: "cleaned" },
+                                { value: "cleaning", label: "cleaning" },
+                            ],
+                            expectedAnswer: "cleaned",
+                        },
+                        {
+                            type: "radio",
+                            label: "She ___ her keys in the car.",
+                            options: [
+                                { value: "leave", label: "leave" },
+                                { value: "leaved", label: "leaved" },
+                                { value: "left", label: "left" },
+                            ],
+                            expectedAnswer: "left",
+                        },
+                        {
+                            type: "radio",
+                            label: "___ they ___ the concert last night?",
+                            options: [
+                                { value: "Did enjoy", label: "Did enjoy" },
+                                { value: "Did enjoyed", label: "Did enjoyed" },
+                                { value: "Do enjoy", label: "Do enjoy" },
+                            ],
+                            expectedAnswer: "Did enjoy",
                         },
                     ],
                 },

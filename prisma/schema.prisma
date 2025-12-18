@@ -85,9 +85,9 @@ model Activity {
 
 model ActivityProgress {
   id          String   @id @default(cuid())
-  user        User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String
-  activity    Activity @relation(fields: [activityId], references: [id])
+  activity    Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
   activityId  String
   progress    Int      @default(0) // 0-100
   status      String   @default("in_progress") // in_progress, completed
@@ -112,9 +112,9 @@ model PointsLedger {
 
 model Assignment {
   id          String   @id @default(cuid())
-  class       Class    @relation(fields: [classId], references: [id])
+  class       Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
   classId     String
-  activity    Activity @relation(fields: [activityId], references: [id])
+  activity    Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
   activityId  String
   title       String?
   instructions String?
@@ -129,11 +129,11 @@ model Assignment {
 
 model Submission {
   id         String   @id @default(cuid())
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
-  activity   Activity @relation(fields: [activityId], references: [id])
+  activity   Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
   activityId String
-  assignment Assignment? @relation(fields: [assignmentId], references: [id])
+  assignment Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
   assignmentId String?
   content    String   // JSON content of the submission
   score      Int?

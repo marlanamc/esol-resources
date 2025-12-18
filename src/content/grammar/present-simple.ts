@@ -265,21 +265,42 @@ export const presentSimpleContent: InteractiveGuideContent = {
             explanation: `
                 <h3>The Pattern Everyone Uses</h3>
                 <p>Good news: Present Simple is straightforward. Just watch out for one tricky part - that <strong>-s ending</strong> for he/she/it.</p>
+
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            I <span style="color: #8b5cf6; font-weight: 600;">work</span> from home three days a week.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            You <span style="color: #8b5cf6; font-weight: 600;">sound</span> exactly like my manager.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            He <span style="color: #8b5cf6; font-weight: 600;">commutes</span> two hours each day. <em style="color: #d97757;">(note the -s)</em>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            She <span style="color: #8b5cf6; font-weight: 600;">runs</span> the weekly team meeting. <em style="color: #d97757;">(note the -s)</em>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            It <span style="color: #8b5cf6; font-weight: 600;">takes</span> forever to get through security.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            We <span style="color: #8b5cf6; font-weight: 600;">meet</span> deadlines... sometimes.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            They <span style="color: #8b5cf6; font-weight: 600;">share</span> an office that's way too small.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
                 { text: "base verb", type: "verb" },
                 { text: "(+s/es for he/she/it only!)", type: "other" },
-            ],
-            examples: [
-                "I work from home three days a week.",
-                "You sound exactly like my manager.",
-                "He commutes two hours each day. (note the -s)",
-                "She runs the weekly team meeting. (note the -s)",
-                "It takes forever to get through security.",
-                "We meet deadlines... sometimes.",
-                "They share an office that's way too small.",
             ],
             tipBox: {
                 title: "💡 The One Rule Everyone Forgets",
@@ -374,6 +395,36 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     <li><strong>don't</strong> = I, you, we, they</li>
                     <li><strong>doesn't</strong> = he, she, it</li>
                 </ul>
+
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            I <span style="color: #8b5cf6; font-weight: 600;">don't answer</span> work emails after 7 PM.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            You <span style="color: #8b5cf6; font-weight: 600;">don't need</span> to CC everyone on that.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            He <span style="color: #8b5cf6; font-weight: 600;">doesn't drink</span> coffee, only energy drinks.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            She <span style="color: #8b5cf6; font-weight: 600;">doesn't tolerate</span> being late to meetings.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            It <span style="color: #8b5cf6; font-weight: 600;">doesn't matter</span> if you send it today or tomorrow.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            We <span style="color: #8b5cf6; font-weight: 600;">don't have</span> meetings on Fridays.
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            They <span style="color: #8b5cf6; font-weight: 600;">don't offer</span> remote work at that company.
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -381,15 +432,6 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 { text: "don't/doesn't", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "base verb (no -s!)", type: "verb" },
-            ],
-            examples: [
-                "I don't answer work emails after 7 PM.",
-                "You don't need to CC everyone on that.",
-                "He doesn't drink coffee, only energy drinks.",
-                "She doesn't tolerate being late to meetings.",
-                "It doesn't matter if you send it today or tomorrow.",
-                "We don't have meetings on Fridays.",
-                "They don't offer remote work at that company.",
             ],
             tipBox: {
                 title: "⚠️ Critical Mistake to Avoid",
@@ -444,6 +486,33 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     <li><strong>Do</strong> = I, you, we, they</li>
                     <li><strong>Does</strong> = he, she, it</li>
                 </ul>
+
+                <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span style="font-size: 1.5rem;">📋</span>
+                        <h4 style="margin: 0; font-size: 1.125rem; font-weight: 600;">Examples</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> you <span style="color: #8b5cf6; font-weight: 600;">work</span> remotely or in the office?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> they <span style="color: #8b5cf6; font-weight: 600;">allow</span> dogs in the workplace?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> he <span style="color: #8b5cf6; font-weight: 600;">report</span> directly to the CEO?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> she <span style="color: #8b5cf6; font-weight: 600;">know</span> about the budget cuts?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            <span style="color: #8b5cf6; font-weight: 600;">Does</span> it really <span style="color: #8b5cf6; font-weight: 600;">take</span> that long to approve?
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(139, 92, 246, 0.1);">
+                            <span style="color: #8b5cf6; font-weight: 600;">Do</span> we <span style="color: #8b5cf6; font-weight: 600;">have</span> a meeting this afternoon?
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Do/Does", type: "verb" },
@@ -452,14 +521,6 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "base verb (no -s!)", type: "verb" },
                 { text: "?", type: "other" },
-            ],
-            examples: [
-                "Do you work remotely or in the office?",
-                "Do they allow dogs in the workplace?",
-                "Does he report directly to the CEO?",
-                "Does she know about the budget cuts?",
-                "Does it really take that long to approve?",
-                "Do we have a meeting this afternoon?",
             ],
             tipBox: {
                 title: "💡 Same Rule as Negatives",
@@ -619,26 +680,48 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     ],
                 },
                 {
-                    id: "ex-mixed-2",
-                    title: "Exercise 6: Write About Your Life",
-                    instructions:
-                        "Write complete sentences about your actual daily life using Present Simple.",
+                    id: "ex-conjugation-1",
+                    title: "Exercise 6: Conjugation Practice",
+                    instructions: "Complete the conjugation chart for the verb 'live' with the subject 'she'.",
                     items: [
-                        {
-                            type: "text",
-                            label: "1. What's one thing you do every single day? (positive)",
-                            expectedAnswer: "I walk my dog in the morning",
-                        },
-                        {
-                            type: "text",
-                            label: "2. What's something you absolutely don't do? (negative)",
-                            expectedAnswer: "I don't eat spicy food",
-                        },
-                        {
-                            type: "text",
-                            label: "3. Ask about someone's routine: (question)",
-                            expectedAnswer: "Do you exercise regularly",
-                        },
+                        { type: "text", label: "Affirmative: She ___", expectedAnswer: "lives" },
+                        { type: "text", label: "Negative: She ___ live", expectedAnswer: "doesn't" },
+                        { type: "text", label: "Question: ___ she live?", expectedAnswer: "Does" },
+                    ],
+                },
+                {
+                    id: "ex-error-correction-1",
+                    title: "Exercise 7: Error Correction",
+                    instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
+                    items: [
+                        { type: "text", label: "1. She go to the gym every Monday.", expectedAnswer: "She goes to the gym every Monday" },
+                        { type: "text", label: "2. They doesn't live in the city.", expectedAnswer: "They don't live in the city" },
+                        { type: "text", label: "3. Do he work from home?", expectedAnswer: "Does he work from home" },
+                        { type: "text", label: "4. My brother study engineering at university.", expectedAnswer: "My brother studies engineering at university" },
+                        { type: "text", label: "5. We doesn't have time for breakfast.", expectedAnswer: "We don't have time for breakfast" },
+                    ],
+                },
+                {
+                    id: "ex-transformation-1",
+                    title: "Exercise 8: Transformation Practice",
+                    instructions: "Change each sentence as instructed. Keep the same meaning!",
+                    items: [
+                        { type: "text", label: "1. Make negative: The store opens at 9 AM.", expectedAnswer: "The store doesn't open at 9 AM" },
+                        { type: "text", label: "2. Make a question: Your sister teaches math.", expectedAnswer: "Does your sister teach math" },
+                        { type: "text", label: "3. Make affirmative: They don't speak French.", expectedAnswer: "They speak French" },
+                        { type: "text", label: "4. Make negative: I drink coffee every morning.", expectedAnswer: "I don't drink coffee every morning" },
+                    ],
+                },
+                {
+                    id: "ex-contextual-1",
+                    title: "Exercise 9: Real-Life Context",
+                    instructions: "Complete this paragraph about Maria's daily routine. Use Present Simple!",
+                    items: [
+                        { type: "text", label: "1. Maria ___ (work) as a nurse at the hospital.", expectedAnswer: "works" },
+                        { type: "text", label: "2. She ___ (start) her shift at 7 AM every day.", expectedAnswer: "starts" },
+                        { type: "text", label: "3. During lunch, she usually ___ (eat) in the cafeteria.", expectedAnswer: "eats" },
+                        { type: "text", label: "4. She ___ (not drive) to work—she takes the bus.", expectedAnswer: "doesn't drive" },
+                        { type: "text", label: "5. ___ Maria ___ (enjoy) her job? Yes, very much!", expectedAnswer: "Does Maria enjoy" },
                     ],
                 },
             ],

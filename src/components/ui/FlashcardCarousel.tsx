@@ -29,6 +29,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     // Settings
     const [mode, setMode] = useState<CardMode>("term-first");
     const [showExample, setShowExample] = useState(true);
+    const [studiedCards, setStudiedCards] = useState<Set<number>>(new Set()); // Track cards that were actually flipped
 
     const total = cards.length;
     const currentCard = cards[order[currentIndex]];
@@ -91,6 +92,11 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
 
     const handleFlip = () => {
         setIsFlipped((prev) => !prev);
+        // Mark this card as studied when flipped to reveal the answer
+        if (!isFlipped) {
+            const cardOriginalIndex = order[currentIndex];
+            setStudiedCards(prev => new Set(prev).add(cardOriginalIndex));
+        }
     };
 
     const shuffleOrder = () => {
@@ -129,9 +135,10 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
 
     useEffect(() => {
         if (!activityId || total === 0) return;
-        const percent = Math.round(((currentIndex + 1) / total) * 100);
-        void saveActivityProgress(activityId, percent, percent >= 100 ? "completed" : "in_progress");
-    }, [activityId, currentIndex, total]);
+        // Progress is based on cards actually studied (flipped), not just navigated
+        const studiedPercent = Math.round((studiedCards.size / total) * 100);
+        void saveActivityProgress(activityId, studiedPercent, studiedPercent >= 100 ? "completed" : "in_progress");
+    }, [activityId, studiedCards.size, total]);
 
     const [showSettings, setShowSettings] = useState(false);
 
@@ -149,12 +156,12 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                         <XIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
                     </button>
                     <div className="text-sm font-bold text-[var(--color-text-muted)]">
-                        {currentIndex + 1} / {total}
+                        {studiedCards.size} / {total} studied
                     </div>
                     <div className="h-2 w-24 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                         <div
                             className="h-full bg-[var(--color-primary)] transition-all duration-300"
-                            style={{ width: `${((currentIndex + 1) / total) * 100}%` }}
+                            style={{ width: `${(studiedCards.size / total) * 100}%` }}
                         />
                     </div>
                 </div>
