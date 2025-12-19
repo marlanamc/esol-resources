@@ -31,8 +31,8 @@ export const classroomBasicsDailyWarmup: SpeakingActivityContent = {
     {
       id: "prompt-3",
       level: "beginner",
-      text: "You need to go to the bathroom during class. What will you say to your teacher?",
-      context: "Practice polite requests: 'Excuse me, may I...?' or 'Can I please...?'"
+      text: "You need to leave class early today for an event. What will you tell your teacher?",
+      context: "Practice polite explanations: 'I need to leave early today because...' or 'I have an event at...'"
     },
     {
       id: "prompt-4",
