@@ -4,7 +4,7 @@ import Link from "next/link";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { BottomNav, Card, Button } from "@/components/ui";
-import { HomeIcon, BookOpenIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
+import { HomeIcon, BookOpenIcon, UsersIcon, BarChartIcon } from "@/components/icons/Icons";
 
 export default async function ClassesIndexPage() {
     const session = await getServerSession(authOptions);
@@ -104,7 +104,7 @@ export default async function ClassesIndexPage() {
                     { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
                     { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
                     { href: "/dashboard/classes", label: "Classes", icon: <UsersIcon /> },
-                    { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
+                    { href: "/dashboard/stats", label: "Stats", icon: <BarChartIcon /> },
                 ]}
             />
         </div>

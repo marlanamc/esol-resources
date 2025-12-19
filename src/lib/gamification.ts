@@ -42,7 +42,10 @@ export const POINTS = {
   // Grammar guides: Points only awarded after completing exercises
   // The /api/grammar/complete endpoint should only be called after exercises are done
   GRAMMAR_GUIDE: 8,
-  
+
+  // Speaking activities: Daily warm-ups with reflection
+  SPEAKING_ACTIVITY: 6, // Similar effort to fill-in-blank, requires practice + reflection
+
   ACTIVITY_COMPLETION: 3, // Default fallback (reduced from 5)
 
   // Streaks - reward consistency
@@ -76,6 +79,8 @@ export function getActivityPoints(activityType: string, activityId?: string): nu
     return POINTS.ACTIVITY_COMPLETION; // Default for unknown games
   } else if (type === 'guide') {
     return POINTS.GRAMMAR_GUIDE;
+  } else if (type === 'speaking') {
+    return POINTS.SPEAKING_ACTIVITY;
   } else if (type === 'quiz') {
     // Quiz points are score-based, not completion-based
     // Return 0 here - actual points calculated in calculateQuizPoints()

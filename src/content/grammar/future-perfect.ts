@@ -190,6 +190,14 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <p>Future Perfect is formed with: <strong>will have + past participle</strong></p>
                 <p>Same for all subjects—no changes needed!</p>
 
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(6, 182, 212, 0.3);">
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #dbeafe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">will have</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #bae6fd; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                </div>
+
                 <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                         <span style="font-size: 1.5rem;">📋</span>
@@ -267,6 +275,14 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <h3>How to Make Negative Sentences</h3>
                 <p>Use <strong>will not have (won't have)</strong> + past participle.</p>
 
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(6, 182, 212, 0.3);">
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #dbeafe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">won't have</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #bae6fd; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                </div>
+
                 <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                         <span style="font-size: 1.5rem;">📋</span>
@@ -326,6 +342,17 @@ export const futurePerfectContent: InteractiveGuideContent = {
             explanation: `
                 <h3>How to Make Questions</h3>
                 <p>Put <strong>Will</strong> at the beginning: Will + subject + have + past participle?</p>
+
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(6, 182, 212, 0.3);">
+                    <span style="background: #dbeafe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Will</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">subject</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #dbeafe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">have</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #bae6fd; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">?</span>
+                </div>
 
                 <div style="margin-top: 1.5rem; background: rgba(6, 182, 212, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(6, 182, 212, 0.3);">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -476,6 +503,171 @@ export const futurePerfectContent: InteractiveGuideContent = {
                                 { value: "will leave", label: "will leave" },
                             ],
                             expectedAnswer: "will leave",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Consumer Finance Context Section
+        {
+            id: "consumer-finance-context",
+            stepNumber: 6,
+            title: "💳 Consumer & Finance Context",
+            icon: "💳",
+            explanation: `
+                <h3>Future Perfect in Money & Shopping Situations</h3>
+                <p>When talking about financial goals, shopping plans, and budget deadlines, Future Perfect helps you explain what will be completed by when.</p>
+
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+                    <h4 style="margin-top: 0; color: #06b6d4;">🎯 Real Finance Examples</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
+                            <strong>By December 31st, I <span style="color: #06b6d4;">will have saved</span> $1,000 for emergencies.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: Dec 31st → Action complete before then</span>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
+                            <strong>Before next semester starts, I <span style="color: #06b6d4;">will have paid off</span> my credit card debt.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: next semester → Action complete before then</span>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
+                            <strong>By the end of this month, I <span style="color: #06b6d4;">will have compared</span> all the best laptop options.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: end of month → Research complete before then</span>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
+                            <strong>Before the return period ends, I <span style="color: #06b6d4;">will have decided</span> whether to keep this item.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: return period ends → Decision made before then</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Common Finance Scenarios</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Savings Goals:</strong> "By this time next year, I <strong>will have saved</strong> enough for a down payment."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Shopping Research:</strong> "Before I buy the car, I <strong>will have read</strong> all the reviews."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Bill Payments:</strong> "By the 15th, I <strong>will have paid</strong> all my utility bills."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Consumer Actions:</strong> "By next month, I <strong>will have filed</strong> the warranty claim for my phone."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Bills & Deadlines:</strong> "Before the rent is due, I <strong>will have deposited</strong> my paycheck."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Budget Planning:</strong> "By next week, I <strong>will have contacted</strong> the company about the billing error."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f0fdfa; border-left: 4px solid #06b6d4; border-radius: 0.25rem;">
+                        ✅ <strong>Expense Reduction:</strong> "By this time next year, I <strong>will have reduced</strong> my monthly expenses by 20%."
+                    </li>
+                </ul>
+
+                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #06b6d4; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #06b6d4;">💬 Speaking Practice</h4>
+                    <p style="margin-bottom: 0.75rem; font-weight: 600;">Use these prompts to practice future perfect:</p>
+                    <ul style="margin: 0; padding-left: 1.25rem;">
+                        <li style="margin-bottom: 0.5rem;">"What financial goals will you have accomplished by the end of this month?"</li>
+                        <li style="margin-bottom: 0.5rem;">"Tell me about a big purchase you're planning. What research will you have completed before buying?"</li>
+                        <li style="margin-bottom: 0.5rem;">"Describe your budget for next month. What will you have paid off by then?"</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #a855f7;">📅 Key Time Expressions for Finance Context</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.5rem; margin-top: 0.75rem;">
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by tomorrow</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by next week</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by the 15th</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">before payday</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by end of month</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by this time next year</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">before class starts</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #06b6d4; text-align: center;">by then</span>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(168, 85, 247, 0.12) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #06b6d4;">🎯 Real-Life Applications</h4>
+                    <div style="display: grid; gap: 1rem; margin-top: 0.75rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
+                            <h5 style="margin-top: 0; color: #06b6d4;">Budget Planning</h5>
+                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+                                <li>"By the 1st of next month, I will have created my new budget."</li>
+                                <li>"Before winter comes, I will have bought warmer clothes on sale."</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #a855f7;">
+                            <h5 style="margin-top: 0; color: #a855f7;">Smart Shopping</h5>
+                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+                                <li>"By this weekend, I will have read all the product reviews."</li>
+                                <li>"Before making the purchase, I will have checked for discount codes."</li>
+                            </ul>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
+                            <h5 style="margin-top: 0; color: #06b6d4;">Financial Responsibility</h5>
+                            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
+                                <li>"By graduation, I will have paid off my student loan interest."</li>
+                                <li>"Before moving out, I will have saved enough for first month's rent and deposit."</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #ef4444;">❌ Common Mistakes to Avoid</h4>
+                    <div style="margin-top: 0.75rem;">
+                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem;">
+                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "I will saved $500 by December."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "I <strong>will have saved</strong> $500 by December."</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Future perfect requires "will have" + past participle, not "will" + past tense.</p>
+                        </div>
+                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem;">
+                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "By next month, I will finish paying my credit card."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "By next month, I <strong>will have finished paying</strong> my credit card."</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Use future perfect when you have a specific deadline (by next month).</p>
+                        </div>
+                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem;">
+                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "Before Friday, I will decided about the car purchase."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "Before Friday, I <strong>will have decided</strong> about the car purchase."</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Don't mix future "will" with past tense - use "will have" + past participle.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-finance-1",
+                    title: "Practice: Consumer & Finance Context",
+                    instructions: "Complete these finance-related sentences with Future Perfect.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. By the end of this year, I ___ (save) $500 for holiday gifts.",
+                            expectedAnswer: "will have saved",
+                        },
+                        {
+                            type: "text",
+                            label: "2. Before my next payday, I ___ (spend) my grocery budget carefully.",
+                            expectedAnswer: "will have spent",
+                        },
+                        {
+                            type: "text",
+                            label: "3. By this time tomorrow, I ___ (compare) all the insurance options.",
+                            expectedAnswer: "will have compared",
+                        },
+                        {
+                            type: "text",
+                            label: "4. Before the sale ends, I ___ (decide) whether to buy the new TV.",
+                            expectedAnswer: "will have decided",
+                        },
+                        {
+                            type: "text",
+                            label: "5. By next Monday, I ___ (pay) all the monthly bills.",
+                            expectedAnswer: "will have paid",
                         },
                     ],
                 },

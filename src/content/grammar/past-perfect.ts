@@ -434,6 +434,14 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <p>Past Perfect is simple to form: <strong>had + past participle</strong></p>
                 <p>Remember: EVERYONE uses 'had' (I had, you had, he had, she had, we had, they had)</p>
 
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3);">
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #fef3c7; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">had</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                </div>
+
                 <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                         <span style="font-size: 1.5rem;">📋</span>
@@ -542,6 +550,14 @@ export const pastPerfectContent: InteractiveGuideContent = {
                 <h3>Making Negatives</h3>
                 <p>Add <strong>'not'</strong> after 'had': <strong>had not = hadn't</strong></p>
 
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3);">
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Subject</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #fef3c7; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">had not / hadn't</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                </div>
+
                 <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                         <span style="font-size: 1.5rem;">📋</span>
@@ -635,6 +651,15 @@ export const pastPerfectContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Making Questions</h3>
                 <p>Put <strong>'Had'</strong> before the subject:</p>
+
+                <div style="display: flex; justify-content: center; align-items: center; gap: 0.75rem; padding: 1.5rem; margin: 1.5rem 0; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); border-radius: 0.75rem; border: 2px solid rgba(245, 158, 11, 0.3);">
+                    <span style="background: #fef3c7; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">Had</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #e0f2fe; color: #0369a1; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">subject</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">+</span>
+                    <span style="background: #fed7aa; color: #b45309; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; font-size: 1.125rem;">past participle</span>
+                    <span style="font-size: 1.5rem; color: #64748b; font-weight: 600;">?</span>
+                </div>
 
                 <div style="margin-top: 1.5rem; background: rgba(139, 92, 246, 0.05); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid rgba(139, 92, 246, 0.3);">
                     <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -959,6 +984,135 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             words: ["By", "the", "time", "we", "got", "there", ",", "the", "movie", "had", "started"],
                             correctAnswer: "By the time we got there, the movie had started",
                             hint: "Pattern 4: By the time + Past Simple, Past Perfect",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Housing Context Section
+        {
+            id: "housing-context",
+            stepNumber: 8,
+            title: "🏠 Housing & Home Context",
+            icon: "🏠",
+            explanation: `
+                <h3>Past Perfect in Housing Situations</h3>
+                <p>When talking about apartments, landlords, and moving, Past Perfect helps explain the sequence of events clearly.</p>
+
+                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+                    <h4 style="margin-top: 0; color: #f59e0b;">🎯 Real Housing Examples</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
+                            <strong>Before I signed the lease, I <span style="color: #f59e0b;">had checked</span> the apartment carefully.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: checked apartment → SECOND: signed lease</span>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
+                            <strong>When I met the landlord, I <span style="color: #f59e0b;">had already researched</span> tenant rights.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: researched rights → SECOND: met landlord</span>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
+                            <strong>The water heater broke because the owner <span style="color: #f59e0b;">hadn't maintained</span> it properly.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: didn't maintain → SECOND: broke</span>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #f59e0b;">
+                            <strong>By the time I called maintenance, the leak <span style="color: #f59e0b;">had already damaged</span> the floor.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">FIRST: damaged floor → SECOND: called maintenance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>Common Housing Scenarios</h4>
+                <ul style="list-style: none; padding-left: 0;">
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        ✅ <strong>Moving:</strong> "Before I moved in, I <strong>had packed</strong> all my boxes."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        ✅ <strong>Problems:</strong> "When I discovered the mold, I <strong>had already paid</strong> the security deposit."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        ✅ <strong>History:</strong> "I <strong>had lived</strong> with roommates for three years before I got my own place."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        ✅ <strong>Housing History:</strong> "They <strong>had rented</strong> in that neighborhood for ten years before they bought a house."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        ✅ <strong>Before Moving:</strong> "She <strong>had saved</strong> $2,000 before she started looking for apartments."
+                    </li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">
+                        ✅ <strong>Relief:</strong> "I felt relieved because I <strong>had taken</strong> photos of the apartment condition."
+                    </li>
+                </ul>
+
+                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #f59e0b;">💬 Speaking Practice</h4>
+                    <p style="margin-bottom: 0.75rem; font-weight: 600;">Use these prompts to practice past perfect:</p>
+                    <ul style="margin: 0; padding-left: 1.25rem;">
+                        <li style="margin-bottom: 0.5rem;">"Tell me about a time you had a problem with your apartment. What had happened before you discovered it?"</li>
+                        <li style="margin-bottom: 0.5rem;">"Describe your last move. What had you done before moving day?"</li>
+                        <li style="margin-bottom: 0.5rem;">"Talk about finding your current home. What research had you completed?"</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #14b8a6; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #14b8a6;">📌 Key Signal Words for Housing Context</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">before</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">after</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">by the time</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">when</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">already</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">just</span>
+                        <span style="background: white; padding: 0.375rem 0.75rem; border-radius: 0.25rem; font-weight: 600; color: #f59e0b;">never</span>
+                    </div>
+                </div>
+
+                <div style="background: #fee2e2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #ef4444;">❌ Common Mistakes to Avoid</h4>
+                    <div style="margin-top: 0.75rem;">
+                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem; margin-bottom: 0.75rem;">
+                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "I have checked the apartment before I signed the lease."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "I <strong>had checked</strong> the apartment before I signed the lease."</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Use past perfect (had + past participle) for the earlier action, not present perfect.</p>
+                        </div>
+                        <div style="background: white; padding: 0.75rem; border-radius: 0.25rem;">
+                            <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ "She didn't signed the lease because she found something better."</p>
+                            <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ "She didn't sign the lease because she <strong>had found</strong> something better."</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">The action of finding came first, so it needs past perfect.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-housing-1",
+                    title: "Practice: Housing Context",
+                    instructions: "Complete these housing-related sentences with Past Perfect.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. Before she signed the lease, she ___ (check) the apartment three times.",
+                            expectedAnswer: "had checked",
+                        },
+                        {
+                            type: "text",
+                            label: "2. When the inspector arrived, the tenants ___ (already clean) everything.",
+                            expectedAnswer: "had already cleaned",
+                        },
+                        {
+                            type: "text",
+                            label: "3. He couldn't get his deposit back because he ___ (not follow) the move-out instructions.",
+                            expectedAnswer: "hadn't followed",
+                        },
+                        {
+                            type: "text",
+                            label: "4. By the time I found a better apartment, I ___ (already sign) a one-year lease.",
+                            expectedAnswer: "had already signed",
+                        },
+                        {
+                            type: "text",
+                            label: "5. The landlord was surprised because I ___ (research) tenant rights before our meeting.",
+                            expectedAnswer: "had researched",
                         },
                     ],
                 },

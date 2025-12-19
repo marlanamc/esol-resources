@@ -5,7 +5,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StatCard, BottomNav } from "@/components/ui";
-import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon } from "@/components/icons/Icons";
+import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon, BarChartIcon } from "@/components/icons/Icons";
 import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
 
 export default async function StatsPage() {
@@ -197,7 +197,7 @@ export default async function StatsPage() {
                     { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
                     { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
                     { href: "/dashboard/classes", label: "Classes", icon: <UsersIcon /> },
-                    { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
+                    { href: "/dashboard/stats", label: "Stats", icon: <BarChartIcon /> },
                 ]}
             />
         </div>

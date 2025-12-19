@@ -4,7 +4,8 @@ export type ActivityType =
     | "slides"
     | "guide"
     | "game"
-    | "resource";
+    | "resource"
+    | "speaking";
 
 export type FormulaPartType = "subject" | "verb" | "object" | "other";
 
@@ -122,6 +123,30 @@ export interface MiniQuizQuestion {
     explanation?: string;
 }
 
+export interface SpeakingPrompt {
+    id: string;
+    text: string;
+    level?: 'beginner' | 'intermediate' | 'advanced';
+    context?: string;
+}
+
+export interface KeyPhrase {
+    phrase: string;
+    example?: string;
+}
+
+export interface SpeakingActivityContent {
+    type: "speaking";
+    title: string;
+    description?: string;
+    keyPhrases?: KeyPhrase[];
+    prompts: SpeakingPrompt[];
+    reflectionPrompt: string;
+    reflectionMinLength?: number;
+    minPromptsRequired?: number;
+    released?: boolean; // Control visibility like quiz releases
+}
+
 export interface InteractiveGuideContent {
     type: "interactive-guide";
     sections: InteractiveGuideSection[];
@@ -179,6 +204,7 @@ export type ActivityContent =
     | InteractiveGuideContent
     | LegacyGuideContent
     | SlidesContent
+    | SpeakingActivityContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {
@@ -211,4 +237,10 @@ export function isLegacyGuideContent(value: unknown): value is LegacyGuideConten
     const candidate = value as InteractiveGuideContent;
     const meta = candidate.metadata;
     return !!meta && meta.source === "legacy" && typeof meta.originalFile === "string";
+}
+
+export function isSpeakingActivityContent(value: unknown): value is SpeakingActivityContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "speaking" && Array.isArray(candidate["prompts"]);
 }
