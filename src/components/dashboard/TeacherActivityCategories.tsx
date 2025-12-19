@@ -278,32 +278,36 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                 {
                     name: 'Conditionals',
                     activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('conditional')
+                        a.title?.toLowerCase().includes('conditional') &&
+                        a.category === 'grammar'
                     )
                 },
                 {
                     name: 'Modals and Modal-like Verbs',
                     activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('modal')
+                        a.title?.toLowerCase().includes('modal') &&
+                        a.category === 'grammar'
                     )
                 },
                 {
                     name: 'Reported Speech',
                     activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('reported')
+                        a.title?.toLowerCase().includes('reported') &&
+                        a.category === 'grammar'
                     )
                 },
                 {
                     name: 'Sentences',
                     activities: activities.filter(a =>
                         a.title?.toLowerCase().includes('sentence') &&
-                        !a.title?.toLowerCase().includes('builder')
+                        !a.title?.toLowerCase().includes('builder') &&
+                        a.category === 'grammar'
                     )
                 },
                 {
                     name: 'Parts of Speech',
                     activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('noun') ||
+                        (a.title?.toLowerCase().includes('noun') ||
                         a.title?.toLowerCase().includes('adjective') ||
                         a.title?.toLowerCase().includes('adverb') ||
                         a.title?.toLowerCase().includes('pronoun') ||
@@ -311,7 +315,8 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                         a.title?.toLowerCase().includes('conjunction') ||
                         a.title?.toLowerCase().includes('article') ||
                         a.title?.toLowerCase().includes('determiner') ||
-                        (a.title?.toLowerCase().includes('part') && a.title?.toLowerCase().includes('speech'))
+                        (a.title?.toLowerCase().includes('part') && a.title?.toLowerCase().includes('speech'))) &&
+                        a.category === 'grammar'
                     )
                 }
             ],
