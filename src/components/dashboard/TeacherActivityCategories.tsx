@@ -363,6 +363,11 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
             activities: activities.filter(a => a.category === 'pronunciation')
         },
         {
+            name: 'Speaking',
+            color: '#e09f3e', // gold/amber
+            activities: activities.filter(a => a.category === 'speaking')
+        },
+        {
             name: 'Quizzes',
             color: '#c86b51', // terracotta
             activities: activities.filter(a => a.category === 'quizzes')
@@ -381,19 +386,22 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         const isFeatured = featuredIds.has(activity.id);
         const [isReleasing, setIsReleasing] = React.useState(false);
 
-        // Check if this is a verb quiz and if it's released
+        // Check if this is a verb quiz or speaking activity and if it's released
         let isQuiz = false;
+        let isSpeaking = false;
         let isReleased = false;
         try {
             const content = JSON.parse(activity.content || '{}');
             isQuiz = content.type === 'verb-quiz';
+            isSpeaking = content.type === 'speaking';
             isReleased = content.released === true;
         } catch {}
 
         const handleRelease = async () => {
             setIsReleasing(true);
             try {
-                const res = await fetch('/api/quiz/release', {
+                const apiEndpoint = isSpeaking ? '/api/speaking/release' : '/api/quiz/release';
+                const res = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -410,7 +418,8 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                 window.location.reload();
             } catch (error) {
                 console.error(error);
-                alert('Failed to update quiz release status');
+                const activityType = isSpeaking ? 'speaking activity' : 'quiz';
+                alert(`Failed to update ${activityType} release status`);
             } finally {
                 setIsReleasing(false);
             }
@@ -540,7 +549,7 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                                     {assigningId === activity.id ? 'Assigning...' : 'Assign'}
                                 </button>
                             )}
-                            {isQuiz && (
+                            {(isQuiz || isSpeaking) && (
                                 <button
                                     type="button"
                                     onClick={handleRelease}
@@ -550,9 +559,9 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                                             ? 'bg-gray-500 hover:bg-gray-600'
                                             : 'bg-terracotta hover:brightness-110'
                                     } hover:shadow-md hover:-translate-y-0.5 ${isReleasing ? 'opacity-70' : ''}`}
-                                    style={{ backgroundColor: isReleased ? undefined : '#c86b51' }}
+                                    style={{ backgroundColor: isReleased ? undefined : (isSpeaking ? '#e09f3e' : '#c86b51') }}
                                 >
-                                    {isReleasing ? 'Updating...' : isReleased ? 'Hide Quiz' : 'Release Quiz'}
+                                    {isReleasing ? 'Updating...' : isReleased ? (isSpeaking ? 'Hide' : 'Hide Quiz') : (isSpeaking ? 'Release' : 'Release Quiz')}
                                 </button>
                             )}
                         </div>

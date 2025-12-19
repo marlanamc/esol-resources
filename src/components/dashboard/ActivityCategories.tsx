@@ -369,6 +369,21 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             activities: activities.filter(a => a.category === 'pronunciation')
         },
         {
+            name: 'Speaking',
+            color: '#e09f3e', // gold/amber
+            activities: activities.filter(a => {
+                if (a.category !== 'speaking') return false;
+
+                // Only show released speaking activities to students
+                try {
+                    const content = JSON.parse(a.content || '{}');
+                    return content.released === true;
+                } catch {
+                    return false;
+                }
+            })
+        },
+        {
             name: 'Quizzes',
             color: '#c86b51', // terracotta
             activities: activities.filter(a => {

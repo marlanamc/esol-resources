@@ -224,6 +224,41 @@ export default async function DashboardPage() {
                                 </h1>
                             </div>
 
+                            {/* Mobile Quick Actions - Only visible on mobile */}
+                            <section className="md:hidden animate-fade-in-up delay-50">
+                                <h2 className="text-lg font-bold font-display text-text mb-3">Quick Actions</h2>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <Link
+                                        href="/dashboard/classes"
+                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-primary/20 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-all"
+                                    >
+                                        <UsersIcon className="w-6 h-6 text-primary mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Classes</span>
+                                    </Link>
+                                    <Link
+                                        href="/dashboard/activities/new"
+                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-secondary/20 rounded-xl shadow-sm hover:shadow-md hover:border-secondary/40 transition-all"
+                                    >
+                                        <BookOpenIcon className="w-6 h-6 text-secondary mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Create Activity</span>
+                                    </Link>
+                                    <Link
+                                        href="/dashboard/stats"
+                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-accent/20 rounded-xl shadow-sm hover:shadow-md hover:border-accent/40 transition-all"
+                                    >
+                                        <BarChartIcon className="w-6 h-6 text-accent mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Student Stats</span>
+                                    </Link>
+                                    <Link
+                                        href="/dashboard/calendar/new"
+                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-primary/20 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-all"
+                                    >
+                                        <CalendarIcon className="w-6 h-6 text-primary mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Add Event</span>
+                                    </Link>
+                                </div>
+                            </section>
+
                             {/* Featured Assignments (styled like student view) */}
                             <section className="animate-fade-in-up delay-100">
                                 <TodaysAssignments
@@ -318,8 +353,8 @@ export default async function DashboardPage() {
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
                         { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
-                        { href: '/dashboard/calendar', label: 'Calendar', icon: <CalendarIcon /> },
-                        { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: <TrophyIcon /> },
+                        { href: '/dashboard/classes', label: 'Classes', icon: <UsersIcon /> },
+                        { href: '/dashboard/stats', label: 'Stats', icon: <BarChartIcon /> },
                     ]}
                 />
             </div>

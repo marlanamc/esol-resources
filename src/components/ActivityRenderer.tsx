@@ -27,6 +27,9 @@ import MatchingGame from "./ui/MatchingGame";
 import NumbersGame from "./ui/NumbersGame";
 import VerbQuizContainer from "./activities/VerbQuizContainer";
 import { VerbQuizContent } from "@/types/verb-quiz";
+import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
+import { isSpeakingActivityContent } from "@/types/activity";
+import type { SpeakingActivityContent } from "@/types/activity";
 
 interface Props {
     activity: {
@@ -66,6 +69,11 @@ export default function ActivityRenderer({ activity }: Props) {
                 return <InteractiveGuideViewer content={content as InteractiveGuideContent} />;
             }
             return <GuideRenderer content={content as GuideContent} />;
+        case "speaking":
+            if (isSpeakingActivityContent(content)) {
+                return <SpeakingActivityRenderer content={content as SpeakingActivityContent} activityId={activity.id} />;
+            }
+            return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid speaking activity content.</div>;
         case "game":
             // Detect game type based on content format
             // Check for numbers game JSON format
