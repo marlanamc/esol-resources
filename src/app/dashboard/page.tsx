@@ -256,6 +256,13 @@ export default async function DashboardPage() {
                                         <CalendarIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Add Event</span>
                                     </Link>
+                                    <Link
+                                        href="/dashboard/teaching-schedule"
+                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-primary/20 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-all"
+                                    >
+                                        <CalendarIcon className="w-6 h-6 text-primary mb-2" />
+                                        <span className="text-sm font-semibold text-text text-center">Teaching Schedule</span>
+                                    </Link>
                                 </div>
                             </section>
 
@@ -314,6 +321,13 @@ export default async function DashboardPage() {
                                         >
                                             <UsersIcon className="w-4 h-4" />
                                             <span>Add Event to Calendar</span>
+                                        </Link>
+                                        <Link
+                                            href="/dashboard/teaching-schedule"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                        >
+                                            <CalendarIcon className="w-4 h-4" />
+                                            <span>Teaching Schedule</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/activities/new"
