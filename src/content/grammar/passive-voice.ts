@@ -454,9 +454,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"This medication should be taken twice daily." What is the active voice version?',
                             options: [
-                                { value: "a", label: "You should take this medication twice daily. (active - focus on who takes it)" },
-                                { value: "b", label: "The medication takes itself twice daily. (incorrect)" },
-                                { value: "c", label: "This medication takes twice daily. (incorrect)" },
+                                { value: "a", label: "You should take this medication twice daily." },
+                                { value: "b", label: "The medication takes itself twice daily." },
+                                { value: "c", label: "This medication takes twice daily." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -752,6 +752,65 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 title: "💡 Remember",
                 content: "Passive = be + past participle. Medical settings LOVE passive voice for instructions and procedures!",
             },
+            exercises: [
+                {
+                    id: "passive-voice-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of passive voice.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for passive voice?",
+                            options: [
+                                { value: "a", label: "be + Past Participle (form of 'be' changes based on tense)" },
+                                { value: "b", label: "have + Past Participle" },
+                                { value: "c", label: "will + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the difference between active and passive voice?",
+                            options: [
+                                { value: "a", label: "Active: subject does action | Passive: subject receives action" },
+                                { value: "b", label: "Active: uses past tense | Passive: uses present tense" },
+                                { value: "c", label: "There's no difference" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should you use passive voice?",
+                            options: [
+                                { value: "a", label: "When the doer is unknown, unimportant, or you want to focus on the action" },
+                                { value: "b", label: "Always, because it sounds more formal" },
+                                { value: "c", label: "Never, active voice is always better" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The test is performed on an empty stomach." What tense is this?',
+                            options: [
+                                { value: "a", label: "Present Simple Passive (is + past participle)" },
+                                { value: "b", label: "Past Simple Passive" },
+                                { value: "c", label: "Future Passive" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the past participle of 'draw'?",
+                            options: [
+                                { value: "a", label: "drawn" },
+                                { value: "b", label: "drew" },
+                                { value: "c", label: "drawed" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

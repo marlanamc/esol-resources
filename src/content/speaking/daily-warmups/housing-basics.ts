@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const housingBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Describing Your Home",
+  title: "1/13/26: Describing Your Home",
   description: "Quick speaking practice about your living situation",
 
   keyPhrases: [

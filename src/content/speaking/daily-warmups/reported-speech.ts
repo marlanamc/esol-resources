@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const reportedSpeechDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Reported Speech Practice",
+  title: "1/29/26: Reported Speech Practice",
   description: "Practice reporting what others said, asked, or told you to do",
 
   keyPhrases: [

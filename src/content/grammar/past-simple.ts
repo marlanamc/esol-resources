@@ -32,7 +32,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         {
                             type: "select",
                             label: "We watched a movie _____.",
-                            options: ["last night", "usually", "today (right now)", "every week"],
+                            options: ["last night", "usually", "right now", "every week"],
                             expectedAnswer: "last night",
                         },
                     ],

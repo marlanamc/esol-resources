@@ -120,9 +120,9 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence uses a gerund correctly?",
                             options: [
-                                { value: "a", label: "I love teaching. (gerund as object)" },
-                                { value: "b", label: "I love to teaching. (incorrect form)" },
-                                { value: "c", label: "I love teach. (missing -ing)" },
+                                { value: "a", label: "I love teaching." },
+                                { value: "b", label: "I love to teaching." },
+                                { value: "c", label: "I love teach." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -500,6 +500,65 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                 title: "💡 Memory Trick",
                 content: "After IN, AT, FOR, BY, WITHOUT = Always -ING. No exceptions!",
             },
+            exercises: [
+                {
+                    id: "gerunds-prepositions-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of gerunds after prepositions.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What form comes after prepositions?",
+                            options: [
+                                { value: "a", label: "Always gerund (-ing form)" },
+                                { value: "b", label: "Always infinitive (to + verb)" },
+                                { value: "c", label: "Base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I'm interested in working here." },
+                                { value: "b", label: "I'm interested in to work here." },
+                                { value: "c", label: "I'm interested in work here." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "Thank you for considering my application." },
+                                { value: "b", label: "Thank you for to consider my application." },
+                                { value: "c", label: "Thank you for consider my application." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I get to work by taking the bus." },
+                                { value: "b", label: "I get to work by take the bus." },
+                                { value: "c", label: "I get to work by to take the bus." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the golden rule for prepositions?",
+                            options: [
+                                { value: "a", label: "Preposition + Gerund (-ing form) - always" },
+                                { value: "b", label: "Preposition + Infinitive (to + verb)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

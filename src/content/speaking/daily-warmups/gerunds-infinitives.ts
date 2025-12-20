@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const gerundsInfinitivesDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Gerunds & Infinitives Practice",
+  title: "2/12/26: Gerunds & Infinitives Practice",
   description: "Practice using gerunds and infinitives correctly in speaking",
 
   keyPhrases: [

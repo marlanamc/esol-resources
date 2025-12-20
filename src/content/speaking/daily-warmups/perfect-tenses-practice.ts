@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const perfectTensesPracticeDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Perfect Tenses Practice",
+  title: "2/5/26: Perfect Tenses Practice",
   description: "Focused practice on present perfect, past perfect, and future perfect across different topics",
 
   keyPhrases: [

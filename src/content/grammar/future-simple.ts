@@ -23,7 +23,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The phone is ringing — I'll answer it.",
                             options: [
-                                { value: "decision", label: "Spontaneous decision (right now)" },
+                                { value: "decision", label: "Spontaneous decision, right now" },
                                 { value: "past", label: "Finished past action" },
                                 { value: "habit", label: "Daily routine/habit" },
                             ],
