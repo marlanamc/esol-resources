@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { readdir } from "node:fs/promises";
 import path from "node:path";
 
 export type MonthDay = { year: number; month: number; day: number };
@@ -33,6 +34,7 @@ export type TeachingScheduleData = {
     teachingSchedule: TeachingSchedule;
     weeklySchedule: TeachingScheduleWeek[];
     sourcePath: string;
+    loadError?: string;
 };
 
 const DEFAULT_TEACHING_SCHEDULE: TeachingSchedule = {
@@ -147,11 +149,54 @@ function parseWeekBlocks(markdown: string): TeachingScheduleWeek[] {
 }
 
 export async function loadEsol3TeachingScheduleData(): Promise<TeachingScheduleData> {
-    const sourcePath = path.join(process.cwd(), "class_uploads", "ESOL 3 Teaching Schedule (Jan–Jun 2026).md");
-    const markdown = await readFile(sourcePath, "utf8");
+    const cwd = process.cwd();
+    const candidates = [
+        path.join(cwd, "src", "content", "teacher", "esol-3-teaching-schedule-jan-jun-2026.md"),
+        path.join(cwd, "class_uploads", "ESOL 3 Teaching Schedule (Jan–Jun 2026).md"),
+        path.join(cwd, "class_uploads", "ESOL 3 Teaching Schedule (Jan-Jun 2026).md"),
+        path.join(cwd, "class_uploads", "Printable_Schedule_Jan-Jun_2026.md"),
+    ];
+
+    let lastError: unknown = null;
+
+    for (const candidate of candidates) {
+        try {
+            const markdown = await readFile(candidate, "utf8");
+            return {
+                teachingSchedule: parseTeachingSchedule(markdown),
+                weeklySchedule: parseWeekBlocks(markdown),
+                sourcePath: candidate,
+            };
+        } catch (err) {
+            lastError = err;
+        }
+    }
+
+    try {
+        const uploadsDir = path.join(cwd, "class_uploads");
+        const entries = await readdir(uploadsDir, { withFileTypes: true });
+        const match = entries.find(
+            (e) => e.isFile() && /teaching schedule/i.test(e.name) && /\.md$/i.test(e.name)
+        );
+        if (match) {
+            const candidate = path.join(uploadsDir, match.name);
+            const markdown = await readFile(candidate, "utf8");
+            return {
+                teachingSchedule: parseTeachingSchedule(markdown),
+                weeklySchedule: parseWeekBlocks(markdown),
+                sourcePath: candidate,
+            };
+        }
+    } catch (err) {
+        lastError = lastError || err;
+    }
+
+    const loadError =
+        lastError instanceof Error ? lastError.message : "Unknown error reading schedule markdown.";
     return {
-        teachingSchedule: parseTeachingSchedule(markdown),
-        weeklySchedule: parseWeekBlocks(markdown),
-        sourcePath,
+        teachingSchedule: DEFAULT_TEACHING_SCHEDULE,
+        weeklySchedule: [],
+        sourcePath: candidates[0]!,
+        loadError,
     };
 }

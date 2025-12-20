@@ -5,6 +5,8 @@ import { authOptions } from "@/lib/auth";
 import { TeacherCalendar } from "@/components/dashboard/TeacherCalendar";
 import { loadEsol3TeachingScheduleData } from "@/lib/teachingSchedule";
 
+export const runtime = "nodejs";
+
 export default async function TeachingSchedulePage() {
     const session = await getServerSession(authOptions);
 
@@ -20,6 +22,9 @@ export default async function TeachingSchedulePage() {
     }
 
     const schedule = await loadEsol3TeachingScheduleData();
+    if (schedule.loadError) {
+        console.error("[TeachingSchedule] Failed to load schedule markdown:", schedule.loadError);
+    }
 
     return (
         <div className="min-h-screen bg-bg">
@@ -39,6 +44,11 @@ export default async function TeachingSchedulePage() {
             </header>
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 pb-24 md:pb-12">
+                {schedule.loadError ? (
+                    <div className="mb-6 rounded-xl border border-error/30 bg-error/10 px-4 py-3 text-sm text-text">
+                        Couldn&apos;t load the teaching schedule file. Showing an empty schedule.
+                    </div>
+                ) : null}
                 <TeacherCalendar
                     teachingSchedule={schedule.teachingSchedule}
                     weeklySchedule={schedule.weeklySchedule}
