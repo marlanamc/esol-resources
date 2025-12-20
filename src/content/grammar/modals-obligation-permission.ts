@@ -1,4 +1,4 @@
-import type { InteractiveGuideContent } from "@/types/activity";
+import type { InteractiveGuideContent, ExerciseItem } from "@/types/activity";
 
 export const modalsObligationPermissionContent: InteractiveGuideContent = {
     type: "interactive-guide",
@@ -360,7 +360,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "text",
                             label: "2. You ___ use your phone during meetings. (negative advice)",
                             expectedAnswers: ["should not", "shouldn't", "shouldnt"],
-                        },
+                        } as ExerciseItem,
                         {
                             type: "text",
                             label: "3. I ___ ask for clarification if I don't understand something. (positive advice)",
@@ -370,7 +370,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "text",
                             label: "4. We ___ skip the safety training. (negative advice)",
                             expectedAnswers: ["should not", "shouldn't", "shouldnt"],
-                        },
+                        } as ExerciseItem,
                     ],
                 },
             ],
