@@ -359,8 +359,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "2. You ___ use your phone during meetings. (negative advice)",
-                            expectedAnswer: "should not",
-                            expectedAnswers: ["shouldn't", "shouldnt"],
+                            expectedAnswers: ["should not", "shouldn't", "shouldnt"],
                         },
                         {
                             type: "text",
@@ -370,8 +369,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "4. We ___ skip the safety training. (negative advice)",
-                            expectedAnswer: "should not",
-                            expectedAnswers: ["shouldn't", "shouldnt"],
+                            expectedAnswers: ["should not", "shouldn't", "shouldnt"],
                         },
                     ],
                 },
