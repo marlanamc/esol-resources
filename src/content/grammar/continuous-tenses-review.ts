@@ -9,9 +9,48 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             title: "Continuous Tenses Review: The -ing Action Tenses",
             icon: "📚",
             explanation: `
-                <p>All the “-ing” tenses in one place: what's happening now, what was happening then, and what will be happening later.</p>
+                <p>All the "-ing" tenses in one place: what's happening now, what was happening then, and what will be happening later.</p>
                 <p><strong>Continuous Tenses:</strong> Present (now/temporary), Past (in progress in the past), Future (in progress at a future time)</p>
             `,
+            exercises: [
+                {
+                    id: "continuous-tenses-review-intro-1",
+                    title: "Practice: Understanding Continuous Tenses",
+                    instructions: "Identify what continuous tenses describe.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What do continuous tenses show?",
+                            options: [
+                                { value: "a", label: "Actions in motion - what's happening now, was happening then, or will be happening later" },
+                                { value: "b", label: "Completed actions" },
+                                { value: "c", label: "Habits and routines" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What are the three continuous tenses?",
+                            options: [
+                                { value: "a", label: "Present Continuous (now/temporary), Past Continuous (in progress in past), Future Continuous (in progress at future time)" },
+                                { value: "b", label: "Present, Past, Future Simple" },
+                                { value: "c", label: "Perfect tenses only" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What do all continuous tenses have in common?",
+                            options: [
+                                { value: "a", label: "They all use -ing form and show actions in progress" },
+                                { value: "b", label: "They all use past participles" },
+                                { value: "c", label: "They all describe completed actions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "comparison",
@@ -293,6 +332,55 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 title: "💡 The Pattern",
                 content: "All three use the SAME -ing verb. Only 'be' changes across time: was/were (past), am/is/are (now), will be (future). The bars show DURATION—these actions happen over a period of time, not just at one moment.",
             },
+            exercises: [
+                {
+                    id: "continuous-tenses-review-timeline-1",
+                    title: "Practice: Reading the Timeline",
+                    instructions: "Choose the continuous tense that matches the time (past, now, future).",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"At 7 PM last night, I ___ dinner."',
+                            options: [
+                                { value: "was cooking", label: "was cooking" },
+                                { value: "am cooking", label: "am cooking" },
+                                { value: "will be cooking", label: "will be cooking" },
+                            ],
+                            expectedAnswer: "was cooking",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Right now, the kids ___ in the living room."',
+                            options: [
+                                { value: "were playing", label: "were playing" },
+                                { value: "are playing", label: "are playing" },
+                                { value: "will be playing", label: "will be playing" },
+                            ],
+                            expectedAnswer: "are playing",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Tomorrow at 9 AM, I ___ on the bus to work."',
+                            options: [
+                                { value: "was riding", label: "was riding" },
+                                { value: "am riding", label: "am riding" },
+                                { value: "will be riding", label: "will be riding" },
+                            ],
+                            expectedAnswer: "will be riding",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which form of 'be' is used in Future Continuous?",
+                            options: [
+                                { value: "will be", label: "will be" },
+                                { value: "are", label: "are" },
+                                { value: "was", label: "was" },
+                            ],
+                            expectedAnswer: "will be",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "present-forms",
@@ -803,6 +891,65 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 title: "🚨 Common Continuous Mistakes to Avoid",
                 content: "❌ I am work → ✅ I am working (must add -ing). ❌ I was ran → ✅ I was running (verb-ing, not past form). ❌ I will working → ✅ I will be working (will be + verb-ing). ❌ She was study → ✅ She was studying (-ying for study). ❌ They are run → ✅ They are running (double consonant + -ing).",
             },
+            exercises: [
+                {
+                    id: "continuous-tenses-review-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of continuous tenses.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for Present Continuous?",
+                            options: [
+                                { value: "a", label: "am/is/are + verb-ing" },
+                                { value: "b", label: "was/were + verb-ing" },
+                                { value: "c", label: "will be + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Past Continuous?",
+                            options: [
+                                { value: "a", label: "am/is/are + verb-ing" },
+                                { value: "b", label: "was/were + verb-ing" },
+                                { value: "c", label: "will be + verb-ing" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Continuous?",
+                            options: [
+                                { value: "a", label: "am/is/are + verb-ing" },
+                                { value: "b", label: "was/were + verb-ing" },
+                                { value: "c", label: "will be + verb-ing" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do you use Present Continuous?",
+                            options: [
+                                { value: "a", label: "Actions happening now, temporary situations, near-future plans" },
+                                { value: "b", label: "Past actions that were interrupted" },
+                                { value: "c", label: "Future actions in progress" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I am working right now." },
+                                { value: "b", label: "I am work right now." },
+                                { value: "c", label: "I will working right now." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
     miniQuiz: [

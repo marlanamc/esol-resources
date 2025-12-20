@@ -26,6 +26,45 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #f59e0b; font-size: 1.125rem;">had been + verb-ing</span></p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "past-perfect-continuous-intro-1",
+                    title: "Practice: Understanding Past Perfect Continuous",
+                    instructions: "Identify what Past Perfect Continuous shows.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Past Perfect Continuous show?",
+                            options: [
+                                { value: "a", label: "How long an action had been happening before another past event" },
+                                { value: "b", label: "Current ongoing actions" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I had been waiting for an hour when the bus finally came." What does this show?',
+                            options: [
+                                { value: "a", label: "Duration (1 hour) before another past event (bus came)" },
+                                { value: "b", label: "A current action" },
+                                { value: "c", label: "A future plan" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Past Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "had been + verb-ing" },
+                                { value: "b", label: "have/has been + verb-ing" },
+                                { value: "c", label: "will have been + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -197,6 +236,40 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                 title: "💡 Past Perfect Continuous vs Past Continuous",
                 content: "Past Continuous = action in progress at a past moment. Past Perfect Continuous = duration of action BEFORE another past moment. Compare: 'I was waiting when he called' vs 'I had been waiting for an hour when he called.'",
             },
+            exercises: [
+                {
+                    id: "past-perfect-continuous-timeline-1",
+                    title: "Practice: Duration Before Another Past Event",
+                    instructions: "Use Past Perfect Continuous to show how long something was happening before a past event.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I ___ for an hour when the bus arrived."',
+                            options: [
+                                { value: "had been waiting", label: "had been waiting" },
+                                { value: "was waiting", label: "was waiting" },
+                                { value: "have been waiting", label: "have been waiting" },
+                            ],
+                            expectedAnswer: "had been waiting",
+                        },
+                        {
+                            type: "text",
+                            label: "Complete: She was exhausted because she ___ (work) all day.",
+                            expectedAnswer: "had been working",
+                        },
+                        {
+                            type: "radio",
+                            label: "Past Perfect Continuous focuses on...",
+                            options: [
+                                { value: "a", label: "duration before another past moment" },
+                                { value: "b", label: "a habit that happens every day" },
+                                { value: "c", label: "a plan for tomorrow" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Positive Form
@@ -517,6 +590,45 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                 title: "🎯 Remember",
                 content: "Past Perfect Continuous = duration BEFORE a past event. Past Continuous = action AT a past moment. Ask: 'Am I emphasizing how long before something happened?'",
             },
+            exercises: [
+                {
+                    id: "past-perfect-continuous-summary-1",
+                    title: "Practice: Key Points Check",
+                    instructions: "Review the form and when to use Past Perfect Continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which structure is correct?",
+                            options: [
+                                { value: "a", label: "had been + verb-ing" },
+                                { value: "b", label: "have been + verb-ing" },
+                                { value: "c", label: "will have been + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Pick the best choice: "He was tired because he ___ all night."',
+                            options: [
+                                { value: "a", label: "had been working" },
+                                { value: "b", label: "was working" },
+                                { value: "c", label: "worked" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which question form is correct?",
+                            options: [
+                                { value: "a", label: "Had you been waiting long?" },
+                                { value: "b", label: "Did you been waiting long?" },
+                                { value: "c", label: "Were you been waiting long?" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

@@ -13,6 +13,45 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     <p style="font-size: 1.1rem; margin: 0;">Look around. What's happening right this second? The TV is playing. Someone is cooking. Your phone is charging. Present Continuous is the tense for <strong>what's in motion RIGHT NOW</strong> or what's <strong>just temporary</strong> in your life.</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "present-continuous-intro-1",
+                    title: "Practice: Understanding Present Continuous",
+                    instructions: "Identify what Present Continuous is used for.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is Present Continuous used for?",
+                            options: [
+                                { value: "a", label: "Actions happening right now or temporary situations" },
+                                { value: "b", label: "Habits and routines" },
+                                { value: "c", label: "Past actions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The TV is playing." What does this describe?',
+                            options: [
+                                { value: "a", label: "What's happening right now" },
+                                { value: "b", label: "A habit" },
+                                { value: "c", label: "A future plan" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do we use Present Continuous?",
+                            options: [
+                                { value: "a", label: "For actions in motion right now or temporary situations" },
+                                { value: "b", label: "Only for future plans" },
+                                { value: "c", label: "Only for past actions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "meaning-usage",
@@ -317,6 +356,36 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     <li><strong>Signal words:</strong> right now, currently, at the moment, this week, today</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "present-continuous-summary-1",
+                    title: "Practice: Quick Summary Check",
+                    instructions: "Use am/is/are + verb-ing for actions in progress or temporary situations.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence is a good use of Present Continuous?",
+                            options: [
+                                { value: "a", label: "I am waiting for the bus right now." },
+                                { value: "b", label: "I wait for the bus every day." },
+                                { value: "c", label: "I waited for the bus yesterday." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "text",
+                            label: "Complete: They ___ (not watch) TV right now.",
+                            expectedAnswer: "are not watching",
+                        },
+                        {
+                            type: "word-scramble",
+                            label: "Put the words in order to make a correct sentence.",
+                            words: ["She", "is", "cooking", "right", "now"],
+                            correctAnswer: "She is cooking right now",
+                        },
+                    ],
+                },
+            ],
         },
     ],
     miniQuiz: [

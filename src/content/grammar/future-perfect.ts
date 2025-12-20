@@ -26,6 +26,45 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #06b6d4; font-size: 1.125rem;">will have + past participle</span></p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "future-perfect-intro-1",
+                    title: "Practice: Understanding Future Perfect",
+                    instructions: "Identify what Future Perfect describes.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Future Perfect describe?",
+                            options: [
+                                { value: "a", label: "Actions that will be complete by a future point" },
+                                { value: "b", label: "Current ongoing actions" },
+                                { value: "c", label: "Past completed actions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I will have finished the order by 5 PM." What does this show?',
+                            options: [
+                                { value: "a", label: "Action complete before a deadline (5 PM)" },
+                                { value: "b", label: "A current action" },
+                                { value: "c", label: "A past action" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Perfect?",
+                            options: [
+                                { value: "a", label: "will have + past participle" },
+                                { value: "b", label: "have/has + past participle" },
+                                { value: "c", label: "had + past participle" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -178,6 +217,40 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 title: "💡 The Key Difference",
                 content: "Future Simple (will finish) = action happens at future time. Future Perfect (will have finished) = action COMPLETE BEFORE future time.",
             },
+            exercises: [
+                {
+                    id: "future-perfect-timeline-1",
+                    title: "Practice: Reading the Timeline",
+                    instructions: "Use Future Perfect when something will be done before a future point.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "Complete: By 5 PM, I ___ (finish) my shift.",
+                            expectedAnswer: "will have finished",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Which sentence matches the timeline idea "done before we arrive"?',
+                            options: [
+                                { value: "a", label: "By the time we arrive, they will have left." },
+                                { value: "b", label: "By the time we arrive, they will leave." },
+                                { value: "c", label: "By the time we arrive, they have left." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Future Perfect answers which question?",
+                            options: [
+                                { value: "a", label: "Will it be done by then?" },
+                                { value: "b", label: "Is it happening right now?" },
+                                { value: "c", label: "Is it a daily habit?" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Positive Form
@@ -694,6 +767,41 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 title: "🎯 Remember",
                 content: "Future Perfect = looking back from a future point. Ask: 'Will it be DONE by then?' If yes, use Future Perfect!",
             },
+            exercises: [
+                {
+                    id: "future-perfect-summary-1",
+                    title: "Practice: Key Points Check",
+                    instructions: "Check the form and meaning of Future Perfect.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which time word strongly signals Future Perfect?",
+                            options: [
+                                { value: "a", label: "by (by tomorrow, by next week, by the time...)" },
+                                { value: "b", label: "every day" },
+                                { value: "c", label: "yesterday" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "select",
+                            label: "Choose the missing word: Will you ___ finished by 6 PM?",
+                            options: ["have", "has", "had"],
+                            expectedAnswer: "have",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "She will have cleaned the kitchen before the next shift." },
+                                { value: "b", label: "She will has cleaned the kitchen before the next shift." },
+                                { value: "c", label: "She will have clean the kitchen before the next shift." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

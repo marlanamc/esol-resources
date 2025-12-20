@@ -18,6 +18,45 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <p><strong>Past Simple:</strong> Finished actions with a clear time stamp (yesterday, last week, in 2020)</p>
                 <p><strong>Future Simple:</strong> Quick decisions and promises about tomorrow (I'll help, we'll meet)</p>
             `,
+            exercises: [
+                {
+                    id: "simple-tenses-review-intro-1",
+                    title: "Practice: Understanding Simple Tenses",
+                    instructions: "Identify what each simple tense is used for.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is Present Simple used for?",
+                            options: [
+                                { value: "a", label: "Daily reality and routines (habits, facts, schedules)" },
+                                { value: "b", label: "Actions happening right now" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Past Simple used for?",
+                            options: [
+                                { value: "a", label: "Finished actions with a clear time stamp (yesterday, last week, in 2020)" },
+                                { value: "b", label: "Current habits" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Future Simple used for?",
+                            options: [
+                                { value: "a", label: "Quick decisions and promises about tomorrow" },
+                                { value: "b", label: "Past actions" },
+                                { value: "c", label: "Current habits" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "timeline-visualization",
@@ -103,6 +142,45 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 title: "💡 The Big Picture",
                 content: "Simple tenses are like three separate rooms in a house—each one is completely independent. Past Simple finished yesterday. Present Simple happens every day. Future Simple will happen tomorrow. They don't overlap or connect—they just describe different times.",
             },
+            exercises: [
+                {
+                    id: "simple-tenses-review-timeline-1",
+                    title: "Practice: Past / Present / Future",
+                    instructions: "Choose the simple tense that matches the time word.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"Every day, I ___ coffee in the morning."',
+                            options: [
+                                { value: "drink", label: "drink" },
+                                { value: "drank", label: "drank" },
+                                { value: "will drink", label: "will drink" },
+                            ],
+                            expectedAnswer: "drink",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Yesterday, we ___ to the store."',
+                            options: [
+                                { value: "go", label: "go" },
+                                { value: "went", label: "went" },
+                                { value: "will go", label: "will go" },
+                            ],
+                            expectedAnswer: "went",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Tomorrow, I ___ you after work."',
+                            options: [
+                                { value: "call", label: "call" },
+                                { value: "called", label: "called" },
+                                { value: "will call", label: "will call" },
+                            ],
+                            expectedAnswer: "will call",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "comparison",
@@ -783,6 +861,65 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 title: "🚨 Common Mistakes to Avoid",
                 content: "❌ She work downtown → ✅ She works downtown (add -s for he/she/it). ❌ He don't like coffee → ✅ He doesn't like coffee (doesn't with he/she/it). ❌ Does she works? → ✅ Does she work? (base verb in questions). ❌ She didn't worked → ✅ She didn't work (base verb after didn't). ❌ I will going → ✅ I will go (no -ing with will).",
             },
+            exercises: [
+                {
+                    id: "simple-tenses-review-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of simple tenses.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for Present Simple (he/she/it)?",
+                            options: [
+                                { value: "a", label: "verb + s/es (e.g., works, goes)" },
+                                { value: "b", label: "base verb (no change)" },
+                                { value: "c", label: "verb + -ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Past Simple negative?",
+                            options: [
+                                { value: "a", label: "didn't + base verb" },
+                                { value: "b", label: "don't + base verb" },
+                                { value: "c", label: "wasn't + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Simple?",
+                            options: [
+                                { value: "a", label: "will + base verb" },
+                                { value: "b", label: "will be + verb-ing" },
+                                { value: "c", label: "going to + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do you use Present Simple?",
+                            options: [
+                                { value: "a", label: "Habits, facts, schedules, feelings" },
+                                { value: "b", label: "Actions happening right now" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "She works downtown." },
+                                { value: "b", label: "She work downtown." },
+                                { value: "c", label: "She is work downtown." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
     miniQuiz: [

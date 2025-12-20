@@ -34,6 +34,45 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-weight: 600;">📝 The Pattern: <span style="font-size: 1.125rem;">have/has/had/will have + past participle</span></p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "perfect-tenses-review-intro-1",
+                    title: "Practice: Understanding Perfect Tenses",
+                    instructions: "Identify what perfect tenses do.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What do perfect tenses do?",
+                            options: [
+                                { value: "a", label: "Connect different time periods - show how actions in one time affect another" },
+                                { value: "b", label: "Describe only current actions" },
+                                { value: "c", label: "Describe only future actions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I have worked here for 5 years." What does this show?',
+                            options: [
+                                { value: "a", label: "Past action (started 5 years ago) connecting to NOW (still working)" },
+                                { value: "b", label: "Only a past action" },
+                                { value: "c", label: "Only a future action" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the pattern for all perfect tenses?",
+                            options: [
+                                { value: "a", label: "have/has/had/will have + past participle" },
+                                { value: "b", label: "verb + -ing" },
+                                { value: "c", label: "will + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Timeline Visualization
@@ -116,6 +155,45 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 title: "💡 The Key Insight",
                 content: "All perfect tenses use the same pattern: auxiliary 'have' + past participle. Only the form of 'have' changes: have/has (present), had (past), will have (future).",
             },
+            exercises: [
+                {
+                    id: "perfect-tenses-review-timeline-1",
+                    title: "Practice: Matching Perfect Tense to Time",
+                    instructions: "Choose the perfect tense that matches the timeline connection.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I ___ here for 5 years." (started in the past, still true now)',
+                            options: [
+                                { value: "have worked", label: "have worked" },
+                                { value: "had worked", label: "had worked" },
+                                { value: "will have worked", label: "will have worked" },
+                            ],
+                            expectedAnswer: "have worked",
+                        },
+                        {
+                            type: "radio",
+                            label: '"When I arrived, she ___ already." (she left before I arrived)',
+                            options: [
+                                { value: "has left", label: "has left" },
+                                { value: "had left", label: "had left" },
+                                { value: "will have left", label: "will have left" },
+                            ],
+                            expectedAnswer: "had left",
+                        },
+                        {
+                            type: "radio",
+                            label: '"By Friday, I ___ the paperwork." (done before a deadline)',
+                            options: [
+                                { value: "have finished", label: "have finished" },
+                                { value: "had finished", label: "had finished" },
+                                { value: "will have finished", label: "will have finished" },
+                            ],
+                            expectedAnswer: "will have finished",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Comparison Section
@@ -763,6 +841,65 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 title: "🎯 The Golden Rule",
                 content: "Perfect tenses CONNECT time periods. Ask: 'What times am I connecting?' Past → NOW = Present Perfect. Earlier past → Later past = Past Perfect. Done BY future = Future Perfect.",
             },
+            exercises: [
+                {
+                    id: "perfect-tenses-review-summary-1",
+                    title: "Practice: Perfect Tenses Review",
+                    instructions: "Test your understanding of perfect tenses.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for Present Perfect?",
+                            options: [
+                                { value: "a", label: "have/has + past participle" },
+                                { value: "b", label: "had + past participle" },
+                                { value: "c", label: "will have + past participle" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Past Perfect?",
+                            options: [
+                                { value: "a", label: "have/has + past participle" },
+                                { value: "b", label: "had + past participle" },
+                                { value: "c", label: "will have + past participle" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Perfect?",
+                            options: [
+                                { value: "a", label: "have/has + past participle" },
+                                { value: "b", label: "had + past participle" },
+                                { value: "c", label: "will have + past participle" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do you use Present Perfect?",
+                            options: [
+                                { value: "a", label: "Past → NOW connection (past action with present relevance)" },
+                                { value: "b", label: "Earlier past → Later past (which happened first)" },
+                                { value: "c", label: "Action complete BY a future deadline" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I visited Paris last year." },
+                                { value: "b", label: "I have visited Paris last year." },
+                                { value: "c", label: "I had visited Paris last year." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

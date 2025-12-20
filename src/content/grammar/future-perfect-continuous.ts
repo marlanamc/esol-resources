@@ -29,6 +29,45 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 0.9rem;"><strong>📌 Note:</strong> This is the least common tense in English. You'll hear it occasionally, but don't worry if it feels advanced—focus on understanding it when you hear it!</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "future-perfect-continuous-intro-1",
+                    title: "Practice: Understanding Future Perfect Continuous",
+                    instructions: "Identify what Future Perfect Continuous shows.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Future Perfect Continuous show?",
+                            options: [
+                                { value: "a", label: "How long an action will have been happening by a future point" },
+                                { value: "b", label: "Current ongoing actions" },
+                                { value: "c", label: "Completed past actions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"By June, I will have been working here for 10 years." What does this show?',
+                            options: [
+                                { value: "a", label: "Duration (10 years) up to a future point (June)" },
+                                { value: "b", label: "A current action" },
+                                { value: "c", label: "A past action" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "will have been + verb-ing" },
+                                { value: "b", label: "have/has been + verb-ing" },
+                                { value: "c", label: "had been + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -167,6 +206,40 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 title: "💡 Future Perfect vs Future Perfect Continuous",
                 content: "Future Perfect = action COMPLETE by then. Future Perfect Continuous = action ONGOING for a duration by then. Compare: 'I will have finished' (done) vs 'I will have been working for 5 years' (duration).",
             },
+            exercises: [
+                {
+                    id: "future-perfect-continuous-timeline-1",
+                    title: "Practice: Duration Up to a Future Point",
+                    instructions: "Choose Future Perfect Continuous when the focus is on how long by a future time.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"By 6 PM, I ___ for 8 hours."',
+                            options: [
+                                { value: "will have been working", label: "will have been working" },
+                                { value: "will be working", label: "will be working" },
+                                { value: "have been working", label: "have been working" },
+                            ],
+                            expectedAnswer: "will have been working",
+                        },
+                        {
+                            type: "radio",
+                            label: "Future Perfect Continuous connects which two ideas?",
+                            options: [
+                                { value: "a", label: "Duration + a future point (by then)" },
+                                { value: "b", label: "A habit + every day" },
+                                { value: "c", label: "A finished past action + yesterday" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "text",
+                            label: "Complete: By next month, she ___ (study) English for two years.",
+                            expectedAnswer: "will have been studying",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Positive Form
@@ -370,6 +443,41 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 title: "🎯 Remember",
                 content: "This is the rarest tense! Use it for milestones: 'By next year, I will have been working here for 10 years.' Focus on understanding it when you hear it.",
             },
+            exercises: [
+                {
+                    id: "future-perfect-continuous-summary-1",
+                    title: "Practice: Key Points Check",
+                    instructions: "Review the form and the meaning (how long by a future point).",
+                    items: [
+                        {
+                            type: "select",
+                            label: "Choose the missing word: By June, I will ___ been working here for 5 years.",
+                            options: ["have", "has", "had"],
+                            expectedAnswer: "have",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence focuses on duration up to a future time?",
+                            options: [
+                                { value: "a", label: "By Friday, I will have been training for two weeks." },
+                                { value: "b", label: "Right now, I am training for a race." },
+                                { value: "c", label: "Yesterday, I trained at the gym." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which time words often appear with Future Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "by + future time, for + duration" },
+                                { value: "b", label: "every day, usually" },
+                                { value: "c", label: "yesterday, last week" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

@@ -34,6 +34,45 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-weight: 600;">📝 The Pattern: <span style="font-size: 1.125rem;">have/has/had/will have + been + verb-ing</span></p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "perfect-continuous-tenses-review-intro-1",
+                    title: "Practice: Understanding Perfect Continuous Tenses",
+                    instructions: "Identify what perfect continuous tenses combine.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What do perfect continuous tenses combine?",
+                            options: [
+                                { value: "a", label: "Duration (how long) with connection to another time" },
+                                { value: "b", label: "Only completed actions" },
+                                { value: "c", label: "Only future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I have been working here for 5 years." What does this show?',
+                            options: [
+                                { value: "a", label: "Duration (5 years) up to NOW (still working)" },
+                                { value: "b", label: "A completed action" },
+                                { value: "c", label: "A future plan" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the pattern for all perfect continuous tenses?",
+                            options: [
+                                { value: "a", label: "have/has/had/will have + been + verb-ing" },
+                                { value: "b", label: "have/has + past participle" },
+                                { value: "c", label: "will + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Timeline Visualization
@@ -127,6 +166,45 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 title: "💡 The Pattern",
                 content: "All Perfect Continuous tenses use: auxiliary 'have' + been + verb-ing. Only the form of 'have' changes: have/has (present), had (past), will have (future).",
             },
+            exercises: [
+                {
+                    id: "perfect-continuous-tenses-review-timeline-1",
+                    title: "Practice: Pick the Right Perfect Continuous",
+                    instructions: "Use the timeline idea: duration up to NOW, before a past event, or by a future point.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I ___ here for 3 years." (still working now)',
+                            options: [
+                                { value: "have been working", label: "have been working" },
+                                { value: "had been working", label: "had been working" },
+                                { value: "will have been working", label: "will have been working" },
+                            ],
+                            expectedAnswer: "have been working",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I ___ for an hour when the train arrived." (before the train arrived)',
+                            options: [
+                                { value: "have been waiting", label: "have been waiting" },
+                                { value: "had been waiting", label: "had been waiting" },
+                                { value: "will have been waiting", label: "will have been waiting" },
+                            ],
+                            expectedAnswer: "had been waiting",
+                        },
+                        {
+                            type: "radio",
+                            label: '"By next month, I ___ in this city for 2 years." (future milestone)',
+                            options: [
+                                { value: "have been living", label: "have been living" },
+                                { value: "had been living", label: "had been living" },
+                                { value: "will have been living", label: "will have been living" },
+                            ],
+                            expectedAnswer: "will have been living",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Comparison Section
@@ -598,6 +676,65 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 title: "🎯 The Golden Rule",
                 content: "Perfect Continuous = HOW LONG. Perfect = RESULT/COMPLETION. Ask: 'Am I emphasizing duration or result?'",
             },
+            exercises: [
+                {
+                    id: "perfect-continuous-tenses-review-summary-1",
+                    title: "Practice: Perfect Continuous Tenses Review",
+                    instructions: "Test your understanding of perfect continuous tenses.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for Present Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "have/has been + verb-ing" },
+                                { value: "b", label: "had been + verb-ing" },
+                                { value: "c", label: "will have been + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Past Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "have/has been + verb-ing" },
+                                { value: "b", label: "had been + verb-ing" },
+                                { value: "c", label: "will have been + verb-ing" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "have/has been + verb-ing" },
+                                { value: "b", label: "had been + verb-ing" },
+                                { value: "c", label: "will have been + verb-ing" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do you use Present Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "Duration up to NOW (emphasizing how long)" },
+                                { value: "b", label: "Duration before a PAST event" },
+                                { value: "c", label: "Duration by a FUTURE point" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What's the difference between 'for' and 'since'?",
+                            options: [
+                                { value: "a", label: "'for' = duration (for 5 years) | 'since' = starting point (since 2020)" },
+                                { value: "b", label: "They mean the same thing" },
+                                { value: "c", label: "'for' = starting point | 'since' = duration" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 
