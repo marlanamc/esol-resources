@@ -21,6 +21,43 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                     <li><strong>Politeness:</strong> Knowing when to use each shows cultural awareness and professionalism</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "imperatives-declaratives-intro-1",
+                    title: "Practice: Understanding Tone",
+                    instructions: "Identify whether each sentence is an imperative (command) or declarative (statement/advice).",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"Take this medicine twice a day."',
+                            options: [
+                                { value: "imperative", label: "Imperative - command/instruction" },
+                                { value: "declarative", label: "Declarative - statement/advice" },
+                            ],
+                            expectedAnswer: "imperative",
+                        },
+                        {
+                            type: "radio",
+                            label: '"You should take this medicine twice a day."',
+                            options: [
+                                { value: "imperative", label: "Imperative - command/instruction" },
+                                { value: "declarative", label: "Declarative - statement/advice" },
+                            ],
+                            expectedAnswer: "declarative",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why is understanding the difference important?",
+                            options: [
+                                { value: "a", label: "It affects how you sound and shows cultural awareness" },
+                                { value: "b", label: "It doesn't matter which one you use" },
+                                { value: "c", label: "Only imperative is used in English" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -83,6 +120,45 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 title: "💡 Key Point",
                 content: "Imperatives have NO subject (no 'you'). They start directly with the verb.",
             },
+            exercises: [
+                {
+                    id: "imperatives-1",
+                    title: "Practice: Identifying Imperatives",
+                    instructions: "Choose which sentences are imperatives.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence is an imperative?",
+                            options: [
+                                { value: "a", label: "Take this medicine." },
+                                { value: "b", label: "You take this medicine." },
+                                { value: "c", label: "You should take this medicine." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What makes a sentence an imperative?",
+                            options: [
+                                { value: "a", label: "Starts with base verb, no subject (you is understood)" },
+                                { value: "b", label: "Has a subject and verb" },
+                                { value: "c", label: "Uses past tense" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which is a negative imperative?",
+                            options: [
+                                { value: "a", label: "Don't eat before the test." },
+                                { value: "b", label: "You don't eat before the test." },
+                                { value: "c", label: "You shouldn't eat before the test." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -147,6 +223,55 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                     </tbody>
                 </table>
             `,
+            exercises: [
+                {
+                    id: "imperatives-declaratives-what-is-1",
+                    title: "Practice: Understanding Declaratives",
+                    instructions: "Identify declarative sentences and their patterns.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is a declarative sentence?",
+                            options: [
+                                { value: "a", label: "A sentence that makes a statement and has a subject" },
+                                { value: "b", label: "A sentence that gives a command without a subject" },
+                                { value: "c", label: "A sentence that asks a question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"You should rest for 3 days." What pattern is this?',
+                            options: [
+                                { value: "a", label: "Declarative with 'should' (advice/suggestion)" },
+                                { value: "b", label: "Imperative command" },
+                                { value: "c", label: "Question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"You need to take this medicine." What tone does this express?',
+                            options: [
+                                { value: "a", label: "Strong/Required - something necessary" },
+                                { value: "b", label: "Polite suggestion" },
+                                { value: "c", label: "Optional advice" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is a declarative?",
+                            options: [
+                                { value: "a", label: "You have to call if you have questions. (declarative with subject)" },
+                                { value: "b", label: "Call if you have questions. (imperative, no subject)" },
+                                { value: "c", label: "Do you have questions? (question)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -199,6 +324,55 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "imperatives-declaratives-comparison-1",
+                    title: "Practice: Imperatives vs Declaratives",
+                    instructions: "Identify whether each sentence is imperative or declarative, and choose the best form for different contexts.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"Take this twice a day." What type of sentence is this?',
+                            options: [
+                                { value: "a", label: "Imperative - direct command/instruction" },
+                                { value: "b", label: "Declarative - statement with subject" },
+                                { value: "c", label: "Question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"You need to take this twice a day." What type of sentence is this?',
+                            options: [
+                                { value: "a", label: "Declarative - statement with subject 'you'" },
+                                { value: "b", label: "Imperative - command without subject" },
+                                { value: "c", label: "Question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should you use imperatives?",
+                            options: [
+                                { value: "a", label: "In medical instructions, prescriptions, and written instructions" },
+                                { value: "b", label: "Only in casual conversations" },
+                                { value: "c", label: "Never, they're too direct" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should you use declaratives?",
+                            options: [
+                                { value: "a", label: "When you want to sound more polite and less bossy in conversations" },
+                                { value: "b", label: "Only in formal writing" },
+                                { value: "c", label: "Never, they're too indirect" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -254,6 +428,55 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 title: "💡 Cultural Note",
                 content: "In American medical settings, doctors can use imperatives (they're the authority), but patients should use declaratives when speaking to doctors to show respect.",
             },
+            exercises: [
+                {
+                    id: "imperatives-declaratives-medical-contexts-1",
+                    title: "Practice: Imperatives vs Declaratives in Medical Contexts",
+                    instructions: "Identify when to use imperatives vs declaratives in medical settings.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"Take 1 tablet twice daily." What type of sentence is this and where is it used?',
+                            options: [
+                                { value: "a", label: "Imperative - used on prescription labels and medication instructions" },
+                                { value: "b", label: "Declarative - used when doctors speak to patients" },
+                                { value: "c", label: "Question - used to ask about medication" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"You should take 1 tablet twice a day." What type of sentence is this and where is it used?',
+                            options: [
+                                { value: "a", label: "Declarative - used when doctors speak to patients (more polite)" },
+                                { value: "b", label: "Imperative - used on prescription labels" },
+                                { value: "c", label: "Question - used to ask about medication" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What should patients use when speaking to doctors?",
+                            options: [
+                                { value: "a", label: "Declaratives (to show respect) - 'I will take it twice a day'" },
+                                { value: "b", label: "Imperatives (to be direct) - 'Take this medicine'" },
+                                { value: "c", label: "Questions only" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why do prescription labels use imperatives?",
+                            options: [
+                                { value: "a", label: "They are direct instructions that need to be clear and authoritative" },
+                                { value: "b", label: "To be polite to patients" },
+                                { value: "c", label: "To ask questions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -301,6 +524,55 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "imperatives-declaratives-workplace-1",
+                    title: "Practice: Workplace Communication",
+                    instructions: "Choose the appropriate form (imperative or declarative) for different workplace situations.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What should an employee use when speaking to their boss?",
+                            options: [
+                                { value: "a", label: "Declaratives - 'I will submit it by Friday' (to show respect)" },
+                                { value: "b", label: "Imperatives - 'Submit it by Friday' (to be direct)" },
+                                { value: "c", label: "Either is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What can a boss use when speaking to an employee?",
+                            options: [
+                                { value: "a", label: "Both imperatives and declaratives - 'Please submit your timesheet' or 'You need to submit your timesheet'" },
+                                { value: "b", label: "Only imperatives" },
+                                { value: "c", label: "Only declaratives" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What can coworkers use when speaking to each other?",
+                            options: [
+                                { value: "a", label: "Polite imperatives are fine - 'Please send me that file'" },
+                                { value: "b", label: "Only declaratives" },
+                                { value: "c", label: "Only direct commands" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why shouldn't employees use imperatives with their boss?",
+                            options: [
+                                { value: "a", label: "It sounds too direct and disrespectful" },
+                                { value: "b", label: "It's grammatically incorrect" },
+                                { value: "c", label: "Bosses don't understand imperatives" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

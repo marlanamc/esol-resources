@@ -13,6 +13,45 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 1.05rem;">Past Continuous is your play-by-play: what was happening <strong>at a specific moment in the past</strong>, especially when something else interrupted.</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "past-continuous-intro-1",
+                    title: "Practice: Understanding Past Continuous",
+                    instructions: "Identify what Past Continuous describes.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Past Continuous describe?",
+                            options: [
+                                { value: "a", label: "What was happening at a specific moment in the past, especially when interrupted" },
+                                { value: "b", label: "Completed past actions" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I was sleeping when you called." What does this show?',
+                            options: [
+                                { value: "a", label: "An action in progress that was interrupted" },
+                                { value: "b", label: "A completed action" },
+                                { value: "c", label: "A habit" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When is Past Continuous especially useful?",
+                            options: [
+                                { value: "a", label: "To show what was happening when something else interrupted" },
+                                { value: "b", label: "To describe habits" },
+                                { value: "c", label: "To talk about the future" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "meaning-usage",
@@ -281,6 +320,45 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 "Were you sleeping when I knocked?",
                 "Was she cooking when you arrived?",
                 "Were they playing outside when it started raining?",
+            ],
+            exercises: [
+                {
+                    id: "past-continuous-question-1",
+                    title: "Practice: Past Continuous Question Form",
+                    instructions: "Choose the correct question form for past continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the question form for past continuous?",
+                            options: [
+                                { value: "a", label: "Was/Were + subject + verb-ing? (was/were at the beginning)" },
+                                { value: "b", label: "Subject + was/were + verb-ing? (wrong - this is statement form)" },
+                                { value: "c", label: "Did + subject + verb-ing? (wrong - this is not past continuous)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which question is correct?",
+                            options: [
+                                { value: "a", label: "Were you sleeping when I knocked? (were + subject + verb-ing)" },
+                                { value: "b", label: "You were sleeping when I knocked? (wrong - statement form, not question)" },
+                                { value: "c", label: "Did you sleeping when I knocked? (wrong structure)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which question correctly uses 'was'?",
+                            options: [
+                                { value: "a", label: "Was she cooking when you arrived? (was + singular subject + verb-ing)" },
+                                { value: "b", label: "Were she cooking when you arrived? (wrong - 'were' with singular)" },
+                                { value: "c", label: "Was she cook when you arrived? (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
             ],
         },
         {

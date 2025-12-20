@@ -22,6 +22,45 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     <li><strong>Organization:</strong> Presenting information logically</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "paragraph-intro-1",
+                    title: "Practice: Understanding Paragraph Structure",
+                    instructions: "Read each statement and identify what it describes about paragraphs.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the main purpose of a paragraph?",
+                            options: [
+                                { value: "a", label: "To present ONE main idea clearly" },
+                                { value: "b", label: "To include as many ideas as possible" },
+                                { value: "c", label: "To use complex vocabulary" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What are the three parts of a paragraph?",
+                            options: [
+                                { value: "a", label: "Topic sentence, supporting details, conclusion sentence" },
+                                { value: "b", label: "Introduction, middle, end" },
+                                { value: "c", label: "First sentence, second sentence, last sentence" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should you start a new paragraph?",
+                            options: [
+                                { value: "a", label: "When you have a new main idea" },
+                                { value: "b", label: "After every sentence" },
+                                { value: "c", label: "Only at the end of a page" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -58,6 +97,45 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 title: "💡 Key Point",
                 content: "ONE paragraph = ONE main idea. If you have a new idea, start a new paragraph!",
             },
+            exercises: [
+                {
+                    id: "what-is-paragraph-1",
+                    title: "Practice: Identifying Paragraph Parts",
+                    instructions: "Read the example paragraph and identify which part is which.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "In the example paragraph, which sentence is the topic sentence?",
+                            options: [
+                                { value: "a", label: "Exercise is important for good health." },
+                                { value: "b", label: "First, it helps you lose weight and stay in shape." },
+                                { value: "c", label: "For these reasons, everyone should try to exercise at least 30 minutes a day." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "How many supporting detail sentences are in a typical paragraph?",
+                            options: [
+                                { value: "a", label: "3-5 sentences" },
+                                { value: "b", label: "1-2 sentences" },
+                                { value: "c", label: "10 or more sentences" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does the conclusion sentence do?",
+                            options: [
+                                { value: "a", label: "Wraps up or restates the main idea" },
+                                { value: "b", label: "Introduces a new topic" },
+                                { value: "c", label: "Asks a question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -122,6 +200,45 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     </tbody>
                 </table>
             `,
+            exercises: [
+                {
+                    id: "topic-sentence-1",
+                    title: "Practice: Good vs Bad Topic Sentences",
+                    instructions: "Choose which topic sentence is better and why.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which is a better topic sentence?",
+                            options: [
+                                { value: "a", label: "Exercise is important for good health." },
+                                { value: "b", label: "Exercise is good." },
+                                { value: "c", label: "Things." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why is 'Exercise is good' not a good topic sentence?",
+                            options: [
+                                { value: "a", label: "It's too general and doesn't give a clear focus" },
+                                { value: "b", label: "It's too long" },
+                                { value: "c", label: "It uses the wrong words" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What makes a good topic sentence?",
+                            options: [
+                                { value: "a", label: "States the main idea clearly, is complete, not too specific or general" },
+                                { value: "b", label: "Uses difficult vocabulary" },
+                                { value: "c", label: "Is very short" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -167,6 +284,45 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 title: "💡 Remember",
                 content: "ALL supporting details must relate to your topic sentence. If a sentence doesn't support the main idea, delete it or move it to a different paragraph!",
             },
+            exercises: [
+                {
+                    id: "supporting-details-1",
+                    title: "Practice: Understanding Supporting Details",
+                    instructions: "Answer questions about supporting details.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What are supporting details?",
+                            options: [
+                                { value: "a", label: "Sentences that explain, describe, or prove the topic sentence" },
+                                { value: "b", label: "The first sentence of a paragraph" },
+                                { value: "c", label: "The last sentence of a paragraph" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "How many supporting detail sentences are usually in a paragraph?",
+                            options: [
+                                { value: "a", label: "3-5 sentences" },
+                                { value: "b", label: "1-2 sentences" },
+                                { value: "c", label: "10 or more sentences" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What do transition words do?",
+                            options: [
+                                { value: "a", label: "Help connect ideas and organize supporting details" },
+                                { value: "b", label: "Replace the topic sentence" },
+                                { value: "c", label: "Are not necessary" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -205,6 +361,45 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     <li>That is why...</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "conclusion-sentence-1",
+                    title: "Practice: Understanding Conclusion Sentences",
+                    instructions: "Answer questions about conclusion sentences.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is a conclusion sentence?",
+                            options: [
+                                { value: "a", label: "The last sentence that wraps up the paragraph by restating the main idea or summarizing key points" },
+                                { value: "b", label: "The first sentence of a paragraph" },
+                                { value: "c", label: "A supporting detail" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What are ways to write a conclusion sentence?",
+                            options: [
+                                { value: "a", label: "Restate the topic sentence, summarize key points, or give a final thought/recommendation" },
+                                { value: "b", label: "Introduce a new topic" },
+                                { value: "c", label: "Ask a question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which is a good conclusion starter?",
+                            options: [
+                                { value: "a", label: "For these reasons..." },
+                                { value: "b", label: "First..." },
+                                { value: "c", label: "For example..." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -239,6 +434,55 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     <li>Use pronouns to refer back (it, they, this)</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "paragraph-unity-coherence-1",
+                    title: "Practice: Unity and Coherence",
+                    instructions: "Identify paragraphs with unity and coherence issues.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does 'unity' mean in a paragraph?",
+                            options: [
+                                { value: "a", label: "All sentences support the same main idea" },
+                                { value: "b", label: "All sentences are the same length" },
+                                { value: "c", label: "All sentences use the same words" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does 'coherence' mean in a paragraph?",
+                            options: [
+                                { value: "a", label: "Ideas are connected in a logical order that's easy to follow" },
+                                { value: "b", label: "All sentences are about different topics" },
+                                { value: "c", label: "The paragraph has exactly five sentences" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which paragraph has a unity problem?",
+                            options: [
+                                { value: "a", label: "Exercise is important. I also like pizza. Exercise helps you lose weight. (pizza doesn't support main idea)" },
+                                { value: "b", label: "Exercise is important. First, it helps you lose weight. Second, it reduces stress. (all support main idea)" },
+                                { value: "c", label: "Exercise is important. It helps you lose weight. It also reduces stress. (all support main idea)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "How can you improve coherence in a paragraph?",
+                            options: [
+                                { value: "a", label: "Use transition words, logical order, and repeat key words" },
+                                { value: "b", label: "Make all sentences very short" },
+                                { value: "c", label: "Use different topics in each sentence" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -271,6 +515,55 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <p>❌ Writing only 1-2 sentences and calling it a paragraph</p>
                 <p>✅ A paragraph needs at least 5-7 sentences (topic + 3-5 details + conclusion)</p>
             `,
+            exercises: [
+                {
+                    id: "paragraph-format-common-mistakes-1",
+                    title: "Practice: Common Paragraph Mistakes",
+                    instructions: "Identify common mistakes in paragraph writing.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is Mistake #1?",
+                            options: [
+                                { value: "a", label: "Starting with details without stating the main idea first (no topic sentence)" },
+                                { value: "b", label: "Using too many transition words" },
+                                { value: "c", label: "Writing sentences that are too long" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #2?",
+                            options: [
+                                { value: "a", label: "Talking about too many different ideas in one paragraph" },
+                                { value: "b", label: "Using simple vocabulary" },
+                                { value: "c", label: "Writing sentences that are too short" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #4?",
+                            options: [
+                                { value: "a", label: "Including sentences that don't relate to the topic sentence (off-topic sentences)" },
+                                { value: "b", label: "Using too many examples" },
+                                { value: "c", label: "Not using enough adjectives" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "How many sentences should a paragraph have?",
+                            options: [
+                                { value: "a", label: "At least 5-7 sentences (topic + 3-5 details + conclusion)" },
+                                { value: "b", label: "Exactly 3 sentences" },
+                                { value: "c", label: "As many as possible, no limit" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

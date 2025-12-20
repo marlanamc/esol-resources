@@ -21,6 +21,45 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <li><strong>Goal setting:</strong> "I used to skip breakfast, but now I eat healthy." "I'd rather save money than eat out."</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "used-to-would-rather-intro-1",
+                    title: "Practice: Understanding Used To and Would Rather",
+                    instructions: "Identify what each structure is used for.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I used to smoke, but I quit." What does "used to" describe?',
+                            options: [
+                                { value: "a", label: "Past habits that are no longer true" },
+                                { value: "b", label: "Current habits" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I\'d rather walk than drive." What does "would rather" express?',
+                            options: [
+                                { value: "a", label: "Preferences - what you prefer to do" },
+                                { value: "b", label: "Past habits" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Where are these structures commonly used?",
+                            options: [
+                                { value: "a", label: "Doctor visits, job interviews, goal setting" },
+                                { value: "b", label: "Only in formal writing" },
+                                { value: "c", label: "Only in casual conversation" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -64,6 +103,55 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 title: "⚠️ Common Mistake",
                 content: "DON'T say: \"I am used to exercise\" or \"I used to exercising.\" ✅ SAY: \"I used to exercise.\" (base verb, no -ing!)",
             },
+            exercises: [
+                {
+                    id: "used-to-would-rather-used-to-1",
+                    title: "Practice: Used To for Past Habits",
+                    instructions: "Choose the correct form of 'used to' for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does 'used to' describe?",
+                            options: [
+                                { value: "a", label: "Habits or states that were true in the past but are NOT true now" },
+                                { value: "b", label: "Habits that are still true now" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I used to smoke. (used to + base verb)" },
+                                { value: "b", label: "I used to smoking. (incorrect - no -ing)" },
+                                { value: "c", label: "I am used to smoke. (incorrect - wrong structure)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the negative form?",
+                            options: [
+                                { value: "a", label: "I didn't use to exercise. (didn't use to - no 'd')" },
+                                { value: "b", label: "I didn't used to exercise. (incorrect - has 'd')" },
+                                { value: "c", label: "I don't use to exercise. (wrong tense)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses 'used to'?",
+                            options: [
+                                { value: "a", label: "She used to work nights. (correct - past habit no longer true)" },
+                                { value: "b", label: "She uses to work nights. (wrong verb form)" },
+                                { value: "c", label: "She is used to work nights. (wrong structure)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -119,6 +207,55 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 title: "💡 Key Difference",
                 content: "Use 'would' only for repeated ACTIONS. For states (be, have, live, know), use 'used to' only.",
             },
+            exercises: [
+                {
+                    id: "used-to-would-rather-would-1",
+                    title: "Practice: Would for Past Habits",
+                    instructions: "Choose the correct use of 'would' for past habits.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does 'would' describe when talking about the past?",
+                            options: [
+                                { value: "a", label: "Repeated actions in the past (more formal than 'used to')" },
+                                { value: "b", label: "States and conditions in the past" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses 'would'?",
+                            options: [
+                                { value: "a", label: "Every morning, I would go for a run. (repeated action)" },
+                                { value: "b", label: "I would be shy. (incorrect - 'would' can't describe states)" },
+                                { value: "c", label: "I would live in Mexico. (incorrect - 'would' can't describe states)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the main difference between 'used to' and 'would'?",
+                            options: [
+                                { value: "a", label: "'Used to' can describe habits AND states; 'would' only describes repeated actions" },
+                                { value: "b", label: "They mean exactly the same thing" },
+                                { value: "c", label: "'Would' is more common in everyday speech" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I used to be shy. (correct - 'used to' for states)" },
+                                { value: "b", label: "I would be shy. (incorrect - 'would' can't describe states)" },
+                                { value: "c", label: "Both are correct" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -159,6 +296,55 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <li>She'd <strong>rather not</strong> take the bus.</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "used-to-would-rather-would-rather-1",
+                    title: "Practice: Would Rather for Preferences",
+                    instructions: "Choose the correct form of 'would rather' for expressing preferences.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does 'would rather' express?",
+                            options: [
+                                { value: "a", label: "Preferences - what you prefer or want (not past habits)" },
+                                { value: "b", label: "Past habits that are no longer true" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I'd rather walk than drive. (would rather + base verb)" },
+                                { value: "b", label: "I'd rather walking than driving. (incorrect - no -ing)" },
+                                { value: "c", label: "I'd rather to walk than to drive. (incorrect - no 'to')" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the negative form?",
+                            options: [
+                                { value: "a", label: "I'd rather not work overtime. (would rather not + base verb)" },
+                                { value: "b", label: "I'd not rather work overtime. (wrong word order)" },
+                                { value: "c", label: "I wouldn't rather work overtime. (wrong structure)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly compares two options?",
+                            options: [
+                                { value: "a", label: "I'd rather cook at home than eat out. (would rather... than...)" },
+                                { value: "b", label: "I'd rather cook at home than eating out. (inconsistent forms)" },
+                                { value: "c", label: "I'd rather to cook at home than to eat out. (incorrect - no 'to')" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -210,6 +396,55 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "used-to-would-rather-real-world-1",
+                    title: "Practice: Real-World Contexts",
+                    instructions: "Choose the correct form (used to or would rather) for different real-world situations.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "When talking to your doctor about past habits, which is correct?",
+                            options: [
+                                { value: "a", label: "I used to have headaches every day, but now they're rare. (past habit no longer true)" },
+                                { value: "b", label: "I would have headaches every day. (wrong - 'would' can't describe states)" },
+                                { value: "c", label: "I use to have headaches. (wrong form)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When expressing a preference about treatment, which is correct?",
+                            options: [
+                                { value: "a", label: "I'd rather try physical therapy than take pills. (preference - would rather)" },
+                                { value: "b", label: "I used to try physical therapy. (wrong - this is about past, not preference)" },
+                                { value: "c", label: "I would try physical therapy. (wrong - this is conditional, not preference)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When talking about work preferences, which is correct?",
+                            options: [
+                                { value: "a", label: "I'd rather work day shifts than nights. (preference - would rather)" },
+                                { value: "b", label: "I used to work day shifts. (wrong - this is about past, not preference)" },
+                                { value: "c", label: "I would work day shifts. (wrong - this is conditional, not preference)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When contrasting past habits with current situation, which is correct?",
+                            options: [
+                                { value: "a", label: "I used to skip breakfast, but now I eat oatmeal every morning. (past habit vs now)" },
+                                { value: "b", label: "I would skip breakfast, but now I eat oatmeal. (wrong - 'would' can't describe states)" },
+                                { value: "c", label: "I'd rather skip breakfast. (wrong - this is preference, not past habit)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -246,6 +481,55 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <p style="font-weight: bold; margin: 0;">These are DIFFERENT structures with DIFFERENT meanings!</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "used-to-would-rather-common-mistakes-1",
+                    title: "Practice: Common Mistakes with Used To and Would Rather",
+                    instructions: "Identify and correct common mistakes.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is Mistake #1?",
+                            options: [
+                                { value: "a", label: "Wrong verb form - 'I used to smoking' should be 'I used to smoke' (base verb, not -ing)" },
+                                { value: "b", label: "Using wrong tense" },
+                                { value: "c", label: "Missing the subject" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #2?",
+                            options: [
+                                { value: "a", label: "Using 'd' in negative - 'I didn't used to' should be 'I didn't use to' (no 'd')" },
+                                { value: "b", label: "Using wrong verb" },
+                                { value: "c", label: "Missing the negative" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #3?",
+                            options: [
+                                { value: "a", label: "Using 'would' for states - 'I would be shy' should be 'I used to be shy' (states need 'used to')" },
+                                { value: "b", label: "Using 'used to' for actions" },
+                                { value: "c", label: "Using wrong tense" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the difference between 'used to' and 'be used to'?",
+                            options: [
+                                { value: "a", label: "'Used to' = past habit; 'be used to' = be accustomed to (different meanings)" },
+                                { value: "b", label: "They mean the same thing" },
+                                { value: "c", label: "One is formal, one is informal" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

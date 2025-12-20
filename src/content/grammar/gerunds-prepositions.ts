@@ -22,6 +22,45 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     <li><strong>Everyday conversation:</strong> "I get to work by <em>taking</em> the bus"</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "gerunds-prepositions-intro-1",
+                    title: "Practice: Gerunds After Prepositions",
+                    instructions: "Choose the correct form after each preposition.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I\'m interested _____ here."',
+                            options: [
+                                { value: "a", label: "in working (preposition + gerund)" },
+                                { value: "b", label: "in to work (preposition + infinitive)" },
+                                { value: "c", label: "working (no preposition)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Thank you _____ me."',
+                            options: [
+                                { value: "a", label: "for helping (preposition + gerund)" },
+                                { value: "b", label: "for to help (preposition + infinitive)" },
+                                { value: "c", label: "helping (no preposition)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What form comes after prepositions?",
+                            options: [
+                                { value: "a", label: "Always gerund (-ing form), never infinitive (to + verb)" },
+                                { value: "b", label: "Always infinitive (to + verb)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -51,6 +90,55 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                 title: "💡 Quick Rule",
                 content: "After a preposition (in, at, for, by, about, of, without, etc.), ALWAYS use the gerund (-ing form), NEVER the infinitive (to + verb).",
             },
+            exercises: [
+                {
+                    id: "gerunds-prepositions-what-is-1",
+                    title: "Practice: Identifying Gerunds",
+                    instructions: "Choose the correct answer about gerunds.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is a gerund?",
+                            options: [
+                                { value: "a", label: "A verb form ending in -ing that acts like a noun" },
+                                { value: "b", label: "A verb form ending in -ed that acts like an adjective" },
+                                { value: "c", label: "A verb form with 'to' that acts like a noun" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "In the sentence 'Working here is great,' what is 'Working'?",
+                            options: [
+                                { value: "a", label: "A gerund acting as the subject" },
+                                { value: "b", label: "A continuous verb" },
+                                { value: "c", label: "An adjective" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses a gerund correctly?",
+                            options: [
+                                { value: "a", label: "I love teaching. (gerund as object)" },
+                                { value: "b", label: "I love to teaching. (incorrect form)" },
+                                { value: "c", label: "I love teach. (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "How do you form a gerund from the verb 'solve'?",
+                            options: [
+                                { value: "a", label: "Add -ing: solving" },
+                                { value: "b", label: "Add -ed: solved" },
+                                { value: "c", label: "Add 'to': to solve" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -303,6 +391,55 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     </div>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "gerunds-prepositions-without-before-after-1",
+                    title: "Practice: Without, Before, After + Gerund",
+                    instructions: "Choose the correct form to complete each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Don't leave _____ clocking out.",
+                            options: [
+                                { value: "a", label: "without clocking out (without + gerund)" },
+                                { value: "b", label: "without to clock out (without + infinitive)" },
+                                { value: "c", label: "without clock out (without + base verb)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Wash your hands _____ eating.",
+                            options: [
+                                { value: "a", label: "before eating (before + gerund)" },
+                                { value: "b", label: "before to eat (before + infinitive)" },
+                                { value: "c", label: "before eat (before + base verb)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Call me _____ finishing your shift.",
+                            options: [
+                                { value: "a", label: "after finishing (after + gerund)" },
+                                { value: "b", label: "after to finish (after + infinitive)" },
+                                { value: "c", label: "after finish (after + base verb)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What form always comes after 'without,' 'before,' and 'after'?",
+                            options: [
+                                { value: "a", label: "Gerund (-ing form)" },
+                                { value: "b", label: "Infinitive (to + verb)" },
+                                { value: "c", label: "Base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

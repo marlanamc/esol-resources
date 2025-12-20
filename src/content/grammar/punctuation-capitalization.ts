@@ -22,6 +22,45 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <li><strong>Credibility:</strong> Showing attention to detail and professionalism</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "punctuation-intro-1",
+                    title: "Practice: Understanding Punctuation and Capitalization",
+                    instructions: "Answer questions about why punctuation and capitalization matter.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Why are punctuation and capitalization important?",
+                            options: [
+                                { value: "a", label: "They make writing professional, clear, and show attention to detail" },
+                                { value: "b", label: "They're only important in formal writing" },
+                                { value: "c", label: "They don't matter" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Where are punctuation and capitalization essential?",
+                            options: [
+                                { value: "a", label: "Professional communication, academic writing, clarity, credibility" },
+                                { value: "b", label: "Only in emails" },
+                                { value: "c", label: "Only in essays" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What happens without correct punctuation and capitalization?",
+                            options: [
+                                { value: "a", label: "Writing can be confusing or look careless" },
+                                { value: "b", label: "Nothing happens" },
+                                { value: "c", label: "Writing becomes clearer" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -68,6 +107,45 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <p style="margin-top: 0.75rem;"><strong>⚠️ Caution:</strong> Don't overuse in professional writing!</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "end-punctuation-1",
+                    title: "Practice: End Punctuation",
+                    instructions: "Choose the correct end punctuation for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I live in Boston"',
+                            options: [
+                                { value: "period", label: "Period (.) - statement" },
+                                { value: "question", label: "Question mark (?) - question" },
+                                { value: "exclamation", label: "Exclamation point (!) - strong emotion" },
+                            ],
+                            expectedAnswer: "period",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Where do you live"',
+                            options: [
+                                { value: "period", label: "Period (.)" },
+                                { value: "question", label: "Question mark (?) - direct question" },
+                                { value: "exclamation", label: "Exclamation point (!)" },
+                            ],
+                            expectedAnswer: "question",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I wonder where you live"',
+                            options: [
+                                { value: "period", label: "Period (.) - indirect question" },
+                                { value: "question", label: "Question mark (?)" },
+                                { value: "exclamation", label: "Exclamation point (!)" },
+                            ],
+                            expectedAnswer: "period",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -115,6 +193,55 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                 title: "💡 Common Error",
                 content: "DON'T use a comma between subject and verb: ❌ 'The doctor, said I need rest.' ✅ 'The doctor said I need rest.'",
             },
+            exercises: [
+                {
+                    id: "punctuation-capitalization-commas-1",
+                    title: "Practice: Using Commas",
+                    instructions: "Choose the correct comma usage for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence uses commas correctly in a list?",
+                            options: [
+                                { value: "a", label: "I need bread, milk, and eggs. (commas between items, comma before 'and')" },
+                                { value: "b", label: "I need bread milk and eggs. (missing commas)" },
+                                { value: "c", label: "I need bread, milk and eggs. (missing comma before 'and')" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses a comma correctly after an introductory phrase?",
+                            options: [
+                                { value: "a", label: "After work, I'm going to the gym. (comma after introductory phrase)" },
+                                { value: "b", label: "After work I'm going to the gym. (missing comma)" },
+                                { value: "c", label: "After, work I'm going to the gym. (comma in wrong place)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses a comma correctly in a compound sentence?",
+                            options: [
+                                { value: "a", label: "I wanted to go, but I was too tired. (comma before FANBOYS word)" },
+                                { value: "b", label: "I wanted to go but I was too tired. (missing comma)" },
+                                { value: "c", label: "I wanted, to go but I was too tired. (comma in wrong place)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses a comma with dates?",
+                            options: [
+                                { value: "a", label: "My appointment is on June 15, 2026. (comma between day and year)" },
+                                { value: "b", label: "My appointment is on June 15 2026. (missing comma)" },
+                                { value: "c", label: "My appointment is on June, 15 2026. (comma in wrong place)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -170,6 +297,55 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                 title: "⚠️ Critical Rule",
                 content: "Never use apostrophes to make plurals! ❌ apple's → ✅ apples (plural, no apostrophe)",
             },
+            exercises: [
+                {
+                    id: "punctuation-capitalization-apostrophes-1",
+                    title: "Practice: Using Apostrophes",
+                    instructions: "Choose the correct apostrophe usage for contractions and possession.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence uses an apostrophe correctly for a contraction?",
+                            options: [
+                                { value: "a", label: "I'm going to the store. (I'm = I am)" },
+                                { value: "b", label: "Im going to the store. (missing apostrophe)" },
+                                { value: "c", label: "I'm going to the store. (wrong - apostrophe in wrong place)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses an apostrophe correctly for possession?",
+                            options: [
+                                { value: "a", label: "The doctor's office is on Main Street. (singular possession: doctor's)" },
+                                { value: "b", label: "The doctors office is on Main Street. (missing apostrophe)" },
+                                { value: "c", label: "The doctors' office is on Main Street. (wrong - plural apostrophe for singular)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly shows plural possession?",
+                            options: [
+                                { value: "a", label: "The doctors' offices are on Main Street. (plural ending in -s: doctors')" },
+                                { value: "b", label: "The doctors's offices are on Main Street. (wrong - double s)" },
+                                { value: "c", label: "The doctors offices are on Main Street. (missing apostrophe)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses 'its' vs 'it's'?",
+                            options: [
+                                { value: "a", label: "The dog wagged its tail. (possessive - no apostrophe) It's raining. (contraction - has apostrophe)" },
+                                { value: "b", label: "The dog wagged it's tail. (wrong - 'it's' is contraction, not possessive)" },
+                                { value: "c", label: "Its raining. (wrong - missing apostrophe for contraction)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -217,6 +393,55 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <li><strong>Subjects (except languages):</strong> math, science, history (BUT: English, Spanish)</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "punctuation-capitalization-capitalization-1",
+                    title: "Practice: Capitalization Rules",
+                    instructions: "Choose the correct capitalization for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence capitalizes correctly?",
+                            options: [
+                                { value: "a", label: "I live in Boston, Massachusetts. (proper nouns capitalized)" },
+                                { value: "b", label: "I live in boston, massachusetts. (missing capitals)" },
+                                { value: "c", label: "I Live In Boston, Massachusetts. (over-capitalized)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence capitalizes correctly?",
+                            options: [
+                                { value: "a", label: "Doctor Smith is my doctor. (title before name capitalized, job title alone not capitalized)" },
+                                { value: "b", label: "doctor smith is my Doctor. (missing capitals)" },
+                                { value: "c", label: "Doctor Smith is my Doctor. (wrong - job title alone shouldn't be capitalized)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly capitalizes seasons?",
+                            options: [
+                                { value: "a", label: "I love spring and summer. (seasons not capitalized)" },
+                                { value: "b", label: "I love Spring and Summer. (wrong - seasons shouldn't be capitalized)" },
+                                { value: "c", label: "I Love Spring And Summer. (wrong - over-capitalized)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly capitalizes subjects?",
+                            options: [
+                                { value: "a", label: "I study math, science, and English. (languages capitalized, other subjects not)" },
+                                { value: "b", label: "I study Math, Science, and english. (wrong - subjects shouldn't be capitalized)" },
+                                { value: "c", label: "I study math, science, and english. (wrong - languages should be capitalized)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -248,6 +473,55 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "punctuation-capitalization-quotation-marks-1",
+                    title: "Practice: Using Quotation Marks",
+                    instructions: "Choose the correct use of quotation marks.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "When should you use quotation marks?",
+                            options: [
+                                { value: "a", label: "For direct speech (exact words someone said)" },
+                                { value: "b", label: "For all sentences" },
+                                { value: "c", label: "Only for questions" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses quotation marks correctly?",
+                            options: [
+                                { value: "a", label: 'The doctor said, "You need to rest." (period inside quotes)' },
+                                { value: "b", label: 'The doctor said, "You need to rest". (period outside quotes - wrong)' },
+                                { value: "c", label: 'The doctor said "You need to rest". (missing comma - wrong)' },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Where does the comma go when a quote comes before 'she said'?",
+                            options: [
+                                { value: "a", label: 'Inside the quotes - "I\'ll call you later," he said. (comma inside)' },
+                                { value: "b", label: 'Outside the quotes - "I\'ll call you later", he said. (wrong)' },
+                                { value: "c", label: "No comma needed" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Where does the question mark go when the quote itself is a question?",
+                            options: [
+                                { value: "a", label: 'Inside the quotes - "Where are you?" she asked. (question mark inside)' },
+                                { value: "b", label: 'Outside the quotes - "Where are you"? she asked. (wrong)' },
+                                { value: "c", label: "No question mark needed" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

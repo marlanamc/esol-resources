@@ -22,6 +22,45 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                     <li><strong>Results:</strong> "Your test results were sent to your doctor."</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "passive-intro-1",
+                    title: "Practice: Understanding Passive Voice",
+                    instructions: "Read each sentence and identify whether it's active or passive voice.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"Your blood will be drawn."',
+                            options: [
+                                { value: "passive", label: "Passive voice - subject receives the action" },
+                                { value: "active", label: "Active voice - subject does the action" },
+                                { value: "neither", label: "Neither active nor passive" },
+                            ],
+                            expectedAnswer: "passive",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The nurse takes your blood pressure."',
+                            options: [
+                                { value: "passive", label: "Passive voice - subject receives the action" },
+                                { value: "active", label: "Active voice - subject does the action" },
+                                { value: "neither", label: "Neither active nor passive" },
+                            ],
+                            expectedAnswer: "active",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why is passive voice important in medical settings?",
+                            options: [
+                                { value: "a", label: "It's used in medical instructions, procedures, forms, and results" },
+                                { value: "b", label: "It's only used in casual conversation" },
+                                { value: "c", label: "It's never used in medical settings" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -82,6 +121,43 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 title: "💡 Key Point",
                 content: "Active = who did it matters. Passive = what happened matters (who did it is less important or unknown).",
             },
+            exercises: [
+                {
+                    id: "active-vs-passive-1",
+                    title: "Practice: Active or Passive?",
+                    instructions: "Identify whether each sentence is active or passive voice.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"The nurse drew my blood."',
+                            options: [
+                                { value: "active", label: "Active - The nurse (subject) does the action" },
+                                { value: "passive", label: "Passive - Subject receives the action" },
+                            ],
+                            expectedAnswer: "active",
+                        },
+                        {
+                            type: "radio",
+                            label: '"My blood was drawn."',
+                            options: [
+                                { value: "active", label: "Active - Subject does the action" },
+                                { value: "passive", label: "Passive - My blood (subject) receives the action" },
+                            ],
+                            expectedAnswer: "passive",
+                        },
+                        {
+                            type: "radio",
+                            label: "What's the key difference between active and passive?",
+                            options: [
+                                { value: "a", label: "Active: subject does action | Passive: subject receives action" },
+                                { value: "b", label: "Active: uses past tense | Passive: uses present tense" },
+                                { value: "c", label: "There's no difference" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -143,6 +219,45 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "forming-passive-1",
+                    title: "Practice: Forming Passive Voice",
+                    instructions: "Choose the correct passive form for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for passive voice?",
+                            options: [
+                                { value: "a", label: "be + Past Participle (form of 'be' changes based on tense)" },
+                                { value: "b", label: "have + Past Participle" },
+                                { value: "c", label: "will + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The test is performed on an empty stomach." What tense is this?',
+                            options: [
+                                { value: "a", label: "Present Simple Passive (is + past participle)" },
+                                { value: "b", label: "Past Simple Passive" },
+                                { value: "c", label: "Future Passive" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"My blood was drawn yesterday." What tense is this?',
+                            options: [
+                                { value: "a", label: "Present Simple Passive" },
+                                { value: "b", label: "Past Simple Passive (was + past participle)" },
+                                { value: "c", label: "Future Passive" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -190,6 +305,55 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "passive-voice-when-to-use-1",
+                    title: "Practice: When to Use Passive Voice",
+                    instructions: "Identify when passive voice is appropriate.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "When should you use passive voice?",
+                            options: [
+                                { value: "a", label: "When the doer is unknown, unimportant, or you want to focus on the action" },
+                                { value: "b", label: "Always, because it sounds more formal" },
+                                { value: "c", label: "Never, active voice is always better" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"My car was stolen." Why is passive voice used here?',
+                            options: [
+                                { value: "a", label: "The doer (thief) is unknown" },
+                                { value: "b", label: "The car is more important than the thief" },
+                                { value: "c", label: "Active voice would be incorrect" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Your blood pressure will be checked." Why is passive used?',
+                            options: [
+                                { value: "a", label: "Focus is on what happens to you, not who does it" },
+                                { value: "b", label: "We don't know who will check it" },
+                                { value: "c", label: "It's more polite than active voice" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should you NOT use passive voice?",
+                            options: [
+                                { value: "a", label: "When the doer is important and you need to mention who did it" },
+                                { value: "b", label: "When writing formal documents" },
+                                { value: "c", label: "When the action is more important than the person" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -270,6 +434,55 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 title: "💡 Patient Portal Tip",
                 content: "Patient portals use LOTS of passive voice: 'Your results have been posted.' 'A message was sent.' 'Your appointment was confirmed.'",
             },
+            exercises: [
+                {
+                    id: "passive-voice-medical-contexts-1",
+                    title: "Practice: Passive Voice in Medical Contexts",
+                    instructions: "Identify passive voice in medical contexts and understand why it's used.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"Patients must be checked in 15 minutes before appointment." Why is passive voice used here?',
+                            options: [
+                                { value: "a", label: "Focus is on what happens to patients, not who checks them in" },
+                                { value: "b", label: "To make the sentence shorter" },
+                                { value: "c", label: "To confuse patients" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"This medication should be taken twice daily." What is the active voice version?',
+                            options: [
+                                { value: "a", label: "You should take this medication twice daily. (active - focus on who takes it)" },
+                                { value: "b", label: "The medication takes itself twice daily. (incorrect)" },
+                                { value: "c", label: "This medication takes twice daily. (incorrect)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"Your blood will be drawn in the lab." Why is passive voice appropriate here?',
+                            options: [
+                                { value: "a", label: "Focus is on what happens to you (the patient), not who draws the blood" },
+                                { value: "b", label: "To hide who draws the blood" },
+                                { value: "c", label: "To make it sound more formal" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why do patient portals use so much passive voice?",
+                            options: [
+                                { value: "a", label: "To focus on what happens to the patient and what they need to know" },
+                                { value: "b", label: "To make messages longer" },
+                                { value: "c", label: "To confuse patients" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -304,6 +517,55 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 </ul>
                 <p style="margin-top: 1rem;"><strong>Use passive when the doer is unimportant. Use active when the doer matters.</strong></p>
             `,
+            exercises: [
+                {
+                    id: "passive-voice-common-mistakes-1",
+                    title: "Practice: Common Passive Voice Mistakes",
+                    instructions: "Identify and correct common mistakes in passive voice.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is Mistake #1?",
+                            options: [
+                                { value: "a", label: "Forgetting 'be' - 'The test performed yesterday' should be 'The test was performed yesterday'" },
+                                { value: "b", label: "Using too many words" },
+                                { value: "c", label: "Using active voice" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #2?",
+                            options: [
+                                { value: "a", label: "Wrong tense of 'be' - 'The medicine is taken yesterday' should be 'was taken' (past)" },
+                                { value: "b", label: "Missing the subject" },
+                                { value: "c", label: "Using too many verbs" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #3?",
+                            options: [
+                                { value: "a", label: "Using wrong past participle - 'My blood was drew' should be 'was drawn'" },
+                                { value: "b", label: "Using present tense" },
+                                { value: "c", label: "Missing the object" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should you use active voice instead of passive?",
+                            options: [
+                                { value: "a", label: "When the doer is important - 'Dr. Smith gave me a prescription' is clearer than passive" },
+                                { value: "b", label: "Always use passive voice" },
+                                { value: "c", label: "Never use active voice" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

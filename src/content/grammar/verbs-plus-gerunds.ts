@@ -22,6 +22,45 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     <li><strong>Progress tracking:</strong> "I finished writing my journal." (NOT "I finished to write")</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "verbs-gerunds-intro-1",
+                    title: "Practice: Verbs + Gerunds",
+                    instructions: "Choose the correct form after each verb.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I stopped _____ last year."',
+                            options: [
+                                { value: "a", label: "smoking (gerund -ing)" },
+                                { value: "b", label: "to smoke (infinitive)" },
+                                { value: "c", label: "smoke (base verb)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I enjoy _____."',
+                            options: [
+                                { value: "a", label: "exercising (gerund -ing)" },
+                                { value: "b", label: "to exercise (infinitive)" },
+                                { value: "c", label: "exercise (base verb)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why is using the correct form important?",
+                            options: [
+                                { value: "a", label: "Using the wrong form sounds very strange to native speakers" },
+                                { value: "b", label: "It doesn't matter which form you use" },
+                                { value: "c", label: "Only infinitives are correct" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -75,6 +114,55 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                 title: "💡 Memory Trick",
                 content: "Think: AVOID, ENJOY, FINISH, KEEP, STOP, QUIT = all take -ING. No 'to'!",
             },
+            exercises: [
+                {
+                    id: "verbs-plus-gerunds-common-verbs-1",
+                    title: "Practice: Verbs That Take Gerunds",
+                    instructions: "Choose the correct form (gerund or infinitive) after each verb.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I avoid eating junk food. (avoid + gerund)" },
+                                { value: "b", label: "I avoid to eat junk food. (incorrect - avoid doesn't take infinitive)" },
+                                { value: "c", label: "I avoid eat junk food. (incorrect - missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "She enjoys walking. (enjoys + gerund)" },
+                                { value: "b", label: "She enjoys to walk. (incorrect - enjoys doesn't take infinitive)" },
+                                { value: "c", label: "She enjoys walk. (incorrect - missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I finished writing my journal. (finished + gerund)" },
+                                { value: "b", label: "I finished to write my journal. (incorrect - finished doesn't take infinitive)" },
+                                { value: "c", label: "I finished write my journal. (incorrect - missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What form comes after verbs like 'avoid,' 'enjoy,' 'finish,' 'stop'?",
+                            options: [
+                                { value: "a", label: "Always gerund (-ing form), never infinitive (to + verb)" },
+                                { value: "b", label: "Always infinitive (to + verb)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -137,6 +225,55 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "verbs-plus-gerunds-wellness-1",
+                    title: "Practice: Verbs + Gerunds in Wellness Contexts",
+                    instructions: "Choose the correct form (gerund) after verbs that take gerunds.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses a verb + gerund?",
+                            options: [
+                                { value: "a", label: "I enjoy walking in the park every morning. (enjoy + gerund)" },
+                                { value: "b", label: "I enjoy to walk in the park every morning. (incorrect - enjoy doesn't take infinitive)" },
+                                { value: "c", label: "I enjoy walk in the park every morning. (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses 'quit' + gerund?",
+                            options: [
+                                { value: "a", label: "I quit eating fast food. (quit + gerund)" },
+                                { value: "b", label: "I quit to eat fast food. (incorrect - quit doesn't take infinitive)" },
+                                { value: "c", label: "I quit eat fast food. (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses 'avoid' + gerund?",
+                            options: [
+                                { value: "a", label: "I avoid drinking soda. (avoid + gerund)" },
+                                { value: "b", label: "I avoid to drink soda. (incorrect - avoid doesn't take infinitive)" },
+                                { value: "c", label: "I avoid drink soda. (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses 'finished' + gerund?",
+                            options: [
+                                { value: "a", label: "I finished doing my yoga routine. (finished + gerund)" },
+                                { value: "b", label: "I finished to do my yoga routine. (incorrect - finished doesn't take infinitive)" },
+                                { value: "c", label: "I finished do my yoga routine. (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -199,6 +336,55 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "verbs-plus-gerunds-why-1",
+                    title: "Practice: Understanding Why Verbs Take Gerunds",
+                    instructions: "Identify which verb patterns take gerunds and why.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which verbs describe stopping or avoiding an activity?",
+                            options: [
+                                { value: "a", label: "stop, quit, avoid, give up (all take gerunds)" },
+                                { value: "b", label: "stop, quit, avoid (take infinitives)" },
+                                { value: "c", label: "enjoy, love, hate (these are different - feelings)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which verbs describe ongoing activities?",
+                            options: [
+                                { value: "a", label: "keep, continue (take gerunds for ongoing activities)" },
+                                { value: "b", label: "finish, complete (these are about completion)" },
+                                { value: "c", label: "enjoy, love (these are about feelings)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which verbs describe feelings or opinions about activities?",
+                            options: [
+                                { value: "a", label: "enjoy, love, hate, dislike, miss (take gerunds for activities)" },
+                                { value: "b", label: "stop, quit, avoid (these are about stopping)" },
+                                { value: "c", label: "finish, complete (these are about completion)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which verbs describe thinking about or recommending activities?",
+                            options: [
+                                { value: "a", label: "consider, suggest, recommend (take gerunds for activities being considered)" },
+                                { value: "b", label: "stop, quit (these are about stopping)" },
+                                { value: "c", label: "enjoy, love (these are about feelings)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -279,6 +465,55 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     <li>Gerund ≠ present continuous. Just use: verb + -ing</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "verbs-plus-gerunds-common-mistakes-1",
+                    title: "Practice: Common Mistakes with Verbs + Gerunds",
+                    instructions: "Identify and correct common mistakes.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is Mistake #1?",
+                            options: [
+                                { value: "a", label: "Using infinitive instead of gerund - 'I enjoy to walk' should be 'I enjoy walking' (gerund)" },
+                                { value: "b", label: "Using wrong verb" },
+                                { value: "c", label: "Missing the object" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #2?",
+                            options: [
+                                { value: "a", label: "Forgetting the gerund entirely - 'I enjoy walk' should be 'I enjoy walking' (needs -ing)" },
+                                { value: "b", label: "Using wrong tense" },
+                                { value: "c", label: "Using wrong subject" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is Mistake #3?",
+                            options: [
+                                { value: "a", label: "Confusing gerund with present continuous - 'I am enjoy walking' should be 'I enjoy walking' (no 'am')" },
+                                { value: "b", label: "Using wrong verb form" },
+                                { value: "c", label: "Missing the -ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What's the difference between 'I stopped smoking' and 'I stopped to smoke'?",
+                            options: [
+                                { value: "a", label: "'Stopped smoking' = quit the habit; 'stopped to smoke' = paused to do something (different meanings)" },
+                                { value: "b", label: "They mean the same thing" },
+                                { value: "c", label: "One is past, one is present" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
