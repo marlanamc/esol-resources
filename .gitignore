@@ -72,5 +72,8 @@ qrcode_*.png
 # legacy projects (Flask app, etc.)
 ESOL_LMS/
 
+# local teaching uploads (not app content)
+/class_uploads/
+
 # temporary documentation
 vocab-comparison.md
