@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const bankingBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Banking & Shopping",
+  title: "1/27/26: Banking & Shopping",
   description: "Practice talking about money, shopping, and banking",
 
   keyPhrases: [

@@ -376,8 +376,8 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When talking about your goals in a job application, which form should you use?",
                             options: [
-                                { value: "a", label: "Infinitives - 'I want to work for your company' (goals/future plans)" },
-                                { value: "b", label: "Gerunds - 'I want working for your company' (incorrect)" },
+                                { value: "a", label: "Infinitives: I want to work for your company." },
+                                { value: "b", label: "Gerunds: I want working for your company." },
                                 { value: "c", label: "Either form is fine" },
                             ],
                             expectedAnswer: "a",
@@ -386,8 +386,8 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When talking about your experience, which form should you use?",
                             options: [
-                                { value: "a", label: "Gerunds - 'I enjoy working with teams' (experience/activities)" },
-                                { value: "b", label: "Infinitives - 'I enjoy to work with teams' (incorrect)" },
+                                { value: "a", label: "Gerunds: I enjoy working with teams." },
+                                { value: "b", label: "Infinitives: I enjoy to work with teams." },
                                 { value: "c", label: "Either form is fine" },
                             ],
                             expectedAnswer: "a",
@@ -396,8 +396,8 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When making a request, which form should you use?",
                             options: [
-                                { value: "a", label: "Infinitives - 'I'd like to request a schedule change' (requests/goals)" },
-                                { value: "b", label: "Gerunds - 'I'd like requesting a schedule change' (incorrect)" },
+                                { value: "a", label: "Infinitives: I'd like to request a schedule change." },
+                                { value: "b", label: "Gerunds: I'd like requesting a schedule change." },
                                 { value: "c", label: "Either form is fine" },
                             ],
                             expectedAnswer: "a",
@@ -406,8 +406,8 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When expressing what you don't mind doing, which form should you use?",
                             options: [
-                                { value: "a", label: "Gerunds - 'I don't mind working weekends' (activities/experiences)" },
-                                { value: "b", label: "Infinitives - 'I don't mind to work weekends' (incorrect)" },
+                                { value: "a", label: "Gerunds: I don't mind working weekends." },
+                                { value: "b", label: "Infinitives: I don't mind to work weekends." },
                                 { value: "c", label: "Either form is fine" },
                             ],
                             expectedAnswer: "a",
@@ -477,6 +477,65 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                 title: "💡 When in Doubt",
                 content: "If the verb expresses a FUTURE goal, decision, or desire, try the infinitive first. If it expresses an EXPERIENCE or ongoing activity, try the gerund. Most of the time, this works!",
             },
+            exercises: [
+                {
+                    id: "infinitives-vs-gerunds-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of infinitives vs gerunds.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which verbs take infinitives (to + verb)?",
+                            options: [
+                                { value: "a", label: "want, need, decide, plan, hope, expect, agree, refuse, promise, offer, would like" },
+                                { value: "b", label: "enjoy, finish, avoid, keep, quit, stop, consider, suggest, recommend" },
+                                { value: "c", label: "All verbs take infinitives" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which verbs take gerunds (-ing form)?",
+                            options: [
+                                { value: "a", label: "want, need, decide, plan" },
+                                { value: "b", label: "enjoy, finish, avoid, keep, quit, stop, consider, suggest, recommend" },
+                                { value: "c", label: "All verbs take gerunds" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "What's the difference between 'stop to smoke' and 'stop smoking'?",
+                            options: [
+                                { value: "a", label: "stop to smoke = paused to have a cigarette | stop smoking = quit cigarettes" },
+                                { value: "b", label: "They mean the same thing" },
+                                { value: "c", label: "stop to smoke = quit | stop smoking = paused" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I enjoy working here." },
+                                { value: "b", label: "I enjoy to work here." },
+                                { value: "c", label: "I enjoy work here." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I decided to apply for the job." },
+                                { value: "b", label: "I decided applying for the job." },
+                                { value: "c", label: "I decided apply for the job." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

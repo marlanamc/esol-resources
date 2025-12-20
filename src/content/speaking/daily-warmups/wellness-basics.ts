@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const wellnessBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Wellness & Self-Care",
+  title: "5/12/26: Wellness & Self-Care",
   description: "Practice talking about mental health, stress management, and holistic wellness",
 
   keyPhrases: [

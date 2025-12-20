@@ -29,35 +29,48 @@ export const presentPerfectContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "ex-intro-pp-1",
-                    title: "Quick Check: Connected to Now?",
-                    instructions: "Choose the sentences that fit Present Perfect because they connect to now.",
+                    title: "Practice: Does This Connect to Now?",
+                    instructions: "Read each sentence and identify which tense fits best based on whether it connects to now.",
                     items: [
                         {
                             type: "radio",
                             label: '"I have just finished my homework, so I can go out now."',
                             options: [
-                                { value: "yes", label: "Yes, present result" },
-                                { value: "no", label: "No, finished past with time" },
+                                { value: "present-perfect", label: "Present Perfect - recent action with present result" },
+                                { value: "past-simple", label: "Past Simple - finished action with specific time" },
+                                { value: "present-simple", label: "Present Simple - current habit or routine" },
                             ],
-                            expectedAnswer: "yes",
+                            expectedAnswer: "present-perfect",
                         },
                         {
                             type: "radio",
                             label: '"I visited Madrid in 2019."',
                             options: [
-                                { value: "yes", label: "Yes, connected to now" },
-                                { value: "no", label: "No, specific finished past time" },
+                                { value: "present-perfect", label: "Present Perfect - experience connected to now" },
+                                { value: "past-simple", label: "Past Simple - finished action with specific time (2019)" },
+                                { value: "present-simple", label: "Present Simple - current habit" },
                             ],
-                            expectedAnswer: "no",
+                            expectedAnswer: "past-simple",
                         },
                         {
                             type: "radio",
                             label: '"We have lived here since 2020."',
                             options: [
-                                { value: "yes", label: "Yes, started in past, continues now" },
-                                { value: "no", label: "No, only past" },
+                                { value: "present-perfect", label: "Present Perfect - started in past, continues now" },
+                                { value: "past-simple", label: "Past Simple - finished action in the past" },
+                                { value: "present-simple", label: "Present Simple - current situation only" },
                             ],
-                            expectedAnswer: "yes",
+                            expectedAnswer: "present-perfect",
+                        },
+                        {
+                            type: "radio",
+                            label: '"She has never tried sushi, but she has eaten pizza 100 times."',
+                            options: [
+                                { value: "present-perfect", label: "Present Perfect - life experiences up to now" },
+                                { value: "past-simple", label: "Past Simple - specific past actions" },
+                                { value: "present-simple", label: "Present Simple - current habits" },
+                            ],
+                            expectedAnswer: "present-perfect",
                         },
                     ],
                 },

@@ -208,9 +208,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "The doctor said (that) I need to rest. (say - no indirect object)" },
-                                { value: "b", label: "The doctor said to me that I need to rest. (incorrect - don't use 'to' after 'said')" },
-                                { value: "c", label: "The doctor said me that I need to rest. (incorrect - 'say' doesn't take indirect object)" },
+                                { value: "a", label: "The doctor said that I need to rest." },
+                                { value: "b", label: "The doctor said to me that I need to rest." },
+                                { value: "c", label: "The doctor said me that I need to rest." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -218,9 +218,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "She told me (that) she would call. (tell requires indirect object)" },
-                                { value: "b", label: "She told (that) she would call. (incorrect - 'tell' needs indirect object)" },
-                                { value: "c", label: "She told to me that she would call. (incorrect - wrong structure)" },
+                                { value: "a", label: "She told me that she would call." },
+                                { value: "b", label: "She told that she would call." },
+                                { value: "c", label: "She told to me that she would call." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -228,7 +228,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the main difference between 'say' and 'tell'?",
                             options: [
-                                { value: "a", label: "'Say' doesn't need an indirect object; 'tell' requires one (me, you, him, etc.)" },
+                                { value: "a", label: "'Say' doesn't need an indirect object; 'tell' requires one, like me/you/him/her/us/them." },
                                 { value: "b", label: "'Say' is only for questions; 'tell' is for statements" },
                                 { value: "c", label: "They mean the same thing and can be used interchangeably" },
                             ],
@@ -238,9 +238,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly uses 'say'?",
                             options: [
-                                { value: "a", label: "They said (that) the test results were normal. (correct - no indirect object)" },
-                                { value: "b", label: "They said me that the test results were normal. (incorrect - 'say' doesn't take indirect object)" },
-                                { value: "c", label: "They said to us that the test results were normal. (incorrect - don't use 'to' after 'said')" },
+                                { value: "a", label: "They said that the test results were normal." },
+                                { value: "b", label: "They said me that the test results were normal." },
+                                { value: "c", label: "They said to us that the test results were normal." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -336,9 +336,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Direct: "I am tired." Reported:',
                             options: [
-                                { value: "a", label: "She said she was tired. (present → past)" },
-                                { value: "b", label: "She said she is tired. (no backshift)" },
-                                { value: "c", label: "She said she will be tired. (wrong tense)" },
+                                { value: "a", label: "She said she was tired." },
+                                { value: "b", label: "She said she is tired." },
+                                { value: "c", label: "She said she will be tired." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -346,9 +346,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Direct: "I will call you." Reported:',
                             options: [
-                                { value: "a", label: "He said he would call me. (will → would)" },
-                                { value: "b", label: "He said he will call me. (no backshift)" },
-                                { value: "c", label: "He said he can call me. (wrong modal)" },
+                                { value: "a", label: "He said he would call me." },
+                                { value: "b", label: "He said he will call me." },
+                                { value: "c", label: "He said he can call me." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -356,9 +356,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Direct: "I can help." Reported:',
                             options: [
-                                { value: "a", label: "She said she could help. (can → could)" },
-                                { value: "b", label: "She said she can help. (no backshift)" },
-                                { value: "c", label: "She said she will help. (wrong modal)" },
+                                { value: "a", label: "She said she could help." },
+                                { value: "b", label: "She said she can help." },
+                                { value: "c", label: "She said she will help." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -366,7 +366,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What happens to tenses in reported speech?",
                             options: [
-                                { value: "a", label: "Tenses shift back one step (present → past, will → would, etc.)" },
+                                { value: "a", label: "Tenses shift back one step, like present → past and will → would." },
                                 { value: "b", label: "Tenses stay the same as in direct speech" },
                                 { value: "c", label: "Tenses always become past perfect" },
                             ],
@@ -441,9 +441,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Direct: "Take this medicine twice a day." Reported:',
                             options: [
-                                { value: "a", label: "The doctor told me to take this medicine twice a day. (told + person + to + verb)" },
-                                { value: "b", label: "The doctor told me take this medicine twice a day. (missing 'to')" },
-                                { value: "c", label: "The doctor said me to take this medicine twice a day. (wrong verb)" },
+                                { value: "a", label: "The doctor told me to take this medicine twice a day." },
+                                { value: "b", label: "The doctor told me take this medicine twice a day." },
+                                { value: "c", label: "The doctor said me to take this medicine twice a day." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -451,9 +451,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Direct: "Please fill out this form." Reported:',
                             options: [
-                                { value: "a", label: "The receptionist asked me to fill out the form. (asked + person + to + verb)" },
-                                { value: "b", label: "The receptionist asked me fill out the form. (missing 'to')" },
-                                { value: "c", label: "The receptionist said me to fill out the form. (wrong verb)" },
+                                { value: "a", label: "The receptionist asked me to fill out the form." },
+                                { value: "b", label: "The receptionist asked me fill out the form." },
+                                { value: "c", label: "The receptionist said me to fill out the form." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -461,9 +461,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Direct: "Don\'t eat before the test." Reported:',
                             options: [
-                                { value: "a", label: "They told me not to eat before the test. (told + person + not to + verb)" },
-                                { value: "b", label: "They told me don't eat before the test. (wrong structure)" },
-                                { value: "c", label: "They said me not to eat before the test. (wrong verb)" },
+                                { value: "a", label: "They told me not to eat before the test." },
+                                { value: "b", label: "They told me don't eat before the test." },
+                                { value: "c", label: "They said me not to eat before the test." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -472,7 +472,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             label: "What is the formula for reporting commands?",
                             options: [
                                 { value: "a", label: "told/asked + person + to + base verb" },
-                                { value: "b", label: "told/asked + to + base verb (no person needed)" },
+                                { value: "b", label: "told/asked + to + base verb, no person needed" },
                                 { value: "c", label: "said + person + to + base verb" },
                             ],
                             expectedAnswer: "a",
@@ -533,6 +533,55 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "reported-speech-medical-contexts-1",
+                    title: "Practice: Medical Communication Contexts",
+                    instructions: "Convert direct speech to reported speech in medical contexts.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: 'MyChart message: "Your test results are normal. Please schedule a follow-up appointment in 3 months." How do you report this?',
+                            options: [
+                                { value: "a", label: "They said my test results were normal and told me to schedule a follow-up in 3 months." },
+                                { value: "b", label: "They said my test results are normal and told me schedule a follow-up in 3 months." },
+                                { value: "c", label: "They said to me that my test results are normal and told me to schedule a follow-up." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Receptionist says: "Your appointment is on Friday at 2pm. Please arrive 15 minutes early." How do you report this?',
+                            options: [
+                                { value: "a", label: "She said my appointment was on Friday at 2pm and told me to arrive 15 minutes early." },
+                                { value: "b", label: "She said my appointment is on Friday at 2pm and told me arrive 15 minutes early." },
+                                { value: "c", label: "She said to me that my appointment is on Friday and told me arrive early." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Doctor says: "You need to rest for one week. Don\'t lift anything heavy." How do you report this?',
+                            options: [
+                                { value: "a", label: "The doctor said I needed to rest for one week and told me not to lift anything heavy." },
+                                { value: "b", label: "The doctor said I need to rest for one week and told me don't lift anything heavy." },
+                                { value: "c", label: "The doctor said to me that I need to rest and told me to not lift anything heavy." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Pharmacist says: "Take this medication with food. You can\'t drink alcohol while taking it." How do you report this?',
+                            options: [
+                                { value: "a", label: "The pharmacist told me to take the medication with food and said I couldn't drink alcohol while taking it." },
+                                { value: "b", label: "The pharmacist told me take the medication with food and said I can't drink alcohol." },
+                                { value: "c", label: "The pharmacist said to me to take the medication and said I can't drink alcohol." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -598,7 +647,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is Mistake #3?",
                             options: [
-                                { value: "a", label: "Not backshifting tenses - 'She said she is tired' should be 'She said she was tired' (past)" },
+                                { value: "a", label: "Not backshifting tenses: 'She said she is tired' should be 'She said she was tired'." },
                                 { value: "b", label: "Using wrong pronouns" },
                                 { value: "c", label: "Using active voice" },
                             ],
@@ -608,7 +657,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is Mistake #4?",
                             options: [
-                                { value: "a", label: "Wrong structure for commands - 'She told me that take...' should be 'She told me to take...' (no 'that')" },
+                                { value: "a", label: "Wrong structure for commands: 'She told me that take...' should be 'She told me to take...'." },
                                 { value: "b", label: "Using 'said' instead of 'told'" },
                                 { value: "c", label: "Not changing pronouns" },
                             ],
@@ -822,6 +871,65 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 title: "💡 Remember",
                 content: "Say = no person needed. Tell = person required. Commands/requests = told/asked + person + to + verb.",
             },
+            exercises: [
+                {
+                    id: "reported-speech-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of reported speech rules.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the correct structure for 'say'?",
+                            options: [
+                                { value: "a", label: "said that + statement; no person needed" },
+                                { value: "b", label: "said + me + that + statement" },
+                                { value: "c", label: "said to me + that + statement" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the correct structure for 'tell'?",
+                            options: [
+                                { value: "a", label: "told + me/you/him/her/us/them + that + statement; person required" },
+                                { value: "b", label: "told that + statement" },
+                                { value: "c", label: "told to me + that + statement" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for reporting commands?",
+                            options: [
+                                { value: "a", label: "told/asked + person + to + base verb" },
+                                { value: "b", label: "told/asked + person + that + base verb" },
+                                { value: "c", label: "said + person + to + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Direct: "I am tired." Reported:',
+                            options: [
+                                { value: "a", label: "She said she was tired." },
+                                { value: "b", label: "She said she is tired." },
+                                { value: "c", label: "She told me she is tired." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: 'Direct: "Take this medicine." Reported:',
+                            options: [
+                                { value: "a", label: "She told me to take this medicine." },
+                                { value: "b", label: "She said me to take this medicine." },
+                                { value: "c", label: "She told me that take this medicine." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

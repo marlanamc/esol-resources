@@ -755,6 +755,65 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 title: "💡 Pro Tip",
                 content: "Before you start writing, ask: What is my ONE main idea? Then build everything around that!",
             },
+            exercises: [
+                {
+                    id: "paragraph-format-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of paragraph structure.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What are the three parts of a paragraph?",
+                            options: [
+                                { value: "a", label: "Topic sentence, supporting details, conclusion sentence" },
+                                { value: "b", label: "Introduction, body, end" },
+                                { value: "c", label: "First sentence, middle sentences, last sentence" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does a topic sentence do?",
+                            options: [
+                                { value: "a", label: "States the main idea clearly (first sentence)" },
+                                { value: "b", label: "Gives examples" },
+                                { value: "c", label: "Asks a question" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "How many supporting detail sentences are usually in a paragraph?",
+                            options: [
+                                { value: "a", label: "3-5 sentences" },
+                                { value: "b", label: "1-2 sentences" },
+                                { value: "c", label: "10 or more sentences" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does 'unity' mean in a paragraph?",
+                            options: [
+                                { value: "a", label: "All sentences support the same main idea" },
+                                { value: "b", label: "All sentences are the same length" },
+                                { value: "c", label: "All sentences use transition words" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is a common mistake to avoid?",
+                            options: [
+                                { value: "a", label: "Including sentences that don't relate to the topic sentence (off-topic sentences)" },
+                                { value: "b", label: "Using transition words" },
+                                { value: "c", label: "Having a conclusion sentence" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

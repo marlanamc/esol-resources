@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const usedToStructuresDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Used To / Be Used To / Get Used To",
+  title: "4/9/26: Used To / Be Used To / Get Used To",
   description: "Practice the tricky differences between 'used to', 'be used to', and 'get used to' structures",
 
   keyPhrases: [

@@ -199,9 +199,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the negative form of future continuous?",
                             options: [
-                                { value: "a", label: "won't be + verb-ing (won't be + present participle)" },
-                                { value: "b", label: "will not + verb (wrong form)" },
-                                { value: "c", label: "won't + verb-ing (missing 'be')" },
+                                { value: "a", label: "won't be + verb-ing" },
+                                { value: "b", label: "will not + verb" },
+                                { value: "c", label: "won't + verb-ing" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -209,9 +209,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I won't be answering my phone during the movie. (correct negative form)" },
-                                { value: "b", label: "I won't answer my phone during the movie. (wrong - this is future simple)" },
-                                { value: "c", label: "I won't be answer my phone during the movie. (missing -ing)" },
+                                { value: "a", label: "I won't be answering my phone during the movie." },
+                                { value: "b", label: "I won't answer my phone during the movie." },
+                                { value: "c", label: "I won't be answer my phone during the movie." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -219,9 +219,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly shows what will NOT be happening?",
                             options: [
-                                { value: "a", label: "They won't be home this weekend. (won't be + verb-ing)" },
-                                { value: "b", label: "They won't home this weekend. (missing 'be')" },
-                                { value: "c", label: "They will not home this weekend. (wrong structure)" },
+                                { value: "a", label: "They won't be home this weekend." },
+                                { value: "b", label: "They won't home this weekend." },
+                                { value: "c", label: "They will not home this weekend." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -297,6 +297,65 @@ export const futureContinuousContent: InteractiveGuideContent = {
             title: "Summary",
             icon: "✓",
             explanation: `<ul class="list-disc pl-6 space-y-1"><li><strong>Use:</strong> Actions in progress at a specific future time; polite availability notes</li><li><strong>Form:</strong> will be + verb-ing (or won't be + verb-ing for negatives)</li><li><strong>Signal words:</strong> at 8pm tomorrow, this time next week, when you join, during</li></ul>`,
+            exercises: [
+                {
+                    id: "future-continuous-summary-1",
+                    title: "Practice: Future Continuous Review",
+                    instructions: "Test your understanding of future continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for Future Continuous?",
+                            options: [
+                                { value: "a", label: "will be + verb-ing" },
+                                { value: "b", label: "am/is/are + verb-ing" },
+                                { value: "c", label: "was/were + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do you use Future Continuous?",
+                            options: [
+                                { value: "a", label: "Actions in progress at a specific future time; polite availability notes" },
+                                { value: "b", label: "Actions happening right now" },
+                                { value: "c", label: "Past actions in progress" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What are signal words for Future Continuous?",
+                            options: [
+                                { value: "a", label: "at 8pm tomorrow, this time next week, when you join, during" },
+                                { value: "b", label: "yesterday, last week, ago" },
+                                { value: "c", label: "now, at the moment" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I will be studying at 8pm tomorrow." },
+                                { value: "b", label: "I will study at 8pm tomorrow." },
+                                { value: "c", label: "I am studying at 8pm tomorrow." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses Future Continuous for polite availability?",
+                            options: [
+                                { value: "a", label: "I'll be visiting family tomorrow, so I can't meet." },
+                                { value: "b", label: "I visit family tomorrow." },
+                                { value: "c", label: "I'll visit family tomorrow." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
     miniQuiz: [

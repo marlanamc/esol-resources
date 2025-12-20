@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const classroomBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Classroom & School Language",
+  title: "1/6/26: Classroom & School Language",
   description: "Practice asking for help, clarification, and navigating school situations",
 
   keyPhrases: [

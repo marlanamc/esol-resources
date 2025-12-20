@@ -768,6 +768,65 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
                 title: "💡 Remember",
                 content: "Imperatives = direct/bossy. Declaratives = polite/indirect. When in doubt with authority, use declaratives.",
             },
+            exercises: [
+                {
+                    id: "imperatives-declaratives-quick-reference-1",
+                    title: "Practice: Quick Reference Review",
+                    instructions: "Test your understanding of imperatives vs declaratives.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the structure of an imperative?",
+                            options: [
+                                { value: "a", label: "Base verb (no subject - 'you' is understood)" },
+                                { value: "b", label: "Subject + verb" },
+                                { value: "c", label: "Modal + verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the structure of a declarative?",
+                            options: [
+                                { value: "a", label: "Subject + verb (e.g., 'You should...', 'You need to...')" },
+                                { value: "b", label: "Base verb only" },
+                                { value: "c", label: "No subject needed" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When should patients use declaratives with doctors?",
+                            options: [
+                                { value: "a", label: "Always - to show respect" },
+                                { value: "b", label: "Never - imperatives are better" },
+                                { value: "c", label: "Only in writing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Where are imperatives commonly used?",
+                            options: [
+                                { value: "a", label: "Prescription labels, written instructions, signs" },
+                                { value: "b", label: "Only in casual conversation" },
+                                { value: "c", label: "Only when speaking to bosses" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is an imperative?",
+                            options: [
+                                { value: "a", label: "Take this medicine twice a day. (no subject, starts with verb)" },
+                                { value: "b", label: "You should take this medicine twice a day. (has subject 'you')" },
+                                { value: "c", label: "I will take this medicine twice a day. (has subject 'I')" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

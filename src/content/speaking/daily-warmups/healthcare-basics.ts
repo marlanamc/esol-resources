@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Healthcare & Doctor Visits",
+  title: "4/14/26: Healthcare & Doctor Visits",
   description: "Practice talking about health, doctor appointments, and medical situations",
 
   keyPhrases: [

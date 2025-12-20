@@ -2,8 +2,8 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const careerBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Career Goals & Job Searching",
-  description: "Practice talking about careers, job interviews, and professional goals",
+  title: "2/24/26: Resume & Cover Letter Basics",
+  description: "Practice talking through a resume, describing skills, and explaining why you want a job (cover letter language)",
 
   keyPhrases: [
     { phrase: "I'm looking for a job in...", example: "I'm looking for a job in healthcare." },
@@ -18,38 +18,38 @@ export const careerBasicsDailyWarmup: SpeakingActivityContent = {
     {
       id: "prompt-1",
       level: "beginner",
-      text: "What is your dream job? Describe what you would do every day.",
-      context: "Think about the type of work, the environment, and why it appeals to you."
+      text: "Resume section practice: What is your most recent job? What were your main responsibilities?",
+      context: "Use 3 bullet-style sentences: 'I worked as...' 'I was responsible for...' 'I helped...'"
     },
     {
       id: "prompt-2",
       level: "beginner",
-      text: "Imagine you're in a job interview. How would you introduce yourself and describe your experience?",
-      context: "Practice saying: 'My name is...', 'I have worked...', 'I am good at...'"
+      text: "Skills talk: Name 3 skills you have for a job and give one example for each.",
+      context: "Examples: teamwork, reliability, customer service, patience, problem-solving."
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Using present perfect: What job skills have you developed since coming to the U.S.? What skills do you want to improve?",
-      context: "Example: 'I have improved my English communication skills, and I have learned to use new computer programs.'"
+      text: "Cover letter language: Why do you want this job? Why are you a good fit?",
+      context: "Use: I'm interested in..., I have experience in..., I enjoy..., I’m reliable because..."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "What challenges have you faced in looking for work? How have you overcome them?",
-      context: "Talk about barriers and solutions: language, credentials, transportation, etc."
+      text: "Resume gaps/challenges: What challenges have you faced in finding work? What is one solution you tried?",
+      context: "Examples: language, schedule, childcare, transportation, credentials."
     },
     {
       id: "prompt-5",
       level: "advanced",
-      text: "Using past perfect: Before you got your current job (or last job), what had you done to prepare? What hadn't you expected?",
-      context: "Example: 'Before I started this job, I had taken a training course, but I hadn't realized how fast-paced it would be.'"
+      text: "Tell a success story: Describe a time you solved a problem at work. What happened and what was the result?",
+      context: "Use: At first..., then..., so..., as a result..."
     },
     {
       id: "prompt-6",
       level: "advanced",
-      text: "Using future perfect: By this time next year, what career goals will you have achieved? What steps will you have taken?",
-      context: "Example: 'By next December, I will have completed my certification, and I will have applied for better positions.'"
+      text: "Short elevator pitch (30 seconds): Introduce yourself for a job, including experience + a strength + your goal.",
+      context: "End with a question: 'Could you tell me more about the schedule/training/next steps?'"
     },
   ],
 

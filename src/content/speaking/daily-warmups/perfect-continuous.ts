@@ -2,7 +2,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const perfectContinuousDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "Daily Warm-up: Perfect Continuous Tenses",
+  title: "3/19/26: Perfect Continuous Tenses",
   description: "Advanced practice with present perfect continuous, past perfect continuous, and future perfect continuous",
 
   keyPhrases: [

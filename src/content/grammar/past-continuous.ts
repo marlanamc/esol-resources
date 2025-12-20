@@ -331,9 +331,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the question form for past continuous?",
                             options: [
-                                { value: "a", label: "Was/Were + subject + verb-ing? (was/were at the beginning)" },
-                                { value: "b", label: "Subject + was/were + verb-ing? (wrong - this is statement form)" },
-                                { value: "c", label: "Did + subject + verb-ing? (wrong - this is not past continuous)" },
+                                { value: "a", label: "Was/Were + subject + verb-ing?" },
+                                { value: "b", label: "Subject + was/were + verb-ing?" },
+                                { value: "c", label: "Did + subject + verb-ing?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -341,9 +341,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which question is correct?",
                             options: [
-                                { value: "a", label: "Were you sleeping when I knocked? (were + subject + verb-ing)" },
-                                { value: "b", label: "You were sleeping when I knocked? (wrong - statement form, not question)" },
-                                { value: "c", label: "Did you sleeping when I knocked? (wrong structure)" },
+                                { value: "a", label: "Were you sleeping when I knocked?" },
+                                { value: "b", label: "You were sleeping when I knocked?" },
+                                { value: "c", label: "Did you sleeping when I knocked?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -351,9 +351,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which question correctly uses 'was'?",
                             options: [
-                                { value: "a", label: "Was she cooking when you arrived? (was + singular subject + verb-ing)" },
-                                { value: "b", label: "Were she cooking when you arrived? (wrong - 'were' with singular)" },
-                                { value: "c", label: "Was she cook when you arrived? (missing -ing)" },
+                                { value: "a", label: "Was she cooking when you arrived?" },
+                                { value: "b", label: "Were she cooking when you arrived?" },
+                                { value: "c", label: "Was she cook when you arrived?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -372,6 +372,65 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     <li><strong>Signal words:</strong> while, when, at 8pm yesterday, during, all night</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "past-continuous-summary-1",
+                    title: "Practice: Past Continuous Review",
+                    instructions: "Test your understanding of past continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the formula for Past Continuous?",
+                            options: [
+                                { value: "a", label: "was/were + verb-ing" },
+                                { value: "b", label: "am/is/are + verb-ing" },
+                                { value: "c", label: "will be + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do you use Past Continuous?",
+                            options: [
+                                { value: "a", label: "Actions in progress at a specific past time; background actions interrupted by shorter events" },
+                                { value: "b", label: "Actions happening right now" },
+                                { value: "c", label: "Future actions in progress" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What are signal words for Past Continuous?",
+                            options: [
+                                { value: "a", label: "while, when, at 8pm yesterday, during, all night" },
+                                { value: "b", label: "now, at the moment, currently" },
+                                { value: "c", label: "tomorrow, next week, soon" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I was cooking when the phone rang." },
+                                { value: "b", label: "I cooked when the phone rang." },
+                                { value: "c", label: "I am cooking when the phone rang." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly uses Past Continuous?",
+                            options: [
+                                { value: "a", label: "I was cleaning the house at 9 PM yesterday." },
+                                { value: "b", label: "I cleaned the house at 9 PM yesterday." },
+                                { value: "c", label: "I am cleaning the house at 9 PM yesterday." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
     miniQuiz: [
