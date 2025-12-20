@@ -17,6 +17,33 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 <h3>Why This Matters</h3>
                 <p>Present Simple is your go-to tense for talking about reality: your job, your habits, things that drive you crazy, things you love. It's the backbone of everyday English.</p>
             `,
+            exercises: [
+                {
+                    id: "ps-intro-1",
+                    title: "Quick Check: Habit or Right Now?",
+                    instructions: "Choose the best tense for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "My phone ______ every afternoon.",
+                            options: [
+                                { value: "present-simple", label: "Present Simple: dies" },
+                                { value: "present-continuous", label: "Present Continuous: is dying" },
+                            ],
+                            expectedAnswer: "present-simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "Shh! The baby ______ right now.",
+                            options: [
+                                { value: "present-simple", label: "Present Simple: sleeps" },
+                                { value: "present-continuous", label: "Present Continuous: is sleeping" },
+                            ],
+                            expectedAnswer: "present-continuous",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -771,6 +798,33 @@ export const presentSimpleContent: InteractiveGuideContent = {
                 content:
                     "Listen for Present Simple in real conversations today. Notice when people add -s and when they use do/don't/does/doesn't. You'll start hearing the patterns everywhere!",
             },
+            exercises: [
+                {
+                    id: "ps-summary-1",
+                    title: "Quick Review",
+                    instructions: "Choose the correct sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which is correct?",
+                            options: [
+                                { value: "a", label: "She work on Mondays." },
+                                { value: "b", label: "She works on Mondays." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which question is correct?",
+                            options: [
+                                { value: "a", label: "Does she work here?" },
+                                { value: "b", label: "Does she works here?" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

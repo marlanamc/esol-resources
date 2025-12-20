@@ -17,6 +17,27 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 <h3>Why This Matters</h3>
                 <p>Past Simple is for actions that are finished. They're done, over, in the past. You use it every time you tell someone what happened yesterday, explain why you're late, or share what you did last weekend.</p>
             `,
+            exercises: [
+                {
+                    id: "past-simple-intro-1",
+                    title: "Quick Check: Past Simple Needs a Past Time",
+                    instructions: "Choose the best time expression.",
+                    items: [
+                        {
+                            type: "select",
+                            label: "I missed the bus _____.",
+                            options: ["yesterday", "right now", "every day", "at the moment"],
+                            expectedAnswer: "yesterday",
+                        },
+                        {
+                            type: "select",
+                            label: "We watched a movie _____.",
+                            options: ["last night", "usually", "today (right now)", "every week"],
+                            expectedAnswer: "last night",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -512,6 +533,35 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     <li><strong>Time Words:</strong> yesterday, last week, last night, in 2022, two days ago</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "past-simple-summary-1",
+                    title: "Quick Review",
+                    instructions: "Choose the correct Past Simple form.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Yesterday I ___ to work.",
+                            options: [
+                                { value: "go", label: "go" },
+                                { value: "went", label: "went" },
+                                { value: "gone", label: "gone" },
+                            ],
+                            expectedAnswer: "went",
+                        },
+                        {
+                            type: "radio",
+                            label: "She ___ her homework last night.",
+                            options: [
+                                { value: "finish", label: "finish" },
+                                { value: "finished", label: "finished" },
+                                { value: "finishing", label: "finishing" },
+                            ],
+                            expectedAnswer: "finished",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

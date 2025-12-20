@@ -1123,6 +1123,33 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 content:
                     "Always ask yourself: 'Is this connected to the present?' If yes, use Present Perfect!",
             },
+            exercises: [
+                {
+                    id: "pp-summary-1",
+                    title: "Quick Review: Present Perfect or Past Simple?",
+                    instructions: "Choose the best tense for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I _______ my keys. (I can't find them now.)",
+                            options: [
+                                { value: "pp", label: "Present Perfect: have lost" },
+                                { value: "ps", label: "Past Simple: lost" },
+                            ],
+                            expectedAnswer: "pp",
+                        },
+                        {
+                            type: "radio",
+                            label: "I _______ my keys yesterday. (finished past time)",
+                            options: [
+                                { value: "pp", label: "Present Perfect: have lost" },
+                                { value: "ps", label: "Past Simple: lost" },
+                            ],
+                            expectedAnswer: "ps",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

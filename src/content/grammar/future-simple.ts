@@ -13,6 +13,25 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 1.05rem;">Future Simple is your crystal ball for quick decisions, promises, and predictions. "I'll call you later." "She'll help you." "It'll rain tomorrow."</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "fs-intro-1",
+                    title: "Quick Check: Choose the Best Use",
+                    instructions: "Why do we use 'will' here?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "The phone is ringing — I'll answer it.",
+                            options: [
+                                { value: "decision", label: "Spontaneous decision (right now)" },
+                                { value: "past", label: "Finished past action" },
+                                { value: "habit", label: "Daily routine/habit" },
+                            ],
+                            expectedAnswer: "decision",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -376,6 +395,33 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 title: "🎯 Remember",
                 content: "Will = same form for all subjects. Very easy to use!",
             },
+            exercises: [
+                {
+                    id: "fs-summary-1",
+                    title: "Quick Review",
+                    instructions: "Choose the correct sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which is correct?",
+                            options: [
+                                { value: "a", label: "She will comes tomorrow." },
+                                { value: "b", label: "She will come tomorrow." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which negative is correct?",
+                            options: [
+                                { value: "a", label: "They won't go tonight." },
+                                { value: "b", label: "They won't to go tonight." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 

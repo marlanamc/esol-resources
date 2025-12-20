@@ -25,10 +25,29 @@ export const pastPerfectContent: InteractiveGuideContent = {
                     <li style="padding: 0.5rem; margin: 0.35rem 0; background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 0.25rem;">✓ <strong>Formula: had + past participle</strong></li>
                 </ul>
 
-                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">📝 Quick Preview:<br/><span style="color: #f59e0b;">had + past participle</span> (FIRST action) → <span style="color: #14b8a6;">past simple</span> (SECOND action)</p>
-                </div>
-            `,
+	                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+	                    <p style="margin: 0; font-weight: 600;">📝 Quick Preview:<br/><span style="color: #f59e0b;">had + past participle</span> (FIRST action) → <span style="color: #14b8a6;">past simple</span> (SECOND action)</p>
+	                </div>
+	            `,
+            exercises: [
+                {
+                    id: "past-perfect-intro-1",
+                    title: "Quick Check: Which Happened First?",
+                    instructions: "Choose the sentence that correctly shows the FIRST action.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I arrived at the bus stop. The bus was already gone.",
+                            options: [
+                                { value: "a", label: "The bus had already left when I arrived." },
+                                { value: "b", label: "The bus left when I had arrived." },
+                                { value: "c", label: "The bus has left when I arrived." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // The TWO-VERB RULE Section (CRITICAL)

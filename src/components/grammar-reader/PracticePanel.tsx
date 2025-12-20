@@ -58,9 +58,9 @@ export function PracticePanel({
                         <ExerciseSection
                             key={exercise.id || index}
                             exercise={exercise}
-                            answers={answers[exercise.id!] || {}}
+                            answers={answers[exercise.id ?? `exercise-${index}`] || {}}
                             onAnswerChange={(itemIndex, value) =>
-                                onAnswerChange(exercise.id!, itemIndex, value)
+                                onAnswerChange(exercise.id ?? `exercise-${index}`, itemIndex, value)
                             }
                             onComplete={onSectionComplete}
                         />

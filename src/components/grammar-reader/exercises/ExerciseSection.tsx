@@ -38,8 +38,25 @@ export function ExerciseSection({
                 const correctAnswer = normalizeAnswer(item.correctAnswer);
                 newResults[index] = userAnswer === correctAnswer;
             } else {
-                const expectedAnswer = normalizeAnswer(item.expectedAnswer || "");
-                newResults[index] = userAnswer === expectedAnswer;
+                const expectedCandidates: string[] = [];
+
+                if ("expectedAnswers" in item && Array.isArray(item.expectedAnswers)) {
+                    expectedCandidates.push(...item.expectedAnswers);
+                }
+                if ("expectedAnswer" in item && typeof item.expectedAnswer === "string") {
+                    expectedCandidates.push(item.expectedAnswer);
+                }
+                if (item.type === "text" && typeof item.correctAnswer === "string") {
+                    expectedCandidates.push(item.correctAnswer);
+                }
+
+                const normalizedExpected = expectedCandidates
+                    .map((a) => normalizeAnswer(a))
+                    .filter(Boolean);
+
+                newResults[index] =
+                    normalizedExpected.length > 0 &&
+                    normalizedExpected.some((expected) => userAnswer === expected);
             }
         });
 
