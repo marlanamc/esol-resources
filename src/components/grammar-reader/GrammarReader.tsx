@@ -20,7 +20,7 @@ interface GrammarReaderProps {
 }
 
 export function GrammarReader({ content, onComplete, completionKey, activityId }: GrammarReaderProps) {
-    const storageKey = "grammarReader:present-perfect:unlocked";
+    const storageKey = `grammarReader:${completionKey || "guide"}:unlocked`;
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [completedSections, setCompletedSections] = useState<Set<string>>(
         new Set()
@@ -101,13 +101,40 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         ? null
         : content.sections[currentSectionIndex];
     const currentSectionKey = currentSection?.id || `section-${currentSectionIndex}`;
+    const defaultExercise = {
+        id: `${completionKey || "guide"}:${currentSectionKey}:quick-check`,
+        title: "Quick Check",
+        instructions: "Choose the best answer.",
+        items: [
+            {
+                type: "radio" as const,
+                label: "Did you read and understand this section?",
+                options: [
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "Not yet" },
+                ],
+                expectedAnswer: "yes",
+            },
+        ],
+    };
+
+    const effectiveSection: InteractiveGuideSection | null = currentSection
+        ? {
+            ...currentSection,
+            exercises:
+                currentSection.exercises && currentSection.exercises.length > 0
+                    ? currentSection.exercises
+                    : [defaultExercise],
+        }
+        : null;
+
     const currentHasExercises =
-        !!currentSection?.exercises && currentSection.exercises.length > 0;
+        !!effectiveSection?.exercises && effectiveSection.exercises.length > 0;
     const practiceUnlocked = currentHasExercises
         ? unlockedPractice.has(currentSectionKey)
         : true;
     
-    // Only show split layout if exercises exist AND are unlocked
+    // Only show the split layout after exercises are unlocked (matches the original reader UX)
     const showSplitLayout = currentHasExercises && practiceUnlocked;
 
     const isFirstSection = currentSectionIndex === 0;
@@ -330,7 +357,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                 <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
                                     {/* Left Side: Explanation */}
                                     <ExplanationPanel
-                                        section={currentSection}
+                                        section={effectiveSection!}
                                         onUnlockExercises={handleUnlockExercises}
                                         practiceUnlocked={practiceUnlocked}
                                         hasExercises={currentHasExercises}
@@ -346,7 +373,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                         className="outline-none"
                                     >
                                         <PracticePanel
-                                            section={currentSection}
+                                            section={effectiveSection!}
                                             answers={exerciseAnswers}
                                             onAnswerChange={handleAnswerChange}
                                             onSectionComplete={handleSectionComplete}
@@ -357,7 +384,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             ) : (
                                 <div className="w-full min-h-[500px]">
                                     <ExplanationPanel
-                                        section={currentSection}
+                                        section={effectiveSection!}
                                         onUnlockExercises={handleUnlockExercises}
                                         practiceUnlocked={practiceUnlocked}
                                         hasExercises={currentHasExercises}
