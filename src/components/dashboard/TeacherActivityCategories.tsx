@@ -100,6 +100,196 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         { id: 'june', label: 'Unit 10: June: Future Academic Goals' },
     ];
 
+    const parseTitleDateMs = (title?: string | null) => {
+        if (!title) return null;
+        const match = title.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2})\s*:/);
+        if (!match) return null;
+        const month = Number(match[1]);
+        const day = Number(match[2]);
+        const year = 2000 + Number(match[3]);
+        const dt = new Date(year, month - 1, day);
+        if (dt.getFullYear() !== year || dt.getMonth() !== month - 1 || dt.getDate() !== day) return null;
+        return dt.getTime();
+    };
+
+    const compareByTitleDateAsc = (a: Activity, b: Activity) => {
+        const aDate = parseTitleDateMs(a.title);
+        const bDate = parseTitleDateMs(b.title);
+        if (aDate !== null && bDate !== null) return aDate - bDate;
+        if (aDate !== null) return -1;
+        if (bDate !== null) return 1;
+        return (a.title || '').localeCompare(b.title || '');
+    };
+
+    const displayTitle = (title: string) =>
+        title
+            .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
+            .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
+            .trim();
+
+    const buildGrammarSubCategories = (): SubCategory[] => {
+        const grammarActivities = activities.filter((a) => a.category === 'grammar');
+
+        const normalizeTitle = (title?: string | null) => displayTitle(title || '').toLowerCase();
+
+        const sortAlpha = (list: Activity[]) =>
+            list.sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')));
+
+        const sortByTenseOrder = (list: Activity[]) => {
+            const order = ['present', 'past', 'future', 'review'];
+            const getOrder = (t: string) => {
+                for (let i = 0; i < order.length; i++) {
+                    if (t.includes(order[i])) return i;
+                }
+                return order.length;
+            };
+
+            return list.sort((a, b) => {
+                const aNorm = normalizeTitle(a.title);
+                const bNorm = normalizeTitle(b.title);
+                const aIdx = getOrder(aNorm);
+                const bIdx = getOrder(bNorm);
+                if (aIdx !== bIdx) return aIdx - bIdx;
+                return displayTitle(a.title || '').localeCompare(displayTitle(b.title || ''));
+            });
+        };
+
+        const sortByKeywordOrder = (list: Activity[], keywordsInOrder: string[]) => {
+            const getKeywordIndex = (t: string) => {
+                for (let i = 0; i < keywordsInOrder.length; i++) {
+                    if (t.includes(keywordsInOrder[i])) return i;
+                }
+                return keywordsInOrder.length;
+            };
+
+            return list.sort((a, b) => {
+                const aNorm = normalizeTitle(a.title);
+                const bNorm = normalizeTitle(b.title);
+                const aIdx = getKeywordIndex(aNorm);
+                const bIdx = getKeywordIndex(bNorm);
+                if (aIdx !== bIdx) return aIdx - bIdx;
+                return displayTitle(a.title || '').localeCompare(displayTitle(b.title || ''));
+            });
+        };
+
+        const remaining = [...grammarActivities];
+        const take = (predicate: (a: Activity) => boolean) => {
+            const matched: Activity[] = [];
+            for (let i = remaining.length - 1; i >= 0; i--) {
+                const item = remaining[i];
+                if (predicate(item)) {
+                    matched.push(item);
+                    remaining.splice(i, 1);
+                }
+            }
+            return matched.reverse();
+        };
+
+        const simple = sortByTenseOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('simple') && !t.includes('vs');
+            })
+        );
+
+        const perfectContinuous = sortByTenseOrder(take((a) => normalizeTitle(a.title).includes('perfect continuous')));
+
+        const continuous = sortByTenseOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('continuous') && !t.includes('perfect continuous') && !t.includes('vs');
+            })
+        );
+
+        const perfect = sortByTenseOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('perfect') && !t.includes('continuous') && !t.includes('vs');
+            })
+        );
+
+        const mixedAllTenses = sortAlpha(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('tenses') || t.includes('review') || t.includes(' vs ');
+            })
+        );
+
+        const questionsAndCommands = sortByKeywordOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('question') || t.includes('imperative') || t.includes('declarative');
+            }),
+            ['information questions', 'imperatives', 'declaratives']
+        );
+
+        const conditionals = sortAlpha(take((a) => normalizeTitle(a.title).includes('conditional')));
+        const modals = sortAlpha(take((a) => normalizeTitle(a.title).includes('modal')));
+        const habitsAndPreferences = sortAlpha(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('used to') || t.includes('would rather');
+            })
+        );
+
+        const voiceAndReporting = sortByKeywordOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('passive') || t.includes('reported');
+            }),
+            ['passive', 'reported']
+        );
+
+        const verbPatterns = sortByKeywordOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('gerund') || t.includes('infinitive') || t.includes('phrasal');
+            }),
+            ['infinitives vs gerunds', 'verbs + gerunds', 'gerunds after prepositions', 'phrasal verbs']
+        );
+
+        const wordsAndQuantity = sortByKeywordOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('parts of speech') || t.includes('superlative') || t.includes('quantifier');
+            }),
+            ['parts of speech', 'superlatives', 'quantifiers']
+        );
+
+        const writingMechanics = sortByKeywordOrder(
+            take((a) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('punctuation') || t.includes('capitalization') || t.includes('paragraph');
+            }),
+            ['punctuation', 'capitalization', 'paragraph']
+        );
+
+        const otherGrammar = sortAlpha(remaining);
+
+        return [
+            {
+                name: 'Verb Tenses',
+                activities: [],
+                subCategories: [
+                    { name: 'Simple', activities: simple },
+                    { name: 'Continuous', activities: continuous },
+                    { name: 'Perfect', activities: perfect },
+                    { name: 'Perfect Continuous', activities: perfectContinuous },
+                    { name: 'Mixed/All Tenses', activities: mixedAllTenses },
+                ],
+            },
+            { name: 'Questions & Commands', activities: questionsAndCommands },
+            { name: 'Verb Patterns', activities: verbPatterns },
+            { name: 'Voice & Reporting', activities: voiceAndReporting },
+            { name: 'Conditionals', activities: conditionals },
+            { name: 'Modals', activities: modals },
+            { name: 'Habits & Preferences', activities: habitsAndPreferences },
+            { name: 'Words & Quantity', activities: wordsAndQuantity },
+            { name: 'Writing Mechanics', activities: writingMechanics },
+            { name: 'Other Grammar', activities: otherGrammar },
+        ];
+    };
+
     // Organize activities by top-level categories with subcategories
     const categories: Category[] = [
         {
@@ -128,198 +318,7 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         {
             name: 'Grammar',
             color: '#e76f51', // coral/terracotta
-            subCategories: [
-                {
-                    name: 'Verb Tenses',
-                    activities: [],
-                    subCategories: [
-                        {
-                            name: 'Simple',
-                            activities: activities
-                                .filter(a => {
-                                    const title = a.title?.toLowerCase() || '';
-                                    // Include Simple tenses OR Simple Tenses Review
-                                    return title.includes('simple') &&
-                                        !title.includes('vs') &&
-                                        a.category === 'grammar';
-                                })
-                                .sort((a, b) => {
-                                    const titleA = a.title?.toLowerCase() || '';
-                                    const titleB = b.title?.toLowerCase() || '';
-                                    const order = ['present', 'past', 'future', 'review'];
-                                    const getOrder = (title: string) => {
-                                        for (let i = 0; i < order.length; i++) {
-                                            if (title.includes(order[i])) return i;
-                                        }
-                                        return order.length;
-                                    };
-                                    return getOrder(titleA) - getOrder(titleB);
-                                })
-                        },
-                        {
-                            name: 'Continuous',
-                            activities: activities
-                                .filter(a => {
-                                    const title = a.title?.toLowerCase() || '';
-                                    // Include Continuous tenses (not perfect continuous) OR Continuous Tenses Review
-                                    const isContinuous = title.includes('continuous') &&
-                                        !title.includes('perfect continuous') &&
-                                        !title.includes('vs');
-                                    return isContinuous && a.category === 'grammar';
-                                })
-                                .sort((a, b) => {
-                                    const titleA = a.title?.toLowerCase() || '';
-                                    const titleB = b.title?.toLowerCase() || '';
-                                    const order = ['present', 'past', 'future', 'review'];
-                                    const getOrder = (title: string) => {
-                                        for (let i = 0; i < order.length; i++) {
-                                            if (title.includes(order[i])) return i;
-                                        }
-                                        return order.length;
-                                    };
-                                    return getOrder(titleA) - getOrder(titleB);
-                                })
-                        },
-                        {
-                            name: 'Perfect',
-                            activities: activities
-                                .filter(a => {
-                                    const title = a.title?.toLowerCase() || '';
-                                    // Include Perfect tenses (not continuous) OR Perfect Tenses Review
-                                    const isPerfectTense = title.includes('perfect') &&
-                                        !title.includes('continuous') &&
-                                        !title.includes('vs');
-                                    const isPerfectReview = title.includes('perfect tenses review') &&
-                                        !title.includes('continuous');
-                                    return (isPerfectTense || isPerfectReview) && a.category === 'grammar';
-                                })
-                                .sort((a, b) => {
-                                    const titleA = a.title?.toLowerCase() || '';
-                                    const titleB = b.title?.toLowerCase() || '';
-                                    const order = ['present', 'past', 'future', 'review'];
-                                    const getOrder = (title: string) => {
-                                        for (let i = 0; i < order.length; i++) {
-                                            if (title.includes(order[i])) return i;
-                                        }
-                                        return order.length;
-                                    };
-                                    return getOrder(titleA) - getOrder(titleB);
-                                })
-                        },
-                        {
-                            name: 'Perfect Continuous',
-                            activities: activities
-                                .filter(a => {
-                                    const title = a.title?.toLowerCase() || '';
-                                    // Include Perfect Continuous tenses OR Perfect Continuous Review
-                                    return title.includes('perfect continuous') && a.category === 'grammar';
-                                })
-                                .sort((a, b) => {
-                                    const titleA = a.title?.toLowerCase() || '';
-                                    const titleB = b.title?.toLowerCase() || '';
-                                    const order = ['present', 'past', 'future', 'review'];
-                                    const getOrder = (title: string) => {
-                                        for (let i = 0; i < order.length; i++) {
-                                            if (title.includes(order[i])) return i;
-                                        }
-                                        return order.length;
-                                    };
-                                    return getOrder(titleA) - getOrder(titleB);
-                                })
-                        },
-                        {
-                            name: 'Mixed/All Tenses',
-                            activities: activities.filter(a => {
-                                const title = a.title?.toLowerCase() || '';
-                                // Exclude all tense-specific reviews (they belong in their own categories)
-                                const isSimpleReview = title.includes('simple') && title.includes('review');
-                                const isContinuousReview = title.includes('continuous') && title.includes('review') && !title.includes('perfect');
-                                const isPerfectReview = title.includes('perfect') && title.includes('review');
-                                const isPerfectContinuousReview = title.includes('perfect continuous') && title.includes('review');
-
-                                return (
-                                    (title.includes('vs') ||
-                                        title.includes('review') ||
-                                        title.includes('tenses')) &&
-                                    a.category === 'grammar' &&
-                                    !isSimpleReview &&
-                                    !isContinuousReview &&
-                                    !isPerfectReview &&
-                                    !isPerfectContinuousReview
-                                );
-                            })
-                        },
-                        {
-                            name: 'Verb Forms',
-                            activities: activities.filter(a =>
-                                (a.title?.toLowerCase().includes('gerund') ||
-                                    a.title?.toLowerCase().includes('infinitive') ||
-                                    a.title?.toLowerCase().includes('state verb') ||
-                                    a.title?.toLowerCase().includes('action verb')) &&
-                                a.category === 'grammar'
-                            )
-                        },
-                        {
-                            name: 'Phrasal Verbs',
-                            activities: activities.filter(a =>
-                                a.title?.toLowerCase().includes('phrasal') &&
-                                a.category === 'grammar'
-                            )
-                        },
-                        {
-                            name: 'Passive Voice',
-                            activities: activities.filter(a =>
-                                a.title?.toLowerCase().includes('passive') &&
-                                a.category === 'grammar'
-                            )
-                        }
-                    ]
-                },
-                {
-                    name: 'Conditionals',
-                    activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('conditional') &&
-                        a.category === 'grammar'
-                    )
-                },
-                {
-                    name: 'Modals and Modal-like Verbs',
-                    activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('modal') &&
-                        a.category === 'grammar'
-                    )
-                },
-                {
-                    name: 'Reported Speech',
-                    activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('reported') &&
-                        a.category === 'grammar'
-                    )
-                },
-                {
-                    name: 'Sentences',
-                    activities: activities.filter(a =>
-                        a.title?.toLowerCase().includes('sentence') &&
-                        !a.title?.toLowerCase().includes('builder') &&
-                        a.category === 'grammar'
-                    )
-                },
-                {
-                    name: 'Parts of Speech',
-                    activities: activities.filter(a =>
-                        (a.title?.toLowerCase().includes('noun') ||
-                        a.title?.toLowerCase().includes('adjective') ||
-                        a.title?.toLowerCase().includes('adverb') ||
-                        a.title?.toLowerCase().includes('pronoun') ||
-                        a.title?.toLowerCase().includes('preposition') ||
-                        a.title?.toLowerCase().includes('conjunction') ||
-                        a.title?.toLowerCase().includes('article') ||
-                        a.title?.toLowerCase().includes('determiner') ||
-                        (a.title?.toLowerCase().includes('part') && a.title?.toLowerCase().includes('speech'))) &&
-                        a.category === 'grammar'
-                    )
-                }
-            ],
+            subCategories: buildGrammarSubCategories(),
             activities: []
         },
         {
@@ -370,7 +369,9 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         {
             name: 'Speaking',
             color: '#e09f3e', // gold/amber
-            activities: activities.filter(a => a.category === 'speaking')
+            activities: activities
+                .filter(a => a.category === 'speaking')
+                .sort(compareByTitleDateAsc)
         },
         {
             name: 'Quizzes',
