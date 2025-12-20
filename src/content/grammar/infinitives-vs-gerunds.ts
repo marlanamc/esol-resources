@@ -21,6 +21,45 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     <li><strong>Making plans:</strong> "I plan <em>to start</em>" vs "I enjoy <em>teaching</em>"</li>
                 </ul>
             `,
+            exercises: [
+                {
+                    id: "infinitives-gerunds-intro-1",
+                    title: "Practice: Infinitive or Gerund?",
+                    instructions: "Choose whether each sentence uses an infinitive (to + verb) or gerund (verb + -ing).",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I want to work here."',
+                            options: [
+                                { value: "infinitive", label: "Infinitive (to + verb)" },
+                                { value: "gerund", label: "Gerund (verb + -ing)" },
+                                { value: "both", label: "Both are correct" },
+                            ],
+                            expectedAnswer: "infinitive",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I enjoy cooking."',
+                            options: [
+                                { value: "infinitive", label: "Infinitive (to + verb)" },
+                                { value: "gerund", label: "Gerund (verb + -ing)" },
+                                { value: "both", label: "Both are correct" },
+                            ],
+                            expectedAnswer: "gerund",
+                        },
+                        {
+                            type: "radio",
+                            label: "Why is this grammar important?",
+                            options: [
+                                { value: "a", label: "It's everywhere in daily conversation and using the wrong form sounds incorrect" },
+                                { value: "b", label: "It's only used in formal writing" },
+                                { value: "c", label: "It doesn't matter which one you use" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -55,6 +94,43 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                 title: "💡 The Bad News",
                 content: "There's no perfect rule - you have to memorize which verbs take infinitives vs gerunds. BUT: I'll give you memory tricks and the most common patterns!",
             },
+            exercises: [
+                {
+                    id: "definitions-1",
+                    title: "Practice: Infinitive vs Gerund",
+                    instructions: "Identify whether each example uses an infinitive or gerund.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I want to work here." What form is used?',
+                            options: [
+                                { value: "infinitive", label: "Infinitive (to + base verb) - expresses intention/goal" },
+                                { value: "gerund", label: "Gerund (verb + -ing) - expresses activity" },
+                            ],
+                            expectedAnswer: "infinitive",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I enjoy working here." What form is used?',
+                            options: [
+                                { value: "infinitive", label: "Infinitive (to + base verb)" },
+                                { value: "gerund", label: "Gerund (verb + -ing) - expresses activity/experience" },
+                            ],
+                            expectedAnswer: "gerund",
+                        },
+                        {
+                            type: "radio",
+                            label: "What's the key difference between infinitives and gerunds?",
+                            options: [
+                                { value: "a", label: "Infinitive = to + verb (future/intention) | Gerund = verb + -ing (activity/experience)" },
+                                { value: "b", label: "They're the same thing" },
+                                { value: "c", label: "Only infinitives are used" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {
@@ -290,6 +366,55 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "infinitives-vs-gerunds-practical-tips-1",
+                    title: "Practice: Practical Tips for Real Life",
+                    instructions: "Choose the correct form (infinitive or gerund) for different real-world situations.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "When talking about your goals in a job application, which form should you use?",
+                            options: [
+                                { value: "a", label: "Infinitives - 'I want to work for your company' (goals/future plans)" },
+                                { value: "b", label: "Gerunds - 'I want working for your company' (incorrect)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When talking about your experience, which form should you use?",
+                            options: [
+                                { value: "a", label: "Gerunds - 'I enjoy working with teams' (experience/activities)" },
+                                { value: "b", label: "Infinitives - 'I enjoy to work with teams' (incorrect)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When making a request, which form should you use?",
+                            options: [
+                                { value: "a", label: "Infinitives - 'I'd like to request a schedule change' (requests/goals)" },
+                                { value: "b", label: "Gerunds - 'I'd like requesting a schedule change' (incorrect)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When expressing what you don't mind doing, which form should you use?",
+                            options: [
+                                { value: "a", label: "Gerunds - 'I don't mind working weekends' (activities/experiences)" },
+                                { value: "b", label: "Infinitives - 'I don't mind to work weekends' (incorrect)" },
+                                { value: "c", label: "Either form is fine" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         {

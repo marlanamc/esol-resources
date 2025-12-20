@@ -13,6 +13,45 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 1.05rem;">Future Continuous is for actions that will be <strong>in progress</strong> at a specific moment later. Picture yourself tomorrow: "At 9 PM, I'll be watching my favorite show."</p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "future-continuous-intro-1",
+                    title: "Practice: Understanding Future Continuous",
+                    instructions: "Identify what Future Continuous describes.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Future Continuous describe?",
+                            options: [
+                                { value: "a", label: "Actions that will be in progress at a specific future moment" },
+                                { value: "b", label: "Completed past actions" },
+                                { value: "c", label: "Current habits" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"At 9 PM, I\'ll be watching my favorite show." What does this describe?',
+                            options: [
+                                { value: "a", label: "An action in progress at a specific future time" },
+                                { value: "b", label: "A completed action" },
+                                { value: "c", label: "A habit" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "When do we use Future Continuous?",
+                            options: [
+                                { value: "a", label: "To describe actions that will be happening at a specific future moment" },
+                                { value: "b", label: "To describe past actions" },
+                                { value: "c", label: "To describe current habits" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "meaning-usage",
@@ -149,6 +188,45 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { text: "won't be", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "verb-ing", type: "verb" },
+            ],
+            exercises: [
+                {
+                    id: "future-continuous-negative-1",
+                    title: "Practice: Future Continuous Negative Form",
+                    instructions: "Choose the correct negative form of future continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What is the negative form of future continuous?",
+                            options: [
+                                { value: "a", label: "won't be + verb-ing (won't be + present participle)" },
+                                { value: "b", label: "will not + verb (wrong form)" },
+                                { value: "c", label: "won't + verb-ing (missing 'be')" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I won't be answering my phone during the movie. (correct negative form)" },
+                                { value: "b", label: "I won't answer my phone during the movie. (wrong - this is future simple)" },
+                                { value: "c", label: "I won't be answer my phone during the movie. (missing -ing)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly shows what will NOT be happening?",
+                            options: [
+                                { value: "a", label: "They won't be home this weekend. (won't be + verb-ing)" },
+                                { value: "b", label: "They won't home this weekend. (missing 'be')" },
+                                { value: "c", label: "They will not home this weekend. (wrong structure)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
             ],
         },
         {
