@@ -26,6 +26,45 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #6366f1; font-size: 1.125rem;">have/has been + verb-ing</span></p>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "present-perfect-continuous-intro-1",
+                    title: "Practice: Understanding Present Perfect Continuous",
+                    instructions: "Identify what Present Perfect Continuous emphasizes.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Present Perfect Continuous emphasize?",
+                            options: [
+                                { value: "a", label: "HOW LONG an action has been happening (duration up to now)" },
+                                { value: "b", label: "Completed past actions" },
+                                { value: "c", label: "Future plans" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I have been working here for 5 years." What does this show?',
+                            options: [
+                                { value: "a", label: "Duration up to now - started 5 years ago, still working" },
+                                { value: "b", label: "A completed action" },
+                                { value: "c", label: "A future plan" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "What is the formula for Present Perfect Continuous?",
+                            options: [
+                                { value: "a", label: "have/has been + verb-ing" },
+                                { value: "b", label: "have/has + past participle" },
+                                { value: "c", label: "will + base verb" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Meaning & Usage Section
@@ -188,6 +227,36 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 title: "💡 The Key Difference from Present Perfect",
                 content: "Present Perfect = focuses on RESULT or EXPERIENCE. Present Perfect Continuous = focuses on DURATION or ONGOING ACTIVITY. Compare: 'I have read 3 books' (result) vs 'I have been reading all day' (duration).",
             },
+            exercises: [
+                {
+                    id: "present-perfect-continuous-timeline-1",
+                    title: "Practice: Duration Up to Now",
+                    instructions: "Choose Present Perfect Continuous for actions that started in the past and continue to now (focus on how long).",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"I ___ here for two years." (still working now)',
+                            options: [
+                                { value: "have been working", label: "have been working" },
+                                { value: "have worked", label: "have worked" },
+                                { value: "worked", label: "worked" },
+                            ],
+                            expectedAnswer: "have been working",
+                        },
+                        {
+                            type: "select",
+                            label: "Choose the best time word: I have been waiting ___ 7 AM.",
+                            options: ["since", "for", "yesterday"],
+                            expectedAnswer: "since",
+                        },
+                        {
+                            type: "text",
+                            label: "Complete: She ___ (study) all morning.",
+                            expectedAnswer: "has been studying",
+                        },
+                    ],
+                },
+            ],
         },
 
         // Positive Form
@@ -516,6 +585,45 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 title: "🎯 Remember",
                 content: "Present Perfect Continuous = HOW LONG. Present Perfect = HOW MANY/RESULT. Ask yourself: 'Am I focusing on duration or on the result?'",
             },
+            exercises: [
+                {
+                    id: "present-perfect-continuous-summary-1",
+                    title: "Practice: Key Points Check",
+                    instructions: "Review the form and when to use Present Perfect Continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which structure is correct?",
+                            options: [
+                                { value: "a", label: "have/has been + verb-ing" },
+                                { value: "b", label: "had been + verb-ing" },
+                                { value: "c", label: "will have been + verb-ing" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which question asks about duration?",
+                            options: [
+                                { value: "a", label: "How long have you been waiting?" },
+                                { value: "b", label: "Did you wait yesterday?" },
+                                { value: "c", label: "Will you wait tomorrow?" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Choose the best sentence for a temporary situation.",
+                            options: [
+                                { value: "a", label: "I have been staying with my cousin this week." },
+                                { value: "b", label: "I stay with my cousin every week." },
+                                { value: "c", label: "I stayed with my cousin last week." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
         },
     ],
 
