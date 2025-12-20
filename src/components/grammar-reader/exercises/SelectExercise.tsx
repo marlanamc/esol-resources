@@ -35,6 +35,9 @@ export function SelectExercise({
                         : "border-border focus:border-primary focus:ring-2 focus:ring-primary/20"
                     } disabled:cursor-not-allowed`}
             >
+                <option value="" disabled>
+                    Choose an answer...
+                </option>
                 {item.options.map((option, index) => (
                     <option key={index} value={option}>
                         {option}
