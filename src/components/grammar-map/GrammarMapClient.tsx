@@ -279,8 +279,8 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     const handleTopicClick = (topicId: string) => {
         const topic = grammarTopics.find(t => t.id === topicId);
         if (topic?.activityId) {
-            // Navigate to the grammar guide
-            window.location.assign(`/activity/${topic.activityId}`);
+            // Navigate to the grammar guide (using topic ID as the route slug)
+            window.location.assign(`/grammar-reader/${topic.id}`);
         }
     };
 
