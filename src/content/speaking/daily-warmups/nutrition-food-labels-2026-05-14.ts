@@ -49,6 +49,6 @@ export const nutritionFoodLabels_2026_05_14: SpeakingActivityContent = {
   reflectionPrompt: "What is one label word that is confusing (serving, sodium, fiber)? What question can you ask?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

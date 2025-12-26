@@ -23,6 +23,7 @@ export function RadioExercise({
     submitted,
     onChange,
 }: RadioExerciseProps) {
+    void isIncorrect;
     return (
         <motion.div
             className="radio-exercise"

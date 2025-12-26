@@ -11,8 +11,8 @@ export default async function CalendarPage() {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role || "student";
-    const userId = (session.user as any)?.id;
+    const userRole = session.user?.role || "student";
+    const userId = session.user?.id;
 
     let calendarEvents: CalendarEvent[] = [];
 
@@ -128,4 +128,3 @@ export default async function CalendarPage() {
         </div>
     );
 }
-

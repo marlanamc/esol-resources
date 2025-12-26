@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma migrate deploy && next build",
+    "prebuild": "node scripts/check-env.mjs",
+    "build": "prisma generate && next build",
+    "deploy": "prisma migrate deploy && next build",
     "postinstall": "prisma generate",
     "start": "next start",
     "lint": "eslint",
@@ -14,9 +16,6 @@
     "import:simple-tenses": "node scripts/import-simple-tenses.mjs",
     "import:verb-quizzes": "npx tsx scripts/import/import-verb-quizzes.ts",
     "delete:verb-quizzes": "npx tsx scripts/import/delete-verb-quizzes.ts"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",

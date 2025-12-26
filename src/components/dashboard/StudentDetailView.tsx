@@ -32,25 +32,25 @@ interface StudentAnalytics {
             vocab: {
                 avgProgress: number;
                 completed: number;
-                activities: any[];
+                activities: unknown[];
             };
             grammar: {
                 avgProgress: number;
                 completed: number;
-                activities: any[];
+                activities: unknown[];
             };
             numbers: {
                 avgProgress: number;
                 completed: number;
-                activities: any[];
+                activities: unknown[];
             };
             other: {
                 avgProgress: number;
                 completed: number;
-                activities: any[];
+                activities: unknown[];
             };
         };
-        all: any[];
+        all: unknown[];
     };
     timeline: Array<{
         id: string;
@@ -71,12 +71,12 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                 if (!res.ok) throw new Error('Failed to fetch student data');
                 return res.json();
             })
-            .then(data => {
+            .then((data: StudentAnalytics) => {
                 setData(data);
                 setLoading(false);
             })
-            .catch(err => {
-                setError(err.message);
+            .catch((err: unknown) => {
+                setError(err instanceof Error ? err.message : 'Failed to fetch student data');
                 setLoading(false);
             });
     }, [studentId]);

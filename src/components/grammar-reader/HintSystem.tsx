@@ -42,7 +42,7 @@ export function HintSystem({ hints, answer, onHintUsed }: HintSystemProps) {
 
             {/* Progressive Hints */}
             <div className="space-y-2">
-                {sortedHints.map((hint, index) => {
+                {sortedHints.map((hint) => {
                     const isRevealed = revealedLevel >= hint.level;
                     const canReveal = revealedLevel === hint.level - 1 || (hint.level === 1 && revealedLevel === 0);
 

@@ -10,8 +10,8 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
-        const userId = (session.user as any)?.id;
+        const userRole = session.user?.role;
+        const userId = session.user?.id;
 
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -66,10 +66,11 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(event);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error creating calendar event:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to create calendar event" },
+            { error: message || "Failed to create calendar event" },
             { status: 500 }
         );
     }
@@ -82,8 +83,8 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
-        const userId = (session.user as any)?.id;
+        const userRole = session.user?.role;
+        const userId = session.user?.id;
 
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
@@ -111,12 +112,12 @@ export async function DELETE(request: NextRequest) {
         await prisma.calendarEvent.delete({ where: { id } });
 
         return NextResponse.json({ success: true });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error deleting calendar event:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to delete calendar event" },
+            { error: message || "Failed to delete calendar event" },
             { status: 500 }
         );
     }
 }
-

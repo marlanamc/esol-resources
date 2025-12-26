@@ -39,30 +39,6 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     const total = cards.length;
     const currentCard = cards[order[currentIndex]];
 
-    // Determine what is shown on Front vs Back based on mode
-    const frontContent = mode === "term-first" ? currentCard.term : currentCard.definition;
-    const backContent =
-        mode === "term-first"
-            ? {
-                main: currentCard.definition,
-                sub: showExample ? currentCard.example : undefined,
-            }
-            : {
-                main: currentCard.term,
-                sub: showExample ? currentCard.example : undefined, // Example usually goes with definition, but if flipped, we might want to show it? 
-                // Actually, if "Def First", front is Def. Back is Term. Example usually clarifies the Def.
-                // Let's keep example with Definition usually.
-            };
-
-    // Refined logic:
-    // Term First: Front = Term. Back = Def + Example.
-    // Def First: Front = Def + Example (maybe hidden until flip?). 
-    //   Actually, usually "Def First" means you see Def, guess Term. So Front = Def. Back = Term.
-    //   Where does example go? Usually with the Definition as a hint or context.
-    //   Let's check if the user wants to toggle "Show Example" as a hint on the front or strictly on back.
-    //   "you can check either definiteitin or example or both" -> implies filtering what is shown.
-    //   Let's assume Example stays with Definition side for now. 
-
     const getSideContent = (side: "front" | "back") => {
         const isTermSide = (mode === "term-first" && side === "front") || (mode === "def-first" && side === "back");
 
@@ -95,14 +71,15 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
         setCurrentIndex((prev) => (prev === 0 ? total - 1 : prev - 1));
     }, [total]);
 
-    const handleFlip = () => {
-        setIsFlipped((prev) => !prev);
-        // Mark this card as studied when flipped to reveal the answer
-        if (!isFlipped) {
-            const cardOriginalIndex = order[currentIndex];
-            setStudiedCards(prev => new Set(prev).add(cardOriginalIndex));
-        }
-    };
+    const handleFlip = useCallback(() => {
+        setIsFlipped((prev) => {
+            if (!prev) {
+                const cardOriginalIndex = order[currentIndex];
+                setStudiedCards((s) => new Set(s).add(cardOriginalIndex));
+            }
+            return !prev;
+        });
+    }, [currentIndex, order]);
 
     const shuffleOrder = () => {
         setIsShuffling(true);
@@ -171,7 +148,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [goNext, goPrev]);
+    }, [goNext, goPrev, handleFlip]);
 
     useEffect(() => {
         if (!activityId || total === 0) return;

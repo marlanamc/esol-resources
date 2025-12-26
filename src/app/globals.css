@@ -49,9 +49,10 @@
   --color-white: #ffffff;
 
   /* Font Families - will be set by Next.js */
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-handwritten: var(--font-caveat), cursive;
+  /* Include emoji-capable fallbacks to avoid "?" tofu glyphs for emoji in titles/content. */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", serif;
+  --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  --font-handwritten: var(--font-caveat), cursive, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Border Radius - Sophisticated (slightly tighter) */
   --radius-sm: 4px;

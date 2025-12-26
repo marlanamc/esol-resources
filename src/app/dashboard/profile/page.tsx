@@ -8,7 +8,7 @@ import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
-import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, CalendarIcon, UsersIcon } from "@/components/icons/Icons";
+import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
 
 // Force dynamic rendering to show real-time activity data
 export const dynamic = 'force-dynamic';
@@ -21,8 +21,8 @@ export default async function ProfilePage() {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role || "student";
-    const userId = (session.user as any)?.id;
+    const userRole = session.user?.role || "student";
+    const userId = session.user?.id;
 
     // Get user data with stats
     const user = await prisma.user.findUnique({
@@ -53,19 +53,6 @@ export default async function ProfilePage() {
     if (!user) {
         redirect("/login");
     }
-
-    // Calculate rank among all students
-    const allStudents = await prisma.user.findMany({
-        where: {
-            role: 'student',
-            username: { not: 'marlie' }, // Exclude test account
-        },
-        orderBy: { weeklyPoints: 'desc' },
-        select: { id: true, weeklyPoints: true },
-    });
-
-    const rank = allStudents.findIndex(s => s.id === userId) + 1;
-    const rankChange = user.lastWeekRank && rank > 0 ? user.lastWeekRank - rank : null;
 
     // Get activity progress for category stats
     const activityProgress = await prisma.activityProgress.findMany({
@@ -106,7 +93,6 @@ export default async function ProfilePage() {
 
     // Calculate category progress
     const completedActivities = activityProgress.filter(ap => ap.status === 'completed').length;
-    const inProgressActivities = activityProgress.filter(ap => ap.status === 'in_progress').length;
 
     const vocabActivities = activityProgress.filter(ap => {
         const category = ap.activity.category?.toLowerCase() || '';

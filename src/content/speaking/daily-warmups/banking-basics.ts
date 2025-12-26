@@ -48,5 +48,5 @@ export const bankingBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What did you practice speaking about? What was difficult?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

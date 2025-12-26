@@ -43,7 +43,7 @@ function highlightKeywords(text: string): React.ReactNode {
     // Keywords to bold
     const keywords = ['NOT', 'NO', 'NEVER', 'ALWAYS', 'ONLY', 'IMPORTANT', 'REMEMBER', "don't", "doesn't"];
 
-    let result: React.ReactNode[] = [];
+    const result: React.ReactNode[] = [];
     let lastIndex = 0;
 
     // Create regex pattern for all keywords

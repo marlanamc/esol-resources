@@ -10,7 +10,7 @@ export default async function JoinClassPage() {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role;
+    const userRole = session.user?.role;
     if (userRole === "teacher") {
         redirect("/dashboard");
     }
@@ -30,7 +30,6 @@ export default async function JoinClassPage() {
         </div>
     );
 }
-
 
 
 

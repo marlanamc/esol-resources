@@ -49,6 +49,6 @@ export const workplaceAdvocacyRoleplays_2026_03_26: SpeakingActivityContent = {
   reflectionPrompt: "What helps you stay calm and professional during a difficult work conversation?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

@@ -49,5 +49,5 @@ export const communityResourcesPitch_2026_06_02: SpeakingActivityContent = {
   reflectionPrompt: "What makes a recommendation convincing (details, examples, clear steps)?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

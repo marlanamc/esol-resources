@@ -20,6 +20,21 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <li><strong>Job interviews:</strong> "I used to work in retail." "I'd rather have flexible hours."</li>
                     <li><strong>Goal setting:</strong> "I used to skip breakfast, but now I eat healthy." "I'd rather save money than eat out."</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Describing work problems and solutions ("I used to have scheduling conflicts, but now...")</li>
+                        <li>Talking about job history changes ("I used to work nights" "I'd rather have day shifts")</li>
+                        <li>Practicing "used to / be used to / get used to" structures</li>
+                    </ul>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong> Describing your wellness journey and habit changes ("I used to eat fast food, but now I cook at home")</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🔄 These structures show growth and change - perfect for interviews and goal-setting!</p>
+                </div>
             `,
             exercises: [
                 {

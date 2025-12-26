@@ -45,12 +45,14 @@ export const authOptions: NextAuthOptions = {
                         console.error('[Auth] Failed to track login:', err);
                     });
                     
+                    const role = user.role === "teacher" ? "teacher" : "student";
+
                     return {
                         id: user.id,
                         email: null,
                         name: user.name ?? user.username,
                         username: user.username,
-                        role: user.role,
+                        role,
                         mustChangePassword: user.mustChangePassword,
                     };
                 } catch (error) {
@@ -74,18 +76,19 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
-                token.role = (user as any).role;
-                (token as any).username = (user as any).username;
-                (token as any).mustChangePassword = (user as any).mustChangePassword;
+                token.role = user.role;
+                token.username = user.username;
+                token.mustChangePassword = user.mustChangePassword;
             }
             return token;
         },
         async session({ session, token }) {
             if (session.user) {
-                (session.user as any).id = token.id;
-                (session.user as any).role = token.role;
-                (session.user as any).username = (token as any).username;
-                (session.user as any).mustChangePassword = (token as any).mustChangePassword;
+                session.user.id = token.id ?? session.user.id;
+                session.user.role = token.role ?? session.user.role;
+                session.user.username = token.username ?? session.user.username;
+                session.user.mustChangePassword =
+                    token.mustChangePassword ?? session.user.mustChangePassword;
             }
             return session;
         },

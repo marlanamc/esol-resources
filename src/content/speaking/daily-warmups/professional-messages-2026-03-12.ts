@@ -49,5 +49,5 @@ export const professionalMessages_2026_03_12: SpeakingActivityContent = {
   reflectionPrompt: "What makes a message professional (greeting, clear request, polite closing)?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

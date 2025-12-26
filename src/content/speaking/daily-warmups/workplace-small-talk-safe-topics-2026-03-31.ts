@@ -49,6 +49,6 @@ export const workplaceSmallTalkSafeTopics_2026_03_31: SpeakingActivityContent = 
   reflectionPrompt: "What is your favorite safe small-talk question? When can you use it?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

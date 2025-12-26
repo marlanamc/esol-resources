@@ -71,8 +71,8 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
 
             setIsSubmitted(true);
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Failed to submit");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to submit");
         } finally {
             setIsLoading(false);
         }
@@ -126,7 +126,6 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
         </div>
     );
 }
-
 
 
 

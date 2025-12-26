@@ -30,8 +30,8 @@ export default function JoinClassForm() {
             const data = await response.json();
             router.push(`/dashboard/classes/${data.classId}`);
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Failed to join class");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to join class");
         } finally {
             setIsLoading(false);
         }
@@ -90,7 +90,6 @@ export default function JoinClassForm() {
         </div>
     );
 }
-
 
 
 

@@ -44,8 +44,11 @@ async function main() {
   let skipCount = 0;
 
   // Process each week
-  for (const [weekName, weekData] of Object.entries(quizzesData)) {
-    const title = `${weekName} - Irregular Verb Quiz`;
+  const weekEntries = Object.entries(quizzesData);
+  for (let i = 0; i < weekEntries.length; i++) {
+    const [weekName, weekData] = weekEntries[i];
+    const quizNumber = i + 1;
+    const title = `Verb Quiz ${quizNumber}`;
 
     // Check if this quiz already exists
     const existing = await prisma.activity.findFirst({
@@ -56,7 +59,7 @@ async function main() {
     });
 
     if (existing) {
-      console.log(`⏭️  Skipping ${weekName} (already exists)`);
+      console.log(`⏭️  Skipping Verb Quiz ${quizNumber} (${weekName}) - already exists`);
       skipCount++;
       continue;
     }
@@ -79,7 +82,8 @@ async function main() {
       }
     });
 
-    console.log(`✅ Created ${weekName} (Activity ID: ${activity.id})`);
+    console.log(`✅ Created Verb Quiz ${quizNumber} (${weekName})`);
+    console.log(`   - Activity ID: ${activity.id}`);
     console.log(`   - Due date: ${weekData.due_date}`);
     console.log(`   - Verbs: ${Object.keys(weekData.verbs).join(', ')}\n`);
     importCount++;

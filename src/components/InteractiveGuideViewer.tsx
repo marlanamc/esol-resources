@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import type { InteractiveGuideContent, FormulaPart, Exercise, ExerciseItem } from "@/types/activity";
+import type { InteractiveGuideContent, FormulaPart, Exercise } from "@/types/activity";
 import { emphasizeVerb } from "@/utils/emphasizeVerb";
 
 interface Props {

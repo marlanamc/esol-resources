@@ -49,6 +49,6 @@ export const wellnessPresentationPractice_2026_05_28: SpeakingActivityContent = 
   reflectionPrompt: "What part is hardest: starting, giving examples, or answering questions?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

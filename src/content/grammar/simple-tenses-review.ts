@@ -17,6 +17,18 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 <p><strong>Present Simple:</strong> Your daily reality and routines (habits, facts, schedules)</p>
                 <p><strong>Past Simple:</strong> Finished actions with a clear time stamp (yesterday, last week, in 2020)</p>
                 <p><strong>Future Simple:</strong> Quick decisions and promises about tomorrow (I'll help, we'll meet)</p>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Asking questions about community resources ("Where is the library?" "When do they open?")</li>
+                        <li>Giving directions using the MBTA ("You take the Red Line, then you walk two blocks")</li>
+                        <li>Reflecting on wellness changes ("Before, I ate junk food. Now, I cook at home. Next year, I'll run a 5K.")</li>
+                        <li>Mixed-tense error correction practice</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🔄 This is SPIRAL REVIEW #5 - we're combining questions with all the simple tenses!</p>
+                </div>
             `,
             exercises: [
                 {

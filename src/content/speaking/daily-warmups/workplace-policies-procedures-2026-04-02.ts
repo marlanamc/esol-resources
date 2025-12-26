@@ -49,6 +49,6 @@ export const workplacePoliciesProcedures_2026_04_02: SpeakingActivityContent = {
   reflectionPrompt: "What is one workplace rule you want to understand clearly? What question can you ask?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

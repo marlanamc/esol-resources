@@ -13,6 +13,7 @@ interface VerbQuizProps {
 }
 
 export default function VerbQuiz({ content, activityId, onComplete, isSubmitting = false }: VerbQuizProps) {
+  void activityId;
   const [answers, setAnswers] = useState<VerbQuizAnswers>(() => {
     const initial: VerbQuizAnswers = {};
     Object.keys(content.verbs).forEach(verb => {

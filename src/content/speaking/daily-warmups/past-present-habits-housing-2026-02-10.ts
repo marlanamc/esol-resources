@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const pastPresentHabitsHousing_2026_02_10: SpeakingActivityContent = {
   type: "speaking",
-  title: "2/10/26: Budgeting, Bills, Credit & Debt",
-  description: "Practice common money conversations: monthly bills, payment plans, and credit/debt vocabulary",
+  title: "2/10/26: Budgeting, Bills, Credit & Debt (Past Perfect)",
+  description: "Practice using past perfect tense to talk about money timelines: what had happened before a problem or payment",
 
   keyPhrases: [
-    { phrase: "My monthly bills are...", example: "My monthly bills are rent, electricity, and phone." },
-    { phrase: "I pay ___ on (date).", example: "I pay rent on the first of the month." },
-    { phrase: "I need a payment plan.", example: "I need a payment plan for my electric bill." },
-    { phrase: "I have a balance of...", example: "I have a balance of $200 on my credit card." },
-    { phrase: "Could you waive the fee?", example: "Could you waive the late fee this time?" },
+    { phrase: "I had already paid...", example: "I had already paid my rent before I got the late fee notice." },
+    { phrase: "Before I checked, I had...", example: "Before I checked my account, I had forgotten about the automatic payment." },
+    { phrase: "By the time..., I had...", example: "By the time I got my paycheck, I had already spent too much on my MBTA pass." },
+    { phrase: "I had never... before", example: "I had never used a credit card before I came to the U.S." },
+    { phrase: "After I had...", example: "After I had paid all my bills, I didn't have enough money for groceries." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Bills list: What are 4 monthly expenses you pay? Which one is the biggest?",
-      context: "Examples: rent, electricity, gas, phone, internet, transportation, food."
+      text: "Last month timeline: What bills had you paid by the middle of the month? What hadn't you paid yet?",
+      context: "Use past perfect: I had paid my rent and my Eversource bill. I hadn't paid my phone bill yet."
     },
     {
       id: "prompt-2",
       level: "intermediate",
-      text: "Budget choices: If you need to save $50 this month, what will you spend less on?",
-      context: "Use: I will spend less on..., I can cut..., I can avoid..."
+      text: "Money mistake story: By the time you realized there was a problem, what had already happened?",
+      context: "Example: By the time I checked my Bank of America account, I had already bounced a check. The fee had already been charged."
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Payment plan role-play: Call a company and ask for a payment plan.",
-      context: "Include: the problem, what you can pay now, and a plan for next month."
+      text: "Credit history: Before you came to the U.S., what had you known about credit cards or credit scores? What hadn't you learned yet?",
+      context: "Use: I had heard about..., but I had never... I hadn't learned about... I hadn't understood..."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Credit/debt talk: Explain one thing you know about credit cards or credit scores.",
-      context: "Use simple language: interest, fees, minimum payment, credit score."
+      text: "Late fee explanation: Explain a time you got a late fee. What had happened? What hadn't you done on time?",
+      context: "Timeline: Before the due date → What you had/hadn't done → The fee → How you fixed it"
     },
     {
       id: "prompt-5",
       level: "advanced",
-      text: "Problem-solving: You see a mistake on your bill/statement. What do you say to fix it?",
-      context: "Use: I have a question about..., I think there is a mistake..., Can you check...?"
+      text: "Budget planning timeline: Before last month started, what expenses had you planned for? What unexpected costs came up that you hadn't expected?",
+      context: "Example: I had planned to spend $200 on groceries at Market Basket, but I hadn't expected my Xfinity internet bill to increase."
+    },
+    {
+      id: "prompt-6",
+      level: "advanced",
+      text: "Payment plan story: Tell about a time you needed a payment plan. What expenses had piled up? What had you tried before calling?",
+      context: "Before I called, I had... I had tried to... but it hadn't worked. I had never asked for... before."
     },
   ],
 
-  reflectionPrompt: "Which money topic is hardest to talk about in English (bills, debt, fees, payments)?",
-  reflectionMinLength: 30,
-  minPromptsRequired: 2,
-  released: false
+  reflectionPrompt: "What's harder: talking about money in English, or using past perfect tense to explain what had happened? Why?",
+  reflectionMinLength: 35,
+  minPromptsRequired: 3,
+  released: true
 };

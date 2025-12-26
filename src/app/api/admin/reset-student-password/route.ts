@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user || (session.user as any).role !== "teacher") {
+    if (!session?.user || session.user.role !== "teacher") {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
@@ -46,7 +46,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
 }
-
 
 
 

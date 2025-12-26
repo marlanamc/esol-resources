@@ -15,8 +15,8 @@ export default async function StudentStatsPage() {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role || "student";
-    const userId = (session.user as any)?.id;
+    const userRole = session.user?.role || "student";
+    const userId = session.user?.id;
 
     if (userRole !== "student") {
         redirect("/dashboard/stats");
@@ -88,7 +88,6 @@ export default async function StudentStatsPage() {
         </div>
     );
 }
-
 
 
 

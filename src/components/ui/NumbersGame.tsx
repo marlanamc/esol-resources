@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
-import { ArrowLeft, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 
 interface NumbersGameContent {
     type: "numbers-game";
@@ -131,15 +131,15 @@ function numberToWords(num: number): string {
 function yearToWords(year: number): string[] {
     if (year >= 2000) {
         const lastTwo = year % 100;
-        let format1 = 'two thousand' + (lastTwo > 0 ? ' and ' + numberToWords(lastTwo) : '');
+        const format1 = 'two thousand' + (lastTwo > 0 ? ' and ' + numberToWords(lastTwo) : '');
         
         if (lastTwo < 10) {
             return [format1];
         } else {
             const firstTwo = Math.floor(year / 100);
-            let firstPart = numberToWords(firstTwo);
-            let secondPart = lastTwo <= 19 ? NUMBER_WORDS[lastTwo] || '' : numberToWords(lastTwo);
-            let format2 = firstPart + ' ' + secondPart;
+            const firstPart = numberToWords(firstTwo);
+            const secondPart = lastTwo <= 19 ? NUMBER_WORDS[lastTwo] || '' : numberToWords(lastTwo);
+            const format2 = firstPart + ' ' + secondPart;
             return [format1, format2];
         }
     } else if (year < 2000) {
@@ -226,23 +226,16 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
 
     // Calculate progress based on rounds completed (each round = 5 questions)
     // Progress is based on completing rounds, not individual questions
-    const progress = gameState.roundNumber > 1 
-        ? 100 // Round complete = 100% progress
-        : gameState.questionsInRound > 0
-            ? Math.round((gameState.questionsInRound / QUESTIONS_PER_ROUND) * 100)
-            : 0;
-    
-    // Calculate accuracy percentage for current round
-    // Track round score: score at start of round
-    const roundStartScore = (gameState.roundNumber - 1) * QUESTIONS_PER_ROUND;
-    const roundScore = gameState.score - roundStartScore;
-    const accuracy = gameState.questionsInRound > 0
-        ? Math.round((roundScore / gameState.questionsInRound) * 100)
-        : gameState.questionCount > 0
-            ? Math.round((gameState.score / gameState.questionCount) * 100)
-            : 0;
-    
-    const isRoundComplete = gameState.questionsInRound >= QUESTIONS_PER_ROUND;
+	    const progress = gameState.roundNumber > 1 
+	        ? 100 // Round complete = 100% progress
+	        : gameState.questionsInRound > 0
+	            ? Math.round((gameState.questionsInRound / QUESTIONS_PER_ROUND) * 100)
+	            : 0;
+	    
+	    const roundStartScore = (gameState.roundNumber - 1) * QUESTIONS_PER_ROUND;
+	    const roundScore = gameState.score - roundStartScore;
+	    
+	    const isRoundComplete = gameState.questionsInRound >= QUESTIONS_PER_ROUND;
 
     // Save progress when round is completed
     useEffect(() => {

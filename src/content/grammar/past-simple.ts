@@ -16,6 +16,22 @@ export const pastSimpleContent: InteractiveGuideContent = {
 
                 <h3>Why This Matters</h3>
                 <p>Past Simple is for actions that are finished. They're done, over, in the past. You use it every time you tell someone what happened yesterday, explain why you're late, or share what you did last weekend.</p>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Telling problem stories about banking and shopping ("I went to the bank, but they charged me a fee")</li>
+                        <li>Reporting what happened ("The cashier said..." "The manager told me...")</li>
+                        <li>Explaining past events ("I called customer service, they didn't help, so I complained")</li>
+                    </ul>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong> Telling detailed housing problem stories (past continuous + past simple together)</li>
+                        <li><strong>Weeks 9 & 14:</strong> Talking about your work experience and health history</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">📖 Past Simple is the storytelling tense - every story needs it!</p>
+                </div>
             `,
             exercises: [
                 {

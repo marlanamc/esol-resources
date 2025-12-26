@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 
 interface MatchPair {
@@ -22,15 +22,49 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     // Memoize pairs to prevent recalculation on every render
     const pairs = useMemo(() => parsePairs(contentStr), [contentStr]);
 
-    const [terms, setTerms] = useState<ShuffledItem[]>([]);
-    const [definitions, setDefinitions] = useState<ShuffledItem[]>([]);
     const [selectedTerm, setSelectedTerm] = useState<number | null>(null);
     const [selectedDef, setSelectedDef] = useState<number | null>(null);
     const [matches, setMatches] = useState<Map<number, number>>(new Map());
     const [incorrect, setIncorrect] = useState<Set<string>>(new Set());
     const [isComplete, setIsComplete] = useState(false);
+    const [shuffleSeed, setShuffleSeed] = useState(0);
 
     const progress = pairs.length ? Math.round((matches.size / pairs.length) * 100) : 0;
+
+    const { terms, definitions } = useMemo(() => {
+        const mulberry32 = (seed: number) => {
+            let t = seed + 0x6D2B79F5;
+            return () => {
+                t = Math.imul(t ^ (t >>> 15), t | 1);
+                t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+                return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+            };
+        };
+
+        const rng = mulberry32(shuffleSeed + pairs.length);
+        const shuffle = <T,>(items: T[]) => {
+            const arr = [...items];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(rng() * (i + 1));
+                [arr[i], arr[j]] = [arr[j]!, arr[i]!];
+            }
+            return arr;
+        };
+
+        const mappedTerms: ShuffledItem[] = pairs.map((pair) => ({
+            id: pair.id,
+            text: pair.term,
+            originalId: pair.id,
+        }));
+
+        const mappedDefs: ShuffledItem[] = pairs.map((pair) => ({
+            id: pair.id + 100000,
+            text: pair.definition,
+            originalId: pair.id,
+        }));
+
+        return { terms: shuffle(mappedTerms), definitions: shuffle(mappedDefs) };
+    }, [pairs, shuffleSeed]);
 
     useEffect(() => {
         if (!activityId || pairs.length === 0) return;
@@ -68,22 +102,6 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
             }
         };
     }, []);
-
-    // Initialize shuffled items only when pairs change
-    useEffect(() => {
-        if (pairs.length === 0) return;
-
-        const shuffledTerms = pairs
-            .map((pair, idx) => ({ id: idx, text: pair.term, originalId: pair.id }))
-            .sort(() => Math.random() - 0.5);
-
-        const shuffledDefs = pairs
-            .map((pair, idx) => ({ id: idx + 100, text: pair.definition, originalId: pair.id }))
-            .sort(() => Math.random() - 0.5);
-
-        setTerms(shuffledTerms);
-        setDefinitions(shuffledDefs);
-    }, [pairs]); // Only re-run when pairs changes
 
     const handleTermClick = (id: number) => {
         if (matches.has(id)) return; // Already matched
@@ -150,10 +168,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
         setSelectedDef(null);
         setIncorrect(new Set());
         setIsComplete(false);
-
-        // Re-shuffle
-        setTerms([...terms].sort(() => Math.random() - 0.5));
-        setDefinitions([...definitions].sort(() => Math.random() - 0.5));
+        setShuffleSeed((s) => s + 1);
     };
 
     if (pairs.length === 0) {

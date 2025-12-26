@@ -4,9 +4,8 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Script from "next/script";
-import { isInteractiveGuideContent, isLegacyGuideContent, parseActivityContent } from "@/types/activity";
+import { type ActivityContent, isInteractiveGuideContent, isLegacyGuideContent, parseActivityContent } from "@/types/activity";
 import ActivityRenderer from "@/components/ActivityRenderer";
-import SubmissionForm from "@/components/SubmissionForm";
 import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
 import { CategoryProgressDisplay } from "@/components/CategoryProgressDisplay";
 
@@ -20,12 +19,12 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     const { id } = await params;
     const { assignment: assignmentId } = await searchParams;
 
-    if (!session) {
+    if (!session?.user) {
         redirect("/login");
     }
 
-    const userId = (session.user as any)?.id;
-    const userRole = (session.user as any)?.role;
+    const userId = session.user.id;
+    const userRole = session.user.role;
 
     const activity = await prisma.activity.findUnique({
         where: { id },
@@ -81,7 +80,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         });
     }
 
-    const progressRecord = await (prisma.activityProgress as any).findUnique({
+    const progressRecord = await prisma.activityProgress.findUnique({
         where: {
             userId_activityId: {
                 userId,
@@ -97,7 +96,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     const categoryData = progressRecord?.categoryData;
 
     // Parse content once
-    let parsedContent: any = null;
+    let parsedContent: ActivityContent | null = null;
     try {
         parsedContent = parseActivityContent(activity.content);
     } catch {
@@ -105,8 +104,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     }
 
     // If activity is an external URL wrapper, redirect server-side to avoid flash
-    if (parsedContent && typeof parsedContent === "object" && "externalUrl" in parsedContent && typeof parsedContent.externalUrl === "string") {
-        redirect(parsedContent.externalUrl as string);
+    if (parsedContent && typeof parsedContent === "object") {
+        const externalUrl = (parsedContent as Record<string, unknown>).externalUrl;
+        if (typeof externalUrl === "string") {
+            redirect(externalUrl);
+        }
     }
 
     // Check if this is an interactive or legacy guide

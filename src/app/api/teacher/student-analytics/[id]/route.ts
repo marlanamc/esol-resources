@@ -12,8 +12,8 @@ export async function GET(
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const teacherId = (session.user as any).id;
-    const userRole = (session.user as any).role;
+    const teacherId = session.user.id;
+    const userRole = session.user.role;
     const { id: studentId } = await params;
 
     // Verify teacher has access to this student (student is in one of their classes)

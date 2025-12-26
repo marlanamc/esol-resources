@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { TrophyIcon, FlameIcon, StarIcon, SparklesIcon } from '@/components/icons/Icons';
+import { TrophyIcon, FlameIcon, SparklesIcon } from '@/components/icons/Icons';
 import Link from 'next/link';
 import { Badge } from '@/components/ui';
 

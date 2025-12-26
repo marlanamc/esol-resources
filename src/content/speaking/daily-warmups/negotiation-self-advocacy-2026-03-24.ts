@@ -49,6 +49,6 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
   reflectionPrompt: "What is one request you want to feel confident making in English at work?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

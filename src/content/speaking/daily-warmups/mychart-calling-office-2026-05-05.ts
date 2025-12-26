@@ -49,6 +49,6 @@ export const myChartCallingOffice_2026_05_05: SpeakingActivityContent = {
   reflectionPrompt: "What information do you need to share when you call a clinic (name, DOB, reason, dates)?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

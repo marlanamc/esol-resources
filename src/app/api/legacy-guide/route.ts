@@ -95,7 +95,7 @@ export async function GET(req: Request) {
         };
 
         return NextResponse.json(payload);
-    } catch (error) {
+    } catch {
         return NextResponse.json({ error: "Failed to read legacy guide" }, { status: 500 });
     }
 }

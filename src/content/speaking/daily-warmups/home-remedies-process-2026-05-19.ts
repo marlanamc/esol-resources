@@ -49,6 +49,6 @@ export const homeRemediesProcess_2026_05_19: SpeakingActivityContent = {
   reflectionPrompt: "Which sequencing word do you use most? Which one do you forget?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

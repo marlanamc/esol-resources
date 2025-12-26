@@ -2,8 +2,8 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "1/8/26: Year Reflection & New Goals",
-  description: "Practice reflecting on last year’s accomplishments and setting goals for this year",
+  title: "1/8/26: Year Reflection & New Goals (Parts of Speech)",
+  description: "Practice reflecting on last year and setting goals while identifying parts of speech - especially structure words (pronouns, articles, prepositions, conjunctions)",
 
   keyPhrases: [
     { phrase: "Last year, I...", example: "Last year, I learned a lot of new things." },
@@ -35,8 +35,8 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Using present perfect: Thinking about LAST year, what have you achieved? What have you learned? What have you improved?",
-      context: "Example: 'I have learned to speak up in class, and I have improved my vocabulary.'"
+      text: "Parts of Speech - Identify Structure Words: Share 2 goals. Then identify the pronouns, articles, and prepositions you used.",
+      context: "Example: 'I (pronoun) want to (infinitive) work at (preposition) a (article) hospital in (preposition) Boston.' Circle the structure words!"
     },
     {
       id: "prompt-5",
@@ -47,13 +47,19 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
     {
       id: "prompt-6",
       level: "advanced",
-      text: "Using future perfect: By the end of THIS year, what will you have accomplished? What changes will you have made?",
-      context: "Example: 'By December, I will have finished Level 3, and I will have found a full-time job.'"
+      text: "Parts of Speech Challenge: Share your goals using ALL 8 parts of speech. Then label each one (nouns, verbs, adjectives, adverbs, pronouns, articles, prepositions, conjunctions).",
+      context: "Example: 'I (pronoun) want to improve (verb) my (pronoun) English (noun) and (conjunction) get a (article) good (adjective) job (noun) in (preposition) Boston (noun) soon (adverb).'"
+    },
+    {
+      id: "prompt-7",
+      level: "advanced",
+      text: "Structure Words Focus: Share 3 goals and use as many connecting words as possible (prepositions: at, in, on, with, for; conjunctions: and, but, because, so, or).",
+      context: "Example: 'I want to study at a college in Boston because I need a degree for my career, but I also need to work, so I will study part-time.'"
     },
   ],
 
-  reflectionPrompt: "What is ONE goal you're committing to working on? How will you stay motivated?",
-  reflectionMinLength: 40,
+  reflectionPrompt: "What is ONE goal you're committing to? When you explain your goal, which parts of speech are easiest? Which are hardest?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

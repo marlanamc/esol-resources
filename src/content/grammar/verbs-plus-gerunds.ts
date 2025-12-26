@@ -13,6 +13,10 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     <p style="font-size: 1.125rem; margin-bottom: 0;">"I enjoy walking." "I stopped smoking." "I avoid eating junk food." "I keep forgetting to exercise." Many common verbs are ALWAYS followed by -ing (gerunds), never by 'to' (infinitives). Using the wrong form sounds very strange to native speakers!</p>
                 </div>
 
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; border-left: 4px solid #3b82f6;">
+                    <p style="margin: 0;"><strong>📚 Part of the 6 Patterns:</strong> This guide focuses on <strong>Pattern 2: Verb + Gerund</strong> from the "Infinitives vs Gerunds" guide. For a complete overview of all 6 patterns (Subject = Gerund, Verb + Gerund, Preposition + Gerund, Adjective + Infinitive, Noun + Infinitive, and Verb + Infinitive), check out the main "Infinitives vs Gerunds" guide!</p>
+                </div>
+
                 <h3>Why This Matters</h3>
                 <p>Certain verbs require gerunds (-ing) for talking about habits and activities:</p>
                 <ul>
@@ -21,6 +25,17 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     <li><strong>Daily routines:</strong> "I avoid eating fast food." (NOT "I avoid to eat")</li>
                     <li><strong>Progress tracking:</strong> "I finished writing my journal." (NOT "I finished to write")</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li>Reporting your healthy habit tracker results ("I keep exercising 3 times a week")</li>
+                        <li>Talking about wellness changes ("I stopped eating junk food" "I enjoy walking now")</li>
+                        <li>Practicing wellness presentations ("I avoid stressful situations" "I finished making my action plan")</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💪 These verbs help you describe your progress and commitment to healthy habits!</p>
+                </div>
             `,
             exercises: [
                 {

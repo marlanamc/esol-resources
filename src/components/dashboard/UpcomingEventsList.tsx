@@ -29,8 +29,8 @@ export default function UpcomingEventsList({ events, allowDelete = true }: Props
                 throw new Error(data.error || "Failed to delete event");
             }
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Failed to delete event");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to delete event");
         } finally {
             setIsDeleting(null);
         }
@@ -91,4 +91,3 @@ export default function UpcomingEventsList({ events, allowDelete = true }: Props
         </div>
     );
 }
-

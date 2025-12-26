@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 "use client";
 
 import { useState } from "react";
@@ -61,8 +60,8 @@ export default function CreateCalendarEventForm({ classes }: Props) {
             setDescription("");
             setEndDate("");
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Unable to add calendar item");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Unable to add calendar item");
         } finally {
             setIsSubmitting(false);
         }
@@ -129,7 +128,12 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                         <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Type</label>
                         <select
                             value={type}
-                            onChange={(e) => setType(e.target.value as any)}
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                if (value === "holiday" || value === "event" || value === "due" || value === "quiz") {
+                                    setType(value);
+                                }
+                            }}
                             className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                         >
                             <option value="holiday">Holiday</option>
@@ -165,4 +169,3 @@ export default function CreateCalendarEventForm({ classes }: Props) {
         </div>
     );
 }
-

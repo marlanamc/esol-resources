@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui';
+import type { BadgeVariant } from '@/components/ui/Badge';
 
 interface ActivityBrowseGridProps {
     activities: {
@@ -15,6 +16,24 @@ interface ActivityBrowseGridProps {
 }
 
 export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activities, progressMap }) => {
+    const isBadgeVariant = (value: string): value is BadgeVariant => {
+        return (
+            value === "default" ||
+            value === "primary" ||
+            value === "secondary" ||
+            value === "success" ||
+            value === "warning" ||
+            value === "error" ||
+            value === "quiz" ||
+            value === "worksheet" ||
+            value === "slides" ||
+            value === "guide" ||
+            value === "game" ||
+            value === "resource" ||
+            value === "speaking"
+        );
+    };
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in-up delay-400">
             {activities.map((activity, idx) => (
@@ -28,7 +47,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                     {/* Header Image / Badge Area */}
                     <div className="h-32 bg-gradient-to-br from-bg-light to-white p-6 relative border-b border-border/40">
                         <div className="absolute top-4 left-4 z-10 flex gap-2">
-                            <Badge variant={activity.type as any} size="sm" className="shadow-sm uppercase tracking-wider text-[10px] font-bold">
+                            <Badge variant={isBadgeVariant(activity.type) ? activity.type : "default"} size="sm" className="shadow-sm uppercase tracking-wider text-[10px] font-bold">
                                 {activity.type}
                             </Badge>
                         </div>

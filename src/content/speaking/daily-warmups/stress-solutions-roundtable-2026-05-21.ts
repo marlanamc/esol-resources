@@ -49,6 +49,6 @@ export const stressSolutionsRoundtable_2026_05_21: SpeakingActivityContent = {
   reflectionPrompt: "Which advice phrase sounds most natural to you: should, could, or it's a good idea to?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

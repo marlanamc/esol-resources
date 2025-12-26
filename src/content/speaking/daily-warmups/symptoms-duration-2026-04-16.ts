@@ -49,6 +49,6 @@ export const symptomsDuration_2026_04_16: SpeakingActivityContent = {
   reflectionPrompt: "Which is easier for you: for or since? Give one example of each.",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

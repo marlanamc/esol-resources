@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import type { InteractiveGuideContent, InteractiveGuideSection } from "@/types/activity";
-import { Button } from "@/components/ui/Button";
 import { SectionHeader } from "./SectionHeader";
 import { ExplanationPanel } from "./ExplanationPanel";
 import { PracticePanel } from "./PracticePanel";
@@ -101,30 +100,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         ? null
         : content.sections[currentSectionIndex];
     const currentSectionKey = currentSection?.id || `section-${currentSectionIndex}`;
-    const defaultExercise = {
-        id: `${completionKey || "guide"}:${currentSectionKey}:quick-check`,
-        title: "Quick Check",
-        instructions: "Choose the best answer.",
-        items: [
-            {
-                type: "radio" as const,
-                label: "Did you read and understand this section?",
-                options: [
-                    { value: "yes", label: "Yes" },
-                    { value: "no", label: "Not yet" },
-                ],
-                expectedAnswer: "yes",
-            },
-        ],
-    };
 
     const effectiveSection: InteractiveGuideSection | null = currentSection
         ? {
             ...currentSection,
-            exercises:
-                currentSection.exercises && currentSection.exercises.length > 0
-                    ? currentSection.exercises
-                    : [defaultExercise],
+            exercises: currentSection.exercises || [],
         }
         : null;
 
@@ -139,24 +119,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
     const isFirstSection = currentSectionIndex === 0;
     const isLastSection = currentSectionIndex === content.sections.length - 1;
-
-    // Keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "ArrowRight" && !isLastSection) {
-                handleNext();
-            } else if (e.key === "ArrowLeft" && !isFirstSection) {
-                handlePrevious();
-            } else if (e.key === "Escape" && showTOC) {
-                setShowTOC(false);
-            } else if (e.key === "Escape" && showQuiz) {
-                setShowQuiz(false);
-            }
-        };
-
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [currentSectionIndex, isFirstSection, isLastSection, showTOC, showQuiz]);
 
     const handleNext = useCallback(() => {
         if (!isLastSection) {
@@ -192,6 +154,24 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             window.scrollTo({ top: 0, behavior: "smooth" });
         }
     }, [isFirstSection, showQuiz]);
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "ArrowRight" && !isLastSection) {
+                handleNext();
+            } else if (e.key === "ArrowLeft" && !isFirstSection) {
+                handlePrevious();
+            } else if (e.key === "Escape" && showTOC) {
+                setShowTOC(false);
+            } else if (e.key === "Escape" && showQuiz) {
+                setShowQuiz(false);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [handleNext, handlePrevious, isFirstSection, isLastSection, showTOC, showQuiz]);
 
     const handleSectionComplete = useCallback(() => {
         if (currentSection?.id) {

@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Verify teacher owns the class
         const classItem = await prisma.class.findUnique({
@@ -61,10 +61,11 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(assignment);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error creating assignment:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to create assignment" },
+            { error: message || "Failed to create assignment" },
             { status: 500 }
         );
     }
@@ -77,7 +78,7 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
@@ -92,7 +93,7 @@ export async function PATCH(request: NextRequest) {
             );
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Verify teacher owns the class that the assignment belongs to
         const assignment = await prisma.assignment.findUnique({
@@ -114,16 +115,15 @@ export async function PATCH(request: NextRequest) {
         });
 
         return NextResponse.json(updatedAssignment);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error updating assignment:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to update assignment" },
+            { error: message || "Failed to update assignment" },
             { status: 500 }
         );
     }
 }
-
-
 
 
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CheckCircle2, Circle, Dot } from 'lucide-react';
+import { CheckCircle2, Dot } from 'lucide-react';
 
 interface ProgressBarProps {
     total: number;

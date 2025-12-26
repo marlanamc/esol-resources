@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "activityId is required" }, { status: 400 });
     }
 
-    const userId = (session.user as any).id;
+    const userId = session.user.id;
 
     // Create or update submission
     const submission = await prisma.submission.upsert({
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     });
 
     // Update activity progress to completed
-    await (prisma.activityProgress as any).upsert({
+    await prisma.activityProgress.upsert({
         where: {
             userId_activityId: {
                 userId,

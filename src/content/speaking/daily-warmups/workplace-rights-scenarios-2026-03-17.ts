@@ -49,6 +49,6 @@ export const workplaceRightsScenarios_2026_03_17: SpeakingActivityContent = {
   reflectionPrompt: "Which phrase helps you sound professional when you are upset or stressed?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

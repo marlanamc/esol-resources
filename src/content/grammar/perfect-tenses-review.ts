@@ -33,6 +33,18 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
                     <p style="margin: 0; font-weight: 600;">📝 The Pattern: <span style="font-size: 1.125rem;">have/has/had/will have + past participle</span></p>
                 </div>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li>Year-in-Review Carousel: Telling your story using all tenses together</li>
+                        <li>Talking about summer plans and next steps ("I will have finished this class by June")</li>
+                        <li>Creating coherent narratives that connect past, present, and future</li>
+                        <li>Final review: Using perfect tenses for real-life speaking</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎓 This is it - you're combining EVERYTHING you've learned to tell your complete story!</p>
+                </div>
             `,
             exercises: [
                 {

@@ -22,6 +22,25 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <li><strong>Sound professional</strong> - In interviews, meetings, and important conversations</li>
                     <li><strong>Avoid misunderstandings</strong> - Clarify details before it's too late</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Asking questions about classroom rules and procedures</li>
+                        <li>Talking about your goals for 2026</li>
+                        <li>Practicing "question formation race" game</li>
+                    </ul>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the semester, you'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong> Asking your landlord questions (rent, repairs, rules)</li>
+                        <li><strong> Preparing for job interviews (asking about the job, schedule, benefits)</li>
+                        <li><strong> Asking about your rights at work</li>
+                        <li><strong> Talking to your doctor (symptoms, medications, appointments)</li>
+                        <li><strong> Getting information about community resources</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this semester!</p>
+                </div>
             `,
             exercises: [
                 {
@@ -707,6 +726,258 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                                 { value: "c", label: "Who do pay utilities?" },
                             ],
                             expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // ADVANCED: Indirect Questions
+        {
+            id: "indirect-questions",
+            stepNumber: 7,
+            title: "Indirect Questions: Polite and Professional",
+            icon: "💼",
+            explanation: `
+                <h3>Making Questions More Polite</h3>
+                <p>Indirect questions are more polite and professional than direct questions. Instead of asking directly, you use phrases like "Could you tell me..." or "Do you know..."</p>
+
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(122, 143, 124, 0.1); border-radius: 0.5rem;">
+                    <h4>Compare Direct vs Indirect:</h4>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Direct (Less Polite):</p>
+                        <ul style="margin: 0;">
+                            <li>Where is the office?</li>
+                            <li>What time does the interview start?</li>
+                            <li>How much does this cost?</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">✓ Indirect (More Polite):</p>
+                        <ul style="margin: 0;">
+                            <li><strong>Could you tell me</strong> where the office <strong>is</strong>? (not "is the office")</li>
+                            <li><strong>Do you know</strong> what time the interview <strong>starts</strong>? (not "does start")</li>
+                            <li><strong>I was wondering</strong> how much this <strong>costs</strong>? (not "does cost")</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>The Formula Changes!</h4>
+                <p>In indirect questions, the word order becomes like a statement (Subject + Verb), NOT like a question:</p>
+                <ul>
+                    <li>Direct: Where <strong>is</strong> the office? (Verb + Subject)</li>
+                    <li>Indirect: Could you tell me where the office <strong>is</strong>? (Subject + Verb)</li>
+                </ul>
+
+                <h4>Common Indirect Question Phrases:</h4>
+                <ul>
+                    <li>Could you tell me...?</li>
+                    <li>Do you know...?</li>
+                    <li>Can you explain...?</li>
+                    <li>Would you mind telling me...?</li>
+                    <li>I was wondering...?</li>
+                    <li>I'd like to know...?</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 Why Use Indirect Questions?",
+                content:
+                    "Use indirect questions when: (1) Talking to your boss or doctor, (2) Asking for sensitive information (salary, rent cost), (3) You don't know the person well. They sound more respectful!",
+            },
+            exercises: [
+                {
+                    id: "ex-indirect-1",
+                    title: "Practice: Make It Indirect",
+                    instructions:
+                        "Rewrite each direct question as an indirect question.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "Direct: Where is the manager's office?",
+                            expectedAnswer: "Could you tell me where the manager's office is?",
+                        },
+                        {
+                            type: "text",
+                            label: "Direct: What time does the clinic close?",
+                            expectedAnswer: "Do you know what time the clinic closes?",
+                        },
+                        {
+                            type: "text",
+                            label: "Direct: How much is the security deposit?",
+                            expectedAnswer: "Could you tell me how much the security deposit is?",
+                        },
+                        {
+                            type: "text",
+                            label: "Direct: When is the rent due?",
+                            expectedAnswer: "I was wondering when the rent is due?",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // ADVANCED: Embedded Questions
+        {
+            id: "embedded-questions",
+            stepNumber: 8,
+            title: "Embedded Questions: Even More Professional",
+            icon: "🎓",
+            explanation: `
+                <h3>Questions Within Statements</h3>
+                <p>Embedded questions are indirect questions that are part of a larger statement. They're extremely polite and professional - perfect for work, healthcare, and formal situations.</p>
+
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                    <h4>Examples:</h4>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Starting with "I'm wondering...":</p>
+                        <ul style="margin: 0;">
+                            <li>I'm wondering <strong>if you could explain</strong> the benefits package.</li>
+                            <li>I'm wondering <strong>whether there's flexibility</strong> in the schedule.</li>
+                            <li>I'm wondering <strong>what time</strong> the interview is.</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Starting with "I'd like to know...":</p>
+                        <ul style="margin: 0;">
+                            <li>I'd like to know <strong>if this position</strong> offers health insurance.</li>
+                            <li>I'd like to know <strong>how many hours</strong> per week this is.</li>
+                            <li>I'd like to know <strong>when you need</strong> someone to start.</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">Starting with "Could you clarify...":</p>
+                        <ul style="margin: 0;">
+                            <li>Could you clarify <strong>what the dress code is</strong>?</li>
+                            <li>Could you clarify <strong>whether overtime is paid</strong>?</li>
+                            <li>Could you clarify <strong>how the commission works</strong>?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>Why They Sound Professional:</h4>
+                <ul>
+                    <li>They soften requests for information</li>
+                    <li>They show thoughtfulness (not demanding answers)</li>
+                    <li>They're perfect for job interviews, doctor visits, and landlord questions</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 When to Use Embedded Questions",
+                content:
+                    "Job interviews, asking about salary/benefits, talking to your landlord about repairs, asking your doctor about treatment options. Basically: anytime you want to sound extra professional!",
+            },
+            exercises: [
+                {
+                    id: "ex-embedded-1",
+                    title: "Practice: Embedded Questions",
+                    instructions:
+                        "Complete each sentence with an embedded question.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "I'm wondering ____ the position offers health insurance. (if/whether)",
+                            expectedAnswer: "if the position offers health insurance",
+                        },
+                        {
+                            type: "text",
+                            label: "Could you clarify ____ the rent includes utilities? (whether)",
+                            expectedAnswer: "whether the rent includes utilities",
+                        },
+                        {
+                            type: "text",
+                            label: "I'd like to know ____ per week this position is. (how many hours)",
+                            expectedAnswer: "how many hours per week this position is",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // ADVANCED: Question Chains
+        {
+            id: "question-chains",
+            stepNumber: 9,
+            title: "Professional Question Chains: Digging Deeper",
+            icon: "🔗",
+            explanation: `
+                <h3>Asking Follow-Up Questions</h3>
+                <p>In professional situations (job interviews, doctor visits, landlord meetings), you need to ask <strong>3-4 follow-up questions</strong> to get the complete picture. This shows you're engaged and thinking critically.</p>
+
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                    <h4>Example: Asking About a Job</h4>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 1 - Initial Question:</p>
+                        <p style="margin: 0;">"What are the hours for this position?"</p>
+                    </div>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 2 - Clarify Details:</p>
+                        <p style="margin: 0;">"Is that Monday through Friday, or does it include weekends?"</p>
+                    </div>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 3 - Dig Deeper:</p>
+                        <p style="margin: 0;">"How much flexibility is there if I need to adjust my schedule occasionally?"</p>
+                    </div>
+
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Level 4 - Plan for Scenarios:</p>
+                        <p style="margin: 0;">"What would be the process for requesting time off?"</p>
+                    </div>
+                </div>
+
+                <h4>The 4-Level Question Strategy:</h4>
+                <ol>
+                    <li><strong>Initial:</strong> Ask the basic question (What? When? How much?)</li>
+                    <li><strong>Clarify:</strong> Get specific details ("Does that include...?" "Is that...?")</li>
+                    <li><strong>Dig deeper:</strong> Ask about flexibility, exceptions, options</li>
+                    <li><strong>Plan ahead:</strong> "What if...?" "How would...?" "What would happen if...?"</li>
+                </ol>
+
+                <h4>Why This Matters:</h4>
+                <ul>
+                    <li><strong>You avoid misunderstandings</strong> (don't assume - ask!)</li>
+                    <li><strong>You show professionalism</strong> (employers/landlords see you're thoughtful)</li>
+                    <li><strong>You make informed decisions</strong> (know all the facts before signing a lease or accepting a job)</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 Practice This in Class!",
+                content:
+                    "When we do speaking activities, challenge yourself to ask at least 3 follow-up questions. Don't just accept the first answer - dig deeper! This is how you become a confident communicator.",
+            },
+            exercises: [
+                {
+                    id: "ex-chains-1",
+                    title: "Practice: Question Chains",
+                    instructions:
+                        "For each scenario, write a 4-question chain (initial → clarify → dig deeper → plan ahead).",
+                    items: [
+                        {
+                            type: "text",
+                            label: "Scenario: You're asking your landlord about parking. Write your initial question.",
+                            expectedAnswer: "Is parking included with the apartment?",
+                        },
+                        {
+                            type: "text",
+                            label: "Now clarify: Ask about the type/location of parking.",
+                            expectedAnswer: "Is it a garage or street parking?",
+                        },
+                        {
+                            type: "text",
+                            label: "Dig deeper: Ask about guests or additional vehicles.",
+                            expectedAnswer: "Can guests park there, or is it just for tenants?",
+                        },
+                        {
+                            type: "text",
+                            label: "Plan ahead: Ask what happens if you get a second car.",
+                            expectedAnswer: "What would I need to do if I got a second car?",
                         },
                     ],
                 },

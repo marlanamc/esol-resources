@@ -18,8 +18,8 @@ export default async function ClassDetailPage({ params }: Props) {
         redirect("/login");
     }
 
-    const userId = (session.user as any)?.id;
-    const userRole = (session.user as any)?.role;
+    const userId = session.user?.id;
+    const userRole = session.user?.role;
 
     const classItem = await prisma.class.findUnique({
         where: { id },
@@ -247,4 +247,3 @@ export default async function ClassDetailPage({ params }: Props) {
         </div>
     );
 }
-

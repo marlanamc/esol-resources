@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Only teachers can create activities" }, { status: 403 });
         }
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         const activity = await prisma.activity.create({
             data: {
@@ -40,16 +40,17 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(activity);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error creating activity:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to create activity" },
+            { error: message || "Failed to create activity" },
             { status: 500 }
         );
     }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
         const session = await getServerSession(authOptions);
         if (!session) {
@@ -61,19 +62,15 @@ export async function GET(request: NextRequest) {
         });
 
         return NextResponse.json(activities);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error fetching activities:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to fetch activities" },
+            { error: message || "Failed to fetch activities" },
             { status: 500 }
         );
     }
 }
-
-
-
-
-
 
 
 

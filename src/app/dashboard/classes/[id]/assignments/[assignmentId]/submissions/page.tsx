@@ -18,8 +18,8 @@ export default async function SubmissionsPage({ params }: Props) {
         redirect("/login");
     }
 
-    const userId = (session.user as any)?.id;
-    const userRole = (session.user as any)?.role;
+    const userId = session.user?.id;
+    const userRole = session.user?.role;
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
@@ -84,15 +84,13 @@ export default async function SubmissionsPage({ params }: Props) {
                 <div className="px-4 py-6 sm:px-0">
                     <SubmissionsList
                         assignment={assignment}
-                        students={assignment.class.enrollments.map((enrollment: { student: any }) => enrollment.student)}
+                        students={assignment.class.enrollments.map((enrollment) => enrollment.student)}
                     />
                 </div>
             </main>
         </div>
     );
 }
-
-
 
 
 
