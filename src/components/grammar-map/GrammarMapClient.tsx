@@ -40,7 +40,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     const [nodePositions, setNodePositions] = useState<Record<string, NodePosition>>({});
     const [edges, setEdges] = useState<Edge[]>([]);
     const [zoom, setZoom] = useState<number>(1);
-    const [viewMode, setViewMode] = useState<'graph' | 'list'>('graph');
+    const [viewMode, setViewMode] = useState<'graph' | 'list'>('list');
     const svgRef = useRef<SVGSVGElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -438,9 +438,6 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                                                         <div style={{ color }}>{getStatusIcon(topic)}</div>
                                                     )}
                                                 </div>
-                                                {topic.week && (
-                                                    <p className="text-sm text-gray-600 mb-1">Week {topic.week}</p>
-                                                )}
                                                 {progress && (
                                                     <div className="mt-2">
                                                         <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
