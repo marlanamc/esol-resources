@@ -22,8 +22,7 @@ import {
     MiniCalendar,
     CalendarEvent,
     UpcomingEventsList,
-    TodaysAssignments,
-    TeacherActivityCategories
+    TodaysAssignments
 } from "@/components/dashboard";
 
 type TeacherAssignment = {
@@ -131,20 +130,6 @@ export default async function DashboardPage() {
 
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
-
-        const allActivities = await prisma.activity.findMany({
-            orderBy: { createdAt: "desc" },
-        });
-
-        // Get featured activity IDs and assignment map for TeacherActivityCategories
-        const featuredActivityIds = new Set(featuredAssignments.map((a: TeacherAssignment) => a.activityId));
-        const activityAssignmentMap: Record<string, string> = {};
-        featuredAssignments.forEach((assignment: TeacherAssignment) => {
-            activityAssignmentMap[assignment.activityId] = assignment.id;
-        });
-
-        // Get default class ID (first class or null)
-        const defaultClassId = classes.length > 0 ? classes[0]!.id : null;
 
         const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
             id: assignment.id,
@@ -267,20 +252,25 @@ export default async function DashboardPage() {
                                 />
                             </section>
 
-                            {/* All Activities - Organized by Category (hide on mobile to declutter) */}
-                            <section className="animate-fade-in-up delay-200 hidden md:block">
-                                <div className="flex items-center justify-between mb-6">
-                                    <h2 className="text-2xl font-bold font-display text-text flex items-center gap-3">
-                                        <span className="w-2 h-8 rounded-full bg-secondary/80"></span>
-                                        All Activities
-                                    </h2>
+                            {/* Browse All Activities CTA */}
+                            <section className="animate-fade-in-up delay-200">
+                                <div className="bg-white border border-border/40 shadow-lg rounded-2xl p-6 bg-gradient-to-b from-white to-bg-light/50">
+                                    <div className="flex items-start justify-between gap-4">
+                                        <div>
+                                            <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Explore</p>
+                                            <h2 className="text-2xl font-bold font-display text-text mt-1">All Activities</h2>
+                                            <p className="text-sm text-text/70 mt-2 max-w-2xl">
+                                                Browse all activities organized by category. Feature assignments for your classes and create new content.
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href="/dashboard/activities"
+                                            className="shrink-0 px-4 py-2 rounded-lg bg-primary text-white hover:brightness-110 transition font-semibold text-sm"
+                                        >
+                                            Browse →
+                                        </Link>
+                                    </div>
                                 </div>
-                                <TeacherActivityCategories 
-                                    activities={allActivities} 
-                                    featuredActivityIds={featuredActivityIds}
-                                    defaultClassId={defaultClassId}
-                                    activityAssignmentMap={activityAssignmentMap}
-                                />
                             </section>
                         </div>
 

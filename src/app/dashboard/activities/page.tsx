@@ -2,18 +2,64 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { ActivityCategories } from "@/components/dashboard";
+import { ActivityCategories, TeacherActivityCategories } from "@/components/dashboard";
 
 export default async function ActivitiesPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
     const userId = session.user?.id;
+    const userRole = session.user?.role;
 
     const activities = await prisma.activity.findMany({
         orderBy: { createdAt: "desc" },
     });
 
+    if (userRole === "teacher") {
+        // Teacher View - Get featured assignments and class info
+        const classes = await prisma.class.findMany({
+            where: { teacherId: userId },
+            include: {
+                assignments: {
+                    include: {
+                        activity: true,
+                    },
+                },
+            },
+        });
+
+        const allAssignments = classes.flatMap((c) => c.assignments);
+        const featuredAssignments = allAssignments.filter((a) => a.isFeatured);
+        const featuredActivityIds = new Set(featuredAssignments.map((a) => a.activityId));
+        const activityAssignmentMap: Record<string, string> = {};
+        featuredAssignments.forEach((assignment) => {
+            activityAssignmentMap[assignment.activityId] = assignment.id;
+        });
+
+        const defaultClassId = classes.length > 0 ? classes[0]!.id : null;
+
+        return (
+            <div className="min-h-screen bg-bg">
+                <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
+                        <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Browse</p>
+                        <h1 className="text-3xl font-display font-bold text-text">All Activities</h1>
+                    </div>
+                </header>
+
+                <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 pb-24 md:pb-12">
+                    <TeacherActivityCategories
+                        activities={activities}
+                        featuredActivityIds={featuredActivityIds}
+                        defaultClassId={defaultClassId}
+                        activityAssignmentMap={activityAssignmentMap}
+                    />
+                </main>
+            </div>
+        );
+    }
+
+    // Student View
     const progressEntries = await prisma.activityProgress.findMany({
         where: { userId },
         select: { activityId: true, progress: true },
