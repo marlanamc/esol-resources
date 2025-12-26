@@ -260,9 +260,10 @@ export default async function DashboardPage() {
                             {/* Featured Assignments (styled like student view) */}
                             <section className="animate-fade-in-up delay-100">
                                 <TodaysAssignments
-                                    title="Featured Assignments"
+                                    title="Weekly Checklist"
                                     ctaLabel="Open"
                                     initialAssignments={featuredAssignmentsForDisplay}
+                                    variant="checklist"
                                 />
                             </section>
 
