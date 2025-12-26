@@ -55,5 +55,5 @@ export const perfectContinuousDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which perfect continuous tense is most challenging? Why? Give an example of when you would use it.",
   reflectionMinLength: 50,
   minPromptsRequired: 4,
-  released: false
+  released: true
 };

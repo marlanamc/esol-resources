@@ -40,8 +40,8 @@ export default function CreateClassForm() {
             const data = await response.json();
             router.push(`/dashboard/classes/${data.id}`);
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Failed to create class");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to create class");
         } finally {
             setIsLoading(false);
         }
@@ -132,7 +132,6 @@ export default function CreateClassForm() {
         </div>
     );
 }
-
 
 
 

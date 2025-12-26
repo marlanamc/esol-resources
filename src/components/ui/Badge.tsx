@@ -1,6 +1,6 @@
 import React from 'react';
 
-type BadgeVariant =
+export type BadgeVariant =
   | 'default'
   | 'primary'
   | 'secondary'
@@ -12,7 +12,8 @@ type BadgeVariant =
   | 'slides'
   | 'guide'
   | 'game'
-  | 'resource';
+  | 'resource'
+  | 'speaking';
 
 interface BadgeProps {
   children: React.ReactNode;
@@ -39,6 +40,7 @@ export const Badge: React.FC<BadgeProps & { size?: 'sm' | 'md' | 'lg' }> = ({
     guide: 'bg-success/15 text-success border-success/30 font-semibold',
     game: 'bg-warning/15 text-warning border-warning/30 font-semibold',
     resource: 'bg-info/15 text-info border-info/30 font-semibold',
+    speaking: 'bg-secondary/15 text-secondary border-secondary/30 font-semibold',
   };
 
   const sizeStyles = {

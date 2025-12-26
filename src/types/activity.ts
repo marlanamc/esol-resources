@@ -21,18 +21,21 @@ export type ExerciseItem =
         placeholder?: string;
         correctAnswer?: string;
         expectedAnswer?: string;
+        expectedAnswers?: string[];
     }
     | {
         type: "select";
         label: string;
         options: string[];
         expectedAnswer?: string;
+        expectedAnswers?: string[];
     }
     | {
         type: "radio";
         label: string;
         options: Array<{ value: string; label: string }>;
         expectedAnswer?: string;
+        expectedAnswers?: string[];
     }
     | {
         type: "word-scramble";

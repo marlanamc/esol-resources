@@ -13,7 +13,7 @@ export async function POST() {
     const session = await getServerSession(authOptions);
 
     // Only teachers can reset weekly points
-    if (!session?.user || (session.user as any).role !== 'teacher') {
+    if (!session?.user || session.user.role !== "teacher") {
         return NextResponse.json({ error: "Unauthorized - Teachers only" }, { status: 401 });
     }
 

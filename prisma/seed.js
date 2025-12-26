@@ -541,6 +541,164 @@ async function main() {
     });
     console.log('📚 Perfect Continuous Tenses Review guide added:', perfectContinuousTensesReviewGuide.title);
 
+    // -------------------------
+    // Additional Grammar Guides
+    // -------------------------
+    const additionalGrammarGuides = [
+        {
+            id: 'parts-of-speech',
+            title: 'Parts of Speech Guide',
+            description: 'Master nouns, verbs, adjectives, and adverbs — the building blocks of English sentences.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/parts-of-speech',
+        },
+        {
+            id: 'superlatives-quantifiers',
+            title: 'Superlatives & Quantifiers Guide',
+            description: 'Compare and describe with superlatives (most/least) and quantifiers (many/much, fewer/less, a few/a little).',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/superlatives-quantifiers',
+        },
+        {
+            id: 'information-questions',
+            title: 'Information Questions Guide',
+            description: 'Master WH-questions: who, what, when, where, why, how — plus how much vs how many and correct word order.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/information-questions',
+        },
+        {
+            id: 'modals-obligation-permission',
+            title: 'Modals for Obligation & Permission Guide',
+            description: 'Use must/have to/should and can/may/could to talk about rules, permission, and polite requests at work and in daily life.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/modals-obligation-permission',
+        },
+        {
+            id: 'gerunds-prepositions',
+            title: 'Gerunds After Prepositions Guide',
+            description: 'Learn verb + -ing after prepositions (good at, interested in, before/after, by) with common patterns and practice.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/gerunds-prepositions',
+        },
+        {
+            id: 'infinitives-vs-gerunds',
+            title: 'Infinitives vs Gerunds Guide',
+            description: 'Choose correctly between to + verb and verb-ing using meaning patterns (enjoy, want, decide, avoid, plan).',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/infinitives-vs-gerunds',
+        },
+        {
+            id: 'verbs-plus-gerunds',
+            title: 'Verbs + Gerunds Guide',
+            description: 'Practice common verbs followed by -ing (enjoy, avoid, finish, keep, consider) with realistic sentences.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/verbs-plus-gerunds',
+        },
+        {
+            id: 'workplace-phrasal-verbs',
+            title: 'Workplace Phrasal Verbs Guide',
+            description: 'Learn high-frequency workplace phrasal verbs (clock in/out, fill in, call out) with clear meanings and practice.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/workplace-phrasal-verbs',
+        },
+        {
+            id: 'used-to-would-rather',
+            title: 'Used To & Would Rather Guide',
+            description: "Talk about past habits with 'used to' and express preferences with 'would rather' for everyday and work situations.",
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/used-to-would-rather',
+        },
+        {
+            id: 'imperatives-declaratives',
+            title: 'Imperatives vs Declaratives Guide',
+            description: "Give advice and instructions with imperatives (Don't..., Please...) and compare to statements (You should...).",
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/imperatives-declaratives',
+        },
+        {
+            id: 'reported-speech',
+            title: 'Reported Speech Guide',
+            description: 'Report what someone said using tense shifts, reporting verbs, and pronoun/time changes with guided practice.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/reported-speech',
+        },
+        {
+            id: 'passive-voice',
+            title: 'Passive Voice Guide',
+            description: 'Use be + past participle to focus on the action (and the result) when the doer is unknown or unimportant.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/passive-voice',
+        },
+        {
+            id: 'future-conditional',
+            title: 'Future Conditional Guide',
+            description: 'Talk about possible future results and consequences using if + present, will + base verb (and common real-life patterns).',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/future-conditional',
+        },
+        {
+            id: 'conditionals-zero-first',
+            title: 'Zero & First Conditionals Guide',
+            description: 'Compare and master two essential conditionals: zero (always true facts/habits) vs first (real future possibilities).',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/conditionals-zero-first',
+        },
+        {
+            id: 'conditionals-second',
+            title: 'Second Conditional Guide',
+            description: 'Express hypothetical and unlikely situations using if + past, would + verb. Perfect for dreams, advice, and "what if" scenarios.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/conditionals-second',
+        },
+        {
+            id: 'conditionals-review',
+            title: 'Conditionals Review Guide',
+            description: 'Master all conditional types (zero, first, second) with side-by-side comparisons and decision tools to choose the right one.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/conditionals-review',
+        },
+        {
+            id: 'paragraph-format',
+            title: 'Paragraph Format Guide',
+            description: 'Write clear paragraphs with topic sentences, supporting details, and conclusions — plus organization and transitions.',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/paragraph-format',
+        },
+        {
+            id: 'punctuation-capitalization',
+            title: 'Punctuation & Capitalization Guide',
+            description: 'Improve writing clarity with basic punctuation and capitalization rules (sentences, commas, quotes, and common mistakes).',
+            level: 'intermediate',
+            externalUrl: '/grammar-reader/punctuation-capitalization',
+        },
+    ];
+
+    for (const guide of additionalGrammarGuides) {
+        const upserted = await prisma.activity.upsert({
+            where: { id: guide.id },
+            update: {
+                title: guide.title,
+                description: guide.description,
+                type: 'guide',
+                category: 'grammar',
+                level: guide.level,
+                content: JSON.stringify({ externalUrl: guide.externalUrl }),
+                createdBy: teacher.id,
+            },
+            create: {
+                id: guide.id,
+                title: guide.title,
+                description: guide.description,
+                type: 'guide',
+                category: 'grammar',
+                level: guide.level,
+                content: JSON.stringify({ externalUrl: guide.externalUrl }),
+                createdBy: teacher.id,
+            },
+        });
+        console.log('📚 Grammar guide added:', upserted.title);
+    }
+
     // Update Vocab September Flashcards
     const vocabSeptemberFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-september-flashcards' },

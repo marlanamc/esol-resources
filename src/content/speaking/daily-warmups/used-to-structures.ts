@@ -55,5 +55,5 @@ export const usedToStructuresDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which structure is most confusing: used to, be used to, or get used to? Explain the difference in your own words.",
   reflectionMinLength: 50,
   minPromptsRequired: 4,
-  released: false
+  released: true
 };

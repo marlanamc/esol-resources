@@ -25,6 +25,23 @@ export const presentPerfectContent: InteractiveGuideContent = {
                 <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
                     <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #c86b51; font-size: 1.125rem;">have/has + past participle</span></p>
                 </div>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Answering "How long have you lived here?" ("I've lived here for 6 months")</li>
+                        <li>Talking about budgeting and bills ("I've saved $500 since January")</li>
+                        <li>Describing changes that continue to now ("I've had this credit card for 2 years")</li>
+                    </ul>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong> Documenting workplace issues ("I've asked three times for a schedule change")</li>
+                        <li><strong> Talking about health history ("I've had this pain for two weeks")</li>
+                        <li><strong> Review - telling coherent stories with all tenses</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">⏱️ Present Perfect connects your past to right now - it shows what's still relevant!</p>
+                </div>
             `,
             exercises: [
                 {

@@ -43,25 +43,25 @@ export const classroomBasicsDailyWarmup: SpeakingActivityContent = {
     {
       id: "prompt-5",
       level: "intermediate",
-      text: "Using present perfect: What school situations have been difficult for you? What have you learned to do better?",
-      context: "Example: 'I have been nervous about asking questions, but I have learned that it's okay to ask for help.'"
+      text: "Parts of Speech - Content Words: Describe your classroom using all 4 content words (nouns, verbs, adjectives, adverbs).",
+      context: "Example: 'Students (noun) sit (verb) at comfortable (adjective) desks. They listen (verb) carefully (adverb) to the teacher (noun).'"
     },
     {
       id: "prompt-6",
       level: "advanced",
-      text: "Using past perfect: Think about your first day of class. What had you been worried about? What hadn't you expected?",
-      context: "Example: 'Before I started class, I had worried that I wouldn't understand anything, but I hadn't expected everyone to be so friendly.'"
+      text: "Parts of Speech Challenge: Make 3 sentences about school. Then identify the parts: circle nouns, underline verbs, highlight adjectives and adverbs.",
+      context: "Example: 'My teacher explains grammar clearly.' (teacher=noun, explains=verb, grammar=noun, clearly=adverb)"
     },
     {
       id: "prompt-7",
       level: "advanced",
-      text: "Using future perfect: By the end of this class, what classroom skills will you have improved?",
-      context: "Example: 'By June, I will have learned to ask questions confidently, and I will have made many friends in class.'"
+      text: "Parts of Speech Game: Describe your English learning journey using at least 2 of each content word (2 nouns, 2 verbs, 2 adjectives, 2 adverbs).",
+      context: "Track them: I (pronoun) studied (verb) English (noun) slowly (adverb) at first (adverb). Now I speak (verb) more confidently (adverb) in difficult (adjective) conversations (noun)."
     },
   ],
 
   reflectionPrompt: "Which classroom phrase is hardest for you to say? Why do you think that is?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

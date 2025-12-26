@@ -21,6 +21,18 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     <li><strong>Stress management:</strong> "If I take breaks, I won't feel so overwhelmed."</li>
                     <li><strong>Cause & effect thinking:</strong> "If I eat breakfast, I'll concentrate better at work."</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li>Explaining home remedies ("If you drink ginger tea, your stomach will feel better")</li>
+                        <li>Discussing stress solutions ("If I exercise, I'll sleep better")</li>
+                        <li>Making wellness action plans ("If I reduce sugar, I'll have more energy")</li>
+                        <li>Roundtable discussion: sharing what works for stress</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎯 Conditionals turn ideas into action plans - they help you reach your goals!</p>
+                </div>
             `,
             exercises: [
                 {

@@ -55,5 +55,5 @@ export const interviewCommonQuestions_2026_03_05: SpeakingActivityContent = {
   reflectionPrompt: "Which interview question was hardest? What phrase helped you answer more clearly?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

@@ -12,6 +12,17 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 <div style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.12) 0%, rgba(128, 156, 245, 0.12) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
                     <p style="margin: 0; font-size: 1.05rem;">Past Continuous is your play-by-play: what was happening <strong>at a specific moment in the past</strong>, especially when something else interrupted.</p>
                 </div>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li>Telling detailed housing problem stories ("I was sleeping when the phone rang")</li>
+                        <li>Using "when" and "while" to connect two actions ("While I was cooking, the fire alarm went off")</li>
+                        <li>Describing what was happening at a specific time ("At midnight, my neighbors were playing loud music")</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎬 Past Continuous adds drama to your stories - it sets the scene!</p>
+                </div>
             `,
             exercises: [
                 {

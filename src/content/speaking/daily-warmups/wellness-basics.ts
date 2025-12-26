@@ -55,5 +55,5 @@ export const wellnessBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What self-care topic resonated with you most? What do you want to work on?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

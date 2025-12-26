@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "student") {
             return NextResponse.json({ error: "Only students can submit work" }, { status: 403 });
         }
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Verify assignment exists and student is enrolled
         const assignment = await prisma.assignment.findUnique({
@@ -74,10 +74,11 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(submission);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error creating submission:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to create submission" },
+            { error: message || "Failed to create submission" },
             { status: 500 }
         );
     }
@@ -90,7 +91,7 @@ export async function PUT(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "student") {
             return NextResponse.json({ error: "Only students can update submissions" }, { status: 403 });
         }
@@ -105,7 +106,7 @@ export async function PUT(request: NextRequest) {
             );
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Verify submission belongs to user
         const submission = await prisma.submission.findUnique({
@@ -137,16 +138,15 @@ export async function PUT(request: NextRequest) {
         });
 
         return NextResponse.json(updated);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error updating submission:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to update submission" },
+            { error: message || "Failed to update submission" },
             { status: 500 }
         );
     }
 }
-
-
 
 
 

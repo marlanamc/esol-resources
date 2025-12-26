@@ -52,6 +52,12 @@ function statusLabel(progress: number) {
 
 export function StudentStatsView({ activities }: Props) {
     const [tab, setTab] = useState<"vocab" | "grammar" | "numbers" | "other">("vocab");
+    const tabs = [
+        { key: "vocab", label: "Vocabulary" },
+        { key: "grammar", label: "Grammar" },
+        { key: "numbers", label: "Numbers" },
+        { key: "other", label: "Other" },
+    ] as const;
 
     const { vocabUnits, grammarActivities, numbersActivities, otherActivities } = useMemo(() => {
         const vocab = activities.filter((a) => {
@@ -121,15 +127,10 @@ export function StudentStatsView({ activities }: Props) {
     return (
         <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-3">
-                {[
-                    { key: "vocab", label: "Vocabulary" },
-                    { key: "grammar", label: "Grammar" },
-                    { key: "numbers", label: "Numbers" },
-                    { key: "other", label: "Other" },
-                ].map(({ key, label }) => (
+                {tabs.map(({ key, label }) => (
                     <button
                         key={key}
-                        onClick={() => setTab(key as any)}
+                        onClick={() => setTab(key)}
                         className={`px-4 py-2 rounded-full border text-sm font-semibold transition ${
                             tab === key
                                 ? "bg-primary text-white border-primary shadow-sm"
@@ -181,7 +182,6 @@ export function StudentStatsView({ activities }: Props) {
         </div>
     );
 }
-
 
 
 

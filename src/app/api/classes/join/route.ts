@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole === "teacher") {
             return NextResponse.json({ error: "Teachers cannot join classes" }, { status: 403 });
         }
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Class code is required" }, { status: 400 });
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Find class by code
         const classItem = await prisma.class.findUnique({
@@ -59,16 +59,15 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json({ classId: classItem.id, message: "Successfully joined class" });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error joining class:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to join class" },
+            { error: message || "Failed to join class" },
             { status: 500 }
         );
     }
 }
-
-
 
 
 

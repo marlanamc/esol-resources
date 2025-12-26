@@ -11,7 +11,7 @@ interface VerbQuizContainerProps {
   activityId: string;
   existingSubmission?: {
     id: string;
-    content: any;
+    content: unknown;
     score: number | null;
   } | null;
 }

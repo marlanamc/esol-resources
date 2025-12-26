@@ -47,5 +47,5 @@ export const workplaceBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which workplace situation did you practice? What was challenging about it?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

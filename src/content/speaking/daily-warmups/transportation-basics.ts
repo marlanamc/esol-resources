@@ -48,5 +48,5 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What transportation topic did you practice? Which tense was hardest?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

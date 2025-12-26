@@ -8,13 +8,13 @@ export default async function ActivitiesPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
-    const userId = (session.user as any)?.id;
+    const userId = session.user?.id;
 
     const activities = await prisma.activity.findMany({
         orderBy: { createdAt: "desc" },
     });
 
-    const progressEntries = await (prisma as any).activityProgress.findMany({
+    const progressEntries = await prisma.activityProgress.findMany({
         where: { userId },
         select: { activityId: true, progress: true },
     });
@@ -55,8 +55,6 @@ export default async function ActivitiesPage() {
         </div>
     );
 }
-
-
 
 
 

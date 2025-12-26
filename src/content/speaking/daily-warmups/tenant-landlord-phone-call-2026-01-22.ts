@@ -50,6 +50,6 @@ export const tenantLandlordPhoneCall_2026_01_22: SpeakingActivityContent = {
   reflectionPrompt: "Which part of the phone call is hardest for you (explaining, asking questions, confirming)? Why?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

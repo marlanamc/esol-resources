@@ -1,19 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 type Props = {
     activityId: string;
     initialProgress?: number | null;
     userRole?: string | null;
 };
 
-export function ActivityProgressBadge({ activityId, initialProgress = 0, userRole }: Props) {
-    const [progress, setProgress] = useState<number>(initialProgress ?? 0);
-
-    useEffect(() => {
-        setProgress(initialProgress ?? 0);
-    }, [initialProgress]);
+export function ActivityProgressBadge({ activityId: _activityId, initialProgress = 0, userRole: _userRole }: Props) {
+    const progress = initialProgress ?? 0;
+    void _activityId;
+    void _userRole;
 
     const color =
         progress >= 100 ? "bg-green-100 text-green-800 border-green-200" : "bg-amber-100 text-amber-800 border-amber-200";
@@ -28,5 +24,3 @@ export function ActivityProgressBadge({ activityId, initialProgress = 0, userRol
         </div>
     );
 }
-
-

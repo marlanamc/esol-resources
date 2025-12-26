@@ -50,8 +50,8 @@ export function StudentPasswordManager({ students }: Props) {
                 throw new Error(data.error || "Failed to update");
             }
             updateStatus(id, { state: "success", message: "Updated" });
-        } catch (err: any) {
-            updateStatus(id, { state: "error", message: err?.message || "Failed" });
+        } catch (err: unknown) {
+            updateStatus(id, { state: "error", message: err instanceof Error ? err.message : "Failed" });
         }
     };
 
@@ -128,5 +128,4 @@ export function StudentPasswordManager({ students }: Props) {
         </div>
     );
 }
-
 

@@ -14,7 +14,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Only teachers can edit activities" }, { status: 403 });
         }
@@ -53,10 +53,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
         });
 
         return NextResponse.json(activity);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error updating activity:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to update activity" },
+            { error: message || "Failed to update activity" },
             { status: 500 }
         );
     }
@@ -69,7 +70,7 @@ export async function DELETE(request: NextRequest, { params }: Props) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Only teachers can delete activities" }, { status: 403 });
         }
@@ -91,16 +92,15 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         });
 
         return NextResponse.json({ message: "Activity deleted successfully" });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error deleting activity:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to delete activity" },
+            { error: message || "Failed to delete activity" },
             { status: 500 }
         );
     }
 }
-
-
 
 
 

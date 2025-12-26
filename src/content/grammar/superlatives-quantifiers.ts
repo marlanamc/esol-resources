@@ -22,6 +22,18 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     <li><strong>Describe situations accurately</strong> - "I have too much work and too little time"</li>
                     <li><strong>Negotiate effectively</strong> - At work, at stores, with landlords</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li>Describing your home ("My apartment is the quietest one in the building")</li>
+                        <li>Comparing apartments ("This one has fewer bedrooms but more space")</li>
+                        <li>Talking about food and restaurants ("Which restaurant has the best prices?")</li>
+                        <li>Speaking game: Comparing homes and neighborhoods</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 Tip: When you're apartment hunting or job searching, these comparisons help you explain your choices and find the best option!</p>
+                </div>
             `,
             exercises: [
                 {

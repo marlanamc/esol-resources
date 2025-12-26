@@ -19,9 +19,9 @@ export async function POST(request: Request) {
 
     const value = typeof progress === "number" ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
 
-    const userId = (session.user as any).id;
+    const userId = session.user.id;
 
-    const existing = await (prisma.activityProgress as any).findUnique({
+    const existing = await prisma.activityProgress.findUnique({
         where: {
             userId_activityId: {
                 userId,
@@ -38,9 +38,6 @@ export async function POST(request: Request) {
             ? JSON.parse(existing.categoryData)
             : {};
 
-        // Check if this category was already completed
-        const wasCategoryCompleted = currentData[category]?.completed || false;
-
         // Update or add this category's progress
         currentData[category] = {
             completed: value >= 100,
@@ -51,15 +48,11 @@ export async function POST(request: Request) {
 
         updatedCategoryData = JSON.stringify(currentData);
 
-        // Calculate overall progress based on categories completed
-        const totalCategories = Object.keys(currentData).length;
-        const completedCategories = Object.values(currentData).filter((c: any) => c.completed).length;
-
         // Don't override progress to 100% unless explicitly set - keep category-based progress
         // Only set to 100 if this specific category round is complete
     }
 
-    const record = await (prisma.activityProgress as any).upsert({
+    const record = await prisma.activityProgress.upsert({
         where: {
             userId_activityId: {
                 userId,
@@ -160,6 +153,4 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true, progress: record.progress, status: record.status });
 }
-
-
 

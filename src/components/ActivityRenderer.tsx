@@ -3,9 +3,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import type {
     ActivityContent,
-    Exercise,
-    ExerciseItem,
-    FormulaPart,
     GuideContent,
     InteractiveGuideContent,
     LegacyGuideResponse,
@@ -77,13 +74,11 @@ export default function ActivityRenderer({ activity }: Props) {
         case "game":
             // Detect game type based on content format
             // Check for numbers game JSON format
-            try {
-                const parsed = JSON.parse(activity.content);
-                if (parsed && typeof parsed === 'object' && parsed.type === 'numbers-game') {
+            {
+                const parsed = safeJsonParse(activity.content);
+                if (parsed && typeof parsed === 'object' && 'type' in parsed && parsed.type === 'numbers-game') {
                     return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
                 }
-            } catch {
-                // Not JSON, continue with other checks
             }
             // Check for fill-in-blank format
             if (activity.content?.includes("Q:") && activity.content?.includes("OPTIONS:")) {
@@ -98,6 +93,14 @@ export default function ActivityRenderer({ activity }: Props) {
         default:
             if (!content) return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Unable to load activity content.</div>;
             return <DefaultRenderer content={content} />;
+    }
+}
+
+function safeJsonParse(text: string): unknown | null {
+    try {
+        return JSON.parse(text) as unknown;
+    } catch {
+        return null;
     }
 }
 
@@ -211,7 +214,6 @@ function GuideRenderer({ content }: { content: GuideContent }) {
 function LegacyGuideRenderer({ originalFile }: { originalFile: string }) {
     const [html, setHtml] = useState<string | null>(null);
     const [styles, setStyles] = useState<string[]>([]);
-    const [scripts, setScripts] = useState<string[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [sections, setSections] = useState<Array<{ id: string; title: string }>>([]);
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -228,7 +230,6 @@ function LegacyGuideRenderer({ originalFile }: { originalFile: string }) {
                 if (!isMounted) return;
                 setHtml(data.html || null);
                 setStyles(Array.isArray(data.styles) ? data.styles : []);
-                setScripts(Array.isArray(data.scripts) ? data.scripts : []);
             } catch (err) {
                 if (isMounted) {
                     const message = err instanceof Error ? err.message : 'Unable to load legacy guide content.';
@@ -506,7 +507,8 @@ function parseFlashcards(contentStr: string): Array<FlashcardData> {
         if (numberedMatch) {
             const segments = parseSegments(numberedMatch[1]);
             if (!segments) continue;
-            let { term, definition, example } = segments;
+            const { term, definition } = segments;
+            let { example } = segments;
             const next = lines[i + 1];
             if (!example && next && /^example:/i.test(next)) {
                 example = next.replace(/^example:\s*/i, "").trim();
@@ -521,7 +523,8 @@ function parseFlashcards(contentStr: string): Array<FlashcardData> {
         } else if (qMatch) {
             const segments = parseSegments(qMatch[1]);
             if (!segments) continue;
-            let { term, definition, example } = segments;
+            const { term, definition } = segments;
+            let { example } = segments;
             const next = lines[i + 1];
             if (!example && next && /^example:/i.test(next)) {
                 example = next.replace(/^example:\s*/i, "").trim();

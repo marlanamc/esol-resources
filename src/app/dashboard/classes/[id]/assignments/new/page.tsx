@@ -17,8 +17,8 @@ export default async function NewAssignmentPage({ params }: Props) {
         redirect("/login");
     }
 
-    const userId = (session.user as any)?.id;
-    const userRole = (session.user as any)?.role;
+    const userId = session.user?.id;
+    const userRole = session.user?.role;
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
@@ -62,7 +62,6 @@ export default async function NewAssignmentPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

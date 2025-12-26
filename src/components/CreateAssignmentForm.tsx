@@ -57,8 +57,8 @@ export default function CreateAssignmentForm({ classId, activities }: Props) {
 
             router.push(`/dashboard/classes/${classId}`);
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Failed to create assignment");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to create assignment");
         } finally {
             setIsLoading(false);
         }
@@ -168,7 +168,6 @@ export default function CreateAssignmentForm({ classId, activities }: Props) {
         </div>
     );
 }
-
 
 
 

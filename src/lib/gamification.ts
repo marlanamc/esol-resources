@@ -1,4 +1,5 @@
 import { prisma } from './prisma';
+import type { Prisma } from "@prisma/client";
 
 // Points awarded for different actions
 // Philosophy: Points should reflect TIME and EFFORT, not just clicking through
@@ -294,13 +295,11 @@ export async function getTimeframedLeaderboard(
   const since = getRangeStart(range);
 
   // First, get all students (excluding test accounts)
-  const studentWhere: any = { 
-    role: 'student',
-    username: { not: 'marlie' }, // Exclude test account from leaderboard
+  const studentWhere: Prisma.UserWhereInput = {
+    role: "student",
+    username: { not: "marlie" }, // Exclude test account from leaderboard
+    ...(classId ? { classes: { some: { classId } } } : {}),
   };
-  if (classId) {
-    studentWhere.classes = { some: { classId } };
-  }
 
   const allStudents = await prisma.user.findMany({
     where: studentWhere,
@@ -313,21 +312,14 @@ export async function getTimeframedLeaderboard(
   });
 
   // Then get points from ledger for this timeframe (excluding test accounts)
-  const whereLedger: any = {
+  const whereLedger: Prisma.PointsLedgerWhereInput = {
     createdAt: { gte: since },
     user: {
-      role: 'student',
-      username: { not: 'marlie' }, // Exclude test account from leaderboard
+      role: "student",
+      username: { not: "marlie" }, // Exclude test account from leaderboard
+      ...(classId ? { classes: { some: { classId } } } : {}),
     },
   };
-
-  if (classId) {
-    whereLedger.user.classes = {
-      some: {
-        classId,
-      },
-    };
-  }
 
   const grouped = await prisma.pointsLedger.groupBy({
     by: ['userId'],
@@ -459,7 +451,7 @@ export async function checkAndAwardAchievements(userId: string) {
  * Get weekly leaderboard (top students by weekly points)
  */
 export async function getWeeklyLeaderboard(limit: number = 10, classId?: string) {
-  const whereClause: any = {
+  const whereClause: Prisma.UserWhereInput = {
     role: 'student',
     username: { not: 'marlie' }, // Exclude test account from leaderboard
   };

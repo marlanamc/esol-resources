@@ -2,52 +2,64 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const perfectTensesPracticeDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "2/5/26: Perfect Tenses Practice",
-  description: "Focused practice on present perfect, past perfect, and future perfect across different topics",
+  title: "2/5/26: Past Continuous vs Past Simple",
+  description: "Practice using past continuous (was/were + -ing) vs past simple to describe background actions and interruptions - while/when sentences",
 
   keyPhrases: [
-    { phrase: "I have been...", example: "I have been living here for two years." },
-    { phrase: "I had never...", example: "I had never seen snow before I came to the U.S." },
-    { phrase: "By the time...", example: "By the time I got there, everyone had left." },
-    { phrase: "I will have...", example: "I will have finished my English classes by June." },
-    { phrase: "How long have you...?", example: "How long have you been studying English?" },
+    { phrase: "While I was..., ...", example: "While I was cooking dinner, the power went out." },
+    { phrase: "When... happened, I was...", example: "When my landlord called, I was sleeping." },
+    { phrase: "I was... when...", example: "I was taking a shower when someone knocked on the door." },
+    { phrase: "While... was happening, ...", example: "While the repair person was fixing the heat, I was waiting in the kitchen." },
+    { phrase: "At 8pm yesterday, I was...", example: "At 8pm yesterday, I was riding the Red Line home from work." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
-      level: "intermediate",
-      text: "PRESENT PERFECT: What have you accomplished this year? What have you learned?",
-      context: "Practice talking about experiences from the past that connect to now: 'I have made many new friends' or 'I have improved my English.'"
+      level: "beginner",
+      text: "What were you doing at 7am this morning? At 12pm? At 6pm yesterday?",
+      context: "Use past continuous: I was sleeping at 7am. I was eating lunch at 12pm. I was taking the bus at 6pm."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "PRESENT PERFECT: How long have you lived in your current home? How long have you been studying English?",
-      context: "Use 'for' and 'since': 'I have lived here for three years' or 'I have been studying since September.'"
+      level: "beginner",
+      text: "Tell about an interruption: While you were doing something, what happened that stopped you?",
+      context: "Example: While I was studying, my friend called. While I was making dinner, I ran out of salt."
     },
     {
       id: "prompt-3",
-      level: "advanced",
-      text: "PAST PERFECT: Think about moving to the U.S. What had you done to prepare? What hadn't you expected?",
-      context: "Example: 'Before I moved here, I had studied English for six months, but I hadn't practiced speaking with native speakers.'"
+      level: "intermediate",
+      text: "Housing problem with background: Tell about a problem at home. What were you doing when you noticed the problem?",
+      context: "When + past simple / past continuous: When the heat stopped, I was watching TV. While I was cooking, the stove broke."
     },
     {
       id: "prompt-4",
-      level: "advanced",
-      text: "PAST PERFECT: Describe your first day at work or school here. What had you prepared? What surprised you?",
-      context: "Use past perfect to show what happened before: 'I had thought it would be easy, but I had underestimated the challenge.'"
+      level: "intermediate",
+      text: "MBTA story: While you were riding the T or bus, what happened? OR: What were you doing when the train/bus arrived?",
+      context: "While I was waiting at Park Street, the Green Line came. I was reading when we arrived at my stop."
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "Describe last night: What were you doing at different times? Did anything interrupt you?",
+      context: "At 7pm, I was making dinner. While I was eating, my neighbor knocked. At 9pm, I was doing homework when I got tired."
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "FUTURE PERFECT: Imagine yourself one year from now. What will you have achieved? What will you have learned?",
-      context: "Example: 'By this time next year, I will have completed Level 3, and I will have found a better job.'"
+      text: "Complex problem story: Tell about a housing or bill problem. Use at least 3 while/when sentences to give background details.",
+      context: "Example: While I was looking at my Eversource bill, I saw a mistake. When I called them, I was very nervous. They were checking my account when the call dropped."
+    },
+    {
+      id: "prompt-7",
+      level: "advanced",
+      text: "Two things at once: What were you and your family/roommates doing at the same time last weekend?",
+      context: "While I was cleaning, my roommate was cooking. When I finished, she was still washing dishes. We were both working when our friend arrived."
     },
   ],
 
-  reflectionPrompt: "Which perfect tense is easiest for you? Which is hardest? Why?",
-  reflectionMinLength: 40,
+  reflectionPrompt: "What's harder: using while or when correctly, or remembering to use was/were + -ing for the background action?",
+  reflectionMinLength: 35,
   minPromptsRequired: 3,
-  released: false
+  released: true
 };

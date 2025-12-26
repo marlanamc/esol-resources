@@ -15,7 +15,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "slug is required" }, { status: 400 });
     }
 
-    const userId = (session.user as any).id;
+    const userId = session.user.id;
     const reason = `grammar:${slug}`;
 
     const existing = await prisma.pointsLedger.findFirst({
@@ -37,7 +37,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true, awarded: true, points });
 }
-
 
 
 

@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const passwordHash = await bcrypt.hash(newPassword, 10);
 
     await prisma.user.update({
-        where: { id: (session.user as any).id },
+        where: { id: session.user.id },
         data: {
             password: passwordHash,
             mustChangePassword: false,
@@ -28,7 +28,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
 }
-
 
 
 

@@ -16,8 +16,8 @@ export default async function StudentDetailPage({
     }
 
     const { id: studentId } = await params;
-    const userRole = (session.user as any).role;
-    const teacherId = (session.user as any).id;
+    const userRole = session.user.role;
+    const teacherId = session.user.id;
 
     // Only teachers can access this page
     if (userRole !== "teacher") {

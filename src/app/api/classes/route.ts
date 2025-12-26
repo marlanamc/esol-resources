@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Class name is required" }, { status: 400 });
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Generate code if not provided
         let classCode = code;
@@ -54,16 +54,15 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(newClass);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error creating class:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to create class" },
+            { error: message || "Failed to create class" },
             { status: 500 }
         );
     }
 }
-
-
 
 
 

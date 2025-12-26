@@ -121,6 +121,28 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         return (a.title || '').localeCompare(b.title || '');
     };
 
+    const parseVerbQuizNum = (activity: Activity): number | null => {
+        const title = activity.title || '';
+        const match = title.match(/verb\s*quiz\s*(\d+)/i);
+        if (match) return Number(match[1]);
+
+        try {
+            const content = JSON.parse(activity.content || '{}');
+            if (content?.type === 'verb-quiz' && typeof content?.week === 'string') {
+                const weekMatch = content.week.match(/week\s*(\d+)/i);
+                if (weekMatch) return Number(weekMatch[1]);
+            }
+        } catch {}
+
+        return null;
+    };
+
+    const parseWeekNumFromTitle = (title?: string | null): number | null => {
+        if (!title) return null;
+        const match = title.match(/Week\s*(\d+)/i);
+        return match ? Number(match[1]) : null;
+    };
+
     const displayTitle = (title: string) =>
         title
             .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
@@ -240,13 +262,15 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
             ['passive', 'reported']
         );
 
-        const verbPatterns = sortByKeywordOrder(
+        const gerundsAndInfinitives = sortByKeywordOrder(
             take((a) => {
                 const t = normalizeTitle(a.title);
-                return t.includes('gerund') || t.includes('infinitive') || t.includes('phrasal');
+                return t.includes('gerund') || t.includes('infinitive');
             }),
-            ['infinitives vs gerunds', 'verbs + gerunds', 'gerunds after prepositions', 'phrasal verbs']
+            ['infinitives vs gerunds', 'verbs + gerunds', 'gerunds after prepositions']
         );
+
+        const phrasalVerbs = sortAlpha(take((a) => normalizeTitle(a.title).includes('phrasal')));
 
         const wordsAndQuantity = sortByKeywordOrder(
             take((a) => {
@@ -268,25 +292,61 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
 
         return [
             {
-                name: 'Verb Tenses',
-                activities: [],
-                subCategories: [
-                    { name: 'Simple', activities: simple },
-                    { name: 'Continuous', activities: continuous },
-                    { name: 'Perfect', activities: perfect },
-                    { name: 'Perfect Continuous', activities: perfectContinuous },
-                    { name: 'Mixed/All Tenses', activities: mixedAllTenses },
-                ],
+                name: 'Tenses',
+                activities: [
+                    ...simple,
+                    ...continuous,
+                    ...perfect,
+                    ...perfectContinuous,
+                    ...mixedAllTenses
+                ].sort((a, b) => {
+                    const order = ['present', 'past', 'future', 'perfect', 'continuous', 'review'];
+                    const getOrder = (t: string) => {
+                        const norm = normalizeTitle(t);
+                        for (let i = 0; i < order.length; i++) {
+                            if (norm.includes(order[i])) return i;
+                        }
+                        return order.length;
+                    };
+                    const aIdx = getOrder(a.title || '');
+                    const bIdx = getOrder(b.title || '');
+                    if (aIdx !== bIdx) return aIdx - bIdx;
+                    return displayTitle(a.title || '').localeCompare(displayTitle(b.title || ''));
+                })
             },
-            { name: 'Questions & Commands', activities: questionsAndCommands },
-            { name: 'Verb Patterns', activities: verbPatterns },
-            { name: 'Voice & Reporting', activities: voiceAndReporting },
-            { name: 'Conditionals', activities: conditionals },
-            { name: 'Modals', activities: modals },
-            { name: 'Habits & Preferences', activities: habitsAndPreferences },
-            { name: 'Words & Quantity', activities: wordsAndQuantity },
-            { name: 'Writing Mechanics', activities: writingMechanics },
-            { name: 'Other Grammar', activities: otherGrammar },
+            {
+                name: 'Questions, Modals & Communication',
+                activities: [
+                    ...questionsAndCommands,
+                    ...modals,
+                    ...voiceAndReporting
+                ].sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
+            },
+            {
+                name: 'Gerunds & Infinitives',
+                activities: gerundsAndInfinitives
+            },
+            {
+                name: 'Verbs & Patterns',
+                activities: [
+                    ...phrasalVerbs,
+                    ...habitsAndPreferences
+                ].sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
+            },
+            {
+                name: 'Describing & Comparing',
+                activities: [
+                    ...conditionals,
+                    ...wordsAndQuantity
+                ].sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
+            },
+            {
+                name: 'Writing Basics',
+                activities: [
+                    ...writingMechanics,
+                    ...otherGrammar
+                ].sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
+            },
         ];
     };
 
@@ -378,12 +438,18 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
             color: '#c86b51', // terracotta
             activities: activities.filter(a => a.category === 'quizzes')
                 .sort((a, b) => {
-                    // Sort by week number (Week 1, Week 2, etc.)
-                    const getWeekNum = (title: string) => {
-                        const match = title.match(/Week (\d+)/);
-                        return match ? parseInt(match[1]) : 999;
-                    };
-                    return getWeekNum(a.title || '') - getWeekNum(b.title || '');
+                    // Verb quizzes first, in ascending order (Verb Quiz 1..20)
+                    const aVerb = parseVerbQuizNum(a);
+                    const bVerb = parseVerbQuizNum(b);
+                    if (aVerb !== null && bVerb !== null) return aVerb - bVerb;
+                    if (aVerb !== null) return -1;
+                    if (bVerb !== null) return 1;
+
+                    // Otherwise, sort by week number if present, else fallback to title
+                    const aWeek = parseWeekNumFromTitle(a.title) ?? 999;
+                    const bWeek = parseWeekNumFromTitle(b.title) ?? 999;
+                    if (aWeek !== bWeek) return aWeek - bWeek;
+                    return (a.title || '').localeCompare(b.title || '');
                 })
         }
     ];
@@ -456,8 +522,8 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                 // Mark as featured locally so the badge updates without a full refresh
                 setFeaturedIds(prev => new Set(prev).add(activity.id));
                 setAssignmentMap(prev => ({ ...prev, [activity.id]: created.id }));
-            } catch (error: any) {
-                setAssignError(error.message || 'Failed to assign activity');
+            } catch (error: unknown) {
+                setAssignError(error instanceof Error ? error.message : 'Failed to assign activity');
             } finally {
                 setAssigningId(null);
             }
@@ -488,8 +554,8 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                     next.delete(activity.id);
                     return next;
                 });
-            } catch (error: any) {
-                setAssignError(error.message || 'Failed to unassign activity');
+            } catch (error: unknown) {
+                setAssignError(error instanceof Error ? error.message : 'Failed to unassign activity');
             } finally {
                 setAssigningId(null);
             }

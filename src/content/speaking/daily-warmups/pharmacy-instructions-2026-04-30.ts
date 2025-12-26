@@ -49,6 +49,6 @@ export const pharmacyInstructions_2026_04_30: SpeakingActivityContent = {
   reflectionPrompt: "What is one question you always want to ask before taking a new medicine?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

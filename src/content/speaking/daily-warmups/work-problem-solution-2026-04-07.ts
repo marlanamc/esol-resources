@@ -49,6 +49,6 @@ export const workProblemSolution_2026_04_07: SpeakingActivityContent = {
   reflectionPrompt: "What helps a solution conversation go well (clear examples, calm tone, next steps)?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

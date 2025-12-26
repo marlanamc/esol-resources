@@ -207,6 +207,8 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         const mixedAllTenses = sortAlpha(
             take((a) => {
                 const t = normalizeTitle(a.title);
+                // Exclude gerund/infinitive activities from tenses
+                if (t.includes("gerund") || t.includes("infinitive")) return false;
                 return t.includes("tenses") || t.includes("review") || t.includes(" vs ");
             })
         );
@@ -236,13 +238,15 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             ["passive", "reported"]
         );
 
-        const verbPatterns = sortByKeywordOrder(
+        const gerundsAndInfinitives = sortByKeywordOrder(
             take((a) => {
                 const t = normalizeTitle(a.title);
-                return t.includes("gerund") || t.includes("infinitive") || t.includes("phrasal");
+                return t.includes("gerund") || t.includes("infinitive");
             }),
-            ["infinitives vs gerunds", "verbs + gerunds", "gerunds after prepositions", "phrasal verbs"]
+            ["infinitives vs gerunds", "verbs + gerunds", "gerunds after prepositions"]
         );
+
+        const phrasalVerbs = sortAlpha(take((a) => normalizeTitle(a.title).includes("phrasal")));
 
         const wordsAndQuantity = sortByKeywordOrder(
             take((a) => {
@@ -264,25 +268,49 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
 
         return [
             {
-                name: "Verb Tenses",
+                name: "Tenses",
                 activities: [],
                 subCategories: [
                     { name: "Simple", activities: simple },
                     { name: "Continuous", activities: continuous },
                     { name: "Perfect", activities: perfect },
                     { name: "Perfect Continuous", activities: perfectContinuous },
-                    { name: "Mixed/All Tenses", activities: mixedAllTenses },
-                ],
+                    { name: "Reviews & Mixed", activities: mixedAllTenses },
+                ]
             },
-            { name: "Questions & Commands", activities: questionsAndCommands },
-            { name: "Verb Patterns", activities: verbPatterns },
-            { name: "Voice & Reporting", activities: voiceAndReporting },
-            { name: "Conditionals", activities: conditionals },
-            { name: "Modals", activities: modals },
-            { name: "Habits & Preferences", activities: habitsAndPreferences },
-            { name: "Words & Quantity", activities: wordsAndQuantity },
-            { name: "Writing Mechanics", activities: writingMechanics },
-            { name: "Other Grammar", activities: otherGrammar },
+            {
+                name: "Questions, Modals & Communication",
+                activities: [
+                    ...questionsAndCommands,
+                    ...modals,
+                    ...voiceAndReporting
+                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+            },
+            {
+                name: "Gerunds & Infinitives",
+                activities: gerundsAndInfinitives
+            },
+            {
+                name: "Verbs & Patterns",
+                activities: [
+                    ...phrasalVerbs,
+                    ...habitsAndPreferences
+                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+            },
+            {
+                name: "Describing & Comparing",
+                activities: [
+                    ...conditionals,
+                    ...wordsAndQuantity
+                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+            },
+            {
+                name: "Writing Basics",
+                activities: [
+                    ...writingMechanics,
+                    ...otherGrammar
+                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+            },
         ];
     };
 
@@ -435,9 +463,15 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         if (!data?.categoryData) return null;
 
         try {
-            const categories = JSON.parse(data.categoryData);
-            const completed = Object.values(categories).filter((c: any) => c?.completed).length;
-            const total = Object.keys(categories).length;
+            const categories = JSON.parse(data.categoryData) as unknown;
+            if (!categories || typeof categories !== "object") return null;
+            const values = Object.values(categories as Record<string, unknown>);
+            const completed = values.filter((value) => {
+                if (!value || typeof value !== "object") return false;
+                const entry = value as { completed?: unknown };
+                return entry.completed === true;
+            }).length;
+            const total = values.length;
             return `${completed}/${total} categories`;
         } catch {
             return null;
@@ -526,99 +560,195 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                     {isSubExpanded && (
                                                         subCategory.subCategories ? (
                                                             // Has sub-subcategories (like Verb Tenses -> Simple, Continuous, etc.)
-                                                            <div className="divide-y divide-border/10">
-                                                                {subCategory.subCategories
-                                                                    ?.filter((subSubCategory) => subSubCategory.activities.length > 0)
-                                                                    .map((subSubCategory) => {
-                                                                    const subSubKey = `${subKey}-${subSubCategory.name}`;
-                                                                    const isSubSubExpanded = expandedSubCategories.has(subSubKey);
+                                                            subCategory.name === 'Tenses' ? (
+                                                                <div className="divide-y divide-border/10">
+                                                                    {subCategory.subCategories
+                                                                        ?.filter((subSubCategory) => subSubCategory.activities.length > 0)
+                                                                        .map((subSubCategory) => {
+                                                                            const subSubKey = `${subKey}-${subSubCategory.name}`;
+                                                                            const isSubSubExpanded = expandedSubCategories.has(subSubKey);
 
-                                                                    return (
-                                                                        <div key={subSubKey}>
-                                                                            <button
-                                                                                onClick={() => toggleSubCategory(subSubKey)}
-                                                                                className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
-                                                                                style={{
-                                                                                    touchAction: 'manipulation'
-                                                                                }}
-                                                                            >
-                                                                                <div className="flex items-center gap-2">
-                                                                                    <span className="text-sm font-medium text-text group-hover:text-primary transition-colors pointer-events-none">
-                                                                                        {subSubCategory.name}
-                                                                                    </span>
-                                                                                    <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full pointer-events-none">
-                                                                                        {subSubCategory.activities.length}
-                                                                                    </span>
+                                                                            return (
+                                                                                <div key={subSubKey}>
+                                                                                    <button
+                                                                                        onClick={() => toggleSubCategory(subSubKey)}
+                                                                                        className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
+                                                                                        style={{
+                                                                                            touchAction: 'manipulation'
+                                                                                        }}
+                                                                                    >
+                                                                                        <div className="flex items-center gap-2">
+                                                                                            <span className="text-sm font-bold text-text group-hover:text-primary transition-colors pointer-events-none">
+                                                                                                {subSubCategory.name}
+                                                                                            </span>
+                                                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full pointer-events-none">
+                                                                                                {subSubCategory.activities.length}
+                                                                                            </span>
+                                                                                        </div>
+                                                                                        <svg
+                                                                                            className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-180' : ''}`}
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            viewBox="0 0 24 24"
+                                                                                        >
+                                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                                                        </svg>
+                                                                                    </button>
+
+                                                                                    {isSubSubExpanded && subSubCategory.activities.length > 0 && (
+                                                                                        <div className="pl-20 pr-4 pb-3 space-y-2">
+                                                                                            {subSubCategory.activities.map((activity) => {
+                                                                                                const progressValue = getProgress(activity.id);
+                                                                                                const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
+                                                                                                return (
+                                                                                                    <Link
+                                                                                                        key={activity.id}
+                                                                                                        href={`/activity/${activity.id}`}
+                                                                                                        className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+                                                                                                            }`}
+                                                                                                    >
+                                                                                                        {isCompleted && (
+                                                                                                            <div className="absolute top-3 right-3">
+                                                                                                                <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
+                                                                                                                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                                                                                    </svg>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        )}
+                                                                                                        <div className="flex items-start gap-3">
+                                                                                                            <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                                                                                                            <div className="flex-1 min-w-0">
+                                                                                                                <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
+                                                                                                                    }`}>
+                                                                                                                    {displayTitle(activity.title)}
+                                                                                                                </h4>
+                                                                                                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                                                                                                                    <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                                                                                                        {activity.type}
+                                                                                                                    </span>
+                                                                                                                    {progressValue > 0 && (
+                                                                                                                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
+                                                                                                                            {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
+                                                                                                                                ? getCategoryProgressText(activity.id)
+                                                                                                                                : `${progressValue}% done`}
+                                                                                                                        </span>
+                                                                                                                    )}
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        {progressValue > 0 && (
+                                                                                                            <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
+                                                                                                                <div
+                                                                                                                    className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
+                                                                                                                    style={{ width: `${Math.min(progressValue, 100)}%` }}
+                                                                                                                />
+                                                                                                            </div>
+                                                                                                        )}
+                                                                                                    </Link>
+                                                                                                );
+                                                                                            })}
+                                                                                        </div>
+                                                                                    )}
                                                                                 </div>
-                                                                                <svg
-                                                                                    className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-180' : ''}`}
-                                                                                    fill="none"
-                                                                                    stroke="currentColor"
-                                                                                    viewBox="0 0 24 24"
+                                                                            );
+                                                                        })}
+                                                                </div>
+                                                            ) : (
+                                                                <div className="divide-y divide-border/10">
+                                                                    {subCategory.subCategories
+                                                                        ?.filter((subSubCategory) => subSubCategory.activities.length > 0)
+                                                                        .map((subSubCategory) => {
+                                                                        const subSubKey = `${subKey}-${subSubCategory.name}`;
+                                                                        const isSubSubExpanded = expandedSubCategories.has(subSubKey);
+
+                                                                        return (
+                                                                            <div key={subSubKey}>
+                                                                                <button
+                                                                                    onClick={() => toggleSubCategory(subSubKey)}
+                                                                                    className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
+                                                                                    style={{
+                                                                                        touchAction: 'manipulation'
+                                                                                    }}
                                                                                 >
-                                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                                                </svg>
-                                                                            </button>
+                                                                                    <div className="flex items-center gap-2">
+                                                                                        <span className="text-sm font-medium text-text group-hover:text-primary transition-colors pointer-events-none">
+                                                                                            {subSubCategory.name}
+                                                                                        </span>
+                                                                                        <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full pointer-events-none">
+                                                                                            {subSubCategory.activities.length}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <svg
+                                                                                        className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-180' : ''}`}
+                                                                                        fill="none"
+                                                                                        stroke="currentColor"
+                                                                                        viewBox="0 0 24 24"
+                                                                                    >
+                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                                                    </svg>
+                                                                                </button>
 
-                                                                            {isSubSubExpanded && subSubCategory.activities.length > 0 && (
-                                                                                <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                    {subSubCategory.activities.map((activity) => {
-                                                                                        const progressValue = getProgress(activity.id);
-                                                                                        const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
-                                                                                        return (
-                                                                                            <Link
-                                                                                                key={activity.id}
-                                                                                                href={`/activity/${activity.id}`}
-                                                                                                className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
-                                                                                                    }`}
-                                                                                            >
-                                                                                                {isCompleted && (
-                                                                                                    <div className="absolute top-3 right-3">
-                                                                                                        <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
-                                                                                                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                                                                            </svg>
+                                                                                {isSubSubExpanded && subSubCategory.activities.length > 0 && (
+                                                                                    <div className="pl-20 pr-4 pb-3 space-y-2">
+                                                                                        {subSubCategory.activities.map((activity) => {
+                                                                                            const progressValue = getProgress(activity.id);
+                                                                                            const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
+                                                                                            return (
+                                                                                                <Link
+                                                                                                    key={activity.id}
+                                                                                                    href={`/activity/${activity.id}`}
+                                                                                                    className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+                                                                                                        }`}
+                                                                                                >
+                                                                                                    {isCompleted && (
+                                                                                                        <div className="absolute top-3 right-3">
+                                                                                                            <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
+                                                                                                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                                                                                </svg>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                )}
-                                                                                                <div className="flex items-start gap-3">
-                                                                                                    <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
-                                                                                                    <div className="flex-1 min-w-0">
-                                                                                                        <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
-                                                                                                            }`}>
-                                                                                                            {displayTitle(activity.title)}
-                                                                                                        </h4>
-                                                                                                        <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                                                                                                            <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                                                                                                                {activity.type}
-                                                                                                            </span>
-                                                                                                            {progressValue > 0 && (
-                                                                                                                <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                                                                    {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
-                                                                                                                        ? getCategoryProgressText(activity.id)
-                                                                                                                        : `${progressValue}% done`}
+                                                                                                    )}
+                                                                                                    <div className="flex items-start gap-3">
+                                                                                                        <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                                                                                                        <div className="flex-1 min-w-0">
+                                                                                                            <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
+                                                                                                                }`}>
+                                                                                                                {displayTitle(activity.title)}
+                                                                                                            </h4>
+                                                                                                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                                                                                                                <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                                                                                                    {activity.type}
                                                                                                                 </span>
-                                                                                                            )}
+                                                                                                                {progressValue > 0 && (
+                                                                                                                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
+                                                                                                                        {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
+                                                                                                                            ? getCategoryProgressText(activity.id)
+                                                                                                                            : `${progressValue}% done`}
+                                                                                                                    </span>
+                                                                                                                )}
+                                                                                                            </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                {progressValue > 0 && (
-                                                                                                    <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
-                                                                                                        <div
-                                                                                                            className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
-                                                                                                            style={{ width: `${Math.min(progressValue, 100)}%` }}
-                                                                                                        />
-                                                                                                    </div>
-                                                                                                )}
-                                                                                            </Link>
-                                                                                        );
-                                                                                    })}
-                                                                                </div>
-                                                                            )}
-                                                                        </div>
-                                                                    );
-                                                                })}
-                                                            </div>
+                                                                                                    {progressValue > 0 && (
+                                                                                                        <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
+                                                                                                            <div
+                                                                                                                className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
+                                                                                                                style={{ width: `${Math.min(progressValue, 100)}%` }}
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    )}
+                                                                                                </Link>
+                                                                                            );
+                                                                                        })}
+                                                                                    </div>
+                                                                                )}
+                                                                            </div>
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            )
                                                         ) : subCategory.activities.length > 0 && (
                                                             // No sub-subcategories - show activities directly
                                                             <div className="pl-12 pr-4 pb-4 space-y-2">

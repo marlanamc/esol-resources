@@ -66,7 +66,7 @@ export default function PWAInstallPrompt() {
     return null;
   }
 
-  if (sessionStorage.getItem('pwa-prompt-dismissed')) {
+  if (typeof window !== 'undefined' && sessionStorage.getItem('pwa-prompt-dismissed')) {
     return null;
   }
 
@@ -110,7 +110,5 @@ export default function PWAInstallPrompt() {
     </div>
   );
 }
-
-
 
 

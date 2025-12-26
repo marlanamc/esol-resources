@@ -49,6 +49,6 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
   reflectionPrompt: "Which application information is hardest to say quickly (address, email, dates)?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

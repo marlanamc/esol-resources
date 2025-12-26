@@ -10,7 +10,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const userRole = (session.user as any)?.role;
+    const userRole = session.user?.role;
     if (userRole !== 'teacher') {
         return NextResponse.json({ error: "Only teachers can release quizzes" }, { status: 403 });
     }

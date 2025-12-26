@@ -10,7 +10,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             icon: "🧱",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Every sentence you speak is built from four main building blocks: <span style="color: #3b82f6;">nouns</span>, <span style="color: #dc2626;">verbs</span>, <span style="color: #16a34a;">adjectives</span>, and <span style="color: #9333ea;">adverbs</span>. Understanding these parts helps you build stronger, clearer sentences.</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Every sentence you speak is built from <strong>eight essential building blocks</strong>: <span style="color: #3b82f6;">nouns</span>, <span style="color: #dc2626;">verbs</span>, <span style="color: #16a34a;">adjectives</span>, <span style="color: #9333ea;">adverbs</span>, <span style="color: #eab308;">pronouns</span>, <span style="color: #f97316;">articles</span>, <span style="color: #ea580c;">prepositions</span>, and <span style="color: #16a34a;">conjunctions</span>. Understanding these parts helps you build stronger, clearer sentences.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -21,6 +21,25 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     <li><strong>Expanding vocabulary:</strong> One word can change forms (work → worker → working)</li>
                     <li><strong>Fixing mistakes:</strong> Knowing parts of speech helps you spot and fix errors</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Understanding classroom instructions ("Use an <em>adjective</em> to describe it")</li>
+                        <li>Building better sentences when you speak (knowing where each word type goes)</li>
+                        <li>Learning grammar terminology so you can understand future lessons</li>
+                        <li>Practicing question formation (you need to know what a "verb" and "noun" are!)</li>
+                    </ul>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the semester, you'll use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong>Every week:</strong> Understanding what "gerund," "infinitive," "auxiliary verb," and "modal" mean</li>
+                        <li><strong>Learning about gerunds vs infinitives</strong> (you need to know what a "verb" is first!)</li>
+                        <li><strong>Understanding adverbs for workplace politeness:</strong> "Could you <em>possibly</em> help me?"</li>
+                        <li><strong>Expanding vocabulary:</strong> If you know "happy" (adjective), you also know "happiness" (noun) and "happily" (adverb)</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🧱 Think of parts of speech as LEGO blocks - once you know what each piece does, you can build anything!</p>
+                </div>
             `,
             exercises: [
                 {
@@ -534,18 +553,507 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         },
 
         {
-            id: "practice",
+            id: "pronouns",
             stepNumber: 5,
+            title: "Pronouns: Words That Replace Nouns",
+            icon: "🟡",
+            explanation: `
+                <h3>What Is a Pronoun?</h3>
+                <p>A <strong>pronoun</strong> is a word that takes the place of a noun. Instead of repeating "Maria" over and over, we can say "she."</p>
+                <p><strong>Example:</strong> Maria went to work. <span style="color: #3b82f6;">Maria</span> is tired. → <span style="color: #eab308;">She</span> is tired.</p>
+            `,
+            usageMeanings: [
+                {
+                    title: "👤 Subject Pronouns (Before the Verb)",
+                    description: "Who/what is doing the action - comes BEFORE the verb",
+                    examples: [
+                        {
+                            sentence: "<strong style='color: #eab308;'>I</strong> work at the hospital.",
+                            explanation: "✓ Subject doing the action (first person)"
+                        },
+                        {
+                            sentence: "<strong style='color: #eab308;'>She</strong> speaks English well.",
+                            explanation: "✓ Subject doing the action (third person female)"
+                        },
+                        {
+                            sentence: "<strong style='color: #eab308;'>They</strong> are my classmates.",
+                            explanation: "✓ Subject (plural)"
+                        },
+                        {
+                            sentence: "<strong style='color: #eab308;'>We</strong> study on Tuesdays and Thursdays.",
+                            explanation: "✓ Subject (first person plural)"
+                        },
+                    ],
+                },
+                {
+                    title: "🎯 Object Pronouns (After the Verb)",
+                    description: "Who/what receives the action - comes AFTER the verb",
+                    examples: [
+                        {
+                            sentence: "The teacher helps <strong style='color: #eab308;'>me</strong> with grammar.",
+                            explanation: "✓ Receiving the help (first person object)"
+                        },
+                        {
+                            sentence: "I called <strong style='color: #eab308;'>him</strong> yesterday.",
+                            explanation: "✓ Receiving the action (third person male object)"
+                        },
+                        {
+                            sentence: "People like <strong style='color: #eab308;'>her</strong>. She's very kind.",
+                            explanation: "✓ Receiving the liking (third person female object)"
+                        },
+                        {
+                            sentence: "Can you help <strong style='color: #eab308;'>us</strong> with this?",
+                            explanation: "✓ Receiving the help (first person plural object)"
+                        },
+                    ],
+                },
+                {
+                    title: "🏠 Possessive Adjectives (My, Your, His, Her...)",
+                    description: "Shows ownership - always comes before a noun",
+                    examples: [
+                        {
+                            sentence: "This is <strong style='color: #eab308;'>my</strong> apartment.",
+                            explanation: "✓ Shows who owns the apartment"
+                        },
+                        {
+                            sentence: "<strong style='color: #eab308;'>His</strong> name is Carlos.",
+                            explanation: "✓ Shows whose name"
+                        },
+                        {
+                            sentence: "Where is <strong style='color: #eab308;'>your</strong> car?",
+                            explanation: "✓ Shows who owns the car"
+                        },
+                        {
+                            sentence: "<strong style='color: #eab308;'>Their</strong> children go to this school.",
+                            explanation: "✓ Shows whose children (plural)"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "parts-pronouns-1",
+                    title: "Quick Practice: Pronouns",
+                    instructions: "Choose the correct pronoun.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Maria is tired. <strong>___</strong> worked all day.",
+                            options: [
+                                { value: "she", label: "She (subject pronoun)" },
+                                { value: "her", label: "Her (object pronoun)" },
+                                { value: "hers", label: "Hers (possessive)" },
+                            ],
+                            expectedAnswer: "she",
+                        },
+                        {
+                            type: "radio",
+                            label: "The teacher called <strong>___</strong> yesterday. (talking about yourself)",
+                            options: [
+                                { value: "i", label: "I (subject)" },
+                                { value: "me", label: "Me (object pronoun)" },
+                                { value: "my", label: "My (possessive)" },
+                            ],
+                            expectedAnswer: "me",
+                        },
+                        {
+                            type: "radio",
+                            label: "This is <strong>___</strong> book. (belongs to you)",
+                            options: [
+                                { value: "you", label: "You" },
+                                { value: "your", label: "Your (possessive adjective)" },
+                                { value: "yours", label: "Yours" },
+                            ],
+                            expectedAnswer: "your",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Common Mistake",
+                content: "Don't say 'Me and my friend went to the store.' Say 'My friend and I went to the store.' Subject pronouns (I, he, she, we, they) come BEFORE the verb!",
+            },
+        },
+
+        {
+            id: "articles",
+            stepNumber: 6,
+            title: "Articles: a, an, the",
+            icon: "🟠",
+            explanation: `
+                <h3>What Is an Article?</h3>
+                <p>An <strong>article</strong> is a small word that comes before a noun. English has three articles: <strong>a</strong>, <strong>an</strong>, and <strong>the</strong>.</p>
+            `,
+            usageMeanings: [
+                {
+                    title: "📌 'a' - General, Consonant Sound",
+                    description: "Use 'a' for general things (not specific) starting with a consonant SOUND",
+                    examples: [
+                        {
+                            sentence: "I need <strong style='color: #f97316;'>a</strong> job.",
+                            explanation: "✓ Any job (not a specific one), starts with 'j' sound"
+                        },
+                        {
+                            sentence: "She's <strong style='color: #f97316;'>a</strong> teacher.",
+                            explanation: "✓ General profession, starts with 't' sound"
+                        },
+                        {
+                            sentence: "We saw <strong style='color: #f97316;'>a</strong> doctor at the clinic.",
+                            explanation: "✓ Any doctor (not a specific one), starts with 'd' sound"
+                        },
+                    ],
+                },
+                {
+                    title: "📌 'an' - General, Vowel Sound",
+                    description: "Use 'an' for general things starting with a vowel SOUND (a, e, i, o, u)",
+                    examples: [
+                        {
+                            sentence: "I ate <strong style='color: #f97316;'>an</strong> apple.",
+                            explanation: "✓ Any apple, starts with 'a' sound"
+                        },
+                        {
+                            sentence: "She's <strong style='color: #f97316;'>an</strong> engineer.",
+                            explanation: "✓ General profession, starts with 'e' sound"
+                        },
+                        {
+                            sentence: "It takes <strong style='color: #f97316;'>an</strong> hour to get there.",
+                            explanation: "✓ Starts with vowel SOUND ('our'), even though 'h' is a consonant!"
+                        },
+                    ],
+                },
+                {
+                    title: "📍 'the' - Specific (You Both Know Which One)",
+                    description: "Use 'the' when talking about a SPECIFIC thing that both people know",
+                    examples: [
+                        {
+                            sentence: "I need to go to <strong style='color: #f97316;'>the</strong> bank.",
+                            explanation: "✓ Your specific bank (you both know which one)"
+                        },
+                        {
+                            sentence: "<strong style='color: #f97316;'>The</strong> teacher said the test is on Thursday.",
+                            explanation: "✓ Your specific teacher (everyone knows who)"
+                        },
+                        {
+                            sentence: "Close <strong style='color: #f97316;'>the</strong> door, please.",
+                            explanation: "✓ The specific door in this room (we can see it)"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "parts-articles-1",
+                    title: "Quick Practice: Articles",
+                    instructions: "Choose the correct article.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I need <strong>___</strong> apartment. (any apartment, not specific)",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "an", label: "an" },
+                                { value: "the", label: "the" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "She works at <strong>___</strong> hospital. (starts with 'h' sound, not specific)",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "an", label: "an" },
+                                { value: "the", label: "the" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "I'm going to <strong>___</strong> store. (the specific store we always go to)",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "an", label: "an" },
+                                { value: "the", label: "the" },
+                            ],
+                            expectedAnswer: "the",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Quick Test",
+                content: "Is it specific (you both know which one)? → Use 'the'. Is it general and starts with a vowel SOUND? → Use 'an'. Is it general and starts with a consonant sound? → Use 'a'.",
+            },
+        },
+
+        {
+            id: "prepositions",
+            stepNumber: 7,
+            title: "Prepositions: Location, Time, Direction",
+            icon: "🔶",
+            explanation: `
+                <h3>What Is a Preposition?</h3>
+                <p>A <strong>preposition</strong> shows the relationship between things - usually about time, location, or direction.</p>
+                <p><strong>Common prepositions:</strong> in, on, at, to, from, between, next to, behind, in front of, under, over</p>
+            `,
+            usageMeanings: [
+                {
+                    title: "⏰ Time (in, on, at)",
+                    description: "Shows when something happens",
+                    examples: [
+                        {
+                            sentence: "Class is <strong style='color: #ea580c;'>at</strong> 6:00 PM.",
+                            explanation: "✓ Specific time → use 'at'"
+                        },
+                        {
+                            sentence: "I work <strong style='color: #ea580c;'>on</strong> Tuesdays.",
+                            explanation: "✓ Days of the week → use 'on'"
+                        },
+                        {
+                            sentence: "She was born <strong style='color: #ea580c;'>in</strong> January.",
+                            explanation: "✓ Months/years/seasons → use 'in'"
+                        },
+                        {
+                            sentence: "We have class <strong style='color: #ea580c;'>in</strong> the morning.",
+                            explanation: "✓ General time period → use 'in'"
+                        },
+                    ],
+                },
+                {
+                    title: "📍 Location (in, on, at)",
+                    description: "Shows where something is",
+                    examples: [
+                        {
+                            sentence: "I live <strong style='color: #ea580c;'>in</strong> Boston.",
+                            explanation: "✓ City/country → use 'in'"
+                        },
+                        {
+                            sentence: "The book is <strong style='color: #ea580c;'>on</strong> the table.",
+                            explanation: "✓ Surface contact → use 'on'"
+                        },
+                        {
+                            sentence: "I'm <strong style='color: #ea580c;'>at</strong> work right now.",
+                            explanation: "✓ Specific location/place → use 'at'"
+                        },
+                        {
+                            sentence: "The bank is <strong style='color: #ea580c;'>next to</strong> the post office.",
+                            explanation: "✓ Beside/adjacent to something"
+                        },
+                    ],
+                },
+                {
+                    title: "➡️ Direction (to, from, into, through)",
+                    description: "Shows movement from one place to another",
+                    examples: [
+                        {
+                            sentence: "I walk <strong style='color: #ea580c;'>to</strong> work every day.",
+                            explanation: "✓ Moving toward a destination"
+                        },
+                        {
+                            sentence: "She's coming <strong style='color: #ea580c;'>from</strong> the hospital.",
+                            explanation: "✓ Starting point of movement"
+                        },
+                        {
+                            sentence: "Come <strong style='color: #ea580c;'>into</strong> the classroom.",
+                            explanation: "✓ Movement from outside to inside"
+                        },
+                        {
+                            sentence: "We drove <strong style='color: #ea580c;'>through</strong> the city.",
+                            explanation: "✓ Movement passing through something"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "parts-prepositions-1",
+                    title: "Quick Practice: Prepositions",
+                    instructions: "Choose the correct preposition.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Class starts <strong>___</strong> 6:00 PM.",
+                            options: [
+                                { value: "in", label: "in" },
+                                { value: "on", label: "on" },
+                                { value: "at", label: "at (for specific time)" },
+                            ],
+                            expectedAnswer: "at",
+                        },
+                        {
+                            type: "radio",
+                            label: "I live <strong>___</strong> Main Street.",
+                            options: [
+                                { value: "in", label: "in" },
+                                { value: "on", label: "on (for streets)" },
+                                { value: "at", label: "at" },
+                            ],
+                            expectedAnswer: "on",
+                        },
+                        {
+                            type: "radio",
+                            label: "She's going <strong>___</strong> the store.",
+                            options: [
+                                { value: "to", label: "to (direction toward)" },
+                                { value: "at", label: "at" },
+                                { value: "in", label: "in" },
+                            ],
+                            expectedAnswer: "to",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Common Patterns",
+                content: "Time: at 6:00, on Tuesday, in January. Location: in Boston, on Main Street, at the hospital. Direction: to work, from home, into the room.",
+            },
+        },
+
+        {
+            id: "conjunctions",
+            stepNumber: 8,
+            title: "Conjunctions: Connecting Words (FANBOYS)",
+            icon: "🔗",
+            explanation: `
+                <h3>What Is a Conjunction?</h3>
+                <p>A <strong>conjunction</strong> is a word that connects two ideas in a sentence. The most common ones are called <strong>FANBOYS</strong>:</p>
+                <p><strong>F</strong>or, <strong>A</strong>nd, <strong>N</strong>or, <strong>B</strong>ut, <strong>O</strong>r, <strong>Y</strong>et, <strong>S</strong>o</p>
+            `,
+            usageMeanings: [
+                {
+                    title: "➕ 'and' - Adding Information",
+                    description: "Connects two similar ideas",
+                    examples: [
+                        {
+                            sentence: "I work on Tuesdays <strong style='color: #16a34a;'>and</strong> Thursdays.",
+                            explanation: "✓ Adding two days together"
+                        },
+                        {
+                            sentence: "She speaks English <strong style='color: #16a34a;'>and</strong> Spanish.",
+                            explanation: "✓ Two languages, both true"
+                        },
+                        {
+                            sentence: "I need to buy milk <strong style='color: #16a34a;'>and</strong> bread.",
+                            explanation: "✓ Adding items to a list"
+                        },
+                    ],
+                },
+                {
+                    title: "⚡ 'but' - Contrasting Ideas",
+                    description: "Shows contrast or unexpected information",
+                    examples: [
+                        {
+                            sentence: "I'm tired, <strong style='color: #16a34a;'>but</strong> I need to work.",
+                            explanation: "✓ Contrasting two ideas (tired vs working)"
+                        },
+                        {
+                            sentence: "The apartment is small, <strong style='color: #16a34a;'>but</strong> it's cheap.",
+                            explanation: "✓ Showing contrast (size vs price)"
+                        },
+                        {
+                            sentence: "She studied hard, <strong style='color: #16a34a;'>but</strong> she didn't pass.",
+                            explanation: "✓ Unexpected result"
+                        },
+                    ],
+                },
+                {
+                    title: "❓ 'or' - Choices/Options",
+                    description: "Shows alternatives or options",
+                    examples: [
+                        {
+                            sentence: "Do you want tea <strong style='color: #16a34a;'>or</strong> coffee?",
+                            explanation: "✓ Giving a choice between two options"
+                        },
+                        {
+                            sentence: "We can go now <strong style='color: #16a34a;'>or</strong> wait until later.",
+                            explanation: "✓ Two possible options"
+                        },
+                        {
+                            sentence: "Is that your phone <strong style='color: #16a34a;'>or</strong> mine?",
+                            explanation: "✓ Question with two options"
+                        },
+                    ],
+                },
+                {
+                    title: "📌 'so' - Result/Consequence",
+                    description: "Shows the result or reason for something",
+                    examples: [
+                        {
+                            sentence: "I was tired, <strong style='color: #16a34a;'>so</strong> I went to bed early.",
+                            explanation: "✓ Result of being tired → went to bed"
+                        },
+                        {
+                            sentence: "It's raining, <strong style='color: #16a34a;'>so</strong> take an umbrella.",
+                            explanation: "✓ Because it's raining → consequence is take umbrella"
+                        },
+                        {
+                            sentence: "She studied hard, <strong style='color: #16a34a;'>so</strong> she passed the test.",
+                            explanation: "✓ Result of studying → passed"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "parts-conjunctions-1",
+                    title: "Quick Practice: Conjunctions",
+                    instructions: "Choose the correct conjunction.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I want to go, <strong>___</strong> I'm too tired.",
+                            options: [
+                                { value: "and", label: "and" },
+                                { value: "but", label: "but (shows contrast)" },
+                                { value: "or", label: "or" },
+                            ],
+                            expectedAnswer: "but",
+                        },
+                        {
+                            type: "radio",
+                            label: "Do you work on Tuesdays <strong>___</strong> Thursdays?",
+                            options: [
+                                { value: "and", label: "and (both days)" },
+                                { value: "but", label: "but" },
+                                { value: "or", label: "or (one or the other)" },
+                            ],
+                            expectedAnswer: "or",
+                        },
+                        {
+                            type: "radio",
+                            label: "It's cold outside, <strong>___</strong> wear a jacket.",
+                            options: [
+                                { value: "and", label: "and" },
+                                { value: "but", label: "but" },
+                                { value: "so", label: "so (result/consequence)" },
+                            ],
+                            expectedAnswer: "so",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Remember FANBOYS",
+                content: "For, And, Nor, But, Or, Yet, So - these are the seven main conjunctions. The most common ones you'll use daily are: and, but, or, so.",
+            },
+        },
+
+        {
+            id: "practice",
+            stepNumber: 9,
             title: "Practice: Identify the Parts of Speech",
             icon: "✏️",
             explanation: `
-                <h3>Let's Practice!</h3>
+                <h3>Let's Practice All 8 Parts!</h3>
                 <p>Read each sentence and identify the parts of speech. Use the color-coding system:</p>
                 <ul>
-                    <li><strong style='color: #3b82f6;'>Blue = Noun</strong></li>
-                    <li><strong style='color: #dc2626;'>Red = Verb</strong></li>
-                    <li><strong style='color: #16a34a;'>Green = Adjective</strong></li>
-                    <li><strong style='color: #9333ea;'>Purple = Adverb</strong></li>
+                    <li><strong style='color: #3b82f6;'>Blue = Noun</strong> (person, place, thing, idea)</li>
+                    <li><strong style='color: #dc2626;'>Red = Verb</strong> (action or state)</li>
+                    <li><strong style='color: #16a34a;'>Green = Adjective</strong> (describes noun)</li>
+                    <li><strong style='color: #9333ea;'>Purple = Adverb</strong> (describes verb/adjective)</li>
+                    <li><strong style='color: #eab308;'>Yellow = Pronoun</strong> (replaces noun)</li>
+                    <li><strong style='color: #f97316;'>Orange = Article</strong> (a, an, the)</li>
+                    <li><strong style='color: #ea580c;'>Dark Orange = Preposition</strong> (in, on, at, to, from...)</li>
+                    <li><strong style='color: #16a34a;'>Dark Green = Conjunction</strong> (and, but, or, so...)</li>
                 </ul>
             `,
             exercises: [
@@ -616,11 +1124,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
         {
             id: "summary",
-            stepNumber: 6,
+            stepNumber: 10,
             title: "Quick Reference",
             icon: "📋",
             explanation: `
-                <h3>The Four Main Parts of Speech</h3>
+                <h3>All 8 Parts of Speech - Quick Reference</h3>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem;">
@@ -649,6 +1157,34 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         <p><strong>What:</strong> Describes verb, adjective, or adverb</p>
                         <p><strong>Examples:</strong> fluently, always, here, very</p>
                         <p><strong>Test:</strong> Does it end in -ly or answer how/when/where?</p>
+                    </div>
+
+                    <div style="padding: 1rem; background: rgba(234, 179, 8, 0.1); border-radius: 0.5rem;">
+                        <h4 style="color: #eab308; margin-top: 0;">🟡 Pronouns</h4>
+                        <p><strong>What:</strong> Replaces a noun</p>
+                        <p><strong>Examples:</strong> I, you, he, she, it, we, they, me, him, her, us, them</p>
+                        <p><strong>Test:</strong> Can it replace a person's name?</p>
+                    </div>
+
+                    <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem;">
+                        <h4 style="color: #f97316; margin-top: 0;">🟠 Articles</h4>
+                        <p><strong>What:</strong> Small words before nouns</p>
+                        <p><strong>Examples:</strong> a, an, the</p>
+                        <p><strong>Test:</strong> Only 3 in English - a, an, the!</p>
+                    </div>
+
+                    <div style="padding: 1rem; background: rgba(234, 88, 12, 0.1); border-radius: 0.5rem;">
+                        <h4 style="color: #ea580c; margin-top: 0;">🔶 Prepositions</h4>
+                        <p><strong>What:</strong> Shows time, location, direction</p>
+                        <p><strong>Examples:</strong> in, on, at, to, from, between, next to</p>
+                        <p><strong>Test:</strong> Does it show where, when, or which direction?</p>
+                    </div>
+
+                    <div style="padding: 1rem; background: rgba(22, 163, 74, 0.15); border-radius: 0.5rem;">
+                        <h4 style="color: #16a34a; margin-top: 0;">🔗 Conjunctions</h4>
+                        <p><strong>What:</strong> Connects two ideas</p>
+                        <p><strong>Examples:</strong> and, but, or, so (FANBOYS)</p>
+                        <p><strong>Test:</strong> Does it join two sentences or ideas?</p>
                     </div>
                 </div>
 
@@ -768,15 +1304,75 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-5",
-            question: "Which word is a noun in: 'The small cat sleeps quietly'?",
+            question: "What part of speech is 'she' in: 'She works at the hospital'?",
             options: [
-                { value: "a", label: "small" },
-                { value: "b", label: "cat" },
-                { value: "c", label: "sleeps" },
-                { value: "d", label: "quietly" },
+                { value: "a", label: "Noun" },
+                { value: "b", label: "Verb" },
+                { value: "c", label: "Pronoun" },
+                { value: "d", label: "Article" },
+            ],
+            correctAnswer: "c",
+            explanation: "'She' is a pronoun - it replaces a person's name (subject pronoun).",
+        },
+        {
+            id: "quiz-6",
+            question: "What part of speech is 'the' in: 'I went to the store'?",
+            options: [
+                { value: "a", label: "Preposition" },
+                { value: "b", label: "Article" },
+                { value: "c", label: "Conjunction" },
+                { value: "d", label: "Pronoun" },
             ],
             correctAnswer: "b",
-            explanation: "'Cat' is the noun - it's a thing/animal. 'Small' is an adjective, 'sleeps' is a verb, 'quietly' is an adverb.",
+            explanation: "'The' is an article - one of only 3 articles in English (a, an, the).",
+        },
+        {
+            id: "quiz-7",
+            question: "What part of speech is 'at' in: 'Class starts at 6:00 PM'?",
+            options: [
+                { value: "a", label: "Pronoun" },
+                { value: "b", label: "Article" },
+                { value: "c", label: "Preposition" },
+                { value: "d", label: "Conjunction" },
+            ],
+            correctAnswer: "c",
+            explanation: "'At' is a preposition - it shows time (when the class starts).",
+        },
+        {
+            id: "quiz-8",
+            question: "What part of speech is 'but' in: 'I'm tired, but I need to work'?",
+            options: [
+                { value: "a", label: "Preposition" },
+                { value: "b", label: "Conjunction" },
+                { value: "c", label: "Adverb" },
+                { value: "d", label: "Pronoun" },
+            ],
+            correctAnswer: "b",
+            explanation: "'But' is a conjunction - it connects two contrasting ideas (FANBOYS).",
+        },
+        {
+            id: "quiz-9",
+            question: "Choose the correct pronoun: 'The teacher called ___ yesterday.' (talking about yourself)",
+            options: [
+                { value: "a", label: "I" },
+                { value: "b", label: "me" },
+                { value: "c", label: "my" },
+                { value: "d", label: "mine" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Me' is correct - it's an object pronoun (comes after the verb). 'I' is a subject pronoun (comes before the verb).",
+        },
+        {
+            id: "quiz-10",
+            question: "Choose the correct preposition: 'Class is ___ Tuesdays.'",
+            options: [
+                { value: "a", label: "in" },
+                { value: "b", label: "at" },
+                { value: "c", label: "on" },
+                { value: "d", label: "to" },
+            ],
+            correctAnswer: "c",
+            explanation: "'On' is correct - we use 'on' for days of the week (on Monday, on Tuesday, etc.).",
         },
     ],
 };

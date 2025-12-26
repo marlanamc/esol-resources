@@ -16,9 +16,10 @@ export function BreadcrumbTrail({
     sections,
     currentIndex,
     completedSections,
-    onJumpToSection,
+    onJumpToSection: _onJumpToSection,
     showQuiz,
 }: BreadcrumbTrailProps) {
+    void _onJumpToSection;
     const [isDesktop, setIsDesktop] = useState(false);
 
     // Detect if we're on desktop (md breakpoint: 768px)

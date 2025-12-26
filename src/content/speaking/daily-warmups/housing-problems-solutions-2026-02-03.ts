@@ -49,6 +49,6 @@ export const housingProblemsSolutions_2026_02_03: SpeakingActivityContent = {
   reflectionPrompt: "What information makes a complaint clear (where, when, how, examples)?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

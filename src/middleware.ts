@@ -4,7 +4,11 @@ import { NextResponse } from "next/server";
 export default withAuth(
     function middleware(req) {
         try {
-            const token = req.nextauth?.token as any;
+            const token = req.nextauth?.token as
+                | {
+                      mustChangePassword?: boolean;
+                  }
+                | undefined;
 
             // Force password change flow
             const isResetPage = req.nextUrl.pathname.startsWith("/password-reset");

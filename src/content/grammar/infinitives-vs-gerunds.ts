@@ -10,16 +10,41 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
             icon: "🤔",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"I want to work here" or "I want working here"? "I enjoy to cook" or "I enjoy cooking"? Some verbs need infinitives (to + verb), some need gerunds (-ing), and some take both! Master this, and you'll sound like a native speaker.</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">"I want to work here" or "I want working here"? "I enjoy to cook" or "I enjoy cooking"? There are <strong>6 essential patterns</strong> for using gerunds and infinitives. Master these, and you'll sound like a native speaker!</p>
                 </div>
 
+                <h3>The 6 Patterns You'll Learn</h3>
+                <ol>
+                    <li><strong>Subject = Gerund:</strong> "Swimming is fun!" "Cooking takes time"</li>
+                    <li><strong>Verb + Gerund:</strong> "I enjoy cooking" "She stopped smoking"</li>
+                    <li><strong>Preposition + Gerund:</strong> "I'm good at cooking" "Thank you for helping"</li>
+                    <li><strong>Adjective + Infinitive:</strong> "It's nice to meet you" "It's important to be on time"</li>
+                    <li><strong>Noun + Infinitive:</strong> "I asked him to help" "She wants me to call"</li>
+                    <li><strong>Verb + Infinitive:</strong> "I want to work here" "She decided to apply"</li>
+                </ol>
+
                 <h3>Why This Matters</h3>
-                <p>This is one of the trickiest parts of English, but it's everywhere in daily conversation:</p>
+                <p>These patterns are everywhere in daily conversation:</p>
                 <ul>
                     <li><strong>At work:</strong> "I decided <em>to apply</em>" vs "I finished <em>working</em>"</li>
                     <li><strong>In negotiations:</strong> "I'd like <em>to request</em>" vs "I avoid <em>working</em> weekends"</li>
-                    <li><strong>Making plans:</strong> "I plan <em>to start</em>" vs "I enjoy <em>teaching</em>"</li>
+                    <li><strong>Making plans:</strong> "It's important <em>to arrive</em> on time" vs "I enjoy <em>teaching</em>"</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Talking about transportation and getting around ("I want to learn how to drive")</li>
+                        <li>Preparing for job interviews ("I enjoy working with people" "I plan to stay long-term")</li>
+                        <li>Describing your job interests and skills ("I'm interested in learning new skills")</li>
+                    </ul>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong>Professional requests and negotiation:</strong> "I'd like to request..." "I avoid working..."</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💼 Using the right form makes you sound professional and confident in interviews!</p>
+                </div>
             `,
             exercises: [
                 {
@@ -134,9 +159,123 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
         },
 
         {
+            id: "pattern-1-subject-gerund",
+            stepNumber: 1,
+            title: "Pattern 1: Subject = Gerund (___ing is...)",
+            icon: "🌊",
+            explanation: `
+                <h3>Gerunds as Subjects: Using -ing Words Like Nouns</h3>
+                <p>In English, you can start a sentence with a gerund (verb + -ing) to talk about activities, hobbies, or general statements.</p>
+
+                <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #22c55e; margin: 1.5rem 0;">
+                    <h4 style="color: #22c55e; margin-top: 0;">Formula: [Gerund] + is/are + [adjective/noun]</h4>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Swimming</strong> is fun. | <strong>Cooking</strong> takes time. | <strong>Reading</strong> is relaxing.</p>
+                </div>
+            `,
+            usageMeanings: [
+                {
+                    title: "🏊 Talking About Hobbies and Activities",
+                    description: "Use gerund subjects to describe activities you enjoy or dislike",
+                    examples: [
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Swimming</strong> is fun!",
+                            explanation: "✓ The activity of swimming = fun"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Cooking</strong> relaxes me.",
+                            explanation: "✓ The activity of cooking = relaxing for me"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Learning</strong> English is hard but worth it.",
+                            explanation: "✓ The activity of learning English = difficult"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Working</strong> from home saves time.",
+                            explanation: "✓ The activity of working from home = time-saving"
+                        },
+                    ],
+                },
+                {
+                    title: "⏱️ Talking About How Long Things Take",
+                    description: "Use gerunds to say how much time an activity requires",
+                    examples: [
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Cooking</strong> takes time.",
+                            explanation: "✓ The activity of cooking = time-consuming"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Finding</strong> a job takes patience.",
+                            explanation: "✓ The process of finding a job = requires patience"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Commuting</strong> to work takes an hour.",
+                            explanation: "✓ The activity of commuting = 1 hour"
+                        },
+                    ],
+                },
+                {
+                    title: "💭 Making General Statements",
+                    description: "Use gerunds to make general truths or observations",
+                    examples: [
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Smoking</strong> is bad for your health.",
+                            explanation: "✓ General statement about smoking"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Exercising</strong> regularly improves your mood.",
+                            explanation: "✓ General truth about exercise"
+                        },
+                        {
+                            sentence: "<strong style='color: #22c55e;'>Being</strong> late is unprofessional.",
+                            explanation: "✓ General observation about lateness"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "pattern-1-practice",
+                    title: "Practice: Subject = Gerund",
+                    instructions: "Complete each sentence using a gerund as the subject.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. ___ (read) is my favorite hobby.",
+                            expectedAnswer: "Reading",
+                        },
+                        {
+                            type: "text",
+                            label: "2. ___ (drive) in the city is stressful.",
+                            expectedAnswer: "Driving",
+                        },
+                        {
+                            type: "text",
+                            label: "3. ___ (work) two jobs is exhausting.",
+                            expectedAnswer: "Working",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence uses a gerund as the subject?",
+                            options: [
+                                { value: "a", label: "Swimming is fun!" },
+                                { value: "b", label: "I enjoy swimming." },
+                                { value: "c", label: "I want to swim." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Quick Tip",
+                content: "When a gerund is the subject, the verb that follows is singular: 'Cooking IS fun' (not 'Cooking ARE fun'). Even if you're talking about multiple activities, each activity is singular!",
+            },
+        },
+
+        {
             id: "infinitive-verbs",
-            stepNumber: 2,
-            title: "Verbs + Infinitive (to + verb)",
+            stepNumber: 6,
+            title: "Pattern 6: Verb + Infinitive (to + verb)",
             icon: "➡️",
             explanation: `
                 <h3>These Verbs Are Followed by Infinitives</h3>
@@ -196,8 +335,8 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "gerund-verbs",
-            stepNumber: 3,
-            title: "Verbs + Gerund (verb + -ing)",
+            stepNumber: 2,
+            title: "Pattern 2: Verb + Gerund (I enjoy ___ing)",
             icon: "🔄",
             explanation: `
                 <h3>These Verbs Are Followed by Gerunds</h3>
@@ -256,8 +395,301 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
         },
 
         {
-            id: "both",
+            id: "pattern-3-preposition-gerund",
+            stepNumber: 3,
+            title: "Pattern 3: Preposition + Gerund (good at ___ing)",
+            icon: "🔗",
+            explanation: `
+                <h3>Prepositions Are Always Followed by Gerunds</h3>
+                <p>When a verb comes after a preposition (at, in, on, for, about, of, to, etc.), it must be a gerund (-ing form).</p>
+
+                <div style="background: rgba(34, 197, 94, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #22c55e; margin: 1.5rem 0;">
+                    <h4 style="color: #22c55e; margin-top: 0;">Formula: [Preposition] + [Gerund]</h4>
+                    <p style="margin: 0.5rem 0 0 0;">I'm good <strong>at cooking</strong>. | Thank you <strong>for helping</strong>. | I'm interested <strong>in learning</strong>.</p>
+                </div>
+
+                <h3>Common Patterns:</h3>
+                <ul>
+                    <li><strong>good at / bad at:</strong> I'm good <em>at</em> cooking.</li>
+                    <li><strong>interested in:</strong> She's interested <em>in</em> learning Spanish.</li>
+                    <li><strong>thank you for:</strong> Thank you <em>for</em> helping me.</li>
+                    <li><strong>tired of:</strong> I'm tired <em>of</em> working late.</li>
+                    <li><strong>think about:</strong> I'm thinking <em>about</em> changing jobs.</li>
+                    <li><strong>look forward to:</strong> I look forward <em>to</em> seeing you! (NOT "to see")</li>
+                </ul>
+
+                <div style="background: rgba(249, 115, 22, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1.5rem 0; border-left: 4px solid #f97316;">
+                    <p style="margin: 0;"><strong>📚 Want to learn more about this pattern?</strong><br/>
+                    We have a dedicated guide called <strong>"Gerunds After Prepositions"</strong> that focuses on professional communication and job applications. It includes 30+ common preposition + gerund combinations you'll use at work!</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "pattern-3-practice",
+                    title: "Quick Practice: Preposition + Gerund",
+                    instructions: "Complete each sentence with the gerund form.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. I'm good at ___ (cook).",
+                            expectedAnswer: "cooking",
+                        },
+                        {
+                            type: "text",
+                            label: "2. Thank you for ___ (help) me.",
+                            expectedAnswer: "helping",
+                        },
+                        {
+                            type: "text",
+                            label: "3. She's interested in ___ (learn) English.",
+                            expectedAnswer: "learning",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I'm thinking about to change jobs." },
+                                { value: "b", label: "I'm thinking about changing jobs." },
+                                { value: "c", label: "I'm thinking about change jobs." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Tricky One!",
+                content: "'Look forward to' ends with 'to' but it's a preposition, not an infinitive marker! → I look forward to SEEING you (NOT 'to see').",
+            },
+        },
+
+        {
+            id: "pattern-4-adjective-infinitive",
             stepNumber: 4,
+            title: "Pattern 4: Adjective + Infinitive (It's nice to...)",
+            icon: "✨",
+            explanation: `
+                <h3>It's + Adjective + Infinitive</h3>
+                <p>Use this pattern to give opinions, make small talk, or describe situations.</p>
+
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin: 1.5rem 0;">
+                    <h4 style="color: #3b82f6; margin-top: 0;">Formula: It's + [adjective] + to + [verb]</h4>
+                    <p style="margin: 0.5rem 0 0 0;">It's nice <strong>to meet</strong> you. | It's important <strong>to be</strong> on time. | It's easy <strong>to learn</strong>.</p>
+                </div>
+            `,
+            usageMeanings: [
+                {
+                    title: "👋 Making Small Talk and Being Polite",
+                    description: "Common phrases for greetings and professional communication",
+                    examples: [
+                        {
+                            sentence: "It's nice <strong style='color: #3b82f6;'>to meet</strong> you.",
+                            explanation: "✓ Standard greeting when meeting someone"
+                        },
+                        {
+                            sentence: "It's great <strong style='color: #3b82f6;'>to see</strong> you again!",
+                            explanation: "✓ Polite way to greet someone you know"
+                        },
+                        {
+                            sentence: "It's good <strong style='color: #3b82f6;'>to hear</strong> from you.",
+                            explanation: "✓ Responding to messages or calls"
+                        },
+                    ],
+                },
+                {
+                    title: "💼 Giving Opinions About Work",
+                    description: "Expressing what's important, necessary, or difficult in professional contexts",
+                    examples: [
+                        {
+                            sentence: "It's important <strong style='color: #3b82f6;'>to arrive</strong> on time.",
+                            explanation: "✓ Stating workplace expectations"
+                        },
+                        {
+                            sentence: "It's necessary <strong style='color: #3b82f6;'>to complete</strong> the training.",
+                            explanation: "✓ Explaining requirements"
+                        },
+                        {
+                            sentence: "It's hard <strong style='color: #3b82f6;'>to find</strong> a good job.",
+                            explanation: "✓ Describing difficulty"
+                        },
+                        {
+                            sentence: "It's easy <strong style='color: #3b82f6;'>to make</strong> mistakes when you're learning.",
+                            explanation: "✓ Being encouraging"
+                        },
+                    ],
+                },
+                {
+                    title: "📋 Common Adjectives with This Pattern",
+                    description: "Frequently used adjectives in this structure",
+                    examples: [
+                        {
+                            sentence: "It's possible <strong style='color: #3b82f6;'>to change</strong> your schedule.",
+                            explanation: "✓ Discussing possibilities"
+                        },
+                        {
+                            sentence: "It's difficult <strong style='color: #3b82f6;'>to understand</strong> medical terms.",
+                            explanation: "✓ Expressing challenges"
+                        },
+                        {
+                            sentence: "It's safe <strong style='color: #3b82f6;'>to walk</strong> here during the day.",
+                            explanation: "✓ Discussing safety"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "pattern-4-practice",
+                    title: "Practice: Adjective + Infinitive",
+                    instructions: "Complete each sentence using the infinitive form.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. It's nice ___ (meet) you!",
+                            expectedAnswer: "to meet",
+                        },
+                        {
+                            type: "text",
+                            label: "2. It's important ___ (be) on time for work.",
+                            expectedAnswer: "to be",
+                        },
+                        {
+                            type: "text",
+                            label: "3. It's hard ___ (find) a good apartment.",
+                            expectedAnswer: "to find",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct for making small talk?",
+                            options: [
+                                { value: "a", label: "It's nice meeting you." },
+                                { value: "b", label: "It's nice to meet you." },
+                                { value: "c", label: "Both are correct" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Common Adjectives",
+                content: "nice, good, great, important, necessary, hard, difficult, easy, possible, impossible, safe, dangerous",
+            },
+        },
+
+        {
+            id: "pattern-5-noun-infinitive",
+            stepNumber: 5,
+            title: "Pattern 5: Noun + Infinitive (I asked him to...)",
+            icon: "👥",
+            explanation: `
+                <h3>Object Pronoun + Infinitive: Making Requests and Giving Instructions</h3>
+                <p>Use this pattern when you want someone to do something, or when you're talking about what someone wants/expects from another person.</p>
+
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6; margin: 1.5rem 0;">
+                    <h4 style="color: #3b82f6; margin-top: 0;">Formula: Verb + [object pronoun/noun] + to + [verb]</h4>
+                    <p style="margin: 0.5rem 0 0 0;">I asked <strong>him to call</strong> me. | She wants <strong>us to help</strong>. | I need <strong>you to listen</strong>.</p>
+                </div>
+            `,
+            usageMeanings: [
+                {
+                    title: "🗣️ Making Requests",
+                    description: "Politely asking someone to do something",
+                    examples: [
+                        {
+                            sentence: "I need <strong style='color: #3b82f6;'>you to send</strong> me the form.",
+                            explanation: "✓ Direct request"
+                        },
+                        {
+                            sentence: "Could you ask <strong style='color: #3b82f6;'>him to call</strong> me?",
+                            explanation: "✓ Polite request through someone else"
+                        },
+                        {
+                            sentence: "I'd like <strong style='color: #3b82f6;'>you to review</strong> this document.",
+                            explanation: "✓ Formal/polite request"
+                        },
+                    ],
+                },
+                {
+                    title: "📢 Giving Instructions",
+                    description: "Telling someone what to do (work, school, home)",
+                    examples: [
+                        {
+                            sentence: "The manager told <strong style='color: #3b82f6;'>me to arrive</strong> early.",
+                            explanation: "✓ Instruction from supervisor"
+                        },
+                        {
+                            sentence: "The teacher asked <strong style='color: #3b82f6;'>us to complete</strong> the assignment.",
+                            explanation: "✓ School instruction"
+                        },
+                        {
+                            sentence: "My doctor advised <strong style='color: #3b82f6;'>me to exercise</strong> more.",
+                            explanation: "✓ Professional advice"
+                        },
+                    ],
+                },
+                {
+                    title: "💭 Expressing Expectations and Desires",
+                    description: "Saying what you want or expect from others",
+                    examples: [
+                        {
+                            sentence: "She wants <strong style='color: #3b82f6;'>me to help</strong> with the project.",
+                            explanation: "✓ What someone desires"
+                        },
+                        {
+                            sentence: "They expect <strong style='color: #3b82f6;'>us to finish</strong> by Friday.",
+                            explanation: "✓ What's expected"
+                        },
+                        {
+                            sentence: "I would like <strong style='color: #3b82f6;'>you to consider</strong> my request.",
+                            explanation: "✓ Formal desire/hope"
+                        },
+                    ],
+                },
+            ],
+            exercises: [
+                {
+                    id: "pattern-5-practice",
+                    title: "Practice: Noun + Infinitive",
+                    instructions: "Complete each sentence using the pattern: object + to + verb.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "1. I asked him ___ (call) me tomorrow.",
+                            expectedAnswer: "to call",
+                        },
+                        {
+                            type: "text",
+                            label: "2. She wants us ___ (help) with the party.",
+                            expectedAnswer: "to help",
+                        },
+                        {
+                            type: "text",
+                            label: "3. The teacher told me ___ (study) for the test.",
+                            expectedAnswer: "to study",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence is correct?",
+                            options: [
+                                { value: "a", label: "I need you listen to me." },
+                                { value: "b", label: "I need you to listen to me." },
+                                { value: "c", label: "I need you listening to me." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Common Verbs for This Pattern",
+                content: "ask, tell, want, need, would like, expect, advise, remind, encourage, allow, help",
+            },
+        },
+
+        {
+            id: "both",
+            stepNumber: 7,
             title: "Verbs That Take BOTH (with Different Meanings)",
             icon: "⚡",
             explanation: `
@@ -330,8 +762,8 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "practical-tips",
-            stepNumber: 5,
-            title: "Practical Tips for Real Life",
+            stepNumber: 8,
+            title: "Practical Tips: Using All 6 Patterns in Real Life",
             icon: "💼",
             explanation: `
                 <h3>How to Use This in Job Applications & Negotiations</h3>
@@ -419,18 +851,48 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "summary",
-            title: "Quick Reference: Infinitives vs Gerunds Cheat Sheet",
+            title: "Quick Reference: All 6 Patterns Cheat Sheet",
             icon: "📋",
             explanation: `
-                <h3>Common Verbs + Infinitive (to + verb)</h3>
-                <p style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                    want, need, decide, plan, hope, expect, agree, refuse, promise, offer, would like
-                </p>
+                <h3>The 6 Essential Patterns</h3>
 
-                <h3>Common Verbs + Gerund (verb + -ing)</h3>
-                <p style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                    enjoy, finish, avoid, keep, quit/stop, consider, suggest, recommend, mind, miss
-                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
+                        <h4 style="color: #22c55e; margin-top: 0;">Pattern 1: Subject = Gerund</h4>
+                        <p style="margin: 0.25rem 0;"><strong>Formula:</strong> [Gerund] + is/are</p>
+                        <p style="margin: 0;"><em>Swimming is fun!</em><br/><em>Cooking takes time.</em></p>
+                    </div>
+
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
+                        <h4 style="color: #22c55e; margin-top: 0;">Pattern 2: Verb + Gerund</h4>
+                        <p style="margin: 0.25rem 0;"><strong>Verbs:</strong> enjoy, finish, avoid, keep, quit</p>
+                        <p style="margin: 0;"><em>I enjoy cooking.</em><br/><em>She stopped smoking.</em></p>
+                    </div>
+
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
+                        <h4 style="color: #22c55e; margin-top: 0;">Pattern 3: Preposition + Gerund</h4>
+                        <p style="margin: 0.25rem 0;"><strong>Formula:</strong> [Prep] + [Gerund]</p>
+                        <p style="margin: 0;"><em>I'm good at cooking.</em><br/><em>Thank you for helping.</em></p>
+                    </div>
+
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                        <h4 style="color: #3b82f6; margin-top: 0;">Pattern 4: Adjective + Infinitive</h4>
+                        <p style="margin: 0.25rem 0;"><strong>Formula:</strong> It's + [adj] + to + [verb]</p>
+                        <p style="margin: 0;"><em>It's nice to meet you.</em><br/><em>It's important to be on time.</em></p>
+                    </div>
+
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                        <h4 style="color: #3b82f6; margin-top: 0;">Pattern 5: Noun + Infinitive</h4>
+                        <p style="margin: 0.25rem 0;"><strong>Formula:</strong> Verb + [object] + to + [verb]</p>
+                        <p style="margin: 0;"><em>I asked him to help.</em><br/><em>She wants me to call.</em></p>
+                    </div>
+
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                        <h4 style="color: #3b82f6; margin-top: 0;">Pattern 6: Verb + Infinitive</h4>
+                        <p style="margin: 0.25rem 0;"><strong>Verbs:</strong> want, need, decide, plan, hope</p>
+                        <p style="margin: 0;"><em>I want to work here.</em><br/><em>She decided to apply.</em></p>
+                    </div>
+                </div>
 
                 <h3>Verbs That Take BOTH (same meaning)</h3>
                 <p style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem;">
@@ -467,15 +929,16 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
                 <h3>Common Mistakes</h3>
                 <ul>
-                    <li>❌ "I enjoy to work here" → ✅ "I enjoy working here"</li>
-                    <li>❌ "I want working here" → ✅ "I want to work here"</li>
-                    <li>❌ "She finished to study" → ✅ "She finished studying"</li>
-                    <li>❌ "We decided applying" → ✅ "We decided to apply"</li>
+                    <li>❌ "I enjoy to work here" → ✅ "I enjoy working here" (Pattern 2)</li>
+                    <li>❌ "I want working here" → ✅ "I want to work here" (Pattern 6)</li>
+                    <li>❌ "I'm good at to cook" → ✅ "I'm good at cooking" (Pattern 3)</li>
+                    <li>❌ "It's important arriving on time" → ✅ "It's important to arrive on time" (Pattern 4)</li>
+                    <li>❌ "I asked him calling me" → ✅ "I asked him to call me" (Pattern 5)</li>
                 </ul>
             `,
             tipBox: {
-                title: "💡 When in Doubt",
-                content: "If the verb expresses a FUTURE goal, decision, or desire, try the infinitive first. If it expresses an EXPERIENCE or ongoing activity, try the gerund. Most of the time, this works!",
+                title: "💡 Quick Memory Trick",
+                content: "Gerunds (Patterns 1-3): Subject, Verb, Preposition + -ing. Infinitives (Patterns 4-6): Adjective, Noun, Verb + to. When in doubt, think about the context!",
             },
             exercises: [
                 {
@@ -542,28 +1005,83 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which sentence is correct?",
+            question: "Pattern 1 (Subject = Gerund): Which sentence uses a gerund as the subject?",
+            options: [
+                { value: "a", label: "Swimming is fun!" },
+                { value: "b", label: "I enjoy swimming." },
+                { value: "c", label: "I want to swim." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Swimming is fun' uses a gerund (Swimming) as the subject of the sentence. Pattern 1: Subject = Gerund.",
+        },
+        {
+            id: "quiz-2",
+            question: "Pattern 2 (Verb + Gerund): Which sentence is correct?",
             options: [
                 { value: "a", label: "I enjoy to work with children." },
                 { value: "b", label: "I enjoy working with children." },
                 { value: "c", label: "I enjoy work with children." },
             ],
             correctAnswer: "b",
-            explanation: "'Enjoy' takes a gerund (-ing form), not an infinitive.",
+            explanation: "'Enjoy' takes a gerund (-ing form), not an infinitive. Pattern 2: Verb + Gerund.",
         },
         {
-            id: "quiz-2",
-            question: "Which sentence is correct?",
+            id: "quiz-3",
+            question: "Pattern 3 (Preposition + Gerund): Which sentence is correct?",
+            options: [
+                { value: "a", label: "I'm good at to cook." },
+                { value: "b", label: "I'm good at cooking." },
+                { value: "c", label: "I'm good at cook." },
+            ],
+            correctAnswer: "b",
+            explanation: "Prepositions are always followed by gerunds, not infinitives. Pattern 3: Preposition + Gerund.",
+        },
+        {
+            id: "quiz-4",
+            question: "Pattern 4 (Adjective + Infinitive): Which sentence is correct?",
+            options: [
+                { value: "a", label: "It's nice meeting you." },
+                { value: "b", label: "It's nice to meet you." },
+                { value: "c", label: "It's nice meet you." },
+            ],
+            correctAnswer: "b",
+            explanation: "Use 'It's + adjective + infinitive' for greetings and opinions. Pattern 4: Adjective + Infinitive. (Note: 'It's nice meeting you' is also correct in some contexts!)",
+        },
+        {
+            id: "quiz-5",
+            question: "Pattern 5 (Noun + Infinitive): Which sentence is correct?",
+            options: [
+                { value: "a", label: "I asked him calling me." },
+                { value: "b", label: "I asked him to call me." },
+                { value: "c", label: "I asked him call me." },
+            ],
+            correctAnswer: "b",
+            explanation: "Use 'verb + object + infinitive' for requests and instructions. Pattern 5: Noun + Infinitive.",
+        },
+        {
+            id: "quiz-6",
+            question: "Pattern 6 (Verb + Infinitive): Which sentence is correct?",
             options: [
                 { value: "a", label: "I decided applying for the job." },
                 { value: "b", label: "I decided to apply for the job." },
                 { value: "c", label: "I decided apply for the job." },
             ],
             correctAnswer: "b",
-            explanation: "'Decide' takes an infinitive (to + verb), not a gerund.",
+            explanation: "'Decide' takes an infinitive (to + verb), not a gerund. Pattern 6: Verb + Infinitive.",
         },
         {
-            id: "quiz-3",
+            id: "quiz-7",
+            question: "Complete using Pattern 2 (Verb + Gerund): 'She finished ___ her application.'",
+            options: [
+                { value: "a", label: "to complete" },
+                { value: "b", label: "completing" },
+                { value: "c", label: "complete" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Finish' always takes a gerund: finished completing. Pattern 2: Verb + Gerund.",
+        },
+        {
+            id: "quiz-8",
             question: "What's the difference? 'I stopped to smoke' vs 'I stopped smoking'",
             options: [
                 { value: "a", label: "They mean the same thing." },
@@ -571,29 +1089,29 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                 { value: "c", label: "First = I quit cigarettes. Second = I paused to have a cigarette." },
             ],
             correctAnswer: "b",
-            explanation: "'Stop to do' = pause in order to do. 'Stop doing' = quit the activity.",
+            explanation: "'Stop to do' = pause in order to do. 'Stop doing' = quit the activity. Some verbs take both forms with different meanings!",
         },
         {
-            id: "quiz-4",
-            question: "Complete: 'She finished ___ her application.'",
+            id: "quiz-9",
+            question: "Which pattern is used in: 'Learning English takes time'?",
             options: [
-                { value: "a", label: "to complete" },
-                { value: "b", label: "completing" },
-                { value: "c", label: "complete" },
+                { value: "a", label: "Pattern 1: Subject = Gerund" },
+                { value: "b", label: "Pattern 2: Verb + Gerund" },
+                { value: "c", label: "Pattern 3: Preposition + Gerund" },
             ],
-            correctAnswer: "b",
-            explanation: "'Finish' always takes a gerund: finished completing.",
+            correctAnswer: "a",
+            explanation: "'Learning' is the subject of the sentence. Pattern 1: Subject = Gerund (___ing is/takes/etc.)",
         },
         {
-            id: "quiz-5",
-            question: "Which verb can take BOTH infinitive and gerund with the same meaning?",
+            id: "quiz-10",
+            question: "Which pattern is used in: 'The manager wants us to finish by Friday'?",
             options: [
-                { value: "a", label: "enjoy" },
-                { value: "b", label: "start" },
-                { value: "c", label: "finish" },
+                { value: "a", label: "Pattern 4: Adjective + Infinitive" },
+                { value: "b", label: "Pattern 5: Noun + Infinitive" },
+                { value: "c", label: "Pattern 6: Verb + Infinitive" },
             ],
             correctAnswer: "b",
-            explanation: "'Start' can take both: 'started to work' = 'started working' (same meaning). 'Enjoy' only takes gerund, 'finish' only takes gerund.",
+            explanation: "'Wants us to finish' follows the pattern: verb + object + infinitive. Pattern 5: Noun + Infinitive.",
         },
     ],
 };

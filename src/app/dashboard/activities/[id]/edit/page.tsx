@@ -17,7 +17,7 @@ export default async function EditActivityPage({ params }: Props) {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role;
+    const userRole = session.user?.role;
     if (userRole !== "teacher") {
         redirect("/dashboard");
     }
@@ -48,7 +48,6 @@ export default async function EditActivityPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

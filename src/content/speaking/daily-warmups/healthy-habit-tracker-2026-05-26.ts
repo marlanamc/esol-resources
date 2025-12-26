@@ -49,6 +49,6 @@ export const healthyHabitTracker_2026_05_26: SpeakingActivityContent = {
   reflectionPrompt: "What did you learn from the survey? What is one habit you want to change?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };
 

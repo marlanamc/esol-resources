@@ -66,8 +66,8 @@ export default function SubmissionsList({ assignment, students }: Props) {
             setScore("");
             setFeedback("");
             router.refresh();
-        } catch (err: any) {
-            setError(err.message || "Failed to grade submission");
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to grade submission");
         } finally {
             setIsLoading(false);
         }
@@ -231,7 +231,6 @@ export default function SubmissionsList({ assignment, students }: Props) {
         </div>
     );
 }
-
 
 
 

@@ -15,7 +15,7 @@ export default function PasswordResetPage() {
 
     useEffect(() => {
         if (status === "loading") return;
-        const mustChange = (session?.user as any)?.mustChangePassword;
+        const mustChange = session?.user?.mustChangePassword;
         if (!mustChange) {
             router.replace("/dashboard");
         }
@@ -51,8 +51,12 @@ export default function PasswordResetPage() {
             setConfirm("");
             // ensure session refresh on next login
             await signOut({ redirect: true, callbackUrl: "/login" });
-        } catch (err: any) {
-            setError(err.message || "Failed to update password.");
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message || "Failed to update password.");
+            } else {
+                setError("Failed to update password.");
+            }
         } finally {
             setIsSubmitting(false);
         }
@@ -147,7 +151,6 @@ export default function PasswordResetPage() {
         </div>
     );
 }
-
 
 
 

@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as any)?.role;
+        const userRole = session.user?.role;
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Only teachers can grade submissions" }, { status: 403 });
         }
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Submission ID is required" }, { status: 400 });
         }
 
-        const userId = (session.user as any)?.id;
+        const userId = session.user?.id;
 
         // Get submission with assignment and class
         const submission = await prisma.submission.findUnique({
@@ -61,16 +61,15 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json(updated);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error grading submission:", error);
+        const message = error instanceof Error ? error.message : undefined;
         return NextResponse.json(
-            { error: error.message || "Failed to grade submission" },
+            { error: message || "Failed to grade submission" },
             { status: 500 }
         );
     }
 }
-
-
 
 
 

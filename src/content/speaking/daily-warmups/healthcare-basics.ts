@@ -48,5 +48,5 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which perfect tense did you practice? What made it challenging?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: false
+  released: true
 };

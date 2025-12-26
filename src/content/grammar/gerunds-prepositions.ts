@@ -13,6 +13,10 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     <p style="font-size: 1.125rem; margin-bottom: 0;">"I'm interested in working here." "She's good at solving problems." "Thank you for helping me." Notice the pattern? After prepositions (in, at, for), we use the -ing form. Master this, and your English sounds natural and professional.</p>
                 </div>
 
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; border-left: 4px solid #3b82f6;">
+                    <p style="margin: 0;"><strong>📚 Part of the 6 Patterns:</strong> This guide focuses on <strong>Pattern 3: Preposition + Gerund</strong> from the "Infinitives vs Gerunds" guide. For a complete overview of all 6 patterns (Subject = Gerund, Verb + Gerund, Preposition + Gerund, Adjective + Infinitive, Noun + Infinitive, and Verb + Infinitive), check out the main "Infinitives vs Gerunds" guide!</p>
+                </div>
+
                 <h3>Why This Matters</h3>
                 <p>This pattern is everywhere in job applications, interviews, and professional communication:</p>
                 <ul>

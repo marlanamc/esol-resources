@@ -20,6 +20,18 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li><strong>Policies mention them:</strong> "Clock in/out" "Call out sick"</li>
                     <li><strong>Coworkers expect you to know:</strong> "Can you cover for me?" "I'll get back to you"</li>
                 </ul>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li>Making workplace small talk ("How's the new schedule working out?")</li>
+                        <li>Understanding workplace policies ("You need to clock in before 9 AM" "Fill out this form")</li>
+                        <li>Following instructions ("Turn in your timesheet" "Call back if you can't make it")</li>
+                        <li>Role-playing common workplace situations</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💼 Phrasal verbs make you sound like you belong at work - not knowing them makes you stand out!</p>
+                </div>
             `,
             exercises: [
                 {

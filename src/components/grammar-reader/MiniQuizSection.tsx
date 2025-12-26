@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles, PartyPopper } from "lucide-react";
+import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles } from "lucide-react";
 import type { MiniQuizQuestion } from "@/types/activity";
 import { Button } from "@/components/ui/Button";
 

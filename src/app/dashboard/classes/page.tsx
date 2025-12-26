@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { BottomNav, Card, Button } from "@/components/ui";
+import { BottomNav, Card } from "@/components/ui";
 import { HomeIcon, BookOpenIcon, UsersIcon, BarChartIcon } from "@/components/icons/Icons";
 
 export default async function ClassesIndexPage() {
@@ -12,8 +12,8 @@ export default async function ClassesIndexPage() {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role || "student";
-    const userId = (session.user as any)?.id;
+    const userRole = session.user?.role || "student";
+    const userId = session.user?.id;
 
     // Only teachers should view their class list here
     if (userRole !== "teacher") {
@@ -110,6 +110,4 @@ export default async function ClassesIndexPage() {
         </div>
     );
 }
-
-
 

@@ -10,20 +10,19 @@ import {
     HomeIcon,
     BookOpenIcon,
     TrophyIcon,
-    UserIcon,
     UsersIcon,
     ClipboardIcon,
     BarChartIcon,
     CalendarIcon,
     StarIcon,
-    FlameIcon
+    FlameIcon,
+    MapIcon
 } from "@/components/icons/Icons";
 import {
     MiniCalendar,
     CalendarEvent,
     UpcomingEventsList,
     TodaysAssignments,
-    ActivityCategories,
     TeacherActivityCategories
 } from "@/components/dashboard";
 
@@ -37,6 +36,7 @@ type TeacherAssignment = {
         title: string;
         description: string | null;
         type: string;
+        category?: string | null;
     };
     isFeatured: boolean;
     dueDate: Date | null;
@@ -95,12 +95,12 @@ type StudentEnrollment = {
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
 
-    if (!session) {
+    if (!session?.user) {
         redirect("/login");
     }
 
-    const userRole = (session.user as any)?.role || "student";
-    const userId = (session.user as any)?.id;
+    const userRole = session.user.role;
+    const userId = session.user.id;
 
     if (userRole === "teacher") {
         // Teacher Dashboard
@@ -129,15 +129,6 @@ export default async function DashboardPage() {
             orderBy: { createdAt: "desc" },
         }) as TeacherClass[];
 
-        const studentMap = new Map<string, StudentSummary>();
-        classes.forEach((cls) => {
-            cls.enrollments.forEach((enrollment) => {
-                if (enrollment.student) {
-                    studentMap.set(enrollment.student.id, enrollment.student);
-                }
-            });
-        });
-        const students = Array.from(studentMap.values());
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
 
@@ -163,7 +154,7 @@ export default async function DashboardPage() {
                 title: assignment.activity.title,
                 description: assignment.activity.description,
                 // fall back to type if category missing to keep badge styling
-                category: (assignment.activity as any).category || assignment.activity.type || null,
+                category: assignment.activity.category || assignment.activity.type || null,
             },
             submissions: [],
         }));
@@ -330,6 +321,13 @@ export default async function DashboardPage() {
                                             <span>Teaching Schedule</span>
                                         </Link>
                                         <Link
+                                            href="/grammar-map"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                        >
+                                            <MapIcon className="w-4 h-4" />
+                                            <span>Grammar Map</span>
+                                        </Link>
+                                        <Link
                                             href="/dashboard/activities/new"
                                             className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
                                         >
@@ -366,8 +364,8 @@ export default async function DashboardPage() {
                 <BottomNav
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
-                        { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
                         { href: '/dashboard/classes', label: 'Classes', icon: <UsersIcon /> },
+                        { href: '/grammar-map', label: 'Map', icon: <MapIcon /> },
                         { href: '/dashboard/stats', label: 'Stats', icon: <BarChartIcon /> },
                     ]}
                 />
@@ -399,48 +397,8 @@ export default async function DashboardPage() {
             }))
         );
 
-        const assignmentIds = allAssignments.map((a) => a.id);
-
-        const submissions = assignmentIds.length
-            ? await prisma.submission.findMany({
-                where: {
-                    userId,
-                    assignmentId: {
-                        in: assignmentIds,
-                    },
-                },
-            })
-            : [];
-
-        const submissionMap = new Map(
-            submissions.map(
-                (s: { userId: string; activityId: string; assignmentId: string | null; status: string }) => [
-                    `${s.userId}-${s.activityId}-${s.assignmentId ?? ""}`,
-                    s,
-                ]
-            )
-        );
-
-        const totalAssignments = allAssignments.length;
-        const completedAssignments = submissions.filter((s: { status: string }) => s.status === "submitted" || s.status === "graded").length;
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const pendingAssignments = totalAssignments - completedAssignments;
-
-        const gradedSubmissions = submissions.filter(
-            (s: { status: string; score: number | null }) => s.status === "graded" && s.score !== null
-        );
-        const averageScore =
-            gradedSubmissions.length > 0
-                ? Math.round(
-                      gradedSubmissions.reduce(
-                          (sum: number, s: { score: number | null }) => sum + (s.score || 0),
-                          0
-                      ) / gradedSubmissions.length
-                  )
-                : null;
-
         const classIds = enrollments.map(e => e.classId);
-        const featuredAssignments = classIds.length === 0 ? [] : await prisma.assignment.findMany({
+        const featuredAssignmentsRaw = classIds.length === 0 ? [] : await prisma.assignment.findMany({
             where: {
                 classId: { in: classIds },
                 isFeatured: true,
@@ -461,6 +419,30 @@ export default async function DashboardPage() {
             orderBy: { createdAt: "desc" }
         });
 
+        const featuredActivityIds = Array.from(new Set(featuredAssignmentsRaw.map((a) => a.activityId)));
+        const featuredProgressRows =
+            featuredActivityIds.length === 0
+                ? []
+                : await prisma.activityProgress.findMany({
+                      where: { userId, activityId: { in: featuredActivityIds } },
+                      select: { activityId: true, progress: true, status: true },
+                  });
+        const featuredProgressMap = new Map<string, { progress: number; status: string }>(
+            (featuredProgressRows as Array<{ activityId: string; progress: number; status: string }>).map((p) => [
+                p.activityId,
+                { progress: p.progress, status: p.status },
+            ])
+        );
+
+        const featuredAssignments = featuredAssignmentsRaw.map((a) => {
+            const p = featuredProgressMap.get(a.activityId);
+            return {
+                ...a,
+                progress: p?.progress ?? 0,
+                progressStatus: p?.status ?? "in_progress",
+            };
+        });
+
         const calendarEvents: CalendarEvent[] = [
             ...allAssignments
                 .filter((a) => a.dueDate)
@@ -478,53 +460,6 @@ export default async function DashboardPage() {
                 }))
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-        const upcomingAssignments = allAssignments
-            .filter((a) => {
-                const submission = submissionMap.get(`${userId}-${a.activityId}-${a.id}`) as
-                    | { status?: string }
-                    | undefined;
-                return !submission || submission.status === "pending";
-            })
-            .sort((a, b) => {
-                const aDate = a.dueDate ? new Date(a.dueDate).getTime() : Infinity;
-                const bDate = b.dueDate ? new Date(b.dueDate).getTime() : Infinity;
-                return aDate - bDate;
-            })
-            .slice(0, 5);
-
-        const allActivities = await prisma.activity.findMany({
-            orderBy: { createdAt: "desc" },
-        });
-
-        // Activity progress (may be missing in older prisma clients, so cast)
-        const progressEntries = await (prisma as any).activityProgress.findMany({
-            where: { userId },
-            select: { activityId: true, progress: true, categoryData: true },
-        });
-        const progressMap = (progressEntries as Array<{ activityId: string; progress: number; categoryData?: string }>).reduce<Record<string, { progress: number; categoryData?: string }>>(
-            (acc: Record<string, { progress: number; categoryData?: string }>, p: { activityId: string; progress: number; categoryData?: string }) => {
-                acc[p.activityId] = { progress: p.progress, categoryData: p.categoryData };
-                return acc;
-            },
-            {}
-        );
-
-        // Get student's completed activities
-        const completedActivities = await prisma.submission.findMany({
-            where: {
-                userId,
-                status: { in: ["submitted", "graded"] },
-                completedAt: { not: null }
-            },
-            select: {
-                activityId: true
-            }
-        });
-
-        const completedActivityIds = new Set<string>(
-            completedActivities.map((s: { activityId: string }) => s.activityId)
-        );
 
         // Get user's streak data
         const currentUser = await prisma.user.findUnique({
@@ -669,18 +604,33 @@ export default async function DashboardPage() {
 
                             {/* This Week's Activities */}
                             <section className="animate-fade-in-up delay-100">
-                                <TodaysAssignments initialAssignments={featuredAssignments} />
+                                <TodaysAssignments
+                                    initialAssignments={featuredAssignments}
+                                    title="Weekly Checklist"
+                                    ctaLabel="Start"
+                                    variant="checklist"
+                                />
                             </section>
 
-                            {/* All Activities - Organized by Category (hide on mobile to declutter) */}
-                            <section className="animate-fade-in-up delay-200 hidden md:block">
-                                <div className="flex items-center justify-between mb-6">
-                                    <h2 className="text-2xl font-bold font-display text-text flex items-center gap-3">
-                                        <span className="w-2 h-8 rounded-full bg-secondary/80"></span>
-                                        All Activities
-                                    </h2>
+                            {/* Browse All Activities CTA */}
+                            <section className="animate-fade-in-up delay-200">
+                                <div className="bg-white border border-border/40 shadow-lg rounded-2xl p-6 bg-gradient-to-b from-white to-bg-light/50">
+                                    <div className="flex items-start justify-between gap-4">
+                                        <div>
+                                            <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Explore</p>
+                                            <h2 className="text-2xl font-bold font-display text-text mt-1">All Activities</h2>
+                                            <p className="text-sm text-text/70 mt-2 max-w-2xl">
+                                                Browse everything in one place with categories and progress tracking.
+                                            </p>
+                                        </div>
+                                        <Link
+                                            href="/dashboard/activities"
+                                            className="shrink-0 px-4 py-2 rounded-lg bg-primary text-white hover:brightness-110 transition font-semibold text-sm"
+                                        >
+                                            Browse →
+                                        </Link>
+                                    </div>
                                 </div>
-                                <ActivityCategories activities={allActivities} completedActivityIds={completedActivityIds} progressMap={progressMap} />
                             </section>
                         </div>
 
@@ -697,7 +647,32 @@ export default async function DashboardPage() {
 
                                 <UpcomingEventsList events={calendarEvents} allowDelete={false} />
 
-                                
+                                <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
+                                    <h3 className="text-sm font-semibold text-text">Quick Links</h3>
+                                    <div className="flex flex-col gap-2">
+                                        <Link
+                                            href="/grammar-map"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                        >
+                                            <MapIcon className="w-4 h-4" />
+                                            <span>Grammar Map</span>
+                                        </Link>
+                                        <Link
+                                            href="/dashboard/leaderboard"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                        >
+                                            <TrophyIcon className="w-4 h-4" />
+                                            <span>Leaderboard</span>
+                                        </Link>
+                                        <Link
+                                            href="/dashboard/profile"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                        >
+                                            <StarIcon className="w-4 h-4" />
+                                            <span>My Profile</span>
+                                        </Link>
+                                    </div>
+                                </div>
 
                             </div>
                         </aside>
@@ -710,8 +685,8 @@ export default async function DashboardPage() {
                     items={[
                         { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
                         { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
-                        { href: '/dashboard/calendar', label: 'Calendar', icon: <CalendarIcon /> },
-                        { href: '/dashboard/leaderboard', label: 'Leaderboard', icon: <TrophyIcon /> },
+                        { href: '/grammar-map', label: 'Map', icon: <MapIcon /> },
+                        { href: '/dashboard/leaderboard', label: 'Board', icon: <TrophyIcon /> },
                     ]}
                 />
             </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, type SignInResponse } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -18,7 +18,7 @@ export default function LoginForm() {
 
         try {
             // Add timeout to prevent hanging
-            const timeoutPromise = new Promise((_, reject) => 
+            const timeoutPromise: Promise<SignInResponse | undefined> = new Promise((_, reject) =>
                 setTimeout(() => reject(new Error('Login timeout')), 10000)
             );
 
@@ -28,7 +28,7 @@ export default function LoginForm() {
                 redirect: false,
             });
 
-            const result = await Promise.race([signInPromise, timeoutPromise]) as any;
+            const result = await Promise.race([signInPromise, timeoutPromise]);
 
             if (result?.error) {
                 console.error('[Login] Error:', result.error);
@@ -39,9 +39,9 @@ export default function LoginForm() {
             } else {
                 setError("Login failed. Please try again.");
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('[Login] Exception:', error);
-            if (error?.message === 'Login timeout') {
+            if (error instanceof Error && error.message === 'Login timeout') {
                 setError("Login is taking too long. Please check your connection and try again.");
             } else {
                 setError("An error occurred. Please try again.");

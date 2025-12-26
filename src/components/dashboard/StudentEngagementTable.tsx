@@ -23,6 +23,34 @@ interface StudentEngagementTableProps {
 type SortField = 'name' | 'streak' | 'points' | 'weeklyPoints' | 'lastActive';
 type SortDirection = 'asc' | 'desc';
 
+function SortButton({
+    field,
+    label,
+    activeField,
+    direction,
+    onSort,
+}: {
+    field: SortField;
+    label: string;
+    activeField: SortField;
+    direction: SortDirection;
+    onSort: (field: SortField) => void;
+}) {
+    return (
+        <button
+            onClick={() => onSort(field)}
+            className="flex items-center gap-1 hover:text-primary transition-colors min-h-[44px] py-2"
+        >
+            {label}
+            {activeField === field && (
+                <span className="text-xs">
+                    {direction === 'asc' ? '↑' : '↓'}
+                </span>
+            )}
+        </button>
+    );
+}
+
 export default function StudentEngagementTable({ students }: StudentEngagementTableProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortField, setSortField] = useState<SortField>('name');
@@ -30,7 +58,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
 
     // Filter and sort students
     const filteredAndSortedStudents = useMemo(() => {
-        let filtered = students.filter(student =>
+        const filtered = students.filter(student =>
             (student.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
             student.username.toLowerCase().includes(searchQuery.toLowerCase())
         );
@@ -95,20 +123,6 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
         today.setHours(0, 0, 0, 0);
         return lastActive >= today;
     };
-
-    const SortButton = ({ field, label }: { field: SortField; label: string }) => (
-        <button
-            onClick={() => handleSort(field)}
-            className="flex items-center gap-1 hover:text-primary transition-colors min-h-[44px] py-2"
-        >
-            {label}
-            {sortField === field && (
-                <span className="text-xs">
-                    {sortDirection === 'asc' ? '↑' : '↓'}
-                </span>
-            )}
-        </button>
-    );
 
     return (
         <div className="bg-white rounded-lg border border-border overflow-hidden">
@@ -215,19 +229,19 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
                     <thead className="bg-bg-light border-b border-border">
                         <tr>
                             <th className="px-4 py-3 text-left text-sm font-semibold text-text">
-                                <SortButton field="name" label="Student" />
+                                <SortButton field="name" label="Student" activeField={sortField} direction={sortDirection} onSort={handleSort} />
                             </th>
                             <th className="px-4 py-3 text-center text-sm font-semibold text-text">
-                                <SortButton field="streak" label="Streak 🔥" />
+                                <SortButton field="streak" label="Streak 🔥" activeField={sortField} direction={sortDirection} onSort={handleSort} />
                             </th>
                             <th className="px-4 py-3 text-center text-sm font-semibold text-text">
-                                <SortButton field="points" label="Total Points" />
+                                <SortButton field="points" label="Total Points" activeField={sortField} direction={sortDirection} onSort={handleSort} />
                             </th>
                             <th className="px-4 py-3 text-center text-sm font-semibold text-text">
-                                <SortButton field="weeklyPoints" label="Weekly Points" />
+                                <SortButton field="weeklyPoints" label="Weekly Points" activeField={sortField} direction={sortDirection} onSort={handleSort} />
                             </th>
                             <th className="px-4 py-3 text-center text-sm font-semibold text-text">
-                                <SortButton field="lastActive" label="Last Active" />
+                                <SortButton field="lastActive" label="Last Active" activeField={sortField} direction={sortDirection} onSort={handleSort} />
                             </th>
                             <th className="px-4 py-3 text-center text-sm font-semibold text-text">
                                 Status
