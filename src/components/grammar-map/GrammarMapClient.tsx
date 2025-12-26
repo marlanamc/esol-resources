@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { grammarTopics, categoryColors, categoryLabels, type GrammarTopic } from '@/data/grammar-map';
-import { Check, Loader2, ArrowRight } from 'lucide-react';
+import { Check, Loader2, ArrowRight, ZoomIn, ZoomOut, Maximize2, List } from 'lucide-react';
 
 interface ProgressData {
     completionPercentage: number;
@@ -39,7 +39,10 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
     const [nodePositions, setNodePositions] = useState<Record<string, NodePosition>>({});
     const [edges, setEdges] = useState<Edge[]>([]);
+    const [zoom, setZoom] = useState<number>(1);
+    const [viewMode, setViewMode] = useState<'graph' | 'list'>('graph');
     const svgRef = useRef<SVGSVGElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     const weekRange = useMemo(() => {
         const weeks = grammarTopics.map((t) => t.week).filter((w): w is number => typeof w === 'number' && Number.isFinite(w));
@@ -302,55 +305,187 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
         return { width, height };
     }, [nodePositions, weekRange.maxWeek, weekRange.minWeek]);
 
+    const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.2, 2));
+    const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.2, 0.5));
+    const handleZoomReset = () => {
+        setZoom(1);
+        if (containerRef.current) {
+            containerRef.current.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="w-full">
-            {/* Legend */}
-            <div className="mb-6 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
-                <h3 className="font-semibold text-lg mb-3">Legend</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-green-500"></div>
-                        <span className="text-sm">Completed</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-amber-500"></div>
-                        <span className="text-sm">In Progress</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-slate-400"></div>
-                        <span className="text-sm">Recommended First (dim)</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4 text-blue-500" />
-                        <span className="text-sm">Suggested Next</span>
-                    </div>
+            {/* Controls Bar */}
+            <div className="mb-4 flex items-center justify-between gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={() => setViewMode('graph')}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                            viewMode === 'graph'
+                                ? 'bg-[var(--primary)] text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                    >
+                        <Maximize2 className="w-4 h-4" />
+                        <span className="text-sm font-medium">Map View</span>
+                    </button>
+                    <button
+                        onClick={() => setViewMode('list')}
+                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                            viewMode === 'list'
+                                ? 'bg-[var(--primary)] text-white'
+                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        }`}
+                    >
+                        <List className="w-4 h-4" />
+                        <span className="text-sm font-medium">List View</span>
+                    </button>
                 </div>
+
+                {viewMode === 'graph' && (
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-600 mr-2">Zoom: {Math.round(zoom * 100)}%</span>
+                        <button
+                            onClick={handleZoomOut}
+                            className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                            title="Zoom Out"
+                        >
+                            <ZoomOut className="w-4 h-4" />
+                        </button>
+                        <button
+                            onClick={handleZoomReset}
+                            className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                            title="Reset Zoom"
+                        >
+                            <Maximize2 className="w-4 h-4" />
+                        </button>
+                        <button
+                            onClick={handleZoomIn}
+                            className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
+                            title="Zoom In"
+                        >
+                            <ZoomIn className="w-4 h-4" />
+                        </button>
+                    </div>
+                )}
             </div>
 
-            {/* Categories */}
-            <div className="mb-6 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
-                <h3 className="font-semibold text-lg mb-3">Categories</h3>
-                <div className="flex flex-wrap gap-3">
-                    {Object.entries(categoryLabels).map(([key, label]) => (
-                        <div key={key} className="flex items-center gap-2">
-                            <div
-                                className="w-4 h-4 rounded-full"
-                                style={{ backgroundColor: categoryColors[key as keyof typeof categoryColors] }}
-                            ></div>
-                            <span className="text-sm">{label}</span>
+            {/* Legend - Only show in graph view */}
+            {viewMode === 'graph' && (
+                <div className="mb-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span className="text-sm">Completed</span>
                         </div>
-                    ))}
+                        <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-amber-500"></div>
+                            <span className="text-sm">In Progress</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full bg-slate-400"></div>
+                            <span className="text-sm">Not Started</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <ArrowRight className="w-3 h-3 text-blue-500" />
+                            <span className="text-sm">Suggested Next</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            )}
+
+            {/* List View */}
+            {viewMode === 'list' && (
+                <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
+                    {CATEGORY_ORDER.map(category => {
+                        const topicsInCategory = grammarTopics.filter(t => t.category === category);
+                        if (topicsInCategory.length === 0) return null;
+
+                        return (
+                            <div key={category} className="mb-8 last:mb-0">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div
+                                        className="w-6 h-6 rounded-full"
+                                        style={{ backgroundColor: categoryColors[category] }}
+                                    ></div>
+                                    <h3 className="text-xl font-bold text-[var(--text)]">
+                                        {categoryLabels[category]}
+                                    </h3>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                    {topicsInCategory.sort((a, b) => (a.week || 0) - (b.week || 0)).map(topic => {
+                                        const status = getTopicStatus(topic);
+                                        const progress = topic.activityId ? progressMap[topic.activityId] : null;
+                                        const color = getNodeColor(topic);
+
+                                        return (
+                                            <button
+                                                key={topic.id}
+                                                onClick={() => handleTopicClick(topic.id)}
+                                                className="text-left p-4 rounded-lg border-2 transition-all hover:shadow-md"
+                                                style={{
+                                                    borderColor: color,
+                                                    backgroundColor: `${color}10`,
+                                                }}
+                                            >
+                                                <div className="flex items-start justify-between gap-2 mb-2">
+                                                    <h4 className="font-semibold text-[var(--text)] flex-1">
+                                                        {topic.title}
+                                                    </h4>
+                                                    {getStatusIcon(topic) && (
+                                                        <div style={{ color }}>{getStatusIcon(topic)}</div>
+                                                    )}
+                                                </div>
+                                                {topic.week && (
+                                                    <p className="text-sm text-gray-600 mb-1">Week {topic.week}</p>
+                                                )}
+                                                {progress && (
+                                                    <div className="mt-2">
+                                                        <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
+                                                            <span>{progress.completionPercentage}% complete</span>
+                                                        </div>
+                                                        <div className="w-full bg-gray-200 rounded-full h-2">
+                                                            <div
+                                                                className="h-2 rounded-full transition-all"
+                                                                style={{
+                                                                    width: `${progress.completionPercentage}%`,
+                                                                    backgroundColor: color,
+                                                                }}
+                                                            ></div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
 
             {/* Network Graph */}
-            <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-auto h-[70vh] min-h-[520px]">
-                <svg
-                    ref={svgRef}
-                    width={canvas.width}
-                    height={canvas.height}
-                    className="block"
+            {viewMode === 'graph' && (
+                <div
+                    ref={containerRef}
+                    className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-auto relative"
+                    style={{ height: 'calc(100vh - 400px)', minHeight: '500px' }}
                 >
+                    {/* Scroll hint */}
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md text-sm text-gray-600 pointer-events-none">
+                        💡 Scroll to explore • Click topics to learn
+                    </div>
+
+                    <svg
+                        ref={svgRef}
+                        width={canvas.width * zoom}
+                        height={canvas.height * zoom}
+                        className="block"
+                        style={{ transformOrigin: '0 0' }}
+                    >
                     <defs>
                         <linearGradient id="mapBg" x1="0" y1="0" x2="1" y2="1">
                             <stop offset="0%" stopColor="#f8fafc" />
@@ -476,7 +611,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                                     {/* Node */}
                                     <motion.g
                                         initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
+                                        animate={{ scale: zoom, opacity: 1 }}
                                         transition={{ delay: index * 0.05 }}
                                         onMouseEnter={() => setHoveredTopic(topic.id)}
                                         onMouseLeave={() => setHoveredTopic(null)}
@@ -485,8 +620,9 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                                             handleTopicClick(topic.id);
                                         }}
                                         className="cursor-pointer"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
+                                        whileHover={{ scale: zoom * 1.05 }}
+                                        whileTap={{ scale: zoom * 0.95 }}
+                                        style={{ transformOrigin: `${pos.x + nodeWidth / 2}px ${pos.y + nodeHeight / 2}px` }}
                                     >
                                         {/* Node background */}
                                         <rect
@@ -531,8 +667,9 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                             );
                         })}
                     </g>
-                </svg>
-            </div>
+                    </svg>
+                </div>
+            )}
 
             {/* Topic details panel */}
             {selectedTopic && (
