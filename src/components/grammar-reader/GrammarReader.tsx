@@ -10,7 +10,6 @@ import { TableOfContents } from "./TableOfContents";
 import { MiniQuizSection } from "./MiniQuizSection";
 import Link from "next/link";
 import { saveActivityProgress } from "@/lib/activityProgress";
-import { useSearchParams, usePathname } from "next/navigation";
 
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
@@ -51,12 +50,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
     const [awardSent, setAwardSent] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
-    const searchParams = useSearchParams();
-    const pathname = usePathname();
     const [activitiesHref, setActivitiesHref] = useState<string>("/dashboard/activities");
-
-    const guideTitle = formatGuideTitle(completionKey || getSlugFromPath(pathname));
-    const fromParam = searchParams.get("from");
+    const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
 
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
@@ -71,6 +66,13 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
     // Choose where the "Activities" breadcrumb should take the user based on entry point.
     useEffect(() => {
+        let fromParam: string | null = null;
+        try {
+            fromParam = new URLSearchParams(window.location.search).get("from");
+        } catch {
+            // ignore
+        }
+
         if (fromParam === "grammar-map") {
             setActivitiesHref("/grammar-map");
             return;
@@ -91,7 +93,21 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         }
 
         setActivitiesHref("/dashboard/activities");
-    }, [fromParam]);
+    }, []);
+
+    // Fallback title if a page didn't provide completionKey.
+    useEffect(() => {
+        if (completionKey) {
+            setGuideTitle(formatGuideTitle(completionKey));
+            return;
+        }
+
+        try {
+            setGuideTitle(formatGuideTitle(getSlugFromPath(window.location.pathname)));
+        } catch {
+            // ignore
+        }
+    }, [completionKey]);
 
     const awardCompletion = useCallback(async () => {
         if (!completionKey || awardSent) return;
