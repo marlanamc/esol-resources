@@ -18,15 +18,22 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
         const { code } = body;
 
-        if (!code) {
+        // SECURITY: Input validation
+        if (!code || typeof code !== 'string') {
             return NextResponse.json({ error: "Class code is required" }, { status: 400 });
+        }
+
+        const trimmedCode = code.trim().toUpperCase();
+
+        if (trimmedCode.length !== 6) {
+            return NextResponse.json({ error: "Invalid class code format" }, { status: 400 });
         }
 
         const userId = session.user?.id;
 
         // Find class by code
         const classItem = await prisma.class.findUnique({
-            where: { code: code.toUpperCase().trim() },
+            where: { code: trimmedCode },
         });
 
         if (!classItem) {
@@ -61,9 +68,9 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ classId: classItem.id, message: "Successfully joined class" });
     } catch (error: unknown) {
         console.error("Error joining class:", error);
-        const message = error instanceof Error ? error.message : undefined;
+        // SECURITY: Don't expose internal error details to user
         return NextResponse.json(
-            { error: message || "Failed to join class" },
+            { error: "Failed to join class. Please try again." },
             { status: 500 }
         );
     }

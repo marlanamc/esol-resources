@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
 
 export async function POST(request: NextRequest) {
     try {
@@ -18,30 +19,40 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
         const { name, description, code } = body;
 
-        if (!name) {
+        if (!name || typeof name !== 'string') {
             return NextResponse.json({ error: "Class name is required" }, { status: 400 });
+        }
+
+        if (name.length > 200) {
+            return NextResponse.json({ error: "Class name too long" }, { status: 400 });
         }
 
         const userId = session.user?.id;
 
-        // Generate code if not provided
-        let classCode = code;
-        if (!classCode) {
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let generated = "";
-            for (let i = 0; i < 6; i++) {
-                generated += chars.charAt(Math.floor(Math.random() * chars.length));
+        // SECURITY: Generate cryptographically secure code or validate provided code
+        let classCode: string;
+
+        if (code) {
+            // If teacher provides custom code, validate format
+            if (!isValidClassCodeFormat(code)) {
+                return NextResponse.json({
+                    error: "Invalid class code format. Must be 6 uppercase alphanumeric characters (no 0, O, 1, I, L)"
+                }, { status: 400 });
             }
-            classCode = generated;
-        }
 
-        // Check if code already exists
-        const existingClass = await prisma.class.findUnique({
-            where: { code: classCode },
-        });
+            // Check if code already exists
+            const existingClass = await prisma.class.findUnique({
+                where: { code: code.toUpperCase() },
+            });
 
-        if (existingClass) {
-            return NextResponse.json({ error: "Class code already exists" }, { status: 400 });
+            if (existingClass) {
+                return NextResponse.json({ error: "Class code already exists" }, { status: 400 });
+            }
+
+            classCode = code.toUpperCase();
+        } else {
+            // Generate cryptographically secure unique code
+            classCode = await generateUniqueClassCode();
         }
 
         const newClass = await prisma.class.create({
@@ -56,9 +67,9 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(newClass);
     } catch (error: unknown) {
         console.error("Error creating class:", error);
-        const message = error instanceof Error ? error.message : undefined;
+        // SECURITY: Don't expose internal error details to user
         return NextResponse.json(
-            { error: message || "Failed to create class" },
+            { error: "Failed to create class. Please try again." },
             { status: 500 }
         );
     }
