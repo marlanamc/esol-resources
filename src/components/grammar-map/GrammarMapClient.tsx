@@ -221,17 +221,13 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     const arePrereqsMet = (topic: GrammarTopic): boolean => {
         if (!topic.prerequisites || topic.prerequisites.length === 0) return true;
         return topic.prerequisites.every((prereqId) => {
-            const prereqTopic = grammarTopics.find((t) => t.id === prereqId);
-            if (!prereqTopic?.activityId) return true;
-            const prereqProgress = progressMap[prereqTopic.activityId];
+            const prereqProgress = progressMap[prereqId];
             return !!prereqProgress && prereqProgress.completionPercentage >= 80;
         });
     };
 
     const getTopicStatus = (topic: GrammarTopic): 'completed' | 'in-progress' | 'available' => {
-        if (!topic.activityId) return 'available';
-
-        const progress = progressMap[topic.activityId];
+        const progress = progressMap[topic.id];
 
         if (progress) {
             if (progress.completionPercentage >= 80) return 'completed';
@@ -249,7 +245,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
             const status = getTopicStatus(topic);
             if (status === 'available') {
                 // Check if this is a logical next step (prerequisites completed, not started yet)
-                const progress = topic.activityId ? progressMap[topic.activityId] : null;
+                const progress = progressMap[topic.id] ?? null;
                 if (!progress || progress.completionPercentage === 0) {
                     suggested.push(topic.id);
                     if (suggested.length >= 3) break; // Only suggest top 3
@@ -294,11 +290,8 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     };
 
     const handleTopicClick = (topicId: string) => {
-        const topic = grammarTopics.find(t => t.id === topicId);
-        if (topic?.activityId) {
-            // Navigate to the grammar guide (using topic ID as the route slug)
-            window.location.assign(`/grammar-reader/${topic.id}?from=grammar-map`);
-        }
+        // Navigate to the grammar guide (using topic ID as the route slug)
+        window.location.assign(`/grammar-reader/${topicId}?from=grammar-map`);
     };
 
     const getTenseCardOrder = (topic: GrammarTopic): number => {
@@ -312,7 +305,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     };
 
     const renderTopicCard = (topic: GrammarTopic, extraClassName = "") => {
-        const progress = topic.activityId ? progressMap[topic.activityId] : null;
+        const progress = progressMap[topic.id] ?? null;
         const color = getNodeColor(topic);
 
         return (
@@ -761,7 +754,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
 
                         const status = getTopicStatus(topic);
                         const prereqsMet = arePrereqsMet(topic);
-                        const progress = topic.activityId ? progressMap[topic.activityId] : null;
+                        const progress = progressMap[topic.id] ?? null;
 
                         return (
                             <div>
@@ -808,14 +801,12 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                                     </div>
                                 </div>
 
-                                {topic.activityId && (
-                                    <button
-                                        onClick={() => handleTopicClick(topic.id)}
-                                        className="mt-4 px-6 py-2 bg-[var(--primary)] text-white rounded-lg hover:opacity-90 transition-opacity"
-                                    >
-                                        {status === 'completed' ? 'Review' : 'Start Learning'}
-                                    </button>
-                                )}
+                                <button
+                                    onClick={() => handleTopicClick(topic.id)}
+                                    className="mt-4 px-6 py-2 bg-[var(--primary)] text-white rounded-lg hover:opacity-90 transition-opacity"
+                                >
+                                    {status === 'completed' ? 'Review' : 'Start Learning'}
+                                </button>
 
                                 {!prereqsMet && (
                                     <p className="mt-4 text-sm text-[var(--text)]/70">

@@ -6,7 +6,7 @@ export interface GrammarTopic {
     subcategory?: 'simple' | 'continuous' | 'perfect' | 'perfect-continuous'; // For verb tenses
     prerequisites?: string[]; // IDs of topics that should be completed first
     relatedTopics?: string[]; // IDs of topics that are conceptually related
-    activityId?: string; // ID in the database if it exists as an activity
+    activityTitles?: string[]; // Activity title(s) for progress lookup
 }
 
 export const grammarTopics: GrammarTopic[] = [
@@ -16,7 +16,7 @@ export const grammarTopics: GrammarTopic[] = [
         title: 'Parts of Speech',
         week: 1,
         category: 'foundation',
-        activityId: 'parts-of-speech',
+        activityTitles: ['Parts of Speech Guide'],
     },
 
     // Simple Tenses (Weeks 2-4)
@@ -27,7 +27,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'simple',
         prerequisites: ['parts-of-speech'],
-        activityId: 'present-simple',
+        activityTitles: ['Present Simple Guide'],
     },
     {
         id: 'past-simple',
@@ -36,7 +36,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'simple',
         prerequisites: ['present-simple'],
-        activityId: 'past-simple',
+        activityTitles: ['Past Simple Guide'],
     },
     {
         id: 'future-simple',
@@ -45,7 +45,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'simple',
         prerequisites: ['present-simple', 'past-simple'],
-        activityId: 'future-simple',
+        activityTitles: ['Future Simple Guide'],
     },
     {
         id: 'simple-tenses-review',
@@ -55,7 +55,7 @@ export const grammarTopics: GrammarTopic[] = [
         subcategory: 'simple',
         prerequisites: ['present-simple', 'past-simple', 'future-simple'],
         relatedTopics: ['present-simple', 'past-simple', 'future-simple'],
-        activityId: 'simple-tenses-review',
+        activityTitles: ['Simple Tenses Review', 'Simple Tenses Review - Complete Guide'],
     },
 
     // Continuous Tenses (Weeks 5-7)
@@ -66,7 +66,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'continuous',
         prerequisites: ['present-simple'],
-        activityId: 'present-continuous',
+        activityTitles: ['Present Continuous Guide'],
     },
     {
         id: 'past-continuous',
@@ -75,7 +75,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'continuous',
         prerequisites: ['past-simple', 'present-continuous'],
-        activityId: 'past-continuous',
+        activityTitles: ['Past Continuous Guide'],
     },
     {
         id: 'future-continuous',
@@ -84,7 +84,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'continuous',
         prerequisites: ['future-simple', 'present-continuous'],
-        activityId: 'future-continuous',
+        activityTitles: ['Future Continuous Guide'],
     },
     {
         id: 'continuous-tenses-review',
@@ -94,7 +94,7 @@ export const grammarTopics: GrammarTopic[] = [
         subcategory: 'continuous',
         prerequisites: ['present-continuous', 'past-continuous', 'future-continuous'],
         relatedTopics: ['present-continuous', 'past-continuous', 'future-continuous'],
-        activityId: 'continuous-tenses-review',
+        activityTitles: ['Continuous Tenses Review', 'Continuous Tenses Review - Complete Guide'],
     },
 
     // Gerunds & Infinitives (Week 8)
@@ -104,7 +104,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 8,
         category: 'gerunds-infinitives',
         prerequisites: ['parts-of-speech'],
-        activityId: 'infinitives-vs-gerunds',
+        activityTitles: ['Infinitives vs Gerunds Guide'],
     },
     {
         id: 'verbs-plus-gerunds',
@@ -113,7 +113,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'gerunds-infinitives',
         prerequisites: ['infinitives-vs-gerunds'],
         relatedTopics: ['infinitives-vs-gerunds'],
-        activityId: 'verbs-plus-gerunds',
+        activityTitles: ['Verbs + Gerunds Guide'],
     },
     {
         id: 'gerunds-prepositions',
@@ -122,7 +122,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'gerunds-infinitives',
         prerequisites: ['infinitives-vs-gerunds'],
         relatedTopics: ['infinitives-vs-gerunds'],
-        activityId: 'gerunds-prepositions',
+        activityTitles: ['Gerunds After Prepositions Guide'],
     },
 
     // Modals & Questions (Weeks 9-11)
@@ -132,7 +132,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 11,
         category: 'modals',
         prerequisites: ['parts-of-speech'],
-        activityId: 'modals-obligation-permission',
+        activityTitles: ['Modals for Obligation & Permission Guide'],
     },
     {
         id: 'information-questions',
@@ -140,7 +140,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 10,
         category: 'foundation',
         prerequisites: ['parts-of-speech'],
-        activityId: 'information-questions',
+        activityTitles: ['Information Questions Guide'],
     },
 
     // Perfect Tenses (Weeks 12-14)
@@ -151,7 +151,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'perfect',
         prerequisites: ['present-simple', 'past-simple'],
-        activityId: 'present-perfect',
+        activityTitles: ['Present Perfect Guide'],
     },
     {
         id: 'past-perfect',
@@ -160,7 +160,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'perfect',
         prerequisites: ['present-perfect', 'past-simple'],
-        activityId: 'past-perfect',
+        activityTitles: ['Past Perfect Guide'],
     },
     {
         id: 'future-perfect',
@@ -169,7 +169,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'perfect',
         prerequisites: ['present-perfect', 'future-simple'],
-        activityId: 'future-perfect',
+        activityTitles: ['Future Perfect Guide'],
     },
     {
         id: 'perfect-tenses-review',
@@ -179,7 +179,7 @@ export const grammarTopics: GrammarTopic[] = [
         subcategory: 'perfect',
         prerequisites: ['present-perfect', 'past-perfect', 'future-perfect'],
         relatedTopics: ['present-perfect', 'past-perfect', 'future-perfect'],
-        activityId: 'perfect-tenses-review',
+        activityTitles: ['Perfect Tenses Review - Complete Guide', 'Perfect Tenses Review'],
     },
 
     // Perfect Continuous Tenses (Weeks 15-17)
@@ -190,7 +190,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'perfect-continuous',
         prerequisites: ['present-perfect', 'present-continuous'],
-        activityId: 'present-perfect-continuous',
+        activityTitles: ['Present Perfect Continuous Guide'],
     },
     {
         id: 'past-perfect-continuous',
@@ -199,7 +199,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'perfect-continuous',
         prerequisites: ['past-perfect', 'past-continuous'],
-        activityId: 'past-perfect-continuous',
+        activityTitles: ['Past Perfect Continuous Guide'],
     },
     {
         id: 'future-perfect-continuous',
@@ -208,7 +208,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'tenses',
         subcategory: 'perfect-continuous',
         prerequisites: ['future-perfect', 'future-continuous'],
-        activityId: 'future-perfect-continuous',
+        activityTitles: ['Future Perfect Continuous Guide'],
     },
     {
         id: 'perfect-continuous-tenses-review',
@@ -218,7 +218,7 @@ export const grammarTopics: GrammarTopic[] = [
         subcategory: 'perfect-continuous',
         prerequisites: ['present-perfect-continuous', 'past-perfect-continuous', 'future-perfect-continuous'],
         relatedTopics: ['present-perfect-continuous', 'past-perfect-continuous', 'future-perfect-continuous'],
-        activityId: 'perfect-continuous-tenses-review',
+        activityTitles: ['Perfect Continuous Tenses Review - Complete Guide', 'Perfect Continuous Tenses Review'],
     },
 
     // Advanced Grammar (Weeks 18-21)
@@ -228,7 +228,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 18,
         category: 'advanced',
         prerequisites: ['future-simple'],
-        activityId: 'future-conditional',
+        activityTitles: ['Future Conditional Guide'],
     },
     {
         id: 'conditionals-zero-first',
@@ -237,7 +237,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'advanced',
         prerequisites: ['future-simple'],
         relatedTopics: ['future-conditional'],
-        activityId: 'conditionals-zero-first',
+        activityTitles: ['Zero & First Conditionals Guide'],
     },
     {
         id: 'conditionals-second',
@@ -246,7 +246,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'advanced',
         prerequisites: ['conditionals-zero-first'],
         relatedTopics: ['future-conditional', 'conditionals-zero-first'],
-        activityId: 'conditionals-second',
+        activityTitles: ['Second Conditional Guide'],
     },
     {
         id: 'passive-voice',
@@ -254,7 +254,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 20,
         category: 'advanced',
         prerequisites: ['simple-tenses-review'],
-        activityId: 'passive-voice',
+        activityTitles: ['Passive Voice Guide'],
     },
     {
         id: 'conditionals-review',
@@ -263,7 +263,7 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'advanced',
         prerequisites: ['conditionals-zero-first', 'conditionals-second'],
         relatedTopics: ['future-conditional', 'conditionals-zero-first', 'conditionals-second'],
-        activityId: 'conditionals-review',
+        activityTitles: ['Conditionals Review Guide'],
     },
     {
         id: 'reported-speech',
@@ -271,7 +271,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 21,
         category: 'advanced',
         prerequisites: ['simple-tenses-review'],
-        activityId: 'reported-speech',
+        activityTitles: ['Reported Speech Guide'],
     },
     {
         id: 'used-to-would-rather',
@@ -279,7 +279,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 10,
         category: 'advanced',
         prerequisites: ['past-simple'],
-        activityId: 'used-to-would-rather',
+        activityTitles: ['Used To & Would Rather Guide'],
     },
 
     // Workplace & Professional (Weeks 11-13)
@@ -289,7 +289,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 13,
         category: 'advanced',
         prerequisites: ['parts-of-speech'],
-        activityId: 'workplace-phrasal-verbs',
+        activityTitles: ['Workplace Phrasal Verbs Guide'],
     },
     {
         id: 'superlatives-quantifiers',
@@ -297,7 +297,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 9,
         category: 'foundation',
         prerequisites: ['parts-of-speech'],
-        activityId: 'superlatives-quantifiers',
+        activityTitles: ['Superlatives & Quantifiers Guide'],
     },
 
     // Writing (Week 2-3)
@@ -307,7 +307,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 2,
         category: 'writing',
         prerequisites: ['parts-of-speech'],
-        activityId: 'punctuation-capitalization',
+        activityTitles: ['Punctuation & Capitalization Guide'],
     },
     {
         id: 'paragraph-format',
@@ -315,7 +315,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 3,
         category: 'writing',
         prerequisites: ['punctuation-capitalization'],
-        activityId: 'paragraph-format',
+        activityTitles: ['Paragraph Format Guide'],
     },
     {
         id: 'imperatives-declaratives',
@@ -323,7 +323,7 @@ export const grammarTopics: GrammarTopic[] = [
         week: 2,
         category: 'foundation',
         prerequisites: ['parts-of-speech'],
-        activityId: 'imperatives-declaratives',
+        activityTitles: ['Imperatives vs Declaratives Guide'],
     },
 
     // Comprehensive Review (Week 22-24)
@@ -335,7 +335,7 @@ export const grammarTopics: GrammarTopic[] = [
         subcategory: 'perfect-continuous', // Placed with perfect-continuous as the final review
         prerequisites: ['simple-tenses-review', 'continuous-tenses-review', 'perfect-tenses-review', 'perfect-continuous-tenses-review'],
         relatedTopics: ['simple-tenses-review', 'continuous-tenses-review', 'perfect-tenses-review', 'perfect-continuous-tenses-review'],
-        activityId: 'all-verb-tenses-overview',
+        activityTitles: ['All Verb Tenses Overview Guide'],
     },
 ];
 
