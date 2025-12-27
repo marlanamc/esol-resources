@@ -3,9 +3,20 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "./prisma";
 import bcrypt from "bcryptjs";
 import { trackLogin } from "./gamification";
+import { logger } from "./logger";
+
+// SECURITY: Validate authentication secret on module load
+const authSecret = process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET;
+if (!authSecret) {
+    throw new Error('CRITICAL: NEXTAUTH_SECRET or AUTH_SECRET must be set in environment variables');
+}
+
+if (authSecret.length < 32) {
+    throw new Error('CRITICAL: NEXTAUTH_SECRET must be at least 32 characters for security');
+}
 
 export const authOptions: NextAuthOptions = {
-    secret: process.env.NEXTAUTH_SECRET || process.env.AUTH_SECRET,
+    secret: authSecret,
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -16,7 +27,7 @@ export const authOptions: NextAuthOptions = {
             async authorize(credentials) {
                 try {
                     if (!credentials?.username || !credentials?.password) {
-                        console.log('[Auth] Missing credentials');
+                        logger.warn('Authentication attempt with missing credentials');
                         return null;
                     }
 
@@ -27,24 +38,33 @@ export const authOptions: NextAuthOptions = {
                     });
 
                     if (!user) {
-                        console.log(`[Auth] User not found: ${username}`);
+                        logger.warn('Authentication failed: user not found', { username });
                         return null;
                     }
 
                     const isValid = await bcrypt.compare(credentials.password, user.password);
 
                     if (!isValid) {
-                        console.log(`[Auth] Invalid password for: ${username}`);
+                        logger.warn('Authentication failed: invalid password', {
+                            username,
+                            userId: user.id,
+                        });
                         return null;
                     }
 
-                    console.log(`[Auth] Successful login: ${user.username} (${user.role})`);
-                    
+                    logger.info('User logged in successfully', {
+                        username: user.username,
+                        userId: user.id,
+                        role: user.role,
+                    });
+
                     // Track login for activity calendar
                     trackLogin(user.id).catch(err => {
-                        console.error('[Auth] Failed to track login:', err);
+                        logger.error('Failed to track login activity', err, {
+                            userId: user.id,
+                        });
                     });
-                    
+
                     const role = user.role === "teacher" ? "teacher" : "student";
 
                     return {
@@ -56,7 +76,7 @@ export const authOptions: NextAuthOptions = {
                         mustChangePassword: user.mustChangePassword,
                     };
                 } catch (error) {
-                    console.error('[Auth] Error during authorization:', error);
+                    logger.error('Authentication error', error);
                     return null;
                 }
             }

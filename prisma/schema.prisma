@@ -36,6 +36,11 @@ model User {
   calendarEventsCreated CalendarEvent[]
   activityProgress ActivityProgress[]
   pointsLedger PointsLedger[]
+
+  // Performance indexes
+  @@index([role])
+  @@index([weeklyPoints])
+  @@index([role, weeklyPoints]) // Composite for leaderboard queries
 }
 
 model Class {
@@ -47,11 +52,14 @@ model Class {
   teacherId   String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+
   // Relations
   enrollments ClassEnrollment[]
   assignments Assignment[]
   calendarEvents CalendarEvent[]
+
+  // Performance indexes
+  @@index([teacherId]) // For finding teacher's classes
 }
 
 model ClassEnrollment {
@@ -107,7 +115,11 @@ model PointsLedger {
   source    String?  // e.g., activity, streak, achievement, manual
   createdAt DateTime @default(now())
 
+  // Performance indexes
   @@index([createdAt])
+  @@index([userId])
+  @@index([source])
+  @@index([userId, createdAt]) // Composite for user-specific queries
 }
 
 model Assignment {
@@ -125,6 +137,11 @@ model Assignment {
 
   // Relations
   submissions Submission[]
+
+  // Performance indexes
+  @@index([classId]) // For finding class assignments
+  @@index([isFeatured]) // For filtering featured assignments
+  @@index([dueDate]) // For sorting by due date
 }
 
 model Submission {
@@ -145,6 +162,10 @@ model Submission {
   updatedAt  DateTime @updatedAt
 
   @@unique([userId, activityId, assignmentId])
+  // Performance indexes
+  @@index([userId]) // For finding user submissions
+  @@index([status]) // For filtering by status
+  @@index([assignmentId]) // For finding assignment submissions
 }
 
 model Achievement {

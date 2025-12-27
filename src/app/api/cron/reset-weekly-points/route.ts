@@ -9,10 +9,23 @@ import { resetWeeklyPoints } from "@/lib/gamification";
  * This endpoint is secured by Vercel Cron's authorization header
  */
 export async function GET(request: NextRequest) {
+    // SECURITY: Validate CRON_SECRET is configured
+    const cronSecret = process.env.CRON_SECRET;
+
+    // Fail closed - deny if secret not configured
+    if (!cronSecret) {
+        console.error('[Cron] CRITICAL: CRON_SECRET not configured in environment variables');
+        return NextResponse.json(
+            { error: 'Service unavailable' },
+            { status: 503 }
+        );
+    }
+
     // Verify this request is from Vercel Cron
     const authHeader = request.headers.get('authorization');
 
-    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+    if (authHeader !== `Bearer ${cronSecret}`) {
+        console.warn('[Cron] Unauthorized cron attempt - invalid authorization header');
         return NextResponse.json(
             { error: 'Unauthorized' },
             { status: 401 }

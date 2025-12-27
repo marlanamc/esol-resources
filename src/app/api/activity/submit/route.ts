@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
+import { awardPoints, updateStreak, checkAndAwardAchievements, calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -11,13 +11,30 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { activityId, content, score, points, assignmentId } = await request.json();
+    // SECURITY: Never trust points from client - calculate server-side only
+    const { activityId, content, score, assignmentId } = await request.json();
 
     if (!activityId || typeof activityId !== "string") {
         return NextResponse.json({ error: "activityId is required" }, { status: 400 });
     }
 
     const userId = session.user.id;
+
+    // Fetch activity to calculate points server-side
+    const activity = await prisma.activity.findUnique({
+        where: { id: activityId },
+        select: { title: true, type: true, id: true }
+    });
+
+    if (!activity) {
+        return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+    }
+
+    // Calculate points SERVER-SIDE based on activity type and score
+    // NEVER trust points from client request
+    const calculatedPoints = activity.type.toLowerCase() === 'quiz'
+        ? calculateQuizPoints(score)
+        : getActivityPoints(activity.type, activity.id);
 
     // Create or update submission
     const submission = await prisma.submission.upsert({
@@ -40,14 +57,14 @@ export async function POST(request: Request) {
             assignmentId: assignmentId || null,
             content: JSON.stringify(content),
             score: score || null,
-            pointsAwarded: points || 0,
+            pointsAwarded: calculatedPoints,
             status: 'submitted',
             completedAt: new Date(),
         },
         update: {
             content: JSON.stringify(content),
             score: score || null,
-            pointsAwarded: points || 0,
+            pointsAwarded: calculatedPoints,
             status: 'submitted',
             completedAt: new Date(),
         },
@@ -73,17 +90,12 @@ export async function POST(request: Request) {
         },
     });
 
-    // Award points if provided
-    if (points && typeof points === 'number') {
-        const activity = await prisma.activity.findUnique({
-            where: { id: activityId },
-            select: { title: true }
-        });
-
+    // Award points (calculated server-side)
+    if (calculatedPoints > 0) {
         await awardPoints(
             userId,
-            points,
-            `Completed: ${activity?.title || activityId}`
+            calculatedPoints,
+            `Completed: ${activity.title || activityId}`
         );
 
         // Update streak and check for achievements
@@ -95,6 +107,6 @@ export async function POST(request: Request) {
         ok: true,
         submissionId: submission.id,
         score: submission.score,
-        points: submission.pointsAwarded
+        points: calculatedPoints
     });
 }

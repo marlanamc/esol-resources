@@ -11,13 +11,28 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { activityId, progress = 100, status = progress >= 100 ? "completed" : "in_progress", accuracy, category } = await request.json();
+    const body = await request.json();
+    const { activityId, progress = 100, status, accuracy, category } = body;
 
+    // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
         return NextResponse.json({ error: "activityId is required" }, { status: 400 });
     }
 
+    // Validate and sanitize progress (0-100)
     const value = typeof progress === "number" ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
+
+    // Validate and sanitize accuracy (0-100) if provided
+    const sanitizedAccuracy = accuracy !== undefined && accuracy !== null
+        ? Math.max(0, Math.min(100, Math.round(Number(accuracy))))
+        : undefined;
+
+    // Validate category if provided
+    if (category !== undefined && typeof category !== 'string') {
+        return NextResponse.json({ error: "Invalid category format" }, { status: 400 });
+    }
+
+    const computedStatus = status || (value >= 100 ? "completed" : "in_progress");
 
     const userId = session.user.id;
 
@@ -32,7 +47,7 @@ export async function POST(request: Request) {
 
     // Handle category data updates for activities with categories (like Numbers Game)
     let updatedCategoryData: string | undefined;
-    if (category && accuracy !== undefined) {
+    if (category && sanitizedAccuracy !== undefined) {
         // Client sent a category update - merge with existing category data
         const currentData = existing?.categoryData
             ? JSON.parse(existing.categoryData)
@@ -41,7 +56,7 @@ export async function POST(request: Request) {
         // Update or add this category's progress
         currentData[category] = {
             completed: value >= 100,
-            accuracy: accuracy,
+            accuracy: sanitizedAccuracy,
             completedAt: value >= 100 ? new Date().toISOString() : currentData[category]?.completedAt,
             attempts: (currentData[category]?.attempts || 0) + 1
         };
@@ -63,12 +78,12 @@ export async function POST(request: Request) {
             userId,
             activityId,
             progress: value,
-            status,
+            status: computedStatus,
             categoryData: updatedCategoryData
         },
         update: {
             progress: value,
-            status,
+            status: computedStatus,
             ...(updatedCategoryData && { categoryData: updatedCategoryData })
         },
     });
@@ -124,19 +139,19 @@ export async function POST(request: Request) {
                 }
                 
                 let bonusPoints = 0;
-                
+
                 // Award accuracy-based bonus if accuracy is provided
-                if (typeof accuracy === 'number') {
-                    if (accuracy === 100) {
+                if (sanitizedAccuracy !== undefined) {
+                    if (sanitizedAccuracy === 100) {
                         bonusPoints = perfectBonus;
-                    } else if (accuracy >= 90) {
+                    } else if (sanitizedAccuracy >= 90) {
                         bonusPoints = highBonus;
                     }
                 } else {
                     // Fallback: if no accuracy provided but completed, award perfect bonus
                     bonusPoints = perfectBonus;
                 }
-                
+
                 points = basePoints + bonusPoints;
             }
             

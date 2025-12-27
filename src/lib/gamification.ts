@@ -292,6 +292,14 @@ export async function getTimeframedLeaderboard(
   limit: number = 10,
   classId?: string
 ) {
+  // SECURITY: Input validation
+  if (classId !== undefined && typeof classId !== 'string') {
+    throw new Error('Invalid classId: must be a string');
+  }
+
+  // Sanitize limit to prevent excessive queries (1-100)
+  const safeLimit = Math.min(Math.max(1, Math.floor(limit)), 100);
+
   const since = getRangeStart(range);
 
   // First, get all students (excluding test accounts)
@@ -351,7 +359,7 @@ export async function getTimeframedLeaderboard(
   });
 
   // Apply limit and add rank (same rank for ties)
-  const limitedRankings = studentsWithPoints.slice(0, limit);
+  const limitedRankings = studentsWithPoints.slice(0, safeLimit);
 
   return limitedRankings.map((r, idx) => {
     // Find the rank: same as first student with same points, otherwise idx + 1
@@ -451,6 +459,14 @@ export async function checkAndAwardAchievements(userId: string) {
  * Get weekly leaderboard (top students by weekly points)
  */
 export async function getWeeklyLeaderboard(limit: number = 10, classId?: string) {
+  // SECURITY: Input validation
+  if (classId !== undefined && typeof classId !== 'string') {
+    throw new Error('Invalid classId: must be a string');
+  }
+
+  // Sanitize limit to prevent excessive queries (1-100)
+  const safeLimit = Math.min(Math.max(1, Math.floor(limit)), 100);
+
   const whereClause: Prisma.UserWhereInput = {
     role: 'student',
     username: { not: 'marlie' }, // Exclude test account from leaderboard
@@ -473,7 +489,7 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
     orderBy: {
       weeklyPoints: 'desc',
     },
-    take: limit,
+    take: safeLimit,
     select: {
       id: true,
       name: true,
@@ -511,30 +527,29 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
 
 /**
  * Reset weekly points for all users (to be run weekly via cron)
+ * PERFORMANCE: Uses transaction with batch updates instead of N+1 queries
  */
 export async function resetWeeklyPoints() {
   // Get current rankings before reset
   const currentRankings = await getWeeklyLeaderboard(100);
 
-  // Update each user's lastWeekRank
-  for (const ranking of currentRankings) {
-    await prisma.user.update({
-      where: { id: ranking.id },
-      data: {
-        lastWeekRank: ranking.rank,
-      },
-    });
-  }
+  // PERFORMANCE: Use transaction to batch all updates together
+  await prisma.$transaction([
+    // Update each user's lastWeekRank in a batch transaction
+    ...currentRankings.map(ranking =>
+      prisma.user.update({
+        where: { id: ranking.id },
+        data: { lastWeekRank: ranking.rank },
+      })
+    ),
+    // Reset weekly points for all students
+    prisma.user.updateMany({
+      where: { role: 'student' },
+      data: { weeklyPoints: 0 },
+    }),
+  ]);
 
-  // Reset weekly points for all students
-  await prisma.user.updateMany({
-    where: { role: 'student' },
-    data: {
-      weeklyPoints: 0,
-    },
-  });
-
-  console.log('[Gamification] Weekly points reset complete');
+  console.log(`[Gamification] Weekly points reset complete (${currentRankings.length} rankings saved)`);
 }
 
 /**
