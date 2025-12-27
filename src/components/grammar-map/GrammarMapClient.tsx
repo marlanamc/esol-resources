@@ -34,6 +34,20 @@ const CATEGORY_ORDER: GrammarTopic['category'][] = [
     'advanced',
 ];
 
+const TENSE_SUBCATEGORY_ORDER: Array<NonNullable<GrammarTopic['subcategory']>> = [
+    'simple',
+    'continuous',
+    'perfect',
+    'perfect-continuous',
+];
+
+const tenseSubcategoryLabels: Record<NonNullable<GrammarTopic['subcategory']>, string> = {
+    simple: 'Simple',
+    continuous: 'Continuous',
+    perfect: 'Perfect',
+    'perfect-continuous': 'Perfect Continuous',
+};
+
 export default function GrammarMapClient({ progressMap }: GrammarMapClientProps) {
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
     const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
@@ -287,6 +301,68 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
         }
     };
 
+    const getTenseCardOrder = (topic: GrammarTopic): number => {
+        const title = topic.title.toLowerCase();
+        if (title.startsWith('present ')) return 0;
+        if (title.startsWith('past ')) return 1;
+        if (title.startsWith('future ')) return 2;
+        if (title.includes('review')) return 3;
+        if (title.includes('overview')) return 4;
+        return 99;
+    };
+
+    const getWeekRangeLabel = (topics: GrammarTopic[]) => {
+        const weeks = topics
+            .map((t) => t.week)
+            .filter((w): w is number => typeof w === 'number' && Number.isFinite(w));
+        if (!weeks.length) return null;
+        const minWeek = Math.min(...weeks);
+        const maxWeek = Math.max(...weeks);
+        return minWeek === maxWeek ? `Week ${minWeek}` : `Weeks ${minWeek}–${maxWeek}`;
+    };
+
+    const renderTopicCard = (topic: GrammarTopic, extraClassName = "") => {
+        const progress = topic.activityId ? progressMap[topic.activityId] : null;
+        const color = getNodeColor(topic);
+
+        return (
+            <button
+                key={topic.id}
+                onClick={() => handleTopicClick(topic.id)}
+                className={`text-left p-4 rounded-lg border-2 transition-all hover:shadow-md ${extraClassName}`}
+                style={{
+                    borderColor: color,
+                    backgroundColor: `${color}10`,
+                }}
+            >
+                <div className="flex items-start justify-between gap-2 mb-2">
+                    <h4 className="font-semibold text-[var(--text)] flex-1">
+                        {topic.title}
+                    </h4>
+                    {getStatusIcon(topic) && (
+                        <div style={{ color }}>{getStatusIcon(topic)}</div>
+                    )}
+                </div>
+                {progress && (
+                    <div className="mt-2">
+                        <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
+                            <span>{progress.completionPercentage}% complete</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div
+                                className="h-2 rounded-full transition-all"
+                                style={{
+                                    width: `${progress.completionPercentage}%`,
+                                    backgroundColor: color,
+                                }}
+                            ></div>
+                        </div>
+                    </div>
+                )}
+            </button>
+        );
+    };
+
     const nodeWidth = 220;
     const nodeHeight = 90;
     const weekGap = 140;
@@ -414,50 +490,71 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                                     </h3>
                                 </div>
 
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                    {topicsInCategory.sort((a, b) => (a.week || 0) - (b.week || 0)).map(topic => {
-                                        const status = getTopicStatus(topic);
-                                        const progress = topic.activityId ? progressMap[topic.activityId] : null;
-                                        const color = getNodeColor(topic);
+                                {category === 'tenses' ? (
+                                    <div className="space-y-6">
+                                        {TENSE_SUBCATEGORY_ORDER.map((subcategory) => {
+                                            const topics = topicsInCategory.filter(
+                                                (t) => t.id !== 'all-verb-tenses-overview' && t.subcategory === subcategory
+                                            );
+                                            if (!topics.length) return null;
 
-                                        return (
-                                            <button
-                                                key={topic.id}
-                                                onClick={() => handleTopicClick(topic.id)}
-                                                className="text-left p-4 rounded-lg border-2 transition-all hover:shadow-md"
-                                                style={{
-                                                    borderColor: color,
-                                                    backgroundColor: `${color}10`,
-                                                }}
-                                            >
-                                                <div className="flex items-start justify-between gap-2 mb-2">
-                                                    <h4 className="font-semibold text-[var(--text)] flex-1">
-                                                        {topic.title}
-                                                    </h4>
-                                                    {getStatusIcon(topic) && (
-                                                        <div style={{ color }}>{getStatusIcon(topic)}</div>
-                                                    )}
-                                                </div>
-                                                {progress && (
-                                                    <div className="mt-2">
-                                                        <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
-                                                            <span>{progress.completionPercentage}% complete</span>
-                                                        </div>
-                                                        <div className="w-full bg-gray-200 rounded-full h-2">
-                                                            <div
-                                                                className="h-2 rounded-full transition-all"
-                                                                style={{
-                                                                    width: `${progress.completionPercentage}%`,
-                                                                    backgroundColor: color,
-                                                                }}
-                                                            ></div>
-                                                        </div>
+                                            const weekRange = getWeekRangeLabel(topics);
+
+                                            return (
+                                                <div key={subcategory}>
+                                                    <div className="flex items-baseline justify-between gap-3 mb-2">
+                                                        <h4 className="text-sm font-bold text-gray-700 tracking-wide uppercase">
+                                                            {tenseSubcategoryLabels[subcategory]}
+                                                        </h4>
+                                                        {weekRange && (
+                                                            <span className="text-xs text-gray-500 font-medium">
+                                                                {weekRange}
+                                                            </span>
+                                                        )}
                                                     </div>
-                                                )}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                                                        {topics
+                                                            .slice()
+                                                            .sort((a, b) => {
+                                                                const aKey = getTenseCardOrder(a);
+                                                                const bKey = getTenseCardOrder(b);
+                                                                if (aKey !== bKey) return aKey - bKey;
+                                                                return (a.week || 0) - (b.week || 0);
+                                                            })
+                                                            .map((topic) => renderTopicCard(topic))}
+                                                    </div>
+                                                </div>
+                                            );
+                                        })}
+
+                                        {topicsInCategory.some((t) => t.id === 'all-verb-tenses-overview') && (
+                                            <div className="pt-2">
+                                                <div className="flex items-baseline justify-between gap-3 mb-2">
+                                                    <h4 className="text-sm font-bold text-gray-700 tracking-wide uppercase">
+                                                        Big Picture
+                                                    </h4>
+                                                </div>
+                                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                                                    {topicsInCategory
+                                                        .filter((t) => t.id === 'all-verb-tenses-overview')
+                                                        .map((topic) =>
+                                                            renderTopicCard(
+                                                                topic,
+                                                                "md:col-span-2 lg:col-span-4 bg-gradient-to-r from-white to-white/60"
+                                                            )
+                                                        )}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                        {topicsInCategory
+                                            .slice()
+                                            .sort((a, b) => (a.week || 0) - (b.week || 0))
+                                            .map((topic) => renderTopicCard(topic))}
+                                    </div>
+                                )}
                             </div>
                         );
                     })}

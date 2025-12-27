@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import GrammarMapClient from '@/components/grammar-map/GrammarMapClient';
+import Link from 'next/link';
+import { MapIcon } from '@/components/icons/Icons';
 
 export const metadata = {
     title: 'Grammar Map | Class Companion',
@@ -39,19 +41,32 @@ export default async function GrammarMapPage() {
 
     return (
         <div className="min-h-screen bg-[var(--background)]">
-            <div className="container mx-auto px-4 py-8">
-                <div className="mb-8">
-                    <h1 className="text-4xl font-bold text-[var(--text)] mb-4">
-                        Level 3 Grammar Map
-                    </h1>
-                    <p className="text-lg text-[var(--text)]/70 max-w-3xl">
-                        See how all grammar topics connect and track your progress through the curriculum.
-                        Click on any topic to learn more or start studying!
-                    </p>
+            <header className="sticky top-0 backdrop-blur-lg border-b z-40 bg-white/90 border-border/60 shadow-sm">
+                <div className="container mx-auto py-4 px-4 sm:px-6 flex items-center gap-4">
+                    <Link
+                        href="/dashboard"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Back to Dashboard
+                    </Link>
+                    <MapIcon className="w-7 h-7 text-primary" />
+                    <div>
+                        <h1 className="text-2xl md:text-3xl font-bold font-display text-[var(--text)]">
+                            Level 3 Grammar Map
+                        </h1>
+                        <p className="text-sm text-[var(--text)]/70">
+                            See how topics connect and track your progress.
+                        </p>
+                    </div>
                 </div>
+            </header>
 
+            <main className="container mx-auto px-4 py-6 sm:px-6 pb-28 md:pb-10">
                 <GrammarMapClient progressMap={progressMap} />
-            </div>
+            </main>
         </div>
     );
 }
