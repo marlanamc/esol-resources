@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma';
 import GrammarMapClient from '@/components/grammar-map/GrammarMapClient';
 import Link from 'next/link';
 import { MapIcon } from '@/components/icons/Icons';
+import { grammarTopics } from '@/data/grammar-map';
 
 export const metadata = {
     title: 'Grammar Map | Class Companion',
@@ -20,22 +21,51 @@ export default async function GrammarMapPage() {
 
     const userId = session.user.id;
 
-    // Fetch user's activity progress
+    const activityTitles = Array.from(
+        new Set(grammarTopics.flatMap((topic) => topic.activityTitles ?? []).filter(Boolean))
+    );
+
     const activityProgress = await prisma.activityProgress.findMany({
-        where: { userId },
+        where: {
+            userId,
+            activity: {
+                title: { in: activityTitles },
+                type: 'guide',
+                category: 'grammar',
+            },
+        },
         select: {
-            activityId: true,
             progress: true,
             status: true,
+            activity: { select: { title: true } },
         },
     });
 
-    // Convert to a map for easy lookup
-    const progressMap = activityProgress.reduce((acc, progress) => {
-        acc[progress.activityId] = {
-            completionPercentage: progress.progress,
-            status: progress.status,
-        };
+    const progressByTitle = activityProgress.reduce((acc, entry) => {
+        const title = entry.activity.title;
+        const existing = acc[title];
+        if (!existing || entry.progress > existing.completionPercentage) {
+            acc[title] = {
+                completionPercentage: entry.progress,
+                status: entry.status,
+            };
+        }
+        return acc;
+    }, {} as Record<string, { completionPercentage: number; status: string }>);
+
+    const progressMap = grammarTopics.reduce((acc, topic) => {
+        const titlesForTopic = topic.activityTitles ?? [];
+        let best: { completionPercentage: number; status: string } | null = null;
+        for (const title of titlesForTopic) {
+            const candidate = progressByTitle[title];
+            if (!candidate) continue;
+            if (!best || candidate.completionPercentage > best.completionPercentage) {
+                best = candidate;
+            }
+        }
+        if (best) {
+            acc[topic.id] = best;
+        }
         return acc;
     }, {} as Record<string, { completionPercentage: number; status: string }>);
 
