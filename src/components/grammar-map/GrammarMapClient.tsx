@@ -311,16 +311,6 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
         return 99;
     };
 
-    const getWeekRangeLabel = (topics: GrammarTopic[]) => {
-        const weeks = topics
-            .map((t) => t.week)
-            .filter((w): w is number => typeof w === 'number' && Number.isFinite(w));
-        if (!weeks.length) return null;
-        const minWeek = Math.min(...weeks);
-        const maxWeek = Math.max(...weeks);
-        return minWeek === maxWeek ? `Week ${minWeek}` : `Weeks ${minWeek}–${maxWeek}`;
-    };
-
     const renderTopicCard = (topic: GrammarTopic, extraClassName = "") => {
         const progress = topic.activityId ? progressMap[topic.activityId] : null;
         const color = getNodeColor(topic);
@@ -498,19 +488,12 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                                             );
                                             if (!topics.length) return null;
 
-                                            const weekRange = getWeekRangeLabel(topics);
-
                                             return (
                                                 <div key={subcategory}>
-                                                    <div className="flex items-baseline justify-between gap-3 mb-2">
+                                                    <div className="flex items-baseline gap-3 mb-2">
                                                         <h4 className="text-sm font-bold text-gray-700 tracking-wide uppercase">
                                                             {tenseSubcategoryLabels[subcategory]}
                                                         </h4>
-                                                        {weekRange && (
-                                                            <span className="text-xs text-gray-500 font-medium">
-                                                                {weekRange}
-                                                            </span>
-                                                        )}
                                                     </div>
                                                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                                                         {topics
