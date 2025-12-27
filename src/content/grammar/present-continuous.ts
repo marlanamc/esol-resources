@@ -217,7 +217,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "1. The baby ___ (sleep) peacefully in her crib right now.", expectedAnswer: "is sleeping" },
                         { type: "text", label: "2. My neighbors ___ (plant) a vegetable garden in their backyard.", expectedAnswer: "are planting" },
-                        { type: "text", label: "3. I ___ (take) guitar lessons every Tuesday this semester.", expectedAnswer: "am taking" },
+                        { type: "text", label: "3. I ___ (take) guitar lessons every Tuesday this course.", expectedAnswer: "am taking" },
                     ],
                 },
             ],

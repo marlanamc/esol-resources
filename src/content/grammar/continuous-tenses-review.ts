@@ -438,7 +438,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     instructions: "Complete with the correct negative or question form.",
                     items: [
                         { type: "text", label: "1. The library ___ (not offer) late hours during summer break.", expectedAnswer: "is not offering" },
-                        { type: "text", label: "2. ___ your daughter ___ (apply) to graduate schools this semester?", expectedAnswer: "Is your daughter applying" },
+                        { type: "text", label: "2. ___ your daughter ___ (apply) to graduate schools this course?", expectedAnswer: "Is your daughter applying" },
                         { type: "text", label: "3. The museum ___ (not charge) admission this weekend for the anniversary.", expectedAnswer: "is not charging" },
                         { type: "text", label: "4. ___ the neighbors ___ (renovate) their kitchen right now?", expectedAnswer: "Are the neighbors renovating" },
                     ],

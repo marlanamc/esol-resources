@@ -31,7 +31,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         <li>Talking about your goals for 2026</li>
                         <li>Practicing "question formation race" game</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the semester, you'll also use this when:</strong></p>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the course, you'll also use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li><strong> Asking your landlord questions (rent, repairs, rules)</li>
                         <li><strong> Preparing for job interviews (asking about the job, schedule, benefits)</li>
@@ -39,7 +39,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         <li><strong> Talking to your doctor (symptoms, medications, appointments)</li>
                         <li><strong> Getting information about community resources</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this semester!</p>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">✨ This is one of the MOST IMPORTANT grammar topics - that's why we practice it 6 times this course!</p>
                 </div>
             `,
             exercises: [

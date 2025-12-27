@@ -10,12 +10,30 @@ import { TableOfContents } from "./TableOfContents";
 import { MiniQuizSection } from "./MiniQuizSection";
 import Link from "next/link";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { useSearchParams, usePathname } from "next/navigation";
 
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
     onComplete?: () => void;
     completionKey?: string;
     activityId?: string;
+}
+
+function getSlugFromPath(pathname: string | null): string | null {
+    if (!pathname) return null;
+    const parts = pathname.split("/").filter(Boolean);
+    return parts[parts.length - 1] ?? null;
+}
+
+function formatGuideTitle(raw: string | null | undefined): string {
+    if (!raw) return "Grammar";
+
+    return raw
+        .replace(/[-_]+/g, " ")
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
 }
 
 export function GrammarReader({ content, onComplete, completionKey, activityId }: GrammarReaderProps) {
@@ -33,6 +51,12 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
     const [awardSent, setAwardSent] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const [activitiesHref, setActivitiesHref] = useState<string>("/dashboard/activities");
+
+    const guideTitle = formatGuideTitle(completionKey || getSlugFromPath(pathname));
+    const fromParam = searchParams.get("from");
 
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
@@ -44,6 +68,30 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         window.addEventListener('resize', checkDesktop);
         return () => window.removeEventListener('resize', checkDesktop);
     }, []);
+
+    // Choose where the "Activities" breadcrumb should take the user based on entry point.
+    useEffect(() => {
+        if (fromParam === "grammar-map") {
+            setActivitiesHref("/grammar-map");
+            return;
+        }
+
+        // Backward-compat: if the user navigated here directly from /grammar-map.
+        try {
+            const ref = document.referrer;
+            if (ref) {
+                const url = new URL(ref);
+                if (url.pathname === "/grammar-map") {
+                    setActivitiesHref("/grammar-map");
+                    return;
+                }
+            }
+        } catch {
+            // ignore
+        }
+
+        setActivitiesHref("/dashboard/activities");
+    }, [fromParam]);
 
     const awardCompletion = useCallback(async () => {
         if (!completionKey || awardSent) return;
@@ -244,7 +292,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <div className="flex items-center justify-between gap-4 mb-3">
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
                                     <Link
-                                        href={isDesktop ? "/dashboard" : "/dashboard/activities"}
+                                        href={activitiesHref}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
                                         Activities
@@ -257,7 +305,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                         Grammar
                                     </Link>
                                     <span className="text-text-muted flex-shrink-0">/</span>
-                                    <span className="text-text font-medium flex-shrink-0">Present Perfect</span>
+                                    <span className="text-text font-medium flex-shrink-0">{guideTitle}</span>
                                 </nav>
 
                                 <div className="flex items-center gap-2 flex-shrink-0">

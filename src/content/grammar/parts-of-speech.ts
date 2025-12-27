@@ -31,7 +31,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         <li>Learning grammar terminology so you can understand future lessons</li>
                         <li>Practicing question formation (you need to know what a "verb" and "noun" are!)</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the semester, you'll use this when:</strong></p>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the course, you'll use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li><strong>Every week:</strong> Understanding what "gerund," "infinitive," "auxiliary verb," and "modal" mean</li>
                         <li><strong>Learning about gerunds vs infinitives</strong> (you need to know what a "verb" is first!)</li>

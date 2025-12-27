@@ -600,8 +600,8 @@ export const futurePerfectContent: InteractiveGuideContent = {
                             <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: Dec 31st → Action complete before then</span>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
-                            <strong>Before next semester starts, I <span style="color: #06b6d4;">will have paid off</span> my credit card debt.</strong>
-                            <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: next semester → Action complete before then</span>
+                            <strong>Before next course starts, I <span style="color: #06b6d4;">will have paid off</span> my credit card debt.</strong>
+                            <br><span style="font-size: 0.875rem; color: #64748b;">Deadline: next course → Action complete before then</span>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border-left: 4px solid #06b6d4;">
                             <strong>By the end of this month, I <span style="color: #06b6d4;">will have compared</span> all the best laptop options.</strong>

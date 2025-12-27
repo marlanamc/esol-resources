@@ -318,7 +318,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "2. ___ your daughter ___ (study) abroad next semester?",
+                            label: "2. ___ your daughter ___ (study) abroad next course?",
                             expectedAnswer: "Will your daughter study",
                         },
                         {
