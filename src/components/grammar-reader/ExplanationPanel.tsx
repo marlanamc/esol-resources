@@ -50,7 +50,7 @@ export function ExplanationPanel({
                 {section.explanation && (
                     <div
                         className="explanation-content mb-6"
-                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(section.explanation) }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(section.explanation, { allowStyles: true }) }}
                     />
                 )}
 

@@ -26,7 +26,7 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
                     <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0;">
-                        <li>Reviewing your entire semester's learning journey</li>
+                        <li>Reviewing your entire course's learning journey</li>
                         <li>Preparing for Year-in-Review presentations (tell your complete story)</li>
                         <li>Seeing how ALL the grammar pieces fit together on one timeline</li>
                         <li>Practicing switching between tenses smoothly</li>
@@ -45,7 +45,7 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
                 {
                     id: "tenses-intro-1",
                     title: "Quick Check: What Do You Already Know?",
-                    instructions: "Which tenses have you studied this semester?",
+                    instructions: "Which tenses have you studied this course?",
                     items: [
                         {
                             type: "radio",
@@ -510,7 +510,7 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
 
                 <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(122, 143, 124, 0.1); border-radius: 0.5rem; border-left: 4px solid #7ba884;">
                     <h4 style="margin-top: 0;">🎓 You Did It!</h4>
-                    <p style="margin-bottom: 0;">You've studied <strong>7 of the 12 tenses</strong> in depth this semester. You can recognize all 12. That's HUGE! Most native speakers don't even know they're using all these tenses - but you understand the system. Be proud!</p>
+                    <p style="margin-bottom: 0;">You've studied <strong>7 of the 12 tenses</strong> in depth this course. You can recognize all 12. That's HUGE! Most native speakers don't even know they're using all these tenses - but you understand the system. Be proud!</p>
                 </div>
             `,
         },

@@ -10,7 +10,7 @@
 
 ### Financial Goals
 - "By December 31st, I **will have saved** $1,000 for emergencies."
-- "Before next semester starts, I **will have paid off** my credit card debt."
+- "Before next course starts, I **will have paid off** my credit card debt."
 - "By this time next year, I **will have reduced** my monthly expenses by 20%."
 
 ### Shopping & Purchases

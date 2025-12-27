@@ -5,20 +5,68 @@
 
 import DOMPurify from 'isomorphic-dompurify';
 
+type SanitizeHtmlOptions = {
+    allowStyles?: boolean;
+};
+
 /**
  * Sanitize HTML content to prevent XSS attacks
  * Uses DOMPurify with a strict allowlist of safe tags and attributes
  */
-export function sanitizeHtml(input?: string | null): string {
+export function sanitizeHtml(input?: string | null, options: SanitizeHtmlOptions = {}): string {
     if (!input) return "";
 
+    const allowStyles = options.allowStyles === true;
+
     return DOMPurify.sanitize(input, {
-        // Only allow safe formatting tags
-        ALLOWED_TAGS: ['strong', 'em', 'u', 'br', 'p', 'span', 'b', 'i'],
-        // Only allow class attribute for styling
-        ALLOWED_ATTR: ['class'],
-        // Remove any data attributes
-        FORBID_ATTR: ['style', 'onerror', 'onclick'],
+        // Allow safe structural + formatting tags used in content
+        ALLOWED_TAGS: [
+            'a',
+            'b',
+            'blockquote',
+            'br',
+            'code',
+            'div',
+            'em',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'h6',
+            'hr',
+            'i',
+            'li',
+            'mark',
+            'ol',
+            'p',
+            'pre',
+            'span',
+            'strong',
+            'sub',
+            'sup',
+            'table',
+            'tbody',
+            'td',
+            'tfoot',
+            'th',
+            'thead',
+            'tr',
+            'u',
+            'ul',
+        ],
+        // Allow a small set of safe attributes
+        ALLOWED_ATTR: [
+            'class',
+            'href',
+            'rel',
+            'target',
+            'colspan',
+            'rowspan',
+            ...(allowStyles ? ['style'] : []),
+        ],
+        // Forbid inline styles by default (styles can be enabled per-renderer)
+        FORBID_ATTR: allowStyles ? ['onerror', 'onclick'] : ['style', 'onerror', 'onclick'],
         // Remove tags completely rather than escaping
         KEEP_CONTENT: true,
         // Return empty string for invalid input
@@ -48,4 +96,3 @@ export function sanitizeCss(input?: string | null): string {
 
     return cleaned;
 }
-
