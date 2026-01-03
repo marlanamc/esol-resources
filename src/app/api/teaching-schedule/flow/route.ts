@@ -83,9 +83,18 @@ export async function POST(request: NextRequest) {
         const updatedMarkdown = beforeSection + newSection + afterSection;
 
         // Write the updated content
-        await writeFile(targetPath, updatedMarkdown, "utf8");
-
-        return NextResponse.json({ success: true, path: targetPath });
+        try {
+            await writeFile(targetPath, updatedMarkdown, "utf8");
+            return NextResponse.json({ success: true, path: targetPath });
+        } catch (writeError: unknown) {
+            // Check if it's a read-only filesystem error
+            if (writeError instanceof Error && writeError.message.includes("EROFS")) {
+                return NextResponse.json({
+                    error: "Schedule file is in a read-only location. In production, teaching schedules cannot be edited directly. Please contact your administrator to update the schedule file, or configure a writable storage location.",
+                }, { status: 500 });
+            }
+            throw writeError;
+        }
     } catch (error: unknown) {
         console.error("Error saving teaching schedule flow:", error);
         const message = error instanceof Error ? error.message : "Failed to save schedule";

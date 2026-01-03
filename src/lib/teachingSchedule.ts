@@ -66,6 +66,15 @@ function parseFlowSection(section: string): TeachingScheduleDay {
         return text.replace(/\s*\(\d+\s*min(?:utes?)?\)/gi, "").trim();
     };
 
+    // Helper function to strip markdown formatting (bold, italic, etc.)
+    const stripMarkdown = (text: string): string => {
+        return text
+            .replace(/\*\*(.+?)\*\*/g, "$1") // Remove bold **text**
+            .replace(/\*(.+?)\*/g, "$1")     // Remove italic *text*
+            .replace(/_(.+?)_/g, "$1")       // Remove italic _text_
+            .trim();
+    };
+
     // Try to match new format with sequential numbers: - **1** Activity
     const flowLineWithNumberRe = /^\s*-\s*\*\*(\d+)\*\*\s*(.+)\s*$/gm;
     const matchesWithNumber = Array.from(section.matchAll(flowLineWithNumberRe));
@@ -73,7 +82,7 @@ function parseFlowSection(section: string): TeachingScheduleDay {
     if (matchesWithNumber.length > 0) {
         // New format with sequential numbers
         for (const match of matchesWithNumber) {
-            const activity = stripDuration(match[2]!.trim());
+            const activity = stripMarkdown(stripDuration(match[2]!.trim()));
             flow.push({ time: "", activity });
         }
     } else {
@@ -84,7 +93,7 @@ function parseFlowSection(section: string): TeachingScheduleDay {
         if (matchesWithTime.length > 0) {
             // Old format with times - ignore times, just extract activities
             for (const match of matchesWithTime) {
-                const activity = stripDuration(match[2]!.trim());
+                const activity = stripMarkdown(stripDuration(match[2]!.trim()));
                 flow.push({ time: "", activity });
             }
         } else {
@@ -94,7 +103,7 @@ function parseFlowSection(section: string): TeachingScheduleDay {
                 const activity = match[1]!.trim();
                 // Skip if it's the time header line
                 if (!/^\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2}/.test(activity)) {
-                    const cleanActivity = stripDuration(activity);
+                    const cleanActivity = stripMarkdown(stripDuration(activity));
                     flow.push({ time: "", activity: cleanActivity });
                 }
             }
