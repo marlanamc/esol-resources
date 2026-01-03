@@ -9,30 +9,412 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Speaking warm‑ups (already created):** `class_uploads/Warm-Up Speaking Schedule (Jan–Jun, 2 classes per week).md`
 - **Weekly verb quiz (homework):** due **Tuesdays** starting **1/13** (outside class)
 
-## Suggested class flow (SPEAKING-FIRST APPROACH)
+## Class Flows by Week (SPEAKING-FIRST APPROACH)
 
-### Tuesdays (Grammar + Application day)
+**Note:** Verb tense quizzes (homework) due Tuesdays starting 1/13 - remind students each Monday!
+
+### Week 16: Tue 1/6 - Parts of Speech Part 1
 
 - **1** Classroom & School Language Speaking Warm-Up
-- **2** Parts of Speech Part 1: Content Words (Grammar mini-lesson)
-- **3** Sentence building game (Speaking practice using new grammar)
-- **4** Read syllabus; identify nouns, verbs, adjectives, adverbs (Reading/listening task)
-- **5** Parts of speech relay race (Speaking game/activity)
-- **6** Exit ticket + Class Companion homework assignment
+- **2** Parts of Speech Part 1: Content Words (Grammar: nouns, verbs, adjectives, adverbs)
+- **3** Sentence building game (Speaking practice)
+- **4** Read syllabus; identify and label nouns, verbs, adjectives, and adverbs
+- **5** Parts of speech relay race (Speaking game)
+- **6** Exit ticket + Homework: Complete "Parts of Speech" guide steps 1-4 on Class Companion
 
-**Total speaking time: 70 minutes** (vs previous 12 min)
-
-### Thursdays (Review + Phonics + Application day)
+### Week 16: Thu 1/8 - Parts of Speech Part 2 + Unit 4 Quiz
 
 - **1** Year Reflection & New Goals Speaking Warm-Up
-- **2** Tuesday's content words review (Grammar review + quick practice)
-- **3** Share 2026 goals using all 8 parts of speech (Speaking practice)
-- **4** Final consonants + plural/3rd person -s endings (Phonics/pronunciation)
-- **5** Goal paragraph frame (Reading/listening task)
-- **6** Sentence auction game (Speaking game/activity)
-- **7** Wrap-up
+- **2** Unit 4 quiz (30 min)
+- **3** Quick review: Tuesday's 4 content words
+- **4** Parts of Speech Part 2: Structure Words (Grammar: pronouns, articles, prepositions, conjunctions)
+- **5** Share 2026 goals using all 8 parts of speech (Speaking practice)
+- **6** Goal paragraph frame (Reading/writing)
+- **7** Homework: Complete "Parts of Speech" steps 5-8 + mini-quiz
 
-**Total speaking time: 60 minutes** (vs previous 12 min)
+### Week 17: Tue 1/13 - Information Questions Basics
+
+**Reminder:** Verb quiz due today!
+
+- **1** Describing Your Home Speaking Warm-Up
+- **2** Information Questions Basics (Grammar: WH-words + question word order)
+- **3** Ask questions about homes, apartments, neighborhoods (Speaking practice)
+- **4** Read apartment ads; write 6-8 questions you would ask a landlord
+- **5** Question race (Speaking game)
+- **6** Exit ticket + Homework: Complete "Information Questions" guide steps 1-3
+
+### Week 17: Thu 1/15 - Superlatives & Quantifiers
+
+- **1** Food & Restaurants Speaking Warm-Up
+- **2** Start Unit 5 vocab (Housing)
+- **3** Superlatives + Quantifiers (Grammar: biggest, best, cheapest, too many, not enough)
+- **4** Ask questions AND compare apartments using superlatives (Speaking practice)
+- **5** Final consonants + plural/3rd person -s endings (Phonics)
+- **6** Read a menu; write + role-play an order using polite questions
+- **7** "Best/worst" game (Speaking activity)
+- **8** Homework: Complete "Superlatives & Quantifiers" guide
+
+### Week 18: Tue 1/20 - Advanced Information Questions
+
+**Reminder:** Verb quiz due today!
+
+- **1** Housing Vocabulary + Room Descriptions Speaking Warm-Up
+- **2** Information Questions Advanced (Grammar: follow-up questions, polite indirect questions, question chains)
+- **3** Role-play: apartment seeker asks landlord 10 questions + follow-ups (Speaking practice)
+- **4** Read "what to ask before renting"; write 8 essential questions with follow-ups
+- **5** Question race (Speaking game: clarity + politeness)
+- **6** Exit ticket + Homework: Complete "Information Questions" guide steps 4-6
+
+### Week 18: Thu 1/22 - Question Review + Phonics
+
+- **1** Tenant ↔ Landlord Phone Call Speaking Warm-Up
+- **2** Question formation + 2 required follow-ups (Grammar review)
+- **3** Phone call role-plays: broken heat, leaky faucet, noise complaint (Speaking practice - record & listen back)
+- **4** -ed endings (Phonics: t/d/ɪd - moved, signed, rented)
+- **5** Listen to landlord voicemail; write return message
+- **6** Telephone game (Speaking activity)
+
+### Week 19: Tue 1/27 - Past Simple
+
+**Reminder:** Verb quiz due today!
+
+- **1** Banking & Shopping Speaking Warm-Up
+- **2** Past Simple steps 1-3 (Grammar: explaining what happened)
+- **3** Tell a housing problem story using past simple (Speaking practice: 5 sentences minimum)
+- **4** Read problem story; create timeline; write your own (5 sentences)
+- **5** Story chain (Speaking game)
+- **6** Exit ticket + Homework: Complete "Past Simple" guide
+
+### Week 19: Thu 1/29 - Past Simple Fluency
+
+- **1** Past Simple Fluency Practice Speaking Warm-Up
+- **2** Past simple fluency + error correction (Grammar review)
+- **3** "What happened?" speed rounds (Speaking practice: explain problems in 2 minutes)
+- **4** Word stress (Phonics: a-PART-ment, MAIN-te-nance, com-PLAINT)
+- **5** Write a complaint paragraph (3 problems in past simple)
+- **6** Problem-solution matching (Speaking game)
+
+### Week 20: Tue 2/3 - Past Continuous
+
+**Reminder:** Verb quiz due today!
+
+- **1** Housing Problems & Solutions Speaking Warm-Up
+- **2** Past continuous steps 4-5 (Grammar: describing background actions)
+- **3** Describe housing problems with background details (Speaking practice)
+- **4** Read a model complaint letter; annotate parts
+- **5** Phrasal-verb charades (Speaking game)
+
+### Week 20: Thu 2/5 - Past Continuous vs Past Simple
+
+- **1** Past Continuous vs Past Simple Speaking Warm-Up
+- **2** Past continuous vs past simple (Grammar review: when/while)
+- **3** Complex problem stories using both tenses (Speaking practice)
+- **4** /s/ vs /z/ + -s endings (Phonics)
+- **5** Draft complaint letter paragraph 1
+- **6** Sentence auction (Speaking game)
+
+### Week 21: Tue 2/10 - Past Perfect
+
+**Reminder:** Verb quiz due today!
+
+- **1** Budgeting, Bills, Credit & Debt Speaking Warm-Up
+- **2** Past perfect steps 1-4 (Grammar: housing timeline - what happened before what)
+- **3** Tell complex housing stories with timeline (Speaking practice)
+- **4** Read a "repair timeline"; write 4 past perfect sentences
+- **5** Timeline race (Speaking game: past perfect vs past simple)
+
+### Week 21: Thu 2/12 - Past Perfect Review
+
+- **1** Gerunds & Infinitives Practice Speaking Warm-Up
+- **2** Past perfect steps 1-4 + error correction (Grammar review - MORE TIME, no quiz today!)
+- **3** Complex housing problem stories using past perfect (Speaking practice)
+- **4** Irregular past participles (Phonics: broken, paid, gone, been)
+- **5** Budget mini-plan (3 expenses + 1 change you will make)
+- **6** "Fix the story" game (correct the tense to match timeline)
+
+### NO CLASS: Feb 16–20 (Vacation Week)
+
+### Week 22: Tue 2/24 - Modals
+
+**Reminder:** Verb quiz due today!
+
+- **1** Resume & Cover Letter Basics Speaking Warm-Up
+- **2** Modals for obligation/permission + polite requests (Grammar: must/have to; can/may/could)
+- **3** Read a resume; write 6 "I can..." / "I have to..." sentences for work
+- **4** "Polite request" role-play cards (Speaking game)
+
+### Week 22: Thu 2/26 - Modals Review + Unit 5 Quiz
+
+- **1** Workplace Conversations Speaking Warm-Up
+- **2** Unit 5 quiz (Housing) - 30 min
+- **3** Modals quick check + speaking drill (Grammar review: 2 polite versions)
+- **4** Intonation for polite requests (Phonics: Could you...? Would you mind...?)
+- **5** Cover letter paragraph frame
+- **6** "Modal switch" game (make it stronger/weaker)
+
+### Week 23: Tue 3/3 - Gerunds after Prepositions
+
+**Reminder:** Verb quiz due today!
+
+- **1** Transportation & Getting Around Speaking Warm-Up
+- **2** Gerunds after prepositions + "I get to..." (Grammar: By working..., I get to...)
+- **3** Read a job ad; write 6 sentences: "I'm interested in... / I'm good at..."
+- **4** "Gerund board" game
+
+### Week 23: Thu 3/5 - Gerunds/Infinitives Review
+
+- **1** Interview Questions + Dress Code Speaking Warm-Up
+- **2** Gerunds/infinitives quick contrast (Grammar review: want to / enjoy -ing)
+- **3** Sentence stress for confident answers (Phonics: I *have* experience with...)
+- **4** Listen/read interview Qs; write 4 strong answers (STAR mini-frame)
+- **5** Interview speed-rounds (Speaking game: 2 minutes each)
+
+### Week 24: Tue 3/10 - Present Perfect Continuous
+
+**Reminder:** Verb quiz due today!
+
+- **1** Job Application Talk-Through Speaking Warm-Up
+- **2** Present perfect continuous vs present continuous steps 1-3 (Grammar)
+- **3** Fill in application; write 4 "I've been..." sentences about work/learning
+- **4** "How long have you been...?" speed chat (Speaking game)
+
+### Week 24: Thu 3/12 - Present Perfect Continuous Review
+
+- **1** Career Advisor Appointment + Professional Messages Speaking Warm-Up
+- **2** Present perfect continuous Q&A + common errors (Grammar review - MORE TIME, no quiz!)
+- **3** Job application scenarios using present perfect continuous (Speaking practice)
+- **4** Reduced forms (Phonics: I've / he's / we've been...)
+- **5** Write an email to schedule career advisor appointment
+- **6** "Inbox" game (match message → best response)
+
+### Week 25: Tue 3/17 - Present Perfect Continuous Advanced
+
+**Reminder:** Verb quiz due today!
+
+- **1** Workplace Rights Scenarios Speaking Warm-Up
+- **2** Present perfect continuous steps 4-5 (Grammar: workplace contexts)
+- **3** Read a workplace rights flyer; write 3 claims + 1 example each
+- **4** "Rights role-play" game
+
+### Week 25: Thu 3/19 - Present Perfect Continuous Fluency
+
+- **1** Perfect Continuous Tenses Speaking Warm-Up
+- **2** Present perfect continuous fluency rounds (Grammar review: accuracy + speed)
+- **3** Linking (Phonics: been_working, been_asking)
+- **4** Write a progress update message (to teacher/boss)
+- **5** "Progress bingo" game
+
+### Week 26: Tue 3/24 - Infinitives vs Gerunds
+
+**Reminder:** Verb quiz due today!
+
+- **1** Negotiation & Self-Advocacy Speaking Warm-Up
+- **2** Infinitives vs gerunds (Grammar: decide to / plan to / enjoy -ing / avoid -ing)
+- **3** Read a negotiation dialogue; rewrite 6 lines using to/-ing verbs
+- **4** Sentence auction game (to vs -ing)
+
+### Week 26: Thu 3/26 - Unit 6 Quiz + Advocacy
+
+- **1** Workplace Rights & Advocacy Role-Plays Speaking Warm-Up
+- **2** Unit 6 quiz (Workforce Prep) - 30 min
+- **3** Infinitives/gerunds speaking (Grammar review: 2 reasons + 1 example)
+- **4** /æ/ vs /ʌ/ (Phonics: salary/sudden; manager/number)
+- **5** Write an advocacy text/email to supervisor
+- **6** "Advocacy ladder" game
+
+### Week 27: Tue 3/31 - Workplace Phrasal Verbs
+
+**Reminder:** Verb quiz due today!
+
+- **1** Workplace Small Talk Speaking Warm-Up
+- **2** Workplace phrasal verbs + common idioms (Grammar)
+- **3** Read workplace dialogues; highlight phrasal verbs; write 6 sentences
+- **4** Phrasal-verb matching game
+
+### Week 27: Thu 4/2 - Phrasal Verbs Practice
+
+- **1** Workplace Policies & Procedures Speaking Warm-Up
+- **2** Phrasal verbs in role-plays (Grammar review: clock in/out, fill in, call out)
+- **3** Intonation for small talk + follow-up questions (Phonics)
+- **4** Read a workplace policy excerpt; answer 6 questions
+- **5** "Policy quiz show" game
+
+### Week 28: Tue 4/7 - Used To + Would Rather
+
+**Reminder:** Verb quiz due today!
+
+- **1** Work Problem → Solution Speaking Warm-Up
+- **2** Used to + would rather (Grammar: past habits + preferences)
+- **3** Write problem → solution paragraph using 2 *used to* + 2 preference sentences
+- **4** "Would you rather...?" game
+
+### Week 28: Thu 4/9 - Used To Structures
+
+- **1** Used To / Be Used To / Get Used To Speaking Warm-Up
+- **2** Used to structures (Grammar review: accuracy)
+- **3** TH reinforcement (Phonics: TH vs T/D)
+- **4** Convert 6 direct quotes → reported statements
+- **5** "Then vs now" card sort game
+
+### Week 29: Tue 4/14 - Advice Modals + Imperatives
+
+**Reminder:** Verb quiz due today!
+
+- **1** Healthcare & Doctor Visits Speaking Warm-Up
+- **2** Advice modals + imperative vs declarative (Grammar: You should... / Don't... / I will...)
+- **3** Read a symptom chart; complete medical history mini-form
+- **4** Doctor advice role-play game (2 follow-ups required)
+
+### Week 29: Thu 4/16 - Advice Modals Review
+
+- **1** Symptoms + Duration Speaking Warm-Up
+- **2** Advice modals + imperatives (Grammar review: tone - soft vs strong, MORE TIME!)
+- **3** Healthcare scenarios with advice modals (Speaking practice)
+- **4** Multi-syllable medical words + primary stress (Phonics: ALLergy, alLERgic)
+- **5** Write a note explaining symptoms + duration
+- **6** "Diagnosis" game
+
+### NO CLASS: Apr 20–24 (Vacation Week)
+
+### Week 30: Tue 4/28 - Passive Voice
+
+**Reminder:** Verb quiz due today!
+
+- **1** Clinic Visit Steps Speaking Warm-Up
+- **2** Passive voice (Grammar: is/are + past participle; was/were + past participle)
+- **3** Read clinic check-in steps; rewrite 6 steps using passive chunks
+- **4** Passive matching game (active ↔ passive)
+
+### Week 30: Thu 4/30 - Passive Voice + Unit 7 Quiz
+
+- **1** Pharmacy Instructions Speaking Warm-Up
+- **2** Unit 7 quiz (Career Awareness) - 30 min
+- **3** Passive voice in instructions (Grammar review: required/recommended)
+- **4** Clarity with numbers + stress (Phonics: mg, times/day)
+- **5** Read medicine labels; write 4 "You should..." + 2 "You are required to..."
+- **6** "Instruction relay" game
+
+### Week 31: Tue 5/5 - Reported Speech
+
+**Reminder:** Verb quiz due today!
+
+- **1** MyChart / Calling the Office Speaking Warm-Up
+- **2** Direct vs reported speech + reported commands (Grammar: said / told me to / asked me to)
+- **3** Write a MyChart message; report what you wrote to partner
+- **4** "Telephone: reported speech" game
+
+### Week 31: Thu 5/7 - Passive Voice + Reported Commands
+
+- **1** Passive Voice Practice Speaking Warm-Up
+- **2** Passive voice + reported commands (Grammar review: mix & match)
+- **3** Fluency for phone calls (Phonics: chunking + polite tone)
+- **4** Read clinic dialogue; answer inference questions
+- **5** "Clinic role-play roulette" game
+
+### Week 32: Tue 5/12 - Used To / Be Used To / Get Used To
+
+**Reminder:** Verb quiz due today!
+
+- **1** Wellness & Self-Care Speaking Warm-Up
+- **2** Used to / be used to / get used to (Grammar: habit change language)
+- **3** Write a "then vs now" wellness paragraph (3 habits)
+- **4** Habit bingo game
+
+### Week 32: Thu 5/14 - Used To Structures Review
+
+- **1** Nutrition & Food Labels Speaking Warm-Up
+- **2** Used to structures (Grammar review: form + meaning quick check, MORE TIME!)
+- **3** Health habit changes using "used to" structures (Speaking practice)
+- **4** Stress in food/nutrition words + schwa (Phonics: nuTRItion, VEGeTable)
+- **5** Interpret a nutrition label; write 3 comparisons
+- **6** "Label challenge" game
+
+### Week 33: Tue 5/19 - Future Conditional (If + Present, Will...)
+
+**Reminder:** Verb quiz due today!
+
+- **1** Home Remedies Speaking Warm-Up
+- **2** Future conditional (Grammar: If + present, will...; cause/effect for habits)
+- **3** Read a short stress article; write 5 conditional sentences
+- **4** Conditional chain game
+
+### Week 33: Thu 5/21 - Conditionals in Speaking
+
+- **1** Stress Solutions Roundtable Speaking Warm-Up
+- **2** Conditionals in speaking (Grammar review: give advice + consequences)
+- **3** Rhythm in if/then sentences (Phonics: stress the meaning words)
+- **4** Write a letter to yourself: coping plan (paragraph frame)
+- **5** "Advice circle" game (must include 1 conditional)
+
+### Week 34: Tue 5/26 - Verbs + Gerunds
+
+**Reminder:** Verb quiz due today!
+
+- **1** Healthy Habit Tracker Speaking Warm-Up
+- **2** Verbs + gerunds (Grammar: avoid, keep, consider, stop, finish...)
+- **3** Write a habit tracker summary using 6 target verbs
+- **4** "Taboo: gerunds" game
+
+### Week 34: Thu 5/28 - Unit 8 Quiz (Health) + Wellness Presentations
+
+- **1** Wellness Presentation Practice Speaking Warm-Up
+- **2** Unit 8 quiz (30 min)
+- **3** Verbs + gerunds (Grammar review: error correction)
+- **4** Presentation clarity (Phonics: pauses, ending sounds, stress)
+- **5** Outline a 1-minute wellness mini-talk
+- **6** Speed presentations + peer feedback (1 glow/1 grow)
+
+### Week 35: Tue 6/2 - Tense Review + Community Resources
+
+**Reminder:** Verb quiz due today!
+
+- **1** Community Resources + Directions Speaking Warm-Up
+- **2** Tense review mini-lesson (Grammar: simple past vs present perfect vs past perfect)
+- **3** Read an MBTA/map text; write directions using sequence words
+- **4** "Directions race" game (teams give directions accurately)
+
+### Week 35: Thu 6/4 - Wellness Reflection
+
+- **1** Wellness Reflection Speaking Warm-Up
+- **2** Mixed-tense error correction (Grammar review: common class errors)
+- **3** Consonant clusters (Phonics: st/str/spl for street/stress/strong)
+- **4** Write reflection: 3 changes + 1 next step
+- **5** Review Kahoot (mixed grammar)
+
+### Week 36: Tue 6/9 - All 12 Verb Tenses Overview
+
+**Reminder:** Verb quiz due today!
+
+- **1** Year-in-Review Carousel Speaking Warm-Up
+- **2** All 12 Verb Tenses Overview (Grammar: see ALL tenses on one timeline for final presentations)
+- **3** Tell your semester journey using 6+ different tenses (Speaking practice)
+- **4** Write a year-in-review paragraph using past simple, present perfect, and future simple
+- **5** "Tense mixing challenge" game (teams tell stories switching tenses correctly)
+- **6** Homework: Complete "All Verb Tenses Overview" guide + mini-quiz
+
+### Week 36: Thu 6/11 - POST-TEST
+
+- **1** Summer + Next Steps Goals Speaking Warm-Up
+- **2** POST-TEST: Comprehensive assessment (30-40 min) - reading, writing, speaking components
+- **3** Mixed tense practice (Grammar review: past journey, present skills, future goals)
+- **4** Brief final presentation practice (if time permits)
+- **5** Write summer goals + next steps (work/health/community)
+- **6** Celebrate progress, preview Finals Week
+
+### Week 37: Tue 6/16 - Final Presentation Rehearsal (Finals Week)
+
+- **1** Final Presentation Rehearsal Speaking Warm-Up
+- **2** Perfect tenses review (Grammar: paragraph format checklist)
+- **3** Final presentation draft + rehearsal notes
+- **4** Final review (student-made quiz questions)
+
+### Week 37: Thu 6/18 - Exit Interview + Course Evaluation (Finals Week)
+
+- **1** Exit Interview + Advice for New Students Speaking Warm-Up
+- **2** Mixed review stations (Grammar review: tenses/modals/questions)
+- **3** Fluency (Phonics: intonation + final sounds + "clear speech" checklist)
+- **4** Course evaluation + final reflection paragraph
+- **5** Exit interview role-play rotations
 
 ### Monthly unit quiz plan (30 minutes, in class)
 
