@@ -13,24 +13,24 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Tuesdays (Grammar + Application day)
 
-- **6:00–6:15** (15 min) Speaking warm‑up
-- **6:15–6:35** (20 min) Grammar mini-lesson (cut from 45 min - explanation only)
-- **6:35–7:00** (25 min) **SPEAKING PRACTICE using new grammar** (NEW - immediate application)
-- **7:00–7:30** (30 min) Reading/listening task
-- **7:30–8:00** (30 min) **SPEAKING GAME/ACTIVITY using grammar** (NEW - reinforcement)
-- **8:00–8:15** (15 min) Exit ticket + Class Companion homework assignment
+- **1** Speaking warm-up (e.g., Classroom & School Language)
+- **2** Grammar mini-lesson (e.g., Parts of Speech Part 1: Content Words)
+- **3** Speaking practice using new grammar (e.g., Sentence building game)
+- **4** Reading/listening task (e.g., Read syllabus; identify nouns, verbs, adjectives, adverbs)
+- **5** Speaking game/activity using grammar (e.g., Parts of speech relay race)
+- **6** Exit ticket + Class Companion homework assignment
 
 **Total speaking time: 70 minutes** (vs previous 12 min)
 
 ### Thursdays (Review + Phonics + Application day)
 
-- **6:00–6:15** (15 min) Speaking warm‑up
-- **6:15–6:35** (20 min) Grammar review + quick practice
-- **6:35–7:00** (25 min) **SPEAKING PRACTICE using reviewed grammar** (NEW)
-- **7:00–7:20** (20 min) Phonics/pronunciation
-- **7:20–7:50** (30 min) Reading/listening task
-- **7:50–8:10** (20 min) **SPEAKING GAME/ACTIVITY** (NEW)
-- **8:10–8:15** (5 min) Wrap-up
+- **1** Speaking warm-up (e.g., Year Reflection & New Goals)
+- **2** Grammar review + quick practice (e.g., Tuesday's content words review)
+- **3** Speaking practice using reviewed grammar (e.g., Share 2026 goals using all 8 parts of speech)
+- **4** Phonics/pronunciation (e.g., Final consonants + plural/3rd person -s endings)
+- **5** Reading/listening task (e.g., Goal paragraph frame)
+- **6** Speaking game/activity (e.g., Sentence auction game)
+- **7** Wrap-up
 
 **Total speaking time: 60 minutes** (vs previous 12 min)
 
