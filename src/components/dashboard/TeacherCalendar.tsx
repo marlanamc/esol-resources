@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/Card';
-
-export type MonthDay = { year: number; month: number; day: number };
-
-export type TeachingScheduleFlowItem = { time: string; activity: string };
+import { EditableFlow } from './EditableFlow';
+import { TeachingScheduleFlowItem, MonthDay } from '@/lib/teachingSchedule';
 
 export type TeachingScheduleDay = {
   time: string;
@@ -95,6 +93,36 @@ export function TeacherCalendar({
     weeklySchedule.length > 0 ? getCurrentWeekIndex(weeklySchedule) : 0
   );
   const [showWeekList, setShowWeekList] = useState(false);
+  const [localSchedule, setLocalSchedule] = useState(teachingSchedule);
+
+  // Sync local schedule when props change
+  useEffect(() => {
+    setLocalSchedule(teachingSchedule);
+  }, [teachingSchedule]);
+
+  const handleSaveFlow = async (day: "Tuesday" | "Thursday", flow: TeachingScheduleFlowItem[]) => {
+    const response = await fetch("/api/teaching-schedule/flow", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ day, flow }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || "Failed to save flow");
+    }
+
+    // Update local state
+    setLocalSchedule({
+      ...localSchedule,
+      [day]: {
+        ...localSchedule[day],
+        flow,
+      },
+    });
+  };
 
   const currentWeek = weeklySchedule[selectedWeek];
   const hasWeeks = weeklySchedule.length > 0 && !!currentWeek;
@@ -238,8 +266,8 @@ export function TeacherCalendar({
                   <h4 className="font-semibold text-text">
                     Tuesday {formatMonthDay(currentWeek.dates.tue)}
                   </h4>
-                  {teachingSchedule.Tuesday.time && (
-                    <span className="text-sm text-text/60">{teachingSchedule.Tuesday.time}</span>
+                  {localSchedule.Tuesday.time && (
+                    <span className="text-sm text-text/60">{localSchedule.Tuesday.time}</span>
                   )}
                 </div>
 
@@ -263,19 +291,11 @@ export function TeacherCalendar({
                     </div>
                   )}
 
-                  {teachingSchedule.Tuesday.flow.length > 0 && (
-                    <div className="pt-3 border-t border-text/10">
-                      <div className="text-xs font-medium text-text/60 mb-2">Class Flow:</div>
-                      <div className="space-y-1">
-                        {teachingSchedule.Tuesday.flow.map((item, idx) => (
-                          <div key={idx} className={item.time ? "grid grid-cols-[6rem_1fr] gap-x-3 text-xs text-text/70" : "text-xs text-text/70"}>
-                            {item.time && <span className="font-mono tabular-nums text-text/50">{item.time}</span>}
-                            <span className="min-w-0 break-words leading-snug">{stripMarkdown(item.activity)}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <EditableFlow
+                    flow={localSchedule.Tuesday.flow}
+                    day="Tuesday"
+                    onSave={(flow) => handleSaveFlow("Tuesday", flow)}
+                  />
                 </div>
               </div>
 
@@ -285,8 +305,8 @@ export function TeacherCalendar({
                   <h4 className="font-semibold text-text">
                     Thursday {formatMonthDay(currentWeek.dates.thu)}
                   </h4>
-                  {teachingSchedule.Thursday.time && (
-                    <span className="text-sm text-text/60">{teachingSchedule.Thursday.time}</span>
+                  {localSchedule.Thursday.time && (
+                    <span className="text-sm text-text/60">{localSchedule.Thursday.time}</span>
                   )}
                 </div>
 
@@ -317,42 +337,11 @@ export function TeacherCalendar({
                     </div>
                   )}
 
-                  {teachingSchedule.Thursday.flow.length > 0 && (
-                    <div className="pt-3 border-t border-text/10">
-                      <div className="text-xs font-medium text-text/60 mb-2">Class Flow:</div>
-                      <div className="space-y-1">
-                        {currentWeek.thursday.quiz ? (
-                          // Adjusted flow when there's a quiz - use schedule flow if available, otherwise show default
-                          teachingSchedule.Thursday.flow.length > 0 ? (
-                            teachingSchedule.Thursday.flow.map((item, idx) => (
-                              <div key={idx} className={item.time ? "grid grid-cols-[6rem_1fr] gap-x-3 text-xs text-text/70" : "text-xs text-text/70"}>
-                                {item.time && <span className="font-mono tabular-nums text-text/50">{item.time}</span>}
-                                <span className="min-w-0 break-words leading-snug">{stripMarkdown(item.activity)}</span>
-                              </div>
-                            ))
-                          ) : (
-                            <>
-                              <div className="text-xs text-orange-700 font-medium">⚠️ Unit Quiz</div>
-                              <div className="text-xs text-text/70">Speaking warm-up</div>
-                              <div className="text-xs text-text/70">Grammar review + quick practice</div>
-                              <div className="text-xs text-text/70">SPEAKING PRACTICE using reviewed grammar (NEW)</div>
-                              <div className="text-xs text-text/70">Phonics/pronunciation</div>
-                              <div className="text-xs text-text/70">SPEAKING GAME/ACTIVITY (NEW)</div>
-                              <div className="text-xs text-text/70">Wrap-up</div>
-                            </>
-                          )
-                        ) : (
-                          // Normal flow when no quiz
-                          teachingSchedule.Thursday.flow.map((item, idx) => (
-                            <div key={idx} className={item.time ? "grid grid-cols-[6rem_1fr] gap-x-3 text-xs text-text/70" : "text-xs text-text/70"}>
-                              {item.time && <span className="font-mono tabular-nums text-text/50">{item.time}</span>}
-                              <span className="min-w-0 break-words leading-snug">{stripMarkdown(item.activity)}</span>
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </div>
-                  )}
+                  <EditableFlow
+                    flow={localSchedule.Thursday.flow}
+                    day="Thursday"
+                    onSave={(flow) => handleSaveFlow("Thursday", flow)}
+                  />
                 </div>
               </div>
             </div>
