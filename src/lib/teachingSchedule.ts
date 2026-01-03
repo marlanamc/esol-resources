@@ -61,23 +61,42 @@ function parseFlowSection(section: string): TeachingScheduleDay {
     const time = firstMatchGroup(/^\s*-\s*\*\*(.+?)\*\*\s*$/m, section) || "";
     const flow: TeachingScheduleFlowItem[] = [];
 
-    // Try to match lines with times first (old format)
-    const flowLineWithTimeRe = /^\s*-\s*\*\*(\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2})\*\*\s*(.+)\s*$/gm;
-    const matchesWithTime = Array.from(section.matchAll(flowLineWithTimeRe));
-    
-    if (matchesWithTime.length > 0) {
-        // Old format with times
-        for (const match of matchesWithTime) {
-            flow.push({ time: match[1]!.replace(/\s+/g, ""), activity: match[2]!.trim() });
+    // Helper function to strip duration patterns like "(15 min)", "(20 minutes)", etc.
+    const stripDuration = (text: string): string => {
+        return text.replace(/\s*\(\d+\s*min(?:utes?)?\)/gi, "").trim();
+    };
+
+    // Try to match new format with sequential numbers: - **1** Activity
+    const flowLineWithNumberRe = /^\s*-\s*\*\*(\d+)\*\*\s*(.+)\s*$/gm;
+    const matchesWithNumber = Array.from(section.matchAll(flowLineWithNumberRe));
+
+    if (matchesWithNumber.length > 0) {
+        // New format with sequential numbers
+        for (const match of matchesWithNumber) {
+            const activity = stripDuration(match[2]!.trim());
+            flow.push({ time: "", activity });
         }
     } else {
-        // New format without times - just bullet points
-        const flowLineRe = /^\s*-\s*(.+)\s*$/gm;
-        for (const match of section.matchAll(flowLineRe)) {
-            const activity = match[1]!.trim();
-            // Skip if it's the time header line
-            if (!/^\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2}/.test(activity)) {
+        // Try to match lines with times (old format for backward compatibility)
+        const flowLineWithTimeRe = /^\s*-\s*\*\*(\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2})\*\*\s*(.+)\s*$/gm;
+        const matchesWithTime = Array.from(section.matchAll(flowLineWithTimeRe));
+
+        if (matchesWithTime.length > 0) {
+            // Old format with times - ignore times, just extract activities
+            for (const match of matchesWithTime) {
+                const activity = stripDuration(match[2]!.trim());
                 flow.push({ time: "", activity });
+            }
+        } else {
+            // Plain bullet points without any formatting
+            const flowLineRe = /^\s*-\s*(.+)\s*$/gm;
+            for (const match of section.matchAll(flowLineRe)) {
+                const activity = match[1]!.trim();
+                // Skip if it's the time header line
+                if (!/^\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2}/.test(activity)) {
+                    const cleanActivity = stripDuration(activity);
+                    flow.push({ time: "", activity: cleanActivity });
+                }
             }
         }
     }

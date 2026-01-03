@@ -61,6 +61,20 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
         setEditedFlow(updated);
     };
 
+    const moveItemUp = (index: number) => {
+        if (index === 0) return;
+        const updated = [...editedFlow];
+        [updated[index - 1], updated[index]] = [updated[index]!, updated[index - 1]!];
+        setEditedFlow(updated);
+    };
+
+    const moveItemDown = (index: number) => {
+        if (index === editedFlow.length - 1) return;
+        const updated = [...editedFlow];
+        [updated[index], updated[index + 1]] = [updated[index + 1]!, updated[index]!];
+        setEditedFlow(updated);
+    };
+
     if (!isEditing) {
         return (
             <div className="pt-3 border-t border-text/10">
@@ -78,8 +92,8 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                         <div className="text-xs text-text/50 italic">No flow items. Click Edit to add.</div>
                     ) : (
                         flow.map((item, idx) => (
-                            <div key={idx} className={item.time ? "grid grid-cols-[6rem_1fr] gap-x-3 text-xs text-text/70" : "text-xs text-text/70"}>
-                                {item.time && <span className="font-mono tabular-nums text-text/50">{item.time}</span>}
+                            <div key={idx} className="grid grid-cols-[2rem_1fr] gap-x-2 text-xs text-text/70">
+                                <span className="font-mono tabular-nums text-text/50">{idx + 1}.</span>
                                 <span className="min-w-0 break-words leading-snug">{item.activity}</span>
                             </div>
                         ))
@@ -126,23 +140,36 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
             <div className="space-y-2">
                 {editedFlow.map((item, idx) => (
                     <div key={idx} className="flex gap-2 items-start">
-                        <input
-                            type="text"
-                            value={item.time}
-                            onChange={(e) => updateItem(idx, "time", e.target.value)}
-                            placeholder="Time (optional)"
-                            className="flex-1 min-w-0 px-2 py-1 text-xs border border-border/50 rounded bg-bg focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
+                        <span className="flex-shrink-0 px-2 py-1 text-xs font-mono text-text/50 tabular-nums">
+                            {idx + 1}.
+                        </span>
                         <input
                             type="text"
                             value={item.activity}
                             onChange={(e) => updateItem(idx, "activity", e.target.value)}
                             placeholder="Activity"
-                            className="flex-[2] min-w-0 px-2 py-1 text-xs border border-border/50 rounded bg-bg focus:outline-none focus:ring-2 focus:ring-primary/20"
+                            className="flex-1 min-w-0 px-2 py-1 text-xs border border-border/50 rounded bg-bg focus:outline-none focus:ring-2 focus:ring-primary/20"
                         />
+                        <button
+                            onClick={() => moveItemUp(idx)}
+                            disabled={idx === 0}
+                            className="px-2 py-1 text-xs text-text/60 hover:bg-text/5 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                            title="Move up"
+                        >
+                            ↑
+                        </button>
+                        <button
+                            onClick={() => moveItemDown(idx)}
+                            disabled={idx === editedFlow.length - 1}
+                            className="px-2 py-1 text-xs text-text/60 hover:bg-text/5 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                            title="Move down"
+                        >
+                            ↓
+                        </button>
                         <button
                             onClick={() => removeItem(idx)}
                             className="px-2 py-1 text-xs text-error hover:bg-error/10 rounded"
+                            title="Remove"
                         >
                             ×
                         </button>
