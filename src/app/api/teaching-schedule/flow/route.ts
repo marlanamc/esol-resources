@@ -68,12 +68,9 @@ export async function POST(request: NextRequest) {
         // Extract the current section content
         const currentSection = markdown.substring(dayHeaderIndex, sectionEndIndex);
         
-        // Build new flow section
-        const flowLines = flow.map((item: { time: string; activity: string }) => {
-            if (item.time && item.time.trim()) {
-                return `- **${item.time}** ${item.activity}`;
-            }
-            return `- ${item.activity}`;
+        // Build new flow section with sequential numbering
+        const flowLines = flow.map((item: { time: string; activity: string }, index: number) => {
+            return `- **${index + 1}** ${item.activity}`;
         }).join("\n");
         
         // Replace the flow items in the section (everything after the header)
