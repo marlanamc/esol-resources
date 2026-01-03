@@ -13,23 +13,23 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Tuesdays (Grammar + Application day)
 
-- **1** Speaking warm-up (e.g., Classroom & School Language)
-- **2** Grammar mini-lesson (e.g., Parts of Speech Part 1: Content Words)
-- **3** Speaking practice using new grammar (e.g., Sentence building game)
-- **4** Reading/listening task (e.g., Read syllabus; identify nouns, verbs, adjectives, adverbs)
-- **5** Speaking game/activity using grammar (e.g., Parts of speech relay race)
+- **1** Classroom & School Language Speaking Warm-Up
+- **2** Parts of Speech Part 1: Content Words (Grammar mini-lesson)
+- **3** Sentence building game (Speaking practice using new grammar)
+- **4** Read syllabus; identify nouns, verbs, adjectives, adverbs (Reading/listening task)
+- **5** Parts of speech relay race (Speaking game/activity)
 - **6** Exit ticket + Class Companion homework assignment
 
 **Total speaking time: 70 minutes** (vs previous 12 min)
 
 ### Thursdays (Review + Phonics + Application day)
 
-- **1** Speaking warm-up (e.g., Year Reflection & New Goals)
-- **2** Grammar review + quick practice (e.g., Tuesday's content words review)
-- **3** Speaking practice using reviewed grammar (e.g., Share 2026 goals using all 8 parts of speech)
-- **4** Phonics/pronunciation (e.g., Final consonants + plural/3rd person -s endings)
-- **5** Reading/listening task (e.g., Goal paragraph frame)
-- **6** Speaking game/activity (e.g., Sentence auction game)
+- **1** Year Reflection & New Goals Speaking Warm-Up
+- **2** Tuesday's content words review (Grammar review + quick practice)
+- **3** Share 2026 goals using all 8 parts of speech (Speaking practice)
+- **4** Final consonants + plural/3rd person -s endings (Phonics/pronunciation)
+- **5** Goal paragraph frame (Reading/listening task)
+- **6** Sentence auction game (Speaking game/activity)
 - **7** Wrap-up
 
 **Total speaking time: 60 minutes** (vs previous 12 min)
