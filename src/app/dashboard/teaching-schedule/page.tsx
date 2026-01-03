@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { TeacherCalendar } from "@/components/dashboard/TeacherCalendar";
+import { TeachingScheduleEditor } from "@/components/dashboard/TeachingScheduleEditor";
 import { loadEsol3TeachingScheduleData } from "@/lib/teachingSchedule";
 
 export const runtime = "nodejs";
@@ -49,6 +50,13 @@ export default async function TeachingSchedulePage() {
                         Couldn&apos;t load the teaching schedule file. Showing an empty schedule.
                     </div>
                 ) : null}
+                
+                {schedule.rawMarkdown && (
+                    <div className="mb-8">
+                        <TeachingScheduleEditor initialContent={schedule.rawMarkdown} />
+                    </div>
+                )}
+                
                 <TeacherCalendar
                     teachingSchedule={schedule.teachingSchedule}
                     weeklySchedule={schedule.weeklySchedule}

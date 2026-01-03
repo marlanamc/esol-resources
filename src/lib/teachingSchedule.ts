@@ -34,6 +34,7 @@ export type TeachingScheduleData = {
     teachingSchedule: TeachingSchedule;
     weeklySchedule: TeachingScheduleWeek[];
     sourcePath: string;
+    rawMarkdown?: string;
     loadError?: string;
 };
 
@@ -57,12 +58,28 @@ function firstMatchGroup(re: RegExp, text: string): string | undefined {
 }
 
 function parseFlowSection(section: string): TeachingScheduleDay {
-    const time = firstMatchGroup(/^\s*-\s*\*\*(.+?)\*\*\s*$/m, section) || "6:00-8:15pm";
+    const time = firstMatchGroup(/^\s*-\s*\*\*(.+?)\*\*\s*$/m, section) || "";
     const flow: TeachingScheduleFlowItem[] = [];
 
-    const flowLineRe = /^\s*-\s*\*\*(\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2})\*\*\s*(.+)\s*$/gm;
-    for (const match of section.matchAll(flowLineRe)) {
-        flow.push({ time: match[1]!.replace(/\s+/g, ""), activity: match[2]!.trim() });
+    // Try to match lines with times first (old format)
+    const flowLineWithTimeRe = /^\s*-\s*\*\*(\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2})\*\*\s*(.+)\s*$/gm;
+    const matchesWithTime = Array.from(section.matchAll(flowLineWithTimeRe));
+    
+    if (matchesWithTime.length > 0) {
+        // Old format with times
+        for (const match of matchesWithTime) {
+            flow.push({ time: match[1]!.replace(/\s+/g, ""), activity: match[2]!.trim() });
+        }
+    } else {
+        // New format without times - just bullet points
+        const flowLineRe = /^\s*-\s*(.+)\s*$/gm;
+        for (const match of section.matchAll(flowLineRe)) {
+            const activity = match[1]!.trim();
+            // Skip if it's the time header line
+            if (!/^\d{1,2}:\d{2}\s*[–—-]\s*\d{1,2}:\d{2}/.test(activity)) {
+                flow.push({ time: "", activity });
+            }
+        }
     }
 
     return { time, flow };
@@ -166,6 +183,7 @@ export async function loadEsol3TeachingScheduleData(): Promise<TeachingScheduleD
                 teachingSchedule: parseTeachingSchedule(markdown),
                 weeklySchedule: parseWeekBlocks(markdown),
                 sourcePath: candidate,
+                rawMarkdown: markdown,
             };
         } catch (err) {
             lastError = err;
@@ -185,6 +203,7 @@ export async function loadEsol3TeachingScheduleData(): Promise<TeachingScheduleD
                 teachingSchedule: parseTeachingSchedule(markdown),
                 weeklySchedule: parseWeekBlocks(markdown),
                 sourcePath: candidate,
+                rawMarkdown: markdown,
             };
         }
     } catch (err) {
