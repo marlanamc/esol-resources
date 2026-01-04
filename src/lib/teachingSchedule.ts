@@ -125,13 +125,44 @@ function parseTeachingSchedule(markdown: string): TeachingSchedule {
 }
 
 function parseDaySection(section: string): TeachingScheduleWeekDay {
-    const warmup = firstMatchGroup(/Warm[\u2011\u2013\u2014-]?up:\*\*\s*(.+)\s*$/m, section) || "";
+    // Try to extract warmup from old format first (for backward compatibility)
+    let warmup = firstMatchGroup(/Warm[\u2011\u2013\u2014-]?up:\*\*\s*(.+)\s*$/m, section) || "";
+
+    // Extract from numbered flow items - look for items containing "Warm-Up" or "Warmup"
+    if (!warmup) {
+        const warmupFlowRe = /^\s*-\s*\*\*\d+\*\*\s*(.+?)\s*(?:Warm[\u2011\u2013\u2014-]?up|Warmup).*$/im;
+        const warmupMatch = section.match(warmupFlowRe);
+        if (warmupMatch) {
+            warmup = warmupMatch[1]!.trim();
+        }
+    }
 
     const quiz = firstMatchGroup(/\*\*Unit quiz:\*\*\s*(.+)\s*$/m, section);
+    
+    // Try to extract quiz from flow items if not found in old format
+    let quizFromFlow = "";
+    if (!quiz) {
+        const quizFlowRe = /^\s*-\s*\*\*\d+\*\*\s*(.+?)\s*(?:quiz|Quiz).*$/im;
+        const quizMatch = section.match(quizFlowRe);
+        if (quizMatch) {
+            quizFromFlow = quizMatch[1]!.trim();
+        }
+    }
+
     const grammar =
         firstMatchGroup(/\*\*Grammar\s*\(new\):\*\*\s*(.+)\s*$/m, section) ||
         firstMatchGroup(/\*\*Grammar review:\*\*\s*(.+)\s*$/m, section) ||
         firstMatchGroup(/\*\*Grammar:\*\*\s*(.+)\s*$/m, section);
+
+    // Try to extract grammar from flow items if not found in old format
+    let grammarFromFlow = "";
+    if (!grammar) {
+        const grammarFlowRe = /^\s*-\s*\*\*\d+\*\*\s*(.+?)\s*\(Grammar:.*?\)/im;
+        const grammarMatch = section.match(grammarFlowRe);
+        if (grammarMatch) {
+            grammarFromFlow = grammarMatch[1]!.trim();
+        }
+    }
 
     const rlw = firstMatchGroup(/\*\*R\/L\/W:\*\*\s*(.+)\s*$/m, section);
     const game = firstMatchGroup(/\*\*Game:\*\*\s*(.+)\s*$/m, section);
@@ -144,52 +175,100 @@ function parseDaySection(section: string): TeachingScheduleWeekDay {
     for (const match of section.matchAll(flowLineRe)) {
         const activity = match[2]!.trim();
         flow.push({ time: "", activity });
+        
+        // Extract warmup from flow item if it contains "Warm-Up" or "Warmup" (use the full activity text)
+        if (!warmup && /Warm[\u2011\u2013\u2014-]?up|Warmup/i.test(activity)) {
+            warmup = activity.trim();
+        }
+        
+        // Extract quiz from flow items
+        if (!quiz && !quizFromFlow && /quiz/i.test(activity) && /Unit\s+\d+/i.test(activity)) {
+            quizFromFlow = activity;
+        }
+        
+        // Extract grammar from flow items (look for items with "(Grammar:" in them)
+        if (!grammar && !grammarFromFlow && /\(Grammar:/i.test(activity)) {
+            const grammarMatch = activity.match(/^(.+?)\s*\(Grammar:\s*(.+?)\)/i);
+            if (grammarMatch) {
+                grammarFromFlow = grammarMatch[1]!.trim() + ": " + grammarMatch[2]!.trim();
+            }
+        }
     }
 
-    return { warmup, grammar, quiz, notes, flow };
+    return { 
+        warmup: warmup || "", 
+        grammar: grammar || grammarFromFlow || undefined, 
+        quiz: quiz || quizFromFlow || undefined, 
+        notes, 
+        flow 
+    };
 }
 
 function parseWeekBlocks(markdown: string): TeachingScheduleWeek[] {
     const lines = markdown.split("\n");
 
+    // Find all week headers (both Tue and Thu)
     const headerIndices: number[] = [];
     for (let i = 0; i < lines.length; i++) {
-        if (/^###\s+Week\s+\d+/i.test(lines[i] || "")) headerIndices.push(i);
+        if (/^###\s+Week\s+\d+:/i.test(lines[i] || "")) headerIndices.push(i);
     }
     if (!headerIndices.length) return [];
 
-    const blocks: string[] = [];
-    for (let i = 0; i < headerIndices.length; i++) {
-        const start = headerIndices[i]!;
-        const end = i + 1 < headerIndices.length ? headerIndices[i + 1]! : lines.length;
-        blocks.push(lines.slice(start, end).join("\n"));
+    // Group headers by week number
+    const weekMap = new Map<number, { tue?: { index: number; header: string }; thu?: { index: number; header: string } }>();
+
+    for (const idx of headerIndices) {
+        const headerLine = lines[idx] || "";
+        const weekMatch = headerLine.match(/^###\s+Week\s+(\d+):\s*(Tue|Thu)\s+(\d{1,2}\/\d{1,2})/i);
+        if (!weekMatch) continue;
+
+        const weekNum = parseInt(weekMatch[1]!, 10);
+        const day = weekMatch[2]!.toLowerCase();
+        const dateStr = weekMatch[3]!;
+
+        if (!weekMap.has(weekNum)) {
+            weekMap.set(weekNum, {});
+        }
+
+        const week = weekMap.get(weekNum)!;
+        if (day === "tue") {
+            week.tue = { index: idx, header: headerLine };
+        } else if (day === "thu") {
+            week.thu = { index: idx, header: headerLine };
+        }
     }
 
     const weeks: TeachingScheduleWeek[] = [];
 
-    for (const block of blocks) {
-        const headerLine = block.split("\n")[0] || "";
-        const week = headerLine.replace(/^###\s+/, "").trim();
+    for (const [weekNum, weekData] of weekMap.entries()) {
+        if (!weekData.tue || !weekData.thu) continue;
 
-        const tueLine = block.match(/^\*\*Tue\s+(\d{1,2}\/\d{1,2})\s*[–—-]\s*Warm[\u2011\u2013\u2014-]?up:\*\*\s*(.+)\s*$/m);
-        const thuLine = block.match(/^\*\*Thu\s+(\d{1,2}\/\d{1,2})\s*[–—-]\s*Warm[\u2011\u2013\u2014-]?up:\*\*\s*(.+)\s*$/m);
-        if (!tueLine || !thuLine) continue;
+        // Extract week name from Tuesday header (format: "### Week 16: Tue 1/6 - Parts of Speech Part 1")
+        const weekHeader = weekData.tue.header.replace(/^###\s+/, "").trim();
+        const week = weekHeader;
 
-        const tueDate = parseMonthDay(tueLine[1]!, 2026);
-        const thuDate = parseMonthDay(thuLine[1]!, 2026);
+        // Extract dates
+        const tueDateMatch = weekData.tue.header.match(/(\d{1,2}\/\d{1,2})/);
+        const thuDateMatch = weekData.thu.header.match(/(\d{1,2}\/\d{1,2})/);
+        if (!tueDateMatch || !thuDateMatch) continue;
+
+        const tueDate = parseMonthDay(tueDateMatch[1]!, 2026);
+        const thuDate = parseMonthDay(thuDateMatch[1]!, 2026);
         if (!tueDate || !thuDate) continue;
 
-        const tueIdx = block.indexOf(tueLine[0]);
-        const thuIdx = block.indexOf(thuLine[0]);
-        if (tueIdx === -1 || thuIdx === -1) continue;
+        // Extract sections
+        const tueStart = weekData.tue.index;
+        const thuStart = weekData.thu.index;
+        const nextWeekStart = Array.from(weekMap.values())
+            .map(w => w.tue?.index || w.thu?.index)
+            .filter(idx => idx !== undefined && idx > thuStart)
+            .sort((a, b) => a! - b!)[0] || lines.length;
 
-        const tuesdaySection = block.slice(tueIdx, thuIdx).trim();
-        const thursdaySection = block.slice(thuIdx).trim();
+        const tuesdaySection = lines.slice(tueStart, thuStart).join("\n");
+        const thursdaySection = lines.slice(thuStart, nextWeekStart).join("\n");
 
         const tuesday = parseDaySection(tuesdaySection);
         const thursday = parseDaySection(thursdaySection);
-        tuesday.warmup ||= tueLine[2]?.trim() || "";
-        thursday.warmup ||= thuLine[2]?.trim() || "";
 
         weeks.push({
             week,
