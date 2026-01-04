@@ -38,17 +38,11 @@ export async function POST(request: Request) {
 
     // Create or update submission
     const submission = await prisma.submission.upsert({
-        where: assignmentId ? {
+        where: {
             userId_activityId_assignmentId: {
                 userId,
                 activityId,
-                assignmentId: assignmentId || '',
-            },
-        } : {
-            userId_activityId_assignmentId: {
-                userId,
-                activityId,
-                assignmentId: '', // Empty string for non-assignment submissions
+                assignmentId: assignmentId || null, // Use null for non-assignment submissions
             },
         },
         create: {

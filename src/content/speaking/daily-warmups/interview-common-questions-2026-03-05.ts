@@ -2,58 +2,59 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const interviewCommonQuestions_2026_03_05: SpeakingActivityContent = {
   type: "speaking",
-  title: "3/5/26: Interview Questions + Dress Code",
-  description: "Practice interview questions, follow-up questions, and professional dress/etiquette language",
+  title: "3/5/26: Interview Questions (Gerunds & Infinitives)",
+  description: "Practice interview questions using gerunds (enjoy -ing, good at -ing) and infinitives (want to, need to, hope to) correctly",
 
   keyPhrases: [
-    { phrase: "I have experience in...", example: "I have experience in customer service." },
-    { phrase: "My strengths are...", example: "My strengths are reliability and teamwork." },
-    { phrase: "I'm available...", example: "I'm available on weekdays and weekends." },
-    { phrase: "In my last job, I...", example: "In my last job, I helped customers and handled payments." },
-    { phrase: "Could you tell me more about...?", example: "Could you tell me more about the schedule?" },
+    { phrase: "I enjoy...", example: "I enjoy helping customers and solving problems." },
+    { phrase: "I'm good at...", example: "I'm good at working with a team." },
+    { phrase: "I want to / hope to...", example: "I want to learn new skills. I hope to grow with the company." },
+    { phrase: "I need to / plan to...", example: "I need to improve my computer skills." },
+    { phrase: "I'm interested in...", example: "I'm interested in working in healthcare." },
+    { phrase: "I'd like to...", example: "I'd like to ask about the schedule." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Answer: Tell me about yourself. (30 seconds)",
-      context: "Name, experience, one strength, one goal."
+      text: "Answer: What do you enjoy doing at work? What are you good at?",
+      context: "Use GERUNDS: I enjoy helping people. I'm good at working with numbers. I enjoy learning new things."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Answer: What are your strengths? Give 2 strengths and 1 example for each.",
-      context: "Use: I am..., For example..., I have..."
+      level: "beginner",
+      text: "Answer: Why do you want this job? What do you hope to achieve?",
+      context: "Use INFINITIVES: I want to learn new skills. I hope to grow in my career. I'd like to work with a good team."
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Answer: Why do you want this job?",
-      context: "Use: I want..., because..., I enjoy..."
+      text: "Answer: What are your career goals? What do you plan to do in the next 5 years?",
+      context: "Mix INFINITIVES: I plan to finish my degree. I want to become a manager. I hope to start my own business."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Answer: Tell me about a difficult situation at work and how you solved it.",
-      context: "Use: First..., then..., finally... / I listened / I explained / I asked for help."
+      text: "Answer: What tasks do you dislike doing? What do you avoid doing if possible?",
+      context: "Use GERUNDS: I dislike working late nights. I avoid missing deadlines. I don't enjoy doing repetitive tasks."
     },
     {
       id: "prompt-5",
-      level: "advanced",
-      text: "Ask the interviewer 2 questions about the job.",
-      context: "Examples: schedule, training, responsibilities, pay, teamwork, next steps."
+      level: "intermediate",
+      text: "Contrast gerunds and infinitives: What do you enjoy doing (gerund) vs. What do you want to do (infinitive) in your next job?",
+      context: "I enjoy talking to customers (gerund = like doing). I want to earn more money (infinitive = goal/purpose)."
     },
     {
       id: "prompt-6",
       level: "advanced",
-      text: "Dress code talk: What should you wear for an interview for your job? Why?",
-      context: "Use: I would wear..., It's professional because..., I would avoid..."
+      text: "Complex interview answer: I started... (gerund), but I decided to... (infinitive), so I stopped... (gerund) and began to... (infinitive).",
+      context: "Example: I started working in retail, but I decided to change careers, so I stopped applying to stores and began to look for office jobs."
     },
   ],
 
-  reflectionPrompt: "Which interview question was hardest? What phrase helped you answer more clearly?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "When answering interview questions, which is easier to use: gerunds (enjoy -ing) or infinitives (want to)? Why?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };

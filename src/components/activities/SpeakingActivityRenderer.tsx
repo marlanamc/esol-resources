@@ -67,6 +67,7 @@ export default function SpeakingActivityRenderer({ content, activityId }: Props)
 
             setIsSubmitted(true);
         } catch (err) {
+            console.error('Submission failed:', err);
             setError(err instanceof Error ? err.message : "Failed to submit. Please try again.");
         } finally {
             setIsSubmitting(false);

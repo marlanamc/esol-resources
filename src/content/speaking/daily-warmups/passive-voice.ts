@@ -2,8 +2,8 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "5/7/26: Passive Voice Practice",
-  description: "Practice using passive voice in speaking to describe processes, experiences, and situations",
+  title: "Passive Voice Practice (use after 4/28)",
+  description: "Practice using passive voice in speaking to describe processes, experiences, and situations - use after passive voice is taught on 4/28",
 
   keyPhrases: [
     { phrase: "It was built in...", example: "The bridge was built in 1950." },

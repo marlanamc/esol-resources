@@ -2,64 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const reportedSpeechDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "1/29/26: Past Simple Fluency Practice",
-  description: "Practice telling stories and explaining what happened using past simple tense - fluency and speed practice",
+  title: "Reported Speech Practice (use after 5/5)",
+  description: "Practice using reported speech (he said, she told me, they asked) to relay information and conversations - use after reported speech is taught on 5/5",
 
   keyPhrases: [
-    { phrase: "What happened?", example: "What happened at the bank?" },
-    { phrase: "I went to...", example: "I went to the landlord's office yesterday." },
-    { phrase: "I called... and they said...", example: "I called Eversource and they said my bill was late." },
-    { phrase: "It didn't work.", example: "I tried to pay online but it didn't work." },
-    { phrase: "I asked... but they told me...", example: "I asked for help but they told me to call back later." },
+    { phrase: "He/She said (that)...", example: "The doctor said that I need to rest." },
+    { phrase: "He/She told me (that)...", example: "My landlord told me that the rent will increase." },
+    { phrase: "He/She asked if...", example: "The nurse asked if I had any allergies." },
+    { phrase: "He/She asked me to...", example: "My boss asked me to work overtime." },
+    { phrase: "He/She wanted to know...", example: "The pharmacist wanted to know my date of birth." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
-      level: "beginner",
-      text: "What happened yesterday? Tell me 5 things you did yesterday in order.",
-      context: "Use past simple: I woke up at 7. I ate breakfast. I went to work. I came home. I studied English."
+      level: "intermediate",
+      text: "Doctor visit: Tell me what the doctor said during your last appointment. What did they tell you to do?",
+      context: "Use reported speech: The doctor said that I have high blood pressure. She told me to eat less salt. She asked if I exercise regularly."
     },
     {
       id: "prompt-2",
-      level: "beginner",
-      text: "Problem story: Tell me about a small problem you had this week. What happened? How did you solve it?",
-      context: "Example: My phone died. I didn't have a charger. I asked my friend and she gave me one."
+      level: "intermediate",
+      text: "Workplace message: Your boss called you. Relay the message to your coworker. What did your boss say?",
+      context: "Example: My boss called. He said that we have a meeting tomorrow. He told me to bring my notes. He asked if I finished the report."
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Speed round (2 minutes): Explain what happened the last time you had a problem with a bill or payment.",
-      context: "Fast fluency practice! Use: I received... I called... They said... I paid... It cost..."
+      text: "MyChart message: You received a message from your doctor's office through MyChart. What did they say? What did they ask you to do?",
+      context: "They said that my test results are ready. They told me to schedule a follow-up. They asked me to call if I have questions."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Housing problem story: Tell about a time something broke in your home. What happened? Who did you call? What did they do?",
-      context: "Example: The heat stopped working. I called my landlord. He sent someone. They fixed it the next day."
+      text: "Phone call relay: You called your landlord about a repair. Tell your roommate what the landlord said.",
+      context: "Reported speech: I called the landlord. He said that he will send someone tomorrow. He told me to be home between 9-12. He asked if the problem is urgent."
     },
     {
       id: "prompt-5",
-      level: "intermediate",
-      text: "Banking story: Describe the last time you went to a Bank of America, TD Bank, or Citizens Bank. What did you do there?",
-      context: "Use past simple: I went to... I waited in line. I talked to... They helped me... I deposited/withdrew..."
+      level: "advanced",
+      text: "Job interview: Tell me about your last job interview. What did the interviewer ask? What did you say? What did they tell you?",
+      context: "They asked me about my experience. I told them that I had worked in retail for three years. They said that they would call me within a week."
     },
     {
       id: "prompt-6",
       level: "advanced",
-      text: "Chain story (fast!): Tell what happened from the moment you woke up until you arrived to class today. How many past simple verbs can you use in 2 minutes?",
-      context: "Speed challenge: I woke up, got dressed, ate, left, took the T, transferred at Park Street, arrived..."
-    },
-    {
-      id: "prompt-7",
-      level: "advanced",
-      text: "Problem-solution story: Tell about a time you had to solve a problem (housing, money, work, transportation). What happened first, next, and finally?",
-      context: "Clear sequence: First, I noticed... Then, I tried... But it didn't work. Finally, I called... and they fixed it."
+      text: "Tense changes: Your friend gave you advice yesterday. Report what they said, changing the tenses correctly.",
+      context: "Direct: 'You should see a doctor. It might be serious.' Reported: She said that I should see a doctor. She said it might be serious."
     },
   ],
 
-  reflectionPrompt: "When you tell past simple stories in English, what's harder: remembering the past tense forms or speaking quickly without stopping?",
+  reflectionPrompt: "When using reported speech, what's most challenging: changing 'I' to 'he/she', changing the tense, or remembering when to use 'said' vs 'told'?",
   reflectionMinLength: 35,
-  minPromptsRequired: 3,
+  minPromptsRequired: 2,
   released: true
 };

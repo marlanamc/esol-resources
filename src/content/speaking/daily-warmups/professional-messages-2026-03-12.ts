@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const professionalMessages_2026_03_12: SpeakingActivityContent = {
   type: "speaking",
-  title: "3/12/26: Career Advisor Appointment + Professional Messages",
-  description: "Practice scheduling with a career advisor and sending professional messages (work + interview follow-up)",
+  title: "3/12/26: Career Path Stories (Past Perfect Continuous)",
+  description: "Practice using past perfect continuous (had been + -ing) to tell your career journey and explain job changes",
 
   keyPhrases: [
-    { phrase: "Hello, this is ___ from ___.", example: "Hello, this is Marla from the evening class." },
-    { phrase: "I'm writing to...", example: "I'm writing to request a schedule change." },
-    { phrase: "Could we reschedule to...?", example: "Could we reschedule to Thursday at 3pm?" },
-    { phrase: "I won't be able to...", example: "I won't be able to come in today because I'm sick." },
-    { phrase: "Thank you for your time.", example: "Thank you for your time and support." },
+    { phrase: "I had been working as...", example: "I had been working as a cleaner for three years when I got a new job." },
+    { phrase: "I had been looking for...", example: "I had been looking for a better job for six months before I found this one." },
+    { phrase: "I had been trying to...", example: "I had been trying to learn English before I came to the U.S." },
+    { phrase: "Before I..., I had been...", example: "Before I moved to Boston, I had been studying computer programming." },
+    { phrase: "How long had you been...?", example: "How long had you been working there before you quit?" },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Appointment role-play: Call to schedule a career advisor appointment.",
-      context: "Include: your name, reason, best days/times, and confirmation."
+      text: "Tell your job history: How long had you been working at your last job before you left or changed jobs?",
+      context: "Past perfect continuous: 'I had been working at a restaurant for two years before I found my current job.'"
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Email appointment request: Write 3–4 sentences to request a career advisor meeting, then read it aloud.",
-      context: "Include: greeting, request, availability, and thanks."
+      level: "beginner",
+      text: "Before you got your current job (or before you came to the U.S.), what had you been doing for work?",
+      context: "Use 'had been + -ing': 'I had been working as a teacher in my country. I had been teaching elementary school for five years.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Work message: You will be late or absent. Write a short professional message and read it aloud.",
-      context: "Include: apology, reason (simple), and next step."
+      text: "Tell a job search story: How long had you been looking for work before you got an interview? What had you been doing to prepare?",
+      context: "Past perfect continuous: 'I had been applying to jobs for three months before I got my first interview. I had been practicing my English every day.'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Thank-you message: After an interview or meeting, write a short thank-you email and read it aloud.",
-      context: "Include: thank you + one detail from the meeting + interest/next step."
+      text: "Explain a career change: What had you been doing before you decided to change careers or look for a different type of job?",
+      context: "Example: 'I had been working in construction, but I had been feeling tired every day. So I decided to look for office work.'"
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "Before you started ESOL classes, how long had you been trying to improve your English? What had you been doing to learn?",
+      context: "Past perfect continuous: 'I had been watching YouTube videos for a year. I had been asking my coworkers to teach me new words.'"
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Fix a message: Your partner’s message is too informal. Make it more professional.",
-      context: "Replace slang, add greeting/closing, make the request clear."
+      text: "Compare present perfect continuous (ongoing now) and past perfect continuous (was ongoing before): What have you been doing vs. what had you been doing before a specific change?",
+      context: "Present perfect continuous: 'I have been working at Target since January.' Past perfect continuous: 'Before that, I had been working at Walmart for three years.'"
     },
   ],
 
-  reflectionPrompt: "What makes a message professional (greeting, clear request, polite closing)?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "How comfortable are you using past perfect continuous (had been + -ing) to tell your career story? How is it different from past perfect (had worked)?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };

@@ -3,31 +3,16 @@
 import { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/Card';
 import { EditableFlow } from './EditableFlow';
-import { TeachingScheduleFlowItem, MonthDay } from '@/lib/teachingSchedule';
+import {
+  TeachingScheduleFlowItem,
+  MonthDay,
+  TeachingScheduleDay,
+  TeachingSchedule,
+  TeachingScheduleWeekDay,
+  TeachingScheduleWeek
+} from '@/lib/teachingSchedule';
 
-export type TeachingScheduleDay = {
-  time: string;
-  flow: TeachingScheduleFlowItem[];
-};
-
-export type TeachingSchedule = {
-  Tuesday: TeachingScheduleDay;
-  Thursday: TeachingScheduleDay;
-};
-
-export type TeachingScheduleWeekDay = {
-  warmup: string;
-  grammar?: string;
-  quiz?: string;
-  notes?: string;
-};
-
-export type TeachingScheduleWeek = {
-  week: string;
-  dates: { tue: MonthDay; thu: MonthDay };
-  tuesday: TeachingScheduleWeekDay;
-  thursday: TeachingScheduleWeekDay;
-};
+export type { TeachingScheduleDay, TeachingSchedule, TeachingScheduleWeekDay, TeachingScheduleWeek };
 
 function formatMonthDay(date: MonthDay) {
   return new Date(date.year, date.month - 1, date.day).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -292,7 +277,7 @@ export function TeacherCalendar({
                   )}
 
                   <EditableFlow
-                    flow={localSchedule.Tuesday.flow}
+                    flow={currentWeek.tuesday.flow}
                     day="Tuesday"
                     onSave={(flow) => handleSaveFlow("Tuesday", flow)}
                   />
@@ -338,7 +323,7 @@ export function TeacherCalendar({
                   )}
 
                   <EditableFlow
-                    flow={localSchedule.Thursday.flow}
+                    flow={currentWeek.thursday.flow}
                     day="Thursday"
                     onSave={(flow) => handleSaveFlow("Thursday", flow)}
                   />

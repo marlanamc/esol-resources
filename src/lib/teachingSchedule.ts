@@ -21,6 +21,7 @@ export type TeachingScheduleWeekDay = {
     grammar?: string;
     quiz?: string;
     notes?: string;
+    flow: TeachingScheduleFlowItem[];
 };
 
 export type TeachingScheduleWeek = {
@@ -137,7 +138,15 @@ function parseDaySection(section: string): TeachingScheduleWeekDay {
     const notesParts = [rlw ? `R/L/W: ${rlw}` : null, game ? `Game: ${game}` : null].filter(Boolean) as string[];
     const notes = notesParts.length ? notesParts.join(" • ") : undefined;
 
-    return { warmup, grammar, quiz, notes };
+    // Extract flow items - numbered activities like "- **1** Activity name"
+    const flow: TeachingScheduleFlowItem[] = [];
+    const flowLineRe = /^\s*-\s*\*\*(\d+)\*\*\s*(.+)\s*$/gm;
+    for (const match of section.matchAll(flowLineRe)) {
+        const activity = match[2]!.trim();
+        flow.push({ time: "", activity });
+    }
+
+    return { warmup, grammar, quiz, notes, flow };
 }
 
 function parseWeekBlocks(markdown: string): TeachingScheduleWeek[] {

@@ -2,50 +2,57 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const bankingBasicsDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "1/27/26: Banking & Shopping",
-  description: "Practice talking about money, shopping, and banking",
+  title: "1/27/26: Banking & Shopping (Type 0 Conditionals)",
+  description: "Practice Type 0 conditionals (If + present, present) to talk about banking facts, rules, and habits",
 
   keyPhrases: [
-    { phrase: "I need to...", example: "I need to deposit this check." },
-    { phrase: "How much does this cost?", example: "How much does this shirt cost?" },
-    { phrase: "I'm looking for...", example: "I'm looking for the savings account options." },
-    { phrase: "Can you help me with...?", example: "Can you help me with opening an account?" },
-    { phrase: "I'd like to return this.", example: "I'd like to return this item I bought yesterday." },
+    { phrase: "If you..., you...", example: "If you pay late, you get a fee." },
+    { phrase: "If I don't..., I...", example: "If I don't have cash, I use my debit card." },
+    { phrase: "When you..., you...", example: "When you overdraw your account, you pay a $35 fee." },
+    { phrase: "If they..., they...", example: "If they charge too much, they lose customers." },
+    { phrase: "What happens if...?", example: "What happens if I forget my PIN?" },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Describe your daily spending. What do you usually buy during the week?",
-      context: "Think about groceries, transportation, and other regular expenses."
+      text: "What happens if you pay a bill late? What happens if you pay on time?",
+      context: "Use Type 0 conditionals to explain the facts. Example: 'If you pay late, you get a fee. If you pay on time, you save money.'"
     },
     {
       id: "prompt-2",
       level: "beginner",
-      text: "Tell me about your last shopping trip. What did you buy?",
+      text: "What do you do if you don't have cash? What payment methods do you use?",
+      context: "Use Type 0 conditionals. Example: 'If I don't have cash, I use my debit card. If the store doesn't take cards, I go to an ATM.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "You need to open a bank account. What questions will you ask the bank employee?",
-      context: "Think about account types, fees, and what documents you need."
+      text: "What are the rules at your bank? What happens if you overdraw your account? What happens if you keep a minimum balance?",
+      context: "Explain banking rules using Type 0 conditionals. 'If you overdraw, you pay a $35 fee. If you keep $500 in your account, you don't pay monthly fees.'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Describe a time you bought something and had to return it. What happened?",
-      context: "Explain why you returned it and how the store helped you."
+      text: "What are your spending habits? What do you do if you spend too much in one week?",
+      context: "Use Type 0 conditionals to explain your habits. 'If I spend too much on groceries, I skip going out to eat. If I run out of money, I use my credit card.'"
     },
     {
       id: "prompt-5",
       level: "intermediate",
-      text: "You see a mistake on your bank statement. What do you say to the bank?",
-      context: "Practice explaining the problem clearly and asking them to fix it."
+      text: "What happens if you lose your debit card? What steps do you take?",
+      context: "Explain the process using Type 0 conditionals. 'If I lose my card, I call the bank immediately. If they cancel it, they send me a new one in 7-10 days.'"
+    },
+    {
+      id: "prompt-6",
+      level: "advanced",
+      text: "What general truths do you know about money and banking in the U.S.? What surprises people from other countries?",
+      context: "Share facts using Type 0 conditionals. 'If you write a check without money in your account, it bounces. If you pay credit cards in full, you don't pay interest.'"
     },
   ],
 
-  reflectionPrompt: "What did you practice speaking about? What was difficult?",
+  reflectionPrompt: "How comfortable are you using Type 0 conditionals (If + present, present) to explain banking facts and habits? What was challenging?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
   released: true

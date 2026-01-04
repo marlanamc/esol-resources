@@ -2,8 +2,8 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const perfectContinuousDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "3/19/26: Perfect Continuous Tenses",
-  description: "Advanced practice with present perfect continuous, past perfect continuous, and future perfect continuous",
+  title: "Perfect Continuous Tenses Review (use after 3/19)",
+  description: "Advanced practice with all three perfect continuous tenses - present, past, and future (use after 3/19 when all have been taught)",
 
   keyPhrases: [
     { phrase: "I have been...", example: "I have been studying English for three years." },

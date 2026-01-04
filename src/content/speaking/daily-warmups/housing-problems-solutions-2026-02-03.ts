@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const housingProblemsSolutions_2026_02_03: SpeakingActivityContent = {
   type: "speaking",
-  title: "2/3/26: Housing Problems & Solutions",
-  description: "Describe a housing problem clearly and propose a solution or next step",
+  title: "2/3/26: Housing Problems & Solutions (Type 0 vs Type 1 Conditionals)",
+  description: "Use Type 0 conditionals to state housing problems/facts, and Type 1 conditionals to offer solutions and future plans",
 
   keyPhrases: [
-    { phrase: "It's not working.", example: "The heater isn't working." },
-    { phrase: "It's leaking / clogged / broken.", example: "The sink is clogged." },
-    { phrase: "This is urgent because...", example: "This is urgent because we have no hot water." },
-    { phrase: "Could you fix it by...?", example: "Could you fix it by Friday?" },
-    { phrase: "If it isn't fixed, I will...", example: "If it isn't fixed, I will contact the city." },
+    { phrase: "If you don't..., you... (Type 0 - facts)", example: "If you don't pay rent, you get evicted." },
+    { phrase: "If I..., I will... (Type 1 - future plans)", example: "If the heat doesn't work, I will call the landlord." },
+    { phrase: "When..., ... (Type 0 - general truths)", example: "When landlords ignore problems, tenants call the city." },
+    { phrase: "What will happen if...? (Type 1)", example: "What will happen if they don't fix it by Friday?" },
+    { phrase: "If this continues, I will... (Type 1)", example: "If this continues, I will report it to inspectional services." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Choose a problem card and explain it to your partner: What is the problem? Where is it? When did it start?",
-      context: "Problems: no heat, leak, bugs, broken window, loud neighbors, bad smell."
+      text: "State a housing problem using Type 0 conditional (general facts). Then say what you will do using Type 1 conditional.",
+      context: "Type 0 (fact): 'If the heat doesn't work in winter, it's dangerous.' Type 1 (your plan): 'If my landlord doesn't fix it, I will call the city.' Problems: no heat, leak, bugs, broken window, loud neighbors."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Problem → request: Make a clear request and a deadline.",
-      context: "Use: Could you...?, I need..., by (day/time)."
+      level: "beginner",
+      text: "What are the rules about housing repairs in Massachusetts? Use Type 0 conditionals.",
+      context: "Type 0 facts: 'If you have no heat, the landlord must fix it within 24 hours. If the apartment is unsafe, you can withhold rent legally.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Add details: Give two examples of how the problem affects your life.",
-      context: "Example: 'My child can't sleep' / 'I can't cook' / 'It's unsafe.'"
+      text: "You have a broken heater. Explain the problem (Type 0) and your plan (Type 1) if it's not fixed.",
+      context: "Type 0: 'If the temperature drops below 68°F during the day, the landlord violates state law.' Type 1: 'If they don't fix it by tomorrow, I will file a complaint.'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Next steps: What will you do if the landlord doesn’t respond?",
-      context: "Use: follow up, send an email, call again, talk to neighbors, contact the city."
+      text: "What happens if tenants don't report problems? What will you do if you have a problem?",
+      context: "Type 0 (general): 'If you don't report problems in writing, you have no record.' Type 1 (you): 'If I have a leak, I will send an email and take photos.'"
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "What will happen if your landlord increases rent too much? What are your options?",
+      context: "Type 1 (future plans): 'If my rent increases by more than $200, I will look for a new apartment. If I can't find one, I will get a roommate.'"
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Mini-meeting: In a group, choose the most urgent problem and explain why.",
-      context: "Use: In my opinion..., I agree/disagree..., The most urgent issue is..."
+      text: "Compare Type 0 (housing facts/laws) with Type 1 (your future plan) for the same problem.",
+      context: "Example: Type 0: 'If landlords don't fix code violations, the city fines them.' Type 1: 'If my landlord ignores my request, I will call inspectional services and document everything.'"
     },
   ],
 
-  reflectionPrompt: "What information makes a complaint clear (where, when, how, examples)?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "What's the difference between Type 0 (general facts/rules) and Type 1 (your future plans)? Which one is harder to use when talking about housing problems?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };
