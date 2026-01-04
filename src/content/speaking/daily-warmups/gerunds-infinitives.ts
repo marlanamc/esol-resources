@@ -2,8 +2,8 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const gerundsInfinitivesDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
-  title: "2/12/26: Gerunds & Infinitives Practice",
-  description: "Practice using gerunds and infinitives correctly in speaking",
+  title: "Gerunds & Infinitives Review (use after 3/5)",
+  description: "Practice using gerunds and infinitives correctly in speaking - comprehensive review for use after gerunds/infinitives are taught (after 3/5)",
 
   keyPhrases: [
     { phrase: "I enjoy...", example: "I enjoy reading books and listening to music." },

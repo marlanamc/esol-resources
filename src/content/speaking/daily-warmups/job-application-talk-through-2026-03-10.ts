@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
   type: "speaking",
-  title: "3/10/26: Job Application Talk-Through",
-  description: "Practice the language needed to complete job applications: spelling, numbers, dates, and clarification",
+  title: "3/10/26: Job Application Talk-Through (Present Perfect Continuous)",
+  description: "Practice using present perfect continuous (have/has been + -ing) to talk about ongoing job search activities and work experience",
 
   keyPhrases: [
-    { phrase: "How do you spell...?", example: "How do you spell your last name?" },
-    { phrase: "My phone number is...", example: "My phone number is 617-555-0123." },
-    { phrase: "My availability is...", example: "My availability is Monday to Friday after 3pm." },
-    { phrase: "I have worked as...", example: "I have worked as a dishwasher for two years." },
-    { phrase: "Could you explain what ___ means?", example: "Could you explain what 'reference' means?" },
+    { phrase: "I have been looking for...", example: "I have been looking for a full-time job for three months." },
+    { phrase: "I have been working as...", example: "I have been working as a cashier since January." },
+    { phrase: "How long have you been...?", example: "How long have you been searching for a job?" },
+    { phrase: "I have been applying to...", example: "I have been applying to restaurants and stores every week." },
+    { phrase: "I have been trying to...", example: "I have been trying to get an interview at Target." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Partner form practice: Ask and answer basic application questions (name, address, phone, email).",
-      context: "Focus on clarity and repeating information."
+      text: "How long have you been looking for a job? How long have you been working (if you have a job)?",
+      context: "Present perfect continuous: 'I have been looking for a job for two months.' or 'I have been working at Market Basket since 2024.'"
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Spelling and numbers challenge: Spell your name, street, and email. Say your phone number clearly.",
-      context: "Partner checks and asks: Is that double __? Is that B as in Boston?"
+      level: "beginner",
+      text: "What have you been doing to find a job? Where have you been applying?",
+      context: "Use present perfect continuous: 'I have been checking Indeed every day. I have been applying to CVS, Walgreens, and Stop & Shop.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Work history: Describe your last job (title, responsibilities, dates).",
-      context: "Use past tense and time expressions."
+      text: "What skills have you been practicing or learning to get a better job?",
+      context: "Present perfect continuous: 'I have been studying English at ESOL class. I have been practicing my computer skills on YouTube.'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Availability: Explain when you can work and any limits you have.",
-      context: "Use: I can..., I can't..., I prefer..., I'm available..."
+      text: "If you have a job: How long have you been working there? What have you been doing in that position?",
+      context: "Use 'have been + -ing': 'I have been working at Dunkin' for six months. I have been making coffee, cleaning, and helping customers.'"
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "What challenges have you been facing in your job search? What has been difficult?",
+      context: "Present perfect continuous: 'I have been having trouble with interviews. I have been getting nervous when they ask questions.'"
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Clarification role-play: You don’t understand a question on the application. Ask for help politely.",
-      context: "Use: What does ___ mean? Could you repeat that? Can you show me an example?"
+      text: "Compare: What did you do in your last job (past simple) vs. What have you been doing lately to find work (present perfect continuous)?",
+      context: "Past simple: 'I worked as a cleaner.' Present perfect continuous: 'I have been looking for office work. I have been taking computer classes.'"
     },
   ],
 
-  reflectionPrompt: "Which application information is hardest to say quickly (address, email, dates)?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "How comfortable are you using present perfect continuous (have been + -ing) to talk about your job search? How is it different from present perfect (have worked)?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };

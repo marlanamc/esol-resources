@@ -2,52 +2,61 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const workplaceSmallTalkSafeTopics_2026_03_31: SpeakingActivityContent = {
   type: "speaking",
-  title: "3/31/26: Workplace Small Talk (Safe Topics)",
-  description: "Practice starting, continuing, and ending short workplace conversations using safe topics and follow-up questions",
+  title: "3/31/26: Workplace Small Talk (Phrasal Verbs)",
+  description: "Practice workplace small talk using common phrasal verbs (show up, catch up, get along with, run into, look forward to, wrap up)",
 
   keyPhrases: [
-    { phrase: "How's your day going?", example: "Hi! How's your day going?" },
-    { phrase: "How was your weekend?", example: "How was your weekend?" },
-    { phrase: "What do you do after work?", example: "What do you do after work?" },
-    { phrase: "That's interesting—tell me more.", example: "That's interesting—tell me more." },
-    { phrase: "I should get back to work.", example: "I should get back to work. See you later!" },
+    { phrase: "catch up", example: "It's nice to catch up with you! We should catch up more often." },
+    { phrase: "show up", example: "What time did you show up today? I showed up early." },
+    { phrase: "get along with", example: "Do you get along with everyone on your team?" },
+    { phrase: "run into", example: "I ran into Maria at the coffee shop yesterday." },
+    { phrase: "look forward to", example: "I'm looking forward to the long weekend!" },
+    { phrase: "get back to (work)", example: "I should get back to work. Talk later!" },
+    { phrase: "hang out", example: "Do you ever hang out with coworkers after work?" },
+    { phrase: "work out (exercise)", example: "I try to work out after work. Do you work out?" },
   ],
 
   prompts: [
     {
       id: "prompt-1",
-      level: "beginner",
-      text: "Start small talk with a coworker. Choose 2 topics: weather, commute, food, weekend plans, sports, TV.",
-      context: "Ask 2 questions and give 2 short answers."
+      level: "intermediate",
+      text: "Use 'catch up' and 'show up' in small talk: Talk about arriving at work and catching up with a coworker.",
+      context: "Example: 'Hi! What time did you show up today? I showed up at 8. It's nice to catch up with you—we're both always so busy!'"
     },
     {
       id: "prompt-2",
       level: "intermediate",
-      text: "Keep the conversation going for 1 minute using follow-up questions.",
-      context: "Use: Why? How often? What do you like about it? What happened next?"
+      text: "Use 'get along with' and 'hang out': Ask about workplace relationships and socializing.",
+      context: "Example: 'Do you get along with everyone on your team? Do you ever hang out with coworkers after work?'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Boundaries: What topics are NOT good at work? How can you change the subject politely?",
-      context: "Use: Let's talk about..., I'm not sure..., Anyway..."
+      text: "Use 'run into' and 'look forward to': Talk about unexpected meetings and upcoming plans.",
+      context: "Example: 'I ran into Sarah at Market Basket yesterday! Are you looking forward to the weekend? I'm looking forward to sleeping in!'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Ending lines: Practice ending the conversation politely.",
-      context: "Use: Nice talking with you..., See you later..., I should get back to..."
+      text: "Use 'work out' (exercise) and 'get back to' (return to work): Talk about exercise habits and end the conversation.",
+      context: "Example: 'Do you work out after work? I try to work out three times a week. Anyway, I should get back to work. Talk later!'"
     },
     {
       id: "prompt-5",
       level: "advanced",
-      text: "Role-play: A coworker is stressed. Say something supportive and ask 1 follow-up question.",
-      context: "Use: Are you okay? That sounds hard. Do you want to talk about it?"
+      text: "Full small talk conversation: Use at least 4 different phrasal verbs (show up, catch up, get along with, run into, look forward to, hang out, work out, get back to).",
+      context: "Example: 'Hey! What time did you show up? I got here early. Do you get along with the new manager? I ran into him at Dunkin' yesterday. Anyway, I should get back to work. Let's catch up more later!'"
+    },
+    {
+      id: "prompt-6",
+      level: "advanced",
+      text: "Phrasal verbs in context: Use 'figure out' (solve/understand), 'come up' (be mentioned), 'fill in for' (replace someone).",
+      context: "Example: 'Did you figure out the new schedule? My name didn't come up on the list. Can you fill in for me on Thursday?'"
     },
   ],
 
-  reflectionPrompt: "What is your favorite safe small-talk question? When can you use it?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "Which phrasal verb is most useful for workplace small talk? Which one is hardest to remember?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };
