@@ -79,7 +79,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
         return (
             <div className="pt-3 border-t border-text/10">
                 <div className="flex items-center justify-between mb-2">
-                    <div className="text-xs font-medium text-text/60">Class Flow:</div>
+                    <div className="text-xs font-medium text-text/75">Class Flow:</div>
                     <button
                         onClick={handleEdit}
                         className="text-xs text-primary hover:text-primary/80 font-medium"
@@ -89,11 +89,11 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                 </div>
                 <div className="space-y-1">
                     {flow.length === 0 ? (
-                        <div className="text-xs text-text/50 italic">No flow items. Click Edit to add.</div>
+                        <div className="text-xs text-text/75 italic">No flow items. Click Edit to add.</div>
                     ) : (
                         flow.map((item, idx) => (
-                            <div key={idx} className="grid grid-cols-[2rem_1fr] gap-x-2 text-xs text-text/70">
-                                <span className="font-mono tabular-nums text-text/50">{idx + 1}.</span>
+                            <div key={idx} className="grid grid-cols-[2rem_1fr] gap-x-2 text-xs text-text/80">
+                                <span className="font-mono tabular-nums text-text/70">{idx + 1}.</span>
                                 <span className="min-w-0 break-words leading-snug">{item.activity}</span>
                             </div>
                         ))
@@ -106,7 +106,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
     return (
         <div className="pt-3 border-t border-text/10">
             <div className="flex items-center justify-between mb-2">
-                <div className="text-xs font-medium text-text/60">Class Flow:</div>
+                <div className="text-xs font-medium text-text/75">Class Flow:</div>
                 <div className="flex gap-2">
                     <button
                         onClick={handleSave}
@@ -118,7 +118,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                     <button
                         onClick={handleCancel}
                         disabled={isSaving}
-                        className="text-xs text-text/60 hover:text-text/80 font-medium disabled:opacity-50"
+                        className="text-xs text-text/75 hover:text-text/90 font-medium disabled:opacity-50"
                     >
                         Cancel
                     </button>
@@ -140,7 +140,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
             <div className="space-y-2">
                 {editedFlow.map((item, idx) => (
                     <div key={idx} className="flex gap-2 items-start">
-                        <span className="flex-shrink-0 px-2 py-1 text-xs font-mono text-text/50 tabular-nums">
+                        <span className="flex-shrink-0 px-2 py-1 text-xs font-mono text-text/70 tabular-nums">
                             {idx + 1}.
                         </span>
                         <input
@@ -153,7 +153,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                         <button
                             onClick={() => moveItemUp(idx)}
                             disabled={idx === 0}
-                            className="px-2 py-1 text-xs text-text/60 hover:bg-text/5 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="px-2 py-1 text-xs text-text/75 hover:bg-text/10 rounded disabled:opacity-30 disabled:cursor-not-allowed"
                             title="Move up"
                         >
                             ↑
@@ -161,7 +161,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                         <button
                             onClick={() => moveItemDown(idx)}
                             disabled={idx === editedFlow.length - 1}
-                            className="px-2 py-1 text-xs text-text/60 hover:bg-text/5 rounded disabled:opacity-30 disabled:cursor-not-allowed"
+                            className="px-2 py-1 text-xs text-text/75 hover:bg-text/10 rounded disabled:opacity-30 disabled:cursor-not-allowed"
                             title="Move down"
                         >
                             ↓
@@ -177,7 +177,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                 ))}
                 <button
                     onClick={addItem}
-                    className="w-full px-3 py-1.5 text-xs border border-border/50 rounded bg-bg-light hover:bg-bg transition text-text/70"
+                    className="w-full px-3 py-1.5 text-xs border border-border/50 rounded bg-bg-light hover:bg-bg transition text-text/80"
                 >
                     + Add Item
                 </button>
