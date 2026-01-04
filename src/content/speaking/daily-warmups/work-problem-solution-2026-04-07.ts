@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const workProblemSolution_2026_04_07: SpeakingActivityContent = {
   type: "speaking",
-  title: "4/7/26: Work Problem → Solution",
-  description: "Practice describing a work problem, proposing a solution, and agreeing on next steps",
+  title: "4/7/26: Work Problems & Changes (Used To Structures)",
+  description: "Practice talking about work problems and changes using 'used to' (past habits), 'be used to' (be accustomed to), and 'get used to' (become accustomed to)",
 
   keyPhrases: [
-    { phrase: "The problem is...", example: "The problem is that the instructions are unclear." },
-    { phrase: "This happened when...", example: "This happened when I was closing the store." },
-    { phrase: "One solution could be...", example: "One solution could be more training." },
-    { phrase: "Can we agree to...?", example: "Can we agree to check the schedule every Friday?" },
-    { phrase: "Let’s follow up on...", example: "Let’s follow up on this next week." },
+    { phrase: "I used to... (past habit)", example: "I used to work nights, but now I work days. We used to have longer breaks." },
+    { phrase: "I'm (not) used to... (accustomed)", example: "I'm not used to working weekends. I'm used to doing it a different way." },
+    { phrase: "I'm getting used to... (becoming accustomed)", example: "I'm getting used to the new schedule. It's hard, but I'm getting used to it." },
+    { phrase: "I can't get used to... (can't adjust)", example: "I can't get used to waking up at 5am. I can't get used to the noise." },
+    { phrase: "It used to be... (past state)", example: "It used to be easier. The policy used to be different." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
-      level: "intermediate",
-      text: "Choose a workplace problem and describe it: What happened? Who was involved? What was the result?",
-      context: "Examples: misunderstanding, late schedule, missing supplies, customer complaint, safety issue."
+      level: "beginner",
+      text: "Talk about your past job using 'used to': What did you use to do? What was different?",
+      context: "I used to work at a restaurant. I used to start at 6am. I used to work weekends. We used to have 30-minute breaks."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Propose 2 solutions and explain which one is best.",
-      context: "Use: could/should, because, for example."
+      level: "beginner",
+      text: "Talk about changes at your current job: What used to be different? What changed?",
+      context: "Example: 'The schedule used to be posted on Monday. Now it's posted on Friday. It used to be easier to request days off.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Role-play: Employee explains problem → manager responds → employee asks 2 follow-up questions.",
-      context: "Use: Do you mean...? What should I do next time?"
+      text: "Use 'I'm (not) used to...': What is hard to adjust to at work? What are you comfortable with?",
+      context: "I'm not used to working 10-hour shifts. I'm used to taking the bus, but now I drive. I'm not used to the new computer system."
     },
     {
       id: "prompt-4",
-      level: "advanced",
-      text: "Agree on next steps and summarize the plan in 2 sentences.",
-      context: "Use: We agreed that..., The next step is..."
+      level: "intermediate",
+      text: "Use 'I'm getting used to...': What are you learning to adjust to at work?",
+      context: "I'm getting used to my new schedule. I'm getting used to the noise in the kitchen. It's hard, but I'm getting used to waking up early."
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "Compare 'used to' (past) and 'be used to' (accustomed): What did you use to do vs. What are you used to now?",
+      context: "PAST: 'I used to work part-time.' ACCUSTOMED NOW: 'Now I'm used to working full-time.'"
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Polite tone practice: Say the same message in a calm professional way.",
-      context: "Avoid blaming; focus on the issue and solution."
+      text: "Full work story using all 3 structures: 'used to' (past), 'be used to' (accustomed), and 'get used to' (adjusting).",
+      context: "Example: 'I used to work in retail, but I changed to an office job. At first, I wasn't used to sitting all day. But I'm getting used to it now. I'm also getting used to the new computer programs.'"
     },
   ],
 
-  reflectionPrompt: "What helps a solution conversation go well (clear examples, calm tone, next steps)?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "Which is easier: talking about the past with 'used to' or talking about adjusting with 'getting used to'? Why?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };

@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const healthyHabitTracker_2026_05_26: SpeakingActivityContent = {
   type: "speaking",
-  title: "5/26/26: Healthy Habit Tracker (Report Results)",
-  description: "Do a quick class survey about wellness habits and report results clearly",
+  title: "5/26/26: Healthy Habit Tracker (Verbs + Gerunds)",
+  description: "Practice using verbs that take gerunds (enjoy, avoid, quit, stop, keep, finish, consider, suggest) to talk about healthy habits",
 
   keyPhrases: [
-    { phrase: "How often do you...?", example: "How often do you exercise?" },
-    { phrase: "I usually / sometimes / rarely...", example: "I usually drink water in the morning." },
-    { phrase: "Most people...", example: "Most people sleep about 7 hours." },
-    { phrase: "A few people...", example: "A few people meditate." },
-    { phrase: "I learned that...", example: "I learned that many people want to sleep more." },
+    { phrase: "I enjoy... (gerund)", example: "I enjoy exercising in the morning. I enjoy cooking healthy meals." },
+    { phrase: "I avoid / I quit / I stopped... (gerund)", example: "I avoid eating junk food. I quit smoking. I stopped drinking soda." },
+    { phrase: "I keep / I continue... (gerund)", example: "I keep forgetting to drink water. I continue working on my goals." },
+    { phrase: "I finished... (gerund)", example: "I finished reading a book about health. I finished preparing my meals for the week." },
+    { phrase: "I'm considering / I suggest... (gerund)", example: "I'm considering joining a gym. I suggest trying meditation." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Survey: Ask 3 classmates 5 questions about habits (sleep, water, exercise, vegetables, stress).",
-      context: "Write short notes while you listen."
+      text: "Use 'enjoy' and 'like' + gerund: What healthy habits do you enjoy doing? What don't you like doing?",
+      context: "I enjoy walking every morning. I like cooking healthy meals. I don't enjoy exercising at the gym."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Report your results to a partner using quantities (most, some, a few, none).",
-      context: "Example: 'Most people drink coffee every day. A few people drink soda.'"
+      level: "beginner",
+      text: "Use 'avoid' and 'quit/stop' + gerund: What unhealthy habits do you avoid? What have you quit or stopped doing?",
+      context: "I avoid eating fast food. I quit smoking. I stopped drinking soda every day."
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Class report: Share one interesting result and one surprise.",
-      context: "Use: I was surprised that..., I noticed that..."
+      text: "Use 'keep' and 'continue' + gerund: What good habits do you keep doing? What do you keep forgetting to do?",
+      context: "I keep drinking water throughout the day. I continue exercising three times a week. I keep forgetting to take my vitamins."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Goal talk: Choose one habit to improve and explain your plan.",
-      context: "Use: I'm going to..., I will try to..., My goal is..."
+      text: "Use 'finish' + gerund: Talk about healthy activities you completed recently.",
+      context: "I finished reading a health book. I finished preparing my meals for the week. I finished organizing my schedule to include exercise."
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "Use 'consider' and 'suggest' + gerund: What healthy changes are you considering? What do you suggest to others?",
+      context: "I'm considering joining a yoga class. I'm considering trying a new diet. I suggest walking instead of driving. I suggest drinking more water."
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Advice: Based on the survey, give 2 class recommendations.",
-      context: "Use: We should..., It would be helpful to..."
+      text: "Full healthy habits conversation: Use multiple verbs + gerunds (enjoy, avoid, quit, keep, finish, consider, suggest) to describe your wellness journey.",
+      context: "Example: 'I enjoy cooking healthy meals at home. I avoid eating processed foods. I quit drinking coffee every morning. I keep trying new vegetables. I finished reading a nutrition book. I'm considering starting a meditation practice. I suggest tracking your water intake.'"
     },
   ],
 
-  reflectionPrompt: "What did you learn from the survey? What is one habit you want to change?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "Which verb + gerund combination is most useful for talking about healthy habits? Which is hardest to remember?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };

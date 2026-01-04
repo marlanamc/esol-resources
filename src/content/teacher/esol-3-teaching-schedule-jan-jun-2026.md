@@ -138,14 +138,16 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **4** Read a "repair timeline"; write 4 past perfect sentences
 - **5** Timeline race (Speaking game: past perfect vs past simple)
 
-### Week 21: Thu 2/12 - Past Perfect Review
+### Week 21: Thu 2/12 - Future Perfect (NEW)
 
 - **1** Gerunds & Infinitives Practice Speaking Warm-Up
-- **2** Past perfect steps 1-4 + error correction (Grammar review - MORE TIME, no quiz today!)
-- **3** Complex housing problem stories using past perfect (Speaking practice)
-- **4** Irregular past participles (Phonics: broken, paid, gone, been)
-- **5** Budget mini-plan (3 expenses + 1 change you will make)
-- **6** "Fix the story" game (correct the tense to match timeline)
+- **2** Future Perfect - NEW 30-min lesson (Grammar: `will have + past participle` to talk about what will be completed by a future time)
+  - Key phrases: "By June, I will have saved $500" / "By next month, I will have paid off my credit card"
+  - Compare: Past Perfect (what happened before) vs Future Perfect (what will be done by a future time)
+- **3** Housing and money goal timelines using future perfect (Speaking practice: By [date], I will have...)
+- **4** Irregular past participles review (Phonics: will have broken, paid, gone, been)
+- **5** Write 4 Future Perfect sentences about your goals (By next month, I will have...)
+- **6** "Future timeline" game (Speaking: goal chains with future perfect)
 
 ### NO CLASS: Feb 16–20 (Vacation Week)
 
@@ -193,14 +195,16 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **3** Fill in application; write 4 "I've been..." sentences about work/learning
 - **4** "How long have you been...?" speed chat (Speaking game)
 
-### Week 24: Thu 3/12 - Present Perfect Continuous Review
+### Week 24: Thu 3/12 - Past Perfect Continuous (NEW)
 
 - **1** Career Advisor Appointment + Professional Messages Speaking Warm-Up
-- **2** Present perfect continuous Q&A + common errors (Grammar review - MORE TIME, no quiz!)
-- **3** Job application scenarios using present perfect continuous (Speaking practice)
-- **4** Reduced forms (Phonics: I've / he's / we've been...)
-- **5** Write an email to schedule career advisor appointment
-- **6** "Inbox" game (match message → best response)
+- **2** Past Perfect Continuous - NEW 30-min lesson (Grammar: `had been + -ing` to talk about ongoing actions before a past event)
+  - Key phrases: "I had been looking for a job for 3 months when I got the interview" / "She had been working there for 2 years before she got promoted"
+  - Compare: Present Perfect Continuous (ongoing now) vs Past Perfect Continuous (ongoing before a past moment)
+- **3** Job search story using past perfect continuous (Speaking practice: How long had you been looking? What had you been doing?)
+- **4** Reduced forms (Phonics: I'd / he'd / we'd been...)
+- **5** Write 4 Past Perfect Continuous sentences about job searching or learning
+- **6** "Job search timeline" game (Speaking: tell your story with past perfect continuous)
 
 ### Week 25: Tue 3/17 - Present Perfect Continuous Advanced
 
@@ -211,13 +215,16 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **3** Read a workplace rights flyer; write 3 claims + 1 example each
 - **4** "Rights role-play" game
 
-### Week 25: Thu 3/19 - Present Perfect Continuous Fluency
+### Week 25: Thu 3/19 - Future Perfect Continuous (NEW)
 
 - **1** Perfect Continuous Tenses Speaking Warm-Up
-- **2** Present perfect continuous fluency rounds (Grammar review: accuracy + speed)
-- **3** Linking (Phonics: been_working, been_asking)
-- **4** Write a progress update message (to teacher/boss)
-- **5** "Progress bingo" game
+- **2** Future Perfect Continuous - NEW 30-min lesson (Grammar: `will have been + -ing` to talk about ongoing actions that will continue up to a future point)
+  - Key phrases: "By next year, I will have been living in the U.S. for 5 years" / "By June, I will have been working here for 6 months"
+  - Compare ALL THREE: Present Perfect Continuous (ongoing now), Past Perfect Continuous (ongoing before past event), Future Perfect Continuous (ongoing up to future time)
+- **3** Career and life milestones using future perfect continuous (Speaking practice: By [date], I will have been...)
+- **4** Linking (Phonics: will_have_been_working, will_have_been_studying)
+- **5** Write 4 Future Perfect Continuous sentences about your future goals
+- **6** "Perfect Continuous Family" game (Speaking: compare all three tenses correctly)
 
 ### Week 26: Tue 3/24 - Infinitives vs Gerunds
 

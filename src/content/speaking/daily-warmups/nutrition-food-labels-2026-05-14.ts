@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const nutritionFoodLabels_2026_05_14: SpeakingActivityContent = {
   type: "speaking",
-  title: "5/14/26: Nutrition & Food Labels",
-  description: "Practice comparing foods using label information and explaining choices clearly",
+  title: "5/14/26: Nutrition & Food Labels (Used To Structures)",
+  description: "Practice talking about eating habit changes using 'used to' (past habits), 'be used to' (be accustomed to), and 'get used to' (become accustomed to)",
 
   keyPhrases: [
-    { phrase: "This one has more/less...", example: "This one has less sugar." },
-    { phrase: "It's higher/lower in...", example: "It's higher in protein." },
-    { phrase: "I choose this because...", example: "I choose this because it has fewer calories." },
-    { phrase: "How many servings are in...?", example: "How many servings are in this package?" },
-    { phrase: "In my opinion...", example: "In my opinion, this is a better choice." },
+    { phrase: "I used to... (past habit)", example: "I used to eat junk food every day. I used to skip breakfast." },
+    { phrase: "I'm (not) used to... (accustomed)", example: "I'm not used to reading food labels. I'm used to eating vegetables now." },
+    { phrase: "I'm getting used to... (becoming accustomed)", example: "I'm getting used to cooking at home. I'm getting used to eating less sugar." },
+    { phrase: "I can't get used to... (can't adjust)", example: "I can't get used to drinking plain water. I can't get used to unsweetened coffee yet." },
+    { phrase: "It used to be... (past state)", example: "It used to be hard to avoid sweets. It used to be expensive to eat healthy." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Label basics: Describe a food label (servings, calories, sugar, sodium).",
-      context: "Use numbers and units clearly."
+      text: "Talk about your past eating habits using 'used to': What did you use to eat? What didn't you use to eat?",
+      context: "I used to eat fast food three times a week. I used to drink soda with every meal. I didn't use to eat vegetables. I used to skip breakfast."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Compare two foods and choose the better option for a goal (lower sugar, more protein, less sodium).",
-      context: "Use comparatives: more/less, higher/lower."
+      level: "beginner",
+      text: "Talk about nutrition changes: What used to be hard that is easier now? What food habits have changed?",
+      context: "Example: 'It used to be hard to cook at home, but now it's easier. I used to buy frozen meals. Now I cook fresh food.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Explain your choice to a partner. Partner asks 2 follow-up questions.",
-      context: "Use: because, for example."
+      text: "Use 'I'm (not) used to...': What eating habits are you comfortable with? What is still difficult?",
+      context: "I'm used to reading food labels now. I'm not used to eating breakfast yet. I'm used to drinking water instead of soda. I'm not used to measuring portions."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Advice: Your friend wants to eat healthier. Give 3 tips using food label language.",
-      context: "Use: You should..., Try to..., It's better to..."
+      text: "Use 'I'm getting used to...': What new eating habits are you adjusting to?",
+      context: "I'm getting used to checking nutrition labels. I'm getting used to eating smaller portions. It's hard, but I'm getting used to avoiding sugar."
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "Compare 'used to' (past) and 'be used to' (accustomed): What did you use to eat vs. What are you used to eating now?",
+      context: "PAST: 'I used to eat chips every day.' ACCUSTOMED NOW: 'Now I'm used to eating fruit for snacks.'"
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Mini-debate: Is counting calories helpful? Agree/disagree and give reasons.",
-      context: "Use: I agree/disagree because..."
+      text: "Full nutrition story using all 3 structures: 'used to' (past), 'be used to' (accustomed), and 'get used to' (adjusting).",
+      context: "Example: 'I used to never read food labels. I would just buy whatever looked good. Now I'm used to checking calories and sugar. I'm getting used to choosing healthier options. I'm also getting used to cooking more meals at home instead of eating out.'"
     },
   ],
 
-  reflectionPrompt: "What is one label word that is confusing (serving, sodium, fiber)? What question can you ask?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "Which eating habit change is hardest to adjust to? Are you getting used to it, or can't you get used to it yet?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };
