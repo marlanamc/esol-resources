@@ -122,7 +122,7 @@ export function TeacherCalendar({
         <div className="flex items-start justify-between gap-4">
           <div>
             <h2 className="text-2xl font-display font-semibold text-text">Teaching Schedule</h2>
-            <p className="text-sm text-text/70 mt-1">
+            <p className="text-sm text-text/80 mt-1">
               ESOL Level 3 — Jan–Jun 2026 | Tue/Thu 6:00–8:15pm
             </p>
           </div>
@@ -142,7 +142,7 @@ export function TeacherCalendar({
               <span className="font-semibold text-text">
                 Viewing: Week {selectedWeek + 1} of {weeklySchedule.length}
               </span>
-              <span className="text-text/60">{progressPercentage}% through semester</span>
+              <span className="text-text/75">{progressPercentage}% through semester</span>
             </div>
             <div className="w-full bg-border/30 rounded-full h-3 overflow-hidden">
               <div
@@ -212,13 +212,13 @@ export function TeacherCalendar({
                       <span className="text-xs font-bold bg-accent text-text px-2 py-0.5 rounded">NOW</span>
                     )}
                     {isPast && (
-                      <span className="text-xs font-medium text-text/50">✓ Past</span>
+                      <span className="text-xs font-medium text-text/70">✓ Past</span>
                     )}
                   </div>
-                  <div className="text-xs text-text/60">
+                  <div className="text-xs text-text/75">
                     {formatMonthDay(week.dates.tue)} – {formatMonthDay(week.dates.thu)}
                   </div>
-                  <div className="text-xs text-text/70 mt-2 line-clamp-2">
+                  <div className="text-xs text-text/80 mt-2 line-clamp-2">
                     {stripMarkdown(week.tuesday.grammar || week.tuesday.warmup)}
                   </div>
                 </button>
@@ -231,7 +231,7 @@ export function TeacherCalendar({
       {/* Week Detail View */}
       <Card className="p-6">
         {!hasWeeks ? (
-          <div className="text-sm text-text/70">No schedule data found.</div>
+          <div className="text-sm text-text/80">No schedule data found.</div>
         ) : (
           <>
             <div className="flex items-center justify-between mb-4">
@@ -240,7 +240,7 @@ export function TeacherCalendar({
                 <span className="text-sm font-bold bg-accent text-text px-3 py-1 rounded-full">📍 Current Week</span>
               )}
               {getWeekStatus(currentWeek) === 'past' && (
-                <span className="text-sm font-medium text-text/50 px-3 py-1 rounded-full border border-border/30">✓ Completed</span>
+                <span className="text-sm font-medium text-text/75 px-3 py-1 rounded-full border border-border/30">✓ Completed</span>
               )}
             </div>
 
@@ -252,7 +252,7 @@ export function TeacherCalendar({
                     Tuesday {formatMonthDay(currentWeek.dates.tue)}
                   </h4>
                   {localSchedule.Tuesday.time && (
-                    <span className="text-sm text-text/60">{localSchedule.Tuesday.time}</span>
+                    <span className="text-sm text-text/75">{localSchedule.Tuesday.time}</span>
                   )}
                 </div>
 
@@ -271,8 +271,8 @@ export function TeacherCalendar({
 
                   {currentWeek.tuesday.notes && (
                     <div>
-                      <div className="text-xs font-medium text-text/60 uppercase mb-1">📝 Notes</div>
-                      <div className="text-sm text-text/70">{stripMarkdown(currentWeek.tuesday.notes)}</div>
+                      <div className="text-xs font-medium text-text/75 uppercase mb-1">📝 Notes</div>
+                      <div className="text-sm text-text/80">{stripMarkdown(currentWeek.tuesday.notes)}</div>
                     </div>
                   )}
 
@@ -291,14 +291,14 @@ export function TeacherCalendar({
                     Thursday {formatMonthDay(currentWeek.dates.thu)}
                   </h4>
                   {localSchedule.Thursday.time && (
-                    <span className="text-sm text-text/60">{localSchedule.Thursday.time}</span>
+                    <span className="text-sm text-text/75">{localSchedule.Thursday.time}</span>
                   )}
                 </div>
 
                 <div className="bg-secondary/5 rounded-lg p-4 space-y-3">
                   {currentWeek.thursday.quiz && (
-                    <div className="pb-3 border-b border-orange-200">
-                      <div className="text-xs font-medium text-orange-700 uppercase mb-1">⚠️ Unit Quiz</div>
+                    <div className="pb-3 border-b border-orange-300">
+                      <div className="text-xs font-medium text-orange-800 uppercase mb-1">⚠️ Unit Quiz</div>
                       <div className="font-medium text-text">{currentWeek.thursday.quiz}</div>
                     </div>
                   )}
@@ -317,8 +317,8 @@ export function TeacherCalendar({
 
                   {currentWeek.thursday.notes && (
                     <div>
-                      <div className="text-xs font-medium text-text/60 uppercase mb-1">📝 Notes</div>
-                      <div className="text-sm text-text/70">{stripMarkdown(currentWeek.thursday.notes)}</div>
+                      <div className="text-xs font-medium text-text/75 uppercase mb-1">📝 Notes</div>
+                      <div className="text-sm text-text/80">{stripMarkdown(currentWeek.thursday.notes)}</div>
                     </div>
                   )}
 
@@ -346,7 +346,7 @@ export function TeacherCalendar({
         </div>
 
         {!hasWeeks ? (
-          <div className="text-sm text-text/70">Add weeks to the schedule file to enable weekly checklist.</div>
+          <div className="text-sm text-text/80">Add weeks to the schedule file to enable weekly checklist.</div>
         ) : (
           <div className="space-y-4">
             {/* Verb Quiz Section */}
@@ -360,7 +360,7 @@ export function TeacherCalendar({
                     </span>
                   </div>
                   <div className="text-sm text-text/80 font-medium mb-1">{currentWeek.week} - Irregular Verbs</div>
-                  <div className="text-xs text-text/60">5 verbs: Check quizzes.json for this week's list</div>
+                  <div className="text-xs text-text/75">5 verbs: Check quizzes.json for this week's list</div>
                 </div>
                 <button className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition">
                   ✓ Release Quiz
@@ -378,7 +378,7 @@ export function TeacherCalendar({
               <div className="mb-3 pb-3 border-b border-secondary/20">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <div className="text-xs text-text/60 mb-1">Tuesday {formatMonthDay(currentWeek.dates.tue)}</div>
+                    <div className="text-xs text-text/75 mb-1">Tuesday {formatMonthDay(currentWeek.dates.tue)}</div>
                     <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.tuesday.warmup)}</div>
                   </div>
                   <div className="flex gap-2">
@@ -396,7 +396,7 @@ export function TeacherCalendar({
               <div>
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1">
-                    <div className="text-xs text-text/60 mb-1">Thursday {formatMonthDay(currentWeek.dates.thu)}</div>
+                    <div className="text-xs text-text/75 mb-1">Thursday {formatMonthDay(currentWeek.dates.thu)}</div>
                     <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.thursday.warmup)}</div>
                   </div>
                   <div className="flex gap-2">
@@ -421,7 +421,7 @@ export function TeacherCalendar({
                 <div className="mb-2">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="text-xs text-text/60 mb-1">Tuesday - New Grammar</div>
+                      <div className="text-xs text-text/75 mb-1">Tuesday - New Grammar</div>
                       <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.tuesday.grammar)}</div>
                     </div>
                     <button className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition">
@@ -435,7 +435,7 @@ export function TeacherCalendar({
                 <div className="mt-3 pt-3 border-t border-accent/20">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="text-xs text-text/60 mb-1">Thursday - Grammar Review</div>
+                      <div className="text-xs text-text/75 mb-1">Thursday - Grammar Review</div>
                       <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.thursday.grammar)}</div>
                     </div>
                     <button className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition">
@@ -448,13 +448,13 @@ export function TeacherCalendar({
 
             {/* Unit Quiz Alert */}
             {currentWeek.thursday.quiz && (
-              <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <div className="bg-orange-50 border border-orange-300 rounded-lg p-4">
                 <div className="flex items-start gap-3">
                   <span className="text-2xl">⚠️</span>
                   <div className="flex-1">
                     <div className="text-sm font-bold text-orange-900 mb-1">Unit Quiz This Thursday</div>
-                    <div className="text-sm text-orange-800">{currentWeek.thursday.quiz}</div>
-                    <div className="text-xs text-orange-700 mt-1">Note: Unit quizzes are paper tests provided by the program</div>
+                    <div className="text-sm text-orange-900">{currentWeek.thursday.quiz}</div>
+                    <div className="text-xs text-orange-800 mt-1">Note: Unit quizzes are paper tests provided by the program</div>
                   </div>
                 </div>
               </div>
@@ -467,15 +467,15 @@ export function TeacherCalendar({
       <div className="flex flex-wrap gap-4 text-sm">
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-primary/20"></div>
-          <span className="text-text/70">Grammar Lesson</span>
+          <span className="text-text/80">Grammar Lesson</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-secondary/20"></div>
-          <span className="text-text/70">Speaking Activity</span>
+          <span className="text-text/80">Speaking Activity</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-accent/20"></div>
-          <span className="text-text/70">Quiz/Assessment</span>
+          <span className="text-text/80">Quiz/Assessment</span>
         </div>
       </div>
     </div>
