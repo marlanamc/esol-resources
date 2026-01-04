@@ -76,39 +76,47 @@ export default function SpeakingActivityRenderer({ content, activityId }: Props)
 
     if (isSubmitted) {
         return (
-            <div className="max-w-4xl mx-auto p-4 sm:p-8">
-                <div className="bg-secondary/10 border border-secondary/30 rounded-lg p-6 sm:p-8 text-center">
-                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🎉</div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Great Work!</h2>
-                    <p className="text-sm sm:text-base text-gray-700 mb-4">
-                        You earned 6 points for completing this speaking activity!
-                    </p>
-                    <div className="bg-white rounded-lg p-3 sm:p-4 mb-5 sm:mb-6">
-                        <p className="text-xs sm:text-sm text-gray-600 mb-2"><strong>Your Reflection:</strong></p>
-                        <p className="text-sm sm:text-base text-gray-800 italic leading-relaxed">"{reflection}"</p>
+            <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
+                <div className="flex-1 overflow-y-auto flex items-center justify-center p-4 sm:p-8">
+                    <div className="max-w-2xl w-full">
+                        <div className="bg-secondary/10 border border-secondary/30 rounded-lg p-6 sm:p-8 text-center">
+                            <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🎉</div>
+                            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Great Work!</h2>
+                            <p className="text-sm sm:text-base text-gray-700 mb-4">
+                                You earned 6 points for completing this speaking activity!
+                            </p>
+                            <div className="bg-white rounded-lg p-3 sm:p-4 mb-5 sm:mb-6">
+                                <p className="text-xs sm:text-sm text-gray-600 mb-2"><strong>Your Reflection:</strong></p>
+                                <p className="text-sm sm:text-base text-gray-800 italic leading-relaxed">"{reflection}"</p>
+                            </div>
+                            <button
+                                onClick={() => window.location.href = "/dashboard"}
+                                className="w-full sm:w-auto bg-primary hover:bg-primary/90 active:bg-primary/95 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg transition-colors touch-manipulation"
+                            >
+                                Return to Dashboard
+                            </button>
+                        </div>
                     </div>
-                    <button
-                        onClick={() => window.location.href = "/dashboard"}
-                        className="w-full sm:w-auto bg-primary hover:bg-primary/90 active:bg-primary/95 text-white font-semibold px-6 sm:px-8 py-3 rounded-lg transition-colors touch-manipulation"
-                    >
-                        Return to Dashboard
-                    </button>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-3 sm:p-6 space-y-6 sm:space-y-8">
-            {/* Header */}
-            <div className="bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 rounded-lg p-4 sm:p-6">
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 font-display leading-tight">
+        <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
+            {/* Sticky Header */}
+            <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
                     {content.title}
                 </h1>
                 {content.description && (
                     <p className="text-sm sm:text-base text-gray-700">{content.description}</p>
                 )}
-            </div>
+            </header>
+
+            {/* Scrollable Content Area */}
+            <div className="flex-1 overflow-y-auto pb-6 lg:pb-8">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
 
             {/* Key Phrases Section */}
             {content.keyPhrases && content.keyPhrases.length > 0 && (
@@ -260,6 +268,8 @@ export default function SpeakingActivityRenderer({ content, activityId }: Props)
                 >
                     {isSubmitting ? "Submitting..." : "Submit Speaking Practice"}
                 </button>
+            </div>
+                </div>
             </div>
         </div>
     );

@@ -2,52 +2,59 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const symptomsDuration_2026_04_16: SpeakingActivityContent = {
   type: "speaking",
-  title: "4/16/26: Symptoms + Duration",
-  description: "Practice describing symptoms clearly and talking about how long they have lasted (for/since)",
+  title: "4/16/26: Symptoms + Advice (Advice Modals)",
+  description: "Practice describing symptoms and giving/receiving health advice using modals (should, shouldn't, must, have to, need to)",
 
   keyPhrases: [
-    { phrase: "I have (a headache/a cough)...", example: "I have a headache and a sore throat." },
-    { phrase: "I've had it for...", example: "I've had it for three days." },
-    { phrase: "I've had it since...", example: "I've had it since Monday." },
-    { phrase: "It hurts here.", example: "It hurts here (point)." },
-    { phrase: "It's getting better/worse.", example: "It's getting worse at night." },
+    { phrase: "You should...", example: "You should see a doctor if you have a high fever." },
+    { phrase: "You shouldn't...", example: "You shouldn't go to work if you're contagious." },
+    { phrase: "You must / have to...", example: "You must take the medicine three times a day. You have to rest." },
+    { phrase: "You need to...", example: "You need to drink more water. You need to make an appointment." },
+    { phrase: "You could...", example: "You could try taking ibuprofen. You could call the doctor's office." },
+    { phrase: "It might be...", example: "It might be a cold. It might be serious—you should get checked." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
-      text: "Symptoms speed chat: Choose 2 symptoms and explain them to your partner.",
-      context: "Examples: cough, fever, stomachache, back pain, headache, allergy."
+      text: "Give advice using 'should' and 'shouldn't': If someone has a headache, what should they do? What shouldn't they do?",
+      context: "You should rest. You should drink water. You shouldn't look at screens. You shouldn't skip meals."
     },
     {
       id: "prompt-2",
-      level: "intermediate",
-      text: "Duration practice: Answer 5 questions using for/since.",
-      context: "How long have you had it? / Since when? / For how many days?"
+      level: "beginner",
+      text: "Give advice using 'need to': If someone has a fever, what do they need to do?",
+      context: "You need to take your temperature. You need to rest. You need to call the doctor if it's over 103°F."
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Doctor questions: Ask 4 follow-up questions.",
-      context: "Examples: Any fever? Any allergies? What makes it worse? Did you take medicine?"
+      text: "Use 'must' and 'have to' for strong advice: What must you do if you have a serious symptom?",
+      context: "You must see a doctor immediately. You have to go to the emergency room. You must take the medicine exactly as prescribed."
     },
     {
       id: "prompt-4",
       level: "intermediate",
-      text: "Advice: Give 2 recommendations for common symptoms (rest, water, medicine, appointment).",
-      context: "Use: should/could, It's a good idea to..."
+      text: "Use 'could' for suggestions: If someone has a cold, what could they try?",
+      context: "You could drink tea with honey. You could take vitamin C. You could rest for a few days. You could try over-the-counter medicine."
     },
     {
       id: "prompt-5",
+      level: "intermediate",
+      text: "Roleplay: Partner describes a symptom → You give 3 pieces of advice using different modals (should, need to, could).",
+      context: "Example: 'I have a bad cough.' → 'You should rest. You need to drink lots of water. You could try cough medicine.'"
+    },
+    {
+      id: "prompt-6",
       level: "advanced",
-      text: "Teach-back: Repeat the plan in your own words after your partner gives advice.",
-      context: "Use: So, I should..., And I shouldn't..."
+      text: "Compare modals: When do you use 'should' vs 'must' vs 'could'? Give examples for each with health advice.",
+      context: "'Should' = recommendation. 'Must/have to' = necessary/required. 'Could' = suggestion/possibility. Example: 'You should rest' (advice) vs 'You must take this medicine' (required) vs 'You could try tea' (suggestion).'"
     },
   ],
 
-  reflectionPrompt: "Which is easier for you: for or since? Give one example of each.",
-  reflectionMinLength: 30,
+  reflectionPrompt: "Which advice modal is most useful in health situations: should, must, have to, need to, or could? Why?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };

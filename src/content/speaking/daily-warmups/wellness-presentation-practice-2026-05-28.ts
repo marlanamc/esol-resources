@@ -2,52 +2,58 @@ import type { SpeakingActivityContent } from "@/types/activity";
 
 export const wellnessPresentationPractice_2026_05_28: SpeakingActivityContent = {
   type: "speaking",
-  title: "5/28/26: Wellness Presentation Practice",
-  description: "Practice a short wellness presentation and build Q&A skills",
+  title: "5/28/26: Wellness Presentation (Verbs + Gerunds)",
+  description: "Practice giving a wellness presentation using verbs + gerunds (enjoy, recommend, suggest, avoid, quit, keep, consider) naturally throughout your talk",
 
   keyPhrases: [
-    { phrase: "Today I’m going to talk about...", example: "Today I’m going to talk about sleep." },
-    { phrase: "One reason is...", example: "One reason is that it reduces stress." },
-    { phrase: "For example...", example: "For example, I turn off my phone at 10pm." },
-    { phrase: "My recommendation is...", example: "My recommendation is to drink more water." },
-    { phrase: "Do you have any questions?", example: "Do you have any questions?" },
+    { phrase: "I enjoy... / I love... (gerund)", example: "I enjoy practicing meditation every morning." },
+    { phrase: "I recommend / I suggest... (gerund)", example: "I recommend trying yoga. I suggest keeping a sleep journal." },
+    { phrase: "I avoid / I quit... (gerund)", example: "I avoid eating late at night. I quit drinking coffee after 2pm." },
+    { phrase: "I keep / I continue... (gerund)", example: "I keep tracking my water intake. I continue working on my goals." },
+    { phrase: "Consider... (gerund)", example: "Consider starting small. Consider joining a walking group." },
   ],
 
   prompts: [
     {
       id: "prompt-1",
       level: "intermediate",
-      text: "Choose a wellness topic (sleep, stress, exercise, food, routines). Plan 3 points.",
-      context: "Write 3 bullet points only."
+      text: "Choose a wellness topic and share what you enjoy doing and what you recommend: Use 'enjoy' and 'recommend' + gerund.",
+      context: "Example: 'I enjoy walking every morning. I recommend trying it for at least 20 minutes. I enjoy listening to music while I walk.'"
     },
     {
       id: "prompt-2",
       level: "intermediate",
-      text: "Give a 1-minute talk to a partner. Partner asks 2 questions.",
-      context: "Use: Today I'm going to talk about..., One reason is..., For example..."
+      text: "Share what you avoid and what you suggest to others: Use 'avoid' and 'suggest' + gerund.",
+      context: "Example: 'I avoid eating late at night. I avoid looking at my phone before bed. I suggest turning off screens one hour before sleep.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
-      text: "Improve it: Add 2 details (numbers, time, frequency, examples).",
-      context: "Example: 'I walk 20 minutes, 3 times a week.'"
+      text: "Share what you quit or stopped doing and what you keep doing: Use 'quit/stop' and 'keep' + gerund.",
+      context: "Example: 'I quit drinking soda two years ago. I stopped eating fast food. I keep drinking water throughout the day. I keep exercising three times a week.'"
     },
     {
       id: "prompt-4",
-      level: "advanced",
-      text: "Group share: Present to a small group (3–4) and answer questions.",
-      context: "Practice asking good follow-up questions."
+      level: "intermediate",
+      text: "Give advice using 'consider' + gerund: What should people consider trying?",
+      context: "Example: 'Consider starting with small changes. Consider tracking your sleep for one week. Consider joining a fitness class.'"
     },
     {
       id: "prompt-5",
       level: "advanced",
-      text: "Feedback: Give your partner one compliment and one suggestion.",
-      context: "Use: I liked..., Next time you could..."
+      text: "1-minute wellness presentation: Use at least 5 different verbs + gerunds (enjoy, recommend, suggest, avoid, quit, keep, consider, finish, continue).",
+      context: "Example: 'Today I want to talk about stress management. I enjoy practicing meditation for 10 minutes every morning. I recommend trying breathing exercises when you feel stressed. I avoid checking work emails after 7pm. I quit working through my lunch break. I keep a gratitude journal. Consider starting with just 5 minutes of quiet time each day.'"
+    },
+    {
+      id: "prompt-6",
+      level: "advanced",
+      text: "Answer Q&A using verbs + gerunds: Partner asks 3 wellness questions. Answer using verbs + gerunds naturally.",
+      context: "Q: 'How did you start this habit?' A: 'I started by doing just 5 minutes. I enjoyed it, so I kept adding more time. I recommend starting small.'"
     },
   ],
 
-  reflectionPrompt: "What part is hardest: starting, giving examples, or answering questions?",
-  reflectionMinLength: 30,
+  reflectionPrompt: "When presenting about wellness, which verbs + gerunds are most useful: enjoy, recommend, suggest, avoid, or keep? Why?",
+  reflectionMinLength: 35,
   minPromptsRequired: 2,
   released: true
 };
