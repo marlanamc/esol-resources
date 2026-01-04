@@ -161,11 +161,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 {
                     id: "parts-nouns-1",
                     title: "Quick Practice: Nouns",
-                    instructions: "What part of speech is the highlighted word?",
+                    instructions: "What part of speech is the highlighted word? (Tricky: some words can be different parts of speech!)",
                     items: [
                         {
                             type: "radio",
-                            label: "My <strong>neighbor</strong> has a friendly dog.",
+                            label: "Her <strong>work</strong> at the hospital is very important.",
                             options: [
                                 { value: "noun", label: "Noun" },
                                 { value: "verb", label: "Verb" },
@@ -176,7 +176,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "We took the <strong>bus</strong> to class.",
+                            label: "The <strong>meeting</strong> starts at 3 PM tomorrow.",
                             options: [
                                 { value: "noun", label: "Noun" },
                                 { value: "verb", label: "Verb" },
@@ -187,7 +187,29 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "<strong>Patience</strong> is important when you learn a language.",
+                            label: "I need your <strong>help</strong> with the homework.",
+                            options: [
+                                { value: "noun", label: "Noun" },
+                                { value: "verb", label: "Verb" },
+                                { value: "adjective", label: "Adjective" },
+                                { value: "adverb", label: "Adverb" },
+                            ],
+                            expectedAnswer: "noun",
+                        },
+                        {
+                            type: "radio",
+                            label: "She gave me good <strong>advice</strong> about the test.",
+                            options: [
+                                { value: "noun", label: "Noun" },
+                                { value: "verb", label: "Verb" },
+                                { value: "adjective", label: "Adjective" },
+                                { value: "adverb", label: "Adverb" },
+                            ],
+                            expectedAnswer: "noun",
+                        },
+                        {
+                            type: "radio",
+                            label: "My <strong>experience</strong> in customer service helped me get this job.",
                             options: [
                                 { value: "noun", label: "Noun" },
                                 { value: "verb", label: "Verb" },
