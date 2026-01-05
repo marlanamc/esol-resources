@@ -57,12 +57,30 @@ const cleanTitle = (title: string) => {
         .trim();
 };
 
+// Color rotation helper for visual variety
+const getCategoryColor = (index: number) => {
+    const colors = [
+        { bg: 'from-primary/8 to-primary/4', border: 'border-primary/30',
+          icon: 'from-primary to-primary-dark', accent: 'border-primary', text: 'text-primary' },
+        { bg: 'from-secondary/8 to-secondary/4', border: 'border-secondary/30',
+          icon: 'from-secondary to-secondary-dark', accent: 'border-secondary', text: 'text-secondary' },
+        { bg: 'from-accent/8 to-accent/4', border: 'border-accent/30',
+          icon: 'from-accent to-accent-dark', accent: 'border-accent-dark', text: 'text-accent-dark' },
+        { bg: 'from-info/8 to-info/4', border: 'border-info/30',
+          icon: 'from-info to-blue-700', accent: 'border-info', text: 'text-info' },
+        { bg: 'from-success/8 to-success/4', border: 'border-success/30',
+          icon: 'from-success to-secondary-dark', accent: 'border-success', text: 'text-success' },
+    ];
+    return colors[index % colors.length];
+};
+
 export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
     return (
-        <div className="usage-meanings-list space-y-4 md:space-y-6 my-6 md:my-8">
+        <div className="usage-meanings-list space-y-3 md:space-y-4 my-6 md:my-8">
             {meanings.map((meaning, index) => {
                 const Icon = getIconForMeaning(meaning.title);
                 const title = cleanTitle(meaning.title);
+                const colorScheme = getCategoryColor(index);
 
                 return (
                     <motion.div
@@ -78,33 +96,38 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                         }}
                     >
                         {/* Card with gradient border effect */}
-                        <div className="relative bg-gradient-to-br from-white to-bg-light border-2 border-border rounded-2xl p-4 md:p-6 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                        <div className={`relative bg-gradient-to-br ${colorScheme.bg} border-2 ${colorScheme.border} rounded-xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden`}>
                             {/* Subtle gradient background accent */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/5 to-accent/5 rounded-full blur-3xl -z-10 transform translate-x-32 -translate-y-32" />
+                            <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${colorScheme.bg} opacity-50 rounded-full blur-2xl -z-10 transform translate-x-12 -translate-y-12`} />
 
                             {/* Header with icon and title */}
-                            <div className="flex items-baseline gap-3 md:gap-4 mb-4">
-                                <motion.div
-                                    className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 bg-gradient-to-br from-primary to-accent rounded-xl md:rounded-2xl flex items-center justify-center shadow-md"
-                                    style={{ marginTop: '0.375rem' }}
-                                    whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    <Icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
-                                </motion.div>
+                            <div className="flex items-center gap-2 md:gap-3 mb-3">
+                                <div className="relative flex-shrink-0">
+                                    <motion.div
+                                        className={`w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br ${colorScheme.icon} rounded-lg md:rounded-xl flex items-center justify-center shadow-md`}
+                                        whileHover={{ scale: 1.05 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    >
+                                        <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                                    </motion.div>
+                                    {/* Number badge */}
+                                    <div className={`absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full border-2 ${colorScheme.accent} flex items-center justify-center`}>
+                                        <span className={`text-xs font-bold ${colorScheme.text}`}>{index + 1}</span>
+                                    </div>
+                                </div>
 
                                 <div className="flex-1 min-w-0">
-                                    <h4 className="!text-xl md:!text-2xl lg:!text-3xl font-bold text-text mb-2 font-display leading-tight">
+                                    <h4 className="text-lg md:text-xl lg:text-2xl font-bold text-text mb-1.5 font-display leading-tight">
                                         {title}
                                     </h4>
-                                    <p className="text-base md:text-lg text-text-muted leading-relaxed">
+                                    <p className="text-sm md:text-base text-text-muted leading-snug">
                                         {meaning.description}
                                     </p>
                                 </div>
                             </div>
 
                             {/* Examples with staggered animation */}
-                            <div className="space-y-2 md:space-y-3 mt-4 md:mt-5">
+                            <div className="space-y-1.5 md:space-y-2 mt-3 md:mt-4">
                                 {meaning.examples.map((example, exIdx) => (
                                     <motion.div
                                         key={exIdx}
@@ -118,17 +141,8 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                         }}
                                     >
                                         {/* Example card with hover effect */}
-                                        <div className="relative bg-white rounded-xl p-3 md:p-4 border-l-4 border-primary shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5">
-                                            {/* Arrow indicator on hover */}
-                                            <motion.div
-                                                className="hidden md:block absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover/example:opacity-100 transition-opacity"
-                                                initial={{ x: -10 }}
-                                                whileHover={{ x: 0 }}
-                                            >
-                                                <ArrowRight className="w-4 h-4 text-primary" />
-                                            </motion.div>
-
-                                            <div className="pl-2 md:pl-6">
+                                        <div className={`relative bg-white rounded-lg p-2.5 md:p-3 border-l-3 ${colorScheme.accent} shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5`}>
+                                            <div className="pl-1.5 md:pl-3.5">
                                                 <p
                                                     className="text-sm md:text-base text-text font-medium leading-relaxed"
                                                     dangerouslySetInnerHTML={{ __html: sanitizeHtml(example.sentence) }}
