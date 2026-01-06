@@ -52,6 +52,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [isDesktop, setIsDesktop] = useState(false);
     const [activitiesHref, setActivitiesHref] = useState<string>("/dashboard/activities");
     const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
+    const [showPractice, setShowPractice] = useState(true);
 
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
@@ -179,7 +180,13 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         : true;
     
     // Only show the split layout after exercises are unlocked (matches the original reader UX)
-    const showSplitLayout = currentHasExercises && practiceUnlocked;
+    const showSplitLayout = currentHasExercises && practiceUnlocked && showPractice;
+
+    useEffect(() => {
+        if (currentHasExercises) {
+            setShowPractice(true);
+        }
+    }, [currentSectionKey, currentHasExercises]);
 
     const isFirstSection = currentSectionIndex === 0;
     const isLastSection = currentSectionIndex === content.sections.length - 1;
@@ -251,6 +258,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             return next;
         });
     }, [currentHasExercises, currentSectionKey]);
+
+    const handleTogglePractice = useCallback(() => {
+        if (!currentHasExercises || !practiceUnlocked) return;
+        setShowPractice((prev) => !prev);
+    }, [currentHasExercises, practiceUnlocked]);
 
     useEffect(() => {
         try {
@@ -405,6 +417,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                         onUnlockExercises={handleUnlockExercises}
                                         practiceUnlocked={practiceUnlocked}
                                         hasExercises={currentHasExercises}
+                                        showPractice={showPractice}
+                                        onTogglePractice={handleTogglePractice}
                                         variant="split"
                                         className="w-full"
                                     />
@@ -432,6 +446,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                         onUnlockExercises={handleUnlockExercises}
                                         practiceUnlocked={practiceUnlocked}
                                         hasExercises={currentHasExercises}
+                                        showPractice={showPractice}
+                                        onTogglePractice={handleTogglePractice}
                                         variant="full"
                                         className="w-full"
                                     />
