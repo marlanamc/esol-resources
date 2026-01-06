@@ -112,7 +112,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     };
 
     if (variant === 'checklist') {
-        const rows = assignments.map((assignment) => {
+        const rows = assignments.map((assignment, index) => {
             const submission = assignment.submissions[0];
             const progressValue = typeof assignment.progress === 'number' ? assignment.progress : 0;
             const isCompleted =
@@ -124,7 +124,14 @@ export const TodaysAssignments: React.FC<Props> = ({
             const categoryStyle = getCategoryStyle(assignment.activity.category);
             const dueLabel = formatDueDate(assignment.dueDate);
 
-            return { assignment, submission, isCompleted, displayTitle, categoryStyle, dueLabel, progressValue };
+            return { assignment, submission, isCompleted, displayTitle, categoryStyle, dueLabel, progressValue, index };
+        });
+
+        const sortedRows = [...rows].sort((a, b) => {
+            if (a.isCompleted === b.isCompleted) {
+                return a.index - b.index;
+            }
+            return a.isCompleted ? 1 : -1;
         });
 
         const completedCount = rows.filter((r) => r.isCompleted).length;
@@ -179,7 +186,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                     </div>
 
                     <div className="divide-y divide-border/20">
-                        {rows.map(({ assignment, isCompleted, displayTitle, categoryStyle, dueLabel }) => (
+                        {sortedRows.map(({ assignment, isCompleted, displayTitle, categoryStyle, dueLabel }) => (
                             <div
                                 key={assignment.id}
                                 className="relative group"
