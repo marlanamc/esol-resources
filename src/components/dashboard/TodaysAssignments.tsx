@@ -133,8 +133,20 @@ export const TodaysAssignments: React.FC<Props> = ({
             }
 
             if (!a.isCompleted) {
-                const aDue = a.assignment.dueDate ? new Date(a.assignment.dueDate).getTime() : Number.POSITIVE_INFINITY;
-                const bDue = b.assignment.dueDate ? new Date(b.assignment.dueDate).getTime() : Number.POSITIVE_INFINITY;
+                const getDateFromTitle = (title: string) => {
+                    const match = title.match(/(\d{1,2})\/(\d{1,2})\/(\d{2})/);
+                    if (!match) return null;
+                    const [, month, day, year] = match;
+                    const parsed = new Date(Number(`20${year}`), Number(month) - 1, Number(day));
+                    return Number.isNaN(parsed.getTime()) ? null : parsed.getTime();
+                };
+
+                const aTitle = a.assignment.title || a.assignment.activity.title || "";
+                const bTitle = b.assignment.title || b.assignment.activity.title || "";
+                const aDueFallback = getDateFromTitle(aTitle);
+                const bDueFallback = getDateFromTitle(bTitle);
+                const aDue = a.assignment.dueDate ? new Date(a.assignment.dueDate).getTime() : (aDueFallback ?? Number.POSITIVE_INFINITY);
+                const bDue = b.assignment.dueDate ? new Date(b.assignment.dueDate).getTime() : (bDueFallback ?? Number.POSITIVE_INFINITY);
                 if (!Number.isNaN(aDue) && !Number.isNaN(bDue) && aDue !== bDue) {
                     return aDue - bDue;
                 }
