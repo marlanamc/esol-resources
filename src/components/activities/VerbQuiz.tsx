@@ -8,12 +8,14 @@ import { CheckCircle2, Loader2 } from 'lucide-react';
 interface VerbQuizProps {
   content: VerbQuizContent;
   activityId: string;
+  activityTitle?: string;
   onComplete: (answers: VerbQuizAnswers, score: number) => void;
   isSubmitting?: boolean;
 }
 
-export default function VerbQuiz({ content, activityId, onComplete, isSubmitting = false }: VerbQuizProps) {
+export default function VerbQuiz({ content, activityId, activityTitle, onComplete, isSubmitting = false }: VerbQuizProps) {
   void activityId;
+  const headerTitle = activityTitle ?? `${content.week} - Irregular Verb Quiz`;
   const [answers, setAnswers] = useState<VerbQuizAnswers>(() => {
     const initial: VerbQuizAnswers = {};
     Object.keys(content.verbs).forEach(verb => {
@@ -70,7 +72,7 @@ export default function VerbQuiz({ content, activityId, onComplete, isSubmitting
         className="bg-white rounded-2xl shadow-lg border border-sage/20 p-6"
       >
         <h2 className="text-2xl font-display font-bold text-terracotta mb-2">
-          {content.week} - Irregular Verb Quiz
+          {headerTitle}
         </h2>
         <p className="text-neutral-600">
           Complete the verb forms for each irregular verb. The base form (V1) is provided.
