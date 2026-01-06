@@ -55,5 +55,5 @@ export const futureGoalsMoneyMilestones_2026_02_12: SpeakingActivityContent = {
   reflectionPrompt: "How comfortable are you using future perfect (will have + past participle) to talk about goals by a specific deadline? Is it easier or harder than past perfect?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

@@ -49,6 +49,6 @@ export const exitInterviewAdvice_2026_06_18: SpeakingActivityContent = {
   reflectionPrompt: "What is one thing you will keep doing to practice English after today?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

@@ -56,6 +56,6 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
   reflectionPrompt: "When negotiating, which is easier: using infinitives (want to, need to) or gerunds (enjoy -ing, prefer -ing)? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

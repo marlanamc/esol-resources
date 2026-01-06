@@ -56,5 +56,5 @@ export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "When is passive voice useful? Give an example from your own life where you would use passive voice.",
   reflectionMinLength: 40,
   minPromptsRequired: 3,
-  released: true
+  released: false
 };

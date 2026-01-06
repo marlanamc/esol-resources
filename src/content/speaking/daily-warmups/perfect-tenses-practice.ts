@@ -61,5 +61,5 @@ export const perfectTensesPracticeDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What's harder: using while or when correctly, or remembering to use was/were + -ing for the background action?",
   reflectionMinLength: 35,
   minPromptsRequired: 3,
-  released: true
+  released: false
 };

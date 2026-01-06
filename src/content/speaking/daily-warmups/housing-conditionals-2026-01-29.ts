@@ -55,5 +55,5 @@ export const housingConditionals_2026_01_29: SpeakingActivityContent = {
   reflectionPrompt: "How comfortable are you using Type 1 conditionals (If + present, will + verb) to talk about future housing plans? What's the difference between Type 0 (facts) and Type 1 (future predictions)?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

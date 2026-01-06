@@ -56,5 +56,5 @@ export const moneyHousingPlans_2026_02_05: SpeakingActivityContent = {
   reflectionPrompt: "Which tense is hardest for you to use when talking about housing: past, present, or future? Which conditional type (Type 0 or Type 1) feels more natural? Why?",
   reflectionMinLength: 40,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

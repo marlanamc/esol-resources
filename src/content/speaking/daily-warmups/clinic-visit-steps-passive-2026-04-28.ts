@@ -49,6 +49,6 @@ export const clinicVisitStepsPassive_2026_04_28: SpeakingActivityContent = {
   reflectionPrompt: "Where is passive voice useful (rules, instructions, procedures)? Give one example.",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

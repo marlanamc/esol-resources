@@ -55,5 +55,5 @@ export const reportedSpeechDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "When using reported speech, what's most challenging: changing 'I' to 'he/she', changing the tense, or remembering when to use 'said' vs 'told'?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

@@ -55,5 +55,5 @@ export const professionalMessages_2026_03_12: SpeakingActivityContent = {
   reflectionPrompt: "How comfortable are you using past perfect continuous (had been + -ing) to tell your career story? How is it different from past perfect (had worked)?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

@@ -55,6 +55,6 @@ export const wellnessPresentationPractice_2026_05_28: SpeakingActivityContent = 
   reflectionPrompt: "When presenting about wellness, which verbs + gerunds are most useful: enjoy, recommend, suggest, avoid, or keep? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

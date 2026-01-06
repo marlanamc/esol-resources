@@ -55,5 +55,5 @@ export const longTermCareerGoals_2026_03_19: SpeakingActivityContent = {
   reflectionPrompt: "How do you feel about using future perfect continuous (will have been + -ing)? Which perfect continuous tense is hardest: past, present, or future? Why?",
   reflectionMinLength: 40,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

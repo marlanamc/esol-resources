@@ -49,6 +49,6 @@ export const summerNextStepsGoals_2026_06_11: SpeakingActivityContent = {
   reflectionPrompt: "What is one small action you can do this week to start your goal?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

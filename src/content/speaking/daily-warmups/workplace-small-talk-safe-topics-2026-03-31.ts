@@ -58,6 +58,6 @@ export const workplaceSmallTalkSafeTopics_2026_03_31: SpeakingActivityContent = 
   reflectionPrompt: "Which phrasal verb is most useful for workplace small talk? Which one is hardest to remember?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

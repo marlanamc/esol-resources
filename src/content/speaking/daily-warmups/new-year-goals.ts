@@ -61,5 +61,5 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What is ONE goal you're committing to? When you explain your goal, which parts of speech are easiest? Which are hardest?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

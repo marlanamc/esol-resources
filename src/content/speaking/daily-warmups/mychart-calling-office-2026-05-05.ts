@@ -56,6 +56,6 @@ export const myChartCallingOffice_2026_05_05: SpeakingActivityContent = {
   reflectionPrompt: "When relaying doctor's messages, which is harder: changing 'I' to 'he/she' or changing the verb tense? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

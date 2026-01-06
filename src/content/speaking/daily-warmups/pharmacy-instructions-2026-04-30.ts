@@ -56,6 +56,6 @@ export const pharmacyInstructions_2026_04_30: SpeakingActivityContent = {
   reflectionPrompt: "Why is passive voice useful for pharmacy instructions? How is it different from active voice?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

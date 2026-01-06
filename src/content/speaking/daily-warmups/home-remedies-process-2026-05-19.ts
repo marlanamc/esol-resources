@@ -55,6 +55,6 @@ export const homeRemediesProcess_2026_05_19: SpeakingActivityContent = {
   reflectionPrompt: "When talking about health choices, why is Type 1 conditional (If + present, will) useful? Give one example.",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

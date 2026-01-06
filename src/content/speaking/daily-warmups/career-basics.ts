@@ -56,5 +56,5 @@ export const careerBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What career topic was easiest to talk about? What was most difficult? Why?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

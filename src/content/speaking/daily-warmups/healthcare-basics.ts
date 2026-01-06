@@ -56,5 +56,5 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "When giving health advice, which modal do you use most: should, must, or have to? What's the difference between them?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

@@ -55,5 +55,5 @@ export const pastPresentHabitsHousing_2026_02_10: SpeakingActivityContent = {
   reflectionPrompt: "What's harder: talking about money in English, or using past perfect tense to explain what had happened? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 3,
-  released: true
+  released: false
 };

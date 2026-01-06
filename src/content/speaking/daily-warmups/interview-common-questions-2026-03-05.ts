@@ -56,5 +56,5 @@ export const interviewCommonQuestions_2026_03_05: SpeakingActivityContent = {
   reflectionPrompt: "When answering interview questions, which is easier to use: gerunds (enjoy -ing) or infinitives (want to)? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

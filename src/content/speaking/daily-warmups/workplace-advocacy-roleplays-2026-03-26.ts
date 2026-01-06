@@ -56,6 +56,6 @@ export const workplaceAdvocacyRoleplays_2026_03_26: SpeakingActivityContent = {
   reflectionPrompt: "When advocating for yourself at work, which grammar is more useful: infinitives (I need to, I want to) or gerunds (I enjoy, I prefer)? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

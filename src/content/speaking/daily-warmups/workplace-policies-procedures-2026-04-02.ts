@@ -58,6 +58,6 @@ export const workplacePoliciesProcedures_2026_04_02: SpeakingActivityContent = {
   reflectionPrompt: "Which phrasal verb is most useful for understanding workplace policies? Which one do you need to practice more?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

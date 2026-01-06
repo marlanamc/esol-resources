@@ -38,6 +38,16 @@ export type ExerciseItem =
         expectedAnswers?: string[];
     }
     | {
+        type: "word-select";
+        label: string;
+        selectWhat?: string; // e.g. "nouns and pronouns"
+        tokens: Array<{
+            text: string;
+            after?: string; // defaults to " "
+            isTarget?: boolean;
+        }>;
+    }
+    | {
         type: "word-scramble";
         label: string;
         words: string[];
