@@ -10,6 +10,7 @@ interface VerbQuizContainerProps {
   content: VerbQuizContent;
   activityId: string;
   assignmentId?: string | null;
+  activityTitle?: string;
   existingSubmission?: {
     id: string;
     content: unknown;
@@ -21,6 +22,7 @@ export default function VerbQuizContainer({
   content,
   activityId,
   assignmentId,
+  activityTitle,
   existingSubmission
 }: VerbQuizContainerProps) {
   const router = useRouter();
@@ -119,6 +121,7 @@ export default function VerbQuizContainer({
     <VerbQuiz
       content={content}
       activityId={activityId}
+      activityTitle={activityTitle}
       onComplete={handleComplete}
       isSubmitting={isSubmitting}
     />

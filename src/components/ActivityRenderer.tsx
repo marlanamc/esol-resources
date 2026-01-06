@@ -119,7 +119,14 @@ function safeJsonParse(text: string): unknown | null {
 function QuizRenderer({ content, activityId, assignmentId }: { content: QuizContent | VerbQuizContent; activityId: string; assignmentId?: string | null }) {
     // Check if this is a verb quiz
     if (content && typeof content === 'object' && 'type' in content && content.type === 'verb-quiz') {
-        return <VerbQuizContainer content={content as VerbQuizContent} activityId={activityId} assignmentId={assignmentId} />;
+        return (
+            <VerbQuizContainer
+                content={content as VerbQuizContent}
+                activityId={activityId}
+                assignmentId={assignmentId}
+                activityTitle={activity.title}
+            />
+        );
     }
 
     // Regular quiz renderer
