@@ -4,6 +4,42 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
 
+export async function GET() {
+    try {
+        const session = await getServerSession(authOptions);
+        if (!session) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const userRole = session.user?.role;
+        if (userRole !== "teacher") {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        }
+
+        const userId = session.user?.id;
+
+        const classes = await prisma.class.findMany({
+            where: { teacherId: userId },
+            include: {
+                assignments: {
+                    include: {
+                        activity: true,
+                    },
+                },
+            },
+            orderBy: { createdAt: "desc" },
+        });
+
+        return NextResponse.json(classes);
+    } catch (error: unknown) {
+        console.error("Error fetching classes:", error);
+        return NextResponse.json(
+            { error: "Failed to fetch classes" },
+            { status: 500 }
+        );
+    }
+}
+
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);

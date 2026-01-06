@@ -142,11 +142,67 @@ export function TeacherCalendar({
     const actionKey = `feature-speaking-${date.year}-${date.month}-${date.day}`;
     setLoadingAction(actionKey);
     try {
-      // This needs class selection - for now, show helpful message
-      alert("To feature this activity:\n1. Go to Dashboard > Activities\n2. Find the speaking activity for this date\n3. Click the ⭐ Feature button\n\n(Multi-class selection coming soon!)");
+      // Format date as YYYY-MM-DD
+      const dateStr = `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}`;
+      const activityId = `speaking-${dateStr}`;
+
+      // Get all teacher's classes
+      const classesResponse = await fetch('/api/classes');
+      if (!classesResponse.ok) {
+        throw new Error('Failed to fetch classes');
+      }
+      const classes = await classesResponse.json();
+
+      if (!classes || classes.length === 0) {
+        alert('You need to create a class first!');
+        return;
+      }
+
+      // For each class, create/find assignment and feature it
+      let featuredCount = 0;
+      for (const cls of classes) {
+        // Check if assignment already exists
+        const existingAssignments = cls.assignments || [];
+        let assignment = existingAssignments.find((a: any) => a.activityId === activityId);
+
+        if (!assignment) {
+          // Create new assignment
+          const createResponse = await fetch('/api/assignments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              classId: cls.id,
+              activityId,
+              title: `${day} Speaking Warmup`,
+              isFeatured: true,
+            }),
+          });
+
+          if (createResponse.ok) {
+            featuredCount++;
+          }
+        } else {
+          // Update existing assignment to be featured
+          const updateResponse = await fetch('/api/assignments', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              assignmentId: assignment.id,
+              isFeatured: true,
+            }),
+          });
+
+          if (updateResponse.ok) {
+            featuredCount++;
+          }
+        }
+      }
+
+      alert(`✓ Speaking activity featured for ${featuredCount} class${featuredCount === 1 ? '' : 'es'}!`);
+      window.location.reload(); // Refresh to show updated data
     } catch (error) {
       console.error('Error featuring speaking activity:', error);
-      alert("Failed to feature activity");
+      alert(error instanceof Error ? error.message : "Failed to feature activity");
     } finally {
       setLoadingAction(null);
     }
@@ -156,28 +212,202 @@ export function TeacherCalendar({
     const actionKey = `assign-${day}-${grammarTopic}`;
     setLoadingAction(actionKey);
     try {
-      alert("To assign grammar:\n1. Go to Dashboard > Activities\n2. Browse Grammar category\n3. Find: " + grammarTopic + "\n4. Click 'Assign to Class'\n\n(Quick assign coming soon!)");
+      // Get teacher's classes
+      const classesResponse = await fetch('/api/classes');
+      if (!classesResponse.ok) {
+        throw new Error('Failed to fetch classes');
+      }
+      const classes = await classesResponse.json();
+
+      if (!classes || classes.length === 0) {
+        alert('You need to create a class first!');
+        return;
+      }
+
+      // Search for the grammar activity
+      const activitiesResponse = await fetch('/api/activities');
+      if (!activitiesResponse.ok) {
+        throw new Error('Failed to fetch activities');
+      }
+      const activities = await activitiesResponse.json();
+
+      // Find grammar activity that matches the topic
+      const grammarActivity = activities.find((a: any) =>
+        a.category === 'grammar' &&
+        a.title.toLowerCase().includes(grammarTopic.toLowerCase())
+      );
+
+      if (!grammarActivity) {
+        alert(`Could not find grammar activity for: ${grammarTopic}\n\nPlease assign it manually from Dashboard > Activities`);
+        return;
+      }
+
+      // Create assignment for all classes
+      let assignedCount = 0;
+      for (const cls of classes) {
+        // Check if already assigned
+        const alreadyAssigned = cls.assignments?.some((a: any) => a.activityId === grammarActivity.id);
+        if (alreadyAssigned) {
+          continue;
+        }
+
+        const response = await fetch('/api/assignments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            classId: cls.id,
+            activityId: grammarActivity.id,
+            title: `${day} - ${grammarTopic}`,
+          }),
+        });
+
+        if (response.ok) {
+          assignedCount++;
+        }
+      }
+
+      if (assignedCount > 0) {
+        alert(`✓ Grammar assigned to ${assignedCount} class${assignedCount === 1 ? '' : 'es'}!`);
+        window.location.reload();
+      } else {
+        alert('Activity already assigned to all classes');
+      }
     } catch (error) {
       console.error('Error assigning grammar:', error);
-      alert("Failed to assign grammar");
+      alert(error instanceof Error ? error.message : "Failed to assign grammar");
     } finally {
       setLoadingAction(null);
     }
   };
 
-  const handleReleaseQuiz = async () => {
+  const handleReleaseQuiz = async (weekName: string) => {
     setLoadingAction('release-quiz');
     try {
-      alert("To release verb quiz:\n1. Go to Dashboard > Activities\n2. Filter by 'Quizzes'\n3. Find this week's verb quiz\n4. Click 'Assign to Class'\n\n(Auto-release coming soon!)");
+      // Get teacher's classes
+      const classesResponse = await fetch('/api/classes');
+      if (!classesResponse.ok) {
+        throw new Error('Failed to fetch classes');
+      }
+      const classes = await classesResponse.json();
+
+      if (!classes || classes.length === 0) {
+        alert('You need to create a class first!');
+        return;
+      }
+
+      // Search for verb quiz activity for this week
+      const activitiesResponse = await fetch('/api/activities');
+      if (!activitiesResponse.ok) {
+        throw new Error('Failed to fetch activities');
+      }
+      const activities = await activitiesResponse.json();
+
+      // Find verb quiz (look for quiz type with "verb" in title)
+      const verbQuizzes = activities.filter((a: any) =>
+        a.type === 'quiz' &&
+        a.title.toLowerCase().includes('verb')
+      );
+
+      if (verbQuizzes.length === 0) {
+        alert('No verb quizzes found. Please create or import verb quizzes first.');
+        return;
+      }
+
+      // Use the first verb quiz (ideally we'd match by week, but this works for now)
+      const quizToRelease = verbQuizzes[0];
+
+      // Assign to all classes
+      let assignedCount = 0;
+      for (const cls of classes) {
+        // Check if already assigned
+        const alreadyAssigned = cls.assignments?.some((a: any) => a.activityId === quizToRelease.id);
+        if (alreadyAssigned) {
+          continue;
+        }
+
+        const response = await fetch('/api/assignments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            classId: cls.id,
+            activityId: quizToRelease.id,
+            title: `${weekName} - Verb Quiz`,
+          }),
+        });
+
+        if (response.ok) {
+          assignedCount++;
+        }
+      }
+
+      if (assignedCount > 0) {
+        alert(`✓ Verb quiz assigned to ${assignedCount} class${assignedCount === 1 ? '' : 'es'}!`);
+        window.location.reload();
+      } else {
+        alert('Verb quiz already assigned to all classes');
+      }
+    } catch (error) {
+      console.error('Error releasing quiz:', error);
+      alert(error instanceof Error ? error.message : "Failed to release quiz");
     } finally {
       setLoadingAction(null);
     }
   };
 
-  const handleAutoReleaseAll = async () => {
+  const handleAutoReleaseAll = async (week: TeachingScheduleWeek) => {
     setLoadingAction('auto-release-all');
     try {
-      alert("Auto-Release All will:\n✓ Release both speaking warmups\n✓ Assign grammar lessons\n✓ Release verb quiz\n✓ Feature key activities\n\n(Implementation coming soon!)");
+      const tasks: string[] = [];
+
+      // Release Tuesday speaking
+      try {
+        await handleReleaseSpeaking(week.dates.tue, 'Tuesday');
+        tasks.push('✓ Tuesday speaking released');
+      } catch (error) {
+        tasks.push('✗ Tuesday speaking failed');
+      }
+
+      // Release Thursday speaking
+      try {
+        await handleReleaseSpeaking(week.dates.thu, 'Thursday');
+        tasks.push('✓ Thursday speaking released');
+      } catch (error) {
+        tasks.push('✗ Thursday speaking failed');
+      }
+
+      // Assign Tuesday grammar if available
+      if (week.tuesday.grammar) {
+        try {
+          await handleAssignGrammar(stripMarkdown(week.tuesday.grammar), 'Tuesday');
+          tasks.push('✓ Tuesday grammar assigned');
+        } catch (error) {
+          tasks.push('✗ Tuesday grammar failed');
+        }
+      }
+
+      // Assign Thursday grammar if available
+      if (week.thursday.grammar) {
+        try {
+          await handleAssignGrammar(stripMarkdown(week.thursday.grammar), 'Thursday');
+          tasks.push('✓ Thursday grammar assigned');
+        } catch (error) {
+          tasks.push('✗ Thursday grammar failed');
+        }
+      }
+
+      // Release verb quiz
+      try {
+        await handleReleaseQuiz(week.week);
+        tasks.push('✓ Verb quiz released');
+      } catch (error) {
+        tasks.push('✗ Verb quiz failed');
+      }
+
+      alert('Auto-Release Complete!\n\n' + tasks.join('\n'));
+      window.location.reload();
+    } catch (error) {
+      console.error('Error in auto-release:', error);
+      alert(error instanceof Error ? error.message : "Auto-release failed");
     } finally {
       setLoadingAction(null);
     }
@@ -414,7 +644,7 @@ export function TeacherCalendar({
           <h3 className="text-lg font-semibold text-text">📋 Weekly Checklist</h3>
           {hasWeeks && (
             <button
-              onClick={handleAutoReleaseAll}
+              onClick={() => handleAutoReleaseAll(currentWeek)}
               disabled={loadingAction === 'auto-release-all'}
               className="px-3 py-1.5 rounded-lg bg-accent text-text hover:bg-accent/90 text-xs font-bold uppercase tracking-wide transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -441,7 +671,7 @@ export function TeacherCalendar({
                   <div className="text-xs text-text/75">5 verbs: Check quizzes.json for this week's list</div>
                 </div>
                 <button
-                  onClick={handleReleaseQuiz}
+                  onClick={() => handleReleaseQuiz(currentWeek.week)}
                   disabled={loadingAction === 'release-quiz'}
                   className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
