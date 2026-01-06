@@ -186,7 +186,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                     </div>
 
                     <div className="divide-y divide-border/20">
-                        {sortedRows.map(({ assignment, isCompleted, displayTitle, categoryStyle, dueLabel }) => (
+                        {sortedRows.map(({ assignment, isCompleted, displayTitle, categoryStyle, dueLabel, progressValue }) => (
                             <div
                                 key={assignment.id}
                                 className="relative group"
