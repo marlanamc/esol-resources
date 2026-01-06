@@ -209,6 +209,11 @@ export const TodaysAssignments: React.FC<Props> = ({
                                                 >
                                                     {categoryStyle.label}
                                                 </span>
+                                                {progressValue > 0 && (
+                                                    <span className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                                        {progressValue}% done
+                                                    </span>
+                                                )}
                                                 {dueLabel && (
                                                     <span className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold bg-accent/50 text-text border border-border/30">
                                                         Due: {dueLabel}
