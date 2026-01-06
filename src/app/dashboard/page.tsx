@@ -22,7 +22,8 @@ import {
     MiniCalendar,
     CalendarEvent,
     UpcomingEventsList,
-    TodaysAssignments
+    TodaysAssignments,
+    ClearFeaturedButton
 } from "@/components/dashboard";
 
 type TeacherAssignment = {
@@ -244,8 +245,12 @@ export default async function DashboardPage() {
 
                             {/* Featured Assignments (styled like student view) */}
                             <section className="animate-fade-in-up delay-100">
+                                <div className="flex items-center justify-between mb-3">
+                                    <h2 className="text-2xl font-bold font-display text-text">Weekly Checklist</h2>
+                                    <ClearFeaturedButton />
+                                </div>
                                 <TodaysAssignments
-                                    title="Weekly Checklist"
+                                    title=""
                                     ctaLabel="Open"
                                     initialAssignments={featuredAssignmentsForDisplay}
                                     variant="checklist"

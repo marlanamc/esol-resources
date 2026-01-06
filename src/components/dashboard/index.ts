@@ -9,3 +9,4 @@ export * from './TeacherActivityCategories';
 export * from './FeatureToggleButton';
 export { default as CreateCalendarEventForm} from './CreateCalendarEventForm';
 export { default as UpcomingEventsList } from './UpcomingEventsList';
+export { default as ClearFeaturedButton } from './ClearFeaturedButton';

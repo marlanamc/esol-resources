@@ -84,3 +84,51 @@ export async function GET() {
         );
     }
 }
+
+export async function DELETE() {
+    try {
+        const session = await getServerSession(authOptions);
+        if (!session) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
+        const userRole = session.user?.role;
+        if (userRole !== "teacher") {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        }
+
+        const userId = session.user?.id;
+
+        // Get all classes owned by the teacher
+        const teacherClasses = await prisma.class.findMany({
+            where: { teacherId: userId },
+            select: { id: true }
+        });
+
+        const classIds = teacherClasses.map((c) => c.id);
+
+        // Unfeatured all assignments in teacher's classes
+        const result = await prisma.assignment.updateMany({
+            where: {
+                classId: { in: classIds },
+                isFeatured: true
+            },
+            data: {
+                isFeatured: false
+            }
+        });
+
+        return NextResponse.json({
+            success: true,
+            count: result.count,
+            message: `Cleared ${result.count} featured assignment${result.count === 1 ? '' : 's'}`
+        });
+    } catch (error: unknown) {
+        console.error("Error clearing featured assignments:", error);
+        const message = error instanceof Error ? error.message : undefined;
+        return NextResponse.json(
+            { error: message || "Failed to clear featured assignments" },
+            { status: 500 }
+        );
+    }
+}
