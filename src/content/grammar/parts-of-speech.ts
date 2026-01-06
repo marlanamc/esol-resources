@@ -98,14 +98,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         {
             id: "nouns",
             stepNumber: 1,
-            title: "Nouns & Pronouns: Naming and Replacing",
+            title: "Nouns: Naming People, Places, Things, and Ideas",
             icon: "🔵",
             explanation: `
                 <h3>What Is a Noun?</h3>
                 <p>A <strong>noun</strong> is a word that names a person, place, thing, or idea. If you can see it, touch it, or think about it - it's probably a noun!</p>
-                <h3 style="margin-top: 20px;">What Is a Pronoun?</h3>
-                <p>A <strong>pronoun</strong> is a word that takes the place of a noun. Instead of repeating "Maria" over and over, we can say "she."</p>
-                <p><strong>Example:</strong> <span style="color: #3b82f6;">Maria</span> went to work. <span style="color: #3b82f6;">Maria</span> is tired. → <span style="color: #eab308;">She</span> is tired.</p>
             `,
             usageMeanings: [
                 {
@@ -180,38 +177,16 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         },
                     ],
                 },
-                {
-                    title: "🟡 Pronouns Replace Nouns",
-                    description: "Subject pronouns (I, you, he, she, it, we, they), object pronouns (me, you, him, her, it, us, them)",
-                    examples: [
-                        {
-                            sentence: "<strong style='color: #3b82f6;'>Maria</strong> works at the hospital. <strong style='color: #eab308;'>She</strong> is a nurse.",
-                            explanation: "✓ 'She' replaces 'Maria' (subject pronoun)"
-                        },
-                        {
-                            sentence: "I saw <strong style='color: #3b82f6;'>Carlos</strong> yesterday. I talked to <strong style='color: #eab308;'>him</strong> about work.",
-                            explanation: "✓ 'Him' replaces 'Carlos' (object pronoun)"
-                        },
-                        {
-                            sentence: "<strong style='color: #eab308;'>They</strong> are my classmates. I study with <strong style='color: #eab308;'>them</strong> every week.",
-                            explanation: "✓ Subject pronoun 'they' + object pronoun 'them'"
-                        },
-                        {
-                            sentence: "The <strong style='color: #3b82f6;'>teacher</strong> helps <strong style='color: #eab308;'>me</strong> with grammar.",
-                            explanation: "✓ 'Me' is a pronoun (object), 'teacher' is a noun"
-                        },
-                    ],
-                },
             ],
             exercises: [
                 {
                     id: "parts-nouns-1",
-                    title: "Quick Practice: Nouns and Pronouns",
-                    instructions: "Click all the nouns and pronouns in each sentence.",
+                    title: "Quick Practice: Nouns",
+                    instructions: "Click all the nouns in each sentence.",
                     items: [
                         {
                             type: "word-select",
-                            selectWhat: "all nouns and pronouns",
+                            selectWhat: "all nouns",
                             label: "The suntanned lifeguard sat on the red chair in the sand.",
                             tokens: [
                                 { text: "The", after: " " },
@@ -230,18 +205,20 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "word-select",
-                            selectWhat: "all nouns and pronouns",
-                            label: "Give me the hammer and the nails. I will fix the broken shelf.",
+                            selectWhat: "all nouns",
+                            label: "Give the worker the hammer and the nails. The worker will fix the broken shelf.",
                             tokens: [
                                 { text: "Give", after: " " },
-                                { text: "me", after: " ", isTarget: true },
+                                { text: "the", after: " " },
+                                { text: "worker", after: " ", isTarget: true },
                                 { text: "the", after: " " },
                                 { text: "hammer", after: " ", isTarget: true },
                                 { text: "and", after: " " },
                                 { text: "the", after: " " },
                                 { text: "nails", after: "", isTarget: true },
                                 { text: ".", after: " " },
-                                { text: "I", after: " ", isTarget: true },
+                                { text: "The", after: " " },
+                                { text: "worker", after: " ", isTarget: true },
                                 { text: "will", after: " " },
                                 { text: "fix", after: " " },
                                 { text: "the", after: " " },
@@ -252,8 +229,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "word-select",
-                            selectWhat: "all nouns and pronouns",
-                            label: "Maria works at the hospital. She is a nurse.",
+                            selectWhat: "all nouns",
+                            label: "Maria works at the hospital. Maria is a nurse.",
                             tokens: [
                                 { text: "Maria", after: " ", isTarget: true },
                                 { text: "works", after: " " },
@@ -261,7 +238,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                                 { text: "the", after: " " },
                                 { text: "hospital", after: "", isTarget: true },
                                 { text: ".", after: " " },
-                                { text: "She", after: " ", isTarget: true },
+                                { text: "Maria", after: " ", isTarget: true },
                                 { text: "is", after: " " },
                                 { text: "a", after: " " },
                                 { text: "nurse", after: "", isTarget: true },
@@ -273,7 +250,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             ],
             tipBox: {
                 title: "💡 Quick Tests",
-                content: "NOUN: Can you put 'a', 'an', or 'the' before it? (a book, the car, an idea) → It's a noun! | PRONOUN: Does it replace a person's name? (Maria → she, Carlos → him, students → they) → It's a pronoun!",
+                content: "NOUN: Can you put 'a', 'an', or 'the' before it? (a book, the car, an idea) → It's a noun!",
             },
         },
 
