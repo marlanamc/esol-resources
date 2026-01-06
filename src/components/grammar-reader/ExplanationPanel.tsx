@@ -16,6 +16,8 @@ interface ExplanationPanelProps {
     onUnlockExercises: () => void;
     practiceUnlocked: boolean;
     hasExercises: boolean;
+    showPractice?: boolean;
+    onTogglePractice?: () => void;
     variant?: 'split' | 'full';
     className?: string;
 }
@@ -25,6 +27,8 @@ export function ExplanationPanel({
     onUnlockExercises,
     practiceUnlocked,
     hasExercises,
+    showPractice = true,
+    onTogglePractice,
     variant = 'split',
     className = "",
 }: ExplanationPanelProps) {
@@ -127,11 +131,18 @@ export function ExplanationPanel({
             {/* Already unlocked state */}
             {hasExercises && practiceUnlocked && (
                 <div className="mt-8 pt-6">
-                    <div className="bg-success/10 border-2 border-success/30 rounded-2xl p-4 text-center flex items-center justify-center gap-2">
-                        <CheckCircle2 className="w-5 h-5 text-success" />
-                        <p className="text-sm font-medium text-success">
-                            Exercises unlocked — visible on the right →
-                        </p>
+                    <div className="bg-success/10 border-2 border-success/30 rounded-2xl p-4 text-center flex flex-wrap items-center justify-center gap-3">
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 className="w-5 h-5 text-success" />
+                            <p className="text-sm font-medium text-success">
+                                {showPractice ? "Exercises unlocked — visible on the right →" : "Exercises hidden"}
+                            </p>
+                        </div>
+                        {onTogglePractice && (
+                            <Button variant="secondary" onClick={onTogglePractice} className="text-sm">
+                                {showPractice ? "Hide Exercises" : "Show Exercises"}
+                            </Button>
+                        )}
                     </div>
                 </div>
             )}
