@@ -386,15 +386,31 @@ export default async function DashboardPage() {
             },
         }) as StudentEnrollment[];
 
+        // Filter out unreleased speaking activities from assignments
+        const filterReleasedActivities = (assignment: any) => {
+            if (assignment.activity.type !== "speaking") {
+                return true; // Show all non-speaking activities
+            }
+            // For speaking activities, check if released
+            try {
+                const content = JSON.parse(assignment.activity.content);
+                return content.released === true;
+            } catch {
+                return false; // Hide if content is malformed
+            }
+        };
+
         const allAssignments = enrollments.flatMap((enrollment: StudentEnrollment) =>
-            enrollment.class.assignments.map((assignment) => ({
-                ...assignment,
-                className: enrollment.class.name,
-            }))
+            enrollment.class.assignments
+                .filter(filterReleasedActivities)
+                .map((assignment) => ({
+                    ...assignment,
+                    className: enrollment.class.name,
+                }))
         );
 
         const classIds = enrollments.map(e => e.classId);
-        const featuredAssignmentsRaw = classIds.length === 0 ? [] : await prisma.assignment.findMany({
+        const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await prisma.assignment.findMany({
             where: {
                 classId: { in: classIds },
                 isFeatured: true,
@@ -414,6 +430,9 @@ export default async function DashboardPage() {
             },
             orderBy: { createdAt: "desc" }
         });
+
+        // Filter out unreleased speaking activities from featured assignments
+        const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
 
         const featuredActivityIds = Array.from(new Set(featuredAssignmentsRaw.map((a) => a.activityId)));
         const featuredProgressRows =
