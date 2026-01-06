@@ -128,10 +128,19 @@ export const TodaysAssignments: React.FC<Props> = ({
         });
 
         const sortedRows = [...rows].sort((a, b) => {
-            if (a.isCompleted === b.isCompleted) {
-                return a.index - b.index;
+            if (a.isCompleted !== b.isCompleted) {
+                return a.isCompleted ? 1 : -1;
             }
-            return a.isCompleted ? 1 : -1;
+
+            if (!a.isCompleted) {
+                const aDue = a.assignment.dueDate ? new Date(a.assignment.dueDate).getTime() : Number.POSITIVE_INFINITY;
+                const bDue = b.assignment.dueDate ? new Date(b.assignment.dueDate).getTime() : Number.POSITIVE_INFINITY;
+                if (!Number.isNaN(aDue) && !Number.isNaN(bDue) && aDue !== bDue) {
+                    return aDue - bDue;
+                }
+            }
+
+            return a.index - b.index;
         });
 
         const completedCount = rows.filter((r) => r.isCompleted).length;
