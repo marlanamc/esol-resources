@@ -10,7 +10,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             icon: "🧱",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Every sentence you speak is built from <strong>eight essential building blocks</strong>: <span style="color: #3b82f6;">nouns</span>, <span style="color: #dc2626;">verbs</span>, <span style="color: #16a34a;">adjectives</span>, <span style="color: #9333ea;">adverbs</span>, <span style="color: #eab308;">pronouns</span>, <span style="color: #f97316;">articles</span>, <span style="color: #ea580c;">prepositions</span>, and <span style="color: #16a34a;">conjunctions</span>. Understanding these parts helps you build stronger, clearer sentences.</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Every sentence you speak is built from <strong>eight essential building blocks</strong>: <span style="color: #3b82f6;">nouns</span>, <span style="color: #dc2626;">verbs</span>, <span style="color: #16a34a;">adjectives</span>, <span style="color: #9333ea;">adverbs</span>, <span style="color: #0f766e;">pronouns</span>, <span style="color: #92400e;">articles</span>, <span style="color: #334155;">prepositions</span>, and <span style="color: #db2777;">conjunctions</span>. Understanding these parts helps you build stronger, clearer sentences.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -655,7 +655,7 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             explanation: `
                 <h3>What Is a Pronoun?</h3>
                 <p>A <strong>pronoun</strong> is a word that takes the place of a noun. Instead of repeating "Maria" over and over, we can say "she."</p>
-                <p><strong>Example:</strong> Maria went to work. <span style="color: #3b82f6;">Maria</span> is tired. → <span style="color: #eab308;">She</span> is tired.</p>
+                <p><strong>Example:</strong> Maria went to work. <span style="color: #3b82f6;">Maria</span> is tired. → <span style="color: #0f766e;">She</span> is tired.</p>
             `,
             usageMeanings: [
                 {
@@ -663,19 +663,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Who/what is doing the action - comes BEFORE the verb",
                     examples: [
                         {
-                            sentence: "<strong style='color: #eab308;'>I</strong> work at the hospital.",
+                            sentence: "<strong style='color: #0f766e;'>I</strong> work at the hospital.",
                             explanation: "✓ Subject doing the action (first person)"
                         },
                         {
-                            sentence: "<strong style='color: #eab308;'>She</strong> speaks English well.",
+                            sentence: "<strong style='color: #0f766e;'>She</strong> speaks English well.",
                             explanation: "✓ Subject doing the action (third person female)"
                         },
                         {
-                            sentence: "<strong style='color: #eab308;'>They</strong> are my classmates.",
+                            sentence: "<strong style='color: #0f766e;'>They</strong> are my classmates.",
                             explanation: "✓ Subject (plural)"
                         },
                         {
-                            sentence: "<strong style='color: #eab308;'>We</strong> study on Tuesdays and Thursdays.",
+                            sentence: "<strong style='color: #0f766e;'>We</strong> study on Tuesdays and Thursdays.",
                             explanation: "✓ Subject (first person plural)"
                         },
                     ],
@@ -685,19 +685,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Who/what receives the action - comes AFTER the verb",
                     examples: [
                         {
-                            sentence: "The teacher helps <strong style='color: #eab308;'>me</strong> with grammar.",
+                            sentence: "The teacher helps <strong style='color: #0f766e;'>me</strong> with grammar.",
                             explanation: "✓ Receiving the help (first person object)"
                         },
                         {
-                            sentence: "I called <strong style='color: #eab308;'>him</strong> yesterday.",
+                            sentence: "I called <strong style='color: #0f766e;'>him</strong> yesterday.",
                             explanation: "✓ Receiving the action (third person male object)"
                         },
                         {
-                            sentence: "People like <strong style='color: #eab308;'>her</strong>. She's very kind.",
+                            sentence: "People like <strong style='color: #0f766e;'>her</strong>. She's very kind.",
                             explanation: "✓ Receiving the liking (third person female object)"
                         },
                         {
-                            sentence: "Can you help <strong style='color: #eab308;'>us</strong> with this?",
+                            sentence: "Can you help <strong style='color: #0f766e;'>us</strong> with this?",
                             explanation: "✓ Receiving the help (first person plural object)"
                         },
                     ],
@@ -707,19 +707,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows ownership - always comes before a noun",
                     examples: [
                         {
-                            sentence: "This is <strong style='color: #eab308;'>my</strong> apartment.",
+                            sentence: "This is <strong style='color: #0f766e;'>my</strong> apartment.",
                             explanation: "✓ Shows who owns the apartment"
                         },
                         {
-                            sentence: "<strong style='color: #eab308;'>His</strong> name is Carlos.",
+                            sentence: "<strong style='color: #0f766e;'>His</strong> name is Carlos.",
                             explanation: "✓ Shows whose name"
                         },
                         {
-                            sentence: "Where is <strong style='color: #eab308;'>your</strong> car?",
+                            sentence: "Where is <strong style='color: #0f766e;'>your</strong> car?",
                             explanation: "✓ Shows who owns the car"
                         },
                         {
-                            sentence: "<strong style='color: #eab308;'>Their</strong> children go to this school.",
+                            sentence: "<strong style='color: #0f766e;'>Their</strong> children go to this school.",
                             explanation: "✓ Shows whose children (plural)"
                         },
                     ],
@@ -808,15 +808,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Use 'a' for general things (not specific) starting with a consonant SOUND",
                     examples: [
                         {
-                            sentence: "I need <strong style='color: #f97316;'>a</strong> job.",
+                            sentence: "I need <strong style='color: #92400e;'>a</strong> job.",
                             explanation: "✓ Any job (not a specific one), starts with 'j' sound"
                         },
                         {
-                            sentence: "She's <strong style='color: #f97316;'>a</strong> teacher.",
+                            sentence: "She's <strong style='color: #92400e;'>a</strong> teacher.",
                             explanation: "✓ General profession, starts with 't' sound"
                         },
                         {
-                            sentence: "We saw <strong style='color: #f97316;'>a</strong> doctor at the clinic.",
+                            sentence: "We saw <strong style='color: #92400e;'>a</strong> doctor at the clinic.",
                             explanation: "✓ Any doctor (not a specific one), starts with 'd' sound"
                         },
                     ],
@@ -826,15 +826,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Use 'an' for general things starting with a vowel SOUND (a, e, i, o, u)",
                     examples: [
                         {
-                            sentence: "I ate <strong style='color: #f97316;'>an</strong> apple.",
+                            sentence: "I ate <strong style='color: #92400e;'>an</strong> apple.",
                             explanation: "✓ Any apple, starts with 'a' sound"
                         },
                         {
-                            sentence: "She's <strong style='color: #f97316;'>an</strong> engineer.",
+                            sentence: "She's <strong style='color: #92400e;'>an</strong> engineer.",
                             explanation: "✓ General profession, starts with 'e' sound"
                         },
                         {
-                            sentence: "It takes <strong style='color: #f97316;'>an</strong> hour to get there.",
+                            sentence: "It takes <strong style='color: #92400e;'>an</strong> hour to get there.",
                             explanation: "✓ Starts with vowel SOUND ('our'), even though 'h' is a consonant!"
                         },
                     ],
@@ -844,15 +844,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Use 'the' when talking about a SPECIFIC thing that both people know",
                     examples: [
                         {
-                            sentence: "I need to go to <strong style='color: #f97316;'>the</strong> bank.",
+                            sentence: "I need to go to <strong style='color: #92400e;'>the</strong> bank.",
                             explanation: "✓ Your specific bank (you both know which one)"
                         },
                         {
-                            sentence: "<strong style='color: #f97316;'>The</strong> teacher said the test is on Thursday.",
+                            sentence: "<strong style='color: #92400e;'>The</strong> teacher said the test is on Thursday.",
                             explanation: "✓ Your specific teacher (everyone knows who)"
                         },
                         {
-                            sentence: "Close <strong style='color: #f97316;'>the</strong> door, please.",
+                            sentence: "Close <strong style='color: #92400e;'>the</strong> door, please.",
                             explanation: "✓ The specific door in this room (we can see it)"
                         },
                     ],
@@ -937,19 +937,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows when something happens",
                     examples: [
                         {
-                            sentence: "Class is <strong style='color: #ea580c;'>at</strong> 6:00 PM.",
+                            sentence: "Class is <strong style='color: #334155;'>at</strong> 6:00 PM.",
                             explanation: "✓ Specific time → use 'at'"
                         },
                         {
-                            sentence: "I work <strong style='color: #ea580c;'>on</strong> Tuesdays.",
+                            sentence: "I work <strong style='color: #334155;'>on</strong> Tuesdays.",
                             explanation: "✓ Days of the week → use 'on'"
                         },
                         {
-                            sentence: "She was born <strong style='color: #ea580c;'>in</strong> January.",
+                            sentence: "She was born <strong style='color: #334155;'>in</strong> January.",
                             explanation: "✓ Months/years/seasons → use 'in'"
                         },
                         {
-                            sentence: "We have class <strong style='color: #ea580c;'>in</strong> the morning.",
+                            sentence: "We have class <strong style='color: #334155;'>in</strong> the morning.",
                             explanation: "✓ General time period → use 'in'"
                         },
                     ],
@@ -959,19 +959,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows where something is",
                     examples: [
                         {
-                            sentence: "I live <strong style='color: #ea580c;'>in</strong> Boston.",
+                            sentence: "I live <strong style='color: #334155;'>in</strong> Boston.",
                             explanation: "✓ City/country → use 'in'"
                         },
                         {
-                            sentence: "The book is <strong style='color: #ea580c;'>on</strong> the table.",
+                            sentence: "The book is <strong style='color: #334155;'>on</strong> the table.",
                             explanation: "✓ Surface contact → use 'on'"
                         },
                         {
-                            sentence: "I'm <strong style='color: #ea580c;'>at</strong> work right now.",
+                            sentence: "I'm <strong style='color: #334155;'>at</strong> work right now.",
                             explanation: "✓ Specific location/place → use 'at'"
                         },
                         {
-                            sentence: "The bank is <strong style='color: #ea580c;'>next to</strong> the post office.",
+                            sentence: "The bank is <strong style='color: #334155;'>next to</strong> the post office.",
                             explanation: "✓ Beside/adjacent to something"
                         },
                     ],
@@ -981,19 +981,19 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows movement from one place to another",
                     examples: [
                         {
-                            sentence: "I walk <strong style='color: #ea580c;'>to</strong> work every day.",
+                            sentence: "I walk <strong style='color: #334155;'>to</strong> work every day.",
                             explanation: "✓ Moving toward a destination"
                         },
                         {
-                            sentence: "She's coming <strong style='color: #ea580c;'>from</strong> the hospital.",
+                            sentence: "She's coming <strong style='color: #334155;'>from</strong> the hospital.",
                             explanation: "✓ Starting point of movement"
                         },
                         {
-                            sentence: "Come <strong style='color: #ea580c;'>into</strong> the classroom.",
+                            sentence: "Come <strong style='color: #334155;'>into</strong> the classroom.",
                             explanation: "✓ Movement from outside to inside"
                         },
                         {
-                            sentence: "We drove <strong style='color: #ea580c;'>through</strong> the city.",
+                            sentence: "We drove <strong style='color: #334155;'>through</strong> the city.",
                             explanation: "✓ Movement passing through something"
                         },
                     ],
@@ -1077,15 +1077,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Connects two similar ideas",
                     examples: [
                         {
-                            sentence: "I work on Tuesdays <strong style='color: #16a34a;'>and</strong> Thursdays.",
+                            sentence: "I work on Tuesdays <strong style='color: #db2777;'>and</strong> Thursdays.",
                             explanation: "✓ Adding two days together"
                         },
                         {
-                            sentence: "She speaks English <strong style='color: #16a34a;'>and</strong> Spanish.",
+                            sentence: "She speaks English <strong style='color: #db2777;'>and</strong> Spanish.",
                             explanation: "✓ Two languages, both true"
                         },
                         {
-                            sentence: "I need to buy milk <strong style='color: #16a34a;'>and</strong> bread.",
+                            sentence: "I need to buy milk <strong style='color: #db2777;'>and</strong> bread.",
                             explanation: "✓ Adding items to a list"
                         },
                     ],
@@ -1095,15 +1095,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows contrast or unexpected information",
                     examples: [
                         {
-                            sentence: "I'm tired, <strong style='color: #16a34a;'>but</strong> I need to work.",
+                            sentence: "I'm tired, <strong style='color: #db2777;'>but</strong> I need to work.",
                             explanation: "✓ Contrasting two ideas (tired vs working)"
                         },
                         {
-                            sentence: "The apartment is small, <strong style='color: #16a34a;'>but</strong> it's cheap.",
+                            sentence: "The apartment is small, <strong style='color: #db2777;'>but</strong> it's cheap.",
                             explanation: "✓ Showing contrast (size vs price)"
                         },
                         {
-                            sentence: "She studied hard, <strong style='color: #16a34a;'>but</strong> she didn't pass.",
+                            sentence: "She studied hard, <strong style='color: #db2777;'>but</strong> she didn't pass.",
                             explanation: "✓ Unexpected result"
                         },
                     ],
@@ -1113,15 +1113,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows alternatives or options",
                     examples: [
                         {
-                            sentence: "Do you want tea <strong style='color: #16a34a;'>or</strong> coffee?",
+                            sentence: "Do you want tea <strong style='color: #db2777;'>or</strong> coffee?",
                             explanation: "✓ Giving a choice between two options"
                         },
                         {
-                            sentence: "We can go now <strong style='color: #16a34a;'>or</strong> wait until later.",
+                            sentence: "We can go now <strong style='color: #db2777;'>or</strong> wait until later.",
                             explanation: "✓ Two possible options"
                         },
                         {
-                            sentence: "Is that your phone <strong style='color: #16a34a;'>or</strong> mine?",
+                            sentence: "Is that your phone <strong style='color: #db2777;'>or</strong> mine?",
                             explanation: "✓ Question with two options"
                         },
                     ],
@@ -1131,15 +1131,15 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     description: "Shows the result or reason for something",
                     examples: [
                         {
-                            sentence: "I was tired, <strong style='color: #16a34a;'>so</strong> I went to bed early.",
+                            sentence: "I was tired, <strong style='color: #db2777;'>so</strong> I went to bed early.",
                             explanation: "✓ Result of being tired → went to bed"
                         },
                         {
-                            sentence: "It's raining, <strong style='color: #16a34a;'>so</strong> take an umbrella.",
+                            sentence: "It's raining, <strong style='color: #db2777;'>so</strong> take an umbrella.",
                             explanation: "✓ Because it's raining → consequence is take umbrella"
                         },
                         {
-                            sentence: "She studied hard, <strong style='color: #16a34a;'>so</strong> she passed the test.",
+                            sentence: "She studied hard, <strong style='color: #db2777;'>so</strong> she passed the test.",
                             explanation: "✓ Result of studying → passed"
                         },
                     ],
@@ -1223,10 +1223,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     <li><strong style='color: #dc2626;'>Red = Verb</strong> (action or state)</li>
                     <li><strong style='color: #16a34a;'>Green = Adjective</strong> (describes noun)</li>
                     <li><strong style='color: #9333ea;'>Purple = Adverb</strong> (describes verb/adjective)</li>
-                    <li><strong style='color: #eab308;'>Yellow = Pronoun</strong> (replaces noun)</li>
-                    <li><strong style='color: #f97316;'>Orange = Article</strong> (a, an, the)</li>
-                    <li><strong style='color: #ea580c;'>Dark Orange = Preposition</strong> (in, on, at, to, from...)</li>
-                    <li><strong style='color: #16a34a;'>Dark Green = Conjunction</strong> (and, but, or, so...)</li>
+                    <li><strong style='color: #0f766e;'>Teal = Pronoun</strong> (replaces noun)</li>
+                    <li><strong style='color: #92400e;'>Brown = Article</strong> (a, an, the)</li>
+                    <li><strong style='color: #334155;'>Slate = Preposition</strong> (in, on, at, to, from...)</li>
+                    <li><strong style='color: #db2777;'>Pink = Conjunction</strong> (and, but, or, so...)</li>
                 </ul>
             `,
             exercises: [
@@ -1343,29 +1343,29 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                         <p><strong>Test:</strong> Does it end in -ly or answer how/when/where?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(234, 179, 8, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #eab308; margin-top: 0;">🟡 Pronouns</h4>
+                    <div style="padding: 1rem; background: rgba(15, 118, 110, 0.1); border-radius: 0.5rem;">
+                        <h4 style="color: #0f766e; margin-top: 0;">🟡 Pronouns</h4>
                         <p><strong>What:</strong> Replaces a noun</p>
                         <p><strong>Examples:</strong> I, you, he, she, it, we, they, me, him, her, us, them</p>
                         <p><strong>Test:</strong> Can it replace a person's name?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #f97316; margin-top: 0;">🟠 Articles</h4>
+                    <div style="padding: 1rem; background: rgba(146, 64, 14, 0.1); border-radius: 0.5rem;">
+                        <h4 style="color: #92400e; margin-top: 0;">🟠 Articles</h4>
                         <p><strong>What:</strong> Small words before nouns</p>
                         <p><strong>Examples:</strong> a, an, the</p>
                         <p><strong>Test:</strong> Only 3 in English - a, an, the!</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(234, 88, 12, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #ea580c; margin-top: 0;">🔶 Prepositions</h4>
+                    <div style="padding: 1rem; background: rgba(51, 65, 85, 0.1); border-radius: 0.5rem;">
+                        <h4 style="color: #334155; margin-top: 0;">🔶 Prepositions</h4>
                         <p><strong>What:</strong> Shows time, location, direction</p>
                         <p><strong>Examples:</strong> in, on, at, to, from, between, next to</p>
                         <p><strong>Test:</strong> Does it show where, when, or which direction?</p>
                     </div>
 
-                    <div style="padding: 1rem; background: rgba(22, 163, 74, 0.15); border-radius: 0.5rem;">
-                        <h4 style="color: #16a34a; margin-top: 0;">🔗 Conjunctions</h4>
+                    <div style="padding: 1rem; background: rgba(219, 39, 119, 0.12); border-radius: 0.5rem;">
+                        <h4 style="color: #db2777; margin-top: 0;">🔗 Conjunctions</h4>
                         <p><strong>What:</strong> Connects two ideas</p>
                         <p><strong>Examples:</strong> and, but, or, so (FANBOYS)</p>
                         <p><strong>Test:</strong> Does it join two sentences or ideas?</p>
