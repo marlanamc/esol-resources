@@ -9,6 +9,7 @@ import VerbQuizResults from './VerbQuizResults';
 interface VerbQuizContainerProps {
   content: VerbQuizContent;
   activityId: string;
+  assignmentId?: string | null;
   existingSubmission?: {
     id: string;
     content: unknown;
@@ -19,6 +20,7 @@ interface VerbQuizContainerProps {
 export default function VerbQuizContainer({
   content,
   activityId,
+  assignmentId,
   existingSubmission
 }: VerbQuizContainerProps) {
   const router = useRouter();
@@ -77,6 +79,7 @@ export default function VerbQuizContainer({
         },
         body: JSON.stringify({
           activityId,
+          assignmentId: assignmentId || null,
           content: submissionData,
           score,
           points: totalPoints,

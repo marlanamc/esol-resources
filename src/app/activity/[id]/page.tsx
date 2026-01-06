@@ -8,6 +8,9 @@ import { type ActivityContent, isInteractiveGuideContent, isLegacyGuideContent, 
 import ActivityRenderer from "@/components/ActivityRenderer";
 import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
 import { CategoryProgressDisplay } from "@/components/CategoryProgressDisplay";
+import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
+import { completionKeyFromActivityTitle } from "@/utils/completionKey";
+import { grammarTopics } from "@/data/grammar-map";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -32,6 +35,18 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
     if (!activity) {
         notFound();
+    }
+
+    // For grammar guides, prefer the dedicated `/grammar-reader/:slug` routes (source-of-truth content).
+    // This avoids stale DB-stored JSON when the guide content is updated in code.
+    if (activity.type === "guide" && activity.category === "grammar") {
+        const slug = completionKeyFromActivityTitle(activity.title);
+        const known = new Set(grammarTopics.map((t) => t.id));
+        if (known.has(slug)) {
+            const qs = new URLSearchParams();
+            if (assignmentId) qs.set("assignment", assignmentId);
+            redirect(`/grammar-reader/${slug}${qs.toString() ? `?${qs.toString()}` : ""}`);
+        }
     }
 
     // Get assignment if provided
@@ -115,6 +130,19 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     const isInteractiveGuide =
         parsedContent && (isInteractiveGuideContent(parsedContent) || isLegacyGuideContent(parsedContent));
 
+    // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
+    if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
+        return (
+            <div className="min-h-screen bg-bg">
+                <GrammarReader
+                    content={parsedContent}
+                    completionKey={completionKeyFromActivityTitle(activity.title)}
+                    activityId={id}
+                />
+            </div>
+        );
+    }
+
     // Full screen layout for interactive guides
     if (isInteractiveGuide) {
         return (
@@ -158,7 +186,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
                 {/* Full Screen Guide */}
                 <div className="flex-1 overflow-hidden min-h-0">
-                    <ActivityRenderer activity={activity} />
+                    <ActivityRenderer activity={activity} assignmentId={assignmentId} />
                 </div>
 
                 {/* Load presentation mode scripts */}
@@ -221,7 +249,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
                     {/* Activity Content */}
                     <div className="bg-white shadow sm:rounded-lg p-6">
-                        <ActivityRenderer activity={activity} />
+                        <ActivityRenderer activity={activity} assignmentId={assignmentId} />
                     </div>
 
                     {/* Category Progress for Numbers Game */}
