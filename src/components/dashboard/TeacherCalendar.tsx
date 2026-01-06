@@ -79,6 +79,7 @@ export function TeacherCalendar({
   );
   const [showWeekList, setShowWeekList] = useState(false);
   const [localSchedule, setLocalSchedule] = useState(teachingSchedule);
+  const [loadingAction, setLoadingAction] = useState<string | null>(null);
 
   // Sync local schedule when props change
   useEffect(() => {
@@ -107,6 +108,79 @@ export function TeacherCalendar({
         flow,
       },
     });
+  };
+
+  const handleReleaseSpeaking = async (date: MonthDay, day: 'Tuesday' | 'Thursday') => {
+    const actionKey = `release-speaking-${date.year}-${date.month}-${date.day}`;
+    setLoadingAction(actionKey);
+    try {
+      // Format date as YYYY-MM-DD
+      const dateStr = `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}`;
+      const activityId = `speaking-${dateStr}`;
+
+      const response = await fetch("/api/speaking/release", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ activityId, released: true }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to release speaking activity");
+      }
+
+      alert(`✓ Speaking activity released for ${day}!`);
+    } catch (error) {
+      console.error('Error releasing speaking activity:', error);
+      alert(error instanceof Error ? error.message : "Failed to release activity");
+    } finally {
+      setLoadingAction(null);
+    }
+  };
+
+  const handleFeatureSpeaking = async (date: MonthDay, day: 'Tuesday' | 'Thursday') => {
+    const actionKey = `feature-speaking-${date.year}-${date.month}-${date.day}`;
+    setLoadingAction(actionKey);
+    try {
+      // This needs class selection - for now, show helpful message
+      alert("To feature this activity:\n1. Go to Dashboard > Activities\n2. Find the speaking activity for this date\n3. Click the ⭐ Feature button\n\n(Multi-class selection coming soon!)");
+    } catch (error) {
+      console.error('Error featuring speaking activity:', error);
+      alert("Failed to feature activity");
+    } finally {
+      setLoadingAction(null);
+    }
+  };
+
+  const handleAssignGrammar = async (grammarTopic: string, day: 'Tuesday' | 'Thursday') => {
+    const actionKey = `assign-${day}-${grammarTopic}`;
+    setLoadingAction(actionKey);
+    try {
+      alert("To assign grammar:\n1. Go to Dashboard > Activities\n2. Browse Grammar category\n3. Find: " + grammarTopic + "\n4. Click 'Assign to Class'\n\n(Quick assign coming soon!)");
+    } catch (error) {
+      console.error('Error assigning grammar:', error);
+      alert("Failed to assign grammar");
+    } finally {
+      setLoadingAction(null);
+    }
+  };
+
+  const handleReleaseQuiz = async () => {
+    setLoadingAction('release-quiz');
+    try {
+      alert("To release verb quiz:\n1. Go to Dashboard > Activities\n2. Filter by 'Quizzes'\n3. Find this week's verb quiz\n4. Click 'Assign to Class'\n\n(Auto-release coming soon!)");
+    } finally {
+      setLoadingAction(null);
+    }
+  };
+
+  const handleAutoReleaseAll = async () => {
+    setLoadingAction('auto-release-all');
+    try {
+      alert("Auto-Release All will:\n✓ Release both speaking warmups\n✓ Assign grammar lessons\n✓ Release verb quiz\n✓ Feature key activities\n\n(Implementation coming soon!)");
+    } finally {
+      setLoadingAction(null);
+    }
   };
 
   const currentWeek = weeklySchedule[selectedWeek];
@@ -339,8 +413,12 @@ export function TeacherCalendar({
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-text">📋 Weekly Checklist</h3>
           {hasWeeks && (
-            <button className="px-3 py-1.5 rounded-lg bg-accent text-text hover:bg-accent/90 text-xs font-bold uppercase tracking-wide transition">
-              🚀 Auto-Release All for This Week
+            <button
+              onClick={handleAutoReleaseAll}
+              disabled={loadingAction === 'auto-release-all'}
+              className="px-3 py-1.5 rounded-lg bg-accent text-text hover:bg-accent/90 text-xs font-bold uppercase tracking-wide transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loadingAction === 'auto-release-all' ? '⏳ Processing...' : '🚀 Auto-Release All for This Week'}
             </button>
           )}
         </div>
@@ -362,8 +440,12 @@ export function TeacherCalendar({
                   <div className="text-sm text-text/80 font-medium mb-1">{currentWeek.week} - Irregular Verbs</div>
                   <div className="text-xs text-text/75">5 verbs: Check quizzes.json for this week's list</div>
                 </div>
-                <button className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition">
-                  ✓ Release Quiz
+                <button
+                  onClick={handleReleaseQuiz}
+                  disabled={loadingAction === 'release-quiz'}
+                  className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {loadingAction === 'release-quiz' ? '⏳...' : '✓ Release Quiz'}
                 </button>
               </div>
             </div>
@@ -382,11 +464,19 @@ export function TeacherCalendar({
                     <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.tuesday.warmup)}</div>
                   </div>
                   <div className="flex gap-2">
-                    <button className="px-3 py-1.5 rounded-lg bg-secondary text-white hover:bg-secondary/90 text-xs font-medium whitespace-nowrap transition">
-                      ✓ Release
+                    <button
+                      onClick={() => handleReleaseSpeaking(currentWeek.dates.tue, 'Tuesday')}
+                      disabled={loadingAction === `release-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}`}
+                      className="px-3 py-1.5 rounded-lg bg-secondary text-white hover:bg-secondary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loadingAction === `release-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}` ? '⏳...' : '✓ Release'}
                     </button>
-                    <button className="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 text-xs font-medium whitespace-nowrap transition">
-                      ⭐ Feature
+                    <button
+                      onClick={() => handleFeatureSpeaking(currentWeek.dates.tue, 'Tuesday')}
+                      disabled={loadingAction === `feature-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}`}
+                      className="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loadingAction === `feature-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}` ? '⏳...' : '⭐ Feature'}
                     </button>
                   </div>
                 </div>
@@ -400,11 +490,19 @@ export function TeacherCalendar({
                     <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.thursday.warmup)}</div>
                   </div>
                   <div className="flex gap-2">
-                    <button className="px-3 py-1.5 rounded-lg bg-secondary text-white hover:bg-secondary/90 text-xs font-medium whitespace-nowrap transition">
-                      ✓ Release
+                    <button
+                      onClick={() => handleReleaseSpeaking(currentWeek.dates.thu, 'Thursday')}
+                      disabled={loadingAction === `release-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}`}
+                      className="px-3 py-1.5 rounded-lg bg-secondary text-white hover:bg-secondary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loadingAction === `release-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}` ? '⏳...' : '✓ Release'}
                     </button>
-                    <button className="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 text-xs font-medium whitespace-nowrap transition">
-                      ⭐ Feature
+                    <button
+                      onClick={() => handleFeatureSpeaking(currentWeek.dates.thu, 'Thursday')}
+                      disabled={loadingAction === `feature-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}`}
+                      className="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loadingAction === `feature-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}` ? '⏳...' : '⭐ Feature'}
                     </button>
                   </div>
                 </div>
@@ -424,8 +522,12 @@ export function TeacherCalendar({
                       <div className="text-xs text-text/75 mb-1">Tuesday - New Grammar</div>
                       <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.tuesday.grammar)}</div>
                     </div>
-                    <button className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition">
-                      📝 Assign
+                    <button
+                      onClick={() => handleAssignGrammar(stripMarkdown(currentWeek.tuesday.grammar || ''), 'Tuesday')}
+                      disabled={loadingAction === `assign-Tuesday-${stripMarkdown(currentWeek.tuesday.grammar || '')}`}
+                      className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loadingAction === `assign-Tuesday-${stripMarkdown(currentWeek.tuesday.grammar || '')}` ? '⏳...' : '📝 Assign'}
                     </button>
                   </div>
                 </div>
@@ -438,8 +540,12 @@ export function TeacherCalendar({
                       <div className="text-xs text-text/75 mb-1">Thursday - Grammar Review</div>
                       <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.thursday.grammar)}</div>
                     </div>
-                    <button className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition">
-                      📝 Assign
+                    <button
+                      onClick={() => handleAssignGrammar(stripMarkdown(currentWeek.thursday.grammar || ''), 'Thursday')}
+                      disabled={loadingAction === `assign-Thursday-${stripMarkdown(currentWeek.thursday.grammar || '')}`}
+                      className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loadingAction === `assign-Thursday-${stripMarkdown(currentWeek.thursday.grammar || '')}` ? '⏳...' : '📝 Assign'}
                     </button>
                   </div>
                 </div>
