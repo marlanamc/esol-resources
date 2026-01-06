@@ -42,9 +42,14 @@ interface Props {
         level?: string | null;
     };
     assignmentId?: string | null;
+    existingSubmission?: {
+        id: string;
+        content: unknown;
+        score: number | null;
+    } | null;
 }
 
-export default function ActivityRenderer({ activity, assignmentId }: Props) {
+export default function ActivityRenderer({ activity, assignmentId, existingSubmission }: Props) {
     const content = parseActivityContent(activity.content);
     if (!content && activity.type === "resource") {
         return (
@@ -70,6 +75,7 @@ export default function ActivityRenderer({ activity, assignmentId }: Props) {
                     activityId={activity.id}
                     assignmentId={assignmentId}
                     activityTitle={activity.title}
+                    existingSubmission={existingSubmission}
                 />
             );
         case "worksheet":
@@ -143,22 +149,29 @@ function QuizRenderer({
     activityId,
     assignmentId,
     activityTitle,
+    existingSubmission,
 }: {
     content: QuizContent | VerbQuizContent;
     activityId: string;
     assignmentId?: string | null;
     activityTitle?: string;
+    existingSubmission?: {
+        id: string;
+        content: unknown;
+        score: number | null;
+    } | null;
 }) {
     // Check if this is a verb quiz
     if (content && typeof content === 'object' && 'type' in content && content.type === 'verb-quiz') {
         return (
-            <VerbQuizContainer
-                content={content as VerbQuizContent}
-                activityId={activityId}
-                assignmentId={assignmentId}
-                activityTitle={activityTitle}
-            />
-        );
+                <VerbQuizContainer
+                    content={content as VerbQuizContent}
+                    activityId={activityId}
+                    assignmentId={assignmentId}
+                    activityTitle={activityTitle}
+                    existingSubmission={existingSubmission}
+                />
+            );
     }
 
     // Regular quiz renderer

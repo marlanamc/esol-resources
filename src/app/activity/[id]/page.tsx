@@ -107,6 +107,16 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                 },
             },
         });
+        if (submission?.content && typeof submission.content === "string") {
+            try {
+                submission = {
+                    ...submission,
+                    content: JSON.parse(submission.content),
+                };
+            } catch {
+                // Keep raw content if parsing fails.
+            }
+        }
     }
 
     const progressRecord = await prisma.activityProgress.findUnique({
@@ -200,7 +210,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
                 {/* Full Screen Guide */}
                 <div className="flex-1 overflow-hidden min-h-0">
-                    <ActivityRenderer activity={activity} assignmentId={assignmentId} />
+                    <ActivityRenderer
+                        activity={activity}
+                        assignmentId={assignmentId}
+                        existingSubmission={submission}
+                    />
                 </div>
 
                 {/* Load presentation mode scripts */}
@@ -263,7 +277,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
                     {/* Activity Content */}
                     <div className="bg-white shadow sm:rounded-lg p-6">
-                        <ActivityRenderer activity={activity} assignmentId={assignmentId} />
+                        <ActivityRenderer
+                            activity={activity}
+                            assignmentId={assignmentId}
+                            existingSubmission={submission}
+                        />
                     </div>
 
                     {/* Category Progress for Numbers Game */}
