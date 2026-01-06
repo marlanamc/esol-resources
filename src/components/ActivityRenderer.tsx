@@ -29,6 +29,7 @@ import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
 import { isSpeakingActivityContent } from "@/types/activity";
 import type { SpeakingActivityContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
+import { saveActivityProgress } from "@/lib/activityProgress";
 
 interface Props {
     activity: {
@@ -46,7 +47,14 @@ interface Props {
 export default function ActivityRenderer({ activity, assignmentId }: Props) {
     const content = parseActivityContent(activity.content);
     if (!content && activity.type === "resource") {
-        return <ResourceRenderer contentStr={activity.content} />;
+        return (
+            <ResourceRenderer
+                contentStr={activity.content}
+                activityId={activity.id}
+                title={activity.title}
+                category={activity.category}
+            />
+        );
     }
 
     // Check for external URL redirect
@@ -108,7 +116,14 @@ export default function ActivityRenderer({ activity, assignmentId }: Props) {
             // Default to flashcards
             return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
         case "resource":
-            return <ResourceRenderer contentStr={activity.content} />;
+            return (
+                <ResourceRenderer
+                    contentStr={activity.content}
+                    activityId={activity.id}
+                    title={activity.title}
+                    category={activity.category}
+                />
+            );
         default:
             if (!content) return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Unable to load activity content.</div>;
             return <DefaultRenderer content={content} />;
@@ -385,8 +400,26 @@ function DefaultRenderer({ content }: { content: ActivityContent }) {
     );
 }
 
-function ResourceRenderer({ contentStr }: { contentStr: string }) {
+function ResourceRenderer({
+    contentStr,
+    activityId,
+    title,
+    category,
+}: {
+    contentStr: string;
+    activityId?: string;
+    title?: string;
+    category?: string | null;
+}) {
     const entries = parsePlainVocabulary(contentStr);
+    const isWordList =
+        title?.toLowerCase().includes("word list") ||
+        ((category === "vocab" || category === "vocabulary") && entries.length > 0);
+
+    useEffect(() => {
+        if (!activityId || !isWordList) return;
+        void saveActivityProgress(activityId, 100, "completed", undefined, category ?? undefined);
+    }, [activityId, category, isWordList]);
 
     if (!entries || entries.length === 0) {
         return (
