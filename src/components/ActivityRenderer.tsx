@@ -56,7 +56,14 @@ export default function ActivityRenderer({ activity, assignmentId }: Props) {
 
     switch (activity.type) {
         case "quiz":
-            return <QuizRenderer content={content as QuizContent} activityId={activity.id} assignmentId={assignmentId} />;
+            return (
+                <QuizRenderer
+                    content={content as QuizContent}
+                    activityId={activity.id}
+                    assignmentId={assignmentId}
+                    activityTitle={activity.title}
+                />
+            );
         case "worksheet":
             return <WorksheetRenderer content={content as WorksheetContent} />;
         case "slides":
@@ -116,7 +123,17 @@ function safeJsonParse(text: string): unknown | null {
     }
 }
 
-function QuizRenderer({ content, activityId, assignmentId }: { content: QuizContent | VerbQuizContent; activityId: string; assignmentId?: string | null }) {
+function QuizRenderer({
+    content,
+    activityId,
+    assignmentId,
+    activityTitle,
+}: {
+    content: QuizContent | VerbQuizContent;
+    activityId: string;
+    assignmentId?: string | null;
+    activityTitle?: string;
+}) {
     // Check if this is a verb quiz
     if (content && typeof content === 'object' && 'type' in content && content.type === 'verb-quiz') {
         return (
@@ -124,7 +141,7 @@ function QuizRenderer({ content, activityId, assignmentId }: { content: QuizCont
                 content={content as VerbQuizContent}
                 activityId={activityId}
                 assignmentId={assignmentId}
-                activityTitle={activity.title}
+                activityTitle={activityTitle}
             />
         );
     }
