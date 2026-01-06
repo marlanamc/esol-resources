@@ -17,6 +17,7 @@ import {
     parseActivityContent
 } from "@/types/activity";
 import InteractiveGuideViewer from "./InteractiveGuideViewer";
+import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
 import FlashcardCarousel from "./ui/FlashcardCarousel";
 import FillInBlankGame from "./ui/FillInBlankGame";
@@ -27,6 +28,7 @@ import { VerbQuizContent } from "@/types/verb-quiz";
 import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
 import { isSpeakingActivityContent } from "@/types/activity";
 import type { SpeakingActivityContent } from "@/types/activity";
+import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 
 interface Props {
     activity: {
@@ -38,9 +40,10 @@ interface Props {
         category?: string | null;
         level?: string | null;
     };
+    assignmentId?: string | null;
 }
 
-export default function ActivityRenderer({ activity }: Props) {
+export default function ActivityRenderer({ activity, assignmentId }: Props) {
     const content = parseActivityContent(activity.content);
     if (!content && activity.type === "resource") {
         return <ResourceRenderer contentStr={activity.content} />;
@@ -53,7 +56,7 @@ export default function ActivityRenderer({ activity }: Props) {
 
     switch (activity.type) {
         case "quiz":
-            return <QuizRenderer content={content as QuizContent} activityId={activity.id} />;
+            return <QuizRenderer content={content as QuizContent} activityId={activity.id} assignmentId={assignmentId} />;
         case "worksheet":
             return <WorksheetRenderer content={content as WorksheetContent} />;
         case "slides":
@@ -63,7 +66,16 @@ export default function ActivityRenderer({ activity }: Props) {
                 return <LegacyGuideRenderer originalFile={content.metadata.originalFile} />;
             }
             if (isInteractiveGuideContent(content)) {
-                return <InteractiveGuideViewer content={content as InteractiveGuideContent} />;
+                if (activity.category === "grammar") {
+                    return (
+                        <GrammarReader
+                            content={content as InteractiveGuideContent}
+                            completionKey={completionKeyFromActivityTitle(activity.title)}
+                            activityId={activity.id}
+                        />
+                    );
+                }
+                return <InteractiveGuideViewer content={content as InteractiveGuideContent} title={activity.title} />;
             }
             return <GuideRenderer content={content as GuideContent} />;
         case "speaking":
@@ -104,10 +116,10 @@ function safeJsonParse(text: string): unknown | null {
     }
 }
 
-function QuizRenderer({ content, activityId }: { content: QuizContent | VerbQuizContent; activityId: string }) {
+function QuizRenderer({ content, activityId, assignmentId }: { content: QuizContent | VerbQuizContent; activityId: string; assignmentId?: string | null }) {
     // Check if this is a verb quiz
     if (content && typeof content === 'object' && 'type' in content && content.type === 'verb-quiz') {
-        return <VerbQuizContainer content={content as VerbQuizContent} activityId={activityId} />;
+        return <VerbQuizContainer content={content as VerbQuizContent} activityId={activityId} assignmentId={assignmentId} />;
     }
 
     // Regular quiz renderer
