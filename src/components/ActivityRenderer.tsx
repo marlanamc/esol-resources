@@ -101,7 +101,13 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
             return <GuideRenderer content={content as GuideContent} />;
         case "speaking":
             if (isSpeakingActivityContent(content)) {
-                return <SpeakingActivityRenderer content={content as SpeakingActivityContent} activityId={activity.id} />;
+                return (
+                    <SpeakingActivityRenderer
+                        content={content as SpeakingActivityContent}
+                        activityId={activity.id}
+                        assignmentId={assignmentId}
+                    />
+                );
             }
             return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid speaking activity content.</div>;
         case "game":

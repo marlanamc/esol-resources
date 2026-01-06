@@ -6,9 +6,10 @@ import type { SpeakingActivityContent } from "@/types/activity";
 interface Props {
     content: SpeakingActivityContent;
     activityId: string;
+    assignmentId?: string | null;
 }
 
-export default function SpeakingActivityRenderer({ content, activityId }: Props) {
+export default function SpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
     const [selectedPrompts, setSelectedPrompts] = useState<Set<string>>(new Set());
     const [reflection, setReflection] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -55,6 +56,7 @@ export default function SpeakingActivityRenderer({ content, activityId }: Props)
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     activityId,
+                    assignmentId: assignmentId || null,
                     content: submissionContent,
                     score: 100, // Full credit for completion
                     points: 6, // Speaking activity points
