@@ -661,14 +661,14 @@ export function TeacherCalendar({
             <div className="bg-primary/5 rounded-lg p-4 border-l-4 border-primary">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-sm font-bold text-primary uppercase">📚 Verb Quiz</span>
-                    <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-medium">
-                      Due: Next Tuesday
-                    </span>
+                  <div className="text-sm text-text/80 font-medium mb-1">
+                    Verb Quiz {selectedWeek + 1} - Due {formatMonthDay({
+                      year: currentWeek.dates.tue.year,
+                      month: currentWeek.dates.tue.month,
+                      day: currentWeek.dates.tue.day + 7
+                    })}
                   </div>
-                  <div className="text-sm text-text/80 font-medium mb-1">{currentWeek.week} - Irregular Verbs</div>
-                  <div className="text-xs text-text/75">5 verbs: Check quizzes.json for this week's list</div>
+                  <div className="text-xs text-text/75">5 irregular verbs</div>
                 </div>
                 <button
                   onClick={() => handleReleaseQuiz(currentWeek.week)}
