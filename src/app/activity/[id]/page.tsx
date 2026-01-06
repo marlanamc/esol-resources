@@ -37,6 +37,20 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         notFound();
     }
 
+    // SECURITY: Students cannot access unreleased speaking activities
+    if (userRole === "student" && activity.type === "speaking") {
+        try {
+            const content = JSON.parse(activity.content);
+            if (content.released !== true) {
+                // Redirect to dashboard if trying to access unreleased speaking activity
+                redirect("/dashboard");
+            }
+        } catch {
+            // If content is malformed, deny access
+            redirect("/dashboard");
+        }
+    }
+
     // For grammar guides, prefer the dedicated `/grammar-reader/:slug` routes (source-of-truth content).
     // This avoids stale DB-stored JSON when the guide content is updated in code.
     if (activity.type === "guide" && activity.category === "grammar") {

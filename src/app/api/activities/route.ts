@@ -57,10 +57,32 @@ export async function GET() {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
+        const userRole = session.user?.role;
+
         const activities = await prisma.activity.findMany({
             orderBy: { createdAt: "desc" },
         });
 
+        // For students, filter out unreleased speaking activities
+        if (userRole === "student") {
+            const filteredActivities = activities.filter((activity) => {
+                if (activity.type !== "speaking") {
+                    return true; // Show all non-speaking activities
+                }
+
+                // For speaking activities, check if released
+                try {
+                    const content = JSON.parse(activity.content);
+                    return content.released === true;
+                } catch {
+                    return false; // Hide if content is malformed
+                }
+            });
+
+            return NextResponse.json(filteredActivities);
+        }
+
+        // Teachers see all activities
         return NextResponse.json(activities);
     } catch (error: unknown) {
         console.error("Error fetching activities:", error);
