@@ -31,6 +31,28 @@ export default function VerbQuizContainer({
     existingSubmission?.content ? existingSubmission.content as VerbQuizSubmission : null
   );
 
+  const isAnswerCorrect = (userAnswer: string, correctAnswer: string) => {
+    const normalize = (value: string) => value.trim().toLowerCase().replace(/\s+/g, '');
+    const normalizedUser = normalize(userAnswer);
+    const normalizedCorrect = normalize(correctAnswer);
+
+    if (!normalizedCorrect.includes('/')) {
+      return normalizedUser === normalizedCorrect;
+    }
+
+    if (!normalizedUser.includes('/')) {
+      return normalizedUser === normalizedCorrect;
+    }
+
+    const userParts = normalizedUser.split('/').filter(Boolean);
+    const correctParts = normalizedCorrect.split('/').filter(Boolean);
+
+    if (userParts.length !== correctParts.length) return false;
+
+    const userSet = new Set(userParts);
+    return correctParts.every((part) => userSet.has(part));
+  };
+
   const handleComplete = async (answers: VerbQuizAnswers, score: number) => {
     setIsSubmitting(true);
 
@@ -42,10 +64,10 @@ export default function VerbQuizContainer({
       Object.entries(content.verbs).forEach(([verb, correctAnswers]) => {
         const userAnswers = answers[verb];
         results[verb] = {
-          v1_3rd: userAnswers.v1_3rd.toLowerCase() === correctAnswers.v1_3rd.toLowerCase(),
-          v1_ing: userAnswers.v1_ing.toLowerCase() === correctAnswers.v1_ing.toLowerCase(),
-          v2: userAnswers.v2.toLowerCase() === correctAnswers.v2.toLowerCase(),
-          v3: userAnswers.v3.toLowerCase() === correctAnswers.v3.toLowerCase(),
+          v1_3rd: isAnswerCorrect(userAnswers.v1_3rd, correctAnswers.v1_3rd),
+          v1_ing: isAnswerCorrect(userAnswers.v1_ing, correctAnswers.v1_ing),
+          v2: isAnswerCorrect(userAnswers.v2, correctAnswers.v2),
+          v3: isAnswerCorrect(userAnswers.v3, correctAnswers.v3),
         };
 
         correctCount += Object.values(results[verb]).filter(Boolean).length;
