@@ -49,6 +49,6 @@ export const workplaceRightsScenarios_2026_03_17: SpeakingActivityContent = {
   reflectionPrompt: "When discussing workplace problems, how does present perfect continuous help you explain ongoing issues? How is it different from past simple?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

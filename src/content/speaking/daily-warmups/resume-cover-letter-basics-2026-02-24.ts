@@ -62,5 +62,5 @@ export const resumeCoverLetterBasics_2026_02_24: SpeakingActivityContent = {
   reflectionPrompt: "Which modal (must/should/can/may/could) is hardest to use correctly when asking for professional help? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 3,
-  released: true
+  released: false
 };

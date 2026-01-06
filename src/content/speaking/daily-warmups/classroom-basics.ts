@@ -63,5 +63,5 @@ export const classroomBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which classroom phrase is hardest for you to say? Why do you think that is?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

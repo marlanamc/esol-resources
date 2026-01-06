@@ -62,5 +62,5 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which WH-question word is easiest for you to use? Which is hardest? Why?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

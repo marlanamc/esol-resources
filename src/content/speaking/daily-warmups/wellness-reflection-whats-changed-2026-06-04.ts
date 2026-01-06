@@ -49,6 +49,6 @@ export const wellnessReflectionWhatsChanged_2026_06_04: SpeakingActivityContent 
   reflectionPrompt: "What change are you most proud of? What helped you succeed?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

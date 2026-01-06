@@ -290,16 +290,35 @@ async function main() {
 
   // Process each speaking activity
   for (const activity of speakingActivities) {
+    const existing = await prisma.activity.findUnique({
+      where: { id: activity.id },
+      select: { content: true },
+    });
+
+    let content = activity.content;
+    if (existing?.content) {
+      try {
+        const existingContent = JSON.parse(existing.content);
+        if (Object.prototype.hasOwnProperty.call(existingContent, 'released')) {
+          content = {
+            ...activity.content,
+            released: existingContent.released,
+          };
+        }
+      } catch {
+        // Keep default content if existing content is malformed.
+      }
+    }
+
     const payload = {
-      title: activity.content.title,
-      description: activity.content.description || '',
+      title: content.title,
+      description: content.description || '',
       type: 'speaking' as const,
       category: 'speaking' as const,
       level: activity.level,
-      content: JSON.stringify(activity.content),
+      content: JSON.stringify(content),
     };
 
-    const existing = await prisma.activity.findUnique({ where: { id: activity.id } });
     const upserted = await prisma.activity.upsert({
       where: { id: activity.id },
       update: payload,

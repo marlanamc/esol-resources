@@ -20,8 +20,8 @@ async function main() {
     try {
       const content = JSON.parse(activity.content);
 
-      // Add released: false if not present
-      if (!content.hasOwnProperty('released')) {
+      // Reset released to false for all speaking activities
+      if (content.released !== false) {
         content.released = false;
 
         await prisma.activity.update({
@@ -34,7 +34,7 @@ async function main() {
         console.log(`✅ Updated ${activity.title} (${activity.id})`);
         updateCount++;
       } else {
-        console.log(`⏭️  Skipped ${activity.title} (already has released field)`);
+        console.log(`⏭️  Skipped ${activity.title} (already released: false)`);
       }
     } catch (error) {
       console.error(`❌ Error updating ${activity.id}:`, error);

@@ -55,6 +55,6 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
   reflectionPrompt: "How comfortable are you using present perfect continuous (have been + -ing) to talk about your job search? How is it different from present perfect (have worked)?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

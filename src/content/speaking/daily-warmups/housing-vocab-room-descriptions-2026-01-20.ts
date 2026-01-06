@@ -49,6 +49,6 @@ export const housingVocabRoomDescriptions_2026_01_20: SpeakingActivityContent = 
   reflectionPrompt: "What new housing words did you use today? Which word do you want to practice more?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

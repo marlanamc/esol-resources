@@ -56,5 +56,5 @@ export const gerundsInfinitivesDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which is harder for you - gerunds or infinitives? Give an example of each.",
   reflectionMinLength: 40,
   minPromptsRequired: 3,
-  released: true
+  released: false
 };

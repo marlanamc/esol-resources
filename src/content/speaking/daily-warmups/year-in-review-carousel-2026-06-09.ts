@@ -49,6 +49,6 @@ export const yearInReviewCarousel_2026_06_09: SpeakingActivityContent = {
   reflectionPrompt: "What is one thing you want to continue practicing after this class ends?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

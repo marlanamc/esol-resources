@@ -55,6 +55,6 @@ export const nutritionFoodLabels_2026_05_14: SpeakingActivityContent = {
   reflectionPrompt: "Which eating habit change is hardest to adjust to? Are you getting used to it, or can't you get used to it yet?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

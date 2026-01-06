@@ -55,5 +55,5 @@ export const wellnessBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "Which wellness change is hardest to adjust to? Are you getting used to it, or can't you get used to it yet?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

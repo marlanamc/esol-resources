@@ -56,6 +56,6 @@ export const symptomsDuration_2026_04_16: SpeakingActivityContent = {
   reflectionPrompt: "Which advice modal is most useful in health situations: should, must, have to, need to, or could? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

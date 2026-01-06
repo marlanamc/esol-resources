@@ -55,6 +55,6 @@ export const workProblemSolution_2026_04_07: SpeakingActivityContent = {
   reflectionPrompt: "Which is easier: talking about the past with 'used to' or talking about adjusting with 'getting used to'? Why?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

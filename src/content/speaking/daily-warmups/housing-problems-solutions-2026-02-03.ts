@@ -55,6 +55,6 @@ export const housingProblemsSolutions_2026_02_03: SpeakingActivityContent = {
   reflectionPrompt: "What's the difference between Type 0 (general facts/rules) and Type 1 (your future plans)? Which one is harder to use when talking about housing problems?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

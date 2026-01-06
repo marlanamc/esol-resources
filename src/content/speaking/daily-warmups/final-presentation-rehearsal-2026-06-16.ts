@@ -49,6 +49,6 @@ export const finalPresentationRehearsal_2026_06_16: SpeakingActivityContent = {
   reflectionPrompt: "What part of your presentation do you want to improve before the final day?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

@@ -7,6 +7,7 @@ import { TextInputExercise } from "./TextInputExercise";
 import { SelectExercise } from "./SelectExercise";
 import { RadioExercise } from "./RadioExercise";
 import { WordScrambleExercise } from "./WordScrambleExercise";
+import { WordSelectExercise } from "./WordSelectExercise";
 
 interface ExerciseSectionProps {
     exercise: Exercise;
@@ -29,9 +30,37 @@ export function ExerciseSection({
         return answer.toLowerCase().trim().replace(/\s+/g, ' ');
     };
 
+    const parseSelection = (value: string): number[] => {
+        if (!value) return [];
+        try {
+            const parsed = JSON.parse(value) as unknown;
+            if (Array.isArray(parsed)) {
+                return parsed.filter((n) => Number.isInteger(n)) as number[];
+            }
+        } catch {
+            // ignore
+        }
+        return [];
+    };
+
     const handleCheck = () => {
         const newResults: Record<number, boolean> = {};
         exercise.items.forEach((item, index) => {
+            if (item.type === "word-select") {
+                const userSelection = new Set(parseSelection(answers[index] || ""));
+                const expectedSelection = new Set(
+                    item.tokens
+                        .map((t, idx) => (t.isTarget ? idx : null))
+                        .filter((v): v is number => typeof v === "number")
+                );
+
+                const sameSize = userSelection.size === expectedSelection.size;
+                const sameMembers =
+                    sameSize && Array.from(expectedSelection).every((i) => userSelection.has(i));
+                newResults[index] = sameMembers && expectedSelection.size > 0;
+                return;
+            }
+
             const userAnswer = normalizeAnswer(answers[index] || "");
 
             if (item.type === "word-scramble") {
@@ -79,7 +108,12 @@ export function ExerciseSection({
         });
     };
 
-    const allAnswered = exercise.items.every((_, index) => answers[index]);
+    const allAnswered = exercise.items.every((item, index) => {
+        if (item.type === "word-select") {
+            return parseSelection(answers[index] || "").length > 0;
+        }
+        return !!answers[index];
+    });
     const correctCount = Object.values(results).filter((r) => r).length;
     const totalCount = exercise.items.length;
 
@@ -116,6 +150,9 @@ export function ExerciseSection({
                             )}
                             {item.type === "radio" && (
                                 <RadioExercise item={item} {...commonProps} />
+                            )}
+                            {item.type === "word-select" && (
+                                <WordSelectExercise item={item} {...commonProps} />
                             )}
                             {item.type === "word-scramble" && (
                                 <WordScrambleExercise item={item} {...commonProps} />

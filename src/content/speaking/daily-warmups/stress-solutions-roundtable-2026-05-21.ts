@@ -55,6 +55,6 @@ export const stressSolutionsRoundtable_2026_05_21: SpeakingActivityContent = {
   reflectionPrompt: "How does using Type 1 conditional (If + present, will) help you plan for stressful situations? Give one example.",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 

@@ -62,5 +62,5 @@ export const foodBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "What's harder: using superlatives (best/worst/most) or quantifiers (too much/many, not enough)? Why?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

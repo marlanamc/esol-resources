@@ -55,5 +55,5 @@ export const bankingBasicsDailyWarmup: SpeakingActivityContent = {
   reflectionPrompt: "How comfortable are you using Type 0 conditionals (If + present, present) to explain banking facts and habits? What was challenging?",
   reflectionMinLength: 30,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };

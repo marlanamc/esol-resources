@@ -55,6 +55,6 @@ export const healthyHabitTracker_2026_05_26: SpeakingActivityContent = {
   reflectionPrompt: "Which verb + gerund combination is most useful for talking about healthy habits? Which is hardest to remember?",
   reflectionMinLength: 35,
   minPromptsRequired: 2,
-  released: true
+  released: false
 };
 
