@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import type { SpeakingActivityContent } from "@/types/activity";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { motion, AnimatePresence } from "framer-motion";
+import { Lightbulb, ChevronDown, ChevronUp } from "lucide-react";
 
 interface Props {
     content: SpeakingActivityContent;
@@ -12,6 +14,7 @@ interface Props {
 
 export default function SpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
     const [selectedPrompts, setSelectedPrompts] = useState<Set<string>>(new Set());
+    const [expandedTips, setExpandedTips] = useState<Set<string>>(new Set());
     const minPrompts = content.minPromptsRequired || 1;
 
     useEffect(() => {
@@ -26,6 +29,16 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
             newSelected.add(promptId);
         }
         setSelectedPrompts(newSelected);
+    };
+
+    const handleToggleTips = (promptId: string) => {
+        const newExpanded = new Set(expandedTips);
+        if (newExpanded.has(promptId)) {
+            newExpanded.delete(promptId);
+        } else {
+            newExpanded.add(promptId);
+        }
+        setExpandedTips(newExpanded);
     };
 
     return (
@@ -120,26 +133,69 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                                             {prompt.text}
                                         </p>
 
-                                        {/* Context/Tips */}
+                                        {/* Collapsible Context/Tips */}
                                         {prompt.context && (
-                                            <div className="bg-blue-50 border-l-3 sm:border-l-4 border-blue-400 rounded-r-lg p-3 sm:p-4 space-y-1.5 sm:space-y-2">
-                                                <p className="text-[10px] sm:text-xs font-bold text-blue-900 uppercase tracking-wide mb-1.5 sm:mb-2">
-                                                    💡 Tips & Examples
-                                                </p>
-                                                {hasMultipleParts ? (
-                                                    <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-700">
-                                                        {prompt.context.split('.').filter(s => s.trim().length > 10).map((sentence, i) => (
-                                                            <li key={i} className="flex gap-2">
-                                                                <span className="text-blue-500 font-bold flex-shrink-0 mt-0.5">•</span>
-                                                                <span className="leading-relaxed">{sentence.trim()}{sentence.trim().endsWith('.') ? '' : '.'}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
+                                            <div className="space-y-2">
+                                                {/* Toggle Button */}
+                                                {!expandedTips.has(prompt.id) ? (
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleToggleTips(prompt.id);
+                                                        }}
+                                                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#4a8ca0] hover:text-[#3a7080] transition-colors duration-200 group"
+                                                        aria-label={`Show tips for: ${prompt.text}`}
+                                                        aria-expanded="false"
+                                                    >
+                                                        <Lightbulb className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                                                        <span>Need help?</span>
+                                                        <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform duration-200" />
+                                                    </button>
                                                 ) : (
-                                                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                                                        {prompt.context}
-                                                    </p>
+                                                    <button
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleToggleTips(prompt.id);
+                                                        }}
+                                                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-blue-700 hover:text-blue-900 transition-colors duration-200 group mb-2"
+                                                        aria-label={`Hide tips for: ${prompt.text}`}
+                                                        aria-expanded="true"
+                                                    >
+                                                        <span>Hide tips</span>
+                                                        <ChevronUp className="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                                                    </button>
                                                 )}
+
+                                                {/* Animated Context Box */}
+                                                <AnimatePresence>
+                                                    {expandedTips.has(prompt.id) && (
+                                                        <motion.div
+                                                            className="bg-blue-50 border-l-3 sm:border-l-4 border-blue-400 rounded-r-lg p-3 sm:p-4 space-y-1.5 sm:space-y-2"
+                                                            initial={{ opacity: 0, height: 0, y: -10 }}
+                                                            animate={{ opacity: 1, height: 'auto', y: 0 }}
+                                                            exit={{ opacity: 0, height: 0, y: -10 }}
+                                                            transition={{ duration: 0.3, ease: 'easeOut' }}
+                                                        >
+                                                            <p className="text-[10px] sm:text-xs font-bold text-blue-900 uppercase tracking-wide mb-1.5 sm:mb-2">
+                                                                💡 Tips & Examples
+                                                            </p>
+                                                            {hasMultipleParts ? (
+                                                                <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-700">
+                                                                    {prompt.context.split('.').filter(s => s.trim().length > 10).map((sentence, i) => (
+                                                                        <li key={i} className="flex gap-2">
+                                                                            <span className="text-blue-500 font-bold flex-shrink-0 mt-0.5">•</span>
+                                                                            <span className="leading-relaxed">{sentence.trim()}{sentence.trim().endsWith('.') ? '' : '.'}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            ) : (
+                                                                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+                                                                    {prompt.context}
+                                                                </p>
+                                                            )}
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
                                             </div>
                                         )}
                                     </div>
