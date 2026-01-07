@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { workplacePhrasalVerbsContent } from "@/content/grammar/workplace-phrasal-verbs";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Workplace Phrasal Verbs - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -10,21 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default async function WorkplacePhrasalVerbsPage() {
-    const activity = await prisma.activity.findFirst({
-        where: {
-            title: "Workplace Phrasal Verbs Guide",
-            type: "guide",
-            category: "grammar"
-        },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Workplace Phrasal Verbs Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={workplacePhrasalVerbsContent}
                 completionKey="workplace-phrasal-verbs"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );

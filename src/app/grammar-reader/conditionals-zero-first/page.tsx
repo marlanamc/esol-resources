@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { conditionalsZeroFirstContent } from "@/content/grammar/conditionals-zero-first";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Zero & First Conditionals - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -10,21 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default async function ConditionalsZeroFirstPage() {
-    const activity = await prisma.activity.findFirst({
-        where: {
-            title: "Zero & First Conditionals Guide",
-            type: "guide",
-            category: "grammar"
-        },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Zero & First Conditionals Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={conditionalsZeroFirstContent}
                 completionKey="conditionals-zero-first"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );
