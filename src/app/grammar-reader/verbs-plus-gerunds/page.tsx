@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { verbsPlusGerundsContent } from "@/content/grammar/verbs-plus-gerunds";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Verbs + Gerunds - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -10,21 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default async function VerbsPlusGerundsPage() {
-    const activity = await prisma.activity.findFirst({
-        where: {
-            title: "Verbs + Gerunds Guide",
-            type: "guide",
-            category: "grammar"
-        },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Verbs + Gerunds Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={verbsPlusGerundsContent}
                 completionKey="verbs-plus-gerunds"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );

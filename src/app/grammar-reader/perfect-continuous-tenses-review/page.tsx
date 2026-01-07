@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { perfectContinuousTensesReviewContent } from "@/content/grammar/perfect-continuous-tenses-review";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Perfect Continuous Tenses Review - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -10,17 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default async function PerfectContinuousTensesReviewPage() {
-    const activity = await prisma.activity.findFirst({
-        where: { title: "Perfect Continuous Tenses Review - Complete Guide", type: "guide", category: "grammar" },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Perfect Continuous Tenses Review - Complete Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={perfectContinuousTensesReviewContent}
                 completionKey="perfect-continuous-tenses-review"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );

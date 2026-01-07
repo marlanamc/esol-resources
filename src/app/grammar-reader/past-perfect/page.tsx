@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { pastPerfectContent } from "@/content/grammar/past-perfect";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Past Perfect - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -10,17 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default async function PastPerfectPage() {
-    const activity = await prisma.activity.findFirst({
-        where: { title: "Past Perfect Guide", type: "guide", category: "grammar" },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Past Perfect Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={pastPerfectContent}
                 completionKey="past-perfect"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );

@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { presentSimpleContent } from "@/content/grammar/present-simple";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Present Simple - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -11,21 +11,18 @@ export const metadata: Metadata = {
 
 export default async function PresentSimplePage() {
     // Fetch the activity ID for progress tracking
-    const activity = await prisma.activity.findFirst({
-        where: {
-            title: "Present Simple Guide",
-            type: "guide",
-            category: "grammar"
-        },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Present Simple Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={presentSimpleContent}
                 completionKey="present-simple"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );

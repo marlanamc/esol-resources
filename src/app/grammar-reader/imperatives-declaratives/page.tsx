@@ -1,7 +1,7 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { imperativesDeclarativesContent } from "@/content/grammar/imperatives-declaratives";
 import type { Metadata } from "next";
-import { prisma } from "@/lib/prisma";
+import { getActivityIdSafely } from "@/lib/build-helpers";
 
 export const metadata: Metadata = {
     title: "Imperatives vs Declaratives - Interactive Grammar Guide | ESOL Teacher Resources",
@@ -10,21 +10,18 @@ export const metadata: Metadata = {
 };
 
 export default async function ImperativesDeclarativesPage() {
-    const activity = await prisma.activity.findFirst({
-        where: {
-            title: "Imperatives vs Declaratives Guide",
-            type: "guide",
-            category: "grammar"
-        },
-        select: { id: true }
-    });
+    const activityId = await getActivityIdSafely(
+        "Imperatives vs Declaratives Guide",
+        "guide",
+        "grammar"
+    );
 
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
                 content={imperativesDeclarativesContent}
                 completionKey="imperatives-declaratives"
-                activityId={activity?.id}
+                activityId={activityId}
             />
         </div>
     );
