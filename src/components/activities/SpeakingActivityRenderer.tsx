@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { SpeakingActivityContent } from "@/types/activity";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lightbulb, ChevronDown, ChevronUp } from "lucide-react";
+import { Lightbulb, ChevronDown, ChevronUp, ArrowLeft } from "lucide-react";
 
 interface Props {
     content: SpeakingActivityContent;
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export default function SpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
+    const router = useRouter();
     const [selectedPrompts, setSelectedPrompts] = useState<Set<string>>(new Set());
     const [expandedTips, setExpandedTips] = useState<Set<string>>(new Set());
     const minPrompts = content.minPromptsRequired || 1;
@@ -45,12 +47,23 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
         <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
             {/* Sticky Header */}
             <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
-                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
-                    {content.title}
-                </h1>
-                {content.description && (
-                    <p className="text-sm sm:text-base text-gray-700">{content.description}</p>
-                )}
+                <div className="flex items-start gap-3 sm:gap-4">
+                    <button
+                        onClick={() => router.back()}
+                        className="flex-shrink-0 mt-1 sm:mt-1.5 p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                        aria-label="Go back"
+                    >
+                        <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
+                    </button>
+                    <div className="flex-1 min-w-0">
+                        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
+                            {content.title}
+                        </h1>
+                        {content.description && (
+                            <p className="text-sm sm:text-base text-gray-700">{content.description}</p>
+                        )}
+                    </div>
+                </div>
             </header>
 
             {/* Scrollable Content Area */}
