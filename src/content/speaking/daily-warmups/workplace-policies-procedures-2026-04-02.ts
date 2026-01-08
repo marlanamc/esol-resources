@@ -10,8 +10,6 @@ export const workplacePoliciesProcedures_2026_04_02: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "fill out", example: "You need to fill out this form. Did you fill out the timesheet?" },
@@ -37,56 +35,36 @@ export const workplacePoliciesProcedures_2026_04_02: SpeakingActivityContent = {
       text: "Use 'fill out' and 'turn in': Talk about forms and paperwork at work.",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'When you start, you need to fill out a W-4 form. You have to turn in your timesheet every Friday. Did you fill out your direct deposit form?'"
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Use 'call in' and 'check in': Explain what to do if you're sick or late.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'If you're sick, call in before your shift starts. When you arrive, check in with your manager. I called in sick last week.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "Use 'sign in/out': Explain the clock-in/clock-out policy.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'You have to sign in when you arrive. Don't forget to sign out when you leave. I forgot to sign out yesterday.'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "Use 'go over' and 'write down': Ask someone to explain a policy again.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'Can you go over the break policy again? I want to write down the important details. Let's go over the safety rules together.'"
     },
     {
       id: "prompt-5",
       level: "intermediate",
       text: "Use 'follow up' and 'point out': Talk about asking questions and getting help.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'If you have questions, follow up with HR. Can you point out where I need to sign this form? I'll follow up with my manager tomorrow.'"
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Full policy explanation: Use at least 5 phrasal verbs (fill out, turn in, call in, sign in/out, check in, go over, follow up, write down, point out).",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Example: 'On your first day, fill out all the forms and turn them in to HR. Every day, sign in when you arrive and check in with your manager. If you're sick, call in before 9am. Let's go over the policies, and write down anything important.'"

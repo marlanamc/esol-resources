@@ -10,8 +10,6 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "You should...", example: "You should see a doctor if you have a high fever." },
@@ -28,8 +26,6 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
       level: "beginner",
       text: "Give 3 pieces of health advice using should/shouldn't. What should people do when they feel sick?",
       context: "Examples: You should drink water. You should rest. You shouldn't go to work. You shouldn't ignore a high fever.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "List 3 pieces of health advice using should/shouldn't and practice saying them with key phrases",
       partnerInstructions: "Partner A: Give health advice for 2 minutes. Partner B: Ask follow-up questions about the advice."
     },
@@ -38,8 +34,6 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
       level: "beginner",
       text: "Doctor's instructions: The doctor says you have a cold. What must you do? What should you do? What shouldn't you do?",
       context: "Use: I must take medicine. I should rest. I shouldn't exercise. I have to stay home for 3 days.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Write down doctor's instructions using modals (must, should, shouldn't) and practice reading them aloud",
       partnerInstructions: "Role-play: One is doctor giving instructions, one is patient asking questions about the treatment."
     },
@@ -48,8 +42,6 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Emergency room advice: Your friend has a bad cut. Give them advice using modals. When should they go to the ER? What do they have to bring?",
       context: "You should go to the emergency room immediately. You must bring your insurance card. You need to apply pressure to stop the bleeding.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Think through emergency advice: When to go to ER? What to bring? Practice saying it with key phrases",
       partnerInstructions: "Partner A: Describe an injury and ask for advice. Partner B: Give detailed emergency advice using modals."
     },
@@ -58,8 +50,6 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Medication instructions: The doctor prescribed medicine. Explain what you have to do, what you should do, and what you must not do.",
       context: "I have to take it twice a day. I should take it with food. I must not drink alcohol. I need to finish all the pills.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       soloInstructions: "List medication instructions using different modals and practice explaining them clearly",
       partnerInstructions: "Role-play: One is pharmacist explaining medication, one is patient asking questions about how to take it."
     },
@@ -68,8 +58,6 @@ export const healthcareBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Preventive health: What should people do to stay healthy? What do they have to do every year? What shouldn't they do?",
       context: "You should exercise 3 times a week. You have to get a flu shot every year. You must see a dentist twice a year. You shouldn't eat too much sugar.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "List preventive health advice using should/shouldn't and have to/must for regular checkups",
       partnerInstructions: "Take turns: Each person gives 3 pieces of preventive health advice, then discuss why it's important."
     },

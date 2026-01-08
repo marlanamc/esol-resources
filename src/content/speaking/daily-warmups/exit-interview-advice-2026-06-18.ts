@@ -10,8 +10,6 @@ export const exitInterviewAdvice_2026_06_18: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I feel more confident about...", example: "I feel more confident about speaking at work." },
@@ -34,16 +32,12 @@ export const exitInterviewAdvice_2026_06_18: SpeakingActivityContent = {
       text: "Exit interview: Answer 5 questions about your experience this year.",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "What did you like? What was hard? What helped you?"
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Advice for new students: Give 3 tips and explain why.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use: You should..., Don't be afraid to..., It's helpful to..."
@@ -54,8 +48,6 @@ export const exitInterviewAdvice_2026_06_18: SpeakingActivityContent = {
       text: "Program feedback: What do you want more of next year? What should change?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use: I'd like more..., I suggest..., It would be better if..."
     },
     {
@@ -64,16 +56,12 @@ export const exitInterviewAdvice_2026_06_18: SpeakingActivityContent = {
       text: "Role-play: Teacher asks follow-up questions. Student answers with details.",
     soloInstructions: "Read the scenario and think about what you would say in this situation",
     partnerInstructions: "Role-play the scenario: Take turns being different characters",
-    soloInstructions: "Read the scenario and think about what you would say in this situation",
-    partnerInstructions: "Role-play the scenario: Take turns being different characters",
       context: "Use: for example, because, one reason is..."
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Celebrate: Share one success and give a compliment to a classmate.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: I'm proud of..., I noticed that you..."

@@ -10,8 +10,6 @@ export const gerundsInfinitivesDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I enjoy...", example: "I enjoy reading books and listening to music." },
@@ -35,28 +33,18 @@ export const gerundsInfinitivesDailyWarmup: SpeakingActivityContent = {
       text: "What do you enjoy doing in your free time? What activities do you love doing?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use gerunds after 'enjoy', 'love', 'like': 'I enjoy cooking' or 'I love spending time with family.'"
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "What do you want to achieve this year? What are you planning to do?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use infinitives after 'want', 'plan', 'hope', 'need': 'I want to get a better job' or 'I'm planning to move.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "What have you stopped doing recently? What have you started doing? What should you quit doing?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Practice: 'I stopped smoking' (quit the habit) vs 'I stopped to smoke' (paused to smoke). 'I started exercising.'"
     },
     {
@@ -65,28 +53,18 @@ export const gerundsInfinitivesDailyWarmup: SpeakingActivityContent = {
       text: "Complete these sentences: 'I can't stand...', 'I'm considering...', 'I've given up trying to...', 'I refuse to...'",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Gerunds: can't stand, consider, give up. Infinitives: refuse, decide, fail. Mix them in your answers!"
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "What's something you remember doing as a child? What's something you'll never forget to do?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Tricky! 'Remember doing' = recall the past. 'Remember to do' = don't forget future action. Same with 'forget'!"
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Using perfect tenses: What have you been trying to do? What had you wanted to achieve before coming here?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Combine perfect tenses with gerunds/infinitives: 'I have been trying to learn English' or 'I had wanted to study abroad.'"
     },
   ],// 

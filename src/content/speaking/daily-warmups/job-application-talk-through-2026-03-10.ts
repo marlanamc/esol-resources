@@ -10,8 +10,6 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I have been looking for...", example: "I have been looking for a full-time job for three months." },
@@ -34,8 +32,6 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
       text: "How long have you been looking for a job? How long have you been working (if you have a job)?",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Present perfect continuous: 'I have been looking for a job for two months.' or 'I have been working at Market Basket since 2024.'"
     },
     {
@@ -44,48 +40,30 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
       text: "What have you been doing to find a job? Where have you been applying?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use present perfect continuous: 'I have been checking Indeed every day. I have been applying to CVS, Walgreens, and Stop & Shop.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "What skills have you been practicing or learning to get a better job?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Present perfect continuous: 'I have been studying English at ESOL class. I have been practicing my computer skills on YouTube.'"
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "If you have a job: How long have you been working there? What have you been doing in that position?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use 'have been + -ing': 'I have been working at Dunkin' for six months. I have been making coffee, cleaning, and helping customers.'"
     },
     {
       id: "prompt-5",
       level: "intermediate",
       text: "What challenges have you been facing in your job search? What has been difficult?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Present perfect continuous: 'I have been having trouble with interviews. I have been getting nervous when they ask questions.'"
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Compare: What did you do in your last job (past simple) vs. What have you been doing lately to find work (present perfect continuous)?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Past simple: 'I worked as a cleaner.' Present perfect continuous: 'I have been looking for office work. I have been taking computer classes.'"
     },
   ],// 

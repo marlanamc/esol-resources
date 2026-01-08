@@ -11,8 +11,6 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     // Core sentence starters (from your original)
@@ -44,8 +42,6 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
       text: "Looking back on LAST year: What are you proud of? What did you accomplish?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context:
         "Plan 3 sentences. Try: 1) Last year, I… 2) I'm proud of… 3) One challenge was…, but…"
     },
@@ -53,10 +49,6 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
       id: "prompt-2",
       level: "beginner",
       text: "For THIS year: What is one thing you want to do differently?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context:
         "Plan 3 sentences. Try: This year, I want to… because… / So I'm going to… / One small step is…"
     },
@@ -64,10 +56,6 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
       id: "prompt-3",
       level: "beginner",
       text: "What is ONE goal for this year that matters to you? Why?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context:
         "Make it specific. Add details with small words: in/at/on, with, for. Example pattern: My goal is to… in… because…"
     },

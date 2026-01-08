@@ -10,8 +10,6 @@ export const clinicVisitStepsPassive_2026_04_28: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "You are asked to...", example: "You are asked to fill out a form." },
@@ -34,8 +32,6 @@ export const clinicVisitStepsPassive_2026_04_28: SpeakingActivityContent = {
       text: "Put the steps in order: check-in → waiting room → nurse → doctor → pharmacy.",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Then say the steps out loud using passive voice."
     },
     {
@@ -44,36 +40,24 @@ export const clinicVisitStepsPassive_2026_04_28: SpeakingActivityContent = {
       text: "Describe a clinic visit using 5 passive sentences.",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use: You are asked to..., Your temperature is taken..., A test is ordered..."
     },
     {
       id: "prompt-3",
       level: "advanced",
       text: "Role-play: Patient explains what happens at the clinic to a new student.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use sequencing: First, Next, Then, After that, Finally."
     },
     {
       id: "prompt-4",
       level: "advanced",
       text: "Fix the sentence: Change active to passive.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Example: 'The nurse takes your blood pressure' → 'Your blood pressure is taken.'"
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Ask 3 clinic questions and answer them with passive voice.",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "Example: What happens at check-in? Forms are filled out..."
