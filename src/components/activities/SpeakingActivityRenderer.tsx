@@ -13,7 +13,7 @@ import {
   type SpeakingSubmissionPayload,
 } from "@/lib/speakingSubmissions";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lightbulb, ChevronDown, ChevronUp, ArrowLeft } from "lucide-react";
+import { Lightbulb, ChevronDown, ChevronUp, ArrowLeft, CheckCircle2 } from "lucide-react";
 
 const MIN_SENTENCE_LENGTH = 5;
 
@@ -52,6 +52,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   const [submittedAt, setSubmittedAt] = useState<string | null>(null);
   const [submissionError, setSubmissionError] = useState<string | null>(null);
   const [showSoloHelp, setShowSoloHelp] = useState(false);
+  const [showKeyPhrases, setShowKeyPhrases] = useState(false);
   const [lastSnapshot, setLastSnapshot] = useState<string | null>(null);
 
   const soloChecklistLength = soloMode?.checklist.length ?? 0;
@@ -151,7 +152,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   }, [activityId, assignmentId]);
 
   useEffect(() => {
-      saveDraft({
+    saveDraft({
       activityId,
       assignmentId,
       selectedPromptIds: Array.from(selectedPrompts),
@@ -182,6 +183,15 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
     validFollowUps &&
     speakingChecklistReady &&
     validBestSentence;
+
+  // Step completion tracking
+  const step1Complete = true; // Key phrases are always "complete" (just for reference)
+  const step2Complete = 
+    selectedPromptsCount >= minPrompts &&
+    soloChecklistReady &&
+    validSentences &&
+    validFollowUps;
+  const step3Complete = speakingChecklistReady && validBestSentence;
 
   const handlePromptToggle = (promptId: string) => {
     setSelectedPrompts((prev) => {
@@ -298,7 +308,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
               {content.title}
             </h1>
             {content.description && (
-              <p className="text-sm sm:text-base text-gray-700">{content.description}</p>
+              <p className="text-sm sm:text-base text-gray-600">{content.description}</p>
             )}
           </div>
         </div>
@@ -307,24 +317,76 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
       <div className="flex-1 overflow-y-auto pb-28 lg:pb-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
 
-          <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm">
-            <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">
-              Warm-Up
-            </p>
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900">
-              Solo Mode (10 min) → Speaking Mode (10 min)
-            </h2>
-            <p className="text-sm text-gray-600 mt-2">
-              Complete Solo Mode first while students arrive, then begin Speaking Mode when your teacher says GO. When everything is ready, press Submit to log your progress.
-            </p>
+          {/* Quick Overview Card */}
+          <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 sm:p-6">
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-sm">
+                  1
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
+                    Step 1: Prepare to Speak (about 10 min)
+                  </h2>
+                  <p className="text-sm text-gray-700">
+                    Do this first. You can work alone or with a partner if someone is here.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 pl-11">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-sm">
+                  2
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-base sm:text-lg font-bold text-gray-900 mb-1">
+                    Step 2: Practice Speaking (about 10 min)
+                  </h2>
+                  <p className="text-sm text-gray-700">
+                    When you have a partner, practice speaking together. If you're alone, keep working on Step 1.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
+          {/* Step 1: Key Phrases */}
           {content.keyPhrases && content.keyPhrases.length > 0 && (
-            <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm">
-              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
-                <span className="text-xl sm:text-2xl">📚</span>
-                <span>Key Phrases to Practice</span>
+            <div className="bg-white border-2 border-gray-200 rounded-lg shadow-sm">
+              <button
+                onClick={() => setShowKeyPhrases(!showKeyPhrases)}
+                className="w-full p-4 sm:p-6 flex items-center justify-between hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                    step1Complete ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-700'
+                  }`}>
+                    {step1Complete ? <CheckCircle2 className="w-5 h-5" /> : '1'}
+                  </div>
+                  <div className="text-left">
+                    <h2 className="text-base sm:text-lg font-bold text-gray-900">
+                      Step 1: Study Key Phrases
               </h2>
+                    <p className="text-xs sm:text-sm text-gray-600 mt-0.5">
+                      {showKeyPhrases ? 'Click to hide' : `${content.keyPhrases.length} key phrases`}
+                    </p>
+                  </div>
+                </div>
+                {showKeyPhrases ? (
+                  <ChevronUp className="w-5 h-5 text-gray-500" />
+                ) : (
+                  <ChevronDown className="w-5 h-5 text-gray-500" />
+                )}
+              </button>
+              <AnimatePresence>
+                {showKeyPhrases && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="px-4 sm:px-6 pb-4 sm:pb-6"
+                  >
+                    <div className="pt-4 border-t border-gray-200">
               <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
                 Study these phrases before practicing your speaking prompts.
               </p>
@@ -342,170 +404,47 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                   </div>
                 ))}
               </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           )}
 
-          <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <span className="text-xl sm:text-2xl">✏️</span>
-                  <span>{soloMode.title}</span>
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600">{soloMode.subtitle}</p>
-              </div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                {soloCompletedCount}/{soloChecklistLength} steps
-              </span>
-            </div>
-
-            <div className="space-y-3">
-              {soloMode.checklist.map((step) => (
-                <label
-                  key={step.id}
-                  className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
-                >
-                  <input
-                    type="checkbox"
-                    checked={completedSoloSteps.has(step.id)}
-                    onChange={() => handleSoloStepToggle(step.id)}
-                    className="mt-0.5 h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary flex-shrink-0"
-                  />
-                  <span className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                    {step.text}
-                    {step.required && <span className="text-red-500 ml-1">*</span>}
-                  </span>
-                </label>
-              ))}
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Your Sentences</h3>
-              {[0, 1, 2].map((index) => (
-                <div key={index}>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                    Sentence {index + 1}
-                  </label>
-                  <textarea
-                    value={soloData.sentences[index]}
-                    onChange={(e) => handleSentenceChange(index, e.target.value)}
-                    placeholder="Write your sentence using the Key Phrases..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
-                    rows={2}
-                  />
+          {/* Step 2: Prepare to Speak */}
+          <div className="bg-white border-2 border-gray-200 rounded-lg shadow-sm">
+            <div className="p-4 sm:p-6 border-b border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                    step2Complete ? 'bg-green-500 text-white' : 'bg-blue-500 text-white'
+                  }`}>
+                    {step2Complete ? <CheckCircle2 className="w-5 h-5" /> : '1'}
+                  </div>
+                  <div>
+                    <h2 className="text-base sm:text-lg font-bold text-gray-900">
+                      Step 1: Prepare to Speak
+                    </h2>
+                    <p className="text-xs sm:text-sm text-gray-600">
+                      Work on your own or with a partner if someone is here. This helps you get ready to speak.
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Follow-up Questions</h3>
-              {[0, 1].map((index) => (
-                <div key={index}>
-                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
-                    Question {index + 1}
-                  </label>
-                  <input
-                    type="text"
-                    value={soloData.followUpQuestions[index]}
-                    onChange={(e) => handleQuestionChange(index, e.target.value)}
-                    placeholder="Write a question you can ask a partner..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
-                  />
-                </div>
-              ))}
-            </div>
-
-            {soloMode.help && (
-              <div>
-                <button
-                  type="button"
-                  onClick={() => setShowSoloHelp((prev) => !prev)}
-                  className="text-sm font-semibold text-[#4a8ca0] hover:text-[#3a7080] transition-colors flex items-center gap-1"
-                >
-                  {showSoloHelp ? (
-                    <>
-                      <span>Hide help</span>
-                      <ChevronUp className="w-4 h-4" />
-                    </>
-                  ) : (
-                    <>
-                      <span>Need help?</span>
-                      <ChevronDown className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
-                <AnimatePresence>
-                  {showSoloHelp && (
-                    <motion.div
-                      key="solo-help"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-3 text-xs text-blue-700"
-                    >
-                      {soloMode.help.sentenceFrames.length > 0 && (
-                        <div>
-                          <p className="font-semibold text-blue-900 text-[11px] uppercase tracking-wide mb-1">
-                            Sentence Frames
-                          </p>
-                          <ul className="space-y-1">
-                            {soloMode.help.sentenceFrames.map((frame, index) => (
-                              <li key={index} className="flex items-start gap-2">
-                                <span className="text-blue-500 font-bold">•</span>
-                                <span>{frame}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {soloMode.help.questionStems.length > 0 && (
-                        <div>
-                          <p className="font-semibold text-blue-900 text-[11px] uppercase tracking-wide mb-1">
-                            Question Stems
-                          </p>
-                          <ul className="space-y-1">
-                            {soloMode.help.questionStems.map((stem, index) => (
-                              <li key={index} className="flex items-start gap-2">
-                                <span className="text-blue-500 font-bold">•</span>
-                                <span>{stem}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {soloMode.help.wordBank.length > 0 && (
-                        <div>
-                          <p className="font-semibold text-blue-900 text-[11px] uppercase tracking-wide mb-1">
-                            Word Bank
-                          </p>
-                          <div className="flex flex-wrap gap-1">
-                            {soloMode.help.wordBank.map((word, index) => (
-                              <span
-                                key={index}
-                                className="px-2 py-1 bg-blue-100 text-blue-900 rounded text-[11px]"
-                              >
-                                {word}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  {soloCompletedCount}/{soloChecklistLength} checklist
+                </span>
               </div>
-            )}
-          </div>
+            </div>
 
-          <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 flex items-center gap-2">
-              <span className="text-xl sm:text-2xl">🗣️</span>
-              <span>Speaking Prompts</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
-              Choose at least {minPrompts} prompt{minPrompts > 1 ? "s" : ""} to practice.
-            </p>
+            <div className="p-4 sm:p-6 space-y-6">
+              {/* Sub-step 1a: Choose Prompts */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">1a</span>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    Choose at least {minPrompts} prompt{minPrompts > 1 ? "s" : ""} to practice
+                  </h3>
+                </div>
             <div className="space-y-3 sm:space-y-4">
               {content.prompts.map((prompt) => {
                 const contextParts = prompt.context
@@ -603,47 +542,273 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                 );
               })}
             </div>
-            <div className="mt-4 text-sm text-gray-600">
+                <div className="text-sm text-gray-600 pt-2">
               Selected: {selectedPromptsCount} / {minPrompts} prompt{minPrompts > 1 ? "s" : ""}
+                </div>
+              </div>
+
+              {/* Visual Separator */}
+              <div className="border-t border-gray-200"></div>
+
+              {/* Sub-step 1b: Complete Checklist */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">1b</span>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    Complete the checklist
+                  </h3>
+                </div>
+                <div className="space-y-3">
+                  {soloMode.checklist.map((step) => {
+                    const isCompleted = completedSoloSteps.has(step.id);
+                    return (
+                      <label
+                        key={step.id}
+                        className={`flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer transition-all ${
+                          isCompleted
+                            ? "border-green-200 bg-green-50/50"
+                            : "border-gray-200 hover:bg-gray-50"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isCompleted}
+                          onChange={() => handleSoloStepToggle(step.id)}
+                          className="mt-0.5 h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary flex-shrink-0"
+                        />
+                        <span className={`text-sm sm:text-base leading-relaxed flex-1 ${
+                          isCompleted ? "text-gray-600 line-through" : "text-gray-700"
+                        }`}>
+                          {step.text}
+                          {step.required && <span className="text-red-500 ml-1">*</span>}
+                        </span>
+                        {isCompleted && (
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        )}
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Visual Separator */}
+              <div className="border-t border-gray-200"></div>
+
+              {/* Sub-step 1c: Write Sentences */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">1c</span>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    Write 3 sentences using the Key Phrases
+                  </h3>
+                </div>
+                {[0, 1, 2].map((index) => (
+                  <div key={index}>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                      Sentence {index + 1}
+                    </label>
+                    <textarea
+                      value={soloData.sentences[index]}
+                      onChange={(e) => handleSentenceChange(index, e.target.value)}
+                      placeholder="Write your sentence using the Key Phrases..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+                      rows={2}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Visual Separator */}
+              <div className="border-t border-gray-200"></div>
+
+              {/* Sub-step 1d: Write Follow-up Questions */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">1d</span>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    Write 2 follow-up questions you can ask a partner
+                  </h3>
+                </div>
+                {[0, 1].map((index) => (
+                  <div key={index}>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
+                      Question {index + 1}
+                    </label>
+                    <input
+                      type="text"
+                      value={soloData.followUpQuestions[index]}
+                      onChange={(e) => handleQuestionChange(index, e.target.value)}
+                      placeholder="Write a question you can ask a partner..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Help Section */}
+              {soloMode.help && (
+                <div className="border-t border-gray-200 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setShowSoloHelp((prev) => !prev)}
+                    className="text-sm font-semibold text-[#4a8ca0] hover:text-[#3a7080] transition-colors flex items-center gap-1"
+                  >
+                    {showSoloHelp ? (
+                      <>
+                        <span>Hide help</span>
+                        <ChevronUp className="w-4 h-4" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Need help?</span>
+                        <ChevronDown className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                  <AnimatePresence>
+                    {showSoloHelp && (
+                      <motion.div
+                        key="solo-help"
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg space-y-3 text-xs text-blue-700"
+                      >
+                        {soloMode.help.sentenceFrames.length > 0 && (
+                          <div>
+                            <p className="font-semibold text-blue-900 text-[11px] uppercase tracking-wide mb-1">
+                              Sentence Frames
+                            </p>
+                            <ul className="space-y-1">
+                              {soloMode.help.sentenceFrames.map((frame, index) => (
+                                <li key={index} className="flex items-start gap-2">
+                                  <span className="text-blue-500 font-bold">•</span>
+                                  <span>{frame}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {soloMode.help.questionStems.length > 0 && (
+                          <div>
+                            <p className="font-semibold text-blue-900 text-[11px] uppercase tracking-wide mb-1">
+                              Question Stems
+                            </p>
+                            <ul className="space-y-1">
+                              {soloMode.help.questionStems.map((stem, index) => (
+                                <li key={index} className="flex items-start gap-2">
+                                  <span className="text-blue-500 font-bold">•</span>
+                                  <span>{stem}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                        {soloMode.help.wordBank.length > 0 && (
+                          <div>
+                            <p className="font-semibold text-blue-900 text-[11px] uppercase tracking-wide mb-1">
+                              Word Bank
+                            </p>
+                            <div className="flex flex-wrap gap-1">
+                              {soloMode.help.wordBank.map((word, index) => (
+                                <span
+                                  key={index}
+                                  className="px-2 py-1 bg-blue-100 text-blue-900 rounded text-[11px]"
+                                >
+                                  {word}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 shadow-sm space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <span className="text-xl sm:text-2xl">🎤</span>
-                  <span>{speakingMode.title}</span>
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600">{speakingMode.subtitle}</p>
+          {/* Step 3: Practice Speaking */}
+          <div className="bg-white border-2 border-gray-200 rounded-lg shadow-sm">
+            <div className="p-4 sm:p-6 border-b border-gray-200 bg-green-50/50">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                    step3Complete ? 'bg-green-500 text-white' : 'bg-green-500 text-white'
+                  }`}>
+                    {step3Complete ? <CheckCircle2 className="w-5 h-5" /> : '2'}
+                  </div>
+                  <div>
+                    <h2 className="text-base sm:text-lg font-bold text-gray-900">
+                      Step 2: Practice Speaking with a Partner
+                    </h2>
+                    <p className="text-xs sm:text-sm text-gray-600 flex items-center gap-2">
+                      <span className="inline-block w-2 h-2 bg-green-500 rounded-full"></span>
+                      Do this when you have a partner. If you're alone, keep working on Step 1.
+                    </p>
+                  </div>
+                </div>
+                <span className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  {speakingCompletedCount}/{speakingChecklistLength} checklist
+                </span>
               </div>
-              <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                {speakingCompletedCount}/{speakingChecklistLength} steps
-              </span>
             </div>
 
+            <div className="p-4 sm:p-6 space-y-6">
+              {/* Sub-step 2a: Complete Speaking Checklist */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">2a</span>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    Complete the speaking checklist
+                  </h3>
+                </div>
             <div className="space-y-3">
-              {speakingMode.checklist.map((step) => (
+                  {speakingMode.checklist.map((step) => {
+                    const isCompleted = completedSpeakingSteps.has(step.id);
+                    return (
                 <label
                   key={step.id}
-                  className="flex items-start gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                        className={`flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer transition-all ${
+                          isCompleted
+                            ? "border-green-200 bg-green-50/50"
+                            : "border-gray-200 hover:bg-gray-50"
+                        }`}
                 >
                   <input
                     type="checkbox"
-                    checked={completedSpeakingSteps.has(step.id)}
+                          checked={isCompleted}
                     onChange={() => handleSpeakingStepToggle(step.id)}
                     className="mt-0.5 h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary flex-shrink-0"
                   />
-                  <span className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                        <span className={`text-sm sm:text-base leading-relaxed flex-1 ${
+                          isCompleted ? "text-gray-600 line-through" : "text-gray-700"
+                        }`}>
                     {step.text}
                     {step.required && <span className="text-red-500 ml-1">*</span>}
                   </span>
+                        {isCompleted && (
+                          <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        )}
                 </label>
-              ))}
+                    );
+                  })}
+                </div>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="font-semibold text-gray-900 text-sm sm:text-base">Your Best Sentence</h3>
+              {/* Visual Separator */}
+              <div className="border-t border-gray-200"></div>
+
+              {/* Sub-step 2b: Write Best Sentence */}
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">2b</span>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    Write ONE best sentence you said (or heard)
+                  </h3>
+                </div>
               {speakingMode.inputs.map((input) => (
                 <div key={input.id}>
                   <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
@@ -675,6 +840,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                 {speakingMode.noPartnerNote}
               </div>
             )}
+            </div>
           </div>
 
           {content.reflectionPrompt && (
@@ -692,14 +858,80 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
         </div>
       </div>
 
-      <div className="sticky bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 sm:p-6 z-20">
-        <div className="max-w-5xl mx-auto flex flex-col space-y-2 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div className="text-sm text-gray-600 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
-            <span>Prompts selected: {selectedPromptsCount} / {minPrompts}</span>
-            <span>Solo done: {soloCompletedCount}/{soloChecklistLength}</span>
-            <span>Speaking done: {speakingCompletedCount}/{speakingChecklistLength}</span>
+      <div className="sticky bottom-0 left-0 right-0 bg-white border-t-2 border-gray-200 shadow-lg p-4 sm:p-6 z-20">
+        <div className="max-w-5xl mx-auto">
+          {/* Requirements Checklist */}
+          <div className="mb-4 pb-4 border-b border-gray-200">
+            <p className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
+              Ready to Submit? Check all requirements:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <div className="flex items-center gap-2">
+                {selectedPromptsCount >= minPrompts ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                ) : (
+                  <span className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"></span>
+                )}
+                <span className={selectedPromptsCount >= minPrompts ? "text-gray-600" : "text-gray-400"}>
+                  {selectedPromptsCount} / {minPrompts} prompt{minPrompts > 1 ? "s" : ""} selected
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {soloChecklistReady ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                ) : (
+                  <span className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"></span>
+                )}
+                <span className={soloChecklistReady ? "text-gray-600" : "text-gray-400"}>
+                  Solo checklist complete ({soloCompletedCount}/{soloChecklistLength})
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {validSentences ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                ) : (
+                  <span className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"></span>
+                )}
+                <span className={validSentences ? "text-gray-600" : "text-gray-400"}>
+                  3 sentences written
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {validFollowUps ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                ) : (
+                  <span className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"></span>
+                )}
+                <span className={validFollowUps ? "text-gray-600" : "text-gray-400"}>
+                  2 follow-up questions written
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {speakingChecklistReady ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                ) : (
+                  <span className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"></span>
+                )}
+                <span className={speakingChecklistReady ? "text-gray-600" : "text-gray-400"}>
+                  Speaking checklist complete ({speakingCompletedCount}/{speakingChecklistLength})
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                {validBestSentence ? (
+                  <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                ) : (
+                  <span className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"></span>
+                )}
+                <span className={validBestSentence ? "text-gray-600" : "text-gray-400"}>
+                  Best sentence written
+                </span>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+
+          {/* Submit Button and Status */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex flex-col gap-1">
             {submissionError && (
               <p className="text-xs text-red-600">{submissionError}</p>
             )}
@@ -708,12 +940,18 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                 Last submitted: {new Date(submittedAt).toLocaleString()}
               </p>
             )}
+              {submissionStatus === "submitted" && (
+                <p className="text-xs text-gray-500">
+                  Resubmitting will overwrite your previous response.
+                </p>
+              )}
+            </div>
             <button
               onClick={handleSubmit}
               disabled={!canSubmit || isSubmitting}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg transition-colors duration-200 text-sm sm:text-base font-medium ${
+              className={`px-6 py-3 rounded-lg transition-colors duration-200 text-sm sm:text-base font-medium ${
                 canSubmit && !isSubmitting
-                  ? "bg-primary text-white hover:bg-primary/90"
+                  ? "bg-primary text-white hover:bg-primary/90 shadow-md"
                   : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
             >
@@ -725,11 +963,6 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
             </button>
           </div>
         </div>
-        {submissionStatus === "submitted" && (
-          <p className="mt-2 text-xs text-gray-500">
-            Resubmitting will overwrite your previous response.
-          </p>
-        )}
       </div>
     </div>
   );
