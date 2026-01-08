@@ -107,7 +107,7 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
 
           {/* Instructions */}
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 sm:p-6">
-            <h2 className="text-lg font-semibold text-blue-900 mb-2">🩺 Healthcare Warmup</h2>
+            <h2 className="text-lg font-semibold text-blue-900 mb-2">🗣️ Speaking Warmup</h2>
             <p className="text-blue-800">Choose your warmup style! Work with a partner when available.</p>
           </div>
 
