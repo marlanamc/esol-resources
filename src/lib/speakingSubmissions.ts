@@ -7,8 +7,8 @@ export interface DraftData {
     assignmentId?: string | null;
     selectedPromptIds: string[];
     solo: {
-        sentences: string[3];
-        followUpQuestions: string[2];
+        sentences: [string, string, string];
+        followUpQuestions: [string, string];
         completedStepIds: string[];
     };
     speaking: {

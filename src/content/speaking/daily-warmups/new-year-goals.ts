@@ -104,7 +104,7 @@ export const newYearGoalsDailyWarmup: SpeakingActivityContent = {
     // Optional extension for higher students, still aligned with today's grammar theme
     {
       id: "extension",
-      level: "challenge",
+      level: "advanced",
       text: "Challenge: Say your goal again and include: (1) a preposition (in/at/on/for/with), and (2) a connector (because/so/but).",
       context:
         "After you speak, quickly notice your structure words (I, a/an/the, in/at/on, because/so/but)."

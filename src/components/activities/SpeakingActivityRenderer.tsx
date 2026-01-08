@@ -108,8 +108,8 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
       if (isMounted) {
         setSelectedPrompts(new Set(draft.selectedPromptIds));
         setSoloData({
-          sentences: draft.solo.sentences,
-          followUpQuestions: draft.solo.followUpQuestions,
+          sentences: draft.solo.sentences as [string, string, string],
+          followUpQuestions: draft.solo.followUpQuestions as [string, string],
         });
         setSpeakingData({ bestSentence: draft.speaking.bestSentence });
         setCompletedSoloSteps(new Set(draft.solo.completedStepIds));
@@ -151,13 +151,13 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   }, [activityId, assignmentId]);
 
   useEffect(() => {
-    saveDraft({
+      saveDraft({
       activityId,
       assignmentId,
       selectedPromptIds: Array.from(selectedPrompts),
       solo: {
-        sentences: soloData.sentences,
-        followUpQuestions: soloData.followUpQuestions,
+        sentences: soloData.sentences as [string, string, string],
+        followUpQuestions: soloData.followUpQuestions as [string, string],
         completedStepIds: Array.from(completedSoloSteps),
       },
       speaking: {
