@@ -3,15 +3,72 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const longTermCareerGoals_2026_03_19: SpeakingActivityContent = {
   type: "speaking",
   title: "3/19/26: Long-Term Career Goals (Future Perfect Continuous)",
-  description: "Practice using future perfect continuous (will have been + -ing) to talk about long-term milestones and ongoing future achievements",
+  description: "Practice future perfect continuous. Focus: duration and ongoing nature of future goals.",
 
   keyPhrases: [
     { phrase: "By next year, I will have been...", example: "By next year, I will have been living in the U.S. for five years." },
-    { phrase: "By the time I..., I will have been...", example: "By the time I graduate, I will have been studying English for three years." },
+    { phrase: "By [time], I will have been...", example: "By December, I will have been studying English for three years." },
     { phrase: "In [time], I will have been...", example: "In two years, I will have been working at my company for a decade." },
-    { phrase: "Will you have been...?", example: "Will you have been working here long enough to get a raise?" },
-    { phrase: "I will have been... for...", example: "I will have been saving money for two years by then." },
+    { phrase: "Will you have been...?", example: "Will you have been working there long enough to get a raise?" },
+    { phrase: "I will have been...", example: "I will have been saving money for two years by then." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences using future perfect continuous", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "By [time], I will have been [verb-ing] for [duration]...",
+        "In [time], I will have been [verb-ing]...",
+        "Will you have been [verb-ing]...?",
+        "I will have been [verb-ing] since [time]...",
+        "By [time], I will have [past participle]...",
+        "I will have been working toward [goal]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "career", "goals", "future", "milestone", "achievement", "accomplishment",
+        "long-term", "duration", "timeline", "progress", "development",
+        "education", "learning", "skills", "experience", "growth", "advancement",
+        "by next year", "in five years", "by december", "since", "until"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {

@@ -3,16 +3,74 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const pharmacyInstructions_2026_04_30: SpeakingActivityContent = {
   type: "speaking",
   title: "4/30/26: Pharmacy Instructions (Passive Voice)",
-  description: "Practice understanding pharmacy instructions using passive voice (is taken, should be stored, is prescribed, is refilled)",
+  description: "Practice pharmacy instructions. Focus: passive voice for medication instructions and procedures.",
 
   keyPhrases: [
-    { phrase: "This medicine is taken...", example: "This medicine is taken with food. It is taken twice a day." },
+    { phrase: "This medicine is taken...", example: "This medicine is taken with food." },
     { phrase: "It should be stored...", example: "It should be stored in a cool, dry place." },
-    { phrase: "It is prescribed for...", example: "It is prescribed for pain. It is prescribed for infections." },
     { phrase: "The prescription is refilled...", example: "The prescription is refilled every 30 days." },
-    { phrase: "You are advised to...", example: "You are advised to avoid alcohol. You are advised to drink water." },
-    { phrase: "Side effects may be experienced.", example: "Drowsiness may be experienced. Nausea may be experienced." },
+    { phrase: "You are advised to...", example: "You are advised to avoid alcohol." },
+    { phrase: "Side effects may be experienced.", example: "Drowsiness may be experienced. Nausea may be felt." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences using passive voice for pharmacy instructions", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "This medicine is [past participle]...",
+        "[Forms/Papers] are filled out...",
+        "Your name is called...",
+        "Your temperature is taken...",
+        "You are given [noun]...",
+        "Instructions are provided...",
+        "A test is ordered...",
+        "The prescription is refilled...",
+        "Side effects may be [past participle]...",
+        "You are advised to [verb]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "clinic", "hospital", "doctor", "nurse", "patient", "appointment", "results", "test",
+        "medicine", "prescription", "instructions", "follow-up", "referral", "specialist", "emergency", "MyChart", "message", "call", "phone", "healthcare"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {
@@ -58,4 +116,3 @@ export const pharmacyInstructions_2026_04_30: SpeakingActivityContent = {
   minPromptsRequired: 2,
   released: false
 };
-

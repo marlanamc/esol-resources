@@ -3,7 +3,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
   type: "speaking",
   title: "3/10/26: Job Application Talk-Through (Present Perfect Continuous)",
-  description: "Practice using present perfect continuous (have/has been + -ing) to talk about ongoing job search activities and work experience",
+  description: "Practice job search language. Focus: present perfect continuous for ongoing activities.",
 
   keyPhrases: [
     { phrase: "I have been looking for...", example: "I have been looking for a full-time job for three months." },
@@ -12,6 +12,63 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
     { phrase: "I have been applying to...", example: "I have been applying to restaurants and stores every week." },
     { phrase: "I have been trying to...", example: "I have been trying to get an interview at Target." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences using present perfect continuous", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "I have been [verb-ing] for [time]...",
+        "How long have you been [verb-ing]...?",
+        "I have been working as [position] since [time]...",
+        "I have been applying to [places] every [frequency]...",
+        "I have been trying to [verb]...",
+        "I have been [present perfect] vs I had been [past perfect]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "looking", "searching", "applying", "interview", "job", "career", "position",
+        "work", "experience", "skills", "qualifications", "resume", "cover letter",
+        "company", "organization", "industry", "field", "opportunity", "challenge",
+        "progress", "duration", "timeline", "achievement", "success", "rejection"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {
@@ -57,4 +114,3 @@ export const jobApplicationTalkThrough_2026_03_10: SpeakingActivityContent = {
   minPromptsRequired: 2,
   released: false
 };
-

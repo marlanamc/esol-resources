@@ -148,16 +148,99 @@ export interface KeyPhrase {
     example?: string;
 }
 
+export type ActivityProgressStatus = "in_progress" | "completed" | "submitted";
+
+export interface SoloStep {
+    id: string;
+    text: string;
+    required?: boolean;
+}
+
+export interface SpeakingStep {
+    id: string;
+    text: string;
+    required?: boolean;
+}
+
+export interface SoloModeConfig {
+    title: string;
+    subtitle: string;
+    checklist: Array<{
+        id: string;
+        text: string;
+        required: boolean;
+    }>;
+    inputs: Array<{
+        id: string;
+        label: string;
+        type: "text" | "textarea";
+        required: boolean;
+    }>;
+    help: {
+        sentenceFrames: string[];
+        questionStems: string[];
+        wordBank: string[];
+    };
+}
+
+export interface SpeakingModeConfig {
+    title: string;
+    subtitle: string;
+    checklist: Array<{
+        id: string;
+        text: string;
+        required: boolean;
+    }>;
+    inputs: Array<{
+        id: string;
+        label: string;
+        type: "text" | "textarea";
+        required: boolean;
+    }>;
+    noPartnerNote?: string;
+}
+
+export interface SpeakingSubmission {
+    activityId: string;
+    assignmentId?: string | null;
+    userId: string;
+    selectedPromptIds: string[];
+    solo: {
+        sentences: [string, string, string];
+        followUpQuestions: [string, string];
+        completedStepIds: string[];
+    };
+    speaking: {
+        bestSentence: string;
+        completedStepIds: string[];
+    };
+    submittedAt: string;
+    status: "submitted";
+}
+
 export interface SpeakingActivityContent {
     type: "speaking";
     title: string;
     description?: string;
     keyPhrases?: KeyPhrase[];
     prompts: SpeakingPrompt[];
-    reflectionPrompt: string;
+    reflectionPrompt?: string;
     reflectionMinLength?: number;
     minPromptsRequired?: number;
     released?: boolean; // Control visibility like quiz releases
+    
+    // New two-phase warm-up structure
+    soloMode?: SoloModeConfig;
+    speakingMode?: SpeakingModeConfig;
+    
+    // Legacy structure (for backward compatibility)
+    soloSteps?: SoloStep[];
+    speakingSteps?: SpeakingStep[];
+    soloHelp?: {
+        sentenceFrames: string[];
+        questionStems: string[];
+        wordBank: string[];
+    };
 }
 
 export interface InteractiveGuideContent {

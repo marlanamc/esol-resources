@@ -3,7 +3,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
   title: "Passive Voice Practice (use after 4/28)",
-  description: "Practice using passive voice in speaking to describe processes, experiences, and situations - use after passive voice is taught on 4/28",
+  description: "Practice passive voice. Focus: when to use passive vs active voice.",
 
   keyPhrases: [
     { phrase: "It was built in...", example: "The bridge was built in 1950." },
@@ -13,6 +13,64 @@ export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
     { phrase: "I was told that...", example: "I was told that the office is closed today." },
     { phrase: "The car is being repaired.", example: "My car is being repaired right now." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 3 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences using passive voice", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "It was [past participle] in [year/place]...",
+        "I was [past participle] in [year/place]...",
+        "It's made of [material]...",
+        "[Subject] has been [past participle]...",
+        "I was told that [clause]...",
+        "[Subject] is being [past participle]...",
+        "By [time], [subject] will have been [past participle]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "built", "created", "made", "designed", "constructed", "founded", "established",
+        "repaired", "updated", "changed", "improved", "renovated", "expanded",
+        "canceled", "postponed", "scheduled", "confirmed", "approved", "rejected",
+        "process", "handle", "manage", "organize", "coordinate", "implement"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {

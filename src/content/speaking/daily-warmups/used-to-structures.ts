@@ -3,15 +3,72 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const usedToStructuresDailyWarmup: SpeakingActivityContent = {
   type: "speaking",
   title: "4/9/26: Used To / Be Used To / Get Used To",
-  description: "Practice the tricky differences between 'used to', 'be used to', and 'get used to' structures",
+  description: "Practice used to structures. Focus: past habits vs current comfort vs ongoing adjustment.",
 
   keyPhrases: [
     { phrase: "I used to...", example: "I used to live in Mexico, but now I live here." },
-    { phrase: "I'm used to...", example: "I'm used to waking up early for work." },
-    { phrase: "I'm getting used to...", example: "I'm getting used to the cold weather." },
-    { phrase: "I'm not used to...", example: "I'm not used to speaking English all day." },
-    { phrase: "I get to...", example: "I get to see my family this weekend!" },
+    { phrase: "I'm (not) used to...", example: "I'm not used to waking up early for work." },
+    { phrase: "I'm getting used to...", example: "I'm getting used to the cold weather here." },
+    { phrase: "I can't get used to...", example: "I can't get used to the traffic patterns." },
+    { phrase: "It used to be...", example: "It used to be difficult to find affordable housing." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 4 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences mixing used to structures", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "I used to [verb]...",
+        "I didn't use to [verb]...",
+        "I'm (not) used to [verb-ing]...",
+        "I'm getting used to [verb-ing]...",
+        "I can't get used to [verb-ing]...",
+        "It used to be [adjective] to [verb]...",
+        "Now I'm used to [verb-ing]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "used to", "be used to", "get used to", "accustomed", "adjust", "change",
+        "habit", "routine", "lifestyle", "different", "same", "easy", "hard",
+        "difficult", "comfortable", "uncomfortable", "transition", "adapt"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {
