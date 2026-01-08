@@ -141,6 +141,10 @@ export interface SpeakingPrompt {
     text: string;
     level?: 'beginner' | 'intermediate' | 'advanced';
     context?: string;
+
+    // For warmup mode: Instructions for solo vs partnered practice
+    soloInstructions?: string;
+    partnerInstructions?: string;
 }
 
 export interface KeyPhrase {
@@ -228,11 +232,17 @@ export interface SpeakingActivityContent {
     reflectionMinLength?: number;
     minPromptsRequired?: number;
     released?: boolean; // Control visibility like quiz releases
-    
+
+    // NEW: Enable simple warmup mode
+    warmupMode?: boolean;  // When true, use simple participation tracking
+
+    // Warmup-specific settings
+    participationPoints?: number;  // Default: 3 points
+
     // New two-phase warm-up structure
     soloMode?: SoloModeConfig;
     speakingMode?: SpeakingModeConfig;
-    
+
     // Legacy structure (for backward compatibility)
     soloSteps?: SoloStep[];
     speakingSteps?: SpeakingStep[];

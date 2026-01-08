@@ -5,6 +5,14 @@ export const healthyHabitTracker_2026_05_26: SpeakingActivityContent = {
   title: "5/26/26: Healthy Habit Tracker (Verbs + Gerunds)",
   description: "Practice using verbs that take gerunds (enjoy, avoid, quit, stop, keep, finish, consider, suggest) to talk about healthy habits",
 
+  // NEW: Enable simple warmup mode
+  warmupMode: true,
+  participationPoints: 3,
+
+  // NEW: Enable simple warmup mode
+  warmupMode: true,
+  participationPoints: 3,
+
   keyPhrases: [
     { phrase: "I enjoy... (gerund)", example: "I enjoy exercising in the morning. I enjoy cooking healthy meals." },
     { phrase: "I avoid / I quit / I stopped... (gerund)", example: "I avoid eating junk food. I quit smoking. I stopped drinking soda." },
@@ -13,100 +21,75 @@ export const healthyHabitTracker_2026_05_26: SpeakingActivityContent = {
     { phrase: "I'm considering / I suggest... (gerund)", example: "I'm considering joining a gym. I suggest trying meditation." },
   ],
 
-  soloMode: {
-    title: "Solo Mode (10 minutes)",
-    subtitle: "Do this first while students arrive.",
-    checklist: [
-      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
-      { id: "s2", text: "Write 3 sentences using the Key Phrases", required: true },
-      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
-      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
-    ],
-    inputs: [
-      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
-      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
-      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
-      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
-      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
-    ],
-    help: {
-      sentenceFrames: [
-        "I enjoy... (gerund)",
-        "I avoid / I quit / I stopped... (gerund)",
-        "I keep / I continue... (gerund)",
-        "I finished... (gerund)",
-        "I'm considering / I suggest... (gerund)"
-      ],
-      questionStems: [
-        "Why?",
-        "When?",
-        "Where?",
-        "How often?",
-        "Who with?",
-        "What is it like?"
-      ],
-      wordBank: [
-        "healthy", "habits", "enjoy", "avoid", "quit", "stop", "keep", "finish", "consider", "suggest", "exercise", "cook", "water"
-      ]
-    }
-  },
+  // LEGACY: Kept for backward compatibility
+  //
 
-  speakingMode: {
-    title: "Speaking Mode (10 minutes)",
-    subtitle: "Start when your teacher says GO.",
-    checklist: [
-      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
-      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
-      { id: "p3", text: "Switch roles and repeat", required: true },
-      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
-    ],
-    inputs: [
-      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
-    ],
-    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
-  },
+  // LEGACY: Kept for backward compatibility
+  //
 
   prompts: [
     {
       id: "prompt-1",
       level: "beginner",
       text: "Use 'enjoy' and 'like' + gerund: What healthy habits do you enjoy doing? What don't you like doing?",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "I enjoy walking every morning. I like cooking healthy meals. I don't enjoy exercising at the gym."
     },
     {
       id: "prompt-2",
       level: "beginner",
       text: "Use 'avoid' and 'quit/stop' + gerund: What unhealthy habits do you avoid? What have you quit or stopped doing?",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "I avoid eating fast food. I quit smoking. I stopped drinking soda every day."
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "Use 'keep' and 'continue' + gerund: What good habits do you keep doing? What do you keep forgetting to do?",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "I keep drinking water throughout the day. I continue exercising three times a week. I keep forgetting to take my vitamins."
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "Use 'finish' + gerund: Talk about healthy activities you completed recently.",
+    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
+    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
+    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
+    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "I finished reading a health book. I finished preparing my meals for the week. I finished organizing my schedule to include exercise."
     },
     {
       id: "prompt-5",
       level: "intermediate",
       text: "Use 'consider' and 'suggest' + gerund: What healthy changes are you considering? What do you suggest to others?",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
+    soloInstructions: "List your thoughts and examples before speaking",
+    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "I'm considering joining a yoga class. I'm considering trying a new diet. I suggest walking instead of driving. I suggest drinking more water."
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Full healthy habits conversation: Use multiple verbs + gerunds (enjoy, avoid, quit, keep, finish, consider, suggest) to describe your wellness journey.",
+    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
+    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
+    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
+    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'I enjoy cooking healthy meals at home. I avoid eating processed foods. I quit drinking coffee every morning. I keep trying new vegetables. I finished reading a nutrition book. I'm considering starting a meditation practice. I suggest tracking your water intake.'"
     },
-  ],
+  ],// 
 
-  reflectionPrompt: "Which verb + gerund combination is most useful for talking about healthy habits? Which is hardest to remember?",
-  reflectionMinLength: 35,
-  minPromptsRequired: 2,
-  released: false
+  reflectionPrompt: "Which verb + gerund combination is most useful for talking about healthy habits? Which is hardest to remember?",// 
+  reflectionMinLength: 35,//  released: false
 };
