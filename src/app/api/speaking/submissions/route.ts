@@ -124,13 +124,11 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: 'activityId is required' }, { status: 400 });
         }
 
-        const submission = await prisma.speakingSubmission.findUnique({
+        const submission = await prisma.speakingSubmission.findFirst({
             where: {
-                userId_activityId_assignmentId: {
-                    userId: user.id,
-                    activityId,
-                    assignmentId: assignmentId || null,
-                },
+                userId: user.id,
+                activityId,
+                assignmentId: assignmentId ?? null,
             },
         });
 
