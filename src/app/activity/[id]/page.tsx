@@ -119,12 +119,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         }
     }
 
-    const progressRecord = await prisma.activityProgress.findUnique({
+    const progressRecord = await prisma.activityProgress.findFirst({
         where: {
-            userId_activityId: {
-                userId,
-                activityId: id,
-            },
+            userId,
+            activityId: id,
+            assignmentId: assignmentId ?? null,
         },
         select: {
             progress: true,

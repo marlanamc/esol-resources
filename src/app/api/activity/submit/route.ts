@@ -65,24 +65,35 @@ export async function POST(request: Request) {
     });
 
     // Update activity progress to completed
-    await prisma.activityProgress.upsert({
-        where: {
-            userId_activityId: {
+    const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
+    const progressWhere = {
+        userId,
+        activityId,
+        assignmentId: assignmentKey,
+    };
+    const existingProgress = await prisma.activityProgress.findFirst({
+        where: progressWhere,
+    });
+
+    if (existingProgress) {
+        await prisma.activityProgress.update({
+        where: { id: existingProgress.id },
+            data: {
+                progress: 100,
+                status: 'completed',
+            },
+        });
+    } else {
+        await prisma.activityProgress.create({
+            data: {
                 userId,
                 activityId,
+                assignmentId: typeof assignmentId === "string" ? assignmentId : null,
+                progress: 100,
+                status: 'completed',
             },
-        },
-        create: {
-            userId,
-            activityId,
-            progress: 100,
-            status: 'completed',
-        },
-        update: {
-            progress: 100,
-            status: 'completed',
-        },
-    });
+        });
+    }
 
     // Award points (calculated server-side)
     if (calculatedPoints > 0) {
