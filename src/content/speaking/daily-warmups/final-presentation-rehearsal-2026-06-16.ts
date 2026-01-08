@@ -10,8 +10,6 @@ export const finalPresentationRehearsal_2026_06_16: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "My goal is...", example: "My goal is to get a better job." },
@@ -34,16 +32,12 @@ export const finalPresentationRehearsal_2026_06_16: SpeakingActivityContent = {
       text: "Plan your talk (60–90 seconds): goal, what you learned, one success, next steps.",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Write 4 bullet points only."
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Rehearse with a partner. Partner asks 2 questions.",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "Practice clear answers and follow-up questions."
@@ -54,28 +48,18 @@ export const finalPresentationRehearsal_2026_06_16: SpeakingActivityContent = {
       text: "Improve: Add one detail (a number, date, time, or example).",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Example: 'I studied 2 times a week.'"
     },
     {
       id: "prompt-4",
       level: "advanced",
       text: "Small group rehearsal: Present to 3–4 classmates and answer questions.",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "Focus on volume, pace, and eye contact."
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Feedback round: Give one compliment and one suggestion to a partner.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: I liked..., Next time you could..."
     },
   ],// 

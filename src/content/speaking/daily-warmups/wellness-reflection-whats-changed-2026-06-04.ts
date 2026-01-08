@@ -10,8 +10,6 @@ export const wellnessReflectionWhatsChanged_2026_06_04: SpeakingActivityContent 
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I've started...", example: "I've started drinking more water." },
@@ -34,16 +32,12 @@ export const wellnessReflectionWhatsChanged_2026_06_04: SpeakingActivityContent 
       text: "Talk about 2 changes you have made for your health recently.",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use: I've started..., I've stopped..."
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Ongoing effort: Share one thing you’ve been trying to improve. How long have you been trying?",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: I've been trying to..., for/since..."
@@ -54,28 +48,18 @@ export const wellnessReflectionWhatsChanged_2026_06_04: SpeakingActivityContent 
       text: "Partner follow-ups: Ask 3 follow-up questions to get details.",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "How often? Why? What helped you? What was hard?"
     },
     {
       id: "prompt-4",
       level: "advanced",
       text: "Advice: Tell your partner one small habit that can help this week.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: You could try..., It's a good idea to..."
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Mini-share: Say one success and one challenge to the class.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: I'm proud that..., I'm still working on..."
     },
   ],// 

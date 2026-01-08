@@ -10,8 +10,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "Where do you live?", example: "Where do you live? / I live in Jamaica Plain." },
@@ -28,8 +26,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "beginner",
       text: "Answer these questions about your home: Where do you live? How many rooms does it have? What is your favorite room?",
       context: "Practice answering WH-questions with complete sentences. Start your answer with the question word or key info.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Answer the questions in writing: Where do you live? How many rooms? What is your favorite room? Practice saying answers aloud",
       partnerInstructions: "Take turns asking and answering: Where do you live? How many rooms? What is your favorite room? Give complete answers."
     },
@@ -38,8 +34,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "beginner",
       text: "Ask your partner 4 questions about their home using Who, What, Where, and How many.",
       context: "Examples: Where do you live? Who do you live with? What floor is it on? How many bathrooms do you have?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Write 4 questions about someone's home using Who, What, Where, How many. Practice asking them aloud",
       partnerInstructions: "Partner A: Ask 4 questions about partner's home. Partner B: Answer completely, then switch roles."
     },
@@ -48,8 +42,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Apartment hunt: You're looking for an apartment in Allston or Dorchester. Ask a landlord 6 questions using all the WH-words.",
       context: "Use: Where (location), When (available), How much (rent), What (included), Why (previous tenant left), Who (pays utilities)",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
       soloInstructions: "List 6 questions you'd ask a landlord using all WH-words. Practice saying them in order",
       partnerInstructions: "Role-play apartment hunting: One is landlord, one is renter asking questions using all WH-words."
     },
@@ -58,8 +50,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Ask your partner about their neighborhood: What is it like? Where is the closest grocery store? How do you get to class from home?",
       context: "Practice 'What is ___ like?' for descriptions. Use 'Where' for location and 'How' for transportation/methods.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Think about your neighborhood: What is it like? Where are important places? How do you get around?",
       partnerInstructions: "Partner A: Describe your neighborhood (2 min). Partner B: Ask follow-up questions about location and transportation."
     },
@@ -68,8 +58,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Your friend is moving to Boston. They ask you about housing. What questions should they ask a landlord? Give 5 examples.",
       context: "Think about: rent, lease length, utilities, repairs, parking, laundry, pets, quiet hours, heat included",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "List 5 important questions someone should ask a landlord when looking for housing in Boston",
       partnerInstructions: "Discuss housing search: What questions should someone ask a landlord? Take turns giving examples."
     },
@@ -78,8 +66,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "advanced",
       text: "Question practice: Create 8 questions about housing (one for each WH-word: Who, What, Where, When, Why, How, Which, Whose).",
       context: "Example: Whose responsibility is it to fix the heat? Which floor is best for families? Check your question word order!",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Create one question for each WH-word about housing. Practice saying them with correct word order",
       partnerInstructions: "Take turns asking questions using different WH-words. Partner answers and checks question formation."
     },
@@ -88,8 +74,6 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       level: "advanced",
       text: "Role-play: You're calling about an apartment ad. Ask as many questions as you can in 2 minutes. Partner: answer as the landlord.",
       context: "Speed and accuracy! Use correct word order: Question word + auxiliary verb + subject + main verb",
-    soloInstructions: "Read the scenario and think about what you would say in this situation",
-    partnerInstructions: "Role-play the scenario: Take turns being different characters",
       soloInstructions: "Prepare 8-10 questions you'd ask about an apartment. Practice saying them quickly with correct grammar",
       partnerInstructions: "Role-play apartment inquiry call: One calls about ad and asks questions, one answers as landlord."
     },

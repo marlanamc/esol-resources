@@ -10,8 +10,6 @@ export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "It was built in...", example: "The bridge was built in 1950." },
@@ -35,18 +33,12 @@ export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
       text: "Where were you born? Where was your hometown founded? Describe some things that were built there.",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Practice simple past passive: 'I was born in...' 'The city was founded in...' 'This building was constructed in...'"
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Describe something that was made or created in your country. What is it made of? How is it made?",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use passive to describe processes: 'Coffee is grown in the mountains. The beans are roasted and then ground.'"
     },
     {
@@ -55,18 +47,12 @@ export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
       text: "Tell me about a time something went wrong (a mistake was made, something was forgotten, you were misunderstood).",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Example: 'My appointment was scheduled for the wrong day' or 'I was given incorrect information.'"
     },
     {
       id: "prompt-4",
       level: "advanced",
       text: "Describe the hiring process at a job. Use passive voice: 'Applications are reviewed...' 'Candidates are interviewed...'",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Practice: 'Applications are submitted online. Resumes are screened. Selected candidates are called for interviews.'"
     },
     {
@@ -75,18 +61,12 @@ export const passiveVoiceDailyWarmup: SpeakingActivityContent = {
       text: "What changes have been made in your neighborhood recently? What is being built or renovated?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Present perfect passive: 'A new park has been created' or Present continuous passive: 'The road is being repaired.'"
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "By next year, what will have been accomplished in your community or workplace?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Future perfect passive: 'By next summer, the new school will have been built' or 'The project will have been completed.'"
     },
   ],// 

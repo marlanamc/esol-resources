@@ -10,8 +10,6 @@ export const yearInReviewCarousel_2026_06_09: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "The most useful unit for me was...", example: "The most useful unit for me was Housing." },
@@ -34,8 +32,6 @@ export const yearInReviewCarousel_2026_06_09: SpeakingActivityContent = {
       text: "Station 1: Most useful unit — choose one and explain why.",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use: because + one example."
     },
     {
@@ -44,38 +40,24 @@ export const yearInReviewCarousel_2026_06_09: SpeakingActivityContent = {
       text: "Station 2: Best phrase — share one phrase you used in real life.",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Say where you used it (doctor, work, school, store)."
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "Station 3: Biggest improvement — speaking, listening, reading, writing, vocabulary, confidence.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: I've improved in..., I'm better at..."
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "Station 4: One challenge + one strategy that helped you.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: At first..., then..., now..."
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Station 5: Advice for new Level 3 students — give 3 tips.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: You should..., Don't be afraid to..., It's helpful to..."
     },
   ],// 

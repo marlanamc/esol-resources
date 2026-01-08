@@ -10,8 +10,6 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "How do you get to...?", example: "How do you get to work every day?" },
@@ -27,8 +25,6 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
       level: "beginner",
       text: "How do you get to work or school? Describe your daily commute.",
       context: "Talk about what transportation you use and how long it takes.",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       soloInstructions: "Think through your daily commute: What transportation do you use? How long does it take? Practice saying it with key phrases",
       partnerInstructions: "Partner A: Describe your commute (2 min). Partner B: Ask questions about their transportation routine."
     },
@@ -36,8 +32,6 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
       id: "prompt-2",
       level: "beginner",
       text: "Describe your neighborhood. What places can you walk to?",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       soloInstructions: "List places you can walk to in your neighborhood and practice saying 'I usually walk to...'",
       partnerInstructions: "Take turns describing neighborhoods: What can you walk to? What do you need transportation for?"
     },
@@ -46,8 +40,6 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
       level: "intermediate",
       text: "Using present perfect: What places in your city have you visited? What places haven't you been to yet?",
       context: "Practice: 'I have been to the library many times, but I haven't visited the museum yet.'",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "List places you've been to and haven't been to using present perfect tense",
       partnerInstructions: "Partner A: Share 3 places you've visited with present perfect. Partner B: Ask about places they haven't been."
     },
@@ -56,8 +48,6 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
       level: "advanced",
       text: "Using past perfect: Tell me about a time you got lost. Where had you been trying to go? What had happened?",
       context: "Example: 'I had been looking for the post office when I realized I had taken the wrong bus.'",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Think of a time you got lost: Use past perfect to explain what had happened before getting lost",
       partnerInstructions: "Share 'getting lost' stories: Use past perfect to explain the sequence of events that led to getting lost."
     },
@@ -66,8 +56,6 @@ export const transportationBasicsDailyWarmup: SpeakingActivityContent = {
       level: "advanced",
       text: "Using future perfect: By this time next year, what transportation skills will you have learned or improved?",
       context: "Example: 'By next December, I will have gotten my driver's license and bought a car.'",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       soloInstructions: "Think about transportation goals: What skills will you have learned by next year? Write future perfect sentences",
       partnerInstructions: "Discuss transportation goals: By when will you have learned to drive? Gotten a license? Bought a car?"
     },

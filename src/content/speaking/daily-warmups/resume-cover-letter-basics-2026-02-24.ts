@@ -10,8 +10,6 @@ export const resumeCoverLetterBasics_2026_02_24: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I must include...", example: "I must include my contact information at the top of my resume." },
@@ -35,16 +33,12 @@ export const resumeCoverLetterBasics_2026_02_24: SpeakingActivityContent = {
       text: "Resume requirements: What information must you include on a resume? What should you include but is optional?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use modals: I must include... I should also add... I can include... You have to put..."
     },
     {
       id: "prompt-2",
       level: "beginner",
       text: "Asking for help: You need help with your resume. Use 3 different polite questions to ask someone for help.",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "Practice: Can you...? Could you...? Would you...? May I ask you to...?"
@@ -55,16 +49,12 @@ export const resumeCoverLetterBasics_2026_02_24: SpeakingActivityContent = {
       text: "Cover letter advice: Give your partner 4 pieces of advice about writing a cover letter using different modals.",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: You should... You must... You have to... You could... You may want to..."
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "Reference request role-play: Call your former boss and politely ask if you may use them as a reference.",
-    soloInstructions: "Read the scenario and think about what you would say in this situation",
-    partnerInstructions: "Role-play the scenario: Take turns being different characters",
     soloInstructions: "Read the scenario and think about what you would say in this situation",
     partnerInstructions: "Role-play the scenario: Take turns being different characters",
       context: "Include: polite greeting, explain the job, use 'may' or 'could', thank them. Boston tip: Mention MA WorkSource or MassHire if it's a workforce program."
@@ -75,28 +65,18 @@ export const resumeCoverLetterBasics_2026_02_24: SpeakingActivityContent = {
       text: "Application requirements: Talk about a job application you completed. What did you have to submit? What could you skip?",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "I had to submit... I must have... I could choose whether to... I should have included..."
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Resume review: Your partner shows you their resume. Give feedback using at least 4 different modals with different levels of strength.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Vary strength: You must change... (strong) / You should consider... (medium) / You could try... (soft suggestion) / You may want to... (very soft)"
     },
     {
       id: "prompt-7",
       level: "advanced",
       text: "Professional email: You submitted your resume to a Boston company (hospital, restaurant, store). Practice calling to follow up. Use 3+ polite modals.",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Example: Could you tell me if... May I ask about... I would like to... Should I send...?"
     },
   ],// 

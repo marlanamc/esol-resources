@@ -10,8 +10,6 @@ export const communityResourcesPitch_2026_06_02: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "A good resource is...", example: "A good resource is the community health center." },
@@ -34,26 +32,18 @@ export const communityResourcesPitch_2026_06_02: SpeakingActivityContent = {
       text: "Think of one helpful place in the community. What is it? Where is it?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Examples: library, school, clinic, food pantry, YMCA, career center."
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Give a 45-second pitch: What is it, who is it for, what do you do there, why do you recommend it?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Include 1 example and 1 tip."
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "Directions practice: Explain how to get there from your home (walk/bus/subway).",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Use: First..., then..., transfer at..., get off at..., it's next to..."
@@ -64,16 +54,12 @@ export const communityResourcesPitch_2026_06_02: SpeakingActivityContent = {
       text: "MBTA problem-solving: Your partner is confused about the route. Clarify and confirm the steps.",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Use: Do you mean...? Let me repeat..., Did you say ___ or ___?"
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Partner Q&A: Ask 2 questions about the resource (hours, cost, documents).",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "Use: Do you need to...? Is it open on...?"

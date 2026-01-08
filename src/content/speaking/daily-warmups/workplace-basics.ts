@@ -10,8 +10,6 @@ export const workplaceBasicsDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I work as a...", example: "I work as a cashier at a grocery store." },
@@ -41,15 +39,11 @@ export const workplaceBasicsDailyWarmup: SpeakingActivityContent = {
       id: "prompt-3",
       level: "beginner",
       text: "Describe your coworkers or your manager. Who do you work with?",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "You need to ask your boss for a day off. What will you say?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Practice requesting time off politely and explaining why you need it."
     },
     {

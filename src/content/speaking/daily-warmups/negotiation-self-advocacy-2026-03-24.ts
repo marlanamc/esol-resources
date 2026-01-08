@@ -10,8 +10,6 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "I'd like to... (infinitive)", example: "I'd like to change my schedule." },
@@ -36,26 +34,18 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
       text: "Use INFINITIVES to explain what you need and want: I need to... / I want to... / I'd like to... / I plan to...",
     soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
     partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'I'd like to change my schedule. I need to pick up my child at 3pm. I want to work mornings instead of evenings.'"
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Use GERUNDS to explain what you prefer and enjoy: I enjoy... / I prefer... / I like...",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Example: 'I enjoy working with customers. I prefer having weekends off. I like starting early in the morning.'"
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "Negotiation: Use both infinitives AND gerunds. What do you WANT TO do vs. What do you ENJOY DOING?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Infinitive (goal): 'I want to work full-time.' Gerund (preference): 'I enjoy working with people.' Mix both in your answer!"
@@ -66,8 +56,6 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
       text: "Ask your manager politely: Would you consider...? (gerund) / Would it be possible to...? (infinitive)",
     soloInstructions: "Write down 3-4 questions you want to ask about this topic",
     partnerInstructions: "Take turns asking and answering questions on this topic",
-    soloInstructions: "Write down 3-4 questions you want to ask about this topic",
-    partnerInstructions: "Take turns asking and answering questions on this topic",
       context: "Gerund: 'Would you consider changing my shift?' Infinitive: 'Would it be possible to work Tuesdays and Thursdays?'"
     },
     {
@@ -76,18 +64,12 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
       text: "Complex negotiation: Use verbs that take infinitives (decide to, plan to, hope to) AND verbs that take gerunds (avoid, finish, keep, suggest).",
     soloInstructions: "Practice saying this prompt aloud and think about your answer",
     partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
-    soloInstructions: "Practice saying this prompt aloud and think about your answer",
-    partnerInstructions: "Partner A: Ask the question. Partner B: Answer completely, then switch roles",
       context: "Example: 'I decided to ask for a schedule change because I need to avoid working Sundays. I hope to keep working here, so I'm suggesting a different shift.'"
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Grammar contrast: Explain what you CAN'T AVOID (gerund) vs. what you NEED TO DO (infinitive).",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
-    soloInstructions: "Think through what you'd say and practice key vocabulary from this topic",
-    partnerInstructions: "Take turns sharing: One person describes/explains, the other asks follow-up questions",
       context: "Gerund: 'I can't avoid missing work if my child is sick.' Infinitive: 'I need to find childcare. I want to be reliable.'"
     },
   ],// 

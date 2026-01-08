@@ -10,8 +10,6 @@ export const reportedSpeechDailyWarmup: SpeakingActivityContent = {
   participationPoints: 3,
 
   // NEW: Enable simple warmup mode
-  warmupMode: true,
-  participationPoints: 3,
 
   keyPhrases: [
     { phrase: "He/She said (that)...", example: "The doctor said that I need to rest." },
@@ -34,58 +32,36 @@ export const reportedSpeechDailyWarmup: SpeakingActivityContent = {
       text: "Doctor visit: Tell me what the doctor said during your last appointment. What did they tell you to do?",
     soloInstructions: "List your thoughts and examples before speaking",
     partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Use reported speech: The doctor said that I have high blood pressure. She told me to eat less salt. She asked if I exercise regularly."
     },
     {
       id: "prompt-2",
       level: "intermediate",
       text: "Workplace message: Your boss called you. Relay the message to your coworker. What did your boss say?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Example: My boss called. He said that we have a meeting tomorrow. He told me to bring my notes. He asked if I finished the report."
     },
     {
       id: "prompt-3",
       level: "intermediate",
       text: "MyChart message: You received a message from your doctor's office through MyChart. What did they say? What did they ask you to do?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "They said that my test results are ready. They told me to schedule a follow-up. They asked me to call if I have questions."
     },
     {
       id: "prompt-4",
       level: "intermediate",
       text: "Phone call relay: You called your landlord about a repair. Tell your roommate what the landlord said.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Reported speech: I called the landlord. He said that he will send someone tomorrow. He told me to be home between 9-12. He asked if the problem is urgent."
     },
     {
       id: "prompt-5",
       level: "advanced",
       text: "Job interview: Tell me about your last job interview. What did the interviewer ask? What did you say? What did they tell you?",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "They asked me about my experience. I told them that I had worked in retail for three years. They said that they would call me within a week."
     },
     {
       id: "prompt-6",
       level: "advanced",
       text: "Tense changes: Your friend gave you advice yesterday. Report what they said, changing the tenses correctly.",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
-    soloInstructions: "List your thoughts and examples before speaking",
-    partnerInstructions: "Discuss together: Share opinions and examples, ask why you think that",
       context: "Direct: 'You should see a doctor. It might be serious.' Reported: She said that I should see a doctor. She said it might be serious."
     },
   ],// 
