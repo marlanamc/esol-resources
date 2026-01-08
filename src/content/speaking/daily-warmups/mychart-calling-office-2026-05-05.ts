@@ -3,16 +3,73 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const myChartCallingOffice_2026_05_05: SpeakingActivityContent = {
   type: "speaking",
   title: "5/5/26: MyChart / Calling Office (Reported Speech Intro)",
-  description: "Introduce reported speech by relaying messages from MyChart, doctor's office calls, and appointment confirmations (he said, she told me, they asked)",
+  description: "Practice reported speech. Focus: reporting messages from MyChart and doctor's office.",
 
   keyPhrases: [
     { phrase: "The doctor said (that)...", example: "The doctor said that I need to come back in two weeks." },
     { phrase: "The nurse told me (that)...", example: "The nurse told me that my results are ready." },
     { phrase: "They asked if...", example: "They asked if I had any allergies." },
     { phrase: "The message said (that)...", example: "The MyChart message said that I should schedule a follow-up." },
-    { phrase: "They asked me to...", example: "They asked me to call back tomorrow." },
     { phrase: "She wanted to know...", example: "She wanted to know my date of birth." },
+    { phrase: "They asked me to...", example: "They asked me to call back tomorrow." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences using reported speech", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "The doctor said that [clause]...",
+        "The nurse told me that [clause]...",
+        "They asked if I [past tense]...",
+        "The message said that [clause]...",
+        "She wanted to know [information]...",
+        "They asked me to [action]...",
+        "I was told that [information]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "doctor", "nurse", "patient", "appointment", "results", "test",
+        "medicine", "prescription", "instructions", "follow-up", "referral",
+        "specialist", "emergency", "MyChart", "message", "call", "phone", "healthcare"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {
@@ -58,4 +115,3 @@ export const myChartCallingOffice_2026_05_05: SpeakingActivityContent = {
   minPromptsRequired: 2,
   released: false
 };
-

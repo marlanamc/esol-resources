@@ -3,16 +3,73 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const interviewCommonQuestions_2026_03_05: SpeakingActivityContent = {
   type: "speaking",
   title: "3/5/26: Interview Questions (Gerunds & Infinitives)",
-  description: "Practice interview questions using gerunds (enjoy -ing, good at -ing) and infinitives (want to, need to, hope to) correctly",
+  description: "Practice interview language. Focus: gerunds vs infinitives in interview questions.",
 
   keyPhrases: [
     { phrase: "I enjoy...", example: "I enjoy helping customers and solving problems." },
     { phrase: "I'm good at...", example: "I'm good at working with a team." },
     { phrase: "I want to / hope to...", example: "I want to learn new skills. I hope to grow with the company." },
     { phrase: "I need to / plan to...", example: "I need to improve my computer skills." },
-    { phrase: "I'm interested in...", example: "I'm interested in working in healthcare." },
     { phrase: "I'd like to...", example: "I'd like to ask about the schedule." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences mixing gerunds and infinitives about your skills and goals", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "I enjoy [verb-ing]...",
+        "I'm good at [verb-ing]...",
+        "I want to [verb]...",
+        "I hope to [verb]...",
+        "I need to [verb]...",
+        "I plan to [verb]...",
+        "I'd like to [verb]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "enjoy", "good at", "skilled", "experience", "background", "qualifications",
+        "want", "hope", "plan", "goal", "objective", "target", "achieve",
+        "need", "improve", "learn", "develop", "grow", "advance", "promote",
+        "career", "job", "work", "position", "role", "team", "company", "organization"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {

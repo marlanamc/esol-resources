@@ -30,6 +30,7 @@ model User {
 
   // Relations
   submissions Submission[]
+  speakingSubmissions SpeakingSubmission[]
   classes     ClassEnrollment[]
   createdClasses Class[] @relation("ClassTeacher")
   achievements UserAchievement[]
@@ -87,6 +88,7 @@ model Activity {
   
   // Relations
   submissions Submission[]
+  speakingSubmissions SpeakingSubmission[]
   assignments Assignment[]
   progress ActivityProgress[]
 }
@@ -97,13 +99,35 @@ model ActivityProgress {
   userId      String
   activity    Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
   activityId  String
+  assignment  Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+  assignmentId String?
   progress    Int      @default(0) // 0-100
-  status      String   @default("in_progress") // in_progress, completed
+  status      String   @default("in_progress") // in_progress, completed, submitted
   categoryData String?  @db.Text // JSON string for per-category tracking
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  @@unique([userId, activityId])
+  @@unique([userId, activityId, assignmentId])
+}
+
+model SpeakingSubmission {
+  id                     String   @id @default(cuid())
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                 String
+  activity               Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activityId             String
+  assignment             Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+  assignmentId           String?
+  selectedPromptIds      String[] // JSON array of selected prompt IDs
+  soloSentences          String[] // Array of 3 sentences
+  soloFollowUpQuestions  String[] // Array of 2 follow-up questions
+  soloCompletedStepIds   String[] // Array of completed solo step IDs
+  speakingBestSentence   String   // Best sentence from speaking mode
+  speakingCompletedStepIds String[] // Array of completed speaking step IDs
+  submittedAt            DateTime @default(now())
+  status                 String   @default("submitted") // submitted
+
+  @@unique([userId, activityId, assignmentId])
 }
 
 model PointsLedger {
@@ -137,6 +161,8 @@ model Assignment {
 
   // Relations
   submissions Submission[]
+  speakingSubmissions SpeakingSubmission[]
+  activityProgress ActivityProgress[]
 
   // Performance indexes
   @@index([classId]) // For finding class assignments

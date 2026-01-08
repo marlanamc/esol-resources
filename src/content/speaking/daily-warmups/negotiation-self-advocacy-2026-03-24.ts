@@ -3,16 +3,76 @@ import type { SpeakingActivityContent } from "@/types/activity";
 export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
   type: "speaking",
   title: "3/24/26: Negotiation & Self-Advocacy (Infinitives vs Gerunds)",
-  description: "Practice negotiating schedules using infinitives (decide to, plan to, want to) and gerunds (enjoy -ing, avoid -ing, consider -ing)",
+  description: "Practice negotiation language. Focus: infinitives vs gerunds for workplace situations.",
 
   keyPhrases: [
     { phrase: "I'd like to... (infinitive)", example: "I'd like to change my schedule." },
-    { phrase: "I plan to / I need to... (infinitive)", example: "I plan to take classes on Tuesdays. I need to pick up my child at 3pm." },
-    { phrase: "I enjoy / I prefer... (gerund)", example: "I enjoy working mornings. I prefer having weekends off." },
-    { phrase: "I can't avoid... (gerund)", example: "I can't avoid missing work if my child is sick." },
-    { phrase: "Would you consider...? (gerund)", example: "Would you consider changing my shift?" },
+    { phrase: "I plan to... (infinitive)", example: "I plan to take classes on Tuesdays." },
+    { phrase: "I need to... (infinitive)", example: "I need to improve my computer skills." },
+    { phrase: "I enjoy... (gerund)", example: "I enjoy working with customers." },
+    { phrase: "I can't... (gerund)", example: "I can't avoid working late if my child is sick." },
+    { phrase: "Would you consider...? (gerund)", example: "Would you consider changing your shift?" },
     { phrase: "I decided to... (infinitive)", example: "I decided to ask for a schedule change." },
   ],
+
+  soloMode: {
+    title: "Solo Mode (10 minutes)",
+    subtitle: "Do this first while students arrive.",
+    checklist: [
+      { id: "s1", text: "Choose at least 2 prompt(s) below", required: true },
+      { id: "s2", text: "Write 3 sentences mixing infinitives and gerunds", required: true },
+      { id: "s3", text: "Add 2 detail words (place/time/people) to your sentences", required: true },
+      { id: "s4", text: "Write 2 follow-up questions you can ask a partner", required: true }
+    ],
+    inputs: [
+      { id: "sentence1", label: "Sentence 1", type: "textarea", required: true },
+      { id: "sentence2", label: "Sentence 2", type: "textarea", required: true },
+      { id: "sentence3", label: "Sentence 3", type: "textarea", required: true },
+      { id: "question1", label: "Follow-up Question 1", type: "text", required: true },
+      { id: "question2", label: "Follow-up Question 2", type: "text", required: true }
+    ],
+    help: {
+      sentenceFrames: [
+        "I'd like to [verb]...",
+        "I plan to [verb]...",
+        "I need to [verb]...",
+        "I enjoy [verb-ing]...",
+        "I can't [verb] if [condition]...",
+        "Would you consider [verb-ing]...?",
+        "I decided to [verb]...",
+        "I want to [verb]...",
+        "I'm trying to [verb]..."
+      ],
+      questionStems: [
+        "Why?",
+        "When?",
+        "Where?",
+        "How often?",
+        "Who with?",
+        "What is it like?"
+      ],
+      wordBank: [
+        "negotiate", "schedule", "shift", "change", "request", "ask", "propose", "offer", "accept", "decline",
+        "workplace", "job", "position", "role", "team", "company", "organization", "industry", "field", "opportunity",
+        "challenge", "solution", "advocate", "rights", "policy", "procedure", "communication"
+      ]
+    }
+  },
+
+  speakingMode: {
+    title: "Speaking Mode (10 minutes)",
+    subtitle: "Start when your teacher says GO.",
+    checklist: [
+      { id: "p1", text: "Speak for 2 minutes (Partner A)", required: true },
+      { id: "p2", text: "Ask 2 follow-up questions (Partner B)", required: true },
+      { id: "p3", text: "Switch roles and repeat", required: true },
+      { id: "p4", text: "Write ONE best sentence you said (or heard)", required: true }
+    ],
+    inputs: [
+      { id: "bestSentence", label: "Best sentence", type: "textarea", required: true }
+    ],
+    noPartnerNote: "Make a trio. Roles: Speaker (2 min), Question-asker (asks 2), Listener (writes 1 best sentence). Rotate."
+  },
 
   prompts: [
     {
@@ -58,4 +118,3 @@ export const negotiationSelfAdvocacy_2026_03_24: SpeakingActivityContent = {
   minPromptsRequired: 2,
   released: false
 };
-
