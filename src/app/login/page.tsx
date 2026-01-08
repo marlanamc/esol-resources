@@ -9,7 +9,7 @@ export default function LoginPage() {
                         Class Companion
                     </h1>
                     <p className="text-sm mb-6" style={{ color: '#7ba884', fontWeight: '600' }}>
-                        ESOL Learning Hub
+                        ESOL Level 3
                     </p>
                     <h2 className="text-2xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
                         Sign in to your account
