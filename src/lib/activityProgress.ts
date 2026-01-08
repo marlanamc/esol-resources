@@ -1,4 +1,4 @@
-export type ActivityProgressStatus = "in_progress" | "completed";
+export type ActivityProgressStatus = "in_progress" | "completed" | "submitted";
 
 export async function saveActivityProgress(
     activityId: string, 
@@ -27,6 +27,5 @@ export async function saveActivityProgress(
         // best-effort; silent fail
     }
 }
-
 
 

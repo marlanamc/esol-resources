@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { activityId, progress = 100, status, accuracy, category } = body;
+    const { activityId, progress = 100, status, accuracy, category, assignmentId } = body;
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
@@ -36,13 +36,15 @@ export async function POST(request: Request) {
 
     const userId = session.user.id;
 
-    const existing = await prisma.activityProgress.findUnique({
-        where: {
-            userId_activityId: {
-                userId,
-                activityId,
-            },
-        },
+    const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
+    const progressWhere = {
+        userId,
+        activityId,
+        assignmentId: assignmentKey,
+    };
+
+    const existing = await prisma.activityProgress.findFirst({
+        where: progressWhere,
     });
 
     // Handle category data updates for activities with categories (like Numbers Game)
@@ -67,26 +69,30 @@ export async function POST(request: Request) {
         // Only set to 100 if this specific category round is complete
     }
 
-    const record = await prisma.activityProgress.upsert({
-        where: {
-            userId_activityId: {
+    const progressData = {
+        progress: value,
+        status: computedStatus,
+    };
+    if (updatedCategoryData) {
+        Object.assign(progressData, { categoryData: updatedCategoryData });
+    }
+
+    let record;
+    if (existing) {
+        record = await prisma.activityProgress.update({
+            where: { id: existing.id },
+            data: progressData,
+        });
+    } else {
+        record = await prisma.activityProgress.create({
+            data: {
                 userId,
                 activityId,
+                assignmentId: assignmentKey,
+                ...progressData,
             },
-        },
-        create: {
-            userId,
-            activityId,
-            progress: value,
-            status: computedStatus,
-            categoryData: updatedCategoryData
-        },
-        update: {
-            progress: value,
-            status: computedStatus,
-            ...(updatedCategoryData && { categoryData: updatedCategoryData })
-        },
-    });
+        });
+    }
 
     // Award points based on activity type
     // For activities with categories, award points per category completion
@@ -168,4 +174,3 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true, progress: record.progress, status: record.status });
 }
-
