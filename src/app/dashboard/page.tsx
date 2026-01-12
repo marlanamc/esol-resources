@@ -163,6 +163,43 @@ export default async function DashboardPage() {
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
+        // Get verb quiz results
+        const verbQuizActivities = await prisma.activity.findMany({
+            where: {
+                type: 'quiz',
+                content: {
+                    contains: '"type":"verb-quiz"'
+                }
+            },
+            include: {
+                submissions: {
+                    select: {
+                        id: true,
+                        score: true,
+                        userId: true,
+                    }
+                }
+            },
+            orderBy: {
+                createdAt: 'asc'
+            }
+        });
+
+        const verbQuizResults = verbQuizActivities.map(activity => {
+            const submissions = activity.submissions;
+            const submissionCount = submissions.length;
+            const averageScore = submissionCount > 0
+                ? Math.round(submissions.reduce((sum, s) => sum + (s.score || 0), 0) / submissionCount)
+                : 0;
+            
+            return {
+                id: activity.id,
+                title: activity.title,
+                submissionCount,
+                averageScore
+            };
+        });
+
         return (
             <div className="min-h-screen bg-bg">
                 {/* Header */}
@@ -256,6 +293,56 @@ export default async function DashboardPage() {
                                     variant="checklist"
                                 />
                             </section>
+
+                            {/* Verb Quiz Results */}
+                            {verbQuizResults.length > 0 && (
+                                <section className="animate-fade-in-up delay-150">
+                                    <div className="flex items-center justify-between mb-3">
+                                        <h2 className="text-2xl font-bold font-display text-text">Verb Quiz Results</h2>
+                                        <Link
+                                            href="/dashboard/stats"
+                                            className="text-sm text-primary font-semibold hover:text-primary-dark"
+                                        >
+                                            View All Stats →
+                                        </Link>
+                                    </div>
+                                    <div className="bg-white border border-border/40 shadow-lg rounded-2xl overflow-hidden">
+                                        <div className="divide-y divide-border/20">
+                                            {verbQuizResults.map((quiz) => (
+                                                <div
+                                                    key={quiz.id}
+                                                    className="p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 hover:bg-bg-light/50 transition-colors"
+                                                >
+                                                    <div className="flex-1">
+                                                        <div className="text-base font-semibold text-text">
+                                                            {quiz.title}
+                                                        </div>
+                                                        <div className="text-sm text-text-muted mt-1">
+                                                            {quiz.submissionCount} submission{quiz.submissionCount !== 1 ? "s" : ""}
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-4">
+                                                        {quiz.submissionCount > 0 && (
+                                                            <div className="text-right">
+                                                                <div className="text-xs text-text-muted">Average Score</div>
+                                                                <div className="text-lg font-bold text-text">
+                                                                    {quiz.averageScore}%
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                        <Link
+                                                            href={`/dashboard/stats`}
+                                                            className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                                                        >
+                                                            View Results
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </section>
+                            )}
 
                             {/* Browse All Activities CTA */}
                             <section className="animate-fade-in-up delay-200">
