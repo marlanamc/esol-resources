@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Housing Conditionals (ESOL Level 3)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
+    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .header-left .subtitle { font-size: 12px; color: var(--gray); }
+    .header-fields {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+    }
+    .field { display: flex; align-items: baseline; gap: 5px; }
+    .field label { font-weight: bold; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 100px; height: 16px; }
+    .date-value { font-weight: normal; }
+    .section { margin-bottom: 18px; }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
+    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
+    .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
+    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
+    .vocab-word .num { font-weight: bold; min-width: 20px; }
+    .vocab-word .word { flex: 1; }
+    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-left: 10px; }
+    .vocab-def { padding: 3px 0; }
+    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
+    .phrase { margin-bottom: 14px; }
+    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
+    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+    .examples li { margin-bottom: 1px; list-style: none; }
+    .examples li::before { content: "• "; color: var(--ink); }
+    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
+    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
+    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
+    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
+    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
+    .round { margin-bottom: 8px; font-size: 13px; }
+    .round-header { font-weight: bold; }
+    .round-content { margin-left: 8px; color: var(--gray); }
+    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
+    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .reading-text p { margin-bottom: 8px; text-align: justify; }
+    .question { margin-bottom: 12px; }
+    .question-text { font-size: 13px; margin-bottom: 4px; }
+    .question-text b { font-weight: bold; }
+    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
+    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
+    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
+    .requirements li { margin-bottom: 1px; }
+    .writing-lines { margin-top: 10px; }
+    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
+    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
+    .front-page { margin-bottom: 24px; }
+    @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; } }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="front-page">
+      <header class="header">
+      <h1>Housing: If/When Sentences</h1>
+      <div class="header-fields">
+        <div class="field">
+          <label>Name</label>
+          <div class="field-line" style="width: 160px;"></div>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <span class="date-value">January 29, 2026</span>
+        </div>
+      </div>
+    </header>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part A: Vocabulary</h2>
+          <span class="section-time">3 min</span>
+        </div>
+        <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
+        <div class="vocab-matching">
+          <div class="vocab-words">
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">afford</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">move out</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">renew</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">raise</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">notice</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">evict</span> <span class="blank"></span></div>
+          </div>
+          <div class="vocab-defs">
+            <div class="vocab-def"><span class="letter">a.</span> to leave your apartment and go somewhere else</div>
+            <div class="vocab-def"><span class="letter">b.</span> to have enough money for something</div>
+            <div class="vocab-def"><span class="letter">c.</span> to force someone to leave their home</div>
+            <div class="vocab-def"><span class="letter">d.</span> to sign a new lease, continue renting</div>
+            <div class="vocab-def"><span class="letter">e.</span> a written warning or information</div>
+            <div class="vocab-def"><span class="letter">f.</span> to increase (the rent goes up)</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part B: Phrases</h2>
+          <span class="section-time">8 min</span>
+        </div>
+        <p class="instruction">Read the examples. Then write your own sentence. Try to use vocabulary from Part A.</p>
+
+        <div class="phrase">
+          <div class="phrase-starter">1) If the rent goes up, I will…</div>
+          <ul class="examples">
+            <li>If the rent goes up, I will look for a cheaper place.</li>
+            <li>If the rent goes up too much, I will have to move out.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">2) If I don't pay rent on time, …</div>
+          <ul class="examples">
+            <li>If I don't pay rent on time, I get a late fee.</li>
+            <li>If I don't pay rent on time, the landlord can evict me.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">3) When I move, I need to…</div>
+          <ul class="examples">
+            <li>When I move, I need to give 30 days notice.</li>
+            <li>When I move, I need to clean the apartment to get my deposit back.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">4) If I can't afford…, I will…</div>
+          <ul class="examples">
+            <li>If I can't afford the rent, I will get a roommate.</li>
+            <li>If I can't afford to live alone, I will move back with my family.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">5) If I renew my lease, …</div>
+          <ul class="examples">
+            <li>If I renew my lease, I can stay another year.</li>
+            <li>If I renew my lease, I hope the rent doesn't go up too much.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <p class="level-up">Level up: Use "might" or "will probably" to show uncertainty.</p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part C: Partner Practice</h2>
+          <span class="section-time">5 min</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 1:</span>
+          <span class="round-content">Share your sentences. Partner asks: "What will you do if that happens?"</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 2:</span>
+          <span class="round-content">Switch. Discuss: "What happens if you break your lease early?"</span>
+        </div>
+        <p class="help-note">Need help? Say: "Can you give me an example?" or "What do you mean by…?"</p>
+      </section>
+    </div>
+
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">Reading</h2></div>
+      <div class="reading-text">
+        <p>When you rent an apartment, you sign a lease. The lease is a contract. It says how long you will stay and how much you will pay. If you break the lease early, you may have to pay a fee. If you want to move out, you usually need to give 30 days notice.</p>
+        <p>At the end of your lease, you can renew it or move out. If the landlord raises the rent, you can negotiate or look for a new place. Always read your lease carefully so you know the rules.</p>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>1)</b> What happens if you break your lease early?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>2)</b> How much notice do you usually need to give before moving out?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>3)</b> What are your two choices at the end of a lease?</div>
+        <div class="answer-line"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Writing Homework</h2>
+        <span class="section-time">6–8 sentences</span>
+      </div>
+      <div class="writing-prompt">
+        <b>Prompt:</b> What will you do if your rent goes up next year? What are your options? What would you choose?
+      </div>
+      <ul class="requirements">
+        <li>Try using at least 3 "if" sentences</li>
+        <li>Consider explaining your options (stay, move, get roommate, etc.)</li>
+        <li>Try to say what you would probably do or why</li>
+        <li>Try using vocabulary from Part A</li>
+      </ul>
+      <div class="writing-lines">
+        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+      </div>
+      <p class="optional-note">Optional challenge: Use "unless" (e.g., "I won't move unless the rent goes up a lot").</p>
+    </section>
+  </div>
+</body>
+</html>

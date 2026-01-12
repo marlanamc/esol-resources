@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Year in Review (ESOL Level 3)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
+    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .header-fields {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+    }
+    .field { display: flex; align-items: baseline; gap: 5px; }
+    .field label { font-weight: bold; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 100px; height: 16px; }
+    .date-value { font-weight: normal; }
+    .section { margin-bottom: 18px; }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
+    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
+    .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
+    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
+    .vocab-word .num { font-weight: bold; min-width: 20px; }
+    .vocab-word .word { flex: 1; }
+    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-left: 10px; }
+    .vocab-def { padding: 3px 0; }
+    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
+    .phrase { margin-bottom: 14px; }
+    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
+    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+    .examples li { margin-bottom: 1px; list-style: none; }
+    .examples li::before { content: "• "; color: var(--ink); }
+    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
+    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
+    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
+    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
+    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
+    .round { margin-bottom: 8px; font-size: 13px; }
+    .round-header { font-weight: bold; }
+    .round-content { margin-left: 8px; color: var(--gray); }
+    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
+    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .reading-text p { margin-bottom: 8px; text-align: justify; }
+    .question { margin-bottom: 12px; }
+    .question-text { font-size: 13px; margin-bottom: 4px; }
+    .question-text b { font-weight: bold; }
+    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
+    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
+    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
+    .requirements li { margin-bottom: 1px; }
+    .writing-lines { margin-top: 10px; }
+    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
+    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
+    .front-page { margin-bottom: 24px; }
+    @media print {
+      @page { size: letter; margin: 0.45in; }
+      body { background: #fff; padding: 0; }
+      .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="front-page">
+      <header class="header">
+      <h1>Year in Review: Reflection</h1>
+      <div class="header-fields">
+        <div class="field">
+          <label>Name</label>
+          <div class="field-line" style="width: 160px;"></div>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <span class="date-value">June 9, 2026</span>
+        </div>
+      </div>
+    </header>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part A: Vocabulary</h2>
+          <span class="section-time">3 min</span>
+        </div>
+        <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
+        <div class="vocab-matching">
+          <div class="vocab-words">
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">useful</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">improvement</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">confident</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">pronunciation</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">strategy</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">advice</span> <span class="blank"></span></div>
+          </div>
+          <div class="vocab-defs">
+            <div class="vocab-def"><span class="letter">a.</span> helpful and practical</div>
+            <div class="vocab-def"><span class="letter">b.</span> getting better at something</div>
+            <div class="vocab-def"><span class="letter">c.</span> feeling sure of yourself</div>
+            <div class="vocab-def"><span class="letter">d.</span> how you say words</div>
+            <div class="vocab-def"><span class="letter">e.</span> method or plan to succeed</div>
+            <div class="vocab-def"><span class="letter">f.</span> suggestions for what to do</div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part B: Phrases</h2>
+          <span class="section-time">8 min</span>
+        </div>
+        <p class="instruction">Read the examples. Then write your own sentence. Try to use vocabulary from Part A.</p>
+        <div class="phrase">
+          <div class="phrase-starter">1) The most useful unit was...</div>
+          <ul class="examples">
+            <li>The most useful unit for me was Housing.</li>
+            <li>The most useful unit was Healthcare because I learned how to talk to my doctor.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="phrase">
+          <div class="phrase-starter">2) My favorite phrase is...</div>
+          <ul class="examples">
+            <li>My favorite phrase is 'Could you repeat that?'</li>
+            <li>My favorite phrase is 'I don't understand' because it helps me ask for help.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="phrase">
+          <div class="phrase-starter">3) I've improved in...</div>
+          <ul class="examples">
+            <li>I've improved in speaking more confidently.</li>
+            <li>I've improved in listening, especially understanding native speakers.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="phrase">
+          <div class="phrase-starter">4) Next, I want to...</div>
+          <ul class="examples">
+            <li>Next, I want to practice job interviews.</li>
+            <li>Next, I want to improve my writing skills.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <p class="level-up">Level up: Try using present perfect to describe your improvements ("I've gotten better at..." or "I've learned to...").</p>
+      </section>
+      <section class="section page-break">
+        <div class="section-header">
+          <h2 class="section-title">Part C: Partner Practice</h2>
+          <span class="section-time">5 min</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 1:</span>
+          <span class="round-content">Share your sentences from Part B. Your partner listens and asks one follow-up question.</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 2:</span>
+          <span class="round-content">Switch roles. Share the most useful unit for you. Partner asks: "Why was it useful? Can you give an example?"</span>
+        </div>
+        <p class="help-note">Need help? Say: "Can you repeat that?" or "What does ___ mean?"</p>
+      </section>
+    </div>
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Reading</h2>
+      </div>
+      <div class="reading-text">
+        <p>Reflecting on your English learning journey helps you see your progress. At the beginning of the year, you might have felt nervous speaking English. Now, you've improved in many ways. Maybe you're more confident, your pronunciation is better, or you can understand more vocabulary.</p>
+        <p>Thinking about the most useful units helps you remember important skills. For some students, the Housing unit was most useful because they learned how to talk to landlords. For others, the Workplace unit taught them how to advocate for themselves at work. The Healthcare unit helped people communicate with doctors.</p>
+        <p>Looking ahead is also important. What do you want to continue practicing? What challenges do you still face? Setting new goals keeps you motivated. Remember: learning English is a journey, not a race. Every small improvement matters.</p>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>1)</b> Why is reflecting on your learning journey helpful?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>2)</b> What are three examples of units that students found most useful?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>3)</b> What does the reading say about English learning?</div>
+        <div class="answer-line"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Writing Homework</h2>
+        <span class="section-time">6–8 sentences</span>
+      </div>
+      <div class="writing-prompt">
+        <b>Prompt:</b> Reflect on your year in ESOL class. What was the most useful unit? What is your favorite phrase that you actually used? What have you improved in? What do you want to continue working on?
+      </div>
+      <ul class="requirements">
+        <li>Try explaining which unit was most useful and why</li>
+        <li>Consider sharing a phrase you used in real life</li>
+        <li>Try describing your improvement using present perfect</li>
+        <li>Could set a goal for what to practice next</li>
+      </ul>
+      <div class="writing-lines">
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+      </div>
+      <p class="optional-note">Optional challenge: Give advice to a new Level 3 student about what helped you succeed.</p>
+    </section>
+  </div>
+</body>
+</html>

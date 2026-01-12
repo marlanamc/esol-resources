@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Problems & Changes (ESOL Level 3)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
+    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .header-fields {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+    }
+    .field { display: flex; align-items: baseline; gap: 5px; }
+    .field label { font-weight: bold; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 160px; height: 16px; }
+    .date-value { font-weight: normal; }
+    .section { margin-bottom: 18px; }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
+    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
+    .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
+    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
+    .vocab-word .num { font-weight: bold; min-width: 20px; }
+    .vocab-word .word { flex: 1; }
+    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-left: 10px; }
+    .vocab-def { padding: 3px 0; }
+    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
+    .phrase { margin-bottom: 14px; }
+    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
+    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+    .examples li { margin-bottom: 1px; list-style: none; }
+    .examples li::before { content: "• "; color: var(--ink); }
+    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
+    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
+    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
+    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
+    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
+    .round { margin-bottom: 8px; font-size: 13px; }
+    .round-header { font-weight: bold; }
+    .round-content { margin-left: 8px; color: var(--gray); }
+    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
+    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .reading-text p { margin-bottom: 8px; text-align: justify; }
+    .question { margin-bottom: 12px; }
+    .question-text { font-size: 13px; margin-bottom: 4px; }
+    .question-text b { font-weight: bold; }
+    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
+    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
+    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
+    .requirements li { margin-bottom: 1px; }
+    .writing-lines { margin-top: 10px; }
+    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
+    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
+    .front-page { margin-bottom: 24px; }
+    @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; } }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="front-page">
+      <header class="header">
+      <h1>Work Changes: "Used To" Structures</h1>
+      <div class="header-fields">
+        <div class="field">
+          <label>Name</label>
+          <div class="field-line" style="width: 160px;"></div>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <span class="date-value">April 7, 2026</span>
+        </div>
+      </div>
+    </header>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part A: Vocabulary</h2>
+          <span class="section-time">3 min</span>
+        </div>
+        <p class="instruction">Match each phrase to its meaning. Write the letter on the line.</p>
+        <div class="vocab-matching">
+          <div class="vocab-words">
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">used to (do)</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">be used to</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">get used to</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">adjust</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">exhausted</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">policy</span> <span class="blank"></span></div>
+          </div>
+          <div class="vocab-defs">
+            <div class="vocab-def"><span class="letter">a.</span> be accustomed to, be comfortable with</div>
+            <div class="vocab-def"><span class="letter">b.</span> a past habit (you did it before, but not now)</div>
+            <div class="vocab-def"><span class="letter">c.</span> very, very tired</div>
+            <div class="vocab-def"><span class="letter">d.</span> a rule or way of doing things at work</div>
+            <div class="vocab-def"><span class="letter">e.</span> to change to fit a new situation</div>
+            <div class="vocab-def"><span class="letter">f.</span> become accustomed to, start to feel comfortable</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part B: Phrases</h2>
+          <span class="section-time">8 min</span>
+        </div>
+        <p class="instruction">Read the examples. Practice the three "used to" structures.</p>
+
+        <div class="phrase">
+          <div class="phrase-starter">1) I used to… (past habit)</div>
+          <ul class="examples">
+            <li>I used to work nights, but now I work days.</li>
+            <li>We used to have longer breaks at my old job.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">2) I'm (not) used to… (accustomed)</div>
+          <ul class="examples">
+            <li>I'm not used to working weekends yet.</li>
+            <li>I'm used to taking the bus, but now I have to drive.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">3) I'm getting used to… (adjusting)</div>
+          <ul class="examples">
+            <li>I'm getting used to the new schedule.</li>
+            <li>It's hard, but I'm getting used to waking up at 5am.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">4) I can't get used to…</div>
+          <ul class="examples">
+            <li>I can't get used to the noise in the kitchen.</li>
+            <li>I can't get used to working without breaks.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">5) It used to be… (past state)</div>
+          <ul class="examples">
+            <li>It used to be easier to get time off.</li>
+            <li>The policy used to be different, but they changed it.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <p class="level-up">Level up: Combine structures: "I used to work part-time, so I'm not used to working full-time yet."</p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part C: Partner Practice</h2>
+          <span class="section-time">5 min</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 1:</span>
+          <span class="round-content">Share what you used to do at a previous job. What was different?</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 2:</span>
+          <span class="round-content">Switch. Discuss: "What are you still getting used to at work?" "What can't you get used to?"</span>
+        </div>
+        <p class="help-note">Remember: "used to" = past habit, "be used to" = accustomed, "get used to" = becoming accustomed.</p>
+      </section>
+    </div>
+
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">Reading</h2></div>
+      <div class="reading-text">
+        <p>Work changes can be difficult. When policies change, you need time to adjust. "Used to" describes past habits: "I used to work days." "Be used to" means you're comfortable now: "I'm used to the schedule." "Get used to" means you're still adjusting: "I'm getting used to the new system."</p>
+        <p>These three structures help you talk about changes at work.</p>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>1)</b> What is the difference between "I used to" and "I'm used to"?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>2)</b> What does "I'm getting used to" mean?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>3)</b> What is something at work that you are still getting used to?</div>
+        <div class="answer-line"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Writing Homework</h2>
+        <span class="section-time">6–8 sentences</span>
+      </div>
+      <div class="writing-prompt">
+        <b>Prompt:</b> Describe changes at your current or past job. What did you use to do? What are you used to now? What are you still getting used to?
+      </div>
+      <ul class="requirements">
+        <li>Try using "used to" (past habit)</li>
+        <li>Try using "be used to" (accustomed)</li>
+        <li>Try using "get used to" (adjusting)</li>
+        <li>You might include vocabulary from Part A</li>
+      </ul>
+      <div class="writing-lines">
+        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+      </div>
+      <p class="optional-note">Optional challenge: Use "would" for repeated past actions ("I would walk to work every day").</p>
+    </section>
+  </div>
+</body>
+</html>

@@ -13,6 +13,7 @@ interface RadioExerciseProps {
     isIncorrect: boolean;
     submitted: boolean;
     onChange: (value: string) => void;
+    itemNumber: number;
 }
 
 export function RadioExercise({
@@ -22,6 +23,7 @@ export function RadioExercise({
     isIncorrect,
     submitted,
     onChange,
+    itemNumber,
 }: RadioExerciseProps) {
     void isIncorrect;
     return (
@@ -32,7 +34,10 @@ export function RadioExercise({
             transition={{ duration: 0.3 }}
         >
             <div className="mb-3">
-                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                <span className="text-sm text-text font-medium">
+                    <span className="font-semibold mr-2">{itemNumber}.</span>
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                </span>
             </div>
             <div className="space-y-2">
                 {item.options.map((option, index) => {

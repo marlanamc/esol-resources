@@ -533,36 +533,36 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **R/L/W:** Listen to landlord voicemail; write return message
 - **Speaking game (20 min):** Telephone game (reported messages, focus on clarity)
 
-### Week 19 (Jan 27 & Jan 29) — Housing problem stories with PAST SIMPLE
+### Week 19 (Jan 27 & Jan 29) — Comprehensive Tense Review + Type 0 & Type 1 Conditionals
 
 **Tue 1/27 — Warm‑up:** Banking & Shopping
-- **Grammar (new):** Past Simple (steps 1-3) - explaining what happened (housing problems, banking errors)
-- **Speaking practice (25 min):** Tell a housing problem story using past simple (5 sentences minimum) - partner asks follow-up questions
-- **R/L/W:** Read problem story; create timeline; write your own (5 sentences)
-- **Speaking game (30 min):** Story chain (each person adds a past simple sentence)
-- **Homework:** Complete "Past Simple" guide on Class Companion
+- **Grammar (new):** Comprehensive Tense Review + Type 0 Conditionals - Review all simple, continuous, and present perfect tenses + NEW: Type 0 Conditionals (`If + present simple, present simple` for facts and rules)
+- **Speaking practice (25 min):** Tell banking stories using all tenses + Type 0 conditionals (5 sentences minimum)
+- **R/L/W:** Read banking problem scenarios; identify which tense to use when; write 3 Type 0 conditionals about money
+- **Speaking game (30 min):** Conditional chain game ("If I spend too much, I..." → next student continues)
+- **Homework:** Practice all tenses + write 5 Type 0 conditionals about your life
 
-**Thu 1/29 — Warm‑up:** Past Simple Fluency Practice
-- **Grammar review:** Past simple fluency + error correction
-- **Speaking practice (25 min):** "What happened?" speed rounds - explain problems in 2 minutes
-- **Phonics:** Word stress (a-PART-ment, MAIN-te-nance, com-PLAINT)
-- **R/L/W:** Write a complaint paragraph (3 problems in past simple)
-- **Speaking game (20 min):** Problem-solution matching (describe → partner suggests solution)
+**Thu 1/29 — Warm‑up:** Housing Conditionals
+- **Grammar (new):** Tense Review Practice + Type 1 Conditionals - Quick fluency practice with all 7 tenses + NEW: Type 1 Conditionals (`If + present simple, will + verb` for future predictions, plans, promises)
+- **Speaking practice (25 min):** Housing planning conversations using Type 1 conditionals (What will you do if rent goes up? If you get a raise?)
+- **Phonics:** Word stress in conditional sentences (IF you SAVE, you will MOVE)
+- **R/L/W:** Write 5 Type 1 conditionals about housing/money goals
+- **Speaking game (20 min):** "What will you do?" game (rapid-fire conditional responses)
 
-### Week 20 (Feb 3 & Feb 5) — Unit 5 Housing (complaints + repairs)
+### Week 20 (Feb 3 & Feb 5) — Conditional Practice + Tense Fluency
 
 **Tue 2/3 — Warm‑up:** Housing Problems & Solutions
-- **Grammar (new):** Past continuous (steps 4-5) - describing background actions (while/when sentence writing)
-- **Speaking practice (25 min):** Describe housing problems with background details
-- **R/L/W:** Read a model complaint letter; annotate parts (problem, examples, request)
-- **Game:** Phrasal-verb charades (turn on/off, fill out, call back, turn in)
+- **Grammar (new):** Type 0 vs Type 1 Conditionals Practice - When to use which (Type 0: general truths, habits, rules / Type 1: future plans, predictions)
+- **Speaking practice (25 min):** Housing problem-solving using conditionals (State the problem with Type 0, offer solution with Type 1)
+- **R/L/W:** Read a model housing complaint letter; identify all tenses used; add 2 conditional sentences
+- **Game:** Conditional relay race (teams make the most correct conditionals in 5 minutes)
 
-**Thu 2/5 — Warm‑up:** Past Continuous vs Past Simple
-- **Grammar review:** Past continuous vs past simple (when… / while…)
-- **Speaking practice (25 min):** Complex problem stories using both tenses
-- **Phonics:** /s/ vs /z/ + -s endings in real phrases (pays, pays for, pays late)
-- **R/L/W:** Draft complaint letter paragraph 1 (topic sentence + 2 details)
-- **Game:** Sentence auction (teams "buy" correct sentences)
+**Thu 2/5 — Warm‑up:** Money Goals & Housing Plans
+- **Grammar review:** All Tenses + Conditionals Review - Error correction and fluency practice (when to use each of the 7 tenses + Type 0 vs Type 1 conditionals)
+- **Speaking practice (25 min):** Complex stories using multiple tenses + conditionals (Tell a housing journey from past → present → future plans)
+- **Phonics:** /s/ vs /z/ + -s endings (If she pays... If he saves...)
+- **R/L/W:** Write a housing goal paragraph using at least 4 different tenses + 2 conditionals
+- **Game:** Tense auction game (identify + explain which tense/conditional is correct and why)
 
 ### Week 21 (Feb 10 & Feb 12) — Finish Housing (quiz moved to 2/26)
 

@@ -12,6 +12,7 @@ interface WordScrambleExerciseProps {
     isIncorrect: boolean;
     submitted: boolean;
     onChange: (value: string) => void;
+    itemNumber: number;
 }
 
 export function WordScrambleExercise({
@@ -21,6 +22,7 @@ export function WordScrambleExercise({
     isIncorrect,
     submitted,
     onChange,
+    itemNumber,
 }: WordScrambleExerciseProps) {
     const itemKey = useMemo(
         () => `${item.label}__${item.correctAnswer}__${item.words.join(" ")}`,
@@ -83,7 +85,10 @@ export function WordScrambleExercise({
             transition={{ duration: 0.3 }}
         >
             <div className="mb-3">
-                <span className="text-sm text-text font-medium">{item.label}</span>
+                <span className="text-sm text-text font-medium">
+                    <span className="font-semibold mr-2">{itemNumber}.</span>
+                    {item.label}
+                </span>
             </div>
 
             {/* Word Cards */}
