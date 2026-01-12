@@ -138,6 +138,7 @@ export function ExerciseSection({
                         isIncorrect,
                         submitted,
                         onChange: (value: string) => onAnswerChange(index, value),
+                        itemNumber: index + 1,
                     };
 
                     return (

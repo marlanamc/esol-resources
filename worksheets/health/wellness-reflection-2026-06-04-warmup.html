@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellness Reflection (ESOL Level 3)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
+    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .header-fields {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+    }
+    .field { display: flex; align-items: baseline; gap: 5px; }
+    .field label { font-weight: bold; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 100px; height: 16px; }
+    .date-value { font-weight: normal; }
+    .section { margin-bottom: 18px; }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
+    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
+    .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
+    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
+    .vocab-word .num { font-weight: bold; min-width: 20px; }
+    .vocab-word .word { flex: 1; }
+    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-left: 10px; }
+    .vocab-def { padding: 3px 0; }
+    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
+    .phrase { margin-bottom: 14px; }
+    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
+    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+    .examples li { margin-bottom: 1px; list-style: none; }
+    .examples li::before { content: "• "; color: var(--ink); }
+    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
+    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
+    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
+    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
+    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
+    .round { margin-bottom: 8px; font-size: 13px; }
+    .round-header { font-weight: bold; }
+    .round-content { margin-left: 8px; color: var(--gray); }
+    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
+    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .reading-text p { margin-bottom: 8px; text-align: justify; }
+    .question { margin-bottom: 12px; }
+    .question-text { font-size: 13px; margin-bottom: 4px; }
+    .question-text b { font-weight: bold; }
+    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
+    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
+    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
+    .requirements li { margin-bottom: 1px; }
+    .writing-lines { margin-top: 10px; }
+    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
+    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
+    .front-page { margin-bottom: 24px; }
+    @media print {
+      @page { size: letter; margin: 0.45in; }
+      body { background: #fff; padding: 0; }
+      .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="front-page">
+      <header class="header">
+      <h1>Wellness Reflection: What's Changed?</h1>
+      <div class="header-fields">
+        <div class="field">
+          <label>Name</label>
+          <div class="field-line" style="width: 160px;"></div>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <span class="date-value">June 4, 2026</span>
+        </div>
+      </div>
+    </header>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part A: Vocabulary</h2>
+          <span class="section-time">3 min</span>
+        </div>
+        <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
+        <div class="vocab-matching">
+          <div class="vocab-words">
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">reflection</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">progress</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">challenge</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">success</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">improve</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">proud</span> <span class="blank"></span></div>
+          </div>
+          <div class="vocab-defs">
+            <div class="vocab-def"><span class="letter">a.</span> thinking about your experience</div>
+            <div class="vocab-def"><span class="letter">b.</span> improvement over time</div>
+            <div class="vocab-def"><span class="letter">c.</span> something difficult</div>
+            <div class="vocab-def"><span class="letter">d.</span> achieving your goal</div>
+            <div class="vocab-def"><span class="letter">e.</span> to get better</div>
+            <div class="vocab-def"><span class="letter">f.</span> feeling good about achievement</div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part B: Phrases</h2>
+          <span class="section-time">8 min</span>
+        </div>
+        <p class="instruction">Read the examples. Then write your own sentence. Try to use vocabulary from Part A.</p>
+        <div class="phrase">
+          <div class="phrase-starter">1) I've started...</div>
+          <ul class="examples">
+            <li>I've started drinking more water.</li>
+            <li>I've started going to bed earlier, and I feel much better.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="phrase">
+          <div class="phrase-starter">2) I've stopped...</div>
+          <ul class="examples">
+            <li>I've stopped eating fast food so often.</li>
+            <li>I've stopped scrolling on my phone before sleep.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="phrase">
+          <div class="phrase-starter">3) I've been trying to...</div>
+          <ul class="examples">
+            <li>I've been trying to sleep earlier.</li>
+            <li>I've been trying to exercise three times a week for two months now.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <div class="phrase">
+          <div class="phrase-starter">4) I've gotten better at...</div>
+          <ul class="examples">
+            <li>I've gotten better at managing stress.</li>
+            <li>I've gotten better at saying no when I'm too busy.</li>
+          </ul>
+          <div class="your-turn">
+            <span class="your-turn-label">Your turn:</span>
+            <div class="writing-line"></div>
+          </div>
+        </div>
+        <p class="level-up">Level up: Try using present perfect continuous to show ongoing effort (e.g., "I've been trying to..." with "for" or "since").</p>
+      </section>
+      <section class="section page-break">
+        <div class="section-header">
+          <h2 class="section-title">Part C: Partner Practice</h2>
+          <span class="section-time">5 min</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 1:</span>
+          <span class="round-content">Share your sentences from Part B. Your partner listens and asks one follow-up question.</span>
+        </div>
+        <div class="round">
+          <span class="round-header">Round 2:</span>
+          <span class="round-content">Switch roles. Share one wellness success and one challenge. Ask your partner: "What helped you succeed? What's still difficult?"</span>
+        </div>
+        <p class="help-note">Need help? Say: "Can you repeat that?" or "What does ___ mean?"</p>
+      </section>
+    </div>
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Reading</h2>
+      </div>
+      <div class="reading-text">
+        <p>Taking time to reflect on your wellness journey is important. When you look back, you can see how much progress you've made. Maybe you've started eating breakfast every day, or you've stopped drinking soda. These changes matter, even if they seem small.</p>
+        <p>Present perfect tenses help you talk about changes that started in the past and continue to the present. "I've been trying to exercise more" shows ongoing effort. "I've gotten better at meal planning" shows improvement over time. "I've started taking walks during lunch breaks" shows a new habit that continues.</p>
+        <p>Reflecting also helps you identify challenges. One thing you might still want to improve is stress management or sleep quality. That's okay—wellness is a journey, not a destination. Be proud of what you've accomplished, and keep working on what's still difficult.</p>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>1)</b> Why is it important to reflect on your wellness journey?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>2)</b> What verb tense helps you talk about changes that continue to the present?</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>3)</b> According to the reading, what should you do about challenges that are still difficult?</div>
+        <div class="answer-line"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Writing Homework</h2>
+        <span class="section-time">6–8 sentences</span>
+      </div>
+      <div class="writing-prompt">
+        <b>Prompt:</b> Reflect on your wellness changes. What have you started or stopped doing? What have you been trying to improve? What are you proud of? What do you still want to work on?
+      </div>
+      <ul class="requirements">
+        <li>Try using "I've started" or "I've stopped" to describe specific changes</li>
+        <li>Consider using "I've been trying to" to show ongoing efforts</li>
+        <li>Try using "I've gotten better at" to show improvements</li>
+        <li>Could explain what helped you succeed and what challenges remain</li>
+      </ul>
+      <div class="writing-lines">
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+        <div class="homework-line"></div>
+      </div>
+      <p class="optional-note">Optional challenge: Use time phrases like "for two months," "since January," or "recently" to show when changes began.</p>
+    </section>
+  </div>
+</body>
+</html>

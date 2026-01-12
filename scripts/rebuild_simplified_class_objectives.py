@@ -392,6 +392,11 @@ def outcomes_for_guide(guide_slug: str) -> list[str]:
             "Make plans and give advice using conditionals",
             "Explain consequences in speaking",
         ],
+        "conditionals-zero-first": [
+            "Use Type 0 conditionals (If + present, present) for facts and rules",
+            "Use Type 1 conditionals (If + present, will…) for future plans",
+            "Choose the correct conditional type when speaking and writing",
+        ],
         "verbs-plus-gerunds": [
             "Use common verbs followed by -ing (avoid, keep, consider, stop, finish)",
             "Write sentences about habits and goals using these verbs",
@@ -407,6 +412,21 @@ def outcomes_for_guide(guide_slug: str) -> list[str]:
             "Talk about life experience and progress",
             "Correct common perfect tense mistakes",
         ],
+        "future-perfect": [
+            "Use Future Perfect (will have + V3) to talk about what will be completed by a future time",
+            "Set goals and make predictions using 'By [date], I will have...'",
+            "Talk about future achievements and milestones",
+        ],
+        "past-perfect-continuous": [
+            "Use Past Perfect Continuous (had been + -ing) to describe ongoing actions before a past event",
+            "Explain background duration before something happened",
+            "Tell career and learning stories with clear timelines",
+        ],
+        "future-perfect-continuous": [
+            "Use Future Perfect Continuous (will have been + -ing) to talk about duration continuing up to a future point",
+            "Describe future milestones and long-term goals",
+            "Compare all three perfect continuous tenses",
+        ],
     }
 
     if guide_slug not in mapping:
@@ -417,6 +437,146 @@ def outcomes_for_guide(guide_slug: str) -> list[str]:
         ]
 
     return mapping[guide_slug]
+
+
+def why_for_guide(guide_slug: str) -> str:
+    """Get the 'why we're learning this' explanation for a grammar guide."""
+    mapping: dict[str, str] = {
+        "parts-of-speech": "Parts of speech are the building blocks of English. When you know them, you can build clearer sentences in speaking and writing.",
+        "superlatives-quantifiers": "Superlatives and quantifiers help you compare and describe needs (best, worst, most, least, many, much). These are useful for housing, shopping, and everyday choices.",
+        "information-questions": "Good questions help you get important information. This week you'll practice question word order and follow-up questions for real-life situations.",
+        "past-continuous": "Past continuous helps you explain what was happening when something happened. This is useful for telling stories and describing problems clearly.",
+        "past-perfect": "Past perfect helps you explain what happened first in the past. This is useful for timelines, reports, and clear problem descriptions.",
+        "modals-obligation-permission": "Modals help you sound polite and professional (must, have to, can, could, may). These are important for work rules and requests.",
+        "gerunds-prepositions": "Gerunds are common in work and school English (good at…, interested in…). This helps you describe skills and routines clearly.",
+        "present-perfect-continuous": "Present perfect continuous helps you talk about experience over time (I've been working…, I've been studying…). This is useful for job and learning conversations.",
+        "infinitives-vs-gerunds": "Some verbs use to + verb and others use -ing. Practicing both helps your English sound natural and clear at work and in daily life.",
+        "workplace-phrasal-verbs": "Phrasal verbs are very common at work. Learning them helps you understand instructions and communicate more confidently.",
+        "used-to-would-rather": "Used to helps you talk about past habits and changes. Would rather helps you express preferences politely. These are useful for work and daily life.",
+        "imperatives-declaratives": "You'll practice polite ways to give advice and instructions. This helps you communicate clearly in health, school, and work situations.",
+        "passive-voice": "Passive voice is common in instructions (You are asked to…, It is required…). Understanding it helps you follow clinic and pharmacy directions.",
+        "reported-speech": "Reported speech helps you explain what someone said or told you to do. This is useful for phone calls, appointments, and messages.",
+        "future-conditional": "If… will… helps you talk about cause and effect and make plans. This is useful for problem-solving and healthy habits.",
+        "conditionals-zero-first": "Conditionals help you talk about cause and effect, rules, and future plans. Type 0 is for facts (If you pay late, you get a fee). Type 1 is for future possibilities (If I save money, I will move).",
+        "verbs-plus-gerunds": "Verbs like avoid, keep, consider, and stop help you talk about habits and goals. These are useful for wellness plans and clear writing.",
+        "all-verb-tenses-overview": "Reviewing key tenses helps you tell stories and explain timelines clearly. This week you'll use tense review for directions and reflection.",
+        "perfect-tenses-review": "Perfect tenses help you connect past actions to the present. They are useful for reflecting on progress and setting goals.",
+        "perfect-continuous-tenses-review": "Perfect continuous tenses help you describe ongoing situations and progress over time. This is useful for explaining work experience and learning journeys.",
+        "future-perfect": "Future Perfect helps you talk about what will be completed by a future time. This is useful for setting goals, making predictions, and talking about future achievements.",
+        "past-perfect-continuous": "Past Perfect Continuous helps you describe ongoing actions before a past event. This is useful for explaining background duration and telling career or learning stories with clear timelines.",
+        "future-perfect-continuous": "Future Perfect Continuous helps you talk about duration continuing up to a future point. This is useful for describing future milestones and long-term goals.",
+    }
+    
+    return mapping.get(guide_slug, "This grammar helps you communicate more clearly in real-life situations.")
+
+
+def naturalize_warmup_title(title: str) -> str:
+    """
+    Convert a warmup worksheet title to a natural, student-friendly description.
+    Removes formal titles and makes it more conversational.
+    """
+    # Remove common prefixes and suffixes
+    title = title.strip()
+    
+    # Remove "Speaking Warmup" suffix if present
+    title = re.sub(r"\s*\(Speaking Warmup\)\s*$", "", title, flags=re.IGNORECASE)
+    title = re.sub(r"\s*\(Warmup\)\s*$", "", title, flags=re.IGNORECASE)
+    
+    # Common patterns to convert
+    patterns = [
+        # Housing patterns
+        (r"^Housing:\s*Room Descriptions", "describing rooms in your home"),
+        (r"^Housing:\s*Calling Your Landlord", "calling your landlord"),
+        (r"^Housing:\s*Tenant.*Landlord", "talking to your landlord"),
+        (r"^Housing:\s*Problems.*Solutions", "describing housing problems and solutions"),
+        (r"^Housing:\s*Past.*Present.*Habits", "talking about past and present housing"),
+        (r"^Housing.*Basics", "talking about your home"),
+        
+        # Banking patterns
+        (r"^Banking.*Basics", "talking about banking"),
+        (r"^Money.*Housing.*Plans", "talking about money and housing plans"),
+        (r"^Future.*Goals", "talking about future goals"),
+        
+        # Workplace patterns
+        (r"^Workplace.*Basics", "talking about work"),
+        (r"^Career.*Basics", "talking about careers"),
+        (r"^Resume.*Cover Letter", "talking about resumes and cover letters"),
+        (r"^Interview.*Questions", "practicing interview questions"),
+        (r"^Job Application", "talking about job applications"),
+        (r"^Career.*Stories", "sharing career stories"),
+        (r"^Workplace Rights", "talking about workplace rights"),
+        (r"^Career Goals", "talking about career goals"),
+        (r"^Negotiation", "practicing negotiation"),
+        (r"^Advocacy.*Role.*Plays", "practicing advocacy role-plays"),
+        (r"^Small Talk", "practicing workplace small talk"),
+        (r"^Workplace Policies", "talking about workplace policies"),
+        (r"^Work.*Problem.*Solution", "solving work problems"),
+        (r"^Exit Interview", "practicing exit interviews"),
+        
+        # Health patterns
+        (r"^Healthcare.*Basics", "talking about healthcare"),
+        (r"^Symptoms.*Duration", "describing symptoms and how long they last"),
+        (r"^Clinic Visit.*Steps", "talking about clinic visit steps"),
+        (r"^Pharmacy.*Instructions", "understanding pharmacy instructions"),
+        (r"^MyChart.*Calling.*Office", "using MyChart and calling the office"),
+        (r"^Wellness.*Basics", "talking about wellness"),
+        (r"^Nutrition.*Food Labels", "reading food labels and talking about nutrition"),
+        (r"^Home Remedies", "talking about home remedies"),
+        (r"^Stress.*Solutions", "talking about stress solutions"),
+        (r"^Healthy Habit.*Tracker", "tracking healthy habits"),
+        (r"^Wellness Presentation", "practicing wellness presentations"),
+        (r"^Wellness Reflection", "reflecting on wellness"),
+        
+        # Grammar patterns
+        (r"^Reported Speech", "reporting what someone said"),
+        (r"^Passive Voice", "using passive voice"),
+        (r"^Perfect.*Tenses.*Practice", "practicing perfect tenses"),
+        (r"^Gerunds.*Infinitives", "using gerunds and infinitives"),
+        (r"^Used To.*Structures", "using 'used to' structures"),
+        (r"^Perfect.*Continuous", "using perfect continuous tenses"),
+        
+        # Other patterns
+        (r"^Classroom.*Basics", "using classroom language"),
+        (r"^Food.*Basics", "talking about food"),
+        (r"^Transportation.*Basics", "talking about transportation"),
+        (r"^New Year.*Goals", "talking about new year goals"),
+        (r"^Community Resources", "talking about community resources"),
+        (r"^Final Presentation", "practicing final presentations"),
+        (r"^Year.*Review", "reflecting on the year"),
+        (r"^Summer.*Next Steps", "talking about summer and next steps"),
+    ]
+    
+    # Try to match patterns
+    for pattern, replacement in patterns:
+        if re.search(pattern, title, re.IGNORECASE):
+            return replacement
+    
+    # If no pattern matches, try to extract the main topic
+    # Remove common prefixes like "Housing:", "Workplace:", etc.
+    title = re.sub(r"^(Housing|Workplace|Career|Health|Healthcare|Wellness|Banking|Grammar|Other):\s*", "", title, flags=re.IGNORECASE)
+    
+    # Remove date prefixes if present
+    title = re.sub(r"^\d{1,2}/\d{1,2}/\d{2,4}:\s*", "", title)
+    
+    # Convert to lowercase and make it more natural
+    title = title.lower().strip()
+    
+    # If it still has formal structure, try to simplify
+    if ":" in title:
+        # Take the part after the colon
+        parts = title.split(":", 1)
+        if len(parts) > 1:
+            title = parts[1].strip()
+    
+    # Add "practicing" or "talking about" prefix if it doesn't already have a verb
+    if not any(word in title for word in ["practicing", "talking", "describing", "using", "understanding", "reading", "sharing", "reflecting"]):
+        # Check if it's an action (ends with -ing or is a noun phrase)
+        if title.endswith("ing") or " " not in title:
+            return f"practicing {title}"
+        else:
+            return f"talking about {title}"
+    
+    return title
 
 
 def render_week_html(
@@ -432,9 +592,23 @@ def render_week_html(
     title = f"Week {config.week_number} Plan - {date_range}"
 
     # Warmup outcomes: keep short and student-friendly.
+    tuesday_natural = naturalize_warmup_title(tuesday_warmup_title)
+    thursday_natural = naturalize_warmup_title(thursday_warmup_title)
+    
+    # Add "Practice" prefix, but avoid duplication if description already starts with "practicing"
+    if tuesday_natural.startswith("practicing "):
+        warmup_tuesday = f"Practice {tuesday_natural[11:]}"  # Remove "practicing " prefix
+    else:
+        warmup_tuesday = f"Practice {tuesday_natural}"
+    
+    if thursday_natural.startswith("practicing "):
+        warmup_thursday = f"Practice {thursday_natural[11:]}"  # Remove "practicing " prefix
+    else:
+        warmup_thursday = f"Practice {thursday_natural}"
+    
     warmup_outcomes = [
-        f"Practice speaking about {tuesday_warmup_title} (Speaking Warmup)",
-        f"Practice speaking about {thursday_warmup_title} (Speaking Warmup)",
+        warmup_tuesday,
+        warmup_thursday,
     ]
     grammar_outcomes = outcomes_for_guide(config.guide_slug)
     outcomes = warmup_outcomes + grammar_outcomes
@@ -824,27 +998,27 @@ def build_week_configs() -> list[WeekConfig]:
         ),
         WeekConfig(
             week_number=19,
-            guide_slug="past-continuous",
-            guide_title="Past Continuous",
-            tuesday_grammar="Past continuous (was/were + -ing)",
-            thursday_grammar="Past continuous vs past simple (when/while)",
-            why="Past continuous helps you explain what was happening when something happened. This is useful for telling stories and describing problems clearly.",
+            guide_slug="conditionals-zero-first",
+            guide_title="Zero & First Conditionals",
+            tuesday_grammar="Type 0 conditionals (If + present, present) for facts and rules",
+            thursday_grammar="Type 1 conditionals (If + present, will…) for future plans",
+            why="Conditionals help you talk about cause and effect, rules, and future plans. Type 0 is for facts (If you pay late, you get a fee). Type 1 is for future possibilities (If I save money, I will move).",
         ),
         WeekConfig(
             week_number=20,
-            guide_slug="past-continuous",
-            guide_title="Past Continuous",
-            tuesday_grammar="Past continuous (while/when sentences)",
-            thursday_grammar="Past continuous review (speaking + writing practice)",
-            why="Past continuous helps you describe ongoing situations and interruptions (while/when). This is helpful for explaining housing and work problems.",
+            guide_slug="conditionals-zero-first",
+            guide_title="Zero & First Conditionals",
+            tuesday_grammar="Type 0 vs Type 1 conditionals (when to use which)",
+            thursday_grammar="Conditionals review + fluency practice",
+            why="Practicing both types helps you explain housing problems (Type 0) and solutions (Type 1) clearly. This is useful for talking about money, housing, and making plans.",
         ),
         WeekConfig(
             week_number=21,
             guide_slug="past-perfect",
-            guide_title="Past Perfect",
+            guide_title="Past Perfect & Future Perfect",
             tuesday_grammar="Past perfect (had + V3) for timelines",
-            thursday_grammar="Past perfect review + error correction",
-            why="Past perfect helps you explain what happened first in the past. This is useful for timelines, reports, and clear problem descriptions.",
+            thursday_grammar="Future Perfect (will have + V3) for future goals",
+            why="Past perfect helps you explain what happened first in the past. Future perfect helps you talk about what will be completed by a future time. Both are useful for timelines and goals.",
             thursday_special="Unit 5 Quiz (in class)",
         ),
         WeekConfig(
@@ -866,19 +1040,19 @@ def build_week_configs() -> list[WeekConfig]:
         WeekConfig(
             week_number=24,
             guide_slug="present-perfect-continuous",
-            guide_title="Present Perfect Continuous",
-            tuesday_grammar="Present perfect continuous (I’ve been…)",
-            thursday_grammar="Present perfect continuous review + common errors",
-            why="Present perfect continuous helps you talk about experience over time (I’ve been working…, I’ve been studying…). This is useful for job and learning conversations.",
+            guide_title="Present Perfect Continuous & Past Perfect Continuous",
+            tuesday_grammar="Present perfect continuous (I've been…)",
+            thursday_grammar="Past Perfect Continuous (had been + -ing) for background duration",
+            why="Present perfect continuous helps you talk about experience over time. Past perfect continuous helps you describe ongoing actions before a past event. Both are useful for job and learning conversations.",
             thursday_special="Unit 6 Quiz (in class)",
         ),
         WeekConfig(
             week_number=25,
             guide_slug="present-perfect-continuous",
-            guide_title="Present Perfect Continuous",
+            guide_title="Present Perfect Continuous & Future Perfect Continuous",
             tuesday_grammar="Present perfect continuous (workplace contexts)",
-            thursday_grammar="Present perfect continuous fluency practice",
-            why="This tense helps you describe ongoing situations and progress. It’s useful for explaining work issues and sharing updates clearly.",
+            thursday_grammar="Future Perfect Continuous (will have been + -ing) for future milestones",
+            why="Present perfect continuous helps you describe ongoing situations and progress. Future perfect continuous helps you talk about duration continuing up to a future point. These are useful for explaining work experience and future goals.",
         ),
         WeekConfig(
             week_number=26,
@@ -1017,6 +1191,93 @@ def main() -> int:
         raise ValueError(
             f"Expected {len(week_configs)} week pairs, found {len(week_pairs)}"
         )
+
+    # Override grammar guides based on warmup worksheets
+    def detect_grammar_from_warmup(warmup_title: str, schedule_slug: str = "") -> tuple[str, str] | None:
+        """Detect grammar guide from warmup worksheet title or schedule slug. Returns (guide_slug, guide_title) or None."""
+        warmup_lower = warmup_title.lower()
+        slug_lower = schedule_slug.lower()
+        combined = f"{warmup_lower} {slug_lower}"
+        
+        # Map warmup patterns to grammar guides (check both title and schedule slug)
+        # Note: Only detect if the title actually contains the grammar topic
+        grammar_map = {
+            "reported-speech": ("reported-speech", "Reported Speech"),
+            "reported speech": ("reported-speech", "Reported Speech"),
+            "passive-voice": ("passive-voice", "Passive Voice"),
+            "passive voice": ("passive-voice", "Passive Voice"),
+            # Only detect perfect tenses if title actually says "perfect tenses" (not "past continuous vs past simple")
+            "perfect tenses review": ("perfect-tenses-review", "Perfect Tenses Review"),
+            "perfect tenses": ("perfect-tenses-review", "Perfect Tenses Review"),
+            # Don't match "perfect-tenses-practice" since that worksheet is actually about "Past Continuous vs Past Simple"
+            "gerunds-infinitives": ("infinitives-vs-gerunds", "Infinitives vs Gerunds"),
+            "gerunds and infinitives": ("infinitives-vs-gerunds", "Infinitives vs Gerunds"),
+            "gerunds & infinitives": ("infinitives-vs-gerunds", "Infinitives vs Gerunds"),
+            "perfect-continuous": ("perfect-continuous-tenses-review", "Perfect Continuous Tenses Review"),
+            "perfect continuous": ("perfect-continuous-tenses-review", "Perfect Continuous Tenses Review"),
+            "perfect continuous tenses": ("perfect-continuous-tenses-review", "Perfect Continuous Tenses Review"),
+            "used-to-structures": ("used-to-would-rather", "Used To / Be Used To / Get Used To"),
+            "used to": ("used-to-would-rather", "Used To / Be Used To / Get Used To"),
+        }
+        
+        # Check combined text (title + schedule slug) for patterns
+        for pattern, (slug, title) in grammar_map.items():
+            if pattern in combined:
+                return (slug, title)
+        return None
+
+    # Update week configs based on warmup worksheets
+    from dataclasses import replace
+    for i, ((tuesday, thursday), config) in enumerate(zip(week_pairs, week_configs)):
+        tuesday_title = find_warmup_title(
+            class_date=tuesday.class_date,
+            schedule_slug=tuesday.schedule_slug,
+            date_to_title=date_to_title,
+            name_key_to_title=name_key_to_title,
+        )
+        thursday_title = find_warmup_title(
+            class_date=thursday.class_date,
+            schedule_slug=thursday.schedule_slug,
+            date_to_title=date_to_title,
+            name_key_to_title=name_key_to_title,
+        )
+        
+        # Check if warmups indicate additional grammar topics
+        thursday_grammar_detected = detect_grammar_from_warmup(thursday_title, thursday.schedule_slug)
+        tuesday_grammar_detected = detect_grammar_from_warmup(tuesday_title, tuesday.schedule_slug)
+        
+        # Update grammar descriptions to include detected topics (append, don't replace)
+        updated_tuesday_grammar = config.tuesday_grammar
+        updated_thursday_grammar = config.thursday_grammar
+        updated_why = config.why
+        
+        if tuesday_grammar_detected:
+            slug, title = tuesday_grammar_detected
+            # Append the detected grammar if it's different from the week's main topic
+            if slug != config.guide_slug:
+                updated_tuesday_grammar = f"{config.tuesday_grammar} + {title}"
+        
+        if thursday_grammar_detected:
+            slug, title = thursday_grammar_detected
+            # Append the detected grammar if it's different from the week's main topic
+            if slug != config.guide_slug:
+                updated_thursday_grammar = f"{config.thursday_grammar} + {title}"
+                # Update "why" to mention both topics if Thursday has a different grammar
+                if slug != config.guide_slug:
+                    main_why = config.why
+                    additional_why = why_for_guide(slug)
+                    # Capitalize the first letter of the additional explanation
+                    additional_why_lower = additional_why[0].lower() + additional_why[1:] if len(additional_why) > 1 else additional_why.lower()
+                    updated_why = f"{main_why} Also, {additional_why_lower}"
+        
+        # Only update if we detected additional grammar topics
+        if tuesday_grammar_detected or thursday_grammar_detected:
+            week_configs[i] = replace(
+                config,
+                tuesday_grammar=updated_tuesday_grammar,
+                thursday_grammar=updated_thursday_grammar,
+                why=updated_why,
+            )
 
     CLASS_OBJECTIVES_DIR.mkdir(parents=True, exist_ok=True)
 

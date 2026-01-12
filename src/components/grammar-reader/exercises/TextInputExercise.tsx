@@ -13,6 +13,7 @@ interface TextInputExerciseProps {
     isIncorrect: boolean;
     submitted: boolean;
     onChange: (value: string) => void;
+    itemNumber: number;
 }
 
 export function TextInputExercise({
@@ -22,6 +23,7 @@ export function TextInputExercise({
     isIncorrect,
     submitted,
     onChange,
+    itemNumber,
 }: TextInputExerciseProps) {
     return (
         <motion.div
@@ -31,7 +33,10 @@ export function TextInputExercise({
             transition={{ duration: 0.3 }}
         >
             <label className="block mb-2">
-                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                <span className="text-sm text-text font-medium">
+                    <span className="font-semibold mr-2">{itemNumber}.</span>
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                </span>
             </label>
             <motion.div
                 animate={submitted && isIncorrect ? { x: [-10, 10, -10, 10, 0] } : {}}

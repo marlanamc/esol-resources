@@ -9,6 +9,7 @@ interface SelectExerciseProps {
     isIncorrect: boolean;
     submitted: boolean;
     onChange: (value: string) => void;
+    itemNumber: number;
 }
 
 export function SelectExercise({
@@ -18,11 +19,15 @@ export function SelectExercise({
     isIncorrect,
     submitted,
     onChange,
+    itemNumber,
 }: SelectExerciseProps) {
     return (
         <div className="select-exercise">
             <label className="block mb-2">
-                <span className="text-sm text-text font-medium" dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                <span className="text-sm text-text font-medium">
+                    <span className="font-semibold mr-2">{itemNumber}.</span>
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                </span>
             </label>
             <select
                 value={userAnswer}

@@ -11,6 +11,7 @@ interface WordSelectExerciseProps {
     isIncorrect: boolean;
     submitted: boolean;
     onChange: (value: string) => void;
+    itemNumber: number;
 }
 
 function parseSelection(value: string): number[] {
@@ -37,6 +38,7 @@ export function WordSelectExercise({
     isIncorrect,
     submitted,
     onChange,
+    itemNumber,
 }: WordSelectExerciseProps) {
     const selected = new Set(parseSelection(userAnswer));
     const selectWhat = item.selectWhat || "the correct words";
@@ -57,9 +59,15 @@ export function WordSelectExercise({
             transition={{ duration: 0.3 }}
         >
             <p className="sr-only">{item.label}</p>
-            <p className="text-xs text-text-muted mb-2">
-                Click {selectWhat}. Click again to unselect.
-            </p>
+            <div className="mb-2">
+                <p className="text-sm text-text font-medium mb-1">
+                    <span className="font-semibold mr-2">{itemNumber}.</span>
+                    {item.label}
+                </p>
+                <p className="text-xs text-text-muted">
+                    Click {selectWhat}. Click again to unselect.
+                </p>
+            </div>
 
             <div className="flex flex-wrap items-center gap-1.5 mt-3">
                 {item.tokens.map((token, index) => {
