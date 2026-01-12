@@ -9,9 +9,10 @@ import { Button } from "@/components/ui/Button";
 interface MiniQuizSectionProps {
     questions: MiniQuizQuestion[];
     onComplete: () => void;
+    topicTitle?: string;
 }
 
-export function MiniQuizSection({ questions, onComplete }: MiniQuizSectionProps) {
+export function MiniQuizSection({ questions, onComplete, topicTitle = "this grammar topic" }: MiniQuizSectionProps) {
     const [answers, setAnswers] = useState<Record<string, string>>({});
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(0);
@@ -60,7 +61,7 @@ export function MiniQuizSection({ questions, onComplete }: MiniQuizSectionProps)
                     Mini Quiz
                 </h2>
                 <p className="text-text-muted">
-                    Test your understanding of Present Perfect!
+                    Test your understanding of {topicTitle}!
                 </p>
             </motion.div>
 
@@ -135,7 +136,7 @@ export function MiniQuizSection({ questions, onComplete }: MiniQuizSectionProps)
                                 transition={{ delay: 0.4 }}
                             >
                                 {percentage >= 80
-                                    ? "Excellent work! You've mastered Present Perfect!"
+                                    ? `Excellent work! You've mastered ${topicTitle}!`
                                     : percentage >= 60
                                         ? "Good job! Review the sections you missed."
                                         : "Keep practicing! Review the guide and try again."}

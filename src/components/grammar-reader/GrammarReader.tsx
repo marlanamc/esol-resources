@@ -394,6 +394,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <MiniQuizSection
                                 questions={content.miniQuiz}
                                 onComplete={handleQuizComplete}
+                                topicTitle={guideTitle}
                             />
                         </div>
                     )}
