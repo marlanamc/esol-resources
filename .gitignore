@@ -57,6 +57,8 @@ prisma/dev.db-journal
 *.tmp
 *~
 ._*
+__pycache__/
+*.py[cod]
 
 # playwright MCP artifacts
 .playwright-mcp/
@@ -72,8 +74,13 @@ qrcode_*.png
 # legacy projects (Flask app, etc.)
 ESOL_LMS/
 
-# local teaching uploads (not app content)
-/class_uploads/
+# local teaching uploads (default ignored)
+/class_uploads/*
+
+# keep simplified class objective handouts in git
+!/class_uploads/Class-Objectives/
+/class_uploads/Class-Objectives/*
+!/class_uploads/Class-Objectives/week*-SIMPLIFIED.html
 
 # temporary documentation
 vocab-comparison.md
