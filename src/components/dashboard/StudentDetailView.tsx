@@ -58,6 +58,13 @@ interface StudentAnalytics {
         activity: string;
         timestamp: string;
     }>;
+    verbQuizResults: Array<{
+        id: string;
+        title: string;
+        score: number | null;
+        submittedAt: string | null;
+        completed: boolean;
+    }>;
 }
 
 export default function StudentDetailView({ studentId }: { studentId: string }) {
@@ -213,6 +220,70 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                             </span>
                                             {activity.count > 1 && (
                                                 <span className="text-sm">🔁</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Verb Quiz Results */}
+                    <div className="bg-white rounded-lg border border-border p-6">
+                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
+                            <span>📝</span>
+                            Verb Quiz Results
+                        </h2>
+                        {data.verbQuizResults.length === 0 ? (
+                            <p className="text-text-muted">No verb quizzes available</p>
+                        ) : (
+                            <div className="space-y-2">
+                                {data.verbQuizResults.map((quiz) => (
+                                    <div
+                                        key={quiz.id}
+                                        className={`flex items-center justify-between p-3 rounded-lg ${
+                                            quiz.completed
+                                                ? quiz.score !== null && quiz.score >= 80
+                                                    ? 'bg-green-50 border border-green-200'
+                                                    : quiz.score !== null && quiz.score >= 60
+                                                    ? 'bg-yellow-50 border border-yellow-200'
+                                                    : 'bg-red-50 border border-red-200'
+                                                : 'bg-bg border border-border'
+                                        }`}
+                                    >
+                                        <div className="flex-1">
+                                            <div className="font-medium text-text">
+                                                {quiz.title}
+                                            </div>
+                                            {quiz.submittedAt && (
+                                                <div className="text-xs text-text-muted">
+                                                    Submitted {new Date(quiz.submittedAt).toLocaleDateString()}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            {quiz.completed && quiz.score !== null ? (
+                                                <>
+                                                    <div className="text-right">
+                                                        <div className="text-xs text-text-muted">Score</div>
+                                                        <div className={`text-lg font-bold ${
+                                                            quiz.score >= 80 ? 'text-green-700' :
+                                                            quiz.score >= 60 ? 'text-yellow-700' :
+                                                            'text-red-700'
+                                                        }`}>
+                                                            {quiz.score}%
+                                                        </div>
+                                                    </div>
+                                                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                                                        quiz.score >= 80 ? 'bg-green-100 text-green-700' :
+                                                        quiz.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
+                                                        'bg-red-100 text-red-700'
+                                                    }`}>
+                                                        {quiz.score >= 80 ? '✓' : quiz.score >= 60 ? '○' : '✗'}
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <span className="text-sm text-text-muted">Not completed</span>
                                             )}
                                         </div>
                                     </div>
