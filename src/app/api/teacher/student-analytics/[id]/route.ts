@@ -169,6 +169,54 @@ export async function GET(
         return Math.round(sum / items.length);
     };
 
+    // Get verb quiz results for this student
+    const verbQuizActivities = await prisma.activity.findMany({
+        where: {
+            type: 'quiz',
+            content: {
+                contains: '"type":"verb-quiz"'
+            }
+        },
+        select: {
+            id: true,
+            title: true,
+            createdAt: true
+        },
+        orderBy: {
+            createdAt: 'asc'
+        }
+    });
+
+    const verbQuizSubmissions = await prisma.submission.findMany({
+        where: {
+            userId: studentId,
+            activityId: {
+                in: verbQuizActivities.map(a => a.id)
+            }
+        },
+        select: {
+            id: true,
+            activityId: true,
+            score: true,
+            createdAt: true
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
+
+    // Map submissions to activities
+    const verbQuizResults = verbQuizActivities.map(activity => {
+        const submission = verbQuizSubmissions.find(s => s.activityId === activity.id);
+        return {
+            id: activity.id,
+            title: activity.title,
+            score: submission?.score ?? null,
+            submittedAt: submission?.createdAt ?? null,
+            completed: submission !== undefined
+        };
+    });
+
     return NextResponse.json({
         student: {
             ...student,
@@ -213,6 +261,7 @@ export async function GET(
             points: entry.points,
             activity: entry.reason,
             timestamp: entry.createdAt
-        }))
+        })),
+        verbQuizResults
     });
 }
