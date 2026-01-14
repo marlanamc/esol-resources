@@ -5,6 +5,7 @@ import Providers from "@/components/Providers";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import PWAUpdateNotification from "@/components/PWAUpdateNotification";
+import { Analytics } from "@vercel/analytics/next";
 
 const fraunces = Fraunces({
   variable: "--font-display",
@@ -70,6 +71,7 @@ export default function RootLayout({
         <ServiceWorkerRegistration />
         <PWAInstallPrompt />
         <PWAUpdateNotification />
+        <Analytics />
       </body>
     </html>
   );
