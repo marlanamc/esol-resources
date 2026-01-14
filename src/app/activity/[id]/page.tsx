@@ -11,6 +11,7 @@ import { CategoryProgressDisplay } from "@/components/CategoryProgressDisplay";
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { grammarTopics } from "@/data/grammar-map";
+import { numbersGameCategoryNames } from "@/data/numbersGameCategories";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -287,20 +288,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {id === 'numbers-game' && categoryData && (
                         <CategoryProgressDisplay
                             activityId={id}
-                            categoryNames={[
-                                'Basic Numbers (0-99)',
-                                'Hundreds (100-999)',
-                                'One Thousand to Ten Thousand (1,000-9,999)',
-                                'Ten Thousands (10,000-99,999)',
-                                'Hundred Thousands (100,000-999,999)',
-                                'Millions',
-                                'Billions',
-                                'Trillions',
-                                'Round Numbers (1,000 | 5 million | 1 billion)',
-                                'All Cardinal Numbers (Random Ranges)',
-                                'Ordinal Numbers (1st, 2nd, 3rd...)',
-                                'Years (1100-2099)'
-                            ]}
+                            categoryNames={numbersGameCategoryNames}
                             initialCategoryData={categoryData}
                         />
                     )}

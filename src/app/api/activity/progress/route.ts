@@ -2,7 +2,9 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import type { ActivityProgressStatus } from "@/lib/activityProgress";
 import { awardPoints, getActivityPoints, POINTS, resolveActivityGameUi, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
+import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } from "@/data/numbersGameCategories";
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
@@ -52,7 +54,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { activityId, progress = 100, status, accuracy, category, assignmentId } = body;
+    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId } = body;
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
@@ -60,7 +62,7 @@ export async function POST(request: Request) {
     }
 
     // Validate and sanitize progress (0-100)
-    const value = typeof progress === "number" ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
+    const rawProgress = typeof progress === "number" ? Math.max(0, Math.min(100, Math.round(progress))) : 0;
 
     // Validate and sanitize accuracy (0-100) if provided
     const sanitizedAccuracy = accuracy !== undefined && accuracy !== null
@@ -72,7 +74,11 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Invalid category format" }, { status: 400 });
     }
 
-    const computedStatus = status || (value >= 100 ? "completed" : "in_progress");
+    let progressValue = rawProgress;
+    let statusValue: ActivityProgressStatus | undefined;
+    if (typeof statusInput === "string") {
+        statusValue = statusInput as ActivityProgressStatus;
+    }
 
     const userId = session.user.id;
 
@@ -89,6 +95,7 @@ export async function POST(request: Request) {
 
     // Handle category data updates (Numbers Game uses accuracy; Matching Game uses category-only rounds)
     let updatedCategoryData: string | undefined;
+    let aggregatedNumbersProgress: number | undefined;
     if (category) {
         // Client sent a category update - merge with existing category data
         const currentData = existing?.categoryData
@@ -97,21 +104,32 @@ export async function POST(request: Request) {
 
         // Update or add this category's progress
         currentData[category] = {
-            completed: value >= 100,
+            completed: rawProgress >= 100,
             ...(sanitizedAccuracy !== undefined ? { accuracy: sanitizedAccuracy } : {}),
-            completedAt: value >= 100 ? new Date().toISOString() : currentData[category]?.completedAt,
+            completedAt: rawProgress >= 100 ? new Date().toISOString() : currentData[category]?.completedAt,
             attempts: (currentData[category]?.attempts || 0) + 1
         };
 
         updatedCategoryData = JSON.stringify(currentData);
 
+        if (isNumbersGameCategoryName(category)) {
+            aggregatedNumbersProgress = calculateNumbersGameCompletionPercentage(currentData);
+        }
+
         // Don't override progress to 100% unless explicitly set - keep category-based progress
         // Only set to 100 if this specific category round is complete
     }
 
+    if (aggregatedNumbersProgress !== undefined) {
+        progressValue = aggregatedNumbersProgress;
+        statusValue = aggregatedNumbersProgress >= 100 ? "completed" : "in_progress";
+    }
+
+    const finalStatus: ActivityProgressStatus = statusValue ?? (progressValue >= 100 ? "completed" : "in_progress");
+
     const progressData = {
-        progress: value,
-        status: computedStatus,
+        progress: progressValue,
+        status: finalStatus,
     };
     if (updatedCategoryData) {
         Object.assign(progressData, { categoryData: updatedCategoryData });
@@ -139,8 +157,8 @@ export async function POST(request: Request) {
     // - For other activities (including Matching Game round tracking), award once when overall progress hits 100%
     const isAccuracyCategoryUpdate = category && sanitizedAccuracy !== undefined;
     const shouldAwardPoints = isAccuracyCategoryUpdate
-        ? (value >= 100 && updatedCategoryData && !(existing?.categoryData && JSON.parse(existing.categoryData)[category]?.completed))
-        : ((existing?.progress ?? 0) < 100 && value >= 100);
+        ? (rawProgress >= 100 && updatedCategoryData && !(existing?.categoryData && JSON.parse(existing.categoryData)[category]?.completed))
+        : ((existing?.progress ?? 0) < 100 && progressValue >= 100);
 
     if (shouldAwardPoints) {
         // Get the activity to determine type
