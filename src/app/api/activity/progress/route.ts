@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, getActivityPoints, POINTS, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
+import { awardPoints, getActivityPoints, POINTS, resolveActivityGameUi, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -105,14 +105,14 @@ export async function POST(request: Request) {
         // Get the activity to determine type
         const activity = await prisma.activity.findUnique({
             where: { id: activityId },
-            select: { type: true, title: true, content: true }
+            select: { type: true, title: true, content: true, ui: true }
         });
 
         if (activity) {
-            let points = getActivityPoints(activity.type, activityId);
+            let points = getActivityPoints(activity.type, activity);
 
             // Special handling for numbers game - award difficulty-based points per category
-            if (activityId === 'numbers-game' || activityId?.includes('numbers-game')) {
+            if (resolveActivityGameUi(activity) === 'numbers') {
                 // Determine difficulty based on category
                 const categoryStr = (category || '').toLowerCase();
                 let basePoints: number;
@@ -168,7 +168,7 @@ export async function POST(request: Request) {
         }
 
         // Update streak and check for achievements after awarding points
-        await updateStreak(userId);
+        await updateStreak(userId, points);
         await checkAndAwardAchievements(userId);
     }
 

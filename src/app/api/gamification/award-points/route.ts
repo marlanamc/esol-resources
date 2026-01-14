@@ -25,6 +25,16 @@ export async function POST(req: NextRequest) {
     // Check if points already awarded for this submission
     const submission = await prisma.submission.findUnique({
       where: { id: submissionId },
+      include: {
+        activity: {
+          select: {
+            id: true,
+            type: true,
+            content: true,
+            ui: true,
+          },
+        },
+      },
     });
 
     if (!submission) {
@@ -40,10 +50,11 @@ export async function POST(req: NextRequest) {
 
     // Calculate points based on activity type and score
     // For quizzes, use score-based calculation; for other activities, use type-based
-    const isQuiz = activityType?.toLowerCase() === 'quiz';
-    const points = isQuiz 
-      ? calculateQuizPoints(score) 
-      : getActivityPoints(activityType || 'activity', submission.activityId);
+    const activityTypeFromDb = submission.activity?.type ?? activityType ?? 'activity';
+    const isQuiz = activityTypeFromDb?.toLowerCase() === 'quiz';
+    const points = isQuiz
+      ? calculateQuizPoints(score)
+      : getActivityPoints(activityTypeFromDb, submission.activity ?? undefined);
 
     // Award points
     await awardPoints(userId, points, `Completed activity ${submission.activityId}`);
@@ -55,7 +66,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Update streak
-    const streakResult = await updateStreak(userId);
+    const streakResult = await updateStreak(userId, points);
 
     // Check for new achievements
     const newAchievements = await checkAndAwardAchievements(userId);

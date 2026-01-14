@@ -39,7 +39,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
 
     return (
         <motion.div
-            className="mini-quiz-section bg-white rounded-xl shadow-lg border border-border p-8"
+            className="mini-quiz-section relative w-full max-w-4xl mx-auto bg-white rounded-xl shadow-lg border border-border px-4 py-6 sm:px-8 sm:py-8 overflow-hidden"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -68,7 +68,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
             <AnimatePresence>
                 {submitted && (
                     <motion.div
-                        className={`p-6 rounded-lg mb-6 ${percentage >= 80
+                        className={`relative overflow-hidden p-6 rounded-lg mb-6 ${percentage >= 80
                                 ? "bg-success/10 border-2 border-success"
                                 : percentage >= 60
                                     ? "bg-warning/10 border-2 border-warning"
@@ -142,15 +142,15 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                                         : "Keep practicing! Review the guide and try again."}
                             </motion.p>
                             <motion.div
-                                className="flex gap-3 justify-center"
+                                className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center"
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5 }}
                             >
-                                <Button variant="outline" onClick={handleReset}>
+                                <Button variant="outline" onClick={handleReset} className="w-full sm:w-auto">
                                     Try Again
                                 </Button>
-                                <Button variant="success" onClick={onComplete}>
+                                <Button variant="success" onClick={onComplete} className="w-full sm:w-auto">
                                     Finish
                                 </Button>
                             </motion.div>
@@ -159,7 +159,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                 )}
             </AnimatePresence>
 
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-5">
                 {questions.map((question, index) => {
                     const userAnswer = answers[question.id];
                     const isCorrect = userAnswer === question.correctAnswer;
@@ -168,7 +168,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                     return (
                         <motion.div
                             key={question.id}
-                            className={`quiz-question p-6 rounded-lg border-2 ${showFeedback && isCorrect
+                            className={`quiz-question p-4 sm:p-6 rounded-lg border-2 ${showFeedback && isCorrect
                                     ? "border-success bg-success/5"
                                     : showFeedback && !isCorrect
                                         ? "border-error bg-error/5"
@@ -178,7 +178,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.4 }}
                         >
-                            <div className="flex items-start gap-3 mb-4">
+                            <div className="flex flex-col gap-3 mb-4 sm:flex-row sm:items-start">
                                 <motion.div
                                     className="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm"
                                     initial={{ scale: 0 }}
@@ -187,16 +187,16 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                                 >
                                     {index + 1}
                                 </motion.div>
-                                <h4 className="text-base font-semibold text-text flex-1">
+                                <h4 className="text-base font-semibold text-text flex-1 leading-relaxed min-w-0">
                                     {question.question}
                                 </h4>
                             </div>
 
-                            <div className="space-y-2 ml-11">
+                            <div className="space-y-2 sm:ml-11">
                                 {question.options.map((option) => (
                                     <label
                                         key={option.value}
-                                        className={`flex items-center p-3 rounded-md border transition-all cursor-pointer ${!submitted
+                                        className={`flex w-full flex-col gap-3 rounded-md border p-3 text-left transition-all cursor-pointer ${!submitted
                                                 ? "hover:bg-bg-light border-border"
                                                 : showFeedback && option.value === question.correctAnswer
                                                     ? "border-success bg-success/10"
@@ -205,7 +205,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                                                         !isCorrect
                                                         ? "border-error bg-error/10"
                                                         : "border-border"
-                                            }`}
+                                            } sm:flex-row sm:items-center`}
                                     >
                                         <input
                                             type="radio"
@@ -218,7 +218,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                                             disabled={submitted}
                                             className="w-5 h-5 text-primary focus:ring-primary focus:ring-2"
                                         />
-                                        <span className="ml-3 text-sm text-text">{option.label}</span>
+                                        <span className="text-sm text-text sm:ml-3">{option.label}</span>
 
                                         <AnimatePresence>
                                             {showFeedback && option.value === question.correctAnswer && (
@@ -239,7 +239,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                             <AnimatePresence>
                                 {showFeedback && question.explanation && (
                                     <motion.div
-                                        className="mt-4 ml-11 p-3 bg-primary/5 rounded-md border-l-4 border-primary"
+                                        className="mt-4 sm:ml-11 p-3 bg-primary/5 rounded-md border-l-4 border-primary"
                                         initial={{ opacity: 0, height: 0, y: -10 }}
                                         animate={{ opacity: 1, height: "auto", y: 0 }}
                                         exit={{ opacity: 0, height: 0 }}
@@ -258,17 +258,22 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
 
             {!submitted && (
                 <motion.div
-                    className="mt-8 text-center"
+                    className="mt-8 flex flex-col items-center gap-3 text-center"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: questions.length * 0.1 + 0.3 }}
                 >
-                    <motion.div whileHover={{ scale: allAnswered ? 1.05 : 1 }} whileTap={{ scale: allAnswered ? 0.95 : 1 }}>
+                    <motion.div
+                        className="w-full max-w-[360px]"
+                        whileHover={{ scale: allAnswered ? 1.05 : 1 }}
+                        whileTap={{ scale: allAnswered ? 0.95 : 1 }}
+                    >
                         <Button
                             variant="primary"
                             size="lg"
                             onClick={handleSubmit}
                             disabled={!allAnswered}
+                            className="w-full"
                         >
                             Submit Quiz
                         </Button>

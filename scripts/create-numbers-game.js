@@ -14,7 +14,7 @@ async function main() {
         update: {
             title: 'Numbers to English Words',
             description: 'Practice converting numbers to their English word equivalents. Choose from various categories including basic numbers, hundreds, thousands, ordinals, and years.',
-            category: 'numbers',
+            category: 'games',
             type: 'game',
             level: 'beginner',
             content: numbersGameContent,
@@ -23,7 +23,7 @@ async function main() {
             id: 'numbers-game',
             title: 'Numbers to English Words',
             description: 'Practice converting numbers to their English word equivalents. Choose from various categories including basic numbers, hundreds, thousands, ordinals, and years.',
-            category: 'numbers',
+            category: 'games',
             type: 'game',
             level: 'beginner',
             content: numbersGameContent,

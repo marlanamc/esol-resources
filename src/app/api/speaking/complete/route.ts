@@ -104,7 +104,7 @@ export async function POST(request: NextRequest) {
         );
 
         // Update streak (awards streak bonuses automatically)
-        const streakResult = await updateStreak(user.id);
+        const streakResult = await updateStreak(user.id, participationPoints);
 
         // Check for new achievements
         const newAchievements = await checkAndAwardAchievements(user.id);
