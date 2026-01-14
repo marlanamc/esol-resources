@@ -1,5 +1,12 @@
 'use client';
 
+/**
+ * @deprecated This function has been deprecated due to overly broad regex matching.
+ * It incorrectly highlights non-verbs and fails to identify correct verbs in complex constructions.
+ * Use emphasizeExampleByFormula() instead when you have FormulaPart[] data.
+ * This file is kept for reference only - do not use in new code.
+ */
+
 const SKIP_WORDS = new Set([
     "i", "you", "we", "they", "he", "she", "it",
     "a", "an", "the", "my", "your", "our", "their", "his", "her", "its",

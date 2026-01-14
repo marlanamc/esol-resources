@@ -1,7 +1,6 @@
 'use client';
 
 import { sanitizeHtml } from "@/utils/sanitize";
-import { emphasizeVerb } from "@/utils/emphasizeVerb";
 import { emphasizeExampleByFormula } from "@/utils/emphasizeExampleByFormula";
 import type { FormulaPart } from "@/types/activity";
 import { motion } from "framer-motion";
@@ -61,16 +60,20 @@ export function ExampleBox({ examples, formulaParts }: ExampleBoxProps) {
 
                             {/* Example content */}
                             <div className="pl-6">
-                                <p
-                                    className="text-base text-text leading-relaxed"
-                                    dangerouslySetInnerHTML={{
-                                        __html: sanitizeHtml(
-                                            formulaParts?.length
-                                                ? emphasizeExampleByFormula(example, formulaParts)
-                                                : emphasizeVerb(example)
-                                        ),
-                                    }}
-                                />
+                                {formulaParts?.length ? (
+                                    <p
+                                        className="text-base text-text leading-relaxed"
+                                        dangerouslySetInnerHTML={{
+                                            __html: sanitizeHtml(
+                                                emphasizeExampleByFormula(example, formulaParts)
+                                            ),
+                                        }}
+                                    />
+                                ) : (
+                                    <p className="text-base text-text leading-relaxed">
+                                        {example}
+                                    </p>
+                                )}
                             </div>
 
                             {/* Hover effect border */}

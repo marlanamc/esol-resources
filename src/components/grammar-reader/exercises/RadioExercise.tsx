@@ -1,8 +1,6 @@
 'use client';
 
 import type { ExerciseItem } from "@/types/activity";
-import { sanitizeHtml } from "@/utils/sanitize";
-import { emphasizeVerb } from "@/utils/emphasizeVerb";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 
@@ -36,7 +34,7 @@ export function RadioExercise({
             <div className="mb-3">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
-                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                    {item.label}
                 </span>
             </div>
             <div className="space-y-2">
