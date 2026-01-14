@@ -29,6 +29,7 @@ interface Round {
 interface Props {
     contentStr: string;
     activityId?: string;
+    assignmentId?: string | null;
 }
 
 enum InteractionMode {
@@ -38,7 +39,7 @@ enum InteractionMode {
     Checking = "checking",
 }
 
-export default function MatchingGame({ contentStr, activityId }: Props) {
+export default function MatchingGame({ contentStr, activityId, assignmentId }: Props) {
     const rounds = useMemo(() => parseRounds(contentStr), [contentStr]);
     const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
     const currentRound = rounds[currentRoundIndex];
@@ -203,7 +204,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 explanationText: "",
             }));
             explanationAutoDismissTimeoutRef.current = null;
-        }, 2200);
+        }, 6000);
 
         return () => {
             if (explanationAutoDismissTimeoutRef.current !== null) {
@@ -218,8 +219,8 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     useEffect(() => {
         if (!activityId || totalWordsAcrossRounds === 0) return;
         const status = overallProgressPercent >= 100 ? "completed" : "in_progress";
-        void saveActivityProgress(activityId, overallProgressPercent, status);
-    }, [activityId, overallProgressPercent, totalWordsAcrossRounds]);
+        void saveActivityProgress(activityId, overallProgressPercent, status, undefined, undefined, assignmentId ?? null);
+    }, [activityId, overallProgressPercent, totalWordsAcrossRounds, assignmentId]);
 
     useEffect(() => {
         if (!activityId || !currentRound || !isRoundComplete) return;
@@ -231,9 +232,87 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
             100,
             "completed",
             undefined,
-            `round-${roundNumber}`
+            `round-${roundNumber}`,
+            assignmentId ?? null
         );
-    }, [activityId, currentRound, isRoundComplete]);
+    }, [activityId, currentRound, isRoundComplete, assignmentId]);
+
+    // Resume from saved round progress (categoryData keys like "round-1", "round-2", ...)
+    useEffect(() => {
+        if (!activityId || rounds.length === 0) return;
+
+        let cancelled = false;
+
+        async function resumeFromProgress() {
+            try {
+                const id = activityId;
+                if (!id) return;
+                const qs = new URLSearchParams({ activityId: id });
+                if (assignmentId) qs.set("assignmentId", assignmentId);
+                const res = await fetch(`/api/activity/progress?${qs.toString()}`);
+                if (!res.ok) return;
+                const data = (await res.json()) as { categoryData?: string | null };
+                if (!data.categoryData) return;
+
+                const parsed = JSON.parse(data.categoryData) as unknown;
+                if (!parsed || typeof parsed !== "object") return;
+
+                const completedRounds = new Set<number>();
+                for (const [key, value] of Object.entries(parsed as Record<string, unknown>)) {
+                    const match = /^round-(\d+)$/.exec(key);
+                    if (!match) continue;
+                    if (!value || typeof value !== "object") continue;
+                    const completed = (value as { completed?: unknown }).completed;
+                    if (completed === true) {
+                        completedRounds.add(Number(match[1]));
+                    }
+                }
+
+                if (cancelled) return;
+
+                // Seed the ref so we don't re-save already-completed rounds
+                completedRoundCategoriesRef.current = new Set(completedRounds);
+
+                let nextRound = 1;
+                while (nextRound <= rounds.length && completedRounds.has(nextRound)) {
+                    nextRound += 1;
+                }
+
+                if (nextRound > rounds.length) {
+                    // All rounds done
+                    setCurrentRoundIndex(Math.max(0, rounds.length - 1));
+                    setIsRoundComplete(true);
+                    setIsGameComplete(true);
+                    return;
+                }
+
+                // Jump to the first incomplete round and reset per-round state
+                setCurrentRoundIndex(nextRound - 1);
+                setGameState({
+                    currentWordIndex: 0,
+                    correctCount: 0,
+                    incorrectAttempts: 0,
+                    completedWords: new Set(),
+                    showExplanation: false,
+                    explanationText: "",
+                    isAutoAdvancing: false,
+                    bounceWord: false,
+                });
+                setInteractionMode(InteractionMode.Idle);
+                setIsRoundComplete(false);
+                setIsGameComplete(false);
+            } catch {
+                // best-effort
+            }
+        }
+
+        void resumeFromProgress();
+
+        return () => {
+            cancelled = true;
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activityId, assignmentId, rounds.length]);
 
     const handleWordDragStart = (e: React.DragEvent<HTMLDivElement>) => {
         setInteractionMode(InteractionMode.Dragging);

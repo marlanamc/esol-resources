@@ -120,7 +120,13 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 case "fill-in-blank":
                     return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
                 case "matching":
-                    return <MatchingGame contentStr={activity.content} activityId={activity.id} />;
+                    return (
+                        <MatchingGame
+                            contentStr={activity.content}
+                            activityId={activity.id}
+                            assignmentId={assignmentId}
+                        />
+                    );
                 default:
                     return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
             }

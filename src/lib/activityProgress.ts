@@ -5,7 +5,8 @@ export async function saveActivityProgress(
     progress: number, 
     status?: ActivityProgressStatus,
     accuracy?: number,
-    category?: string
+    category?: string,
+    assignmentId?: string | null
 ) {
     if (!activityId) return;
     const value = Math.max(0, Math.min(100, Math.round(progress)));
@@ -20,7 +21,8 @@ export async function saveActivityProgress(
                 progress: value, 
                 status: finalStatus,
                 accuracy: accuracy !== undefined ? Math.max(0, Math.min(100, Math.round(accuracy))) : undefined,
-                category: category
+                category: category,
+                assignmentId: assignmentId ?? undefined
             }),
         });
     } catch {
