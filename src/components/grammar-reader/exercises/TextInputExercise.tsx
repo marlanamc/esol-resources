@@ -1,8 +1,6 @@
 'use client';
 
 import type { ExerciseItem } from "@/types/activity";
-import { sanitizeHtml } from "@/utils/sanitize";
-import { emphasizeVerb } from "@/utils/emphasizeVerb";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Sparkles } from "lucide-react";
 
@@ -35,7 +33,7 @@ export function TextInputExercise({
             <label className="block mb-2">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
-                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(emphasizeVerb(item.label)) }} />
+                    {item.label}
                 </span>
             </label>
             <motion.div

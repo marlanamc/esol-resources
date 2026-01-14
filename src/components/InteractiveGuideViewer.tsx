@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import type { InteractiveGuideContent, FormulaPart, Exercise } from "@/types/activity";
-import { emphasizeVerb } from "@/utils/emphasizeVerb";
 
 interface Props {
     content: InteractiveGuideContent;
@@ -129,7 +128,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                                         <div key={idx} className="bg-white px-4 py-3 rounded-xl border border-border/40 text-text font-medium text-lg leading-relaxed shadow-sm">
                                             {/* Attempt to highlight grammar parts if we can detect them easily, otherwise just text */}
                                             {/* Simple heuristic: text in [ ] or similar could be highlighted, or just render plain for now as per design */}
-                                            {highlightGrammar(example)}
+                                            {example}
                                         </div>
                                     ))}
                                 </div>
@@ -287,9 +286,3 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
     );
 }
 
-// Simple highlighter: 
-// Replaces **bold** with bold spans, and maybe [highlight] with colored badges if convention exists.
-// For now, just bolding.
-function highlightGrammar(text: string) {
-    return emphasizeVerb(text);
-}
