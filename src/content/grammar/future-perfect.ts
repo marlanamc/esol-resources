@@ -137,7 +137,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I will have finished the report by Friday."',
+                            label: '"I <span class=\'eg-helper\'>will have</span> <span class=\'eg-verb\'>finished</span> the report by Friday."',
                             options: [
                                 { value: "deadline", label: "Action complete before a deadline" },
                                 { value: "habit", label: "Regular habit" },
@@ -147,7 +147,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"By next year, she will have worked here for 20 years."',
+                            label: '"By next year, she <span class=\'eg-helper\'>will have</span> <span class=\'eg-verb\'>worked</span> here for 20 years."',
                             options: [
                                 { value: "duration", label: "Duration up to a future point" },
                                 { value: "prediction", label: "Simple prediction" },
@@ -157,7 +157,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The store will have closed by the time we get there."',
+                            label: '"The store <span class=\'eg-helper\'>will have</span> <span class=\'eg-verb\'>closed</span> by the time we get there."',
                             options: [
                                 { value: "prediction", label: "Prediction about completion" },
                                 { value: "schedule", label: "Fixed schedule" },
@@ -815,7 +815,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "I will finished the work by tomorrow." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect: will have + past participle (finished).",
+            explanation: "Future Perfect: will have + past participle (finished). The verb must be in past participle form.",
         },
         {
             id: "quiz-2",
@@ -826,7 +826,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "She won't has arrived by 6 PM." },
             ],
             correctAnswer: "a",
-            explanation: "Negative: won't have + past participle.",
+            explanation: "Negative: won't have + past participle. 'Have' never changes.",
         },
         {
             id: "quiz-3",
@@ -837,7 +837,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "Have you will finished by tomorrow?" },
             ],
             correctAnswer: "a",
-            explanation: "Question: Will + subject + have + past participle.",
+            explanation: "Question: Will + subject + have + past participle? 'Will' comes first.",
         },
         {
             id: "quiz-4",
@@ -860,6 +860,116 @@ export const futurePerfectContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'By 5 PM' signals a deadline → Future Perfect shows completion before that point.",
+        },
+        {
+            id: "quiz-6",
+            question: "What's the formula for Future Perfect?",
+            options: [
+                { value: "a", label: "will have + past participle" },
+                { value: "b", label: "have + past participle" },
+                { value: "c", label: "will + verb" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect = will have + past participle (V3). Same for all subjects.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which word strongly signals Future Perfect?",
+            options: [
+                { value: "a", label: "by (by tomorrow, by next week)" },
+                { value: "b", label: "yesterday" },
+                { value: "c", label: "now" },
+            ],
+            correctAnswer: "a",
+            explanation: "'By' + future time signals a deadline—use Future Perfect to show completion before then.",
+        },
+        {
+            id: "quiz-8",
+            question: "Fill in: 'By the time you arrive, I ___ (cook) dinner.'",
+            options: [
+                { value: "a", label: "will have cooked" },
+                { value: "b", label: "will cook" },
+                { value: "c", label: "am cooking" },
+            ],
+            correctAnswer: "a",
+            explanation: "'By the time you arrive' = future deadline. Cooking will be DONE before you arrive.",
+        },
+        {
+            id: "quiz-9",
+            question: "Which is a work milestone example?",
+            options: [
+                { value: "a", label: "By next month, I will have worked here for 5 years." },
+                { value: "b", label: "I work here every day." },
+                { value: "c", label: "I worked here last year." },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect is perfect for milestones: duration UP TO a future point.",
+        },
+        {
+            id: "quiz-10",
+            question: "Fix the error: 'They will have arrive by 6 PM.'",
+            options: [
+                { value: "a", label: "They will have arrived by 6 PM." },
+                { value: "b", label: "They will arrive by 6 PM." },
+                { value: "c", label: "They have arrived by 6 PM." },
+            ],
+            correctAnswer: "a",
+            explanation: "After 'will have', use the past participle: 'arrived' not 'arrive'.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence looks BACK from a future point?",
+            options: [
+                { value: "a", label: "By Friday, she will have cleaned the kitchen." },
+                { value: "b", label: "She is cleaning the kitchen now." },
+                { value: "c", label: "She cleaned the kitchen yesterday." },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect = standing at a future point (Friday) and looking back at a completed action.",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete: 'Before the meeting starts, I ___ (send) the email.'",
+            options: [
+                { value: "a", label: "will have sent" },
+                { value: "b", label: "send" },
+                { value: "c", label: "sent" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Before the meeting starts' = deadline. Email will be DONE before that point.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which is correct for a savings goal?",
+            options: [
+                { value: "a", label: "By December, I will have saved $1,000." },
+                { value: "b", label: "By December, I will save $1,000." },
+                { value: "c", label: "By December, I saved $1,000." },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect emphasizes the savings will be ACCUMULATED by that deadline.",
+        },
+        {
+            id: "quiz-14",
+            question: "What's the difference: 'I will finish AT 6' vs 'I will have finished BY 6'?",
+            options: [
+                { value: "a", label: "AT 6 = action happens at that time; BY 6 = action complete before that time" },
+                { value: "b", label: "They mean the same thing" },
+                { value: "c", label: "BY 6 is past tense" },
+            ],
+            correctAnswer: "a",
+            explanation: "AT = when it happens. BY = when it's already done. That's the key difference!",
+        },
+        {
+            id: "quiz-15",
+            question: "Which prediction uses Future Perfect correctly?",
+            options: [
+                { value: "a", label: "The bus will have left by the time you get there." },
+                { value: "b", label: "The bus left by the time you get there." },
+                { value: "c", label: "The bus will leaving by the time you get there." },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect makes predictions about what will be COMPLETE by a future moment.",
         },
     ],
 };

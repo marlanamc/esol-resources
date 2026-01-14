@@ -34,7 +34,7 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I\'m interested _____ here."',
+                            label: '"I\'m interested <span class=\'eg-helper\'>in</span> <span class=\'eg-verb\'>working</span> here."',
                             options: [
                                 { value: "a", label: "in working (preposition + gerund)" },
                                 { value: "b", label: "in to work (preposition + infinitive)" },
@@ -44,7 +44,7 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"Thank you _____ me."',
+                            label: '"Thank you <span class=\'eg-helper\'>for</span> <span class=\'eg-verb\'>helping</span> me."',
                             options: [
                                 { value: "a", label: "for helping (preposition + gerund)" },
                                 { value: "b", label: "for to help (preposition + infinitive)" },
@@ -621,6 +621,116 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "c",
             explanation: "After 'without' (preposition), use the gerund: without clocking out.",
+        },
+        {
+            id: "quiz-6",
+            question: "What is the golden rule for prepositions?",
+            options: [
+                { value: "a", label: "Preposition + Gerund (-ing form) - always" },
+                { value: "b", label: "Preposition + Infinitive (to + verb)" },
+                { value: "c", label: "Either form is fine" },
+            ],
+            correctAnswer: "a",
+            explanation: "After prepositions (in, at, for, by, without, etc.), ALWAYS use the gerund (-ing).",
+        },
+        {
+            id: "quiz-7",
+            question: "Complete: 'I'm excited ___ starting my new job.'",
+            options: [
+                { value: "a", label: "about" },
+                { value: "b", label: "for to" },
+                { value: "c", label: "to" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Excited about + gerund' is the correct pattern. Excited about starting.",
+        },
+        {
+            id: "quiz-8",
+            question: "What is a gerund?",
+            options: [
+                { value: "a", label: "A verb form ending in -ing that acts like a noun" },
+                { value: "b", label: "A verb form with 'to' that acts like a noun" },
+                { value: "c", label: "A verb form ending in -ed" },
+            ],
+            correctAnswer: "a",
+            explanation: "A gerund is a verb + -ing that acts like a noun. Example: 'Working here is great.'",
+        },
+        {
+            id: "quiz-9",
+            question: "Fix the error: 'I'm tired of to wait.'",
+            options: [
+                { value: "a", label: "I'm tired of waiting." },
+                { value: "b", label: "I'm tired to wait." },
+                { value: "c", label: "I'm tired wait." },
+            ],
+            correctAnswer: "a",
+            explanation: "After 'of' (preposition), use the gerund: tired of waiting.",
+        },
+        {
+            id: "quiz-10",
+            question: "Complete: 'Wash your hands ___ eating.'",
+            options: [
+                { value: "a", label: "before" },
+                { value: "b", label: "before to" },
+                { value: "c", label: "for" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Before + gerund' is correct: before eating.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which pattern is used for job interviews?",
+            options: [
+                { value: "a", label: "'I'm good at solving problems' (good at + gerund)" },
+                { value: "b", label: "'I'm good to solve problems' (good to + verb)" },
+                { value: "c", label: "'I'm good solve problems' (no preposition)" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Good at + gerund' is the correct pattern for describing skills.",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete: 'I apologize ___ being late.'",
+            options: [
+                { value: "a", label: "for being" },
+                { value: "b", label: "to be" },
+                { value: "c", label: "for to be" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Apologize for + gerund' is the correct pattern: apologize for being.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which explains HOW you do something?",
+            options: [
+                { value: "a", label: "'I improved my English by practicing every day.' (by + gerund)" },
+                { value: "b", label: "'I improved my English for practice.' (for + noun)" },
+                { value: "c", label: "'I improved my English to practicing.' (to + gerund)" },
+            ],
+            correctAnswer: "a",
+            explanation: "'By + gerund' explains the method or process—how you do something.",
+        },
+        {
+            id: "quiz-14",
+            question: "Complete: 'She finished the task ___ asking for help.'",
+            options: [
+                { value: "a", label: "without" },
+                { value: "b", label: "without to" },
+                { value: "c", label: "with no" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Without + gerund' = she didn't ask for help: without asking.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which professional email phrase is correct?",
+            options: [
+                { value: "a", label: "Thank you for taking the time to meet with me." },
+                { value: "b", label: "Thank you for to take the time to meet with me." },
+                { value: "c", label: "Thank you for take the time to meet with me." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Thank you for + gerund' is the professional pattern: for taking.",
         },
     ],
 };

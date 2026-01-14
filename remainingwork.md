@@ -61,15 +61,13 @@ Use this to track each guide as you update it (visual emphasis + fresh exercises
 - [x] `workplace-phrasal-verbs.ts`
 - [x] `all-verb-tenses-overview.ts`
 - [x] `parts-of-speech.ts`
-
-### Next Up (Lower Priority)
-- [ ] `punctuation-capitalization.ts`
+- [x] `punctuation-capitalization.ts`
+- [x] `future-conditional.ts`
+- [x] `verbs-plus-gerunds.ts`
+- [x] `used-to-would-rather.ts`
+- [x] `paragraph-format.ts`
 
 ### Remaining (Lower Priority)
-- [ ] `future-conditional.ts`
-- [ ] `verbs-plus-gerunds.ts`
-- [ ] `used-to-would-rather.ts`
-- [ ] `paragraph-format.ts`
 - [ ] `imperatives-declaratives.ts`
 - [ ] `continuous-tenses-review.ts`
 - [ ] `future-continuous.ts`
@@ -87,16 +85,12 @@ Use this to track each guide as you update it (visual emphasis + fresh exercises
 
 ## 📋 Remaining Work: Content Updates
 
-### Files to Update (19 grammar guides)
+### Files to Update (15 grammar guides)
 
 The following grammar guide files need their exercise labels updated with color-coded emphasis spans:
 
 ```
 src/content/grammar/
-├── punctuation-capitalization.ts
-├── future-conditional.ts
-├── verbs-plus-gerunds.ts
-├── used-to-would-rather.ts
 ├── paragraph-format.ts
 ├── imperatives-declaratives.ts
 ├── continuous-tenses-review.ts
@@ -112,7 +106,7 @@ src/content/grammar/
 ├── present-perfect-continuous.ts
 ├── present-simple.ts
 ├── simple-tenses-review.ts
-└── (Completed already: superlatives-quantifiers.ts, modals-obligation-permission.ts, past-simple.ts, present-perfect.ts, present-continuous.ts, past-continuous.ts, future-simple.ts, conditionals-zero-first.ts, conditionals-second.ts, passive-voice.ts, infinitives-vs-gerunds.ts, reported-speech.ts, conditionals-review.ts, workplace-phrasal-verbs.ts, all-verb-tenses-overview.ts, parts-of-speech.ts)
+└── (Completed already: superlatives-quantifiers.ts, modals-obligation-permission.ts, past-simple.ts, present-perfect.ts, present-continuous.ts, past-continuous.ts, future-simple.ts, conditionals-zero-first.ts, conditionals-second.ts, passive-voice.ts, infinitives-vs-gerunds.ts, reported-speech.ts, conditionals-review.ts, workplace-phrasal-verbs.ts, all-verb-tenses-overview.ts, parts-of-speech.ts, punctuation-capitalization.ts, future-conditional.ts, verbs-plus-gerunds.ts, used-to-would-rather.ts)
 ```
 
 ### Diversify Exercises & Mini Quizzes
@@ -165,6 +159,8 @@ label: '"My daughter <span class='eg-verb'>graduated</span> from college in May 
 | Quantifiers (much/many, less/fewer, most/least) | `eg-quantifier` | Green | `<span class='eg-quantifier'>less</span>` |
 | Comparatives (cheaper, better, more expensive) | `eg-comparative` | Cyan | `<span class='eg-comparative'>cheaper</span>` |
 | Subjects (when teaching subject identification) | `eg-subject` | Blue | `<span class='eg-subject'>She</span>` |
+| Punctuation marks (.,?!,"", apostrophes) | `eg-punctuation` | Teal | `<span class='eg-punctuation'>,</span>` |
+| Capitalization targets | `eg-capital` | Rose | `<span class='eg-capital'>Boston</span>` |
 
 ### Process for Updating Each File
 
@@ -245,5 +241,5 @@ Once all content is updated, consider:
 ---
 
 **Last Updated:** January 14, 2026
-**Status:** Infrastructure complete, 16/35 guides updated, 19 guides remaining
-**Next Step:** Update punctuation-capitalization.ts
+**Status:** Infrastructure complete, 20/35 guides updated, 15 guides remaining
+**Next Step:** Update paragraph-format.ts

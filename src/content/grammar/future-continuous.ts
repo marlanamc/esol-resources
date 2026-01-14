@@ -86,7 +86,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "\"I'll be sleeping at midnight.\"",
+                            label: "\"I<span class='eg-helper'>'ll be</span> <span class='eg-verb'>sleeping</span> at midnight.\"",
                             options: [
                                 { value: "in-progress-future", label: "In progress at a future time" },
                                 { value: "promise", label: "Promise" },
@@ -96,7 +96,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"She'll be cooking when you arrive.\"",
+                            label: "\"She<span class='eg-helper'>'ll be</span> <span class='eg-verb'>cooking</span> when you arrive.\"",
                             options: [
                                 { value: "overlap", label: "Overlapping future action" },
                                 { value: "decision-now", label: "Decision made now" },
@@ -368,7 +368,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I am studying at 8pm tomorrow." },
             ],
             correctAnswer: "b",
-            explanation: "Future Continuous: will be + verb-ing for an action in progress at a future time.",
+            explanation: "Future Continuous: will be + verb-ing. The -ing form is required after 'will be'.",
         },
         {
             id: "quiz-2",
@@ -379,7 +379,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "She cooks when you arrive." },
             ],
             correctAnswer: "b",
-            explanation: "Future Continuous shows an ongoing action overlapping another future event.",
+            explanation: "Future Continuous shows an ongoing action overlapping another future event. She starts cooking BEFORE you arrive.",
         },
         {
             id: "quiz-3",
@@ -390,7 +390,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "You will be sleeping at midnight?" },
             ],
             correctAnswer: "a",
-            explanation: "Question form: Will + subject + be + verb-ing.",
+            explanation: "Question form: Will + subject + be + verb-ing? All three parts (will, be, -ing) are needed.",
         },
         {
             id: "quiz-4",
@@ -401,7 +401,128 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I'll be visiting family tomorrow, so I can't meet." },
             ],
             correctAnswer: "c",
-            explanation: "Future Continuous is often used to set expectations/availability politely.",
+            explanation: "Future Continuous is often used to set expectations/availability politely—it's softer than saying 'I can't'.",
+        },
+        {
+            id: "quiz-5",
+            question: "What is the negative form of 'I will be working'?",
+            options: [
+                { value: "a", label: "I won't be working" },
+                { value: "b", label: "I will not working" },
+                { value: "c", label: "I won't working" },
+            ],
+            correctAnswer: "a",
+            explanation: "Negative: won't be + verb-ing. 'Be' is required in the negative form too.",
+        },
+        {
+            id: "quiz-6",
+            question: "Which time expression fits Future Continuous?",
+            options: [
+                { value: "a", label: "at 8 PM tomorrow" },
+                { value: "b", label: "yesterday at noon" },
+                { value: "c", label: "right now" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Continuous uses future time expressions like 'at 8 PM tomorrow' or 'this time next week'.",
+        },
+        {
+            id: "quiz-7",
+            question: "Fill in: 'This time next week, I ___ (travel) to Spain.'",
+            options: [
+                { value: "a", label: "will be traveling" },
+                { value: "b", label: "was traveling" },
+                { value: "c", label: "am traveling" },
+            ],
+            correctAnswer: "a",
+            explanation: "'This time next week' signals a future point in time—use Future Continuous for an ongoing action then.",
+        },
+        {
+            id: "quiz-8",
+            question: "What's the formula for Future Continuous?",
+            options: [
+                { value: "a", label: "will be + verb-ing" },
+                { value: "b", label: "will + verb" },
+                { value: "c", label: "be going to + verb" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Continuous = will be + verb-ing. It's the same for ALL subjects (I/you/he/she/we/they).",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence shows TWO overlapping future actions?",
+            options: [
+                { value: "a", label: "I'll call you at 6 PM." },
+                { value: "b", label: "I'll be driving when you call." },
+                { value: "c", label: "I drive to work every day." },
+            ],
+            correctAnswer: "b",
+            explanation: "'I'll be driving when you call' shows driving (ongoing) overlapping with your call (point in time).",
+        },
+        {
+            id: "quiz-10",
+            question: "Fix the error: 'She will be work late tonight.'",
+            options: [
+                { value: "a", label: "She will be working late tonight." },
+                { value: "b", label: "She will work late tonight." },
+                { value: "c", label: "She is working late tonight." },
+            ],
+            correctAnswer: "a",
+            explanation: "After 'will be', you must use the -ing form: 'will be working'—not 'will be work'.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which question asks about an ongoing future action?",
+            options: [
+                { value: "a", label: "Will you be studying at 9 PM?" },
+                { value: "b", label: "Did you study for the test?" },
+                { value: "c", label: "Do you study every day?" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Will you be studying' asks about an action in progress at a specific future time (9 PM).",
+        },
+        {
+            id: "quiz-12",
+            question: "When do you use Future Continuous instead of Future Simple?",
+            options: [
+                { value: "a", label: "To emphasize the action will be IN PROGRESS at a specific future time" },
+                { value: "b", label: "To describe a quick decision made now" },
+                { value: "c", label: "To describe a completed action" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Continuous = action in progress. Future Simple = one-off event or decision.",
+        },
+        {
+            id: "quiz-13",
+            question: "Complete: 'At midnight, the whole family ___ (sleep).'",
+            options: [
+                { value: "a", label: "will be sleeping" },
+                { value: "b", label: "will sleep" },
+                { value: "c", label: "sleeps" },
+            ],
+            correctAnswer: "a",
+            explanation: "'At midnight' specifies a future point when the action will be IN PROGRESS—use Future Continuous.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which is a polite way to decline an invitation?",
+            options: [
+                { value: "a", label: "I can't come." },
+                { value: "b", label: "I'll be working that day, unfortunately." },
+                { value: "c", label: "I won't come." },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Continuous ('I'll be working') sounds softer and more polite than a flat refusal.",
+        },
+        {
+            id: "quiz-15",
+            question: "How is Future Continuous different from Present Continuous for future?",
+            options: [
+                { value: "a", label: "Future Continuous uses 'will be', Present Continuous uses 'am/is/are'" },
+                { value: "b", label: "They are exactly the same" },
+                { value: "c", label: "Future Continuous uses 'was/were'" },
+            ],
+            correctAnswer: "a",
+            explanation: "Both can express future actions, but Future Continuous uses 'will be + -ing' while Present Continuous uses 'am/is/are + -ing'.",
         },
     ],
 };

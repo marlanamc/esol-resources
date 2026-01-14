@@ -10,16 +10,16 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             icon: "🕰️",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"I used to smoke, but I quit." "I'd rather walk than drive." These structures help you talk about how things were different in the past and what you prefer now. Essential for discussing health changes, work habits, and lifestyle improvements.</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">"I <span class='eg-helper'>used to</span> smoke, but I quit." "I'd rather walk than drive." These structures help you talk about how things were different in the past and what you prefer now. Essential for discussing health changes, work habits, and lifestyle improvements around East Boston.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
                 <p>These structures are critical for:</p>
-                <ul>
-                    <li><strong>Doctor visits:</strong> "I used to have headaches every day." "I'd rather try exercise before medication."</li>
-                    <li><strong>Job interviews:</strong> "I used to work in retail." "I'd rather have flexible hours."</li>
-                    <li><strong>Goal setting:</strong> "I used to skip breakfast, but now I eat healthy." "I'd rather save money than eat out."</li>
-                </ul>
+                    <ul>
+                        <li><strong>Doctor visits:</strong> "I <span class='eg-helper'>used to</span> have headaches every day." "I'd rather try walking along the Harborwalk before medication."</li>
+                        <li><strong>Job interviews:</strong> "I <span class='eg-helper'>used to</span> work night shifts." "I'd rather have flexible hours near Logan."</li>
+                        <li><strong>Goal setting:</strong> "I <span class='eg-helper'>used to</span> skip breakfast, but now I eat oatmeal before class." "I'd rather save money than eat out."</li>
+                    </ul>
 
                 <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
                     <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
@@ -31,7 +31,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     </ul>
                     <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong> Describing your wellness journey and habit changes ("I used to eat fast food, but now I cook at home")</li>
+                        <li><strong>Describing your wellness journey and habit changes</strong> ("I <span class='eg-helper'>used to</span> eat fast food, but now I cook East Boston meals").</li>
                     </ul>
                     <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🔄 These structures show growth and change - perfect for interviews and goal-setting!</p>
                 </div>
@@ -44,7 +44,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I used to smoke, but I quit." What does "used to" describe?',
+                            label: '"I <span class=\'eg-helper\'>used to</span> smoke near the shipyard, but I quit." What does "used to" describe?',
                             options: [
                                 { value: "a", label: "Past habits that are no longer true" },
                                 { value: "b", label: "Current habits" },
@@ -54,7 +54,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I\'d rather walk than drive." What does "would rather" express?',
+                            label: '"I\'d rather walk than drive across the Harborwalk." What does "would rather" express?',
                             options: [
                                 { value: "a", label: "Preferences - what you prefer to do" },
                                 { value: "b", label: "Past habits" },
@@ -92,10 +92,10 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
 
                     <h4 style="margin-top: 1rem;">Examples:</h4>
                     <ul>
-                        <li>I <strong>used to smoke</strong>. (I don't smoke now)</li>
-                        <li>She <strong>used to work</strong> nights. (She doesn't work nights now)</li>
-                        <li>We <strong>used to live</strong> in Mexico. (We don't live there now)</li>
-                        <li>He <strong>used to drink</strong> soda every day. (He doesn't anymore)</li>
+                        <li>I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoke</span>. (I don't smoke now)</li>
+                        <li>She <span class='eg-helper'>used to</span> <span class='eg-verb'>work</span> nights. (She doesn't work nights now)</li>
+                        <li>We <span class='eg-helper'>used to</span> <span class='eg-verb'>live</span> in Mexico. (We don't live there now)</li>
+                        <li>He <span class='eg-helper'>used to</span> <span class='eg-verb'>drink</span> soda every day. (He doesn't anymore)</li>
                     </ul>
                 </div>
 
@@ -103,15 +103,15 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                 <p style="font-weight: bold; color: #d97757;">Subject + didn't use to + base verb</p>
                 <p style="font-style: italic;">⚠️ Notice: "didn't <strong>use</strong> to" (no d!)</p>
                 <ul>
-                    <li>I <strong>didn't use to</strong> exercise. (Now I do)</li>
-                    <li>She <strong>didn't use to</strong> eat vegetables. (Now she does)</li>
+                    <li>I <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>exercise</span>. (Now I do)</li>
+                    <li>She <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>eat</span> vegetables. (Now she does)</li>
                 </ul>
 
                 <h3>Question Form</h3>
                 <p style="font-weight: bold; color: #d97757;">Did + subject + use to + base verb?</p>
                 <ul>
-                    <li><strong>Did you use to</strong> smoke?</li>
-                    <li><strong>Did he use to</strong> work here?</li>
+                    <li><span class='eg-helper'>Did you use to</span> <span class='eg-verb'>smoke</span>?</li>
+                    <li><span class='eg-helper'>Did he use to</span> <span class='eg-verb'>work</span> here?</li>
                 </ul>
             `,
             tipBox: {
@@ -138,9 +138,12 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I used to smoke." },
-                                { value: "b", label: "I used to smoking." },
-                                { value: "c", label: "I am used to smoke." },
+                                {
+                                    value: "a",
+                                    label: "I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoke</span> near the freight yard.",
+                                },
+                                { value: "b", label: "I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoking</span>." },
+                                { value: "c", label: "I <span class='eg-helper'>am used to</span> <span class='eg-verb'>smoke</span>." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -289,20 +292,20 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
 
                     <h4 style="margin-top: 1rem;">Examples:</h4>
                     <ul>
-                        <li>I <strong>would rather walk</strong> than drive. (= I prefer walking)</li>
-                        <li>She <strong>'d rather work</strong> from home. (= She prefers working from home)</li>
-                        <li>We <strong>'d rather eat</strong> healthy food. (= We prefer healthy food)</li>
-                        <li>He <strong>'d rather not smoke</strong>. (= He prefers not to smoke)</li>
+                        <li>I <span class='eg-helper'>would rather</span> <span class='eg-verb'>walk</span> than drive across the Harborwalk. (= I prefer walking)</li>
+                        <li>She <span class='eg-helper'>'d rather</span> <span class='eg-verb'>work</span> from home near the airport. (= She prefers working from home)</li>
+                        <li>We <span class='eg-helper'>'d rather</span> <span class='eg-verb'>eat</span> healthy food from the East Boston farmers’ market. (= We prefer healthy food)</li>
+                        <li>He <span class='eg-helper'>'d rather not</span> <span class='eg-verb'>smoke</span>. (= He prefers not to smoke)</li>
                     </ul>
                 </div>
 
                 <h3>Comparing Two Options</h3>
                 <p>Use <strong>would rather... than...</strong> to compare preferences:</p>
-                <ul>
-                    <li>I'd rather <strong>cook at home</strong> than <strong>eat out</strong>.</li>
-                    <li>She'd rather <strong>take the stairs</strong> than <strong>use the elevator</strong>.</li>
-                    <li>I'd rather <strong>have flexible hours</strong> than <strong>work 9-5</strong>.</li>
-                </ul>
+                    <ul>
+                        <li>I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>cook</span> at home than <span class='eg-verb'>eat</span> out near Maverick.</li>
+                        <li>She'd <span class='eg-helper'>rather</span> <span class='eg-verb'>take</span> the stairs than <span class='eg-verb'>use</span> the elevator.</li>
+                        <li>I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>have</span> flexible hours than <span class='eg-verb'>work</span> 9-5.</li>
+                    </ul>
 
                 <h3>Negative Form</h3>
                 <p style="font-weight: bold; color: #d97757;">would rather not + base verb</p>
@@ -374,14 +377,14 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <h4 style="color: #7ba884;">Talking to Your Doctor</h4>
                     <p><strong>Used to:</strong></p>
                     <ul>
-                        <li>"I <strong>used to</strong> have headaches every day, but now they're rare."</li>
-                        <li>"I <strong>didn't use to</strong> exercise, but now I walk 30 minutes daily."</li>
-                        <li>"I <strong>used to</strong> eat fast food for every meal."</li>
+                        <li>"I <span class='eg-helper'>used to</span> have headaches every day from Myrtle Street, but now they're rare."</li>
+                        <li>"I <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>exercise</span>, but now I walk 30 minutes on the Harborwalk daily."</li>
+                        <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>eat</span> fast food for every meal."</li>
                     </ul>
                     <p><strong>Would rather (preferences):</strong></p>
                     <ul>
-                        <li>"I'd <strong>rather</strong> try physical therapy than take pills."</li>
-                        <li>"I'd <strong>rather</strong> see a specialist if possible."</li>
+                        <li>"I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>try</span> physical therapy than take pills."</li>
+                        <li>"I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>see</span> a specialist if possible."</li>
                     </ul>
                 </div>
 
@@ -389,15 +392,15 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <h4 style="color: #d97757;">Work & Career Discussions</h4>
                     <p><strong>Used to:</strong></p>
                     <ul>
-                        <li>"I <strong>used to</strong> work in construction."</li>
-                        <li>"I <strong>didn't use to</strong> have benefits at my old job."</li>
-                        <li>"I <strong>used to</strong> commute two hours each way."</li>
+                        <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>work</span> in construction."</li>
+                        <li>"I <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>have</span> benefits at my old job."</li>
+                        <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>commute</span> two hours each way."</li>
                     </ul>
                     <p><strong>Would rather (preferences):</strong></p>
                     <ul>
-                        <li>"I'd <strong>rather</strong> work day shifts than nights."</li>
-                        <li>"I'd <strong>rather</strong> have weekends off."</li>
-                        <li>"I'd <strong>rather</strong> start at $18/hour than accept $15."</li>
+                        <li>"I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>work</span> day shifts than nights."</li>
+                        <li>"I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>have</span> weekends off."</li>
+                        <li>"I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>start</span> at $18/hour than accept $15."</li>
                     </ul>
                 </div>
 
@@ -405,9 +408,9 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
                     <h4 style="color: #d4a843;">Goal Setting & Progress</h4>
                     <p><strong>Contrasting then vs now:</strong></p>
                     <ul>
-                        <li>"I <strong>used to</strong> skip breakfast, but now I eat oatmeal every morning."</li>
-                        <li>"I <strong>used to</strong> stay up late, but now I sleep 8 hours."</li>
-                        <li>"I <strong>didn't use to</strong> save money, but now I save $200/month."</li>
+                        <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>skip</span> breakfast, but now I eat oatmeal every morning."</li>
+                        <li>"I <span class='eg-helper'>used to</span> <span class='eg-verb'>stay</span> up late, but now I sleep 8 hours."</li>
+                        <li>"I <span class='eg-helper'>didn't use to</span> <span class='eg-verb'>save</span> money, but now I save $200/month."</li>
                     </ul>
                 </div>
             `,
@@ -470,26 +473,26 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Mistake #1: Wrong Verb Form</h3>
                 <ul>
-                    <li>❌ "I used to <strong>smoking</strong>." → ✅ "I used to <strong>smoke</strong>."</li>
-                    <li>❌ "I'd rather <strong>working</strong> from home." → ✅ "I'd rather <strong>work</strong> from home."</li>
+                    <li>❌ "I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoking</span>." → ✅ "I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoke</span>."</li>
+                    <li>❌ "I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>working</span> from home." → ✅ "I'd <span class='eg-helper'>rather</span> <span class='eg-verb'>work</span> from home."</li>
                 </ul>
 
                 <h3>Mistake #2: Using "d" in Negative</h3>
                 <ul>
-                    <li>❌ "I didn't <strong>used</strong> to exercise." → ✅ "I didn't <strong>use</strong> to exercise."</li>
-                    <li>❌ "Did you <strong>used</strong> to smoke?" → ✅ "Did you <strong>use</strong> to smoke?"</li>
+                    <li>❌ "I <span class='eg-helper'>didn't</span> <span class='eg-helper'>used</span> to <span class='eg-verb'>exercise</span>." → ✅ "I <span class='eg-helper'>didn't</span> <span class='eg-helper'>use</span> to <span class='eg-verb'>exercise</span>."</li>
+                    <li>❌ "Did you <span class='eg-helper'>used</span> to <span class='eg-verb'>smoke</span>?" → ✅ "Did you <span class='eg-helper'>use</span> to <span class='eg-verb'>smoke</span>?"</li>
                 </ul>
 
                 <h3>Mistake #3: Using "Would" for States</h3>
                 <ul>
-                    <li>❌ "I <strong>would</strong> be shy." → ✅ "I <strong>used to</strong> be shy."</li>
-                    <li>❌ "She <strong>would</strong> have long hair." → ✅ "She <strong>used to</strong> have long hair."</li>
+                    <li>❌ "I <span class='eg-helper'>would</span> be shy." → ✅ "I <span class='eg-helper'>used to</span> be shy."</li>
+                    <li>❌ "She <span class='eg-helper'>would</span> have long hair." → ✅ "She <span class='eg-helper'>used to</span> have long hair."</li>
                 </ul>
 
                 <h3>Mistake #4: Confusing "Used To" with "Be Used To"</h3>
                 <ul>
-                    <li><strong>Used to</strong> = past habit: "I <strong>used to</strong> smoke." (I smoked before, not now)</li>
-                    <li><strong>Be used to</strong> = be accustomed to: "I <strong>am used to</strong> waking up early." (I'm comfortable with it)</li>
+                    <li><strong>Used to</strong> = past habit: "I <span class='eg-helper'>used to</span> <span class='eg-verb'>smoke</span>." (I smoked before, not now)</li>
+                    <li><strong>Be used to</strong> = be accustomed to: "I <span class='eg-helper'>am used to</span> <span class='eg-verb'>waking</span> up early." (I'm comfortable with it)</li>
                 </ul>
 
                 <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">

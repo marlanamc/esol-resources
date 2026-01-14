@@ -16,7 +16,7 @@ export const futureConditionalContent: InteractiveGuideContent = {
                 <h3>Why This Matters</h3>
                 <p>The future conditional is essential for:</p>
                 <ul>
-                    <li><strong>Goal setting:</strong> "If I walk 30 minutes daily, I will lose weight."</li>
+                    <li><strong>Goal setting:</strong> "If I walk on the Harborwalk after class, I will sleep better."</li>
                     <li><strong>Health planning:</strong> "If I sleep 8 hours, I'll have more energy."</li>
                     <li><strong>Stress management:</strong> "If I take breaks, I won't feel so overwhelmed."</li>
                     <li><strong>Cause & effect thinking:</strong> "If I eat breakfast, I'll concentrate better at work."</li>
@@ -42,7 +42,7 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"If I walk 30 minutes daily, I will lose weight."',
+                            label: '"If I <span class=\'eg-verb\'>walk</span> on the Harborwalk after class, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>sleep</span> better."',
                             options: [
                                 { value: "goal-setting", label: "Goal setting - planning a future outcome" },
                                 { value: "past-action", label: "Past action - something that already happened" },
@@ -52,7 +52,7 @@ export const futureConditionalContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I sleep 8 hours, I\'ll have more energy."',
+                            label: '"If I <span class=\'eg-verb\'>sleep</span> 8 hours, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>have</span> more energy."',
                             options: [
                                 { value: "health-planning", label: "Health planning - connecting action to future result" },
                                 { value: "past-experience", label: "Past experience - something that happened before" },
@@ -62,7 +62,7 @@ export const futureConditionalContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I take breaks, I won\'t feel so overwhelmed."',
+                            label: '"If I <span class=\'eg-verb\'>take</span> breaks, I <span class=\'eg-helper\'>won\'t</span> <span class=\'eg-verb\'>feel</span> so overwhelmed."',
                             options: [
                                 { value: "stress-management", label: "Stress management - preventing a future problem" },
                                 { value: "past-action", label: "Past action - something that already happened" },
@@ -91,33 +91,33 @@ export const futureConditionalContent: InteractiveGuideContent = {
                 </div>
 
                 <h3>Structure Breakdown</h3>
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #7ba884;">IF clause (condition):</p>
-                    <p>If + subject + present simple verb</p>
-                    <ul>
-                        <li>If I <strong>exercise</strong></li>
-                        <li>If she <strong>reduces</strong> stress</li>
-                        <li>If we <strong>eat</strong> healthy</li>
-                    </ul>
-                </div>
+	                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+	                    <p style="font-weight: bold; color: #7ba884;">IF clause (condition):</p>
+	                    <p>If + subject + present simple verb</p>
+	                    <ul>
+	                        <li>If I <strong>leave</strong> early</li>
+	                        <li>If she <strong>calls</strong> the clinic</li>
+	                        <li>If we <strong>pack</strong> lunch</li>
+	                    </ul>
+	                </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <p style="font-weight: bold; color: #d97757;">WILL clause (result):</p>
-                    <p>subject + will + base verb</p>
-                    <ul>
-                        <li>I <strong>will feel</strong> better</li>
-                        <li>she <strong>will be</strong> healthier</li>
-                        <li>we <strong>will lose</strong> weight</li>
-                    </ul>
-                </div>
+	                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+	                    <p style="font-weight: bold; color: #d97757;">WILL clause (result):</p>
+	                    <p>subject + will + base verb</p>
+	                    <ul>
+	                        <li>I <strong>will arrive</strong> on time</li>
+	                        <li>she <strong>will get</strong> an appointment</li>
+	                        <li>we <strong>will save</strong> money</li>
+	                    </ul>
+	                </div>
 
-                <h3>Complete Examples</h3>
-                <ul>
-                    <li><strong>If I exercise every day</strong>, <strong>I will feel better</strong>.</li>
-                    <li><strong>If she reduces stress</strong>, <strong>her headaches will go away</strong>.</li>
-                    <li><strong>If we eat breakfast</strong>, <strong>we will have more energy</strong>.</li>
-                    <li><strong>If he gets enough sleep</strong>, <strong>he won't be tired at work</strong>.</li>
-                </ul>
+	                <h3>Complete Examples</h3>
+	                <ul>
+	                    <li><strong>If I leave early</strong>, <strong>I will catch the Blue Line</strong>.</li>
+	                    <li><strong>If she calls the clinic</strong>, <strong>they will give her a new appointment time</strong>.</li>
+	                    <li><strong>If we pack lunch</strong>, <strong>we will save money</strong>.</li>
+	                    <li><strong>If he goes to bed early</strong>, <strong>he won't be tired at work</strong>.</li>
+	                </ul>
             `,
             tipBox: {
                 title: "💡 Key Point",
@@ -128,27 +128,33 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     id: "first-conditional-basics-1",
                     title: "Practice: Identify the Formula Parts",
                     instructions: "For each sentence, identify which part is the IF clause (condition) and which is the WILL clause (result).",
-                    items: [
-                        {
-                            type: "radio",
-                            label: '"If I exercise every day, I will feel better."',
-                            options: [
-                                { value: "if-exercise", label: "IF clause: 'If I exercise every day' | WILL clause: 'I will feel better'" },
-                                { value: "if-feel", label: "IF clause: 'I will feel better' | WILL clause: 'If I exercise every day'" },
-                                { value: "both-if", label: "Both clauses use 'if'" },
-                            ],
-                            expectedAnswer: "if-exercise",
-                        },
-                        {
-                            type: "radio",
-                            label: '"If she reduces stress, her headaches will go away."',
-                            options: [
-                                { value: "if-reduces", label: "IF clause: 'If she reduces stress' | WILL clause: 'her headaches will go away'" },
-                                { value: "if-go-away", label: "IF clause: 'her headaches will go away' | WILL clause: 'If she reduces stress'" },
-                                { value: "no-if", label: "Neither clause uses 'if'" },
-                            ],
-                            expectedAnswer: "if-reduces",
-                        },
+	                    items: [
+	                        {
+	                            type: "radio",
+	                            label: '"If I <span class=\'eg-verb\'>leave</span> early, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>catch</span> the Blue Line."',
+	                            options: [
+	                                { value: "if-exercise", label: "IF clause: 'If I leave early' | WILL clause: 'I will catch the Blue Line'" },
+	                                { value: "if-feel", label: "IF clause: 'I will catch the Blue Line' | WILL clause: 'If I leave early'" },
+	                                { value: "both-if", label: "Both clauses use 'if'" },
+	                            ],
+	                            expectedAnswer: "if-exercise",
+	                        },
+	                        {
+	                            type: "radio",
+	                            label: '"If she <span class=\'eg-verb\'>calls</span> the clinic, they <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>give</span> her a new appointment time."',
+	                            options: [
+	                                {
+	                                    value: "if-reduces",
+	                                    label: "IF clause: 'If she calls the clinic' | WILL clause: 'they will give her a new appointment time'",
+	                                },
+	                                {
+	                                    value: "if-go-away",
+	                                    label: "IF clause: 'they will give her a new appointment time' | WILL clause: 'If she calls the clinic'",
+	                                },
+	                                { value: "no-if", label: "Neither clause uses 'if'" },
+	                            ],
+	                            expectedAnswer: "if-reduces",
+	                        },
                         {
                             type: "radio",
                             label: "What verb form goes in the IF clause?",
@@ -177,9 +183,9 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     <h4>IF clause FIRST (use comma):</h4>
                     <p style="font-size: 1.125rem; font-weight: bold;">If + condition, subject + will + verb</p>
                     <ul>
-                        <li><strong>If I walk 30 minutes daily</strong>, <strong>I will lose weight</strong>.</li>
+                        <li><strong>If I leave early</strong>, <strong>I will catch the Blue Line</strong>.</li>
                         <li><strong>If you drink more water</strong>, <strong>you'll feel better</strong>.</li>
-                        <li><strong>If we manage stress</strong>, <strong>we'll sleep better</strong>.</li>
+                        <li><strong>If we pack lunch</strong>, <strong>we'll save money</strong>.</li>
                     </ul>
                     <p style="margin-top: 1rem; font-style: italic;">⚠️ Use a comma after the IF clause!</p>
                 </div>
@@ -188,9 +194,9 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     <h4>RESULT clause FIRST (no comma):</h4>
                     <p style="font-size: 1.125rem; font-weight: bold;">Subject + will + verb + if + condition</p>
                     <ul>
-                        <li><strong>I will lose weight</strong> <strong>if I walk 30 minutes daily</strong>.</li>
+                        <li><strong>I will catch the Blue Line</strong> <strong>if I leave early</strong>.</li>
                         <li><strong>You'll feel better</strong> <strong>if you drink more water</strong>.</li>
-                        <li><strong>We'll sleep better</strong> <strong>if we manage stress</strong>.</li>
+                        <li><strong>We'll save money</strong> <strong>if we pack lunch</strong>.</li>
                     </ul>
                     <p style="margin-top: 1rem; font-style: italic;">⚠️ NO comma when IF clause is second!</p>
                 </div>
@@ -207,9 +213,12 @@ export const futureConditionalContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence has IF first with the correct comma?",
                             options: [
-                                { value: "a", label: "If I walk 30 minutes daily, I will lose weight." },
-                                { value: "b", label: "If I walk 30 minutes daily I will lose weight." },
-                                { value: "c", label: "If I walk 30 minutes daily. I will lose weight." },
+                                {
+                                    value: "a",
+                                    label: "If I <span class='eg-verb'>leave</span> early<span class='eg-punctuation'>,</span> I <span class='eg-helper'>will</span> <span class='eg-verb'>catch</span> the Blue Line<span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "If I leave early I will catch the Blue Line." },
+                                { value: "c", label: "If I leave early. I will catch the Blue Line." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -217,19 +226,19 @@ export const futureConditionalContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence has the result clause first (no comma needed)?",
                             options: [
-                                { value: "a", label: "I will lose weight, if I walk 30 minutes daily." },
-                                { value: "b", label: "I will lose weight if I walk 30 minutes daily." },
-                                { value: "c", label: "I will lose weight. If I walk 30 minutes daily." },
+                                { value: "a", label: "I will catch the Blue Line, if I leave early." },
+                                { value: "b", label: "I will catch the Blue Line if I leave early." },
+                                { value: "c", label: "I will catch the Blue Line. If I leave early." },
                             ],
                             expectedAnswer: "b",
                         },
                         {
                             type: "radio",
-                            label: "Rewrite with IF first: 'You'll feel better if you drink more water.'",
+                            label: "Rewrite with IF first: 'You'll feel better if you walk on the Harborwalk.'",
                             options: [
-                                { value: "a", label: "If you drink more water, you'll feel better." },
-                                { value: "b", label: "If you drink more water you'll feel better." },
-                                { value: "c", label: "If you'll drink more water, you feel better." },
+                                { value: "a", label: "If you walk on the Harborwalk, you'll feel better." },
+                                { value: "b", label: "If you walk on the Harborwalk you'll feel better." },
+                                { value: "c", label: "If you'll walk on the Harborwalk, you feel better." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -247,72 +256,72 @@ export const futureConditionalContent: InteractiveGuideContent = {
                 <h3>Making Negatives in First Conditional</h3>
                 <p>You can make either the IF clause or the WILL clause (or both) negative.</p>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4>Negative IF clause:</h4>
-                    <p style="font-weight: bold;">If + don't/doesn't + verb, will + verb</p>
-                    <ul>
-                        <li>If I <strong>don't exercise</strong>, I will gain weight.</li>
-                        <li>If she <strong>doesn't sleep</strong> enough, she'll be tired.</li>
-                        <li>If we <strong>don't eat</strong> breakfast, we won't have energy.</li>
-                    </ul>
-                </div>
+	                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+	                    <h4>Negative IF clause:</h4>
+	                    <p style="font-weight: bold;">If + don't/doesn't + verb, will + verb</p>
+	                    <ul>
+	                        <li>If I <strong>don't set</strong> an alarm, I will miss the bus.</li>
+	                        <li>If she <strong>doesn't sleep</strong> enough, she'll be tired.</li>
+	                        <li>If we <strong>don't pack</strong> lunch, we won't save money.</li>
+	                    </ul>
+	                </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4>Negative WILL clause:</h4>
-                    <p style="font-weight: bold;">If + present simple, won't + verb</p>
-                    <ul>
-                        <li>If I exercise, I <strong>won't</strong> gain weight.</li>
-                        <li>If she sleeps enough, she <strong>won't be</strong> tired.</li>
-                        <li>If we eat breakfast, we <strong>won't feel</strong> hungry at 10am.</li>
-                    </ul>
-                </div>
+	                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+	                    <h4>Negative WILL clause:</h4>
+	                    <p style="font-weight: bold;">If + present simple, won't + verb</p>
+	                    <ul>
+	                        <li>If I take breaks, I <strong>won't</strong> feel so overwhelmed.</li>
+	                        <li>If she sleeps enough, she <strong>won't be</strong> tired.</li>
+	                        <li>If we eat breakfast, we <strong>won't feel</strong> hungry at 10am.</li>
+	                    </ul>
+	                </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4>Both negative:</h4>
-                    <ul>
-                        <li>If I <strong>don't reduce</strong> stress, my headaches <strong>won't go away</strong>.</li>
-                        <li>If you <strong>don't take</strong> breaks, you <strong>won't feel</strong> better.</li>
-                    </ul>
-                </div>
+	                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+	                    <h4>Both negative:</h4>
+	                    <ul>
+	                        <li>If I <strong>don't call</strong> the clinic, my appointment <strong>won't change</strong>.</li>
+	                        <li>If you <strong>don't take</strong> breaks, you <strong>won't feel</strong> better.</li>
+	                    </ul>
+	                </div>
             `,
             exercises: [
                 {
                     id: "negatives-1",
                     title: "Practice: Making Negatives",
                     instructions: "Choose the correct negative form for each sentence.",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "Make the IF clause negative: 'If I exercise, I will gain weight.'",
-                            options: [
-                                { value: "a", label: "If I don't exercise, I will gain weight." },
-                                { value: "b", label: "If I won't exercise, I will gain weight." },
-                                { value: "c", label: "If I not exercise, I will gain weight." },
-                            ],
-                            expectedAnswer: "a",
-                        },
-                        {
-                            type: "radio",
-                            label: "Make the WILL clause negative: 'If I exercise, I will gain weight.'",
-                            options: [
-                                { value: "a", label: "If I exercise, I won't gain weight." },
-                                { value: "b", label: "If I exercise, I will not gain weight." },
-                                { value: "c", label: "Both a and b are correct" },
-                            ],
-                            expectedAnswer: "c",
-                        },
-                        {
-                            type: "radio",
-                            label: "Make both clauses negative: 'If I reduce stress, my headaches will go away.'",
-                            options: [
-                                { value: "a", label: "If I don't reduce stress, my headaches won't go away." },
-                                { value: "b", label: "If I won't reduce stress, my headaches don't go away." },
-                                { value: "c", label: "If I not reduce stress, my headaches will not go away." },
-                            ],
-                            expectedAnswer: "a",
-                        },
-                    ],
-                },
+	                    items: [
+	                        {
+	                            type: "radio",
+	                            label: "Make the IF clause negative: 'If I pack lunch, I will buy snacks.'",
+	                            options: [
+	                                { value: "a", label: "If I don't pack lunch, I will buy snacks." },
+	                                { value: "b", label: "If I won't pack lunch, I will buy snacks." },
+	                                { value: "c", label: "If I not pack lunch, I will buy snacks." },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
+	                        {
+	                            type: "radio",
+	                            label: "Make the WILL clause negative: 'If I pack lunch, I will buy snacks.'",
+	                            options: [
+	                                { value: "a", label: "If I pack lunch, I won't buy snacks." },
+	                                { value: "b", label: "If I pack lunch, I will not buy snacks." },
+	                                { value: "c", label: "Both a and b are correct" },
+	                            ],
+	                            expectedAnswer: "c",
+	                        },
+	                        {
+	                            type: "radio",
+	                            label: "Make both clauses negative: 'If I call the clinic, my appointment will change.'",
+	                            options: [
+	                                { value: "a", label: "If I don't call the clinic, my appointment won't change." },
+	                                { value: "b", label: "If I won't call the clinic, my appointment doesn't change." },
+	                                { value: "c", label: "If I not call the clinic, my appointment will not change." },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
+	                    ],
+	                },
             ],
         },
 
@@ -321,16 +330,16 @@ export const futureConditionalContent: InteractiveGuideContent = {
             stepNumber: 4,
             title: "Wellness & Health Contexts",
             icon: "🏥",
-            explanation: `
-                <h3>Exercise & Physical Health</h3>
-                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <ul>
-                        <li>If I walk 30 minutes daily, <strong>I will lose weight</strong>.</li>
-                        <li>If I take the stairs, <strong>I'll get stronger</strong>.</li>
-                        <li>If I stretch every morning, <strong>my back pain will improve</strong>.</li>
-                        <li>If I don't exercise, <strong>I'll feel sluggish</strong>.</li>
-                    </ul>
-                </div>
+	            explanation: `
+	                <h3>Exercise & Physical Health</h3>
+	                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+	                    <ul>
+	                        <li>If I walk from Maverick Station to the Harborwalk, <strong>I will get more steps</strong>.</li>
+	                        <li>If I take the stairs, <strong>I'll get stronger</strong>.</li>
+	                        <li>If I stretch every morning, <strong>my back pain will improve</strong>.</li>
+	                        <li>If I don't move much, <strong>I will feel stiff</strong>.</li>
+	                    </ul>
+	                </div>
 
                 <h3>Sleep & Rest</h3>
                 <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
@@ -342,15 +351,15 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <h3>Nutrition & Diet</h3>
-                <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <ul>
-                        <li>If I eat breakfast, <strong>I'll concentrate better</strong>.</li>
-                        <li>If I drink more water, <strong>I'll feel less tired</strong>.</li>
-                        <li>If I cook at home, <strong>I'll save money and be healthier</strong>.</li>
-                        <li>If I don't eat vegetables, <strong>I won't get enough vitamins</strong>.</li>
-                    </ul>
-                </div>
+	                <h3>Nutrition & Diet</h3>
+	                <div style="background: rgba(244, 211, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+	                    <ul>
+	                        <li>If I eat breakfast, <strong>I'll concentrate better</strong>.</li>
+	                        <li>If I drink more water, <strong>I'll feel less tired</strong>.</li>
+	                        <li>If I pack lunch, <strong>I'll save money</strong>.</li>
+	                        <li>If I don't eat vegetables, <strong>I won't get enough vitamins</strong>.</li>
+	                    </ul>
+	                </div>
 
                 <h3>Stress Management</h3>
                 <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
@@ -371,46 +380,46 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     </ul>
                 </div>
             `,
-            tipBox: {
-                title: "💡 Wellness Tip",
-                content: "Use first conditional to set SMART goals: 'If I exercise 3x/week, I'll lose 10 pounds in 3 months.' Make your conditions specific and measurable!",
-            },
+	            tipBox: {
+	                title: "💡 Wellness Tip",
+	                content: "Use first conditional to set SMART goals: 'If I walk after class three times a week, I'll sleep better.' Make your conditions specific and measurable!",
+	            },
             exercises: [
                 {
                     id: "wellness-contexts-1",
                     title: "Practice: Wellness Contexts",
                     instructions: "Match each wellness situation with the best first conditional sentence.",
                     items: [
-                        {
-                            type: "radio",
-                            label: "You want to set a goal about exercise:",
-                            options: [
-                                { value: "a", label: "If I walk 30 minutes daily, I will lose weight." },
-                                { value: "b", label: "I walked 30 minutes yesterday." },
-                                { value: "c", label: "I walk 30 minutes every day." },
-                            ],
-                            expectedAnswer: "a",
-                        },
-                        {
-                            type: "radio",
-                            label: "You want to plan for better sleep:",
-                            options: [
-                                { value: "a", label: "If I sleep 8 hours, I will have more energy." },
-                                { value: "b", label: "I slept 8 hours last night." },
-                                { value: "c", label: "I sleep 8 hours every night." },
-                            ],
-                            expectedAnswer: "a",
-                        },
-                        {
-                            type: "radio",
-                            label: "You want to prevent stress:",
-                            options: [
-                                { value: "a", label: "If I take breaks, I won't feel overwhelmed." },
-                                { value: "b", label: "I took breaks yesterday." },
-                                { value: "c", label: "I take breaks every hour." },
-                            ],
-                            expectedAnswer: "a",
-                        },
+	                        {
+	                            type: "radio",
+	                            label: "You want to set a goal about exercise:",
+	                            options: [
+	                                { value: "a", label: "If I walk on the Harborwalk after class, I will sleep better." },
+	                                { value: "b", label: "I walked on the Harborwalk yesterday." },
+	                                { value: "c", label: "I walk on the Harborwalk every day." },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
+	                        {
+	                            type: "radio",
+	                            label: "You want to plan for better sleep:",
+	                            options: [
+	                                { value: "a", label: "If I sleep 8 hours, I will have more energy." },
+	                                { value: "b", label: "I slept 8 hours last night." },
+	                                { value: "c", label: "I sleep 8 hours every night." },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
+	                        {
+	                            type: "radio",
+	                            label: "You want to prevent stress:",
+	                            options: [
+	                                { value: "a", label: "If I take breaks, I won't feel overwhelmed." },
+	                                { value: "b", label: "I took breaks yesterday." },
+	                                { value: "c", label: "I take breaks every hour." },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
                     ],
                 },
             ],
@@ -433,13 +442,13 @@ export const futureConditionalContent: InteractiveGuideContent = {
                     </ul>
                 </div>
 
-                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h4>May/Might (less certain):</h4>
-                    <ul>
-                        <li>If I eat less sugar, <strong>I may lose weight</strong>. (less certain than "will")</li>
-                        <li>If I try meditation, <strong>it might help</strong> with stress.</li>
-                    </ul>
-                </div>
+	                <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
+	                    <h4>May/Might (less certain):</h4>
+	                    <ul>
+	                        <li>If I drink water instead of soda, <strong>I may feel less tired</strong>. (less certain than "will")</li>
+	                        <li>If I try meditation, <strong>it might help</strong> with stress.</li>
+	                    </ul>
+	                </div>
 
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
                     <h4>Should (advice):</h4>
@@ -627,23 +636,26 @@ export const futureConditionalContent: InteractiveGuideContent = {
                         },
                     ],
                 },
-                {
-                    id: "future-conditional-ex-5",
-                    title: "Exercise 5: Word Order + Comma",
-                    instructions: "Choose the version with IF first (and the comma).",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "Rewrite: I will lose weight if I walk 30 minutes daily.",
-                            options: [
-                                { value: "a", label: "If I walk 30 minutes daily, I will lose weight." },
-                                { value: "b", label: "If I walk 30 minutes daily I will lose weight." },
-                                { value: "c", label: "If I will walk 30 minutes daily, I will lose weight." },
-                            ],
-                            expectedAnswer: "a",
-                        },
-                    ],
-                },
+	                {
+	                    id: "future-conditional-ex-5",
+	                    title: "Exercise 5: Word Order + Comma",
+	                    instructions: "Choose the version with IF first (and the comma).",
+	                    items: [
+	                        {
+	                            type: "radio",
+	                            label: "Rewrite: I will catch the Blue Line if I leave early.",
+	                            options: [
+	                                {
+	                                    value: "a",
+	                                    label: "If I <span class='eg-verb'>leave</span> early<span class='eg-punctuation'>,</span> I <span class='eg-helper'>will</span> <span class='eg-verb'>catch</span> the Blue Line<span class='eg-punctuation'>.</span>",
+	                                },
+	                                { value: "b", label: "If I leave early I will catch the Blue Line." },
+	                                { value: "c", label: "If I will leave early, I will catch the Blue Line." },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
+	                    ],
+	                },
                 {
                     id: "future-conditional-ex-6",
                     title: "Exercise 6: Another IF Clause",
@@ -694,37 +706,37 @@ export const futureConditionalContent: InteractiveGuideContent = {
             id: "summary",
             title: "Quick Reference Guide",
             icon: "📋",
-            explanation: `
-                <h3>First Conditional Formula</h3>
-                <p style="font-size: 1.25rem; font-weight: bold; color: #7ba884;">If + present simple, will + base verb</p>
+	            explanation: `
+	                <h3>First Conditional Formula</h3>
+	                <p style="font-size: 1.25rem; font-weight: bold; color: #7ba884;">If + present simple, will + base verb</p>
 
-                <h3>Word Order Options</h3>
-                <ul>
-                    <li><strong>IF first:</strong> If I exercise<strong>,</strong> I will feel better. (use comma!)</li>
-                    <li><strong>WILL first:</strong> I will feel better if I exercise. (no comma!)</li>
-                </ul>
+	                <h3>Word Order Options</h3>
+	                <ul>
+	                    <li><strong>IF first:</strong> If I leave early<strong>,</strong> I will catch the Blue Line. (use comma!)</li>
+	                    <li><strong>WILL first:</strong> I will catch the Blue Line if I leave early. (no comma!)</li>
+	                </ul>
 
-                <h3>Common Uses</h3>
-                <ul>
-                    <li><strong>Future possibilities:</strong> "If I walk daily, I'll lose weight."</li>
-                    <li><strong>Cause & effect:</strong> "If I sleep 8 hours, I'll have energy."</li>
-                    <li><strong>Warnings:</strong> "If you don't rest, you'll get sick."</li>
-                    <li><strong>Promises:</strong> "If I feel better, I'll go to work."</li>
-                </ul>
+	                <h3>Common Uses</h3>
+	                <ul>
+	                    <li><strong>Future possibilities:</strong> "If I leave early, I'll catch the Blue Line."</li>
+	                    <li><strong>Cause & effect:</strong> "If I sleep 8 hours, I'll have more energy."</li>
+	                    <li><strong>Warnings:</strong> "If you don't rest, you'll get sick."</li>
+	                    <li><strong>Promises:</strong> "If I finish early, I'll help you."</li>
+	                </ul>
 
-                <h3>Negative Forms</h3>
-                <ul>
-                    <li><strong>Negative IF:</strong> If I <strong>don't</strong> exercise, I will gain weight.</li>
-                    <li><strong>Negative WILL:</strong> If I exercise, I <strong>won't</strong> gain weight.</li>
-                </ul>
+	                <h3>Negative Forms</h3>
+	                <ul>
+	                    <li><strong>Negative IF:</strong> If I <strong>don't</strong> set an alarm, I will miss the bus.</li>
+	                    <li><strong>Negative WILL:</strong> If I take breaks, I <strong>won't</strong> feel so overwhelmed.</li>
+	                </ul>
 
-                <h3>Other Modals (Instead of Will)</h3>
-                <ul>
-                    <li><strong>Can:</strong> If I exercise, I <strong>can</strong> lose weight.</li>
-                    <li><strong>May/Might:</strong> If I eat less sugar, I <strong>may</strong> feel better.</li>
-                    <li><strong>Should:</strong> If you have pain, you <strong>should</strong> call the doctor.</li>
-                    <li><strong>Imperative:</strong> If you feel tired, <strong>take a break</strong>.</li>
-                </ul>
+	                <h3>Other Modals (Instead of Will)</h3>
+	                <ul>
+	                    <li><strong>Can:</strong> If I manage my time, I <strong>can</strong> finish early.</li>
+	                    <li><strong>May/Might:</strong> If I drink water, I <strong>may</strong> feel better.</li>
+	                    <li><strong>Should:</strong> If you have pain, you <strong>should</strong> call the doctor.</li>
+	                    <li><strong>Imperative:</strong> If you feel tired, <strong>take a break</strong>.</li>
+	                </ul>
             `,
             tipBox: {
                 title: "⚠️ Critical Rule",
@@ -792,72 +804,171 @@ export const futureConditionalContent: InteractiveGuideContent = {
         },
     ],
 
-    miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "Which is correct?",
-            options: [
-                { value: "a", label: "If I will exercise, I will feel better." },
-                { value: "b", label: "If I exercise, I will feel better." },
-                { value: "c", label: "If I exercise, I feel better." },
-            ],
-            correctAnswer: "b",
-            explanation: "Use present simple in the IF clause, not 'will'. The formula is: If + present, will + verb.",
-        },
-        {
-            id: "quiz-2",
-            question: "Complete: If I sleep 8 hours, I _____ more energy.",
-            options: [
-                { value: "a", label: "have" },
-                { value: "b", label: "will have" },
-                { value: "c", label: "had" },
-            ],
-            correctAnswer: "b",
-            explanation: "The result clause uses 'will + base verb': 'I will have more energy.'",
-        },
-        {
-            id: "quiz-3",
-            question: "Where should the comma go? 'If I walk daily I will lose weight.'",
-            options: [
-                { value: "a", label: "No comma needed" },
-                { value: "b", label: "After 'daily'" },
-                { value: "c", label: "After 'walk'" },
-            ],
-            correctAnswer: "b",
-            explanation: "When the IF clause comes first, use a comma after it: 'If I walk daily, I will lose weight.'",
-        },
-        {
-            id: "quiz-4",
-            question: "Which is the negative form?",
-            options: [
-                { value: "a", label: "If I don't exercise, I will gain weight." },
-                { value: "b", label: "If I won't exercise, I will gain weight." },
-                { value: "c", label: "If I not exercise, I will gain weight." },
-            ],
-            correctAnswer: "a",
-            explanation: "Negative IF clause uses 'don't/doesn't + verb': 'If I don't exercise...'",
-        },
-        {
-            id: "quiz-5",
-            question: "Can you use modals other than 'will' in the result clause?",
-            options: [
-                { value: "a", label: "No, only 'will' is allowed" },
-                { value: "b", label: "Yes, you can use can, may, might, should" },
-                { value: "c", label: "Only in negative sentences" },
-            ],
-            correctAnswer: "b",
-            explanation: "You can use other modals like can, may, might, should, or even imperatives in the result clause.",
-        },
-        {
-            id: "quiz-6",
-            question: "What does first conditional express?",
-            options: [
-                { value: "a", label: "Impossible situations" },
-                { value: "b", label: "Real future possibilities" },
-                { value: "c", label: "Past regrets" },
-            ],
-            correctAnswer: "b",
-            explanation: "First conditional expresses real future possibilities and their likely results.",
-        },
-    ],
+	    miniQuiz: [
+	        {
+	            id: "quiz-1",
+	            question: "Which is correct?",
+	            options: [
+	                { value: "a", label: "If I will leave early, I will catch the Blue Line." },
+	                { value: "b", label: "If I leave early, I will catch the Blue Line." },
+	                { value: "c", label: "If I leave early, I catch the Blue Line." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "Use present simple in the IF clause (leave), not 'will'. The formula is: If + present, will + verb.",
+	        },
+	        {
+	            id: "quiz-2",
+	            question: "Complete: If I sleep 8 hours, I _____ more energy.",
+	            options: [
+	                { value: "a", label: "have" },
+	                { value: "b", label: "will have" },
+	                { value: "c", label: "had" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "The result clause uses 'will + base verb': 'I will have more energy.'",
+	        },
+	        {
+	            id: "quiz-3",
+	            question: "Where should the comma go? 'If I leave early I will catch the Blue Line.'",
+	            options: [
+	                { value: "a", label: "No comma needed" },
+	                { value: "b", label: "After 'early'" },
+	                { value: "c", label: "After 'leave'" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "When the IF clause comes first, use a comma after it: 'If I leave early, I will catch the Blue Line.'",
+	        },
+	        {
+	            id: "quiz-4",
+	            question: "Which is the correct negative IF clause?",
+	            options: [
+	                { value: "a", label: "If I don't pack lunch, I will buy snacks." },
+	                { value: "b", label: "If I won't pack lunch, I will buy snacks." },
+	                { value: "c", label: "If I not pack lunch, I will buy snacks." },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Negative IF clause uses 'don't/doesn't + verb': 'If I don't pack lunch...'",
+	        },
+	        {
+	            id: "quiz-5",
+	            question: "Can you use modals other than 'will' in the result clause?",
+	            options: [
+	                { value: "a", label: "No, only 'will' is allowed" },
+	                { value: "b", label: "Yes, you can use can, may, might, should" },
+	                { value: "c", label: "Only in negative sentences" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "You can use other modals like can, may, might, should, or even imperatives in the result clause.",
+	        },
+	        {
+	            id: "quiz-6",
+	            question: "What does first conditional express?",
+	            options: [
+	                { value: "a", label: "Impossible situations" },
+	                { value: "b", label: "Real future possibilities" },
+	                { value: "c", label: "Past regrets" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "First conditional expresses real future possibilities and their likely results.",
+	        },
+	        {
+	            id: "quiz-7",
+	            question: "Which sentence is correct (IF clause second = no comma)?",
+	            options: [
+	                { value: "a", label: "I will call the clinic, if I need to reschedule." },
+	                { value: "b", label: "I will call the clinic if I need to reschedule." },
+	                { value: "c", label: "I will call the clinic. if I need to reschedule." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "No comma when the IF clause comes second: result + if + condition.",
+	        },
+	        {
+	            id: "quiz-8",
+	            question: "Complete: If I manage my time better, I _____ finish early.",
+	            options: [
+	                { value: "a", label: "can" },
+	                { value: "b", label: "will" },
+	                { value: "c", label: "did" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Use 'can' in the result clause to talk about ability/possibility.",
+	        },
+	        {
+	            id: "quiz-9",
+	            question: "Complete: If I drink water instead of soda, I _____ feel better.",
+	            options: [
+	                { value: "a", label: "might" },
+	                { value: "b", label: "will" },
+	                { value: "c", label: "am" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Use may/might when you are less certain about the result.",
+	        },
+	        {
+	            id: "quiz-10",
+	            question: "Complete: If you have chest pain, you _____ see a doctor.",
+	            options: [
+	                { value: "a", label: "should" },
+	                { value: "b", label: "will" },
+	                { value: "c", label: "are" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Use 'should' for advice in the result clause.",
+	        },
+	        {
+	            id: "quiz-11",
+	            question: "Complete: If you feel dizzy, _____ down.",
+	            options: [
+	                { value: "a", label: "sit" },
+	                { value: "b", label: "you will sit" },
+	                { value: "c", label: "sitting" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "An imperative (command/suggestion) can be the result clause: 'If..., sit down.'",
+	        },
+	        {
+	            id: "quiz-12",
+	            question: "Complete: If it rains, I _____ an umbrella.",
+	            options: [
+	                { value: "a", label: "bring" },
+	                { value: "b", label: "will bring" },
+	                { value: "c", label: "brought" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "Use 'will + base verb' in the result clause: will bring.",
+	        },
+	        {
+	            id: "quiz-13",
+	            question: "Fix the mistake: 'If I will call the clinic, they will reschedule my appointment.'",
+	            options: [
+	                { value: "a", label: "If I call the clinic, they will reschedule my appointment." },
+	                { value: "b", label: "If I will call the clinic, they reschedule my appointment." },
+	                { value: "c", label: "If I called the clinic, they will reschedule my appointment." },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Don't use 'will' in the IF clause. Use present simple: If I call...",
+	        },
+	        {
+	            id: "quiz-14",
+	            question: "Which sentence uses first conditional (future plan), not past simple or present simple?",
+	            options: [
+	                { value: "a", label: "If I walk on the Harborwalk after class, I will sleep better." },
+	                { value: "b", label: "I walked on the Harborwalk after class yesterday." },
+	                { value: "c", label: "I walk on the Harborwalk after class every day." },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "First conditional uses IF + present simple and a future result (will).",
+	        },
+	        {
+	            id: "quiz-15",
+	            question: "Which result is correct?",
+	            options: [
+	                { value: "a", label: "If I take breaks, I don't feel so overwhelmed." },
+	                { value: "b", label: "If I take breaks, I won't feel so overwhelmed." },
+	                { value: "c", label: "If I took breaks, I won't feel so overwhelmed." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "Use 'will/won't' in the result clause for future possibilities: If I take breaks, I won't feel so overwhelmed.",
+	        },
+	    ],
 };

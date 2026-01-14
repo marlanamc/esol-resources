@@ -126,7 +126,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"By next year, I will have been working here for 10 years."',
+                            label: '"By next year, I <span class=\'eg-helper\'>will have been</span> <span class=\'eg-verb\'>working</span> here for 10 years."',
                             options: [
                                 { value: "duration", label: "Duration up to a future point" },
                                 { value: "prediction", label: "Simple prediction" },
@@ -136,7 +136,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"She will be tired because she will have been traveling all day."',
+                            label: '"She will be tired because she <span class=\'eg-helper\'>will have been</span> <span class=\'eg-verb\'>traveling</span> all day."',
                             options: [
                                 { value: "duration", label: "Duration up to a future point" },
                                 { value: "cause", label: "Explaining a future situation" },
@@ -491,7 +491,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "By next year, I will been working here for 5 years." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect Continuous: will have been + verb-ing.",
+            explanation: "Future Perfect Continuous: will have been + verb-ing. The -ing form is required.",
         },
         {
             id: "quiz-2",
@@ -502,7 +502,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "For finished past actions" },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect Continuous = duration up to a future point.",
+            explanation: "Future Perfect Continuous = how long something will have been happening BY a future point.",
         },
         {
             id: "quiz-3",
@@ -513,7 +513,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I will haven't been working long enough." },
             ],
             correctAnswer: "a",
-            explanation: "Negative: won't have been + verb-ing.",
+            explanation: "Negative: won't have been + verb-ing. 'Have been' stays together.",
         },
         {
             id: "quiz-4",
@@ -525,6 +525,127 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Future Perfect Continuous is perfect for milestones: 'By June, I will have been working here for 10 years.'",
+        },
+        {
+            id: "quiz-5",
+            question: "What's the formula for Future Perfect Continuous?",
+            options: [
+                { value: "a", label: "will have been + verb-ing" },
+                { value: "b", label: "have been + verb-ing" },
+                { value: "c", label: "had been + verb-ing" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect Continuous = will have been + verb-ing. It's the same for ALL subjects.",
+        },
+        {
+            id: "quiz-6",
+            question: "Fill in: 'By the time she graduates, she ___ (study) for 4 years.'",
+            options: [
+                { value: "a", label: "will have been studying" },
+                { value: "b", label: "has been studying" },
+                { value: "c", label: "was studying" },
+            ],
+            correctAnswer: "a",
+            explanation: "'By the time she graduates' = future point. Use Future Perfect Continuous to show duration up to that point.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which question is correct?",
+            options: [
+                { value: "a", label: "How long will you have been working here by next year?" },
+                { value: "b", label: "How long you will have been working here by next year?" },
+                { value: "c", label: "How long have you been working here by next year?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question form: Will + subject + have been + verb-ing? 'Will' comes before the subject.",
+        },
+        {
+            id: "quiz-8",
+            question: "What does 'by' signal in Future Perfect Continuous?",
+            options: [
+                { value: "a", label: "A future deadline or point in time" },
+                { value: "b", label: "A present habit" },
+                { value: "c", label: "A past event" },
+            ],
+            correctAnswer: "a",
+            explanation: "'By' + future time = the deadline when you measure the duration. 'By June' = at that point.",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence explains WHY someone will be tired?",
+            options: [
+                { value: "a", label: "She will be tired because she will have been traveling all day." },
+                { value: "b", label: "She was tired because she traveled." },
+                { value: "c", label: "She is traveling right now." },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect Continuous can explain a future state by showing the ongoing action causing it.",
+        },
+        {
+            id: "quiz-10",
+            question: "What's the difference between Future Perfect and Future Perfect Continuous?",
+            options: [
+                { value: "a", label: "Perfect = completed action; Continuous = ongoing action with duration" },
+                { value: "b", label: "They are exactly the same" },
+                { value: "c", label: "Perfect is past; Continuous is present" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect = 'I will have finished.' Future Perfect Continuous = 'I will have been working for 5 years.'",
+        },
+        {
+            id: "quiz-11",
+            question: "Complete: 'By midnight, they ___ (drive) for 10 hours.'",
+            options: [
+                { value: "a", label: "will have been driving" },
+                { value: "b", label: "will be driving" },
+                { value: "c", label: "have been driving" },
+            ],
+            correctAnswer: "a",
+            explanation: "'By midnight' + duration (10 hours) = Future Perfect Continuous.",
+        },
+        {
+            id: "quiz-12",
+            question: "Which time expression fits Future Perfect Continuous?",
+            options: [
+                { value: "a", label: "by next month, for 3 years" },
+                { value: "b", label: "yesterday, ago" },
+                { value: "c", label: "right now, at the moment" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect Continuous uses 'by' + future time and 'for' + duration.",
+        },
+        {
+            id: "quiz-13",
+            question: "Fix the error: 'By June, I will have been work here for 5 years.'",
+            options: [
+                { value: "a", label: "By June, I will have been working here for 5 years." },
+                { value: "b", label: "By June, I have been working here for 5 years." },
+                { value: "c", label: "By June, I was working here for 5 years." },
+            ],
+            correctAnswer: "a",
+            explanation: "After 'will have been', use the -ing form: 'will have been working.'",
+        },
+        {
+            id: "quiz-14",
+            question: "Is Future Perfect Continuous common or rare?",
+            options: [
+                { value: "a", label: "It's the rarest English tense, used mainly for milestones" },
+                { value: "b", label: "It's the most common tense" },
+                { value: "c", label: "It's only used in British English" },
+            ],
+            correctAnswer: "a",
+            explanation: "This is the least common tense! Focus on understanding it when you hear it.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence is a work anniversary milestone?",
+            options: [
+                { value: "a", label: "By next month, I will have been working here for 10 years!" },
+                { value: "b", label: "I worked here for 10 years." },
+                { value: "c", label: "I am working here now." },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect Continuous is perfect for celebrating how long you WILL have been doing something by a future date.",
         },
     ],
 };
