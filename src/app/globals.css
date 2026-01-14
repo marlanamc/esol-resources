@@ -779,6 +779,16 @@ kbd {
   font-weight: 700;
 }
 
+.eg-punctuation {
+  color: #0f766e; /* teal-700 - punctuation marks */
+  font-weight: 800;
+}
+
+.eg-capital {
+  color: #be123c; /* rose-700 - capitalization targets */
+  font-weight: 800;
+}
+
 .formula-box {
   background: white;
   border: 2px solid var(--color-border);

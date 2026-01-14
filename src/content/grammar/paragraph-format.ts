@@ -84,10 +84,10 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 <h3>Example Paragraph</h3>
                 <div style="background: white; padding: 1.5rem; border-radius: 0.5rem; border: 2px solid #7ba884; margin: 1rem 0;">
                     <p style="font-weight: bold; color: #7ba884; margin: 0 0 0.5rem 0;">Topic Sentence:</p>
-                    <p style="margin: 0 0 1rem 0; padding-left: 1rem; border-left: 3px solid #7ba884;">Exercise is important for good health.</p>
+                    <p style="margin: 0 0 1rem 0; padding-left: 1rem; border-left: 3px solid #7ba884;"><span class='eg-verb'>Exercise</span> <span class='eg-helper'>is</span> important for good health.</p>
 
                     <p style="font-weight: bold; color: #d97757; margin: 1rem 0 0.5rem 0;">Supporting Details:</p>
-                    <p style="margin: 0 0 0.5rem 0; padding-left: 1rem; border-left: 3px solid #d97757;">First, it helps you lose weight and stay in shape. Second, exercise reduces stress and makes you feel happier. Finally, it lowers your risk of serious diseases like diabetes and heart disease.</p>
+                    <p style="margin: 0 0 0.5rem 0; padding-left: 1rem; border-left: 3px solid #d97757;">First, it helps you walk from Maverick Station to the Harborwalk. Second, it reduces stress after a long Blue Line commute and makes you feel happier. Finally, it lowers your risk of health problems like diabetes and heart disease.</p>
 
                     <p style="font-weight: bold; color: #d4a843; margin: 1rem 0 0.5rem 0;">Conclusion Sentence:</p>
                     <p style="margin: 0; padding-left: 1rem; border-left: 3px solid #d4a843;">For these reasons, everyone should try to exercise at least 30 minutes a day.</p>
@@ -167,16 +167,16 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Exercise is good.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Exercise is important for good health.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">East Boston <span class='eg-verb'>exercise</span> is good.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;"><span class='eg-verb'>Exercise</span> is important for good health.</td>
                         </tr>
                         <tr style="background: rgba(0, 0, 0, 0.02);">
                             <td style="padding: 0.75rem; border: 1px solid #ddd;">Food is important.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Eating breakfast helps you concentrate at work.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Eating breakfast helps you concentrate on the Blue Line commute.</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid #ddd;">I like things.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I enjoy walking in the park every morning.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">I enjoy walking along the Harborwalk every morning.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -191,10 +191,10 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     <tbody>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid #ddd;">I walk for exactly 32 minutes.</td>
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Walking daily has many health benefits.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">Walking along the Harborwalk has many health benefits.</td>
                         </tr>
                         <tr style="background: rgba(0, 0, 0, 0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid #ddd;">On Tuesday I ate oatmeal at 7:15am.</td>
+                            <td style="padding: 0.75rem; border: 1px solid #ddd;">On Tuesday I ate oatmeal at 7:15am at the community center.</td>
                             <td style="padding: 0.75rem; border: 1px solid #ddd;">Eating a healthy breakfast improves my energy.</td>
                         </tr>
                     </tbody>
@@ -210,8 +210,11 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is a better topic sentence?",
                             options: [
-                                { value: "a", label: "Exercise is important for good health." },
-                                { value: "b", label: "Exercise is good." },
+                                {
+                                    value: "a",
+                                    label: "<span class='eg-verb'>Exercise</span> <span class='eg-helper'>is</span> important for good health on the Harborwalk.",
+                                },
+                                { value: "b", label: "<span class='eg-verb'>Exercise</span> <span class='eg-helper'>is</span> good." },
                                 { value: "c", label: "Things." },
                             ],
                             expectedAnswer: "a",
@@ -519,45 +522,45 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                 {
                     id: "paragraph-format-common-mistakes-1",
                     title: "Practice: Common Paragraph Mistakes",
-                    instructions: "Identify common mistakes in paragraph writing.",
+                    instructions: "Identify common mistakes by thinking about an East Boston community newsletter.",
                     items: [
                         {
                             type: "radio",
-                            label: "What is Mistake #1?",
+                            label: "When an East Boston newsletter starts with a detail about the Harborwalk without a clear focus, what mistake is happening?",
                             options: [
-                                { value: "a", label: "Starting with details without stating the main idea first (no topic sentence)" },
-                                { value: "b", label: "Using too many transition words" },
-                                { value: "c", label: "Writing sentences that are too long" },
+                                { value: "a", label: "No topic sentence: the main idea is missing." },
+                                { value: "b", label: "Too many transition words crowd the paragraph." },
+                                { value: "c", label: "Every sentence is too long." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "What is Mistake #2?",
+                            label: "A writer lists the Harborwalk, the community garden, and the ferry schedule in the same paragraph. What mistake is that?",
                             options: [
-                                { value: "a", label: "Talking about too many different ideas in one paragraph" },
-                                { value: "b", label: "Using simple vocabulary" },
-                                { value: "c", label: "Writing sentences that are too short" },
+                                { value: "a", label: "Jumping between too many ideas instead of sticking to one." },
+                                { value: "b", label: "Using simple vocabulary." },
+                                { value: "c", label: "Writing all short sentences." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "What is Mistake #4?",
+                            label: "Which mistake happens when a paragraph about the Harborwalk ends with a sentence about the Red Line, unrelated to the main idea?",
                             options: [
-                                { value: "a", label: "Including sentences that don't relate to the topic sentence (off-topic sentences)" },
-                                { value: "b", label: "Using too many examples" },
-                                { value: "c", label: "Not using enough adjectives" },
+                                { value: "a", label: "Off-topic sentence that breaks unity." },
+                                { value: "b", label: "Too many examples about trains." },
+                                { value: "c", label: "Not enough adjectives to describe the view." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "How many sentences should a paragraph have?",
+                            label: "If you write a paragraph about East Boston activities, how many sentences should it usually include?",
                             options: [
-                                { value: "a", label: "At least 5-7 sentences (topic + 3-5 details + conclusion)" },
-                                { value: "b", label: "Exactly 3 sentences" },
-                                { value: "c", label: "As many as possible, no limit" },
+                                { value: "a", label: "At least 5-7 sentences (topic + details + ending)." },
+                                { value: "b", label: "Exactly 3 sentences." },
+                                { value: "c", label: "As many as possible until you run out of paper." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -578,14 +581,14 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Which sentence is the topic sentence?",
+                            label: "Which sentence introduces the main idea for an East Boston Harborwalk paragraph?",
                             options: [
-                                { value: "a", label: "First, it saves money." },
-                                { value: "b", label: "Cooking at home is better than eating out." },
-                                { value: "c", label: "Second, it's healthier." },
-                                { value: "d", label: "Finally, you can control ingredients." },
+                                { value: "a", label: "The Harborwalk helps neighbors stay active and friendly." },
+                                { value: "b", label: "Today, we passed the Harborwalk entrance twice." },
+                                { value: "c", label: "We stop for coffee after walking." },
+                                { value: "d", label: "Finally, the Harborwalk connects to the ferry." },
                             ],
-                            expectedAnswer: "b",
+                            expectedAnswer: "a",
                         },
                     ],
                 },
@@ -596,12 +599,12 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Which sentence does NOT belong in the paragraph?",
+                            label: "Which sentence does NOT belong in a paragraph about the Harborwalk?",
                             options: [
-                                { value: "a", label: "Exercise is important." },
-                                { value: "b", label: "It helps you lose weight." },
+                                { value: "a", label: "Walking on the Harborwalk is important for health." },
+                                { value: "b", label: "It builds stamina before a Blue Line commute." },
                                 { value: "c", label: "I like pizza." },
-                                { value: "d", label: "It reduces stress." },
+                                { value: "d", label: "It keeps residents calmer on busy days." },
                             ],
                             expectedAnswer: "c",
                         },
@@ -614,7 +617,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "Walking is good exercise. It's free and easy to do. You can walk anywhere. (What is missing?)",
+                            label: "The Harborwalk is free, clean, and full of plants. We see more neighbors there every day. The path shines after a fresh rain. (What is missing?)",
                             options: ["Topic sentence", "Supporting details", "Conclusion sentence"],
                             expectedAnswer: "Conclusion sentence",
                         },
@@ -627,7 +630,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "_____, exercise reduces stress.",
+                            label: "_____, walking along the Harborwalk reduces stress.",
                             options: ["Also", "Yesterday", "Because", "But"],
                             expectedAnswer: "Also",
                         },
@@ -640,14 +643,14 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Topic: Drinking water is important for health.",
+                            label: "Topic: The East Boston community garden keeps neighbors healthy.",
                             options: [
-                                { value: "a", label: "Drinking water is important for health." },
-                                { value: "b", label: "Water is wet." },
-                                { value: "c", label: "For these reasons, everyone should drink enough water every day." },
+                                { value: "a", label: "The garden brings people together." },
+                                { value: "b", label: "For these reasons, the garden deserves more support from the council." },
+                                { value: "c", label: "Gardeners water plants every morning." },
                                 { value: "d", label: "I like coffee." },
                             ],
-                            expectedAnswer: "c",
+                            expectedAnswer: "b",
                         },
                     ],
                 },
@@ -658,7 +661,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "Things are important.",
+                            label: "The Harborwalk is a great place to meet neighbors.",
                             options: ["too general", "too specific"],
                             expectedAnswer: "too general",
                         },
@@ -671,10 +674,10 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Fix this topic sentence: "I walk."',
+                            label: 'Fix this topic sentence: "I walk the Harborwalk."',
                             options: [
                                 { value: "a", label: "I walk." },
-                                { value: "b", label: "Walking daily has many health benefits." },
+                                { value: "b", label: "Walking the Harborwalk daily keeps my heart strong." },
                                 { value: "c", label: "Yesterday I walked at 7:15 AM." },
                             ],
                             expectedAnswer: "b",
@@ -688,7 +691,7 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "How many sentences should a paragraph have (usually)?",
+                            label: "How many sentences should a paragraph about East Boston community projects have?",
                             options: ["1–2", "3–4", "5–7", "10–12"],
                             expectedAnswer: "5–7",
                         },
@@ -820,69 +823,168 @@ export const paragraphFormatContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "What are the three parts of a paragraph?",
+            question: "A paragraph about the East Boston Harborwalk should include which three parts?",
             options: [
                 { value: "a", label: "Beginning, middle, end" },
                 { value: "b", label: "Topic sentence, supporting details, conclusion" },
                 { value: "c", label: "Introduction, examples, summary" },
             ],
             correctAnswer: "b",
-            explanation: "A paragraph has: topic sentence (main idea), supporting details (body), and conclusion sentence.",
+            explanation: "Even when writing about the Harborwalk, a paragraph still needs a topic sentence, supporting details, and a conclusion.",
         },
         {
             id: "quiz-2",
-            question: "Where should the topic sentence go?",
+            question: "Where should the topic sentence appear in a paragraph about community gardens?",
             options: [
                 { value: "a", label: "At the end" },
                 { value: "b", label: "In the middle" },
                 { value: "c", label: "At the beginning" },
             ],
             correctAnswer: "c",
-            explanation: "The topic sentence is the FIRST sentence of a paragraph.",
+            explanation: "Start with the topic sentence so readers immediately understand the main idea about the garden.",
         },
         {
             id: "quiz-3",
-            question: "Which is a good topic sentence?",
+            question: "Which sentence is the best topic sentence for a Harborwalk paragraph?",
             options: [
-                { value: "a", label: "I like things." },
-                { value: "b", label: "Exercise is important for good health." },
+                { value: "a", label: "I like walking the Harborwalk with friends." },
+                { value: "b", label: "Walking the Harborwalk daily keeps my heart strong." },
                 { value: "c", label: "Yesterday I walked for 32 minutes." },
             ],
             correctAnswer: "b",
-            explanation: "'Exercise is important for good health' is clear, complete, and not too general or specific.",
+            explanation: "Option b states a clear central idea that all following sentences can support.",
         },
         {
             id: "quiz-4",
-            question: "What does 'unity' mean in a paragraph?",
+            question: "What does unity mean when describing East Boston stories?",
             options: [
-                { value: "a", label: "Using transition words" },
+                { value: "a", label: "Every sentence uses transition words" },
                 { value: "b", label: "All sentences support the same main idea" },
-                { value: "c", label: "Having a conclusion sentence" },
+                { value: "c", label: "Each sentence is about a different topic" },
             ],
             correctAnswer: "b",
-            explanation: "Unity means all sentences in the paragraph support the SAME main idea.",
+            explanation: "Unity keeps the paragraph focused on one idea, whether it’s the Harborwalk or the community garden.",
         },
         {
             id: "quiz-5",
-            question: "How many sentences should a paragraph have?",
+            question: "How many sentences should a paragraph about the Blue Line schedule include?",
             options: [
                 { value: "a", label: "1-2 sentences" },
                 { value: "b", label: "At least 5-7 sentences" },
-                { value: "c", label: "As many as possible" },
+                { value: "c", label: "10-12 sentences" },
             ],
             correctAnswer: "b",
-            explanation: "A paragraph needs at least 5-7 sentences: topic + supporting details + conclusion.",
+            explanation: "A mini paragraph still needs 5-7 sentences: topic, supporting detail(s), and conclusion.",
         },
         {
             id: "quiz-6",
-            question: "What do transition words do?",
+            question: "How do transition words help a paragraph about East Boston events?",
             options: [
-                { value: "a", label: "Make sentences longer" },
-                { value: "b", label: "Connect ideas and improve flow" },
-                { value: "c", label: "Replace the topic sentence" },
+                { value: "a", label: "Replace the topic sentence" },
+                { value: "b", label: "Make sentences longer" },
+                { value: "c", label: "Connect ideas and guide the reader" },
+            ],
+            correctAnswer: "c",
+            explanation: "Words like 'Also,' 'Later,' and 'Finally' help the paragraph flow from one idea to the next.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence is off-topic in a paragraph about Harborwalk benefits?",
+            options: [
+                { value: "a", label: "Walking the Harborwalk improves our mood." },
+                { value: "b", label: "It helps us meet neighbors after work." },
+                { value: "c", label: "The Red Sox won last night’s game." },
+            ],
+            correctAnswer: "c",
+            explanation: "Mentioning sports scores distracts from the Harborwalk focus.",
+        },
+        {
+            id: "quiz-8",
+            question: "Which sentence is a supporting detail for 'The community garden keeps neighbors healthy'?",
+            options: [
+                { value: "a", label: "Gardening takes place next to the Harborwalk." },
+                { value: "b", label: "Volunteers plant vegetables every Saturday." },
+                { value: "c", label: "The garden is open once a year." },
             ],
             correctAnswer: "b",
-            explanation: "Transition words (First, Also, Therefore) connect ideas and help the paragraph flow smoothly.",
+            explanation: "Detail b explains how the garden supports health through regular work.",
+        },
+        {
+            id: "quiz-9",
+            question: "What is the main job of a conclusion sentence about Logan Airport shuttles?",
+            options: [
+                { value: "a", label: "Introduce a new idea about the shuttle route" },
+                { value: "b", label: "Summarize the main idea or restate reasons" },
+                { value: "c", label: "Ask the reader a question" },
+            ],
+            correctAnswer: "b",
+            explanation: "The conclusion wraps up the paragraph and reminds readers of the key point.",
+        },
+        {
+            id: "quiz-10",
+            question: "You want to write about a different topic (East Boston schools). What should you do?",
+            options: [
+                { value: "a", label: "Start a new paragraph" },
+                { value: "b", label: "Keep writing in the same paragraph" },
+                { value: "c", label: "Repeat the same topic sentence" },
+            ],
+            correctAnswer: "a",
+            explanation: "New main ideas belong in new paragraphs to keep unity and clarity.",
+        },
+        {
+            id: "quiz-11",
+            question: "What does coherence mean after describing Harborwalk improvements?",
+            options: [
+                { value: "a", label: "Ideas flow logically from sentence to sentence" },
+                { value: "b", label: "Every sentence is the same length" },
+                { value: "c", label: "Sentences use the same verb tense" },
+            ],
+            correctAnswer: "a",
+            explanation: "Coherence ensures neighbors can follow your paragraph about future improvements.",
+        },
+        {
+            id: "quiz-12",
+            question: "Which transition word best shows that you are adding another idea about community safety?",
+            options: [
+                { value: "a", label: "Also" },
+                { value: "b", label: "Yesterday" },
+                { value: "c", label: "However" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Also' adds another idea about safety without changing the direction of the paragraph.",
+        },
+        {
+            id: "quiz-13",
+            question: "Why is 'Walking daily keeps the Harborwalk clean' a good topic sentence?",
+            options: [
+                { value: "a", label: "Because it introduces the topic and prepares for details" },
+                { value: "b", label: "Because it is a question" },
+                { value: "c", label: "Because it lists dates" },
+            ],
+            correctAnswer: "a",
+            explanation: "It clearly states the main idea and sets up supporting details about cleanliness.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence functions as a conclusion for a paragraph about neighborhood meetings?",
+            options: [
+                { value: "a", label: "Meetings happen in the community center Tuesday nights." },
+                { value: "b", label: "These meetings help neighbors solve parking problems." },
+                { value: "c", label: "For these reasons, we should keep meeting every week." },
+            ],
+            correctAnswer: "c",
+            explanation: "This sentence summarizes and pushes the reader to continue the meetings.",
+        },
+        {
+            id: "quiz-15",
+            question: "What is an example of a supporting detail for safety improvements on the Harborwalk?",
+            options: [
+                { value: "a", label: "The Harborwalk is a great place." },
+                { value: "b", label: "New lights now cover the path from Maverick to Bremen Street." },
+                { value: "c", label: "Portland has a wide pathway." },
+            ],
+            correctAnswer: "b",
+            explanation: "It gives a specific detail about new lights that supports the main idea about safety.",
         },
     ],
 };

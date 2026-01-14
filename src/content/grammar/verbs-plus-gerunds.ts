@@ -139,9 +139,9 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I avoid eating junk food." },
-                                { value: "b", label: "I avoid to eat junk food." },
-                                { value: "c", label: "I avoid eat junk food." },
+                                { value: "a", label: "I <span class='eg-verb'>avoid</span> <span class='eg-verb'>eating</span> fast food on busy days." },
+                                { value: "b", label: "I <span class='eg-verb'>avoid</span> to <span class='eg-verb'>eat</span> fast food on busy days." },
+                                { value: "c", label: "I <span class='eg-verb'>avoid</span> <span class='eg-verb'>eat</span> fast food on busy days." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -149,9 +149,9 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "She enjoys walking." },
-                                { value: "b", label: "She enjoys to walk." },
-                                { value: "c", label: "She enjoys walk." },
+                                { value: "a", label: "She <span class='eg-verb'>enjoys</span> <span class='eg-verb'>walking</span> along the Harborwalk." },
+                                { value: "b", label: "She <span class='eg-verb'>enjoys</span> to <span class='eg-verb'>walk</span> along the Harborwalk." },
+                                { value: "c", label: "She <span class='eg-verb'>enjoys</span> <span class='eg-verb'>walk</span> along the Harborwalk." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -159,9 +159,9 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I finished writing my journal." },
-                                { value: "b", label: "I finished to write my journal." },
-                                { value: "c", label: "I finished write my journal." },
+                                { value: "a", label: "I <span class='eg-verb'>finished</span> <span class='eg-verb'>writing</span> my email to my supervisor." },
+                                { value: "b", label: "I <span class='eg-verb'>finished</span> to <span class='eg-verb'>write</span> my email to my supervisor." },
+                                { value: "c", label: "I <span class='eg-verb'>finished</span> <span class='eg-verb'>write</span> my email to my supervisor." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -189,10 +189,10 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                 <h3>Exercise & Physical Activity</h3>
                 <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <ul>
-                        <li>I <strong>enjoy walking</strong> in the park every morning.</li>
-                        <li>I <strong>stopped going</strong> to the gym because it's too expensive.</li>
+                        <li>I <strong>enjoy walking</strong> along the Harborwalk after class.</li>
+                        <li>I <strong>stopped paying</strong> for a gym membership because it's too expensive.</li>
                         <li>I <strong>keep forgetting</strong> to stretch after exercise.</li>
-                        <li>I <strong>finished doing</strong> my yoga routine.</li>
+                        <li>I <strong>finished doing</strong> my stretching routine.</li>
                         <li>I <strong>avoid running</strong> because of my knee pain.</li>
                     </ul>
                 </div>
@@ -236,7 +236,7 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                         <li>I <strong>started tracking</strong> my water intake. (Note: 'start' can take gerund OR infinitive!)</li>
                         <li>I <strong>enjoy recording</strong> my progress in a journal.</li>
                         <li>I <strong>keep forgetting</strong> to log my meals.</li>
-                        <li>I <strong>finished completing</strong> my weekly wellness goals.</li>
+                        <li>I <strong>finished completing</strong> my weekly habit tracker.</li>
                     </ul>
                 </div>
             `,
@@ -250,9 +250,9 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly uses a verb + gerund?",
                             options: [
-                                { value: "a", label: "I enjoy walking in the park every morning." },
-                                { value: "b", label: "I enjoy to walk in the park every morning." },
-                                { value: "c", label: "I enjoy walk in the park every morning." },
+                                { value: "a", label: "I <span class='eg-verb'>enjoy</span> <span class='eg-verb'>walking</span> along the Harborwalk after class." },
+                                { value: "b", label: "I <span class='eg-verb'>enjoy</span> to <span class='eg-verb'>walk</span> along the Harborwalk after class." },
+                                { value: "c", label: "I <span class='eg-verb'>enjoy</span> <span class='eg-verb'>walk</span> along the Harborwalk after class." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -280,9 +280,9 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly uses 'finished' + gerund?",
                             options: [
-                                { value: "a", label: "I finished doing my yoga routine." },
-                                { value: "b", label: "I finished to do my yoga routine." },
-                                { value: "c", label: "I finished do my yoga routine." },
+                                { value: "a", label: "I <span class='eg-verb'>finished</span> <span class='eg-verb'>filling out</span> my housing form." },
+                                { value: "b", label: "I <span class='eg-verb'>finished</span> to <span class='eg-verb'>fill out</span> my housing form." },
+                                { value: "c", label: "I <span class='eg-verb'>finished</span> <span class='eg-verb'>fill out</span> my housing form." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -485,7 +485,7 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "Complete: We stopped ___ (eat) because we were getting hungry during the trip.",
+                            label: "Complete: We stopped ___ (eat) because we were getting hungry during our shift.",
                             expectedAnswer: "to eat",
                         },
                     ],
@@ -582,7 +582,7 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "I enjoy _____ (walk) in the park.",
+                            label: "I enjoy _____ (walk) along the Harborwalk after class.",
                             expectedAnswer: "walking",
                         },
                     ],
@@ -805,21 +805,21 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
         },
     ],
 
-    miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "Which is correct?",
-            options: [
-                { value: "a", label: "I enjoy to walk." },
-                { value: "b", label: "I enjoy walking." },
-                { value: "c", label: "I enjoy walk." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Enjoy' always takes a gerund (-ing form), not an infinitive.",
-        },
-        {
-            id: "quiz-2",
-            question: "Complete: I stopped _____ last year. (quit smoking)",
+	    miniQuiz: [
+	        {
+	            id: "quiz-1",
+	            question: "Which is correct?",
+	            options: [
+	                { value: "a", label: "I enjoy to walk." },
+	                { value: "b", label: "I enjoy walking along the Harborwalk." },
+	                { value: "c", label: "I enjoy walk." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "'Enjoy' always takes a gerund (-ing form), not an infinitive.",
+	        },
+	        {
+	            id: "quiz-2",
+	            question: "Complete: I stopped _____ last year. (quit smoking)",
             options: [
                 { value: "a", label: "to smoke" },
                 { value: "b", label: "smoking" },
@@ -839,13 +839,13 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
             correctAnswer: "b",
             explanation: "'Want' takes an infinitive (want to...), not a gerund. Avoid and finish take gerunds.",
         },
-        {
-            id: "quiz-4",
-            question: "Complete: I finished _____ my journal.",
-            options: [
-                { value: "a", label: "to write" },
-                { value: "b", label: "writing" },
-                { value: "c", label: "write" },
+	        {
+	            id: "quiz-4",
+	            question: "Complete: I finished _____ my email to my supervisor.",
+	            options: [
+	                { value: "a", label: "to write" },
+	                { value: "b", label: "writing" },
+	                { value: "c", label: "write" },
             ],
             correctAnswer: "b",
             explanation: "'Finish' always takes a gerund: 'finished writing.'",
@@ -861,16 +861,115 @@ export const verbsPlusGerundsContent: InteractiveGuideContent = {
             correctAnswer: "b",
             explanation: "'stop + gerund' = quit. 'stop + infinitive' = pause one activity to do another.",
         },
-        {
-            id: "quiz-6",
-            question: "Which is correct?",
-            options: [
-                { value: "a", label: "I avoid to eat sugar." },
-                { value: "b", label: "I avoid eating sugar." },
-                { value: "c", label: "I avoid eat sugar." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Avoid' always takes a gerund: 'avoid eating.'",
-        },
-    ],
+	        {
+	            id: "quiz-6",
+	            question: "Which is correct?",
+	            options: [
+	                { value: "a", label: "I avoid to eat sugar." },
+	                { value: "b", label: "I avoid eating fast food on busy days." },
+	                { value: "c", label: "I avoid eat sugar." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "'Avoid' always takes a gerund: 'avoid eating.'",
+	        },
+	        {
+	            id: "quiz-7",
+	            question: "Complete: I keep _____ my keys. (ongoing problem)",
+	            options: [
+	                { value: "a", label: "forgetting" },
+	                { value: "b", label: "to forget" },
+	                { value: "c", label: "forget" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Keep' often takes a gerund to show a repeated/ongoing action: keep forgetting.",
+	        },
+	        {
+	            id: "quiz-8",
+	            question: "Complete: I'm considering _____ a walking group.",
+	            options: [
+	                { value: "a", label: "joining" },
+	                { value: "b", label: "to join" },
+	                { value: "c", label: "join" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Consider' takes a gerund when you are thinking about an activity: considering joining.",
+	        },
+	        {
+	            id: "quiz-9",
+	            question: "Complete: I suggest _____ the Blue Line earlier.",
+	            options: [
+	                { value: "a", label: "taking" },
+	                { value: "b", label: "to take" },
+	                { value: "c", label: "take" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Suggest' is followed by a gerund: suggest taking.",
+	        },
+	        {
+	            id: "quiz-10",
+	            question: "Complete: I recommend _____ a doctor if the pain continues.",
+	            options: [
+	                { value: "a", label: "seeing" },
+	                { value: "b", label: "to see" },
+	                { value: "c", label: "see" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Recommend' takes a gerund: recommend seeing.",
+	        },
+	        {
+	            id: "quiz-11",
+	            question: "Complete: Do you mind _____ the window?",
+	            options: [
+	                { value: "a", label: "opening" },
+	                { value: "b", label: "to open" },
+	                { value: "c", label: "open" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Mind' takes a gerund: mind opening.",
+	        },
+	        {
+	            id: "quiz-12",
+	            question: "Complete: I miss _____ near the water.",
+	            options: [
+	                { value: "a", label: "living" },
+	                { value: "b", label: "to live" },
+	                { value: "c", label: "live" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Miss' takes a gerund to talk about an activity you wish you could do: miss living.",
+	        },
+	        {
+	            id: "quiz-13",
+	            question: "Complete: I practice _____ English with my classmates.",
+	            options: [
+	                { value: "a", label: "speaking" },
+	                { value: "b", label: "to speak" },
+	                { value: "c", label: "speak" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Practice' takes a gerund: practice speaking.",
+	        },
+	        {
+	            id: "quiz-14",
+	            question: "Complete: I quit _____ my phone before bed.",
+	            options: [
+	                { value: "a", label: "checking" },
+	                { value: "b", label: "to check" },
+	                { value: "c", label: "check" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Quit' takes a gerund: quit checking.",
+	        },
+	        {
+	            id: "quiz-15",
+	            question: "What does 'I stopped to eat' mean?",
+	            options: [
+	                { value: "a", label: "I quit eating forever." },
+	                { value: "b", label: "I paused what I was doing in order to eat." },
+	                { value: "c", label: "I enjoyed eating." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "'Stop + to + verb' means you pause one activity to do another activity.",
+	        },
+	    ],
 };

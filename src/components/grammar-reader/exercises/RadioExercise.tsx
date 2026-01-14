@@ -70,7 +70,10 @@ export function RadioExercise({
                                 disabled={submitted}
                                 className="w-5 h-5 text-primary focus:ring-2 focus:ring-primary/20"
                             />
-                            <span className="ml-3 text-sm text-text flex-1">{option.label}</span>
+                            <span
+                                className="ml-3 text-sm text-text flex-1"
+                                dangerouslySetInnerHTML={{ __html: sanitizeHtml(option.label) }}
+                            />
 
                             <AnimatePresence>
                                 {submitted && isCorrectOption && (

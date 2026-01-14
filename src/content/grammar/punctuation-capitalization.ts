@@ -75,8 +75,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <h4 style="color: #7ba884;">Period (.) - Statements</h4>
                     <p>Use for statements and commands:</p>
                     <ul>
-                        <li>I live in Boston<strong>.</strong></li>
-                        <li>Please submit your report by Friday<strong>.</strong></li>
+                        <li>I live in East Boston<strong>.</strong></li>
+                        <li>Please submit your timesheet by Friday<strong>.</strong></li>
                         <li>The doctor said I need to rest<strong>.</strong></li>
                     </ul>
                 </div>
@@ -115,31 +115,31 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I live in Boston"',
+                            label: '"I live in East Boston" — choose: <span class=\'eg-punctuation\'>.</span> <span class=\'eg-punctuation\'>?</span> <span class=\'eg-punctuation\'>!</span>',
                             options: [
-                                { value: "period", label: "Period (.) - statement" },
-                                { value: "question", label: "Question mark (?) - question" },
-                                { value: "exclamation", label: "Exclamation point (!) - strong emotion" },
+                                { value: "period", label: "Period (<span class='eg-punctuation'>.</span>) - statement" },
+                                { value: "question", label: "Question mark (<span class='eg-punctuation'>?</span>) - question" },
+                                { value: "exclamation", label: "Exclamation point (<span class='eg-punctuation'>!</span>) - strong emotion" },
                             ],
                             expectedAnswer: "period",
                         },
                         {
                             type: "radio",
-                            label: '"Where do you live"',
+                            label: '"Where do you live" — choose: <span class=\'eg-punctuation\'>.</span> <span class=\'eg-punctuation\'>?</span> <span class=\'eg-punctuation\'>!</span>',
                             options: [
-                                { value: "period", label: "Period (.)" },
-                                { value: "question", label: "Question mark (?) - direct question" },
-                                { value: "exclamation", label: "Exclamation point (!)" },
+                                { value: "period", label: "Period (<span class='eg-punctuation'>.</span>)" },
+                                { value: "question", label: "Question mark (<span class='eg-punctuation'>?</span>) - direct question" },
+                                { value: "exclamation", label: "Exclamation point (<span class='eg-punctuation'>!</span>)" },
                             ],
                             expectedAnswer: "question",
                         },
                         {
                             type: "radio",
-                            label: '"I wonder where you live"',
+                            label: '"I wonder where you live" (indirect question) — choose: <span class=\'eg-punctuation\'>.</span> <span class=\'eg-punctuation\'>?</span> <span class=\'eg-punctuation\'>!</span>',
                             options: [
-                                { value: "period", label: "Period (.) - indirect question" },
-                                { value: "question", label: "Question mark (?)" },
-                                { value: "exclamation", label: "Exclamation point (!)" },
+                                { value: "period", label: "Period (<span class='eg-punctuation'>.</span>) - indirect question" },
+                                { value: "question", label: "Question mark (<span class='eg-punctuation'>?</span>)" },
+                                { value: "exclamation", label: "Exclamation point (<span class='eg-punctuation'>!</span>)" },
                             ],
                             expectedAnswer: "period",
                         },
@@ -180,7 +180,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
                     <h4>4. Between city and state/country</h4>
                     <p>I live in Boston<strong>,</strong> Massachusetts.</p>
-                    <p>He's from Paris<strong>,</strong> France.</p>
+                    <p>He's from Chelsea<strong>,</strong> Massachusetts.</p>
                 </div>
 
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
@@ -197,45 +197,63 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                 {
                     id: "punctuation-capitalization-commas-1",
                     title: "Practice: Using Commas",
-                    instructions: "Choose the correct comma usage for each sentence.",
+                    instructions: "Choose the correctly punctuated sentence.",
                     items: [
                         {
                             type: "radio",
-                            label: "Which sentence uses commas correctly in a list?",
+                            label: "Add commas (<span class='eg-punctuation'>,</span>) to this list: I need bread milk and eggs",
                             options: [
-                                { value: "a", label: "I need bread, milk, and eggs. (commas between items, comma before 'and')" },
-                                { value: "b", label: "I need bread milk and eggs. (missing commas)" },
-                                { value: "c", label: "I need bread, milk and eggs. (missing comma before 'and')" },
+                                {
+                                    value: "a",
+                                    label: "I need bread<span class='eg-punctuation'>,</span> milk<span class='eg-punctuation'>,</span> and eggs<span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "I need bread milk and eggs<span class='eg-punctuation'>.</span>" },
+                                { value: "c", label: "I need bread<span class='eg-punctuation'>,</span> milk and eggs<span class='eg-punctuation'>.</span>" },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "Which sentence uses a comma correctly after an introductory phrase?",
+                            label: "Add a comma (<span class='eg-punctuation'>,</span>) after the intro phrase: After work I'm taking the Blue Line home",
                             options: [
-                                { value: "a", label: "After work, I'm going to the gym. (comma after introductory phrase)" },
-                                { value: "b", label: "After work I'm going to the gym. (missing comma)" },
-                                { value: "c", label: "After, work I'm going to the gym. (comma in wrong place)" },
+                                {
+                                    value: "a",
+                                    label: "After work<span class='eg-punctuation'>,</span> I<span class='eg-punctuation'>&apos;</span>m taking the Blue Line home<span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "After work I<span class='eg-punctuation'>&apos;</span>m taking the Blue Line home<span class='eg-punctuation'>.</span>" },
+                                {
+                                    value: "c",
+                                    label: "After<span class='eg-punctuation'>,</span> work I<span class='eg-punctuation'>&apos;</span>m taking the Blue Line home<span class='eg-punctuation'>.</span>",
+                                },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "Which sentence uses a comma correctly in a compound sentence?",
+                            label: "Add a comma (<span class='eg-punctuation'>,</span>) in this compound sentence: I wanted to go but I was too tired",
                             options: [
-                                { value: "a", label: "I wanted to go, but I was too tired. (comma before FANBOYS word)" },
-                                { value: "b", label: "I wanted to go but I was too tired. (missing comma)" },
-                                { value: "c", label: "I wanted, to go but I was too tired. (comma in wrong place)" },
+                                {
+                                    value: "a",
+                                    label: "I wanted to go<span class='eg-punctuation'>,</span> but I was too tired<span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "I wanted to go but I was too tired<span class='eg-punctuation'>.</span>" },
+                                {
+                                    value: "c",
+                                    label: "I wanted<span class='eg-punctuation'>,</span> to go but I was too tired<span class='eg-punctuation'>.</span>",
+                                },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "Which sentence correctly uses a comma with dates?",
+                            label: "Add a comma (<span class='eg-punctuation'>,</span>) in this date: My appointment is on June 15 2026",
                             options: [
-                                { value: "a", label: "My appointment is on June 15, 2026. (comma between day and year)" },
-                                { value: "b", label: "My appointment is on June 15 2026. (missing comma)" },
-                                { value: "c", label: "My appointment is on June, 15 2026. (comma in wrong place)" },
+                                {
+                                    value: "a",
+                                    label: "My appointment is on June 15<span class='eg-punctuation'>,</span> 2026<span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "My appointment is on June 15 2026<span class='eg-punctuation'>.</span>" },
+                                { value: "c", label: "My appointment is on June<span class='eg-punctuation'>,</span> 15 2026<span class='eg-punctuation'>.</span>" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -305,9 +323,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Which sentence uses an apostrophe correctly for a contraction?",
+                            label: "Which sentence uses an apostrophe (<span class='eg-punctuation'>&apos;</span>) correctly for a contraction?",
                             options: [
-                                { value: "a", label: "I'm going to the store." },
+                                { value: "a", label: "I<span class='eg-punctuation'>&apos;</span>m going to the store<span class='eg-punctuation'>.</span>" },
                                 { value: "b", label: "Im going to the store." },
                                 { value: "c", label: "I,m going to the store." },
                             ],
@@ -315,11 +333,17 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Which sentence uses an apostrophe correctly for possession?",
+                            label: "Which sentence uses an apostrophe (<span class='eg-punctuation'>&apos;</span>) correctly for possession?",
                             options: [
-                                { value: "a", label: "The doctor's office is on Main Street." },
-                                { value: "b", label: "The doctors office is on Main Street." },
-                                { value: "c", label: "The doctors' office is on Main Street." },
+                                {
+                                    value: "a",
+                                    label: "The doctor<span class='eg-punctuation'>&apos;</span>s office is on <span class='eg-capital'>Bennington Street</span><span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "The doctors office is on Bennington Street." },
+                                {
+                                    value: "c",
+                                    label: "The doctors<span class='eg-punctuation'>&apos;</span> office is on Bennington Street<span class='eg-punctuation'>.</span>",
+                                },
                             ],
                             expectedAnswer: "a",
                         },
@@ -327,9 +351,12 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly shows plural possession?",
                             options: [
-                                { value: "a", label: "The doctors' offices are on Main Street." },
-                                { value: "b", label: "The doctors's offices are on Main Street." },
-                                { value: "c", label: "The doctors offices are on Main Street." },
+                                {
+                                    value: "a",
+                                    label: "The doctors<span class='eg-punctuation'>&apos;</span> offices are on Bennington Street<span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "The doctors's offices are on Bennington Street." },
+                                { value: "c", label: "The doctors offices are on Bennington Street." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -337,7 +364,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly uses 'its' vs 'it's'?",
                             options: [
-                                { value: "a", label: "The dog wagged its tail. It's raining." },
+                                {
+                                    value: "a",
+                                    label: "The dog wagged its tail<span class='eg-punctuation'>.</span> It<span class='eg-punctuation'>&apos;</span>s raining<span class='eg-punctuation'>.</span>",
+                                },
                                 { value: "b", label: "The dog wagged it's tail." },
                                 { value: "c", label: "Its raining." },
                             ],
@@ -359,7 +389,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
                     <h4>1. Beginning of sentences</h4>
                     <p><strong>T</strong>he doctor said I need to rest.</p>
-                    <p><strong>I</strong> live in Boston.</p>
+                    <p><strong>I</strong> live in East Boston.</p>
                 </div>
 
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
@@ -371,9 +401,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
                     <h4>3. Proper nouns (specific names)</h4>
                     <p><strong>People:</strong> Maria, Dr. Smith, President Biden</p>
-                    <p><strong>Places:</strong> Boston, Massachusetts, United States, Main Street</p>
+                    <p><strong>Places:</strong> East Boston, Massachusetts, United States, Bennington Street</p>
                     <p><strong>Days/Months:</strong> Monday, January (NOT seasons: spring, summer)</p>
-                    <p><strong>Organizations:</strong> Harvard University, Google, Red Cross</p>
+                    <p><strong>Organizations:</strong> Bunker Hill Community College, Google, Red Cross</p>
                     <p><strong>Languages/Nationalities:</strong> English, Spanish, American, Mexican</p>
                 </div>
 
@@ -403,19 +433,22 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence capitalizes correctly?",
                             options: [
-                                { value: "a", label: "I live in Boston, Massachusetts." },
-                                { value: "b", label: "I live in boston, massachusetts." },
-                                { value: "c", label: "I Live In Boston, Massachusetts." },
+                                {
+                                    value: "a",
+                                    label: "<span class='eg-capital'>I</span> live in <span class='eg-capital'>East Boston</span><span class='eg-punctuation'>,</span> <span class='eg-capital'>Massachusetts</span><span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "I live in east boston, massachusetts." },
+                                { value: "c", label: "I Live In East Boston, Massachusetts." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: "Which sentence capitalizes correctly?",
+                            label: "Which sentence capitalizes the title correctly?",
                             options: [
-                                { value: "a", label: "Doctor Smith is my doctor." },
-                                { value: "b", label: "doctor smith is my Doctor." },
-                                { value: "c", label: "Doctor Smith is my Doctor." },
+                                { value: "a", label: "<span class='eg-capital'>Doctor</span> Rivera is my doctor<span class='eg-punctuation'>.</span>" },
+                                { value: "b", label: "doctor Rivera is my Doctor." },
+                                { value: "c", label: "Doctor Rivera is my Doctor." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -491,20 +524,23 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Which sentence uses quotation marks correctly?",
-                            options: [
-                                { value: "a", label: 'The doctor said, "You need to rest."' },
-                                { value: "b", label: 'The doctor said, "You need to rest".' },
-                                { value: "c", label: 'The doctor said "You need to rest".' },
-                            ],
-                            expectedAnswer: "a",
-                        },
+	                            label: "Which sentence uses quotation marks correctly?",
+	                            options: [
+	                                {
+	                                    value: "a",
+	                                    label: "The nurse said<span class='eg-punctuation'>,</span> \"You need to rest<span class='eg-punctuation'>.</span>\"",
+	                                },
+	                                { value: "b", label: 'The nurse said, "You need to rest".' },
+	                                { value: "c", label: 'The nurse said "You need to rest".' },
+	                            ],
+	                            expectedAnswer: "a",
+	                        },
                         {
                             type: "radio",
                             label: "Where does the comma go when a quote comes before 'she said'?",
                             options: [
-                                { value: "a", label: 'Inside the quotes - "I\'ll call you later," he said.' },
-                                { value: "b", label: 'Outside the quotes - "I\'ll call you later", he said.' },
+                                { value: "a", label: 'Inside the quotes - "I&apos;ll call you later<span class=\'eg-punctuation\'>,</span>" he said<span class=\'eg-punctuation\'>.</span>' },
+                                { value: "b", label: 'Outside the quotes - "I&apos;ll call you later"<span class=\'eg-punctuation\'>,</span> he said<span class=\'eg-punctuation\'>.</span>' },
                                 { value: "c", label: "No comma needed" },
                             ],
                             expectedAnswer: "a",
@@ -513,8 +549,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Where does the question mark go when the quote itself is a question?",
                             options: [
-                                { value: "a", label: 'Inside the quotes - "Where are you?" she asked.' },
-                                { value: "b", label: 'Outside the quotes - "Where are you"? she asked.' },
+                                { value: "a", label: 'Inside the quotes - "Where are you<span class=\'eg-punctuation\'>?</span>" she asked<span class=\'eg-punctuation\'>.</span>' },
+                                { value: "b", label: 'Outside the quotes - "Where are you"<span class=\'eg-punctuation\'>?</span> she asked<span class=\'eg-punctuation\'>.</span>' },
                                 { value: "c", label: "No question mark needed" },
                             ],
                             expectedAnswer: "a",
@@ -536,9 +572,12 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Add punctuation: I need bread milk and eggs",
+                            label: "Add commas (<span class='eg-punctuation'>,</span>): I need bread milk and eggs",
                             options: [
-                                { value: "a", label: "I need bread, milk, and eggs." },
+                                {
+                                    value: "a",
+                                    label: "I need bread<span class='eg-punctuation'>,</span> milk<span class='eg-punctuation'>,</span> and eggs<span class='eg-punctuation'>.</span>",
+                                },
                                 { value: "b", label: "I need bread milk and eggs." },
                                 { value: "c", label: "I need bread, milk and eggs" },
                             ],
@@ -553,11 +592,14 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Fix capitalization: i live in boston, massachusetts.",
+                            label: "Fix capitalization: i live in east boston, massachusetts.",
                             options: [
-                                { value: "a", label: "I live in Boston, Massachusetts." },
-                                { value: "b", label: "I live in boston, massachusetts." },
-                                { value: "c", label: "i live in Boston, Massachusetts." },
+                                {
+                                    value: "a",
+                                    label: "<span class='eg-capital'>I</span> live in <span class='eg-capital'>East Boston</span><span class='eg-punctuation'>,</span> <span class='eg-capital'>Massachusetts</span><span class='eg-punctuation'>.</span>",
+                                },
+                                { value: "b", label: "I live in east boston, massachusetts." },
+                                { value: "c", label: "i live in East Boston, Massachusetts." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -587,11 +629,11 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Fix: She said I need to rest (add quotation marks)',
+                            label: "Fix: The teacher said bring your notebook (add quotation marks)",
                             options: [
-                                { value: "a", label: 'She said, "I need to rest."' },
-                                { value: "b", label: 'She said "I need to rest".' },
-                                { value: "c", label: "She said, I need to rest." },
+                                { value: "a", label: 'The teacher said<span class=\'eg-punctuation\'>,</span> "Bring your notebook<span class=\'eg-punctuation\'>.</span>"' },
+                                { value: "b", label: 'The teacher said "Bring your notebook".' },
+                                { value: "c", label: "The teacher said, bring your notebook." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -604,9 +646,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Add a comma: If I have time I'll call you.",
+                            label: "Add a comma (<span class='eg-punctuation'>,</span>): If I have time I'll call you.",
                             options: [
-                                { value: "a", label: "If I have time, I'll call you." },
+                                { value: "a", label: "If I have time<span class='eg-punctuation'>,</span> I<span class='eg-punctuation'>&apos;</span>ll call you<span class='eg-punctuation'>.</span>" },
                                 { value: "b", label: "If I have time I'll call you." },
                                 { value: "c", label: "If I have time; I'll call you." },
                             ],
@@ -638,11 +680,11 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Capitalize correctly: i study english and math at harvard university.",
+                            label: "Capitalize correctly: i study english and math at bunker hill community college.",
                             options: [
-                                { value: "a", label: "I study English and math at Harvard University." },
-                                { value: "b", label: "I study english and Math at harvard university." },
-                                { value: "c", label: "i study English and math at Harvard university." },
+                                { value: "a", label: "I study English and math at Bunker Hill Community College." },
+                                { value: "b", label: "I study english and Math at bunker hill community college." },
+                                { value: "c", label: "i study English and math at Bunker hill Community college." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -685,7 +727,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <li>Lists: bread, milk, and eggs</li>
                     <li>After intro: However, I disagree.</li>
                     <li>Compound: I tried, but I failed.</li>
-                    <li>Location: Boston, Massachusetts</li>
+                    <li>Location: Chelsea, Massachusetts</li>
                     <li>Dates: June 15, 2026</li>
                 </ul>
 
@@ -712,7 +754,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                     <li>❌ its' → ✅ its (possessive)</li>
                     <li>❌ it's book → ✅ its book / it's = it is</li>
                     <li>❌ apple's → ✅ apples (plural, no apostrophe!)</li>
-                    <li>❌ i live in boston → ✅ I live in Boston</li>
+                    <li>❌ i live in east boston → ✅ I live in East Boston</li>
                     <li>❌ I study Math and english → ✅ I study math and English</li>
                 </ul>
             `,
@@ -782,43 +824,45 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
         },
     ],
 
-    miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "Which needs a comma? 'I wanted to go but I was too tired.'",
-            options: [
-                { value: "a", label: "No comma needed" },
-                { value: "b", label: "After 'go'" },
-                { value: "c", label: "After 'but'" },
-            ],
-            correctAnswer: "b",
-            explanation: "Compound sentences need a comma before the conjunction: 'I wanted to go, but I was too tired.'",
-        },
-        {
-            id: "quiz-2",
-            question: "Which is correct?",
-            options: [
-                { value: "a", label: "That's my doctors office." },
-                { value: "b", label: "Thats my doctor's office." },
-                { value: "c", label: "That's my doctor's office." },
-            ],
-            correctAnswer: "c",
-            explanation: "Need apostrophes for both: 'That's' (that is) and 'doctor's' (possessive).",
-        },
-        {
-            id: "quiz-3",
-            question: "Which is capitalized correctly?",
-            options: [
-                { value: "a", label: "i study english at Harvard University." },
-                { value: "b", label: "I study English at harvard university." },
-                { value: "c", label: "I study English at Harvard University." },
-            ],
-            correctAnswer: "c",
-            explanation: "Capitalize: I (pronoun), English (language), Harvard University (proper noun).",
-        },
-        {
-            id: "quiz-4",
-            question: "What's wrong? 'The childrens toys are here.'",
+	    miniQuiz: [
+	        {
+	            id: "quiz-1",
+	            question: "Which needs a comma? 'I wanted to go to class but the Blue Line was delayed.'",
+	            options: [
+	                { value: "a", label: "No comma needed" },
+	                { value: "b", label: "After 'class'" },
+	                { value: "c", label: "After 'but'" },
+	            ],
+	            correctAnswer: "b",
+	            explanation:
+	                "This is a compound sentence (two complete ideas). Use a comma before FANBOYS: 'I wanted to go to class, but the Blue Line was delayed.'",
+	        },
+	        {
+	            id: "quiz-2",
+	            question: "Which is correct?",
+	            options: [
+	                { value: "a", label: "That's my doctors office." },
+	                { value: "b", label: "Thats my doctor's office." },
+	                { value: "c", label: "That's my doctor's office." },
+	            ],
+	            correctAnswer: "c",
+	            explanation: "Need apostrophes for both: 'That's' (that is) and 'doctor's' (possessive).",
+	        },
+	        {
+	            id: "quiz-3",
+	            question: "Which is capitalized correctly?",
+	            options: [
+	                { value: "a", label: "i study english at bunker hill community college." },
+	                { value: "b", label: "I study English at bunker hill community college." },
+	                { value: "c", label: "I study English at Bunker Hill Community College." },
+	            ],
+	            correctAnswer: "c",
+	            explanation:
+	                "Capitalize: I (pronoun), English (language), and Bunker Hill Community College (proper noun).",
+	        },
+	        {
+	            id: "quiz-4",
+	            question: "What's wrong? 'The childrens toys are here.'",
             options: [
                 { value: "a", label: "Nothing, it's correct" },
                 { value: "b", label: "Needs apostrophe: children's" },
@@ -838,16 +882,115 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
             correctAnswer: "b",
             explanation: "'It's' = contraction for 'it is'. 'Its' = possessive (no apostrophe).",
         },
-        {
-            id: "quiz-6",
-            question: "Where do commas go? 'I need bread milk eggs and cheese.'",
-            options: [
-                { value: "a", label: "After bread, milk, and eggs" },
-                { value: "b", label: "After bread and milk only" },
-                { value: "c", label: "No commas needed" },
-            ],
-            correctAnswer: "a",
-            explanation: "Lists need commas: 'I need bread, milk, eggs, and cheese.'",
-        },
-    ],
+	        {
+	            id: "quiz-6",
+	            question: "Where do commas go? 'I need bread milk eggs and cheese.'",
+	            options: [
+	                { value: "a", label: "After bread, milk, and eggs" },
+	                { value: "b", label: "After bread and milk only" },
+	                { value: "c", label: "No commas needed" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Lists need commas: 'I need bread, milk, eggs, and cheese.'",
+	        },
+	        {
+	            id: "quiz-7",
+	            question: "Which end punctuation is correct? 'Can you tell me where Maverick Station is___'",
+	            options: [
+	                { value: "a", label: "Period (.)" },
+	                { value: "b", label: "Question mark (?)" },
+	                { value: "c", label: "Exclamation point (!)" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "This is an indirect question inside a statement, so it ends with a period.",
+	        },
+	        {
+	            id: "quiz-8",
+	            question: "Where should the comma go? 'After work ___ I'm taking the Blue Line home.'",
+	            options: [
+	                { value: "a", label: "After 'After work'" },
+	                { value: "b", label: "After 'Line'" },
+	                { value: "c", label: "No comma needed" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Put a comma after an introductory phrase: 'After work, I'm taking the Blue Line home.'",
+	        },
+	        {
+	            id: "quiz-9",
+	            question: "Which is correct?",
+	            options: [
+	                { value: "a", label: "I live in Chelsea Massachusetts." },
+	                { value: "b", label: "I live in Chelsea, Massachusetts." },
+	                { value: "c", label: "I live in Chelsea, massachusetts." },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "Use a comma between city and state, and capitalize the state name: Chelsea, Massachusetts.",
+	        },
+	        {
+	            id: "quiz-10",
+	            question: "Which sentence uses quotation marks correctly?",
+	            options: [
+	                { value: "a", label: 'The teacher said, "Bring your notebook."' },
+	                { value: "b", label: 'The teacher said, "Bring your notebook".' },
+	                { value: "c", label: 'The teacher said "Bring your notebook".' },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "For direct speech, use quotation marks, and put the period inside the quotes.",
+	        },
+	        {
+	            id: "quiz-11",
+	            question: "Which sentence is capitalized correctly?",
+	            options: [
+	                { value: "a", label: "We have class on Monday." },
+	                { value: "b", label: "We have class on monday." },
+	                { value: "c", label: "We Have Class On Monday." },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Capitalize days of the week, and only capitalize the first word of the sentence.",
+	        },
+	        {
+	            id: "quiz-12",
+	            question: "Which sentence is correct?",
+	            options: [
+	                { value: "a", label: "I like spring and fall." },
+	                { value: "b", label: "I like Spring and Fall." },
+	                { value: "c", label: "I Like spring and fall." },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "Seasons are not capitalized in English (unless they start a sentence).",
+	        },
+	        {
+	            id: "quiz-13",
+	            question: "Which shows plural possession (more than one nurse)?",
+	            options: [
+	                { value: "a", label: "the nurse's station" },
+	                { value: "b", label: "the nurses' station" },
+	                { value: "c", label: "the nurses station" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "Plural nouns ending in -s add an apostrophe after the s: nurses' station.",
+	        },
+	        {
+	            id: "quiz-14",
+	            question: "Choose the correct word: 'The bus changed ___ route today.'",
+	            options: [
+	                { value: "a", label: "its" },
+	                { value: "b", label: "it's" },
+	                { value: "c", label: "its'" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Its' is possessive (belongs to the bus). 'It's' means 'it is'.",
+	        },
+	        {
+	            id: "quiz-15",
+	            question: "You email your supervisor. Which ending punctuation is most professional?",
+	            options: [
+	                { value: "a", label: "Please call me!" },
+	                { value: "b", label: "Please call me." },
+	                { value: "c", label: "Please call me??" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "In professional writing, use periods for a calm, clear tone. Avoid extra punctuation like '!!' or '??'.",
+	        },
+	    ],
 };

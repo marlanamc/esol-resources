@@ -161,7 +161,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"The baby is sleeping in the nursery while I prepare her bottle."',
+                            label: '"The baby <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>sleeping</span> in the nursery while I prepare her bottle."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -173,7 +173,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"My uncle is renting an apartment while his house is being renovated."',
+                            label: '"My uncle <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>renting</span> an apartment while his house is being renovated."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -185,7 +185,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The hikers were climbing the trail when the thunderstorm started."',
+                            label: '"The hikers <span class=\'eg-helper\'>were</span> <span class=\'eg-verb\'>climbing</span> the trail when the thunderstorm started."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -197,7 +197,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The volunteers will be serving lunch when the guests arrive."',
+                            label: '"The volunteers <span class=\'eg-helper\'>will be</span> <span class=\'eg-verb\'>serving</span> lunch when the guests arrive."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
@@ -962,7 +962,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I will be eating lunch at the moment." },
             ],
             correctAnswer: "a",
-            explanation: "Present Continuous (am eating) for actions happening right now.",
+            explanation: "Present Continuous (am eating) for actions happening right now. 'At the moment' signals present time.",
         },
         {
             id: "quiz-2",
@@ -973,7 +973,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will not be working" },
             ],
             correctAnswer: "a",
-            explanation: "Present Continuous negative: is not + verb-ing for current situations.",
+            explanation: "Present Continuous negative: is not + verb-ing for current temporary situations.",
         },
         {
             id: "quiz-3",
@@ -984,7 +984,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will be sleeping" },
             ],
             correctAnswer: "b",
-            explanation: "Past Continuous (was sleeping) for ongoing past action that was interrupted.",
+            explanation: "Past Continuous (was sleeping) for ongoing past action that was interrupted by another action ('rang' = Past Simple).",
         },
         {
             id: "quiz-4",
@@ -995,7 +995,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "Will you be waiting" },
             ],
             correctAnswer: "b",
-            explanation: "Past Continuous question: Were + subject + verb-ing for past ongoing actions.",
+            explanation: "Past Continuous question: Were + subject + verb-ing. The word 'long' suggests asking about a duration that already happened.",
         },
         {
             id: "quiz-5",
@@ -1006,7 +1006,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I lived with my parents." },
             ],
             correctAnswer: "a",
-            explanation: "Present Continuous (am living) for temporary situations that aren't permanent.",
+            explanation: "Present Continuous (am living) for temporary situations. 'This month' shows it's not permanent.",
         },
         {
             id: "quiz-6",
@@ -1017,7 +1017,106 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will be working" },
             ],
             correctAnswer: "c",
-            explanation: "Future Continuous (will be working) for actions in progress at a future time.",
+            explanation: "Future Continuous (will be working) for actions in progress at a specific future time.",
+        },
+        {
+            id: "quiz-7",
+            question: "What is the -ing form of 'run'?",
+            options: [
+                { value: "a", label: "runing" },
+                { value: "b", label: "running" },
+                { value: "c", label: "runeing" },
+            ],
+            correctAnswer: "b",
+            explanation: "One-syllable verbs ending in consonant-vowel-consonant (CVC) double the final consonant: run → running.",
+        },
+        {
+            id: "quiz-8",
+            question: "Which sentence is INCORRECT?",
+            options: [
+                { value: "a", label: "I am knowing the answer." },
+                { value: "b", label: "I am learning the answer." },
+                { value: "c", label: "I am studying for the test." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Know' is a stative verb—it describes a state, not an action. We say 'I know' (simple), NOT 'I am knowing.'",
+        },
+        {
+            id: "quiz-9",
+            question: "Fill in: 'They ___ (have) dinner when the power went out.'",
+            options: [
+                { value: "a", label: "are having" },
+                { value: "b", label: "were having" },
+                { value: "c", label: "will be having" },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Continuous (were having) for an ongoing action interrupted by another past event ('went out').",
+        },
+        {
+            id: "quiz-10",
+            question: "What's the formula for Future Continuous?",
+            options: [
+                { value: "a", label: "am/is/are + verb-ing" },
+                { value: "b", label: "was/were + verb-ing" },
+                { value: "c", label: "will be + verb-ing" },
+            ],
+            correctAnswer: "c",
+            explanation: "Future Continuous = will be + verb-ing. It's the same for ALL subjects (I/you/he/she/we/they).",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence uses Present Continuous for a NEAR FUTURE plan?",
+            options: [
+                { value: "a", label: "I'm meeting my friend for coffee at 3 PM." },
+                { value: "b", label: "I was meeting my friend yesterday." },
+                { value: "c", label: "I meet my friend every Tuesday." },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Continuous can express arranged future plans, especially with a specific time ('at 3 PM').",
+        },
+        {
+            id: "quiz-12",
+            question: "Which 'be' verb is used with 'she' in Present Continuous?",
+            options: [
+                { value: "a", label: "am" },
+                { value: "b", label: "is" },
+                { value: "c", label: "are" },
+            ],
+            correctAnswer: "b",
+            explanation: "am = I, is = he/she/it, are = you/we/they. So 'She is working' is correct.",
+        },
+        {
+            id: "quiz-13",
+            question: "Change to negative: 'We were watching TV.'",
+            options: [
+                { value: "a", label: "We weren't watching TV." },
+                { value: "b", label: "We wasn't watching TV." },
+                { value: "c", label: "We not were watching TV." },
+            ],
+            correctAnswer: "a",
+            explanation: "To make Past Continuous negative, add 'not' after was/were: were not = weren't.",
+        },
+        {
+            id: "quiz-14",
+            question: "What's the -ing form of 'write'?",
+            options: [
+                { value: "a", label: "writeing" },
+                { value: "b", label: "writting" },
+                { value: "c", label: "writing" },
+            ],
+            correctAnswer: "c",
+            explanation: "Verbs ending in -e drop the -e before adding -ing: write → writing.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which continuous tense emphasizes an action's DURATION?",
+            options: [
+                { value: "a", label: "All continuous tenses (present, past, future)" },
+                { value: "b", label: "Only Past Continuous" },
+                { value: "c", label: "Only Future Continuous" },
+            ],
+            correctAnswer: "a",
+            explanation: "All continuous tenses show actions in progress over time—that's what makes them 'continuous'!",
         },
     ],
 };
