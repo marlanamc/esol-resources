@@ -4,6 +4,46 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { awardPoints, getActivityPoints, POINTS, resolveActivityGameUi, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
 
+export async function GET(request: Request) {
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const url = new URL(request.url);
+    const activityId = url.searchParams.get("activityId");
+    const assignmentId = url.searchParams.get("assignmentId");
+
+    if (!activityId || typeof activityId !== "string") {
+        return NextResponse.json({ error: "activityId is required" }, { status: 400 });
+    }
+
+    const userId = session.user.id;
+    const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
+
+    const record = await prisma.activityProgress.findFirst({
+        where: {
+            userId,
+            activityId,
+            assignmentId: assignmentKey,
+        },
+        select: {
+            progress: true,
+            status: true,
+            categoryData: true,
+            updatedAt: true,
+        },
+    });
+
+    return NextResponse.json({
+        progress: record?.progress ?? 0,
+        status: record?.status ?? "in_progress",
+        categoryData: record?.categoryData ?? null,
+        updatedAt: record?.updatedAt ?? null,
+    });
+}
+
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
@@ -47,9 +87,9 @@ export async function POST(request: Request) {
         where: progressWhere,
     });
 
-    // Handle category data updates for activities with categories (like Numbers Game)
+    // Handle category data updates (Numbers Game uses accuracy; Matching Game uses category-only rounds)
     let updatedCategoryData: string | undefined;
-    if (category && sanitizedAccuracy !== undefined) {
+    if (category) {
         // Client sent a category update - merge with existing category data
         const currentData = existing?.categoryData
             ? JSON.parse(existing.categoryData)
@@ -58,7 +98,7 @@ export async function POST(request: Request) {
         // Update or add this category's progress
         currentData[category] = {
             completed: value >= 100,
-            accuracy: sanitizedAccuracy,
+            ...(sanitizedAccuracy !== undefined ? { accuracy: sanitizedAccuracy } : {}),
             completedAt: value >= 100 ? new Date().toISOString() : currentData[category]?.completedAt,
             attempts: (currentData[category]?.attempts || 0) + 1
         };
@@ -95,9 +135,10 @@ export async function POST(request: Request) {
     }
 
     // Award points based on activity type
-    // For activities with categories, award points per category completion
-    // For other activities, award points the first time reaching 100%
-    const shouldAwardPoints = category
+    // - For category-based activities WITH accuracy (Numbers Game), award per category completion
+    // - For other activities (including Matching Game round tracking), award once when overall progress hits 100%
+    const isAccuracyCategoryUpdate = category && sanitizedAccuracy !== undefined;
+    const shouldAwardPoints = isAccuracyCategoryUpdate
         ? (value >= 100 && updatedCategoryData && !(existing?.categoryData && JSON.parse(existing.categoryData)[category]?.completed))
         : ((existing?.progress ?? 0) < 100 && value >= 100);
 
