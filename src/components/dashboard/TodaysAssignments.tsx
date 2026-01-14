@@ -32,12 +32,22 @@ interface Props {
 
 export const TodaysAssignments: React.FC<Props> = ({
     initialAssignments,
-    title = "This Week's Activities",
+    title,
     ctaLabel = "Start Activity",
     variant = 'cards',
 }) => {
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
     const [loading, setLoading] = useState(true);
+
+    const resolvedTitle = (() => {
+        // If title is omitted, provide a sensible default by variant
+        if (title === undefined) {
+            return variant === "checklist" ? "Weekly Checklist" : "This Week's Activities";
+        }
+        // If title is explicitly set to empty/whitespace, treat as "hide title"
+        if (title.trim() === "") return null;
+        return title;
+    })();
 
     useEffect(() => {
         // If we already have data from the server, skip the client fetch.
@@ -66,7 +76,11 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (loading) {
         return (
             <div className="mb-8">
-                <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
+                {resolvedTitle && (
+                    <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">
+                        {resolvedTitle}
+                    </h2>
+                )}
                 <div className="animate-pulse bg-bg-light rounded-xl h-32"></div>
             </div>
         );
@@ -75,7 +89,11 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">{title}</h2>
+                {resolvedTitle && (
+                    <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">
+                        {resolvedTitle}
+                    </h2>
+                )}
                 <div className="bg-gradient-to-br from-bg-light to-white rounded-xl p-8 text-center border border-border/60 shadow-sm">
                     <div className="text-4xl mb-3">✨</div>
                     <p className="text-text-muted font-medium">No featured assignments right now</p>
@@ -161,10 +179,14 @@ export const TodaysAssignments: React.FC<Props> = ({
         return (
             <div className="mb-8">
                 <div className="flex items-center justify-between gap-4 mb-4">
-                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-text flex items-center gap-3 leading-tight">
-                        <span className="w-1 h-6 rounded-full bg-primary"></span>
-                        {title || 'Weekly Checklist'}
-                    </h2>
+                    {resolvedTitle ? (
+                        <h2 className="text-2xl sm:text-3xl font-display font-bold text-text flex items-center gap-3 leading-tight">
+                            <span className="w-1 h-6 rounded-full bg-primary"></span>
+                            {resolvedTitle}
+                        </h2>
+                    ) : (
+                        <span />
+                    )}
                     <div className="hidden sm:flex items-center gap-2 text-sm font-semibold text-text/70">
                         <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
                             {completedCount}/{rows.length} done
@@ -183,7 +205,6 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     📋
                                 </div>
                                 <div>
-                                    <div className="text-lg font-bold text-text">Weekly Checklist</div>
                                     <div className="text-sm text-text/60">Checks automatically when you complete an activity</div>
                                 </div>
                             </div>
