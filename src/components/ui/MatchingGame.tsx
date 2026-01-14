@@ -88,6 +88,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
         isCorrect: boolean;
     } | null>(null);
     const dropZoneFeedbackTimeoutRef = useRef<number | null>(null);
+    const explanationAutoDismissTimeoutRef = useRef<number | null>(null);
 
     const progress =
         shuffledWords.length > 0
@@ -180,8 +181,38 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
             if (dropZoneFeedbackTimeoutRef.current !== null) {
                 window.clearTimeout(dropZoneFeedbackTimeoutRef.current);
             }
+            if (explanationAutoDismissTimeoutRef.current !== null) {
+                window.clearTimeout(explanationAutoDismissTimeoutRef.current);
+            }
         };
     }, []);
+
+    // Auto-dismiss the "Not quite!" panel so it doesn't block the game on mobile.
+    // Students can keep playing immediately; this is just temporary feedback.
+    useEffect(() => {
+        if (!gameState.showExplanation) return;
+
+        if (explanationAutoDismissTimeoutRef.current !== null) {
+            window.clearTimeout(explanationAutoDismissTimeoutRef.current);
+        }
+
+        explanationAutoDismissTimeoutRef.current = window.setTimeout(() => {
+            setGameState((prev) => ({
+                ...prev,
+                showExplanation: false,
+                explanationText: "",
+            }));
+            explanationAutoDismissTimeoutRef.current = null;
+        }, 2200);
+
+        return () => {
+            if (explanationAutoDismissTimeoutRef.current !== null) {
+                window.clearTimeout(explanationAutoDismissTimeoutRef.current);
+                explanationAutoDismissTimeoutRef.current = null;
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [gameState.showExplanation]);
 
     // Save progress after each correct answer
     useEffect(() => {
@@ -225,6 +256,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
         category: "countable" | "uncountable"
     ) => {
         e.preventDefault();
+        if (gameState.showExplanation) handleDismissExplanation();
         setInteractionMode(InteractionMode.Checking);
         checkAnswer(category);
     };
@@ -239,6 +271,7 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
 
     const handleDropZoneTap = (category: "countable" | "uncountable") => {
         if (!currentWord) return;
+        if (gameState.showExplanation) handleDismissExplanation();
         setInteractionMode(InteractionMode.Checking);
         checkAnswer(category);
     };
@@ -600,10 +633,10 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                             </div>
                             <p className="text-sm md:text-base text-red-900 mb-3">
                                 <strong>
-                                    "{currentWord?.word}" is a{" "}
+                                    "{currentWord?.word}" is{" "}
                                     {currentWord?.category === "countable"
-                                        ? "countable word"
-                                        : "group word"}
+                                        ? "a countable noun"
+                                        : "an uncountable noun"}
                                 </strong>
                             </p>
                             <p className="text-sm text-red-800 mb-4 leading-relaxed">
