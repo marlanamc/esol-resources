@@ -1,95 +1,9 @@
 import { prisma } from './prisma';
 import type { Prisma } from "@prisma/client";
-
-// Points awarded for different actions
-// Philosophy: Points should reflect TIME and EFFORT, not just clicking through
-// - Quick activities (flashcards): Low base, requires studying all cards
-// - Interactive activities (matching, fill-blank): Medium, requires actual work
-// - Comprehensive activities (grammar guides): Higher, but requires completing exercises
-// - Quizzes: Score-based, no points for just attempting
-export const POINTS = {
-  // Quiz points are ONLY awarded based on score, not completion
-  // No base points for just taking a quiz - must earn through accuracy
-  QUIZ_PERFECT_SCORE: 15, // 100% = 15 points
-  QUIZ_HIGH_SCORE: 10, // 90-99% = 10 points
-  QUIZ_GOOD_SCORE: 5, // 80-89% = 5 points
-  QUIZ_PASSING_SCORE: 2, // 70-79% = 2 points
-  // Below 70% = 0 points (need to study more!)
-
-  // Activity type points (tiered by effort required)
-  FLASHCARDS: 3, // Must flip ALL cards to complete
-  MATCHING_GAME: 5, // Requires matching all pairs
-  FILL_IN_BLANK: 7, // Requires answering all questions
-  
-  // Numbers game base points by difficulty
-  NUMBERS_GAME_EASY: 3, // Basic (0-99), Round Numbers
-  NUMBERS_GAME_MEDIUM: 5, // Hundreds, Ordinal
-  NUMBERS_GAME_MEDIUM_HARD: 7, // Thousands, Ten Thousands
-  NUMBERS_GAME_HARD: 10, // Hundred Thousands, Millions, Billions, Trillions, Years, All
-  
-  // Numbers game bonuses by difficulty (accuracy-based)
-  NUMBERS_GAME_PERFECT_EASY: 2, // +2 for perfect (total: 5)
-  NUMBERS_GAME_HIGH_EASY: 1, // +1 for 90%+ (total: 4)
-  
-  NUMBERS_GAME_PERFECT_MEDIUM: 3, // +3 for perfect (total: 8)
-  NUMBERS_GAME_HIGH_MEDIUM: 2, // +2 for 90%+ (total: 7)
-  
-  NUMBERS_GAME_PERFECT_MEDIUM_HARD: 5, // +5 for perfect (total: 12)
-  NUMBERS_GAME_HIGH_MEDIUM_HARD: 3, // +3 for 90%+ (total: 10)
-  
-  NUMBERS_GAME_PERFECT_HARD: 7, // +7 for perfect (total: 17)
-  NUMBERS_GAME_HIGH_HARD: 4, // +4 for 90%+ (total: 14)
-  
-  // Grammar guides: Points only awarded after completing exercises
-  // The /api/grammar/complete endpoint should only be called after exercises are done
-  GRAMMAR_GUIDE: 8,
-
-  // Speaking activities: Daily warm-ups with reflection
-  SPEAKING_ACTIVITY: 6, // Similar effort to fill-in-blank, requires practice + reflection
-
-  ACTIVITY_COMPLETION: 3, // Default fallback (reduced from 5)
-
-  // Streaks - reward consistency
-  DAILY_STREAK: 5,
-  WEEKLY_STREAK: 25,
-
-  // Achievements - milestone rewards
-  ACHIEVEMENT_BONUS: 50,
-} as const;
-
-/**
- * Get points for completing an activity based on its type
- */
-export function getActivityPoints(activityType: string, activityId?: string): number {
-  // Check activity type
-  const type = activityType.toLowerCase();
-
-  if (type === 'game') {
-    // For games, check the ID or content to determine game type
-    if (activityId?.includes('flashcard')) {
-      return POINTS.FLASHCARDS;
-    } else if (activityId?.includes('matching')) {
-      return POINTS.MATCHING_GAME;
-    } else if (activityId?.includes('fillblank') || activityId?.includes('fill-blank')) {
-      return POINTS.FILL_IN_BLANK;
-    } else if (activityId === 'numbers-game' || activityId?.includes('numbers-game')) {
-      // Numbers game points are calculated based on difficulty in the API route
-      // Return a default value here (will be overridden with difficulty-based calculation)
-      return POINTS.NUMBERS_GAME_EASY; // Default fallback, actual points calculated in API route
-    }
-    return POINTS.ACTIVITY_COMPLETION; // Default for unknown games
-  } else if (type === 'guide') {
-    return POINTS.GRAMMAR_GUIDE;
-  } else if (type === 'speaking') {
-    return POINTS.SPEAKING_ACTIVITY;
-  } else if (type === 'quiz') {
-    // Quiz points are score-based, not completion-based
-    // Return 0 here - actual points calculated in calculateQuizPoints()
-    return 0;
-  }
-
-  return POINTS.ACTIVITY_COMPLETION; // Default
-}
+import { POINTS } from "./gamification/constants";
+import { shouldAwardStreak } from "./gamification/streak-utils";
+export { POINTS } from "./gamification/constants";
+export { getActivityPoints, resolveActivityGameUi } from "./gamification/activity-points";
 
 /**
  * Award points to a user and update their total
@@ -160,12 +74,16 @@ export async function awardPoints(userId: string, points: number, reason: string
 /**
  * Check and update user's streak based on activity completion
  */
-export async function updateStreak(userId: string): Promise<{ streakUpdated: boolean; newStreak: number; pointsAwarded: number }> {
+export async function updateStreak(userId: string, activityPoints: number): Promise<{ streakUpdated: boolean; newStreak: number; pointsAwarded: number }> {
   const user = await prisma.user.findUnique({
     where: { id: userId },
   });
 
   if (!user) throw new Error('User not found');
+
+  if (!shouldAwardStreak(activityPoints)) {
+    return { streakUpdated: false, newStreak: user.currentStreak, pointsAwarded: 0 };
+  }
 
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());

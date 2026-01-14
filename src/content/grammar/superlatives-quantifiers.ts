@@ -7,7 +7,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
         // Introduction Section
         {
             id: "introduction",
-            title: "Superlatives & Quantifiers: Making Comparisons That Matter",
+            title: "Superlatives & Quantifiers Guide",
             icon: "📊",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
@@ -237,7 +237,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             label: "<strong>jobs</strong>",
                             options: [
                                 { value: "count", label: "Count noun (you can count it)" },
-                                { value: "noncount", label: "Non-count noun (you can't count it)" },
+                                { value: "noncount", label: "Uncountable noun (you can't count it)" },
                             ],
                             expectedAnswer: "count",
                         },
@@ -246,7 +246,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             label: "<strong>money</strong>",
                             options: [
                                 { value: "count", label: "Count noun" },
-                                { value: "noncount", label: "Non-count noun" },
+                                { value: "noncount", label: "Uncountable noun" },
                             ],
                             expectedAnswer: "noncount",
                         },
@@ -255,7 +255,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             label: "<strong>time</strong>",
                             options: [
                                 { value: "count", label: "Count noun" },
-                                { value: "noncount", label: "Non-count noun" },
+                                { value: "noncount", label: "Uncountable noun" },
                             ],
                             expectedAnswer: "noncount",
                         },
@@ -429,7 +429,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             icon: "📉",
             explanation: `
                 <h3>Describing Small Amounts</h3>
-                <p>Just like many/much, the choice between few and little depends on count vs non-count:</p>
+                <p>Just like many/much, the choice between few and little depends on count vs uncountable:</p>
 
                 <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -546,7 +546,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Memory Trick",
                 content:
-                    "FEWER has an 'e' like countablE. LESS has no 'e' like non-count (no 'e'). Also: if you can say 'number of,' use fewer. If you can say 'amount of,' use less.",
+                    "FEWER has an 'e' like countablE. LESS has no 'e' like uncountablE (no 'e'). Also: if you can say 'number of,' use fewer. If you can say 'amount of,' use less.",
             },
             exercises: [
                 {
@@ -625,12 +625,12 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 </div>
 
                 <h4>Good News!</h4>
-                <p>MOST and LEAST work with BOTH count and non-count nouns:</p>
+                <p>MOST and LEAST work with BOTH count and uncountable nouns:</p>
                 <ul>
                     <li>the most <strong>hours</strong> (count)</li>
-                    <li>the most <strong>time</strong> (non-count)</li>
+                    <li>the most <strong>time</strong> (uncountable)</li>
                     <li>the least <strong>problems</strong> (count)</li>
-                    <li>the least <strong>stress</strong> (non-count)</li>
+                    <li>the least <strong>stress</strong> (uncountable)</li>
                 </ul>
             `,
             exercises: [
@@ -638,7 +638,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     id: "ex-most-least-1",
                     title: "Practice: Real-Life Comparisons",
                     instructions:
-                        "Complete these comparison sentences. Think about whether you're comparing count nouns (bedrooms, hours) or non-count nouns (money, time, experience).",
+                        "Complete these comparison sentences. Think about whether you're comparing count nouns (bedrooms, hours) or uncountable nouns (money, time, experience).",
                     items: [
                         {
                             type: "text",
@@ -700,7 +700,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>much</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Non-count nouns</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Uncountable nouns</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">much time, much stress</td>
                         </tr>
                         <tr>
@@ -710,7 +710,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>little</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Non-count nouns (not enough)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Uncountable nouns (not enough)</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">little money, little hope</td>
                         </tr>
                         <tr>
@@ -720,7 +720,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>less</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Non-count nouns (comparison)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Uncountable nouns (comparison)</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">less time, less stress</td>
                         </tr>
                         <tr>
@@ -742,13 +742,13 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 The Ultimate Test",
                 content:
-                    "Count vs non-count? Ask: Can I say 'one ___'? If yes → count (use many/few/fewer). If no → non-count (use much/little/less). Examples: 'one hour' works (count), but 'one time' sounds weird (non-count).",
+                    "Count vs uncountable? Ask: Can I say 'one ___'? If yes → count (use many/few/fewer). If no → uncountable (use much/little/less). Examples: 'one hour' works (count), but 'one time' sounds weird (uncountable).",
             },
             exercises: [
                 {
                     id: "sq-summary-1",
                     title: "Quick Review: Put It All Together",
-                    instructions: "Choose the best answer for each sentence. Think about count vs non-count nouns and superlative formation.",
+                    instructions: "Choose the best answer for each sentence. Think about count vs uncountable nouns and superlative formation.",
                     items: [
                         {
                             type: "radio",
@@ -869,7 +869,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "the much space and the least problems." },
             ],
             correctAnswer: "b",
-            explanation: "'The most space' (superlative + non-count) and 'the fewest problems' (superlative + count) are both correct.",
+            explanation: "'The most space' (superlative + uncountable) and 'the fewest problems' (superlative + count) are both correct.",
         },
         {
             id: "quiz-6",
@@ -924,7 +924,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "This apartment has the most bedrooms and the fewest money." },
             ],
             correctAnswer: "a",
-            explanation: "'The most bedrooms' (count noun) and 'the least money' (non-count noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
+            explanation: "'The most bedrooms' (count noun) and 'the least money' (uncountable noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
         },
         {
             id: "quiz-11",

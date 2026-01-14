@@ -67,13 +67,13 @@ This is the core of student engagement:
 - Activity completion: 2-10 points based on type/difficulty
 - Quiz completion: 10 points base, +20 for perfect score
 - Numbers Game: 3-17 points based on difficulty and accuracy
-- Daily streak: 5 points
+- Daily streak: 3 points (requires a positive-point activity)
 - Weekly streak (7+ days): 25 bonus points
 - Achievement bonuses: 50 points
 
 **Key Functions:**
 - `awardPoints(userId, points, reason)` - Awards points and logs to ledger
-- `updateStreak(userId)` - Updates daily streak and awards streak points
+- `updateStreak(userId, activityPoints)` - Updates daily streak only when activityPoints > 0 and awards streak points
 - `checkAndAwardAchievements(userId)` - Checks and awards unlocked achievements
 - `getTimeframedLeaderboard(range, limit, classId?)` - Gets leaderboard for day/week/month
 - `getWeeklyLeaderboard(limit, classId?)` - Gets weekly leaderboard using `weeklyPoints` field

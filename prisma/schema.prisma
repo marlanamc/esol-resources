@@ -82,6 +82,7 @@ model Activity {
   category    String?  // grammar, vocab, speaking, writing-reading
   level       String?  // beginner, intermediate, advanced
   content     String   // JSON content for the activity structure
+  ui          String?  // Optional UI hint (matching, fill-in-blank, etc.)
   createdBy   String?  // User ID of creator (null for legacy activities)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

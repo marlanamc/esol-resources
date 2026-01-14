@@ -116,7 +116,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             await fetch("/api/grammar/complete", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ slug: completionKey, points: 10 }),
+                body: JSON.stringify({ slug: completionKey }),
             });
             // Also save 100% progress if activityId is provided
             if (activityId) {

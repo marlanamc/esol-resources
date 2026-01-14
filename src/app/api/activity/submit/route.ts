@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     // Fetch activity to calculate points server-side
     const activity = await prisma.activity.findUnique({
         where: { id: activityId },
-        select: { title: true, type: true, id: true }
+        select: { title: true, type: true, id: true, content: true, ui: true }
     });
 
     if (!activity) {
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     // NEVER trust points from client request
     const calculatedPoints = activity.type.toLowerCase() === 'quiz'
         ? calculateQuizPoints(score)
-        : getActivityPoints(activity.type, activity.id);
+        : getActivityPoints(activity.type, activity);
 
     // Create or update submission
     const submission = await prisma.submission.upsert({
@@ -104,7 +104,7 @@ export async function POST(request: Request) {
         );
 
         // Update streak and check for achievements
-        await updateStreak(userId);
+        await updateStreak(userId, calculatedPoints);
         await checkAndAwardAchievements(userId);
     }
 

@@ -7,6 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { StatCard, BottomNav } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon, BarChartIcon } from "@/components/icons/Icons";
 import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
+import VerbQuizWeekSelector from "@/components/dashboard/VerbQuizWeekSelector";
 
 export default async function StatsPage() {
     const session = await getServerSession(authOptions);
@@ -156,14 +157,7 @@ export default async function StatsPage() {
                                 Jump to specific results and submissions.
                             </p>
                         </div>
-                        <div className="flex flex-wrap gap-2">
-                            <Link
-                                href="/dashboard/quizzes/verb-quiz-1"
-                                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:brightness-110"
-                            >
-                                View Verb Quiz 1 Results
-                            </Link>
-                        </div>
+                        <VerbQuizWeekSelector />
                     </div>
                 </section>
                 <section className="animate-fade-in-up delay-100">

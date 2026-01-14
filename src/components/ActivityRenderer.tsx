@@ -30,6 +30,7 @@ import { isSpeakingActivityContent } from "@/types/activity";
 import type { SpeakingActivityContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
 
 interface Props {
     activity: {
@@ -40,6 +41,7 @@ interface Props {
         type: string;
         category?: string | null;
         level?: string | null;
+        ui?: string | null;
     };
     assignmentId?: string | null;
     existingSubmission?: {
@@ -110,23 +112,19 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                 );
             }
             return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid speaking activity content.</div>;
-        case "game":
-            // Detect game type based on content format
-            // Check for numbers game JSON format
-            {
-                const parsed = safeJsonParse(activity.content);
-                if (parsed && typeof parsed === 'object' && 'type' in parsed && parsed.type === 'numbers-game') {
+        case "game": {
+            const gameUi = resolveActivityGameUi(activity);
+            switch (gameUi) {
+                case "numbers":
                     return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
-                }
+                case "fill-in-blank":
+                    return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
+                case "matching":
+                    return <MatchingGame contentStr={activity.content} activityId={activity.id} />;
+                default:
+                    return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
             }
-            // Check for fill-in-blank format
-            if (activity.content?.includes("Q:") && activity.content?.includes("OPTIONS:")) {
-                return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
-            } else if (activity.content?.includes("::")) {
-                return <MatchingGame contentStr={activity.content} activityId={activity.id} />;
-            }
-            // Default to flashcards
-            return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
+        }
         case "resource":
             return (
                 <ResourceRenderer
@@ -139,14 +137,6 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
         default:
             if (!content) return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Unable to load activity content.</div>;
             return <DefaultRenderer content={content} />;
-    }
-}
-
-function safeJsonParse(text: string): unknown | null {
-    try {
-        return JSON.parse(text) as unknown;
-    } catch {
-        return null;
     }
 }
 

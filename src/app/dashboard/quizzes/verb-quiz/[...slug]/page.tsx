@@ -14,7 +14,11 @@ interface SubmissionRow {
     assignment?: { title: string | null } | null;
 }
 
-export default async function VerbQuizOneResultsPage() {
+export default async function VerbQuizResultsPage({
+    params,
+}: {
+    params: Promise<{ slug: string[] }>;
+}) {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
@@ -22,8 +26,39 @@ export default async function VerbQuizOneResultsPage() {
         redirect("/dashboard");
     }
 
+    const { slug } = await params;
+    // Handle both /verb-quiz/1 and /verb-quiz-1 patterns
+    const weekNumberStr = slug[0] || "";
+    const weekNumber = parseInt(weekNumberStr, 10);
+    
+    if (isNaN(weekNumber) || weekNumber < 1 || weekNumber > 20) {
+        return (
+            <div className="min-h-screen bg-bg">
+                <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
+                    <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+                        <div>
+                            <Link
+                                href="/dashboard/stats"
+                                className="text-xs font-semibold text-primary underline decoration-primary/40 underline-offset-4"
+                            >
+                                ← Back to Stats
+                            </Link>
+                            <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
+                                Invalid Week Number
+                            </h1>
+                            <p className="text-sm text-text-muted">
+                                Please select a week between 1 and 20.
+                            </p>
+                        </div>
+                        <LogoutButton />
+                    </div>
+                </header>
+            </div>
+        );
+    }
+
     const activity = await prisma.activity.findFirst({
-        where: { title: "Verb Quiz 1", type: "quiz" },
+        where: { title: `Verb Quiz ${weekNumber}`, type: "quiz" },
         select: { id: true, title: true },
     });
 
@@ -40,7 +75,7 @@ export default async function VerbQuizOneResultsPage() {
                                 ← Back to Stats
                             </Link>
                             <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
-                                Verb Quiz 1 Results
+                                Verb Quiz {weekNumber} Results
                             </h1>
                             <p className="text-sm text-text-muted">
                                 This quiz has not been created yet.
