@@ -227,10 +227,11 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
         const roundNumber = currentRound.roundNumber;
         if (completedRoundCategoriesRef.current.has(roundNumber)) return;
         completedRoundCategoriesRef.current.add(roundNumber);
+        const roundStatus = overallProgressPercent >= 100 ? "completed" : "in_progress";
         void saveActivityProgress(
             activityId,
-            100,
-            "completed",
+            overallProgressPercent,
+            roundStatus,
             undefined,
             `round-${roundNumber}`,
             assignmentId ?? null
