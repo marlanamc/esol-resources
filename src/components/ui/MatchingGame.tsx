@@ -83,6 +83,11 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
     );
     const [isRoundComplete, setIsRoundComplete] = useState(false);
     const [isGameComplete, setIsGameComplete] = useState(false);
+    const [dropZoneFeedback, setDropZoneFeedback] = useState<{
+        category: "countable" | "uncountable";
+        isCorrect: boolean;
+    } | null>(null);
+    const dropZoneFeedbackTimeoutRef = useRef<number | null>(null);
 
     const progress =
         shuffledWords.length > 0
@@ -118,6 +123,18 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                 50% { border-width: 3px; box-shadow: 0 0 0 6px rgba(217, 119, 87, 0.1); }
             }
 
+            @keyframes drop-zone-correct-flash {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.0); }
+                20% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.18); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.0); }
+            }
+
+            @keyframes drop-zone-wrong-flash {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); }
+                20% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.18); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); }
+            }
+
             .animate-bounce-back {
                 animation: bounce-back 0.5s ease-out;
             }
@@ -128,6 +145,18 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
 
             .drop-zone-ready {
                 animation: drop-zone-pulse 1.5s ease-in-out infinite;
+            }
+
+            .drop-zone-correct {
+                border-color: #22c55e !important;
+                background-color: rgba(34, 197, 94, 0.10) !important;
+                animation: drop-zone-correct-flash 450ms ease-out;
+            }
+
+            .drop-zone-wrong {
+                border-color: #ef4444 !important;
+                background-color: rgba(239, 68, 68, 0.10) !important;
+                animation: drop-zone-wrong-flash 450ms ease-out;
             }
 
             .touch-manipulation {
@@ -141,6 +170,15 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
             const existingStyle = document.getElementById(styleId);
             if (existingStyle) {
                 document.head.removeChild(existingStyle);
+            }
+        };
+    }, []);
+
+    // Cleanup pending feedback timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (dropZoneFeedbackTimeoutRef.current !== null) {
+                window.clearTimeout(dropZoneFeedbackTimeoutRef.current);
             }
         };
     }, []);
@@ -209,6 +247,16 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
         if (!currentWord) return;
 
         const isCorrect = selectedCategory === currentWord.category;
+
+        // Provide immediate visual feedback on the tapped/selected drop zone (especially helpful on mobile)
+        setDropZoneFeedback({ category: selectedCategory, isCorrect });
+        if (dropZoneFeedbackTimeoutRef.current !== null) {
+            window.clearTimeout(dropZoneFeedbackTimeoutRef.current);
+        }
+        dropZoneFeedbackTimeoutRef.current = window.setTimeout(() => {
+            setDropZoneFeedback(null);
+            dropZoneFeedbackTimeoutRef.current = null;
+        }, 500);
 
         if (isCorrect) {
             // Correct answer
@@ -429,6 +477,13 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                     transition-all duration-200 cursor-pointer touch-manipulation
                                     min-h-[120px] flex flex-col items-center justify-center
                                     ${
+                                        dropZoneFeedback?.category === "countable"
+                                            ? dropZoneFeedback.isCorrect
+                                                ? "drop-zone-correct"
+                                                : "drop-zone-wrong"
+                                            : ""
+                                    }
+                                    ${
                                         interactionMode ===
                                         InteractionMode.WordSelected
                                             ? "drop-zone-ready border-blue-500 bg-blue-50"
@@ -463,6 +518,13 @@ export default function MatchingGame({ contentStr, activityId }: Props) {
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
                                     transition-all duration-200 cursor-pointer touch-manipulation
                                     min-h-[120px] flex flex-col items-center justify-center
+                                    ${
+                                        dropZoneFeedback?.category === "uncountable"
+                                            ? dropZoneFeedback.isCorrect
+                                                ? "drop-zone-correct"
+                                                : "drop-zone-wrong"
+                                            : ""
+                                    }
                                     ${
                                         interactionMode ===
                                         InteractionMode.WordSelected
