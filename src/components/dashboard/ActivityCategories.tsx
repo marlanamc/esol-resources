@@ -349,10 +349,11 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             name: 'Games',
             color: '#f97316', // orange
             activities: activities.filter(a => {
-                // Filter for all game activities
-                if (a.type !== 'game') return false;
-                if (a.category !== 'games') return false;
-                return true;
+                // Show all activities with type 'game'
+                return a.type === 'game';
+            }).sort((a, b) => {
+                // Sort by title for better organization
+                return (a.title || '').localeCompare(b.title || '');
             })
         },
         {
