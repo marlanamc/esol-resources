@@ -81,16 +81,25 @@ export function StudentStatsView({ activities }: Props) {
         const numbersActivities = activities.filter((a) =>
             (a.category || "").toLowerCase().includes("numbers")
         );
-        const gamesActivities = activities.filter((a) => a.type === "game");
+        const gamesActivities = activities.filter((a) => {
+            // Only show specific games: numbers-game and countable-uncountable-nouns
+            // Exclude vocabulary games (they show in Vocabulary category)
+            if (a.type !== "game") return false;
+            if (a.id?.startsWith("vocab-")) return false;
+            return a.id === "numbers-game" || a.id === "countable-uncountable-nouns";
+        });
         const otherActivities = activities.filter((a) => {
             const category = (a.category || "").toLowerCase();
+            const isVocabGame = a.id?.startsWith("vocab-");
+            const isSpecificGame = a.id === "numbers-game" || a.id === "countable-uncountable-nouns";
             return !category.includes("vocab") &&
                    !category.includes("vocabulary") &&
                    !category.includes("unit") &&
                    !category.includes("flash cards") &&
                    !category.includes("grammar") &&
                    !category.includes("numbers") &&
-                   a.type !== "game";
+                   !isVocabGame &&
+                   !isSpecificGame;
         });
 
         return { vocabUnits, grammarActivities, numbersActivities, gamesActivities, otherActivities };
