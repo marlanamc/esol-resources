@@ -212,22 +212,22 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. go → ___",
+                            label: "go → ___",
                             expectedAnswer: "went",
                         },
                         {
                             type: "text",
-                            label: "2. work → ___",
+                            label: "work → ___",
                             expectedAnswer: "worked",
                         },
                         {
                             type: "text",
-                            label: "3. study → ___",
+                            label: "study → ___",
                             expectedAnswer: "studied",
                         },
                         {
                             type: "text",
-                            label: "4. have → ___",
+                            label: "have → ___",
                             expectedAnswer: "had",
                         },
                     ],
@@ -287,22 +287,22 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The museum (close) ___ early yesterday due to a power outage.",
+                            label: "The museum (close) ___ early yesterday due to a power outage.",
                             expectedAnswer: "closed",
                         },
                         {
                             type: "text",
-                            label: "2. My nephew (build) ___ a treehouse with his grandfather last summer.",
+                            label: "My nephew (build) ___ a treehouse with his grandfather last summer.",
                             expectedAnswer: "built",
                         },
                         {
                             type: "text",
-                            label: "3. The neighbors (move) ___ to a different state three months ago.",
+                            label: "The neighbors (move) ___ to a different state three months ago.",
                             expectedAnswer: "moved",
                         },
                         {
                             type: "text",
-                            label: "4. I (find) ___ a twenty dollar bill on the sidewalk this morning.",
+                            label: "I (find) ___ a twenty dollar bill on the sidewalk this morning.",
                             expectedAnswer: "found",
                         },
                     ],
@@ -356,17 +356,17 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The concert (not start) ___ on time because of technical problems.",
+                            label: "The concert (not start) ___ on time because of technical problems.",
                             expectedAnswer: "didn't start",
                         },
                         {
                             type: "text",
-                            label: "2. My sister (not pass) ___ her driving test on the first try.",
+                            label: "My sister (not pass) ___ her driving test on the first try.",
                             expectedAnswer: "didn't pass",
                         },
                         {
                             type: "text",
-                            label: "3. We (not bring) ___ umbrellas, and it rained all afternoon.",
+                            label: "We (not bring) ___ umbrellas, and it rained all afternoon.",
                             expectedAnswer: "didn't bring",
                         },
                     ],
@@ -420,17 +420,17 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ your son (win) his soccer match on Saturday?",
+                            label: "___ your son (win) his soccer match on Saturday?",
                             expectedAnswer: "Did your son win",
                         },
                         {
                             type: "text",
-                            label: "2. ___ the dentist (give) you any painkillers after the procedure?",
+                            label: "___ the dentist (give) you any painkillers after the procedure?",
                             expectedAnswer: "Did the dentist give",
                         },
                         {
                             type: "text",
-                            label: "3. ___ you (remember) to water the plants before we left?",
+                            label: "___ you (remember) to water the plants before we left?",
                             expectedAnswer: "Did you remember",
                         },
                     ],
@@ -450,11 +450,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 5: Irregular Verb Practice",
                     instructions: "Write the Past Simple form of these irregular verbs.",
                     items: [
-                        { type: "text", label: "1. buy → ___", expectedAnswer: "bought" },
-                        { type: "text", label: "2. teach → ___", expectedAnswer: "taught" },
-                        { type: "text", label: "3. feel → ___", expectedAnswer: "felt" },
-                        { type: "text", label: "4. bring → ___", expectedAnswer: "brought" },
-                        { type: "text", label: "5. catch → ___", expectedAnswer: "caught" },
+                        { type: "text", label: "buy → ___", expectedAnswer: "bought" },
+                        { type: "text", label: "teach → ___", expectedAnswer: "taught" },
+                        { type: "text", label: "feel → ___", expectedAnswer: "felt" },
+                        { type: "text", label: "bring → ___", expectedAnswer: "brought" },
+                        { type: "text", label: "catch → ___", expectedAnswer: "caught" },
                     ],
                 },
                 {
@@ -462,11 +462,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 6: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. She didn't went to the party last night.", expectedAnswer: "She didn't go to the party last night" },
-                        { type: "text", label: "2. They eated dinner at a new restaurant yesterday.", expectedAnswer: "They ate dinner at a new restaurant yesterday" },
-                        { type: "text", label: "3. Did you saw the news this morning?", expectedAnswer: "Did you see the news this morning" },
-                        { type: "text", label: "4. He buyed a new car last month.", expectedAnswer: "He bought a new car last month" },
-                        { type: "text", label: "5. We didn't finished the project on time.", expectedAnswer: "We didn't finish the project on time" },
+                        { type: "text", label: "She didn't went to the party last night.", expectedAnswer: "She didn't go to the party last night" },
+                        { type: "text", label: "They eated dinner at a new restaurant yesterday.", expectedAnswer: "They ate dinner at a new restaurant yesterday" },
+                        { type: "text", label: "Did you saw the news this morning?", expectedAnswer: "Did you see the news this morning" },
+                        { type: "text", label: "He buyed a new car last month.", expectedAnswer: "He bought a new car last month" },
+                        { type: "text", label: "We didn't finished the project on time.", expectedAnswer: "We didn't finish the project on time" },
                     ],
                 },
                 {
@@ -474,10 +474,10 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 7: Transformation Practice",
                     instructions: "Change each sentence as instructed. Keep the same meaning!",
                     items: [
-                        { type: "text", label: "1. Make negative: I visited my grandparents last weekend.", expectedAnswer: "I didn't visit my grandparents last weekend" },
-                        { type: "text", label: "2. Make a question: She finished her homework yesterday.", expectedAnswer: "Did she finish her homework yesterday" },
-                        { type: "text", label: "3. Make affirmative: They didn't travel abroad last year.", expectedAnswer: "They traveled abroad last year" },
-                        { type: "text", label: "4. Make negative: The movie started at 7 PM.", expectedAnswer: "The movie didn't start at 7 PM" },
+                        { type: "text", label: "Make negative: I visited my grandparents last weekend.", expectedAnswer: "I didn't visit my grandparents last weekend" },
+                        { type: "text", label: "Make a question: She finished her homework yesterday.", expectedAnswer: "Did she finish her homework yesterday" },
+                        { type: "text", label: "Make affirmative: They didn't travel abroad last year.", expectedAnswer: "They traveled abroad last year" },
+                        { type: "text", label: "Make negative: The movie started at 7 PM.", expectedAnswer: "The movie didn't start at 7 PM" },
                     ],
                 },
                 {
@@ -485,11 +485,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 8: Story Time - Complete the Narrative",
                     instructions: "Complete this story about last weekend. Use Past Simple!",
                     items: [
-                        { type: "text", label: "1. Last Saturday, I ___ (wake) up early.", expectedAnswer: "woke" },
-                        { type: "text", label: "2. I ___ (make) breakfast.", expectedAnswer: "made" },
-                        { type: "text", label: "3. Then I ___ (go) to the park with my dog.", expectedAnswer: "went" },
-                        { type: "text", label: "4. We ___ (not stay) long because it started raining.", expectedAnswer: "didn't stay" },
-                        { type: "text", label: "5. When I got home, I ___ (call) my friend.", expectedAnswer: "called" },
+                        { type: "text", label: "Last Saturday, I ___ (wake) up early.", expectedAnswer: "woke" },
+                        { type: "text", label: "I ___ (make) breakfast.", expectedAnswer: "made" },
+                        { type: "text", label: "Then I ___ (go) to the park with my dog.", expectedAnswer: "went" },
+                        { type: "text", label: "We ___ (not stay) long because it started raining.", expectedAnswer: "didn't stay" },
+                        { type: "text", label: "When I got home, I ___ (call) my friend.", expectedAnswer: "called" },
                     ],
                 },
                 {

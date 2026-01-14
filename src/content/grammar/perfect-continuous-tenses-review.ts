@@ -448,27 +448,27 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (work) here for 5 years. (present, positive)",
+                            label: "I ___ (work) here for 5 years. (present, positive)",
                             expectedAnswer: "have been working",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (wait) for an hour when the bus came. (past, positive)",
+                            label: "She ___ (wait) for an hour when the bus came. (past, positive)",
                             expectedAnswer: "had been waiting",
                         },
                         {
                             type: "text",
-                            label: "3. By next year, they ___ (live) here for a decade. (future, positive)",
+                            label: "By next year, they ___ (live) here for a decade. (future, positive)",
                             expectedAnswer: "will have been living",
                         },
                         {
                             type: "text",
-                            label: "4. I ___ (not sleep) well lately. (present, negative)",
+                            label: "I ___ (not sleep) well lately. (present, negative)",
                             expectedAnswer: "haven't been sleeping",
                         },
                         {
                             type: "text",
-                            label: "5. How long ___ you ___ (study) when you passed the exam? (past, question)",
+                            label: "How long ___ you ___ (study) when you passed the exam? (past, question)",
                             expectedAnswer: "had you been studying",
                         },
                     ],
@@ -559,22 +559,22 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I have working here for 5 years.",
+                            label: "I have working here for 5 years.",
                             expectedAnswer: "I have been working here for 5 years",
                         },
                         {
                             type: "text",
-                            label: "2. She has been study English since 2020.",
+                            label: "She has been study English since 2020.",
                             expectedAnswer: "She has been studying English since 2020",
                         },
                         {
                             type: "text",
-                            label: "3. They had been wait for an hour.",
+                            label: "They had been wait for an hour.",
                             expectedAnswer: "They had been waiting for an hour",
                         },
                         {
                             type: "text",
-                            label: "4. I have been living here since 3 years.",
+                            label: "I have been living here since 3 years.",
                             expectedAnswer: "I have been living here for 3 years",
                         },
                     ],
@@ -600,32 +600,32 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. How long ___ you ___ (wait)? (present)",
+                            label: "How long ___ you ___ (wait)? (present)",
                             expectedAnswer: "have you been waiting",
                         },
                         {
                             type: "text",
-                            label: "2. She was exhausted because she ___ (work) all night. (past)",
+                            label: "She was exhausted because she ___ (work) all night. (past)",
                             expectedAnswer: "had been working",
                         },
                         {
                             type: "text",
-                            label: "3. By December, I ___ (study) English for 3 years. (future)",
+                            label: "By December, I ___ (study) English for 3 years. (future)",
                             expectedAnswer: "will have been studying",
                         },
                         {
                             type: "text",
-                            label: "4. Your eyes are red. ___ you ___ (cry)? (present)",
+                            label: "Your eyes are red. ___ you ___ (cry)? (present)",
                             expectedAnswer: "Have you been crying",
                         },
                         {
                             type: "text",
-                            label: "5. They ___ (live) there for 10 years when they finally moved. (past)",
+                            label: "They ___ (live) there for 10 years when they finally moved. (past)",
                             expectedAnswer: "had been living",
                         },
                         {
                             type: "text",
-                            label: "6. By the time you arrive, I ___ (wait) for 2 hours. (future)",
+                            label: "By the time you arrive, I ___ (wait) for 2 hours. (future)",
                             expectedAnswer: "will have been waiting",
                         },
                     ],

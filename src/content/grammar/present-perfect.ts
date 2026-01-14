@@ -407,27 +407,27 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. be → was/were → ___",
+                            label: "be → was/were → ___",
                             expectedAnswer: "been",
                         },
                         {
                             type: "text",
-                            label: "2. go → went → ___",
+                            label: "go → went → ___",
                             expectedAnswer: "gone",
                         },
                         {
                             type: "text",
-                            label: "3. see → saw → ___",
+                            label: "see → saw → ___",
                             expectedAnswer: "seen",
                         },
                         {
                             type: "text",
-                            label: "4. eat → ate → ___",
+                            label: "eat → ate → ___",
                             expectedAnswer: "eaten",
                         },
                         {
                             type: "text",
-                            label: "5. write → wrote → ___",
+                            label: "write → wrote → ___",
                             expectedAnswer: "written",
                         },
                     ],
@@ -439,7 +439,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "1. What do we use past participles for?",
+                            label: "What do we use past participles for?",
                             options: [
                                 { value: "a", label: "To form Present Perfect tense" },
                                 { value: "b", label: "To talk about yesterday" },
@@ -449,7 +449,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "2. How do you make the past participle of regular verbs?",
+                            label: "How do you make the past participle of regular verbs?",
                             options: [
                                 { value: "a", label: "Add -ing" },
                                 { value: "b", label: "Add -ed" },
@@ -459,7 +459,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "3. Which is an irregular past participle?",
+                            label: "Which is an irregular past participle?",
                             options: [
                                 { value: "a", label: "worked" },
                                 { value: "b", label: "played" },
@@ -530,7 +530,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "2. I ___ to Japan last year.",
+                            label: "I ___ to Japan last year.",
                             options: [
                                 { value: "have-been", label: "have been" },
                                 { value: "went", label: "went" },
@@ -539,7 +539,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "3. She ___ in this city for 10 years. (She still lives here.)",
+                            label: "She ___ in this city for 10 years. (She still lives here.)",
                             options: [
                                 { value: "has-lived", label: "has lived" },
                                 { value: "lived", label: "lived" },
@@ -548,7 +548,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "4. She ___ in this city for 10 years. (She doesn't live here now.)",
+                            label: "She ___ in this city for 10 years. (She doesn't live here now.)",
                             options: [
                                 { value: "has-lived", label: "has lived" },
                                 { value: "lived", label: "lived" },
@@ -614,27 +614,27 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The museum ___ (win) several international awards for its architecture.",
+                            label: "The museum ___ (win) several international awards for its architecture.",
                             expectedAnswer: "has won",
                         },
                         {
                             type: "text",
-                            label: "2. My grandparents ___ (own) this house since 1985.",
+                            label: "My grandparents ___ (own) this house since 1985.",
                             expectedAnswer: "have owned",
                         },
                         {
                             type: "text",
-                            label: "3. We ___ (adopt) three rescue animals over the years.",
+                            label: "We ___ (adopt) three rescue animals over the years.",
                             expectedAnswer: "have adopted",
                         },
                         {
                             type: "text",
-                            label: "4. She ___ (climb) Mount Everest—it's on her bucket list.",
+                            label: "She ___ (climb) Mount Everest—it's on her bucket list.",
                             expectedAnswer: "has climbed",
                         },
                         {
                             type: "text",
-                            label: "5. The neighbors ___ (plant) a cherry tree that blooms beautifully every spring.",
+                            label: "The neighbors ___ (plant) a cherry tree that blooms beautifully every spring.",
                             expectedAnswer: "have planted",
                         },
                     ],
@@ -647,17 +647,17 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The local bakery ___ (serve) fresh croissants since it opened in 2015.",
+                            label: "The local bakery ___ (serve) fresh croissants since it opened in 2015.",
                             expectedAnswer: "has served",
                         },
                         {
                             type: "text",
-                            label: "2. My son ___ (break) his arm twice playing football.",
+                            label: "My son ___ (break) his arm twice playing football.",
                             expectedAnswer: "has broken",
                         },
                         {
                             type: "text",
-                            label: "3. We ___ (volunteer) at the animal shelter for several months now.",
+                            label: "We ___ (volunteer) at the animal shelter for several months now.",
                             expectedAnswer: "have volunteered",
                         },
                     ],
@@ -714,27 +714,27 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The city ___ (not repair) the potholes on our street yet.",
+                            label: "The city ___ (not repair) the potholes on our street yet.",
                             expectedAnswer: "hasn't repaired",
                         },
                         {
                             type: "text",
-                            label: "2. My daughter ___ (not decide) which university to attend.",
+                            label: "My daughter ___ (not decide) which university to attend.",
                             expectedAnswer: "hasn't decided",
                         },
                         {
                             type: "text",
-                            label: "3. We ___ (not hear) back from the insurance company.",
+                            label: "We ___ (not hear) back from the insurance company.",
                             expectedAnswer: "haven't heard",
                         },
                         {
                             type: "text",
-                            label: "4. The landlord ___ (not fix) the heating system yet.",
+                            label: "The landlord ___ (not fix) the heating system yet.",
                             expectedAnswer: "hasn't fixed",
                         },
                         {
                             type: "text",
-                            label: "5. They ___ (not announce) the winner of the competition.",
+                            label: "They ___ (not announce) the winner of the competition.",
                             expectedAnswer: "haven't announced",
                         },
                     ],
@@ -789,27 +789,27 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ the plumber (arrive) to fix the leak?",
+                            label: "___ the plumber (arrive) to fix the leak?",
                             expectedAnswer: "Has the plumber arrived",
                         },
                         {
                             type: "text",
-                            label: "2. ___ your parents (celebrate) their golden anniversary yet?",
+                            label: "___ your parents (celebrate) their golden anniversary yet?",
                             expectedAnswer: "Have your parents celebrated",
                         },
                         {
                             type: "text",
-                            label: "3. ___ the neighbors (complain) about the noise?",
+                            label: "___ the neighbors (complain) about the noise?",
                             expectedAnswer: "Have the neighbors complained",
                         },
                         {
                             type: "text",
-                            label: "4. ___ she ever (ride) a motorcycle?",
+                            label: "___ she ever (ride) a motorcycle?",
                             expectedAnswer: "Has she ever ridden",
                         },
                         {
                             type: "text",
-                            label: "5. ___ you (donate) to any charities this year?",
+                            label: "___ you (donate) to any charities this year?",
                             expectedAnswer: "Have you donated",
                         },
                     ],
@@ -854,31 +854,31 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "1. I have lived here ___ 5 years.",
+                            label: "I have lived here ___ 5 years.",
                             options: ["Choose...", "for", "since"],
                             expectedAnswer: "for",
                         },
                         {
                             type: "select",
-                            label: "2. I have lived here ___ 2020.",
+                            label: "I have lived here ___ 2020.",
                             options: ["Choose...", "for", "since"],
                             expectedAnswer: "since",
                         },
                         {
                             type: "select",
-                            label: "3. She has worked here ___ last Monday.",
+                            label: "She has worked here ___ last Monday.",
                             options: ["Choose...", "for", "since"],
                             expectedAnswer: "since",
                         },
                         {
                             type: "select",
-                            label: "4. They have been friends ___ a long time.",
+                            label: "They have been friends ___ a long time.",
                             options: ["Choose...", "for", "since"],
                             expectedAnswer: "for",
                         },
                         {
                             type: "select",
-                            label: "5. I have studied English ___ I was 10 years old.",
+                            label: "I have studied English ___ I was 10 years old.",
                             options: ["Choose...", "for", "since"],
                             expectedAnswer: "since",
                         },
@@ -949,43 +949,43 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "1. I have ___ finished my homework.",
+                            label: "I have ___ finished my homework.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "already",
                         },
                         {
                             type: "select",
-                            label: "2. She hasn't eaten lunch ___.",
+                            label: "She hasn't eaten lunch ___.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "yet",
                         },
                         {
                             type: "select",
-                            label: "3. We have ___ arrived, so we can start.",
+                            label: "We have ___ arrived, so we can start.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "just",
                         },
                         {
                             type: "select",
-                            label: "4. Have you finished your project ___?",
+                            label: "Have you finished your project ___?",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "yet",
                         },
                         {
                             type: "select",
-                            label: "5. He has ___ taken the test and is waiting outside.",
+                            label: "He has ___ taken the test and is waiting outside.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "already",
                         },
                         {
                             type: "select",
-                            label: "6. I ___ haven't finished my Christmas shopping.",
+                            label: "I ___ haven't finished my Christmas shopping.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "still",
                         },
                         {
                             type: "select",
-                            label: "7. She ___ hasn't called me back about the job.",
+                            label: "She ___ hasn't called me back about the job.",
                             options: ["Choose...", "already", "just", "yet", "still"],
                             expectedAnswer: "still",
                         },
@@ -1031,25 +1031,25 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "1. Have you ___ visited London?",
+                            label: "Have you ___ visited London?",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "ever",
                         },
                         {
                             type: "select",
-                            label: "2. I have ___ ridden a horse.",
+                            label: "I have ___ ridden a horse.",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "never",
                         },
                         {
                             type: "select",
-                            label: "3. Has she ___ tried sushi?",
+                            label: "Has she ___ tried sushi?",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "ever",
                         },
                         {
                             type: "select",
-                            label: "4. They have ___ been to Spain.",
+                            label: "They have ___ been to Spain.",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "never",
                         },
@@ -1076,21 +1076,21 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "word-scramble",
-                            label: "1. Make a sentence:",
+                            label: "Make a sentence:",
                             words: ["I", "have", "visited", "many", "countries"],
                             correctAnswer: "I have visited many countries",
                             hint: "Life experience - where you've been",
                         },
                         {
                             type: "word-scramble",
-                            label: "2. Make a sentence:",
+                            label: "Make a sentence:",
                             words: ["She", "has", "lived", "here", "for", "5", "years"],
                             correctAnswer: "She has lived here for 5 years",
                             hint: "Unfinished action - started in past, continues to now",
                         },
                         {
                             type: "word-scramble",
-                            label: "3. Make a question:",
+                            label: "Make a question:",
                             words: ["Have", "you", "ever", "eaten", "sushi", "?"],
                             correctAnswer: "Have you ever eaten sushi?",
                             hint: "Question about life experience",
@@ -1105,17 +1105,17 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (see) that movie three times. (positive)",
+                            label: "I ___ (see) that movie three times. (positive)",
                             expectedAnswer: "have seen",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not finish) her work yet. (negative)",
+                            label: "She ___ (not finish) her work yet. (negative)",
                             expectedAnswer: "hasn't finished",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they ___ (be) to Paris? (question)",
+                            label: "___ they ___ (be) to Paris? (question)",
                             expectedAnswer: "Have they been",
                         },
                     ],

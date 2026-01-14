@@ -155,8 +155,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 title: "Exercise 1: Picture the Future",
                 instructions: "Complete with will be + verb-ing.",
                 items: [
-                    { type: "text", label: "1. The volunteers ___ (serve) meals at the shelter all day Saturday.", expectedAnswer: "will be serving" },
-                    { type: "text", label: "2. My sister ___ (perform) in the theater production this time tomorrow.", expectedAnswer: "will be performing" },
+                    { type: "text", label: "The volunteers ___ (serve) meals at the shelter all day Saturday.", expectedAnswer: "will be serving" },
+                    { type: "text", label: "My sister ___ (perform) in the theater production this time tomorrow.", expectedAnswer: "will be performing" },
                 ],
             }],
         },
@@ -275,9 +275,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Future Actions in Progress",
                     instructions: "Complete the sentences with Future Continuous.",
                     items: [
-                        { type: "text", label: "1. At 9 PM tonight, I ___ (watch) my favorite show.", expectedAnswer: "will be watching" },
-                        { type: "text", label: "2. This time tomorrow, she ___ (fly) to Paris.", expectedAnswer: "will be flying" },
-                        { type: "text", label: "3. They ___ (not work) during the holidays.", expectedAnswer: "won't be working" },
+                        { type: "text", label: "At 9 PM tonight, I ___ (watch) my favorite show.", expectedAnswer: "will be watching" },
+                        { type: "text", label: "This time tomorrow, she ___ (fly) to Paris.", expectedAnswer: "will be flying" },
+                        { type: "text", label: "They ___ (not work) during the holidays.", expectedAnswer: "won't be working" },
                     ],
                 },
                 {
@@ -285,9 +285,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 3: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. I will be sleep at midnight.", expectedAnswer: "I will be sleeping at midnight" },
-                        { type: "text", label: "2. She won't be come to the party.", expectedAnswer: "She won't be coming to the party" },
-                        { type: "text", label: "3. Will you be work tomorrow at 5 PM?", expectedAnswer: "Will you be working tomorrow at 5 PM" },
+                        { type: "text", label: "I will be sleep at midnight.", expectedAnswer: "I will be sleeping at midnight" },
+                        { type: "text", label: "She won't be come to the party.", expectedAnswer: "She won't be coming to the party" },
+                        { type: "text", label: "Will you be work tomorrow at 5 PM?", expectedAnswer: "Will you be working tomorrow at 5 PM" },
                     ],
                 },
             ],

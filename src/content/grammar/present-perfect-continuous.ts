@@ -308,27 +308,27 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (work) at this restaurant for six months.",
+                            label: "I ___ (work) at this restaurant for six months.",
                             expectedAnswer: "have been working",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (wait) for the bus since 7:30.",
+                            label: "She ___ (wait) for the bus since 7:30.",
                             expectedAnswer: "has been waiting",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (live) in this apartment for two years.",
+                            label: "They ___ (live) in this apartment for two years.",
                             expectedAnswer: "have been living",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (study) English since he moved here.",
+                            label: "He ___ (study) English since he moved here.",
                             expectedAnswer: "has been studying",
                         },
                         {
                             type: "text",
-                            label: "5. We ___ (try) to reach you all morning.",
+                            label: "We ___ (try) to reach you all morning.",
                             expectedAnswer: "have been trying",
                         },
                     ],
@@ -378,17 +378,17 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not sleep) well because of the noise.",
+                            label: "I ___ (not sleep) well because of the noise.",
                             expectedAnswer: "haven't been sleeping",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not eat) properly since she got sick.",
+                            label: "She ___ (not eat) properly since she got sick.",
                             expectedAnswer: "hasn't been eating",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not practice) enough for the test.",
+                            label: "They ___ (not practice) enough for the test.",
                             expectedAnswer: "haven't been practicing",
                         },
                     ],
@@ -439,17 +439,17 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. How long ___ you ___ (wait)?",
+                            label: "How long ___ you ___ (wait)?",
                             expectedAnswer: "have you been waiting",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (work) here long?",
+                            label: "___ she ___ (work) here long?",
                             expectedAnswer: "Has she been working",
                         },
                         {
                             type: "text",
-                            label: "3. What ___ they ___ (do) all morning?",
+                            label: "What ___ they ___ (do) all morning?",
                             expectedAnswer: "have they been doing",
                         },
                     ],
@@ -469,9 +469,9 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 5: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. I have been work here for two years.", expectedAnswer: "I have been working here for two years" },
-                        { type: "text", label: "2. She has being waiting since 9 AM.", expectedAnswer: "She has been waiting since 9 AM" },
-                        { type: "text", label: "3. They have been study English for months.", expectedAnswer: "They have been studying English for months" },
+                        { type: "text", label: "I have been work here for two years.", expectedAnswer: "I have been working here for two years" },
+                        { type: "text", label: "She has being waiting since 9 AM.", expectedAnswer: "She has been waiting since 9 AM" },
+                        { type: "text", label: "They have been study English for months.", expectedAnswer: "They have been studying English for months" },
                     ],
                 },
             ],

@@ -370,22 +370,22 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. You ___ arrive at least 5 minutes before your shift starts. (positive advice)",
+                            label: "You ___ arrive at least 5 minutes before your shift starts. (positive advice)",
                             expectedAnswer: "should",
                         },
                         {
                             type: "text",
-                            label: "2. You ___ use your phone during meetings. (negative advice)",
+                            label: "You ___ use your phone during meetings. (negative advice)",
                             expectedAnswers: ["should not", "shouldn't", "shouldnt"],
                         } as ExerciseItem,
                         {
                             type: "text",
-                            label: "3. I ___ ask for clarification if I don't understand something. (positive advice)",
+                            label: "I ___ ask for clarification if I don't understand something. (positive advice)",
                             expectedAnswer: "should",
                         },
                         {
                             type: "text",
-                            label: "4. We ___ skip the safety training. (negative advice)",
+                            label: "We ___ skip the safety training. (negative advice)",
                             expectedAnswers: ["should not", "shouldn't", "shouldnt"],
                         } as ExerciseItem,
                     ],
@@ -450,17 +450,17 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. Direct: 'Send me that file.' → Polite: '___'",
+                            label: "Direct: 'Send me that file.' → Polite: '___'",
                             expectedAnswer: "Could you send me that file?",
                         },
                         {
                             type: "text",
-                            label: "2. Direct: 'Check the schedule.' → Polite: '___'",
+                            label: "Direct: 'Check the schedule.' → Polite: '___'",
                             expectedAnswer: "Could you check the schedule?",
                         },
                         {
                             type: "text",
-                            label: "3. Direct: 'Close the door.' → Polite: '___'",
+                            label: "Direct: 'Close the door.' → Polite: '___'",
                             expectedAnswer: "Would you close the door?",
                         },
                     ],

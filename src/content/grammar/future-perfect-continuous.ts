@@ -285,22 +285,22 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. By next year, I ___ (work) at this company for 5 years.",
+                            label: "By next year, I ___ (work) at this company for 5 years.",
                             expectedAnswer: "will have been working",
                         },
                         {
                             type: "text",
-                            label: "2. By the time she graduates, she ___ (study) for 4 years.",
+                            label: "By the time she graduates, she ___ (study) for 4 years.",
                             expectedAnswer: "will have been studying",
                         },
                         {
                             type: "text",
-                            label: "3. By midnight, they ___ (drive) for 10 hours.",
+                            label: "By midnight, they ___ (drive) for 10 hours.",
                             expectedAnswer: "will have been driving",
                         },
                         {
                             type: "text",
-                            label: "4. By June, we ___ (live) in this city for a decade.",
+                            label: "By June, we ___ (live) in this city for a decade.",
                             expectedAnswer: "will have been living",
                         },
                     ],
@@ -347,12 +347,12 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. By next month, I ___ (not work) here long enough for a promotion.",
+                            label: "By next month, I ___ (not work) here long enough for a promotion.",
                             expectedAnswer: "won't have been working",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not study) long enough to take the advanced test.",
+                            label: "She ___ (not study) long enough to take the advanced test.",
                             expectedAnswer: "won't have been studying",
                         },
                     ],
@@ -400,12 +400,12 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. How long ___ you ___ (work) here by next June?",
+                            label: "How long ___ you ___ (work) here by next June?",
                             expectedAnswer: "will you have been working",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (study) long enough by the exam?",
+                            label: "___ she ___ (study) long enough by the exam?",
                             expectedAnswer: "Will she have been studying",
                         },
                     ],

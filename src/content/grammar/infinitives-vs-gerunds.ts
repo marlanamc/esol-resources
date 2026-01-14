@@ -240,17 +240,17 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ (read) is my favorite hobby.",
+                            label: "___ (read) is my favorite hobby.",
                             expectedAnswer: "Reading",
                         },
                         {
                             type: "text",
-                            label: "2. ___ (drive) in the city is stressful.",
+                            label: "___ (drive) in the city is stressful.",
                             expectedAnswer: "Driving",
                         },
                         {
                             type: "text",
-                            label: "3. ___ (work) two jobs is exhausting.",
+                            label: "___ (work) two jobs is exhausting.",
                             expectedAnswer: "Working",
                         },
                         {
@@ -310,22 +310,22 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I want ___ (work) in healthcare.",
+                            label: "I want ___ (work) in healthcare.",
                             expectedAnswer: "to work",
                         },
                         {
                             type: "text",
-                            label: "2. She decided ___ (apply) for the promotion.",
+                            label: "She decided ___ (apply) for the promotion.",
                             expectedAnswer: "to apply",
                         },
                         {
                             type: "text",
-                            label: "3. We plan ___ (start) next month.",
+                            label: "We plan ___ (start) next month.",
                             expectedAnswer: "to start",
                         },
                         {
                             type: "text",
-                            label: "4. He refused ___ (work) weekends.",
+                            label: "He refused ___ (work) weekends.",
                             expectedAnswer: "to work",
                         },
                     ],
@@ -371,22 +371,22 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I enjoy ___ (teach) English.",
+                            label: "I enjoy ___ (teach) English.",
                             expectedAnswer: "teaching",
                         },
                         {
                             type: "text",
-                            label: "2. She finished ___ (write) her resume.",
+                            label: "She finished ___ (write) her resume.",
                             expectedAnswer: "writing",
                         },
                         {
                             type: "text",
-                            label: "3. We avoid ___ (eat) fast food.",
+                            label: "We avoid ___ (eat) fast food.",
                             expectedAnswer: "eating",
                         },
                         {
                             type: "text",
-                            label: "4. He quit ___ (work) there last year.",
+                            label: "He quit ___ (work) there last year.",
                             expectedAnswer: "working",
                         },
                     ],
@@ -431,17 +431,17 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I'm good at ___ (cook).",
+                            label: "I'm good at ___ (cook).",
                             expectedAnswer: "cooking",
                         },
                         {
                             type: "text",
-                            label: "2. Thank you for ___ (help) me.",
+                            label: "Thank you for ___ (help) me.",
                             expectedAnswer: "helping",
                         },
                         {
                             type: "text",
-                            label: "3. She's interested in ___ (learn) English.",
+                            label: "She's interested in ___ (learn) English.",
                             expectedAnswer: "learning",
                         },
                         {
@@ -545,17 +545,17 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. It's nice ___ (meet) you!",
+                            label: "It's nice ___ (meet) you!",
                             expectedAnswer: "to meet",
                         },
                         {
                             type: "text",
-                            label: "2. It's important ___ (be) on time for work.",
+                            label: "It's important ___ (be) on time for work.",
                             expectedAnswer: "to be",
                         },
                         {
                             type: "text",
-                            label: "3. It's hard ___ (find) a good apartment.",
+                            label: "It's hard ___ (find) a good apartment.",
                             expectedAnswer: "to find",
                         },
                         {
@@ -655,17 +655,17 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I asked him ___ (call) me tomorrow.",
+                            label: "I asked him ___ (call) me tomorrow.",
                             expectedAnswer: "to call",
                         },
                         {
                             type: "text",
-                            label: "2. She wants us ___ (help) with the party.",
+                            label: "She wants us ___ (help) with the party.",
                             expectedAnswer: "to help",
                         },
                         {
                             type: "text",
-                            label: "3. The teacher told me ___ (study) for the test.",
+                            label: "The teacher told me ___ (study) for the test.",
                             expectedAnswer: "to study",
                         },
                         {

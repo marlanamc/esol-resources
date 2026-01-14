@@ -188,27 +188,27 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. This is ___ (cheap) apartment I can afford.",
+                            label: "This is ___ (cheap) apartment I can afford.",
                             expectedAnswer: "the cheapest",
                         },
                         {
                             type: "text",
-                            label: "2. Monday is ___ (busy) day of the week at the restaurant.",
+                            label: "Monday is ___ (busy) day of the week at the restaurant.",
                             expectedAnswer: "the busiest",
                         },
                         {
                             type: "text",
-                            label: "3. She's ___ (experienced) worker on our team.",
+                            label: "She's ___ (experienced) worker on our team.",
                             expectedAnswer: "the most experienced",
                         },
                         {
                             type: "text",
-                            label: "4. That was ___ (good) interview I've ever had!",
+                            label: "That was ___ (good) interview I've ever had!",
                             expectedAnswer: "the best",
                         },
                         {
                             type: "text",
-                            label: "5. This job has ___ (good) benefits in the industry.",
+                            label: "This job has ___ (good) benefits in the industry.",
                             expectedAnswer: "the best",
                         },
                     ],
@@ -642,17 +642,17 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. Apartment A has 2 bedrooms, B has 3, C has 1. Apartment C has ___ bedrooms. (Use: the fewest OR the least)",
+                            label: "Apartment A has 2 bedrooms, B has 3, C has 1. Apartment C has ___ bedrooms. (Use: the fewest OR the least)",
                             expectedAnswer: "the fewest",
                         },
                         {
                             type: "text",
-                            label: "2. Job A offers $15/hr, B offers $18/hr, C offers $20/hr. Job C pays ___ money. (Use: the most)",
+                            label: "Job A offers $15/hr, B offers $18/hr, C offers $20/hr. Job C pays ___ money. (Use: the most)",
                             expectedAnswer: "the most",
                         },
                         {
                             type: "text",
-                            label: "3. Of all my coworkers, Maria has ___ experience (she's been here 10 years). (Use: the most)",
+                            label: "Of all my coworkers, Maria has ___ experience (she's been here 10 years). (Use: the most)",
                             expectedAnswer: "the most",
                         },
                     ],
