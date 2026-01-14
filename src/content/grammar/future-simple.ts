@@ -188,17 +188,17 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The museum ___ (open) a new exhibit about ancient Rome next month.",
+                            label: "The museum ___ (open) a new exhibit about ancient Rome next month.",
                             expectedAnswer: "will open",
                         },
                         {
                             type: "text",
-                            label: "2. My parents ___ (celebrate) their 30th anniversary in Hawaii.",
+                            label: "My parents ___ (celebrate) their 30th anniversary in Hawaii.",
                             expectedAnswer: "will celebrate",
                         },
                         {
                             type: "text",
-                            label: "3. The doctor ___ (see) you in about 15 minutes.",
+                            label: "The doctor ___ (see) you in about 15 minutes.",
                             expectedAnswer: "will see",
                         },
                     ],
@@ -250,17 +250,17 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The library ___ (not accept) donations of old magazines anymore.",
+                            label: "The library ___ (not accept) donations of old magazines anymore.",
                             expectedAnswer: "won't accept",
                         },
                         {
                             type: "text",
-                            label: "2. My brother ___ (not lend) me his car after what happened last time.",
+                            label: "My brother ___ (not lend) me his car after what happened last time.",
                             expectedAnswer: "won't lend",
                         },
                         {
                             type: "text",
-                            label: "3. The flowers ___ (not survive) if we don't water them soon.",
+                            label: "The flowers ___ (not survive) if we don't water them soon.",
                             expectedAnswer: "won't survive",
                         },
                     ],
@@ -313,17 +313,17 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ the store ___ (have) that toy in stock by Christmas?",
+                            label: "___ the store ___ (have) that toy in stock by Christmas?",
                             expectedAnswer: "Will the store have",
                         },
                         {
                             type: "text",
-                            label: "2. ___ your daughter ___ (study) abroad next course?",
+                            label: "___ your daughter ___ (study) abroad next course?",
                             expectedAnswer: "Will your daughter study",
                         },
                         {
                             type: "text",
-                            label: "3. ___ the neighbors ___ (adopt) another rescue dog?",
+                            label: "___ the neighbors ___ (adopt) another rescue dog?",
                             expectedAnswer: "Will the neighbors adopt",
                         },
                     ],
@@ -343,11 +343,11 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 5: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. She will going to the party tomorrow.", expectedAnswer: "She will go to the party tomorrow" },
-                        { type: "text", label: "2. They won't comes to the meeting.", expectedAnswer: "They won't come to the meeting" },
-                        { type: "text", label: "3. Will you helps me with this project?", expectedAnswer: "Will you help me with this project" },
-                        { type: "text", label: "4. I will to call you later.", expectedAnswer: "I will call you later" },
-                        { type: "text", label: "5. He don't will arrive until midnight.", expectedAnswer: "He won't arrive until midnight" },
+                        { type: "text", label: "She will going to the party tomorrow.", expectedAnswer: "She will go to the party tomorrow" },
+                        { type: "text", label: "They won't comes to the meeting.", expectedAnswer: "They won't come to the meeting" },
+                        { type: "text", label: "Will you helps me with this project?", expectedAnswer: "Will you help me with this project" },
+                        { type: "text", label: "I will to call you later.", expectedAnswer: "I will call you later" },
+                        { type: "text", label: "He don't will arrive until midnight.", expectedAnswer: "He won't arrive until midnight" },
                     ],
                 },
                 {
@@ -355,10 +355,10 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 6: Transformation Practice",
                     instructions: "Change each sentence as instructed. Keep the same meaning!",
                     items: [
-                        { type: "text", label: "1. Make negative: I will attend the conference next month.", expectedAnswer: "I won't attend the conference next month" },
-                        { type: "text", label: "2. Make a question: She will finish the report by Friday.", expectedAnswer: "Will she finish the report by Friday" },
-                        { type: "text", label: "3. Make affirmative: They won't travel this summer.", expectedAnswer: "They will travel this summer" },
-                        { type: "text", label: "4. Make negative: The weather will be sunny tomorrow.", expectedAnswer: "The weather won't be sunny tomorrow" },
+                        { type: "text", label: "Make negative: I will attend the conference next month.", expectedAnswer: "I won't attend the conference next month" },
+                        { type: "text", label: "Make a question: She will finish the report by Friday.", expectedAnswer: "Will she finish the report by Friday" },
+                        { type: "text", label: "Make affirmative: They won't travel this summer.", expectedAnswer: "They will travel this summer" },
+                        { type: "text", label: "Make negative: The weather will be sunny tomorrow.", expectedAnswer: "The weather won't be sunny tomorrow" },
                     ],
                 },
                 {
@@ -366,11 +366,11 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 7: Making Predictions",
                     instructions: "Complete these predictions about the future. Use Future Simple!",
                     items: [
-                        { type: "text", label: "1. I think it ___ (rain) later tonight.", expectedAnswer: "will rain" },
-                        { type: "text", label: "2. The team ___ (not win) without their star player.", expectedAnswer: "won't win" },
-                        { type: "text", label: "3. ___ the price of gas ___ (go) up next month?", expectedAnswer: "Will the price of gas go" },
-                        { type: "text", label: "4. My parents ___ (visit) us during the holidays.", expectedAnswer: "will visit" },
-                        { type: "text", label: "5. I'm sure you ___ (love) this restaurant!", expectedAnswer: "will love" },
+                        { type: "text", label: "I think it ___ (rain) later tonight.", expectedAnswer: "will rain" },
+                        { type: "text", label: "The team ___ (not win) without their star player.", expectedAnswer: "won't win" },
+                        { type: "text", label: "___ the price of gas ___ (go) up next month?", expectedAnswer: "Will the price of gas go" },
+                        { type: "text", label: "My parents ___ (visit) us during the holidays.", expectedAnswer: "will visit" },
+                        { type: "text", label: "I'm sure you ___ (love) this restaurant!", expectedAnswer: "will love" },
                     ],
                 },
             ],

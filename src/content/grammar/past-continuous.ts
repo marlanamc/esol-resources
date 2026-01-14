@@ -279,9 +279,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 1: Describe What Was Happening",
                     instructions: "Use was/were + verb-ing.",
                     items: [
-                        { type: "text", label: "1. The children ___ (build) a snowman when their mom called them inside.", expectedAnswer: "were building" },
-                        { type: "text", label: "2. My grandfather ___ (tell) stories about his childhood all evening.", expectedAnswer: "was telling" },
-                        { type: "text", label: "3. The hikers ___ (climb) the mountain when the fog rolled in.", expectedAnswer: "were climbing" },
+                        { type: "text", label: "The children ___ (build) a snowman when their mom called them inside.", expectedAnswer: "were building" },
+                        { type: "text", label: "My grandfather ___ (tell) stories about his childhood all evening.", expectedAnswer: "was telling" },
+                        { type: "text", label: "The hikers ___ (climb) the mountain when the fog rolled in.", expectedAnswer: "were climbing" },
                     ],
                 },
             ],
@@ -308,8 +308,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What Wasn't Happening",
                     instructions: "Use wasn't/weren't + verb-ing.",
                     items: [
-                        { type: "text", label: "1. The tourists ___ (not pay) attention to the tour guide's instructions.", expectedAnswer: "weren't paying" },
-                        { type: "text", label: "2. My daughter ___ (not study) for her exam—she was texting her friends.", expectedAnswer: "wasn't studying" },
+                        { type: "text", label: "The tourists ___ (not pay) attention to the tour guide's instructions.", expectedAnswer: "weren't paying" },
+                        { type: "text", label: "My daughter ___ (not study) for her exam—she was texting her friends.", expectedAnswer: "wasn't studying" },
                     ],
                 },
             ],

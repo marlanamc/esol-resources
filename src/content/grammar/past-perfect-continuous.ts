@@ -318,27 +318,27 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (wait) for 30 minutes when the bus finally came.",
+                            label: "I ___ (wait) for 30 minutes when the bus finally came.",
                             expectedAnswer: "had been waiting",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (work) at the restaurant for two years before she quit.",
+                            label: "She ___ (work) at the restaurant for two years before she quit.",
                             expectedAnswer: "had been working",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (live) in that house for a decade when they sold it.",
+                            label: "They ___ (live) in that house for a decade when they sold it.",
                             expectedAnswer: "had been living",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (study) all night, so he was exhausted.",
+                            label: "He ___ (study) all night, so he was exhausted.",
                             expectedAnswer: "had been studying",
                         },
                         {
                             type: "text",
-                            label: "5. We ___ (drive) for hours when we finally saw the ocean.",
+                            label: "We ___ (drive) for hours when we finally saw the ocean.",
                             expectedAnswer: "had been driving",
                         },
                     ],
@@ -388,17 +388,17 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not sleep) well before the big exam.",
+                            label: "I ___ (not sleep) well before the big exam.",
                             expectedAnswer: "hadn't been sleeping",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not work) there long when she got the promotion.",
+                            label: "She ___ (not work) there long when she got the promotion.",
                             expectedAnswer: "hadn't been working",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not wait) long when the manager came out.",
+                            label: "They ___ (not wait) long when the manager came out.",
                             expectedAnswer: "hadn't been waiting",
                         },
                     ],
@@ -449,17 +449,17 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. How long ___ you ___ (wait) before the train arrived?",
+                            label: "How long ___ you ___ (wait) before the train arrived?",
                             expectedAnswer: "had you been waiting",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (work) there long before she got promoted?",
+                            label: "___ she ___ (work) there long before she got promoted?",
                             expectedAnswer: "Had she been working",
                         },
                         {
                             type: "text",
-                            label: "3. What ___ they ___ (do) before the accident happened?",
+                            label: "What ___ they ___ (do) before the accident happened?",
                             expectedAnswer: "had they been doing",
                         },
                     ],
@@ -479,9 +479,9 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 5: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. I had been wait for an hour.", expectedAnswer: "I had been waiting for an hour" },
-                        { type: "text", label: "2. She had being working all day.", expectedAnswer: "She had been working all day" },
-                        { type: "text", label: "3. They has been living there for years.", expectedAnswer: "They had been living there for years" },
+                        { type: "text", label: "I had been wait for an hour.", expectedAnswer: "I had been waiting for an hour" },
+                        { type: "text", label: "She had being working all day.", expectedAnswer: "She had been working all day" },
+                        { type: "text", label: "They has been living there for years.", expectedAnswer: "They had been living there for years" },
                     ],
                 },
             ],

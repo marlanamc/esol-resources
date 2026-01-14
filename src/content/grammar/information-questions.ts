@@ -423,22 +423,22 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. (rent / when / is / due / the) ?",
+                            label: "(rent / when / is / due / the) ?",
                             expectedAnswer: "When is the rent due?",
                         },
                         {
                             type: "text",
-                            label: "2. (landlord / does / where / live / the) ?",
+                            label: "(landlord / does / where / live / the) ?",
                             expectedAnswer: "Where does the landlord live?",
                         },
                         {
                             type: "text",
-                            label: "3. (utilities / what / included / are) ?",
+                            label: "(utilities / what / included / are) ?",
                             expectedAnswer: "What utilities are included?",
                         },
                         {
                             type: "text",
-                            label: "4. (I / how / pay / can / rent) ?",
+                            label: "(I / how / pay / can / rent) ?",
                             expectedAnswer: "How can I pay rent?",
                         },
                     ],
@@ -586,27 +586,27 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ do I contact if the heat doesn't work?",
+                            label: "___ do I contact if the heat doesn't work?",
                             expectedAnswer: "Who",
                         },
                         {
                             type: "text",
-                            label: "2. ___ is garbage collection day?",
+                            label: "___ is garbage collection day?",
                             expectedAnswer: "When",
                         },
                         {
                             type: "text",
-                            label: "3. ___ can I park my car?",
+                            label: "___ can I park my car?",
                             expectedAnswer: "Where",
                         },
                         {
                             type: "text",
-                            label: "4. ___ notice do I need to give before moving out?",
+                            label: "___ notice do I need to give before moving out?",
                             expectedAnswer: "How much",
                         },
                         {
                             type: "text",
-                            label: "5. ___ is the rent going up next year?",
+                            label: "___ is the rent going up next year?",
                             expectedAnswer: "Why",
                         },
                     ],

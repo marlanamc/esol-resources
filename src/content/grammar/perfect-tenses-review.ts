@@ -712,32 +712,32 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (work) here for 10 years. (still working now)",
+                            label: "I ___ (work) here for 10 years. (still working now)",
                             expectedAnswer: "have worked",
                         },
                         {
                             type: "text",
-                            label: "2. When I arrived, they ___ (leave) already.",
+                            label: "When I arrived, they ___ (leave) already.",
                             expectedAnswer: "had left",
                         },
                         {
                             type: "text",
-                            label: "3. By next month, she ___ (finish) her training.",
+                            label: "By next month, she ___ (finish) her training.",
                             expectedAnswer: "will have finished",
                         },
                         {
                             type: "text",
-                            label: "4. I was tired because I ___ (not sleep) well.",
+                            label: "I was tired because I ___ (not sleep) well.",
                             expectedAnswer: "hadn't slept",
                         },
                         {
                             type: "text",
-                            label: "5. ___ you ever ___ (try) Korean food?",
+                            label: "___ you ever ___ (try) Korean food?",
                             expectedAnswer: "Have you ever tried",
                         },
                         {
                             type: "text",
-                            label: "6. By the time you arrive, I ___ (wait) for 2 hours.",
+                            label: "By the time you arrive, I ___ (wait) for 2 hours.",
                             expectedAnswer: "will have been waiting",
                         },
                     ],
@@ -749,17 +749,17 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I have visited Paris last year.",
+                            label: "I have visited Paris last year.",
                             expectedAnswer: "I visited Paris last year",
                         },
                         {
                             type: "text",
-                            label: "2. I had eaten breakfast this morning.",
+                            label: "I had eaten breakfast this morning.",
                             expectedAnswer: "I ate breakfast this morning",
                         },
                         {
                             type: "text",
-                            label: "3. She has been here since 5 years.",
+                            label: "She has been here since 5 years.",
                             expectedAnswer: "She has been here for 5 years",
                         },
                     ],

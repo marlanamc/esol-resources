@@ -311,27 +311,27 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. By the time you arrive, I ___ (cook) dinner.",
+                            label: "By the time you arrive, I ___ (cook) dinner.",
                             expectedAnswer: "will have cooked",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (finish) her training by next month.",
+                            label: "She ___ (finish) her training by next month.",
                             expectedAnswer: "will have finished",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (leave) by the time we get there.",
+                            label: "They ___ (leave) by the time we get there.",
                             expectedAnswer: "will have left",
                         },
                         {
                             type: "text",
-                            label: "4. By December, he ___ (work) here for 5 years.",
+                            label: "By December, he ___ (work) here for 5 years.",
                             expectedAnswer: "will have worked",
                         },
                         {
                             type: "text",
-                            label: "5. The factory ___ (produce) 1000 units by Friday.",
+                            label: "The factory ___ (produce) 1000 units by Friday.",
                             expectedAnswer: "will have produced",
                         },
                     ],
@@ -389,17 +389,17 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I ___ (not finish) the order by closing time.",
+                            label: "I ___ (not finish) the order by closing time.",
                             expectedAnswer: "won't have finished",
                         },
                         {
                             type: "text",
-                            label: "2. She ___ (not arrive) before the bus leaves.",
+                            label: "She ___ (not arrive) before the bus leaves.",
                             expectedAnswer: "won't have arrived",
                         },
                         {
                             type: "text",
-                            label: "3. They ___ (not save) enough money by summer.",
+                            label: "They ___ (not save) enough money by summer.",
                             expectedAnswer: "won't have saved",
                         },
                     ],
@@ -461,17 +461,17 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ you ___ (finish) by the time I get back?",
+                            label: "___ you ___ (finish) by the time I get back?",
                             expectedAnswer: "Will you have finished",
                         },
                         {
                             type: "text",
-                            label: "2. ___ she ___ (complete) the order by noon?",
+                            label: "___ she ___ (complete) the order by noon?",
                             expectedAnswer: "Will she have completed",
                         },
                         {
                             type: "text",
-                            label: "3. ___ they ___ (arrive) before the store closes?",
+                            label: "___ they ___ (arrive) before the store closes?",
                             expectedAnswer: "Will they have arrived",
                         },
                     ],
@@ -491,9 +491,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     title: "Exercise 5: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. I will have finish the work by tomorrow.", expectedAnswer: "I will have finished the work by tomorrow" },
-                        { type: "text", label: "2. She will has completed the training by Friday.", expectedAnswer: "She will have completed the training by Friday" },
-                        { type: "text", label: "3. They won't have arrive by 6 PM.", expectedAnswer: "They won't have arrived by 6 PM" },
+                        { type: "text", label: "I will have finish the work by tomorrow.", expectedAnswer: "I will have finished the work by tomorrow" },
+                        { type: "text", label: "She will has completed the training by Friday.", expectedAnswer: "She will have completed the training by Friday" },
+                        { type: "text", label: "They won't have arrive by 6 PM.", expectedAnswer: "They won't have arrived by 6 PM" },
                     ],
                 },
             ],
@@ -719,27 +719,27 @@ export const futurePerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. By the end of this year, I ___ (save) $500 for holiday gifts.",
+                            label: "By the end of this year, I ___ (save) $500 for holiday gifts.",
                             expectedAnswer: "will have saved",
                         },
                         {
                             type: "text",
-                            label: "2. Before my next payday, I ___ (spend) my grocery budget carefully.",
+                            label: "Before my next payday, I ___ (spend) my grocery budget carefully.",
                             expectedAnswer: "will have spent",
                         },
                         {
                             type: "text",
-                            label: "3. By this time tomorrow, I ___ (compare) all the insurance options.",
+                            label: "By this time tomorrow, I ___ (compare) all the insurance options.",
                             expectedAnswer: "will have compared",
                         },
                         {
                             type: "text",
-                            label: "4. Before the sale ends, I ___ (decide) whether to buy the new TV.",
+                            label: "Before the sale ends, I ___ (decide) whether to buy the new TV.",
                             expectedAnswer: "will have decided",
                         },
                         {
                             type: "text",
-                            label: "5. By next Monday, I ___ (pay) all the monthly bills.",
+                            label: "By next Monday, I ___ (pay) all the monthly bills.",
                             expectedAnswer: "will have paid",
                         },
                     ],

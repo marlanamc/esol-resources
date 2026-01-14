@@ -354,27 +354,27 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The bakery down the street ___ (supply) fresh bread to local restaurants.",
+                            label: "The bakery down the street ___ (supply) fresh bread to local restaurants.",
                             expectedAnswer: "supplies",
                         },
                         {
                             type: "text",
-                            label: "2. My neighbor's cat ___ (scratch) anyone who tries to pet it.",
+                            label: "My neighbor's cat ___ (scratch) anyone who tries to pet it.",
                             expectedAnswer: "scratches",
                         },
                         {
                             type: "text",
-                            label: "3. The museum ___ (display) ancient artifacts from Egypt.",
+                            label: "The museum ___ (display) ancient artifacts from Egypt.",
                             expectedAnswer: "displays",
                         },
                         {
                             type: "text",
-                            label: "4. He ___ (carry) his grandmother's photo everywhere he goes.",
+                            label: "He ___ (carry) his grandmother's photo everywhere he goes.",
                             expectedAnswer: "carries",
                         },
                         {
                             type: "text",
-                            label: "5. This brand of chocolate ___ (have) the best reputation in Europe.",
+                            label: "This brand of chocolate ___ (have) the best reputation in Europe.",
                             expectedAnswer: "has",
                         },
                     ],
@@ -387,22 +387,22 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. We ___ (recycle) all our glass bottles and cardboard boxes.",
+                            label: "We ___ (recycle) all our glass bottles and cardboard boxes.",
                             expectedAnswer: "recycle",
                         },
                         {
                             type: "text",
-                            label: "2. The library ___ (lend) up to 10 books per person at a time.",
+                            label: "The library ___ (lend) up to 10 books per person at a time.",
                             expectedAnswer: "lends",
                         },
                         {
                             type: "text",
-                            label: "3. My kids ___ (play) soccer at the park every Saturday morning.",
+                            label: "My kids ___ (play) soccer at the park every Saturday morning.",
                             expectedAnswer: "play",
                         },
                         {
                             type: "text",
-                            label: "4. She ___ (volunteer) at the animal shelter twice a month.",
+                            label: "She ___ (volunteer) at the animal shelter twice a month.",
                             expectedAnswer: "volunteers",
                         },
                     ],
@@ -473,27 +473,27 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. My brother ___ (eat) vegetables unless I hide them in the sauce.",
+                            label: "My brother ___ (eat) vegetables unless I hide them in the sauce.",
                             expectedAnswer: "doesn't eat",
                         },
                         {
                             type: "text",
-                            label: "2. We ___ (travel) internationally because of our dog's health issues.",
+                            label: "We ___ (travel) internationally because of our dog's health issues.",
                             expectedAnswer: "don't travel",
                         },
                         {
                             type: "text",
-                            label: "3. The local pool ___ (open) during winter months.",
+                            label: "The local pool ___ (open) during winter months.",
                             expectedAnswer: "doesn't open",
                         },
                         {
                             type: "text",
-                            label: "4. I ___ (remember) names very well, but I never forget a face.",
+                            label: "I ___ (remember) names very well, but I never forget a face.",
                             expectedAnswer: "don't remember",
                         },
                         {
                             type: "text",
-                            label: "5. They ___ (allow) photography inside the temple.",
+                            label: "They ___ (allow) photography inside the temple.",
                             expectedAnswer: "don't allow",
                         },
                     ],
@@ -563,27 +563,27 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. ___ your parents ___ (celebrate) their anniversary in June?",
+                            label: "___ your parents ___ (celebrate) their anniversary in June?",
                             expectedAnswer: "Do your parents celebrate",
                         },
                         {
                             type: "text",
-                            label: "2. ___ this train ___ (stop) at Central Station?",
+                            label: "___ this train ___ (stop) at Central Station?",
                             expectedAnswer: "Does this train stop",
                         },
                         {
                             type: "text",
-                            label: "3. ___ you ___ (belong) to any sports clubs or fitness centers?",
+                            label: "___ you ___ (belong) to any sports clubs or fitness centers?",
                             expectedAnswer: "Do you belong",
                         },
                         {
                             type: "text",
-                            label: "4. ___ the restaurant ___ (serve) vegetarian options?",
+                            label: "___ the restaurant ___ (serve) vegetarian options?",
                             expectedAnswer: "Does the restaurant serve",
                         },
                         {
                             type: "text",
-                            label: "5. ___ it ___ (rain) a lot during springtime in your country?",
+                            label: "___ it ___ (rain) a lot during springtime in your country?",
                             expectedAnswer: "Does it rain",
                         },
                     ],
@@ -645,17 +645,17 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. My grandmother calls me on Sunday evenings. (always) → My grandmother ___",
+                            label: "My grandmother calls me on Sunday evenings. (always) → My grandmother ___",
                             expectedAnswer: "always calls me on Sunday evenings",
                         },
                         {
                             type: "text",
-                            label: "2. The farmers market sets up in the town square. (twice a week) → The farmers market ___",
+                            label: "The farmers market sets up in the town square. (twice a week) → The farmers market ___",
                             expectedAnswer: "sets up in the town square twice a week",
                         },
                         {
                             type: "text",
-                            label: "3. We go to the park when the weather is nice. (often) → We ___",
+                            label: "We go to the park when the weather is nice. (often) → We ___",
                             expectedAnswer: "often go to the park when the weather is nice",
                         },
                     ],
@@ -681,27 +681,27 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. The corner pharmacy ___ (deliver) medications to elderly patients. (positive)",
+                            label: "The corner pharmacy ___ (deliver) medications to elderly patients. (positive)",
                             expectedAnswer: "delivers",
                         },
                         {
                             type: "text",
-                            label: "2. My son ___ (not eat) anything green unless it's candy. (negative)",
+                            label: "My son ___ (not eat) anything green unless it's candy. (negative)",
                             expectedAnswer: "doesn't eat",
                         },
                         {
                             type: "text",
-                            label: "3. ___ the hotel ___ (include) breakfast in the room rate? (question)",
+                            label: "___ the hotel ___ (include) breakfast in the room rate? (question)",
                             expectedAnswer: "Does the hotel include",
                         },
                         {
                             type: "text",
-                            label: "4. We ___ (not celebrate) Halloween because of our religious beliefs. (negative)",
+                            label: "We ___ (not celebrate) Halloween because of our religious beliefs. (negative)",
                             expectedAnswer: "don't celebrate",
                         },
                         {
                             type: "text",
-                            label: "5. ___ your neighbor ___ (take) care of your plants when you travel? (question)",
+                            label: "___ your neighbor ___ (take) care of your plants when you travel? (question)",
                             expectedAnswer: "Does your neighbor take",
                         },
                     ],
@@ -721,11 +721,11 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 7: Error Correction",
                     instructions: "Each sentence has ONE mistake. Find it and write the corrected version.",
                     items: [
-                        { type: "text", label: "1. She go to the gym every Monday.", expectedAnswer: "She goes to the gym every Monday" },
-                        { type: "text", label: "2. They doesn't live in the city.", expectedAnswer: "They don't live in the city" },
-                        { type: "text", label: "3. Do he work from home?", expectedAnswer: "Does he work from home" },
-                        { type: "text", label: "4. My brother study engineering at university.", expectedAnswer: "My brother studies engineering at university" },
-                        { type: "text", label: "5. We doesn't have time for breakfast.", expectedAnswer: "We don't have time for breakfast" },
+                        { type: "text", label: "She go to the gym every Monday.", expectedAnswer: "She goes to the gym every Monday" },
+                        { type: "text", label: "They doesn't live in the city.", expectedAnswer: "They don't live in the city" },
+                        { type: "text", label: "Do he work from home?", expectedAnswer: "Does he work from home" },
+                        { type: "text", label: "My brother study engineering at university.", expectedAnswer: "My brother studies engineering at university" },
+                        { type: "text", label: "We doesn't have time for breakfast.", expectedAnswer: "We don't have time for breakfast" },
                     ],
                 },
                 {
@@ -733,10 +733,10 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 8: Transformation Practice",
                     instructions: "Change each sentence as instructed. Keep the same meaning!",
                     items: [
-                        { type: "text", label: "1. Make negative: The store opens at 9 AM.", expectedAnswer: "The store doesn't open at 9 AM" },
-                        { type: "text", label: "2. Make a question: Your sister teaches math.", expectedAnswer: "Does your sister teach math" },
-                        { type: "text", label: "3. Make affirmative: They don't speak French.", expectedAnswer: "They speak French" },
-                        { type: "text", label: "4. Make negative: I drink coffee every morning.", expectedAnswer: "I don't drink coffee every morning" },
+                        { type: "text", label: "Make negative: The store opens at 9 AM.", expectedAnswer: "The store doesn't open at 9 AM" },
+                        { type: "text", label: "Make a question: Your sister teaches math.", expectedAnswer: "Does your sister teach math" },
+                        { type: "text", label: "Make affirmative: They don't speak French.", expectedAnswer: "They speak French" },
+                        { type: "text", label: "Make negative: I drink coffee every morning.", expectedAnswer: "I don't drink coffee every morning" },
                     ],
                 },
                 {
@@ -744,11 +744,11 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     title: "Exercise 9: Real-Life Context",
                     instructions: "Complete this paragraph about Maria's daily routine. Use Present Simple!",
                     items: [
-                        { type: "text", label: "1. Maria ___ (work) as a nurse at the hospital.", expectedAnswer: "works" },
-                        { type: "text", label: "2. She ___ (start) her shift at 7 AM every day.", expectedAnswer: "starts" },
-                        { type: "text", label: "3. During lunch, she usually ___ (eat) in the cafeteria.", expectedAnswer: "eats" },
-                        { type: "text", label: "4. She ___ (not drive) to work—she takes the bus.", expectedAnswer: "doesn't drive" },
-                        { type: "text", label: "5. ___ Maria ___ (enjoy) her job? Yes, very much!", expectedAnswer: "Does Maria enjoy" },
+                        { type: "text", label: "Maria ___ (work) as a nurse at the hospital.", expectedAnswer: "works" },
+                        { type: "text", label: "She ___ (start) her shift at 7 AM every day.", expectedAnswer: "starts" },
+                        { type: "text", label: "During lunch, she usually ___ (eat) in the cafeteria.", expectedAnswer: "eats" },
+                        { type: "text", label: "She ___ (not drive) to work—she takes the bus.", expectedAnswer: "doesn't drive" },
+                        { type: "text", label: "___ Maria ___ (enjoy) her job? Yes, very much!", expectedAnswer: "Does Maria enjoy" },
                     ],
                 },
             ],

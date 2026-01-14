@@ -212,22 +212,22 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I'm interested in ___ (work) at your company.",
+                            label: "I'm interested in ___ (work) at your company.",
                             expectedAnswer: "working",
                         },
                         {
                             type: "text",
-                            label: "2. She's good at ___ (manage) teams.",
+                            label: "She's good at ___ (manage) teams.",
                             expectedAnswer: "managing",
                         },
                         {
                             type: "text",
-                            label: "3. We're excited about ___ (start) the new project.",
+                            label: "We're excited about ___ (start) the new project.",
                             expectedAnswer: "starting",
                         },
                         {
                             type: "text",
-                            label: "4. He's tired of ___ (commute) two hours each day.",
+                            label: "He's tired of ___ (commute) two hours each day.",
                             expectedAnswer: "commuting",
                         },
                     ],
@@ -279,22 +279,22 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. I get to work ___ (take) the train.",
+                            label: "I get to work ___ (take) the train.",
                             expectedAnswer: "by taking",
                         },
                         {
                             type: "text",
-                            label: "2. You can improve your skills ___ (practice) regularly.",
+                            label: "You can improve your skills ___ (practice) regularly.",
                             expectedAnswer: "by practicing",
                         },
                         {
                             type: "text",
-                            label: "3. She learned English ___ (watch) movies.",
+                            label: "She learned English ___ (watch) movies.",
                             expectedAnswer: "by watching",
                         },
                         {
                             type: "text",
-                            label: "4. We stay healthy ___ (eat) well and ___ (exercise).",
+                            label: "We stay healthy ___ (eat) well and ___ (exercise).",
                             expectedAnswer: "by eating",
                         },
                     ],
@@ -340,17 +340,17 @@ export const gerundsPrepositionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "1. Thank you for ___ (consider) me for this position.",
+                            label: "Thank you for ___ (consider) me for this position.",
                             expectedAnswer: "considering",
                         },
                         {
                             type: "text",
-                            label: "2. I appreciate you ___ (take) the time to train me.",
+                            label: "I appreciate you ___ (take) the time to train me.",
                             expectedAnswer: "taking",
                         },
                         {
                             type: "text",
-                            label: "3. I apologize for ___ (miss) the meeting.",
+                            label: "I apologize for ___ (miss) the meeting.",
                             expectedAnswer: "missing",
                         },
                     ],
