@@ -3,6 +3,7 @@
 import type { ExerciseItem } from "@/types/activity";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface RadioExerciseProps {
     item: Extract<ExerciseItem, { type: "radio" }>;
@@ -34,7 +35,7 @@ export function RadioExercise({
             <div className="mb-3">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
-                    {item.label}
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
                 </span>
             </div>
             <div className="space-y-2">

@@ -74,100 +74,119 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **5** Listen to landlord voicemail; write return message
 - **6** Telephone game (Speaking activity)
 
-### Week 19: Tue 1/27 - Comprehensive Tense Review + Type 0 Conditionals
+### Week 19: Tue 1/27 - Simple & Continuous Tenses Review
 
 **Reminder:** Verb quiz due today!
 
-- **1** Banking & Shopping Speaking Warm-Up (Type 0 conditionals in banking context)
-- **2** Comprehensive Tense Review (Grammar: Review all simple, continuous, and present perfect tenses students have learned so far)
-  - **Review:** Present Simple, Past Simple, Future Simple
-  - **Review:** Present Continuous, Past Continuous, Future Continuous
-  - **Review:** Present Perfect
-  - **NEW:** Type 0 Conditionals - `If + present simple, present simple` (general truths, facts, habits)
-  - Key phrases: "If you pay late, you get a fee" / "If I don't have money, I use my credit card"
-- **3** Tell banking stories using all tenses + Type 0 conditionals (Speaking practice: 5 sentences minimum)
-- **4** Read banking problem scenarios; identify which tense to use when; write 3 Type 0 conditionals about money
-- **5** Conditional chain game (Speaking: "If I spend too much, I..." → next student continues)
-- **6** Exit ticket + Homework: Practice all tenses + write 5 Type 0 conditionals about your life
+- **1** Past Continuous vs Past Simple Speaking Warm-Up
+- **2** Simple & Continuous Tenses Review (Grammar: Review and compare all simple and continuous tenses)
+  - **Review:** Present Simple vs Present Continuous (habits vs now)
+  - **Review:** Past Simple vs Past Continuous (finished actions vs background/interrupted actions)
+  - **Review:** Future Simple vs Future Continuous (predictions vs ongoing future actions)
+  - Key focus: When to use simple vs continuous; when/while; interruptions
+- **3** Tell stories using simple and continuous tenses correctly (Speaking practice: past journey, present habits, future plans)
+- **4** Read mixed-tense scenarios; identify which tense to use when and why
+- **5** Tense race game (Speaking: teams identify and correct tense errors)
+- **6** Exit ticket + Homework: Review "Past Simple" and "Past Continuous" guides on Class Companion
 
-### Week 19: Thu 1/29 - Tense Review Practice + Type 1 Conditionals
+### Week 19: Thu 1/29 - Simple & Continuous Tenses Practice
 
-- **1** Housing Conditionals Speaking Warm-Up (Type 1 conditionals in housing context)
-- **2** Tense Review Practice + Type 1 Conditionals (Grammar: Review + new structure)
-  - **Review:** Quick fluency practice with all 7 tenses (simple, continuous, present perfect)
+- **1** Past Continuous vs Past Simple Speaking Warm-Up (practice)
+- **2** Simple & Continuous Tenses Fluency (Grammar: Storytelling + error correction)
+  - **Practice:** Past simple vs past continuous in storytelling
+  - **Practice:** Using when/while correctly
+  - **Practice:** Describing interrupted actions and background scenes
+  - Common errors: Review class mistakes and fix them together
+- **3** Storytelling practice using simple and continuous tenses (Speaking practice: Tell what happened and what was happening)
+- **4** Word stress in time clauses (Phonics: WHEN I arrived, she was COOKing)
+- **5** Write a short story using past simple and past continuous (5-7 sentences)
+- **6** Error correction game (Speaking: fix the tense mistakes)
+
+### Week 20: Tue 2/3 - Zero & First Conditionals Introduction
+
+**Reminder:** Verb quiz due today!
+
+- **1** Housing Problems & Solutions Speaking Warm-Up
+- **2** Zero & First Conditionals (Grammar: Introduction to conditionals)
+  - **NEW:** Type 0 Conditionals - `If + present simple, present simple` (general truths, facts, habits, rules)
+  - Key phrases: "If you pay late, you get a fee" / "If the pipe leaks, call maintenance"
   - **NEW:** Type 1 Conditionals - `If + present simple, will + verb` (future predictions, plans, promises)
-  - Key phrases: "If I save $500, I will move to a bigger apartment" / "If the rent increases, I will find a roommate"
-  - Compare: Type 0 (facts) vs Type 1 (future possibilities)
-- **3** Housing planning conversations using Type 1 conditionals (Speaking practice: What will you do if rent goes up? If you get a raise?)
-- **4** Word stress in conditional sentences (Phonics: IF you SAVE, you will MOVE)
-- **5** Write 5 Type 1 conditionals about housing/money goals
-- **6** "What will you do?" game (Speaking: rapid-fire conditional responses)
+  - Key phrases: "If I save money, I will move" / "If the rent increases, I will find a roommate"
+  - Compare: Type 0 (facts/rules) vs Type 1 (future possibilities)
+- **3** Housing problem-solving using conditionals (Speaking practice: Type 0 for problems, Type 1 for solutions)
+- **4** Read housing scenarios; write 3 Type 0 conditionals and 3 Type 1 conditionals
+- **5** Conditional chain game (Speaking: "If I..." → next student continues)
+- **6** Exit ticket + Homework: Review "Zero & First Conditionals" guide on Class Companion
 
-### Week 20: Tue 2/3 - Conditional Practice + Tense Fluency
+### Week 20: Thu 2/5 - Zero & First Conditionals Practice
 
-**Reminder:** Verb quiz due today!
+- **1** Money Goals & Housing Plans Speaking Warm-Up
+- **2** Zero & First Conditionals Fluency (Grammar: Practice and error correction)
+  - **Practice:** When to use Type 0 vs Type 1
+  - **Practice:** Real-life housing and money scenarios
+  - Common errors: fixing conditional mistakes (if + will; when vs if)
+- **3** Complex conditional conversations (Speaking practice: Discuss housing plans, money goals, future possibilities)
+- **4** Word stress in conditional sentences (Phonics: IF you SAVE, you WILL move)
+- **5** Write a housing goal paragraph using both Type 0 and Type 1 conditionals (at least 4 conditional sentences)
+- **6** Conditional auction game (Speaking: identify + explain which conditional is correct and why)
 
-- **1** Housing Problems & Solutions Speaking Warm-Up (Mix Type 0 and Type 1 conditionals)
-- **2** Type 0 vs Type 1 Conditionals Practice (Grammar: When to use which)
-  - Type 0: General truths, habits, rules ("If you don't pay rent, you get evicted")
-  - Type 1: Future plans, predictions ("If I save money, I will buy a car")
-  - Practice: Housing problems → Type 0 facts + Type 1 solutions
-- **3** Housing problem-solving using conditionals (Speaking practice: State the problem with Type 0, offer solution with Type 1)
-- **4** Read a model housing complaint letter; identify all tenses used; add 2 conditional sentences
-- **5** Conditional relay race (Speaking game: teams make the most correct conditionals in 5 minutes)
-
-### Week 20: Thu 2/5 - Tense & Conditional Fluency
-
-- **1** Money Goals & Housing Plans Speaking Warm-Up (All tenses + both conditionals)
-- **2** All Tenses + Conditionals Review (Grammar: Error correction and fluency practice)
-  - Review: When to use each of the 7 tenses
-  - Review: Type 0 vs Type 1 conditionals
-  - Common errors: fixing tense mixing and conditional mistakes
-- **3** Complex stories using multiple tenses + conditionals (Speaking practice: Tell a housing journey from past → present → future plans)
-- **4** /s/ vs /z/ + -s endings (Phonics: "If she pays..." "If he saves...")
-- **5** Write a housing goal paragraph using at least 4 different tenses + 2 conditionals
-- **6** Tense auction game (Speaking: identify + explain which tense/conditional is correct and why)
-
-### Week 21: Tue 2/10 - Past Perfect
+### Week 21: Tue 2/10 - Future Perfect (NEW)
 
 **Reminder:** Verb quiz due today!
 
 - **1** Budgeting, Bills, Credit & Debt Speaking Warm-Up
-- **2** Past perfect steps 1-4 (Grammar: housing timeline - what happened before what)
-- **3** Tell complex housing stories with timeline (Speaking practice)
-- **4** Read a "repair timeline"; write 4 past perfect sentences
-- **5** Timeline race (Speaking game: past perfect vs past simple)
-
-### Week 21: Thu 2/12 - Future Perfect (NEW)
-
-- **1** Gerunds & Infinitives Practice Speaking Warm-Up
-- **2** Future Perfect - NEW 30-min lesson (Grammar: `will have + past participle` to talk about what will be completed by a future time)
-  - Key phrases: "By June, I will have saved $500" / "By next month, I will have paid off my credit card"
-  - Compare: Past Perfect (what happened before) vs Future Perfect (what will be done by a future time)
+- **2** Future Perfect - NEW 30-40 min lesson (Grammar: `will have + past participle` to talk about what will be completed by a future time)
+  - Use budgeting/bills context: "By June, I will have saved $500" / "By next month, I will have paid off my credit card"
+  - Key phrases: By [future time], I will have [completed action]
+  - Practice: Set 3 financial goals using Future Perfect
 - **3** Housing and money goal timelines using future perfect (Speaking practice: By [date], I will have...)
 - **4** Irregular past participles review (Phonics: will have broken, paid, gone, been)
-- **5** Write 4 Future Perfect sentences about your goals (By next month, I will have...)
-- **6** "Future timeline" game (Speaking: goal chains with future perfect)
+- **5** Write 4 Future Perfect sentences about your goals
+- **6** Homework: Complete "Future Perfect" guide on Class Companion
+
+### Week 21: Thu 2/12 - Future Perfect Practice + Past Perfect Introduction
+
+- **1** Future Goals & Money Milestones Speaking Warm-Up
+- **2** Future Perfect Practice & Error Correction (Grammar: 20 min fluency practice)
+  - Review: Future Perfect form and usage
+  - Speaking drill: "By next year, I will have..."
+  - Error correction: Common mistakes
+- **3** Past Perfect Introduction (Grammar: 30 min - steps 1-2 only)
+  - `had + past participle` to talk about what happened BEFORE another past event
+  - Key phrases: "Before I moved here, I had worked..." / "By the time I arrived, they had left"
+  - Compare to simple past: sequence of events
+- **4** Timeline practice (Speaking: Tell a story with both events)
+- **5** Homework: Review "Future Perfect" guide + start "Past Perfect" guide (steps 1-2)
 
 ### NO CLASS: Feb 16–20 (Vacation Week)
 
-### Week 22: Tue 2/24 - Modals
+### Week 22: Tue 2/24 - Past Perfect Completion
 
 **Reminder:** Verb quiz due today!
 
 - **1** Resume & Cover Letter Basics Speaking Warm-Up
-- **2** Modals for obligation/permission + polite requests (Grammar: must/have to; can/may/could)
-- **3** Read a resume; write 6 "I can..." / "I have to..." sentences for work
-- **4** "Polite request" role-play cards (Speaking game)
+- **2** Future Perfect Quick Review (10 min warm-up drill)
+  - Quick review: "By next month, I will have..."
+  - Check for retention after vacation
+- **3** Past Perfect Completion (Grammar: steps 3-4 - 30 min)
+  - Complete lesson: housing timeline - what happened before what
+  - Practice: Tell complex housing stories with timeline
+- **4** Read a "repair timeline"; write 4 past perfect sentences
+- **5** Timeline race (Speaking game: past perfect vs past simple)
+- **6** Homework: Complete "Past Perfect" guide on Class Companion
 
-### Week 22: Thu 2/26 - Modals Review + Unit 5 Quiz
+### Week 22: Thu 2/26 - Past & Future Perfect Review + Unit 5 Quiz
 
 - **1** Workplace Conversations Speaking Warm-Up
-- **2** Unit 5 quiz (Housing) - 30 min
-- **3** Modals quick check + speaking drill (Grammar review: 2 polite versions)
-- **4** Intonation for polite requests (Phonics: Could you...? Would you mind...?)
-- **5** Cover letter paragraph frame
-- **6** "Modal switch" game (make it stronger/weaker)
+- **2** Past & Future Perfect Fluency Practice (15 min)
+  - Compare: Past Perfect (before past event) vs Future Perfect (by future time)
+  - Timeline practice: Yesterday/last week vs by next month/next year
+  - Quick error correction
+- **3** Unit 5 quiz (Housing) - 30 min
+- **4** Modals Introduction Preview (10 min)
+  - Next week: Modals for obligation/permission
+  - Quick preview: must/have to; can/may
+- **5** Homework: Start preparing for Unit 6 (Workforce Prep)
 
 ### Week 23: Tue 3/3 - Gerunds after Prepositions
 
@@ -181,85 +200,111 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 ### Week 23: Thu 3/5 - Gerunds/Infinitives Review
 
 - **1** Interview Questions + Dress Code Speaking Warm-Up
-- **2** Gerunds/infinitives quick contrast (Grammar review: want to / enjoy -ing)
-- **3** Sentence stress for confident answers (Phonics: I *have* experience with...)
-- **4** Listen/read interview Qs; write 4 strong answers (STAR mini-frame)
-- **5** Interview speed-rounds (Speaking game: 2 minutes each)
+- **2** **Question Formation Check-in (5 min)** - Review: WH-word order, follow-ups, polite forms
+- **3** Gerunds/infinitives quick contrast (Grammar review: want to / enjoy -ing)
+- **4** Sentence stress for confident answers (Phonics: I *have* experience with...)
+- **5** Listen/read interview Qs; write 4 strong answers (STAR mini-frame)
+- **6** Interview speed-rounds (Speaking game: 2 minutes each)
 
-### Week 24: Tue 3/10 - Present Perfect Continuous
+### Week 24: Tue 3/10 - Present Perfect Continuous (COMPLETE)
 
 **Reminder:** Verb quiz due today!
 
 - **1** Job Application Talk-Through Speaking Warm-Up
-- **2** Present perfect continuous vs present continuous steps 1-3 (Grammar)
+- **2** Present Perfect Continuous (COMPLETE steps 1-5) (Grammar: `have/has been + -ing` for duration up to now)
+  - Full lesson: has/have been + -ing for duration up to now
+  - Key phrases: "I've been working here for 3 years" / "How long have you been studying English?"
+  - Practice: Job application talk-through + workplace contexts
 - **3** Fill in application; write 4 "I've been..." sentences about work/learning
 - **4** "How long have you been...?" speed chat (Speaking game)
+- **5** Homework: Complete "Present Perfect Continuous" guide on Class Companion (all steps)
 
-### Week 24: Thu 3/12 - Past Perfect Continuous (NEW)
+### Week 24: Thu 3/12 - Present Perfect Continuous Practice & Error Correction
 
 - **1** Career Advisor Appointment + Professional Messages Speaking Warm-Up
-- **2** Past Perfect Continuous - NEW 30-min lesson (Grammar: `had been + -ing` to talk about ongoing actions before a past event)
-  - Key phrases: "I had been looking for a job for 3 months when I got the interview" / "She had been working there for 2 years before she got promoted"
-  - Compare: Present Perfect Continuous (ongoing now) vs Past Perfect Continuous (ongoing before a past moment)
-- **3** Job search story using past perfect continuous (Speaking practice: How long had you been looking? What had you been doing?)
-- **4** Reduced forms (Phonics: I'd / he'd / we'd been...)
-- **5** Write 4 Past Perfect Continuous sentences about job searching or learning
-- **6** "Job search timeline" game (Speaking: tell your story with past perfect continuous)
+- **2** Present Perfect Continuous Practice & Error Correction (Grammar: 30 min fluency practice)
+  - Fluency practice: speaking, writing, error correction
+  - Common mistakes: I'm vs I've been; for vs since
+  - Review: Duration expressions (for 3 years, since 2020)
+- **3** Job search and career stories using present perfect continuous (Speaking practice)
+- **4** Reduced forms (Phonics: I've been, you've been, we've been...)
+- **5** Write a career paragraph using present perfect continuous (4+ sentences)
+- **6** "How long have you been...?" speed interviews (Speaking game)
 
-### Week 25: Tue 3/17 - Present Perfect Continuous Advanced
+### Week 25: Tue 3/17 - Past Perfect Continuous (NEW)
 
 **Reminder:** Verb quiz due today!
 
 - **1** Workplace Rights Scenarios Speaking Warm-Up
-- **2** Present perfect continuous steps 4-5 (Grammar: workplace contexts)
-- **3** Read a workplace rights flyer; write 3 claims + 1 example each
-- **4** "Rights role-play" game
+- **2** Past Perfect Continuous (NEW - full lesson) (Grammar: `had been + -ing` for duration before past event)
+  - Full lesson: had been + -ing for duration before a past event
+  - Key phrases: "I had been working there for 5 years when I got promoted" / "I had been looking for a job for 3 months when I found this one"
+  - Compare to Present Perfect Continuous: ongoing now vs ongoing before past moment
+- **3** Job search and career journey stories (Speaking practice: How long had you been...? What had you been doing?)
+- **4** Read a workplace rights flyer; write 3 claims using past perfect continuous
+- **5** "Rights role-play" game
+- **6** Homework: Complete "Past Perfect Continuous" guide on Class Companion
 
-### Week 25: Thu 3/19 - Future Perfect Continuous (NEW)
+### Week 25: Thu 3/19 - Past Perfect Continuous Practice
 
-- **1** Perfect Continuous Tenses Speaking Warm-Up
-- **2** Future Perfect Continuous - NEW 30-min lesson (Grammar: `will have been + -ing` to talk about ongoing actions that will continue up to a future point)
-  - Key phrases: "By next year, I will have been living in the U.S. for 5 years" / "By June, I will have been working here for 6 months"
-  - Compare ALL THREE: Present Perfect Continuous (ongoing now), Past Perfect Continuous (ongoing before past event), Future Perfect Continuous (ongoing up to future time)
-- **3** Career and life milestones using future perfect continuous (Speaking practice: By [date], I will have been...)
-- **4** Linking (Phonics: will_have_been_working, will_have_been_studying)
-- **5** Write 4 Future Perfect Continuous sentences about your future goals
-- **6** "Perfect Continuous Family" game (Speaking: compare all three tenses correctly)
+- **1** Career Journey Stories Speaking Warm-Up
+- **2** Past Perfect Continuous Practice & Error Correction (Grammar: 30 min fluency practice)
+  - Fluency practice: storytelling, timeline practice
+  - Error correction: had been vs was/were
+  - Review: Present Perfect Continuous vs Past Perfect Continuous comparison chart
+- **3** Job search timeline stories (Speaking practice: share career journeys)
+- **4** Reduced forms (Phonics: I'd been, they'd been, we'd been...)
+- **5** Write a career timeline paragraph using past perfect continuous (4+ sentences)
+- **6** "Job journey" game (Speaking: tell your story with had been + -ing)
 
-### Week 26: Tue 3/24 - Infinitives vs Gerunds
+### Week 26: Tue 3/24 - Future Perfect Continuous (NEW)
 
 **Reminder:** Verb quiz due today!
 
 - **1** Negotiation & Self-Advocacy Speaking Warm-Up
-- **2** Infinitives vs gerunds (Grammar: decide to / plan to / enjoy -ing / avoid -ing)
-- **3** Read a negotiation dialogue; rewrite 6 lines using to/-ing verbs
-- **4** Sentence auction game (to vs -ing)
+- **2** Future Perfect Continuous (NEW - full lesson) (Grammar: `will have been + -ing` for duration up to future time)
+  - Full lesson: will have been + -ing for duration continuing up to a future point
+  - Key phrases: "By next year, I'll have been living here for 5 years" / "By retirement, I will have been working in healthcare for 30 years"
+  - Compare ALL THREE: Present PC (now), Past PC (before past event), Future PC (up to future time)
+- **3** Career milestones & negotiation scenarios (Speaking practice: By [date], I will have been...)
+- **4** Calculate your future milestones (Activity: how long will you have been doing X by Y date?)
+- **5** Write 4 Future Perfect Continuous sentences about your future goals
+- **6** Homework: Complete "Future Perfect Continuous" guide + Perfect Tenses Family Review
 
-### Week 26: Thu 3/26 - Unit 6 Quiz + Advocacy
+### Week 26: Thu 3/26 - Perfect Continuous Family Review + Unit 6 Quiz
 
 - **1** Workplace Rights & Advocacy Role-Plays Speaking Warm-Up
-- **2** Unit 6 quiz (Workforce Prep) - 30 min
-- **3** Infinitives/gerunds speaking (Grammar review: 2 reasons + 1 example)
-- **4** /æ/ vs /ʌ/ (Phonics: salary/sudden; manager/number)
-- **5** Write an advocacy text/email to supervisor
-- **6** "Advocacy ladder" game
+- **2** Perfect Continuous Comparison (20 min - all 3 on one timeline)
+  - Review ALL THREE perfect continuous tenses together
+  - Timeline visual: Present PC / Past PC / Future PC
+  - Common errors: which tense for which situation
+  - Practice: Identify which perfect continuous fits each sentence
+- **3** Unit 6 quiz (Workforce Prep) - 30 min
+- **4** "Tense detective" game (Speaking: which perfect continuous is correct and why?)
+- **5** Brief preview: Infinitives vs Gerunds next week
 
-### Week 27: Tue 3/31 - Workplace Phrasal Verbs
+### Week 27: Tue 3/31 - Infinitives vs Gerunds (MASTERY)
 
 **Reminder:** Verb quiz due today!
 
 - **1** Workplace Small Talk Speaking Warm-Up
-- **2** Workplace phrasal verbs + common idioms (Grammar)
-- **3** Read workplace dialogues; highlight phrasal verbs; write 6 sentences
-- **4** Phrasal-verb matching game
+- **2** Infinitives vs Gerunds (MASTERY - All Patterns) (Grammar: complete lesson building on Week 23 preview)
+  - Full lesson: decide to / plan to / enjoy -ing / avoid -ing / all 6 patterns
+  - Note: This builds on Week 23 Gerunds after Prepositions (INTRO)
+  - Compare: want to vs enjoy -ing; remember to vs remember -ing
+- **3** Read workplace negotiation dialogue; rewrite 6 lines using to/-ing verbs
+- **4** Sentence auction game (to vs -ing)
 
-### Week 27: Thu 4/2 - Phrasal Verbs Practice
+### Week 27: Thu 4/2 - Workplace Phrasal Verbs + Infinitives/Gerunds Review
 
 - **1** Workplace Policies & Procedures Speaking Warm-Up
-- **2** Phrasal verbs in role-plays (Grammar review: clock in/out, fill in, call out)
-- **3** Intonation for small talk + follow-up questions (Phonics)
-- **4** Read a workplace policy excerpt; answer 6 questions
-- **5** "Policy quiz show" game
+- **2** Workplace phrasal verbs + common idioms (Grammar: clock in/out, fill in, call out, etc.)
+  - Note: This content moved from Tuesday to make room for Infinitives vs Gerunds
+  - Read workplace dialogues; highlight phrasal verbs; write 6 sentences
+- **3** Infinitives/gerunds speaking review (Grammar review: 2 reasons + 1 example from Tuesday)
+- **4** Phrasal verbs in role-plays (Speaking practice)
+- **5** Intonation for small talk + follow-up questions (Phonics)
+- **6** "Phrasal-verb matching" + "Policy quiz show" games
 
 ### Week 28: Tue 4/7 - Used To + Would Rather
 
@@ -290,11 +335,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 ### Week 29: Thu 4/16 - Advice Modals Review
 
 - **1** Symptoms + Duration Speaking Warm-Up
-- **2** Advice modals + imperatives (Grammar review: tone - soft vs strong, MORE TIME!)
-- **3** Healthcare scenarios with advice modals (Speaking practice)
-- **4** Multi-syllable medical words + primary stress (Phonics: ALLergy, alLERgic)
-- **5** Write a note explaining symptoms + duration
-- **6** "Diagnosis" game
+- **2** **Question Formation Check-in (5 min)** - Practice: "How long have you been...?", "When did you start...?", "What should I do if...?"
+- **3** Advice modals + imperatives (Grammar review: tone - soft vs strong, MORE TIME!)
+- **4** Healthcare scenarios with advice modals (Speaking practice)
+- **5** Multi-syllable medical words + primary stress (Phonics: ALLergy, alLERgic)
+- **6** Write a note explaining symptoms + duration
+- **7** "Diagnosis" game
 
 ### NO CLASS: Apr 20–24 (Vacation Week)
 
@@ -351,22 +397,32 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **5** Interpret a nutrition label; write 3 comparisons
 - **6** "Label challenge" game
 
-### Week 33: Tue 5/19 - Future Conditional (If + Present, Will...)
+### Week 33: Tue 5/19 - Second Conditional (Type 2) - Hypothetical Situations
 
 **Reminder:** Verb quiz due today!
 
-- **1** Home Remedies Speaking Warm-Up
-- **2** Future conditional (Grammar: If + present, will...; cause/effect for habits)
-- **3** Read a short stress article; write 5 conditional sentences
-- **4** Conditional chain game
+- **1** Home Remedies (wellness wishes) Speaking Warm-Up
+- **2** Second Conditional (Type 2) - NEW full lesson (Grammar: `If + past simple, would/could/might + verb` for unreal present/future)
+  - Key phrases: "If I had more money, I would buy a house" / "If I were healthier, I could work more"
+  - Compare to Type 1: Type 1 = possible future (If I save..., I will...), Type 2 = unlikely/unreal/wishes (If I had..., I would...)
+  - Use: Express wishes, unlikely scenarios, hypothetical situations
+- **3** Wellness wishes (Speaking practice: "If I had more time, I would exercise every day")
+- **4** Read a short stress article; write 5 Type 2 conditionals about your life/wishes
+- **5** Conditional chain game (If I were rich, I would... → next student continues)
+- **6** Homework: Write 5 Type 2 conditionals about your life, health, or work wishes
 
-### Week 33: Thu 5/21 - Conditionals in Speaking
+### Week 33: Thu 5/21 - Conditionals Review (All Three Types)
 
 - **1** Stress Solutions Roundtable Speaking Warm-Up
-- **2** Conditionals in speaking (Grammar review: give advice + consequences)
-- **3** Rhythm in if/then sentences (Phonics: stress the meaning words)
-- **4** Write a letter to yourself: coping plan (paragraph frame)
-- **5** "Advice circle" game (must include 1 conditional)
+- **2** Conditionals Review (Grammar: 30 min - Type 0, Type 1, and Type 2 comparison)
+  - Type 0: General facts/rules ("If you don't sleep, you get tired")
+  - Type 1: Real future possibilities ("If I sleep well tonight, I will feel better")
+  - Type 2: Unreal/unlikely ("If I lived near a gym, I would go every day")
+  - When to use which type: facts vs future vs wishes
+- **3** "Advice circle" using all three types (Speaking practice: give advice using conditionals)
+- **4** Rhythm in if/then sentences (Phonics: stress the meaning words)
+- **5** Conditional sorting game (identify which type)
+- **6** Write a coping plan letter using all three conditionals (paragraph frame)
 
 ### Week 34: Tue 5/26 - Verbs + Gerunds
 
@@ -391,9 +447,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 **Reminder:** Verb quiz due today!
 
 - **1** Community Resources + Directions Speaking Warm-Up
-- **2** Tense review mini-lesson (Grammar: simple past vs present perfect vs past perfect)
-- **3** Read an MBTA/map text; write directions using sequence words
-- **4** "Directions race" game (teams give directions accurately)
+- **2** **Question Formation Review (10 min)** - Comprehensive review before POST-TEST: Information questions, yes/no questions, tag questions, polite forms. Students write 5 questions about their semester.
+- **3** Tense review mini-lesson (Grammar: simple past vs present perfect vs past perfect)
+- **4** Read an MBTA/map text; write directions using sequence words
+- **5** "Directions race" game (teams give directions accurately)
 
 ### Week 35: Thu 6/4 - Wellness Reflection
 
@@ -533,68 +590,87 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **R/L/W:** Listen to landlord voicemail; write return message
 - **Speaking game (20 min):** Telephone game (reported messages, focus on clarity)
 
-### Week 19 (Jan 27 & Jan 29) — Comprehensive Tense Review + Type 0 & Type 1 Conditionals
+### Week 19 (Jan 27 & Jan 29) — Simple & Continuous Tenses Review
 
-**Tue 1/27 — Warm‑up:** Banking & Shopping
-- **Grammar (new):** Comprehensive Tense Review + Type 0 Conditionals - Review all simple, continuous, and present perfect tenses + NEW: Type 0 Conditionals (`If + present simple, present simple` for facts and rules)
-- **Speaking practice (25 min):** Tell banking stories using all tenses + Type 0 conditionals (5 sentences minimum)
-- **R/L/W:** Read banking problem scenarios; identify which tense to use when; write 3 Type 0 conditionals about money
-- **Speaking game (30 min):** Conditional chain game ("If I spend too much, I..." → next student continues)
-- **Homework:** Practice all tenses + write 5 Type 0 conditionals about your life
+**Tue 1/27 — Warm‑up:** Past Continuous vs Past Simple
+- **Grammar (review):** Simple & Continuous Tenses Review - Review and compare all simple and continuous tenses (present, past, future)
+- **Speaking practice (25 min):** Tell stories using simple and continuous tenses correctly (past journey, present habits, future plans)
+- **R/L/W:** Read mixed-tense scenarios; identify which tense to use when and why
+- **Speaking game (30 min):** Tense race game (teams identify and correct tense errors)
+- **Homework:** Review "Past Simple" and "Past Continuous" guides on Class Companion
 
-**Thu 1/29 — Warm‑up:** Housing Conditionals
-- **Grammar (new):** Tense Review Practice + Type 1 Conditionals - Quick fluency practice with all 7 tenses + NEW: Type 1 Conditionals (`If + present simple, will + verb` for future predictions, plans, promises)
-- **Speaking practice (25 min):** Housing planning conversations using Type 1 conditionals (What will you do if rent goes up? If you get a raise?)
-- **Phonics:** Word stress in conditional sentences (IF you SAVE, you will MOVE)
-- **R/L/W:** Write 5 Type 1 conditionals about housing/money goals
-- **Speaking game (20 min):** "What will you do?" game (rapid-fire conditional responses)
+**Thu 1/29 — Warm‑up:** Past Continuous vs Past Simple (practice)
+- **Grammar (review):** Simple & Continuous Tenses Fluency - Storytelling + error correction (past simple vs past continuous; when/while)
+- **Speaking practice (25 min):** Storytelling practice using simple and continuous tenses (Tell what happened and what was happening)
+- **Phonics:** Word stress in time clauses (WHEN I arrived, she was COOKing)
+- **R/L/W:** Write a short story using past simple and past continuous (5-7 sentences)
+- **Speaking game (20 min):** Error correction game (fix the tense mistakes)
 
-### Week 20 (Feb 3 & Feb 5) — Conditional Practice + Tense Fluency
+### Week 20 (Feb 3 & Feb 5) — Zero & First Conditionals
 
 **Tue 2/3 — Warm‑up:** Housing Problems & Solutions
-- **Grammar (new):** Type 0 vs Type 1 Conditionals Practice - When to use which (Type 0: general truths, habits, rules / Type 1: future plans, predictions)
-- **Speaking practice (25 min):** Housing problem-solving using conditionals (State the problem with Type 0, offer solution with Type 1)
-- **R/L/W:** Read a model housing complaint letter; identify all tenses used; add 2 conditional sentences
-- **Game:** Conditional relay race (teams make the most correct conditionals in 5 minutes)
+- **Grammar (new):** Zero & First Conditionals Introduction - Type 0 (`If + present simple, present simple` for facts/rules) and Type 1 (`If + present simple, will + verb` for future predictions)
+- **Speaking practice (25 min):** Housing problem-solving using conditionals (Type 0 for problems, Type 1 for solutions)
+- **R/L/W:** Read housing scenarios; write 3 Type 0 conditionals and 3 Type 1 conditionals
+- **Game:** Conditional chain game ("If I..." → next student continues)
+- **Homework:** Review "Zero & First Conditionals" guide on Class Companion
 
 **Thu 2/5 — Warm‑up:** Money Goals & Housing Plans
-- **Grammar review:** All Tenses + Conditionals Review - Error correction and fluency practice (when to use each of the 7 tenses + Type 0 vs Type 1 conditionals)
-- **Speaking practice (25 min):** Complex stories using multiple tenses + conditionals (Tell a housing journey from past → present → future plans)
-- **Phonics:** /s/ vs /z/ + -s endings (If she pays... If he saves...)
-- **R/L/W:** Write a housing goal paragraph using at least 4 different tenses + 2 conditionals
-- **Game:** Tense auction game (identify + explain which tense/conditional is correct and why)
+- **Grammar (review):** Zero & First Conditionals Fluency - Practice and error correction (when to use Type 0 vs Type 1)
+- **Speaking practice (25 min):** Complex conditional conversations (Discuss housing plans, money goals, future possibilities)
+- **Phonics:** Word stress in conditional sentences (IF you SAVE, you WILL move)
+- **R/L/W:** Write a housing goal paragraph using both Type 0 and Type 1 conditionals (at least 4 conditional sentences)
+- **Game:** Conditional auction game (identify + explain which conditional is correct and why)
 
-### Week 21 (Feb 10 & Feb 12) — Finish Housing (quiz moved to 2/26)
+### Week 21 (Feb 10 & Feb 12) — Future Perfect + Past Perfect Introduction
 
-**Tue 2/10 — Warm‑up:** Budgeting, Bills, Credit & Debt (Past Perfect)
-- **Grammar (new):** Past perfect (steps 1-4) - housing timeline (what happened before what)
-- **Speaking practice (25 min):** Tell complex housing stories with timeline
-- **R/L/W:** Read a short "repair timeline"; write 4 past perfect sentences
-- **Game:** Timeline race (past perfect vs past simple)
-
-**Thu 2/12 — Warm‑up:** Future Goals & Money Milestones (Future Perfect)
-- **Grammar (NEW - 30 min):** Future Perfect - `src/content/grammar/future-perfect.ts` (By [time], I will have [achieved]...)
-  - Use: Goals, predictions, achievements by a deadline
-  - Key phrases: "By June, I will have saved $500" / "By next year, I will have paid off my credit card"
-  - Practice: Money goals, housing goals, work milestones
-- **Speaking practice (20 min):** Set 3 financial goals using future perfect (By March, I will have...)
-- **Phonics:** Irregular past participles in future perfect (will have saved, will have paid, will have finished)
-- **R/L/W:** Budget goals worksheet - write 4 future perfect sentences about money milestones
-- **Game:** "Goal race" (who can make the most future perfect sentences in 2 minutes)
+**Tue 2/10 — Warm‑up:** Budgeting, Bills, Credit & Debt
+- **Grammar (NEW - 30-40 min):** Future Perfect - `src/content/grammar/future-perfect.ts` (By [time], I will have [achieved]...)
+  - Use budgeting/bills context: "By June, I will have saved $500"
+  - Key phrases: By [future time], I will have [completed action]
+  - Practice: Set 3 financial goals using Future Perfect
+- **Speaking practice (25 min):** Housing and money goal timelines using future perfect
+- **Phonics:** Irregular past participles (will have broken, paid, gone, been)
+- **R/L/W:** Write 4 Future Perfect sentences about your goals
 - **Homework:** Complete "Future Perfect" guide on Class Companion
+
+**Thu 2/12 — Warm‑up:** Future Goals & Money Milestones
+- **Grammar review (20 min):** Future Perfect Practice & Error Correction
+  - Review: Future Perfect form and usage
+  - Speaking drill: "By next year, I will have..."
+  - Error correction: Common mistakes
+- **Grammar (new - 30 min):** Past Perfect Introduction (steps 1-2 only)
+  - `had + past participle` to talk about what happened BEFORE another past event
+  - Key phrases: "Before I moved here, I had worked..." / "By the time I arrived, they had left"
+  - Compare to simple past: sequence of events
+- **Speaking practice (20 min):** Timeline practice (Tell a story with both events)
+- **Homework:** Review "Future Perfect" guide + start "Past Perfect" guide (steps 1-2)
 
 ### Feb Vacation Week (Feb 16–20) — No class
 
-### Week 22 (Feb 24 & Feb 26) — Unit 5 Test + Start Unit 6 Workforce Preparation
+### Week 22 (Feb 24 & Feb 26) — Past Perfect Completion + Unit 5 Quiz
 
-**Tue 2/24 — Warm‑up:** Resume & Cover Letter Basics (Modals)
-- **Grammar (new):** Modals for obligation/permission + polite requests (must/have to; can/may/could) *(Create/teacher-made)*
-- **R/L/W:** Read a resume; write 6 "I can…" / "I have to…" sentences for work
-- **Game:** "Polite request" role‑play cards (teacher/boss/customer)
+**Tue 2/24 — Warm‑up:** Resume & Cover Letter Basics
+- **Grammar review (10 min):** Future Perfect Quick Review
+  - Quick review: "By next month, I will have..."
+  - Check for retention after vacation
+- **Grammar (new - 30 min):** Past Perfect Completion (steps 3-4)
+  - Complete lesson: housing timeline - what happened before what
+  - Practice: Tell complex housing stories with timeline
+- **R/L/W:** Read a "repair timeline"; write 4 past perfect sentences
+- **Game:** Timeline race (past perfect vs past simple)
+- **Homework:** Complete "Past Perfect" guide on Class Companion
 
 **Thu 2/26 — Warm‑up:** Workplace Conversations
+- **Grammar review (15 min):** Past & Future Perfect Fluency Practice
+  - Compare: Past Perfect (before past event) vs Future Perfect (by future time)
+  - Timeline practice: Yesterday/last week vs by next month/next year
+  - Quick error correction
 - **Unit quiz:** Unit 5 quiz (Housing) - 30 min
-- **Grammar review:** Modals quick check + speaking drill (2 polite versions)
+- **Grammar preview (10 min):** Modals Introduction Preview
+  - Next week: Modals for obligation/permission
+  - Quick preview: must/have to; can/may
+- **Homework:** Start preparing for Unit 6 (Workforce Prep)
 - **Phonics:** Intonation for polite requests (Could you…? Would you mind…?)
 - **R/L/W:** Cover letter paragraph frame (opening + 2 strengths)
 - **Game:** "Modal switch" (make it stronger/weaker: must → should → could)
@@ -612,48 +688,69 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **R/L/W:** Listen/read interview Qs; write 4 strong answers (STAR mini‑frame)  
 - **Game:** Interview speed‑rounds (2 minutes each)
 
-### Week 24 (Mar 10 & Mar 12) — Workforce Prep (systems + professional messages) - NO QUIZ
+### Week 24 (Mar 10 & Mar 12) — Present Perfect Continuous (Complete)
 
 **Tue 3/10 — Warm‑up:** Job Application Talk‑Through
-- **Grammar (new):** Present perfect continuous vs present continuous — `src/content/grammar/present-perfect-continuous.ts` (steps **1–3**)
-- **R/L/W:** Fill in a short application section; write 4 "I've been…" sentences about work/learning
+- **Grammar (new - COMPLETE):** Present Perfect Continuous — `src/content/grammar/present-perfect-continuous.ts` (steps **1–5** ALL)
+  - Full lesson: has/have been + -ing for duration up to now
+  - Key phrases: "I've been working here for 3 years" / "How long have you been studying English?"
+  - Practice: Job application talk-through + workplace contexts
+- **R/L/W:** Fill in application; write 4 "I've been…" sentences about work/learning
 - **Game:** "How long have you been…?" speed chat
+- **Homework:** Complete "Present Perfect Continuous" guide on Class Companion (all steps)
 
-**Thu 3/12 — Warm‑up:** Career Path Stories (Past Perfect Continuous)
-- **Grammar (NEW - 30 min):** Past Perfect Continuous - `src/content/grammar/past-perfect-continuous.ts` (I had been working there for 5 years when...)
-  - Use: Background duration before a past event
-  - Key phrases: "I had been looking for a job for 3 months when I got the interview" / "She had been working as a server before she became a manager"
-  - Builds on: Past Perfect (2/10) + Present Perfect Continuous (3/10)
-- **Speaking practice (20 min):** Tell your work journey - what had you been doing before your current situation?
-- **Phonics:** Reduced forms with past perfect continuous (I'd been / They'd been...)
-- **R/L/W:** Write a career timeline paragraph using past perfect continuous (3 sentences)
-- **Game:** "Job journey" (share career stories using had been + -ing)
-- **Homework:** Complete "Past Perfect Continuous" mini-guide on Class Companion
+**Thu 3/12 — Warm‑up:** Career Advisor Appointment
+- **Grammar review (30 min):** Present Perfect Continuous Practice & Error Correction
+  - Fluency practice: speaking, writing, error correction
+  - Common mistakes: I'm vs I've been; for vs since
+  - Review: Duration expressions (for 3 years, since 2020)
+- **Speaking practice (25 min):** Job search and career stories using present perfect continuous
+- **Phonics:** Reduced forms (I've been, you've been, we've been...)
+- **R/L/W:** Write a career paragraph using present perfect continuous (4+ sentences)
+- **Game:** "How long have you been...?" speed interviews
 
-### Week 25 (Mar 17 & Mar 19) — Unit 7 Career Awareness
+### Week 25 (Mar 17 & Mar 19) — Past Perfect Continuous (Complete)
 
-**Tue 3/17 — Warm‑up:** Workplace Rights Scenarios  
-- **Grammar (new):** Present perfect continuous — `src/content/grammar/present-perfect-continuous.ts` (steps **4–5**) + workplace contexts  
-- **R/L/W:** Read a workplace rights flyer; write 3 claims + 1 example each  
-- **Game:** “Rights role‑play” (advocate, ask for clarification, follow‑ups)
+**Tue 3/17 — Warm‑up:** Workplace Rights Scenarios
+- **Grammar (NEW - full lesson):** Past Perfect Continuous — `src/content/grammar/past-perfect-continuous.ts` (I had been working there for 5 years when...)
+  - Full lesson: had been + -ing for duration before a past event
+  - Key phrases: "I had been working there for 5 years when I got promoted" / "I had been looking for a job for 3 months when I found this one"
+  - Compare to Present Perfect Continuous: ongoing now vs ongoing before past moment
+- **Speaking practice (25 min):** Job search and career journey stories (How long had you been...? What had you been doing?)
+- **R/L/W:** Read a workplace rights flyer; write 3 claims using past perfect continuous
+- **Game:** "Rights role‑play"
+- **Homework:** Complete "Past Perfect Continuous" guide on Class Companion
 
-**Thu 3/19 — Warm‑up:** Long-Term Career Goals (Future Perfect Continuous)
-- **Grammar (NEW - 30 min):** Future Perfect Continuous - `src/content/grammar/future-perfect-continuous.ts` (By 2030, I will have been working...)
-  - Use: Duration continuing up to a future point
-  - Key phrases: "By next year, I will have been living in the U.S. for 5 years" / "By retirement, I will have been working in healthcare for 30 years"
-  - Completes the perfect tense family: All 6 tenses taught!
-- **Speaking practice (20 min):** Calculate your future milestones - how long will you have been doing X by Y date?
-- **Phonics:** Linking in future perfect continuous (will've been / you'll've been)
-- **R/L/W:** Write a future vision paragraph using future perfect continuous (2-3 sentences)
-- **Game:** "Future timeline" (By 2030, I will have been... race)
-- **Homework:** Complete "Future Perfect Continuous" mini-guide + Perfect Tenses Family Review
+**Thu 3/19 — Warm‑up:** Career Journey Stories
+- **Grammar review (30 min):** Past Perfect Continuous Practice & Error Correction
+  - Fluency practice: storytelling, timeline practice
+  - Error correction: had been vs was/were
+  - Review: Present Perfect Continuous vs Past Perfect Continuous comparison chart
+- **Speaking practice (25 min):** Job search timeline stories (share career journeys)
+- **Phonics:** Reduced forms (I'd been, they'd been, we'd been...)
+- **R/L/W:** Write a career timeline paragraph using past perfect continuous (4+ sentences)
+- **Game:** "Job journey" (tell your story with had been + -ing)
 
-### Week 26 (Mar 24 & Mar 26) — Unit 6 Test + Career Awareness (self‑advocacy)
+### Week 26 (Mar 24 & Mar 26) — Future Perfect Continuous + Unit 6 Test
 
 **Tue 3/24 — Warm‑up:** Negotiation & Self‑Advocacy
-- **Grammar (new):** Infinitives vs gerunds (decide to / plan to / enjoy -ing / avoid -ing) *(Create/teacher-made)*
-- **R/L/W:** Read a short negotiation dialogue; rewrite 6 lines using *to/-ing* verbs
-- **Game:** Sentence auction (to vs -ing)
+- **Grammar (NEW - full lesson):** Future Perfect Continuous — `src/content/grammar/future-perfect-continuous.ts` (By 2030, I will have been working...)
+  - Full lesson: will have been + -ing for duration continuing up to a future point
+  - Key phrases: "By next year, I'll have been living here for 5 years" / "By retirement, I will have been working in healthcare for 30 years"
+  - Compare ALL THREE: Present PC (now), Past PC (before past event), Future PC (up to future time)
+- **Speaking practice (25 min):** Career milestones & negotiation scenarios (By [date], I will have been...)
+- **R/L/W:** Calculate your future milestones; write 4 Future Perfect Continuous sentences
+- **Homework:** Complete "Future Perfect Continuous" guide + Perfect Tenses Family Review
+
+**Thu 3/26 — Warm‑up:** Workplace Rights & Advocacy Role-Plays
+- **Grammar review (20 min):** Perfect Continuous Comparison (all 3 on one timeline)
+  - Review ALL THREE perfect continuous tenses together
+  - Timeline visual: Present PC / Past PC / Future PC
+  - Common errors: which tense for which situation
+  - Practice: Identify which perfect continuous fits each sentence
+- **Unit quiz:** Unit 6 quiz (Workforce Prep) - 30 min
+- **Game:** "Tense detective" (which perfect continuous is correct and why?)
+- **Preview:** Infinitives vs Gerunds next week
 
 **Thu 3/26 — Warm‑up:** Workplace Rights & Advocacy Role‑Plays
 - **Unit quiz:** Unit 6 quiz (Workforce Prep) - 30 min
@@ -745,17 +842,28 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **R/L/W:** Interpret a nutrition label; write 3 comparisons (more/less)
 - **Game:** "Label challenge" (teams explain the label)
 
-### Week 33 (May 19 & May 21) — Wellness (process + conditionals)
+### Week 33 (May 19 & May 21) — Wellness (Second Conditional + Review All Conditionals)
 
-**Tue 5/19 — Warm‑up:** Home Remedies (Explain the Process)  
-- **Grammar (new):** Future conditional (If + present, will…; cause/effect for habits) *(Create/teacher-made)*  
-- **R/L/W:** Read a short stress article; write 5 conditional sentences (If I…, I will…)  
-- **Game:** Conditional chain (each person adds a clause)
+**Tue 5/19 — Warm‑up:** Home Remedies (wellness wishes)
+- **Grammar (NEW):** Second Conditional (Type 2) - `If + past simple, would/could/might + verb` for unreal present/future situations
+  - Key phrases: "If I had more money, I would buy a house" / "If I were healthier, I could work more"
+  - Compare to Type 1: Type 1 = possible future, Type 2 = unlikely/unreal/wishes
+  - Use: Express wishes, unlikely scenarios, hypothetical situations
+- **Speaking practice (25 min):** Wellness wishes ("If I had more time, I would exercise every day")
+- **R/L/W:** Read a short stress article; write 5 Type 2 conditionals about your life/wishes
+- **Game:** Conditional chain (If I were rich, I would... → next student continues)
+- **Homework:** Write 5 Type 2 conditionals about your life, health, or work wishes
 
-**Thu 5/21 — Warm‑up:** Stress Solutions Roundtable  
-- **Grammar review:** Conditionals in speaking (give advice + consequences)  
-- **Phonics:** Rhythm in if/then sentences (stress the meaning words)  
-- **R/L/W:** Write a letter to yourself: coping plan (paragraph frame)  
+**Thu 5/21 — Warm‑up:** Stress Solutions Roundtable
+- **Grammar review (30 min):** Conditionals Review (All Three Types)
+  - Type 0: General facts/rules ("If you don't sleep, you get tired")
+  - Type 1: Real future possibilities ("If I sleep well tonight, I will feel better")
+  - Type 2: Unreal/unlikely ("If I lived near a gym, I would go every day")
+  - When to use which type: facts vs future vs wishes
+- **Speaking practice (25 min):** "Advice circle" using all three types
+- **Phonics:** Rhythm in if/then sentences (stress the meaning words)
+- **R/L/W:** Write a coping plan letter using all three conditionals (paragraph frame)
+- **Game:** Conditional sorting game (identify which type)  
 - **Game:** “Advice circle” (must include 1 conditional)
 
 ### Week 34 (May 26 & May 28) — Unit 8 Test + Wellness (tracking)

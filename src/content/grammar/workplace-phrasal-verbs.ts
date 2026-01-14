@@ -41,13 +41,13 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "Your shift starts now. You need to _____.",
+                            label: "Your shift starts at 9:00. You need to _____.",
                             options: ["clock in", "clock out", "get back", "turn in"],
                             expectedAnswer: "clock in",
                         },
                         {
                             type: "select",
-                            label: "You finished a form. Now you should _____.",
+                            label: "You completed your onboarding paperwork. Now you should _____.",
                             options: ["turn it in", "call it out", "clock it in", "show it up"],
                             expectedAnswer: "turn it in",
                         },
@@ -84,7 +84,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Please <strong>fill out</strong> this form.",
+                            label: "Please <span class='eg-verb'>fill out</span> the emergency contact form.",
                             options: [
                                 { value: "a", label: "Complete the form" },
                                 { value: "b", label: "Make the form bigger" },
@@ -94,7 +94,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "I'll <strong>call you back</strong> after my shift.",
+                            label: "I'll <span class='eg-verb'>call you back</span> after my shift ends.",
                             options: [
                                 { value: "a", label: "Call you again later" },
                                 { value: "b", label: "Meet you in person" },
@@ -104,7 +104,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Can you <strong>look over</strong> this schedule?",
+                            label: "Can you <span class='eg-verb'>look over</span> the new shift schedule?",
                             options: [
                                 { value: "a", label: "Review/check it" },
                                 { value: "b", label: "Look above it" },
@@ -155,19 +155,19 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "You arrive at work and start your shift. You need to _____.",
+                            label: "You arrive at work and your shift is starting. You need to _____.",
                             options: ["clock in", "clock out", "call back", "turn in"],
                             expectedAnswer: "clock in",
                         },
                         {
                             type: "select",
-                            label: "Your shift ends and you are leaving. You should _____.",
+                            label: "Your shift ends at 5:00 and you are leaving. You should _____.",
                             options: ["clock out", "clock in", "fill out", "get back to"],
                             expectedAnswer: "clock out",
                         },
                         {
                             type: "select",
-                            label: "You have a fever and can't come to work. You should _____.",
+                            label: "You wake up with a fever and can't work today. You should _____.",
                             options: ["call out", "call back", "show up", "look over"],
                             expectedAnswer: "call out",
                         },
@@ -210,19 +210,19 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "Please _____ this application before class ends.",
+                            label: "Please _____ this direct deposit form before Friday.",
                             options: ["fill out", "clock in", "call out", "show up"],
                             expectedAnswer: "fill out",
                         },
                         {
                             type: "select",
-                            label: "Don't forget to _____ your timesheet on Friday.",
+                            label: "Please _____ your timesheet by 5 p.m. on Friday.",
                             options: ["turn in", "turn on", "fill in for", "get back"],
                             expectedAnswer: "turn in",
                         },
                         {
                             type: "select",
-                            label: "Can you _____ this paper and check for mistakes?",
+                            label: "Can you _____ this incident report and check for mistakes?",
                             options: ["look over", "call back", "clock out", "follow up"],
                             expectedAnswer: "look over",
                         },
@@ -265,7 +265,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "I'll <strong>get back to you</strong> later.",
+                            label: "I'll <span class='eg-verb'>get back to you</span> after I talk to the supervisor.",
                             options: [
                                 { value: "a", label: "I'll respond later" },
                                 { value: "b", label: "I'll return to the building" },
@@ -275,7 +275,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Please <strong>call me back</strong> when you can.",
+                            label: "Please <span class='eg-verb'>call me back</span> when you have a minute.",
                             options: [
                                 { value: "a", label: "Return my phone call" },
                                 { value: "b", label: "Come back to work" },
@@ -285,7 +285,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "I'm going to <strong>follow up</strong> tomorrow.",
+                            label: "I'm going to <span class='eg-verb'>follow up</span> tomorrow about the supply order.",
                             options: [
                                 { value: "a", label: "Check again / ask for an update" },
                                 { value: "b", label: "Walk behind you" },
@@ -326,19 +326,19 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "I'm late today. Can you _____ me for 10 minutes?",
+                            label: "I'm running late. Can you _____ me at the front desk for 10 minutes?",
                             options: ["cover for", "fill out", "call back", "clock out"],
                             expectedAnswer: "cover for",
                         },
                         {
                             type: "select",
-                            label: "Carlos is on vacation, so I'm going to _____ him this week.",
+                            label: "Carlos is out this week, so I'm going to _____ him on the morning shift.",
                             options: ["fill in for", "turn in", "call out", "show up"],
                             expectedAnswer: "fill in for",
                         },
                         {
                             type: "select",
-                            label: "We're very busy right now. Can you _____ a little?",
+                            label: "We're short-staffed today. Can you _____ for an hour?",
                             options: ["help out", "look over", "get back", "clock in"],
                             expectedAnswer: "help out",
                         },
@@ -429,7 +429,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Complete: 'Please ___ this application form.'",
+            question: "Complete: 'Please ___ this onboarding form.'",
             options: [
                 { value: "a", label: "fill" },
                 { value: "b", label: "fill out" },
@@ -470,6 +470,116 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "c",
             explanation: "Both 'call out' and 'call in sick' are correct ways to notify your employer that you can't come to work due to illness.",
+        },
+        {
+            id: "quiz-6",
+            question: "Complete: 'Before you leave, make sure you ___.'",
+            options: [
+                { value: "a", label: "clock in" },
+                { value: "b", label: "clock out" },
+                { value: "c", label: "call out" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Clock out' (or 'punch out') means to record the time you leave work.",
+        },
+        {
+            id: "quiz-7",
+            question: "What does 'turn in' mean in 'Turn in your timesheet'?",
+            options: [
+                { value: "a", label: "Submit it to the right person/system" },
+                { value: "b", label: "Turn it over on the table" },
+                { value: "c", label: "Throw it away" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Turn in' means to submit something (a form, a timesheet, a document).",
+        },
+        {
+            id: "quiz-8",
+            question: "Complete: 'Can you ___ this email before I send it to HR?'",
+            options: [
+                { value: "a", label: "look over" },
+                { value: "b", label: "look up" },
+                { value: "c", label: "look out" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Look over' means to review something carefully for mistakes or details.",
+        },
+        {
+            id: "quiz-9",
+            question: "If you missed a call, you can say: 'I'll ___ in a few minutes.'",
+            options: [
+                { value: "a", label: "call out" },
+                { value: "b", label: "call back" },
+                { value: "c", label: "call in sick" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Call back' means to return a phone call.",
+        },
+        {
+            id: "quiz-10",
+            question: "What does 'follow up on' mean?",
+            options: [
+                { value: "a", label: "Check again / ask for an update" },
+                { value: "b", label: "Walk behind someone" },
+                { value: "c", label: "Leave work early" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Follow up on' means to check the status (a request, an order, an email) and ask what happened.",
+        },
+        {
+            id: "quiz-11",
+            question: "Complete: 'Sorry I'm late. Thanks for ___ me.'",
+            options: [
+                { value: "a", label: "covering for" },
+                { value: "b", label: "filling out" },
+                { value: "c", label: "turning in" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Cover for' means to do someone's job temporarily while they are away.",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete: 'Nina is ___ the manager this week.'",
+            options: [
+                { value: "a", label: "filling in for" },
+                { value: "b", label: "turning in" },
+                { value: "c", label: "calling back" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Fill in for someone' means to substitute for them (often for a longer shift or several days).",
+        },
+        {
+            id: "quiz-13",
+            question: "What does 'help out' mean?",
+            options: [
+                { value: "a", label: "Assist" },
+                { value: "b", label: "Quit your job" },
+                { value: "c", label: "Get paid extra automatically" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Help out' means to assist, especially when things are busy.",
+        },
+        {
+            id: "quiz-14",
+            question: "Complete: 'I don't know yet, but I'll ___ you by the end of the day.'",
+            options: [
+                { value: "a", label: "get back to" },
+                { value: "b", label: "get back" },
+                { value: "c", label: "get up" },
+            ],
+            correctAnswer: "a",
+            explanation: "Use 'get back to + person' when you will reply later: 'I'll get back to you.'",
+        },
+        {
+            id: "quiz-15",
+            question: "Complete: 'I'm sick, so I can't ___ for my shift today.'",
+            options: [
+                { value: "a", label: "show up" },
+                { value: "b", label: "fill out" },
+                { value: "c", label: "turn in" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Show up' means to arrive. If you're sick, you can't show up for your shift.",
         },
     ],
 };

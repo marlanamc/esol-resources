@@ -3,6 +3,7 @@
 import type { ExerciseItem } from "@/types/activity";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Sparkles } from "lucide-react";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface TextInputExerciseProps {
     item: Extract<ExerciseItem, { type: "text" }>;
@@ -33,7 +34,7 @@ export function TextInputExercise({
             <label className="block mb-2">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
-                    {item.label}
+                    <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
                 </span>
             </label>
             <motion.div

@@ -787,7 +787,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         { type: "text", label: "Yesterday at 3 PM, I ___ (work) on my laptop at the library.", expectedAnswer: "was working" },
                         { type: "text", label: "Tomorrow at noon, I ___ (meet) my friend for lunch.", expectedAnswer: "will be meeting" },
                         { type: "text", label: "While I ___ (walk) to work this morning, I saw a rainbow.", expectedAnswer: "was walking" },
-                        { type: "text", label: "Next week at this time, I ___ (fly) to New York.", expectedAnswer: "will be flying" },
+                        { type: "text", label: "Next week at this time, I ___ (take) the Blue Line to class.", expectedAnswer: "will be taking" },
                         { type: "text", label: "The kids ___ (play) in the yard when it started raining.", expectedAnswer: "were playing" },
                     ],
                 },

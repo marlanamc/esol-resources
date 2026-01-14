@@ -17,9 +17,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
 
                 <h3>Real-Life Uses</h3>
                 <ul style="list-style: none; padding-left: 0; margin: 0;">
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): "I've been to Paris three times."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: "She has lived here since 2021."</li>
-                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: "I've just finished my homework—finally!"</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Experiences</strong> (no specific time): "I've walked along the East Boston Harborwalk three times this year."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Actions that continue</strong> to now: "She has worked at the community health center since 2021."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 0.25rem;">✓ <strong>Recent actions with present results</strong>: "I've just submitted my housing renewal form."</li>
                 </ul>
 
                 <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
@@ -36,9 +36,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     </ul>
                     <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong> Documenting workplace issues ("I've asked three times for a schedule change")</li>
-                        <li><strong> Talking about health history ("I've had this pain for two weeks")</li>
-                        <li><strong> Review - telling coherent stories with all tenses</li>
+                        <li><strong>Documenting workplace issues</strong> ("I've asked three times for a schedule change")</li>
+                        <li><strong>Talking about health history</strong> ("I've had this pain for two weeks")</li>
+                        <li><strong>Review:</strong> Telling coherent stories with all tenses</li>
                     </ul>
                     <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">⏱️ Present Perfect connects your past to right now - it shows what's still relevant!</p>
                 </div>
@@ -51,7 +51,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I have just finished my homework, so I can go out now."',
+                            label: '"I <span class=\'eg-helper\'>have</span> just <span class=\'eg-verb\'>updated</span> the community calendar, so everyone knows the meeting time."',
                             options: [
                                 { value: "present-perfect", label: "Present Perfect - recent action with present result" },
                                 { value: "past-simple", label: "Past Simple - finished action with specific time" },
@@ -61,17 +61,17 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I visited Madrid in 2019."',
+                            label: '"I <span class=\'eg-verb\'>visited</span> the ICA last Saturday."',
                             options: [
                                 { value: "present-perfect", label: "Present Perfect - experience connected to now" },
-                                { value: "past-simple", label: "Past Simple - finished action with specific time (2019)" },
+                                { value: "past-simple", label: "Past Simple - finished action with specific time (last Saturday)" },
                                 { value: "present-simple", label: "Present Simple - current habit" },
                             ],
                             expectedAnswer: "past-simple",
                         },
                         {
                             type: "radio",
-                            label: '"We have lived here since 2020."',
+                            label: '"We <span class=\'eg-helper\'>have</span> <span class=\'eg-verb\'>lived</span> on this block since 2020."',
                             options: [
                                 { value: "present-perfect", label: "Present Perfect - started in past, continues now" },
                                 { value: "past-simple", label: "Past Simple - finished action in the past" },
@@ -81,7 +81,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"She has never tried sushi, but she has eaten pizza 100 times."',
+                            label: '"She <span class=\'eg-helper\'>has</span> never <span class=\'eg-verb\'>ridden</span> the new ferry, but she <span class=\'eg-helper\'>has</span> <span class=\'eg-verb\'>driven</span> the same bus route 100 times."',
                             options: [
                                 { value: "present-perfect", label: "Present Perfect - life experiences up to now" },
                                 { value: "past-simple", label: "Past Simple - specific past actions" },
@@ -110,11 +110,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Things you've done at some point in life (no exact time given)",
                     examples: [
                         {
-                            sentence: "I <strong>have been</strong> to Paris three times.",
+                            sentence: "I <strong>have explored</strong> three different neighborhoods around Boston this year.",
                             explanation: "✓ Experience without a specific date",
                         },
                         {
-                            sentence: "She <strong>has never tried</strong> sushi, but she <strong>has eaten</strong> pizza 100 times.",
+                            sentence: "She <strong>has never visited</strong> the waterfront farmers' market, but she <strong>has cooked</strong> for 100 neighbors.",
                             explanation: "✓ 'Never' shows zero experience up to now",
                         },
                     ],
@@ -124,11 +124,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Started before now and still true (use 'for' or 'since')",
                     examples: [
                         {
-                            sentence: "I <strong>have lived</strong> in this apartment <strong>since 2021</strong>.",
-                            explanation: "✓ Started in 2021 and still living there",
+                            sentence: "I <strong>have worked</strong> at the community health center <strong>since 2019</strong>.",
+                            explanation: "✓ Started in 2019 and still working there",
                         },
                         {
-                            sentence: "He <strong>has studied</strong> English <strong>for five years</strong>.",
+                            sentence: "He <strong>has taken</strong> the same bus route <strong>for five years</strong>.",
                             explanation: "✓ Duration that reaches now",
                         },
                     ],
@@ -138,11 +138,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Just happened and we see the result now (use 'just', 'already', 'yet')",
                     examples: [
                         {
-                            sentence: "I <strong>have just finished</strong> my homework—finally!",
+                            sentence: "I <strong>have just submitted</strong> my housing renewal form.",
                             explanation: "✓ Result is visible now",
                         },
                         {
-                            sentence: "She <strong>has already eaten</strong> all the cookies.",
+                            sentence: "She <strong>has already shared</strong> the meeting notes with the team.",
                             explanation: "✓ Done earlier than expected",
                         },
                     ],
@@ -152,7 +152,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Repeated actions up to now",
                     examples: [
                         {
-                            sentence: "I <strong>have watched</strong> that show <strong>five times</strong> and I still cry at the ending.",
+                            sentence: "I <strong>have taken</strong> the same volunteer shift <strong>five times</strong> this month and still have energy.",
                             explanation: "✓ Many times in the current time period",
                         },
                     ],
@@ -162,12 +162,12 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     description: "Something happened → we see the result NOW",
                     examples: [
                         {
-                            sentence: "I <strong>have lost</strong> my keys again—third time this month!",
-                            explanation: "PAST: lost keys → NOW: can't find them",
+                            sentence: "I <strong>have lost</strong> my work badge again—now I can't get on site.",
+                            explanation: "PAST: lost badge → NOW: can't enter",
                         },
                         {
-                            sentence: "Someone <strong>has eaten</strong> my leftovers, and now I have nothing for lunch.",
-                            explanation: "PAST: ate the food → NOW: hungry with no lunch",
+                            sentence: "Someone <strong>has eaten</strong> the team lunch, so there's nothing left for the meeting.",
+                            explanation: "PAST: ate the lunch → NOW: no food",
                         },
                     ],
                 },
@@ -186,7 +186,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '1. "I have been to Paris three times."',
+                            label: '1. "I <span class=\'eg-helper\'>have</span> <span class=\'eg-verb\'>visited</span> three neighborhoods this year."',
                             options: [
                                 {
                                     value: "life-experience",
@@ -205,7 +205,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '2. "I have lived in Boston for 5 years."',
+                            label: '2. "I <span class=\'eg-helper\'>have</span> <span class=\'eg-verb\'>worked</span> at the community kitchen for 5 years."',
                             options: [
                                 {
                                     value: "life-experience",
@@ -224,7 +224,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '3. "I have just finished my homework."',
+                            label: '3. "I <span class=\'eg-helper\'>have</span> just <span class=\'eg-verb\'>shared</span> the meeting notes."',
                             options: [
                                 {
                                     value: "life-experience",
@@ -243,7 +243,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '4. "I have lost my keys."',
+                            label: '4. "I <span class=\'eg-helper\'>have</span> <span class=\'eg-verb\'>lost</span> my bus pass."',
                             options: [
                                 {
                                     value: "life-experience",
@@ -251,7 +251,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                                 },
                                 {
                                     value: "present-result",
-                                    label: "Past action with present result (can't find them now)",
+                                    label: "Past action with present result (can't ride the bus now)",
                                 },
                                 {
                                     value: "recent",
@@ -315,7 +315,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         <p style="margin: 0;"><strong>Example 1:</strong> She <span style="color: #6366f1; font-weight: 600;">has broken</span> her arm (past) → <span style="color: #8b5cf6; font-weight: 600;">She can't write NOW</span> (present result)</p>
                     </div>
                     <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <p style="margin: 0;"><strong>Example 2:</strong> They <span style="color: #6366f1; font-weight: 600;">have moved</span> to Boston (past) → <span style="color: #8b5cf6; font-weight: 600;">They live in Boston NOW</span> (present state)</p>
+                        <p style="margin: 0;"><strong>Example 2:</strong> They <span style="color: #6366f1; font-weight: 600;">have moved</span> to this block (past) → <span style="color: #8b5cf6; font-weight: 600;">They live here NOW</span> (present state)</p>
                     </div>
                 </div>
             `,
@@ -351,11 +351,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "They have moved to Boston.",
+                            label: "They have moved to this block.",
                             options: [
                                 { value: "a", label: "They moved last month" },
-                                { value: "b", label: "They will live in Boston" },
-                                { value: "c", label: "They live in Boston NOW" },
+                                { value: "b", label: "They will live on this block" },
+                                { value: "c", label: "They live on this block NOW" },
                             ],
                             expectedAnswer: "c",
                         },
@@ -498,8 +498,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     },
                     {
                         label: "Example",
-                        left: "I have visited Paris. (Sometime in my life - when is not important)",
-                        right: "I visited Paris in 2019. (Specific time - finished action)",
+                        left: "I have attended the neighborhood listening session. (Sometime in my life - when is not important)",
+                        right: "I attended the neighborhood listening session last Monday. (Specific time - finished action)",
                     },
                     {
                         label: "Example",
@@ -521,18 +521,18 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '1. I ___ to Japan three times in my life.',
+                            label: '1. I ___ to three neighborhood job fairs this year.',
                             options: [
-                                { value: "have-been", label: "have been" },
+                                { value: "have-attended", label: "have attended" },
                                 { value: "went", label: "went" },
                             ],
-                            expectedAnswer: "have-been",
+                            expectedAnswer: "have-attended",
                         },
                         {
                             type: "radio",
-                            label: "I ___ to Japan last year.",
+                            label: "I ___ to the shelter event last weekend.",
                             options: [
-                                { value: "have-been", label: "have been" },
+                                { value: "have-attended", label: "have attended" },
                                 { value: "went", label: "went" },
                             ],
                             expectedAnswer: "went",
@@ -579,7 +579,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             I <span style="color: #f59e0b; font-weight: 600;">have finished</span> my homework.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">has been</span> to Paris.
+                            She <span style="color: #f59e0b; font-weight: 600;">has been</span> to the waterfront art fair.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
                             They <span style="color: #f59e0b; font-weight: 600;">have lived</span> here for 5 years.
@@ -684,7 +684,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             I <span style="color: #f59e0b; font-weight: 600;">have not</span> (haven't) <span style="color: #f59e0b; font-weight: 600;">finished</span> my homework.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            She <span style="color: #f59e0b; font-weight: 600;">has not</span> (hasn't) <span style="color: #f59e0b; font-weight: 600;">been</span> to Paris.
+                            She <span style="color: #f59e0b; font-weight: 600;">has not</span> (hasn't) <span style="color: #f59e0b; font-weight: 600;">been</span> to the waterfront art fair.
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
                             They <span style="color: #f59e0b; font-weight: 600;">have not</span> (haven't) <span style="color: #f59e0b; font-weight: 600;">seen</span> that movie.
@@ -761,7 +761,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             <span style="color: #f59e0b; font-weight: 600;">Have</span> you <span style="color: #f59e0b; font-weight: 600;">finished</span> your homework?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
-                            <span style="color: #f59e0b; font-weight: 600;">Has</span> she <span style="color: #f59e0b; font-weight: 600;">been</span> to Paris?
+                            <span style="color: #f59e0b; font-weight: 600;">Has</span> she <span style="color: #f59e0b; font-weight: 600;">been</span> to the new community garden?
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.375rem; border: 1px solid rgba(245, 158, 11, 0.1);">
                             <span style="color: #f59e0b; font-weight: 600;">Have</span> they <span style="color: #f59e0b; font-weight: 600;">seen</span> that movie?
@@ -1010,16 +1010,16 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     word: "Ever",
                     usage: "In your life up to now (usually in questions)",
                     examples: [
-                        "Have you ever been to Paris?",
-                        "Have you ever tried sushi?",
+                        "Have you ever been to the High Line?",
+                        "Have you ever tried the new community cafe?",
                     ],
                 },
                 {
                     word: "Never",
                     usage: "Not at any time in your life",
                     examples: [
-                        "I have never seen snow.",
-                        "She has never eaten Thai food.",
+                        "I have never seen the sunrise from the rooftop garden.",
+                        "She has never missed a neighborhood meeting.",
                     ],
                 },
             ],
@@ -1031,25 +1031,25 @@ export const presentPerfectContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "Have you ___ visited London?",
+                            label: "Have you ___ visited the High Line?",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "ever",
                         },
                         {
                             type: "select",
-                            label: "I have ___ ridden a horse.",
+                            label: "I have ___ missed the 6 AM bus.",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "never",
                         },
                         {
                             type: "select",
-                            label: "Has she ___ tried sushi?",
+                            label: "Has she ___ tried the community cafe?",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "ever",
                         },
                         {
                             type: "select",
-                            label: "They have ___ been to Spain.",
+                            label: "They have ___ seen the mural on 23rd Street.",
                             options: ["Choose...", "ever", "never"],
                             expectedAnswer: "never",
                         },
@@ -1077,8 +1077,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         {
                             type: "word-scramble",
                             label: "Make a sentence:",
-                            words: ["I", "have", "visited", "many", "countries"],
-                            correctAnswer: "I have visited many countries",
+                            words: ["I", "have", "visited", "many", "neighborhoods"],
+                            correctAnswer: "I have visited many neighborhoods",
                             hint: "Life experience - where you've been",
                         },
                         {
@@ -1091,8 +1091,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         {
                             type: "word-scramble",
                             label: "Make a question:",
-                            words: ["Have", "you", "ever", "eaten", "sushi", "?"],
-                            correctAnswer: "Have you ever eaten sushi?",
+                            words: ["Have", "you", "ever", "taken", "the", "Blue", "Line", "to", "Aquarium", "?"],
+                            correctAnswer: "Have you ever taken the Blue Line to Aquarium?",
                             hint: "Question about life experience",
                         },
                     ],
@@ -1115,7 +1115,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ they ___ (be) to Paris? (question)",
+                            label: "___ they ___ (be) to the community garden? (question)",
                             expectedAnswer: "Have they been",
                         },
                     ],
@@ -1189,65 +1189,38 @@ export const presentPerfectContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence uses Present Perfect correctly?",
             options: [
-                {
-                    value: "a",
-                    label: "I have visited Paris last year.",
-                },
-                {
-                    value: "b",
-                    label: "I have visited Paris three times.",
-                },
-                {
-                    value: "c",
-                    label: "I have visited Paris yesterday.",
-                },
+                { value: "a", label: "I have visited the New England Aquarium last weekend." },
+                { value: "b", label: "I have visited the New England Aquarium three times this year." },
+                { value: "c", label: "I have visited the New England Aquarium yesterday." },
             ],
             correctAnswer: "b",
             explanation:
-                "Present Perfect doesn't use specific past times like 'last year' or 'yesterday'. It's used for life experiences without mentioning when exactly.",
+                "Present Perfect describes experiences without a specific past time; use Past Simple for 'last weekend' or 'yesterday.'",
         },
         {
             id: "quiz-2",
             question: "When do we use 'since' with Present Perfect?",
             options: [
-                {
-                    value: "a",
-                    label: "For a duration of time (5 years, a long time)",
-                },
-                {
-                    value: "b",
-                    label: "For a starting point in time (2020, Monday)",
-                },
-                {
-                    value: "c",
-                    label: "For recent actions",
-                },
+                { value: "a", label: "For a duration of time (5 years, a long time)" },
+                { value: "b", label: "For a starting point in time (2019, Monday)" },
+                { value: "c", label: "For recent actions" },
             ],
             correctAnswer: "b",
             explanation:
-                "'Since' is used with a starting point in time (since 2020, since Monday). 'For' is used for duration (for 5 years).",
+                "'Since' introduces the starting point (since 2019, since Monday) and links that past point to now.",
         },
         {
             id: "quiz-3",
             question:
                 'What is the difference between "She has lived here for 5 years" and "She lived here for 5 years"?',
             options: [
-                {
-                    value: "a",
-                    label: "No difference - they mean the same thing",
-                },
-                {
-                    value: "b",
-                    label: "Present Perfect = she still lives here. Past Simple = she doesn't live here anymore.",
-                },
-                {
-                    value: "c",
-                    label: "Past Simple = she still lives here. Present Perfect = she doesn't live here anymore.",
-                },
+                { value: "a", label: "No difference - they mean the same thing" },
+                { value: "b", label: "Present Perfect = she still lives here. Past Simple = she doesn't live here anymore." },
+                { value: "c", label: "Past Simple = she still lives here. Present Perfect = she doesn't live here anymore." },
             ],
             correctAnswer: "b",
             explanation:
-                "Present Perfect (has lived) means the action continues to the present - she still lives there. Past Simple (lived) means it's finished - she doesn't live there anymore.",
+                "Present Perfect means the action continues to now (she still lives here); Past Simple means it's finished and she moved away.",
         },
         {
             id: "quiz-4",
@@ -1259,12 +1232,11 @@ export const presentPerfectContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "'Yesterday' is a specific past time, so we use Past Simple. Present Perfect uses words like 'already', 'just', 'yet', 'still', 'ever', 'never', 'for', 'since'.",
+                "'Yesterday' refers to a finished time, so Past Simple is required. Present Perfect uses words like 'already', 'just', 'yet', 'still', 'ever', 'never'.",
         },
         {
             id: "quiz-5",
-            question:
-                "What is the correct negative form of 'She has finished her homework'?",
+            question: "What is the correct negative form of 'She has finished her homework'?",
             options: [
                 { value: "a", label: "She hasn't finished her homework." },
                 { value: "b", label: "She doesn't have finished her homework." },
@@ -1272,18 +1244,127 @@ export const presentPerfectContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation:
-                "The correct negative form is 'hasn't' (has not) + past participle. We use 'hasn't' with 'she' (third person singular).",
+                "Use hasn't + past participle for third-person singular: 'She hasn't finished.'",
         },
         {
             id: "quiz-6",
-            question: "Which question is best for asking about life experience (no time given)?",
+            question: "Which sentence describes a life experience with no specific time?",
             options: [
-                { value: "a", label: "Did you ever visit Japan?" },
-                { value: "b", label: "Have you ever visited Japan?" },
-                { value: "c", label: "Are you ever visiting Japan?" },
+                { value: "a", label: "I have taught at the community center three times." },
+                { value: "b", label: "I taught at the community center last spring." },
+                { value: "c", label: "I have taught at the community center last spring." },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "Present Perfect expresses experiences without specific times; 'last spring' needs Past Simple.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which question uses 'ever' to ask about an experience?",
+            options: [
+                { value: "a", label: "Do you ever go to the farmers' market?" },
+                { value: "b", label: "Have you ever gone to the farmers' market?" },
+                { value: "c", label: "Are you ever going to the farmers' market?" },
             ],
             correctAnswer: "b",
-            explanation: "Life experience with no time uses Present Perfect: Have you ever visited…?",
+            explanation:
+                "'Have you ever…?' asks about life experience; 'Do you ever…?' asks about habits.",
+        },
+        {
+            id: "quiz-8",
+            question: "Complete: 'How long ___ at the shelter?'",
+            options: [
+                { value: "a", label: "have you worked" },
+                { value: "b", label: "did you work" },
+                { value: "c", label: "are you working" },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "Use Present Perfect to ask about duration connected to now: 'How long have you worked…?'",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence uses Present Perfect + 'for' to describe ongoing action?",
+            options: [
+                { value: "a", label: "She has worked at the diner for two years and still cooks breakfast." },
+                { value: "b", label: "She worked at the diner for two years last decade." },
+                { value: "c", label: "She has worked at the diner since two years." },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "'For' + duration with Present Perfect shows something ongoing; 'since two years' is not correct English.",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence shows a past action with a present result?",
+            options: [
+                { value: "a", label: "I have locked the community center door, so the mail is safe." },
+                { value: "b", label: "I locked the door last night." },
+                { value: "c", label: "I am locking the door now." },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "Present Perfect links the past action (locked the door) to a present result (mail is safe).",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence uses 'already' correctly with Present Perfect?",
+            options: [
+                { value: "a", label: "I have already submitted the rent form today." },
+                { value: "b", label: "I already submitted the rent form today." },
+                { value: "c", label: "I have already submitted the rent form yesterday." },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "'Already' goes before the past participle in Present Perfect and 'today' can stay because the day isn't over yet.",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence uses 'still' to show an ongoing situation?",
+            options: [
+                { value: "a", label: "We still haven't heard from the landlord about the repairs." },
+                { value: "b", label: "We haven't still heard from the landlord." },
+                { value: "c", label: "We still didn't hear from the landlord." },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "'Still' comes before the auxiliary in negative Present Perfect to show the situation continues.",
+        },
+        {
+            id: "quiz-13",
+            question: "Complete: 'I ___ (not finish) my report yet.'",
+            options: [
+                { value: "a", label: "haven't finished" },
+                { value: "b", label: "didn't finish" },
+                { value: "c", label: "don't finish" },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "Use Present Perfect negative + 'yet' to show the report is still unfinished now.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which question asks if someone has completed the community survey yet?",
+            options: [
+                { value: "a", label: "Have you completed the community survey yet?" },
+                { value: "b", label: "Did you complete the community survey yet?" },
+                { value: "c", label: "Are you completing the community survey yet?" },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "Use Present Perfect with 'yet' when asking about completion that affects the present.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence uses Present Perfect with 'since' to describe continuing work?",
+            options: [
+                { value: "a", label: "I have lived on this block since 2018." },
+                { value: "b", label: "I lived on this block since 2018." },
+                { value: "c", label: "I have lived on this block for 2018." },
+            ],
+            correctAnswer: "a",
+            explanation:
+                "'Since' needs a starting point with Present Perfect; 'for 2018' is not correct, and Past Simple does not connect to now.",
         },
     ],
 };

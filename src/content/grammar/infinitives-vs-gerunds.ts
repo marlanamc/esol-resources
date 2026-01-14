@@ -54,7 +54,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I want to work here."',
+                            label: '"I want <span class=\'eg-verb\'>to work</span> here."',
                             options: [
                                 { value: "infinitive", label: "Infinitive (to + verb)" },
                                 { value: "gerund", label: "Gerund (verb + -ing)" },
@@ -64,7 +64,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I enjoy cooking."',
+                            label: '"I enjoy <span class=\'eg-verb\'>cooking</span>."',
                             options: [
                                 { value: "infinitive", label: "Infinitive (to + verb)" },
                                 { value: "gerund", label: "Gerund (verb + -ing)" },
@@ -127,7 +127,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"I want to work here." What form is used?',
+                            label: '"I want <span class=\'eg-verb\'>to work</span> here." What form is used?',
                             options: [
                                 { value: "infinitive", label: "Infinitive (to + base verb) - expresses intention/goal" },
                                 { value: "gerund", label: "Gerund (verb + -ing) - expresses activity" },
@@ -136,7 +136,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I enjoy working here." What form is used?',
+                            label: '"I enjoy <span class=\'eg-verb\'>working</span> here." What form is used?',
                             options: [
                                 { value: "infinitive", label: "Infinitive (to + base verb)" },
                                 { value: "gerund", label: "Gerund (verb + -ing) - expresses activity/experience" },
@@ -310,23 +310,23 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "I want ___ (work) in healthcare.",
-                            expectedAnswer: "to work",
-                        },
-                        {
-                            type: "text",
-                            label: "She decided ___ (apply) for the promotion.",
+                            label: "I want ___ (apply) for the paid training program.",
                             expectedAnswer: "to apply",
                         },
                         {
                             type: "text",
-                            label: "We plan ___ (start) next month.",
-                            expectedAnswer: "to start",
+                            label: "She decided ___ (ask) for a schedule change.",
+                            expectedAnswer: "to ask",
                         },
                         {
                             type: "text",
-                            label: "He refused ___ (work) weekends.",
-                            expectedAnswer: "to work",
+                            label: "We plan ___ (meet) after class to practice.",
+                            expectedAnswer: "to meet",
+                        },
+                        {
+                            type: "text",
+                            label: "He refused ___ (sign) the form without reading it.",
+                            expectedAnswer: "to sign",
                         },
                     ],
                 },
@@ -371,23 +371,23 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "I enjoy ___ (teach) English.",
-                            expectedAnswer: "teaching",
+                            label: "I enjoy ___ (help) new students in class.",
+                            expectedAnswer: "helping",
                         },
                         {
                             type: "text",
-                            label: "She finished ___ (write) her resume.",
-                            expectedAnswer: "writing",
+                            label: "She finished ___ (fill out) the intake form.",
+                            expectedAnswer: "filling out",
                         },
                         {
                             type: "text",
-                            label: "We avoid ___ (eat) fast food.",
-                            expectedAnswer: "eating",
+                            label: "We avoid ___ (miss) deadlines at work.",
+                            expectedAnswer: "missing",
                         },
                         {
                             type: "text",
-                            label: "He quit ___ (work) there last year.",
-                            expectedAnswer: "working",
+                            label: "He quit ___ (check) his phone during meetings.",
+                            expectedAnswer: "checking",
                         },
                     ],
                 },
@@ -431,18 +431,18 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "I'm good at ___ (cook).",
-                            expectedAnswer: "cooking",
+                            label: "I'm good at ___ (organize) paperwork.",
+                            expectedAnswer: "organizing",
                         },
                         {
                             type: "text",
-                            label: "Thank you for ___ (help) me.",
-                            expectedAnswer: "helping",
+                            label: "Thank you for ___ (wait) for me.",
+                            expectedAnswer: "waiting",
                         },
                         {
                             type: "text",
-                            label: "She's interested in ___ (learn) English.",
-                            expectedAnswer: "learning",
+                            label: "She's interested in ___ (apply) for a new position.",
+                            expectedAnswer: "applying",
                         },
                         {
                             type: "radio",
@@ -655,18 +655,18 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "I asked him ___ (call) me tomorrow.",
-                            expectedAnswer: "to call",
+                            label: "I asked the office ___ (email) me the document.",
+                            expectedAnswer: "to email",
                         },
                         {
                             type: "text",
-                            label: "She wants us ___ (help) with the party.",
-                            expectedAnswer: "to help",
+                            label: "She wants us ___ (arrive) 10 minutes early.",
+                            expectedAnswer: "to arrive",
                         },
                         {
                             type: "text",
-                            label: "The teacher told me ___ (study) for the test.",
-                            expectedAnswer: "to study",
+                            label: "The supervisor told me ___ (sign) the log book.",
+                            expectedAnswer: "to sign",
                         },
                         {
                             type: "radio",
@@ -739,19 +739,19 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "You want to say 'Don't forget to send the email':",
+                            label: "You want to say 'Don't forget to bring your ID':",
                             options: [
-                                { value: "a", label: "Remember sending the email." },
-                                { value: "b", label: "Remember to send the email." },
+                                { value: "a", label: "Remember bringing your ID." },
+                                { value: "b", label: "Remember to bring your ID." },
                             ],
                             expectedAnswer: "b",
                         },
                         {
                             type: "radio",
-                            label: "You want to say 'I quit smoking cigarettes':",
+                            label: "You want to say 'I quit drinking soda':",
                             options: [
-                                { value: "a", label: "I stopped to smoke." },
-                                { value: "b", label: "I stopped smoking." },
+                                { value: "a", label: "I stopped to drink soda." },
+                                { value: "b", label: "I stopped drinking soda." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -1112,6 +1112,61 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Wants us to finish' follows the pattern: verb + object + infinitive. Pattern 5: Noun + Infinitive.",
+        },
+        {
+            id: "quiz-11",
+            question: "Complete: 'I'm looking forward to _____ you after class.'",
+            options: [
+                { value: "a", label: "see" },
+                { value: "b", label: "to see" },
+                { value: "c", label: "seeing" },
+            ],
+            correctAnswer: "c",
+            explanation: "'To' in 'look forward to' is a preposition, so the next verb is a gerund: to seeing.",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete: 'It's important _____ the address carefully on the form.'",
+            options: [
+                { value: "a", label: "to write" },
+                { value: "b", label: "writing" },
+                { value: "c", label: "write" },
+            ],
+            correctAnswer: "a",
+            explanation: "Pattern 4: It's + adjective + infinitive → It's important to write…",
+        },
+        {
+            id: "quiz-13",
+            question: "Complete: 'I asked my supervisor _____ my schedule.'",
+            options: [
+                { value: "a", label: "to change" },
+                { value: "b", label: "changing" },
+                { value: "c", label: "change" },
+            ],
+            correctAnswer: "a",
+            explanation: "Pattern 5: verb + object + infinitive → asked my supervisor to change…",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence means you paused your work in order to make a phone call?",
+            options: [
+                { value: "a", label: "I stopped to call the clinic." },
+                { value: "b", label: "I stopped calling the clinic." },
+                { value: "c", label: "I stopped call the clinic." },
+            ],
+            correctAnswer: "a",
+            explanation: "Stop to do = pause in order to do something (make a call). Stop doing = quit the activity.",
+        },
+        {
+            id: "quiz-15",
+            question: "Complete using Pattern 3 (Preposition + Gerund): 'Thanks for _____ me the directions.'",
+            options: [
+                { value: "a", label: "help" },
+                { value: "b", label: "to help" },
+                { value: "c", label: "helping" },
+            ],
+            correctAnswer: "c",
+            explanation: "After a preposition (for), use a gerund: for helping.",
         },
     ],
 };

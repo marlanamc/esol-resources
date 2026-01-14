@@ -111,7 +111,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"The doctor said, \'You need to rest.\'"',
+                            label: '"The doctor <span class=\'eg-verb\'>said</span>, \'You need to rest.\'"',
                             options: [
                                 { value: "direct", label: "Direct speech - exact words with quotation marks" },
                                 { value: "reported", label: "Reported speech - retelling without quotation marks" },
@@ -120,7 +120,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The doctor said I needed to rest."',
+                            label: '"The doctor <span class=\'eg-verb\'>said</span> I <span class=\'eg-verb\'>needed</span> to rest."',
                             options: [
                                 { value: "direct", label: "Direct speech - exact words" },
                                 { value: "reported", label: "Reported speech - retelling, tenses changed" },
@@ -324,7 +324,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "⚠️ Exception",
-                content: "If something is still true NOW, you don't have to backshift: 'She said she lives in Boston' (still true) vs 'She said she lived in Boston' (past/not sure).",
+                content: "If something is still true NOW, you don't have to backshift: 'She said she lives in East Boston' (still true) vs 'She said she lived in East Boston' (past/not sure).",
             },
             exercises: [
                 {
@@ -334,31 +334,31 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: "I am tired." Reported:',
+                            label: 'Direct: "I am on the late shift." Reported:',
                             options: [
-                                { value: "a", label: "She said she was tired." },
-                                { value: "b", label: "She said she is tired." },
-                                { value: "c", label: "She said she will be tired." },
+                                { value: "a", label: "He said he was on the late shift." },
+                                { value: "b", label: "He said he is on the late shift." },
+                                { value: "c", label: "He said he will be on the late shift." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Direct: "I will call you." Reported:',
+                            label: 'Direct: "I will email you tomorrow." Reported:',
                             options: [
-                                { value: "a", label: "He said he would call me." },
-                                { value: "b", label: "He said he will call me." },
-                                { value: "c", label: "He said he can call me." },
+                                { value: "a", label: "She said she would email me the next day." },
+                                { value: "b", label: "She said she will email me tomorrow." },
+                                { value: "c", label: "She said she could email me the next day." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Direct: "I can help." Reported:',
+                            label: 'Direct: "I can meet you now." Reported:',
                             options: [
-                                { value: "a", label: "She said she could help." },
-                                { value: "b", label: "She said she can help." },
-                                { value: "c", label: "She said she will help." },
+                                { value: "a", label: "They said they could meet me then." },
+                                { value: "b", label: "They said they can meet me now." },
+                                { value: "c", label: "They said they would meet me then." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -439,31 +439,31 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: "Take this medicine twice a day." Reported:',
+                            label: 'Direct: "Please bring your ID." Reported:',
                             options: [
-                                { value: "a", label: "The doctor told me to take this medicine twice a day." },
-                                { value: "b", label: "The doctor told me take this medicine twice a day." },
-                                { value: "c", label: "The doctor said me to take this medicine twice a day." },
+                                { value: "a", label: "The receptionist asked me to bring my ID." },
+                                { value: "b", label: "The receptionist asked me bring my ID." },
+                                { value: "c", label: "The receptionist said me to bring my ID." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Direct: "Please fill out this form." Reported:',
+                            label: 'Direct: "Call us back after 3 PM." Reported:',
                             options: [
-                                { value: "a", label: "The receptionist asked me to fill out the form." },
-                                { value: "b", label: "The receptionist asked me fill out the form." },
-                                { value: "c", label: "The receptionist said me to fill out the form." },
+                                { value: "a", label: "They asked me to call them back after 3 PM." },
+                                { value: "b", label: "They asked me call them back after 3 PM." },
+                                { value: "c", label: "They said me to call them back after 3 PM." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Direct: "Don\'t eat before the test." Reported:',
+                            label: 'Direct: "Don\'t park in front of the driveway." Reported:',
                             options: [
-                                { value: "a", label: "They told me not to eat before the test." },
-                                { value: "b", label: "They told me don't eat before the test." },
-                                { value: "c", label: "They said me not to eat before the test." },
+                                { value: "a", label: "The building manager told us not to park in front of the driveway." },
+                                { value: "b", label: "The building manager told us don't park in front of the driveway." },
+                                { value: "c", label: "The building manager said us not to park in front of the driveway." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -541,41 +541,41 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'MyChart message: "Your test results are normal. Please schedule a follow-up appointment in 3 months." How do you report this?',
+                            label: 'MyChart message: "Your x-ray results are ready. Please schedule a call with the doctor next week." How do you report this?',
                             options: [
-                                { value: "a", label: "They said my test results were normal and told me to schedule a follow-up in 3 months." },
-                                { value: "b", label: "They said my test results are normal and told me schedule a follow-up in 3 months." },
-                                { value: "c", label: "They said to me that my test results are normal and told me to schedule a follow-up." },
+                                { value: "a", label: "They said my x-ray results were ready and told me to schedule a call with the doctor the following week." },
+                                { value: "b", label: "They said my x-ray results are ready and told me schedule a call next week." },
+                                { value: "c", label: "They said to me that my x-ray results were ready and told me to schedule a call." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Receptionist says: "Your appointment is on Friday at 2pm. Please arrive 15 minutes early." How do you report this?',
+                            label: 'Receptionist says: "Your appointment is on Tuesday at 9 AM. Please bring your insurance card." How do you report this?',
                             options: [
-                                { value: "a", label: "She said my appointment was on Friday at 2pm and told me to arrive 15 minutes early." },
-                                { value: "b", label: "She said my appointment is on Friday at 2pm and told me arrive 15 minutes early." },
-                                { value: "c", label: "She said to me that my appointment is on Friday and told me arrive early." },
+                                { value: "a", label: "She said my appointment was on Tuesday at 9 AM and told me to bring my insurance card." },
+                                { value: "b", label: "She said my appointment is on Tuesday at 9 AM and told me bring my insurance card." },
+                                { value: "c", label: "She told that my appointment was on Tuesday and told me to bring my insurance card." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Doctor says: "You need to rest for one week. Don\'t lift anything heavy." How do you report this?',
+                            label: 'Doctor says: "You must fast today. Come back tomorrow morning." How do you report this?',
                             options: [
-                                { value: "a", label: "The doctor said I needed to rest for one week and told me not to lift anything heavy." },
-                                { value: "b", label: "The doctor said I need to rest for one week and told me don't lift anything heavy." },
-                                { value: "c", label: "The doctor said to me that I need to rest and told me to not lift anything heavy." },
+                                { value: "a", label: "The doctor said I had to fast that day and told me to come back the next morning." },
+                                { value: "b", label: "The doctor said I must fast today and told me come back tomorrow morning." },
+                                { value: "c", label: "The doctor said to me that I had to fast and told me to come back." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Pharmacist says: "Take this medication with food. You can\'t drink alcohol while taking it." How do you report this?',
+                            label: 'Pharmacist says: "Take this medication at night. You can\'t drive after taking it." How do you report this?',
                             options: [
-                                { value: "a", label: "The pharmacist told me to take the medication with food and said I couldn't drink alcohol while taking it." },
-                                { value: "b", label: "The pharmacist told me take the medication with food and said I can't drink alcohol." },
-                                { value: "c", label: "The pharmacist said to me to take the medication and said I can't drink alcohol." },
+                                { value: "a", label: "The pharmacist told me to take the medication at night and said I couldn't drive after taking it." },
+                                { value: "b", label: "The pharmacist told me take the medication at night and said I can't drive after taking it." },
+                                { value: "c", label: "The pharmacist said to me to take the medication and said I can't drive." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -680,11 +680,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: The doctor said, "You need to rest."',
+                            label: 'Direct: My supervisor <span class=\'eg-verb\'>said</span>, "We <span class=\'eg-helper\'>are</span> short-staffed today."',
                             options: [
-                                { value: "a", label: "The doctor said I need to rest." },
-                                { value: "b", label: "The doctor said I needed to rest." },
-                                { value: "c", label: "The doctor told me rest." },
+                                { value: "a", label: "My supervisor said we are short-staffed today." },
+                                { value: "b", label: "My supervisor said we were short-staffed that day." },
+                                { value: "c", label: "My supervisor told that we were short-staffed that day." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -697,11 +697,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: The nurse said, "Take this medicine twice a day."',
+                            label: 'Direct: The front desk <span class=\'eg-verb\'>said</span>, "Please <span class=\'eg-verb\'>bring</span> your ID."',
                             options: [
-                                { value: "a", label: "The nurse told me to take this medicine twice a day." },
-                                { value: "b", label: "The nurse said me to take this medicine twice a day." },
-                                { value: "c", label: "The nurse said that take this medicine twice a day." },
+                                { value: "a", label: "The front desk asked me to bring my ID." },
+                                { value: "b", label: "The front desk said me to bring my ID." },
+                                { value: "c", label: "The front desk told bring my ID." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -714,11 +714,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: She said, "I will call you tomorrow."',
+                            label: 'Direct: She <span class=\'eg-verb\'>said</span>, "I <span class=\'eg-helper\'>will</span> email you tomorrow."',
                             options: [
-                                { value: "a", label: "She said she will call me tomorrow." },
-                                { value: "b", label: "She said she would call me the next day." },
-                                { value: "c", label: "She told me that I would call her tomorrow." },
+                                { value: "a", label: "She said she will email me tomorrow." },
+                                { value: "b", label: "She said she would email me the next day." },
+                                { value: "c", label: "She told me that I would email her tomorrow." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -731,11 +731,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Fix: "He said to me that he was sick."',
+                            label: 'Fix: "He said to me that the meeting was canceled."',
                             options: [
-                                { value: "a", label: "He said that he was sick." },
-                                { value: "b", label: "He said to me that he was sick." },
-                                { value: "c", label: "He told that he was sick." },
+                                { value: "a", label: "He said that the meeting was canceled." },
+                                { value: "b", label: "He said to me that the meeting was canceled." },
+                                { value: "c", label: "He told that the meeting was canceled." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -748,11 +748,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: They said, "Don\'t eat before the test."',
+                            label: 'Direct: IT said, "Don\'t share your password."',
                             options: [
-                                { value: "a", label: "They told me not to eat before the test." },
-                                { value: "b", label: "They said me not eat before the test." },
-                                { value: "c", label: "They told me that don't eat before the test." },
+                                { value: "a", label: "IT told us not to share our password." },
+                                { value: "b", label: "IT said us not share our password." },
+                                { value: "c", label: "IT told us that don't share our password." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -765,11 +765,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: The doctor said, "Your results are normal."',
+                            label: 'Direct: The receptionist said, "Your badge is ready."',
                             options: [
-                                { value: "a", label: "The doctor said my results are normal." },
-                                { value: "b", label: "The doctor said my results were normal." },
-                                { value: "c", label: "The doctor told my results were normal." },
+                                { value: "a", label: "The receptionist said my badge is ready." },
+                                { value: "b", label: "The receptionist said my badge was ready." },
+                                { value: "c", label: "The receptionist told my badge was ready." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -782,12 +782,12 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Which is correct?",
+                            label: 'Which are correct? A) "He said that he was late." B) "He told me that he was late." C) "He said me that he was late."',
                             options: [
                                 { value: "a", label: "A only" },
                                 { value: "b", label: "B only" },
                                 { value: "c", label: "C only" },
-                                { value: "d", label: "B and C" },
+                                { value: "d", label: "A and B" },
                             ],
                             expectedAnswer: "d",
                         },
@@ -800,11 +800,11 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: 'Direct: "Please fill out this form."',
+                            label: 'Direct: "Please sign this form."',
                             options: [
-                                { value: "a", label: "The receptionist asked me to fill out this form." },
-                                { value: "b", label: "The receptionist said me to fill out this form." },
-                                { value: "c", label: "The receptionist asked me that I fill out this form." },
+                                { value: "a", label: "The clerk asked me to sign this form." },
+                                { value: "b", label: "The clerk said me to sign this form." },
+                                { value: "c", label: "The clerk asked me that I sign this form." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -909,21 +909,21 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: 'Direct: "I am tired." Reported:',
+                            label: 'Direct: "I am on the late shift." Reported:',
                             options: [
-                                { value: "a", label: "She said she was tired." },
-                                { value: "b", label: "She said she is tired." },
-                                { value: "c", label: "She told me she is tired." },
+                                { value: "a", label: "He said he was on the late shift." },
+                                { value: "b", label: "He said he is on the late shift." },
+                                { value: "c", label: "He told that he was on the late shift." },
                             ],
                             expectedAnswer: "a",
                         },
                         {
                             type: "radio",
-                            label: 'Direct: "Take this medicine." Reported:',
+                            label: 'Direct: "Please bring your ID." Reported:',
                             options: [
-                                { value: "a", label: "She told me to take this medicine." },
-                                { value: "b", label: "She said me to take this medicine." },
-                                { value: "c", label: "She told me that take this medicine." },
+                                { value: "a", label: "The receptionist asked me to bring my ID." },
+                                { value: "b", label: "The receptionist asked me bring my ID." },
+                                { value: "c", label: "The receptionist said me to bring my ID." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -936,69 +936,168 @@ export const reportedSpeechContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which is correct?",
+            question: "Which sentence correctly uses tell?",
             options: [
-                { value: "a", label: "She said to me that she was sick." },
-                { value: "b", label: "She told me that she was sick." },
-                { value: "c", label: "She said me that she was sick." },
+                { value: "a", label: "My supervisor told that the meeting was canceled." },
+                { value: "b", label: "My supervisor told me that the meeting was canceled." },
+                { value: "c", label: "My supervisor told to me that the meeting was canceled." },
             ],
             correctAnswer: "b",
-            explanation: "Use 'told me' (not 'said to me' or 'said me'). 'Told' requires a person.",
+            explanation: "'Tell' needs a person/object (me/you/us).",
         },
         {
             id: "quiz-2",
-            question: "Convert: The doctor said, 'You need to rest.' → The doctor said _____.",
+            question: "Which sentence correctly uses say?",
             options: [
-                { value: "a", label: "you need to rest" },
-                { value: "b", label: "I needed to rest" },
-                { value: "c", label: "I need to rest" },
+                { value: "a", label: "She said me that the office was closed." },
+                { value: "b", label: "She said that the office was closed." },
+                { value: "c", label: "She said to me that the office was closed." },
             ],
             correctAnswer: "b",
-            explanation: "Tense backshifts (need → needed) and pronoun changes (you → I).",
+            explanation: "'Say' doesn't take an indirect object (no 'me') in this structure.",
         },
         {
             id: "quiz-3",
-            question: "Convert: 'Take this medicine twice a day.' → The nurse told me _____.",
+            question: 'Convert: "I am on the late shift." → He said _____.',
             options: [
-                { value: "a", label: "to take this medicine twice a day" },
-                { value: "b", label: "that take this medicine twice a day" },
-                { value: "c", label: "take this medicine twice a day" },
+                { value: "a", label: "he is on the late shift" },
+                { value: "b", label: "he was on the late shift" },
+                { value: "c", label: "I was on the late shift" },
             ],
-            correctAnswer: "a",
-            explanation: "Commands use 'told + person + to + verb' structure.",
+            correctAnswer: "b",
+            explanation: "Present → past (am → was) in reported speech when reporting from the past.",
         },
         {
             id: "quiz-4",
-            question: "Convert: 'I will call you tomorrow.' → She said _____.",
+            question: 'Convert: "I will email you tomorrow." → She said _____.',
             options: [
-                { value: "a", label: "she will call me tomorrow" },
-                { value: "b", label: "she would call me the next day" },
-                { value: "c", label: "I would call you tomorrow" },
+                { value: "a", label: "she will email me tomorrow" },
+                { value: "b", label: "she would email me the next day" },
+                { value: "c", label: "I would email you tomorrow" },
             ],
             correctAnswer: "b",
-            explanation: "'Will' becomes 'would', 'I' becomes 'she', 'tomorrow' becomes 'the next day'.",
+            explanation: "Will → would, and tomorrow → the next day.",
         },
         {
             id: "quiz-5",
-            question: "Which is a correctly reported command?",
+            question: 'Convert: "Please sign this form." → The clerk asked me _____.',
             options: [
-                { value: "a", label: "She said me to wait." },
-                { value: "b", label: "She told me wait." },
-                { value: "c", label: "She told me to wait." },
+                { value: "a", label: "to sign this form" },
+                { value: "b", label: "that sign this form" },
+                { value: "c", label: "sign this form" },
             ],
-            correctAnswer: "c",
-            explanation: "Commands use 'told + person + to + verb'.",
+            correctAnswer: "a",
+            explanation: "Requests/commands use asked/told + person + to + base verb.",
         },
         {
             id: "quiz-6",
-            question: "Convert: 'Don't eat before the test.' → They told me _____.",
+            question: 'Convert: "Don\'t park here." → The manager told us _____.',
             options: [
-                { value: "a", label: "to not eat before the test" },
-                { value: "b", label: "not to eat before the test" },
-                { value: "c", label: "don't eat before the test" },
+                { value: "a", label: "to not park here" },
+                { value: "b", label: "not to park here" },
+                { value: "c", label: "don\'t park here" },
             ],
             correctAnswer: "b",
-            explanation: "Negative commands use 'told + person + NOT to + verb'.",
+            explanation: "Negative commands use NOT to + base verb: told us not to park…",
+        },
+        {
+            id: "quiz-7",
+            question: 'Convert: "I can help you." → She said _____.',
+            options: [
+                { value: "a", label: "she can help me" },
+                { value: "b", label: "she could help me" },
+                { value: "c", label: "she will help me" },
+            ],
+            correctAnswer: "b",
+            explanation: "Can → could in reported speech when backshifting.",
+        },
+        {
+            id: "quiz-8",
+            question: 'Convert: "You must bring your ID." → The receptionist said _____.',
+            options: [
+                { value: "a", label: "I must bring my ID" },
+                { value: "b", label: "I had to bring my ID" },
+                { value: "c", label: "I have to bring my ID" },
+            ],
+            correctAnswer: "b",
+            explanation: "Must often changes to had to in reported speech.",
+        },
+        {
+            id: "quiz-9",
+            question: 'Pronoun change: The teacher said, "You are late." → The teacher said _____.',
+            options: [
+                { value: "a", label: "you were late" },
+                { value: "b", label: "I was late" },
+                { value: "c", label: "she was late" },
+            ],
+            correctAnswer: "b",
+            explanation: "You → I (because the speaker is reporting the message about themselves).",
+        },
+        {
+            id: "quiz-10",
+            question: 'Time word change: "I can meet you today." → He said he could meet me _____.',
+            options: [
+                { value: "a", label: "today" },
+                { value: "b", label: "that day" },
+                { value: "c", label: "the next day" },
+            ],
+            correctAnswer: "b",
+            explanation: "Today → that day in reported speech.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence is incorrect?",
+            options: [
+                { value: "a", label: "He said that he was sick." },
+                { value: "b", label: "He said to me that he was sick." },
+                { value: "c", label: "He told me that he was sick." },
+            ],
+            correctAnswer: "b",
+            explanation: "Don’t use 'said to me that…' in this pattern; use 'said that…' or 'told me that…'.",
+        },
+        {
+            id: "quiz-12",
+            question: 'Convert: "We are closed now." → They said _____.',
+            options: [
+                { value: "a", label: "we were closed then" },
+                { value: "b", label: "they were closed now" },
+                { value: "c", label: "we are closed then" },
+            ],
+            correctAnswer: "a",
+            explanation: "Pronoun can stay 'we' if you're reporting the same group; now → then and are → were.",
+        },
+        {
+            id: "quiz-13",
+            question: "If the information is still true now, which is best?",
+            options: [
+                { value: "a", label: "She said class started at 6 PM. (It is still true.)" },
+                { value: "b", label: "She said class starts at 6 PM. (It is still true.)" },
+                { value: "c", label: "She said class will start at 6 PM. (It is still true.)" },
+            ],
+            correctAnswer: "b",
+            explanation: "If it’s still true, you can keep the present: starts.",
+        },
+        {
+            id: "quiz-14",
+            question: 'Message: "Your paperwork is incomplete. Please bring it tomorrow." Which is best?',
+            options: [
+                { value: "a", label: "They said my paperwork was incomplete and told me to bring it the next day." },
+                { value: "b", label: "They said my paperwork is incomplete and told me bring it tomorrow." },
+                { value: "c", label: "They told that my paperwork was incomplete and said me to bring it the next day." },
+            ],
+            correctAnswer: "a",
+            explanation: "Backshift is → was, tomorrow → the next day, and use told + person + to…",
+        },
+        {
+            id: "quiz-15",
+            question: 'Convert: "I don\'t mind working late." → He said _____.',
+            options: [
+                { value: "a", label: "he doesn\'t mind working late" },
+                { value: "b", label: "he didn\'t mind working late" },
+                { value: "c", label: "he wouldn\'t mind to work late" },
+            ],
+            correctAnswer: "b",
+            explanation: "Present simple doesn’t → didn’t when backshifting, and 'mind' is followed by a gerund: working.",
         },
     ],
 };

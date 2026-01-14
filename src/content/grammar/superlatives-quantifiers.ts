@@ -43,7 +43,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "This is the cheapest apartment I found.",
+                            label: "This is <span class='eg-superlative'>the cheapest</span> apartment I found.",
                             options: [
                                 { value: "superlative", label: "Superlative (the extreme in a group)" },
                                 { value: "quantifier", label: "Quantifier (amount: much/many/few/less)" },
@@ -52,7 +52,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "I have less time but more responsibilities.",
+                            label: "I have <span class='eg-quantifier'>less</span> time but <span class='eg-quantifier'>more</span> responsibilities.",
                             options: [
                                 { value: "superlative", label: "Superlative" },
                                 { value: "quantifier", label: "Quantifier" },
@@ -82,7 +82,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "This is the cheapest apartment in the neighborhood.",
+                            label: "This is <span class='eg-superlative'>the cheapest</span> apartment in the neighborhood.",
                             options: [
                                 { value: "superlative", label: "Superlative (3+ things)" },
                                 { value: "comparative", label: "Comparative (2 things)" },
@@ -91,7 +91,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "This apartment is cheaper than that one.",
+                            label: "This apartment is <span class='eg-comparative'>cheaper</span> than that one.",
                             options: [
                                 { value: "superlative", label: "Superlative" },
                                 { value: "comparative", label: "Comparative" },
@@ -638,21 +638,31 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     id: "ex-most-least-1",
                     title: "Practice: Real-Life Comparisons",
                     instructions:
-                        "Complete these apartment/job comparison sentences.",
+                        "Complete these comparison sentences. Think about whether you're comparing count nouns (bedrooms, hours) or non-count nouns (money, time, experience).",
                     items: [
                         {
                             type: "text",
-                            label: "Apartment A has 2 bedrooms, B has 3, C has 1. Apartment C has ___ bedrooms. (Use: the fewest OR the least)",
+                            label: "I looked at three apartments: A has 2 bedrooms, B has 3 bedrooms, and C has 1 bedroom. Apartment C has ___ bedrooms.",
                             expectedAnswer: "the fewest",
                         },
                         {
                             type: "text",
-                            label: "Job A offers $15/hr, B offers $18/hr, C offers $20/hr. Job C pays ___ money. (Use: the most)",
+                            label: "I received three job offers: Job A pays $15 per hour, Job B pays $18 per hour, and Job C pays $20 per hour. Job C pays ___ money.",
                             expectedAnswer: "the most",
                         },
                         {
                             type: "text",
-                            label: "Of all my coworkers, Maria has ___ experience (she's been here 10 years). (Use: the most)",
+                            label: "Of all my coworkers, Maria has ___ experience because she's been working here for 10 years.",
+                            expectedAnswer: "the most",
+                        },
+                        {
+                            type: "text",
+                            label: "I compared three neighborhoods: Downtown has heavy traffic, Midtown has moderate traffic, and Riverside has almost no traffic. Riverside has ___ traffic.",
+                            expectedAnswer: "the least",
+                        },
+                        {
+                            type: "text",
+                            label: "I interviewed at three companies. Company A offers 5 vacation days, Company B offers 10 days, and Company C offers 15 days. Company C offers ___ vacation days.",
                             expectedAnswer: "the most",
                         },
                     ],
@@ -737,12 +747,21 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "sq-summary-1",
-                    title: "Quick Review",
-                    instructions: "Choose the best answer for each sentence.",
+                    title: "Quick Review: Put It All Together",
+                    instructions: "Choose the best answer for each sentence. Think about count vs non-count nouns and superlative formation.",
                     items: [
                         {
                             type: "radio",
-                            label: "How ___ time do you have before class? (time = non-count)",
+                            label: "I'm looking for an apartment, but there aren't ___ options in my price range.",
+                            options: [
+                                { value: "many", label: "many" },
+                                { value: "much", label: "much" },
+                            ],
+                            expectedAnswer: "many",
+                        },
+                        {
+                            type: "radio",
+                            label: "How ___ experience do you need for this position?",
                             options: [
                                 { value: "many", label: "many" },
                                 { value: "much", label: "much" },
@@ -751,7 +770,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "This is ___ apartment in the building. (cheap)",
+                            label: "This is ___ apartment I've seen in this neighborhood.",
                             options: [
                                 { value: "the-cheapest", label: "the cheapest" },
                                 { value: "the-most-cheap", label: "the most cheap" },
@@ -760,12 +779,34 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "My new job has ___ meetings than my old one. (meetings = count)",
+                            label: "My new job offers ___ vacation days than my last job, but I have ___ stress.",
                             options: [
-                                { value: "fewer", label: "fewer" },
-                                { value: "less", label: "less" },
+                                { value: "fewer-less", label: "fewer / less" },
+                                { value: "less-fewer", label: "less / fewer" },
+                                { value: "fewer-fewer", label: "fewer / fewer" },
+                                { value: "less-less", label: "less / less" },
                             ],
-                            expectedAnswer: "fewer",
+                            expectedAnswer: "fewer-less",
+                        },
+                        {
+                            type: "radio",
+                            label: "Of all the restaurants downtown, this one has ___ parking spaces.",
+                            options: [
+                                { value: "the-fewest", label: "the fewest" },
+                                { value: "the-least", label: "the least" },
+                            ],
+                            expectedAnswer: "the-fewest",
+                        },
+                        {
+                            type: "radio",
+                            label: "I need a job with ___ responsibility and ___ hours.",
+                            options: [
+                                { value: "less-fewer", label: "less / fewer" },
+                                { value: "fewer-less", label: "fewer / less" },
+                                { value: "little-few", label: "little / few" },
+                                { value: "few-little", label: "few / little" },
+                            ],
+                            expectedAnswer: "less-fewer",
                         },
                     ],
                 },
@@ -829,6 +870,116 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'The most space' (superlative + non-count) and 'the fewest problems' (superlative + count) are both correct.",
+        },
+        {
+            id: "quiz-6",
+            question: "Complete the sentence: 'I have ___ friends here, so I'm happy.' (meaning: I do have some friends)",
+            options: [
+                { value: "a", label: "few" },
+                { value: "b", label: "a few" },
+                { value: "c", label: "little" },
+            ],
+            correctAnswer: "b",
+            explanation: "'A few' has a positive meaning (some friends = good). 'Few' without 'a' means almost none (negative).",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "This job requires less experience than that one." },
+                { value: "b", label: "This job requires fewer experience than that one." },
+                { value: "c", label: "This job requires little experience than that one." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Experience' is uncountable, so use 'less' for comparisons. 'Fewer' is for countable nouns, and 'little' is not used for comparisons.",
+        },
+        {
+            id: "quiz-8",
+            question: "What's the superlative form? 'Of all the apartments I saw, this one was ___ (expensive).'",
+            options: [
+                { value: "a", label: "the expensivest" },
+                { value: "b", label: "the most expensive" },
+                { value: "c", label: "the more expensive" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Expensive' is a long adjective (3+ syllables), so use 'the most' + adjective. Never use -est with long adjectives.",
+        },
+        {
+            id: "quiz-9",
+            question: "Complete: 'There are very ___ good apartments available right now.' (meaning: almost none, negative)",
+            options: [
+                { value: "a", label: "few" },
+                { value: "b", label: "a few" },
+                { value: "c", label: "little" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Few' (without 'a') means almost none (negative). 'A few' would mean some (positive), and 'little' is for uncountable nouns.",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence correctly combines superlatives and quantifiers?",
+            options: [
+                { value: "a", label: "This apartment has the most bedrooms and the least money." },
+                { value: "b", label: "This apartment has the most bedrooms and the less money." },
+                { value: "c", label: "This apartment has the most bedrooms and the fewest money." },
+            ],
+            correctAnswer: "a",
+            explanation: "'The most bedrooms' (count noun) and 'the least money' (non-count noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
+        },
+        {
+            id: "quiz-11",
+            question: "What's the correct form? 'She's ___ (good) employee we have.'",
+            options: [
+                { value: "a", label: "the goodest" },
+                { value: "b", label: "the most good" },
+                { value: "c", label: "the best" },
+            ],
+            correctAnswer: "c",
+            explanation: "'Good' is irregular. The superlative is 'the best,' not 'the goodest' or 'the most good.'",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete: 'I need ___ help with this project.' (meaning: some help, positive)",
+            options: [
+                { value: "a", label: "little" },
+                { value: "b", label: "a little" },
+                { value: "c", label: "few" },
+            ],
+            correctAnswer: "b",
+            explanation: "'A little' means some (positive). 'Little' without 'a' means almost none (negative). 'Few' is for countable nouns.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which is correct? 'Of all three neighborhoods, this one has ___ crime.'",
+            options: [
+                { value: "a", label: "the fewest" },
+                { value: "b", label: "the least" },
+                { value: "c", label: "fewer" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Crime' is typically uncountable (you don't say 'one crime, two crimes' in this context), so use 'the least.' 'Fewer' is for comparisons, not superlatives.",
+        },
+        {
+            id: "quiz-14",
+            question: "What's wrong with this sentence? 'This job has less benefits than my last one.'",
+            options: [
+                { value: "a", label: "Nothing - it's correct" },
+                { value: "b", label: "Should be 'fewer benefits' (benefits are countable)" },
+                { value: "c", label: "Should be 'little benefits' (benefits are uncountable)" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Benefits' are countable (1 benefit, 2 benefits), so use 'fewer,' not 'less.' This is a very common mistake!",
+        },
+        {
+            id: "quiz-15",
+            question: "Complete: 'I have ___ patience for rude customers.' (meaning: almost none, negative)",
+            options: [
+                { value: "a", label: "few" },
+                { value: "b", label: "a few" },
+                { value: "c", label: "little" },
+            ],
+            correctAnswer: "c",
+            explanation: "'Patience' is uncountable, and 'little' (without 'a') means almost none (negative). 'Few' is for countable nouns.",
         },
     ],
 };

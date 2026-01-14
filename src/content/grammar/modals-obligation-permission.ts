@@ -49,7 +49,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "You <strong>must</strong> clock in before your shift.",
+                            label: "You <span class='eg-helper'>must</span> clock in before your shift.",
                             options: [
                                 { value: "required", label: "Required (no choice)" },
                                 { value: "suggestion", label: "Suggestion (optional)" },
@@ -59,7 +59,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "<strong>Could</strong> I leave early today?",
+                            label: "<span class='eg-helper'>Could</span> I leave early today?",
                             options: [
                                 { value: "permission", label: "Asking for permission (very polite)" },
                                 { value: "required", label: "Stating a rule" },

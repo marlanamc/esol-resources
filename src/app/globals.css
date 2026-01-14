@@ -744,18 +744,38 @@ kbd {
   box-shadow: var(--shadow-sm);
 }
 
-.example-box .eg-subject {
+/* Grammar highlighting classes - used in examples and exercises */
+.example-box .eg-subject,
+.eg-subject {
   color: #1e40af; /* blue-800 */
   font-weight: 700;
 }
 
-.example-box .eg-helper {
-  color: #6d28d9; /* purple-700 */
+.example-box .eg-helper,
+.eg-helper {
+  color: #6d28d9; /* purple-700 - modals, helper verbs */
   font-weight: 700;
 }
 
-.example-box .eg-verb {
-  color: #c2410c; /* orange-700 */
+.example-box .eg-verb,
+.eg-verb {
+  color: #c2410c; /* orange-700 - main verbs */
+  font-weight: 700;
+}
+
+/* New grammar-specific emphasis classes */
+.eg-superlative {
+  color: #d97706; /* amber-600 - superlative forms */
+  font-weight: 700;
+}
+
+.eg-quantifier {
+  color: #059669; /* emerald-600 - quantifiers */
+  font-weight: 700;
+}
+
+.eg-comparative {
+  color: #0891b2; /* cyan-600 - comparative forms */
   font-weight: 700;
 }
 

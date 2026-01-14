@@ -21,7 +21,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "The phone is ringing — I'll answer it.",
+                            label: "The phone is ringing — <span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>answer</span> it.",
                             options: [
                                 { value: "decision", label: "Spontaneous decision, right now" },
                                 { value: "past", label: "Finished past action" },
@@ -98,7 +98,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "\"I'll pick up your prescription from the pharmacy on my way home.\"",
+                            label: "\"<span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>pick</span> up your prescription from the pharmacy on my way home.\"",
                             options: [
                                 { value: "promise", label: "Promise/offer" },
                                 { value: "plan", label: "Pre-planned schedule" },
@@ -108,7 +108,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"The cherry blossoms will bloom in early April.\"",
+                            label: "\"The cherry blossoms <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>bloom</span> in early April.\"",
                             options: [
                                 { value: "prediction", label: "Prediction" },
                                 { value: "decision", label: "Decision right now" },
@@ -118,7 +118,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"Someone's at the door. I'll get it.\"",
+                            label: "\"Someone's at the door. <span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>get</span> it.\"",
                             options: [
                                 { value: "decision", label: "Decision made now" },
                                 { value: "schedule", label: "Fixed schedule" },
@@ -188,12 +188,12 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "The museum ___ (open) a new exhibit about ancient Rome next month.",
+                            label: "The museum ___ (open) a new exhibit about local history next month.",
                             expectedAnswer: "will open",
                         },
                         {
                             type: "text",
-                            label: "My parents ___ (celebrate) their 30th anniversary in Hawaii.",
+                            label: "My parents ___ (celebrate) their 30th anniversary with a family dinner.",
                             expectedAnswer: "will celebrate",
                         },
                         {
@@ -318,7 +318,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ your daughter ___ (study) abroad next course?",
+                            label: "___ your daughter ___ (study) online next term?",
                             expectedAnswer: "Will your daughter study",
                         },
                         {
@@ -357,7 +357,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "Make negative: I will attend the conference next month.", expectedAnswer: "I won't attend the conference next month" },
                         { type: "text", label: "Make a question: She will finish the report by Friday.", expectedAnswer: "Will she finish the report by Friday" },
-                        { type: "text", label: "Make affirmative: They won't travel this summer.", expectedAnswer: "They will travel this summer" },
+                        { type: "text", label: "Make affirmative: They won't attend the meeting.", expectedAnswer: "They will attend the meeting" },
                         { type: "text", label: "Make negative: The weather will be sunny tomorrow.", expectedAnswer: "The weather won't be sunny tomorrow" },
                     ],
                 },
@@ -428,14 +428,14 @@ export const futureSimpleContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which sentence correctly uses 'will' (base verb)?",
+            question: "Which sentence correctly uses 'will' + base verb?",
             options: [
-                { value: "a", label: "I will to call you now." },
-                { value: "b", label: "I will call you now." },
-                { value: "c", label: "I will calling you now." },
+                { value: "a", label: "I will to call you later." },
+                { value: "b", label: "I will call you later." },
+                { value: "c", label: "I will calling you later." },
             ],
             correctAnswer: "b",
-            explanation: "Future Simple: will + base verb (no 'to', no -ing).",
+            explanation: "Future Simple uses will + base verb: will call.",
         },
         {
             id: "quiz-2",
@@ -457,29 +457,139 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "You will help me?" },
             ],
             correctAnswer: "b",
-            explanation: "Will + subject + base verb (help, not helps).",
+            explanation: "Question: Will + subject + base verb.",
         },
         {
             id: "quiz-4",
-            question: "Choose 'will' vs a different tense: Which needs 'will'?",
+            question: "Which sentence is a spontaneous decision (made now)?",
             options: [
-                { value: "a", label: "The bus leaves at 7:10 AM." },
+                { value: "a", label: "I'm meeting my friend at 3 PM." },
                 { value: "b", label: "I'll answer the door—someone's knocking." },
-                { value: "c", label: "I'm meeting my friend at 3 PM." },
+                { value: "c", label: "The bus leaves at 7:10 AM." },
             ],
             correctAnswer: "b",
-            explanation: "Spontaneous decision → will. A) timetable uses Present Simple; C) arranged plan uses Present Continuous.",
+            explanation: "A decision made right now often uses will: I'll answer.",
         },
         {
             id: "quiz-5",
-            question: "Pick the correct use of 'will' for a promise/offer.",
+            question: "Pick the correct promise/offer.",
             options: [
-                { value: "a", label: "I will fixing it later." },
-                { value: "b", label: "I fix it later." },
-                { value: "c", label: "I will fix it later." },
+                { value: "a", label: "I will fixing it after class." },
+                { value: "b", label: "I will fix it after class." },
+                { value: "c", label: "I fix it after class." },
             ],
-            correctAnswer: "c",
-            explanation: "Promise: will + base verb → will fix.",
+            correctAnswer: "b",
+            explanation: "Promise/offer: will + base verb → will fix.",
+        },
+        {
+            id: "quiz-6",
+            question: "Which sentence is a prediction?",
+            options: [
+                { value: "a", label: "I will help you carry the bags." },
+                { value: "b", label: "It will rain later today." },
+                { value: "c", label: "I'm going to the store now." },
+            ],
+            correctAnswer: "b",
+            explanation: "Predictions about the future often use will.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence uses a contraction correctly?",
+            options: [
+                { value: "a", label: "I' ll text you later." },
+                { value: "b", label: "I'll text you later." },
+                { value: "c", label: "Ill text you later." },
+            ],
+            correctAnswer: "b",
+            explanation: "I'll = I will. (No extra spaces, and 'Ill' changes the meaning.)",
+        },
+        {
+            id: "quiz-8",
+            question: "Choose 'will' or 'going to': The plan is already arranged.",
+            options: [
+                { value: "a", label: "I'm going to renew my ID tomorrow." },
+                { value: "b", label: "I'll renew my ID tomorrow (I planned it last week)." },
+                { value: "c", label: "I renew my ID tomorrow." },
+            ],
+            correctAnswer: "a",
+            explanation: "A plan made before now is often going to (or Present Continuous for an appointment).",
+        },
+        {
+            id: "quiz-9",
+            question: "Choose 'will' or Present Continuous: It's an arranged appointment.",
+            options: [
+                { value: "a", label: "I'm meeting the doctor at 2 PM." },
+                { value: "b", label: "I'll meet the doctor at 2 PM (appointment already set)." },
+                { value: "c", label: "I meet the doctor at 2 PM." },
+            ],
+            correctAnswer: "a",
+            explanation: "We often use Present Continuous for arranged appointments: I'm meeting…",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "He will comes tomorrow." },
+                { value: "b", label: "He will come tomorrow." },
+                { value: "c", label: "He will coming tomorrow." },
+            ],
+            correctAnswer: "b",
+            explanation: "Will is followed by the base verb: will come.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which question is correct?",
+            options: [
+                { value: "a", label: "Will she to call you?" },
+                { value: "b", label: "Will she call you?" },
+                { value: "c", label: "Will she calls you?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Question form: Will + subject + base verb.",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence shows refusal (won't)?",
+            options: [
+                { value: "a", label: "My phone won't turn on." },
+                { value: "b", label: "My phone doesn't turn on." },
+                { value: "c", label: "My phone isn't turning on." },
+            ],
+            correctAnswer: "a",
+            explanation: "Won't can show refusal or 'it refuses to': it won't turn on.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which time expression often goes with Future Simple?",
+            options: [
+                { value: "a", label: "tomorrow" },
+                { value: "b", label: "yesterday" },
+                { value: "c", label: "in 2020" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Simple often appears with future time words: tomorrow, next week, soon.",
+        },
+        {
+            id: "quiz-14",
+            question: "Pick the best offer.",
+            options: [
+                { value: "a", label: "I'll carry that box for you." },
+                { value: "b", label: "I'm carrying that box for you (right now decision)." },
+                { value: "c", label: "I carry that box for you." },
+            ],
+            correctAnswer: "a",
+            explanation: "Offers made in the moment often use will: I'll carry…",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence is a prediction based on what you see now?",
+            options: [
+                { value: "a", label: "Look at those dark clouds—it's going to rain." },
+                { value: "b", label: "I'll go to the store later." },
+                { value: "c", label: "I went to the store yesterday." },
+            ],
+            correctAnswer: "a",
+            explanation: "Predictions based on present evidence often use going to: it's going to rain.",
         },
     ],
 };

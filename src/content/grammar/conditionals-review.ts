@@ -25,13 +25,13 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                         <h4 style="color: #7ba884; margin-top: 0;">First</h4>
                         <p><strong>Real future</strong></p>
                         <p style="font-weight: bold; font-size: 0.9rem;">present + will</p>
-                        <p style="margin: 0; font-size: 0.9rem;">"If it rains, I will stay home."</p>
+                        <p style="margin: 0; font-size: 0.9rem;">"If the bus is late, I will text my supervisor."</p>
                     </div>
                     <div style="background: rgba(168, 85, 247, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
                         <h4 style="color: #a855f7; margin-top: 0;">Second</h4>
                         <p><strong>Unreal/unlikely</strong></p>
                         <p style="font-weight: bold; font-size: 0.9rem;">past + would</p>
-                        <p style="margin: 0; font-size: 0.9rem;">"If I won the lottery, I would travel."</p>
+                        <p style="margin: 0; font-size: 0.9rem;">"If I got a huge raise, I would pay off my bills."</p>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"If you heat water to 100°C, it boils."',
+                            label: '"If you <span class=\'eg-verb\'>heat</span> water to 100°C, it <span class=\'eg-verb\'>boils</span>."',
                             options: [
                                 { value: "zero", label: "Zero - always true" },
                                 { value: "first", label: "First - real future" },
@@ -65,7 +65,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If it rains tomorrow, I will stay home."',
+                            label: '"If the bus <span class=\'eg-verb\'>is</span> late tomorrow, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>text</span> my supervisor."',
                             options: [
                                 { value: "zero", label: "Zero - always true" },
                                 { value: "first", label: "First - real future" },
@@ -75,7 +75,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I won the lottery, I would buy a house."',
+                            label: '"If I <span class=\'eg-verb\'>got</span> a huge raise, I <span class=\'eg-helper\'>would</span> <span class=\'eg-verb\'>pay off</span> my bills."',
                             options: [
                                 { value: "zero", label: "Zero - always true" },
                                 { value: "first", label: "First - real future" },
@@ -115,13 +115,13 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; color: #7ba884;">First</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If + <strong>present</strong>,<br/><strong>will</strong> + verb</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Real future possibilities<br/>Plans<br/>Predictions<br/>Warnings</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If it rains, I <strong>will stay</strong> home.<br/><br/>If I study, I <strong>will pass</strong>.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If the bus is late, I <strong>will text</strong> my supervisor.<br/><br/>If I study tonight, I <strong>will pass</strong>.</td>
                         </tr>
                         <tr style="background: rgba(168, 85, 247, 0.08);">
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; color: #a855f7;">Second</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If + <strong>past</strong>,<br/><strong>would</strong> + verb</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Unreal/unlikely<br/>Imaginary<br/>Impossible<br/>Advice (If I were you)</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I won the lottery, I <strong>would travel</strong>.<br/><br/>If I <strong>were</strong> you, I would apply.</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">If I got a huge raise, I <strong>would pay off</strong> my bills.<br/><br/>If I <strong>were</strong> you, I would apply.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -300,9 +300,9 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You're dreaming about something unlikely:",
                             options: [
-                                { value: "zero", label: "Zero: 'If I win the lottery, I buy a house.'" },
-                                { value: "first", label: "First: 'If I win the lottery, I will buy a house.'" },
-                                { value: "second", label: "Second: 'If I won the lottery, I would buy a house.'" },
+                                { value: "zero", label: "Zero: 'If I get a huge raise, I pay off my bills.'" },
+                                { value: "first", label: "First: 'If I get a huge raise, I will pay off my bills.'" },
+                                { value: "second", label: "Second: 'If I got a huge raise, I would pay off my bills.'" },
                             ],
                             expectedAnswer: "second",
                         },
@@ -332,7 +332,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                     <div style="background: rgba(122, 143, 124, 0.15); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #7ba884;">
                         <p style="font-weight: bold; margin-bottom: 0.5rem;">STEP 2: Is it a REALISTIC future possibility?</p>
                         <p style="margin: 0;">✓ YES → Use <strong>FIRST conditional</strong> (present + will)</p>
-                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic;">Example: "If I study tonight, I will pass the test."</p>
+                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic;">Example: "If the bus is late tomorrow, I will text my supervisor."</p>
                     </div>
 
                     <p style="text-align: center; font-weight: bold; margin: 1rem 0;">↓ NO? It must be...</p>
@@ -340,7 +340,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                     <div style="background: rgba(168, 85, 247, 0.15); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
                         <p style="font-weight: bold; margin-bottom: 0.5rem;">STEP 3: It's UNLIKELY, IMAGINARY, or IMPOSSIBLE</p>
                         <p style="margin: 0;">✓ Use <strong>SECOND conditional</strong> (past + would)</p>
-                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic;">Example: "If I won the lottery, I would buy a house."</p>
+                        <p style="margin: 0.5rem 0 0 1rem; font-style: italic;">Example: "If I got a huge raise, I would pay off my bills."</p>
                     </div>
                 </div>
 
@@ -360,12 +360,12 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → Zero</td>
                         </tr>
                         <tr style="background: rgba(0,0,0,0.02);">
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Planning to study tomorrow</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Planning to meet your supervisor tomorrow</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Realistic future?</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → First</td>
                         </tr>
                         <tr>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Daydreaming about lottery</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Daydreaming about a huge raise</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Unlikely/imaginary?</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">YES → Second</td>
                         </tr>
@@ -425,7 +425,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"If I cook at home, I save money."',
+                            label: '"If I <span class=\'eg-verb\'>cook</span> at home, I <span class=\'eg-verb\'>save</span> money."',
                             options: [
                                 { value: "zero", label: "Zero" },
                                 { value: "first", label: "First" },
@@ -435,7 +435,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I cook at home tonight, I will save $20."',
+                            label: '"If I <span class=\'eg-verb\'>cook</span> at home tonight, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>save</span> $20."',
                             options: [
                                 { value: "zero", label: "Zero" },
                                 { value: "first", label: "First" },
@@ -445,7 +445,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I had more time, I would cook at home."',
+                            label: '"If I <span class=\'eg-verb\'>had</span> more time, I <span class=\'eg-helper\'>would</span> <span class=\'eg-verb\'>cook</span> at home."',
                             options: [
                                 { value: "zero", label: "Zero" },
                                 { value: "first", label: "First" },
@@ -468,9 +468,9 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "First: 'If it rains tomorrow, I _____ home.'",
-                            options: ["stay", "will stay", "would stay", "stayed"],
-                            expectedAnswer: "will stay",
+                            label: "First: 'If the bus is late tomorrow, I _____ my supervisor.'",
+                            options: ["text", "will text", "would text", "texted"],
+                            expectedAnswer: "will text",
                         },
                         {
                             type: "select",
@@ -582,7 +582,7 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
                     <h4 style="color: #a855f7; margin-top: 0;">Second Conditional</h4>
                     <p><strong>Formula:</strong> If + past, would + base verb</p>
                     <p><strong>Use for:</strong> Unlikely/imaginary situations, advice</p>
-                    <p><strong>Example:</strong> If I won the lottery, I would travel the world.</p>
+                    <p><strong>Example:</strong> If I got a huge raise, I would pay off my bills.</p>
                     <p><strong>Special:</strong> Use "were" for all subjects with "to be"</p>
                 </div>
 
@@ -617,56 +617,155 @@ export const conditionalsReviewContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which is correct first conditional?",
             options: [
-                { value: "a", label: "If I will study, I will pass." },
-                { value: "b", label: "If I study, I will pass." },
-                { value: "c", label: "If I study, I pass." },
+                { value: "a", label: "If I will leave early, I will catch the bus." },
+                { value: "b", label: "If I leave early, I will catch the bus." },
+                { value: "c", label: "If I left early, I will catch the bus." },
             ],
             correctAnswer: "b",
-            explanation: "First conditional: If + present simple, will + base verb. Never use 'will' in the IF clause!",
+            explanation: "First conditional: If + present simple, will + base verb. Don’t use will in the IF clause.",
         },
         {
             id: "quiz-3",
             question: "For advice, which is correct?",
             options: [
-                { value: "a", label: "If I am you, I will help." },
-                { value: "b", label: "If I was you, I would help." },
-                { value: "c", label: "If I were you, I would help." },
+                { value: "a", label: "If I am you, I will talk to the manager." },
+                { value: "b", label: "If I was you, I would talk to the manager." },
+                { value: "c", label: "If I were you, I would talk to the manager." },
             ],
             correctAnswer: "c",
-            explanation: "Use second conditional with 'were' for giving advice: 'If I were you, I would...'",
+            explanation: "Use second conditional for advice: If I were you, I would…",
         },
         {
             id: "quiz-4",
             question: "Which sentence describes a habit (always true)?",
             options: [
-                { value: "a", label: "If I exercise, I feel better." },
-                { value: "b", label: "If I exercise tomorrow, I will feel better." },
-                { value: "c", label: "If I exercised, I would feel better." },
+                { value: "a", label: "If I skip lunch, I get a headache by the afternoon." },
+                { value: "b", label: "If I skip lunch tomorrow, I will get a headache." },
+                { value: "c", label: "If I skipped lunch, I would get a headache." },
             ],
             correctAnswer: "a",
-            explanation: "Zero conditional (If + present, present) is used for habits and things that are always true.",
+            explanation: "Zero conditional describes habits/patterns: present + present.",
         },
         {
             id: "quiz-5",
             question: "Which sentence is about an unlikely/imaginary situation?",
             options: [
-                { value: "a", label: "If I save money, I will buy a car." },
-                { value: "b", label: "If I saved money, I would buy a car." },
-                { value: "c", label: "If I save money, I buy a car." },
+                { value: "a", label: "If I save $10 this week, I will buy groceries." },
+                { value: "b", label: "If I saved $10 this week, I would buy groceries." },
+                { value: "c", label: "If I save $10 this week, I buy groceries." },
             ],
             correctAnswer: "b",
-            explanation: "Second conditional (If + past, would + verb) is for unlikely or imaginary situations.",
+            explanation: "Second conditional uses past + would to show a hypothetical/imaginary situation.",
         },
         {
             id: "quiz-6",
             question: "What's wrong with: 'If you heat water, it will boil'?",
             options: [
                 { value: "a", label: "Nothing - it's correct" },
-                { value: "b", label: "Should use zero conditional (it boils) for scientific facts" },
-                { value: "c", label: "Should use second conditional (would boil)" },
+                { value: "b", label: "For a scientific fact, use zero conditional: it boils" },
+                { value: "c", label: "It should be: If you heated water, it would boil" },
             ],
             correctAnswer: "b",
-            explanation: "For scientific facts that are always true, use zero conditional: 'If you heat water, it boils.'",
+            explanation: "For scientific facts that are always true, use zero conditional: If you heat water, it boils.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence is correct second conditional with 'to be'?",
+            options: [
+                { value: "a", label: "If he was the supervisor, he would change the schedule." },
+                { value: "b", label: "If he were the supervisor, he would change the schedule." },
+                { value: "c", label: "If he is the supervisor, he would change the schedule." },
+            ],
+            correctAnswer: "b",
+            explanation: "Traditional second conditional uses were for all subjects: If he were…",
+        },
+        {
+            id: "quiz-8",
+            question: "Which sentence is a realistic future plan (first conditional)?",
+            options: [
+                { value: "a", label: "If the bus is late tomorrow, I will text my supervisor." },
+                { value: "b", label: "If the bus was late tomorrow, I would text my supervisor." },
+                { value: "c", label: "If the bus is late tomorrow, I text my supervisor." },
+            ],
+            correctAnswer: "a",
+            explanation: "First conditional talks about a real future possibility: present + will.",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence is incorrect because it uses 'will' in the IF clause?",
+            options: [
+                { value: "a", label: "If I will call the office, I will ask about my case." },
+                { value: "b", label: "If I call the office, I will ask about my case." },
+                { value: "c", label: "If I call the office, I ask about my case. (habit)" },
+            ],
+            correctAnswer: "a",
+            explanation: "Don’t use will in the IF clause in first conditional. Use present simple: If I call…",
+        },
+        {
+            id: "quiz-10",
+            question: "Choose the correct first conditional negative.",
+            options: [
+                { value: "a", label: "If I don't set an alarm, I will be late." },
+                { value: "b", label: "If I won't set an alarm, I will be late." },
+                { value: "c", label: "If I didn't set an alarm, I would be late." },
+            ],
+            correctAnswer: "a",
+            explanation: "First conditional uses present simple in IF clause (don’t set) and will in the result.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence is a general truth (zero conditional)?",
+            options: [
+                { value: "a", label: "If you don't sleep enough, you feel tired." },
+                { value: "b", label: "If you don't sleep enough tonight, you will feel tired." },
+                { value: "c", label: "If you didn't sleep enough, you would feel tired." },
+            ],
+            correctAnswer: "a",
+            explanation: "Zero conditional describes general truths and patterns: present + present.",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence is second conditional (imaginary)?",
+            options: [
+                { value: "a", label: "If I have more hours, I will pay off my bills faster." },
+                { value: "b", label: "If I had more hours, I would pay off my bills faster." },
+                { value: "c", label: "If I had more hours, I will pay off my bills faster." },
+            ],
+            correctAnswer: "b",
+            explanation: "Second conditional: If + past, would + base verb.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which sentence best matches this meaning: 'I’m not cooking at home, but I think it would help.'",
+            options: [
+                { value: "a", label: "If I cook at home, I save money." },
+                { value: "b", label: "If I cook at home this week, I will save money." },
+                { value: "c", label: "If I cooked at home more, I would save money." },
+            ],
+            correctAnswer: "c",
+            explanation: "Second conditional expresses an unreal/hypothetical situation: cooked… would save…",
+        },
+        {
+            id: "quiz-14",
+            question: "Which pair correctly shows first vs second conditional?",
+            options: [
+                { value: "a", label: "First: If I save money, I will buy a used laptop. | Second: If I saved money, I would buy a used laptop." },
+                { value: "b", label: "First: If I save money, I would buy a used laptop. | Second: If I saved money, I will buy a used laptop." },
+                { value: "c", label: "First: If I will save money, I will buy a used laptop. | Second: If I would save money, I would buy a used laptop." },
+            ],
+            correctAnswer: "a",
+            explanation: "First is realistic (present + will). Second is hypothetical (past + would).",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "If I was you, I would talk to the manager." },
+                { value: "b", label: "If I were you, I would talk to the manager." },
+                { value: "c", label: "If I were you, I will talk to the manager." },
+            ],
+            correctAnswer: "b",
+            explanation: "Advice uses second conditional: If I were you, I would…",
         },
     ],
 };
