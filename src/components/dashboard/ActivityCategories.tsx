@@ -349,8 +349,11 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             name: 'Games',
             color: '#f97316', // orange
             activities: activities.filter(a => {
-                // Show all activities with type 'game'
-                return a.type === 'game';
+                // Only show specific games: numbers-game and countable-uncountable-nouns
+                // Exclude vocabulary games (they show in Vocabulary category)
+                if (a.type !== 'game') return false;
+                if (a.id?.startsWith('vocab-')) return false;
+                return a.id === 'numbers-game' || a.id === 'countable-uncountable-nouns';
             }).sort((a, b) => {
                 // Sort by title for better organization
                 return (a.title || '').localeCompare(b.title || '');
