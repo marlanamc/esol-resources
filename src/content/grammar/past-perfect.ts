@@ -857,7 +857,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Before I moved to New York, I ___ in Boston.",
+                            label: "Before I moved to East Boston, I ___ in Chelsea.",
                             options: [
                                 { value: "had-lived", label: "had lived (Past Perfect)" },
                                 { value: "lived", label: "lived (Past Simple)" },

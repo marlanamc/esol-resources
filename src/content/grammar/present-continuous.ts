@@ -31,7 +31,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The TV is playing." What does this describe?',
+                            label: '"The TV <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>playing</span>." What does this describe?',
                             options: [
                                 { value: "a", label: "What's happening right now" },
                                 { value: "b", label: "A habit" },
@@ -127,7 +127,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "\"She is talking on the phone right now.\"",
+                            label: "\"She <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>talking</span> on the phone right now.\"",
                             options: [
                                 { value: "now", label: "Action happening now" },
                                 { value: "habit", label: "Habit/routine" },
@@ -137,7 +137,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"My parents are renovating their bathroom this summer.\"",
+                            label: "\"My parents <span class=\'eg-helper\'>are</span> <span class=\'eg-verb\'>renovating</span> their bathroom this summer.\"",
                             options: [
                                 { value: "temporary", label: "Temporary situation" },
                                 { value: "fact", label: "Permanent fact" },
@@ -147,7 +147,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "\"The kids are performing in the school play tomorrow evening.\"",
+                            label: "\"The kids <span class=\'eg-helper\'>are</span> <span class=\'eg-verb\'>performing</span> in the school play tomorrow evening.\"",
                             options: [
                                 { value: "near-future", label: "Arranged near-future plan" },
                                 { value: "habit", label: "Habit" },
@@ -261,7 +261,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     instructions: "Use am/is/are not + verb-ing.",
                     items: [
                         { type: "text", label: "The museum ___ (not charge) admission fees this weekend.", expectedAnswer: "is not charging" },
-                        { type: "text", label: "We ___ (not travel) internationally this year because of budget constraints.", expectedAnswer: "are not traveling" },
+                        { type: "text", label: "We ___ (not buy) a new couch this month because we're saving money.", expectedAnswer: "are not buying" },
                         { type: "text", label: "My son ___ (not listen) to my advice about his college applications.", expectedAnswer: "is not listening" },
                     ],
                 },
@@ -307,7 +307,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     instructions: "Form questions with am/is/are + subject + verb-ing.",
                     items: [
                         { type: "text", label: "___ the library ___ (offer) free workshops this month?", expectedAnswer: "Is the library offering" },
-                        { type: "text", label: "___ your grandparents ___ (visit) from overseas next week?", expectedAnswer: "Are your grandparents visiting" },
+                        { type: "text", label: "___ your cousins ___ (visit) next week?", expectedAnswer: "Are your cousins visiting" },
                         { type: "text", label: "___ the city ___ (repair) the sidewalks in our neighborhood?", expectedAnswer: "Is the city repairing" },
                     ],
                 },
@@ -340,7 +340,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "Make negative: I am studying for my exam.", expectedAnswer: "I am not studying for my exam" },
                         { type: "text", label: "Make a question: She is working from home today.", expectedAnswer: "Is she working from home today" },
-                        { type: "text", label: "Make affirmative: They aren't traveling this summer.", expectedAnswer: "They are traveling this summer" },
+                        { type: "text", label: "Make affirmative: They aren't working this weekend.", expectedAnswer: "They are working this weekend" },
                     ],
                 },
             ],
@@ -393,44 +393,166 @@ export const presentContinuousContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly shows an action in progress?",
             options: [
-                { value: "a", label: "I watch TV right now." },
-                { value: "b", label: "I am watching TV right now." },
+                { value: "a", label: "I cook dinner right now." },
+                { value: "b", label: "I am cooking dinner right now." },
+                { value: "c", label: "I cooked dinner right now." },
             ],
             correctAnswer: "b",
             explanation: "Use am/is/are + verb-ing for actions happening at this moment.",
         },
         {
             id: "quiz-2",
-            question: "Which sentence is NOT a good use of Present Continuous?",
+            question: "Which sentence shows a temporary situation (not permanent)?",
             options: [
-                { value: "a", label: "She's staying with her cousin this week." },
-                { value: "b", label: "I'm knowing the answer right now." },
-                { value: "c", label: "They're testing the new feature today." },
+                { value: "a", label: "My aunt lives in Dorchester." },
+                { value: "b", label: "My aunt is living with her sister this month while her apartment is painted." },
+                { value: "c", label: "My aunt lived in Dorchester when she was a child." },
             ],
             correctAnswer: "b",
-            explanation: "Stative verbs like know rarely take -ing; use 'I know the answer.'",
+            explanation: "Present Continuous fits temporary arrangements that are true for a short period.",
         },
         {
             id: "quiz-3",
-            question: "Choose the correct question form for 'you/work/from home/today'.",
+            question: "Which sentence is an arranged near-future plan (Present Continuous)?",
             options: [
-                { value: "a", label: "Do you working from home today?" },
-                { value: "b", label: "Are you working from home today?" },
-                { value: "c", label: "Are you work from home today?" },
+                { value: "a", label: "I'm meeting the teacher tomorrow afternoon." },
+                { value: "b", label: "I meet the teacher tomorrow afternoon." },
+                { value: "c", label: "I met the teacher tomorrow afternoon." },
             ],
-            correctAnswer: "b",
-            explanation: "Question: Am/Is/Are + subject + verb-ing.",
+            correctAnswer: "a",
+            explanation: "We often use Present Continuous for arranged plans: I'm meeting… tomorrow.",
         },
         {
             id: "quiz-4",
-            question: "Pick the sentence that shows a temporary situation (not permanent).",
+            question: "Which question is correct?",
             options: [
-                { value: "a", label: "My uncle lives in Canada." },
-                { value: "b", label: "My uncle is living in a hotel while his house is being renovated." },
-                { value: "c", label: "My uncle lived in Canada last decade." },
+                { value: "a", label: "Are you working today?" },
+                { value: "b", label: "Do you working today?" },
+                { value: "c", label: "Are you work today?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question form: Am/Is/Are + subject + verb-ing.",
+        },
+        {
+            id: "quiz-5",
+            question: "Which negative sentence is correct?",
+            options: [
+                { value: "a", label: "He isn't taking the early shift this week." },
+                { value: "b", label: "He doesn't taking the early shift this week." },
+                { value: "c", label: "He isn't take the early shift this week." },
+            ],
+            correctAnswer: "a",
+            explanation: "Negative Present Continuous: am/is/are not + verb-ing.",
+        },
+        {
+            id: "quiz-6",
+            question: "Which sentence is NOT a good use of Present Continuous?",
+            options: [
+                { value: "a", label: "I'm knowing the answer right now." },
+                { value: "b", label: "She's staying with her cousin this week." },
+                { value: "c", label: "They're waiting for the bus right now." },
+            ],
+            correctAnswer: "a",
+            explanation: "Stative verbs like know rarely take -ing; use 'I know the answer.'",
+        },
+        {
+            id: "quiz-7",
+            question: "Choose the correct -ing form: write → ____",
+            options: [
+                { value: "a", label: "writeing" },
+                { value: "b", label: "writing" },
+                { value: "c", label: "writting" },
             ],
             correctAnswer: "b",
-            explanation: "Present Continuous fits temporary/short-term arrangements: is living in a hotel while his house is being renovated.",
+            explanation: "Drop final -e: write → writing.",
+        },
+        {
+            id: "quiz-8",
+            question: "Choose the correct -ing form: run → ____",
+            options: [
+                { value: "a", label: "runing" },
+                { value: "b", label: "running" },
+                { value: "c", label: "runeing" },
+            ],
+            correctAnswer: "b",
+            explanation: "One-syllable CVC verbs double the last consonant: run → running.",
+        },
+        {
+            id: "quiz-9",
+            question: "Choose Present Continuous or Present Simple: Which sentence is a habit?",
+            options: [
+                { value: "a", label: "I am taking the bus to work every day." },
+                { value: "b", label: "I take the bus to work every day." },
+                { value: "c", label: "I took the bus to work every day." },
+            ],
+            correctAnswer: "b",
+            explanation: "Habits/routines usually use Present Simple: I take… every day.",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence correctly shows something happening now?",
+            options: [
+                { value: "a", label: "The kids play outside right now." },
+                { value: "b", label: "The kids are playing outside right now." },
+                { value: "c", label: "The kids played outside right now." },
+            ],
+            correctAnswer: "b",
+            explanation: "Right now → Present Continuous: are playing.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence has the correct word order?",
+            options: [
+                { value: "a", label: "Why you are waiting?" },
+                { value: "b", label: "Why are you waiting?" },
+                { value: "c", label: "Why are waiting you?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Questions: WH-word + am/is/are + subject + verb-ing.",
+        },
+        {
+            id: "quiz-12",
+            question: "Choose 'will' or Present Continuous: Someone knocks. You decide now.",
+            options: [
+                { value: "a", label: "I'm answering the door." },
+                { value: "b", label: "I'll answer the door." },
+                { value: "c", label: "I answer the door." },
+            ],
+            correctAnswer: "b",
+            explanation: "A spontaneous decision right now often uses will: I'll answer.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "She is cook dinner right now." },
+                { value: "b", label: "She is cooking dinner right now." },
+                { value: "c", label: "She cooking dinner right now." },
+            ],
+            correctAnswer: "b",
+            explanation: "Present Continuous needs am/is/are + verb-ing: is cooking.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which time expression often goes with Present Continuous?",
+            options: [
+                { value: "a", label: "right now" },
+                { value: "b", label: "in 2020" },
+                { value: "c", label: "two years ago" },
+            ],
+            correctAnswer: "a",
+            explanation: "Right now/currently/at the moment often signal Present Continuous.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence best describes a temporary work schedule?",
+            options: [
+                { value: "a", label: "He works the night shift." },
+                { value: "b", label: "He is working the night shift this week." },
+                { value: "c", label: "He worked the night shift this week." },
+            ],
+            correctAnswer: "b",
+            explanation: "This week suggests a temporary situation, so Present Continuous fits: is working.",
         },
     ],
 };

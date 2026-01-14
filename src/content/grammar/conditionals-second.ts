@@ -10,13 +10,13 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
             icon: "💭",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.1) 0%, rgba(110, 145, 118, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">"If I won the lottery, I would travel the world." "If I had more time, I would exercise every day." The <strong>second conditional</strong> helps you talk about hypothetical situations - things that are unlikely, impossible, or just dreams and imagination!</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">"If I won a big prize, I would pay off my bills." "If I had more time, I would cook at home more." The <strong>second conditional</strong> helps you talk about hypothetical situations - things that are unlikely, impossible, or just dreams and imagination!</p>
                 </div>
 
                 <h3>What Is Second Conditional?</h3>
                 <p>Second conditional is for <strong>unreal or hypothetical situations</strong> in the present or future:</p>
                 <ul>
-                    <li><strong>Unlikely situations:</strong> "If I won the lottery..." (probably won't happen)</li>
+                    <li><strong>Unlikely situations:</strong> "If I got a huge raise..." (probably won't happen)</li>
                     <li><strong>Imaginary situations:</strong> "If I were the boss..." (I'm not the boss)</li>
                     <li><strong>Dreams and wishes:</strong> "If I had more money, I would buy a house."</li>
                     <li><strong>Giving advice:</strong> "If I were you, I would talk to the manager."</li>
@@ -48,7 +48,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"If I won the lottery, I would travel the world."',
+                            label: '"If I <span class=\'eg-verb\'>won</span> a big prize, I <span class=\'eg-helper\'>would</span> <span class=\'eg-verb\'>pay off</span> my bills."',
                             options: [
                                 { value: "real", label: "Real possibility - likely to happen" },
                                 { value: "unreal", label: "Unreal/unlikely - probably won't happen, just imagining" },
@@ -57,7 +57,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I study tonight, I will pass the test."',
+                            label: '"If I <span class=\'eg-verb\'>study</span> tonight, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>pass</span> the test."',
                             options: [
                                 { value: "real", label: "Real possibility - can really happen" },
                                 { value: "unreal", label: "Unreal/unlikely - just imagining" },
@@ -66,7 +66,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If I were the boss, I would change the schedule."',
+                            label: '"If I <span class=\'eg-verb\'>were</span> the boss, I <span class=\'eg-helper\'>would</span> <span class=\'eg-verb\'>change</span> the schedule."',
                             options: [
                                 { value: "real", label: "Real possibility - I might become the boss" },
                                 { value: "unreal", label: "Unreal - I'm not the boss, just imagining" },
@@ -93,9 +93,9 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
                     <p style="font-weight: bold; color: #a855f7;">IF clause (use past simple):</p>
                     <ul>
-                        <li>If I <strong>won</strong> the lottery</li>
+                        <li>If I <strong>won</strong> a big prize</li>
                         <li>If she <strong>had</strong> more time</li>
-                        <li>If we <strong>lived</strong> near the beach</li>
+                        <li>If we <strong>lived</strong> closer to work</li>
                         <li>If they <strong>spoke</strong> English fluently</li>
                     </ul>
                 </div>
@@ -103,18 +103,18 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                 <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1); margin: 1rem 0;">
                     <p style="font-weight: bold; color: #d97757;">WOULD clause (result):</p>
                     <ul>
-                        <li>I <strong>would travel</strong> the world</li>
-                        <li>she <strong>would exercise</strong> every day</li>
-                        <li>we <strong>would go</strong> swimming daily</li>
+                        <li>I <strong>would pay off</strong> my bills</li>
+                        <li>she <strong>would cook</strong> at home more</li>
+                        <li>we <strong>would save</strong> time every morning</li>
                         <li>they <strong>would get</strong> better jobs</li>
                     </ul>
                 </div>
 
                 <h3>Complete Examples</h3>
                 <ul>
-                    <li><strong>If I won the lottery</strong>, <strong>I would travel the world</strong>.</li>
-                    <li><strong>If she had more time</strong>, <strong>she would exercise every day</strong>.</li>
-                    <li><strong>If we lived near the beach</strong>, <strong>we would go swimming daily</strong>.</li>
+                    <li><strong>If I won a big prize</strong>, <strong>I would pay off my bills</strong>.</li>
+                    <li><strong>If she had more time</strong>, <strong>she would cook at home more</strong>.</li>
+                    <li><strong>If we lived closer to work</strong>, <strong>we would save time every morning</strong>.</li>
                     <li><strong>If they spoke English fluently</strong>, <strong>they would get better jobs</strong>.</li>
                 </ul>
 
@@ -139,22 +139,22 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "If I _____ (win) the lottery, I would travel the world.",
+                            label: "If I _____ (win) a big prize, I would pay off my bills.",
                             expectedAnswer: "won",
                         },
                         {
                             type: "select",
-                            label: "If she had more time, she _____ exercise every day.",
-                            options: ["exercises", "will exercise", "would exercise", "exercised"],
-                            expectedAnswer: "would exercise",
+                            label: "If she had more time, she _____ cook at home more often.",
+                            options: ["cooks", "will cook", "would cook", "cooked"],
+                            expectedAnswer: "would cook",
                         },
                         {
                             type: "radio",
                             label: "Which is correct second conditional?",
                             options: [
-                                { value: "a", label: "If I lived near the beach, I would go swimming daily." },
-                                { value: "b", label: "If I live near the beach, I will go swimming daily." },
-                                { value: "c", label: "If I would live near the beach, I would go swimming daily." },
+                                { value: "a", label: "If I lived closer to work, I would walk to work more often." },
+                                { value: "b", label: "If I live closer to work, I will walk to work more often." },
+                                { value: "c", label: "If I would live closer to work, I would walk to work more often." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -178,7 +178,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                         <li>If I <strong>were</strong> you, I would talk to the manager.</li>
                         <li>If she <strong>were</strong> taller, she would play basketball.</li>
                         <li>If he <strong>were</strong> here, he would help us.</li>
-                        <li>If it <strong>were</strong> summer, we would go to the beach.</li>
+                        <li>If it <strong>were</strong> a holiday, we would stay home.</li>
                     </ul>
                 </div>
 
@@ -207,7 +207,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                     <ul>
                         <li>If I were the boss, I <strong>would change</strong> the schedule.</li>
                         <li>If I were rich, I <strong>would buy</strong> a big house.</li>
-                        <li>If I were younger, I <strong>would travel</strong> more.</li>
+                        <li>If I were younger, I <strong>would go back</strong> to school.</li>
                     </ul>
                 </div>
             `,
@@ -318,10 +318,10 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "You're daydreaming about winning the lottery (very unlikely):",
+                            label: "You're imagining you get a huge raise this month (unlikely):",
                             options: [
-                                { value: "first", label: "First: 'If I win the lottery, I will travel.'" },
-                                { value: "second", label: "Second: 'If I won the lottery, I would travel.'" },
+                                { value: "first", label: "First: 'If I get a huge raise, I will pay off my credit card.'" },
+                                { value: "second", label: "Second: 'If I got a huge raise, I would pay off my credit card.'" },
                             ],
                             expectedAnswer: "second",
                         },
@@ -419,12 +419,12 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "If I _____ (win) the lottery, I would buy a house.",
-                            expectedAnswer: "won",
+                            label: "If my manager _____ (give) me a raise, I would fix my old phone.",
+                            expectedAnswer: "gave",
                         },
                         {
                             type: "text",
-                            label: "If she _____ (have) more time, she would cook at home.",
+                            label: "If I _____ (have) an extra day off, I would rest and catch up on errands.",
                             expectedAnswer: "had",
                         },
                     ],
@@ -436,13 +436,13 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "If I lived near the beach, I _____ swimming every day.",
+                            label: "If I lived closer to work, I _____ there most days.",
                             options: ["go", "will go", "would go", "went"],
                             expectedAnswer: "would go",
                         },
                         {
                             type: "text",
-                            label: "If he spoke Spanish, he _____ (would get) that job.",
+                            label: "If he spoke more confidently in interviews, he _____ (would get) that job.",
                             expectedAnswer: "would get",
                         },
                     ],
@@ -484,7 +484,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "An unlikely dream: 'If I _____ the lottery, I would quit my job.'",
+                            label: "An unlikely dream: 'If I _____ a big prize, I would take a month off work.'",
                             options: [
                                 { value: "win", label: "win (first - likely)" },
                                 { value: "won", label: "won (second - unlikely)" },
@@ -506,7 +506,7 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
 
                 <h3>When to Use Second Conditional</h3>
                 <ul>
-                    <li><strong>Unlikely situations:</strong> If I won the lottery...</li>
+                    <li><strong>Unlikely situations:</strong> If I got a huge raise...</li>
                     <li><strong>Impossible situations:</strong> If I were the president...</li>
                     <li><strong>Dreams and wishes:</strong> If I had more money...</li>
                     <li><strong>Giving advice:</strong> If I were you, I would...</li>
@@ -563,56 +563,155 @@ export const conditionalsSecondContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence uses second conditional correctly?",
             options: [
-                { value: "a", label: "If I won the lottery, I would travel the world." },
-                { value: "b", label: "If I win the lottery, I will travel the world." },
-                { value: "c", label: "If I would win the lottery, I would travel." },
+                { value: "a", label: "If I had a quieter apartment, I would sleep better." },
+                { value: "b", label: "If I have a quieter apartment, I would sleep better." },
+                { value: "c", label: "If I would have a quieter apartment, I would sleep better." },
             ],
             correctAnswer: "a",
-            explanation: "Second conditional: If + past simple (won), would + base verb (would travel).",
+            explanation: "Second conditional: If + past simple (had), would + base verb (would sleep).",
         },
         {
             id: "quiz-3",
-            question: "Which form is correct with 'to be'?",
+            question: "Which form is correct with 'to be' in second conditional?",
             options: [
-                { value: "a", label: "If I was you, I would help." },
-                { value: "b", label: "If I were you, I would help." },
-                { value: "c", label: "Both are equally correct" },
+                { value: "a", label: "If I was you, I would talk to the manager." },
+                { value: "b", label: "If I were you, I would talk to the manager." },
+                { value: "c", label: "If I am you, I would talk to the manager." },
             ],
             correctAnswer: "b",
-            explanation: "In second conditional, use 'were' for all subjects with the verb 'to be': If I were, If he were, If she were.",
+            explanation: "In second conditional, use 'were' for all subjects: If I were, If he were, If she were.",
         },
         {
             id: "quiz-4",
-            question: "Complete: 'If I _____ more time, I would cook at home.'",
+            question: "Complete: 'If I _____ more time, I would cook at home more.'",
             options: [
                 { value: "a", label: "have" },
                 { value: "b", label: "had" },
                 { value: "c", label: "would have" },
             ],
             correctAnswer: "b",
-            explanation: "Use past simple in the IF clause: 'If I had more time...'",
+            explanation: "Use past simple in the IF clause: If I had…",
         },
         {
             id: "quiz-5",
             question: "When do you use second conditional?",
             options: [
-                { value: "a", label: "For realistic future plans" },
-                { value: "b", label: "For unlikely/imaginary situations" },
+                { value: "a", label: "For realistic plans you expect to happen" },
+                { value: "b", label: "For unlikely/imaginary situations and advice" },
                 { value: "c", label: "For things that are always true" },
             ],
             correctAnswer: "b",
-            explanation: "Second conditional is for unlikely, imaginary, or impossible situations.",
+            explanation: "Second conditional is for unreal, imaginary, or unlikely situations in the present/future.",
         },
         {
             id: "quiz-6",
-            question: "Which is giving advice correctly?",
+            question: "Which sentence gives advice correctly?",
             options: [
-                { value: "a", label: "If I were you, I would see a doctor." },
-                { value: "b", label: "If I am you, I will see a doctor." },
-                { value: "c", label: "If I will be you, I would see a doctor." },
+                { value: "a", label: "If I were you, I would talk to HR." },
+                { value: "b", label: "If I am you, I will talk to HR." },
+                { value: "c", label: "If I will be you, I would talk to HR." },
             ],
             correctAnswer: "a",
-            explanation: "To give advice, use: 'If I were you, I would...' with 'were' (not 'was').",
+            explanation: "Advice pattern: If I were you, I would…",
+        },
+        {
+            id: "quiz-7",
+            question: "Which question is correct?",
+            options: [
+                { value: "a", label: "What would you do if you had a free afternoon?" },
+                { value: "b", label: "What you would do if you had a free afternoon?" },
+                { value: "c", label: "What would you do if you would have a free afternoon?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question form: WH-word + would + subject + base verb + if + past simple?",
+        },
+        {
+            id: "quiz-8",
+            question: "Complete: 'If the bus were always on time, I _____ late.'",
+            options: [
+                { value: "a", label: "wouldn't be" },
+                { value: "b", label: "won't be" },
+                { value: "c", label: "isn't" },
+            ],
+            correctAnswer: "a",
+            explanation: "Second conditional negative uses would not (wouldn't): wouldn't be.",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence is wrong because it uses 'would' in the IF clause?",
+            options: [
+                { value: "a", label: "If I had more time, I would read more." },
+                { value: "b", label: "If I would have more time, I would read more." },
+                { value: "c", label: "If I were you, I would ask a question." },
+            ],
+            correctAnswer: "b",
+            explanation: "In second conditional, the IF clause is past simple (If I had…), not 'If I would have…'.",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence is second conditional (unreal/unlikely)?",
+            options: [
+                { value: "a", label: "If I save money, I will buy a used car." },
+                { value: "b", label: "If I saved money, I would buy a used car." },
+                { value: "c", label: "If I save money, I buy a used car." },
+            ],
+            correctAnswer: "b",
+            explanation: "Saved + would buy shows second conditional (unreal/unlikely).",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence is correct (using 'could' for possibility/ability)?",
+            options: [
+                { value: "a", label: "If I had a car, I could drive to work." },
+                { value: "b", label: "If I have a car, I could drive to work." },
+                { value: "c", label: "If I would have a car, I could drive to work." },
+            ],
+            correctAnswer: "a",
+            explanation: "Second conditional can use could/might in the result clause: If + past, could + base verb.",
+        },
+        {
+            id: "quiz-12",
+            question: "Choose the correct sentence with 'were'.",
+            options: [
+                { value: "a", label: "If he was here, he would help." },
+                { value: "b", label: "If he were here, he would help." },
+                { value: "c", label: "If he is here, he would help." },
+            ],
+            correctAnswer: "b",
+            explanation: "Traditional second conditional uses were for all subjects: If he were…",
+        },
+        {
+            id: "quiz-13",
+            question: "Complete: 'If my building fixed the heat, I _____ sleep better.'",
+            options: [
+                { value: "a", label: "would" },
+                { value: "b", label: "will" },
+                { value: "c", label: "am" },
+            ],
+            correctAnswer: "a",
+            explanation: "Second conditional result uses would + base verb: would sleep.",
+        },
+        {
+            id: "quiz-14",
+            question: "What does the past simple mean in second conditional?",
+            options: [
+                { value: "a", label: "It talks about the past time" },
+                { value: "b", label: "It shows the situation is unreal/unlikely" },
+                { value: "c", label: "It makes the sentence a question" },
+            ],
+            correctAnswer: "b",
+            explanation: "Past form here signals unreality (imagining), not past time.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "If I were the manager, I would change the schedule." },
+                { value: "b", label: "If I am the manager, I would change the schedule." },
+                { value: "c", label: "If I would be the manager, I would change the schedule." },
+            ],
+            correctAnswer: "a",
+            explanation: "Second conditional: If + past (were), would + base verb (would change).",
         },
     ],
 };

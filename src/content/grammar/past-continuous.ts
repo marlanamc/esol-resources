@@ -42,7 +42,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I was sleeping when you called." What does this show?',
+                            label: '"I <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>sleeping</span> when you called." What does this show?',
                             options: [
                                 { value: "a", label: "An action in progress that was interrupted" },
                                 { value: "b", label: "A completed action" },
@@ -111,7 +111,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"She was walking when it started raining."',
+                            label: '"She <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>walking</span> when it started raining."',
                             options: [
                                 { value: "interrupted", label: "Interrupted action in progress" },
                                 { value: "finished", label: "Finished one-time action" },
@@ -121,7 +121,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"They were sleeping at 3 AM yesterday."',
+                            label: '"They <span class=\'eg-helper\'>were</span> <span class=\'eg-verb\'>sleeping</span> at 3 AM yesterday."',
                             options: [
                                 { value: "time-in-progress", label: "Action in progress at a past time" },
                                 { value: "completed", label: "Completed past action" },
@@ -131,7 +131,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I was driving when my phone rang."',
+                            label: '"I <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>driving</span> when my phone rang."',
                             options: [
                                 { value: "interrupted", label: "Interrupted action" },
                                 { value: "habit", label: "Habit" },
@@ -224,7 +224,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "I was cooking when the fire alarm went off.",
+                            label: "I <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>cooking</span> when the fire alarm went off.",
                             options: [
                                 { value: "a", label: "Ongoing: cooking (PC), Interruption: alarm went off (PS)" },
                                 { value: "b", label: "Ongoing: alarm went off (PC), Interruption: cooking (PS)" },
@@ -233,7 +233,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "She was reading when her friend called.",
+                            label: "She <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>reading</span> when her friend called.",
                             options: [
                                 { value: "a", label: "Ongoing: reading (PC), Interruption: called (PS)" },
                                 { value: "b", label: "Ongoing: called (PC), Interruption: reading (PS)" },
@@ -242,7 +242,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "They were watching TV when the power went out.",
+                            label: "They <span class=\'eg-helper\'>were</span> <span class=\'eg-verb\'>watching</span> TV when the power went out.",
                             options: [
                                 { value: "a", label: "Ongoing: watching TV (PC), Interruption: power went out (PS)" },
                                 { value: "b", label: "Ongoing: power went out (PC), Interruption: watching TV (PS)" },
@@ -281,7 +281,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "The children ___ (build) a snowman when their mom called them inside.", expectedAnswer: "were building" },
                         { type: "text", label: "My grandfather ___ (tell) stories about his childhood all evening.", expectedAnswer: "was telling" },
-                        { type: "text", label: "The hikers ___ (climb) the mountain when the fog rolled in.", expectedAnswer: "were climbing" },
+                        { type: "text", label: "The neighbors ___ (carry) groceries upstairs when the elevator stopped.", expectedAnswer: "were carrying" },
                     ],
                 },
             ],
@@ -308,7 +308,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     title: "Exercise 2: Say What Wasn't Happening",
                     instructions: "Use wasn't/weren't + verb-ing.",
                     items: [
-                        { type: "text", label: "The tourists ___ (not pay) attention to the tour guide's instructions.", expectedAnswer: "weren't paying" },
+                        { type: "text", label: "The customers ___ (not pay) attention when the clerk called their number.", expectedAnswer: "weren't paying" },
                         { type: "text", label: "My daughter ___ (not study) for her exam—she was texting her friends.", expectedAnswer: "wasn't studying" },
                     ],
                 },
@@ -449,45 +449,166 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly shows an interrupted action?",
             options: [
-                { value: "a", label: "I cooked when the phone rang." },
-                { value: "b", label: "I was cooking when the phone rang." },
-                { value: "c", label: "I am cooking when the phone rang." },
+                { value: "a", label: "I was cooking when the smoke alarm rang." },
+                { value: "b", label: "I cooked when the smoke alarm was ringing." },
+                { value: "c", label: "I am cooking when the smoke alarm rang." },
             ],
-            correctAnswer: "b",
-            explanation: "Use was/were + verb-ing for the longer background action in the past.",
+            correctAnswer: "a",
+            explanation: "Past Continuous (was cooking) is the longer background action; Past Simple (rang) interrupts it.",
         },
         {
             id: "quiz-2",
-            question: "Which sentence fits 'action in progress at a past time'?",
+            question: "Which sentence fits 'action in progress at a specific past time'?",
             options: [
-                { value: "a", label: "I cleaned the house yesterday." },
-                { value: "b", label: "I was cleaning the house at 9 PM yesterday." },
-                { value: "c", label: "I clean the house at 9 PM yesterday." },
+                { value: "a", label: "At 8 PM last night, we were eating dinner." },
+                { value: "b", label: "At 8 PM last night, we ate dinner." },
+                { value: "c", label: "At 8 PM last night, we are eating dinner." },
             ],
-            correctAnswer: "b",
-            explanation: "Past Continuous highlights what was happening at a specific past time.",
+            correctAnswer: "a",
+            explanation: "Past Continuous highlights what was happening at a specific past moment: were eating.",
         },
         {
             id: "quiz-3",
-            question: "Choose the correct question form.",
+            question: "Choose the correct form of 'be' for Past Continuous.",
             options: [
-                { value: "a", label: "Were you waiting when the train arrived?" },
-                { value: "b", label: "Was you waiting when the train arrived?" },
-                { value: "c", label: "Did you waiting when the train arrived?" },
+                { value: "a", label: "They was waiting for the bus." },
+                { value: "b", label: "They were waiting for the bus." },
+                { value: "c", label: "They are waiting for the bus." },
             ],
-            correctAnswer: "a",
-            explanation: "Question: Was/Were + subject + verb-ing.",
+            correctAnswer: "b",
+            explanation: "Past Continuous uses was/were + verb-ing: they were waiting.",
         },
         {
             id: "quiz-4",
-            question: "Which sentence is NOT a good Past Continuous use?",
+            question: "Which sentence shows two actions happening at the same time?",
             options: [
-                { value: "a", label: "She was knowing the answer during the test." },
-                { value: "b", label: "She was studying when I called." },
-                { value: "c", label: "They were walking when it started raining." },
+                { value: "a", label: "While I was cooking, my roommate was cleaning." },
+                { value: "b", label: "I cooked, and my roommate cleaned." },
+                { value: "c", label: "I am cooking, and my roommate cleaned." },
             ],
             correctAnswer: "a",
-            explanation: "Stative verbs like know typically avoid continuous; use 'She knew the answer.'",
+            explanation: "Past Continuous with while often shows two background actions happening at the same time.",
+        },
+        {
+            id: "quiz-5",
+            question: "Which sentence is NOT a good Past Continuous use?",
+            options: [
+                { value: "a", label: "She was knowing the answer during the quiz." },
+                { value: "b", label: "She was studying when I texted her." },
+                { value: "c", label: "They were talking when the teacher walked in." },
+            ],
+            correctAnswer: "a",
+            explanation: "Stative verbs like know usually avoid -ing; use Past Simple: she knew.",
+        },
+        {
+            id: "quiz-6",
+            question: "Which question is correct?",
+            options: [
+                { value: "a", label: "Were you sleeping when I knocked?" },
+                { value: "b", label: "Was you sleeping when I knocked?" },
+                { value: "c", label: "Did you sleeping when I knocked?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question form: Was/Were + subject + verb-ing.",
+        },
+        {
+            id: "quiz-7",
+            question: "Which negative sentence is correct?",
+            options: [
+                { value: "a", label: "We weren't listening when the announcement played." },
+                { value: "b", label: "We didn't listening when the announcement played." },
+                { value: "c", label: "We wasn't listening when the announcement played." },
+            ],
+            correctAnswer: "a",
+            explanation: "Negative Past Continuous is wasn't/weren't + verb-ing.",
+        },
+        {
+            id: "quiz-8",
+            question: "Pick the best sentence to set the scene (background action).",
+            options: [
+                { value: "a", label: "I was walking home when I saw the police lights." },
+                { value: "b", label: "I walked home when I saw the police lights." },
+                { value: "c", label: "I am walking home when I saw the police lights." },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Continuous sets the scene for what was in progress when something happened.",
+        },
+        {
+            id: "quiz-9",
+            question: "Choose the best pair: longer action + interruption.",
+            options: [
+                { value: "a", label: "She was filling out the form when the pen ran out." },
+                { value: "b", label: "She filled out the form when the pen was running out." },
+                { value: "c", label: "She was fill out the form when the pen ran out." },
+            ],
+            correctAnswer: "a",
+            explanation: "Background action uses was/were + verb-ing; interruption uses Past Simple.",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "At midnight, my neighbors were playing loud music." },
+                { value: "b", label: "At midnight, my neighbors played loud music." },
+                { value: "c", label: "At midnight, my neighbors are playing loud music." },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Continuous works well with specific times to show an action in progress.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence has correct verb-ing form?",
+            options: [
+                { value: "a", label: "They were shoping when it started raining." },
+                { value: "b", label: "They were shopping when it started raining." },
+                { value: "c", label: "They were shop when it started raining." },
+            ],
+            correctAnswer: "b",
+            explanation: "Shop → shopping (double the final consonant + ing).",
+        },
+        {
+            id: "quiz-12",
+            question: "Choose the best sentence to answer: 'What were you doing at 6 PM yesterday?'",
+            options: [
+                { value: "a", label: "I was cooking dinner." },
+                { value: "b", label: "I cooked dinner." },
+                { value: "c", label: "I cook dinner." },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Continuous answers 'what was happening at that time' questions.",
+        },
+        {
+            id: "quiz-13",
+            question: "Which sentence correctly uses while?",
+            options: [
+                { value: "a", label: "While I cooked, the kids were doing homework." },
+                { value: "b", label: "While I was cooking, the kids were doing homework." },
+                { value: "c", label: "While I am cooking, the kids did homework." },
+            ],
+            correctAnswer: "b",
+            explanation: "While often introduces the background action in Past Continuous.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "Was they waiting outside?" },
+                { value: "b", label: "Were they waiting outside?" },
+                { value: "c", label: "Did they waiting outside?" },
+            ],
+            correctAnswer: "b",
+            explanation: "They → were. Question: Were they + verb-ing?",
+        },
+        {
+            id: "quiz-15",
+            question: "Which time words often go with Past Continuous?",
+            options: [
+                { value: "a", label: "while, when, at 9 PM, all night" },
+                { value: "b", label: "now, currently, right now" },
+                { value: "c", label: "tomorrow, next week, soon" },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Continuous often appears with while/when and specific past times (at 9 PM, all night).",
         },
     ],
 };

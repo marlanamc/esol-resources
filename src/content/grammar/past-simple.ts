@@ -27,7 +27,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     </ul>
                     <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong> Telling detailed housing problem stories (past continuous + past simple together)</li>
+                        <li><strong>Telling detailed housing problem stories</strong> (past continuous + past simple together)</li>
                         <li><strong>Weeks 9 & 14:</strong> Talking about your work experience and health history</li>
                     </ul>
                     <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">📖 Past Simple is the storytelling tense - every story needs it!</p>
@@ -135,7 +135,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"My daughter graduated from college in May 2023."',
+                            label: '"My daughter <span class=\'eg-verb\'>graduated</span> from college in May 2023."',
                             options: [
                                 { value: "timestamp", label: "Finished action with a time" },
                                 { value: "habit", label: "Ongoing habit" },
@@ -145,7 +145,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"We packed our bags, locked the door, and drove to the airport."',
+                            label: '"We <span class=\'eg-verb\'>packed</span> our bags, <span class=\'eg-verb\'>locked</span> the door, and <span class=\'eg-verb\'>drove</span> to the airport."',
                             options: [
                                 { value: "sequence", label: "Story/sequence of events" },
                                 { value: "unfinished", label: "Still happening now" },
@@ -155,7 +155,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"She played tennis three times a week before she injured her knee."',
+                            label: '"She <span class=\'eg-verb\'>played</span> tennis three times a week before she <span class=\'eg-verb\'>injured</span> her knee."',
                             options: [
                                 { value: "past-habit", label: "Past habit that ended" },
                                 { value: "present-habit", label: "Current habit" },
@@ -476,7 +476,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "Make negative: I visited my grandparents last weekend.", expectedAnswer: "I didn't visit my grandparents last weekend" },
                         { type: "text", label: "Make a question: She finished her homework yesterday.", expectedAnswer: "Did she finish her homework yesterday" },
-                        { type: "text", label: "Make affirmative: They didn't travel abroad last year.", expectedAnswer: "They traveled abroad last year" },
+                        { type: "text", label: "Make affirmative: They didn't renew their lease last year.", expectedAnswer: "They renewed their lease last year" },
                         { type: "text", label: "Make negative: The movie started at 7 PM.", expectedAnswer: "The movie didn't start at 7 PM" },
                     ],
                 },
@@ -586,56 +586,166 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly uses Past Simple with an irregular verb?",
             options: [
-                { value: "a", label: "The kids drawed pictures at the art class yesterday." },
-                { value: "b", label: "The kids drew pictures at the art class yesterday." },
-                { value: "c", label: "The kids draw pictures at the art class yesterday." },
+                { value: "a", label: "I teached my coworker how to use the printer yesterday." },
+                { value: "b", label: "I taught my coworker how to use the printer yesterday." },
+                { value: "c", label: "I teach my coworker how to use the printer yesterday." },
             ],
             correctAnswer: "b",
-            explanation: "Irregular verb draw → drew; matches past time word 'yesterday.'",
+            explanation: "Teach is irregular: teach → taught. The time word 'yesterday' signals Past Simple.",
         },
         {
             id: "quiz-2",
-            question: "Which negative sentence is correct (watch the main verb form)?",
+            question: "Which sentence correctly uses Past Simple with a regular verb?",
             options: [
-                { value: "a", label: "My grandparents didn't traveled to Europe last year." },
-                { value: "b", label: "My grandparents didn't travel to Europe last year." },
-                { value: "c", label: "My grandparents no traveled to Europe last year." },
+                { value: "a", label: "We cleaned the classroom after class last night." },
+                { value: "b", label: "We clean the classroom after class last night." },
+                { value: "c", label: "We have cleaned the classroom after class last night." },
             ],
-            correctAnswer: "b",
-            explanation: "After 'didn't', the main verb stays in base form: didn't travel.",
+            correctAnswer: "a",
+            explanation: "Finished past time ('last night') uses Past Simple: cleaned.",
         },
         {
             id: "quiz-3",
-            question: "Which question is correct in Past Simple?",
+            question: "Which negative sentence is correct (watch the main verb form)?",
             options: [
-                { value: "a", label: "Did the festival attracted many visitors last weekend?" },
-                { value: "b", label: "Did the festival attract many visitors last weekend?" },
-                { value: "c", label: "The festival attracted many visitors last weekend?" },
+                { value: "a", label: "I didn't went to the appointment." },
+                { value: "b", label: "I didn't go to the appointment." },
+                { value: "c", label: "I no went to the appointment." },
             ],
             correctAnswer: "b",
-            explanation: "Questions use Did + subject + base verb: 'Did the festival attract...?'",
+            explanation: "After didn't, the main verb stays base form: didn't go (not didn't went).",
         },
         {
             id: "quiz-4",
-            question: "When should you choose Past Simple instead of Present Perfect?",
+            question: "Which question is correct in Past Simple?",
             options: [
-                { value: "a", label: "For something happening right now" },
-                { value: "b", label: "For a finished action with a clear past time (yesterday/last week)" },
-                { value: "c", label: "For life experiences with no time given" },
+                { value: "a", label: "Did you paid the bill yesterday?" },
+                { value: "b", label: "Did you pay the bill yesterday?" },
+                { value: "c", label: "You did pay the bill yesterday?" },
             ],
             correctAnswer: "b",
-            explanation: "Past Simple = finished action in a finished time period (yesterday/last week). Life experience with no time uses Present Perfect.",
+            explanation: "Questions use Did + subject + base verb: Did you pay…?",
         },
         {
             id: "quiz-5",
-            question: "Choose the correct Past Simple form with a time expression.",
+            question: "Choose the correct Past Simple spelling for a verb ending in -y.",
             options: [
-                { value: "a", label: "The bakery has opened at 6 AM this morning." },
-                { value: "b", label: "The bakery opened at 6 AM this morning." },
-                { value: "c", label: "The bakery opens at 6 AM this morning." },
+                { value: "a", label: "She studyed for the test last weekend." },
+                { value: "b", label: "She studied for the test last weekend." },
+                { value: "c", label: "She studies for the test last weekend." },
             ],
             correctAnswer: "b",
-            explanation: "Specific past time ('this morning') needs Past Simple: opened.",
+            explanation: "Study → studied (change y to i + ed).",
+        },
+        {
+            id: "quiz-6",
+            question: "Choose the correct Past Simple spelling for a one-syllable CVC verb.",
+            options: [
+                { value: "a", label: "The bus stoped suddenly, so everyone held on." },
+                { value: "b", label: "The bus stopped suddenly, so everyone held on." },
+                { value: "c", label: "The bus stoped suddenly, so everyone holds on." },
+            ],
+            correctAnswer: "b",
+            explanation: "Stop → stopped (double the final consonant + ed).",
+        },
+        {
+            id: "quiz-7",
+            question: "Choose the correct Past Simple form of 'be'.",
+            options: [
+                { value: "a", label: "I was at the clinic yesterday afternoon." },
+                { value: "b", label: "I were at the clinic yesterday afternoon." },
+                { value: "c", label: "I am at the clinic yesterday afternoon." },
+            ],
+            correctAnswer: "a",
+            explanation: "Past of 'be' is was/were: I was, you/we/they were.",
+        },
+        {
+            id: "quiz-8",
+            question: "Which sentence is best for a finished action with a clear past time?",
+            options: [
+                { value: "a", label: "I have met my caseworker last Friday." },
+                { value: "b", label: "I met my caseworker last Friday." },
+                { value: "c", label: "I meet my caseworker last Friday." },
+            ],
+            correctAnswer: "b",
+            explanation: "A specific finished time ('last Friday') uses Past Simple: met.",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence correctly uses a time expression with Past Simple?",
+            options: [
+                { value: "a", label: "We called maintenance two days ago." },
+                { value: "b", label: "We have called maintenance two days ago." },
+                { value: "c", label: "We call maintenance two days ago." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Two days ago' is a finished past time, so Past Simple is required: called.",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence correctly tells a short sequence of events?",
+            options: [
+                { value: "a", label: "She was calling, then she was leaving a message, then she was going home." },
+                { value: "b", label: "She called, left a message, and went home." },
+                { value: "c", label: "She calls, leaves a message, and goes home." },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Simple is the storytelling tense for finished steps in a story: called → left → went.",
+        },
+        {
+            id: "quiz-11",
+            question: "Pick the correct question with the verb 'take'.",
+            options: [
+                { value: "a", label: "Did you took the bus this morning?" },
+                { value: "b", label: "Did you take the bus this morning?" },
+                { value: "c", label: "Do you took the bus this morning?" },
+            ],
+            correctAnswer: "b",
+            explanation: "With did, use the base verb: did take (not did took).",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence correctly uses Past Simple with 'ago'?",
+            options: [
+                { value: "a", label: "I moved here three years ago." },
+                { value: "b", label: "I have moved here three years ago." },
+                { value: "c", label: "I move here three years ago." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Ago' points to a finished past time, so Past Simple is correct: moved.",
+        },
+        {
+            id: "quiz-13",
+            question: "Choose the correct Past Simple form of 'make'.",
+            options: [
+                { value: "a", label: "He maked a mistake on the form." },
+                { value: "b", label: "He made a mistake on the form." },
+                { value: "c", label: "He makes a mistake on the form yesterday." },
+            ],
+            correctAnswer: "b",
+            explanation: "Make is irregular: make → made.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence correctly uses Past Simple in a negative?",
+            options: [
+                { value: "a", label: "She didn't received the text." },
+                { value: "b", label: "She didn't receive the text." },
+                { value: "c", label: "She doesn't received the text." },
+            ],
+            correctAnswer: "b",
+            explanation: "Negative Past Simple is didn't + base verb: didn't receive.",
+        },
+        {
+            id: "quiz-15",
+            question: "When should you choose Past Simple instead of Present Perfect?",
+            options: [
+                { value: "a", label: "For a finished action in a finished time (yesterday, last week, in 2022)" },
+                { value: "b", label: "For a life experience with no time given" },
+                { value: "c", label: "For an action that started in the past and continues now" },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Simple is for finished actions in finished times; Present Perfect connects to now.",
         },
     ],
 };

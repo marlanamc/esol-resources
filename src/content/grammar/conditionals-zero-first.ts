@@ -49,7 +49,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"If you heat water to 100°C, it boils."',
+                            label: '"If you <span class=\'eg-verb\'>heat</span> water to 100°C, it <span class=\'eg-verb\'>boils</span>."',
                             options: [
                                 { value: "zero", label: "Zero conditional - always true (scientific fact)" },
                                 { value: "first", label: "First conditional - future possibility" },
@@ -58,16 +58,16 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"If it rains tomorrow, I will stay home."',
+                            label: '"If the bus <span class=\'eg-helper\'>is</span> late tomorrow, I <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>text</span> my supervisor."',
                             options: [
                                 { value: "zero", label: "Zero conditional - always true" },
-                                { value: "first", label: "First conditional - future possibility (might rain tomorrow)" },
+                                { value: "first", label: "First conditional - future possibility (specific future situation)" },
                             ],
                             expectedAnswer: "first",
                         },
                         {
                             type: "radio",
-                            label: '"If I eat breakfast, I feel better at work."',
+                            label: '"If I <span class=\'eg-verb\'>skip</span> lunch, I <span class=\'eg-verb\'>get</span> a headache by the afternoon."',
                             options: [
                                 { value: "zero", label: "Zero conditional - always true (my regular habit/pattern)" },
                                 { value: "first", label: "First conditional - future possibility" },
@@ -141,21 +141,21 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "If you heat water to 100°C, it _____ (boil).",
-                            expectedAnswer: "boils",
+                            label: "If you leave wet clothes in a bag, they _____ (smell).",
+                            expectedAnswer: "smell",
                         },
                         {
                             type: "text",
-                            label: "If I drink coffee at night, I _____ (can't sleep / cannot sleep).",
-                            expectedAnswer: "can't sleep|cannot sleep",
+                            label: "If I skip breakfast, I _____ (get) hungry by 10 AM.",
+                            expectedAnswer: "get",
                         },
                         {
                             type: "radio",
                             label: "Choose the correct zero conditional:",
                             options: [
-                                { value: "a", label: "If you don't sleep enough, you feel tired." },
-                                { value: "b", label: "If you don't sleep enough, you will feel tired." },
-                                { value: "c", label: "If you won't sleep enough, you feel tired." },
+                                { value: "a", label: "If you don't drink enough water, you feel thirsty." },
+                                { value: "b", label: "If you don't drink enough water, you will feel thirsty." },
+                                { value: "c", label: "If you won't drink enough water, you feel thirsty." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -225,22 +225,22 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "If it rains tomorrow, I _____ home.",
-                            options: ["stay", "will stay", "stayed", "am staying"],
-                            expectedAnswer: "will stay",
+                            label: "If the train is delayed tomorrow, I _____ my supervisor.",
+                            options: ["text", "will text", "texted", "am texting"],
+                            expectedAnswer: "will text",
                         },
                         {
                             type: "text",
-                            label: "If I exercise daily, I _____ (will feel) better.",
-                            expectedAnswer: "will feel",
+                            label: "If I finish my paperwork tonight, I _____ (will submit) it before class.",
+                            expectedAnswer: "will submit",
                         },
                         {
                             type: "radio",
                             label: "Choose the correct first conditional:",
                             options: [
-                                { value: "a", label: "If you don't study, you won't pass the test." },
-                                { value: "b", label: "If you don't study, you don't pass the test." },
-                                { value: "c", label: "If you won't study, you won't pass the test." },
+                                { value: "a", label: "If you miss the appointment, you will need to reschedule." },
+                                { value: "b", label: "If you miss the appointment, you need to reschedule." },
+                                { value: "c", label: "If you will miss the appointment, you will need to reschedule." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -312,10 +312,10 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "You want to state a scientific fact about water boiling:",
+                            label: "You want to state a general fact about what always happens:",
                             options: [
-                                { value: "zero", label: "Zero: 'If you heat water to 100°C, it boils.'" },
-                                { value: "first", label: "First: 'If you heat water to 100°C, it will boil.'" },
+                                { value: "zero", label: "Zero: 'If you press the wrong button, the screen shows an error.'" },
+                                { value: "first", label: "First: 'If you press the wrong button, the screen will show an error.'" },
                             ],
                             expectedAnswer: "zero",
                         },
@@ -323,8 +323,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You're making a plan for tomorrow:",
                             options: [
-                                { value: "zero", label: "Zero: 'If I exercise tomorrow, I feel better.'" },
-                                { value: "first", label: "First: 'If I exercise tomorrow, I will feel better.'" },
+                                { value: "zero", label: "Zero: 'If I bring my lunch, I save money.'" },
+                                { value: "first", label: "First: 'If I bring my lunch tomorrow, I will save money.'" },
                             ],
                             expectedAnswer: "first",
                         },
@@ -332,8 +332,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You're describing your regular habit:",
                             options: [
-                                { value: "zero", label: "Zero: 'If I drink coffee at night, I can't sleep.'" },
-                                { value: "first", label: "First: 'If I drink coffee at night, I won't sleep.'" },
+                                { value: "zero", label: "Zero: 'If I drink soda late at night, I can't fall asleep.'" },
+                                { value: "first", label: "First: 'If I drink soda late tonight, I won't fall asleep.'" },
                             ],
                             expectedAnswer: "zero",
                         },
@@ -341,7 +341,7 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You're warning someone about a specific situation:",
                             options: [
-                                { value: "zero", label: "Zero: 'If you don't leave now, you're late.'" },
+                                { value: "zero", label: "Zero: 'If you don't set an alarm, you're late.'" },
                                 { value: "first", label: "First: 'If you don't leave now, you will be late.'" },
                             ],
                             expectedAnswer: "first",
@@ -363,14 +363,14 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "If you _____ (heat) ice, it _____ (melt).",
-                            expectedAnswer: "heat, melts|heat,melts",
+                            label: "If you _____ (miss) the bus, you _____ (wait) longer.",
+                            expectedAnswer: "miss, wait|miss,wait",
                         },
                         {
                             type: "select",
-                            label: "If I eat breakfast, I _____ better at work.",
-                            options: ["will feel", "feel", "felt", "am feeling"],
-                            expectedAnswer: "feel",
+                            label: "If I check my phone in bed, I _____ asleep easily.",
+                            options: ["won't fall", "don't fall", "didn't fall", "will fall"],
+                            expectedAnswer: "don't fall",
                         },
                     ],
                 },
@@ -381,14 +381,14 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "If it rains tomorrow, I _____ home.",
-                            options: ["stay", "will stay", "stayed", "staying"],
-                            expectedAnswer: "will stay",
+                            label: "If my manager calls tonight, I _____ back.",
+                            options: ["call", "will call", "called", "am calling"],
+                            expectedAnswer: "will call",
                         },
                         {
                             type: "text",
-                            label: "If I exercise daily, I _____ (will lose) weight.",
-                            expectedAnswer: "will lose",
+                            label: "If the elevator breaks again, I _____ (will report) it to the building office.",
+                            expectedAnswer: "will report",
                         },
                     ],
                 },
@@ -399,30 +399,30 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Scientific fact: 'If you freeze water, it _____ ice.'",
+                            label: "General truth: 'If you put ice in the sun, it _____.'",
                             options: [
-                                { value: "becomes", label: "becomes (zero - always true)" },
-                                { value: "will-become", label: "will become (first - future)" },
+                                { value: "melts", label: "melts (zero - always true)" },
+                                { value: "will-melt", label: "will melt (first - future)" },
                             ],
-                            expectedAnswer: "becomes",
+                            expectedAnswer: "melts",
                         },
                         {
                             type: "radio",
-                            label: "Future plan: 'If I study tonight, I _____ the test.'",
+                            label: "Future plan: 'If I leave early tomorrow, I _____ to class on time.'",
                             options: [
-                                { value: "pass", label: "pass (zero - always)" },
-                                { value: "will-pass", label: "will pass (first - future)" },
+                                { value: "get", label: "get (zero - always)" },
+                                { value: "will-get", label: "will get (first - future)" },
                             ],
-                            expectedAnswer: "will-pass",
+                            expectedAnswer: "will-get",
                         },
                         {
                             type: "radio",
-                            label: "Your habit: 'If I drink coffee at night, I _____.'",
+                            label: "Your habit: 'If I eat very spicy food, I _____ heartburn.'",
                             options: [
-                                { value: "cant-sleep", label: "can't sleep (zero - my habit)" },
-                                { value: "wont-sleep", label: "won't sleep (first - future)" },
+                                { value: "get", label: "get (zero - my habit)" },
+                                { value: "will-get", label: "will get (first - future)" },
                             ],
-                            expectedAnswer: "cant-sleep",
+                            expectedAnswer: "get",
                         },
                     ],
                 },
@@ -433,10 +433,10 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "Which is correct for a wellness goal?",
+                            label: "Which is correct for a goal/pattern? (Both can be correct.)",
                             options: [
-                                { value: "a", label: "If I walk 30 minutes daily, I will lose weight." },
-                                { value: "b", label: "If I walk 30 minutes daily, I lose weight." },
+                                { value: "a", label: "If I take the stairs every day, I will feel stronger." },
+                                { value: "b", label: "If I take the stairs every day, I feel stronger." },
                                 { value: "c", label: "Both are correct (different meanings)" },
                             ],
                             expectedAnswer: "c",
@@ -445,8 +445,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which expresses a general truth?",
                             options: [
-                                { value: "a", label: "If you don't sleep enough, you feel tired." },
-                                { value: "b", label: "If you don't sleep enough, you will feel tired." },
+                                { value: "a", label: "If you don't eat all day, you feel dizzy." },
+                                { value: "b", label: "If you don't eat all day, you will feel dizzy." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -536,50 +536,127 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Which sentence uses first conditional correctly?",
+            question: "What is the formula for first conditional?",
             options: [
-                { value: "a", label: "If it rains tomorrow, I will stay home." },
-                { value: "b", label: "If it rains tomorrow, I stay home." },
-                { value: "c", label: "If it will rain tomorrow, I will stay home." },
+                { value: "a", label: "If + present, present" },
+                { value: "b", label: "If + present, will + verb" },
+                { value: "c", label: "If + past, would + verb" },
             ],
-            correctAnswer: "a",
-            explanation: "First conditional: If + present simple, will + base verb. Never use 'will' in the IF clause!",
+            correctAnswer: "b",
+            explanation: "First conditional uses present simple in the IF clause and will + base verb in the result clause.",
         },
         {
             id: "quiz-3",
-            question: "Which is a zero conditional sentence?",
+            question: "Which sentence is a zero conditional (always true / habit)?",
             options: [
-                { value: "a", label: "If you heat water to 100°C, it boils." },
-                { value: "b", label: "If you heat water tomorrow, it will boil." },
-                { value: "c", label: "If you heated water, it would boil." },
+                { value: "a", label: "If I skip breakfast, I get hungry by 10 AM." },
+                { value: "b", label: "If I skip breakfast tomorrow, I will get hungry by 10 AM." },
+                { value: "c", label: "If I skipped breakfast, I would get hungry by 10 AM." },
             ],
             correctAnswer: "a",
-            explanation: "Zero conditional (present, present) is used for scientific facts and things that are always true.",
+            explanation: "Zero conditional uses present simple + present simple to talk about habits or things that always happen.",
         },
         {
             id: "quiz-4",
-            question: "Complete: 'If I exercise tomorrow, I _____ better.'",
+            question: "Which sentence uses first conditional correctly?",
             options: [
-                { value: "a", label: "feel" },
-                { value: "b", label: "will feel" },
-                { value: "c", label: "felt" },
+                { value: "a", label: "If the bus is late tomorrow, I will text my supervisor." },
+                { value: "b", label: "If the bus will be late tomorrow, I will text my supervisor." },
+                { value: "c", label: "If the bus is late tomorrow, I text my supervisor." },
             ],
-            correctAnswer: "b",
-            explanation: "This is a future plan, so use first conditional: will + base verb.",
+            correctAnswer: "a",
+            explanation: "First conditional: IF clause uses present simple (is), result uses will + base verb (will text).",
         },
         {
             id: "quiz-5",
-            question: "Complete: 'If I drink coffee at night, I _____ sleep.' (Your habit)",
+            question: "Which sentence is wrong because it uses 'will' in the IF clause?",
             options: [
-                { value: "a", label: "can't" },
-                { value: "b", label: "won't" },
-                { value: "c", label: "wouldn't" },
+                { value: "a", label: "If it rains, we will cancel the picnic." },
+                { value: "b", label: "If it will rain, we will cancel the picnic." },
+                { value: "c", label: "If it rains, we won't go to the park." },
             ],
-            correctAnswer: "a",
-            explanation: "For a habit that's always true, use zero conditional (present simple in both clauses).",
+            correctAnswer: "b",
+            explanation: "In first conditional, the IF clause is present simple (If it rains), not 'If it will rain'.",
         },
         {
             id: "quiz-6",
+            question: "Complete: 'If she doesn't bring her ID, she _____ get inside.'",
+            options: [
+                { value: "a", label: "won't" },
+                { value: "b", label: "doesn't" },
+                { value: "c", label: "didn't" },
+            ],
+            correctAnswer: "a",
+            explanation: "First conditional negative uses won't + base verb: won't get.",
+        },
+        {
+            id: "quiz-7",
+            question: "Complete the zero conditional: 'If you leave milk out, it _____ bad.'",
+            options: [
+                { value: "a", label: "goes" },
+                { value: "b", label: "will go" },
+                { value: "c", label: "went" },
+            ],
+            correctAnswer: "a",
+            explanation: "Zero conditional uses present simple in both clauses for general truths: it goes bad.",
+        },
+        {
+            id: "quiz-8",
+            question: 'What is the main difference between "If I take the stairs, I feel tired" and "If I take the stairs tomorrow, I will feel tired"?',
+            options: [
+                { value: "a", label: "No difference — they mean the same thing" },
+                { value: "b", label: "Zero = habit/always true; First = a specific future situation" },
+                { value: "c", label: "First = past; Zero = future" },
+            ],
+            correctAnswer: "b",
+            explanation: "Zero conditional describes patterns; first conditional talks about a specific future possibility.",
+        },
+        {
+            id: "quiz-9",
+            question: "Which one is best for a general truth?",
+            options: [
+                { value: "a", label: "If you don't sleep enough, you feel tired." },
+                { value: "b", label: "If you don't sleep enough tonight, you will feel tired." },
+                { value: "c", label: "If you won't sleep enough, you feel tired." },
+            ],
+            correctAnswer: "a",
+            explanation: "General truths and habits use zero conditional: present + present.",
+        },
+        {
+            id: "quiz-10",
+            question: "Choose the correct first conditional warning.",
+            options: [
+                { value: "a", label: "If you don't leave now, you will miss the bus." },
+                { value: "b", label: "If you don't leave now, you miss the bus." },
+                { value: "c", label: "If you won't leave now, you will miss the bus." },
+            ],
+            correctAnswer: "a",
+            explanation: "A specific future warning uses first conditional: If + present, will + verb.",
+        },
+        {
+            id: "quiz-11",
+            question: "Which question is correct?",
+            options: [
+                { value: "a", label: "What will you do if the train is delayed?" },
+                { value: "b", label: "What do you do if the train will be delayed?" },
+                { value: "c", label: "What you will do if the train is delayed?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question form: What will + subject + base verb + if + present simple?",
+        },
+        {
+            id: "quiz-12",
+            question: "Choose the correct contraction.",
+            options: [
+                { value: "a", label: "If it rains, I' ll stay home." },
+                { value: "b", label: "If it rains, I'll stay home." },
+                { value: "c", label: "If it rains, Ill stay home." },
+            ],
+            correctAnswer: "b",
+            explanation: "I'll = I will. (No spaces; 'Ill' changes the meaning.)",
+        },
+        {
+            id: "quiz-13",
             question: "When do you use first conditional?",
             options: [
                 { value: "a", label: "For things that are always true" },
@@ -587,7 +664,29 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                 { value: "c", label: "For impossible situations" },
             ],
             correctAnswer: "b",
-            explanation: "First conditional is for real future possibilities - things that might happen in the future.",
+            explanation: "First conditional is for real future possibilities — things that might happen.",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence is a good promise using first conditional?",
+            options: [
+                { value: "a", label: "If you help me, I help you." },
+                { value: "b", label: "If you help me, I will help you." },
+                { value: "c", label: "If you will help me, I will help you." },
+            ],
+            correctAnswer: "b",
+            explanation: "Promises about a future result use first conditional: will help.",
+        },
+        {
+            id: "quiz-15",
+            question: "Which conditional do you use for habits and routines?",
+            options: [
+                { value: "a", label: "Zero conditional" },
+                { value: "b", label: "First conditional" },
+                { value: "c", label: "Second conditional" },
+            ],
+            correctAnswer: "a",
+            explanation: "Habits/routines use zero conditional: present simple in both clauses.",
         },
     ],
 };

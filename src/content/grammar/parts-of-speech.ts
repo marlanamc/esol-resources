@@ -127,14 +127,14 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     title: "📍 Places",
                     description: "Locations, buildings, cities, countries",
                     examples: [
-                        {
-                            sentence: "I live in <strong style='color: #3b82f6;'>Boston</strong>, <strong style='color: #3b82f6;'>Massachusetts</strong>.",
-                            explanation: "✓ City and state names (proper nouns)"
-                        },
-                        {
-                            sentence: "The <strong style='color: #3b82f6;'>clinic</strong> is on <strong style='color: #3b82f6;'>Main Street</strong>.",
-                            explanation: "✓ A building and a street name"
-                        },
+	                        {
+	                            sentence: "I live in <strong style='color: #3b82f6;'>East Boston</strong>, <strong style='color: #3b82f6;'>Massachusetts</strong>.",
+	                            explanation: "✓ City and state names (proper nouns)"
+	                        },
+	                        {
+	                            sentence: "The <strong style='color: #3b82f6;'>clinic</strong> is on <strong style='color: #3b82f6;'>Bennington Street</strong>.",
+	                            explanation: "✓ A building and a street name"
+	                        },
                         {
                             sentence: "We're going to the <strong style='color: #3b82f6;'>park</strong> after <strong style='color: #3b82f6;'>work</strong>.",
                             explanation: "✓ Common place nouns"
@@ -958,10 +958,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     title: "📍 Location (in, on, at)",
                     description: "Shows where something is",
                     examples: [
-                        {
-                            sentence: "I live <strong style='color: #334155;'>in</strong> Boston.",
-                            explanation: "✓ City/country → use 'in'"
-                        },
+	                        {
+	                            sentence: "I live <strong style='color: #334155;'>in</strong> East Boston.",
+	                            explanation: "✓ City/country → use 'in'"
+	                        },
                         {
                             sentence: "The book is <strong style='color: #334155;'>on</strong> the table.",
                             explanation: "✓ Surface contact → use 'on'"
@@ -1055,10 +1055,10 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     ],
                 },
             ],
-            tipBox: {
-                title: "💡 Common Patterns",
-                content: "Time: at 6:00, on Tuesday, in January. Location: in Boston, on Main Street, at the hospital. Direction: to work, from home, into the room.",
-            },
+	            tipBox: {
+	                title: "💡 Common Patterns",
+	                content: "Time: at 6:00, on Tuesday, in January. Location: in East Boston, on Bennington Street, at the clinic. Direction: to work, from home, into the room.",
+	            },
         },
 
         {
@@ -1316,11 +1316,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 0.5rem;">
-                        <h4 style="color: #3b82f6; margin-top: 0;">🔵 Nouns</h4>
-                        <p><strong>What:</strong> Person, place, thing, or idea</p>
-                        <p><strong>Examples:</strong> teacher, Boston, book, happiness</p>
-                        <p><strong>Test:</strong> Can you add 'a/an/the'?</p>
-                    </div>
+	                        <h4 style="color: #3b82f6; margin-top: 0;">🔵 Nouns</h4>
+	                        <p><strong>What:</strong> Person, place, thing, or idea</p>
+	                        <p><strong>Examples:</strong> teacher, East Boston, book, happiness</p>
+	                        <p><strong>Test:</strong> Can you add 'a/an/the'?</p>
+	                    </div>
 
                     <div style="padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem;">
                         <h4 style="color: #dc2626; margin-top: 0;">🔴 Verbs</h4>
@@ -1546,17 +1546,77 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             correctAnswer: "b",
             explanation: "'Me' is correct - it's an object pronoun (comes after the verb). 'I' is a subject pronoun (comes before the verb).",
         },
-        {
-            id: "quiz-10",
-            question: "Choose the correct preposition: 'Class is ___ Tuesdays.'",
-            options: [
-                { value: "a", label: "in" },
-                { value: "b", label: "at" },
-                { value: "c", label: "on" },
-                { value: "d", label: "to" },
-            ],
-            correctAnswer: "c",
-            explanation: "'On' is correct - we use 'on' for days of the week (on Monday, on Tuesday, etc.).",
-        },
-    ],
+	        {
+	            id: "quiz-10",
+	            question: "Choose the correct preposition: 'Class is ___ Tuesdays.'",
+	            options: [
+	                { value: "a", label: "in" },
+	                { value: "b", label: "at" },
+	                { value: "c", label: "on" },
+	                { value: "d", label: "to" },
+	            ],
+	            correctAnswer: "c",
+	            explanation: "'On' is correct - we use 'on' for days of the week (on Monday, on Tuesday, etc.).",
+	        },
+	        {
+	            id: "quiz-11",
+	            question: "What part of speech is 'and' in: 'I work and I study'?",
+	            options: [
+	                { value: "a", label: "Noun" },
+	                { value: "b", label: "Verb" },
+	                { value: "c", label: "Conjunction" },
+	                { value: "d", label: "Preposition" },
+	            ],
+	            correctAnswer: "c",
+	            explanation: "'And' is a conjunction - it connects two similar ideas.",
+	        },
+	        {
+	            id: "quiz-12",
+	            question: "What part of speech is 'because' in: 'I stayed home because I was sick'?",
+	            options: [
+	                { value: "a", label: "Preposition" },
+	                { value: "b", label: "Conjunction" },
+	                { value: "c", label: "Adverb" },
+	                { value: "d", label: "Article" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "'Because' connects an action and a reason. It's a (subordinating) conjunction.",
+	        },
+	        {
+	            id: "quiz-13",
+	            question: "Choose the correct article: 'I have ___ appointment at the clinic.'",
+	            options: [
+	                { value: "a", label: "a" },
+	                { value: "b", label: "an" },
+	                { value: "c", label: "the" },
+	                { value: "d", label: "(no article)" },
+	            ],
+	            correctAnswer: "b",
+	            explanation: "Use 'an' before a vowel sound: an appointment.",
+	        },
+	        {
+	            id: "quiz-14",
+	            question: "What part of speech is 'quickly' in: 'She quickly answered the phone'?",
+	            options: [
+	                { value: "a", label: "Noun" },
+	                { value: "b", label: "Verb" },
+	                { value: "c", label: "Adjective" },
+	                { value: "d", label: "Adverb" },
+	            ],
+	            correctAnswer: "d",
+	            explanation: "'Quickly' is an adverb - it describes how she answered.",
+	        },
+	        {
+	            id: "quiz-15",
+	            question: "Choose the correct adjective: 'This is a ___ apartment.'",
+	            options: [
+	                { value: "a", label: "safe" },
+	                { value: "b", label: "safely" },
+	                { value: "c", label: "safety" },
+	                { value: "d", label: "safer" },
+	            ],
+	            correctAnswer: "a",
+	            explanation: "'Safe' is an adjective (describes a noun). 'Safely' is an adverb, and 'safety' is a noun.",
+	        },
+	    ],
 };

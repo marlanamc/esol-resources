@@ -173,7 +173,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: '"My daughter practices violin for an hour every afternoon."',
+                            label: '"My daughter <span class=\'eg-verb\'>practices</span> violin for an hour every afternoon."',
                             options: [
                                 {
                                     value: "habit",
@@ -200,7 +200,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"Ice melts faster when you add salt to it."',
+                            label: '"Ice <span class=\'eg-verb\'>melts</span> faster when you <span class=\'eg-verb\'>add</span> salt to it."',
                             options: [
                                 {
                                     value: "habit",
@@ -227,7 +227,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"The museum opens at 10 AM on Saturdays."',
+                            label: '"The museum <span class=\'eg-verb\'>opens</span> at 10 AM on Saturdays."',
                             options: [
                                 {
                                     value: "habit",
@@ -254,7 +254,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: '"I absolutely love hiking in the mountains, but I hate camping."',
+                            label: '"I absolutely <span class=\'eg-verb\'>love</span> hiking in the mountains, but I <span class=\'eg-verb\'>hate</span> camping."',
                             options: [
                                 {
                                     value: "habit",
