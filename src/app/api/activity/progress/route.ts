@@ -108,8 +108,9 @@ export async function POST(request: Request) {
             select: { type: true, title: true, content: true, ui: true }
         });
 
+        let points = 5; // Default fallback points
         if (activity) {
-            let points = getActivityPoints(activity.type, activity);
+            points = getActivityPoints(activity.type, activity);
 
             // Special handling for numbers game - award difficulty-based points per category
             if (resolveActivityGameUi(activity) === 'numbers') {
