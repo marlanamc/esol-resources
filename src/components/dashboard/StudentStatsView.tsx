@@ -51,15 +51,16 @@ function statusLabel(progress: number) {
 }
 
 export function StudentStatsView({ activities }: Props) {
-    const [tab, setTab] = useState<"vocab" | "grammar" | "numbers" | "other">("vocab");
+    const [tab, setTab] = useState<"vocab" | "grammar" | "numbers" | "games" | "other">("vocab");
     const tabs = [
         { key: "vocab", label: "Vocabulary" },
         { key: "grammar", label: "Grammar" },
         { key: "numbers", label: "Numbers" },
+        { key: "games", label: "Games" },
         { key: "other", label: "Other" },
     ] as const;
 
-    const { vocabUnits, grammarActivities, numbersActivities, otherActivities } = useMemo(() => {
+    const { vocabUnits, grammarActivities, numbersActivities, gamesActivities, otherActivities } = useMemo(() => {
         const vocab = activities.filter((a) => {
             const category = (a.category || "").toLowerCase();
             return category.includes("vocab") ||
@@ -80,6 +81,7 @@ export function StudentStatsView({ activities }: Props) {
         const numbersActivities = activities.filter((a) =>
             (a.category || "").toLowerCase().includes("numbers")
         );
+        const gamesActivities = activities.filter((a) => a.type === "game");
         const otherActivities = activities.filter((a) => {
             const category = (a.category || "").toLowerCase();
             return !category.includes("vocab") &&
@@ -87,10 +89,11 @@ export function StudentStatsView({ activities }: Props) {
                    !category.includes("unit") &&
                    !category.includes("flash cards") &&
                    !category.includes("grammar") &&
-                   !category.includes("numbers");
+                   !category.includes("numbers") &&
+                   a.type !== "game";
         });
 
-        return { vocabUnits, grammarActivities, numbersActivities, otherActivities };
+        return { vocabUnits, grammarActivities, numbersActivities, gamesActivities, otherActivities };
     }, [activities]);
 
     const renderActivity = (activity: ActivityStat) => {
@@ -171,6 +174,12 @@ export function StudentStatsView({ activities }: Props) {
             {tab === "numbers" && (
                 <div className="space-y-2">
                     {numbersActivities.length === 0 ? emptyState : numbersActivities.map(renderActivity)}
+                </div>
+            )}
+
+            {tab === "games" && (
+                <div className="space-y-2">
+                    {gamesActivities.length === 0 ? emptyState : gamesActivities.map(renderActivity)}
                 </div>
             )}
 
