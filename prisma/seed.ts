@@ -15,6 +15,7 @@ import { simpleTensesReviewContent } from '../src/content/grammar/simple-tenses-
 import { continuousTensesReviewContent } from '../src/content/grammar/continuous-tenses-review';
 import { perfectTensesReviewContent } from '../src/content/grammar/perfect-tenses-review';
 import { perfectContinuousTensesReviewContent } from '../src/content/grammar/perfect-continuous-tenses-review';
+import { cycleOneReviewContent } from '../src/content/grammar/cycle-1-review';
 
 const prisma = new PrismaClient();
 
@@ -243,6 +244,19 @@ async function main() {
   });
   console.log('✅ Added:', perfectContinuousTensesReview.title);
 
+  // Cycle 1 Review
+  const cycleOneReview = await prisma.activity.create({
+    data: {
+      title: 'Cycle 1 Review',
+      description: 'A gentle flow through Cycle 1 grammar: simple, continuous, parts of speech, frequency, comparatives, and connectors with a final mini-quiz.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'beginner',
+      content: JSON.stringify(cycleOneReviewContent)
+    }
+  });
+  console.log('✅ Added:', cycleOneReview.title);
+
   console.log('\n🎮 Adding Games...');
 
   // Numbers Game
@@ -265,12 +279,12 @@ async function main() {
   console.log('✅ Added:', numbersGame.title);
 
   console.log('\n✨ Dashboard updated successfully!');
-  console.log(`\nAdded ${17} grammar guides:`);
+  console.log(`\nAdded ${18} grammar guides:`);
   console.log('  - 3 Simple tenses (Present, Past, Future)');
   console.log('  - 3 Continuous tenses (Present, Past, Future)');
   console.log('  - 3 Perfect tenses (Present, Past, Future)');
   console.log('  - 3 Perfect Continuous tenses (Present, Past, Future)');
-  console.log('  - 4 Review guides (Simple, Continuous, Perfect, Perfect Continuous)');
+  console.log('  - 5 Review guides (Simple, Continuous, Perfect, Perfect Continuous, Cycle 1)');
   console.log(`\nAdded 1 game:`);
   console.log('  - Numbers to English Words');
   console.log('\nYou can now view all activities at: /dashboard');

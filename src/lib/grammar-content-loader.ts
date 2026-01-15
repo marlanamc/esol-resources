@@ -40,6 +40,7 @@ const grammarContentMap: Record<
     "used-to-would-rather": () => import("@/content/grammar/used-to-would-rather"),
     "verbs-plus-gerunds": () => import("@/content/grammar/verbs-plus-gerunds"),
     "workplace-phrasal-verbs": () => import("@/content/grammar/workplace-phrasal-verbs"),
+    "cycle-1-review": () => import("@/content/grammar/cycle-1-review"),
 };
 
 export async function getGrammarContent(

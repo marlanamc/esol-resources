@@ -549,6 +549,13 @@ async function main() {
     // -------------------------
     const additionalGrammarGuides = [
         {
+            id: 'cycle-1-review',
+            title: 'Cycle 1 Review',
+            description: 'A gentle flow through Cycle 1 grammar: simple, continuous, parts of speech, frequency, comparatives, and connectors with a final mini-quiz.',
+            level: 'beginner',
+            externalUrl: '/grammar-reader/cycle-1-review',
+        },
+        {
             id: 'parts-of-speech',
             title: 'Parts of Speech Guide',
             description: 'Master nouns, verbs, adjectives, and adverbs — the building blocks of English sentences.',

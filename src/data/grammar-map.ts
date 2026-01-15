@@ -181,6 +181,15 @@ export const grammarTopics: GrammarTopic[] = [
         relatedTopics: ['present-perfect', 'past-perfect', 'future-perfect'],
         activityTitles: ['Perfect Tenses Review - Complete Guide', 'Perfect Tenses Review'],
     },
+    {
+        id: 'cycle-1-review',
+        title: 'Cycle 1 Review',
+        week: 8,
+        category: 'tenses',
+        subcategory: 'simple',
+        relatedTopics: ['present-simple', 'past-simple', 'future-simple', 'present-continuous', 'past-continuous', 'future-continuous', 'present-perfect'],
+        activityTitles: ['Cycle 1 Review'],
+    },
 
     // Perfect Continuous Tenses (Weeks 15-17)
     {
