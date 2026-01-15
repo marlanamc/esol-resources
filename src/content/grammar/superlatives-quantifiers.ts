@@ -919,12 +919,12 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             id: "quiz-10",
             question: "Which sentence correctly combines superlatives and quantifiers?",
             options: [
-                { value: "a", label: "This apartment has the most bedrooms and the least money." },
-                { value: "b", label: "This apartment has the most bedrooms and the less money." },
-                { value: "c", label: "This apartment has the most bedrooms and the fewest money." },
+                { value: "a", label: "This job offers the most vacation days and requires the least experience." },
+                { value: "b", label: "This job offers the most vacation days and requires the less experience." },
+                { value: "c", label: "This job offers the most vacation days and requires the fewest experience." },
             ],
             correctAnswer: "a",
-            explanation: "'The most bedrooms' (countable noun) and 'the least money' (uncountable noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
+            explanation: "'The most vacation days' (countable noun) and 'the least experience' (uncountable noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
         },
         {
             id: "quiz-11",
