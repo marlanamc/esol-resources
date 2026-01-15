@@ -236,7 +236,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "<strong>jobs</strong>",
                             options: [
-                                { value: "count", label: "Count noun (you can count it)" },
+                                { value: "count", label: "Countable noun (you can count it)" },
                                 { value: "noncount", label: "Uncountable noun (you can't count it)" },
                             ],
                             expectedAnswer: "count",
@@ -245,7 +245,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "<strong>money</strong>",
                             options: [
-                                { value: "count", label: "Count noun" },
+                                { value: "count", label: "Countable noun" },
                                 { value: "noncount", label: "Uncountable noun" },
                             ],
                             expectedAnswer: "noncount",
@@ -254,7 +254,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "<strong>time</strong>",
                             options: [
-                                { value: "count", label: "Count noun" },
+                                { value: "count", label: "Countable noun" },
                                 { value: "noncount", label: "Uncountable noun" },
                             ],
                             expectedAnswer: "noncount",
@@ -264,7 +264,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             ],
             usageMeanings: [
                 {
-                    title: "🔢 Count Nouns",
+                    title: "🔢 Countable Nouns",
                     description: "Things you can count individually - use numbers with them",
                     examples: [
                         {
@@ -282,7 +282,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     ],
                 },
                 {
-                    title: "💧 Non-Count Nouns",
+                    title: "💧 Non-Countable Nouns",
                     description: "Things you can't count individually - substances, abstract concepts, collective ideas",
                     examples: [
                         {
@@ -319,7 +319,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             `,
             usageMeanings: [
                 {
-                    title: "✅ MANY = Count Nouns",
+                    title: "✅ MANY = Countable Nouns",
                     description: "Use 'many' with things you can count (plural nouns)",
                     examples: [
                         {
@@ -337,7 +337,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     ],
                 },
                 {
-                    title: "✅ MUCH = Non-Count Nouns",
+                    title: "✅ MUCH = Non-Countable Nouns",
                     description: "Use 'much' with things you cannot count individually (singular nouns)",
                     examples: [
                         {
@@ -434,7 +434,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                            <h4 style="color: #7ba884; margin-top: 0;">FEW = Count Nouns</h4>
+                            <h4 style="color: #7ba884; margin-top: 0;">FEW = Countable Nouns</h4>
                             <p style="margin: 0 0 0.5rem 0; font-style: italic;">Small number, not enough</p>
                             <ul style="margin: 0;">
                                 <li>few <strong>options</strong></li>
@@ -443,7 +443,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             </ul>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                            <h4 style="color: #d97757; margin-top: 0;">LITTLE = Non-Count Nouns</h4>
+                            <h4 style="color: #d97757; margin-top: 0;">LITTLE = Non-Countable Nouns</h4>
                             <p style="margin: 0 0 0.5rem 0; font-style: italic;">Small amount, not enough</p>
                             <ul style="margin: 0;">
                                 <li>little <strong>money</strong></li>
@@ -514,7 +514,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 2px solid #7ba884;">
-                            <h4 style="color: #7ba884; margin-top: 0;">FEWER = Count Nouns</h4>
+                            <h4 style="color: #7ba884; margin-top: 0;">FEWER = Countable Nouns</h4>
                             <p style="margin: 0 0 0.5rem 0; font-style: italic;">Comparing numbers</p>
                             <ul style="margin: 0;">
                                 <li>fewer <strong>hours</strong></li>
@@ -524,7 +524,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             </ul>
                         </div>
                         <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 2px solid #d97757;">
-                            <h4 style="color: #d97757; margin-top: 0;">LESS = Non-Count Nouns</h4>
+                            <h4 style="color: #d97757; margin-top: 0;">LESS = Non-Countable Nouns</h4>
                             <p style="margin: 0 0 0.5rem 0; font-style: italic;">Comparing amounts</p>
                             <ul style="margin: 0;">
                                 <li>less <strong>time</strong></li>
@@ -638,7 +638,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     id: "ex-most-least-1",
                     title: "Practice: Real-Life Comparisons",
                     instructions:
-                        "Complete these comparison sentences. Think about whether you're comparing count nouns (bedrooms, hours) or uncountable nouns (money, time, experience).",
+                        "Complete these comparison sentences. Think about whether you're comparing countable nouns (bedrooms, hours) or uncountable nouns (money, time, experience).",
                     items: [
                         {
                             type: "text",
@@ -695,7 +695,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                     <tbody>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>many</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Count nouns</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Countable nouns</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">many jobs, many hours</td>
                         </tr>
                         <tr>
@@ -705,7 +705,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>few</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Count nouns (not enough)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Countable nouns (not enough)</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">few options, few applicants</td>
                         </tr>
                         <tr>
@@ -715,7 +715,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>fewer</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Count nouns (comparison)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Countable nouns (comparison)</td>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">fewer hours, fewer problems</td>
                         </tr>
                         <tr>
@@ -924,7 +924,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "This apartment has the most bedrooms and the fewest money." },
             ],
             correctAnswer: "a",
-            explanation: "'The most bedrooms' (count noun) and 'the least money' (uncountable noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
+            explanation: "'The most bedrooms' (countable noun) and 'the least money' (uncountable noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
         },
         {
             id: "quiz-11",
