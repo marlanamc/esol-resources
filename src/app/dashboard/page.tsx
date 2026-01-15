@@ -291,7 +291,16 @@ export default async function DashboardPage() {
 
                                 <MiniCalendar events={calendarEvents} />
 
-                                <UpcomingEventsList events={calendarEvents} allowDelete={true} />
+                                <UpcomingEventsList
+                                    events={calendarEvents.filter(event => {
+                                        const today = new Date();
+                                        today.setHours(0, 0, 0, 0);
+                                        const eventEndDate = event.endDate ? new Date(event.endDate) : new Date(event.date);
+                                        eventEndDate.setHours(0, 0, 0, 0);
+                                        return eventEndDate >= today;
+                                    })}
+                                    allowDelete={true}
+                                />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
@@ -661,7 +670,16 @@ export default async function DashboardPage() {
 
                                 <MiniCalendar events={calendarEvents} />
 
-                                <UpcomingEventsList events={calendarEvents} allowDelete={false} />
+                                <UpcomingEventsList
+                                    events={calendarEvents.filter(event => {
+                                        const today = new Date();
+                                        today.setHours(0, 0, 0, 0);
+                                        const eventEndDate = event.endDate ? new Date(event.endDate) : new Date(event.date);
+                                        eventEndDate.setHours(0, 0, 0, 0);
+                                        return eventEndDate >= today;
+                                    })}
+                                    allowDelete={false}
+                                />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Quick Links</h3>

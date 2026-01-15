@@ -122,7 +122,16 @@ export default async function CalendarPage() {
                             Upcoming
                         </h2>
                     </div>
-                    <UpcomingEventsList events={calendarEvents} allowDelete={userRole === 'teacher'} />
+                    <UpcomingEventsList
+                        events={calendarEvents.filter(event => {
+                            const today = new Date();
+                            today.setHours(0, 0, 0, 0);
+                            const eventEndDate = event.endDate ? new Date(event.endDate) : new Date(event.date);
+                            eventEndDate.setHours(0, 0, 0, 0);
+                            return eventEndDate >= today;
+                        })}
+                        allowDelete={userRole === 'teacher'}
+                    />
                 </div>
             </main>
         </div>
