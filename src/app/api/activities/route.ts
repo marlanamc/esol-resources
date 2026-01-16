@@ -59,15 +59,35 @@ export async function GET() {
 
         const userRole = session.user?.role;
 
-        const activities = await prisma.activity.findMany({
-            orderBy: { createdAt: "desc" },
-        });
-
-        // For students, filter out unreleased speaking activities
+        // For students, filter at database level for grammar guides
         if (userRole === "student") {
+            const activities = await prisma.activity.findMany({
+                where: {
+                    OR: [
+                        // Released grammar guides only
+                        {
+                            type: "guide",
+                            category: "grammar",
+                            isReleased: true
+                        },
+                        // Non-grammar activities (speaking filtered below)
+                        {
+                            NOT: {
+                                AND: [
+                                    { type: "guide" },
+                                    { category: "grammar" }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                orderBy: { createdAt: "desc" },
+            });
+
+            // Filter speaking activities by content.released (existing pattern)
             const filteredActivities = activities.filter((activity) => {
                 if (activity.type !== "speaking") {
-                    return true; // Show all non-speaking activities
+                    return true;
                 }
 
                 // For speaking activities, check if released
@@ -83,6 +103,10 @@ export async function GET() {
         }
 
         // Teachers see all activities
+        const activities = await prisma.activity.findMany({
+            orderBy: { createdAt: "desc" },
+        });
+
         return NextResponse.json(activities);
     } catch (error: unknown) {
         console.error("Error fetching activities:", error);

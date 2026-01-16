@@ -84,14 +84,18 @@ model Activity {
   content     String   // JSON content for the activity structure
   ui          String?  // Optional UI hint (matching, fill-in-blank, etc.)
   createdBy   String?  // User ID of creator (null for legacy activities)
+  isReleased  Boolean  @default(false) // Whether activity is released to students (grammar guides)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  
+
   // Relations
   submissions Submission[]
   speakingSubmissions SpeakingSubmission[]
   assignments Assignment[]
   progress ActivityProgress[]
+
+  @@index([isReleased])
+  @@index([type, category, isReleased])
 }
 
 model ActivityProgress {
