@@ -1,12 +1,11 @@
 # ESOL Level 3 — Jan–Jun 2026 Teaching Schedule (Tue/Thu, 6:00–8:15pm)
 
-This schedule is aligned to your Jan–Jun curriculum units and your existing speaking warm‑ups. It assumes **2 classes per week (Tuesdays + Thursdays)** and builds in **monthly unit quizzes (30 min)** plus a **Thursday phonics block**.
+This schedule is aligned to your Jan–Jun curriculum units. It assumes **2 classes per week (Tuesdays + Thursdays)** and builds in **monthly unit quizzes (30 min)** plus a **Thursday phonics block**.
 
 ## Key dates
 
 - **First class:** Tue **1/6/26**
 - **No class (vacation weeks):** **Feb 16–20** and **Apr 20–24**
-- **Speaking warm‑ups (already created):** `class_uploads/Warm-Up Speaking Schedule (Jan–Jun, 2 classes per week).md`
 - **Weekly verb quiz (homework):** due **Tuesdays** starting **1/13** (outside class)
 
 ## Class Flows by Week (SPEAKING-FIRST APPROACH)
@@ -15,7 +14,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 16: Tue 1/6 - Parts of Speech Part 1
 
-- **1** Classroom & School Language Speaking Warm-Up
 - **2** Parts of Speech Part 1: Content Words (Grammar: nouns, verbs, adjectives, adverbs)
 - **3** Sentence building game (Speaking practice)
 - **4** Read syllabus; identify and label nouns, verbs, adjectives, and adverbs
@@ -24,7 +22,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 16: Thu 1/8 - Parts of Speech Part 2 + Unit 4 Quiz
 
-- **1** Year Reflection & New Goals Speaking Warm-Up
 - **2** Unit 4 quiz (30 min)
 - **3** Quick review: Tuesday's 4 content words
 - **4** Parts of Speech Part 2: Structure Words (Grammar: pronouns, articles, prepositions, conjunctions)
@@ -36,7 +33,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Describing Your Home Speaking Warm-Up
 - **2** Information Questions Basics (Grammar: WH-words + question word order)
 - **3** Ask questions about homes, apartments, neighborhoods (Speaking practice)
 - **4** Read apartment ads; write 6-8 questions you would ask a landlord
@@ -45,7 +41,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 17: Thu 1/15 - Superlatives & Quantifiers
 
-- **1** Food & Restaurants Speaking Warm-Up
 - **2** Start Unit 5 vocab (Housing)
 - **3** Superlatives + Quantifiers (Grammar: biggest, best, cheapest, too many, not enough)
 - **4** Ask questions AND compare apartments using superlatives (Speaking practice)
@@ -58,7 +53,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Housing Vocabulary + Room Descriptions Speaking Warm-Up
 - **2** Information Questions Advanced (Grammar: follow-up questions, polite indirect questions, question chains)
 - **3** Role-play: apartment seeker asks landlord 10 questions + follow-ups (Speaking practice)
 - **4** Read "what to ask before renting"; write 8 essential questions with follow-ups
@@ -67,7 +61,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 18: Thu 1/22 - Question Review + Phonics
 
-- **1** Tenant ↔ Landlord Phone Call Speaking Warm-Up
 - **2** Question formation + 2 required follow-ups (Grammar review)
 - **3** Phone call role-plays: broken heat, leaky faucet, noise complaint (Speaking practice - record & listen back)
 - **4** -ed endings (Phonics: t/d/ɪd - moved, signed, rented)
@@ -78,7 +71,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Past Continuous vs Past Simple Speaking Warm-Up
 - **2** Simple & Continuous Tenses Review (Grammar: Review and compare all simple and continuous tenses)
   - **Review:** Present Simple vs Present Continuous (habits vs now)
   - **Review:** Past Simple vs Past Continuous (finished actions vs background/interrupted actions)
@@ -91,7 +83,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 19: Thu 1/29 - Simple & Continuous Tenses Practice
 
-- **1** Past Continuous vs Past Simple Speaking Warm-Up (practice)
 - **2** Simple & Continuous Tenses Fluency (Grammar: Storytelling + error correction)
   - **Practice:** Past simple vs past continuous in storytelling
   - **Practice:** Using when/while correctly
@@ -106,7 +97,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Housing Problems & Solutions Speaking Warm-Up
 - **2** Zero & First Conditionals (Grammar: Introduction to conditionals)
   - **NEW:** Type 0 Conditionals - `If + present simple, present simple` (general truths, facts, habits, rules)
   - Key phrases: "If you pay late, you get a fee" / "If the pipe leaks, call maintenance"
@@ -120,7 +110,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 20: Thu 2/5 - Zero & First Conditionals Practice
 
-- **1** Money Goals & Housing Plans Speaking Warm-Up
 - **2** Zero & First Conditionals Fluency (Grammar: Practice and error correction)
   - **Practice:** When to use Type 0 vs Type 1
   - **Practice:** Real-life housing and money scenarios
@@ -134,7 +123,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Budgeting, Bills, Credit & Debt Speaking Warm-Up
 - **2** Future Perfect - NEW 30-40 min lesson (Grammar: `will have + past participle` to talk about what will be completed by a future time)
   - Use budgeting/bills context: "By June, I will have saved $500" / "By next month, I will have paid off my credit card"
   - Key phrases: By [future time], I will have [completed action]
@@ -146,7 +134,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 21: Thu 2/12 - Future Perfect Practice + Past Perfect Introduction
 
-- **1** Future Goals & Money Milestones Speaking Warm-Up
 - **2** Future Perfect Practice & Error Correction (Grammar: 20 min fluency practice)
   - Review: Future Perfect form and usage
   - Speaking drill: "By next year, I will have..."
@@ -164,7 +151,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Resume & Cover Letter Basics Speaking Warm-Up
 - **2** Future Perfect Quick Review (10 min warm-up drill)
   - Quick review: "By next month, I will have..."
   - Check for retention after vacation
@@ -177,7 +163,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 22: Thu 2/26 - Past & Future Perfect Review + Unit 5 Quiz
 
-- **1** Workplace Conversations Speaking Warm-Up
 - **2** Past & Future Perfect Fluency Practice (15 min)
   - Compare: Past Perfect (before past event) vs Future Perfect (by future time)
   - Timeline practice: Yesterday/last week vs by next month/next year
@@ -192,14 +177,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Transportation & Getting Around Speaking Warm-Up
 - **2** Gerunds after prepositions + "I get to..." (Grammar: By working..., I get to...)
 - **3** Read a job ad; write 6 sentences: "I'm interested in... / I'm good at..."
 - **4** "Gerund board" game
 
 ### Week 23: Thu 3/5 - Gerunds/Infinitives Review
 
-- **1** Interview Questions + Dress Code Speaking Warm-Up
 - **2** **Question Formation Check-in (5 min)** - Review: WH-word order, follow-ups, polite forms
 - **3** Gerunds/infinitives quick contrast (Grammar review: want to / enjoy -ing)
 - **4** Sentence stress for confident answers (Phonics: I *have* experience with...)
@@ -210,7 +193,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Job Application Talk-Through Speaking Warm-Up
 - **2** Present Perfect Continuous (COMPLETE steps 1-5) (Grammar: `have/has been + -ing` for duration up to now)
   - Full lesson: has/have been + -ing for duration up to now
   - Key phrases: "I've been working here for 3 years" / "How long have you been studying English?"
@@ -221,7 +203,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 24: Thu 3/12 - Present Perfect Continuous Practice & Error Correction
 
-- **1** Career Advisor Appointment + Professional Messages Speaking Warm-Up
 - **2** Present Perfect Continuous Practice & Error Correction (Grammar: 30 min fluency practice)
   - Fluency practice: speaking, writing, error correction
   - Common mistakes: I'm vs I've been; for vs since
@@ -235,7 +216,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Workplace Rights Scenarios Speaking Warm-Up
 - **2** Past Perfect Continuous (NEW - full lesson) (Grammar: `had been + -ing` for duration before past event)
   - Full lesson: had been + -ing for duration before a past event
   - Key phrases: "I had been working there for 5 years when I got promoted" / "I had been looking for a job for 3 months when I found this one"
@@ -247,7 +227,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 25: Thu 3/19 - Past Perfect Continuous Practice
 
-- **1** Career Journey Stories Speaking Warm-Up
 - **2** Past Perfect Continuous Practice & Error Correction (Grammar: 30 min fluency practice)
   - Fluency practice: storytelling, timeline practice
   - Error correction: had been vs was/were
@@ -261,7 +240,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Negotiation & Self-Advocacy Speaking Warm-Up
 - **2** Future Perfect Continuous (NEW - full lesson) (Grammar: `will have been + -ing` for duration up to future time)
   - Full lesson: will have been + -ing for duration continuing up to a future point
   - Key phrases: "By next year, I'll have been living here for 5 years" / "By retirement, I will have been working in healthcare for 30 years"
@@ -273,7 +251,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 26: Thu 3/26 - Perfect Continuous Family Review + Unit 6 Quiz
 
-- **1** Workplace Rights & Advocacy Role-Plays Speaking Warm-Up
 - **2** Perfect Continuous Comparison (20 min - all 3 on one timeline)
   - Review ALL THREE perfect continuous tenses together
   - Timeline visual: Present PC / Past PC / Future PC
@@ -287,7 +264,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Workplace Small Talk Speaking Warm-Up
 - **2** Infinitives vs Gerunds (MASTERY - All Patterns) (Grammar: complete lesson building on Week 23 preview)
   - Full lesson: decide to / plan to / enjoy -ing / avoid -ing / all 6 patterns
   - Note: This builds on Week 23 Gerunds after Prepositions (INTRO)
@@ -297,7 +273,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 27: Thu 4/2 - Workplace Phrasal Verbs + Infinitives/Gerunds Review
 
-- **1** Workplace Policies & Procedures Speaking Warm-Up
 - **2** Workplace phrasal verbs + common idioms (Grammar: clock in/out, fill in, call out, etc.)
   - Note: This content moved from Tuesday to make room for Infinitives vs Gerunds
   - Read workplace dialogues; highlight phrasal verbs; write 6 sentences
@@ -310,14 +285,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Work Problem → Solution Speaking Warm-Up
 - **2** Used to + would rather (Grammar: past habits + preferences)
 - **3** Write problem → solution paragraph using 2 *used to* + 2 preference sentences
 - **4** "Would you rather...?" game
 
 ### Week 28: Thu 4/9 - Used To Structures
 
-- **1** Used To / Be Used To / Get Used To Speaking Warm-Up
 - **2** Used to structures (Grammar review: accuracy)
 - **3** TH reinforcement (Phonics: TH vs T/D)
 - **4** Convert 6 direct quotes → reported statements
@@ -327,14 +300,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Healthcare & Doctor Visits Speaking Warm-Up
 - **2** Advice modals + imperative vs declarative (Grammar: You should... / Don't... / I will...)
 - **3** Read a symptom chart; complete medical history mini-form
 - **4** Doctor advice role-play game (2 follow-ups required)
 
 ### Week 29: Thu 4/16 - Advice Modals Review
 
-- **1** Symptoms + Duration Speaking Warm-Up
 - **2** **Question Formation Check-in (5 min)** - Practice: "How long have you been...?", "When did you start...?", "What should I do if...?"
 - **3** Advice modals + imperatives (Grammar review: tone - soft vs strong, MORE TIME!)
 - **4** Healthcare scenarios with advice modals (Speaking practice)
@@ -348,14 +319,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Clinic Visit Steps Speaking Warm-Up
 - **2** Passive voice (Grammar: is/are + past participle; was/were + past participle)
 - **3** Read clinic check-in steps; rewrite 6 steps using passive chunks
 - **4** Passive matching game (active ↔ passive)
 
 ### Week 30: Thu 4/30 - Passive Voice + Unit 7 Quiz
 
-- **1** Pharmacy Instructions Speaking Warm-Up
 - **2** Unit 7 quiz (Career Awareness) - 30 min
 - **3** Passive voice in instructions (Grammar review: required/recommended)
 - **4** Clarity with numbers + stress (Phonics: mg, times/day)
@@ -366,14 +335,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** MyChart / Calling the Office Speaking Warm-Up
 - **2** Direct vs reported speech + reported commands (Grammar: said / told me to / asked me to)
 - **3** Write a MyChart message; report what you wrote to partner
 - **4** "Telephone: reported speech" game
 
 ### Week 31: Thu 5/7 - Passive Voice + Reported Commands
 
-- **1** Passive Voice Practice Speaking Warm-Up
 - **2** Passive voice + reported commands (Grammar review: mix & match)
 - **3** Fluency for phone calls (Phonics: chunking + polite tone)
 - **4** Read clinic dialogue; answer inference questions
@@ -383,14 +350,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Wellness & Self-Care Speaking Warm-Up
 - **2** Used to / be used to / get used to (Grammar: habit change language)
 - **3** Write a "then vs now" wellness paragraph (3 habits)
 - **4** Habit bingo game
 
 ### Week 32: Thu 5/14 - Used To Structures Review
 
-- **1** Nutrition & Food Labels Speaking Warm-Up
 - **2** Used to structures (Grammar review: form + meaning quick check, MORE TIME!)
 - **3** Health habit changes using "used to" structures (Speaking practice)
 - **4** Stress in food/nutrition words + schwa (Phonics: nuTRItion, VEGeTable)
@@ -401,7 +366,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Home Remedies (wellness wishes) Speaking Warm-Up
 - **2** Second Conditional (Type 2) - NEW full lesson (Grammar: `If + past simple, would/could/might + verb` for unreal present/future)
   - Key phrases: "If I had more money, I would buy a house" / "If I were healthier, I could work more"
   - Compare to Type 1: Type 1 = possible future (If I save..., I will...), Type 2 = unlikely/unreal/wishes (If I had..., I would...)
@@ -413,7 +377,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 33: Thu 5/21 - Conditionals Review (All Three Types)
 
-- **1** Stress Solutions Roundtable Speaking Warm-Up
 - **2** Conditionals Review (Grammar: 30 min - Type 0, Type 1, and Type 2 comparison)
   - Type 0: General facts/rules ("If you don't sleep, you get tired")
   - Type 1: Real future possibilities ("If I sleep well tonight, I will feel better")
@@ -428,14 +391,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Healthy Habit Tracker Speaking Warm-Up
 - **2** Verbs + gerunds (Grammar: avoid, keep, consider, stop, finish...)
 - **3** Write a habit tracker summary using 6 target verbs
 - **4** "Taboo: gerunds" game
 
 ### Week 34: Thu 5/28 - Unit 8 Quiz (Health) + Wellness Presentations
 
-- **1** Wellness Presentation Practice Speaking Warm-Up
 - **2** Unit 8 quiz (30 min)
 - **3** Verbs + gerunds (Grammar review: error correction)
 - **4** Presentation clarity (Phonics: pauses, ending sounds, stress)
@@ -446,7 +407,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Community Resources + Directions Speaking Warm-Up
 - **2** **Question Formation Review (10 min)** - Comprehensive review before POST-TEST: Information questions, yes/no questions, tag questions, polite forms. Students write 5 questions about their semester.
 - **3** Tense review mini-lesson (Grammar: simple past vs present perfect vs past perfect)
 - **4** Read an MBTA/map text; write directions using sequence words
@@ -454,7 +414,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 35: Thu 6/4 - Wellness Reflection
 
-- **1** Wellness Reflection Speaking Warm-Up
 - **2** Mixed-tense error correction (Grammar review: common class errors)
 - **3** Consonant clusters (Phonics: st/str/spl for street/stress/strong)
 - **4** Write reflection: 3 changes + 1 next step
@@ -464,7 +423,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 **Reminder:** Verb quiz due today!
 
-- **1** Year-in-Review Carousel Speaking Warm-Up
 - **2** All 12 Verb Tenses Overview (Grammar: see ALL tenses on one timeline for final presentations)
 - **3** Tell your semester journey using 6+ different tenses (Speaking practice)
 - **4** Write a year-in-review paragraph using past simple, present perfect, and future simple
@@ -473,7 +431,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 36: Thu 6/11 - POST-TEST
 
-- **1** Summer + Next Steps Goals Speaking Warm-Up
 - **2** POST-TEST: Comprehensive assessment (30-40 min) - reading, writing, speaking components
 - **3** Mixed tense practice (Grammar review: past journey, present skills, future goals)
 - **4** Brief final presentation practice (if time permits)
@@ -482,14 +439,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 37: Tue 6/16 - Final Presentation Rehearsal (Finals Week)
 
-- **1** Final Presentation Rehearsal Speaking Warm-Up
 - **2** Perfect tenses review (Grammar: paragraph format checklist)
 - **3** Final presentation draft + rehearsal notes
 - **4** Final review (student-made quiz questions)
 
 ### Week 37: Thu 6/18 - Exit Interview + Course Evaluation (Finals Week)
 
-- **1** Exit Interview + Advice for New Students Speaking Warm-Up
 - **2** Mixed review stations (Grammar review: tenses/modals/questions)
 - **3** Fluency (Phonics: intonation + final sounds + "clear speech" checklist)
 - **4** Course evaluation + final reflection paragraph
@@ -541,14 +496,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 16 (Jan 6 & Jan 8) — Parts of Speech Review (2-day sequence)
 
-**Tue 1/6 — Warm‑up:** Classroom & School Language
 - **Grammar (new):** Parts of Speech **Part 1: Content Words** (nouns, verbs, adjectives, adverbs - the words that carry meaning)
 - **Speaking practice (25 min):** Sentence building game - create sentences using the 4 content words; identify each part in partner's sentences
 - **R/L/W:** Read syllabus; identify and label nouns, verbs, adjectives, and adverbs in sentences
 - **Speaking game (30 min):** Parts of speech relay race - teams build grammatically correct sentences using content words
 - **Homework:** Complete "Parts of Speech" guide (steps 1-4) on Class Companion - Nouns, Verbs, Adjectives, Adverbs
 
-**Thu 1/8 — Warm‑up:** Year Reflection & New Goals
 - **Unit quiz:** Unit 4 quiz (30 min)
 - **Quick review:** Tuesday's 4 content words (nouns, verbs, adjectives, adverbs)
 - **Grammar (new):** Parts of Speech **Part 2: Structure Words** (pronouns, articles, prepositions, conjunctions - the words that connect ideas)
@@ -558,14 +511,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 17 (Jan 13 & Jan 15) — Information Questions Basics + Superlatives & Comparisons
 
-**Tue 1/13 — Warm‑up:** Describing Your Home (Information Questions)
 - **Grammar (new):** Information Questions Basics - WH-words (Who, What, Where, When, Why, How) + question word order
 - **Speaking practice (25 min):** Ask questions about homes, apartments, and neighborhoods
 - **R/L/W:** Read apartment ads; write 6-8 information questions you would ask a landlord
 - **Speaking game (30 min):** Question race - who can ask the most clear questions about housing?
 - **Homework:** Complete "Information Questions" guide (steps 1-3) on Class Companion - WH-words basics
 
-**Thu 1/15 — Warm‑up:** Food & Restaurants (Superlatives & Quantifiers)
 - **Vocab:** Start Unit 5 vocab (Housing) - fast track
 - **Grammar (new):** Superlatives + Quantifiers (biggest, best, cheapest, too many, not enough) - for comparing homes
 - **Speaking practice (25 min):** Ask questions AND compare apartments using superlatives together
@@ -576,14 +527,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 18 (Jan 20 & Jan 22) — Unit 5 Housing + Advanced Questions & Follow-ups
 
-**Tue 1/20 — Warm‑up:** Housing Vocabulary + Room Descriptions
 - **Grammar (ADVANCED):** Information Questions (steps 4-6) - Advanced patterns: follow-up questions, polite indirect questions, question chains in housing context
 - **Speaking practice (25 min):** Role-play - Student A (apartment seeker) asks Student B (landlord) 10 questions - must ask follow-up questions
 - **R/L/W:** Read "what to ask before renting"; write 8 essential landlord questions with follow-ups
 - **Speaking game (30 min):** Question race (teams compete for clarity + politeness)
 - **Homework:** Complete "Information Questions" guide (steps 4-6) on Class Companion - Advanced question patterns
 
-**Thu 1/22 — Warm‑up:** Tenant ↔ Landlord Phone Call
 - **Grammar review:** Question formation + 2 required follow-ups in every exchange
 - **Speaking practice (25 min):** Phone call role-plays - broken heat, leaky faucet, noise complaint (record on phone, listen back, identify 1 improvement)
 - **Phonics:** -ed endings (t/d/ɪd) - moved, signed, rented
@@ -592,14 +541,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 19 (Jan 27 & Jan 29) — Simple & Continuous Tenses Review
 
-**Tue 1/27 — Warm‑up:** Past Continuous vs Past Simple
 - **Grammar (review):** Simple & Continuous Tenses Review - Review and compare all simple and continuous tenses (present, past, future)
 - **Speaking practice (25 min):** Tell stories using simple and continuous tenses correctly (past journey, present habits, future plans)
 - **R/L/W:** Read mixed-tense scenarios; identify which tense to use when and why
 - **Speaking game (30 min):** Tense race game (teams identify and correct tense errors)
 - **Homework:** Review "Past Simple" and "Past Continuous" guides on Class Companion
 
-**Thu 1/29 — Warm‑up:** Past Continuous vs Past Simple (practice)
 - **Grammar (review):** Simple & Continuous Tenses Fluency - Storytelling + error correction (past simple vs past continuous; when/while)
 - **Speaking practice (25 min):** Storytelling practice using simple and continuous tenses (Tell what happened and what was happening)
 - **Phonics:** Word stress in time clauses (WHEN I arrived, she was COOKing)
@@ -608,14 +555,12 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 20 (Feb 3 & Feb 5) — Zero & First Conditionals
 
-**Tue 2/3 — Warm‑up:** Housing Problems & Solutions
 - **Grammar (new):** Zero & First Conditionals Introduction - Type 0 (`If + present simple, present simple` for facts/rules) and Type 1 (`If + present simple, will + verb` for future predictions)
 - **Speaking practice (25 min):** Housing problem-solving using conditionals (Type 0 for problems, Type 1 for solutions)
 - **R/L/W:** Read housing scenarios; write 3 Type 0 conditionals and 3 Type 1 conditionals
 - **Game:** Conditional chain game ("If I..." → next student continues)
 - **Homework:** Review "Zero & First Conditionals" guide on Class Companion
 
-**Thu 2/5 — Warm‑up:** Money Goals & Housing Plans
 - **Grammar (review):** Zero & First Conditionals Fluency - Practice and error correction (when to use Type 0 vs Type 1)
 - **Speaking practice (25 min):** Complex conditional conversations (Discuss housing plans, money goals, future possibilities)
 - **Phonics:** Word stress in conditional sentences (IF you SAVE, you WILL move)
@@ -624,7 +569,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 21 (Feb 10 & Feb 12) — Future Perfect + Past Perfect Introduction
 
-**Tue 2/10 — Warm‑up:** Budgeting, Bills, Credit & Debt
 - **Grammar (NEW - 30-40 min):** Future Perfect - `src/content/grammar/future-perfect.ts` (By [time], I will have [achieved]...)
   - Use budgeting/bills context: "By June, I will have saved $500"
   - Key phrases: By [future time], I will have [completed action]
@@ -634,7 +578,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **R/L/W:** Write 4 Future Perfect sentences about your goals
 - **Homework:** Complete "Future Perfect" guide on Class Companion
 
-**Thu 2/12 — Warm‑up:** Future Goals & Money Milestones
 - **Grammar review (20 min):** Future Perfect Practice & Error Correction
   - Review: Future Perfect form and usage
   - Speaking drill: "By next year, I will have..."
@@ -650,7 +593,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 22 (Feb 24 & Feb 26) — Past Perfect Completion + Unit 5 Quiz
 
-**Tue 2/24 — Warm‑up:** Resume & Cover Letter Basics
 - **Grammar review (10 min):** Future Perfect Quick Review
   - Quick review: "By next month, I will have..."
   - Check for retention after vacation
@@ -661,7 +603,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Game:** Timeline race (past perfect vs past simple)
 - **Homework:** Complete "Past Perfect" guide on Class Companion
 
-**Thu 2/26 — Warm‑up:** Workplace Conversations
 - **Grammar review (15 min):** Past & Future Perfect Fluency Practice
   - Compare: Past Perfect (before past event) vs Future Perfect (by future time)
   - Timeline practice: Yesterday/last week vs by next month/next year
@@ -677,12 +618,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 23 (Mar 3 & Mar 5) — Workforce Prep (applications + interviews)
 
-**Tue 3/3 — Warm‑up:** Transportation & Getting Around  
 - **Grammar (new):** Gerunds after prepositions + “I get to…” (By working…, I get to…) *(Create/teacher-made)*  
 - **R/L/W:** Read a job ad; write 6 sentences: “I’m interested in… / I’m good at…”  
 - **Game:** “Gerund board” (land on a square → make a sentence)
 
-**Thu 3/5 — Warm‑up:** Interview Questions + Dress Code  
 - **Grammar review:** Gerunds/infinitives quick contrast (want to / enjoy -ing)  
 - **Phonics:** Sentence stress for confident answers (I *have* experience with…)  
 - **R/L/W:** Listen/read interview Qs; write 4 strong answers (STAR mini‑frame)  
@@ -690,7 +629,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 24 (Mar 10 & Mar 12) — Present Perfect Continuous (Complete)
 
-**Tue 3/10 — Warm‑up:** Job Application Talk‑Through
 - **Grammar (new - COMPLETE):** Present Perfect Continuous — `src/content/grammar/present-perfect-continuous.ts` (steps **1–5** ALL)
   - Full lesson: has/have been + -ing for duration up to now
   - Key phrases: "I've been working here for 3 years" / "How long have you been studying English?"
@@ -699,7 +637,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Game:** "How long have you been…?" speed chat
 - **Homework:** Complete "Present Perfect Continuous" guide on Class Companion (all steps)
 
-**Thu 3/12 — Warm‑up:** Career Advisor Appointment
 - **Grammar review (30 min):** Present Perfect Continuous Practice & Error Correction
   - Fluency practice: speaking, writing, error correction
   - Common mistakes: I'm vs I've been; for vs since
@@ -711,7 +648,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 25 (Mar 17 & Mar 19) — Past Perfect Continuous (Complete)
 
-**Tue 3/17 — Warm‑up:** Workplace Rights Scenarios
 - **Grammar (NEW - full lesson):** Past Perfect Continuous — `src/content/grammar/past-perfect-continuous.ts` (I had been working there for 5 years when...)
   - Full lesson: had been + -ing for duration before a past event
   - Key phrases: "I had been working there for 5 years when I got promoted" / "I had been looking for a job for 3 months when I found this one"
@@ -721,7 +657,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Game:** "Rights role‑play"
 - **Homework:** Complete "Past Perfect Continuous" guide on Class Companion
 
-**Thu 3/19 — Warm‑up:** Career Journey Stories
 - **Grammar review (30 min):** Past Perfect Continuous Practice & Error Correction
   - Fluency practice: storytelling, timeline practice
   - Error correction: had been vs was/were
@@ -733,7 +668,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 26 (Mar 24 & Mar 26) — Future Perfect Continuous + Unit 6 Test
 
-**Tue 3/24 — Warm‑up:** Negotiation & Self‑Advocacy
 - **Grammar (NEW - full lesson):** Future Perfect Continuous — `src/content/grammar/future-perfect-continuous.ts` (By 2030, I will have been working...)
   - Full lesson: will have been + -ing for duration continuing up to a future point
   - Key phrases: "By next year, I'll have been living here for 5 years" / "By retirement, I will have been working in healthcare for 30 years"
@@ -742,7 +676,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **R/L/W:** Calculate your future milestones; write 4 Future Perfect Continuous sentences
 - **Homework:** Complete "Future Perfect Continuous" guide + Perfect Tenses Family Review
 
-**Thu 3/26 — Warm‑up:** Workplace Rights & Advocacy Role-Plays
 - **Grammar review (20 min):** Perfect Continuous Comparison (all 3 on one timeline)
   - Review ALL THREE perfect continuous tenses together
   - Timeline visual: Present PC / Past PC / Future PC
@@ -752,7 +685,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Game:** "Tense detective" (which perfect continuous is correct and why?)
 - **Preview:** Infinitives vs Gerunds next week
 
-**Thu 3/26 — Warm‑up:** Workplace Rights & Advocacy Role‑Plays
 - **Unit quiz:** Unit 6 quiz (Workforce Prep) - 30 min
 - **Grammar review:** Infinitives/gerunds speaking (2 reasons + 1 example)
 - **Phonics:** /æ/ vs /ʌ/ (salary/sudden; manager/number) + minimal pairs
@@ -761,12 +693,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 27 (Mar 31 & Apr 2) — Career Awareness (workplace culture)
 
-**Tue 3/31 — Warm‑up:** Workplace Small Talk (Safe Topics)  
 - **Grammar (new):** Workplace phrasal verbs + common idioms *(Create/teacher-made)*  
 - **R/L/W:** Read short workplace dialogues; highlight phrasal verbs; write 6 new sentences  
 - **Game:** Phrasal‑verb matching (verb + particle + meaning)
 
-**Thu 4/2 — Warm‑up:** Workplace Policies & Procedures  
 - **Grammar review:** Phrasal verbs in role‑plays (clock in/out, fill in, call out)  
 - **Phonics:** Intonation for small talk + follow‑up questions  
 - **R/L/W:** Read a workplace policy excerpt; answer 6 comprehension questions  
@@ -774,12 +704,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 28 (Apr 7 & Apr 9) — Career Awareness (past habits + preferences)
 
-**Tue 4/7 — Warm‑up:** Work Problem → Solution  
 - **Grammar (new):** Used to + would rather (past habits + preferences) *(Create/teacher-made)*  
 - **R/L/W:** Write a problem → solution paragraph using 2 *used to* + 2 preference sentences  
 - **Game:** “Would you rather…?” lines (then justify)
 
-**Thu 4/9 — Warm‑up:** Used To / Be Used To / Get Used To  
 - **Grammar review:** Used to structures (accuracy) + short speaking rounds (health/work habits)  
 - **Phonics:** TH reinforcement (expand to TH vs T/D) + short sentences  
 - **R/L/W:** Convert 6 direct quotes → reported statements (work context)  
@@ -787,12 +715,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 29 (Apr 14 & Apr 16) — Unit 8 Health (before April vacation) - NO QUIZ
 
-**Tue 4/14 — Warm‑up:** Healthcare & Doctor Visits
 - **Grammar (new):** Advice modals + imperative vs declarative (You should… / Don't… / I will…) *(Create/teacher-made)*
 - **R/L/W:** Read a symptom chart; complete a medical history mini‑form
 - **Game:** Doctor advice role‑play (must include 2 follow‑ups)
 
-**Thu 4/16 — Warm‑up:** Symptoms + Duration
 - **Grammar review:** Advice modals + imperatives (tone: soft vs strong) - MORE TIME today!
 - **Speaking practice (25 min):** Healthcare scenarios with advice modals
 - **Phonics:** Multi‑syllable medical words + primary stress (ALLergy, alLERgic)
@@ -803,12 +729,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 30 (Apr 28 & Apr 30) — Unit 7 Test + Health (passive voice)
 
-**Tue 4/28 — Warm‑up:** Clinic Visit Steps (Passive Voice Intro)
 - **Grammar (new):** Passive voice (is/are + past participle; was/were + past participle) *(Create/teacher-made)*
 - **R/L/W:** Read clinic check‑in steps; rewrite 6 steps using passive chunks (You are asked to…)
 - **Game:** Passive matching (active ↔ passive)
 
-**Thu 4/30 — Warm‑up:** Pharmacy Instructions
 - **Unit quiz:** Unit 7 quiz (Career Awareness) - 30 min
 - **Grammar review:** Passive voice in instructions (required/recommended)
 - **Phonics:** Clarity with numbers + stress (mg, times/day) + intonation for instructions
@@ -817,12 +741,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 31 (May 5 & May 7) — Health (digital health + reported commands)
 
-**Tue 5/5 — Warm‑up:** MyChart / Calling the Office  
 - **Grammar (new):** Direct vs reported speech + reported commands (said / told me to / asked me to) *(Create/teacher-made)*  
 - **R/L/W:** Write a MyChart message; then report what you wrote to a partner (“I told the doctor that…”)  
 - **Game:** “Telephone: reported speech” (accuracy wins)
 
-**Thu 5/7 — Warm‑up:** Passive Voice Practice  
 - **Grammar review:** Passive voice + reported commands (mix & match)  
 - **Phonics:** Fluency for phone calls (chunking + polite tone)  
 - **R/L/W:** Read a short clinic dialogue; answer inference questions (why/next step)  
@@ -830,12 +752,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 32 (May 12 & May 14) — Unit 9 Holistic Wellness (start) - NO QUIZ
 
-**Tue 5/12 — Warm‑up:** Wellness & Self‑Care
 - **Grammar (new):** Used to / be used to / get used to (habit change language) *(Create/teacher-made)*
 - **R/L/W:** Write a "then vs now" wellness paragraph (3 habits)
 - **Game:** Habit bingo (find someone who used to… / is used to…)
 
-**Thu 5/14 — Warm‑up:** Nutrition & Food Labels
 - **Grammar review:** Used to structures (form + meaning quick check) - MORE TIME today!
 - **Speaking practice (25 min):** Health habit changes using "used to" structures
 - **Phonics:** Stress in food/nutrition words + schwa (nuTRItion, VEGeTable)
@@ -844,7 +764,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 33 (May 19 & May 21) — Wellness (Second Conditional + Review All Conditionals)
 
-**Tue 5/19 — Warm‑up:** Home Remedies (wellness wishes)
 - **Grammar (NEW):** Second Conditional (Type 2) - `If + past simple, would/could/might + verb` for unreal present/future situations
   - Key phrases: "If I had more money, I would buy a house" / "If I were healthier, I could work more"
   - Compare to Type 1: Type 1 = possible future, Type 2 = unlikely/unreal/wishes
@@ -854,7 +773,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Game:** Conditional chain (If I were rich, I would... → next student continues)
 - **Homework:** Write 5 Type 2 conditionals about your life, health, or work wishes
 
-**Thu 5/21 — Warm‑up:** Stress Solutions Roundtable
 - **Grammar review (30 min):** Conditionals Review (All Three Types)
   - Type 0: General facts/rules ("If you don't sleep, you get tired")
   - Type 1: Real future possibilities ("If I sleep well tonight, I will feel better")
@@ -868,12 +786,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 34 (May 26 & May 28) — Unit 8 Test + Wellness (tracking)
 
-**Tue 5/26 — Warm‑up:** Healthy Habit Tracker (Report Results)
 - **Grammar (new):** Verbs + gerunds (avoid, keep, consider, stop, finish…) *(Create/teacher-made)*
 - **R/L/W:** Write a habit tracker summary using 6 target verbs
 - **Game:** "Taboo: gerunds" (describe without the word)
 
-**Thu 5/28 — Warm‑up:** Wellness Presentation Practice
 - **Unit quiz:** Unit 8 quiz (Health) - 30 min
 - **Grammar review:** Verbs + gerunds (error correction) + short presentations
 - **Phonics:** Presentation clarity (pauses, ending sounds, stress)
@@ -882,12 +798,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 35 (Jun 2 & Jun 4) — Wellness wrap‑up + start June review
 
-**Tue 6/2 — Warm‑up:** Community Resources + Directions (MBTA)  
 - **Grammar (new):** Tense review mini‑lesson (simple past vs present perfect vs past perfect) *(Use existing guides as needed)*  
 - **R/L/W:** Read an MBTA/map text; write directions using sequence words (first/then/finally)  
 - **Game:** “Directions race” (teams give directions accurately)
 
-**Thu 6/4 — Warm‑up:** Wellness Reflection (What’s Changed?)  
 - **Grammar review:** Mixed‑tense error correction (common class errors list)  
 - **Phonics:** Consonant clusters (st/str/spl) for street/stress/strong  
 - **R/L/W:** Write reflection: 3 changes + 1 next step  
@@ -895,7 +809,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 36 (Jun 9 & Jun 11) — All Verb Tenses Overview + Year Review
 
-**Tue 6/9 — Warm‑up:** Year‑in‑Review Carousel
 - **Grammar (new):** **All 12 Verb Tenses Overview** — USE: `all-verb-tenses-overview.ts` (steps 1-5)
   - Focus: See ALL 12 tenses on one timeline, understand which ones you use most vs recognize
   - Why this matters: Final presentations require mixing tenses smoothly (past→present→future)
@@ -904,7 +817,6 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 - **Speaking game (30 min):** "Tense mixing challenge" - teams tell stories switching tenses correctly
 - **Homework:** Complete "All Verb Tenses Overview" guide on Class Companion + mini-quiz
 
-**Thu 6/11 — Warm‑up:** Summer + Next Steps Goals
 - **POST-TEST:** Comprehensive assessment (30-40 min) - reading, writing, speaking components
 - **Grammar review:** Mixed tense practice - past (your journey), present (current skills), future (goals)
 - **Speaking practice:** Brief final presentation practice (if time permits)
@@ -913,12 +825,10 @@ This schedule is aligned to your Jan–Jun curriculum units and your existing sp
 
 ### Week 37 (Jun 16 & Jun 18) — Finals week (presentations + closure)
 
-**Tue 6/16 — Warm‑up:** Final Presentation Rehearsal  
 - **Grammar (new):** Perfect tenses review — `src/content/grammar/perfect-tenses-review.ts` (steps **5–7**) + paragraph format checklist  
 - **R/L/W:** Final presentation draft + rehearsal notes  
 - **Game:** Final review (student‑made quiz questions)
 
-**Thu 6/18 — Warm‑up:** Exit Interview + Advice for New Students  
 - **Grammar review:** Mixed review stations (tenses / modals / questions)  
 - **Phonics:** Fluency (intonation + final sounds) + “clear speech” checklist  
 - **R/L/W:** Course evaluation + final reflection paragraph  

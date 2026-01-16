@@ -347,11 +347,12 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                 ].sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
             },
             {
+                name: 'Conditionals',
+                activities: sortByKeywordOrder(conditionals, ['zero', 'first', 'second', 'third'])
+            },
+            {
                 name: 'Describing & Comparing',
-                activities: [
-                    ...conditionals,
-                    ...wordsAndQuantity
-                ].sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
+                activities: wordsAndQuantity.sort((a, b) => displayTitle(a.title || '').localeCompare(displayTitle(b.title || '')))
             },
             {
                 name: 'Writing Basics',

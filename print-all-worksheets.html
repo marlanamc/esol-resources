@@ -100,6 +100,14 @@
             .worksheet-title {
                 font-weight: 500;
             }
+            .worksheet-date {
+                font-size: 13px;
+                color: #3b82f6;
+                font-weight: 600;
+                margin-right: 10px;
+                display: inline-block;
+                min-width: 120px;
+            }
             .worksheet-path {
                 font-size: 12px;
                 color: #999;
@@ -118,7 +126,7 @@
 <body>
     <div class="header">
         <h1>All Worksheets - Table of Contents</h1>
-        <p class="subtitle">Total: 49 worksheets</p>
+        <p class="subtitle">Total: 39 worksheets</p>
     </div>
 
     <div class="controls no-print">
@@ -127,27 +135,23 @@
         <button onclick="updateLinks()">Update Links</button>
         <button onclick="window.print()">Print This Page</button>
         <div style="margin-top: 15px;">
-            <label for="sortOption" style="margin-right: 10px; font-size: 14px;">Sort by:</label>
-            <select id="sortOption" onchange="sortWorksheets()" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
+            <label for="viewOption" style="margin-right: 10px; font-size: 14px;">View by:</label>
+            <select id="viewOption" onchange="sortWorksheets()" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px;">
                 <option value="category">Category (Default)</option>
-                <option value="date-asc">Date (Oldest First)</option>
-                <option value="date-desc">Date (Newest First)</option>
+                <option value="date-grouped">Date (Grouped by Date)</option>
+                <option value="date-asc" selected>Date (Oldest First, No Categories)</option>
+                <option value="date-desc">Date (Newest First, No Categories)</option>
+                <option value="alphabetical">Alphabetical (No Categories)</option>
             </select>
         </div>
     </div>
 
     <div class="worksheet-list">
-        <div class="category">Banking (3 worksheets)</div>
+        <div class="category">Banking (2 worksheets)</div>
         <div class="worksheet-item">
             <a href="worksheets/banking/banking-basics-warmup.html" class="worksheet-link" data-path="worksheets/banking/banking-basics-warmup.html">
                 <span class="worksheet-title">Banking Basics</span>
                 <span class="worksheet-path">(banking-basics-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/banking/future-goals-2026-02-12-warmup.html" class="worksheet-link" data-path="worksheets/banking/future-goals-2026-02-12-warmup.html">
-                <span class="worksheet-title">Future Goals & Money Milestones</span>
-                <span class="worksheet-path">(future-goals-2026-02-12-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -156,44 +160,7 @@
                 <span class="worksheet-path">(money-housing-plans-2026-02-05-warmup.html)</span>
             </a>
         </div>
-        <div class="category">Grammar (6 worksheets)</div>
-        <div class="worksheet-item">
-            <a href="worksheets/grammar/gerunds-infinitives-warmup.html" class="worksheet-link" data-path="worksheets/grammar/gerunds-infinitives-warmup.html">
-                <span class="worksheet-title">Gerunds & Infinitives</span>
-                <span class="worksheet-path">(gerunds-infinitives-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/grammar/passive-voice-warmup.html" class="worksheet-link" data-path="worksheets/grammar/passive-voice-warmup.html">
-                <span class="worksheet-title">Passive Voice</span>
-                <span class="worksheet-path">(passive-voice-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/grammar/perfect-continuous-warmup.html" class="worksheet-link" data-path="worksheets/grammar/perfect-continuous-warmup.html">
-                <span class="worksheet-title">Perfect Continuous Tenses</span>
-                <span class="worksheet-path">(perfect-continuous-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/grammar/perfect-tenses-practice-warmup.html" class="worksheet-link" data-path="worksheets/grammar/perfect-tenses-practice-warmup.html">
-                <span class="worksheet-title">Past Continuous vs Past Simple</span>
-                <span class="worksheet-path">(perfect-tenses-practice-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/grammar/reported-speech-warmup.html" class="worksheet-link" data-path="worksheets/grammar/reported-speech-warmup.html">
-                <span class="worksheet-title">Reported Speech</span>
-                <span class="worksheet-path">(reported-speech-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/grammar/used-to-structures-warmup.html" class="worksheet-link" data-path="worksheets/grammar/used-to-structures-warmup.html">
-                <span class="worksheet-title">Used To Structures</span>
-                <span class="worksheet-path">(used-to-structures-warmup.html)</span>
-            </a>
-        </div>
-        <div class="category">Health (12 worksheets)</div>
+        <div class="category">Health (14 worksheets)</div>
         <div class="worksheet-item">
             <a href="worksheets/health/clinic-visit-2026-04-28-warmup.html" class="worksheet-link" data-path="worksheets/health/clinic-visit-2026-04-28-warmup.html">
                 <span class="worksheet-title">Clinic Visit Steps</span>
@@ -201,33 +168,57 @@
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/healthcare-basics-warmup.html" class="worksheet-link" data-path="worksheets/health/healthcare-basics-warmup.html">
+            <a href="worksheets/health/healthcare-advice-2026-05-05-warmup.html" class="worksheet-link" data-path="worksheets/health/healthcare-advice-2026-05-05-warmup.html">
+                <span class="worksheet-title">Healthcare: Advice Modals</span>
+                <span class="worksheet-path">(healthcare-advice-2026-05-05-warmup.html)</span>
+            </a>
+        </div>
+        <div class="worksheet-item">
+            <a href="worksheets/health/healthcare-basics-2026-04-07-warmup.html" class="worksheet-link" data-path="worksheets/health/healthcare-basics-2026-04-07-warmup.html">
+                <span class="worksheet-title">Healthcare Basics & Symptoms</span>
+                <span class="worksheet-path">(healthcare-basics-2026-04-07-warmup.html)</span>
+            </a>
+        </div>
+        <div class="worksheet-item">
+            <a href="worksheets/health/healthcare-doctor-visits-2026-04-14-warmup.html" class="worksheet-link" data-path="worksheets/health/healthcare-doctor-visits-2026-04-14-warmup.html">
                 <span class="worksheet-title">Healthcare & Doctor Visits</span>
-                <span class="worksheet-path">(healthcare-basics-warmup.html)</span>
+                <span class="worksheet-path">(healthcare-doctor-visits-2026-04-14-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/healthy-habit-2026-05-26-warmup.html" class="worksheet-link" data-path="worksheets/health/healthy-habit-2026-05-26-warmup.html">
+            <a href="worksheets/health/health-habits-2026-05-07-warmup.html" class="worksheet-link" data-path="worksheets/health/health-habits-2026-05-07-warmup.html">
+                <span class="worksheet-title">Health Habits: Used To / Be Used To / Would Rather</span>
+                <span class="worksheet-path">(health-habits-2026-05-07-warmup.html)</span>
+            </a>
+        </div>
+        <div class="worksheet-item">
+            <a href="worksheets/health/healthy-habit-2026-04-09-warmup.html" class="worksheet-link" data-path="worksheets/health/healthy-habit-2026-04-09-warmup.html">
                 <span class="worksheet-title">Healthy Habit Tracker</span>
-                <span class="worksheet-path">(healthy-habit-2026-05-26-warmup.html)</span>
+                <span class="worksheet-path">(healthy-habit-2026-04-09-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/home-remedies-2026-05-19-warmup.html" class="worksheet-link" data-path="worksheets/health/home-remedies-2026-05-19-warmup.html">
-                <span class="worksheet-title">Home Remedies</span>
-                <span class="worksheet-path">(home-remedies-2026-05-19-warmup.html)</span>
+            <a href="worksheets/health/symptoms-treatment-2026-04-30-warmup.html" class="worksheet-link" data-path="worksheets/health/symptoms-treatment-2026-04-30-warmup.html">
+                <span class="worksheet-title">Symptoms & Treatment: Result vs Duration</span>
+                <span class="worksheet-path">(symptoms-treatment-2026-04-30-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/mychart-2026-05-05-warmup.html" class="worksheet-link" data-path="worksheets/health/mychart-2026-05-05-warmup.html">
-                <span class="worksheet-title">MyChart & Calling Office</span>
-                <span class="worksheet-path">(mychart-2026-05-05-warmup.html)</span>
+            <a href="worksheets/health/daily-care-routines-2026-05-12-warmup.html" class="worksheet-link" data-path="worksheets/health/daily-care-routines-2026-05-12-warmup.html">
+                <span class="worksheet-title">Daily Care Routines: Imperatives & Declaratives</span>
+                <span class="worksheet-path">(daily-care-routines-2026-05-12-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/nutrition-2026-05-14-warmup.html" class="worksheet-link" data-path="worksheets/health/nutrition-2026-05-14-warmup.html">
-                <span class="worksheet-title">Nutrition & Food Labels</span>
-                <span class="worksheet-path">(nutrition-2026-05-14-warmup.html)</span>
+            <a href="worksheets/health/food-labels-nutrition-2026-05-19-warmup.html" class="worksheet-link" data-path="worksheets/health/food-labels-nutrition-2026-05-19-warmup.html">
+                <span class="worksheet-title">Food Labels & Nutrition: Passive Voice</span>
+                <span class="worksheet-path">(food-labels-nutrition-2026-05-19-warmup.html)</span>
+            </a>
+        </div>
+        <div class="worksheet-item">
+            <a href="worksheets/health/health-records-communication-2026-05-21-warmup.html" class="worksheet-link" data-path="worksheets/health/health-records-communication-2026-05-21-warmup.html">
+                <span class="worksheet-title">Health Records & Communication: Passive Voice</span>
+                <span class="worksheet-path">(health-records-communication-2026-05-21-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -237,46 +228,28 @@
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/stress-2026-05-21-warmup.html" class="worksheet-link" data-path="worksheets/health/stress-2026-05-21-warmup.html">
-                <span class="worksheet-title">Stress Solutions</span>
-                <span class="worksheet-path">(stress-2026-05-21-warmup.html)</span>
+            <a href="worksheets/health/daily-self-care-2026-05-14-warmup.html" class="worksheet-link" data-path="worksheets/health/daily-self-care-2026-05-14-warmup.html">
+                <span class="worksheet-title">Daily Self-Care: Imperatives & Declaratives</span>
+                <span class="worksheet-path">(daily-self-care-2026-05-14-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/symptoms-duration-2026-04-16-warmup.html" class="worksheet-link" data-path="worksheets/health/symptoms-duration-2026-04-16-warmup.html">
-                <span class="worksheet-title">Symptoms & Advice</span>
-                <span class="worksheet-path">(symptoms-duration-2026-04-16-warmup.html)</span>
+            <a href="worksheets/health/wellness-review-2026-05-26-warmup.html" class="worksheet-link" data-path="worksheets/health/wellness-review-2026-05-26-warmup.html">
+                <span class="worksheet-title">Wellness Review: All Verb Tenses</span>
+                <span class="worksheet-path">(wellness-review-2026-05-26-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/health/wellness-basics-warmup.html" class="worksheet-link" data-path="worksheets/health/wellness-basics-warmup.html">
-                <span class="worksheet-title">Wellness & Self-Care</span>
-                <span class="worksheet-path">(wellness-basics-warmup.html)</span>
+            <a href="worksheets/health/wellness-reflection-2026-05-28-warmup.html" class="worksheet-link" data-path="worksheets/health/wellness-reflection-2026-05-28-warmup.html">
+                <span class="worksheet-title">Wellness Reflection: All Verb Tenses</span>
+                <span class="worksheet-path">(wellness-reflection-2026-05-28-warmup.html)</span>
             </a>
         </div>
+        <div class="category">Housing (4 worksheets)</div>
         <div class="worksheet-item">
-            <a href="worksheets/health/wellness-presentation-2026-05-28-warmup.html" class="worksheet-link" data-path="worksheets/health/wellness-presentation-2026-05-28-warmup.html">
-                <span class="worksheet-title">Wellness Presentation</span>
-                <span class="worksheet-path">(wellness-presentation-2026-05-28-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/health/wellness-reflection-2026-06-04-warmup.html" class="worksheet-link" data-path="worksheets/health/wellness-reflection-2026-06-04-warmup.html">
-                <span class="worksheet-title">Wellness Reflection</span>
-                <span class="worksheet-path">(wellness-reflection-2026-06-04-warmup.html)</span>
-            </a>
-        </div>
-        <div class="category">Housing (6 worksheets)</div>
-        <div class="worksheet-item">
-            <a href="worksheets/housing/conditionals-2026-01-29-warmup.html" class="worksheet-link" data-path="worksheets/housing/conditionals-2026-01-29-warmup.html">
-                <span class="worksheet-title">Housing Conditionals</span>
-                <span class="worksheet-path">(conditionals-2026-01-29-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/housing/housing-basics-warmup.html" class="worksheet-link" data-path="worksheets/housing/housing-basics-warmup.html">
+            <a href="worksheets/housing/housing-basics-2026-01-13-warmup.html" class="worksheet-link" data-path="worksheets/housing/housing-basics-2026-01-13-warmup.html">
                 <span class="worksheet-title">Housing Basics – Describing Your Home</span>
-                <span class="worksheet-path">(housing-basics-warmup.html)</span>
+                <span class="worksheet-path">(housing-basics-2026-01-13-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -286,28 +259,22 @@
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/housing/problems-solutions-2026-02-03-warmup.html" class="worksheet-link" data-path="worksheets/housing/problems-solutions-2026-02-03-warmup.html">
-                <span class="worksheet-title">Housing Problems & Solutions</span>
-                <span class="worksheet-path">(problems-solutions-2026-02-03-warmup.html)</span>
+            <a href="worksheets/housing/problems-solutions-2026-01-22-warmup.html" class="worksheet-link" data-path="worksheets/housing/problems-solutions-2026-01-22-warmup.html">
+                <span class="worksheet-title">Housing: Problems & Solutions</span>
+                <span class="worksheet-path">(problems-solutions-2026-01-22-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/housing/room-descriptions-2026-01-20-warmup.html" class="worksheet-link" data-path="worksheets/housing/room-descriptions-2026-01-20-warmup.html">
-                <span class="worksheet-title">Housing Vocabulary + Room Descriptions</span>
-                <span class="worksheet-path">(room-descriptions-2026-01-20-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/housing/tenant-landlord-2026-01-22-warmup.html" class="worksheet-link" data-path="worksheets/housing/tenant-landlord-2026-01-22-warmup.html">
-                <span class="worksheet-title">Tenant-Landlord Phone Calls</span>
-                <span class="worksheet-path">(tenant-landlord-2026-01-22-warmup.html)</span>
+            <a href="worksheets/housing/tenant-landlord-2026-01-20-warmup.html" class="worksheet-link" data-path="worksheets/housing/tenant-landlord-2026-01-20-warmup.html">
+                <span class="worksheet-title">Housing: Calling Your Landlord</span>
+                <span class="worksheet-path">(tenant-landlord-2026-01-20-warmup.html)</span>
             </a>
         </div>
         <div class="category">Other (8 worksheets)</div>
         <div class="worksheet-item">
-            <a href="worksheets/other/classroom-basics-warmup.html" class="worksheet-link" data-path="worksheets/other/classroom-basics-warmup.html">
+            <a href="worksheets/other/classroom-basics-2026-01-06-warmup.html" class="worksheet-link" data-path="worksheets/other/classroom-basics-2026-01-06-warmup.html">
                 <span class="worksheet-title">Classroom & School Language</span>
-                <span class="worksheet-path">(classroom-basics-warmup.html)</span>
+                <span class="worksheet-path">(classroom-basics-2026-01-06-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -317,21 +284,21 @@
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/other/final-presentation-2026-06-16-warmup.html" class="worksheet-link" data-path="worksheets/other/final-presentation-2026-06-16-warmup.html">
-                <span class="worksheet-title">Final Presentation Rehearsal</span>
-                <span class="worksheet-path">(final-presentation-2026-06-16-warmup.html)</span>
+            <a href="worksheets/other/final-reflections-2026-06-09-warmup.html" class="worksheet-link" data-path="worksheets/other/final-reflections-2026-06-09-warmup.html">
+                <span class="worksheet-title">Final Reflections of the School Year</span>
+                <span class="worksheet-path">(final-reflections-2026-06-09-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/other/food-basics-warmup.html" class="worksheet-link" data-path="worksheets/other/food-basics-warmup.html">
+            <a href="worksheets/other/food-basics-2026-01-15-warmup.html" class="worksheet-link" data-path="worksheets/other/food-basics-2026-01-15-warmup.html">
                 <span class="worksheet-title">Food & Restaurants</span>
-                <span class="worksheet-path">(food-basics-warmup.html)</span>
+                <span class="worksheet-path">(food-basics-2026-01-15-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/other/new-year-goals-warmup.html" class="worksheet-link" data-path="worksheets/other/new-year-goals-warmup.html">
+            <a href="worksheets/other/new-year-goals-2026-01-08-warmup.html" class="worksheet-link" data-path="worksheets/other/new-year-goals-2026-01-08-warmup.html">
                 <span class="worksheet-title">New Year Goals</span>
-                <span class="worksheet-path">(new-year-goals-warmup.html)</span>
+                <span class="worksheet-path">(new-year-goals-2026-01-08-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -352,71 +319,41 @@
                 <span class="worksheet-path">(year-in-review-2026-06-09-warmup.html)</span>
             </a>
         </div>
-        <div class="category">Workplace (14 worksheets)</div>
+        <div class="category">Workplace (11 worksheets)</div>
         <div class="worksheet-item">
-            <a href="worksheets/workplace/advocacy-roleplays-2026-03-26-warmup.html" class="worksheet-link" data-path="worksheets/workplace/advocacy-roleplays-2026-03-26-warmup.html">
+            <a href="worksheets/workplace/accident-report-2026-03-12-warmup.html" class="worksheet-link" data-path="worksheets/workplace/accident-report-2026-03-12-warmup.html">
+                <span class="worksheet-title">Accident Reports: Reported Speech</span>
+                <span class="worksheet-path">(accident-report-2026-03-12-warmup.html)</span>
+            </a>
+        </div>
+        <div class="worksheet-item">
+            <a href="worksheets/workplace/advocacy-roleplays-2026-03-19-warmup.html" class="worksheet-link" data-path="worksheets/workplace/advocacy-roleplays-2026-03-19-warmup.html">
                 <span class="worksheet-title">Workplace Advocacy Role-Plays</span>
-                <span class="worksheet-path">(advocacy-roleplays-2026-03-26-warmup.html)</span>
+                <span class="worksheet-path">(advocacy-roleplays-2026-03-19-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/workplace/career-basics-warmup.html" class="worksheet-link" data-path="worksheets/workplace/career-basics-warmup.html">
+            <a href="worksheets/workplace/career-basics-2026-01-29-warmup.html" class="worksheet-link" data-path="worksheets/workplace/career-basics-2026-01-29-warmup.html">
                 <span class="worksheet-title">Career Basics</span>
-                <span class="worksheet-path">(career-basics-warmup.html)</span>
+                <span class="worksheet-path">(career-basics-2026-01-29-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/workplace/career-goals-2026-03-19-warmup.html" class="worksheet-link" data-path="worksheets/workplace/career-goals-2026-03-19-warmup.html">
-                <span class="worksheet-title">Long-Term Career Goals</span>
-                <span class="worksheet-path">(career-goals-2026-03-19-warmup.html)</span>
+            <a href="worksheets/workplace/communication-feedback-2026-03-10-warmup.html" class="worksheet-link" data-path="worksheets/workplace/communication-feedback-2026-03-10-warmup.html">
+                <span class="worksheet-title">Jobs: Communication & Feedback: Reported Speech</span>
+                <span class="worksheet-path">(communication-feedback-2026-03-10-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/workplace/career-stories-2026-03-12-warmup.html" class="worksheet-link" data-path="worksheets/workplace/career-stories-2026-03-12-warmup.html">
-                <span class="worksheet-title">Career Path Stories</span>
-                <span class="worksheet-path">(career-stories-2026-03-12-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/workplace/exit-interview-2026-06-18-warmup.html" class="worksheet-link" data-path="worksheets/workplace/exit-interview-2026-06-18-warmup.html">
-                <span class="worksheet-title">Exit Interview & Advice</span>
-                <span class="worksheet-path">(exit-interview-2026-06-18-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/workplace/interview-2026-03-05-warmup.html" class="worksheet-link" data-path="worksheets/workplace/interview-2026-03-05-warmup.html">
-                <span class="worksheet-title">Interview Common Questions</span>
-                <span class="worksheet-path">(interview-2026-03-05-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/workplace/job-application-2026-03-10-warmup.html" class="worksheet-link" data-path="worksheets/workplace/job-application-2026-03-10-warmup.html">
-                <span class="worksheet-title">Job Application Talk-Through</span>
-                <span class="worksheet-path">(job-application-2026-03-10-warmup.html)</span>
+            <a href="worksheets/workplace/exit-interview-2026-03-26-warmup.html" class="worksheet-link" data-path="worksheets/workplace/exit-interview-2026-03-26-warmup.html">
+                <span class="worksheet-title">Exit Interview: Reflection & Advice</span>
+                <span class="worksheet-path">(exit-interview-2026-03-26-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
             <a href="worksheets/workplace/negotiation-2026-03-24-warmup.html" class="worksheet-link" data-path="worksheets/workplace/negotiation-2026-03-24-warmup.html">
-                <span class="worksheet-title">Negotiation & Self-Advocacy</span>
+                <span class="worksheet-title">Negotiation: Second & Third Conditionals</span>
                 <span class="worksheet-path">(negotiation-2026-03-24-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/workplace/policies-2026-04-02-warmup.html" class="worksheet-link" data-path="worksheets/workplace/policies-2026-04-02-warmup.html">
-                <span class="worksheet-title">Workplace Policies</span>
-                <span class="worksheet-path">(policies-2026-04-02-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/workplace/problem-solution-2026-04-07-warmup.html" class="worksheet-link" data-path="worksheets/workplace/problem-solution-2026-04-07-warmup.html">
-                <span class="worksheet-title">Work Problems & Changes</span>
-                <span class="worksheet-path">(problem-solution-2026-04-07-warmup.html)</span>
-            </a>
-        </div>
-        <div class="worksheet-item">
-            <a href="worksheets/workplace/resume-cover-letter-2026-02-24-warmup.html" class="worksheet-link" data-path="worksheets/workplace/resume-cover-letter-2026-02-24-warmup.html">
-                <span class="worksheet-title">Resume & Cover Letter Basics</span>
-                <span class="worksheet-path">(resume-cover-letter-2026-02-24-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -426,9 +363,9 @@
             </a>
         </div>
         <div class="worksheet-item">
-            <a href="worksheets/workplace/workplace-basics-warmup.html" class="worksheet-link" data-path="worksheets/workplace/workplace-basics-warmup.html">
+            <a href="worksheets/workplace/workplace-basics-2026-01-27-warmup.html" class="worksheet-link" data-path="worksheets/workplace/workplace-basics-2026-01-27-warmup.html">
                 <span class="worksheet-title">Workplace Basics</span>
-                <span class="worksheet-path">(workplace-basics-warmup.html)</span>
+                <span class="worksheet-path">(workplace-basics-2026-01-27-warmup.html)</span>
             </a>
         </div>
         <div class="worksheet-item">
@@ -445,15 +382,31 @@
 
         function extractDateFromPath(path) {
             // Extract date in format YYYY-MM-DD from filename
-            const dateMatch = path.match(/(\d{4}-\d{2}-\d{2})/);
+            const dateMatch = path.match(/(\d{4})-(\d{2})-(\d{2})/);
             if (dateMatch) {
-                return new Date(dateMatch[1]);
+                // Parse date components manually to avoid timezone issues
+                const year = parseInt(dateMatch[1], 10);
+                const month = parseInt(dateMatch[2], 10) - 1; // Month is 0-indexed in Date
+                const day = parseInt(dateMatch[3], 10);
+                return new Date(year, month, day);
             }
             return null; // No date found
         }
 
+        function formatDate(date) {
+            if (!date) return 'No Date';
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                          'July', 'August', 'September', 'October', 'November', 'December'];
+            return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        }
+
+        function getTitleFromElement(element) {
+            const titleSpan = element.querySelector('.worksheet-title');
+            return titleSpan ? titleSpan.textContent.trim() : '';
+        }
+
         function sortWorksheets() {
-            const sortOption = document.getElementById('sortOption').value;
+            const viewOption = document.getElementById('viewOption').value;
             const worksheetList = document.querySelector('.worksheet-list');
             
             // Save original structure on first sort
@@ -461,65 +414,137 @@
                 originalStructure = worksheetList.innerHTML;
             }
 
-            if (sortOption === 'category') {
+            if (viewOption === 'category') {
                 // Restore original structure
                 worksheetList.innerHTML = originalStructure;
                 updateLinks();
+                addDatesToWorksheets();
                 return;
             }
 
-            // Extract all elements with their categories
-            const categories = [];
-            let currentCategory = null;
-
+            // Extract all worksheets
+            const allWorksheets = [];
             Array.from(worksheetList.children).forEach(node => {
-                if (node.classList.contains('category')) {
-                    if (currentCategory) {
-                        categories.push(currentCategory);
-                    }
-                    currentCategory = {
-                        element: node,
-                        worksheets: []
-                    };
-                } else if (node.classList.contains('worksheet-item') && currentCategory) {
+                if (node.classList.contains('worksheet-item')) {
                     const link = node.querySelector('.worksheet-link');
                     const path = link?.getAttribute('data-path') || '';
-                    currentCategory.worksheets.push({
+                    const title = getTitleFromElement(node);
+                    allWorksheets.push({
                         element: node,
-                        date: extractDateFromPath(path)
+                        date: extractDateFromPath(path),
+                        title: title,
+                        path: path
                     });
                 }
             });
-            if (currentCategory) {
-                categories.push(currentCategory);
-            }
 
-            // Sort worksheets within each category
-            categories.forEach(category => {
-                category.worksheets.sort((a, b) => {
+            // Sort based on view option
+            if (viewOption === 'date-grouped') {
+                // Group by date
+                const dateGroups = {};
+                const dateMap = {}; // Store date objects for sorting
+                allWorksheets.forEach(ws => {
+                    const dateKey = ws.date ? formatDate(ws.date) : 'No Date';
+                    if (!dateGroups[dateKey]) {
+                        dateGroups[dateKey] = [];
+                        dateMap[dateKey] = ws.date;
+                    }
+                    dateGroups[dateKey].push(ws);
+                });
+
+                // Sort dates
+                const sortedDates = Object.keys(dateGroups).sort((a, b) => {
+                    if (a === 'No Date') return 1;
+                    if (b === 'No Date') return -1;
+                    const dateA = dateMap[a];
+                    const dateB = dateMap[b];
+                    if (!dateA || !dateB) return 0;
+                    return dateB - dateA; // Newest first
+                });
+
+                // Sort worksheets within each date group alphabetically
+                sortedDates.forEach(dateKey => {
+                    dateGroups[dateKey].sort((a, b) => a.title.localeCompare(b.title));
+                });
+
+                // Clear and rebuild grouped by date
+                worksheetList.innerHTML = '';
+                sortedDates.forEach(dateKey => {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category';
+                    categoryDiv.textContent = `${dateKey} (${dateGroups[dateKey].length} worksheet${dateGroups[dateKey].length !== 1 ? 's' : ''})`;
+                    worksheetList.appendChild(categoryDiv);
+                    
+                    dateGroups[dateKey].forEach(ws => {
+                        const clonedElement = ws.element.cloneNode(true);
+                        // Ensure date is displayed
+                        const link = clonedElement.querySelector('.worksheet-link');
+                        if (link) {
+                            const path = link.getAttribute('data-path') || '';
+                            const date = extractDateFromPath(path);
+                            const formattedDate = formatDate(date);
+                            let dateSpan = clonedElement.querySelector('.worksheet-date');
+                            if (!dateSpan) {
+                                dateSpan = document.createElement('span');
+                                dateSpan.className = 'worksheet-date';
+                                const titleSpan = clonedElement.querySelector('.worksheet-title');
+                                if (titleSpan && titleSpan.parentNode) {
+                                    titleSpan.parentNode.insertBefore(dateSpan, titleSpan);
+                                }
+                            }
+                            dateSpan.textContent = formattedDate;
+                        }
+                        worksheetList.appendChild(clonedElement);
+                    });
+                });
+            } else {
+                // Flat list - sort all worksheets
+                allWorksheets.sort((a, b) => {
+                    if (viewOption === 'date-asc') {
                     // Items without dates go to the end
-                    if (!a.date && !b.date) return 0;
+                        if (!a.date && !b.date) return a.title.localeCompare(b.title);
                     if (!a.date) return 1;
                     if (!b.date) return -1;
-                    
-                    if (sortOption === 'date-asc') {
                         return a.date - b.date;
-                    } else { // date-desc
+                    } else if (viewOption === 'date-desc') {
+                        // Items without dates go to the end
+                        if (!a.date && !b.date) return a.title.localeCompare(b.title);
+                        if (!a.date) return 1;
+                        if (!b.date) return -1;
                         return b.date - a.date;
+                    } else if (viewOption === 'alphabetical') {
+                        return a.title.localeCompare(b.title);
                     }
-                });
+                    return 0;
             });
 
-            // Clear and rebuild the list
-            worksheetList.innerHTML = '';
-            categories.forEach(category => {
-                worksheetList.appendChild(category.element);
-                category.worksheets.forEach(worksheet => {
-                    worksheetList.appendChild(worksheet.element);
+                // Clear and rebuild as flat list
+                worksheetList.innerHTML = '';
+                allWorksheets.forEach(ws => {
+                    const clonedElement = ws.element.cloneNode(true);
+                    // Ensure date is displayed
+                    const link = clonedElement.querySelector('.worksheet-link');
+                    if (link) {
+                        const path = link.getAttribute('data-path') || '';
+                        const date = extractDateFromPath(path);
+                        const formattedDate = formatDate(date);
+                        let dateSpan = clonedElement.querySelector('.worksheet-date');
+                        if (!dateSpan) {
+                            dateSpan = document.createElement('span');
+                            dateSpan.className = 'worksheet-date';
+                            const titleSpan = clonedElement.querySelector('.worksheet-title');
+                            if (titleSpan && titleSpan.parentNode) {
+                                titleSpan.parentNode.insertBefore(dateSpan, titleSpan);
+                            }
+                        }
+                        dateSpan.textContent = formattedDate;
+                    }
+                    worksheetList.appendChild(clonedElement);
                 });
-            });
+            }
 
             updateLinks();
+            addDatesToWorksheets();
         }
 
         function updateLinks() {
@@ -539,9 +564,35 @@
             });
         }
         
-        // Auto-update links on load
+        function addDatesToWorksheets() {
+            const worksheetItems = document.querySelectorAll('.worksheet-item');
+            worksheetItems.forEach(item => {
+                const link = item.querySelector('.worksheet-link');
+                if (!link) return;
+                
+                const path = link.getAttribute('data-path') || '';
+                const date = extractDateFromPath(path);
+                const formattedDate = formatDate(date);
+                
+                // Check if date span already exists
+                let dateSpan = item.querySelector('.worksheet-date');
+                if (!dateSpan) {
+                    // Create date span and insert it before the title
+                    dateSpan = document.createElement('span');
+                    dateSpan.className = 'worksheet-date';
+                    const titleSpan = item.querySelector('.worksheet-title');
+                    if (titleSpan && titleSpan.parentNode) {
+                        titleSpan.parentNode.insertBefore(dateSpan, titleSpan);
+                    }
+                }
+                dateSpan.textContent = formattedDate;
+            });
+        }
+
+        // Auto-update links and add dates on load
         window.addEventListener('DOMContentLoaded', function() {
             updateLinks();
+            sortWorksheets(); // Apply default view (date-asc)
         });
     </script>
 </body>

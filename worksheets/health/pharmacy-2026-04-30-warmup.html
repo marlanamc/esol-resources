@@ -15,6 +15,7 @@
       margin-bottom: 16px;
     }
     .header h1 {
+      text-align: center;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 8px;
@@ -22,6 +23,7 @@
     .header-fields {
       display: flex;
       gap: 32px;
+      justify-content: center;
       font-size: 13px;
     }
     .field { display: flex; align-items: baseline; gap: 5px; }
@@ -30,7 +32,7 @@
     .date-value { font-weight: normal; }
     .section { margin-bottom: 18px; }
     .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
     .section-time { font-size: 12px; color: var(--light); font-style: italic; }
     .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
     .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
@@ -54,6 +56,7 @@
     .round-content { margin-left: 8px; color: var(--gray); }
     .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
     .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .section:has(.reading-text) { margin-bottom: 36px; }
     .reading-text p { margin-bottom: 8px; text-align: justify; }
     .question { margin-bottom: 12px; }
     .question-text { font-size: 13px; margin-bottom: 4px; }
@@ -78,7 +81,7 @@
   <div class="sheet">
     <div class="front-page">
       <header class="header">
-      <h1>Pharmacy Instructions: Passive Voice</h1>
+      <h1>Pharmacy Instructions</h1>
       <div class="header-fields">
         <div class="field">
           <label>Name</label>
@@ -99,20 +102,20 @@
         <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
         <div class="vocab-matching">
           <div class="vocab-words">
-            <div class="vocab-word"><span class="num">1.</span> <span class="word">prescription</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">2.</span> <span class="word">refill</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="word">dosage</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">4.</span> <span class="word">storage</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="word">drowsiness</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">advice</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">caution</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">warning</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">dosage</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">interaction</span> <span class="blank"></span></div>
             <div class="vocab-word"><span class="num">6.</span> <span class="word">side effect</span> <span class="blank"></span></div>
           </div>
           <div class="vocab-defs">
-            <div class="vocab-def"><span class="letter">a.</span> unwanted reaction to medicine</div>
-            <div class="vocab-def"><span class="letter">b.</span> doctor's order for medicine</div>
-            <div class="vocab-def"><span class="letter">c.</span> how to keep medicine safe</div>
-            <div class="vocab-def"><span class="letter">d.</span> feeling very sleepy</div>
-            <div class="vocab-def"><span class="letter">e.</span> getting more of same medicine</div>
-            <div class="vocab-def"><span class="letter">f.</span> amount of medicine to take</div>
+            <div class="vocab-def"><span class="letter">a.</span> suggestions about what to do</div>
+            <div class="vocab-def"><span class="letter">b.</span> something to be careful about</div>
+            <div class="vocab-def"><span class="letter">c.</span> amount of medicine to take</div>
+            <div class="vocab-def"><span class="letter">d.</span> unwanted reaction to medicine</div>
+            <div class="vocab-def"><span class="letter">e.</span> when medicines affect each other</div>
+            <div class="vocab-def"><span class="letter">f.</span> a serious notice about danger</div>
           </div>
         </div>
       </section>
@@ -122,12 +125,12 @@
           <h2 class="section-title">Part B: Phrases</h2>
           <span class="section-time">8 min</span>
         </div>
-        <p class="instruction">Read the examples. Then write your own sentence. Try to use vocabulary from Part A.</p>
+        <p class="instruction">Read the examples. Practice using modals for advice, caution, and consent with medicine. Try to use vocabulary from Part A.</p>
         <div class="phrase">
-          <div class="phrase-starter">1) This medicine is taken...</div>
+          <div class="phrase-starter">1) You should… / You shouldn't… (ADVICE)</div>
           <ul class="examples">
-            <li>This medicine is taken with food.</li>
-            <li>This medicine is taken twice a day, morning and evening.</li>
+            <li>You should take this medicine with food.</li>
+            <li>You shouldn't skip doses even if you feel better.</li>
           </ul>
           <div class="your-turn">
             <span class="your-turn-label">Your turn:</span>
@@ -135,10 +138,10 @@
           </div>
         </div>
         <div class="phrase">
-          <div class="phrase-starter">2) It should be stored...</div>
+          <div class="phrase-starter">2) You must… / You must not… (CAUTION - required/prohibited)</div>
           <ul class="examples">
-            <li>It should be stored in a cool, dry place.</li>
-            <li>It should be stored in the refrigerator to stay fresh.</li>
+            <li>You must follow the dosage instructions exactly.</li>
+            <li>You must not drink alcohol while taking this medicine.</li>
           </ul>
           <div class="your-turn">
             <span class="your-turn-label">Your turn:</span>
@@ -146,10 +149,10 @@
           </div>
         </div>
         <div class="phrase">
-          <div class="phrase-starter">3) The prescription is refilled...</div>
+          <div class="phrase-starter">3) You can… / You may… (CONSENT - permission)</div>
           <ul class="examples">
-            <li>The prescription is refilled every 30 days.</li>
-            <li>The prescription is refilled at any pharmacy, however you must call first.</li>
+            <li>You can take this medicine with or without food.</li>
+            <li>You may experience some side effects like drowsiness.</li>
           </ul>
           <div class="your-turn">
             <span class="your-turn-label">Your turn:</span>
@@ -157,34 +160,20 @@
           </div>
         </div>
         <div class="phrase">
-          <div class="phrase-starter">4) You are advised to...</div>
+          <div class="phrase-starter">4) You need to… / You don't need to…</div>
           <ul class="examples">
-            <li>You are advised to avoid alcohol.</li>
-            <li>You are advised to finish all the pills even if you feel better.</li>
+            <li>You need to finish all the medicine even if symptoms improve.</li>
+            <li>You don't need to take it with food, but you can if you prefer.</li>
           </ul>
           <div class="your-turn">
             <span class="your-turn-label">Your turn:</span>
             <div class="writing-line"></div>
           </div>
         </div>
-        <p class="level-up">Level up: Try explaining side effects using "may be experienced" (e.g., "Drowsiness may be experienced").</p>
+        <p class="level-up">Level up: Remember: "should" = advice, "must" = requirement/caution, "can/may" = permission/consent. Use "must not" for warnings.</p>
       </section>
 
-      <section class="section page-break">
-        <div class="section-header">
-          <h2 class="section-title">Part C: Partner Practice</h2>
-          <span class="section-time">5 min</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 1:</span>
-          <span class="round-content">Share your sentences from Part B. Your partner listens and asks one follow-up question.</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 2:</span>
-          <span class="round-content">Switch roles. Partner A: Pretend you're a pharmacist explaining medicine instructions using passive voice. Partner B: Ask clarifying questions.</span>
-        </div>
-        <p class="help-note">Need help? Say: "Can you repeat that?" or "What does ___ mean?"</p>
-      </section>
+      
     </div>
 
     <section class="section">
@@ -192,20 +181,19 @@
         <h2 class="section-title">Reading</h2>
       </div>
       <div class="reading-text">
-        <p>When you pick up medicine at the pharmacy, you receive important instructions. These instructions are written on the bottle label. Passive voice is commonly used because it focuses on what should be done, not who does it.</p>
-        <p>For example, "This medicine is taken three times a day" is clearer than "You should take this medicine three times a day" for a label. The prescription is refilled by calling the pharmacy or your doctor. It should be stored properly—some medicines must be kept in the refrigerator, while others are stored at room temperature. You are advised to read all warnings carefully. Side effects may be experienced, such as drowsiness or nausea.</p>
-        <p>Understanding pharmacy instructions keeps you safe and helps your medicine work properly. Always ask questions if something is unclear.</p>
+        <p>When you get medicine from the pharmacy, understanding modals helps you follow instructions safely. Modals show different levels: "should" gives advice (recommended), "must" shows requirement or caution (required/prohibited), and "can/may" shows permission or possibility (allowed/might happen).</p>
+        <p>For example, "You should take this with food" is advice. "You must not drink alcohol" is a warning/caution. "You may feel drowsy" shows possibility. "You can take it with or without food" shows permission. Understanding these differences helps you follow instructions correctly and stay safe. Always ask the pharmacist if you don't understand something.</p>
       </div>
       <div class="question">
-        <div class="question-text"><b>1)</b> Why is passive voice useful for pharmacy instructions?</div>
+        <div class="question-text"><b>1)</b> What is the difference between "You should take this with food" and "You must not drink alcohol"?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>2)</b> What are two examples of side effects that may be experienced?</div>
+        <div class="question-text"><b>2)</b> When would you use "may" versus "can" in pharmacy instructions?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>3)</b> What should you do if pharmacy instructions are unclear?</div>
+        <div class="question-text"><b>3)</b> Why is it important to understand the difference between advice, caution, and consent when taking medicine?</div>
         <div class="answer-line"></div>
       </div>
     </section>
@@ -216,14 +204,9 @@
         <span class="section-time">6–8 sentences</span>
       </div>
       <div class="writing-prompt">
-        <b>Prompt:</b> Write pharmacy instructions for a common medicine (like pain reliever or cold medicine) using passive voice.
+        <b>Prompt:</b> Imagine you work at a pharmacy. A customer asks about ibuprofen for headaches. They want to know how to take it safely. Write pharmacy instructions using modals. What should patients do? (advice) What must they do or not do? (caution) What can they do? (consent/permission) Use modals to explain the instructions clearly.
       </div>
-      <ul class="requirements">
-        <li>Try explaining how the medicine is taken (dosage and timing)</li>
-        <li>Consider describing how it should be stored</li>
-        <li>Try including warnings or advice ("You are advised to...")</li>
-        <li>Could mention possible side effects using "may be experienced"</li>
-      </ul>
+      
       <div class="writing-lines">
         <div class="homework-line"></div>
         <div class="homework-line"></div>
@@ -234,7 +217,7 @@
         <div class="homework-line"></div>
         <div class="homework-line"></div>
       </div>
-      <p class="optional-note">Optional challenge: Include when the prescription is refilled and what to do if symptoms continue.</p>
+      <p class="optional-note">Optional challenge: Include warnings using "must not" and possibilities using "may" for side effects.</p>
     </section>
   </div>
 </body>

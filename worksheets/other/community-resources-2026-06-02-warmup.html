@@ -15,6 +15,7 @@
       margin-bottom: 16px;
     }
     .header h1 {
+      text-align: center;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 8px;
@@ -22,6 +23,7 @@
     .header-fields {
       display: flex;
       gap: 32px;
+      justify-content: center;
       font-size: 13px;
     }
     .field { display: flex; align-items: baseline; gap: 5px; }
@@ -30,7 +32,7 @@
     .date-value { font-weight: normal; }
     .section { margin-bottom: 18px; }
     .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
     .section-time { font-size: 12px; color: var(--light); font-style: italic; }
     .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
     .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
@@ -54,6 +56,7 @@
     .round-content { margin-left: 8px; color: var(--gray); }
     .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
     .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .section:has(.reading-text) { margin-bottom: 36px; }
     .reading-text p { margin-bottom: 8px; text-align: justify; }
     .question { margin-bottom: 12px; }
     .question-text { font-size: 13px; margin-bottom: 4px; }
@@ -167,21 +170,7 @@
         </div>
         <p class="level-up">Level up: Try giving detailed directions using "First..., then..., finally..." with specific landmarks.</p>
       </section>
-      <section class="section page-break">
-        <div class="section-header">
-          <h2 class="section-title">Part C: Partner Practice</h2>
-          <span class="section-time">5 min</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 1:</span>
-          <span class="round-content">Share your sentences from Part B. Your partner listens and asks one follow-up question.</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 2:</span>
-          <span class="round-content">Switch roles. Partner A: Recommend a community resource. Partner B: Ask for directions to get there and what to bring.</span>
-        </div>
-        <p class="help-note">Need help? Say: "Can you repeat that?" or "What does ___ mean?"</p>
-      </section>
+      
     </div>
     <section class="section">
       <div class="section-header">
@@ -213,12 +202,7 @@
       <div class="writing-prompt">
         <b>Prompt:</b> Recommend one community resource you know (library, health center, career center, food pantry, or another place). Explain what it offers, where it is, what to bring, and why you recommend it.
       </div>
-      <ul class="requirements">
-        <li>Try explaining clearly what the resource offers</li>
-        <li>Consider giving basic directions or location information</li>
-        <li>Try listing what documents or items people should bring</li>
-        <li>Could explain why this resource is helpful for your community</li>
-      </ul>
+      
       <div class="writing-lines">
         <div class="homework-line"></div>
         <div class="homework-line"></div>

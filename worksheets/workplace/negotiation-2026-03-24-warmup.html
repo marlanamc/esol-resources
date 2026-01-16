@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Negotiation & Self-Advocacy (ESOL Level 3)</title>
+  <title>Negotiation: Second & Third Conditionals (ESOL Level 3)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
@@ -15,6 +15,7 @@
       margin-bottom: 16px;
     }
     .header h1 {
+      text-align: center;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 8px;
@@ -22,6 +23,7 @@
     .header-fields {
       display: flex;
       gap: 32px;
+      justify-content: center;
       font-size: 13px;
     }
     .field { display: flex; align-items: baseline; gap: 5px; }
@@ -30,7 +32,7 @@
     .date-value { font-weight: normal; }
     .section { margin-bottom: 18px; }
     .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
     .section-time { font-size: 12px; color: var(--light); font-style: italic; }
     .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
     .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
@@ -54,6 +56,7 @@
     .round-content { margin-left: 8px; color: var(--gray); }
     .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
     .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .section:has(.reading-text) { margin-bottom: 36px; }
     .reading-text p { margin-bottom: 8px; text-align: justify; }
     .question { margin-bottom: 12px; }
     .question-text { font-size: 13px; margin-bottom: 4px; }
@@ -74,7 +77,7 @@
   <div class="sheet">
     <div class="front-page">
       <header class="header">
-      <h1>Negotiation: Infinitives & Gerunds</h1>
+      <h1>Negotiation: Second & Third Conditionals</h1>
       <div class="header-fields">
         <div class="field">
           <label>Name</label>
@@ -95,20 +98,20 @@
         <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
         <div class="vocab-matching">
           <div class="vocab-words">
-            <div class="vocab-word"><span class="num">1.</span> <span class="word">negotiate</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">2.</span> <span class="word">advocate</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="word">schedule</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">4.</span> <span class="word">shift</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="word">flexible</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="word">compromise</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">advice</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">risk</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">reflect</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">decision</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">consequence</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">regret</span> <span class="blank"></span></div>
           </div>
           <div class="vocab-defs">
-            <div class="vocab-def"><span class="letter">a.</span> a set work period (morning shift, night shift)</div>
-            <div class="vocab-def"><span class="letter">b.</span> able to change, not fixed</div>
-            <div class="vocab-def"><span class="letter">c.</span> to discuss and try to reach an agreement</div>
-            <div class="vocab-def"><span class="letter">d.</span> to speak up for yourself or others</div>
-            <div class="vocab-def"><span class="letter">e.</span> a plan showing when you work</div>
-            <div class="vocab-def"><span class="letter">f.</span> an agreement where both sides give up something</div>
+            <div class="vocab-def"><span class="letter">a.</span> suggestions or recommendations about what to do</div>
+            <div class="vocab-def"><span class="letter">b.</span> a choice you make</div>
+            <div class="vocab-def"><span class="letter">c.</span> to think carefully about something</div>
+            <div class="vocab-def"><span class="letter">d.</span> the possibility of something bad happening</div>
+            <div class="vocab-def"><span class="letter">e.</span> a result or effect of an action</div>
+            <div class="vocab-def"><span class="letter">f.</span> to feel sorry about something you did or didn't do</div>
           </div>
         </div>
       </section>
@@ -118,89 +121,75 @@
           <h2 class="section-title">Part B: Phrases</h2>
           <span class="section-time">8 min</span>
         </div>
-        <p class="instruction">Read the examples. Practice using infinitives (to + verb) and gerunds (verb + -ing).</p>
+        <p class="instruction">Read the examples. Practice using Second Conditional (unreal present/future) and Third Conditional (unreal past). Try to use vocabulary from Part A.</p>
 
         <div class="phrase">
-          <div class="phrase-starter">1) I'd like to… (infinitive)</div>
+          <div class="phrase-starter">1) If I were you, I would… (Second Conditional)</div>
           <ul class="examples">
-            <li>I'd like to change my schedule.</li>
-            <li>I'd like to discuss my hours with you.</li>
+            <li>If I were you, I would ask for advice before making that decision.</li>
+            <li>If I were you, I would reflect on the risks first.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">2) I need to… (infinitive)</div>
+          <div class="phrase-starter">2) If I had more experience, I would… (Second Conditional)</div>
           <ul class="examples">
-            <li>I need to pick up my child at 3pm.</li>
-            <li>I need to improve my computer skills.</li>
+            <li>If I had more experience, I would apply for that promotion.</li>
+            <li>If I had more confidence, I would negotiate for better pay.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">3) I enjoy… (gerund)</div>
+          <div class="phrase-starter">3) If I had known…, I would have… (Third Conditional)</div>
           <ul class="examples">
-            <li>I enjoy working with customers.</li>
-            <li>I enjoy starting early in the morning.</li>
+            <li>If I had known about the risks, I would have made a different decision.</li>
+            <li>If I had taken that advice, I would have avoided the problem.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">4) Would you consider…? (gerund)</div>
+          <div class="phrase-starter">4) If I hadn't…, I wouldn't have… (Third Conditional)</div>
           <ul class="examples">
-            <li>Would you consider changing my shift?</li>
-            <li>Would you consider giving me more hours?</li>
+            <li>If I hadn't reflected on my choices, I wouldn't have learned from my mistakes.</li>
+            <li>If I hadn't taken that risk, I wouldn't have gotten this opportunity.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">5) I decided to… (infinitive)</div>
+          <div class="phrase-starter">5) I wouldn't have… if I had… (Third Conditional)</div>
           <ul class="examples">
-            <li>I decided to ask for a schedule change.</li>
-            <li>I decided to speak with my manager about my concerns.</li>
+            <li>I wouldn't have regretted my decision if I had asked for advice first.</li>
+            <li>I wouldn't have faced those consequences if I had considered the risks.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
-        <p class="level-up">Level up: Use both infinitives and gerunds in one sentence: "I enjoy working here, but I need to change my hours."</p>
+        <p class="level-up">Level up: Remember: Second Conditional = if + past simple, would + base verb (unreal present/future). Third Conditional = if + past perfect, would have + past participle (unreal past).</p>
       </section>
 
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part C: Partner Practice</h2>
-          <span class="section-time">5 min</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 1:</span>
-          <span class="round-content">Role-play: Employee asks for a schedule change using infinitives (I need to…, I'd like to…).</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 2:</span>
-          <span class="round-content">Switch. Manager responds using gerunds: "Would you consider working weekends?"</span>
-        </div>
-        <p class="help-note">Tips: Be polite, explain your reasons, and offer a compromise.</p>
-      </section>
+      
     </div>
 
     <section class="section">
       <div class="section-header"><h2 class="section-title">Reading</h2></div>
       <div class="reading-text">
-        <p>Negotiation means discussing to reach an agreement. When you negotiate at work, use polite language. Infinitives express goals: "I want to work mornings." Gerunds express preferences: "I enjoy working with people."</p>
-        <p>Some verbs take infinitives (decide to, plan to, need to). Others take gerunds (enjoy, avoid, consider). Practice both!</p>
+        <p>Conditionals help us talk about advice, risks, and reflection. Second Conditional (if + past simple, would + base verb) talks about unreal situations in the present or future: "If I were you, I would ask for advice." This gives advice about hypothetical situations.</p>
+        <p>Third Conditional (if + past perfect, would have + past participle) talks about unreal situations in the past: "If I had known the risks, I would have made a different decision." This reflects on past choices and their consequences.</p>
       </div>
       <div class="question">
-        <div class="question-text"><b>1)</b> What is negotiation?</div>
+        <div class="question-text"><b>1)</b> When do we use Second Conditional versus Third Conditional?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>2)</b> Give an example of a verb that takes an infinitive.</div>
+        <div class="question-text"><b>2)</b> What is the difference between "If I were you, I would ask for advice" and "If I had asked for advice, I would have avoided the problem"?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>3)</b> Give an example of a verb that takes a gerund.</div>
+        <div class="question-text"><b>3)</b> How can conditionals help you reflect on past decisions and give advice about future risks?</div>
         <div class="answer-line"></div>
       </div>
     </section>
@@ -211,19 +200,14 @@
         <span class="section-time">6–8 sentences</span>
       </div>
       <div class="writing-prompt">
-        <b>Prompt:</b> Write a workplace negotiation conversation. Use both infinitives and gerunds to explain what you need, enjoy, and would like to change.
+        <b>Prompt:</b> Imagine a coworker is considering asking for a raise but is nervous. They have been working at the company for 2 years and have never asked for more money. Write about workplace advice using Second and Third Conditional. Give advice about this situation (what would happen if they asked?), or reflect on a past decision (what would you have done if you had been in their situation?).
       </div>
-      <ul class="requirements">
-        <li>Try using infinitives (I need to, I'd like to, I plan to)</li>
-        <li>Try using gerunds (I enjoy, Would you consider)</li>
-        <li>You might include a polite request or a possible compromise</li>
-        <li>Try using vocabulary from Part A</li>
-      </ul>
+      
       <div class="writing-lines">
         <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
         <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
       </div>
-      <p class="optional-note">Optional challenge: Use "avoid" (I can't avoid working late) and "suggest" (I suggest meeting weekly).</p>
+      <p class="optional-note">Optional challenge: Mix Second and Third Conditional in your writing to give advice and reflect on past experiences.</p>
     </section>
   </div>
 </body>

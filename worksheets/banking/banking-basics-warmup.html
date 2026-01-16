@@ -15,6 +15,7 @@
       margin-bottom: 16px;
     }
     .header h1 {
+      text-align: center;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 8px;
@@ -23,6 +24,7 @@
     .header-fields {
       display: flex;
       gap: 32px;
+      justify-content: center;
       font-size: 13px;
     }
     .field { display: flex; align-items: baseline; gap: 5px; }
@@ -30,7 +32,7 @@
     .field-line { border-bottom: 1px solid var(--ink); width: 100px; height: 16px; }
     .section { margin-bottom: 18px; }
     .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
     .section-time { font-size: 12px; color: var(--light); font-style: italic; }
     .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
     .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
@@ -54,6 +56,7 @@
     .round-content { margin-left: 8px; color: var(--gray); }
     .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
     .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .section:has(.reading-text) { margin-bottom: 36px; }
     .reading-text p { margin-bottom: 8px; text-align: justify; }
     .question { margin-bottom: 12px; }
     .question-text { font-size: 13px; margin-bottom: 4px; }
@@ -168,21 +171,7 @@
         <p class="level-up">Level up: Explain a rule at your bank using "If you… , you…"</p>
       </section>
 
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part C: Partner Practice</h2>
-          <span class="section-time">5 min</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 1:</span>
-          <span class="round-content">Share your sentences. Partner asks: "What bank do you use?" and "Do you like it?"</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 2:</span>
-          <span class="round-content">Switch. Discuss: "What happens if you overdraft?" or "How do you pay bills?"</span>
-        </div>
-        <p class="help-note">Need help? Say: "What does overdraft mean?" or "How do you say…?"</p>
-      </section>
+      
     </div>
 
     <section class="section">
@@ -213,12 +202,7 @@
       <div class="writing-prompt">
         <b>Prompt:</b> Describe your banking habits. What accounts do you have? How do you pay bills? What fees have you paid?
       </div>
-      <ul class="requirements">
-        <li>Try to say what type of accounts you have or where</li>
-        <li>Consider explaining how you pay your bills (cash, online, phone)</li>
-        <li>Try using at least 2 "If…" sentences about banking rules</li>
-        <li>Consider sharing one tip for avoiding fees</li>
-      </ul>
+      
       <div class="writing-lines">
         <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
         <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>

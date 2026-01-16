@@ -15,6 +15,7 @@
       margin-bottom: 16px;
     }
     .header h1 {
+      text-align: center;
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 8px;
@@ -22,6 +23,7 @@
     .header-fields {
       display: flex;
       gap: 32px;
+      justify-content: center;
       font-size: 13px;
     }
     .field { display: flex; align-items: baseline; gap: 5px; }
@@ -30,7 +32,7 @@
     .date-value { font-weight: normal; }
     .section { margin-bottom: 18px; }
     .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
-    .section-title { font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
     .section-time { font-size: 12px; color: var(--light); font-style: italic; }
     .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
     .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
@@ -54,6 +56,7 @@
     .round-content { margin-left: 8px; color: var(--gray); }
     .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
     .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .section:has(.reading-text) { margin-bottom: 36px; }
     .reading-text p { margin-bottom: 8px; text-align: justify; }
     .question { margin-bottom: 12px; }
     .question-text { font-size: 13px; margin-bottom: 4px; }
@@ -74,7 +77,7 @@
   <div class="sheet">
     <div class="front-page">
       <header class="header">
-      <h1>Workplace Rights: Ongoing Problems</h1>
+      <h1>Workplace Rights Scenarios</h1>
       <div class="header-fields">
         <div class="field">
           <label>Name</label>
@@ -95,20 +98,20 @@
         <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
         <div class="vocab-matching">
           <div class="vocab-words">
-            <div class="vocab-word"><span class="num">1.</span> <span class="word">break</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">2.</span> <span class="word">document</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="word">policy</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">4.</span> <span class="word">supervisor</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="word">overtime</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="word">resolve</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">obligation</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">permission</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">require</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">allow</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">right</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">rule</span> <span class="blank"></span></div>
           </div>
           <div class="vocab-defs">
-            <div class="vocab-def"><span class="letter">a.</span> a rule or guideline at work</div>
-            <div class="vocab-def"><span class="letter">b.</span> to write down or keep a record</div>
-            <div class="vocab-def"><span class="letter">c.</span> a short rest from work</div>
-            <div class="vocab-def"><span class="letter">d.</span> to fix or solve a problem</div>
-            <div class="vocab-def"><span class="letter">e.</span> a manager or boss</div>
-            <div class="vocab-def"><span class="letter">f.</span> extra hours worked beyond normal schedule</div>
+            <div class="vocab-def"><span class="letter">a.</span> something you must do, a duty</div>
+            <div class="vocab-def"><span class="letter">b.</span> something you are allowed to do</div>
+            <div class="vocab-def"><span class="letter">c.</span> to need something or make it necessary</div>
+            <div class="vocab-def"><span class="letter">d.</span> to let someone do something</div>
+            <div class="vocab-def"><span class="letter">e.</span> a guideline or regulation you must follow</div>
+            <div class="vocab-def"><span class="letter">f.</span> official approval to do something</div>
           </div>
         </div>
       </section>
@@ -118,89 +121,75 @@
           <h2 class="section-title">Part B: Phrases</h2>
           <span class="section-time">8 min</span>
         </div>
-        <p class="instruction">Read the examples. Then write your own sentence about a workplace situation.</p>
+        <p class="instruction">Read the examples. Practice using modals for obligation and permission. Try to use vocabulary from Part A.</p>
 
         <div class="phrase">
-          <div class="phrase-starter">1) I have been experiencing…</div>
+          <div class="phrase-starter">1) You must / have to… (obligation)</div>
           <ul class="examples">
-            <li>I have been experiencing problems with my schedule.</li>
-            <li>I have been experiencing difficulty getting my breaks.</li>
+            <li>You must take a break every four hours. (rule/requirement)</li>
+            <li>You have to wear safety equipment. (company requirement)</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">2) This has been happening for…</div>
+          <div class="phrase-starter">2) You should… (advice/recommendation)</div>
           <ul class="examples">
-            <li>This has been happening for three weeks.</li>
-            <li>This has been happening since I started this job.</li>
+            <li>You should document any workplace problems.</li>
+            <li>You should talk to your supervisor about your rights.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">3) How long have you been…?</div>
+          <div class="phrase-starter">3) Can I…? / May I…? (asking permission)</div>
           <ul class="examples">
-            <li>How long have you been working without breaks?</li>
-            <li>How long have you been dealing with this problem?</li>
+            <li>Can I leave early today? (informal)</li>
+            <li>May I take a longer break? (formal/polite)</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">4) I have been trying to…</div>
+          <div class="phrase-starter">4) You can / are allowed to… (permission)</div>
           <ul class="examples">
-            <li>I have been trying to talk to my manager about this.</li>
-            <li>I have been trying to document every incident.</li>
+            <li>You can take breaks according to company policy.</li>
+            <li>You are allowed to refuse unsafe work.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">5) We have been waiting for…</div>
+          <div class="phrase-starter">5) You don't have to… / You must not…</div>
           <ul class="examples">
-            <li>We have been waiting for a response since last month.</li>
-            <li>We have been waiting for the policy to change.</li>
+            <li>You don't have to work overtime. (not required)</li>
+            <li>You must not work without proper training. (prohibited)</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
-        <p class="level-up">Level up: Add time expressions to show how long the problem has been ongoing.</p>
+        <p class="level-up">Level up: Remember: "must" = strong rule, "have to" = requirement, "should" = advice, "can/may" = permission.</p>
       </section>
 
-      <section class="section">
-        <div class="section-header">
-          <h2 class="section-title">Part C: Partner Practice</h2>
-          <span class="section-time">5 min</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 1:</span>
-          <span class="round-content">Describe a workplace problem using present perfect continuous. Partner asks follow-up questions.</span>
-        </div>
-        <div class="round">
-          <span class="round-header">Round 2:</span>
-          <span class="round-content">Switch. Role-play: Employee explains a problem, manager asks "How long has this been happening?"</span>
-        </div>
-        <p class="help-note">Tip: Being specific about duration helps when reporting workplace issues.</p>
-      </section>
+      
     </div>
 
     <section class="section">
       <div class="section-header"><h2 class="section-title">Reading</h2></div>
       <div class="reading-text">
-        <p>Workers have rights. If you have been experiencing problems at work, it's important to document them. Write down what has been happening and for how long. This helps when you talk to your supervisor or HR.</p>
-        <p>Present perfect continuous helps explain ongoing problems: "I have been working without breaks for two months" is clearer than "I don't get breaks."</p>
+        <p>Workers have rights and obligations. Understanding modals helps you know what you must do, what you should do, and what you are allowed to do. "You must follow safety rules" means it's required. "You should document problems" means it's recommended. "You can take breaks" means you have permission.</p>
+        <p>Modals show different levels: "must" and "have to" show obligation (required), "should" shows advice (recommended), and "can" and "may" show permission (allowed). Knowing your rights means knowing what you must do, what you should do, and what you can do.</p>
       </div>
       <div class="question">
-        <div class="question-text"><b>1)</b> Why should you document workplace problems?</div>
+        <div class="question-text"><b>1)</b> What is the difference between "You must take breaks" and "You should take breaks"?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>2)</b> How is "I have been working without breaks" different from "I don't get breaks"?</div>
+        <div class="question-text"><b>2)</b> When would you use "Can I...?" versus "May I...?" to ask permission?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>3)</b> Who can you talk to about workplace problems?</div>
+        <div class="question-text"><b>3)</b> What is the difference between "You don't have to work overtime" and "You must not work overtime"?</div>
         <div class="answer-line"></div>
       </div>
     </section>
@@ -211,19 +200,14 @@
         <span class="section-time">6–8 sentences</span>
       </div>
       <div class="writing-prompt">
-        <b>Prompt:</b> Describe a workplace situation (real or imagined) using present perfect continuous. Explain the problem, how long it has been happening, and what you have been doing about it.
+        <b>Prompt:</b> Imagine you work in a restaurant as a server. Write about the workplace rights and rules using modals. What must employees do? (e.g., wash hands, wear hairnets) What should they do? (e.g., arrive on time) What are they allowed to do? (e.g., take breaks) Use modals of obligation and permission.
       </div>
-      <ul class="requirements">
-        <li>Try using "have been + -ing"</li>
-        <li>You might include specific time expressions (for X weeks, since January)</li>
-        <li>Consider explaining what you have been doing to resolve the problem</li>
-        <li>Try using workplace vocabulary from Part A</li>
-      </ul>
+      
       <div class="writing-lines">
         <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
         <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
       </div>
-      <p class="optional-note">Optional challenge: Compare past simple (yesterday) with present perfect continuous (ongoing).</p>
+      <p class="optional-note">Optional challenge: Use "need to" (necessity) and "be permitted to" (formal permission) in your writing.</p>
     </section>
   </div>
 </body>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workplace Conditionals (ESOL Level 3)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
+    body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
+    .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .header-left .subtitle { font-size: 12px; color: var(--gray); }
+    .header-fields {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .field { display: flex; align-items: baseline; gap: 5px; }
+    .field label { font-weight: bold; }
+    .field-line { border-bottom: 1px solid var(--ink); width: 100px; height: 16px; }
+    .date-value { font-weight: normal; }
+    .section { margin-bottom: 18px; }
+    .section-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 3px; margin-bottom: 10px; }
+    .section-title { text-align: center; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; }
+    .section-time { font-size: 12px; color: var(--light); font-style: italic; }
+    .vocab-matching { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; font-size: 14px; }
+    .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
+    .vocab-word .num { font-weight: bold; min-width: 20px; }
+    .vocab-word .word { flex: 1; }
+    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-left: 10px; }
+    .vocab-def { padding: 3px 0; }
+    .vocab-def .letter { font-weight: bold; margin-right: 6px; }
+    .phrase { margin-bottom: 14px; }
+    .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
+    .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
+    .examples li { margin-bottom: 1px; list-style: none; }
+    .examples li::before { content: "• "; color: var(--ink); }
+    .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
+    .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
+    .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
+    .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
+    .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
+    .round { margin-bottom: 8px; font-size: 13px; }
+    .round-header { font-weight: bold; }
+    .round-content { margin-left: 8px; color: var(--gray); }
+    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
+    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
+    .section:has(.reading-text) { margin-bottom: 36px; }
+    .reading-text p { margin-bottom: 8px; text-align: justify; }
+    .question { margin-bottom: 12px; }
+    .question-text { font-size: 13px; margin-bottom: 4px; }
+    .question-text b { font-weight: bold; }
+    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
+    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
+    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
+    .requirements li { margin-bottom: 1px; }
+    .writing-lines { margin-top: 10px; }
+    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
+    .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
+    .front-page { margin-bottom: 24px; }
+    @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
+      .page-break { page-break-before: always; } }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <div class="front-page">
+      <header class="header">
+      <h1>Workplace: Zero and First Conditionals</h1>
+      <div class="header-fields">
+        <div class="field">
+          <label>Name</label>
+          <div class="field-line" style="width: 160px;"></div>
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <span class="date-value">February 5, 2026</span>
+        </div>
+      </div>
+    </header>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part A: Vocabulary</h2>
+          <span class="section-time">3 min</span>
+        </div>
+        <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
+        <div class="vocab-matching">
+          <div class="vocab-words">
+            <div class="vocab-word"><span class="num">1.</span> <span class="word">deadline</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="word">project</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="word">advancement</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="word">raise</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="word">colleague</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="word">workload</span> <span class="blank"></span></div>
+          </div>
+          <div class="vocab-defs">
+            <div class="vocab-def"><span class="letter">a.</span> the date or time when something must be finished</div>
+            <div class="vocab-def"><span class="letter">b.</span> a specific task or assignment you need to complete</div>
+            <div class="vocab-def"><span class="letter">c.</span> moving forward in your career, getting better</div>
+            <div class="vocab-def"><span class="letter">d.</span> an increase in salary or pay</div>
+            <div class="vocab-def"><span class="letter">e.</span> a person you work with, a coworker</div>
+            <div class="vocab-def"><span class="letter">f.</span> the amount of work you have to do</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2 class="section-title">Part B: Phrases</h2>
+          <span class="section-time">8 min</span>
+        </div>
+        <p class="instruction">Read the examples. Zero conditionals show general truths or habits. First conditionals show future possibilities. Then write your own sentence. Try to use vocabulary from Part A.</p>
+
+        <div class="phrase">
+          <div class="phrase-starter">1) When I work late, I… (Zero Conditional)</div>
+          <ul class="examples">
+            <li>When I work late, I feel tired.</li>
+            <li>When I work late, I order takeout for dinner.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">2) If I don't meet the deadline, … (Zero Conditional)</div>
+          <ul class="examples">
+            <li>If I don't meet the deadline, my colleague gets upset.</li>
+            <li>If I don't meet the deadline, I have to work overtime.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">3) If I get a promotion, I will… (First Conditional)</div>
+          <ul class="examples">
+            <li>If I get a promotion, I will celebrate with my family.</li>
+            <li>If I get a promotion, I will have more responsibilities.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">4) If I don't finish this project on time, I will… (First Conditional)</div>
+          <ul class="examples">
+            <li>If I don't finish this project on time, I will work this weekend.</li>
+            <li>If I don't finish this project on time, I will ask for help.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <div class="phrase">
+          <div class="phrase-starter">5) If my colleague needs help, I will… (First Conditional)</div>
+          <ul class="examples">
+            <li>If my colleague needs help, I will offer to assist them.</li>
+            <li>If my colleague needs help, I will share my knowledge.</li>
+          </ul>
+          <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
+        </div>
+
+        <p class="level-up">Level up: Use "might" or "will probably" to show uncertainty in first conditionals.</p>
+      </section>
+
+      
+    </div>
+
+    <section class="section">
+      <div class="section-header"><h2 class="section-title">Reading</h2></div>
+      <div class="reading-text">
+        <p>At work, you have responsibilities and deadlines. When you have a deadline, you need to finish your work on time. If you don't meet your deadline, your colleague may be disappointed. If you work hard and do a good job, you might get a promotion or a raise.</p>
+        <p>Many jobs have schedules. When you follow your schedule, everything runs smoothly. If you arrive late, you might miss important meetings. If you work overtime, you usually get extra pay. Always communicate with your colleagues if you have problems or questions.</p>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>1)</b> What happens if you don't meet your deadline? (Zero conditional)</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>2)</b> What might happen if you work hard and do a good job? (First conditional)</div>
+        <div class="answer-line"></div>
+      </div>
+      <div class="question">
+        <div class="question-text"><b>3)</b> What usually happens when you work overtime?</div>
+        <div class="answer-line"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Writing Homework</h2>
+        <span class="section-time">6–8 sentences</span>
+      </div>
+      <div class="writing-prompt">
+        <b>Prompt:</b> What will you do if you get a promotion at work? What will you do if you don't meet an important deadline? Use both zero and first conditionals in your answer.
+      </div>
+      
+      <div class="writing-lines">
+        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+      </div>
+      <p class="optional-note">Optional challenge: Use "unless" (e.g., "I won't work overtime unless it's really necessary").</p>
+    </section>
+  </div>
+</body>
+</html>
