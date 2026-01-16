@@ -9,13 +9,29 @@ export const conditionalsContinuumContent: InteractiveGuideContent = {
             title: "Conditionals Continuum: Routine, Plans, and Imagining Better",
             icon: "✨",
             explanation: `
-                <p>Conditionals connect situations and results across the timeline of your life in East Boston. Match each conditional to routine facts, plans with a deadline, or imagination/what-if reflections.</p>
-                <div style="margin-top: 1rem; padding: 1rem; border-radius: 0.75rem; background: rgba(59, 130, 246, 0.08); border-left: 4px solid #2563eb;">
-                    <p style="margin: 0;"><strong>Zero Conditional:</strong> facts or repeated routines. “If I heat water, it boils.”</p>
-                    <p style="margin: 0;"><strong>First/Future Conditional:</strong> real plans and future possibilities. “If I study, I will pass the interview,” or “If I finish on time, I will submit the report.”</p>
-                    <p style="margin: 0;"><strong>Second/Third Conditional:</strong> imagined situations and regrets. “If I had a flexible schedule, I would take more classes.” “If I had known, I would have asked sooner.”</p>
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%); padding: 1.25rem; border-radius: 0.75rem; margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.4rem;">Conditionals link steps in your life: routines, future plans, or imagined what-ifs. Use them in housing updates, job planning, or health check-ins so listeners know the timeline.</p>
+                    <p style="margin: 0;">Zero = facts. First/Future = goals. Second/Third = dreams or lessons learned. Keep the continuum in mind when you speak or write.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(251, 191, 36, 0.08); border-left: 4px solid #f59e0b;">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600;">Zero Conditional</p>
+                        <p style="margin: 0;">Facts or routines, e.g., "If I heat water, it boils."</p>
+                    </div>
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(59, 130, 246, 0.08); border-left: 4px solid #2563eb;">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600;">First / Future</p>
+                        <p style="margin: 0;">Real plans, promises, deadlines.</p>
+                    </div>
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(239, 68, 68, 0.08); border-left: 4px solid #dc2626;">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600;">Second / Third</p>
+                        <p style="margin: 0;">Imagined situations or reflections.</p>
+                    </div>
                 </div>
             `,
+            tipBox: {
+                title: "🗣️ Why It Matters",
+                content: "Clear conditionals keep community goals, job interviews, and health plans in order. Frame your thoughts along the timeline before speaking.",
+            },
         },
         {
             id: "zero-first",
@@ -23,19 +39,21 @@ export const conditionalsContinuumContent: InteractiveGuideContent = {
             title: "Zero, First & Future: Routine to Real Possibility",
             icon: "🔄",
             explanation: `
-                <p>Build from routines to plans.</p>
-                <ul>
-                    <li><strong>Zero:</strong> Use present simple in both clauses for facts and habits. “If I visit the East Boston kitchen, I bring extra snacks.”</li>
-                    <li><strong>First:</strong> Use present simple + will for future choices we can still make. “If I finish my resume, I will submit it by Thursday.”</li>
-                    <li><strong>Future conditional:</strong> Extends first conditionals when you want to stress a deadline or promise with “will” after the main clause. “If I arrive early, I will get the front seat.”</li>
-                </ul>
-                <p>Zero describes data or routines; first/future talk about actions you control and expect.</p>
+                <div style="background: rgba(59, 130, 246, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #2563eb;">
+                    <h4 style="margin-top: 0; margin-bottom: 0.4rem;">Zero</h4>
+                    <p style="margin: 0;">Present simple in both clauses: habits and facts. "If I visit the East Boston kitchen, I bring snacks."</p>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #059669; margin-top: 0.8rem;">
+                    <h4 style="margin-top: 0; margin-bottom: 0.4rem;">First / Future</h4>
+                    <p style="margin: 0;">Present simple + will for choices you can still make and promises with deadlines: "If I finish the resume, I will submit it by Thursday."</p>
+                </div>
+                <p style="margin-top: 0.75rem;">Think: zero = what always happens, first/future = what you can control before the deadline.</p>
             `,
             exercises: [
                 {
                     id: "zero-first-1",
                     title: "Match the Meaning",
-                    instructions: "Choose whether the sentence is zero or first conditional.",
+                    instructions: "Choose whether the sentence describes a zero or first conditional.",
                     items: [
                         {
                             type: "radio",
@@ -58,22 +76,6 @@ export const conditionalsContinuumContent: InteractiveGuideContent = {
                     ],
                 },
                 {
-                    id: "zero-first-3",
-                    title: "Future Conditional Check",
-                    instructions: "Pick the sentence that matches a future promise with will.",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "If we finish the application, we will call the employer before Friday.",
-                            options: [
-                                { value: "future", label: "Future conditional (will)" },
-                                { value: "zero", label: "Zero conditional (routine)" },
-                            ],
-                            expectedAnswer: "future",
-                        },
-                    ],
-                },
-                {
                     id: "zero-first-2",
                     title: "Complete the Sentence",
                     instructions: "Fill in the blank with the correct first conditional verb.",
@@ -89,65 +91,121 @@ export const conditionalsContinuumContent: InteractiveGuideContent = {
                         },
                     ],
                 },
-            ],
-        },
                 {
-                    id: "second-third",
-                    stepNumber: 2,
-                    title: "Second & Third: Imagining and Reflecting",
-                    icon: "🌠",
-                    explanation: `
-                        <p>Second conditionals imagine better situations using past simple + would/could/might. Third conditionals reflect on past regrets using past perfect + would have/could have/might have.</p>
-                        <p>Examples:</p>
-                        <ul>
-                            <li>“If I spoke more English, I would apply to more jobs.” (second)</li>
-                            <li>“If I had had childcare, I would have applied for the day shift sooner.” (third)</li>
-                        </ul>
-                        <p>Use these forms to describe dreams, community goals, or to explain lessons learned from the past.</p>
-                    `,
-                    exercises: [
+                    id: "zero-first-3",
+                    title: "Future Conditional Check",
+                    instructions: "Pick the sentence that matches a future promise with will.",
+                    items: [
                         {
-                            id: "second-1",
-                            title: "Rewrite with Would",
-                            instructions: "Change the sentence to second conditional.",
-                            items: [
-                                {
-                                    type: "radio",
-                                    label: "I don’t have childcare, so I can’t apply for the day shift.",
-                                    options: [
-                                        { value: "If I had childcare, I would apply for the day shift.", label: "Option A" },
-                                        { value: "If I have childcare, I will apply for the day shift.", label: "Option B" },
-                                    ],
-                                    expectedAnswer: "If I had childcare, I would apply for the day shift.",
-                                },
+                            type: "radio",
+                            label: "If we finish the application, we will call the employer before Friday.",
+                            options: [
+                                { value: "future", label: "Future conditional (will)" },
+                                { value: "zero", label: "Zero conditional (routine)" },
                             ],
-                        },
-                        {
-                            id: "third-1",
-                            title: "Third Conditional Reflection",
-                            instructions: "Pick the sentence that correctly uses a third conditional.",
-                            items: [
-                                {
-                                    type: "radio",
-                                    label: "If I had known about the class, I would have registered earlier.",
-                                    options: [
-                                        { value: "correct", label: "Correct (past perfect + would have)" },
-                                        { value: "incorrect", label: "Incorrect" },
-                                    ],
-                                    expectedAnswer: "correct",
-                                },
-                            ],
+                            expectedAnswer: "future",
                         },
                     ],
                 },
+            ],
+        },
+        {
+            id: "continuum-diagram",
+            stepNumber: 2,
+            title: "Conditional Roadmap",
+            icon: "🗺️",
+            explanation: `
+                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem;">
+                    <div style="flex: 1 1 200px; border-radius: 0.5rem; background: rgba(251, 191, 36, 0.08); padding: 0.75rem; border-left: 4px solid #f59e0b;">
+                        <p style="margin: 0; font-weight: 600;">Zero</p>
+                        <p style="margin: 0;">Routine facts</p>
+                    </div>
+                    <div style="flex: 1 1 200px; border-radius: 0.5rem; background: rgba(59, 130, 246, 0.08); padding: 0.75rem; border-left: 4px solid #2563eb;">
+                        <p style="margin: 0; font-weight: 600;">First</p>
+                        <p style="margin: 0;">Jobs + opportunities</p>
+                    </div>
+                    <div style="flex: 1 1 200px; border-radius: 0.5rem; background: rgba(14, 165, 233, 0.08); padding: 0.75rem; border-left: 4px solid #0ea5e9;">
+                        <p style="margin: 0; font-weight: 600;">Future</p>
+                        <p style="margin: 0;">Promises with deadlines</p>
+                    </div>
+                    <div style="flex: 1 1 200px; border-radius: 0.5rem; background: rgba(239, 68, 68, 0.08); padding: 0.75rem; border-left: 4px solid #dc2626;">
+                        <p style="margin: 0; font-weight: 600;">Second</p>
+                        <p style="margin: 0;">Imagined goals</p>
+                    </div>
+                    <div style="flex: 1 1 200px; border-radius: 0.5rem; background: rgba(16, 185, 129, 0.08); padding: 0.75rem; border-left: 4px solid #059669;">
+                        <p style="margin: 0; font-weight: 600;">Third</p>
+                        <p style="margin: 0;">Lessons from the past</p>
+                    </div>
+                </div>
+                <p style="margin-top: 0.75rem;">Trace where each sentence fits on the roadmap before you speak. That keeps workplace plans, health goals, and community commitments clear.</p>
+            `,
+        },
+        {
+            id: "second-third",
+            stepNumber: 3,
+            title: "Second & Third: Imagining and Reflecting",
+            icon: "🌠",
+            explanation: `
+                <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #dc2626;">
+                    <h4 style="margin-top: 0; margin-bottom: 0.4rem;">Second Conditional</h4>
+                    <p style="margin: 0;">Past simple + would/could/might to dream about improvements: "If I spoke more English, I would apply for more jobs."</p>
+                </div>
+                <div style="background: rgba(14, 165, 233, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #0ea5e9; margin-top: 0.8rem;">
+                    <h4 style="margin-top: 0; margin-bottom: 0.4rem;">Third Conditional</h4>
+                    <p style="margin: 0;">Past perfect + would have/could have/might have to reflect on past choices. "If I had known about the training, I would have signed up earlier."</p>
+                </div>
+                <p style="margin-top: 0.75rem;">Use these to describe dreams, advocate for future supports, or explain lessons the community has learned.</p>
+            `,
+            exercises: [
+                {
+                    id: "second-1",
+                    title: "Rewrite with Would",
+                    instructions: "Change the sentence to second conditional.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I don’t have childcare, so I can’t apply for the day shift.",
+                            options: [
+                                { value: "If I had childcare, I would apply for the day shift.", label: "Option A" },
+                                { value: "If I have childcare, I will apply for the day shift.", label: "Option B" },
+                            ],
+                            expectedAnswer: "If I had childcare, I would apply for the day shift.",
+                        },
+                    ],
+                },
+                {
+                    id: "third-1",
+                    title: "Third Conditional Reflection",
+                    instructions: "Pick the sentence that correctly uses a third conditional.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "If I had known about the class, I would have registered earlier.",
+                            options: [
+                                { value: "correct", label: "Correct (past perfect + would have)" },
+                                { value: "incorrect", label: "Incorrect" },
+                            ],
+                            expectedAnswer: "correct",
+                        },
+                    ],
+                },
+            ],
+        },
         {
             id: "modals",
-            stepNumber: 3,
+            stepNumber: 4,
             title: "Mixing Modals and Conditionals",
             icon: "🧩",
             explanation: `
-                <p>Modals add nuance. Pair first-conditional sentences with <strong>can</strong> (ability), <strong>should</strong> (advice), or <strong>might</strong> (probability). In second conditionals, modals like <strong>would</strong>, <strong>could</strong>, and <strong>might</strong> express imagined outcomes.</p>
-                <p>Example: “If I ask the employer nicely, I might get a flexible shift.” “If I knew the training schedule, I could attend every Saturday.”</p>
+                <div style="background: rgba(59, 130, 246, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #2563eb;">
+                    <p style="margin: 0; font-weight: 600;">First & Future</p>
+                    <p style="margin: 0;">Pair with can/should/might to show ability, advice, or probability.</p>
+                </div>
+                <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #dc2626; margin-top: 0.75rem;">
+                    <p style="margin: 0; font-weight: 600;">Second & Third</p>
+                    <p style="margin: 0;">Use would/could/might have for imagined outcomes or reflections.</p>
+                </div>
+                <p style="margin-top: 0.75rem;">Practice adding modals to soften or strengthen your statements about work or community goals.</p>
             `,
             exercises: [
                 {
@@ -179,17 +237,19 @@ export const conditionalsContinuumContent: InteractiveGuideContent = {
         },
         {
             id: "review",
-            stepNumber: 4,
+            stepNumber: 5,
             title: "Review Checklist",
             icon: "✅",
             explanation: `
-                <p>Before you move on, run through this checklist with your partner:</p>
-                <ol>
-                    <li>Did we identify whether the condition is routine (zero), real future (first), or imaginary (second)?</li>
-                    <li>Did we choose the correct verb form (present simple vs past simple + would)?</li>
-                    <li>Did we add a modal to soften or strengthen the meaning?</li>
-                </ol>
-                <p>Use those connectors in your next conversations about jobs, internships, or community commitments.</p>
+                <div style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: 0.75rem; border-left: 4px solid #059669;">
+                    <p style="margin: 0;"><strong>Checklist</strong></p>
+                    <ol style="margin: 0.5rem 0 0 1.2rem; padding: 0;">
+                        <li>Did we identify routine, promise, or imagined outcome?</li>
+                        <li>Is the verb form correct (present simple, past simple, past perfect)?</li>
+                        <li>Did we add a modal to change tone?</li>
+                    </ol>
+                </div>
+                <p style="margin-top: 0.75rem;">Use this checklist before your next job planning conversation, health update, or community reflection.</p>
             `,
         },
     ],
