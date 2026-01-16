@@ -86,22 +86,34 @@ export async function updateStreak(userId: string, activityPoints: number): Prom
   }
 
   const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  
+  // Normalize dates to UTC for consistent day comparison
+  // This avoids timezone issues where dates might appear as different days
+  const getUTCDayStart = (date: Date): Date => {
+    const utcDate = new Date(Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate()
+    ));
+    return utcDate;
+  };
+  
+  const todayUTC = getUTCDayStart(now);
   const lastActivity = user.lastActivityDate ? new Date(user.lastActivityDate) : null;
-  const lastActivityDay = lastActivity ? new Date(lastActivity.getFullYear(), lastActivity.getMonth(), lastActivity.getDate()) : null;
+  const lastActivityDayUTC = lastActivity ? getUTCDayStart(lastActivity) : null;
 
   let streakUpdated = false;
   let newStreak = user.currentStreak;
   let pointsAwarded = 0;
 
   // If no last activity or last activity was yesterday, increment streak
-  if (!lastActivityDay) {
+  if (!lastActivityDayUTC) {
     // First activity ever
     newStreak = 1;
     streakUpdated = true;
     pointsAwarded = POINTS.DAILY_STREAK;
   } else {
-    const daysSinceLastActivity = Math.floor((today.getTime() - lastActivityDay.getTime()) / (1000 * 60 * 60 * 24));
+    const daysSinceLastActivity = Math.floor((todayUTC.getTime() - lastActivityDayUTC.getTime()) / (1000 * 60 * 60 * 24));
 
     if (daysSinceLastActivity === 0) {
       // Already did activity today, no streak update
