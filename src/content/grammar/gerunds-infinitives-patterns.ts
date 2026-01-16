@@ -10,39 +10,40 @@ export const gerundsInfinitivesPatternsContent: InteractiveGuideContent = {
             icon: "🌀",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(132, 204, 22, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%); padding: 1.25rem; border-radius: 0.75rem; margin-bottom: 1rem;">
-                    <p style="margin-bottom: 0; font-size: 1.15rem;">“I plan to move next month” vs “I enjoy walking through East Boston.” Gerunds (-ing) often talk about routine or feelings, while infinitives (to + verb) name intentions or choices. This guide gathers the patterns you need so you can choose confidently.</p>
+                    <p style="margin-bottom: 0.5rem; font-size: 1.15rem;">Identify whether you are describing a routine, a feeling, or a plan. Gerunds (-ing) often signal what you enjoy or do regularly; infinitives (to + verb) point to intention, decisions, or next steps.</p>
+                    <p style="margin-bottom: 0;">Use these patterns when you talk about housing, jobs, health, or East Boston community life so listeners know if you are describing a habit or a goal.</p>
                 </div>
-
-                <h3>Why These Patterns Matter</h3>
-                <ul>
-                    <li><strong>Housing:</strong> Decide if you describe a routine (“I love biking to the community center”) or a plan (“I want to rent the apartment soon”).</li>
-                    <li><strong>Jobs:</strong> Talk about experience (“I have practiced customer service”) vs goals (“I hope to lead a project”).</li>
-                    <li><strong>Health:</strong> Use gerunds with prepositions (“After stretching, I feel stronger”) and infinitives to share intentions (“I plan to ask about community clinics”).</li>
+                <ul style="margin-top: 0; padding-left: 1.2rem;">
+                    <li>Housing: “I enjoy walking past the community garden.”</li>
+                    <li>Jobs: “I plan to submit the resume tomorrow.”</li>
+                    <li>Health: “After stretching, I feel ready for classes.”</li>
                 </ul>
-
-                <p>Let's map the most useful patterns, then practice mixing them in conversations and writing.</p>
             `,
+            tipBox: {
+                title: "💡 Quick Tip",
+                content: "Ask yourself, is this repeating or feeling (use gerund) or is it a plan/choice (use infinitive)? Keep the context in mind before you pick a form.",
+            },
         },
         {
-            id: "pattern-matrix",
+            id: "pattern-map",
             stepNumber: 1,
-            title: "Pattern Matrix: Routine vs. Intention",
+            title: "Pattern Map: Routine vs Intention",
             icon: "🗂️",
             explanation: `
-                <p>The easiest way to choose is to notice the <strong>role</strong> of the verb. Here's a quick matrix:</p>
+                <p>The easiest way to choose is to notice the <strong>role</strong> of the verb:</p>
                 <table style="width: 100%; border-collapse: collapse; margin-top: 0.5rem;">
-                    <tr style="background: #f5f5f5;"><th style="padding: 0.4rem; border: 1px solid #e5e7eb;">Focus</th><th style="padding: 0.4rem; border: 1px solid #e5e7eb;">Gerund (-ing)</th><th style="padding: 0.4rem; border: 1px solid #e5e7eb;">Infinitive (to + verb)</th></tr>
-                    <tr><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">Routine / Enjoyment</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">I enjoy meeting my neighbors at the block party.</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">—</td></tr>
-                    <tr><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">Plans / Intentions</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">—</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">I plan to submit my job application today.</td></tr>
+                    <tr style="background: #f5f5f5;"><th style="padding: 0.4rem; border: 1px solid #e5e7eb;">Role</th><th style="padding: 0.4rem; border: 1px solid #e5e7eb;">Gerund (-ing)</th><th style="padding: 0.4rem; border: 1px solid #e5e7eb;">Infinitive (to + verb)</th></tr>
+                    <tr><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">Routine / Feeling</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">I enjoy meeting neighbors at the block party.</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">—</td></tr>
+                    <tr><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">Plan / Decision</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">—</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">I plan to submit my job application today.</td></tr>
                     <tr><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">After prepositions</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">After touring the apartment, I felt hopeful.</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">—</td></tr>
+                    <tr><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">Object of verbs</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">I quit working late shifts.</td><td style="padding: 0.4rem; border: 1px solid #e5e7eb;">I promise to arrive early.</td></tr>
                 </table>
-                <p style="margin-top: 1rem;">If you're unsure, ask: “Is this happening now (gerund) or is it about planning/deciding (infinitive)?”</p>
             `,
             exercises: [
                 {
                     id: "pattern-matrix-1",
                     title: "Choose the Right Form",
-                    instructions: "Which sentence best matches the idea of a plan?",
+                    instructions: "Which sentence best matches routine or plan?",
                     items: [
                         {
                             type: "radio",
@@ -67,118 +68,92 @@ export const gerundsInfinitivesPatternsContent: InteractiveGuideContent = {
             ],
         },
         {
-            id: "verb-groups",
+            id: "context-board",
             stepNumber: 2,
-            title: "Verbs That Lock in Gerunds or Infinitives",
-            icon: "🔁",
+            title: "Context Board: Housing, Jobs, Health",
+            icon: "🏙️",
             explanation: `
-                <p>Certain verbs always want a gerund, others pair with infinitives, and a few allow both but with different meanings.</p>
-                <div style="display: grid; gap: 1rem;">
-                    <div style="background: rgba(59, 130, 246, 0.08); border-left: 4px solid #1d4ed8; padding: 0.75rem; border-radius: 0.5rem;">
-                        <h4 style="margin-top: 0;">Always Gerund</h4>
-                        <ul>
-                            <li>enjoy, avoid, keep, finish, consider</li>
-                        </ul>
-                        <p><em>Example:</em> I enjoy helping neighbors with their groceries.</p>
-                    </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
                     <div style="background: rgba(16, 185, 129, 0.08); border-left: 4px solid #059669; padding: 0.75rem; border-radius: 0.5rem;">
-                        <h4 style="margin-top: 0;">Always Infinitive</h4>
-                        <ul>
-                            <li>decide, plan, hope, promise, want</li>
-                        </ul>
-                        <p><em>Example:</em> I plan to visit the East Boston career center tomorrow.</p>
+                        <h4 style="margin-top: 0;">Housing</h4>
+                        <p>Use gerunds for feelings (I enjoy touring apartments), infinitives for plans (I hope to sign a lease).</p>
+                    </div>
+                    <div style="background: rgba(59, 130, 246, 0.08); border-left: 4px solid #2563eb; padding: 0.75rem; border-radius: 0.5rem;">
+                        <h4 style="margin-top: 0;">Jobs</h4>
+                        <p>Pair verbs (decide, agree, promise) with infinitives to show choices.</p>
+                    </div>
+                    <div style="background: rgba(248, 113, 113, 0.08); border-left: 4px solid #dc2626; padding: 0.75rem; border-radius: 0.5rem;">
+                        <h4 style="margin-top: 0;">Health</h4>
+                        <p>Gerunds follow prepositions in check-in phrases (after stretching, before resting).</p>
                     </div>
                 </div>
-                <p style="margin-top: 1rem;">Some verbs, like <strong>remember</strong> or <strong>stop</strong>, change meaning depending on the form. Practice noticing how the meaning shifts in real sentences.</p>
+                <p style="margin-top: 0.75rem;">Use these callouts while you discuss East Boston community events so students see why the form matters.</p>
             `,
-            exercises: [
-                {
-                    id: "verb-groups-1",
-                    title: "Gerund or Infinitive?",
-                    instructions: "Decide which form belongs in each sentence.",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "I stopped (___) so many shifts; I needed rest.",
-                            options: [
-                                { value: "call", label: "calling (gerund)" },
-                                { value: "to call", label: "to call (infinitive)" },
-                            ],
-                            expectedAnswer: "calling",
-                        },
-                        {
-                            type: "radio",
-                            label: "She promised (___) the landlord next week.",
-                            options: [
-                                { value: "calling", label: "calling" },
-                                { value: "to call", label: "to call" },
-                            ],
-                            expectedAnswer: "to call",
-                        },
-                    ],
-                },
-            ],
-            tipBox: {
-                title: "💡 Quick Tip",
-                content: "If the verb describes a feeling or habit, reach for the gerund. If it describes a plan, intention, or decision, reach for the infinitive.",
-            },
         },
         {
-            id: "prep-gerund",
+            id: "timeline",
             stepNumber: 3,
-            title: "Gerunds After Prepositions and Nouns",
-            icon: "🧭",
+            title: "Routine → Intention Timeline",
+            icon: "📊",
             explanation: `
-                <p>Gerunds are the go-to after prepositions, especially when you describe daily routines or feelings about East Boston community events.</p>
-                <ul>
-                    <li>Keep practicing preposition + gerund pairs: <strong>thinking about moving</strong>, <strong>talking with neighbors</strong>, <strong>waiting for the shuttle</strong>.</li>
-                    <li>Use the gerund after a noun that needs extra detail: <strong>the idea of learning</strong> or <strong>the habit of walking</strong>.</li>
-                </ul>
-                <p>Infinitives appear after adjectives and nouns when you want to explain why or what comes next.</p>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                    <div style="flex: 1 1 150px; background: rgba(251, 191, 36, 0.1); border-left: 4px solid #f59e0b; padding: 0.9rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600;">Routine</p>
+                        <p style="margin: 0;">Gerunds + feelings/habits</p>
+                    </div>
+                    <div style="flex: 1 1 150px; background: rgba(14, 165, 233, 0.1); border-left: 4px solid #0ea5e9; padding: 0.9rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600;">Transition</p>
+                        <p style="margin: 0;">Preposition + gerund</p>
+                    </div>
+                    <div style="flex: 1 1 150px; background: rgba(16, 185, 129, 0.1); border-left: 4px solid #059669; padding: 0.9rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600;">Intention</p>
+                        <p style="margin: 0;">Infinitives signal tomorrow and goals</p>
+                    </div>
+                </div>
+                <p style="margin-top: 0.75rem;">When you write or speak, circle the form on your timeline before answering to stay intentional.</p>
             `,
             exercises: [
                 {
-                    id: "prep-gerund-1",
-                    title: "Choose the Complete Phrase",
-                    instructions: "Which option uses the correct form after the preposition?",
+                    id: "history-check",
+                    title: "Timeline Check",
+                    instructions: "Match the sentence to the right spot on the timeline.",
                     items: [
                         {
                             type: "radio",
-                            label: "I'm excited about (___) for the job fair.",
+                            label: "I decided to attend the community health fair.",
                             options: [
-                                { value: "going", label: "going" },
-                                { value: "to go", label: "to go" },
+                                { value: "routine", label: "Routine" },
+                                { value: "intention", label: "Intention" },
                             ],
-                            expectedAnswer: "going",
+                            expectedAnswer: "intention",
                         },
                         {
                             type: "radio",
-                            label: "He graduated and promised (___) other East Boston students.",
+                            label: "After stretching, I feel strong.",
                             options: [
-                                { value: "helping", label: "helping" },
-                                { value: "to help", label: "to help" },
+                                { value: "routine", label: "Routine" },
+                                { value: "transition", label: "Transition" },
+                                { value: "intention", label: "Intention" },
                             ],
-                            expectedAnswer: "to help",
+                            expectedAnswer: "routine",
                         },
                     ],
                 },
             ],
         },
         {
-            id: "mix-practice",
+            id: "practice",
             stepNumber: 4,
-            title: "Mix & Match in Class Conversations",
+            title: "Practice: Mix & Match",
             icon: "🎤",
             explanation: `
-                <p>Use it like this: start with a context, decide if it is repeating, describing a feeling, or planning, then pick the verb form that fits.</p>
-                <p style="font-style: italic;">Sentence frames to try: “I always ___ (gerund) when I…” vs “I'm trying ___ (infinitive) before the next shuttle.”</p>
-                <p>Work in pairs to compare answers and explain your choice. Staying intentional with each form will build confidence when you speak with community members or employers.</p>
+                <p>Use sentence frames: “I always ___ (gerund) when I…” vs “I am trying ___ (infinitive) before the next shuttle.” Work in pairs to explain your choice.</p>
             `,
             exercises: [
                 {
                     id: "mix-practice-1",
                     title: "Pair Practice",
-                    instructions: "Rebuild each sentence with the best form (gerund or infinitive).",
+                    instructions: "Rebuild each sentence with the best form.",
                     items: [
                         {
                             type: "radio",
@@ -201,6 +176,10 @@ export const gerundsInfinitivesPatternsContent: InteractiveGuideContent = {
                     ],
                 },
             ],
+            tipBox: {
+                title: "🌟 Level Up",
+                content: "Stretch: Rewrite each sentence with a mini explanation (why this form?) before sharing with a partner.",
+            },
         },
     ],
 };

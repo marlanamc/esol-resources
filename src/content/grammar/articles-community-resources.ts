@@ -9,24 +9,37 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             title: "Articles & References for Community Resources",
             icon: "🏘️",
             explanation: `
-                <p>Articles (a/an/the) help listeners know whether you are naming something general, specific, or uncountable. When you talk about housing, jobs, or health services in East Boston, choosing the right article keeps your meaning sharp.</p>
-                <p>Example: “I need <strong>a</strong> counselor” (any counselor) vs “I need <strong>the</strong> counselor” (a specific one who helped before).</p>
+                <div style="background: linear-gradient(135deg, rgba(248, 113, 113, 0.08) 0%, rgba(37, 99, 235, 0.08) 100%); padding: 1.25rem; border-radius: 0.75rem; margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.5rem;">Articles (a/an/the) tell listeners whether you are naming something general or something specific. When you describe housing, jobs, or health services in East Boston, strong article choices keep your message sharp.</p>
+                    <p style="margin: 0;">Think of articles as pointers: they guide the listener to the right person, place, or service.</p>
+                </div>
+                <ul style="margin-top: 0; padding-left: 1.2rem;">
+                    <li>New housing leads to “a counselor” (any counselor) vs “the counselor” (the one you already met).</li>
+                    <li>Job meetings may need “a resume” (any file) vs “the resume I finished” (specific).</li>
+                    <li>Health clinics often use zero article (“We go to clinic events”).</li>
+                </ul>
             `,
+            tipBox: {
+                title: "📌 Community Insight",
+                content: "When you mention a service once, choose a/an. If you mention it again or everyone knows it, use the. Drop the article for plural/general words (community events, job fairs).",
+            },
         },
         {
-            id: "indefinite-versus-definite",
+            id: "indefinite-vs-definite",
             stepNumber: 1,
             title: "Indefinite vs. Definite vs. Zero Articles",
             icon: "📌",
             explanation: `
-                <h3>Indefinite (a/an)</h3>
-                <p>Use when you mention something for the first time, or you mean any example of it.</p>
+                <h3 style="margin-top: 0;">Indefinite (a/an)</h3>
+                <p>Use when you introduce something new or mean any example.</p>
                 <h3>Definite (the)</h3>
-                <p>Use when both speaker and listener know the exact item.</p>
+                <p>Use when both people know the exact item.</p>
                 <h3>Zero Article</h3>
-                <p>No article is needed with plural nouns referring to a group in general or with some uncountable nouns.</p>
-                <ul>
-                    <li><strong>Examples:</strong> “I visited <strong>a</strong> community center.” “<strong>The</strong> center has free ESL classes.” “I love <strong>(no article)</strong> community events.”</li>
+                <p>Drop the article for plural/general nouns or abstract services.</p>
+                <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+                    <li>“I visited <strong>a</strong> community center.”</li>
+                    <li>“<strong>The</strong> center has free ESOL classes.”</li>
+                    <li>“I love <strong>(no article)</strong> community events.”</li>
                 </ul>
             `,
             exercises: [
@@ -60,32 +73,39 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             ],
         },
         {
-            id: "proper-and-abstract",
+            id: "proper-abstract",
             stepNumber: 2,
             title: "Proper Names, Abstract Nouns, and Zero Article",
             icon: "🗺️",
             explanation: `
-                <p>Use <strong>the</strong> with unique places (“the Orient Heights branch”) and with abstract nouns when the listener knows the topic (“the safety of my family”). Drop the article with general services or names of languages, meals, or transportation.</p>
-                <p>Examples:</p>
-                <ul>
-                    <li>The East Boston Branch Library opens at 9 a.m.</li>
-                    <li>We look for work at community centers and job fairs.</li>
-                    <li>Health fairs often offer free check-ups.</li>
-                </ul>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;">
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(59, 130, 246, 0.08); border-left: 4px solid #2563eb;">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600;">The + unique place</p>
+                        <p style="margin: 0;">"The East Boston Branch Library" is unique and needs the.</p>
+                    </div>
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(16, 185, 129, 0.08); border-left: 4px solid #059669;">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600;">Zero + general service</p>
+                        <p style="margin: 0;">"We look for work at community centers" (plural/general → no article).</p>
+                    </div>
+                    <div style="padding: 0.75rem; border-radius: 0.5rem; background: rgba(248, 113, 113, 0.08); border-left: 4px solid #ef4444;">
+                        <p style="margin: 0 0 0.2rem; font-weight: 600;">Abstract nouns + the</p>
+                        <p style="margin: 0;">"The safety of my family is a priority."</p>
+                    </div>
+                </div>
+                <p style="margin-top: 0.75rem;">Use the article that matches whether you point to a specific landmark, a general service, or a known idea.</p>
             `,
             tipBox: {
-                title: "💡 Remember",
-                content: "If you can point to it or both people know which one, use 'the'. If you only know the kind of thing and it's not specific, use 'a/an' or nothing.",
+                title: "💬 Try This",
+                content: "Before you say it, ask: does the listener know which place/service I mean? If yes, use the; if not, start with a/an or nothing.",
             },
         },
         {
-            id: "article-practice",
+            id: "practice",
             stepNumber: 3,
             title: "Practice with East Boston Contexts",
             icon: "📖",
             explanation: `
-                <p>Don't rush. Think about whether you have mentioned the item before or if everyone knows exactly which one you mean.</p>
-                <p>Talk to your partner and ask: “Is it any clinic (a) or the clinic we visited last week?”</p>
+                <p>Think about whether you introduced the item before or if everyone knows which one you mean. Ask yourself: is it a specific service, a general type, or a mass idea?</p>
             `,
             exercises: [
                 {
