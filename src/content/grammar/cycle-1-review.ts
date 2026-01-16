@@ -141,7 +141,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "select",
                             label: "\"They talked about the trip ___.\"",
-                            options: ["next week", "last night", "this morning"],
+                            options: ["next week", "last night", "right now"],
                             expectedAnswer: "last night"
                         }
                     ]
