@@ -1483,6 +1483,118 @@ async function main() {
     });
     console.log('📚 Vocab June Flashcards updated:', vocabJuneFlashcards.title);
 
+    const articlesGuide = await prisma.activity.upsert({
+        where: { id: 'articles-community-resources-guide' },
+        update: {
+            title: 'Articles & References for Community Resources Guide',
+            description: 'Learn how to use a/an/the and the zero article when talking about housing, jobs, and health services in East Boston.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'beginner',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/articles-community-resources'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'articles-community-resources-guide',
+            title: 'Articles & References for Community Resources Guide',
+            description: 'Learn how to use a/an/the and the zero article when talking about housing, jobs, and health services in East Boston.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'beginner',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/articles-community-resources'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Articles & References guide added:', articlesGuide.title);
+
+    const prepositionsGuide = await prisma.activity.upsert({
+        where: { id: 'prepositions-time-place-guide' },
+        update: {
+            title: 'Prepositions of Time & Place Guide',
+            description: 'Practice at/on/in and other prepositions to give clear directions and talk about schedules.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'beginner',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/prepositions-time-place'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'prepositions-time-place-guide',
+            title: 'Prepositions of Time & Place Guide',
+            description: 'Practice at/on/in and other prepositions to give clear directions and talk about schedules.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'beginner',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/prepositions-time-place'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Prepositions of Time & Place guide added:', prepositionsGuide.title);
+
+    const gerundsGuide = await prisma.activity.upsert({
+        where: { id: 'gerunds-infinitives-patterns-guide' },
+        update: {
+            title: 'Gerunds & Infinitives Patterns Guide',
+            description: 'Merge the key gerund and infinitive patterns so students can choose intention vs routine with confidence.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/gerunds-infinitives-patterns'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'gerunds-infinitives-patterns-guide',
+            title: 'Gerunds & Infinitives Patterns Guide',
+            description: 'Merge the key gerund and infinitive patterns so students can choose intention vs routine with confidence.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/gerunds-infinitives-patterns'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Gerunds & Infinitives guide added:', gerundsGuide.title);
+
+    const conditionalsContinuumGuide = await prisma.activity.upsert({
+        where: { id: 'conditionals-continuum-guide' },
+        update: {
+            title: 'Conditionals Continuum Guide',
+            description: 'Walk through zero, first, and second conditionals with context and modal practice.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/conditionals-continuum'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'conditionals-continuum-guide',
+            title: 'Conditionals Continuum Guide',
+            description: 'Walk through zero, first, and second conditionals with context and modal practice.',
+            type: 'guide',
+            category: 'grammar',
+            level: 'intermediate',
+            content: JSON.stringify({
+                externalUrl: '/grammar-reader/conditionals-continuum'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('📚 Conditionals Continuum guide added:', conditionalsContinuumGuide.title);
+
     console.log('✅ Seeded database with teacher, ESOL 3 class, students, and grammar guides');
     console.log('👥 Students added:', students.length);
     console.log('📚 Present Perfect guide added:', presentPerfectGuide.title);
