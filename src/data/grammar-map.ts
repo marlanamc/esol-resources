@@ -18,6 +18,22 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'foundation',
         activityTitles: ['Parts of Speech Guide'],
     },
+    {
+        id: 'articles-community-resources',
+        title: 'Articles & References for Community Resources',
+        week: 1,
+        category: 'foundation',
+        prerequisites: ['parts-of-speech'],
+        activityTitles: ['Articles & References for Community Resources Guide'],
+    },
+    {
+        id: 'prepositions-time-place',
+        title: 'Prepositions of Time & Place',
+        week: 2,
+        category: 'foundation',
+        prerequisites: ['parts-of-speech'],
+        activityTitles: ['Prepositions of Time & Place Guide'],
+    },
 
     // Simple Tenses (Weeks 2-4)
     {
@@ -105,6 +121,15 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'gerunds-infinitives',
         prerequisites: ['parts-of-speech'],
         activityTitles: ['Infinitives vs Gerunds Guide'],
+    },
+    {
+        id: 'gerunds-infinitives-patterns',
+        title: 'Gerunds & Infinitives Patterns',
+        week: 26,
+        category: 'gerunds-infinitives',
+        prerequisites: ['parts-of-speech'],
+        relatedTopics: ['infinitives-vs-gerunds', 'verbs-plus-gerunds', 'gerunds-prepositions'],
+        activityTitles: ['Gerunds & Infinitives Patterns Guide'],
     },
     {
         id: 'verbs-plus-gerunds',
@@ -238,6 +263,15 @@ export const grammarTopics: GrammarTopic[] = [
         category: 'advanced',
         prerequisites: ['parts-of-speech'],
         activityTitles: ['Future Conditional Guide'],
+    },
+    {
+        id: 'conditionals-continuum',
+        title: 'Conditionals Continuum',
+        week: 23,
+        category: 'advanced',
+        prerequisites: ['parts-of-speech'],
+        relatedTopics: ['conditionals-zero-first', 'conditionals-second', 'future-conditional'],
+        activityTitles: ['Conditionals Continuum Guide'],
     },
     {
         id: 'simple-continuous-review',
