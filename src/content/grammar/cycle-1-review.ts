@@ -140,7 +140,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "\"They talked about the trip last night.\"",
+                            label: "\"They talked about the trip ___.\"",
                             options: ["next week", "last night", "this morning"],
                             expectedAnswer: "last night"
                         }
@@ -240,19 +240,16 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "Change to a question: 'You practiced yesterday.'",
-                            placeholder: "Did you practice yesterday?",
                             expectedAnswer: "Did you practice yesterday?"
                         },
                         {
                             type: "text",
                             label: "Change to a negative: 'He is listening now.'",
-                            placeholder: "He isn't listening now.",
                             expectedAnswer: "He isn't listening now."
                         },
                         {
                             type: "text",
                             label: "Change to a question: 'They are studying late.'",
-                            placeholder: "Are they studying late?",
                             expectedAnswer: "Are they studying late?"
                         }
                     ]
@@ -348,7 +345,6 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "Right now, I eat lunch.",
-                            placeholder: "I am eating lunch.",
                             expectedAnswer: "I am eating lunch."
                         }
                     ]
@@ -418,7 +414,6 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "She ___ already ___ the forms.",
-                            placeholder: "has signed",
                             expectedAnswer: "has signed"
                         }
                     ]
@@ -507,13 +502,11 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "This week I ___ (finish) the report (present perfect).",
-                            placeholder: "have finished",
                             expectedAnswer: "have finished"
                         },
                         {
                             type: "text",
                             label: "Right now he ___ (talk) to the coach (present continuous).",
-                            placeholder: "is talking",
                             expectedAnswer: "is talking"
                         }
                     ]
@@ -636,7 +629,6 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "I ___ take the bus after class.",
-                            placeholder: "I usually take the bus after class.",
                             expectedAnswer: "I usually take the bus after class."
                         }
                     ]
@@ -681,7 +673,6 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "My mornings are ___ than my evenings (calm).",
-                            placeholder: "calmer",
                             expectedAnswer: "calmer"
                         }
                     ]
@@ -776,7 +767,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Grammar Quick Reference Cheat Sheet",
             icon: "📋",
             explanation: `
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
                     <div>
                         <h3 style="background: rgba(200, 107, 81, 0.2); padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">Verb Tenses</h3>
                         <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
