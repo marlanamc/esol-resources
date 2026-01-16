@@ -163,7 +163,7 @@ export function TeacherCalendar({
       for (const cls of classes) {
         // Check if assignment already exists
         const existingAssignments = cls.assignments || [];
-        let assignment = existingAssignments.find((a: any) => a.activityId === activityId);
+        const assignment = existingAssignments.find((a: any) => a.activityId === activityId);
 
         if (!assignment) {
           // Create new assignment
@@ -562,16 +562,11 @@ export function TeacherCalendar({
 
                 <div className="bg-primary/5 rounded-lg p-4 space-y-3">
                   {currentWeek.tuesday.grammar && (
-                    <div className="pb-3 border-b border-primary/20">
+                    <div className={currentWeek.tuesday.notes ? "pb-3 border-b border-primary/20" : ""}>
                       <div className="text-xs font-medium text-primary uppercase mb-1">📖 Grammar Lesson</div>
                       <div className="font-medium text-text">{stripMarkdown(currentWeek.tuesday.grammar)}</div>
                     </div>
                   )}
-
-                  <div className={currentWeek.tuesday.notes ? "pb-3 border-b border-secondary/20" : ""}>
-                    <div className="text-xs font-medium text-secondary uppercase mb-1">🗣️ Speaking Warm-up</div>
-                    <div className="text-sm text-text/80">{stripMarkdown(currentWeek.tuesday.warmup)}</div>
-                  </div>
 
                   {currentWeek.tuesday.notes && (
                     <div>
@@ -608,16 +603,11 @@ export function TeacherCalendar({
                   )}
 
                   {currentWeek.thursday.grammar && (
-                    <div className={`${currentWeek.thursday.notes || !currentWeek.thursday.quiz ? "pb-3 border-b border-secondary/20" : ""}`}>
+                    <div className={currentWeek.thursday.notes ? "pb-3 border-b border-secondary/20" : ""}>
                       <div className="text-xs font-medium text-secondary uppercase mb-1">📖 Grammar Review</div>
                       <div className="font-medium text-text">{stripMarkdown(currentWeek.thursday.grammar)}</div>
                     </div>
                   )}
-
-                  <div className={currentWeek.thursday.notes ? "pb-3 border-b border-secondary/20" : ""}>
-                    <div className="text-xs font-medium text-primary uppercase mb-1">🗣️ Speaking Warm-up</div>
-                    <div className="text-sm text-text/80">{stripMarkdown(currentWeek.thursday.warmup)}</div>
-                  </div>
 
                   {currentWeek.thursday.notes && (
                     <div>
@@ -635,167 +625,6 @@ export function TeacherCalendar({
               </div>
             </div>
           </>
-        )}
-      </Card>
-
-      {/* Weekly Checklist & Quick Actions */}
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-text">📋 Weekly Checklist</h3>
-          {hasWeeks && (
-            <button
-              onClick={() => handleAutoReleaseAll(currentWeek)}
-              disabled={loadingAction === 'auto-release-all'}
-              className="px-3 py-1.5 rounded-lg bg-accent text-text hover:bg-accent/90 text-xs font-bold uppercase tracking-wide transition disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loadingAction === 'auto-release-all' ? '⏳ Processing...' : '🚀 Auto-Release All for This Week'}
-            </button>
-          )}
-        </div>
-
-        {!hasWeeks ? (
-          <div className="text-sm text-text/80">Add weeks to the schedule file to enable weekly checklist.</div>
-        ) : (
-          <div className="space-y-4">
-            {/* Verb Quiz Section */}
-            <div className="bg-primary/5 rounded-lg p-4 border-l-4 border-primary">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="text-sm text-text/80 font-medium mb-1">
-                    Verb Quiz {selectedWeek + 1} - Due {formatMonthDay({
-                      year: currentWeek.dates.tue.year,
-                      month: currentWeek.dates.tue.month,
-                      day: currentWeek.dates.tue.day + 7
-                    })}
-                  </div>
-                  <div className="text-xs text-text/75">5 irregular verbs</div>
-                </div>
-                <button
-                  onClick={() => handleReleaseQuiz(currentWeek.week)}
-                  disabled={loadingAction === 'release-quiz'}
-                  className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loadingAction === 'release-quiz' ? '⏳...' : '✓ Release Quiz'}
-                </button>
-              </div>
-            </div>
-
-            {/* Speaking Activities Section */}
-            <div className="bg-secondary/5 rounded-lg p-4 border-l-4 border-secondary">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm font-bold text-secondary uppercase">🗣️ Speaking Warmups</span>
-              </div>
-
-              {/* Tuesday Speaking */}
-              <div className="mb-3 pb-3 border-b border-secondary/20">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="text-xs text-text/75 mb-1">Tuesday {formatMonthDay(currentWeek.dates.tue)}</div>
-                    <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.tuesday.warmup)}</div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleReleaseSpeaking(currentWeek.dates.tue, 'Tuesday')}
-                      disabled={loadingAction === `release-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}`}
-                      className="px-3 py-1.5 rounded-lg bg-secondary text-white hover:bg-secondary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loadingAction === `release-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}` ? '⏳...' : '✓ Release'}
-                    </button>
-                    <button
-                      onClick={() => handleFeatureSpeaking(currentWeek.dates.tue, 'Tuesday')}
-                      disabled={loadingAction === `feature-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}`}
-                      className="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loadingAction === `feature-speaking-${currentWeek.dates.tue.year}-${currentWeek.dates.tue.month}-${currentWeek.dates.tue.day}` ? '⏳...' : '⭐ Feature'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Thursday Speaking */}
-              <div>
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="text-xs text-text/75 mb-1">Thursday {formatMonthDay(currentWeek.dates.thu)}</div>
-                    <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.thursday.warmup)}</div>
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleReleaseSpeaking(currentWeek.dates.thu, 'Thursday')}
-                      disabled={loadingAction === `release-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}`}
-                      className="px-3 py-1.5 rounded-lg bg-secondary text-white hover:bg-secondary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loadingAction === `release-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}` ? '⏳...' : '✓ Release'}
-                    </button>
-                    <button
-                      onClick={() => handleFeatureSpeaking(currentWeek.dates.thu, 'Thursday')}
-                      disabled={loadingAction === `feature-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}`}
-                      className="px-3 py-1.5 rounded-lg border border-secondary text-secondary hover:bg-secondary/10 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loadingAction === `feature-speaking-${currentWeek.dates.thu.year}-${currentWeek.dates.thu.month}-${currentWeek.dates.thu.day}` ? '⏳...' : '⭐ Feature'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Grammar Assignments Section */}
-            <div className="bg-accent/5 rounded-lg p-4 border-l-4 border-accent">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-sm font-bold text-text uppercase">📖 Grammar Activities</span>
-              </div>
-
-              {currentWeek.tuesday.grammar && (
-                <div className="mb-2">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="text-xs text-text/75 mb-1">Tuesday - New Grammar</div>
-                      <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.tuesday.grammar)}</div>
-                    </div>
-                    <button
-                      onClick={() => handleAssignGrammar(stripMarkdown(currentWeek.tuesday.grammar || ''), 'Tuesday')}
-                      disabled={loadingAction === `assign-Tuesday-${stripMarkdown(currentWeek.tuesday.grammar || '')}`}
-                      className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loadingAction === `assign-Tuesday-${stripMarkdown(currentWeek.tuesday.grammar || '')}` ? '⏳...' : '📝 Assign'}
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {currentWeek.thursday.grammar && (
-                <div className="mt-3 pt-3 border-t border-accent/20">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="text-xs text-text/75 mb-1">Thursday - Grammar Review</div>
-                      <div className="text-sm text-text/90 font-medium">{stripMarkdown(currentWeek.thursday.grammar)}</div>
-                    </div>
-                    <button
-                      onClick={() => handleAssignGrammar(stripMarkdown(currentWeek.thursday.grammar || ''), 'Thursday')}
-                      disabled={loadingAction === `assign-Thursday-${stripMarkdown(currentWeek.thursday.grammar || '')}`}
-                      className="px-3 py-1.5 rounded-lg bg-primary text-white hover:bg-primary/90 text-xs font-medium whitespace-nowrap transition disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {loadingAction === `assign-Thursday-${stripMarkdown(currentWeek.thursday.grammar || '')}` ? '⏳...' : '📝 Assign'}
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Unit Quiz Alert */}
-            {currentWeek.thursday.quiz && (
-              <div className="bg-orange-50 border border-orange-300 rounded-lg p-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">⚠️</span>
-                  <div className="flex-1">
-                    <div className="text-sm font-bold text-orange-900 mb-1">Unit Quiz This Thursday</div>
-                    <div className="text-sm text-orange-900">{currentWeek.thursday.quiz}</div>
-                    <div className="text-xs text-orange-800 mt-1">Note: Unit quizzes are paper tests provided by the program</div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
         )}
       </Card>
 
