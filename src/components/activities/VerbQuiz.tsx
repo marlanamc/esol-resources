@@ -13,6 +13,12 @@ interface VerbQuizProps {
   isSubmitting?: boolean;
 }
 
+// Helper function to parse date string as local date (not UTC)
+const parseLocalDate = (dateStr: string): Date => {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Date(y, (m || 1) - 1, d || 1, 12, 0, 0, 0); // noon local to avoid DST edge
+};
+
 export default function VerbQuiz({ content, activityId, activityTitle, onComplete, isSubmitting = false }: VerbQuizProps) {
   void activityId;
   const headerTitle = activityTitle ?? `${content.week} - Irregular Verb Quiz`;
@@ -78,7 +84,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
           Complete the verb forms for each irregular verb. The base form (V1) is provided.
         </p>
         <p className="text-sm text-neutral-500 mt-2">
-          Due: {new Date(content.due_date).toLocaleDateString('en-US', {
+          Due: {parseLocalDate(content.due_date).toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
