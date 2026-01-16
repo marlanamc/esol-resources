@@ -221,7 +221,10 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             ["information questions", "imperatives", "declaratives"]
         );
 
-        const conditionals = sortAlpha(take((a) => normalizeTitle(a.title).includes("conditional")));
+        const conditionals = sortByKeywordOrder(
+            take((a) => normalizeTitle(a.title).includes("conditional")),
+            ["zero", "first", "second", "third"]
+        );
         const modals = sortAlpha(take((a) => normalizeTitle(a.title).includes("modal")));
         const habitsAndPreferences = sortAlpha(
             take((a) => {
@@ -298,11 +301,12 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                 ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
             },
             {
+                name: "Conditionals",
+                activities: conditionals
+            },
+            {
                 name: "Describing & Comparing",
-                activities: [
-                    ...conditionals,
-                    ...wordsAndQuantity
-                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+                activities: wordsAndQuantity.sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
             },
             {
                 name: "Writing Basics",

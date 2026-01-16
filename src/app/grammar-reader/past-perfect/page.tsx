@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { pastPerfectContent } from "@/content/grammar/past-perfect";
+import { pastPerfectJobsContent } from "@/content/grammar/past-perfect-jobs";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -18,7 +18,7 @@ export default async function PastPerfectPage() {
     if (!session) redirect("/login");
 
     const activityId = await getActivityIdSafely(
-        "Past Perfect Guide",
+        "Past Perfect: Jobs Guide",
         "guide",
         "grammar"
     );
@@ -38,7 +38,7 @@ export default async function PastPerfectPage() {
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={pastPerfectContent}
+                content={pastPerfectJobsContent}
                 completionKey="past-perfect"
                 activityId={activityId}
             />

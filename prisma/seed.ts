@@ -6,8 +6,8 @@ import { presentContinuousContent } from '../src/content/grammar/present-continu
 import { pastContinuousContent } from '../src/content/grammar/past-continuous';
 import { futureContinuousContent } from '../src/content/grammar/future-continuous';
 import { presentPerfectContent } from '../src/content/grammar/present-perfect';
-import { pastPerfectContent } from '../src/content/grammar/past-perfect';
-import { futurePerfectContent } from '../src/content/grammar/future-perfect';
+import { pastPerfectJobsContent } from '../src/content/grammar/past-perfect-jobs';
+import { futurePerfectJobsContent } from '../src/content/grammar/future-perfect-jobs';
 import { presentPerfectContinuousContent } from '../src/content/grammar/present-perfect-continuous';
 import { pastPerfectContinuousContent } from '../src/content/grammar/past-perfect-continuous';
 import { futurePerfectContinuousContent } from '../src/content/grammar/future-perfect-continuous';
@@ -16,6 +16,9 @@ import { continuousTensesReviewContent } from '../src/content/grammar/continuous
 import { perfectTensesReviewContent } from '../src/content/grammar/perfect-tenses-review';
 import { perfectContinuousTensesReviewContent } from '../src/content/grammar/perfect-continuous-tenses-review';
 import { cycleOneReviewContent } from '../src/content/grammar/cycle-1-review';
+import { conditionalsZeroFirstJobsContent } from '../src/content/grammar/conditionals-zero-first-jobs';
+import { conditionalsSecondThirdJobsContent } from '../src/content/grammar/conditionals-second-third-jobs';
+import { gerundsInfinitivesJobsContent } from '../src/content/grammar/gerunds-infinitives-jobs';
 
 const prisma = new PrismaClient();
 
@@ -126,12 +129,12 @@ async function main() {
   // Past Perfect
   const pastPerfect = await prisma.activity.create({
     data: {
-      title: 'Past Perfect Guide',
-      description: 'Master Past Perfect for showing which action happened first when telling stories about the past.',
+      title: 'Past Perfect: Jobs Guide',
+      description: 'Learn to use past perfect tense to describe your work history, explain career transitions, and talk about training and certifications. Perfect for job interviews and professional conversations about experience timelines.',
       type: 'guide',
       category: 'grammar',
       level: 'intermediate',
-      content: JSON.stringify(pastPerfectContent)
+      content: JSON.stringify(pastPerfectJobsContent)
     }
   });
   console.log('✅ Added:', pastPerfect.title);
@@ -139,12 +142,12 @@ async function main() {
   // Future Perfect
   const futurePerfect = await prisma.activity.create({
     data: {
-      title: 'Future Perfect Guide',
-      description: 'Learn Future Perfect for actions that will be complete before a future deadline or point in time.',
+      title: 'Future Perfect: Jobs Guide',
+      description: 'Learn to use future perfect tense to set career goals, plan professional development, discuss project deadlines, and communicate future accomplishments. Essential for job interviews, performance reviews, and career planning.',
       type: 'guide',
       category: 'grammar',
       level: 'intermediate',
-      content: JSON.stringify(futurePerfectContent)
+      content: JSON.stringify(futurePerfectJobsContent)
     }
   });
   console.log('✅ Added:', futurePerfect.title);
@@ -257,6 +260,50 @@ async function main() {
   });
   console.log('✅ Added:', cycleOneReview.title);
 
+  console.log('\n🎯 Adding Conditional Guides...');
+
+  // Zero & First Conditionals: Jobs
+  const conditionalsZeroFirst = await prisma.activity.create({
+    data: {
+      id: 'conditionals-zero-first-jobs',
+      title: 'Zero & First Conditionals: Jobs Guide',
+      description: 'Learn to use zero conditional for workplace policies and rules, and first conditional for real future job plans and possibilities. Essential for understanding workplace expectations and discussing your career goals.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(conditionalsZeroFirstJobsContent)
+    }
+  });
+  console.log('✅ Added:', conditionalsZeroFirst.title);
+
+  // Second & Third Conditionals: Jobs
+  const conditionalsSecondThird = await prisma.activity.create({
+    data: {
+      id: 'conditionals-second-third-jobs',
+      title: 'Second & Third Conditionals: Jobs Guide',
+      description: 'Learn to use second conditional for career advice and hypothetical job scenarios, and third conditional for reflecting on past job decisions and lessons learned. Perfect for professional discussions and career planning.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'advanced',
+      content: JSON.stringify(conditionalsSecondThirdJobsContent)
+    }
+  });
+  console.log('✅ Added:', conditionalsSecondThird.title);
+
+  // Gerunds & Infinitives: Jobs
+  const gerundsInfinitivesJobs = await prisma.activity.create({
+    data: {
+      id: 'gerunds-infinitives-jobs',
+      title: 'Gerunds & Infinitives: Jobs Guide',
+      description: 'Master gerunds and infinitives for professional communication. Learn the essential patterns for resume writing, cover letters, interviews, and workplace discussions about skills and qualifications.',
+      type: 'guide',
+      category: 'grammar',
+      level: 'intermediate',
+      content: JSON.stringify(gerundsInfinitivesJobsContent)
+    }
+  });
+  console.log('✅ Added:', gerundsInfinitivesJobs.title);
+
   console.log('\n🎮 Adding Games...');
 
   // Numbers Game
@@ -279,12 +326,14 @@ async function main() {
   console.log('✅ Added:', numbersGame.title);
 
   console.log('\n✨ Dashboard updated successfully!');
-  console.log(`\nAdded ${18} grammar guides:`);
+  console.log(`\nAdded ${21} grammar guides:`);
   console.log('  - 3 Simple tenses (Present, Past, Future)');
   console.log('  - 3 Continuous tenses (Present, Past, Future)');
   console.log('  - 3 Perfect tenses (Present, Past, Future)');
   console.log('  - 3 Perfect Continuous tenses (Present, Past, Future)');
   console.log('  - 5 Review guides (Simple, Continuous, Perfect, Perfect Continuous, Cycle 1)');
+  console.log('  - 2 Conditional guides (Zero & First, Second & Third)');
+  console.log('  - 1 Gerunds & Infinitives guide (Jobs)');
   console.log(`\nAdded 1 game:`);
   console.log('  - Numbers to English Words');
   console.log('\nYou can now view all activities at: /dashboard');

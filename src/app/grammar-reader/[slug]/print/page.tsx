@@ -14,11 +14,28 @@ export default async function GrammarPrintPage({ params }: Props) {
         notFound();
     }
 
-    // Format guide title from slug
-    const guideTitle = slug
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+    // Get guide title from introduction section, or format from slug
+    let guideTitle: string;
+    const introductionSection = content.sections.find(s => s.id === "introduction");
+    if (introductionSection?.title && introductionSection.title.includes("Guide")) {
+        // Use the introduction title if it already has "Guide"
+        // Convert "&" to "and" for better readability in print
+        guideTitle = introductionSection.title.replace(/\s*&\s*/g, " and ");
+    } else {
+        // Format from slug and add "Guide"
+        const formattedSlug = slug
+            .split("-")
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
+        
+        // Handle special cases for better formatting
+        let formattedTitle = formattedSlug
+            .replace(/\s+Vs\s+/gi, " vs ")
+            .replace(/\s+And\s+/gi, " and ");
+        
+        // Add "Guide" at the end
+        guideTitle = `${formattedTitle} Guide`;
+    }
 
     return (
         <>
