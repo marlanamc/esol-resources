@@ -20,10 +20,26 @@ export default async function GrammarMapPage() {
     }
 
     const userId = session.user.id;
+    const userRole = (session.user as any).role;
 
     const activityTitles = Array.from(
         new Set(grammarTopics.flatMap((topic) => topic.activityTitles ?? []).filter(Boolean))
     );
+
+    // For students, get released activities to filter topics
+    let releasedTitles: Set<string> | null = null;
+    if (userRole === 'student') {
+        const releasedActivities = await prisma.activity.findMany({
+            where: {
+                title: { in: activityTitles },
+                type: 'guide',
+                category: 'grammar',
+                isReleased: true,
+            },
+            select: { title: true },
+        });
+        releasedTitles = new Set(releasedActivities.map(a => a.title));
+    }
 
     const activityProgress = await prisma.activityProgress.findMany({
         where: {
@@ -32,6 +48,8 @@ export default async function GrammarMapPage() {
                 title: { in: activityTitles },
                 type: 'guide',
                 category: 'grammar',
+                // Students only see released guides
+                ...(userRole === 'student' ? { isReleased: true } : {}),
             },
         },
         select: {
@@ -53,7 +71,14 @@ export default async function GrammarMapPage() {
         return acc;
     }, {} as Record<string, { completionPercentage: number; status: string }>);
 
-    const progressMap = grammarTopics.reduce((acc, topic) => {
+    // Filter topics based on release status for students
+    const visibleTopics = userRole === 'student' && releasedTitles
+        ? grammarTopics.filter(topic =>
+            topic.activityTitles?.some(title => releasedTitles!.has(title))
+          )
+        : grammarTopics;
+
+    const progressMap = visibleTopics.reduce((acc, topic) => {
         const titlesForTopic = topic.activityTitles ?? [];
         let best: { completionPercentage: number; status: string } | null = null;
         for (const title of titlesForTopic) {
@@ -95,7 +120,7 @@ export default async function GrammarMapPage() {
             </header>
 
             <main className="container mx-auto px-4 py-6 sm:px-6 pb-28 md:pb-10">
-                <GrammarMapClient progressMap={progressMap} />
+                <GrammarMapClient progressMap={progressMap} topics={visibleTopics} />
             </main>
         </div>
     );

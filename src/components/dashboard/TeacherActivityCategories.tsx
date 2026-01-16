@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface Activity {
@@ -11,6 +11,7 @@ interface Activity {
     category: string | null;
     level: string | null;
     content?: string;
+    isReleased?: boolean;
 }
 
 interface SubSubCategory {
@@ -50,6 +51,18 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
     const [assignmentMap, setAssignmentMap] = useState<Record<string, string>>(activityAssignmentMap);
     const [assigningId, setAssigningId] = useState<string | null>(null);
     const [assignError, setAssignError] = useState<string | null>(null);
+    const [grammarReleases, setGrammarReleases] = useState<Record<string, boolean>>({});
+
+    // Initialize grammar release status from activities
+    useEffect(() => {
+        const releases: Record<string, boolean> = {};
+        activities.forEach(activity => {
+            if (activity.type === 'guide' && activity.category === 'grammar') {
+                releases[activity.id] = activity.isReleased ?? false;
+            }
+        });
+        setGrammarReleases(releases);
+    }, [activities]);
 
     const toggleCategory = (categoryName: string) => {
         const newExpanded = new Set(expandedCategories);
@@ -438,21 +451,31 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         const isFeatured = featuredIds.has(activity.id);
         const [isReleasing, setIsReleasing] = React.useState(false);
 
-        // Check if this is a verb quiz or speaking activity and if it's released
+        // Check if this is a verb quiz, speaking activity, or grammar guide and if it's released
         let isQuiz = false;
         let isSpeaking = false;
+        let isGrammarGuide = false;
         let isReleased = false;
-        try {
-            const content = JSON.parse(activity.content || '{}');
-            isQuiz = content.type === 'verb-quiz';
-            isSpeaking = content.type === 'speaking';
-            isReleased = content.released === true;
-        } catch {}
+
+        if (activity.type === 'guide' && activity.category === 'grammar') {
+            isGrammarGuide = true;
+            isReleased = grammarReleases[activity.id] ?? false;
+        } else {
+            try {
+                const content = JSON.parse(activity.content || '{}');
+                isQuiz = content.type === 'verb-quiz';
+                isSpeaking = content.type === 'speaking';
+                isReleased = content.released === true;
+            } catch {}
+        }
 
         const handleRelease = async () => {
             setIsReleasing(true);
             try {
-                const apiEndpoint = isSpeaking ? '/api/speaking/release' : '/api/quiz/release';
+                let apiEndpoint = '/api/quiz/release';
+                if (isSpeaking) apiEndpoint = '/api/speaking/release';
+                if (isGrammarGuide) apiEndpoint = '/api/grammar/release';
+
                 const res = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -466,11 +489,19 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                     throw new Error('Failed to update release status');
                 }
 
-                // Refresh the page to show updated status
-                window.location.reload();
+                // Update local state for grammar guides
+                if (isGrammarGuide) {
+                    setGrammarReleases(prev => ({
+                        ...prev,
+                        [activity.id]: !isReleased
+                    }));
+                } else {
+                    // Refresh the page for quiz/speaking
+                    window.location.reload();
+                }
             } catch (error) {
                 console.error(error);
-                const activityType = isSpeaking ? 'speaking activity' : 'quiz';
+                const activityType = isSpeaking ? 'speaking activity' : isGrammarGuide ? 'grammar guide' : 'quiz';
                 alert(`Failed to update ${activityType} release status`);
             } finally {
                 setIsReleasing(false);
@@ -601,7 +632,7 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                                     {assigningId === activity.id ? 'Assigning...' : 'Assign'}
                                 </button>
                             )}
-                            {(isQuiz || isSpeaking) && (
+                            {(isQuiz || isSpeaking || isGrammarGuide) && (
                                 <button
                                     type="button"
                                     onClick={handleRelease}
@@ -611,9 +642,18 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
                                             ? 'bg-gray-500 hover:bg-gray-600'
                                             : 'bg-terracotta hover:brightness-110'
                                     } hover:shadow-md hover:-translate-y-0.5 ${isReleasing ? 'opacity-70' : ''}`}
-                                    style={{ backgroundColor: isReleased ? undefined : (isSpeaking ? '#e09f3e' : '#c86b51') }}
+                                    style={{
+                                        backgroundColor: isReleased
+                                            ? undefined
+                                            : (isSpeaking ? '#e09f3e' : isGrammarGuide ? '#7ba884' : '#c86b51')
+                                    }}
                                 >
-                                    {isReleasing ? 'Updating...' : isReleased ? (isSpeaking ? 'Hide' : 'Hide Quiz') : (isSpeaking ? 'Release' : 'Release Quiz')}
+                                    {isReleasing
+                                        ? 'Updating...'
+                                        : isReleased
+                                            ? (isSpeaking ? 'Hide' : isGrammarGuide ? 'Hide Guide' : 'Hide Quiz')
+                                            : (isSpeaking ? 'Release' : isGrammarGuide ? 'Release Guide' : 'Release Quiz')
+                                    }
                                 </button>
                             )}
                         </div>

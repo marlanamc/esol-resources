@@ -12,7 +12,18 @@ export default async function ActivitiesPage() {
     const userId = session.user?.id;
     const userRole = session.user?.role;
 
+    // Filter activities by release status for students
     const activities = await prisma.activity.findMany({
+        where: userRole === "student"
+            ? {
+                OR: [
+                    // Released grammar guides only
+                    { type: "guide", category: "grammar", isReleased: true },
+                    // Non-grammar activities (speaking/quiz filtered client-side)
+                    { NOT: { AND: [{ type: "guide" }, { category: "grammar" }] } }
+                ]
+            }
+            : undefined,
         orderBy: { createdAt: "desc" },
     });
 

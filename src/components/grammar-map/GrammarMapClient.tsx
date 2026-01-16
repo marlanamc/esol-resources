@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { grammarTopics, categoryColors, categoryLabels, type GrammarTopic } from '@/data/grammar-map';
+import { categoryColors, categoryLabels, type GrammarTopic } from '@/data/grammar-map';
 import { Check, Loader2, ArrowRight, ZoomIn, ZoomOut, Maximize2, List } from 'lucide-react';
 
 interface ProgressData {
@@ -12,6 +12,7 @@ interface ProgressData {
 
 interface GrammarMapClientProps {
     progressMap: Record<string, ProgressData>;
+    topics: GrammarTopic[];
 }
 
 interface NodePosition {
@@ -48,7 +49,7 @@ const tenseSubcategoryLabels: Record<NonNullable<GrammarTopic['subcategory']>, s
     'perfect-continuous': 'Perfect Continuous',
 };
 
-export default function GrammarMapClient({ progressMap }: GrammarMapClientProps) {
+export default function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps) {
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
     const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
     const [nodePositions, setNodePositions] = useState<Record<string, NodePosition>>({});
@@ -59,15 +60,15 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     const containerRef = useRef<HTMLDivElement>(null);
 
     const weekRange = useMemo(() => {
-        const weeks = grammarTopics.map((t) => t.week).filter((w): w is number => typeof w === 'number' && Number.isFinite(w));
+        const weeks = topics.map((t) => t.week).filter((w): w is number => typeof w === 'number' && Number.isFinite(w));
         if (!weeks.length) return { minWeek: 0, maxWeek: 0, weeks: [] as number[] };
         const uniqueWeeks = Array.from(new Set(weeks)).sort((a, b) => a - b);
         return { minWeek: Math.min(...uniqueWeeks), maxWeek: Math.max(...uniqueWeeks), weeks: uniqueWeeks };
-    }, []);
+    }, [topics]);
 
     const lanes = useMemo(() => {
         const topicsByWeek: Record<number, GrammarTopic[]> = {};
-        grammarTopics.forEach((topic) => {
+        topics.forEach((topic) => {
             const week = topic.week || 0;
             if (!topicsByWeek[week]) topicsByWeek[week] = [];
             topicsByWeek[week].push(topic);
@@ -107,7 +108,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
         }
 
         return result;
-    }, []);
+    }, [topics]);
 
     // Calculate node positions based on week + category lanes (game-map layout)
     useEffect(() => {
@@ -116,7 +117,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
 
         // Group topics by week
         const topicsByWeek: Record<number, GrammarTopic[]> = {};
-        grammarTopics.forEach(topic => {
+        topics.forEach(topic => {
             const week = topic.week || 0;
             if (!topicsByWeek[week]) {
                 topicsByWeek[week] = [];
@@ -215,7 +216,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
 
         setNodePositions(positions);
         setEdges(edgesList);
-    }, [weekRange.minWeek]);
+    }, [weekRange.minWeek, topics]);
 
     // Get completion status for a topic
     const arePrereqsMet = (topic: GrammarTopic): boolean => {
@@ -241,7 +242,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
     const getSuggestedNext = (): string[] => {
         const suggested: string[] = [];
 
-        for (const topic of grammarTopics) {
+        for (const topic of topics) {
             const status = getTopicStatus(topic);
             if (status === 'available') {
                 // Check if this is a logical next step (prerequisites completed, not started yet)
@@ -458,7 +459,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
             {viewMode === 'list' && (
                 <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-6">
                     {CATEGORY_ORDER.map(category => {
-                        const topicsInCategory = grammarTopics.filter(t => t.category === category);
+                        const topicsInCategory = topics.filter(t => t.category === category);
                         if (topicsInCategory.length === 0) return null;
 
                         return (
@@ -648,7 +649,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
 
                     {/* Render nodes */}
                     <g className="nodes">
-                        {grammarTopics.map((topic, index) => {
+                        {topics.map((topic, index) => {
                             const pos = nodePositions[topic.id];
                             if (!pos) return null;
 
@@ -749,7 +750,7 @@ export default function GrammarMapClient({ progressMap }: GrammarMapClientProps)
                     className="mt-6 p-6 bg-white rounded-lg shadow-lg border border-gray-200"
                 >
                     {(() => {
-                        const topic = grammarTopics.find(t => t.id === selectedTopic);
+                        const topic = topics.find(t => t.id === selectedTopic);
                         if (!topic) return null;
 
                         const status = getTopicStatus(topic);
