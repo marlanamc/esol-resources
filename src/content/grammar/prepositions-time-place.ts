@@ -213,5 +213,103 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                 },
             ],
         },
+        {
+            id: "mini-quiz",
+            title: "📝 Mini Quiz: Prepositions Mastery",
+            icon: "🎯",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #2563eb;">Test Your Prepositions Knowledge!</h3>
+                    <p style="margin-bottom: 0;">This quick quiz covers time and place prepositions. Choose the best preposition for each sentence.</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "prep-quiz-1",
+                    title: "Quiz Question 1",
+                    instructions: "Choose the correct time preposition.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "My appointment is ___ Friday morning.",
+                            options: [
+                                { value: "at", label: "at" },
+                                { value: "on", label: "on" },
+                                { value: "in", label: "in" },
+                            ],
+                            expectedAnswer: "on",
+                        },
+                    ],
+                },
+                {
+                    id: "prep-quiz-2",
+                    title: "Quiz Question 2", 
+                    instructions: "Choose the correct time preposition.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I work ___ 9 AM ___ 5 PM.",
+                            options: [
+                                { value: "at-on", label: "at / on" },
+                                { value: "at-to", label: "at / to" },
+                                { value: "from-to", label: "from / to" },
+                            ],
+                            expectedAnswer: "from-to",
+                        },
+                    ],
+                },
+                {
+                    id: "prep-quiz-3",
+                    title: "Quiz Question 3",
+                    instructions: "Choose the correct place preposition.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "The library is ___ Central Square.",
+                            options: [
+                                { value: "at", label: "at" },
+                                { value: "in", label: "in" },
+                                { value: "on", label: "on" },
+                            ],
+                            expectedAnswer: "in",
+                        },
+                    ],
+                },
+                {
+                    id: "prep-quiz-4",
+                    title: "Quiz Question 4",
+                    instructions: "Choose the correct place preposition.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "We live ___ the community center.",
+                            options: [
+                                { value: "at", label: "at" },
+                                { value: "near", label: "near" },
+                                { value: "on", label: "on" },
+                            ],
+                            expectedAnswer: "near",
+                        },
+                    ],
+                },
+                {
+                    id: "prep-quiz-5",
+                    title: "Quiz Question 5",
+                    instructions: "Choose the correct combination.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I'm waiting ___ the bus ___ the station.",
+                            options: [
+                                { value: "for-at", label: "for / at" },
+                                { value: "to-on", label: "to / on" },
+                                { value: "at-in", label: "at / in" },
+                            ],
+                            expectedAnswer: "for-at",
+                        },
+                    ],
+                },
+            ],
+        },
     ],
 };

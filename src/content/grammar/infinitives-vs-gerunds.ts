@@ -5,6 +5,53 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
     tableOfContents: true,
     sections: [
         {
+            id: "quick-start-patterns",
+            title: "Quick Start: Routine vs Intention Patterns",
+            icon: "🌀",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(132, 204, 22, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%); padding: 1.25rem; border-radius: 0.75rem; margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.5rem; font-size: 1.15rem;">Identify whether you are describing a routine, a feeling, or a plan. Gerunds (-ing) often signal what you enjoy or do regularly; infinitives (to + verb) point to intention, decisions, or next steps.</p>
+                    <p style="margin-bottom: 0;">Use these patterns when you talk about housing, jobs, health, or East Boston community life so listeners know if you are describing a habit or a goal.</p>
+                </div>
+                <ul style="margin-top: 0; padding-left: 1.2rem;">
+                    <li>Housing: "I enjoy walking past the community garden."</li>
+                    <li>Jobs: "I plan to submit the resume tomorrow."</li>
+                    <li>Health: "After stretching, I feel ready for classes."</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 Quick Tip",
+                content: "Ask yourself, is this repeating or feeling (use gerund) or is it a plan/choice (use infinitive)? Keep the context in mind before you pick a form.",
+            },
+            exercises: [
+                {
+                    id: "pattern-matrix-1",
+                    title: "Choose the Right Form",
+                    instructions: "Which sentence best matches routine or plan?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "After my shift, I enjoy walking along Salem Street.",
+                            options: [
+                                { value: "routine", label: "Routine (gerund is correct)" },
+                                { value: "plan", label: "Plan (should use infinitive)" },
+                            ],
+                            expectedAnswer: "routine",
+                        },
+                        {
+                            type: "radio",
+                            label: "I want to find a better apartment near the T.",
+                            options: [
+                                { value: "routine", label: "Routine (should use gerund)" },
+                                { value: "plan", label: "Plan (infinitive is correct)" },
+                            ],
+                            expectedAnswer: "plan",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             id: "introduction",
             title: "Infinitives vs Gerunds: To Do or Doing?",
             icon: "🤔",
@@ -89,7 +136,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "definitions",
-            stepNumber: 1,
+            stepNumber: 2,
             title: "Infinitive vs Gerund: What's the Difference?",
             icon: "📖",
             explanation: `
@@ -160,7 +207,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "pattern-1-subject-gerund",
-            stepNumber: 1,
+            stepNumber: 3,
             title: "Pattern 1: Subject = Gerund (___ing is...)",
             icon: "🌊",
             explanation: `
@@ -274,7 +321,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "infinitive-verbs",
-            stepNumber: 6,
+            stepNumber: 8,
             title: "Pattern 6: Verb + Infinitive (to + verb)",
             icon: "➡️",
             explanation: `
@@ -335,7 +382,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "gerund-verbs",
-            stepNumber: 2,
+            stepNumber: 4,
             title: "Pattern 2: Verb + Gerund (I enjoy ___ing)",
             icon: "🔄",
             explanation: `
@@ -396,7 +443,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "pattern-3-preposition-gerund",
-            stepNumber: 3,
+            stepNumber: 5,
             title: "Pattern 3: Preposition + Gerund (good at ___ing)",
             icon: "🔗",
             explanation: `
@@ -465,7 +512,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "pattern-4-adjective-infinitive",
-            stepNumber: 4,
+            stepNumber: 6,
             title: "Pattern 4: Adjective + Infinitive (It's nice to...)",
             icon: "✨",
             explanation: `
@@ -579,7 +626,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "pattern-5-noun-infinitive",
-            stepNumber: 5,
+            stepNumber: 7,
             title: "Pattern 5: Noun + Infinitive (I asked him to...)",
             icon: "👥",
             explanation: `
@@ -689,7 +736,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "both",
-            stepNumber: 7,
+            stepNumber: 9,
             title: "Verbs That Take BOTH (with Different Meanings)",
             icon: "⚡",
             explanation: `
@@ -762,7 +809,7 @@ export const infinitivesVsGerundsContent: InteractiveGuideContent = {
 
         {
             id: "practical-tips",
-            stepNumber: 8,
+            stepNumber: 10,
             title: "Practical Tips: Using All 6 Patterns in Real Life",
             icon: "💼",
             explanation: `

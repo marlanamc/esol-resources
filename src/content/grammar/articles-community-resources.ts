@@ -98,6 +98,45 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                 title: "💬 Try This",
                 content: "Before you say it, ask: does the listener know which place/service I mean? If yes, use the; if not, start with a/an or nothing.",
             },
+            exercises: [
+                {
+                    id: "proper-abstract-1",
+                    title: "Choose Article Type",
+                    instructions: "Select the correct article for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I go to ___ East Boston Branch Library.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "the",
+                        },
+                        {
+                            type: "radio",
+                            label: "We look for work at ___ community centers.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "zero",
+                        },
+                        {
+                            type: "radio",
+                            label: "___ safety of my family is important.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "the",
+                        },
+                    ],
+                },
+            ],
         },
         {
             id: "practice",
@@ -142,6 +181,104 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                                 { value: "zero", label: "(no article)" },
                             ],
                             expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "mini-quiz",
+            title: "📝 Mini Quiz: Articles Mastery",
+            icon: "🎯",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #059669;">Test Your Articles Knowledge!</h3>
+                    <p style="margin-bottom: 0;">This quick quiz covers everything you learned about articles. Choose the best article (a/an/the/no article) for each sentence.</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "articles-quiz-1",
+                    title: "Quiz Question 1",
+                    instructions: "Choose the correct article.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I need to find ___ job that pays well.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+                {
+                    id: "articles-quiz-2", 
+                    title: "Quiz Question 2",
+                    instructions: "Choose the correct article.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "___ manager I spoke to was very helpful.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "the",
+                        },
+                    ],
+                },
+                {
+                    id: "articles-quiz-3",
+                    title: "Quiz Question 3", 
+                    instructions: "Choose the correct article.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "We attend ___ community meetings every month.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "zero",
+                        },
+                    ],
+                },
+                {
+                    id: "articles-quiz-4",
+                    title: "Quiz Question 4",
+                    instructions: "Choose the correct article.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "She is looking for ___ apartment near ___ T station.",
+                            options: [
+                                { value: "an-the", label: "an / the" },
+                                { value: "a-the", label: "a / the" },
+                                { value: "the-a", label: "the / a" },
+                            ],
+                            expectedAnswer: "an-the",
+                        },
+                    ],
+                },
+                {
+                    id: "articles-quiz-5",
+                    title: "Quiz Question 5",
+                    instructions: "Choose the correct article.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "___ health is most important thing.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "zero",
                         },
                     ],
                 },
