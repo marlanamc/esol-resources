@@ -25,7 +25,7 @@ const grammarContentMap: Record<
     "passive-voice": () => import("@/content/grammar/passive-voice"),
     "past-continuous": () => import("@/content/grammar/past-continuous"),
     "past-perfect-continuous": () => import("@/content/grammar/past-perfect-continuous"),
-    "past-perfect": () => import("@/content/grammar/past-perfect-jobs"),
+    // "past-perfect": () => import("@/content/grammar/past-perfect"), // TODO: Create past-perfect.ts content file
     "past-simple": () => import("@/content/grammar/past-simple"),
     "perfect-continuous-tenses-review": () => import("@/content/grammar/perfect-continuous-tenses-review"),
     "perfect-tenses-review": () => import("@/content/grammar/perfect-tenses-review"),

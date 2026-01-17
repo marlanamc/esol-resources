@@ -6,7 +6,7 @@ import { presentContinuousContent } from '../src/content/grammar/present-continu
 import { pastContinuousContent } from '../src/content/grammar/past-continuous';
 import { futureContinuousContent } from '../src/content/grammar/future-continuous';
 import { presentPerfectContent } from '../src/content/grammar/present-perfect';
-import { pastPerfectContent } from '../src/content/grammar/past-perfect';
+// import { pastPerfectContent } from '../src/content/grammar/past-perfect'; // TODO: Create past-perfect.ts content file
 import { futurePerfectContent } from '../src/content/grammar/future-perfect';
 import { presentPerfectContinuousContent } from '../src/content/grammar/present-perfect-continuous';
 import { pastPerfectContinuousContent } from '../src/content/grammar/past-perfect-continuous';
@@ -127,17 +127,18 @@ async function main() {
   console.log('✅ Added:', presentPerfect.title);
 
   // Past Perfect
-  const pastPerfect = await prisma.activity.create({
-    data: {
-      title: 'Past Perfect Guide',
-      description: 'Master past perfect tense for talking about events that happened before other past events. Learn the "time machine for two past actions" with engaging examples across all life situations, including professional contexts.',
-      type: 'guide',
-      category: 'grammar',
-      level: 'intermediate',
-      content: JSON.stringify(pastPerfectContent)
-    }
-  });
-  console.log('✅ Added:', pastPerfect.title);
+  // TODO: Uncomment when past-perfect.ts is created
+  // const pastPerfect = await prisma.activity.create({
+  //   data: {
+  //     title: 'Past Perfect Guide',
+  //     description: 'Master past perfect tense for talking about events that happened before other past events. Learn the "time machine for two past actions" with engaging examples across all life situations, including professional contexts.',
+  //     type: 'guide',
+  //     category: 'grammar',
+  //     level: 'intermediate',
+  //     content: JSON.stringify(pastPerfectContent)
+  //   }
+  // });
+  // console.log('✅ Added:', pastPerfect.title);
 
   // Future Perfect
   const futurePerfect = await prisma.activity.create({
