@@ -250,6 +250,14 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
             })
         );
 
+        const tenseSubCategories: SubSubCategory[] = [
+            { name: 'Simple', activities: simple },
+            { name: 'Continuous', activities: continuous },
+            { name: 'Perfect', activities: perfect },
+            { name: 'Perfect Continuous', activities: perfectContinuous },
+            { name: 'Reviews & Mixed', activities: mixedAllTenses },
+        ];
+
         const questionsAndCommands = sortByKeywordOrder(
             take((a) => {
                 const t = normalizeTitle(a.title);
@@ -306,26 +314,8 @@ export const TeacherActivityCategories: React.FC<TeacherActivityCategoriesProps>
         return [
             {
                 name: 'Tenses',
-                activities: [
-                    ...simple,
-                    ...continuous,
-                    ...perfect,
-                    ...perfectContinuous,
-                    ...mixedAllTenses
-                ].sort((a, b) => {
-                    const order = ['present', 'past', 'future', 'perfect', 'continuous', 'review'];
-                    const getOrder = (t: string) => {
-                        const norm = normalizeTitle(t);
-                        for (let i = 0; i < order.length; i++) {
-                            if (norm.includes(order[i])) return i;
-                        }
-                        return order.length;
-                    };
-                    const aIdx = getOrder(a.title || '');
-                    const bIdx = getOrder(b.title || '');
-                    if (aIdx !== bIdx) return aIdx - bIdx;
-                    return displayTitle(a.title || '').localeCompare(displayTitle(b.title || ''));
-                })
+                activities: [],
+                subCategories: tenseSubCategories
             },
             {
                 name: 'Questions, Modals & Communication',
