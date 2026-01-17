@@ -90,6 +90,26 @@ async function main() {
         });
     }
 
+    // Clean up legacy grammar guides that are duplicated or no longer backed by real pages
+    await prisma.activity.deleteMany({
+        where: {
+            title: 'Cycle 1 Review',
+            id: { not: 'cycle-1-review' },
+        },
+    });
+    await prisma.activity.deleteMany({
+        where: {
+            id: {
+                in: [
+                    'gerunds-prepositions',
+                    'infinitives-vs-gerunds',
+                    'verbs-plus-gerunds',
+                    'gerunds-infinitives-patterns-guide',
+                ],
+            },
+        },
+    });
+
 
     // NOTE: Tense guide stubs removed - we now use full-content guides from individual seed files
     // The following guides are created with full content elsewhere:
@@ -137,27 +157,6 @@ async function main() {
             description: 'Use must/have to/should and can/may/could to talk about rules, permission, and polite requests at work and in daily life.',
             level: 'intermediate',
             externalUrl: '/grammar-reader/modals-obligation-permission',
-        },
-        {
-            id: 'gerunds-prepositions',
-            title: 'Gerunds After Prepositions Guide',
-            description: 'Learn verb + -ing after prepositions (good at, interested in, before/after, by) with common patterns and practice.',
-            level: 'intermediate',
-            externalUrl: '/grammar-reader/gerunds-prepositions',
-        },
-        {
-            id: 'infinitives-vs-gerunds',
-            title: 'Infinitives vs Gerunds Guide',
-            description: 'Choose correctly between to + verb and verb-ing using meaning patterns (enjoy, want, decide, avoid, plan).',
-            level: 'intermediate',
-            externalUrl: '/grammar-reader/infinitives-vs-gerunds',
-        },
-        {
-            id: 'verbs-plus-gerunds',
-            title: 'Verbs + Gerunds Guide',
-            description: 'Practice common verbs followed by -ing (enjoy, avoid, finish, keep, consider) with realistic sentences.',
-            level: 'intermediate',
-            externalUrl: '/grammar-reader/verbs-plus-gerunds',
         },
         {
             id: 'workplace-phrasal-verbs',
@@ -1094,34 +1093,6 @@ async function main() {
     });
     console.log('📚 Prepositions of Time & Place guide added:', prepositionsGuide.title);
 
-    const gerundsGuide = await prisma.activity.upsert({
-        where: { id: 'gerunds-infinitives-patterns-guide' },
-        update: {
-            title: 'Gerunds & Infinitives Patterns Guide',
-            description: 'Merge the key gerund and infinitive patterns so students can choose intention vs routine with confidence.',
-            type: 'guide',
-            category: 'grammar',
-            level: 'intermediate',
-            content: JSON.stringify({
-                externalUrl: '/grammar-reader/gerunds-infinitives-patterns'
-            }),
-            createdBy: teacher.id,
-        },
-        create: {
-            id: 'gerunds-infinitives-patterns-guide',
-            title: 'Gerunds & Infinitives Patterns Guide',
-            description: 'Merge the key gerund and infinitive patterns so students can choose intention vs routine with confidence.',
-            type: 'guide',
-            category: 'grammar',
-            level: 'intermediate',
-            content: JSON.stringify({
-                externalUrl: '/grammar-reader/gerunds-infinitives-patterns'
-            }),
-            createdBy: teacher.id,
-        },
-    });
-    console.log('📚 Gerunds & Infinitives guide added:', gerundsGuide.title);
-
     const conditionalsContinuumGuide = await prisma.activity.upsert({
         where: { id: 'conditionals-continuum-guide' },
         update: {
@@ -1149,6 +1120,39 @@ async function main() {
         },
     });
     console.log('📚 Conditionals Continuum guide added:', conditionalsContinuumGuide.title);
+
+    // -------------------------
+    // Numbers Game
+    // -------------------------
+    const numbersGame = await prisma.activity.upsert({
+        where: { id: 'numbers-game' },
+        update: {
+            title: 'Numbers to English Words',
+            description: 'Practice converting numbers to their English word equivalents. Choose from various categories including basic numbers, hundreds, thousands, ordinals, and years.',
+            category: 'games',
+            type: 'game',
+            level: 'beginner',
+            content: JSON.stringify({
+                type: 'numbers-game',
+                category: 'Basic Numbers (0-99)'
+            }),
+            createdBy: teacher.id,
+        },
+        create: {
+            id: 'numbers-game',
+            title: 'Numbers to English Words',
+            description: 'Practice converting numbers to their English word equivalents. Choose from various categories including basic numbers, hundreds, thousands, ordinals, and years.',
+            category: 'games',
+            type: 'game',
+            level: 'beginner',
+            content: JSON.stringify({
+                type: 'numbers-game',
+                category: 'Basic Numbers (0-99)'
+            }),
+            createdBy: teacher.id,
+        },
+    });
+    console.log('🎮 Numbers Game added:', numbersGame.title);
 
     console.log('✅ Seeded database with teacher, ESOL 3 class, students, and grammar guides');
     console.log('👥 Students added:', students.length);
