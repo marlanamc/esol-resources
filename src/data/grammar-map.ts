@@ -115,12 +115,12 @@ export const grammarTopics: GrammarTopic[] = [
 
     // Gerunds & Infinitives (Week 22)
     {
-        id: 'gerunds-infinitives-jobs',
-        title: 'Gerunds & Infinitives: Jobs - Skills & Qualifications',
+        id: 'gerunds-infinitives',
+        title: 'Gerunds & Infinitives',
         week: 22,
         category: 'gerunds-infinitives',
         prerequisites: ['present-continuous', 'present-simple'],
-        activityTitles: ['Gerunds & Infinitives: Jobs Guide'],
+        activityTitles: ['Gerunds & Infinitives Guide'],
     },
     {
         id: 'gerunds-infinitives-patterns',
@@ -162,21 +162,21 @@ export const grammarTopics: GrammarTopic[] = [
     },
     {
         id: 'past-perfect',
-        title: 'Past Perfect: Jobs - Experience & Timelines',
+        title: 'Past Perfect',
         week: 13,
         category: 'tenses',
         subcategory: 'perfect',
         prerequisites: ['parts-of-speech'],
-        activityTitles: ['Past Perfect: Jobs Guide'],
+        activityTitles: ['Past Perfect Guide'],
     },
     {
         id: 'future-perfect',
-        title: 'Future Perfect: Jobs - Goals & Planning',
+        title: 'Future Perfect',
         week: 14,
         category: 'tenses',
         subcategory: 'perfect',
         prerequisites: ['present-perfect', 'future-simple'],
-        activityTitles: ['Future Perfect: Jobs Guide'],
+        activityTitles: ['Future Perfect Guide'],
     },
     {
         id: 'perfect-tenses-review',
@@ -239,12 +239,12 @@ export const grammarTopics: GrammarTopic[] = [
 
     // Advanced Grammar (Weeks 18-21)
     {
-        id: 'conditionals-zero-first-jobs',
-        title: 'Zero & First Conditionals: Jobs - Rules & Expectations',
+        id: 'conditionals-zero-first',
+        title: 'Zero & First Conditionals',
         week: 18,
         category: 'advanced',
         prerequisites: ['present-simple', 'future-simple'],
-        activityTitles: ['Zero & First Conditionals: Jobs Guide'],
+        activityTitles: ['Zero & First Conditionals Guide'],
     },
     {
         id: 'simple-continuous-review',
@@ -256,13 +256,13 @@ export const grammarTopics: GrammarTopic[] = [
         activityTitles: ['Simple & Continuous Tenses Review', 'Tenses Review Guide'],
     },
     {
-        id: 'conditionals-second-third-jobs',
-        title: 'Second & Third Conditionals: Jobs - Advice & Reflection',
+        id: 'conditionals-second-third',
+        title: 'Second & Third Conditionals',
         week: 20,
         category: 'advanced',
-        prerequisites: ['conditionals-zero-first-jobs', 'past-perfect'],
-        relatedTopics: ['conditionals-zero-first-jobs'],
-        activityTitles: ['Second & Third Conditionals: Jobs Guide'],
+        prerequisites: ['conditionals-zero-first', 'past-perfect'],
+        relatedTopics: ['conditionals-zero-first'],
+        activityTitles: ['Second & Third Conditionals Guide'],
     },
     {
         id: 'passive-voice',
