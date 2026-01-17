@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { gerundsInfinitivesContent } from "@/content/grammar/gerunds-infinitives";
+import { gerundsInfinitivesJobsContent } from "@/content/grammar/gerunds-infinitives-jobs";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -38,7 +38,7 @@ export default async function GerundsInfinitivesJobsPage() {
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={gerundsInfinitivesContent}
+                content={gerundsInfinitivesJobsContent}
                 completionKey="gerunds-infinitives-jobs"
                 activityId={activityId}
             />

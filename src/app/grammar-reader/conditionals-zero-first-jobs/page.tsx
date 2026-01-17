@@ -1,5 +1,5 @@
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
-import { conditionalsZeroFirstContent } from "@/content/grammar/conditionals-zero-first";
+import { conditionalsZeroFirstJobsContent } from "@/content/grammar/conditionals-zero-first-jobs";
 import type { Metadata } from "next";
 import { getActivityIdSafely } from "@/lib/build-helpers";
 import { getServerSession } from "next-auth";
@@ -38,7 +38,7 @@ export default async function ConditionalsZeroFirstJobsPage() {
     return (
         <div className="min-h-screen bg-bg">
             <GrammarReader
-                content={conditionalsZeroFirstContent}
+                content={conditionalsZeroFirstJobsContent}
                 completionKey="conditionals-zero-first-jobs"
                 activityId={activityId}
             />
