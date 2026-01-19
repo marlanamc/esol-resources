@@ -90,25 +90,9 @@ async function main() {
         });
     }
 
-    // Clean up legacy grammar guides that are duplicated or no longer backed by real pages
-    await prisma.activity.deleteMany({
-        where: {
-            title: 'Cycle 1 Review',
-            id: { not: 'cycle-1-review' },
-        },
-    });
-    await prisma.activity.deleteMany({
-        where: {
-            id: {
-                in: [
-                    'gerunds-prepositions',
-                    'infinitives-vs-gerunds',
-                    'verbs-plus-gerunds',
-                    'gerunds-infinitives-patterns-guide',
-                ],
-            },
-        },
-    });
+    // NOTE: Legacy cleanup removed to preserve student progress
+    // Old activities are now left in place rather than deleted
+    // Use db:seed:full for a complete reset if needed
 
 
     // NOTE: Tense guide stubs removed - we now use full-content guides from individual seed files
@@ -123,13 +107,6 @@ async function main() {
     // Additional Grammar Guides
     // -------------------------
     const additionalGrammarGuides = [
-        {
-            id: 'cycle-1-review',
-            title: 'Cycle 1 Review',
-            description: 'A gentle flow through Cycle 1 grammar: simple, continuous, parts of speech, frequency, comparatives, and connectors with a final mini-quiz.',
-            level: 'beginner',
-            externalUrl: '/grammar-reader/cycle-1-review',
-        },
         {
             id: 'parts-of-speech',
             title: 'Parts of Speech Guide',
@@ -192,13 +169,6 @@ async function main() {
             description: 'Use be + past participle to focus on the action (and the result) when the doer is unknown or unimportant.',
             level: 'intermediate',
             externalUrl: '/grammar-reader/passive-voice',
-        },
-        {
-            id: 'conditionals-zero-first',
-            title: 'Zero & First Conditionals Guide',
-            description: 'Compare and master two essential conditionals: zero (always true facts/habits) vs first (real future possibilities).',
-            level: 'intermediate',
-            externalUrl: '/grammar-reader/conditionals-zero-first',
         },
         {
             id: 'conditionals-second',
