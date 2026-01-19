@@ -20,7 +20,6 @@ import { perfectTensesReviewContent } from '../src/content/grammar/perfect-tense
 import { perfectContinuousTensesReviewContent } from '../src/content/grammar/perfect-continuous-tenses-review';
 import { cycleOneReviewContent } from '../src/content/grammar/cycle-1-review';
 import { conditionalsZeroFirstContent } from '../src/content/grammar/conditionals-zero-first';
-import { conditionalsSecondThirdContent } from '../src/content/grammar/conditionals-second-third';
 import { gerundsInfinitivesContent } from '../src/content/grammar/gerunds-infinitives';
 
 const prisma = new PrismaClient();
@@ -316,20 +315,6 @@ async function main() {
     }
   });
   console.log('✅ Added:', conditionalsZeroFirst.title);
-
-  // Second & Third Conditionals
-  const conditionalsSecondThird = await prisma.activity.create({
-    data: {
-      id: 'conditionals-second-third',
-      title: 'Second & Third Conditionals Guide',
-      description: 'Learn second conditional for hypothetical present/future situations and dreams, and third conditional for reflecting on past events. Master the art of giving advice with "If I were you" and discussing regrets or what might have been. Includes professional context for career planning.',
-      type: 'guide',
-      category: 'grammar',
-      level: 'advanced',
-      content: JSON.stringify(conditionalsSecondThirdContent)
-    }
-  });
-  console.log('✅ Added:', conditionalsSecondThird.title);
 
   // Gerunds & Infinitives
   const gerundsInfinitives = await prisma.activity.create({
