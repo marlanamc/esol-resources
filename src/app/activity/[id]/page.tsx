@@ -96,16 +96,14 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         }
     }
 
-    // Get existing submission if this is an assignment
+    // Get existing submission
     let submission = null;
-    if (assignmentId && userRole === "student") {
-        submission = await prisma.submission.findUnique({
+    if (userRole === "student") {
+        submission = await prisma.submission.findFirst({
             where: {
-                userId_activityId_assignmentId: {
-                    userId,
-                    activityId: id,
-                    assignmentId: assignmentId,
-                },
+                userId,
+                activityId: id,
+                assignmentId: assignmentId ?? null,
             },
         });
         if (submission?.content && typeof submission.content === "string") {
