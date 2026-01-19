@@ -225,7 +225,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             `,
             usageMeanings: [
                 {
-                    title: "🔢 HOW MANY = Count Nouns",
+                    title: "🔢 HOW MANY = Countable Nouns",
                     description: "Use 'how many' when asking about things you can count (plural nouns)",
                     examples: [
                         {
@@ -247,7 +247,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     ],
                 },
                 {
-                    title: "💵 HOW MUCH = Non-Count Nouns",
+                    title: "💵 HOW MUCH = Uncountable Nouns",
                     description: "Use 'how much' when asking about amounts you can't count individually",
                     examples: [
                         {
@@ -356,7 +356,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
 
                 <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
                     <div style="font-size: 1.25rem; text-align: center; margin-bottom: 1rem; font-weight: 600;">
-                        WH-word + Auxiliary + Subject + Main Verb + ?
+                        WH-word + Helping Verb + Subject + Main Verb + ?
                     </div>
                     <p style="text-align: center; margin: 0; font-style: italic;">
                         (Question word) + (do/does/did/is/are/can) + (who/what) + (verb) + ?
@@ -395,7 +395,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             formula: [
                 { text: "WH-word", type: "other" },
                 { text: "+", type: "other" },
-                { text: "Auxiliary", type: "verb" },
+                { text: "Helping Verb", type: "verb" },
                 { text: "+", type: "other" },
                 { text: "Subject", type: "subject" },
                 { text: "+", type: "other" },
@@ -406,7 +406,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Common Mistake",
                 content:
-                    "Don't forget the auxiliary! ❌ 'Where you live?' → ✅ 'Where DO you live?' The auxiliary (do/does/did/is/are/can/will) is required in information questions.",
+                    "Don't forget the helping verb! ❌ 'Where you live?' → ✅ 'Where DO you live?' The helping verb (do/does/did/is/are/can/will) is required in information questions.",
             },
             exercises: [
                 {
@@ -447,7 +447,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             title: "Subject Questions: When 'Who' and 'What' Break the Rules",
             icon: "⚡",
             explanation: `
-                <h3>The Exception: No Auxiliary Needed!</h3>
+                <h3>The Exception: No Helping Verb Needed!</h3>
                 <p>When <strong>who</strong> or <strong>what</strong> is the subject of the sentence (the doer of the action), you DON'T use do/does/did:</p>
 
                 <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
@@ -475,14 +475,14 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 <h4>How to Tell the Difference:</h4>
                 <p>Ask yourself: Is 'who' or 'what' doing the action, or receiving it?</p>
                 <ul>
-                    <li><strong>Doing:</strong> "Who broke the window?" (Someone broke it → subject question, no auxiliary)</li>
+                    <li><strong>Doing:</strong> "Who broke the window?" (Someone broke it → subject question, no helping verb)</li>
                     <li><strong>Receiving:</strong> "Who did you call?" (You called someone → object question, needs 'did')</li>
                 </ul>
             `,
             tipBox: {
                 title: "💡 Quick Test",
                 content:
-                    "Can you answer with a simple subject? Then it's a subject question (no auxiliary). Example: 'Who manages the building?' → 'Maria does.' vs 'Who do you know?' → 'I know Maria.'",
+                    "Can you answer with a simple subject? Then it's a subject question (no helping verb). Example: 'Who manages the building?' → 'Maria does.' vs 'Who do you know?' → 'I know Maria.'",
             },
             exercises: [
                 {
@@ -668,7 +668,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 </table>
 
                 <h3>Standard Word Order</h3>
-                <p><strong>WH-word + Auxiliary + Subject + Main Verb + ?</strong></p>
+                <p><strong>WH-word + Helping Verb + Subject + Main Verb + ?</strong></p>
                 <ul>
                     <li>Where <em>do</em> you live?</li>
                     <li>When <em>does</em> the lease start?</li>
@@ -676,7 +676,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 </ul>
 
                 <h3>Exception: Subject Questions</h3>
-                <p><strong>Who/What + Verb + ?</strong> (NO auxiliary when who/what is the subject)</p>
+                <p><strong>Who/What + Verb + ?</strong> (NO helping verb when who/what is the subject)</p>
                 <ul>
                     <li>Who pays utilities? (NOT: Who does pay...)</li>
                     <li>What includes parking? (NOT: What does include...)</li>
@@ -684,16 +684,16 @@ export const informationQuestionsContent: InteractiveGuideContent = {
 
                 <h3>Common Mistakes to Avoid:</h3>
                 <ul>
-                    <li>❌ "Where you live?" → ✅ "Where do you live?" (need auxiliary)</li>
+                    <li>❌ "Where you live?" → ✅ "Where do you live?" (need helping verb)</li>
                     <li>❌ "How much bedrooms?" → ✅ "How many bedrooms?" (bedrooms are countable)</li>
-                    <li>❌ "Who does pay rent?" → ✅ "Who pays rent?" (subject question, no auxiliary)</li>
+                    <li>❌ "Who does pay rent?" → ✅ "Who pays rent?" (subject question, no helping verb)</li>
                     <li>❌ "What is the rent costs?" → ✅ "How much is the rent?" OR "What does the rent cost?"</li>
                 </ul>
             `,
             tipBox: {
                 title: "💡 Practice Tip",
                 content:
-                    "Next time you need to ask a question, pause and think: What information do I need? (Choose WH-word) → What's the auxiliary? (do/does/is/are/can) → Put them in order. With practice, it becomes automatic!",
+                    "Next time you need to ask a question, pause and think: What information do I need? (Choose WH-word) → What's the helping verb? (do/does/is/are/can) → Put them in order. With practice, it becomes automatic!",
             },
             exercises: [
                 {
@@ -713,7 +713,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "Subject question (no auxiliary):",
+                            label: "Subject question (no helping verb):",
                             options: [
                                 { value: "a", label: "Who pays utilities?" },
                                 { value: "b", label: "Who does pay utilities?" },
@@ -990,7 +990,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "How many bedrooms does the apartment have?" },
             ],
             correctAnswer: "c",
-            explanation: "Bedrooms are countable (use 'how many'), and we need the auxiliary 'does' after the question word.",
+            explanation: "Bedrooms are countable (use 'how many'), and we need the helping verb 'does' after the question word.",
         },
         {
             id: "quiz-2",
@@ -1001,7 +1001,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Who do pay the utilities?" },
             ],
             correctAnswer: "b",
-            explanation: "This is a subject question ('Who' is doing the action of paying), so no auxiliary is needed.",
+            explanation: "This is a subject question ('Who' is doing the action of paying), so no helping verb is needed.",
         },
         {
             id: "quiz-3",
@@ -1012,7 +1012,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "When is due the rent?" },
             ],
             correctAnswer: "b",
-            explanation: "Correct order: WH-word + auxiliary + subject + adjective/complement → When is the rent due?",
+            explanation: "Correct order: WH-word + helping verb + subject + adjective/complement → When is the rent due?",
         },
         {
             id: "quiz-4",
@@ -1056,7 +1056,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Where are you live?" },
             ],
             correctAnswer: "a",
-            explanation: "WH-questions need an auxiliary: WH-word + do/does + subject + verb.",
+            explanation: "WH-questions need an helping verb: WH-word + do/does + subject + verb.",
         },
         {
             id: "quiz-8",
@@ -1073,12 +1073,12 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             id: "quiz-9",
             question: "What's the formula for standard information questions?",
             options: [
-                { value: "a", label: "WH-word + Subject + Auxiliary + Verb" },
-                { value: "b", label: "WH-word + Auxiliary + Subject + Verb" },
-                { value: "c", label: "Subject + WH-word + Verb + Auxiliary" },
+                { value: "a", label: "WH-word + Subject + Helping Verb + Verb" },
+                { value: "b", label: "WH-word + Helping Verb + Subject + Verb" },
+                { value: "c", label: "Subject + WH-word + Verb + Helping Verb" },
             ],
             correctAnswer: "b",
-            explanation: "Standard order: WH-word + Auxiliary (do/does/is/are/can) + Subject + Main Verb.",
+            explanation: "Standard order: WH-word + Helping Verb (do/does/is/are/can) + Subject + Main Verb.",
         },
         {
             id: "quiz-10",
@@ -1117,8 +1117,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Subject question or object question? 'Who did you call?'",
             options: [
-                { value: "a", label: "Subject question (no auxiliary needed)" },
-                { value: "b", label: "Object question (auxiliary required)" },
+                { value: "a", label: "Subject question (no helping verb needed)" },
+                { value: "b", label: "Object question (helping verb required)" },
                 { value: "c", label: "Neither" },
             ],
             correctAnswer: "b",
