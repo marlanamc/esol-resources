@@ -22,6 +22,8 @@ export type ExerciseItem =
         correctAnswer?: string;
         expectedAnswer?: string;
         expectedAnswers?: string[];
+        /** When true, any non-empty attempt counts as correct (for open-ended questions). */
+        acceptAnyAttempt?: boolean;
     }
     | {
         type: "select";

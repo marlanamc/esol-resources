@@ -66,6 +66,8 @@ export function ExerciseSection({
             if (item.type === "word-scramble") {
                 const correctAnswer = normalizeAnswer(item.correctAnswer);
                 newResults[index] = userAnswer === correctAnswer;
+            } else if (item.type === "text" && item.acceptAnyAttempt) {
+                newResults[index] = userAnswer.length > 0;
             } else {
                 const expectedCandidates: string[] = [];
 
