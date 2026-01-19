@@ -194,13 +194,6 @@ async function main() {
             externalUrl: '/grammar-reader/passive-voice',
         },
         {
-            id: 'future-conditional',
-            title: 'Future Conditional Guide',
-            description: 'Talk about possible future results and consequences using if + present, will + base verb (and common real-life patterns).',
-            level: 'intermediate',
-            externalUrl: '/grammar-reader/future-conditional',
-        },
-        {
             id: 'conditionals-zero-first',
             title: 'Zero & First Conditionals Guide',
             description: 'Compare and master two essential conditionals: zero (always true facts/habits) vs first (real future possibilities).',
@@ -1092,34 +1085,6 @@ async function main() {
         },
     });
     console.log('📚 Prepositions of Time & Place guide added:', prepositionsGuide.title);
-
-    const conditionalsContinuumGuide = await prisma.activity.upsert({
-        where: { id: 'conditionals-continuum-guide' },
-        update: {
-            title: 'Conditionals Continuum Guide',
-            description: 'Walk through zero, first, and second conditionals with context and modal practice.',
-            type: 'guide',
-            category: 'grammar',
-            level: 'intermediate',
-            content: JSON.stringify({
-                externalUrl: '/grammar-reader/conditionals-continuum'
-            }),
-            createdBy: teacher.id,
-        },
-        create: {
-            id: 'conditionals-continuum-guide',
-            title: 'Conditionals Continuum Guide',
-            description: 'Walk through zero, first, and second conditionals with context and modal practice.',
-            type: 'guide',
-            category: 'grammar',
-            level: 'intermediate',
-            content: JSON.stringify({
-                externalUrl: '/grammar-reader/conditionals-continuum'
-            }),
-            createdBy: teacher.id,
-        },
-    });
-    console.log('📚 Conditionals Continuum guide added:', conditionalsContinuumGuide.title);
 
     // -------------------------
     // Numbers Game
