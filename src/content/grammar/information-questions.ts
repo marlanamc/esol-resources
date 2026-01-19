@@ -25,12 +25,6 @@ export const informationQuestionsContent: InteractiveGuideContent = {
 
                 <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
                     <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
-                        <li>Asking questions about classroom rules and procedures</li>
-                        <li>Talking about your goals for 2026</li>
-                        <li>Practicing "question formation race" game</li>
-                    </ul>
                     <p style="margin: 1rem 0 0.5rem 0;"><strong>Throughout the course, you'll also use this when:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li><strong> Asking your landlord questions (rent, repairs, rules)</li>
@@ -50,7 +44,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "You want to know the price of the rent. _____ is the rent?",
+                            label: "You want to know the price of the utilities. _____ are the utilities?",
                             options: ["Who", "What", "When", "Where", "Why", "How much", "How many"],
                             expectedAnswer: "How much",
                         },
