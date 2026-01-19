@@ -103,9 +103,11 @@ export function TextInputExercise({
                             </motion.div>
                             <span className="font-medium">Not quite right</span>
                         </div>
-                        <p className="pl-6">
-                            Expected: <strong className="text-text">{item.expectedAnswer}</strong>
-                        </p>
+                        {item.expectedAnswer && (
+                            <p className="pl-6">
+                                Expected: <strong className="text-text">{item.expectedAnswer}</strong>
+                            </p>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

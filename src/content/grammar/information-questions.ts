@@ -956,22 +956,22 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "Scenario: You're asking your landlord about parking. Write your initial question.",
-                            expectedAnswer: "Is parking included with the apartment?",
+                            acceptAnyAttempt: true,
                         },
                         {
                             type: "text",
                             label: "Now clarify: Ask about the type/location of parking.",
-                            expectedAnswer: "Is it a garage or street parking?",
+                            acceptAnyAttempt: true,
                         },
                         {
                             type: "text",
                             label: "Dig deeper: Ask about guests or additional vehicles.",
-                            expectedAnswer: "Can guests park there, or is it just for tenants?",
+                            acceptAnyAttempt: true,
                         },
                         {
                             type: "text",
                             label: "Plan ahead: Ask what happens if you get a second car.",
-                            expectedAnswer: "What would I need to do if I got a second car?",
+                            acceptAnyAttempt: true,
                         },
                     ],
                 },
