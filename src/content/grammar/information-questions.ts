@@ -585,6 +585,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
+                            label: "___ does the landlord call for repairs?",
+                            expectedAnswer: "Who",
+                        },
+                        {
+                            type: "text",
                             label: "___ is garbage collection day?",
                             expectedAnswer: "When",
                         },
@@ -791,21 +796,37 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "text",
                             label: "Direct: Where is the manager's office?",
                             expectedAnswer: "Could you tell me where the manager's office is?",
+                            expectedAnswers: [
+                                "Do you know where the manager's office is?",
+                                "I was wondering where the manager's office is?",
+                            ],
                         },
                         {
                             type: "text",
                             label: "Direct: What time does the clinic close?",
                             expectedAnswer: "Do you know what time the clinic closes?",
+                            expectedAnswers: [
+                                "Could you tell me what time the clinic closes?",
+                                "I was wondering what time the clinic closes?",
+                            ],
                         },
                         {
                             type: "text",
                             label: "Direct: How much is the security deposit?",
                             expectedAnswer: "Could you tell me how much the security deposit is?",
+                            expectedAnswers: [
+                                "Do you know how much the security deposit is?",
+                                "I was wondering how much the security deposit is?",
+                            ],
                         },
                         {
                             type: "text",
                             label: "Direct: When is the rent due?",
                             expectedAnswer: "I was wondering when the rent is due?",
+                            expectedAnswers: [
+                                "Could you tell me when the rent is due?",
+                                "Do you know when the rent is due?",
+                            ],
                         },
                     ],
                 },
@@ -876,6 +897,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "text",
                             label: "I'm wondering ____ the position offers health insurance. (if/whether)",
                             expectedAnswer: "if the position offers health insurance",
+                            expectedAnswers: ["whether the position offers health insurance"],
                         },
                         {
                             type: "text",
@@ -949,29 +971,53 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "ex-chains-1",
-                    title: "Practice: Question Chains",
+                    title: "Practice: Identify the Strategy",
                     instructions:
-                        "For each scenario, write a 4-question chain (initial → clarify → dig deeper → plan ahead).",
+                        "Each follow-up question below matches one level of the 4-level strategy. Choose which level it is.",
                     items: [
                         {
-                            type: "text",
-                            label: "Scenario: You're asking your landlord about parking. Write your initial question.",
-                            acceptAnyAttempt: true,
+                            type: "radio",
+                            label: "How much is the rent per month?",
+                            options: [
+                                { value: "a", label: "Initial (basic question)" },
+                                { value: "b", label: "Clarify (specific details)" },
+                                { value: "c", label: "Dig deeper (flexibility, exceptions)" },
+                                { value: "d", label: "Plan ahead (what if...?)" },
+                            ],
+                            expectedAnswer: "a",
                         },
                         {
-                            type: "text",
-                            label: "Now clarify: Ask about the type/location of parking.",
-                            acceptAnyAttempt: true,
+                            type: "radio",
+                            label: "Does that include heat and water?",
+                            options: [
+                                { value: "a", label: "Initial (basic question)" },
+                                { value: "b", label: "Clarify (specific details)" },
+                                { value: "c", label: "Dig deeper (flexibility, exceptions)" },
+                                { value: "d", label: "Plan ahead (what if...?)" },
+                            ],
+                            expectedAnswer: "b",
                         },
                         {
-                            type: "text",
-                            label: "Dig deeper: Ask about guests or additional vehicles.",
-                            acceptAnyAttempt: true,
+                            type: "radio",
+                            label: "Is there any flexibility on the move-in date?",
+                            options: [
+                                { value: "a", label: "Initial (basic question)" },
+                                { value: "b", label: "Clarify (specific details)" },
+                                { value: "c", label: "Dig deeper (flexibility, exceptions)" },
+                                { value: "d", label: "Plan ahead (what if...?)" },
+                            ],
+                            expectedAnswer: "c",
                         },
                         {
-                            type: "text",
-                            label: "Plan ahead: Ask what happens if you get a second car.",
-                            acceptAnyAttempt: true,
+                            type: "radio",
+                            label: "What happens if I need to break the lease early?",
+                            options: [
+                                { value: "a", label: "Initial (basic question)" },
+                                { value: "b", label: "Clarify (specific details)" },
+                                { value: "c", label: "Dig deeper (flexibility, exceptions)" },
+                                { value: "d", label: "Plan ahead (what if...?)" },
+                            ],
+                            expectedAnswer: "d",
                         },
                     ],
                 },
