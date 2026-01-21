@@ -44,7 +44,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "You want to know the price of the utilities. _____ are the utilities?",
+                            label: "You want to know the price of the utilities (money). _____ are the utilities?",
                             options: ["Who", "What", "When", "Where", "Why", "How much", "How many"],
                             expectedAnswer: "How much",
                         },
@@ -103,105 +103,83 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     examples: [
                         {
                             sentence: "<strong>Who</strong> is the landlord?",
-                            explanation: "✓ Asking about a person's identity"
+                            explanation: "✓ Identity"
                         },
                         {
-                            sentence: "<strong>Who</strong> should I ask about benefits?",
-                            explanation: "✓ Asking which person has the information you need"
-                        },
-                        {
-                            sentence: "<strong>Who</strong> do I report to at this job?",
-                            explanation: "✓ Asking about a person's role/position"
+                            sentence: "<strong>Who</strong> do I report to?",
+                            explanation: "✓ Role/Position"
                         },
                     ],
                 },
                 {
                     title: "📝 WHAT = Thing/Information/Action",
-                    description: "Use 'what' to ask about things, information, actions, or details",
+                    description: "Use 'what' to ask about things, information, or details.",
                     examples: [
                         {
-                            sentence: "<strong>What</strong> time does the shift start?",
-                            explanation: "✓ Asking for specific information (time)"
+                            sentence: "<strong>What</strong> are the building rules?",
+                            explanation: "✓ Information"
                         },
                         {
                             sentence: "<strong>What</strong> documents do I need?",
-                            explanation: "✓ Asking about things (documents)"
+                            explanation: "✓ Things"
+                        },
+                    ],
+                },
+                {
+                    title: "🧩 WHAT + NOUN = Specific Details",
+                    description: "Combine 'what' with a noun to ask for very specific details.",
+                    examples: [
+                        {
+                            sentence: "<strong>What time</strong> does it start?",
+                            explanation: "✓ Specific hour"
                         },
                         {
-                            sentence: "<strong>What</strong> are the building rules?",
-                            explanation: "✓ Asking for details/information"
+                            sentence: "<strong>What size</strong> is the apartment?",
+                            explanation: "✓ Specific measurement"
+                        },
+                        {
+                            sentence: "<strong>What kind</strong> of pets are allowed?",
+                            explanation: "✓ Specific category"
                         },
                     ],
                 },
                 {
                     title: "📅 WHEN = Time",
-                    description: "Use 'when' to ask about time - days, dates, hours, deadlines",
+                    description: "Use 'when' to ask about dates, hours, and deadlines.",
                     examples: [
                         {
                             sentence: "<strong>When</strong> is rent due?",
-                            explanation: "✓ Asking about a specific date/deadline"
-                        },
-                        {
-                            sentence: "<strong>When</strong> do I start?",
-                            explanation: "✓ Asking about start time/date"
-                        },
-                        {
-                            sentence: "<strong>When</strong> can I move in?",
-                            explanation: "✓ Asking about timing/availability"
+                            explanation: "✓ Deadline"
                         },
                     ],
                 },
                 {
                     title: "📍 WHERE = Place/Location",
-                    description: "Use 'where' to ask about locations, places, or positions",
+                    description: "Use 'where' to ask about locations or positions.",
                     examples: [
                         {
                             sentence: "<strong>Where</strong> do I park?",
-                            explanation: "✓ Asking about a location"
-                        },
-                        {
-                            sentence: "<strong>Where</strong> is the office?",
-                            explanation: "✓ Asking about the position of a place"
-                        },
-                        {
-                            sentence: "<strong>Where</strong> should I submit my application?",
-                            explanation: "✓ Asking about a destination"
+                            explanation: "✓ Location"
                         },
                     ],
                 },
                 {
                     title: "🤔 WHY = Reason/Explanation",
-                    description: "Use 'why' to ask for reasons, explanations, or causes",
+                    description: "Use 'why' to ask for reasons or causes.",
                     examples: [
                         {
-                            sentence: "<strong>Why</strong> was I charged a fee?",
-                            explanation: "✓ Asking for a reason/explanation"
-                        },
-                        {
                             sentence: "<strong>Why</strong> is the rent going up?",
-                            explanation: "✓ Asking about the cause of a change"
-                        },
-                        {
-                            sentence: "<strong>Why</strong> did the last tenant move out?",
-                            explanation: "✓ Asking for background/context"
+                            explanation: "✓ Reason"
                         },
                     ],
                 },
                 {
-                    title: "🔧 HOW = Method/Manner/Degree",
-                    description: "Use 'how' to ask about the way something is done, or to what extent",
+                    title: "🔧 HOW = Method/Manner",
+                    description: "Use 'how' to ask about the way something is done.",
                     examples: [
                         {
                             sentence: "<strong>How</strong> do I pay rent?",
-                            explanation: "✓ Asking about the method/process"
-                        },
-                        {
-                            sentence: "<strong>How</strong> long is the commute?",
-                            explanation: "✓ Asking about duration/extent"
-                        },
-                        {
-                            sentence: "<strong>How</strong> can I contact you?",
-                            explanation: "✓ Asking about the way/manner to do something"
+                            explanation: "✓ Method/Process"
                         },
                     ],
                 },
@@ -209,7 +187,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Quick Tip",
                 content:
-                    "All these words start with WH except 'how.' That's why we call them 'WH-questions' even though 'how' sneaks in there!",
+                    "All these words start with WH except 'how.' That's why we call them 'WH-questions'!",
             },
         },
 
@@ -391,6 +369,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         <li><strong>Who</strong> <span style="color: #d97757;">should</span> <span style="color: #3b82f6;">I</span> <span style="color: #22c55e;">call</span> for emergencies?</li>
                     </ul>
                 </div>
+                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-top: 1.5rem;">
+                    <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
+                    <p style="margin-bottom: 0;">In English, we usually say "I live here" (Subj + Verb). But in a question, we <strong>split</strong> the verb: "Where <strong>do</strong> you <strong>live</strong>?"</p>
+                </div>
             `,
             formula: [
                 { text: "WH-word", type: "other" },
@@ -403,11 +385,6 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { text: "+", type: "other" },
                 { text: "?", type: "other" },
             ],
-            tipBox: {
-                title: "💡 Common Mistake",
-                content:
-                    "Don't forget the helping verb! ❌ 'Where you live?' → ✅ 'Where DO you live?' The helping verb (do/does/did/is/are/can/will) is required in information questions.",
-            },
             exercises: [
                 {
                     id: "ex-word-order-1",
@@ -472,12 +449,36 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <h4>How to Tell the Difference:</h4>
-                <p>Ask yourself: Is 'who' or 'what' doing the action, or receiving it?</p>
-                <ul>
-                    <li><strong>Doing:</strong> "Who broke the window?" (Someone broke it → subject question, no helping verb)</li>
-                    <li><strong>Receiving:</strong> "Who did you call?" (You called someone → object question, needs 'did')</li>
-                </ul>
+                <h4>Who is doing the action?</h4>
+                <p>To choose the right pattern, ask yourself: Is the question word (Who/What) the <strong>Doer</strong> or the <strong>Receiver</strong>?</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(122, 143, 124, 0.1); padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(122, 143, 124, 0.2);">
+                        <h4 style="color: #7ba884; margin-top: 0;">👤 The Doer (Subject)</h4>
+                        <p>The WH-word <strong>starts</strong> the action.</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;"><em>"Who <strong>pays</strong> the bill?"</em><br>(Who does the paying?)</p>
+                    </div>
+                    <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(200, 107, 81, 0.2);">
+                        <h4 style="color: #d97757; margin-top: 0;">🎯 The Receiver (Object)</h4>
+                        <p>The WH-word <strong>receives</strong> the action.</p>
+                        <p style="font-size: 0.9rem; margin-bottom: 0;"><em>"Who <strong>do you</strong> pay?"</em><br>(The person receiving the money)</p>
+                    </div>
+                </div>
+
+                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-bottom: 1.5rem;">
+                    <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
+                    <p style="margin-bottom: 0;">Look at the sentence: "Someone broke the window." If you want to ask about the person who did it, is that a <strong>Doer</strong> or a <strong>Receiver</strong>? (Check the rule above!)</p>
+                </div>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h4 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem;">☝️ The "-s" Rule for Doers</h4>
+                    <p>When "Who" or "What" is the <strong>Doer</strong>, we treat it like 'He/She/It'. This means the verb usually needs an <strong>-s</strong>.</p>
+                    <ul style="margin-bottom: 0;">
+                        <li>"Who <strong>pays</strong> rent?" (Think: <em>He</em> pays)</li>
+                        <li>"Who <strong>manages</strong> the building?"</li>
+                        <li>"What <strong>happens</strong> next?"</li>
+                    </ul>
+                </div>
             `,
             tipBox: {
                 title: "💡 Quick Test",
@@ -613,6 +614,80 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             ],
         },
 
+
+        // What vs Which
+        {
+            id: "what-vs-which",
+            stepNumber: 6,
+            title: "What vs Which: Choosing Between Options",
+            icon: "🤔",
+            explanation: `
+                <h3>Which One Should You Use?</h3>
+                <p>Students often get confused between <strong>What</strong> and <strong>Which</strong>. The rule is simple: it depends on how many choices you have.</p>
+
+                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(110, 145, 118, 0.1); border-radius: 0.5rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                            <h4 style="color: #d97757; margin-top: 0;">📝 WHAT</h4>
+                            <p style="font-weight: 600;">Unlimited Choices</p>
+                            <p>Use "what" when there are many, many possible answers.</p>
+                            <p style="font-style: italic;">"What is your name?" (Thousands of possibilities)</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
+                            <h4 style="color: #7ba884; margin-top: 0;">🎯 WHICH</h4>
+                            <p style="font-weight: 600;">Limited Choices</p>
+                            <p>Use "which" when you are choosing from a small group (usually 2-5 things).</p>
+                            <p style="font-style: italic;">"Which apartment do you want, 3A or 3B?" (Only two choices)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>In Housing and Work:</h4>
+                <ul>
+                    <li>"<strong>What</strong> is the address?" (Unlimited possibilities)</li>
+                    <li>"<strong>Which</strong> floor is the apartment on?" (Limited floors in a building)</li>
+                    <li>"<strong>What</strong> kind of job do you want?" (General)</li>
+                    <li>"<strong>Which</strong> shift do you prefer, morning or night?" (Specific choices)</li>
+                </ul>
+            `,
+            exercises: [
+                {
+                    id: "ex-what-vs-which-1",
+                    title: "Practice: What or Which?",
+                    instructions: "Choose the best question word for each situation.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "You see three different keys on the table. You ask: '____ key is for the mailbox?'",
+                            options: [
+                                { value: "what", label: "What" },
+                                { value: "which", label: "Which" },
+                            ],
+                            expectedAnswer: "which",
+                        },
+                        {
+                            type: "radio",
+                            label: "You want to know someone's phone number. You ask: '____ is your number?'",
+                            options: [
+                                { value: "what", label: "What" },
+                                { value: "which", label: "Which" },
+                            ],
+                            expectedAnswer: "what",
+                        },
+                        {
+                            type: "radio",
+                            label: "There are two buses at the stop. You ask: '____ bus goes to downtown?'",
+                            options: [
+                                { value: "what", label: "What" },
+                                { value: "which", label: "Which" },
+                            ],
+                            expectedAnswer: "which",
+                        },
+                    ],
+                },
+            ],
+        },
+
         // Summary Section
         {
             id: "summary",
@@ -636,8 +711,13 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>What</strong></td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Thing/Information</td>
-                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">What's included?</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Thing/Information (Unlimited)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">What's the address?</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Which</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Choice (Limited)</td>
+                            <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Which floor?</td>
                         </tr>
                         <tr>
                             <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);"><strong>When</strong></td>
@@ -739,47 +819,46 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             icon: "💼",
             explanation: `
                 <h3>Making Questions More Polite</h3>
-                <p>Indirect questions are more polite and professional than direct questions. Instead of asking directly, you use phrases like "Could you tell me..." or "Do you know..."</p>
+                <p>In English, asking questions directly can sometimes sound a bit demanding. To be extra professional and polite (at work, at the doctor, or with landlords), we often use <strong>Indirect Questions</strong>.</p>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(122, 143, 124, 0.1); border-radius: 0.5rem;">
-                    <h4>Compare Direct vs Indirect:</h4>
-
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">Direct (Less Polite):</p>
-                        <ul style="margin: 0;">
-                            <li>Where is the office?</li>
-                            <li>What time does the interview start?</li>
-                            <li>How much does this cost?</li>
-                        </ul>
-                    </div>
-
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">✓ Indirect (More Polite):</p>
-                        <ul style="margin: 0;">
-                            <li><strong>Could you tell me</strong> where the office <strong>is</strong>? (not "is the office")</li>
-                            <li><strong>Do you know</strong> what time the interview <strong>starts</strong>? (not "does start")</li>
-                            <li><strong>I was wondering</strong> how much this <strong>costs</strong>? (not "does cost")</li>
-                        </ul>
-                    </div>
+                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-bottom: 1.5rem;">
+                    <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
+                    <p style="margin-bottom: 0;">If you are asking your boss about your paycheck, which sounds better? "Where is my check?" or "Could you tell me where my check is?"</p>
                 </div>
-
-                <h4>The Formula Changes!</h4>
-                <p>In indirect questions, the word order becomes like a statement (Subject + Verb), NOT like a question:</p>
-                <ul>
-                    <li>Direct: Where <strong>is</strong> the office? (Verb + Subject)</li>
-                    <li>Indirect: Could you tell me where the office <strong>is</strong>? (Subject + Verb)</li>
-                </ul>
-
-                <h4>Common Indirect Question Phrases:</h4>
-                <ul>
-                    <li>Could you tell me...?</li>
-                    <li>Do you know...?</li>
-                    <li>Can you explain...?</li>
-                    <li>Would you mind telling me...?</li>
-                    <li>I was wondering...?</li>
-                    <li>I'd like to know...?</li>
-                </ul>
             `,
+            comparison: {
+                title: "Direct vs. Indirect Word Order",
+                leftLabel: "Direct (Less Polite)",
+                rightLabel: "Indirect (More Polite)",
+                rows: [
+                    {
+                        label: "Location",
+                        left: "Where <strong>is the office</strong>?",
+                        right: "Could you tell me where <strong>the office is</strong>?"
+                    },
+                    {
+                        label: "Price",
+                        left: "How much <strong>does it cost</strong>?",
+                        right: "Do you know how much <strong>it costs</strong>?"
+                    },
+                    {
+                        label: "Time",
+                        left: "When <strong>does it start</strong>?",
+                        right: "I was wondering when <strong>it starts</strong>?"
+                    }
+                ]
+            },
+            formula: [
+                { text: "Polite Phrase", type: "other" },
+                { text: "+", type: "other" },
+                { text: "WH-word", type: "other" },
+                { text: "+", type: "other" },
+                { text: "Subject", type: "subject" },
+                { text: "+", type: "other" },
+                { text: "Verb", type: "verb" },
+                { text: "+", type: "other" },
+                { text: "?", type: "other" },
+            ],
             tipBox: {
                 title: "💡 Why Use Indirect Questions?",
                 content:
@@ -1036,7 +1115,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "How many bedrooms does the apartment have?" },
             ],
             correctAnswer: "c",
-            explanation: "Bedrooms are countable (use 'how many'), and we need the helping verb 'does' after the question word.",
+            explanation: "Correct! 'Bedrooms' are countable (use 'how many'), and questions need the helping verb ('does') before the subject.",
         },
         {
             id: "quiz-2",
@@ -1047,7 +1126,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Who do pay the utilities?" },
             ],
             correctAnswer: "b",
-            explanation: "This is a subject question ('Who' is doing the action of paying), so no helping verb is needed.",
+            explanation: "Correct! This is a subject question ('Who' is the one doing the action), so we don't use 'do/does'. We also add '-s' to the verb ('pays').",
         },
         {
             id: "quiz-3",
@@ -1058,7 +1137,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "When is due the rent?" },
             ],
             correctAnswer: "b",
-            explanation: "Correct order: WH-word + helping verb + subject + adjective/complement → When is the rent due?",
+            explanation: "Correct! The pattern is: WH-word (When) + Helping Verb (is) + Subject (the rent) + due.",
         },
         {
             id: "quiz-4",
@@ -1069,7 +1148,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "When should I call for emergencies?" },
             ],
             correctAnswer: "b",
-            explanation: "'Who' asks about people. 'What' asks about things, and 'When' asks about time.",
+            explanation: "Correct! 'Who' is used for people. 'What' is for things/information, and 'When' is for time.",
         },
         {
             id: "quiz-5",
@@ -1080,7 +1159,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "What many is the deposit?" },
             ],
             correctAnswer: "a",
-            explanation: "Money/deposit is uncountable, so use 'how much' (not 'how many').",
+            explanation: "Correct! Money/rent is uncountable, so we use 'How much'.",
         },
         {
             id: "quiz-6",
@@ -1091,7 +1170,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "When" },
             ],
             correctAnswer: "b",
-            explanation: "'Why' asks for reasons or explanations. Example: 'Why is the rent going up?'",
+            explanation: "Correct! 'Why' asks for reasons, explanations, or causes.",
         },
         {
             id: "quiz-7",
@@ -1102,7 +1181,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Where are you live?" },
             ],
             correctAnswer: "a",
-            explanation: "WH-questions need an helping verb: WH-word + do/does + subject + verb.",
+            explanation: "Correct! Standard questions need a helping verb ('do/does') after the question word.",
         },
         {
             id: "quiz-8",
@@ -1113,7 +1192,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "What time the meeting starts?" },
             ],
             correctAnswer: "b",
-            explanation: "Indirect questions use phrases like 'Could you tell me...' and have statement word order.",
+            explanation: "Correct! Indirect questions use polite phrases like 'Could you tell me...' and they use statement word order (the meeting starts).",
         },
         {
             id: "quiz-9",
@@ -1124,7 +1203,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Subject + WH-word + Verb + Helping Verb" },
             ],
             correctAnswer: "b",
-            explanation: "Standard order: WH-word + Helping Verb (do/does/is/are/can) + Subject + Main Verb.",
+            explanation: "Correct! WH-word + Helping Verb (do/does) + Subject + Main Verb.",
         },
         {
             id: "quiz-10",
@@ -1135,7 +1214,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "What is the laundry room?" },
             ],
             correctAnswer: "b",
-            explanation: "'Where' asks about places and locations.",
+            explanation: "Correct! 'Where' is the word for places and locations.",
         },
         {
             id: "quiz-11",
@@ -1146,7 +1225,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "What time does the shift starts?" },
             ],
             correctAnswer: "a",
-            explanation: "Correct: WH-word + does + subject + base verb (no 's' on 'start' after 'does').",
+            explanation: "Correct! When we use 'does', the main verb ('start') stays in its base form (no '-s').",
         },
         {
             id: "quiz-12",
@@ -1157,7 +1236,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "How can pay I rent?" },
             ],
             correctAnswer: "a",
-            explanation: "'How' asks about method. Order: WH-word + modal (can) + subject + verb.",
+            explanation: "Correct! 'How' is for method. The order is: How + can + Subject + Verb.",
         },
         {
             id: "quiz-13",
@@ -1168,7 +1247,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Neither" },
             ],
             correctAnswer: "b",
-            explanation: "'You' is the subject (doer), 'who' is the object (receiver). Object questions need 'did'.",
+            explanation: "Correct! This is an object question because 'you' is the subject (the doer). The question asks about the person receiving the call.",
         },
         {
             id: "quiz-14",
@@ -1179,7 +1258,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Nothing is wrong" },
             ],
             correctAnswer: "a",
-            explanation: "Money is uncountable. Use 'how much' for uncountable nouns, 'how many' for countable.",
+            explanation: "Correct! 'Money' is uncountable. We use 'How much' for uncountable amounts.",
         },
         {
             id: "quiz-15",
@@ -1190,7 +1269,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                 { value: "c", label: "Do you know is where the office?" },
             ],
             correctAnswer: "b",
-            explanation: "In indirect questions, use statement order: subject + verb (where the office IS, not 'is the office').",
+            explanation: "Correct! In indirect questions, the second part follows statement order (Subject + Verb: the office is).",
         },
     ],
 };
