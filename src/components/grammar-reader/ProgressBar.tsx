@@ -58,13 +58,7 @@ export const ProgressBar = React.memo(function ProgressBar({ total, current, com
                                 scale: 1.15,
                                 transition: { duration: 0.2 }
                             }}
-                            title={`Section ${index + 1}${
-                                isCompleted
-                                    ? " (Completed)"
-                                    : isCurrent
-                                    ? " (Current)"
-                                    : ""
-                            }`}
+                            aria-hidden="true"
                         >
                             {isCompleted && (
                                 <motion.div

@@ -102,8 +102,8 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                 <div className="mt-8 pt-6">
                     <div className="relative overflow-hidden bg-primary/5 border border-primary/10 rounded-2xl p-6 sm:p-8 text-center group hover:border-primary/20 transition-colors duration-300">
                         {/* Decorative background elements */}
-                        <div className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-                        <div className="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+                        <div aria-hidden="true" className="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
+                        <div aria-hidden="true" className="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="relative flex flex-col items-center gap-4 z-10">
                             <div className="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-black/5 group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
