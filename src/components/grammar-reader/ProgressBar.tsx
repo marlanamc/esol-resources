@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Dot } from 'lucide-react';
 
@@ -9,7 +10,7 @@ interface ProgressBarProps {
     completed: number;
 }
 
-export function ProgressBar({ total, current, completed }: ProgressBarProps) {
+export const ProgressBar = React.memo(function ProgressBar({ total, current, completed }: ProgressBarProps) {
     const percentage = Math.round((completed / total) * 100);
 
     return (
@@ -99,4 +100,4 @@ export function ProgressBar({ total, current, completed }: ProgressBarProps) {
             </p>
         </div>
     );
-}
+});

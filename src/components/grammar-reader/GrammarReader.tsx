@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import type { InteractiveGuideContent, InteractiveGuideSection } from "@/types/activity";
 import { SectionHeader } from "./SectionHeader";
 import { ExplanationPanel } from "./ExplanationPanel";
@@ -166,21 +166,23 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         : content.sections[currentSectionIndex];
     const currentSectionKey = currentSection?.id || `section-${currentSectionIndex}`;
 
-    const effectiveSection: InteractiveGuideSection | null = currentSection
-        ? {
+    const effectiveSection: InteractiveGuideSection | null = useMemo(() => {
+        if (!currentSection) return null;
+        return {
             ...currentSection,
             exercises: currentSection.exercises || [],
-        }
-        : null;
+        };
+    }, [currentSection]);
 
-    const currentHasExercises =
-        !!effectiveSection?.exercises && effectiveSection.exercises.length > 0;
+    const currentHasExercises = !!effectiveSection?.exercises && effectiveSection.exercises.length > 0;
     const practiceUnlocked = currentHasExercises
         ? unlockedPractice.has(currentSectionKey)
         : true;
     
     // Only show the split layout after exercises are unlocked (matches the original reader UX)
-    const showSplitLayout = currentHasExercises && practiceUnlocked && showPractice;
+    const showSplitLayout = useMemo(() => 
+        currentHasExercises && practiceUnlocked && showPractice
+    , [currentHasExercises, practiceUnlocked, showPractice]);
 
     useEffect(() => {
         if (currentHasExercises) {
@@ -294,6 +296,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     );
 
     const handleJumpToSection = useCallback((index: number) => {
+        // Batch these updates to avoid multiple re-renders
         setCurrentSectionIndex(index);
         setShowTOC(false);
         setShowQuiz(false);
