@@ -1,4 +1,5 @@
 import type { VerbTable } from "@/types/activity";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface VerbTableDisplayProps {
     table: VerbTable;
@@ -32,9 +33,8 @@ export function VerbTableDisplay({ table }: VerbTableDisplayProps) {
                                     <td
                                         key={cellIndex}
                                         className="border border-border p-3 text-sm text-text"
-                                    >
-                                        {cell}
-                                    </td>
+                                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(cell) }}
+                                    />
                                 ))}
                             </tr>
                         ))}
