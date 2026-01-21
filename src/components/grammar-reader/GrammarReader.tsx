@@ -314,7 +314,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     return (
         <div className="grammar-reader-container min-h-screen bg-bg">
             {/* Main Content Container - Everything in one card */}
-            <div className="container mx-auto px-4 py-4 pb-24 md:pb-4">
+            <main className="container mx-auto px-4 py-4 pb-24 md:pb-4">
                 <div className="grammar-reader-split-screen bg-white rounded-xl shadow-lg border border-border overflow-hidden">
                     {/* Compact Header: Breadcrumb + Progress + TOC */}
                     <div className="border-b border-border bg-bg-light">
@@ -542,7 +542,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         </button>
                     </>
                 )}
-            </div>
+            </main>
         </div>
     );
 }

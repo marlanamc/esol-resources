@@ -8,14 +8,14 @@
 /* Tailwind v4 Theme - Define all design tokens */
 @theme {
   /* Colors - Primary (Academic Terracotta - deeper, richer) */
-  --color-primary: #c86b51;
-  --color-primary-dark: #a6523a;
-  --color-primary-light: #e59a84;
+  --color-primary: #b05740;
+  --color-primary-dark: #8e4432;
+  --color-primary-light: #d08b78;
 
   /* Colors - Secondary (Library Sage - more muted) */
-  --color-secondary: #6e9176;
-  --color-secondary-dark: #56725c;
-  --color-secondary-light: #9dbca3;
+  --color-secondary: #4d6b53;
+  --color-secondary-dark: #3a513e;
+  --color-secondary-light: #709378;
 
   /* Colors - Accent (Parchment Gold) */
   --color-accent: #e9c46a;
@@ -23,8 +23,8 @@
   --color-accent-light: #f4e4a8;
 
   /* Semantic Colors */
-  --color-success: #6e9176;
-  --color-warning: #e76f51;
+  --color-success: #4d6b53;
+  --color-warning: #ca5c43;
   --color-error: #d64045;
   --color-info: #4a8ca0;
 
@@ -50,9 +50,15 @@
 
   /* Font Families - will be set by Next.js */
   /* Include emoji-capable fallbacks to avoid "?" tofu glyphs for emoji in titles/content. */
-  --font-display: var(--font-fraunces), ui-serif, Georgia, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", serif;
-  --font-body: var(--font-dm-sans), ui-sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-  --font-handwritten: var(--font-caveat), cursive, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display:
+    var(--font-fraunces), ui-serif, Georgia, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", serif;
+  --font-body:
+    var(--font-dm-sans), ui-sans-serif, system-ui, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+  --font-handwritten:
+    var(--font-caveat), cursive, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Border Radius - Sophisticated (slightly tighter) */
   --radius-sm: 4px;
@@ -64,9 +70,14 @@
 
   /* Shadows - Premium Elevation */
   --shadow-sm: 0 1px 2px rgba(26, 32, 44, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(26, 32, 44, 0.05), 0 2px 4px -1px rgba(26, 32, 44, 0.03);
-  --shadow-lg: 0 10px 15px -3px rgba(26, 32, 44, 0.05), 0 4px 6px -2px rgba(26, 32, 44, 0.025);
-  --shadow-xl: 0 20px 25px -5px rgba(26, 32, 44, 0.05), 0 10px 10px -5px rgba(26, 32, 44, 0.02);
+  --shadow-md:
+    0 4px 6px -1px rgba(26, 32, 44, 0.05), 0 2px 4px -1px rgba(26, 32, 44, 0.03);
+  --shadow-lg:
+    0 10px 15px -3px rgba(26, 32, 44, 0.05),
+    0 4px 6px -2px rgba(26, 32, 44, 0.025);
+  --shadow-xl:
+    0 20px 25px -5px rgba(26, 32, 44, 0.05),
+    0 10px 10px -5px rgba(26, 32, 44, 0.02);
 
   /* Z-Index Layers */
   --z-fixed: 100;
@@ -83,7 +94,7 @@
 
 /* Subtle paper texture overlay */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -91,7 +102,6 @@ body::before {
   z-index: -1;
   opacity: 1;
 }
-
 
 /* ========== Typography ========== */
 h1,
@@ -237,7 +247,6 @@ textarea {
 }
 
 @keyframes bounce {
-
   0%,
   100% {
     transform: translateY(0);
@@ -249,7 +258,6 @@ textarea {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 1;
@@ -261,7 +269,6 @@ textarea {
 }
 
 @keyframes wiggle {
-
   0%,
   100% {
     transform: rotate(0deg);
@@ -321,7 +328,7 @@ textarea {
 }
 
 .underline-accent::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: -4px;
@@ -349,10 +356,12 @@ textarea {
 
 /* ========== Loading States ========== */
 .skeleton {
-  background: linear-gradient(90deg,
-      var(--color-bg-gray) 0%,
-      var(--color-bg-light) 50%,
-      var(--color-bg-gray) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-gray) 0%,
+    var(--color-bg-light) 50%,
+    var(--color-bg-gray) 100%
+  );
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-md);
@@ -623,7 +632,6 @@ kbd {
 
 /* ========== Reduced Motion ========== */
 @media (prefers-reduced-motion: reduce) {
-
   *,
   *::before,
   *::after {
@@ -689,7 +697,11 @@ kbd {
 }
 
 .tip-box {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.1) 0%,
+    rgba(245, 158, 11, 0.05) 100%
+  );
   padding: var(--spacing-md);
   margin: var(--spacing-md) 0;
   border-radius: var(--radius-md);
@@ -704,7 +716,11 @@ kbd {
 }
 
 .highlight {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.15) 0%,
+    rgba(139, 92, 246, 0.15) 100%
+  );
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 600;
@@ -712,7 +728,11 @@ kbd {
 }
 
 .highlight-past-perfect {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(236, 72, 153, 0.15) 0%,
+    rgba(236, 72, 153, 0.1) 100%
+  );
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 600;
@@ -720,7 +740,11 @@ kbd {
 }
 
 .highlight-past-simple {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.15) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  );
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: 600;
@@ -835,7 +859,8 @@ kbd {
 
 .usage-list li {
   position: relative;
-  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-md) var(--spacing-md)
+    var(--spacing-xl);
   margin: var(--spacing-md) 0;
   background: white;
   border-radius: var(--radius-lg);
@@ -861,7 +886,7 @@ kbd {
   font-weight: bold;
   font-size: 12px;
   border: 2px solid white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Override prose h4 font-size for usage meanings list */

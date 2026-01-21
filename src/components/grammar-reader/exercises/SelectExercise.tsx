@@ -22,13 +22,14 @@ export function SelectExercise({
 }: SelectExerciseProps) {
     return (
         <div className="select-exercise">
-            <label className="block mb-2">
+            <label htmlFor={`select-${itemNumber}`} className="block mb-2">
                 <span className="text-sm text-text font-medium">
                     <span className="font-semibold mr-2">{itemNumber}.</span>
                     <span dangerouslySetInnerHTML={{ __html: sanitizeHtml(item.label) }} />
                 </span>
             </label>
             <select
+                id={`select-${itemNumber}`}
                 value={userAnswer}
                 onChange={(e) => onChange(e.target.value)}
                 disabled={submitted}
