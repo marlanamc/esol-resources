@@ -56,7 +56,7 @@ export const ActivityTimeline: React.FC<ActivityTimelineProps> = ({
         {displayActivities.map((activity, index) => (
           <div
             key={activity.id + index}
-            className="group relative flex items-start gap-4 p-4 rounded-xl bg-white/50 border border-border/40 hover:bg-white hover:border-border transition-all duration-200 hover:shadow-sm"
+            className="group relative flex items-start gap-4 p-4 rounded-xl bg-white/50 border border-border/40 hover:bg-white hover:border-border transition-[background-color,border-color,box-shadow] duration-200 hover:shadow-sm"
           >
             {/* Timeline line connector */}
             {index !== displayActivities.length - 1 && (

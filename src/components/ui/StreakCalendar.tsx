@@ -145,7 +145,7 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
                       <div
                         key={dayIndex}
                         className={`
-                          w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-all duration-200
+                          w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-[background-color,opacity] duration-200
                           ${getColorClass(level)}
                           ${isToday ? 'ring-2 ring-primary ring-offset-1' : ''}
                           hover:ring-2 hover:ring-gray-400 hover:ring-offset-1

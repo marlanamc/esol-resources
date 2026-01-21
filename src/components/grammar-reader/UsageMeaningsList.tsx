@@ -96,7 +96,7 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                         }}
                     >
                         {/* Card with gradient border effect */}
-                        <div className={`relative bg-gradient-to-br ${colorScheme.bg} border-2 ${colorScheme.border} rounded-xl p-3 md:p-4 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden`}>
+                        <div className={`relative bg-gradient-to-br ${colorScheme.bg} border-2 ${colorScheme.border} rounded-xl p-3 md:p-4 shadow-sm hover:shadow-md transition-[box-shadow] duration-300 overflow-hidden`}>
                             {/* Subtle gradient background accent */}
                             <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${colorScheme.bg} opacity-50 rounded-full blur-2xl -z-10 transform translate-x-12 -translate-y-12`} />
 
@@ -142,7 +142,7 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                         }}
                                     >
                                         {/* Example card with hover effect */}
-                                        <div className={`relative bg-white rounded-lg p-2.5 md:p-3 border-l-3 ${colorScheme.accent} shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5`}>
+                                        <div className={`relative bg-white rounded-lg p-2.5 md:p-3 border-l-3 ${colorScheme.accent} shadow-sm hover:shadow-md transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5`}>
                                             <div className="pl-1.5 md:pl-3.5">
                                                 <p
                                                     className="text-sm md:text-base text-text font-medium leading-relaxed"

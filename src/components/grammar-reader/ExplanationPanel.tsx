@@ -106,7 +106,7 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                         <div aria-hidden="true" className="absolute bottom-0 left-0 -mb-16 -ml-16 w-64 h-64 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="relative flex flex-col items-center gap-4 z-10">
-                            <div className="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-black/5 group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
+                            <div className="p-4 bg-white rounded-2xl shadow-sm ring-1 ring-black/5 group-hover:scale-110 group-hover:shadow-md transition-[transform,box-shadow] duration-300">
                                 <LockKeyhole className="w-8 h-8 text-primary" />
                             </div>
                             

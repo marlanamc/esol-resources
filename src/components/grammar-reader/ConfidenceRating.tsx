@@ -51,7 +51,7 @@ export function ConfidenceRating({ sectionTitle, onRate }: ConfidenceRatingProps
                             onClick={() => handleRate('low')}
                             className={`
                                 flex-1 flex flex-col items-center gap-2 px-4 py-3 rounded-lg border-2
-                                transition-all duration-200
+                                transition-[border-color,background-color,box-shadow] duration-200
                                 ${selectedRating === 'low'
                                     ? 'border-error bg-error/20 shadow-md'
                                     : 'border-border bg-white hover:border-error/50 hover:bg-error/5'
@@ -80,7 +80,7 @@ export function ConfidenceRating({ sectionTitle, onRate }: ConfidenceRatingProps
                             onClick={() => handleRate('medium')}
                             className={`
                                 flex-1 flex flex-col items-center gap-2 px-4 py-3 rounded-lg border-2
-                                transition-all duration-200
+                                transition-[border-color,background-color,box-shadow] duration-200
                                 ${selectedRating === 'medium'
                                     ? 'border-warning bg-warning/20 shadow-md'
                                     : 'border-border bg-white hover:border-warning/50 hover:bg-warning/5'
@@ -109,7 +109,7 @@ export function ConfidenceRating({ sectionTitle, onRate }: ConfidenceRatingProps
                             onClick={() => handleRate('high')}
                             className={`
                                 flex-1 flex flex-col items-center gap-2 px-4 py-3 rounded-lg border-2
-                                transition-all duration-200
+                                transition-[border-color,background-color,box-shadow] duration-200
                                 ${selectedRating === 'high'
                                     ? 'border-success bg-success/20 shadow-md'
                                     : 'border-border bg-white hover:border-success/50 hover:bg-success/5'

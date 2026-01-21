@@ -54,7 +54,7 @@ export function HintSystem({ hints, answer, onHintUsed }: HintSystemProps) {
                                     onClick={() => handleRevealHint(hint.level)}
                                     className={`
                                         w-full text-left px-4 py-2 rounded-lg border-2
-                                        transition-all duration-200
+                                        transition-[border-color,background-color,color] duration-200
                                         ${hint.level === 1
                                             ? 'border-info/30 bg-info/5 hover:bg-info/10 text-info'
                                             : hint.level === 2
@@ -132,7 +132,7 @@ export function HintSystem({ hints, answer, onHintUsed }: HintSystemProps) {
                 >
                     <button
                         onClick={handleToggleAnswer}
-                        className="w-full px-4 py-2 rounded-lg border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 text-primary transition-all duration-200"
+                        className="w-full px-4 py-2 rounded-lg border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 text-primary transition-[background-color] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     >
                         <div className="flex items-center justify-between">
                             <span className="text-sm font-medium">

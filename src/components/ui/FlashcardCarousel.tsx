@@ -177,7 +177,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                     </div>
                     <div className="h-2 w-24 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                            className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                             style={{ width: `${(studiedCards.size / total) * 100}%` }}
                         />
                     </div>
@@ -197,13 +197,13 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                     <div className="flex items-center gap-0 bg-white rounded-lg p-1 border-2 border-[var(--color-border)]">
                         <button
                             onClick={() => { setMode("term-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all ${mode === "term-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-[background-color,color,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${mode === "term-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
                         >
                             Term First
                         </button>
                         <button
                             onClick={() => { setMode("def-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all ${mode === "def-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-[background-color,color,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${mode === "def-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
                         >
                             Definition First
                         </button>
@@ -211,14 +211,14 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                     <div className="flex items-center gap-2">
                         <button
                             onClick={shuffleOrder}
-                            className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-all flex items-center justify-center gap-2 ${isShuffling ? "opacity-50" : ""}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isShuffling ? "opacity-50" : ""}`}
                         >
                             <ShuffleIcon className="w-4 h-4" />
                             Shuffle
                         </button>
                         <button
                             onClick={resetOrder}
-                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-all flex items-center justify-center gap-2"
+                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             <RefreshCwIcon className="w-4 h-4" />
                             Reset
@@ -274,7 +274,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-4 flex items-center justify-center gap-4">
                 <button
                     onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                    className="p-4 rounded-full bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] text-[var(--color-text)] transition-all active:scale-95 min-h-[56px] min-w-[56px] flex items-center justify-center"
+                    className="p-4 rounded-full bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 min-h-[56px] min-w-[56px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     aria-label="Previous card"
                 >
                     <ChevronLeftIcon className="w-7 h-7" />
@@ -282,14 +282,14 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
 
                 <button
                     onClick={(e) => { e.stopPropagation(); handleFlip(); }}
-                    className="flex-1 max-w-xs py-4 px-8 rounded-full bg-[var(--color-primary)] text-white font-bold shadow-lg hover:shadow-xl transition-all text-lg active:scale-95"
+                    className="flex-1 max-w-xs py-4 px-8 rounded-full bg-[var(--color-primary)] text-white font-bold shadow-lg hover:shadow-xl transition-[box-shadow,transform] text-lg active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                 >
                     {isFlipped ? "Back" : "Flip"}
                 </button>
 
                 <button
                     onClick={(e) => { e.stopPropagation(); goNext(); }}
-                    className="p-4 rounded-full bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] text-[var(--color-text)] transition-all active:scale-95 min-h-[56px] min-w-[56px] flex items-center justify-center"
+                    className="p-4 rounded-full bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 min-h-[56px] min-w-[56px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     aria-label="Next card"
                 >
                     <ChevronRightIcon className="w-7 h-7" />
@@ -335,7 +335,7 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
         : "text-[var(--color-text)]";
 
     return (
-        <div className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-all ${containerClasses}`}>
+        <div className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-[opacity,transform] ${containerClasses}`}>
             {/* Top Label */}
             <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
                 <span className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>

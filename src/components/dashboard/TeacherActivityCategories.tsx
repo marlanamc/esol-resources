@@ -143,7 +143,7 @@ const ActivityCard = React.memo(function ActivityCard({
 
     return (
         <div
-            className={`block bg-white rounded-lg p-4 hover:shadow-md transition-all duration-200 border group relative ${isFeatured ? 'border-accent/60 bg-accent/5' : 'border-border/40'
+            className={`block bg-white rounded-lg p-4 hover:shadow-md transition-[box-shadow] duration-200 border group relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isFeatured ? 'border-accent/60 bg-accent/5' : 'border-border/40'
                 }`}
         >
             {isFeatured && (
@@ -172,7 +172,7 @@ const ActivityCard = React.memo(function ActivityCard({
                     <div className="flex gap-2">
                         <Link
                             href={`/activity/${activity.id}`}
-                            className="px-4 py-2 text-sm font-semibold transition-all rounded-full border border-border/50 text-text bg-white shadow-sm hover:-translate-y-0.5 hover:shadow-md"
+                            className="px-4 py-2 text-sm font-semibold transition-[transform,box-shadow] rounded-full border border-border/50 text-text bg-white shadow-sm hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             Open
                         </Link>
@@ -181,7 +181,7 @@ const ActivityCard = React.memo(function ActivityCard({
                                 type="button"
                                 onClick={() => onUnassign(activity.id)}
                                 disabled={!defaultClassId || assigningId === activity.id}
-                                className={`px-4 py-2 text-white text-sm font-semibold transition-all rounded-full shadow-sm inline-flex items-center justify-center ${!defaultClassId
+                                className={`px-4 py-2 text-white text-sm font-semibold transition-[filter,transform,box-shadow] rounded-full shadow-sm inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!defaultClassId
                                     ? 'bg-gray-300 cursor-not-allowed'
                                     : 'bg-secondary hover:brightness-110 hover:shadow-md hover:-translate-y-0.5'
                                     } ${assigningId === activity.id ? 'opacity-70' : ''}`}
@@ -193,7 +193,7 @@ const ActivityCard = React.memo(function ActivityCard({
                                 type="button"
                                 onClick={() => onAssign(activity)}
                                 disabled={!defaultClassId || assigningId === activity.id}
-                                className={`px-4 py-2 text-white text-sm font-semibold transition-all rounded-full shadow-sm inline-flex items-center justify-center ${!defaultClassId
+                                className={`px-4 py-2 text-white text-sm font-semibold transition-[filter,transform,box-shadow] rounded-full shadow-sm inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!defaultClassId
                                     ? 'bg-gray-300 cursor-not-allowed'
                                     : 'bg-primary hover:brightness-110 hover:shadow-md hover:-translate-y-0.5'
                                     } ${assigningId === activity.id ? 'opacity-70' : ''}`}
@@ -206,7 +206,7 @@ const ActivityCard = React.memo(function ActivityCard({
                                 type="button"
                                 onClick={handleRelease}
                                 disabled={isReleasing}
-                                className={`px-4 py-2 text-white text-sm font-semibold transition-all rounded-full shadow-sm inline-flex items-center justify-center ${isReleased
+                                className={`px-4 py-2 text-white text-sm font-semibold transition-[filter,transform,box-shadow] rounded-full shadow-sm inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isReleased
                                         ? 'bg-gray-500 hover:bg-gray-600'
                                         : 'bg-terracotta hover:brightness-110'
                                     } hover:shadow-md hover:-translate-y-0.5 ${isReleasing ? 'opacity-70' : ''}`}
@@ -217,7 +217,7 @@ const ActivityCard = React.memo(function ActivityCard({
                                 }}
                             >
                                 {isReleasing
-                                    ? 'Updating...'
+                                    ? 'Updating…'
                                     : isReleased
                                         ? (isSpeaking ? 'Hide' : isGrammarGuide ? 'Hide Guide' : 'Hide Quiz')
                                         : (isSpeaking ? 'Release' : isGrammarGuide ? 'Release Guide' : 'Release Quiz')
@@ -712,7 +712,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 return (
                     <div
                         key={category.name}
-                        className="bg-white rounded-xl border-2 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                        className="bg-white rounded-xl border-2 overflow-hidden shadow-sm hover:shadow-md transition-[box-shadow] duration-300"
                         style={{
                             borderColor: `${category.color}40`,
                             animationDelay: `${idx * 50}ms`

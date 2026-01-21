@@ -199,7 +199,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
         >
           <button
             onClick={onRetake}
-            className="px-6 py-3 rounded-xl font-semibold text-white bg-terracotta hover:bg-terracotta/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2"
+            className="px-6 py-3 rounded-xl font-semibold text-white bg-terracotta hover:bg-terracotta/90 transition-[background-color,transform,box-shadow] duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
           >
             <RotateCcw className="w-5 h-5" />
             Try Again

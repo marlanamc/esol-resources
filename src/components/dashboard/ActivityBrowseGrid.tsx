@@ -39,7 +39,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
             {activities.map((activity, idx) => (
                 <div
                     key={activity.id}
-                    className="bg-white/95 backdrop-blur-sm border border-border/60 p-0 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col rounded-xl group relative overflow-hidden h-full shadow-md"
+                    className="bg-white/95 backdrop-blur-sm border border-border/60 p-0 transition-[box-shadow,transform] duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col rounded-xl group relative overflow-hidden h-full shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     style={{
                         animationDelay: `${idx * 100}ms`
                     }}
@@ -77,7 +77,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                         {/* Action */}
                         <Link
                             href={`/activity/${activity.id}`}
-                            className="w-full inline-flex items-center justify-center px-4 py-3 text-sm font-bold transition-all rounded-lg bg-bg-gray/50 text-text border border-transparent hover:bg-primary hover:text-white hover:shadow-lg group-hover:border-primary/20"
+                            className="w-full inline-flex items-center justify-center px-4 py-3 text-sm font-bold transition-[background-color,color,border-color,box-shadow] rounded-lg bg-bg-gray/50 text-text border border-transparent hover:bg-primary hover:text-white hover:shadow-lg group-hover:border-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             Start Activity
                         </Link>

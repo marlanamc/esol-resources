@@ -131,7 +131,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v1_3rd}
                       onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -140,7 +140,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v1_ing}
                       onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -149,7 +149,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v2}
                       onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -158,7 +158,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v3}
                       onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -199,7 +199,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v1_3rd}
                   onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
@@ -212,7 +212,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v1_ing}
                   onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
@@ -225,7 +225,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v2}
                   onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
@@ -238,7 +238,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v3}
                   onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-all font-mono text-sm"
+                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
@@ -259,7 +259,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
           disabled={!isComplete || isSubmitting}
           className={`
             px-8 py-4 rounded-xl font-semibold text-white text-lg
-            transition-all duration-300 transform hover:scale-105
+            transition-[transform,box-shadow] duration-300 transform hover:scale-105
             shadow-lg hover:shadow-xl
             flex items-center gap-3
             ${isComplete && !isSubmitting
@@ -271,7 +271,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
           {isSubmitting ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              Submitting...
+              Submitting…
             </>
           ) : (
             <>

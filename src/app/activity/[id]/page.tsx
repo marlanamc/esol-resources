@@ -96,39 +96,44 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         }
     }
 
-    // Get existing submission
-    let submission = null;
-    if (userRole === "student") {
-        submission = await prisma.submission.findFirst({
+    // Run independent queries in parallel to eliminate async waterfall
+    const [submissionResult, progressRecord] = await Promise.all([
+        // Get existing submission (for students only)
+        userRole === "student"
+            ? prisma.submission.findFirst({
+                  where: {
+                      userId,
+                      activityId: id,
+                      assignmentId: assignmentId ?? null,
+                  },
+              })
+            : Promise.resolve(null),
+        // Get progress record
+        prisma.activityProgress.findFirst({
             where: {
                 userId,
                 activityId: id,
                 assignmentId: assignmentId ?? null,
             },
-        });
-        if (submission?.content && typeof submission.content === "string") {
-            try {
-                submission = {
-                    ...submission,
-                    content: JSON.parse(submission.content),
-                };
-            } catch {
-                // Keep raw content if parsing fails.
-            }
+            select: {
+                progress: true,
+                categoryData: true,
+            },
+        }),
+    ]);
+
+    // Process submission content if found
+    let submission = submissionResult;
+    if (submission?.content && typeof submission.content === "string") {
+        try {
+            submission = {
+                ...submission,
+                content: JSON.parse(submission.content),
+            };
+        } catch {
+            // Keep raw content if parsing fails.
         }
     }
-
-    const progressRecord = await prisma.activityProgress.findFirst({
-        where: {
-            userId,
-            activityId: id,
-            assignmentId: assignmentId ?? null,
-        },
-        select: {
-            progress: true,
-            categoryData: true,
-        },
-    });
     const progressValue = progressRecord?.progress ?? 0;
     const categoryData = progressRecord?.categoryData;
 

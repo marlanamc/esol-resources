@@ -490,7 +490,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <button
                                 onClick={handlePrevious}
                                 disabled={!showQuiz && isFirstSection}
-                                className="fixed left-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-border hover:border-primary hover:bg-primary hover:text-white transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-border disabled:hover:text-text"
+                                className="fixed left-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-border hover:border-primary hover:bg-primary hover:text-white transition-[border-color,background-color,color] duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-border disabled:hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                 aria-label="Previous section"
                             >
                                 <svg
@@ -516,7 +516,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         <button
                             onClick={handleNext}
                             disabled={showQuiz && !content.miniQuiz}
-                            className="fixed right-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark hover:scale-110 transition-all duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="fixed right-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark hover:scale-110 transition-[background-color,transform] duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                             aria-label="Next section"
                         >
                             <svg

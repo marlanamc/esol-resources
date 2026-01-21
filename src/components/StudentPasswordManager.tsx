@@ -104,7 +104,7 @@ export function StudentPasswordManager({ students }: Props) {
                                         disabled={entry.state === "saving"}
                                         className="px-3 py-2 rounded-lg text-sm font-semibold text-white bg-primary hover:brightness-110 active:scale-95 disabled:opacity-60"
                                     >
-                                        {entry.state === "saving" ? "Saving..." : "Save"}
+                                        {entry.state === "saving" ? "Saving…" : "Save"}
                                     </button>
                                     <button
                                         onClick={() => handleSubmit(s.id, "password123")}

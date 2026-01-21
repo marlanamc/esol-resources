@@ -521,7 +521,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                         </p>
                         <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                                className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                                 style={{ width: `${progress}%` }}
                             />
                         </div>
@@ -544,7 +544,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                             onClick={handleWordTap}
                             className={`
                                 p-6 md:p-8 bg-white rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
-                                text-center transition-all duration-200 min-h-[120px] flex items-center justify-center
+                                text-center transition-[transform,box-shadow] duration-200 min-h-[120px] flex items-center justify-center
                                 touch-manipulation select-none
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
                                 ${
@@ -587,7 +587,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                                 }
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
-                                    transition-all duration-200 cursor-pointer touch-manipulation
+                                    transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                                     min-h-[120px] flex flex-col items-center justify-center
                                     ${
                                         dropZoneFeedback?.category === "countable"
@@ -629,7 +629,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                                 }
                                 className={`
                                     relative p-6 md:p-8 rounded-xl border-4 border-dashed
-                                    transition-all duration-200 cursor-pointer touch-manipulation
+                                    transition-[border-color,background-color] duration-200 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                                     min-h-[120px] flex flex-col items-center justify-center
                                     ${
                                         dropZoneFeedback?.category === "uncountable"
@@ -689,7 +689,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                                     </p>
                                     <button
                                         onClick={handleNextRound}
-                                        className="inline-block px-6 py-3 bg-white text-emerald-600 font-bold rounded-lg hover:bg-gray-100 active:scale-95 transition-all"
+                                        className="inline-block px-6 py-3 bg-white text-emerald-600 font-bold rounded-lg hover:bg-gray-100 active:scale-95 transition-[background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                     >
                                         Next Round →
                                     </button>
@@ -738,7 +738,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                 <div className="flex-shrink-0 flex justify-center px-3 pb-4 md:pb-0">
                     <button
                         onClick={handleReset}
-                        className="w-full md:w-auto min-h-[48px] px-6 md:px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 active:bg-gray-900 transition-all shadow-lg touch-manipulation text-base md:text-sm"
+                        className="w-full md:w-auto min-h-[48px] px-6 md:px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 active:bg-gray-900 transition-[background-color,box-shadow] shadow-lg touch-manipulation text-base md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     >
                         Play Again
                     </button>

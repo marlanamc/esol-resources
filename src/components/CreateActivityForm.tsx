@@ -114,6 +114,8 @@ export default function CreateActivityForm() {
                             <input
                                 type="text"
                                 id="title"
+                                name="title"
+                                autoComplete="off"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
@@ -127,6 +129,8 @@ export default function CreateActivityForm() {
                             </label>
                             <textarea
                                 id="description"
+                                name="description"
+                                autoComplete="off"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 rows={3}
@@ -251,7 +255,7 @@ export default function CreateActivityForm() {
                                                     value={question.question}
                                                     onChange={(e) => updateQuizQuestion(index, "question", e.target.value)}
                                                     className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
-                                                    placeholder="Enter question..."
+                                                    placeholder="Enter question…"
                                                 />
                                             </div>
                                             <div>
@@ -319,7 +323,7 @@ export default function CreateActivityForm() {
                                     onChange={(e) => setContent(e.target.value)}
                                     rows={12}
                                     className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 font-mono text-sm"
-                                    placeholder="Enter activity content..."
+                                    placeholder="Enter activity content…"
                                     required={contentType === "simple"}
                                 />
                                 <p className="mt-2 text-sm text-gray-500">
@@ -348,7 +352,7 @@ export default function CreateActivityForm() {
                             disabled={isLoading}
                             className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Creating..." : "Create Activity"}
+                            {isLoading ? "Creating…" : "Create Activity"}
                         </button>
                     </div>
                 </form>

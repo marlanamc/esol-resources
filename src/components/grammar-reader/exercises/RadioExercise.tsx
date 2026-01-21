@@ -47,7 +47,7 @@ export function RadioExercise({
                     return (
                         <motion.label
                             key={option.value}
-                            className={`flex items-center p-3 rounded-lg border-2 transition-all cursor-pointer ${submitted && isCorrectOption
+                            className={`flex items-center p-3 rounded-lg border-2 transition-[border-color,background-color] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${submitted && isCorrectOption
                                     ? "border-success bg-success/5"
                                     : submitted && isWrongSelection
                                         ? "border-error bg-error/5"

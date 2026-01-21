@@ -313,7 +313,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
             <button
                 key={topic.id}
                 onClick={() => handleTopicClick(topic.id)}
-                className={`text-left p-4 rounded-lg border-2 transition-all hover:shadow-md ${extraClassName}`}
+                className={`text-left p-4 rounded-lg border-2 transition-[box-shadow] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${extraClassName}`}
                 style={{
                     borderColor: color,
                     backgroundColor: `${color}10`,
@@ -334,7 +334,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                             <div
-                                className="h-2 rounded-full transition-all"
+                                className="h-2 rounded-full transition-[width]"
                                 style={{
                                     width: `${progress.completionPercentage}%`,
                                     backgroundColor: color,

@@ -309,7 +309,7 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 </div>
                                 <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
                                     <div
-                                        className="h-full bg-emerald-500 transition-all duration-300"
+                                        className="h-full bg-emerald-500 transition-[width] duration-300"
                                         style={{ width: `${data.progress.byCategory.vocab.avgProgress}%` }}
                                     />
                                 </div>
@@ -328,7 +328,7 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 </div>
                                 <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
                                     <div
-                                        className="h-full bg-[#e76f51] transition-all duration-300"
+                                        className="h-full bg-[#e76f51] transition-[width] duration-300"
                                         style={{ width: `${data.progress.byCategory.grammar.avgProgress}%` }}
                                     />
                                 </div>
@@ -347,7 +347,7 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 </div>
                                 <div className="w-full bg-bg rounded-full h-3 overflow-hidden">
                                     <div
-                                        className="h-full bg-blue-500 transition-all duration-300"
+                                        className="h-full bg-blue-500 transition-[width] duration-300"
                                         style={{ width: `${data.progress.byCategory.numbers.avgProgress}%` }}
                                     />
                                 </div>

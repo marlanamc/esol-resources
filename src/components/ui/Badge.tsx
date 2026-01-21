@@ -53,7 +53,7 @@ export const Badge: React.FC<BadgeProps & { size?: 'sm' | 'md' | 'lg' }> = ({
 
   return (
     <span
-      className={`inline-flex items-center font-semibold rounded-lg border transition-all duration-200 shadow-sm ${styles} ${sizeStyles[size]} ${className}`}
+      className={`inline-flex items-center font-semibold rounded-lg border transition-[colors,box-shadow] duration-200 shadow-sm ${styles} ${sizeStyles[size]} ${className}`}
     >
       {children}
     </span>

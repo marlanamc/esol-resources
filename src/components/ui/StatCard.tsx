@@ -59,7 +59,7 @@ export const StatCard: React.FC<StatCardProps> = ({
 
   return (
     <div
-      className={`relative p-6 overflow-hidden transition-all duration-300 group bg-white/95 backdrop-blur-sm border border-border/60 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 ${className}`}
+      className={`relative p-6 overflow-hidden transition-[box-shadow,transform] duration-300 group bg-white/95 backdrop-blur-sm border border-border/60 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 ${className}`}
     >
       {/* Decorative gradient background blob */}
       <div className={`absolute -right-6 -top-6 w-32 h-32 rounded-full opacity-10 blur-2xl bg-gradient-to-br from-[var(--color-${themeColor})] to-[var(--color-${themeColor}-light)]`} />

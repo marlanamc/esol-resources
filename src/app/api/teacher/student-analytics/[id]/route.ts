@@ -51,35 +51,37 @@ export async function GET(
         return NextResponse.json({ error: "Student not found" }, { status: 404 });
     }
 
-    // Get activity progress
-    const activityProgress = await prisma.activityProgress.findMany({
-        where: { userId: studentId },
-        include: {
-            activity: {
-                select: {
-                    id: true,
-                    title: true,
-                    type: true,
-                    category: true,
-                    level: true
+    // Run independent queries in parallel to eliminate async waterfall
+    const [activityProgress, pointsHistory] = await Promise.all([
+        // Get activity progress
+        prisma.activityProgress.findMany({
+            where: { userId: studentId },
+            include: {
+                activity: {
+                    select: {
+                        id: true,
+                        title: true,
+                        type: true,
+                        category: true,
+                        level: true
+                    }
                 }
+            },
+            orderBy: { updatedAt: 'desc' }
+        }),
+        // Get points history (recent activity timeline)
+        prisma.pointsLedger.findMany({
+            where: { userId: studentId },
+            orderBy: { createdAt: 'desc' },
+            take: 50,
+            select: {
+                id: true,
+                points: true,
+                reason: true,
+                createdAt: true
             }
-        },
-        orderBy: { updatedAt: 'desc' }
-    });
-
-    // Get points history (recent activity timeline)
-    const pointsHistory = await prisma.pointsLedger.findMany({
-        where: { userId: studentId },
-        orderBy: { createdAt: 'desc' },
-        take: 50,
-        select: {
-            id: true,
-            points: true,
-            reason: true,
-            createdAt: true
-        }
-    });
+        }),
+    ]);
 
     // Calculate engagement metrics
     const completedActivities = activityProgress.filter(p => p.status === 'completed');

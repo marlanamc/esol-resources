@@ -46,7 +46,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className={`flex flex-col items-center justify-center gap-1 transition-all duration-150 cursor-pointer touch-manipulation relative ${
+                className={`flex flex-col items-center justify-center gap-1 transition-[color,transform] duration-150 cursor-pointer touch-manipulation relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                   isActive
                     ? ''
                     : 'active:scale-95'

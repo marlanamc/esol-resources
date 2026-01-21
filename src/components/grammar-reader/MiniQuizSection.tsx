@@ -196,7 +196,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                                 {question.options.map((option) => (
                                     <label
                                         key={option.value}
-                                        className={`flex w-full flex-col gap-3 rounded-md border p-3 text-left transition-all cursor-pointer ${!submitted
+                                        className={`flex w-full flex-col gap-3 rounded-md border p-3 text-left transition-[background-color,border-color] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!submitted
                                                 ? "hover:bg-bg-light border-border"
                                                 : showFeedback && option.value === question.correctAnswer
                                                     ? "border-success bg-success/10"

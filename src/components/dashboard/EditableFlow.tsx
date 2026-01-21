@@ -113,7 +113,7 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
                         disabled={isSaving}
                         className="text-xs text-primary hover:text-primary/80 font-medium disabled:opacity-50"
                     >
-                        {isSaving ? "Saving..." : "💾 Save"}
+                        {isSaving ? "Saving…" : "💾 Save"}
                     </button>
                     <button
                         onClick={handleCancel}
