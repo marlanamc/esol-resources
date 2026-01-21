@@ -1,3 +1,4 @@
+import React from "react";
 import type { InteractiveGuideSection } from "@/types/activity";
 import { ExerciseSection } from "./exercises/ExerciseSection";
 
@@ -9,7 +10,7 @@ interface PracticePanelProps {
     unlocked: boolean;
 }
 
-export function PracticePanel({
+export const PracticePanel = React.memo(function PracticePanel({
     section,
     answers,
     onAnswerChange,
@@ -82,4 +83,4 @@ export function PracticePanel({
             )}
         </div>
     );
-}
+});

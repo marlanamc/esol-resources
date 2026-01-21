@@ -1,3 +1,4 @@
+import React from "react";
 import type { InteractiveGuideSection } from "@/types/activity";
 
 interface TableOfContentsProps {
@@ -7,7 +8,7 @@ interface TableOfContentsProps {
     onSelectSection: (index: number) => void;
 }
 
-export function TableOfContents({
+export const TableOfContents = React.memo(function TableOfContents({
     sections,
     currentIndex,
     completedSections,
@@ -107,4 +108,4 @@ export function TableOfContents({
             </ul>
         </div>
     );
-}
+});

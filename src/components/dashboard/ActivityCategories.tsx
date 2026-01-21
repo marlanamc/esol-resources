@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 
 interface Activity {
@@ -38,93 +38,180 @@ interface ActivityCategoriesProps {
     showEmpty?: boolean;
 }
 
-export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
+const vocabMonths = [
+    { id: 'september', label: 'Unit 1: September: Getting to Know You' },
+    { id: 'october', label: 'Unit 2: October: Daily Life in the Community' },
+    { id: 'november', label: 'Unit 3: November: Community Participation' },
+    { id: 'december', label: 'Unit 4: December: Consumer Smarts' },
+    { id: 'january', label: 'Unit 5: January: Housing' },
+    { id: 'february', label: 'Unit 6: February: Workforce Preparation' },
+    { id: 'march', label: 'Unit 7: March: Career Awareness' },
+    { id: 'april', label: 'Unit 8: April: Health' },
+    { id: 'may', label: 'Unit 9: May: Holistic Wellness' },
+    { id: 'june', label: 'Unit 10: June: Future Academic Goals' },
+];
+
+const displayTitle = (title: string) =>
+    title
+        .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
+        .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
+        .trim();
+
+const parseTitleDateMs = (title?: string | null) => {
+    if (!title) return null;
+    const match = title.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2})\s*:/);
+    if (!match) return null;
+    const month = Number(match[1]);
+    const day = Number(match[2]);
+    const year = 2000 + Number(match[3]);
+    const dt = new Date(year, month - 1, day);
+    if (dt.getFullYear() !== year || dt.getMonth() !== month - 1 || dt.getDate() !== day) return null;
+    return dt.getTime();
+};
+
+const compareByTitleDateDesc = (a: Activity, b: Activity) => {
+    const aDate = parseTitleDateMs(a.title);
+    const bDate = parseTitleDateMs(b.title);
+    if (aDate !== null && bDate !== null) return bDate - aDate;
+    if (aDate !== null) return -1;
+    if (bDate !== null) return 1;
+    return (b.title || '').localeCompare(a.title || '');
+};
+
+const getSubCategoryCount = (subCategory: SubCategory) => {
+    const directCount = subCategory.activities?.length || 0;
+    const nestedCount = subCategory.subCategories
+        ? subCategory.subCategories.reduce((sum, sub) => sum + (sub.activities?.length || 0), 0)
+        : 0;
+    return directCount + nestedCount;
+};
+
+const getCategoryCount = (category: Category) => {
+    const directCount = category.activities?.length || 0;
+    const nestedCount = category.subCategories
+        ? category.subCategories.reduce((sum, sub) => sum + getSubCategoryCount(sub), 0)
+        : 0;
+    return directCount + nestedCount;
+};
+
+const getProgress = (id: string, progressMap?: Record<string, { progress: number; categoryData?: string }>) => {
+    const data = progressMap?.[id];
+    return data?.progress ?? 0;
+};
+
+
+interface ActivityCardProps {
+    activity: Activity;
+    isCompleted: boolean;
+    progressValue: number;
+    progressMap?: Record<string, { progress: number; categoryData?: string }>;
+}
+
+const getCategoryProgressText = (activityId: string, progressMap?: Record<string, { progress: number; categoryData?: string }>) => {
+    const data = progressMap?.[activityId];
+    if (!data?.categoryData) return null;
+
+    try {
+        const categories = JSON.parse(data.categoryData) as unknown;
+        if (!categories || typeof categories !== "object") return null;
+        const values = Object.values(categories as Record<string, unknown>);
+        const completed = values.filter((value) => {
+            if (!value || typeof value !== "object") return false;
+            const entry = value as { completed?: unknown };
+            return entry.completed === true;
+        }).length;
+        const total = values.length;
+        return `${completed}/${total} categories`;
+    } catch {
+        return null;
+    }
+};
+
+const ActivityCard = React.memo(function ActivityCard({
+    activity,
+    isCompleted,
+    progressValue,
+    progressMap
+}: ActivityCardProps) {
+    const progressText = getCategoryProgressText(activity.id, progressMap);
+
+    return (
+        <Link
+            href={`/activity/${activity.id}`}
+            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+                }`}
+        >
+            {isCompleted && (
+                <div className="absolute top-3 right-3">
+                    <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
+                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                </div>
+            )}
+            <div className="flex items-start gap-3">
+                <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                    <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
+                        }`}>
+                        {displayTitle(activity.title)}
+                    </h4>
+                    <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                        <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                            {activity.type}
+                        </span>
+                        {progressValue > 0 && (
+                            <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
+                                {activity.id === 'numbers-game' && progressText
+                                    ? progressText
+                                    : `${progressValue}% done`}
+                            </span>
+                        )}
+                    </div>
+                </div>
+            </div>
+            {progressValue > 0 && (
+                <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
+                    <div
+                        className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
+                        style={{ width: `${Math.min(progressValue, 100)}%` }}
+                    />
+                </div>
+            )}
+        </Link>
+    );
+});
+
+export const ActivityCategories = React.memo(function ActivityCategories({
     activities,
     completedActivityIds = new Set(),
     progressMap,
     showEmpty = false
-}) => {
+}: ActivityCategoriesProps) {
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubCategories, setExpandedSubCategories] = useState<Set<string>>(new Set());
 
-    const displayTitle = (title: string) =>
-        title
-            .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
-            .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
-            .trim();
+    const toggleCategory = useCallback((categoryName: string) => {
+        setExpandedCategories(prev => {
+            const next = new Set(prev);
+            if (next.has(categoryName)) next.delete(categoryName);
+            else next.add(categoryName);
+            return next;
+        });
+    }, []);
 
-    const toggleCategory = (categoryName: string) => {
-        const newExpanded = new Set(expandedCategories);
-        if (newExpanded.has(categoryName)) {
-            newExpanded.delete(categoryName);
-        } else {
-            newExpanded.add(categoryName);
-        }
-        setExpandedCategories(newExpanded);
-    };
+    const toggleSubCategory = useCallback((subCategoryKey: string) => {
+        setExpandedSubCategories(prev => {
+            const next = new Set(prev);
+            if (next.has(subCategoryKey)) next.delete(subCategoryKey);
+            else next.add(subCategoryKey);
+            return next;
+        });
+    }, []);
 
-    const toggleSubCategory = (subCategoryKey: string) => {
-        const newExpanded = new Set(expandedSubCategories);
-        if (newExpanded.has(subCategoryKey)) {
-            newExpanded.delete(subCategoryKey);
-        } else {
-            newExpanded.add(subCategoryKey);
-        }
-        setExpandedSubCategories(newExpanded);
-    };
-
-    const getSubCategoryCount = (subCategory: SubCategory) => {
-        const directCount = subCategory.activities?.length || 0;
-        const nestedCount = subCategory.subCategories
-            ? subCategory.subCategories.reduce((sum, sub) => sum + (sub.activities?.length || 0), 0)
-            : 0;
-        return directCount + nestedCount;
-    };
-
-    const getCategoryCount = (category: Category) => {
-        const directCount = category.activities?.length || 0;
-        const nestedCount = category.subCategories
-            ? category.subCategories.reduce((sum, sub) => sum + getSubCategoryCount(sub), 0)
-            : 0;
-        return directCount + nestedCount;
-    };
-
-    const vocabMonths = [
-        { id: 'september', label: 'Unit 1: September: Getting to Know You' },
-        { id: 'october', label: 'Unit 2: October: Daily Life in the Community' },
-        { id: 'november', label: 'Unit 3: November: Community Participation' },
-        { id: 'december', label: 'Unit 4: December: Consumer Smarts' },
-        { id: 'january', label: 'Unit 5: January: Housing' },
-        { id: 'february', label: 'Unit 6: February: Workforce Preparation' },
-        { id: 'march', label: 'Unit 7: March: Career Awareness' },
-        { id: 'april', label: 'Unit 8: April: Health' },
-        { id: 'may', label: 'Unit 9: May: Holistic Wellness' },
-        { id: 'june', label: 'Unit 10: June: Future Academic Goals' },
-    ];
-
-    const parseTitleDateMs = (title?: string | null) => {
-        if (!title) return null;
-        const match = title.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2})\s*:/);
-        if (!match) return null;
-        const month = Number(match[1]);
-        const day = Number(match[2]);
-        const year = 2000 + Number(match[3]);
-        const dt = new Date(year, month - 1, day);
-        if (dt.getFullYear() !== year || dt.getMonth() !== month - 1 || dt.getDate() !== day) return null;
-        return dt.getTime();
-    };
-
-    const compareByTitleDateDesc = (a: Activity, b: Activity) => {
-        const aDate = parseTitleDateMs(a.title);
-        const bDate = parseTitleDateMs(b.title);
-        if (aDate !== null && bDate !== null) return bDate - aDate;
-        if (aDate !== null) return -1;
-        if (bDate !== null) return 1;
-        return (b.title || '').localeCompare(a.title || '');
-    };
-
-    const buildGrammarSubCategories = (): SubCategory[] => {
-        const grammarActivities = activities.filter((a) => a.category === "grammar");
+    const buildGrammarSubCategories = useCallback((): SubCategory[] => {
+        const grammarActivities = activities.filter((a: Activity) => a.category === "grammar");
 
         const normalizeTitle = (title?: string | null) => displayTitle(title || "").toLowerCase();
 
@@ -158,7 +245,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                 return keywordsInOrder.length;
             };
 
-            return list.sort((a, b) => {
+            return list.sort((a: Activity, b: Activity) => {
                 const aNorm = normalizeTitle(a.title);
                 const bNorm = normalizeTitle(b.title);
                 const aIdx = getKeywordIndex(aNorm);
@@ -182,30 +269,30 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         };
 
         const simple = sortByTenseOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("simple") && !t.includes("vs");
             })
         );
 
-        const perfectContinuous = sortByTenseOrder(take((a) => normalizeTitle(a.title).includes("perfect continuous")));
+        const perfectContinuous = sortByTenseOrder(take((a: Activity) => normalizeTitle(a.title).includes("perfect continuous")));
 
         const continuous = sortByTenseOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("continuous") && !t.includes("perfect continuous") && !t.includes("vs");
             })
         );
 
         const perfect = sortByTenseOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("perfect") && !t.includes("continuous") && !t.includes("vs");
             })
         );
 
         const mixedAllTenses = sortAlpha(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 // Exclude gerund/infinitive activities from tenses
                 if (t.includes("gerund") || t.includes("infinitive")) return false;
@@ -214,7 +301,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         );
 
         const questionsAndCommands = sortByKeywordOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("question") || t.includes("imperative") || t.includes("declarative");
             }),
@@ -222,19 +309,19 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         );
 
         const conditionals = sortByKeywordOrder(
-            take((a) => normalizeTitle(a.title).includes("conditional")),
+            take((a: Activity) => normalizeTitle(a.title).includes("conditional")),
             ["zero", "first", "second", "third"]
         );
-        const modals = sortAlpha(take((a) => normalizeTitle(a.title).includes("modal")));
+        const modals = sortAlpha(take((a: Activity) => normalizeTitle(a.title).includes("modal")));
         const habitsAndPreferences = sortAlpha(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("used to") || t.includes("would rather");
             })
         );
 
         const voiceAndReporting = sortByKeywordOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("passive") || t.includes("reported");
             }),
@@ -242,17 +329,17 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         );
 
         const gerundsAndInfinitives = sortByKeywordOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("gerund") || t.includes("infinitive");
             }),
             ["infinitives vs gerunds", "verbs + gerunds", "gerunds after prepositions"]
         );
 
-        const phrasalVerbs = sortAlpha(take((a) => normalizeTitle(a.title).includes("phrasal")));
+        const phrasalVerbs = sortAlpha(take((a: Activity) => normalizeTitle(a.title).includes("phrasal")));
 
         const wordsAndQuantity = sortByKeywordOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("parts of speech") || t.includes("superlative") || t.includes("quantifier");
             }),
@@ -260,7 +347,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
         );
 
         const writingMechanics = sortByKeywordOrder(
-            take((a) => {
+            take((a: Activity) => {
                 const t = normalizeTitle(a.title);
                 return t.includes("punctuation") || t.includes("capitalization") || t.includes("paragraph");
             }),
@@ -287,7 +374,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                     ...questionsAndCommands,
                     ...modals,
                     ...voiceAndReporting
-                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+                ].sort((a: Activity, b: Activity) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
             },
             {
                 name: "Gerunds & Infinitives",
@@ -298,7 +385,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                 activities: [
                     ...phrasalVerbs,
                     ...habitsAndPreferences
-                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+                ].sort((a: Activity, b: Activity) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
             },
             {
                 name: "Conditionals",
@@ -306,121 +393,123 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             },
             {
                 name: "Describing & Comparing",
-                activities: wordsAndQuantity.sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+                activities: wordsAndQuantity.sort((a: Activity, b: Activity) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
             },
             {
                 name: "Writing Basics",
                 activities: [
                     ...writingMechanics,
                     ...otherGrammar
-                ].sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
+                ].sort((a: Activity, b: Activity) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")))
             },
         ];
-    };
+    }, [activities]);
 
-    // Organize activities by top-level categories with subcategories
-    const categories: Category[] = [
-        {
-            name: 'Vocabulary',
-            color: '#f4a261', // warm orange
-            subCategories: vocabMonths.map(month => {
-                const monthActivities = activities.filter(a => a.id?.startsWith(`vocab-${month.id}`));
+    const categories = useMemo((): Category[] => {
+        return [
+            {
+                name: 'Vocabulary',
+                color: '#f4a261', // warm orange
+                subCategories: vocabMonths.map(month => {
+                    const monthActivities = activities.filter((a: Activity) => a.id?.startsWith(`vocab-${month.id}`));
 
-                // Define custom sort order
-                const sortOrder = ['packet', 'flashcards', 'matching', 'fillblank'];
-                const sorted = monthActivities.sort((a, b) => {
-                    const aType = a.id?.split('-').pop() || '';
-                    const bType = b.id?.split('-').pop() || '';
-                    const aIndex = sortOrder.indexOf(aType);
-                    const bIndex = sortOrder.indexOf(bType);
-                    return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
-                });
+                    // Define custom sort order
+                    const sortOrder = ['packet', 'flashcards', 'matching', 'fillblank'];
+                    const sorted = monthActivities.sort((a, b) => {
+                        const aType = a.id?.split('-').pop() || '';
+                        const bType = b.id?.split('-').pop() || '';
+                        const aIndex = sortOrder.indexOf(aType);
+                        const bIndex = sortOrder.indexOf(bType);
+                        return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
+                    });
 
-                return {
-                    name: month.label,
-                    activities: sorted
-                };
-            }),
-            activities: []
-        },
-        {
-            name: 'Grammar',
-            color: '#e76f51', // coral/terracotta
-            subCategories: buildGrammarSubCategories(),
-            activities: []
-        },
-        {
-            name: 'Games',
-            color: '#f97316', // orange
-            activities: activities.filter(a => {
-                // Only show specific games: numbers-game and countable-uncountable-nouns
-                // Exclude vocabulary games (they show in Vocabulary category)
-                if (a.type !== 'game') return false;
-                if (a.id?.startsWith('vocab-')) return false;
-                return a.id === 'numbers-game' || a.id === 'countable-uncountable-nouns';
-            }).sort((a, b) => {
-                // Sort by title for better organization
-                return (a.title || '').localeCompare(b.title || '');
-            })
-        },
-        {
-            name: 'Reading',
-            color: '#2a9d8f', // teal
-            activities: activities.filter(a => a.category === 'reading' || a.category === 'writing-reading')
-        },
-        {
-            name: 'Writing',
-            color: '#7ba884', // sage green
-            activities: activities.filter(a => a.category === 'writing' || a.category === 'writing-reading')
-        },
-        {
-            name: 'Pronunciation',
-            color: '#6a4c93', // purple
-            activities: activities.filter(a => a.category === 'pronunciation')
-        },
-        {
-            name: 'Speaking',
-            color: '#e09f3e', // gold/amber
-            activities: activities.filter(a => {
-                if (a.category !== 'speaking') return false;
-
-                // Only show released speaking activities to students
-                try {
-                    const content = JSON.parse(a.content || '{}');
-                    return content.released === true;
-                } catch {
-                    return false;
-                }
-            }).sort(compareByTitleDateDesc)
-        },
-        {
-            name: 'Quizzes',
-            color: '#c86b51', // terracotta
-            activities: activities.filter(a => {
-                if (a.category !== 'quizzes') return false;
-
-                // Only show released quizzes to students
-                try {
-                    const content = JSON.parse(a.content || '{}');
-                    return content.released === true;
-                } catch {
-                    return false;
-                }
-            })
-                .sort((a, b) => {
-                    // Sort by week number (Week 1, Week 2, etc.)
-                    const getWeekNum = (title: string) => {
-                        const match = title.match(/Week (\d+)/);
-                        return match ? parseInt(match[1]) : 999;
+                    return {
+                        name: month.label,
+                        activities: sorted
                     };
-                    return getWeekNum(a.title || '') - getWeekNum(b.title || '');
+                }),
+                activities: []
+            },
+            {
+                name: 'Grammar',
+                color: '#e76f51', // coral/terracotta
+                subCategories: buildGrammarSubCategories(),
+                activities: []
+            },
+            {
+                name: 'Games',
+                color: '#f97316', // orange
+                activities: activities.filter((a: Activity) => {
+                    // Only show specific games: numbers-game and countable-uncountable-nouns
+                    // Exclude vocabulary games (they show in Vocabulary category)
+                    if (a.type !== 'game') return false;
+                    if (a.id?.startsWith('vocab-')) return false;
+                    return a.id === 'numbers-game' || a.id === 'countable-uncountable-nouns';
+                }).sort((a, b) => {
+                    // Sort by title for better organization
+                    return (a.title || '').localeCompare(b.title || '');
                 })
-        }
-    ];
+            },
+            {
+                name: 'Reading',
+                color: '#2a9d8f', // teal
+                activities: activities.filter((a: Activity) => a.category === 'reading' || a.category === 'writing-reading')
+            },
+            {
+                name: 'Writing',
+                color: '#7ba884', // sage green
+                activities: activities.filter((a: Activity) => a.category === 'writing' || a.category === 'writing-reading')
+            },
+            {
+                name: 'Pronunciation',
+                color: '#6a4c93', // purple
+                activities: activities.filter((a: Activity) => a.category === 'pronunciation')
+            },
+            {
+                name: 'Speaking',
+                color: '#e09f3e', // gold/amber
+                activities: activities.filter((a: Activity) => {
+                    if (a.category !== 'speaking') return false;
 
-    const filteredCategories = showEmpty
-        ? categories
-        : categories
+                    // Only show released speaking activities to students
+                    try {
+                        const content = JSON.parse(a.content || '{}');
+                        return content.released === true;
+                    } catch {
+                        return false;
+                    }
+                }).sort(compareByTitleDateDesc)
+            },
+            {
+                name: 'Quizzes',
+                color: '#c86b51', // terracotta
+                activities: activities.filter((a: Activity) => {
+                    if (a.category !== 'quizzes') return false;
+
+                    // Only show released quizzes to students
+                    try {
+                        const content = JSON.parse(a.content || '{}');
+                        return content.released === true;
+                    } catch {
+                        return false;
+                    }
+                })
+                    .sort((a, b) => {
+                        // Sort by week number (Week 1, Week 2, etc.)
+                        const getWeekNum = (title: string) => {
+                            const match = title.match(/Week (\d+)/);
+                            return match ? parseInt(match[1]) : 999;
+                        };
+                        return getWeekNum(a.title || '') - getWeekNum(b.title || '');
+                    })
+            }
+        ];
+    }, [activities, buildGrammarSubCategories]);
+
+    const filteredCategories = useMemo(() => {
+        if (showEmpty) return categories;
+
+        return categories
             // Hide any categories (and their subcategories) that have zero activities
             .map(category => {
                 const filteredSubCategories = category.subCategories
@@ -440,31 +529,21 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                 };
             })
             .filter(cat => getCategoryCount(cat) > 0);
+    }, [categories, showEmpty]);
 
-    const getProgress = (id: string) => {
-        const data = progressMap?.[id];
-        return data?.progress ?? 0;
-    };
-
-    const getCategoryProgressText = (id: string) => {
-        const data = progressMap?.[id];
-        if (!data?.categoryData) return null;
-
-        try {
-            const categories = JSON.parse(data.categoryData) as unknown;
-            if (!categories || typeof categories !== "object") return null;
-            const values = Object.values(categories as Record<string, unknown>);
-            const completed = values.filter((value) => {
-                if (!value || typeof value !== "object") return false;
-                const entry = value as { completed?: unknown };
-                return entry.completed === true;
-            }).length;
-            const total = values.length;
-            return `${completed}/${total} categories`;
-        } catch {
-            return null;
-        }
-    };
+    const renderActivityCard = useCallback((activity: Activity) => {
+        const progressValue = getProgress(activity.id, progressMap);
+        const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
+        return (
+            <ActivityCard
+                key={activity.id}
+                activity={activity}
+                isCompleted={isCompleted}
+                progressValue={progressValue}
+                progressMap={progressMap}
+            />
+        );
+    }, [completedActivityIds, progressMap]);
 
     return (
         <div className="space-y-4">
@@ -585,57 +664,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
 
                                                                                     {isSubSubExpanded && subSubCategory.activities.length > 0 && (
                                                                                         <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                            {subSubCategory.activities.map((activity) => {
-                                                                                                const progressValue = getProgress(activity.id);
-                                                                                                const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
-                                                                                                return (
-                                                                                                    <Link
-                                                                                                        key={activity.id}
-                                                                                                        href={`/activity/${activity.id}`}
-                                                                                                        className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
-                                                                                                            }`}
-                                                                                                    >
-                                                                                                        {isCompleted && (
-                                                                                                            <div className="absolute top-3 right-3">
-                                                                                                                <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
-                                                                                                                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                                                                                    </svg>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        )}
-                                                                                                        <div className="flex items-start gap-3">
-                                                                                                            <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
-                                                                                                            <div className="flex-1 min-w-0">
-                                                                                                                <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
-                                                                                                                    }`}>
-                                                                                                                    {displayTitle(activity.title)}
-                                                                                                                </h4>
-                                                                                                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                                                                                                                    <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                                                                                                                        {activity.type}
-                                                                                                                    </span>
-                                                                                                                    {progressValue > 0 && (
-                                                                                                                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                                                                            {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
-                                                                                                                                ? getCategoryProgressText(activity.id)
-                                                                                                                                : `${progressValue}% done`}
-                                                                                                                        </span>
-                                                                                                                    )}
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        {progressValue > 0 && (
-                                                                                                            <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
-                                                                                                                <div
-                                                                                                                    className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
-                                                                                                                    style={{ width: `${Math.min(progressValue, 100)}%` }}
-                                                                                                                />
-                                                                                                            </div>
-                                                                                                        )}
-                                                                                                    </Link>
-                                                                                                );
-                                                                                            })}
+                                                                                            {subSubCategory.activities.map(renderActivityCard)}
                                                                                         </div>
                                                                                     )}
                                                                                 </div>
@@ -679,57 +708,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
 
                                                                                 {isSubSubExpanded && subSubCategory.activities.length > 0 && (
                                                                                     <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                        {subSubCategory.activities.map((activity) => {
-                                                                                            const progressValue = getProgress(activity.id);
-                                                                                            const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
-                                                                                            return (
-                                                                                                <Link
-                                                                                                    key={activity.id}
-                                                                                                    href={`/activity/${activity.id}`}
-                                                                                                    className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
-                                                                                                        }`}
-                                                                                                >
-                                                                                                    {isCompleted && (
-                                                                                                        <div className="absolute top-3 right-3">
-                                                                                                            <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
-                                                                                                                <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                                                                                </svg>
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    )}
-                                                                                                    <div className="flex items-start gap-3">
-                                                                                                        <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
-                                                                                                        <div className="flex-1 min-w-0">
-                                                                                                            <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
-                                                                                                                }`}>
-                                                                                                                {displayTitle(activity.title)}
-                                                                                                            </h4>
-                                                                                                            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                                                                                                                <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                                                                                                                    {activity.type}
-                                                                                                                </span>
-                                                                                                                {progressValue > 0 && (
-                                                                                                                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                                                                        {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
-                                                                                                                            ? getCategoryProgressText(activity.id)
-                                                                                                                            : `${progressValue}% done`}
-                                                                                                                    </span>
-                                                                                                                )}
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    {progressValue > 0 && (
-                                                                                                        <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
-                                                                                                            <div
-                                                                                                                className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
-                                                                                                                style={{ width: `${Math.min(progressValue, 100)}%` }}
-                                                                                                            />
-                                                                                                        </div>
-                                                                                                    )}
-                                                                                                </Link>
-                                                                                            );
-                                                                                        })}
+                                                                                        {subSubCategory.activities.map(renderActivityCard)}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -740,57 +719,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                                         ) : subCategory.activities.length > 0 && (
                                                             // No sub-subcategories - show activities directly
                                                             <div className="pl-12 pr-4 pb-4 space-y-2">
-                                                                {subCategory.activities.map((activity) => {
-                                                                    const progressValue = getProgress(activity.id);
-                                                                    const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
-                                                                    return (
-                                                                        <Link
-                                                                            key={activity.id}
-                                                                            href={`/activity/${activity.id}`}
-                                                                            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
-                                                                                }`}
-                                                                        >
-                                                                            {isCompleted && (
-                                                                                <div className="absolute top-3 right-3">
-                                                                                    <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
-                                                                                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                                                        </svg>
-                                                                                    </div>
-                                                                                </div>
-                                                                            )}
-                                                                            <div className="flex items-start gap-3">
-                                                                                <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
-                                                                                <div className="flex-1 min-w-0">
-                                                                                    <h4 className={`font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
-                                                                                        }`}>
-                                                                                        {displayTitle(activity.title)}
-                                                                                    </h4>
-                                                                                    <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                                                                                        <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                                                                                            {activity.type}
-                                                                                        </span>
-                                                                                        {progressValue > 0 && (
-                                                                                            <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                                                {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
-                                                                                                    ? getCategoryProgressText(activity.id)
-                                                                                                    : `${progressValue}% done`}
-                                                                                            </span>
-                                                                                        )}
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            {progressValue > 0 && (
-                                                                                <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
-                                                                                    <div
-                                                                                        className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
-                                                                                        style={{ width: `${Math.min(progressValue, 100)}%` }}
-                                                                                    />
-                                                                                </div>
-                                                                            )}
-                                                                        </Link>
-                                                                    );
-                                                                })}
+                                                                {subCategory.activities.map(renderActivityCard)}
                                                             </div>
                                                         )
                                                     )}
@@ -802,57 +731,7 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
                                     // No subcategories - show activities directly
                                     <div className="p-4 space-y-2">
                                         {category.activities.length > 0 ? (
-                                            category.activities.map((activity) => {
-                                            const progressValue = getProgress(activity.id);
-                                            const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
-                                                return (
-                                                    <Link
-                                                        key={activity.id}
-                                                        href={`/activity/${activity.id}`}
-                                                        className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
-                                                            }`}
-                                                    >
-                                                        {isCompleted && (
-                                                            <div className="absolute top-3 right-3">
-                                                                <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
-                                                                    <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                                    </svg>
-                                                                </div>
-                                                            </div>
-                                                        )}
-                                                        <div className="flex items-start gap-3">
-                                                            <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
-                                                            <div className="flex-1 min-w-0">
-                                                                <h4 className={`font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
-                                                                    }`}>
-                                                                    {displayTitle(activity.title)}
-                                                                </h4>
-                                                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                                                                    <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                                                                        {activity.type}
-                                                                    </span>
-                                                                {progressValue > 0 && (
-                                                                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
-                                                                        {activity.id === 'numbers-game' && getCategoryProgressText(activity.id)
-                                                                            ? getCategoryProgressText(activity.id)
-                                                                            : `${progressValue}% done`}
-                                                                    </span>
-                                                                )}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        {progressValue > 0 && (
-                                                            <div className="mt-3 h-1.5 bg-border/40 rounded-full overflow-hidden">
-                                                                <div
-                                                                    className={`h-full ${isCompleted ? 'bg-secondary' : 'bg-primary'}`}
-                                                                    style={{ width: `${Math.min(progressValue, 100)}%` }}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </Link>
-                                                );
-                                            })
+                                            category.activities.map(renderActivityCard)
                                         ) : (
                                             <p className="text-text-muted text-center py-4 text-sm">No activities yet</p>
                                         )}
@@ -865,4 +744,4 @@ export const ActivityCategories: React.FC<ActivityCategoriesProps> = ({
             })}
         </div>
     );
-};
+});

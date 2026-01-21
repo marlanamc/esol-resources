@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import type { InteractiveGuideSection } from "@/types/activity";
 import { Button } from "@/components/ui/Button";
 import { sanitizeHtml } from "@/utils/sanitize";
@@ -22,7 +23,7 @@ interface ExplanationPanelProps {
     className?: string;
 }
 
-export function ExplanationPanel({
+export const ExplanationPanel = React.memo(function ExplanationPanel({
     section,
     onUnlockExercises,
     practiceUnlocked,
@@ -33,6 +34,11 @@ export function ExplanationPanel({
     className = "",
 }: ExplanationPanelProps) {
     const isFull = variant === 'full';
+
+    const sanitizedExplanation = useMemo(() => {
+        if (!section.explanation) return "";
+        return sanitizeHtml(section.explanation, { allowStyles: true });
+    }, [section.explanation]);
 
     return (
         <div
@@ -54,7 +60,7 @@ export function ExplanationPanel({
                 {section.explanation && (
                     <div
                         className="explanation-content mb-6"
-                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(section.explanation, { allowStyles: true }) }}
+                        dangerouslySetInnerHTML={{ __html: sanitizedExplanation }}
                     />
                 )}
 
@@ -148,4 +154,4 @@ export function ExplanationPanel({
             )}
         </div>
     );
-}
+});
