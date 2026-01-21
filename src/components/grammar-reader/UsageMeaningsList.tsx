@@ -120,9 +120,10 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                     <h4 className="text-lg md:text-xl lg:text-2xl font-bold text-text mb-1.5 font-display leading-tight">
                                         {title}
                                     </h4>
-                                    <p className="text-sm md:text-base text-text-muted leading-snug">
-                                        {meaning.description}
-                                    </p>
+                                    <div 
+                                        className="text-sm md:text-base text-text-muted leading-snug"
+                                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(meaning.description) }}
+                                    />
                                 </div>
                             </div>
 
@@ -156,9 +157,10 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                                         transition={{ delay: 0.2 }}
                                                     >
                                                         <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-accent flex-shrink-0 mt-0.5" />
-                                                        <p className="text-xs md:text-sm text-text-muted italic flex-1">
-                                                            {example.explanation.replace('✓', '').trim()}
-                                                        </p>
+                                                        <div 
+                                                            className="text-xs md:text-sm text-text-muted italic flex-1"
+                                                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(example.explanation.replace('✓', '').trim()) }}
+                                                        />
                                                     </motion.div>
                                                 )}
                                             </div>

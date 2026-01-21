@@ -1,4 +1,5 @@
 import type { ComparisonRow } from "@/types/activity";
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface ComparisonTableProps {
     comparison: {
@@ -23,12 +24,18 @@ export function ComparisonTable({ comparison }: ComparisonTableProps) {
                         </div>
                         <div className="divide-y divide-border">
                             <div className="px-4 py-3 bg-warning/5">
-                                <div className="text-xs font-semibold text-warning mb-1">{comparison.leftLabel}</div>
-                                <div className="text-sm text-text">{row.left}</div>
+                                <div className="text-sm font-semibold text-warning mb-1">{comparison.leftLabel}</div>
+                                <div 
+                                    className="text-sm text-text"
+                                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(row.left) }}
+                                />
                             </div>
                             <div className="px-4 py-3 bg-success/5">
-                                <div className="text-xs font-semibold text-success mb-1">{comparison.rightLabel}</div>
-                                <div className="text-sm text-text">{row.right}</div>
+                                <div className="text-sm font-semibold text-success mb-1">{comparison.rightLabel}</div>
+                                <div 
+                                    className="text-sm text-text"
+                                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(row.right) }}
+                                />
                             </div>
                         </div>
                     </div>
@@ -58,12 +65,14 @@ export function ComparisonTable({ comparison }: ComparisonTableProps) {
                                     <td className="border border-border p-3 text-sm font-medium text-text">
                                         {row.label}
                                     </td>
-                                    <td className="border border-border p-3 text-sm text-text">
-                                        {row.left}
-                                    </td>
-                                    <td className="border border-border p-3 text-sm text-text">
-                                        {row.right}
-                                    </td>
+                                    <td 
+                                        className="border border-border p-3 text-sm text-text"
+                                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(row.left) }}
+                                    />
+                                    <td 
+                                        className="border border-border p-3 text-sm text-text"
+                                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(row.right) }}
+                                    />
                                 </tr>
                             ))}
                         </tbody>

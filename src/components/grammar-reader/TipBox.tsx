@@ -2,12 +2,27 @@
 
 import { Lightbulb } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { sanitizeHtml } from "@/utils/sanitize";
 
 interface TipBoxProps {
     tip: {
         title: string;
         content: string;
     };
+}
+
+// Highlight important keywords in bold (returning HTML string)
+function highlightKeywordsInString(text: string): string {
+    const keywords = ['NOT', 'NO', 'NEVER', 'ALWAYS', 'ONLY', 'IMPORTANT', 'REMEMBER', "don't", "doesn't"];
+    let result = text;
+    
+    keywords.forEach(keyword => {
+        // Use a regex that ignores case and ensures word boundaries
+        const pattern = new RegExp(`\\b(${keyword})\\b`, 'gi');
+        result = result.replace(pattern, `<span class="font-bold text-warning">$1</span>`);
+    });
+    
+    return result;
 }
 
 // Parse content to make it ADHD-friendly with bullets and bold
@@ -25,9 +40,10 @@ function formatContent(content: string) {
                 {sentences.map((sentence, i) => (
                     <li key={i} className="flex items-start gap-3">
                         <span className="text-warning flex-shrink-0 text-lg leading-none mt-0.5">•</span>
-                        <span className="text-sm text-text leading-relaxed">
-                            {highlightKeywords(sentence)}
-                        </span>
+                        <div 
+                            className="text-sm text-text leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: highlightKeywordsInString(sanitizeHtml(sentence, { allowStyles: true })) }}
+                        />
                     </li>
                 ))}
             </ul>
@@ -35,46 +51,12 @@ function formatContent(content: string) {
     }
 
     // Single sentence with highlighted keywords
-    return <p className="text-sm text-text leading-relaxed mt-2">{highlightKeywords(content)}</p>;
-}
-
-// Highlight important keywords in bold
-function highlightKeywords(text: string): React.ReactNode {
-    // Keywords to bold
-    const keywords = ['NOT', 'NO', 'NEVER', 'ALWAYS', 'ONLY', 'IMPORTANT', 'REMEMBER', "don't", "doesn't"];
-
-    const result: React.ReactNode[] = [];
-    let lastIndex = 0;
-
-    // Create regex pattern for all keywords
-    const pattern = new RegExp(`\\b(${keywords.join('|')})\\b`, 'gi');
-    let match;
-
-    const matches: Array<{ index: number; text: string }> = [];
-    while ((match = pattern.exec(text)) !== null) {
-        matches.push({ index: match.index, text: match[0] });
-    }
-
-    matches.forEach((match, i) => {
-        // Add text before match
-        if (match.index > lastIndex) {
-            result.push(text.substring(lastIndex, match.index));
-        }
-        // Add highlighted keyword
-        result.push(
-            <span key={`bold-${i}`} className="font-bold text-warning">
-                {match.text}
-            </span>
-        );
-        lastIndex = match.index + match.text.length;
-    });
-
-    // Add remaining text
-    if (lastIndex < text.length) {
-        result.push(text.substring(lastIndex));
-    }
-
-    return result.length > 0 ? <>{result}</> : text;
+    return (
+        <div 
+            className="text-sm text-text leading-relaxed mt-2"
+            dangerouslySetInnerHTML={{ __html: highlightKeywordsInString(sanitizeHtml(content, { allowStyles: true })) }}
+        />
+    );
 }
 
 export function TipBox({ tip }: TipBoxProps) {
@@ -105,9 +87,10 @@ export function TipBox({ tip }: TipBoxProps) {
                 </motion.div>
 
                 <div className="flex-1">
-                    <h4 className="text-base font-bold text-warning mb-1">
-                        {tip.title}
-                    </h4>
+                    <h4 
+                        className="text-base font-bold text-warning mb-1"
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(tip.title, { allowStyles: true }) }}
+                    />
                     {formatContent(tip.content)}
                 </div>
             </div>
