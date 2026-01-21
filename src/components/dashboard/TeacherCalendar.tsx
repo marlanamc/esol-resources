@@ -450,7 +450,7 @@ export function TeacherCalendar({
             </div>
             <div className="w-full bg-border/30 rounded-full h-3 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-secondary to-primary transition-all duration-500"
+                className="h-full bg-gradient-to-r from-secondary to-primary transition-[width] duration-500"
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
@@ -504,7 +504,7 @@ export function TeacherCalendar({
                     setShowWeekList(false);
                   }}
                   className={`
-                    text-left p-4 rounded-lg border-2 transition-all
+                    text-left p-4 rounded-lg border-2 transition-[border-color,background-color,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2
                     ${isSelected ? 'border-primary bg-primary/10 shadow-md' : 'border-border/30 hover:border-primary/40 hover:bg-bg-light'}
                     ${isCurrent ? 'ring-2 ring-accent ring-offset-2' : ''}
                     ${isPast ? 'opacity-60' : ''}

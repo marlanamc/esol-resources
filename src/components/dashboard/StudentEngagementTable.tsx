@@ -130,7 +130,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
             <div className="p-4 border-b border-border bg-bg-light">
                 <input
                     type="text"
-                    placeholder="Search students by name or username..."
+                    placeholder="Search students by name or username…"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full px-4 py-2 min-h-[44px] border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"

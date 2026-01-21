@@ -235,7 +235,7 @@ export default function LeaderboardPage() {
                     </div>
                   </div>
                   {rankChange && (
-                    <div className="text-left sm:text-right">
+                    <div className="hidden md:block text-left sm:text-right">
                       <div className="flex items-center gap-1 text-lg font-bold sm:justify-end" style={{ color: rankChange.color }}>
                         <span>{rankChange.icon}</span>
                         <span className="text-sm">{Math.abs(entry.rankChange || 0)}</span>

@@ -107,7 +107,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                     {/* Progress Bar */}
                     <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
                         <div
-                            className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                            className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                             style={{ width: `${progress}%` }}
                         />
                     </div>
@@ -162,7 +162,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                                 key={idx}
                                 onClick={() => handleAnswerSelect(option)}
                                 disabled={selectedAnswer !== null}
-                                className={`p-4 rounded-xl border-2 font-medium text-left transition-all ${bgColor} ${borderColor} ${textColor} ${!selectedAnswer ? "hover:shadow-md hover:-translate-y-0.5" : ""
+                                className={`p-4 rounded-xl border-2 font-medium text-left transition-[border-color,background-color,color,box-shadow,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${bgColor} ${borderColor} ${textColor} ${!selectedAnswer ? "hover:shadow-md hover:-translate-y-0.5" : ""
                                     } disabled:cursor-not-allowed`}
                             >
                                 <div className="flex items-center gap-3">
@@ -234,7 +234,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                     {!isLastQuestion && selectedAnswer && (
                         <button
                             onClick={handleNext}
-                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-[background-color,box-shadow,transform] shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             Next Question →
                         </button>
@@ -242,7 +242,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                     {isComplete && (
                         <button
                             onClick={handleRestart}
-                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl"
+                            className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-[background-color,box-shadow] shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             Try Again
                         </button>

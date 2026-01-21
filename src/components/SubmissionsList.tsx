@@ -162,7 +162,7 @@ export default function SubmissionsList({ assignment, students }: Props) {
                                                         onChange={(e) => setFeedback(e.target.value)}
                                                         rows={3}
                                                         className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
-                                                        placeholder="Provide feedback..."
+                                                        placeholder="Provide feedback…"
                                                     />
                                                 </div>
                                                 {error && (
@@ -176,7 +176,7 @@ export default function SubmissionsList({ assignment, students }: Props) {
                                                         disabled={isLoading}
                                                         className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50"
                                                     >
-                                                        {isLoading ? "Grading..." : "Submit Grade"}
+                                                        {isLoading ? "Grading…" : "Submit Grade"}
                                                     </button>
                                                     <button
                                                         onClick={() => {

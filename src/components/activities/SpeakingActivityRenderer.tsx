@@ -217,7 +217,7 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
                     disabled={isCompleting}
                     className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
-                    {isCompleting ? 'Completing...' : 'Mark as Complete'}
+                    {isCompleting ? 'Completing…' : 'Mark as Complete'}
                   </button>
                 ) : (
                   <div className="flex items-center gap-2 text-green-700 font-semibold">
@@ -689,7 +689,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                 return (
                   <label
                     key={prompt.id}
-                    className={`block border-2 rounded-lg p-3 sm:p-5 cursor-pointer transition-all touch-manipulation ${
+                    className={`block border-2 rounded-lg p-3 sm:p-5 cursor-pointer transition-[border-color,background-color,box-shadow] touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                       selectedPrompts.has(prompt.id)
                         ? "border-primary bg-primary/5 shadow-sm"
                         : "border-gray-200 active:border-primary/50 active:bg-gray-50"
@@ -798,7 +798,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                     return (
                       <label
                         key={step.id}
-                        className={`flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer transition-all ${
+                        className={`flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer transition-[border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                           isCompleted
                             ? "border-green-200 bg-green-50/50"
                             : "border-gray-200 hover:bg-gray-50"
@@ -844,7 +844,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                     <textarea
                       value={soloData.sentences[index]}
                       onChange={(e) => handleSentenceChange(index, e.target.value)}
-                      placeholder="Write your sentence using the Key Phrases..."
+                      placeholder="Write your sentence using the Key Phrases…"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
                       rows={2}
                     />
@@ -872,7 +872,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                       type="text"
                       value={soloData.followUpQuestions[index]}
                       onChange={(e) => handleQuestionChange(index, e.target.value)}
-                      placeholder="Write a question you can ask a partner..."
+                      placeholder="Write a question you can ask a partner…"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                     />
                   </div>
@@ -1005,7 +1005,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                     return (
                 <label
                   key={step.id}
-                        className={`flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer transition-all ${
+                        className={`flex items-start gap-3 p-3 border-2 rounded-lg cursor-pointer transition-[border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                           isCompleted
                             ? "border-green-200 bg-green-50/50"
                             : "border-gray-200 hover:bg-gray-50"
@@ -1052,7 +1052,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                     <textarea
                       value={speakingData.bestSentence}
                       onChange={(e) => handleBestSentenceChange(e.target.value)}
-                      placeholder="Share the best sentence you heard or said during practice..."
+                      placeholder="Share the best sentence you heard or said during practice…"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary resize-none"
                       rows={3}
                     />
@@ -1061,7 +1061,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
                       type="text"
                       value={speakingData.bestSentence}
                       onChange={(e) => handleBestSentenceChange(e.target.value)}
-                      placeholder="Share the best sentence you heard or said during practice..."
+                      placeholder="Share the best sentence you heard or said during practice…"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
                     />
                   )}
@@ -1190,7 +1190,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
               }`}
             >
               {isSubmitting
-                ? "Submitting..."
+                ? "Submitting…"
                 : submissionStatus === "submitted"
                 ? "Submitted ✅"
                 : "Submit Warm-Up"}

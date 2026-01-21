@@ -75,7 +75,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
             {/* Progress bar for small screens */}
             <div className="lg:hidden h-1 w-full bg-border/60">
-                <div className="h-full bg-primary transition-all" style={{ width: `${progressPercent}%` }} />
+                <div className="h-full bg-primary transition-[width]" style={{ width: `${progressPercent}%` }} />
             </div>
 
             {/* Main Content Area - Split Screen */}
@@ -84,7 +84,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <button
                     onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
                     disabled={!canGoPrev}
-                    className={`hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-all hover:scale-110 active:scale-95 text-primary ${!canGoPrev ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    className={`hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-[transform,color] hover:scale-110 active:scale-95 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!canGoPrev ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
                     aria-label="Previous section"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
@@ -93,7 +93,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <button
                     onClick={() => setCurrentStep(prev => Math.min(totalSteps - 1, prev + 1))}
                     disabled={!canGoNext}
-                    className={`hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-all hover:scale-110 active:scale-95 text-primary ${!canGoNext ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    className={`hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-[transform,color] hover:scale-110 active:scale-95 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!canGoNext ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
                     aria-label="Next section"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
@@ -181,7 +181,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <button
                     onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
                     disabled={!canGoPrev}
-                    className={`px-4 py-2 min-h-[44px] rounded-lg font-semibold transition-all ${canGoPrev ? "bg-bg-light text-text hover:bg-border/40" : "bg-border text-text-muted cursor-not-allowed"}`}
+                    className={`px-4 py-2 min-h-[44px] rounded-lg font-semibold transition-[background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${canGoPrev ? "bg-bg-light text-text hover:bg-border/40" : "bg-border text-text-muted cursor-not-allowed"}`}
                 >
                     Prev
                 </button>
@@ -191,7 +191,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <button
                     onClick={() => setCurrentStep(prev => Math.min(totalSteps - 1, prev + 1))}
                     disabled={!canGoNext}
-                    className={`px-4 py-2 min-h-[44px] rounded-lg font-semibold transition-all ${canGoNext ? "bg-primary text-white shadow-sm hover:brightness-110" : "bg-border text-text-muted cursor-not-allowed"}`}
+                    className={`px-4 py-2 min-h-[44px] rounded-lg font-semibold transition-[filter] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${canGoNext ? "bg-primary text-white shadow-sm hover:brightness-110" : "bg-border text-text-muted cursor-not-allowed"}`}
                 >
                     Next
                 </button>
@@ -246,8 +246,8 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
                         </p>
 
                         {item.type === 'select' && (
-                            <select className="w-full p-3 rounded-lg border border-border bg-white text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all shadow-sm">
-                                <option value="">Choose...</option>
+                            <select className="w-full p-3 rounded-lg border border-border bg-white text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2">
+                                <option value="">Choose…</option>
                                 {item.options.map((opt, i) => (
                                     <option key={i} value={opt}>{opt}</option>
                                 ))}
@@ -257,8 +257,8 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
                         {item.type === 'text' && (
                             <input
                                 type="text"
-                                placeholder={item.placeholder || "Type your answer..."}
-                                className="w-full p-3 rounded-lg border border-border bg-white text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-all shadow-sm"
+                                placeholder={item.placeholder || "Type your answer…"}
+                                className="w-full p-3 rounded-lg border border-border bg-white text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2"
                             />
                         )}
 
@@ -270,7 +270,7 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
                                             <input
                                                 type="radio"
                                                 name={`ex-${index}-item-${idx}`}
-                                                className="peer appearance-none w-5 h-5 border-2 border-text-muted/40 rounded-full checked:border-secondary checked:bg-secondary transition-all"
+                                                className="peer appearance-none w-5 h-5 border-2 border-text-muted/40 rounded-full checked:border-secondary checked:bg-secondary transition-[border-color,background-color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2"
                                             />
                                             <div className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-white opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></div>
                                         </div>

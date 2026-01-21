@@ -74,12 +74,12 @@ export default function PWAUpdateNotification() {
           <button
             onClick={handleUpdate}
             disabled={isUpdating}
-            className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2"
+            className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-xl transition-[background-color,transform] active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
           >
             {isUpdating ? (
               <>
                 <RefreshCw className="w-5 h-5 animate-spin" />
-                Updating...
+                Updating…
               </>
             ) : (
               <>
@@ -120,12 +120,12 @@ export default function PWAUpdateNotification() {
           <button
             onClick={handleUpdate}
             disabled={isUpdating}
-            className="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl transition-all active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2"
+            className="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl transition-[background-color,transform] active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
           >
             {isUpdating ? (
               <>
                 <RefreshCw className="w-4 h-4 animate-spin" />
-                Updating...
+                Updating…
               </>
             ) : (
               'Update Now'

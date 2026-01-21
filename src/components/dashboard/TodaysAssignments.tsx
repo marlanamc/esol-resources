@@ -178,49 +178,36 @@ export const TodaysAssignments: React.FC<Props> = ({
 
         return (
             <div className="mb-8">
-                <div className="flex items-center justify-between gap-4 mb-4">
-                    {resolvedTitle ? (
-                        <h2 className="text-2xl sm:text-3xl font-display font-bold text-text flex items-center gap-3 leading-tight">
-                            <span className="w-1 h-6 rounded-full bg-primary"></span>
-                            {resolvedTitle}
-                        </h2>
-                    ) : (
-                        <span />
-                    )}
-                    <div className="hidden sm:flex items-center gap-2 text-sm font-semibold text-text/70">
-                        <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
-                            {completedCount}/{rows.length} done
-                        </span>
-                        <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
-                            {percent}%
-                        </span>
+                    <div className="flex items-center justify-between gap-4 mb-4">
+                        {resolvedTitle ? (
+                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-text flex items-center gap-3 leading-tight">
+                                <span className="w-1 h-6 rounded-full bg-primary"></span>
+                                {resolvedTitle}
+                            </h2>
+                        ) : (
+                            <span />
+                        )}
                     </div>
-                </div>
 
                 <div className="bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden">
-                    <div className="p-5 border-b border-border/30 bg-gradient-to-b from-white to-bg-light/50">
+                    <div className="p-4 border-b border-border/30 bg-gradient-to-b from-white to-bg-light/50">
                         <div className="flex items-center justify-between gap-3">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-lg">
-                                    📋
-                                </div>
-                                <div>
-                                    <div className="text-sm text-text/60">Checks automatically when you complete an activity</div>
-                                </div>
+                            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-base">
+                                📋
                             </div>
-                            <div className="sm:hidden text-sm font-semibold text-text/70">
-                                {completedCount}/{rows.length} done
+                            <div className="flex items-center gap-2 text-sm font-semibold text-text/70">
+                                <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
+                                    {completedCount}/{rows.length} done
+                                </span>
+                                <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
+                                    {percent}%
+                                </span>
                             </div>
                         </div>
-
-                        <div className="mt-4">
-                            <div className="flex items-center justify-between text-xs text-text/60 mb-2">
-                                <span>Progress</span>
-                                <span>{percent}%</span>
-                            </div>
-                            <div className="w-full bg-border/30 rounded-full h-3 overflow-hidden">
+                        <div className="mt-3">
+                            <div className="w-full bg-border/30 rounded-full h-2 overflow-hidden">
                                 <div
-                                    className="h-full bg-gradient-to-r from-secondary to-primary transition-all duration-500"
+                                    className="h-full bg-gradient-to-r from-secondary to-primary transition-[width] duration-500"
                                     style={{ width: `${percent}%` }}
                                 />
                             </div>
@@ -275,7 +262,7 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                                     <Link
                                         href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                        className={`inline-flex items-center justify-center px-4 py-2 text-sm font-bold transition-all hover:shadow-md active:scale-95 rounded-lg whitespace-nowrap sm:shrink-0 ${
+                                        className={`inline-flex items-center justify-center px-4 py-2 text-sm font-bold transition-[box-shadow,transform] hover:shadow-md active:scale-95 rounded-lg whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                                             isCompleted
                                                 ? 'border border-primary text-primary hover:bg-primary/5'
                                                 : 'bg-primary text-white hover:brightness-110'
@@ -310,14 +297,14 @@ export const TodaysAssignments: React.FC<Props> = ({
                     return (
                         <div
                             key={assignment.id}
-                            className="relative bg-white rounded-xl border border-border/20 hover:border-border/40 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden group"
+                            className="relative bg-white rounded-xl border border-border/20 hover:border-border/40 shadow-sm hover:shadow-md transition-[border-color,box-shadow] duration-200 overflow-hidden group"
                             style={{
                                 animationDelay: `${index * 80}ms`
                             }}
                         >
                             {/* Accent bar */}
                             <div
-                                className="absolute left-0 top-0 bottom-0 w-1 transition-all duration-200 group-hover:w-1.5"
+                                className="absolute left-0 top-0 bottom-0 w-1 transition-[width] duration-200 group-hover:w-1.5"
                                 style={{ backgroundColor: categoryStyle.accent }}
                             />
 
@@ -353,7 +340,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 {/* CTA Button */}
                                 <Link
                                     href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                    className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold transition-all hover:shadow-md active:scale-95 rounded-lg bg-primary text-white hover:brightness-110 whitespace-nowrap sm:shrink-0"
+                                    className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold transition-[box-shadow,transform,filter] hover:shadow-md active:scale-95 rounded-lg bg-primary text-white hover:brightness-110 whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                 >
                                     {isCompleted ? 'Review' : ctaLabel}
                                 </Link>

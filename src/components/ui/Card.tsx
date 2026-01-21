@@ -14,10 +14,27 @@ export const Card: React.FC<CardProps> & {
 } = ({ children, className = '', hover = false, onClick }) => {
   const hoverClass = hover ? 'hover:shadow-lg hover:-translate-y-1 cursor-pointer' : '';
 
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClick();
+          }
+        }}
+        className={`bg-white border border-border shadow-sm rounded-lg transition-[box-shadow,transform] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${hoverClass} ${className}`}
+      >
+        {children}
+      </button>
+    );
+  }
+
   return (
     <div
-      onClick={onClick}
-      className={`bg-white border border-border shadow-sm rounded-lg transition-all duration-300 ${hoverClass} ${className}`}
+      className={`bg-white border border-border shadow-sm rounded-lg ${className}`}
     >
       {children}
     </div>

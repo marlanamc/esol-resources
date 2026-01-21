@@ -497,7 +497,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                         
                         <div className="text-center">
                             <button 
-                                className="px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl"
+                                className="px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-[background-color,box-shadow] shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                 onClick={startGame}
                             >
                                 Start Game
@@ -563,7 +563,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                 {/* Progress Bar */}
                 <div className="h-2 w-full bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                     <div
-                        className="h-full bg-[var(--color-primary)] transition-all duration-300"
+                        className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                         style={{ width: `${progress}%` }}
                     />
                 </div>
@@ -595,7 +595,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={resetGame}
-                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-all flex items-center justify-center gap-2"
+                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             <RotateCcw className="w-4 h-4" />
                             Reset Game
@@ -655,7 +655,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                                 value={userAnswer}
                                 onChange={(e) => setUserAnswer(e.target.value)}
                                 onKeyDown={handleKeyPress}
-                                placeholder="Type your answer..."
+                                placeholder="Type your answer…"
                                 className="w-full px-6 py-4 text-xl border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:border-[var(--color-primary)] transition-colors text-center text-[var(--color-text)] bg-white"
                                 disabled={showFeedback}
                             />
@@ -707,14 +707,14 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                         {!showFeedback ? (
                             <button
                                 onClick={checkAnswer}
-                                className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-all shadow-lg hover:shadow-xl active:scale-95"
+                                className="w-full sm:w-auto px-8 py-3 bg-[var(--color-primary)] text-white font-semibold rounded-lg hover:bg-[#d4865a] transition-[background-color,box-shadow,transform] shadow-lg hover:shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                             >
                                 Check Answer
                             </button>
                         ) : (
                             <button
                                 onClick={nextQuestion}
-                                className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-all shadow-lg hover:shadow-xl active:scale-95"
+                                className="w-full sm:w-auto px-8 py-3 bg-[var(--color-text)] text-white font-semibold rounded-lg hover:bg-black transition-[background-color,box-shadow,transform] shadow-lg hover:shadow-xl active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                             >
                                 {isRoundComplete ? `Start Round ${gameState.roundNumber + 1} →` : 'Next Question →'}
                             </button>

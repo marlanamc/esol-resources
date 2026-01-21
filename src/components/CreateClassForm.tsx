@@ -58,6 +58,8 @@ export default function CreateClassForm() {
                         <input
                             type="text"
                             id="name"
+                            name="name"
+                            autoComplete="off"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
@@ -71,6 +73,8 @@ export default function CreateClassForm() {
                         </label>
                         <textarea
                             id="description"
+                            name="description"
+                            autoComplete="off"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             rows={3}
@@ -124,7 +128,7 @@ export default function CreateClassForm() {
                             disabled={isLoading}
                             className="px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Creating..." : "Create Class"}
+                            {isLoading ? "Creating…" : "Create Class"}
                         </button>
                     </div>
                 </form>

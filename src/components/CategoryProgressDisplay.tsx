@@ -82,7 +82,7 @@ export function CategoryProgressDisplay({ activityId, categoryNames, initialCate
                     return (
                         <div
                             key={category}
-                            className={`p-3 rounded-lg border-2 transition-all ${
+                            className={`p-3 rounded-lg border-2 transition-[border-color,background-color] ${
                                 isCompleted
                                     ? 'bg-green-50 border-green-200'
                                     : 'bg-gray-50 border-gray-200'
@@ -118,7 +118,7 @@ export function CategoryProgressDisplay({ activityId, categoryNames, initialCate
             {/* Progress bar */}
             <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div
-                    className="h-full bg-green-500 transition-all duration-300"
+                    className="h-full bg-green-500 transition-[width] duration-300"
                     style={{ width: `${(completedCount / categoryNames.length) * 100}%` }}
                 />
             </div>

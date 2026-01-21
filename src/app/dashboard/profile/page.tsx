@@ -54,36 +54,36 @@ export default async function ProfilePage() {
         redirect("/login");
     }
 
-    // Get activity progress for category stats
-    const activityProgress = await prisma.activityProgress.findMany({
-        where: { userId },
-        include: {
-            activity: true,
-        },
-    });
-
-    // Get points ledger for activity timeline
-    const recentPointsLedger = await prisma.pointsLedger.findMany({
-        where: { userId },
-        orderBy: { createdAt: 'desc' },
-        take: 15,
-    });
-
-    // Get activity dates for streak calendar (dates with any activity)
-    // Use both PointsLedger (for completed activities) and ActivityProgress updates (for any activity)
-    const pointsLedgerDates = await prisma.pointsLedger.findMany({
-        where: { userId },
-        select: { createdAt: true },
-        orderBy: { createdAt: 'desc' },
-        take: 365,
-    });
-
-    const activityProgressDates = await prisma.activityProgress.findMany({
-        where: { userId },
-        select: { updatedAt: true },
-        orderBy: { updatedAt: 'desc' },
-        take: 365,
-    });
+    // Run all independent database queries in parallel to eliminate async waterfall
+    const [activityProgress, recentPointsLedger, pointsLedgerDates, activityProgressDates] = await Promise.all([
+        // Get activity progress for category stats
+        prisma.activityProgress.findMany({
+            where: { userId },
+            include: {
+                activity: true,
+            },
+        }),
+        // Get points ledger for activity timeline
+        prisma.pointsLedger.findMany({
+            where: { userId },
+            orderBy: { createdAt: 'desc' },
+            take: 15,
+        }),
+        // Get activity dates for streak calendar - PointsLedger (for completed activities)
+        prisma.pointsLedger.findMany({
+            where: { userId },
+            select: { createdAt: true },
+            orderBy: { createdAt: 'desc' },
+            take: 365,
+        }),
+        // Get activity dates for streak calendar - ActivityProgress updates (for any activity)
+        prisma.activityProgress.findMany({
+            where: { userId },
+            select: { updatedAt: true },
+            orderBy: { updatedAt: 'desc' },
+            take: 365,
+        }),
+    ]);
 
     // Combine both date sources
     const activityDates = [

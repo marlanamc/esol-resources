@@ -106,7 +106,7 @@ export function WordScrambleExercise({
                                 type="button"
                                 onClick={() => handleWordClick(originalIndex)}
                                 disabled={submitted}
-                                className={`word-card px-4 py-2 rounded-lg font-semibold text-sm transition-all ${isSelected.has(originalIndex)
+                                className={`word-card px-4 py-2 rounded-lg font-semibold text-sm transition-[background-color,color,border-color,box-shadow] ${isSelected.has(originalIndex)
                                         ? "bg-primary text-white shadow-md border-2 border-primary"
                                         : "bg-white text-primary border-2 border-primary"
                                     } ${submitted ? "cursor-not-allowed opacity-60" : "cursor-pointer"

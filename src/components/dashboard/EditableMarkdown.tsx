@@ -73,7 +73,7 @@ export function EditableMarkdown({ initialContent, onSave, className = "" }: Edi
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     className="w-full h-[600px] p-6 font-mono text-sm text-text bg-transparent border-0 resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 rounded-lg"
-                    placeholder="Enter markdown content..."
+                    placeholder="Enter markdown content…"
                 />
             </div>
 
@@ -95,7 +95,7 @@ export function EditableMarkdown({ initialContent, onSave, className = "" }: Edi
                     disabled={isSaving}
                     className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary/90 transition text-sm font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    {isSaving ? "Saving..." : "💾 Save Changes"}
+                    {isSaving ? "Saving…" : "💾 Save Changes"}
                 </button>
                 <button
                     onClick={handleCancel}

@@ -118,7 +118,7 @@ export function DragDropExercise({ exercise, onComplete }: DragDropExerciseProps
                     disabled={!allWordsPlaced || isChecked}
                     className={`
                         flex-1 px-4 py-2 rounded-lg font-medium text-white
-                        transition-all duration-200
+                        transition-[background-color] duration-200
                         ${allWordsPlaced && !isChecked
                             ? 'bg-primary hover:bg-primary/90 cursor-pointer'
                             : 'bg-border cursor-not-allowed opacity-50'

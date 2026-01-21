@@ -206,7 +206,7 @@ function QuizRenderer({
                     {q.type === "text" && (
                         <textarea
                             className="w-full mt-2 border border-gray-300 rounded-md px-3 py-2"
-                            placeholder="Your answer..."
+                            placeholder="Your answer…"
                             disabled
                         />
                     )}
@@ -449,7 +449,7 @@ function ResourceRenderer({
             {entries.map((entry, idx) => (
                 <div
                     key={`${entry.term}-${idx}`}
-                    className="group relative overflow-hidden rounded-xl bg-white border border-border/60 p-6 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1"
+                    className="group relative overflow-hidden rounded-xl bg-white border border-border/60 p-6 shadow-sm transition-[box-shadow,border-color,transform] duration-300 hover:shadow-xl hover:border-primary/30 hover:-translate-y-1"
                 >
                     {/* Decorative Background Elements */}
                     <div className="absolute -top-12 -right-12 h-32 w-32 rounded-full bg-primary/5 transition-transform duration-500 group-hover:scale-150" />

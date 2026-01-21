@@ -138,7 +138,7 @@ const ActivityCard = React.memo(function ActivityCard({
     return (
         <Link
             href={`/activity/${activity.id}`}
-            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-all duration-200 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-[transform,border-color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
                 }`}
         >
             {isCompleted && (
@@ -554,7 +554,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 return (
                     <div
                         key={category.name}
-                        className="bg-white rounded-xl border-2 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                        className="bg-white rounded-xl border-2 overflow-hidden shadow-sm hover:shadow-md transition-[box-shadow] duration-300"
                         style={{
                             borderColor: `${category.color}40`,
                             animationDelay: `${idx * 50}ms`

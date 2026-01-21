@@ -55,15 +55,18 @@ export default function LoginForm() {
         <form onSubmit={handleSubmit} className="space-y-6 w-full">
             <div className="border rounded-2xl p-6 space-y-6" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1), 0 2px 4px rgba(43, 58, 74, 0.06)' }}>
                 <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
+                    <label htmlFor="username" className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
                         Username
                     </label>
                     <input
+                        id="username"
                         type="text"
+                        name="username"
+                        autoComplete="username"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        placeholder="username"
-                        className="w-full px-4 py-3 border-2 rounded-xl transition-all outline-none"
+                        placeholder="username…"
+                        className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         style={{
                             borderColor: '#d9cfc0',
                             color: '#2b3a4a',
@@ -76,15 +79,18 @@ export default function LoginForm() {
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
+                    <label htmlFor="password" className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
                         Password
                     </label>
                     <input
+                        id="password"
                         type="password"
+                        name="password"
+                        autoComplete="current-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 border-2 rounded-xl transition-all outline-none"
+                        className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         style={{
                             borderColor: '#d9cfc0',
                             color: '#2b3a4a',
@@ -106,7 +112,7 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-3 px-4 rounded-xl font-semibold text-white transition-all active:scale-95"
+                    className="w-full py-3 px-4 rounded-xl font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     style={{
                         backgroundColor: isLoading ? '#8996a6' : '#d97757',
                         boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08), 0 1px 2px rgba(43, 58, 74, 0.04)',
@@ -115,7 +121,7 @@ export default function LoginForm() {
                     onMouseOver={(e) => !isLoading && (e.currentTarget.style.backgroundColor = '#c4624a')}
                     onMouseOut={(e) => !isLoading && (e.currentTarget.style.backgroundColor = '#d97757')}
                 >
-                    {isLoading ? 'Signing in...' : 'Sign In'}
+                    {isLoading ? 'Signing in…' : 'Sign In'}
                 </button>
             </div>
         </form>

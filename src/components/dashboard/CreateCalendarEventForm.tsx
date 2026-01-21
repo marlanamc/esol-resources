@@ -163,7 +163,7 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                         disabled={isSubmitting || classes.length === 0}
                         className="w-full inline-flex justify-center items-center px-4 py-2 text-sm font-semibold text-white bg-primary rounded-lg hover:brightness-110 disabled:opacity-60"
                 >
-                    {isSubmitting ? "Saving..." : "Save"}
+                    {isSubmitting ? "Saving…" : "Save"}
                 </button>
             </form>
         </div>

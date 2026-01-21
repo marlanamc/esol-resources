@@ -38,7 +38,7 @@ export const TableOfContents = React.memo(function TableOfContents({
                         <li key={section.id || index}>
                             <button
                                 onClick={() => onSelectSection(index)}
-                                className={`w-full text-left px-4 py-3 rounded-lg border transition-all duration-200 flex items-center gap-3 shadow-sm ${isCurrent
+                                className={`w-full text-left px-4 py-3 rounded-lg border transition-[background-color,color,border-color,box-shadow] duration-200 flex items-center gap-3 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isCurrent
                                         ? "bg-primary text-white border-primary shadow-md"
                                         : isCompleted
                                             ? "bg-success/10 text-success border-success/40 hover:bg-success/20"

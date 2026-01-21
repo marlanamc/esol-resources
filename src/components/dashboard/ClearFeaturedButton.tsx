@@ -43,7 +43,7 @@ export default function ClearFeaturedButton() {
                     disabled={isLoading}
                     className="px-3 py-2 text-sm font-semibold rounded-lg bg-primary text-white hover:brightness-110 transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                    {isLoading ? "Clearing..." : "Confirm Clear"}
+                    {isLoading ? "Clearing…" : "Confirm Clear"}
                 </button>
                 <button
                     onClick={() => setShowConfirm(false)}

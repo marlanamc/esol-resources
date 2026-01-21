@@ -79,7 +79,7 @@ export default function UpcomingEventsList({ events, allowDelete = true }: Props
                                             disabled={isDeleting === ev.id}
                                             className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2 py-1 rounded-md bg-red-50 disabled:opacity-50"
                                         >
-                                            {isDeleting === ev.id ? "Deleting..." : "Delete"}
+                                            {isDeleting === ev.id ? "Deleting…" : "Delete"}
                                         </button>
                                     )}
                                 </div>

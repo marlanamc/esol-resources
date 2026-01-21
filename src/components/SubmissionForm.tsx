@@ -92,7 +92,7 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                         onChange={(e) => setSubmissionContent(e.target.value)}
                         onFocus={handleTextareaFocus}
                         className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
-                        placeholder="Type your answers, responses, or work here..."
+                        placeholder="Type your answers, responses, or work here…"
                         disabled={isSubmitted && existingSubmission?.status === "graded"}
                     />
                 </div>
@@ -118,7 +118,7 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                             disabled={isLoading}
                             className="px-4 py-2 min-h-[44px] border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
                         >
-                            {isLoading ? "Submitting..." : existingSubmission ? "Update Submission" : "Submit"}
+                            {isLoading ? "Submitting…" : existingSubmission ? "Update Submission" : "Submit"}
                         </button>
                     </div>
                 )}

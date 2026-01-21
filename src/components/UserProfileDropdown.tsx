@@ -43,7 +43,7 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
         <div className="relative" ref={dropdownRef}>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-10 h-10 rounded-full bg-white border-2 border-text/80 hover:border-text hover:bg-gray-50 transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-text/30 focus:ring-offset-2 shadow-md"
+                className="w-10 h-10 rounded-full bg-white border-2 border-text/80 hover:border-text hover:bg-gray-50 transition-[border-color,background-color] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-text/30 focus:ring-offset-2 shadow-md focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                 aria-label="User menu"
                 aria-expanded={isOpen}
                 aria-haspopup="true"
