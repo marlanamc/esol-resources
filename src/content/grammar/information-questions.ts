@@ -449,6 +449,16 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
+                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(110, 145, 118, 0.05); border-radius: 0.5rem; border-left: 4px solid #7ba884;">
+                    <h4 style="margin-top: 0;">More examples:</h4>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong>Who</strong> lives in apartment 3B?<br>→ Someone lives there.<br>→ No "do."</li>
+                        <li><strong>Who</strong> do you call for repairs?<br>→ You call someone.<br>→ Use "do."</li>
+                        <li><strong>Who</strong> owns the building?<br>→ Someone owns it.<br>→ No "do."</li>
+                        <li><strong>Who</strong> did you email yesterday?<br>→ You emailed someone.<br>→ Use "did."</li>
+                    </ul>
+                </div>
+
                 <h4>Who is doing the action?</h4>
                 <p>To choose the right pattern, ask yourself: Is the question word (Who/What) the <strong>Doer</strong> or the <strong>Receiver</strong>?</p>
 
@@ -479,6 +489,28 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                         <li>"What <strong>happens</strong> next?"</li>
                     </ul>
                 </div>
+
+                <div style="background: rgba(110, 145, 118, 0.1); border-left: 4px solid #7ba884; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem;">✅ Quick Check: Who Is Doing the Action?</h3>
+                    <p>If this rule feels confusing, try this simple test.</p>
+                    <p><strong>Ask yourself:</strong><br><strong>Who is doing the action in the sentence?</strong></p>
+                    <ul style="margin: 0.75rem 0;">
+                        <li>If <strong>who/what is doing the action</strong>, do NOT use do/does/did</li>
+                        <li>If <strong>you or another person is doing the action</strong>, use do/does/did</li>
+                    </ul>
+                    <p style="margin-top: 1rem; margin-bottom: 0.5rem;"><strong>Examples:</strong></p>
+                    <p style="margin: 0.5rem 0;"><strong>Who pays the rent?</strong><br>→ Someone pays the rent.<br>→ "Who" is doing the action.<br>→ No "do."</p>
+                    <p style="margin: 0.5rem 0;"><strong>Who do you pay?</strong><br>→ You pay someone.<br>→ "You" are doing the action.<br>→ Use "do."</p>
+                    <p style="margin-top: 1rem; margin-bottom: 0; font-weight: 600;">This test works every time.</p>
+                    <p style="margin-top: 0.75rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem;">💭 <strong>Think "Who is the worker?"</strong></p>
+                </div>
+
+                <div style="background: rgba(200, 107, 81, 0.08); border-left: 4px solid #d97757; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <p style="margin-top: 0; margin-bottom: 0.5rem; font-weight: 600; color: #d97757;">💬 Note for Students</p>
+                    <p style="margin: 0;">This rule is hard at first, even for advanced English learners. If you forget in the moment, it's okay. People will still understand your question. The goal is progress, not perfection.</p>
+                </div>
+
+                <p style="margin-top: 1.5rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem;"><strong>Takeaway:</strong><br>If "who" is doing the action, do not use "do."</p>
             `,
             tipBox: {
                 title: "💡 Quick Test",
@@ -825,6 +857,43 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
                     <p style="margin-bottom: 0;">If you are asking your boss about your paycheck, which sounds better? "Where is my check?" or "Could you tell me where my check is?"</p>
                 </div>
+
+                <div style="background: rgba(110, 145, 118, 0.1); border-left: 4px solid #7ba884; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem;">🧠 Think of Indirect Questions Like This</h3>
+                    <p>An indirect question is:<br><strong>A polite sentence + a question inside it</strong></p>
+                    <p>The question itself does NOT change.<br>It just goes inside a sentence.</p>
+                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+                        <p style="margin: 0.5rem 0;"><strong>Direct question:</strong><br>Where is the office?</p>
+                        <p style="margin: 0.5rem 0;"><strong>Polite sentence:</strong><br>Could you tell me…</p>
+                        <p style="margin: 0.5rem 0;"><strong>Polite long question:</strong><br>Could you tell me where the office is?</p>
+                    </div>
+                </div>
+
+                <div style="background: #fff3cd; border-left: 4px solid #b58900; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <p style="margin-top: 0; margin-bottom: 0.75rem; font-weight: 600; color: #856404;">⚠️ Important Reminder</p>
+                    <p style="margin: 0.5rem 0;">Inside an indirect question, the word order is like a statement:<br><strong>subject + verb</strong></p>
+                    <p style="margin: 0.75rem 0 0.5rem 0;"><strong>We say:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>where the office is</li>
+                        <li>what time the clinic closes</li>
+                        <li>how much the deposit is</li>
+                    </ul>
+                    <p style="margin: 0.75rem 0 0.5rem 0;"><strong>NOT:</strong></p>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>where is the office</li>
+                        <li>what time does the clinic close</li>
+                        <li>how much does the deposit cost</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; margin-bottom: 0;">This reinforces what you already taught, without reframing.</p>
+                </div>
+
+                <div style="background: rgba(110, 145, 118, 0.1); border-left: 4px solid #7ba884; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <p style="margin-top: 0; margin-bottom: 0.5rem; font-weight: 600; color: #7ba884;">✅ Good to Know</p>
+                    <p style="margin: 0;">If you accidentally use question word order in an indirect question, people will usually still understand you.</p>
+                    <p style="margin: 0.75rem 0 0;">Indirect questions are about being polite and professional, not about being perfect.</p>
+                </div>
+
+                <p style="margin-top: 1.5rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem;"><strong>Takeaway:</strong><br>In polite long questions, use statement word order inside the sentence.</p>
             `,
             comparison: {
                 title: "Direct vs. Indirect Word Order",
