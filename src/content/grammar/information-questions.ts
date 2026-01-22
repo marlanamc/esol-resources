@@ -433,17 +433,16 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <h3 style="color: #4a5568; margin-bottom: 1rem;">The Simple Test</h3>
                     <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Ask yourself this every time:</p>
                     <div style="font-size: 1.5rem; font-weight: 700; color: #d97757; background: #fff; display: inline-block; padding: 1rem 2rem; border-radius: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid rgba(217, 119, 87, 0.2);">
-                        👉 Who is the worker?
+                        👉 Who is the doer?
                     </div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
-                    {/* Case 1 */}
                     <div style="background: #f0f7f1; border: 2px solid #7ba884; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden;">
                         <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none;">👤</div>
                         <h4 style="color: #2f855a; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
                             <span style="background: #7ba884; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">1</span>
-                            "Who / What" is doing the action
+                            "Who / What" is the doer
                         </h4>
                         <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem;">❌ NO do / does / did</p>
                         
@@ -456,15 +455,14 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                                 <p style="margin: 0;"><strong>What includes</strong> heat and water? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Something includes it.</span></p>
                             </div>
                         </div>
-                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the worker? The worker is <strong>who</strong>, so no do.</p>
+                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the doer? The doer is <strong>who</strong>, so no do.</p>
                     </div>
 
-                    {/* Case 2 */}
                     <div style="background: #fff5f2; border: 2px solid #d97757; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden;">
                         <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none;">🎯</div>
                         <h4 style="color: #c05621; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
                             <span style="background: #d97757; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">2</span>
-                            "Who / What" is NOT doing the action
+                            "Who / What" is NOT the doer
                         </h4>
                         <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem;">✅ USE do / does / did</p>
                         
@@ -477,7 +475,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                                 <p style="margin: 0;">What <strong>does the rent include</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ The rent includes something.</span></p>
                             </div>
                         </div>
-                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the worker? <strong>You</strong> are the worker, so use do / does / did.</p>
+                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the doer? <strong>You</strong> are the doer, so use do / does / did.</p>
                     </div>
                 </div>
 
@@ -787,18 +785,18 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <li>What <em>is</em> the deposit?</li>
                 </ul>
 
-                <h3>Exception: Who is the Worker?</h3>
-                <p><strong>Who/What + Verb + ?</strong> (NO helping verb when who/what is the worker)</p>
+                <h3>Exception: Who is the Doer?</h3>
+                <p><strong>Who/What + Verb + ?</strong> (NO helping verb when who/what is the doer)</p>
                 <ul>
-                    <li>Who pays utilities? <span style="color: #718096; font-size: 0.95rem;">→ The worker is "Who"</span></li>
-                    <li>What includes parking? <span style="color: #718096; font-size: 0.95rem;">→ The worker is "What"</span></li>
+                    <li>Who pays utilities? <span style="color: #718096; font-size: 0.95rem;">→ The doer is "Who"</span></li>
+                    <li>What includes parking? <span style="color: #718096; font-size: 0.95rem;">→ The doer is "What"</span></li>
                 </ul>
 
                 <h3>Common Mistakes to Avoid:</h3>
                 <ul>
                     <li>❌ "Where you live?" → ✅ "Where do you live?" (need helping verb)</li>
                     <li>❌ "How much bedrooms?" → ✅ "How many bedrooms?" (bedrooms are countable)</li>
-                    <li>❌ "Who does pay rent?" → ✅ "Who pays rent?" (The worker is "Who", no "do")</li>
+                    <li>❌ "Who does pay rent?" → ✅ "Who pays rent?" (The doer is "Who", no "do")</li>
                     <li>❌ "What is the rent costs?" → ✅ "How much is the rent?" OR "What does the rent cost?"</li>
                 </ul>
             `,
