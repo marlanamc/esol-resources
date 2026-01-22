@@ -815,8 +815,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "infoq-summary-1",
-                    title: "Quick Review",
-                    instructions: "Choose the correct question.",
+                    title: "Comprehensive Review: Information Questions",
+                    instructions: "Choose the correct answer for each question.",
                     items: [
                         {
                             type: "radio",
@@ -837,6 +837,86 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                                 { value: "c", label: "Who do pay utilities?" },
                             ],
                             expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which WH-word asks about a person?",
+                            options: [
+                                { value: "a", label: "What" },
+                                { value: "b", label: "Who" },
+                                { value: "c", label: "Where" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Choose the correct question about money:",
+                            options: [
+                                { value: "a", label: "How many is the rent?" },
+                                { value: "b", label: "How much is the rent?" },
+                                { value: "c", label: "How much are the rent?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "You see two apartments available. You ask:",
+                            options: [
+                                { value: "a", label: "What apartment do you prefer?" },
+                                { value: "b", label: "Which apartment do you prefer?" },
+                                { value: "c", label: "Where apartment do you prefer?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Choose the correct indirect question:",
+                            options: [
+                                { value: "a", label: "Could you tell me where is the office?" },
+                                { value: "b", label: "Could you tell me where the office is?" },
+                                { value: "c", label: "Could you tell me is where the office?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Object question (needs helping verb):",
+                            options: [
+                                { value: "a", label: "Who you call for repairs?" },
+                                { value: "b", label: "Who do you call for repairs?" },
+                                { value: "c", label: "Who calls for repairs?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which question asks about a reason?",
+                            options: [
+                                { value: "a", label: "When is the rent going up?" },
+                                { value: "b", label: "Why is the rent going up?" },
+                                { value: "c", label: "Where is the rent going up?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Choose the correct question about countable items:",
+                            options: [
+                                { value: "a", label: "How much bedrooms does it have?" },
+                                { value: "b", label: "How many bedrooms does it have?" },
+                                { value: "c", label: "How many bedroom does it have?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which is an embedded question?",
+                            options: [
+                                { value: "a", label: "What time does the clinic close?" },
+                                { value: "b", label: "I'm wondering what time the clinic closes." },
+                                { value: "c", label: "What time the clinic closes?" },
+                            ],
+                            expectedAnswer: "b",
                         },
                     ],
                 },
@@ -1339,6 +1419,171 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Correct! In indirect questions, the second part follows statement order (Subject + Verb: the office is).",
+        },
+        {
+            id: "quiz-16",
+            question: "What vs Which: You see three keys on the table. You ask:",
+            options: [
+                { value: "a", label: "What key is for the mailbox?" },
+                { value: "b", label: "Which key is for the mailbox?" },
+                { value: "c", label: "Where key is for the mailbox?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! Use 'which' when choosing from a limited number of options (here, 3 keys).",
+        },
+        {
+            id: "quiz-17",
+            question: "What vs Which: You want to know someone's phone number. You ask:",
+            options: [
+                { value: "a", label: "What is your phone number?" },
+                { value: "b", label: "Which is your phone number?" },
+                { value: "c", label: "Where is your phone number?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Correct! Use 'what' when there are unlimited possibilities (any phone number).",
+        },
+        {
+            id: "quiz-18",
+            question: "Which is a subject question?",
+            options: [
+                { value: "a", label: "Who do you know?" },
+                { value: "b", label: "Who knows the answer?" },
+                { value: "c", label: "Who did you call?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! 'Who knows the answer?' - 'Who' is doing the action (knowing), so no helping verb is needed.",
+        },
+        {
+            id: "quiz-19",
+            question: "Which is an object question?",
+            options: [
+                { value: "a", label: "Who lives here?" },
+                { value: "b", label: "Who did you see?" },
+                { value: "c", label: "Who owns the building?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! 'Who did you see?' - 'You' is doing the action (seeing), so we need 'did'.",
+        },
+        {
+            id: "quiz-20",
+            question: "Choose the correct embedded question:",
+            options: [
+                { value: "a", label: "I'm wondering if the position offers health insurance." },
+                { value: "b", label: "I'm wondering does the position offer health insurance." },
+                { value: "c", label: "I'm wondering if does the position offer health insurance." },
+            ],
+            correctAnswer: "a",
+            explanation: "Correct! Embedded questions use statement word order: 'if the position offers' (not 'does the position offer').",
+        },
+        {
+            id: "quiz-21",
+            question: "Which question is Level 1 (Initial) in the 4-level question strategy?",
+            options: [
+                { value: "a", label: "How much is the rent per month?" },
+                { value: "b", label: "Does that include utilities?" },
+                { value: "c", label: "What happens if I need to break the lease early?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Correct! Level 1 asks the basic question (What? When? How much?).",
+        },
+        {
+            id: "quiz-22",
+            question: "Which question is Level 2 (Clarify) in the 4-level question strategy?",
+            options: [
+                { value: "a", label: "How much is the rent per month?" },
+                { value: "b", label: "Does that include heat and water?" },
+                { value: "c", label: "Is there flexibility on the move-in date?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! Level 2 clarifies specific details with questions like 'Does that include...?'",
+        },
+        {
+            id: "quiz-23",
+            question: "Which question is Level 4 (Plan ahead) in the 4-level question strategy?",
+            options: [
+                { value: "a", label: "How much is the rent per month?" },
+                { value: "b", label: "Does that include utilities?" },
+                { value: "c", label: "What happens if I need to break the lease early?" },
+            ],
+            correctAnswer: "c",
+            explanation: "Correct! Level 4 plans for scenarios with 'What if...?' or 'What happens if...?' questions.",
+        },
+        {
+            id: "quiz-24",
+            question: "Fix the error: 'Where you work?'",
+            options: [
+                { value: "a", label: "Where do you work?" },
+                { value: "b", label: "Where you do work?" },
+                { value: "c", label: "Where are you work?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Correct! Standard questions need a helping verb ('do/does') after the question word.",
+        },
+        {
+            id: "quiz-25",
+            question: "Choose the correct indirect question about time:",
+            options: [
+                { value: "a", label: "Could you tell me when does the clinic close?" },
+                { value: "b", label: "Could you tell me when the clinic closes?" },
+                { value: "c", label: "Could you tell me when closes the clinic?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! Indirect questions use statement word order: 'when the clinic closes' (not 'when does the clinic close').",
+        },
+        {
+            id: "quiz-26",
+            question: "Which question asks about method or manner?",
+            options: [
+                { value: "a", label: "When do I pay rent?" },
+                { value: "b", label: "How do I pay rent?" },
+                { value: "c", label: "Where do I pay rent?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! 'How' asks about the method or way something is done.",
+        },
+        {
+            id: "quiz-27",
+            question: "Subject question: What should the verb form be?",
+            options: [
+                { value: "a", label: "Who pay the rent? (no -s)" },
+                { value: "b", label: "Who pays the rent? (with -s)" },
+                { value: "c", label: "Who does pay the rent? (with do)" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! When 'Who' is the subject (doer), we treat it like 'He/She/It', so the verb needs '-s' (pays).",
+        },
+        {
+            id: "quiz-28",
+            question: "Which question correctly uses 'What + noun'?",
+            options: [
+                { value: "a", label: "What time does the meeting start?" },
+                { value: "b", label: "What does time the meeting start?" },
+                { value: "c", label: "What time the meeting starts?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Correct! 'What time' is a common combination. The question still needs the helping verb 'does'.",
+        },
+        {
+            id: "quiz-29",
+            question: "Choose the correct question about uncountable amount:",
+            options: [
+                { value: "a", label: "How many notice do I need to give?" },
+                { value: "b", label: "How much notice do I need to give?" },
+                { value: "c", label: "How much notices do I need to give?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! 'Notice' (time) is uncountable, so use 'How much'. Also, uncountable nouns don't take plural form.",
+        },
+        {
+            id: "quiz-30",
+            question: "Which is the correct polite way to ask about salary?",
+            options: [
+                { value: "a", label: "How much is the salary?" },
+                { value: "b", label: "I'd like to know how much the salary is." },
+                { value: "c", label: "Tell me how much is the salary." },
+            ],
+            correctAnswer: "b",
+            explanation: "Correct! 'I'd like to know...' is a polite embedded question. It uses statement word order: 'how much the salary is'.",
         },
     ],
 };
