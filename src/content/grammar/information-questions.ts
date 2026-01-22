@@ -424,93 +424,88 @@ export const informationQuestionsContent: InteractiveGuideContent = {
             title: "Subject Questions: When 'Who' and 'What' Break the Rules",
             icon: "⚡",
             explanation: `
-                <h3>The Exception: No Helping Verb Needed!</h3>
-                <p>When <strong>who</strong> or <strong>what</strong> is the subject of the sentence (the doer of the action), you DON'T use do/does/did:</p>
+                <div style="background: rgba(122, 143, 124, 0.1); padding: 1.5rem; border-radius: 0.75rem; border-left: 5px solid #7ba884; margin-bottom: 2rem;">
+                    <h3 style="margin-top: 0; color: #2d3748;">The One Rule to Remember</h3>
+                    <p style="font-size: 1.2rem; font-weight: 600; color: #2f855a; margin-bottom: 0;">If "who" or "what" is doing the action, do NOT use do / does / did.</p>
+                </div>
 
-                <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
-                    <h4>Compare These Two Types:</h4>
-
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7ba884;">✓ Subject Question (who/what DOES the action):</p>
-                        <ul style="margin: 0;">
-                            <li><strong>Who</strong> pays the utilities? (No 'does'!)</li>
-                            <li><strong>What</strong> includes heat and water? (No 'does'!)</li>
-                            <li><strong>Who</strong> manages the building?</li>
-                        </ul>
-                    </div>
-
-                    <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #d97757;">✓ Object Question (who/what RECEIVES the action):</p>
-                        <ul style="margin: 0;">
-                            <li><strong>Who</strong> do you pay? (Need 'do'!)</li>
-                            <li><strong>What</strong> does the rent include? (Need 'does'!)</li>
-                            <li><strong>Who</strong> should I call?</li>
-                        </ul>
+                <div style="margin-bottom: 2.5rem; text-align: center;">
+                    <h3 style="color: #4a5568; margin-bottom: 1rem;">The Simple Test</h3>
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Ask yourself this every time:</p>
+                    <div style="font-size: 1.5rem; font-weight: 700; color: #d97757; background: #fff; display: inline-block; padding: 1rem 2rem; border-radius: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid rgba(217, 119, 87, 0.2);">
+                        👉 Who is the worker?
                     </div>
                 </div>
 
-                <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(110, 145, 118, 0.05); border-radius: 0.5rem; border-left: 4px solid #7ba884;">
-                    <h4 style="margin-top: 0;">More examples:</h4>
-                    <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong>Who</strong> lives in apartment 3B?<br>→ Someone lives there.<br>→ No "do."</li>
-                        <li><strong>Who</strong> do you call for repairs?<br>→ You call someone.<br>→ Use "do."</li>
-                        <li><strong>Who</strong> owns the building?<br>→ Someone owns it.<br>→ No "do."</li>
-                        <li><strong>Who</strong> did you email yesterday?<br>→ You emailed someone.<br>→ Use "did."</li>
-                    </ul>
-                </div>
-
-                <h4>Who is doing the action?</h4>
-                <p>To choose the right pattern, ask yourself: Is the question word (Who/What) the <strong>Doer</strong> or the <strong>Receiver</strong>?</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                    <div style="background: rgba(122, 143, 124, 0.1); padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(122, 143, 124, 0.2);">
-                        <h4 style="color: #7ba884; margin-top: 0;">👤 The Doer (Subject)</h4>
-                        <p>The WH-word <strong>starts</strong> the action.</p>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;"><em>"Who <strong>pays</strong> the bill?"</em><br>(Who does the paying?)</p>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    {/* Case 1 */}
+                    <div style="background: #f0f7f1; border: 2px solid #7ba884; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none;">👤</div>
+                        <h4 style="color: #2f855a; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
+                            <span style="background: #7ba884; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">1</span>
+                            "Who / What" is doing the action
+                        </h4>
+                        <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem;">❌ NO do / does / did</p>
+                        
+                        <div style="background: white; padding: 1.25rem; border-radius: 0.75rem; margin-left: 3rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+                            <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 0.75rem; color: #4a5568;"><strong>Pattern:</strong> Who / What + verb</p>
+                            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 0.75rem 0;">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <p style="margin: 0;"><strong>Who pays</strong> the rent? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Someone pays.</span></p>
+                                <p style="margin: 0;"><strong>Who lives</strong> in apartment 3B? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Someone lives there.</span></p>
+                                <p style="margin: 0;"><strong>What includes</strong> heat and water? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ Something includes it.</span></p>
+                            </div>
+                        </div>
+                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the worker? The worker is <strong>who</strong>, so no do.</p>
                     </div>
-                    <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; border: 1px solid rgba(200, 107, 81, 0.2);">
-                        <h4 style="color: #d97757; margin-top: 0;">🎯 The Receiver (Object)</h4>
-                        <p>The WH-word <strong>receives</strong> the action.</p>
-                        <p style="font-size: 0.9rem; margin-bottom: 0;"><em>"Who <strong>do you</strong> pay?"</em><br>(The person receiving the money)</p>
+
+                    {/* Case 2 */}
+                    <div style="background: #fff5f2; border: 2px solid #d97757; border-radius: 1rem; padding: 1.5rem; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.05; pointer-events: none;">🎯</div>
+                        <h4 style="color: #c05621; margin-top: 0; display: flex; align-items: center; gap: 1rem; font-size: 1.2rem;">
+                            <span style="background: #d97757; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;">2</span>
+                            "Who / What" is NOT doing the action
+                        </h4>
+                        <p style="font-weight: 700; font-size: 1.3rem; color: #2d3748; margin: 0.5rem 0 1rem 3rem;">✅ USE do / does / did</p>
+                        
+                        <div style="background: white; padding: 1.25rem; border-radius: 0.75rem; margin-left: 3rem; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+                            <p style="font-family: monospace; font-size: 1.1rem; margin-bottom: 0.75rem; color: #4a5568;"><strong>Pattern:</strong> Who / What + <span style="color: #d97757;">do/does/did</span> + subj + verb</p>
+                            <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 0.75rem 0;">
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <p style="margin: 0;">Who <strong>do you pay</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ You pay someone.</span></p>
+                                <p style="margin: 0;">Who <strong>did you call</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ You called someone.</span></p>
+                                <p style="margin: 0;">What <strong>does the rent include</strong>? <span style="color: #718096; font-size: 0.9rem; margin-left: 0.5rem;">→ The rent includes something.</span></p>
+                            </div>
+                        </div>
+                        <p style="margin: 1rem 0 0 3rem; font-size: 1rem; color: #4a5568;">🧠 <strong>Think:</strong> Who is the worker? <strong>You</strong> are the worker, so use do / does / did.</p>
                     </div>
                 </div>
 
-                <div style="background: #fdf6e3; padding: 1rem; border-left: 4px solid #b58900; border-radius: 0.3rem; margin-bottom: 1.5rem;">
-                    <p style="margin-top: 0; font-weight: 600;">🛑 Stop and Think:</p>
-                    <p style="margin-bottom: 0;">Look at the sentence: "Someone broke the window." If you want to ask about the person who did it, is that a <strong>Doer</strong> or a <strong>Receiver</strong>? (Check the rule above!)</p>
+                <div style="background: #ebf8ff; padding: 1.5rem; border-radius: 1rem; border: 1px solid #bee3f8; margin-bottom: 2rem;">
+                    <h4 style="color: #2b6cb0; margin-top: 0; display: flex; align-items: center; gap: 0.5rem;">✨ A Helpful Trick</h4>
+                    <p>Try to answer the question in a full sentence:</p>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
+                            <div style="flex: 1;"><strong>Who pays the rent?</strong><br><span style="color: #718096;">→ Someone pays the rent.</span></div>
+                            <div style="color: #38a169; font-weight: bold; font-size: 0.9rem;">✔️ No do</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem; background: white; padding: 0.75rem; border-radius: 0.5rem;">
+                            <div style="flex: 1;"><strong>Who do you pay?</strong><br><span style="color: #718096;">→ I pay someone.</span></div>
+                            <div style="color: #3182ce; font-weight: bold; font-size: 0.9rem;">✔️ Use do</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h4 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem;">☝️ The "-s" Rule for Doers</h4>
-                    <p>When "Who" or "What" is the <strong>Doer</strong>, we treat it like 'He/She/It'. This means the verb usually needs an <strong>-s</strong>.</p>
-                    <ul style="margin-bottom: 0;">
-                        <li>"Who <strong>pays</strong> rent?" (Think: <em>He</em> pays)</li>
-                        <li>"Who <strong>manages</strong> the building?"</li>
-                        <li>"What <strong>happens</strong> next?"</li>
-                    </ul>
+                <div style="background: rgba(0, 0, 0, 0.02); padding: 1.5rem; border-radius: 1rem; text-align: center; border: 1px dashed #cbd5e0;">
+                    <p style="margin-top: 0; font-weight: 600; color: #4a5568;">Final Takeaway</p>
+                    <p style="font-size: 1.1rem; margin-bottom: 0.5rem;"><strong>Who does the action?</strong></p>
+                    <p style="margin: 0.25rem 0;">If it’s <strong>who / what</strong> → no do</p>
+                    <p style="margin: 0.25rem 0;">If it’s <strong>you / another person</strong> → use do / does / did</p>
                 </div>
 
-                <div style="background: rgba(110, 145, 118, 0.1); border-left: 4px solid #7ba884; padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem;">✅ Quick Check: Who Is Doing the Action?</h3>
-                    <p>If this rule feels confusing, try this simple test.</p>
-                    <p><strong>Ask yourself:</strong><br><strong>Who is doing the action in the sentence?</strong></p>
-                    <ul style="margin: 0.75rem 0;">
-                        <li>If <strong>who/what is doing the action</strong>, do NOT use do/does/did</li>
-                        <li>If <strong>you or another person is doing the action</strong>, use do/does/did</li>
-                    </ul>
-                    <p style="margin-top: 1rem; margin-bottom: 0.5rem;"><strong>Examples:</strong></p>
-                    <p style="margin: 0.5rem 0;"><strong>Who pays the rent?</strong><br>→ Someone pays the rent.<br>→ "Who" is doing the action.<br>→ No "do."</p>
-                    <p style="margin: 0.5rem 0;"><strong>Who do you pay?</strong><br>→ You pay someone.<br>→ "You" are doing the action.<br>→ Use "do."</p>
-                    <p style="margin-top: 1rem; margin-bottom: 0; font-weight: 600;">This test works every time.</p>
-                    <p style="margin-top: 0.75rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem;">💭 <strong>Think "Who is the worker?"</strong></p>
+                <div style="margin-top: 2rem; padding: 1rem; background: #fffaf0; border-radius: 0.75rem; border: 1px solid #feebc8; font-style: italic; color: #7b341e; text-align: center;">
+                    <p style="margin: 0;">This rule is hard, even for advanced English learners. If you forget, people will still understand you. The goal is progress, not perfection.</p>
                 </div>
-
-                <div style="background: rgba(200, 107, 81, 0.08); border-left: 4px solid #d97757; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <p style="margin-top: 0; margin-bottom: 0.5rem; font-weight: 600; color: #d97757;">💬 Note for Students</p>
-                    <p style="margin: 0;">This rule is hard at first, even for advanced English learners. If you forget in the moment, it's okay. People will still understand your question. The goal is progress, not perfection.</p>
-                </div>
-
-                <p style="margin-top: 1.5rem; margin-bottom: 0; font-weight: 600; font-size: 1.05rem;"><strong>Takeaway:</strong><br>If "who" is doing the action, do not use "do."</p>
             `,
             tipBox: {
                 title: "💡 Quick Test",
@@ -792,18 +787,18 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                     <li>What <em>is</em> the deposit?</li>
                 </ul>
 
-                <h3>Exception: Subject Questions</h3>
-                <p><strong>Who/What + Verb + ?</strong> (NO helping verb when who/what is the subject)</p>
+                <h3>Exception: Who is the Worker?</h3>
+                <p><strong>Who/What + Verb + ?</strong> (NO helping verb when who/what is the worker)</p>
                 <ul>
-                    <li>Who pays utilities? (NOT: Who does pay...)</li>
-                    <li>What includes parking? (NOT: What does include...)</li>
+                    <li>Who pays utilities? <span style="color: #718096; font-size: 0.95rem;">→ The worker is "Who"</span></li>
+                    <li>What includes parking? <span style="color: #718096; font-size: 0.95rem;">→ The worker is "What"</span></li>
                 </ul>
 
                 <h3>Common Mistakes to Avoid:</h3>
                 <ul>
                     <li>❌ "Where you live?" → ✅ "Where do you live?" (need helping verb)</li>
                     <li>❌ "How much bedrooms?" → ✅ "How many bedrooms?" (bedrooms are countable)</li>
-                    <li>❌ "Who does pay rent?" → ✅ "Who pays rent?" (subject question, no helping verb)</li>
+                    <li>❌ "Who does pay rent?" → ✅ "Who pays rent?" (The worker is "Who", no "do")</li>
                     <li>❌ "What is the rent costs?" → ✅ "How much is the rent?" OR "What does the rent cost?"</li>
                 </ul>
             `,
