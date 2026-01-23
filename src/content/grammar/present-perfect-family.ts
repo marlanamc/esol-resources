@@ -40,13 +40,108 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
 
         // -------------------------------------------------------------------------
-        // 2. The Simple Side (Result - Positive)
+        // 2. Side-by-Side Timeline Comparison
+        // -------------------------------------------------------------------------
+        {
+            id: "timeline-comparison",
+            title: "Visual Comparison: Two Timelines",
+            icon: "⏱️",
+            explanation: `
+                <h3>See the Difference</h3>
+                <p>Both forms connect past to present, but they show different things:</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <!-- Simple Timeline -->
+                    <div style="background: white; border: 2px solid #f97316; border-radius: 0.75rem; padding: 1.25rem;">
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #c2410c;">Simple: The Result</h4>
+                        <div style="position: relative; height: 60px; margin: 1rem 0;">
+                            <!-- Timeline line -->
+                            <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
+                            <!-- Action point -->
+                            <div style="position: absolute; left: 25%; top: 50%; transform: translate(-50%, -50%);">
+                                <div style="width: 16px; height: 16px; background: #f97316; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 2px #f97316;"></div>
+                                <div style="position: absolute; top: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #f97316; font-weight: 600;">Action</div>
+                            </div>
+                            <!-- Arrow to result -->
+                            <div style="position: absolute; top: 50%; left: 30%; right: 25%; height: 0; border-top: 2px dashed #f97316; transform: translateY(-50%);"></div>
+                            <!-- Result at NOW -->
+                            <div style="position: absolute; right: 10%; top: 50%; transform: translate(0, -50%);">
+                                <div style="background: #fff7ed; border: 2px solid #f97316; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #c2410c;">NOW: ✓</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563;">"I <strong>have finished</strong>."</p>
+                        <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af;">Focus: The result is here now.</p>
+                    </div>
+
+                    <!-- Continuous Timeline -->
+                    <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.25rem;">
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #4338ca;">Continuous: The Duration</h4>
+                        <div style="position: relative; height: 60px; margin: 1rem 0;">
+                            <!-- Timeline line -->
+                            <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
+                            <!-- Duration bar -->
+                            <div style="position: absolute; top: 50%; left: 20%; right: 15%; height: 20px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.8)); border-radius: 10px; transform: translateY(-50%); border: 2px solid #6366f1;"></div>
+                            <!-- Start dot -->
+                            <div style="position: absolute; left: 20%; top: 50%; transform: translate(-50%, -50%);">
+                                <div style="width: 10px; height: 10px; background: #6366f1; border-radius: 50%;"></div>
+                                <div style="position: absolute; top: 22px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #6366f1; font-weight: 600;">Start</div>
+                            </div>
+                            <!-- NOW dot -->
+                            <div style="position: absolute; right: 10%; top: 50%; transform: translate(0, -50%);">
+                                <div style="background: #eef2ff; border: 2px solid #6366f1; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 600; color: #4338ca;">NOW</div>
+                            </div>
+                        </div>
+                        <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563;">"I <strong>have been working</strong>."</p>
+                        <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af;">Focus: The duration up to now.</p>
+                    </div>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-timeline-concept",
+                    title: "Which Timeline?",
+                    instructions: "Match each sentence to the correct timeline focus.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "\"I have written 5 emails.\" - What's the focus?",
+                            options: [
+                                { value: "result", label: "Result: 5 completed emails" },
+                                { value: "duration", label: "Duration: time spent emailing" },
+                            ],
+                            expectedAnswer: "result",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"I have been writing emails all morning.\" - What's the focus?",
+                            options: [
+                                { value: "result", label: "Result: emails are done" },
+                                { value: "duration", label: "Duration: the time spent" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"She has lost her keys.\" - What's the focus?",
+                            options: [
+                                { value: "result", label: "Result: keys are gone now" },
+                                { value: "duration", label: "Duration: how long she's been looking" },
+                            ],
+                            expectedAnswer: "result",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -------------------------------------------------------------------------
+        // 3. The Simple Side (Result - Positive)
         // -------------------------------------------------------------------------
         {
             id: "focus-result",
             title: "Focus on Result (Simple)",
             icon: "✅",
-            stepNumber: 1,
+            stepNumber: 2,
             explanation: `
                 <h3>When "Done" Matters</h3>
                 <p>Use <strong>Present Perfect Simple</strong> (have + <strong>past participle</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
@@ -121,7 +216,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "focus-duration",
             title: "Focus on Duration (Continuous)",
             icon: "⏱️",
-            stepNumber: 2,
+            stepNumber: 3,
             explanation: `
                 <h3>When "Time" Matters</h3>
                 <p>Use <strong>Present Perfect Continuous</strong> (have + <strong>been</strong> + <strong>-ing</strong>) when you want to show <strong>how long</strong> something has been happening, or emphasizing the <strong>activity</strong> itself (even if it's finished!).</p>
@@ -194,7 +289,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "family-negatives",
             title: "Negatives: 'Haven't' vs 'Haven't Been'",
             icon: "🚫",
-            stepNumber: 3,
+            stepNumber: 4,
             explanation: `
                 <h3>How to say "No"</h3>
                 <p>The negative forms also have slightly different meanings.</p>
@@ -266,7 +361,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "family-questions",
             title: "Questions: 'How Much' vs 'How Long'",
             icon: "❓",
-            stepNumber: 4,
+            stepNumber: 5,
             explanation: `
                 <h3>Asking the Right Question</h3>
                 <p>The question you ask depends on what answer you want.</p>
@@ -338,7 +433,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         {
             id: "family-comparison",
             title: "Comparison: Result vs Duration",
-            stepNumber: 5,
+            stepNumber: 6,
             icon: "⚖️",
             explanation: `
                 <h3>The Final Summary</h3>
@@ -382,9 +477,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "structure-review",
-            title: "Structure Check",
+            title: "Structure Check: Building Sentences",
             icon: "🏗️",
-            stepNumber: 6,
             explanation: `
                  <p>Let's make sure you can build these sentences perfectly.</p>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
@@ -438,17 +532,277 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
 
         // -------------------------------------------------------------------------
-        // 8. Mixed Practice
+        // 8. Time Expressions
+        // -------------------------------------------------------------------------
+        {
+            id: "time-expressions",
+            title: "Time Expressions: For, Since & Signal Words",
+            icon: "📅",
+            stepNumber: 7,
+            explanation: `
+                <h3>Key Time Words for Both Forms</h3>
+                <p>Both Simple and Continuous use <strong>for</strong> and <strong>since</strong>, but some words work better with one form.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">FOR = Duration</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">How long? A period of time.</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>for 10 minutes</li>
+                            <li>for 2 hours</li>
+                            <li>for 3 weeks</li>
+                            <li>for 5 years</li>
+                        </ul>
+                    </div>
+                    <div style="background: #dbeafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #1d4ed8;">SINCE = Starting Point</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #4b5563;">From when? A specific time.</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>since Monday</li>
+                            <li>since 2019</li>
+                            <li>since I moved here</li>
+                            <li>since breakfast</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>Signal Words by Form</h4>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #fff7ed;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Simple (Result/Count)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Continuous (Duration/Activity)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; vertical-align: top;">
+                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">already</span>
+                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">yet</span>
+                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">just</span>
+                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">ever</span>
+                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">never</span>
+                            <span style="background: #fff7ed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">how many times</span>
+                        </td>
+                        <td style="padding: 0.5rem; vertical-align: top;">
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">all day/morning/week</span>
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">lately</span>
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">recently</span>
+                            <span style="background: #eef2ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; margin: 0.25rem; display: inline-block;">how long</span>
+                        </td>
+                    </tr>
+                </table>
+            `,
+            exercises: [
+                {
+                    id: "ex-time-expressions",
+                    title: "For or Since?",
+                    instructions: "Choose the correct time expression.",
+                    items: [
+                        {
+                            type: "select",
+                            label: "I have been working here ___ 2018.",
+                            options: ["for", "since"],
+                            expectedAnswer: "since",
+                        },
+                        {
+                            type: "select",
+                            label: "She has lived in Boston ___ five years.",
+                            options: ["for", "since"],
+                            expectedAnswer: "for",
+                        },
+                        {
+                            type: "select",
+                            label: "We have been waiting ___ the meeting started.",
+                            options: ["for", "since"],
+                            expectedAnswer: "since",
+                        },
+                        {
+                            type: "select",
+                            label: "They have been studying English ___ three months.",
+                            options: ["for", "since"],
+                            expectedAnswer: "for",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-signal-words",
+                    title: "Which Form Fits?",
+                    instructions: "Based on the signal word, choose Simple or Continuous.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I have ___ finished my homework. (already)",
+                            options: [
+                                { value: "simple", label: "Simple: have already finished" },
+                                { value: "continuous", label: "Continuous: have been already finishing" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "She has been tired ___. (lately)",
+                            options: [
+                                { value: "simple", label: "Simple: has felt tired lately" },
+                                { value: "continuous", label: "Continuous: has been feeling tired lately" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "Have you ___ been to Japan? (ever)",
+                            options: [
+                                { value: "simple", label: "Simple: Have you ever been" },
+                                { value: "continuous", label: "Continuous: Have you ever been being" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -------------------------------------------------------------------------
+        // 9. Common Mistakes
+        // -------------------------------------------------------------------------
+        {
+            id: "common-mistakes",
+            title: "Common Mistakes & When NOT to Use",
+            icon: "⚠️",
+            stepNumber: 8,
+            explanation: `
+                <h3>Avoid These Errors!</h3>
+                <p>Here are the most common mistakes students make with the Present Perfect Family.</p>
+
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 1: Using Continuous with State Verbs</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I have been knowing him for years.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I have known him for years.</p>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">State verbs (know, believe, like, love, want, need, have, own) don't use Continuous forms.</p>
+                </div>
+
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 2: Using Continuous for Counted Actions</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I have been reading 3 books this month.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I have read 3 books this month.</p>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">When counting completed items, use Simple.</p>
+                </div>
+
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 3: Using Continuous with "Finish"</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I haven't been finishing my work yet.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I haven't finished my work yet.</p>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">"Finish" describes completion - always use Simple.</p>
+                </div>
+
+                <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #059669;">✓ Quick Decision Guide</h4>
+                    <ul style="margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Can you count it?</strong> → Simple (3 emails, twice, never)</li>
+                        <li><strong>Is it a state verb?</strong> → Simple (know, believe, own)</li>
+                        <li><strong>Is it about completion?</strong> → Simple (finish, decide, arrive)</li>
+                        <li><strong>Is it about duration/how long?</strong> → Continuous (all day, for hours)</li>
+                        <li><strong>Do you see evidence of activity?</strong> → Continuous (sweating, dirty hands)</li>
+                    </ul>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 State Verbs List",
+                content: "Common state verbs that DON'T use Continuous: <br><strong>Mental:</strong> know, believe, think, understand, remember <br><strong>Emotional:</strong> like, love, hate, want, need, prefer <br><strong>Possession:</strong> have, own, belong, possess"
+            },
+            exercises: [
+                {
+                    id: "ex-common-mistakes",
+                    title: "Fix the Mistakes",
+                    instructions: "Choose the CORRECT version of each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Duration with a state verb:",
+                            options: [
+                                { value: "wrong", label: "I have been owning this car for 5 years." },
+                                { value: "correct", label: "I have owned this car for 5 years." },
+                            ],
+                            expectedAnswer: "correct",
+                        },
+                        {
+                            type: "radio",
+                            label: "Counting completed items:",
+                            options: [
+                                { value: "wrong", label: "She has been visiting Paris 4 times." },
+                                { value: "correct", label: "She has visited Paris 4 times." },
+                            ],
+                            expectedAnswer: "correct",
+                        },
+                        {
+                            type: "radio",
+                            label: "Talking about completion:",
+                            options: [
+                                { value: "wrong", label: "Have you been finishing your project yet?" },
+                                { value: "correct", label: "Have you finished your project yet?" },
+                            ],
+                            expectedAnswer: "correct",
+                        },
+                        {
+                            type: "radio",
+                            label: "Emphasizing duration:",
+                            options: [
+                                { value: "wrong", label: "I have waited for 2 hours!" },
+                                { value: "correct", label: "I have been waiting for 2 hours!" },
+                            ],
+                            expectedAnswer: "correct",
+                        },
+                        {
+                            type: "radio",
+                            label: "Evidence of recent activity (dirty hands):",
+                            options: [
+                                { value: "wrong", label: "Have you worked in the garden?" },
+                                { value: "correct", label: "Have you been working in the garden?" },
+                            ],
+                            expectedAnswer: "correct",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -------------------------------------------------------------------------
+        // 10. Mixed Practice
         // -------------------------------------------------------------------------
         {
             id: "family-mixed",
-            title: "Mixed Practice: Real Life",
+            title: "Mixed Practice: Real Life Scenarios",
             icon: "🧠",
-            stepNumber: 7,
-            explanation: "<p>In real conversation, we switch back and forth. Use the clues (how many, how long, evidence) to decide!</p>",
+            stepNumber: 9,
+            explanation: `
+                <h3>Put It All Together!</h3>
+                <p>In real conversation, we switch back and forth between Simple and Continuous. Use your decision-making skills:</p>
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li><strong>Result/Count/Completion?</strong> → Simple</li>
+                    <li><strong>Duration/Activity/Evidence?</strong> → Continuous</li>
+                    <li><strong>State verb?</strong> → Simple (even for duration)</li>
+                </ul>
+            `,
             exercises: [
                 {
-                    title: "Select the Right Form",
+                    id: "ex-mixed-scenarios",
+                    title: "Real Life Scenarios",
+                    instructions: "Choose the best form for each situation.",
                     items: [
                         {
                             type: "radio",
@@ -497,7 +851,82 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    id: "ex-mixed-fill",
+                    title: "Complete the Conversations",
+                    instructions: "Fill in the correct form based on context.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "A: You look tired! B: I ___ (study) all night for my exam.",
+                            expectedAnswer: "have been studying",
+                            placeholder: "have been studying",
+                        },
+                        {
+                            type: "text",
+                            label: "A: How many apartments ___ you ___ (visit)? B: About 5 so far.",
+                            expectedAnswer: "have you visited",
+                            placeholder: "have you visited",
+                        },
+                        {
+                            type: "text",
+                            label: "A: I ___ (know) Maria since high school. (state verb)",
+                            expectedAnswer: "have known",
+                            placeholder: "have known",
+                        },
+                        {
+                            type: "text",
+                            label: "A: Why are your hands so dirty? B: I ___ (work) in the garden.",
+                            expectedAnswer: "have been working",
+                            placeholder: "have been working",
+                        },
+                    ],
+                },
             ],
+        },
+
+        // -------------------------------------------------------------------------
+        // Summary Section
+        // -------------------------------------------------------------------------
+        {
+            id: "family-summary",
+            title: "Summary: The Present Perfect Family",
+            icon: "📋",
+            stepNumber: 10,
+            explanation: `
+                <h3>What You've Learned</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">The Finisher (Simple)</h4>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has + past participle</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Result, completion, count</p>
+                        <p style="margin: 0;"><strong>Key words:</strong> already, yet, just, ever, never, how many</p>
+                    </div>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">The Worker (Continuous)</h4>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has been + verb-ing</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration, activity, evidence</p>
+                        <p style="margin: 0;"><strong>Key words:</strong> for, since, all day, lately, how long</p>
+                    </div>
+                </div>
+
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #16a34a;">🎯 The Golden Question</h4>
+                    <p style="margin: 0; font-size: 1.1rem;">Ask yourself: <strong>"Do I care about the RESULT (count/completion) or the DURATION (time/activity)?"</strong></p>
+                </div>
+
+                <h4>Remember:</h4>
+                <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li>State verbs (know, believe, own) → Always Simple, even for duration</li>
+                    <li>Counting completed items → Simple</li>
+                    <li>Emphasizing how long/visible evidence → Continuous</li>
+                    <li>Both use <strong>for</strong> (duration) and <strong>since</strong> (starting point)</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "🚀 Keep Practicing!",
+                content: "The more you practice choosing between Simple and Continuous, the more natural it becomes. Pay attention to how native speakers use these forms in movies, podcasts, and conversations!"
+            },
         },
     ],
     miniQuiz: [
