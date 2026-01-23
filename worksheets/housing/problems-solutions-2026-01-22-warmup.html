@@ -39,7 +39,7 @@
     .vocab-word { display: flex; justify-content: space-between; align-items: baseline; padding: 3px 0; }
     .vocab-word .num { font-weight: bold; min-width: 20px; }
     .vocab-word .word { flex: 1; }
-    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-left: 10px; }
+    .vocab-word .blank { border-bottom: 1px solid var(--line); width: 30px; margin-right: 2px; }
     .vocab-def { padding: 3px 0; }
     .vocab-def .letter { font-weight: bold; margin-right: 6px; }
     .phrase { margin-bottom: 14px; }
@@ -70,6 +70,16 @@
     .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
     .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
     .front-page { margin-bottom: 24px; }
+    .email-box { border: 2px solid var(--ink); padding: 16px; margin-top: 12px; background: #fafafa; }
+    .email-header { margin-bottom: 12px; }
+    .email-field { display: flex; align-items: baseline; margin-bottom: 8px; font-size: 13px; }
+    .email-label { font-weight: bold; min-width: 60px; }
+    .email-value { border-bottom: 1px solid var(--line); flex: 1; margin-left: 8px; height: 18px; }
+    .email-subject { border-bottom: 1px solid var(--line); flex: 1; margin-left: 8px; height: 20px; }
+    .email-body { margin-top: 16px; }
+    .email-body-label { font-weight: bold; font-size: 13px; margin-bottom: 8px; }
+    .email-body-lines { margin-top: 8px; }
+    .email-body-line { border-bottom: 1px solid var(--line); height: 24px; margin-bottom: 4px; }
     @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
       .page-break { page-break-before: always; } }
   </style>
@@ -99,12 +109,12 @@
         <p class="instruction">Match each word to its meaning. Write the letter on the line.</p>
         <div class="vocab-matching">
           <div class="vocab-words">
-            <div class="vocab-word"><span class="num">1.</span> <span class="word">pest</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">2.</span> <span class="word">mold</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="word">complaint</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">4.</span> <span class="word">inspector</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="word">solution</span> <span class="blank"></span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="word">document</span> <span class="blank"></span></div>
+            <div class="vocab-word"><span class="num">1.</span> <span class="blank"></span> <span class="word">pest</span></div>
+            <div class="vocab-word"><span class="num">2.</span> <span class="blank"></span> <span class="word">mold</span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">complaint</span></div>
+            <div class="vocab-word"><span class="num">4.</span> <span class="blank"></span> <span class="word">inspector</span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="blank"></span> <span class="word">solution</span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">document</span></div>
           </div>
           <div class="vocab-defs">
             <div class="vocab-def"><span class="letter">a.</span> to write down or take photos as proof</div>
@@ -201,12 +211,33 @@
         <span class="section-time">6–8 sentences</span>
       </div>
       <div class="writing-prompt">
-        <b>Prompt:</b> Imagine your heating stopped working last week during cold weather. The apartment has been very cold, and you tried to call your landlord, but they didn't answer. Describe the problem, what you tried to do, and what the solution was (or what you think should happen).
+        <b>Prompt:</b> Write a formal email to your landlord. Your landlord sent you a notice that your rent will increase by $200 per month starting next month. You want to negotiate a smaller increase or ask for more time. Explain your situation, why the increase is difficult for you, and what you would like to propose (a smaller increase, a discount for early payment, a delay, or another solution).
       </div>
       
-      <div class="writing-lines">
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
+      <div class="email-box">
+        <div class="email-header">
+          <div class="email-field">
+            <span class="email-label">To:</span>
+            <span class="email-value" style="border: none; font-weight: normal;">landlordmgt@gmail.com</span>
+          </div>
+          <div class="email-field">
+            <span class="email-label">Subject:</span>
+            <div class="email-subject"></div>
+          </div>
+        </div>
+        <div class="email-body">
+          <div class="email-body-label">Body:</div>
+          <div class="email-body-lines">
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+            <div class="email-body-line"></div>
+          </div>
+        </div>
       </div>
       <p class="optional-note">Optional challenge: Give advice to someone with the same problem (use "You should…" or "I recommend…").</p>
     </section>
