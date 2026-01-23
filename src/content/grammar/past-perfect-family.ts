@@ -201,7 +201,12 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             icon: "📊",
             explanation: `
                 <h3>See the Difference</h3>
-                <p>Both forms look backward from a past moment, but they focus on different things:</p>
+                <p>Both forms look backward from a past moment, but they focus on different things. Think of it like this:</p>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0;"><strong>Simple = Sequence:</strong> "This happened, THEN that happened." (1st → 2nd)</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Continuous = Background:</strong> "Something WAS happening before that moment."</p>
+                </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Simple Timeline -->
@@ -250,6 +255,27 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                         <p style="text-align: center; margin: 1.5rem 0 0 0; font-size: 0.85rem; color: #4b5563;">"I was tired because I <strong>had been working</strong> all day."</p>
                     </div>
+                </div>
+
+                <h3>Understanding "Looking Back from the Past"</h3>
+                <p>The key difference from Present Perfect: We're standing in the PAST, looking FURTHER back!</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Present Perfect (looking back from NOW):</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"I <strong>have seen</strong> that movie."</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Past action connected to NOW</p>
+                    </div>
+                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #b45309;">Past Perfect (looking back from a PAST moment):</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"When you asked me, I <strong>had already seen</strong> it."</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Even FURTHER back from that past moment</p>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Memory Trick:</p>
+                    <p style="margin: 0.5rem 0 0 0;">Past Perfect is like telling a story with a "flashback." You're in the past, but you need to go EVEN FURTHER back to explain something!</p>
                 </div>
             `,
             exercises: [
@@ -324,6 +350,27 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     <li><strong>After</strong> + Past Perfect, Past Simple → "After he <span style="color: #f59e0b;">had eaten</span>, he <span style="color: #14b8a6;">watched</span> TV."</li>
                     <li><strong>By the time</strong> + Past Simple, Past Perfect → "By the time we <span style="color: #14b8a6;">arrived</span>, the show <span style="color: #f59e0b;">had ended</span>."</li>
                 </ul>
+
+                <h4>More Example Sentences</h4>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.95rem;">
+                        <li>"The streets were wet because it <strong>had rained</strong> earlier." <span style="color: #6b7280;">(Rain → wet streets)</span></li>
+                        <li>"She knew the answer because she <strong>had studied</strong> hard." <span style="color: #6b7280;">(Study → knew)</span></li>
+                        <li>"I wasn't hungry because I <strong>had just eaten</strong>." <span style="color: #6b7280;">(Eat → not hungry)</span></li>
+                        <li>"He couldn't enter because he <strong>had forgotten</strong> his key." <span style="color: #6b7280;">(Forget → couldn't enter)</span></li>
+                        <li>"They were happy because they <strong>had won</strong> the game." <span style="color: #6b7280;">(Win → happy)</span></li>
+                    </ul>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                        <strong>had</strong> + <strong>past participle</strong> (eaten, written, gone, done)
+                    </p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                        Same for ALL subjects: I/you/he/she/it/we/they <strong>had</strong> + verb³
+                    </p>
+                </div>
             `,
             usageMeanings: [
                 {
@@ -419,6 +466,47 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                     </div>
                     <p style="text-align: center; margin: 0; font-size: 0.9rem;">"I <strong>had been waiting</strong> for 2 hours when the bus <strong>finally arrived</strong>."</p>
+                </div>
+
+                <h4>Three Main Uses for Past Perfect Continuous</h4>
+
+                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #8b5cf6;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #6d28d9;">1. Duration Before a Past Event</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Emphasizing how long something had been happening:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"They <strong>had been dating</strong> for 3 years before they got married."</li>
+                            <li>"I <strong>had been studying</strong> for hours when you called."</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #8b5cf6;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #6d28d9;">2. Explaining Past Conditions (Background)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Why someone or something was in a certain state:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"He was out of breath because he <strong>had been running</strong>."</li>
+                            <li>"Her eyes were red because she <strong>had been crying</strong>."</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #8b5cf6;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #6d28d9;">3. Activity That Had Just Stopped</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Recent past activity with visible evidence:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"The ground was wet. It <strong>had been raining</strong>."</li>
+                            <li>"The kitchen smelled good. Someone <strong>had been cooking</strong>."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                        <strong>had been</strong> + <strong>verb-ing</strong>
+                    </p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                        Same for ALL subjects: I/you/he/she/it/we/they <strong>had been</strong> + -ing
+                    </p>
                 </div>
             `,
             usageMeanings: [
@@ -519,6 +607,30 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>had been waiting</strong> for hours.</p>
                     </div>
                 </div>
+
+                <h3>Side-by-Side Examples</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Context</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Simple (What happened first)</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Continuous (How long before)</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Work</td>
+                        <td style="padding: 0.5rem;">She <strong>had finished</strong> the report.</td>
+                        <td style="padding: 0.5rem;">She <strong>had been working</strong> on it all week.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Travel</td>
+                        <td style="padding: 0.5rem;">They <strong>had left</strong> before I arrived.</td>
+                        <td style="padding: 0.5rem;">They <strong>had been driving</strong> for 10 hours.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Study</td>
+                        <td style="padding: 0.5rem;">He <strong>had passed</strong> all his exams.</td>
+                        <td style="padding: 0.5rem;">He <strong>had been studying</strong> for months.</td>
+                    </tr>
+                </table>
             `,
             exercises: [
                 {
@@ -592,6 +704,25 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>hadn't been sleeping</strong> well.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>hadn't been waiting</strong> long.</p>
+                    </div>
+                </div>
+
+                <h3>Understanding Negative Meanings</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Explaining lack of experience:</p>
+                        <p style="margin: 0.25rem 0 0 0;">"She was nervous because she <strong>hadn't flown</strong> before."</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Zero flying experience before that moment</p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Explaining lack of recent activity:</p>
+                        <p style="margin: 0.25rem 0 0 0;">"He failed the test because he <strong>hadn't been studying</strong>."</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Studying wasn't happening before the test</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-weight: 600;">Denying a prior action:</p>
+                        <p style="margin: 0.25rem 0 0 0;">"I <strong>hadn't met</strong> him before the party."</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ We were strangers before that night</p>
                     </div>
                 </div>
             `,
@@ -671,6 +802,28 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">Had you been waiting long?</p>
                     </div>
                 </div>
+
+                <h3>Common Question Patterns</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #b45309;">Simple Questions:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>Had</strong> you <strong>met</strong> before?</li>
+                            <li><strong>Had</strong> she <strong>finished</strong> by then?</li>
+                            <li><strong>What had</strong> <strong>happened</strong>?</li>
+                            <li><strong>Why had</strong> he <strong>left</strong>?</li>
+                        </ul>
+                    </div>
+                    <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #6d28d9;">Continuous Questions:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>How long had</strong> you <strong>been waiting</strong>?</li>
+                            <li><strong>What had</strong> she <strong>been doing</strong>?</li>
+                            <li><strong>Had</strong> it <strong>been raining</strong>?</li>
+                            <li><strong>Had</strong> they <strong>been working</strong> hard?</li>
+                        </ul>
+                    </div>
+                </div>
             `,
             exercises: [
                 {
@@ -741,6 +894,20 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 500;">all day/morning</span>
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 500;">how long</span>
                         </div>
+                    </div>
+                </div>
+
+                <h3>Signal Words in Sentences</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #b45309;"><strong>Simple:</strong> "I <strong>had already finished</strong> when you called."</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #b45309;">"She <strong>had never seen</strong> snow before that trip."</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #b45309;">"<strong>By the time</strong> we arrived, they <strong>had left</strong>."</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; color: #6d28d9;"><strong>Continuous:</strong> "They <strong>had been waiting</strong> <strong>for</strong> 2 hours."</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #6d28d9;">"I was tired because I <strong>had been working</strong> <strong>all day</strong>."</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #6d28d9;">"<strong>How long</strong> <strong>had</strong> you <strong>been living</strong> there?"</p>
                     </div>
                 </div>
 
@@ -837,6 +1004,35 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Past Perfect (had) looks back from a past moment. Present Perfect (have/has) connects to NOW.</p>
                 </div>
+
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 4: Using Continuous with State Verbs</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I had been knowing her for years.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I had known her for years.</p>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">State verbs (know, believe, like, own, want) use Simple even for duration.</p>
+                </div>
+
+                <h3>More Wrong vs Right Examples</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "I went to the cinema after I had been finishing work."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "I went to the cinema after I had finished work." <span style="font-size: 0.85rem; color: #6b7280;">(finish = completion)</span></p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "She had been owning that car for 5 years."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "She had owned that car for 5 years." <span style="font-size: 0.85rem; color: #6b7280;">(own = state verb)</span></p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; color: #dc2626;">❌ "When I arrived, she had left already."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "When I arrived, she had already left." <span style="font-size: 0.85rem; color: #6b7280;">(already goes before the main verb)</span></p>
+                    </div>
+                </div>
             `,
             comparison: {
                 title: "Past Perfect vs Past Simple",
@@ -927,6 +1123,28 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     <li><strong>Background/cause?</strong> → Usually Continuous</li>
                     <li><strong>Result/completion?</strong> → Usually Simple</li>
                 </ul>
+
+                <h3>More Story Examples</h3>
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">🏠 Moving Day:</p>
+                    <p style="margin: 0; font-size: 1.05rem; line-height: 1.8;">
+                        "When the movers <span style="color: #14b8a6; font-weight: 600;">arrived</span>,
+                        we <span style="color: #f59e0b; font-weight: 600;">had already packed</span> most of the boxes <span style="color: #6b7280;">(completed first)</span>.
+                        We were exhausted because we <span style="color: #8b5cf6; font-weight: 600;">had been packing</span> since 6am <span style="color: #6b7280;">(duration)</span>.
+                        Luckily, we <span style="color: #f59e0b; font-weight: 600;">had hired</span> professionals <span style="color: #6b7280;">(prior decision)</span>,
+                        so we <span style="color: #f59e0b; font-weight: 600;">hadn't had to</span> worry about the heavy furniture <span style="color: #6b7280;">(no prior worry)</span>."
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">🎓 Graduation Day:</p>
+                    <p style="margin: 0; font-size: 1.05rem; line-height: 1.8;">
+                        "I <span style="color: #14b8a6; font-weight: 600;">felt</span> incredibly proud.
+                        I <span style="color: #8b5cf6; font-weight: 600;">had been working</span> toward this moment for four years <span style="color: #6b7280;">(duration)</span>.
+                        I <span style="color: #f59e0b; font-weight: 600;">had passed</span> all my exams <span style="color: #6b7280;">(completed first)</span>,
+                        and I <span style="color: #f59e0b; font-weight: 600;">had made</span> so many friends along the way <span style="color: #6b7280;">(completed first)</span>."
+                    </p>
+                </div>
             `,
             exercises: [
                 {
@@ -1031,7 +1249,54 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         <li>Both forms need <strong>TWO past references</strong></li>
                         <li>Past Perfect = FIRST action; Past Simple = SECOND action</li>
                         <li>Simple for <strong>sequence/result</strong>; Continuous for <strong>duration/background</strong></li>
+                        <li>State verbs (know, believe, own) → Always Simple</li>
                     </ul>
+                </div>
+
+                <h3>Quick Reference Chart</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Simple</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Continuous</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Sequence (first action)</td>
+                        <td style="padding: 0.5rem;">✓ had finished before...</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Duration before</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ had been waiting for...</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Explain a past state</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ was tired because had been working</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Never/already/just</td>
+                        <td style="padding: 0.5rem;">✓ had never seen</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">State verbs</td>
+                        <td style="padding: 0.5rem;">✓ had known for years</td>
+                        <td style="padding: 0.5rem;">✗ Never use!</td>
+                    </tr>
+                </table>
+
+                <h3>One Final Example</h3>
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-style: italic; font-size: 1.05rem; line-height: 1.7;">
+                        "When I <strong style="color: #14b8a6;">met</strong> my wife <span style="color: #6b7280;">(Past Simple - reference point)</span>,
+                        she <strong style="color: #8b5cf6;">had been living</strong> in London for 3 years <span style="color: #6b7280;">(duration)</span>.
+                        She <strong style="color: #f59e0b;">had already finished</strong> her degree <span style="color: #6b7280;">(completed before)</span>,
+                        and she <strong style="color: #f59e0b;">had just started</strong> her first job <span style="color: #6b7280;">(recent completion)</span>.
+                        I <strong style="color: #f59e0b;">had known</strong> her name for a while <span style="color: #6b7280;">(state verb = Simple)</span>,
+                        but we <strong style="color: #f59e0b;">had never spoken</strong> before that day <span style="color: #6b7280;">(never = Simple)</span>."
+                    </p>
                 </div>
             `,
             tipBox: {
