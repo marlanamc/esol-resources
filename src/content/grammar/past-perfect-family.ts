@@ -30,11 +30,166 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                     </div>
                 </div>
-                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308;">
+
+                <h3>Why Do We Need the Past Perfect?</h3>
+                <p>Imagine you're telling a story about yesterday. You need to show that one thing happened <strong>before</strong> another:</p>
+
+                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e2e8f0;">
+                    <p style="margin: 0 0 1rem 0; font-style: italic; color: #64748b;">"I went to the cinema yesterday. But wait... let me go back further..."</p>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #f59e0b; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">EARLIER: had finished work</span>
+                        <span style="font-size: 1.5rem;">→</span>
+                        <span style="background: #14b8a6; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">LATER: went to cinema</span>
+                    </div>
+                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">"I went to the cinema after I <strong>had finished</strong> work."</p>
+                </div>
+
+                <h3>The Key Question to Ask Yourself</h3>
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-size: 1.15rem; text-align: center;">
+                        <strong>"Am I talking about SEQUENCE (what happened first) or DURATION (how long before)?"</strong>
+                    </p>
+                </div>
+
+                <h3>More Examples: Simple vs Continuous</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Story Context</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Simple (Sequence)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Continuous (Duration)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">The movie started...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...but I <strong>had already seen</strong> it."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I saw it before (sequence)</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>had been waiting</strong> for 30 minutes."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The waiting time (duration)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">She got the job...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...because she <strong>had studied</strong> hard."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Completed preparation (result)</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...after she <strong>had been applying</strong> for months."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Long process (duration)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">When I met him...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...he <strong>had just arrived</strong> from Spain."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Recent completed action</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...he <strong>had been living</strong> in Spain for 5 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ How long before our meeting</span></td>
+                    </tr>
+                </table>
+
+                <h3>Real Story Example</h3>
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">🎬 A Day at Work:</p>
+                    <p style="margin: 0; font-size: 1.05rem; line-height: 1.8;">
+                        "When my boss arrived at 10am, I <strong style="color: #b45309;">had already finished</strong> the report.
+                        I was exhausted because I <strong style="color: #6d28d9;">had been working</strong> since 6am.
+                        I <strong style="color: #b45309;">had drunk</strong> 4 cups of coffee, and I <strong style="color: #6d28d9;">had been checking</strong> my emails constantly."
+                    </p>
+                    <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #4b5563;">
+                        Notice: <span style="color: #b45309; font-weight: 600;">Simple</span> = completed actions (finished, drunk) |
+                        <span style="color: #6d28d9; font-weight: 600;">Continuous</span> = duration/ongoing activity (working, checking)
+                    </p>
+                </div>
+
+                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308; margin-top: 1.5rem;">
                     <p style="margin: 0; font-weight: 600;">⚠️ Important: Both forms need TWO past references!</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Past Perfect always works with another past action or time marker.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Past Perfect always works with another past action or time marker. You can't use it alone!</p>
+                    <div style="margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626; font-size: 0.9rem;">❌ "I had eaten breakfast." (Alone - unclear)</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a; font-size: 0.9rem;">✓ "I had eaten breakfast <strong>before I left</strong>." (With reference)</p>
+                        </div>
+                    </div>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "intro-understanding",
+                    title: "Check Your Understanding",
+                    instructions: "Based on what you just learned, choose the best answer.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Past Perfect SIMPLE focus on?",
+                            options: [
+                                { value: "sequence", label: "Which action happened first (sequence)" },
+                                { value: "duration", label: "How long something lasted" },
+                            ],
+                            expectedAnswer: "sequence",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does Past Perfect CONTINUOUS focus on?",
+                            options: [
+                                { value: "sequence", label: "The order of events" },
+                                { value: "duration", label: "The duration before a past moment" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                        {
+                            type: "radio",
+                            label: "'When I arrived, she had already left.' - This shows:",
+                            options: [
+                                { value: "simple", label: "Sequence - she left BEFORE I arrived (Simple)" },
+                                { value: "continuous", label: "Duration - how long she waited (Continuous)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "'I was tired because I had been working all day.' - This shows:",
+                            options: [
+                                { value: "simple", label: "A completed action (Simple)" },
+                                { value: "continuous", label: "Duration that explains my tiredness (Continuous)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
+                {
+                    id: "intro-story-context",
+                    title: "Choose the Right Form for the Story",
+                    instructions: "Which form fits better in each storytelling situation?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "The party was over. Everyone ___ home. (completed action before)",
+                            options: [
+                                { value: "simple", label: "had gone (Simple - they left earlier)" },
+                                { value: "continuous", label: "had been going (Continuous - duration)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "Her eyes were red. She ___. (activity that explains her condition)",
+                            options: [
+                                { value: "simple", label: "had cried (Simple - just states it happened)" },
+                                { value: "continuous", label: "had been crying (Continuous - ongoing activity)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "By the time I woke up, my parents ___ to work. (completed departure)",
+                            options: [
+                                { value: "simple", label: "had already gone (Simple - sequence)" },
+                                { value: "continuous", label: "had been going (Continuous - duration)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "The ground was wet. It ___ all night. (duration of weather)",
+                            options: [
+                                { value: "simple", label: "had rained (Simple - just states fact)" },
+                                { value: "continuous", label: "had been raining (Continuous - emphasizes duration)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
+            ],
         },
 
         // -------------------------------------------------------------------------
