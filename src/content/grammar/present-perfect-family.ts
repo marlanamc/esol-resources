@@ -35,8 +35,149 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                     </div>
                 </div>
-                <p>We use them together all the time! Let's learn to mix and match them naturally.</p>
+
+                <h3>Why Do We Need Two Forms?</h3>
+                <p>Think about this situation: You've been cooking dinner. Your friend asks about it. You could answer two different ways:</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Simple Answer:</p>
+                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have made</strong> pasta."</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ The pasta is ready! (Result)</p>
+                    </div>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca;">Continuous Answer:</p>
+                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have been cooking</strong> for an hour."</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ That explains why you're tired! (Activity)</p>
+                    </div>
+                </div>
+
+                <h3>The Key Question to Ask Yourself</h3>
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-size: 1.15rem; text-align: center;">
+                        <strong>"Do I want to talk about the RESULT or the ACTIVITY?"</strong>
+                    </p>
+                </div>
+
+                <h3>More Examples to Understand the Difference</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Situation</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Simple (Result)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Continuous (Activity)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Cleaning the house</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have cleaned</strong> the kitchen."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The kitchen is clean now!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been cleaning</strong> all morning."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's why I'm exhausted!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Writing emails</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have written</strong> 5 emails."<br><span style="font-size: 0.8rem; color: #6b7280;">→ 5 emails are done!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been writing</strong> emails for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I've spent 2 hours on this!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Learning English</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have learned</strong> 500 new words."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Look at my vocabulary!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been learning</strong> English for 2 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ It's been a long journey!</span></td>
+                    </tr>
+                </table>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Real-Life Tip:</p>
+                    <p style="margin: 0.5rem 0 0 0;">Native speakers often use BOTH forms in the same conversation! For example: "I <strong>have been working</strong> on this project for 3 weeks, and I <strong>have completed</strong> 80% of it."</p>
+                </div>
+
+                <p style="margin-top: 1.5rem;">We use them together all the time! Let's learn to mix and match them naturally.</p>
             `,
+            exercises: [
+                {
+                    id: "intro-understanding",
+                    title: "Check Your Understanding",
+                    instructions: "Based on what you just learned, choose the best answer.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does the SIMPLE form focus on?",
+                            options: [
+                                { value: "result", label: "The result or completion" },
+                                { value: "duration", label: "How long something took" },
+                            ],
+                            expectedAnswer: "result",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does the CONTINUOUS form focus on?",
+                            options: [
+                                { value: "result", label: "The finished product" },
+                                { value: "duration", label: "The activity or duration" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                        {
+                            type: "radio",
+                            label: "'I have read 3 books this month.' - This emphasizes:",
+                            options: [
+                                { value: "simple", label: "The number/result (Simple)" },
+                                { value: "continuous", label: "The time spent (Continuous)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "'I have been reading all afternoon.' - This emphasizes:",
+                            options: [
+                                { value: "simple", label: "How many books (Simple)" },
+                                { value: "continuous", label: "The duration/activity (Continuous)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
+                {
+                    id: "intro-matching",
+                    title: "Match the Situation",
+                    instructions: "Which form would you use in each situation?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Your hands are dirty. Someone asks why.",
+                            options: [
+                                { value: "continuous", label: "I have been gardening. (Shows activity)" },
+                                { value: "simple", label: "I have gardened. (Shows result)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "You want to show your friend the 10 photos you took.",
+                            options: [
+                                { value: "simple", label: "I have taken 10 photos! (Shows count)" },
+                                { value: "continuous", label: "I have been taking photos. (Shows activity)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "You're sweating because you exercised.",
+                            options: [
+                                { value: "continuous", label: "I have been exercising. (Explains your condition)" },
+                                { value: "simple", label: "I have exercised. (Just states completion)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "You finished all your homework and want to tell your parent.",
+                            options: [
+                                { value: "simple", label: "I have finished my homework! (Result is ready)" },
+                                { value: "continuous", label: "I have been finishing my homework. (Incorrect)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                    ],
+                },
+            ],
         },
 
         // -------------------------------------------------------------------------

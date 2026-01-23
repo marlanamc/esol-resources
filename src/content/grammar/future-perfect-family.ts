@@ -30,11 +30,175 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                     </div>
                 </div>
-                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
+
+                <h3>Why Do We Need the Future Perfect?</h3>
+                <p>Sometimes we need to talk about what will be true AT a specific future moment. Think about planning and goals:</p>
+
+                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e2e8f0;">
+                    <p style="margin: 0 0 1rem 0; font-style: italic; color: #64748b;">"Next December will be special. Let me tell you why..."</p>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: #94a3b8; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">NOW</span>
+                        <span style="font-size: 1.5rem;">→</span>
+                        <span style="background: #06b6d4; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">working hard</span>
+                        <span style="font-size: 1.5rem;">→</span>
+                        <span style="background: #22c55e; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">BY DECEMBER: ✓ done!</span>
+                    </div>
+                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">"By December, I <strong>will have saved</strong> enough money for a vacation!"</p>
+                </div>
+
+                <h3>The Key Question to Ask Yourself</h3>
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-size: 1.15rem; text-align: center;">
+                        <strong>"Am I talking about COMPLETION (done by then) or DURATION (how long by then)?"</strong>
+                    </p>
+                </div>
+
+                <h3>More Examples: Simple vs Continuous</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Future Moment</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">Simple (Completion)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Continuous (Duration)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By next year...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>will have finished</strong> my degree."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The degree is done!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>will have been studying</strong> for 4 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's how long my journey is!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By 6pm...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"She <strong>will have cooked</strong> dinner."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Dinner is ready!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"She <strong>will have been cooking</strong> for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ She started at 4pm!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By our anniversary...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"We <strong>will have visited</strong> 10 countries."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Count of achievements!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"We <strong>will have been traveling</strong> together for 5 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Journey duration!</span></td>
+                    </tr>
+                </table>
+
+                <h3>Real-Life Scenarios</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #0e7490;">🎓 Graduation Day:</p>
+                        <p style="margin: 0; font-size: 0.95rem;">"By May, I <strong>will have completed</strong> 120 credits and I <strong>will have been attending</strong> this university for 4 years."</p>
+                    </div>
+                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7c3aed;">💼 Work Anniversary:</p>
+                        <p style="margin: 0; font-size: 0.95rem;">"Next month, I <strong>will have worked</strong> here for 10 years! I <strong>will have been managing</strong> this team since 2020."</p>
+                    </div>
+                    <div style="background: #dcfce7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #22c55e;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #16a34a;">🏃 Marathon Day:</p>
+                        <p style="margin: 0; font-size: 0.95rem;">"By the time I finish, I <strong>will have run</strong> 42 kilometers and I <strong>will have been running</strong> for over 4 hours!"</p>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #10b981; margin-top: 1.5rem;">
                     <p style="margin: 0; font-weight: 600;">💡 When to use: Deadlines, milestones, anniversaries, and predictions!</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Common contexts: graduation, work anniversaries, project completions, life goals.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Common trigger words: <strong>by</strong> (the time), <strong>by</strong> (next week/year), <strong>before</strong>, <strong>when</strong>, <strong>in</strong> (3 years)</p>
+                </div>
+
+                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">⚠️ Important: Both forms need a FUTURE REFERENCE POINT!</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Future Perfect always needs "by...", "before...", or "when..." to show the deadline.</p>
+                    <div style="margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626; font-size: 0.9rem;">❌ "I will have finished." (Alone - unclear)</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a; font-size: 0.9rem;">✓ "I will have finished <strong>by Friday</strong>." (With deadline)</p>
+                        </div>
+                    </div>
                 </div>
             `,
+            exercises: [
+                {
+                    id: "intro-understanding",
+                    title: "Check Your Understanding",
+                    instructions: "Based on what you just learned, choose the best answer.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "What does Future Perfect SIMPLE focus on?",
+                            options: [
+                                { value: "completion", label: "Completion by a deadline" },
+                                { value: "duration", label: "How long something will last" },
+                            ],
+                            expectedAnswer: "completion",
+                        },
+                        {
+                            type: "radio",
+                            label: "What does Future Perfect CONTINUOUS focus on?",
+                            options: [
+                                { value: "completion", label: "The finished result" },
+                                { value: "duration", label: "The duration up to that future point" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                        {
+                            type: "radio",
+                            label: "'By 2030, I will have saved $50,000.' - This shows:",
+                            options: [
+                                { value: "simple", label: "A goal completed by then (Simple)" },
+                                { value: "continuous", label: "How long I've been saving (Continuous)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "'By next month, I will have been working here for 5 years.' - This shows:",
+                            options: [
+                                { value: "simple", label: "Completed work (Simple)" },
+                                { value: "continuous", label: "Duration up to that milestone (Continuous)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
+                {
+                    id: "intro-planning",
+                    title: "Planning and Goals",
+                    instructions: "Which form fits better for each goal or milestone?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "By December, I ___ 12 books this year. (counting achievement)",
+                            options: [
+                                { value: "simple", label: "will have read (Simple - count/result)" },
+                                { value: "continuous", label: "will have been reading (Continuous - duration)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "When the movie ends, we ___ in this theater for 3 hours. (time spent)",
+                            options: [
+                                { value: "simple", label: "will have sat (Simple - completion)" },
+                                { value: "continuous", label: "will have been sitting (Continuous - duration)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "By the time you arrive, I ___ dinner. (meal is ready)",
+                            options: [
+                                { value: "simple", label: "will have made (Simple - completed task)" },
+                                { value: "continuous", label: "will have been making (Continuous - in progress)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "Next week, they ___ on this project for 6 months. (project timeline)",
+                            options: [
+                                { value: "simple", label: "will have worked (Simple - completion)" },
+                                { value: "continuous", label: "will have been working (Continuous - duration)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
+            ],
         },
 
         // -------------------------------------------------------------------------
