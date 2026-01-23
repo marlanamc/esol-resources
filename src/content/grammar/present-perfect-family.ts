@@ -189,7 +189,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             icon: "⏱️",
             explanation: `
                 <h3>See the Difference</h3>
-                <p>Both forms connect past to present, but they show different things:</p>
+                <p>Both forms connect past to present, but they show different things. Think of it like taking a photo vs. recording a video:</p>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0;"><strong>Simple = Photo:</strong> "Here's the finished result!" 📸</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Continuous = Video:</strong> "Watch how long I've been doing this!" 🎥</p>
+                </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Simple Timeline -->
@@ -235,6 +240,33 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="text-align: center; margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #4b5563;">"I <strong>have been working</strong>."</p>
                         <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af;">Focus: The duration up to now.</p>
                     </div>
+                </div>
+
+                <h3>Understanding the Connection to NOW</h3>
+                <p>The key thing to remember: <strong>both forms connect to the present moment</strong>. That's why it's called "Present" Perfect!</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Simple Examples:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I <strong>have lost</strong> my phone." → <em>It's still lost NOW</em></li>
+                            <li>"She <strong>has broken</strong> her leg." → <em>It's still broken NOW</em></li>
+                            <li>"They <strong>have moved</strong> to Spain." → <em>They live there NOW</em></li>
+                        </ul>
+                    </div>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Continuous Examples:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I <strong>have been waiting</strong> for an hour." → <em>Still waiting NOW</em></li>
+                            <li>"It <strong>has been raining</strong> all day." → <em>The ground is wet NOW</em></li>
+                            <li>"She <strong>has been crying</strong>." → <em>Her eyes are red NOW</em></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Quick Test:</p>
+                    <p style="margin: 0.5rem 0 0 0;">If you can add "...and it still matters now" to your sentence, you're probably using the Present Perfect correctly!</p>
                 </div>
             `,
             exercises: [
@@ -286,12 +318,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>When "Done" Matters</h3>
                 <p>Use <strong>Present Perfect Simple</strong> (have + <strong>past participle</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
-                
+
                 <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                      <h4 style="text-align: center; margin-top: 0; color: #d97706;">Timeline: The Completed Action</h4>
                      <div style="display: flex; align-items: center; justify-content: space-between; position: relative; margin: 2rem 0; padding: 0 1rem;">
                         <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 4px; background: #e5e7eb; transform: translateY(-50%); z-index: 0;"></div>
-                        
+
                         <!-- Past point -->
                         <div style="position: relative; z-index: 1; text-align: center;">
                             <div style="width: 20px; height: 20px; background: #f59e0b; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #f59e0b; margin: 0 auto;"></div>
@@ -310,6 +342,50 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                      </div>
                      <p style="text-align: center; margin: 0;">"I <strong>have eaten</strong> lunch." → <span style="color: #64748b;">(Result: I am not hungry now.)</span></p>
                      <p style="text-align: center; margin-top: 0.5rem;">"She <strong>has written</strong> 5 emails." → <span style="color: #64748b;">(Result: 5 completed items.)</span></p>
+                </div>
+
+                <h3>Three Main Uses for Present Perfect Simple</h3>
+
+                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">1. Life Experience (ever/never)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Talking about experiences in your life up to now:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I <strong>have visited</strong> Japan twice." <span style="color: #6b7280;">(In my life)</span></li>
+                            <li>"She <strong>has never eaten</strong> sushi." <span style="color: #6b7280;">(Not once in her life)</span></li>
+                            <li>"<strong>Have</strong> you <strong>ever seen</strong> a whale?" <span style="color: #6b7280;">(At any time in your life?)</span></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">2. Recent Completion (just/already/yet)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Something finished recently with a present result:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I <strong>have just finished</strong> my homework." <span style="color: #6b7280;">(I can play now!)</span></li>
+                            <li>"She <strong>has already left</strong>." <span style="color: #6b7280;">(She's not here anymore.)</span></li>
+                            <li>"<strong>Have</strong> you <strong>done</strong> your chores <strong>yet</strong>?" <span style="color: #6b7280;">(Is it complete?)</span></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">3. Counting Results (numbers/how many)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">When you can count completed items:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I <strong>have written</strong> three reports today." <span style="color: #6b7280;">(Count: 3)</span></li>
+                            <li>"He <strong>has called</strong> five times!" <span style="color: #6b7280;">(Count: 5)</span></li>
+                            <li>"<strong>How many</strong> countries <strong>have</strong> you <strong>visited</strong>?" <span style="color: #6b7280;">(Asking for a number)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                        <strong>have/has</strong> + <strong>past participle</strong> (eaten, written, gone, done)
+                    </p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                        I/You/We/They <strong>have</strong> + verb³ | He/She/It <strong>has</strong> + verb³
+                    </p>
                 </div>
             `,
             exercises: [
@@ -369,7 +445,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <div style="position: relative; height: 40px; background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.9)); border-radius: 25px; border: 2px solid #6366f1; display: flex; align-items: center; padding: 0 1.5rem;">
                             <!-- Start dot -->
                             <div style="position: absolute; left: 0; top: 50%; width: 12px; height: 12px; background: #6366f1; border-radius: 50%; transform: translate(-6px, -50%); border: 2px solid white;"></div>
-                            
+
                             <!-- Middle text -->
                             <span style="color: #312e81; font-weight: 600; font-size: 0.85rem; margin-left: 10px;">...working...working...</span>
 
@@ -383,6 +459,56 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                     <p style="text-align: center; margin: 0;">"I <strong>have been waiting</strong> for 20 minutes."</p>
                     <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9em; color: #666;">(Focus is on the 20 minutes of waiting time)</p>
+                </div>
+
+                <h3>Three Main Uses for Present Perfect Continuous</h3>
+
+                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">1. Duration (for/since/how long)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Emphasizing how long an activity has been happening:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I <strong>have been studying</strong> English <strong>for 3 years</strong>." <span style="color: #6b7280;">(Duration emphasized)</span></li>
+                            <li>"She <strong>has been working</strong> here <strong>since 2020</strong>." <span style="color: #6b7280;">(Starting point)</span></li>
+                            <li>"<strong>How long have</strong> you <strong>been waiting</strong>?" <span style="color: #6b7280;">(Asking about duration)</span></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">2. Visible Evidence (I can see the effects!)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">When you can see or feel the effects of recent activity:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"You're sweating! <strong>Have</strong> you <strong>been running</strong>?" <span style="color: #6b7280;">(I see evidence)</span></li>
+                            <li>"Your eyes are red. <strong>Have</strong> you <strong>been crying</strong>?" <span style="color: #6b7280;">(I notice something)</span></li>
+                            <li>"The ground is wet. It <strong>has been raining</strong>." <span style="color: #6b7280;">(Evidence of recent activity)</span></li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">3. Recent Activity (explains a situation)</h4>
+                        <p style="margin: 0; font-size: 0.95rem;">Explaining why something is the way it is now:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I'm tired because I <strong>have been working</strong> all day." <span style="color: #6b7280;">(Explains tiredness)</span></li>
+                            <li>"Sorry I'm late. I <strong>have been looking</strong> for parking." <span style="color: #6b7280;">(Explains delay)</span></li>
+                            <li>"My hands are dirty. I <strong>have been gardening</strong>." <span style="color: #6b7280;">(Explains dirty hands)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                        <strong>have/has</strong> + <strong>been</strong> + <strong>verb-ing</strong>
+                    </p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                        I/You/We/They <strong>have been</strong> + -ing | He/She/It <strong>has been</strong> + -ing
+                    </p>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Action May or May Not Be Finished!</p>
+                    <p style="margin: 0.5rem 0 0 0;">With Continuous, the action might still be happening OR might have just stopped. The focus is on the activity itself, not whether it's complete.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;"><em>"I have been reading this book..."</em> → Maybe still reading, maybe just stopped to rest.</p>
                 </div>
             `,
             exercises: [
@@ -433,7 +559,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 4,
             explanation: `
                 <h3>How to say "No"</h3>
-                <p>The negative forms also have slightly different meanings.</p>
+                <p>The negative forms also have slightly different meanings. Understanding these will help you express exactly what you mean.</p>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
                     <!-- Simple Negative -->
@@ -458,6 +584,61 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <li>"I haven't been practicing enough."</li>
                         </ul>
                     </div>
+                </div>
+
+                <h3>Understanding the Difference in Negatives</h3>
+                <p>The negative forms carry different nuances. Look at these examples:</p>
+
+                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Scenario: Your friend asks about your diet</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                            <div>
+                                <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't eaten</strong> today."</p>
+                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Zero meals. I'm hungry!</p>
+                            </div>
+                            <div>
+                                <p style="margin: 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>haven't been eating</strong> well lately."</p>
+                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ My eating habits have been poor recently.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Scenario: Talking about exercise</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                            <div>
+                                <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't exercised</strong> this week."</p>
+                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Zero exercise sessions this week.</p>
+                            </div>
+                            <div>
+                                <p style="margin: 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>haven't been exercising</strong> lately."</p>
+                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Exercise hasn't been part of my routine recently.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="margin: 0; font-weight: 600;">Scenario: Your teacher asks about your homework</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                            <div>
+                                <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't done</strong> it yet."</p>
+                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ It's not complete (but I will do it).</p>
+                            </div>
+                            <div>
+                                <p style="margin: 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>haven't been doing</strong> my homework."</p>
+                                <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ I've been neglecting it as a regular habit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Quick Guide:</p>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
+                        <li><strong>Simple negative</strong> = The action hasn't happened (zero times, incomplete)</li>
+                        <li><strong>Continuous negative</strong> = The activity hasn't been part of your life/routine lately</li>
+                    </ul>
                 </div>
             `,
             exercises: [
@@ -505,7 +686,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 5,
             explanation: `
                 <h3>Asking the Right Question</h3>
-                <p>The question you ask depends on what answer you want.</p>
+                <p>The question you ask depends on what answer you want. Choose the right form to get the information you need!</p>
 
                 <table style="width: 100%; text-align: left; border-collapse: collapse; margin: 1rem 0;">
                     <tr style="border-bottom: 2px solid #e5e7eb;">
@@ -529,6 +710,60 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <td style="padding: 0.75rem; color: #c2410c; font-weight: bold;">How many...?</td>
                     </tr>
                 </table>
+
+                <h3>Question Examples by Type</h3>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #c2410c;">Simple Questions (Result/Count)</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>Have</strong> you <strong>finished</strong> your homework?</li>
+                            <li><strong>Has</strong> she <strong>called</strong> you back yet?</li>
+                            <li><strong>Have</strong> you ever <strong>been</strong> to Paris?</li>
+                            <li><strong>How many</strong> books <strong>have</strong> you <strong>read</strong>?</li>
+                            <li><strong>What</strong> <strong>have</strong> you <strong>done</strong> today?</li>
+                        </ul>
+                    </div>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
+                        <h4 style="margin: 0 0 0.75rem 0; color: #4338ca;">Continuous Questions (Duration/Activity)</h4>
+                        <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>How long have</strong> you <strong>been waiting</strong>?</li>
+                            <li><strong>What have</strong> you <strong>been doing</strong> all day?</li>
+                            <li><strong>Have</strong> you <strong>been crying</strong>? (evidence)</li>
+                            <li><strong>Have</strong> you <strong>been working</strong> hard?</li>
+                            <li><strong>Where have</strong> you <strong>been living</strong>?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Same Topic, Different Questions</h3>
+                <p>Notice how the form you choose changes what you're asking about:</p>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Topic: Reading</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "How many books <strong>have</strong> you <strong>read</strong>?" → Wants a number</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "What <strong>have</strong> you <strong>been reading</strong>?" → Wants to know about the activity</p>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Topic: Work</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "<strong>Have</strong> you <strong>finished</strong> the report?" → Is it done?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "How long <strong>have</strong> you <strong>been working</strong> on it?" → How much time?</p>
+                    </div>
+
+                    <div>
+                        <p style="margin: 0; font-weight: 600;">Topic: Exercise (noticing sweat)</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "<strong>Have</strong> you <strong>exercised</strong> today?" → Did it happen?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "<strong>Have</strong> you <strong>been exercising</strong>?" → I see evidence of activity!</p>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Question Formation</h4>
+                    <p style="margin: 0; font-size: 0.9rem;"><strong>Simple:</strong> Have/Has + subject + past participle...?</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Continuous:</strong> Have/Has + subject + been + verb-ing...?</p>
+                </div>
             `,
              exercises: [
                 {
@@ -579,6 +814,35 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>The Final Summary</h3>
                 <p>The hardest part is choosing. Ask yourself: <strong>"Do I care about the result (count) or the time (activity)?"</strong></p>
+
+                <h3>Side-by-Side: The Same Verb, Two Meanings</h3>
+                <p>See how using Simple vs Continuous changes the meaning with the same verb:</p>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">PAINT 🎨</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>have painted</strong> two rooms." → <em>Two rooms are done!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>have been painting</strong> all day." → <em>That's why I'm tired/messy!</em></p>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">WRITE ✍️</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "She <strong>has written</strong> 5 chapters." → <em>5 chapters are complete!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "She <strong>has been writing</strong> since morning." → <em>Many hours of work!</em></p>
+                    </div>
+
+                    <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">COOK 🍳</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>have cooked</strong> dinner." → <em>Dinner is ready!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>have been cooking</strong> for 2 hours." → <em>That's a lot of effort!</em></p>
+                    </div>
+
+                    <div>
+                        <p style="margin: 0; font-weight: 600;">LEARN 📚</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>have learned</strong> 50 new words." → <em>My vocabulary grew by 50!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>have been learning</strong> Spanish for a year." → <em>One year of study!</em></p>
+                    </div>
+                </div>
             `,
             comparison: {
                 title: "Present Perfect Simple vs Continuous",
@@ -621,8 +885,10 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             title: "Structure Check: Building Sentences",
             icon: "🏗️",
             explanation: `
-                 <p>Let's make sure you can build these sentences perfectly.</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <h3>Master the Structures</h3>
+                <p>Let's make sure you can build these sentences perfectly. Both forms have the same basic pattern but with different endings.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
                         <h4 style="margin: 0; color: #c2410c; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Simple</h4>
                         <div style="margin-bottom: 0.5rem;"><strong>+</strong> have + <span style="color: #c2410c;">past participle</span></div>
@@ -635,6 +901,46 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span></div>
                         <div><strong>?</strong> Have you <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span>?</div>
                     </div>
+                </div>
+
+                <h3>Full Example Sentences</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="border-bottom: 2px solid #e2e8f0;">
+                            <th style="padding: 0.5rem; text-align: left; width: 25%;">Form</th>
+                            <th style="padding: 0.5rem; text-align: left; color: #c2410c;">Simple</th>
+                            <th style="padding: 0.5rem; text-align: left; color: #4338ca;">Continuous</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Positive (+)</td>
+                            <td style="padding: 0.5rem;">I <strong>have eaten</strong> lunch.</td>
+                            <td style="padding: 0.5rem;">I <strong>have been eating</strong> lunch.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Negative (-)</td>
+                            <td style="padding: 0.5rem;">She <strong>hasn't finished</strong> yet.</td>
+                            <td style="padding: 0.5rem;">She <strong>hasn't been working</strong> hard.</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 0.5rem; font-weight: 600;">Question (?)</td>
+                            <td style="padding: 0.5rem;"><strong>Have</strong> you <strong>seen</strong> it?</td>
+                            <td style="padding: 0.5rem;"><strong>Have</strong> you <strong>been waiting</strong> long?</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.5rem; font-weight: 600;">He/She/It</td>
+                            <td style="padding: 0.5rem;">He <strong>has gone</strong> home.</td>
+                            <td style="padding: 0.5rem;">He <strong>has been studying</strong>.</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Subject-Verb Agreement</h3>
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+                    <p style="margin: 0; font-weight: 600;">Remember: HAS is for He/She/It</p>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                        <li>I/You/We/They <strong>have</strong> finished | <strong>have been</strong> working</li>
+                        <li>He/She/It <strong>has</strong> finished | <strong>has been</strong> working</li>
+                    </ul>
                 </div>
             `,
             exercises: [
@@ -682,7 +988,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 7,
             explanation: `
                 <h3>Key Time Words for Both Forms</h3>
-                <p>Both Simple and Continuous use <strong>for</strong> and <strong>since</strong>, but some words work better with one form.</p>
+                <p>Both Simple and Continuous use <strong>for</strong> and <strong>since</strong>, but some words work better with one form. Learning these will help you sound more natural!</p>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
@@ -704,6 +1010,16 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <li>since I moved here</li>
                             <li>since breakfast</li>
                         </ul>
+                    </div>
+                </div>
+
+                <h3>FOR vs SINCE: Easy Way to Remember</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0;"><strong>FOR</strong> answers "How long?" → <em>for 3 hours, for 2 weeks, for a year</em></p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>SINCE</strong> answers "From when?" → <em>since Monday, since 2020, since I was a child</em></p>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-size: 0.9rem;"><strong>Example:</strong> "I have lived here <strong>for</strong> 5 years." = "I have lived here <strong>since</strong> 2020."</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">Both sentences mean the same thing, just expressed differently!</p>
                     </div>
                 </div>
 
@@ -730,6 +1046,35 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         </td>
                     </tr>
                 </table>
+
+                <h3>Signal Words in Action</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Simple Signal Words:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I have <strong>already</strong> eaten."</li>
+                            <li>"Have you finished <strong>yet</strong>?"</li>
+                            <li>"She has <strong>just</strong> arrived."</li>
+                            <li>"Have you <strong>ever</strong> been to Japan?"</li>
+                            <li>"I have <strong>never</strong> seen snow."</li>
+                        </ul>
+                    </div>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Continuous Signal Words:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"I've been working <strong>all day</strong>."</li>
+                            <li>"She's been feeling tired <strong>lately</strong>."</li>
+                            <li>"What have you been doing <strong>recently</strong>?"</li>
+                            <li>"<strong>How long</strong> have you been waiting?"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Word Position Tip:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;"><strong>Already/just/never/ever</strong> go BETWEEN have and the verb: "I have <strong>already</strong> finished."</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Yet</strong> goes at the END: "Have you finished <strong>yet</strong>?"</p>
+                </div>
             `,
             exercises: [
                 {
@@ -810,7 +1155,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 8,
             explanation: `
                 <h3>Avoid These Errors!</h3>
-                <p>Here are the most common mistakes students make with the Present Perfect Family.</p>
+                <p>Here are the most common mistakes students make with the Present Perfect Family. Understanding these will help you avoid them!</p>
 
                 <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
                     <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 1: Using Continuous with State Verbs</h4>
@@ -851,6 +1196,39 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">"Finish" describes completion - always use Simple.</p>
                 </div>
 
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 4: Using Present Perfect with Specific Past Time</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I have seen him yesterday.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I saw him yesterday.</p>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">With specific past times (yesterday, last week, in 2020), use Past Simple, not Present Perfect.</p>
+                </div>
+
+                <h3>More Wrong vs Right Examples</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "I have been wanting a new phone for months."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "I have wanted a new phone for months." <span style="font-size: 0.85rem; color: #6b7280;">(want = state verb)</span></p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "She has been visiting Paris twice."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "She has visited Paris twice." <span style="font-size: 0.85rem; color: #6b7280;">(twice = counting)</span></p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "I have been losing my keys."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "I have lost my keys." <span style="font-size: 0.85rem; color: #6b7280;">(lose = single event with result)</span></p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; color: #dc2626;">❌ "We have met at the party last Saturday."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "We met at the party last Saturday." <span style="font-size: 0.85rem; color: #6b7280;">(specific past time)</span></p>
+                    </div>
+                </div>
+
                 <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
                     <h4 style="margin: 0 0 0.75rem 0; color: #059669;">✓ Quick Decision Guide</h4>
                     <ul style="margin: 0; padding-left: 1.2rem;">
@@ -859,6 +1237,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <li><strong>Is it about completion?</strong> → Simple (finish, decide, arrive)</li>
                         <li><strong>Is it about duration/how long?</strong> → Continuous (all day, for hours)</li>
                         <li><strong>Do you see evidence of activity?</strong> → Continuous (sweating, dirty hands)</li>
+                        <li><strong>Is there a specific past time?</strong> → Use Past Simple instead!</li>
                     </ul>
                 </div>
             `,
@@ -938,6 +1317,43 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <li><strong>Duration/Activity/Evidence?</strong> → Continuous</li>
                     <li><strong>State verb?</strong> → Simple (even for duration)</li>
                 </ul>
+
+                <h3>Real Conversation Examples</h3>
+                <p>See how native speakers naturally mix both forms in conversation:</p>
+
+                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #6366f1;">
+                    <p style="margin: 0; font-weight: 600;">At the Office:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-style: italic;">
+                        "I <strong style="color: #4338ca;">have been working</strong> on this report all morning <span style="color: #6b7280;">(duration)</span>,
+                        and I <strong style="color: #c2410c;">have written</strong> 10 pages so far <span style="color: #6b7280;">(count)</span>.
+                        I <strong style="color: #c2410c;">haven't finished</strong> yet <span style="color: #6b7280;">(completion)</span>,
+                        but I <strong style="color: #4338ca;">have been making</strong> good progress <span style="color: #6b7280;">(ongoing activity)</span>."
+                    </p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #f97316;">
+                    <p style="margin: 0; font-weight: 600;">Meeting a Friend:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-style: italic;">
+                        "Hey! I <strong style="color: #4338ca;">have been trying</strong> to call you all day <span style="color: #6b7280;">(duration)</span>!
+                        Where <strong style="color: #4338ca;">have you been</strong> <span style="color: #6b7280;">(recent activity)</span>?
+                        I <strong style="color: #c2410c;">have bought</strong> tickets for the concert <span style="color: #6b7280;">(result)</span>!"
+                    </p>
+                </div>
+
+                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #22c55e;">
+                    <p style="margin: 0; font-weight: 600;">At Home:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-style: italic;">
+                        "You look exhausted! What <strong style="color: #4338ca;">have you been doing</strong> <span style="color: #6b7280;">(activity)</span>?"
+                        <br>"I <strong style="color: #4338ca;">have been cleaning</strong> the house <span style="color: #6b7280;">(duration/evidence)</span>.
+                        I <strong style="color: #c2410c;">have done</strong> the kitchen and bathroom <span style="color: #6b7280;">(completed items)</span>,
+                        but I <strong style="color: #c2410c;">haven't started</strong> the bedrooms yet <span style="color: #6b7280;">(not complete)</span>."
+                    </p>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Notice the Pattern:</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">When telling a story, we often use <strong style="color: #4338ca;">Continuous</strong> to set the scene (what's been happening) and <strong style="color: #c2410c;">Simple</strong> to report specific results or facts.</p>
+                </div>
             `,
             exercises: [
                 {
@@ -1036,6 +1452,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 10,
             explanation: `
                 <h3>What You've Learned</h3>
+                <p>Congratulations! You now understand both members of the Present Perfect Family. Here's everything in one place:</p>
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">The Finisher (Simple)</h4>
@@ -1056,13 +1474,69 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 1.1rem;">Ask yourself: <strong>"Do I care about the RESULT (count/completion) or the DURATION (time/activity)?"</strong></p>
                 </div>
 
+                <h3>Quick Reference Chart</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Simple</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Continuous</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Life experience</td>
+                        <td style="padding: 0.5rem;">✓ Have you ever...?</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Counting items</td>
+                        <td style="padding: 0.5rem;">✓ I've read 3 books</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Just completed</td>
+                        <td style="padding: 0.5rem;">✓ I've just finished</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Duration (how long)</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ I've been waiting for 2 hours</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Visible evidence</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ You've been crying</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Recent activity</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ What have you been doing?</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">State verbs</td>
+                        <td style="padding: 0.5rem;">✓ I've known him for years</td>
+                        <td style="padding: 0.5rem;">✗ Never use!</td>
+                    </tr>
+                </table>
+
                 <h4>Remember:</h4>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
                     <li>State verbs (know, believe, own) → Always Simple, even for duration</li>
                     <li>Counting completed items → Simple</li>
                     <li>Emphasizing how long/visible evidence → Continuous</li>
                     <li>Both use <strong>for</strong> (duration) and <strong>since</strong> (starting point)</li>
+                    <li>Don't use Present Perfect with specific past times (yesterday, last week, in 2020)</li>
                 </ul>
+
+                <h3>One Final Example</h3>
+                <div style="background: linear-gradient(135deg, #fff7ed 0%, #eef2ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-style: italic; font-size: 1.05rem; line-height: 1.7;">
+                        "I <strong style="color: #4338ca;">have been learning</strong> English for 2 years <span style="color: #6b7280;">(duration)</span>.
+                        I <strong style="color: #c2410c;">have taken</strong> 4 courses <span style="color: #6b7280;">(count)</span>,
+                        and I <strong style="color: #c2410c;">have improved</strong> a lot <span style="color: #6b7280;">(result)</span>.
+                        I <strong style="color: #c2410c;">have always wanted</strong> to speak fluently <span style="color: #6b7280;">(state verb)</span>,
+                        and I <strong style="color: #4338ca;">have been practicing</strong> every day <span style="color: #6b7280;">(ongoing activity)</span>!"
+                    </p>
+                </div>
             `,
             tipBox: {
                 title: "🚀 Keep Practicing!",

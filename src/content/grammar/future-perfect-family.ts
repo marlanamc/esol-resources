@@ -210,7 +210,12 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             icon: "📊",
             explanation: `
                 <h3>See the Difference</h3>
-                <p>Both forms look forward to a future moment, but they show different things:</p>
+                <p>Both forms look forward to a future moment, but they show different things. Think of it like this:</p>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0;"><strong>Simple = Checkpoint:</strong> "Will this be done by then?" ✓</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Continuous = Journey:</strong> "How long will I have been doing this?"</p>
+                </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Simple Timeline -->
@@ -257,6 +262,30 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                         <p style="text-align: center; margin: 1rem 0 0 0; font-size: 0.85rem; color: #4b5563;">"By June, I <strong>will have been studying</strong> for 4 years."</p>
                     </div>
+                </div>
+
+                <h3>Understanding "Looking Back from the Future"</h3>
+                <p>The Future Perfect is unique: you imagine yourself IN THE FUTURE, looking back at what has happened!</p>
+
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-style: italic; color: #64748b;">"Imagine it's December 2025..."</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                        <div style="background: #cffafe; padding: 0.75rem; border-radius: 0.5rem;">
+                            <p style="margin: 0; font-weight: 600; color: #0e7490;">Standing at that future point:</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"By December, I <strong>will have saved</strong> $10,000."</p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Looking back: The saving is complete!</p>
+                        </div>
+                        <div style="background: #f3e8ff; padding: 0.75rem; border-radius: 0.5rem;">
+                            <p style="margin: 0; font-weight: 600; color: #7c3aed;">Standing at that future point:</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"By December, I <strong>will have been saving</strong> for 2 years."</p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Looking back: That's the journey length!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Memory Trick:</p>
+                    <p style="margin: 0.5rem 0 0 0;">Future Perfect = Time travel to the future, then look back at what you've accomplished!</p>
                 </div>
             `,
             exercises: [
@@ -321,6 +350,41 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <span style="background: #a5f3fc; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
                     </div>
                     <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Example: <strong>By December</strong>, I <strong>will have finished</strong> my course.</p>
+                </div>
+
+                <h4>When to Use Future Perfect Simple</h4>
+                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
+                        <p style="margin: 0; font-weight: 600; color: #0e7490;">1. Goals and Deadlines</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"By Friday, I <strong>will have completed</strong> the project."</li>
+                            <li>"By next year, she <strong>will have graduated</strong>."</li>
+                        </ul>
+                    </div>
+                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
+                        <p style="margin: 0; font-weight: 600; color: #0e7490;">2. Predictions About Completion</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"By 2030, technology <strong>will have changed</strong> everything."</li>
+                            <li>"The package <strong>will have arrived</strong> by tomorrow."</li>
+                        </ul>
+                    </div>
+                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
+                        <p style="margin: 0; font-weight: 600; color: #0e7490;">3. Counting Achievements</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"By age 30, I <strong>will have visited</strong> 20 countries."</li>
+                            <li>"By December, I <strong>will have read</strong> 50 books."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                        <strong>will have</strong> + <strong>past participle</strong> (finished, graduated, visited)
+                    </p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                        Same for ALL subjects: I/you/he/she/it/we/they <strong>will have</strong> + verb³
+                    </p>
                 </div>
             `,
             usageMeanings: [
@@ -420,6 +484,41 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <span style="background: #e9d5ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">verb-ing</span>
                     </div>
                     <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Example: <strong>By December</strong>, I <strong>will have been working</strong> here for 5 years.</p>
+                </div>
+
+                <h4>When to Use Future Perfect Continuous</h4>
+                <div style="display: grid; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+                        <p style="margin: 0; font-weight: 600; color: #7c3aed;">1. Work/Life Anniversaries</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"By March, she <strong>will have been working</strong> here for 10 years."</li>
+                            <li>"Next month, we <strong>will have been married</strong> for 25 years."</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+                        <p style="margin: 0; font-weight: 600; color: #7c3aed;">2. Study/Learning Duration</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"By graduation, I <strong>will have been studying</strong> English for 6 years."</li>
+                            <li>"By December, they <strong>will have been learning</strong> piano for 2 years."</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
+                        <p style="margin: 0; font-weight: 600; color: #7c3aed;">3. Living Situation Milestones</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li>"By next year, we <strong>will have been living</strong> here for 5 years."</li>
+                            <li>"By 2025, she <strong>will have been living</strong> abroad for a decade."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
+                    <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
+                        <strong>will have been</strong> + <strong>verb-ing</strong>
+                    </p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
+                        Same for ALL subjects: I/you/he/she/it/we/they <strong>will have been</strong> + -ing
+                    </p>
                 </div>
             `,
             usageMeanings: [
@@ -534,6 +633,25 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">She <strong>will have been studying</strong> all day.</p>
                     </div>
                 </div>
+
+                <h3>Same Verb, Two Meanings</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">WORK 💼</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Simple:</strong> "By Friday, I <strong>will have finished</strong> the report." → <em>Report is done!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Continuous:</strong> "By Friday, I <strong>will have been working</strong> on it for a week." → <em>Duration of effort!</em></p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">TRAVEL ✈️</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Simple:</strong> "By December, I <strong>will have visited</strong> 10 countries." → <em>Count of places!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Continuous:</strong> "By December, I <strong>will have been traveling</strong> for 3 months." → <em>Duration of trip!</em></p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-weight: 600;">LEARN 📚</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Simple:</strong> "By June, I <strong>will have learned</strong> 1000 words." → <em>Achievement count!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Continuous:</strong> "By June, I <strong>will have been learning</strong> for 2 years." → <em>Study duration!</em></p>
+                    </div>
+                </div>
             `,
             exercises: [
                 {
@@ -607,6 +725,22 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>won't have been working</strong> long.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>won't have been waiting</strong> very long.</p>
+                    </div>
+                </div>
+
+                <h3>Using Negatives in Context</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Setting realistic expectations:</p>
+                        <p style="margin: 0.25rem 0 0 0;">"I <strong>won't have finished</strong> the whole book by tomorrow, but I'll be halfway through."</p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; font-weight: 600;">Explaining timing:</p>
+                        <p style="margin: 0.25rem 0 0 0;">"Don't worry, they <strong>won't have been waiting</strong> long by the time we arrive."</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; font-weight: 600;">Making predictions:</p>
+                        <p style="margin: 0.25rem 0 0 0;">"The train <strong>won't have left</strong> yet if we hurry."</p>
                     </div>
                 </div>
             `,
@@ -684,6 +818,26 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         </div>
                         <p style="margin: 0; font-size: 0.9rem;"><strong style="color: #7c3aed;">How long will you have been working?</strong></p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">Will they have been waiting long?</p>
+                    </div>
+                </div>
+
+                <h3>Common Questions in Real Life</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #0e7490;">Simple Questions:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>Will</strong> you <strong>have finished</strong> by then?</li>
+                            <li><strong>How many</strong> countries <strong>will</strong> you <strong>have visited</strong>?</li>
+                            <li><strong>Will</strong> the project <strong>have been completed</strong>?</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem;">
+                        <p style="margin: 0; font-weight: 600; color: #7c3aed;">Continuous Questions:</p>
+                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
+                            <li><strong>How long will</strong> you <strong>have been working</strong>?</li>
+                            <li><strong>Will</strong> they <strong>have been living</strong> there long?</li>
+                            <li><strong>How long will</strong> she <strong>have been studying</strong>?</li>
+                        </ul>
                     </div>
                 </div>
             `,
@@ -766,10 +920,23 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
+                <h3>Signal Words in Sentences</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #0e7490;"><strong>Simple:</strong> "By Friday, I <strong>will have already finished</strong> the report."</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;">"<strong>How many</strong> pages <strong>will</strong> you <strong>have written</strong> by then?"</p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; color: #7c3aed;"><strong>Continuous:</strong> "By December, I <strong>will have been studying</strong> here <strong>for</strong> 3 years."</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;">"<strong>How long will</strong> they <strong>have been waiting</strong> when we arrive?"</p>
+                    </div>
+                </div>
+
                 <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #16a34a;">Quick Rule</h4>
                     <p style="margin: 0;"><strong>"By" + future time</strong> → Usually Future Perfect</p>
                     <p style="margin: 0.5rem 0 0 0;"><strong>"For" + duration</strong> → Usually Continuous (emphasizing time)</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Counting something</strong> → Usually Simple (how many, numbers)</p>
                 </div>
             `,
             exercises: [
@@ -859,6 +1026,35 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">"Finish" is a completion verb - use Simple. Continuous is for ongoing activities with duration.</p>
                 </div>
+
+                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 4: Using Continuous with State Verbs</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> By then, I will have been knowing her for 10 years.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> By then, I will have known her for 10 years.</p>
+                        </div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">State verbs (know, believe, own, love) use Simple even for duration.</p>
+                </div>
+
+                <h3>More Wrong vs Right Examples</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "By Friday, the project will have been being completed."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "By Friday, the project will have been completed." <span style="font-size: 0.85rem; color: #6b7280;">(passive Simple)</span></p>
+                    </div>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
+                        <p style="margin: 0; color: #dc2626;">❌ "I will have been arriving by 6pm."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "I will have arrived by 6pm." <span style="font-size: 0.85rem; color: #6b7280;">(arrive = point action)</span></p>
+                    </div>
+                    <div>
+                        <p style="margin: 0; color: #dc2626;">❌ "By December, she will have been owning that car for 5 years."</p>
+                        <p style="margin: 0; color: #16a34a;">✓ "By December, she will have owned that car for 5 years." <span style="font-size: 0.85rem; color: #6b7280;">(own = state verb)</span></p>
+                    </div>
+                </div>
             `,
             comparison: {
                 title: "Future Perfect vs Simple Future",
@@ -947,7 +1143,29 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     <li><strong>Duration/Anniversary?</strong> → Continuous (will have been + -ing)</li>
                     <li><strong>Counting things?</strong> → Simple (10 countries, 5 books)</li>
                     <li><strong>How long?</strong> → Continuous (for 5 years, all day)</li>
+                    <li><strong>State verbs?</strong> → Always Simple (know, own, believe)</li>
                 </ul>
+
+                <h3>More Story Examples</h3>
+                <div style="background: linear-gradient(135deg, #cffafe 0%, #f3e8ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">🎓 Planning for Graduation:</p>
+                    <p style="margin: 0; font-size: 1.05rem; line-height: 1.8;">
+                        "By May, I <span style="color: #06b6d4; font-weight: 600;">will have completed</span> all my courses <span style="color: #6b7280;">(completion)</span>.
+                        I <span style="color: #a855f7; font-weight: 600;">will have been studying</span> at this university for 4 years <span style="color: #6b7280;">(duration)</span>.
+                        I <span style="color: #06b6d4; font-weight: 600;">will have made</span> dozens of friends <span style="color: #6b7280;">(count)</span>,
+                        and I <span style="color: #06b6d4; font-weight: 600;">will have known</span> my best friend for 4 years <span style="color: #6b7280;">(state verb)</span>."
+                    </p>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #cffafe 0%, #f3e8ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">🏃 Training for a Marathon:</p>
+                    <p style="margin: 0; font-size: 1.05rem; line-height: 1.8;">
+                        "By race day, I <span style="color: #a855f7; font-weight: 600;">will have been training</span> for 6 months <span style="color: #6b7280;">(duration)</span>.
+                        I <span style="color: #06b6d4; font-weight: 600;">will have run</span> over 500 kilometers in total <span style="color: #6b7280;">(count)</span>.
+                        I <span style="color: #06b6d4; font-weight: 600;">will have lost</strong> 5 kilograms <span style="color: #6b7280;">(completion)</span>,
+                        and I <span style="color: #a855f7; font-weight: 600;">will have been eating</span> healthy for months <span style="color: #6b7280;">(duration)</span>."
+                    </p>
+                </div>
             `,
             exercises: [
                 {
@@ -1051,6 +1269,40 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 1.1rem;">Ask yourself: <strong>"Do I care about COMPLETION (goal achieved) or DURATION (how long by then)?"</strong></p>
                 </div>
 
+                <h3>Quick Reference Chart</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">Simple</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Continuous</th>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Completion by deadline</td>
+                        <td style="padding: 0.5rem;">✓ will have finished by...</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Duration up to point</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ will have been working for...</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Counting achievements</td>
+                        <td style="padding: 0.5rem;">✓ will have visited 10 countries</td>
+                        <td style="padding: 0.5rem;">-</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e2e8f0;">
+                        <td style="padding: 0.5rem;">Anniversaries/milestones</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">✓ will have been married for 25 years</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">State verbs</td>
+                        <td style="padding: 0.5rem;">✓ will have known for 5 years</td>
+                        <td style="padding: 0.5rem;">✗ Never use!</td>
+                    </tr>
+                </table>
+
                 <h4>Real-Life Uses:</h4>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
                     <li><strong>Work anniversaries:</strong> "By June, I will have been working here for 5 years."</li>
@@ -1058,6 +1310,17 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     <li><strong>Project deadlines:</strong> "By Friday, we will have finished the report."</li>
                     <li><strong>Life milestones:</strong> "By age 30, I will have visited 20 countries."</li>
                 </ul>
+
+                <h3>One Final Example</h3>
+                <div style="background: linear-gradient(135deg, #cffafe 0%, #f3e8ff 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p style="margin: 0; font-style: italic; font-size: 1.05rem; line-height: 1.7;">
+                        "By this time next year, I <strong style="color: #06b6d4;">will have saved</strong> $10,000 <span style="color: #6b7280;">(completion)</span>.
+                        I <strong style="color: #a855f7;">will have been saving</strong> for 2 years by then <span style="color: #6b7280;">(duration)</span>.
+                        I <strong style="color: #06b6d4;">will have earned</strong> several promotions <span style="color: #6b7280;">(count)</span>,
+                        and I <strong style="color: #06b6d4;">will have known</strong> my colleagues for years <span style="color: #6b7280;">(state verb)</span>.
+                        My career <strong style="color: #a855f7;">will have been growing</strong> steadily <span style="color: #6b7280;">(ongoing process)</span>!"
+                    </p>
+                </div>
             `,
             tipBox: {
                 title: "🚀 Keep Practicing!",
