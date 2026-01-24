@@ -1398,7 +1398,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             options: [
                 { value: "a", label: "She's the most experienced person on the team." },
                 { value: "b", label: "She's the experiencedest person on the team." },
-                { value: "c", label: "She's the more experienced person on the team." }
+                { value: "c", label: "She's the most experienceder person on the team." }
             ],
             correctAnswer: "a",
             explanation: "'Experienced' is a long adjective, so use 'the most' + adjective."
