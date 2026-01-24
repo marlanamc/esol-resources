@@ -65,6 +65,13 @@ interface StudentAnalytics {
         submittedAt: string | null;
         completed: boolean;
     }>;
+    grammarQuizResults: Array<{
+        id: string;
+        title: string;
+        score: number | null;
+        submittedAt: string | null;
+        completed: boolean;
+    }>;
 }
 
 export default function StudentDetailView({ studentId }: { studentId: string }) {
@@ -228,11 +235,88 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                         )}
                     </div>
 
-                    {/* Verb Quiz Results */}
-                    <div className="bg-white rounded-lg border border-border p-6">
+                    {/* Grammar Guide Quiz Results */}
+                    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
-                            <span>📝</span>
-                            Verb Quiz Results
+                            <span className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                            </span>
+                            Grammar Guide Quiz Scores
+                        </h2>
+                        {data.grammarQuizResults.length === 0 ? (
+                            <div className="text-center py-8 bg-bg rounded-lg border border-dashed border-border/60">
+                                <p className="text-text-muted">No grammar guide quizzes completed yet.</p>
+                                <p className="text-xs text-text-muted/60 mt-1 italic">Scores will appear here once the student finishes a guide's mini-quiz.</p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 gap-3">
+                                {data.grammarQuizResults.map((quiz) => (
+                                    <div
+                                        key={quiz.id}
+                                        className={`flex items-center justify-between p-4 rounded-xl transition-all border ${
+                                            quiz.completed
+                                                ? quiz.score !== null && quiz.score >= 80
+                                                    ? 'bg-emerald-50/50 border-emerald-100 hover:bg-emerald-50'
+                                                    : quiz.score !== null && quiz.score >= 60
+                                                    ? 'bg-amber-50/50 border-amber-100 hover:bg-amber-50'
+                                                    : 'bg-rose-50/50 border-rose-100 hover:bg-rose-50'
+                                                : 'bg-bg border-border/40'
+                                        }`}
+                                    >
+                                        <div className="flex-1 min-w-0 pr-4">
+                                            <div className="font-semibold text-text truncate">
+                                                {quiz.title}
+                                            </div>
+                                            {quiz.submittedAt && (
+                                                <div className="text-xs text-text-muted flex items-center gap-1.5 mt-1">
+                                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                    </svg>
+                                                    Last attempted: {new Date(quiz.submittedAt).toLocaleDateString()}
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="flex items-center gap-4">
+                                            {quiz.completed && quiz.score !== null ? (
+                                                <div className="flex items-center gap-3">
+                                                    <div className="text-right">
+                                                        <div className={`text-2xl font-black ${
+                                                            quiz.score >= 80 ? 'text-emerald-700' :
+                                                            quiz.score >= 60 ? 'text-amber-700' :
+                                                            'text-rose-700'
+                                                        }`}>
+                                                            {quiz.score}%
+                                                        </div>
+                                                    </div>
+                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${
+                                                        quiz.score >= 80 ? 'bg-emerald-200 text-emerald-800' :
+                                                        quiz.score >= 60 ? 'bg-amber-200 text-amber-800' :
+                                                        'bg-rose-200 text-rose-800'
+                                                    }`}>
+                                                        {quiz.score >= 80 ? 'A' : quiz.score >= 60 ? 'B' : 'C'}
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <span className="text-xs font-medium text-text-muted bg-white/50 px-2 py-1 rounded border border-border/40">Not Started</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Verb Quiz Results */}
+                    <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
+                        <h2 className="text-xl font-semibold text-text mb-4 flex items-center gap-2">
+                            <span className="p-2 bg-amber-50 rounded-lg text-amber-600">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </span>
+                            Verb Quiz Scores
                         </h2>
                         {data.verbQuizResults.length === 0 ? (
                             <p className="text-text-muted">No verb quizzes available</p>
@@ -241,14 +325,14 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 {data.verbQuizResults.map((quiz) => (
                                     <div
                                         key={quiz.id}
-                                        className={`flex items-center justify-between p-3 rounded-lg ${
+                                        className={`flex items-center justify-between p-3 rounded-lg border ${
                                             quiz.completed
                                                 ? quiz.score !== null && quiz.score >= 80
-                                                    ? 'bg-green-50 border border-green-200'
+                                                    ? 'bg-green-50/50 border-green-100'
                                                     : quiz.score !== null && quiz.score >= 60
-                                                    ? 'bg-yellow-50 border border-yellow-200'
-                                                    : 'bg-red-50 border border-red-200'
-                                                : 'bg-bg border border-border'
+                                                    ? 'bg-yellow-50/50 border-yellow-100'
+                                                    : 'bg-red-50/50 border-red-100'
+                                                : 'bg-bg border-border/40'
                                         }`}
                                     >
                                         <div className="flex-1">
@@ -265,7 +349,6 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                             {quiz.completed && quiz.score !== null ? (
                                                 <>
                                                     <div className="text-right">
-                                                        <div className="text-xs text-text-muted">Score</div>
                                                         <div className={`text-lg font-bold ${
                                                             quiz.score >= 80 ? 'text-green-700' :
                                                             quiz.score >= 60 ? 'text-yellow-700' :
@@ -274,13 +357,6 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                                             {quiz.score}%
                                                         </div>
                                                     </div>
-                                                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                                                        quiz.score >= 80 ? 'bg-green-100 text-green-700' :
-                                                        quiz.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
-                                                        'bg-red-100 text-red-700'
-                                                    }`}>
-                                                        {quiz.score >= 80 ? '✓' : quiz.score >= 60 ? '○' : '✗'}
-                                                    </span>
                                                 </>
                                             ) : (
                                                 <span className="text-sm text-text-muted">Not completed</span>
