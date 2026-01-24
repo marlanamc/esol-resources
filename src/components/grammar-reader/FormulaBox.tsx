@@ -23,6 +23,11 @@ const isHelperVerb = (text: string, type?: FormulaPart["type"]) => {
     );
 };
 
+const isSeparator = (text: string) => {
+    const trimmed = text.trim();
+    return trimmed === "+" || trimmed === "?" || trimmed === "=" || trimmed === "/" || trimmed === "→" || trimmed === "(" || trimmed === ")";
+};
+
 export function FormulaBox({ parts }: FormulaBoxProps) {
     return (
         <motion.div
@@ -32,41 +37,55 @@ export function FormulaBox({ parts }: FormulaBoxProps) {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
-            <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
-                {parts.map((part, index) => (
-                    <div key={index} className="flex items-center gap-2 sm:gap-3">
-                        <motion.span
-                            className={`formula-part px-5 py-3 rounded-2xl font-bold border-2 text-base sm:text-lg shadow-sm ${
-                                colorMap[
-                                    isHelperVerb(part.text, part.type)
-                                        ? "helper"
-                                        : part.type === "verb" && /\b\w+ing\b/i.test(part.text.trim())
-                                            ? "ing"
-                                            : part.type || "other"
-                                ]
-                            }`}
-                            initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{
-                                delay: index * 0.1,
-                                duration: 0.4,
-                                type: "spring",
-                                stiffness: 200,
-                                damping: 15
-                            }}
-                            whileHover={{
-                                scale: 1.05,
-                                transition: { duration: 0.2 }
-                            }}
-                        >
-                            {part.text}
-                        </motion.span>
-                        {index < parts.length - 1 && (
-                            <span className="text-xl sm:text-2xl font-bold text-slate-300 drop-shadow-sm">+</span>
-                        )}
-                    </div>
-                ))}
+            <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
+                {parts.map((part, index) => {
+                    const currentIsSeparator = isSeparator(part.text);
+                    const nextPart = index < parts.length - 1 ? parts[index + 1] : null;
+                    const nextIsSeparator = nextPart ? isSeparator(nextPart.text) : false;
+
+                    return (
+                        <div key={index} className="flex items-center gap-2 sm:gap-4">
+                            {currentIsSeparator ? (
+                                <span className={`text-xl sm:text-2xl font-bold ${part.text === '+' ? 'text-slate-300' : 'text-slate-500'} drop-shadow-sm`}>
+                                    {part.text}
+                                </span>
+                            ) : (
+                                <motion.span
+                                    className={`formula-part px-5 py-3 rounded-2xl font-bold border-2 text-base sm:text-lg shadow-sm whitespace-nowrap ${
+                                        colorMap[
+                                            isHelperVerb(part.text, part.type)
+                                                ? "helper"
+                                                : part.type === "verb" && /\b\w+ing\b/i.test(part.text.trim())
+                                                    ? "ing"
+                                                    : part.type || "other"
+                                        ]
+                                    }`}
+                                    initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{
+                                        delay: index * 0.1,
+                                        duration: 0.4,
+                                        type: "spring",
+                                        stiffness: 200,
+                                        damping: 15
+                                    }}
+                                    whileHover={{
+                                        scale: 1.05,
+                                        transition: { duration: 0.2 }
+                                    }}
+                                >
+                                    {part.text}
+                                </motion.span>
+                            )}
+                            
+                            {/* Only add automatic separator if current and next are both non-separators */}
+                            {nextPart && !currentIsSeparator && !nextIsSeparator && (
+                                <span className="text-xl sm:text-2xl font-bold text-slate-300 drop-shadow-sm">+</span>
+                            )}
+                        </div>
+                    );
+                })}
             </div>
         </motion.div>
     );
