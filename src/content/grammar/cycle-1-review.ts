@@ -9,8 +9,26 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Cycle 1 Review: A gentle grammar check-in",
             icon: "🌱",
             explanation: `
-                <p>Cycle 1 asked you to notice how time and meaning play together in everyday routines. This review is a calm check-in—no frantic memorization, just reminders that your grammar toolkit already follows a rhythm.</p>
-                <p>We start with the three simple tenses that describe daily life, continue into the flowing continuous forms, pause at present perfect to connect past actions to now, and then add the words that describe people, frequency, comparisons, and the connectors that keep it all moving.</p>
+                <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem; border-left: 5px solid #22c55e;">
+                    <h3 style="margin-top: 0; color: #16a34a; font-size: 1.4rem;">Cycle 1: The Foundation</h3>
+                    <p style="font-size: 1.1rem; line-height: 1.6;">
+                        Cycle 1 asked you to notice how time and meaning play together in everyday routines. This review is a calm check-in—no frantic memorization, just reminders that your grammar toolkit already follows a rhythm.
+                    </p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h4 style="color: #22c55e; margin-top: 0;">🛠️ Simple</h4>
+                            <p style="font-size: 0.85rem; color: #4b5563;">Habits, Facts, Finished Stories.</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h4 style="color: #3b82f6; margin-top: 0;">🌊 Continuous</h4>
+                            <p style="font-size: 0.85rem; color: #4b5563;">Actions in motion (Duration).</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                            <h4 style="color: #f59e0b; margin-top: 0;">🌉 Perfect</h4>
+                            <p style="font-size: 0.85rem; color: #4b5563;">Connecting past to now (Result).</p>
+                        </div>
+                    </div>
+                </div>
                 <p>Think of each section as another layer on the same story. You already have the sentences; this guide simply names the pieces and lets you practice them together.</p>
             `,
             tipBox: {
@@ -43,8 +61,28 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             icon: "🕰️",
             explanation: `
                 <p>Simple tenses are the backbone of everyday stories. They each live in their own moment: present for habits, past for finished stories, and future for plans.</p>
-                <p>Pairing time indicators with each tense makes them feel grounded. When you hear <strong>every day</strong> or <strong>today</strong>, your ears tune into present simple. When someone says <strong>yesterday</strong> or <strong>last week</strong>, the past simple tug appears. Future-focused words like <strong>tomorrow</strong> or <strong>next week</strong> cue the future simple.</p>
-                <p>Don’t forget how to make negatives and questions: <strong>don’t/doesn’t/didn’t</strong> flip the routine upside down, and <strong>do/does/did</strong> invite conversation.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #f0fdf4; padding: 1.25rem; border-radius: 0.75rem; border-top: 4px solid #22c55e; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #16a34a; display: flex; align-items: center; gap: 0.5rem;">☀️ Present Simple</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #374151;"><strong>Every day / Usually</strong></p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; font-style: italic;">"I take the bus."</p>
+                    </div>
+                    <div style="background: #eff6ff; padding: 1.25rem; border-radius: 0.75rem; border-top: 4px solid #3b82f6; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #1d4ed8; display: flex; align-items: center; gap: 0.5rem;">📖 Past Simple</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #374151;"><strong>Yesterday / Last week</strong></p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; font-style: italic;">"I took the bus."</p>
+                    </div>
+                    <div style="background: #fffbeb; padding: 1.25rem; border-radius: 0.75rem; border-top: 4px solid #f59e0b; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #b45309; display: flex; align-items: center; gap: 0.5rem;">🎯 Future Simple</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #374151;"><strong>Tomorrow / Soon</strong></p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; font-style: italic;">"I will take the bus."</p>
+                    </div>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 1rem; margin-top: 1rem;">
+                    <p style="margin: 0; font-size: 0.95rem;">Don’t forget how to make negatives and questions: <strong>don’t/doesn’t/didn’t</strong> flip the routine upside down, and <strong>do/does/did</strong> invite conversation.</p>
+                </div>
             `,
             timeExpressions: [
                 {
@@ -154,7 +192,40 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             icon: "❓",
             explanation: `
                 <p>Every tense can be positive, negative, or a question. Helpers move the same way: do/does/did for simple forms, will for future, and be for continuous ones.</p>
-                <p>Listening for helpers lets you feel if the sentence is routine, a past report, or a curious question.</p>
+                
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 500px;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 1rem; border-bottom: 2px solid #e2e8f0; text-align: left;">If it is...</th>
+                                <th style="padding: 1rem; border-bottom: 2px solid #e2e8f0; text-align: left;">Helper Verb (Negative)</th>
+                                <th style="padding: 1rem; border-bottom: 2px solid #e2e8f0; text-align: left;">Helper Verb (Question)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Present Simple</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #dc2626;">don't / doesn't</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #16a34a;">Do / Does...?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Past Simple</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #dc2626;">didn't</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #16a34a;">Did...?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Future Simple</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #dc2626;">won't</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #16a34a;">Will...?</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Continuous</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #dc2626;">am/is/are not</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9; color: #16a34a;">Am/Is/Are...?</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             `,
             usageMeanings: [
                 {
@@ -261,8 +332,20 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Continuous Tenses: the motion of a moment",
             icon: "🌊",
             explanation: `
-                <p>Continuous tenses keep one foot on the ground and one foot moving. They use <em>be + verb-ing</em> to show actions that are happening right now, were in progress, or will be ongoing.</p>
-                <p>We keep the time anchors from the simple tenses, but now we imagine the action is unfolding—this is a nice bridge to hear how habits can stretch into the moment.</p>
+                <p>Continuous tenses keep one foot on the ground and one foot moving. They use <strong>be + verb-ing</strong> to show actions that are in progress or ongoing.</p>
+                
+                <div style="background: white; border: 2px solid #3b82f6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
+                    <h4 style="text-align: center; margin-top: 0; color: #1d4ed8;">Timeline: The Living Moment</h4>
+                    <div style="position: relative; margin: 2rem auto; max-width: 500px; padding: 1rem 0;">
+                        <!-- Highlighted bar -->
+                        <div style="position: relative; height: 35px; background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(59, 130, 246, 1)); border-radius: 17px; border: 2px solid #3b82f6; display: flex; align-items: center; padding: 0 1.5rem;">
+                             <span style="color: #1e3a8a; font-weight: 600; font-size: 0.85rem;">...walking...talking...playing...</span>
+                        </div>
+                        <div style="display: flex; justify-content: center; margin-top: 0.75rem; font-size: 0.8rem; color: #64748b;">
+                            <span>Focus: The Duration of the Action</span>
+                        </div>
+                    </div>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -356,8 +439,14 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Present Perfect: your stories with a bridge to now",
             icon: "🌉",
             explanation: `
-                <p>Present perfect connects the past to the present. The time period is not over (this week, this month, today), but the action already happened.</p>
-                <p>We often see words like <strong>already</strong>, <strong>yet</strong>, <strong>ever</strong>, <strong>never</strong>, <strong>just</strong>, <strong>recently</strong>, <strong>for</strong>, and <strong>since</strong> in the same sentence.</p>
+                <p>Present perfect connects the past to the present. Think of it as the <strong>"Result"</strong> tense—it's not about <em>when</em> it happened, but that it's <em>done</em> now.</p>
+                
+                <div style="background: #fffbeb; border-left: 5px solid #f59e0b; padding: 1.25rem; border-radius: 0 0.5rem 0.5rem 0; margin: 1.5rem 0;">
+                    <p style="margin: 0; font-size: 1.1rem; color: #92400e; font-weight: 600;">"I have finished."</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #b45309;">Result: The task is ready for me to show you!</p>
+                </div>
+
+                <p>We often see words like <strong>already</strong>, <strong>yet</strong>, <strong>for</strong>, and <strong>since</strong>.</p>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -426,26 +515,36 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             icon: "⚠️",
             explanation: `
                 <p>Because the tenses share similar vocabulary, we sometimes use the wrong helper verb. This section pauses on a few crowded corners so you can feel the difference.</p>
-                <p>We compare Past Simple vs Present Perfect when the time is specific versus still connected to now, and Simple vs Continuous when the ending feels static vs in motion.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
+                    <!-- Time Comparison -->
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
+                        <h4 style="margin: 0 0 1rem 0; color: #475569; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Finished vs Open Time</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 600;">Past Simple (Finished)</p>
+                            <p style="margin: 0.25rem 0; font-size: 0.95rem;">"I eaten yesterday." ❌</p>
+                            <p style="margin: 0; font-size: 0.95rem;">"I <strong>ate</strong> yesterday." ✓</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 600;">Present Perfect (Open)</p>
+                            <p style="margin: 0.25rem 0; font-size: 0.95rem;">"I have eaten today." ✓</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Motion Comparison -->
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
+                        <h4 style="margin: 0 0 1rem 0; color: #475569; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Fact vs Motion</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 600;">Simple (Fact/Habit)</p>
+                            <p style="margin: 0.25rem 0; font-size: 0.95rem;">"I work at 9."</p>
+                        </div>
+                        <div>
+                            <p style="margin: 0; font-size: 0.85rem; color: #64748b; font-weight: 600;">Continuous (In Motion)</p>
+                            <p style="margin: 0.25rem 0; font-size: 0.95rem;">"I am working now."</p>
+                        </div>
+                    </div>
+                </div>
             `,
-            usageMeanings: [
-                {
-                    title: "Past Simple vs Present Perfect",
-                    description: "Past simple needs a clear past time (yesterday, last year). Present perfect keeps the window open (this week, already, yet).",
-                    examples: [
-                        { sentence: "I practiced the speech yesterday.", explanation: "Past Simple with a clear day" },
-                        { sentence: "I have practiced the speech this week.", explanation: "Present Perfect without a finished time" }
-                    ]
-                },
-                {
-                    title: "Simple vs Continuous",
-                    description: "Simple tenses describe facts or routines; continuous tenses show the same action in motion.",
-                    examples: [
-                        { sentence: "I work from 9 to 5.", explanation: "Present Simple habit" },
-                        { sentence: "I am working right now.", explanation: "Present Continuous in progress" }
-                    ]
-                }
-            ],
             tipBox: {
                 title: "🧭 Quick check",
                 content: "Ask: 'Is the time finished?' and 'Is the action moving?' That helps you pair the tense with either past (specific) or present perfect (open) and simple vs continuous motion."
@@ -518,8 +617,35 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Core parts of speech: the words that describe your tenses",
             icon: "🧱",
             explanation: `
-                <p>When you know what part of speech each word is, the tenses above become easier to build. Nouns name people or things, verbs show actions, adjectives describe nouns, adverbs describe verbs, and prepositions connect the pieces.</p>
-                <p>This section highlights the five building blocks using sentences from earlier sections so you can see how they repeat.</p>
+                <p>Identify the building blocks of every sentence. When you know the parts, the grammar patterns become clear.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #fdf2f8; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #fbcfe8;">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">👤</span>
+                        <h4 style="margin: 0; color: #be185d;">Noun</h4>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.75rem; color: #9d174d;">Person, Place, Thing</p>
+                    </div>
+                    <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #bbf7d0;">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">🏃</span>
+                        <h4 style="margin: 0; color: #15803d;">Verb</h4>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.75rem; color: #166534;">Action or State</p>
+                    </div>
+                    <div style="background: #eff6ff; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #bfdbfe;">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">🎨</span>
+                        <h4 style="margin: 0; color: #1d4ed8;">Adjective</h4>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.75rem; color: #1e40af;">Describes a Noun</p>
+                    </div>
+                    <div style="background: #faf5ff; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #e9d5ff;">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">💨</span>
+                        <h4 style="margin: 0; color: #7e22ce;">Adverb</h4>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.75rem; color: #6b21a8;">Describes a Verb</p>
+                    </div>
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; text-align: center; border: 1px solid #ffedd5;">
+                        <span style="font-size: 1.5rem; display: block; margin-bottom: 0.5rem;">🔗</span>
+                        <h4 style="margin: 0; color: #c2410c;">Preposition</h4>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.75rem; color: #9a3412;">Connects Ideas</p>
+                    </div>
+                </div>
             `,
             exercises: [
                 {
@@ -586,8 +712,17 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Adverbs of frequency: naming how often",
             icon: "🔁",
             explanation: `
-                <p>Adverbs of frequency (always, usually, sometimes, never) cozy up to the present simple to describe how steady a habit feels.</p>
-                <p>Place them before the main verb (but after auxiliary verbs) so sentences stay smooth.</p>
+                <p>Adverbs of frequency describe how steady a habit feels.</p>
+                
+                <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                        <span style="background: #be185d; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">100% Always</span>
+                        <span style="background: #db2777; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">80% Usually</span>
+                        <span style="background: #f472b6; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">50% Sometimes</span>
+                        <span style="background: #94a3b8; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">0% Never</span>
+                    </div>
+                    <p style="margin: 0; font-size: 0.95rem; color: #9d174d;"><strong>The Rule:</strong> Place them before the main verb, but <em>after</em> auxiliary verbs (be/have).</p>
+                </div>
             `,
             tipBox: {
                 title: "📌 Placement tip",
@@ -640,8 +775,18 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Comparatives: describe what is more or less",
             icon: "⚖️",
             explanation: `
-                <p>Comparatives let you compare two things. Short adjectives add <strong>-er</strong>; longer ones go with <strong>more</strong>.</p>
-                <p>You can also compare habits: My mornings are calmer than my evenings.</p>
+                <p>Comparatives let you compare two things. Think of it as a <strong>Scale</strong> logic.</p>
+                
+                <div style="display: flex; gap: 1rem; margin: 1.5rem 0; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px; background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem; border-radius: 0.5rem;">
+                        <h4 style="margin: 0; color: #c2410c;">Short Adjectives</h4>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Add <strong>-er</strong> (fast → faster)</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; background: #fff7ed; border-left: 4px solid #f97316; padding: 1rem; border-radius: 0.5rem;">
+                        <h4 style="margin: 0; color: #c2410c;">Long Adjectives</h4>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Use <strong>more</strong> (more creative)</p>
+                    </div>
+                </div>
             `,
             tipBox: {
                 title: "💡 Comparative shortcut",
@@ -684,8 +829,18 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Connectors: glue time, actions, and meaning",
             icon: "🧵",
             explanation: `
-                <p>Connectors keep your sentences flowing. Coordinators like <strong>and, but, or, so</strong> let you add, contrast, offer alternatives, or show results. Time connectors—<strong>when, while, before, after</strong>—organize events on a timeline.</p>
-                <p>We already used these connectors in the examples above. Notice them again: they link tenses, frequency, and thoughts.</p>
+                <p>Connectors keep your sentences flowing. They are the <strong>"Glue"</strong> of your story.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-top: 3px solid #22c55e;">
+                        <h4 style="margin: 0; color: #16a34a;">Coordinators</h4>
+                        <p style="margin: 0.4rem 0 0 0; font-size: 0.85rem;">And, But, Or, So</p>
+                    </div>
+                    <div style="background: #eff6ff; padding: 1rem; border-radius: 0.5rem; border-top: 3px solid #3b82f6;">
+                        <h4 style="margin: 0; color: #1d4ed8;">Time Markers</h4>
+                        <p style="margin: 0.4rem 0 0 0; font-size: 0.85rem;">When, While, Before, After</p>
+                    </div>
+                </div>
             `,
             usageMeanings: [
                 {
@@ -767,177 +922,64 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Grammar Quick Reference Cheat Sheet",
             icon: "📋",
             explanation: `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-                    <div>
-                        <h3 style="background: rgba(200, 107, 81, 0.2); padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">Verb Tenses</h3>
-                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
-                            <thead>
-                                <tr style="background: rgba(200, 107, 81, 0.1);">
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left; font-size: 0.9rem;">Tense</th>
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left; font-size: 0.9rem;">Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Simple Present</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I <strong>work</strong> every day.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Present Continuous</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I am <strong>studying</strong> now.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Simple Past</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I <strong>called</strong> my mom yesterday.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Past Continuous</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I was <strong>cooking</strong> when you arrived.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Simple Future</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I will <strong>start</strong> tomorrow.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Future Continuous</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I will be <strong>working</strong> at 3 PM.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>Present Perfect</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I have <strong>lived</strong> here for 5 years.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div style="background: white; border: 2px solid #e2e8f0; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+                    <h2 style="margin-top: 0; text-align: center; color: #1e293b; border-bottom: 3px solid #3b82f6; padding-bottom: 0.5rem; display: inline-block; width: 100%;">Cycle 1 Grammar Reference</h2>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                        <!-- Left Column: Tenses -->
+                        <div>
+                            <h3 style="color: #2563eb; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">⏱️ Verb Tenses</h3>
+                            <div style="display: grid; gap: 0.75rem;">
+                                <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 0.5rem;">
+                                    <strong>Simple Present:</strong> I <strong>work</strong> daily.
+                                </div>
+                                <div style="background: #eff6ff; padding: 0.75rem; border-radius: 0.5rem;">
+                                    <strong>Present Continuous:</strong> I <strong>am working</strong> now.
+                                </div>
+                                <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 0.5rem;">
+                                    <strong>Simple Past:</strong> I <strong>worked</strong> yesterday.
+                                </div>
+                                <div style="background: #eff6ff; padding: 0.75rem; border-radius: 0.5rem;">
+                                    <strong>Past Continuous:</strong> I <strong>was working</strong> when...
+                                </div>
+                                <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 0.5rem;">
+                                    <strong>Simple Future:</strong> I <strong>will work</strong> soon.
+                                </div>
+                                <div style="background: #fffbeb; padding: 0.75rem; border-radius: 0.5rem;">
+                                    <strong>Present Perfect:</strong> I <strong>have worked</strong>.
+                                </div>
+                            </div>
 
-                        <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Common Irregular Verbs</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                            <thead>
-                                <tr style="background: rgba(200, 107, 81, 0.1);">
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">V1 (Base)</th>
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">V2 (Past)</th>
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">V3 (Past Participle)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">go</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">went</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">gone</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">eat</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">ate</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">eaten</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">see</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">saw</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">seen</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">have</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">had</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">had</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">make</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">made</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">made</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">come</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">came</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">come</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">take</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">took</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">taken</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">give</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">gave</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">given</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">buy</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">bought</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">bought</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">think</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">thought</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">thought</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Time Expressions</h4>
-                        <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                            <p style="margin: 0.5rem 0;"><strong>Past:</strong> yesterday, last week, ago, in 2020</p>
-                            <p style="margin: 0.5rem 0;"><strong>Present:</strong> today, now, right now, these days</p>
-                            <p style="margin: 0.5rem 0;"><strong>Future:</strong> tomorrow, next week, soon, in 2025</p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 style="background: rgba(200, 107, 81, 0.2); padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 1rem;">Adverbs of Frequency</h3>
-                        <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                            <p style="margin: 0.5rem 0;"><strong>Order:</strong> always → usually → often → sometimes → rarely → never</p>
-                            <p style="margin: 0.5rem 0;"><strong>With "To Be":</strong> I am <strong>usually</strong> tired. / She is <strong>never</strong> late.</p>
-                            <p style="margin: 0.5rem 0;"><strong>With other verbs:</strong> I <strong>usually</strong> eat at 7. / She <strong>never</strong> drinks coffee.</p>
+                            <h3 style="color: #2563eb; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">📅 Time expressions</h3>
+                            <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
+                                <p style="margin: 0;"><strong>Past:</strong> yesterday, ago, last...</p>
+                                <p style="margin: 0.5rem 0;"><strong>Present:</strong> now, today, these days</p>
+                                <p style="margin: 0;"><strong>Future:</strong> tomorrow, soon, next...</p>
+                            </div>
                         </div>
 
-                        <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Comparatives</h4>
-                        <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
-                            <p style="margin: 0.5rem 0;"><strong>Short words:</strong> add -er than → cold → <strong>colder than</strong></p>
-                            <p style="margin: 0.5rem 0;"><strong>Words ending in Y:</strong> change Y to -ier → happy → <strong>happier</strong></p>
-                            <p style="margin: 0.5rem 0;"><strong>Long words:</strong> more...than → <strong>more beautiful than</strong></p>
-                            <p style="margin: 0.5rem 0;"><strong>Irregular:</strong> good → <strong>better</strong>, bad → <strong>worse</strong></p>
-                        </div>
+                        <!-- Right Column: Others -->
+                        <div>
+                            <h3 style="color: #db2777; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">🔁 Frequency</h3>
+                            <p style="background: #fdf2f8; padding: 0.75rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                                always → usually → sometimes → never
+                            </p>
 
-                        <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Connectors</h4>
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; margin-bottom: 1rem;">
-                            <thead>
-                                <tr style="background: rgba(200, 107, 81, 0.1);">
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Connector</th>
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Function</th>
-                                    <th style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); text-align: left;">Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>because</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">reason</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I am happy <strong>because</strong> it is sunny.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>so</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">result</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">It's cold, <strong>so</strong> I wear a jacket.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>but</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">contrast</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I'm tired, <strong>but</strong> I'm going to work.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>while</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">same time</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">I cooked <strong>while</strong> they played.</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);"><strong>whereas</strong></td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">compare</td>
-                                    <td style="padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">Last year was hard, <strong>whereas</strong> this year is easier.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            <h3 style="color: #d97706; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">⚖️ Comparatives</h3>
+                            <div style="background: #fffbeb; padding: 1rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                                <p style="margin: 0;">Short: <strong>-er than</strong> (faster)</p>
+                                <p style="margin: 0.4rem 0;">Long: <strong>more...than</strong> (more creative)</p>
+                                <p style="margin: 0;">Irregular: <strong>better / worse</strong></p>
+                            </div>
 
-                        <h4 style="margin-top: 1.5rem; margin-bottom: 0.75rem;">Prepositions of Time</h4>
-                        <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem;">
-                            <p style="margin: 0.5rem 0;"><strong>in</strong> - months/years/periods → in June; in 2025; in the morning</p>
-                            <p style="margin: 0.5rem 0;"><strong>on</strong> - days/dates → on Monday; on July 4th</p>
+                            <h3 style="color: #059669; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🧵 Connectors</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>and:</strong> add</div>
+                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>but:</strong> contrast</div>
+                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>so:</strong> result</div>
+                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>or:</strong> choice</div>
+                                <div style="background: #f0f9ff; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem; grid-column: span 2;"><strong>when/while:</strong> time</div>
+                            </div>
                         </div>
                     </div>
                 </div>
