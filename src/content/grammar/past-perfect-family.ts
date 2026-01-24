@@ -19,12 +19,12 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </p>
                     <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #f59e0b; margin-top: 0;">1. The Time Traveler (Simple)</h4>
+                            <h4 style="color: #f59e0b; margin-top: 0;">1. The Time Traveler (Order)</h4>
                             <p style="font-size: 0.95rem; color: #4b5563;">"When I arrived, she <strong>had already left</strong>."</p>
                             <span style="display: inline-block; background: #fef3c7; color: #b45309; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: WHAT HAPPENED FIRST</span>
                         </div>
                         <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #8b5cf6; margin-top: 0;">2. The Background Painter (Continuous)</h4>
+                            <h4 style="color: #8b5cf6; margin-top: 0;">2. The Background Painter (Duration)</h4>
                             <p style="font-size: 0.95rem; color: #4b5563;">"I was tired because I <strong>had been working</strong> all day."</p>
                             <span style="display: inline-block; background: #ede9fe; color: #6d28d9; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: HOW LONG BEFORE</span>
                         </div>
@@ -51,12 +51,12 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </p>
                 </div>
 
-                <h3>More Examples: Simple vs Continuous</h3>
+                <h3>More Examples: Order vs Duration</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
                     <tr style="background: #f8fafc;">
                         <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Story Context</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Simple (Sequence)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Continuous (Duration)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">The Order (What First)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">The Duration (How Long)</th>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">The movie started...</td>
@@ -84,8 +84,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         I <strong style="color: #b45309;">had drunk</strong> 4 cups of coffee, and I <strong style="color: #6d28d9;">had been checking</strong> my emails constantly."
                     </p>
                     <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #4b5563;">
-                        Notice: <span style="color: #b45309; font-weight: 600;">Simple</span> = completed actions (finished, drunk) |
-                        <span style="color: #6d28d9; font-weight: 600;">Continuous</span> = duration/ongoing activity (working, checking)
+                        Notice: <span style="color: #b45309; font-weight: 600;">Order</span> = completed actions (finished, drunk) |
+                        <span style="color: #6d28d9; font-weight: 600;">Duration</span> = duration/ongoing activity (working, checking)
                     </p>
                 </div>
 
@@ -110,7 +110,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "What does Past Perfect SIMPLE focus on?",
+                            label: "What does Past Perfect (Order) focus on?",
                             options: [
                                 { value: "sequence", label: "Which action happened first (sequence)" },
                                 { value: "duration", label: "How long something lasted" },
@@ -119,7 +119,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "What does Past Perfect CONTINUOUS focus on?",
+                            label: "What does Past Perfect (Duration) focus on?",
                             options: [
                                 { value: "sequence", label: "The order of events" },
                                 { value: "duration", label: "The duration before a past moment" },
@@ -130,8 +130,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "'When I arrived, she had already left.' - This shows:",
                             options: [
-                                { value: "simple", label: "Sequence - she left BEFORE I arrived (Simple)" },
-                                { value: "continuous", label: "Duration - how long she waited (Continuous)" },
+                                { value: "simple", label: "Order - she left BEFORE I arrived" },
+                                { value: "continuous", label: "Duration - how long she waited" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -139,8 +139,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "'I was tired because I had been working all day.' - This shows:",
                             options: [
-                                { value: "simple", label: "A completed action (Simple)" },
-                                { value: "continuous", label: "Duration that explains my tiredness (Continuous)" },
+                                { value: "simple", label: "A completed action (Order)" },
+                                { value: "continuous", label: "Duration that explains my tiredness" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -155,8 +155,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The party was over. Everyone ___ home. (completed action before)",
                             options: [
-                                { value: "simple", label: "had gone (Simple - they left earlier)" },
-                                { value: "continuous", label: "had been going (Continuous - duration)" },
+                                { value: "simple", label: "had gone (Order - they left earlier)" },
+                                { value: "continuous", label: "had been going (Duration - how long)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -164,8 +164,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Her eyes were red. She ___. (activity that explains her condition)",
                             options: [
-                                { value: "simple", label: "had cried (Simple - just states it happened)" },
-                                { value: "continuous", label: "had been crying (Continuous - ongoing activity)" },
+                                { value: "simple", label: "had cried (Order - just states it happened)" },
+                                { value: "continuous", label: "had been crying (Duration - ongoing activity)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -173,8 +173,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By the time I woke up, my parents ___ to work. (completed departure)",
                             options: [
-                                { value: "simple", label: "had already gone (Simple - sequence)" },
-                                { value: "continuous", label: "had been going (Continuous - duration)" },
+                                { value: "simple", label: "had already gone (Order - sequence)" },
+                                { value: "continuous", label: "had been going (Duration - duration)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -182,8 +182,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The ground was wet. It ___ all night. (duration of weather)",
                             options: [
-                                { value: "simple", label: "had rained (Simple - just states fact)" },
-                                { value: "continuous", label: "had been raining (Continuous - emphasizes duration)" },
+                                { value: "simple", label: "had rained (Order - just states fact)" },
+                                { value: "continuous", label: "had been raining (Duration - emphasizes duration)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -209,9 +209,9 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
-                    <!-- Simple Timeline -->
+                    <!-- Order Timeline -->
                     <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #b45309;">Simple: Which Happened First?</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #b45309;">Order: Which Happened First?</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 3px; background: linear-gradient(to right, #f59e0b, #14b8a6, #94a3b8); transform: translateY(-50%);"></div>
@@ -233,9 +233,9 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="text-align: center; margin: 1.5rem 0 0 0; font-size: 0.85rem; color: #4b5563;">"When I <strong>arrived</strong>, she <strong>had already left</strong>."</p>
                     </div>
 
-                    <!-- Continuous Timeline -->
+                    <!-- Duration Timeline -->
                     <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #6d28d9;">Continuous: How Long Before?</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #6d28d9;">Duration: How Long Before?</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
@@ -321,16 +321,16 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "focus-order",
-            title: "Focus on Order (Simple)",
+            title: "Focus on Order",
             icon: "🔢",
             stepNumber: 1,
             explanation: `
                 <h3>What Happened First?</h3>
-                <p>Use <strong>Past Perfect Simple</strong> (had + past participle) to show which action happened <strong>FIRST</strong> when telling a story about two past events.</p>
+                <p>Use <strong>The Past Perfect (Order)</strong> (had + past participle) to show which action happened <strong>FIRST</strong> when telling a story about two past events.</p>
 
                 <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #b45309;">The Two-Verb Rule</h4>
-                    <p style="margin: 0.5rem 0;">Past Perfect Simple almost ALWAYS needs TWO past events:</p>
+                    <p style="margin: 0.5rem 0;">This tense almost ALWAYS needs TWO past events:</p>
                     <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 180px; background: #fef3c7; padding: 0.75rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
                             <p style="margin: 0; font-weight: 600; color: #b45309;">Past Perfect = FIRST action</p>
@@ -445,12 +445,12 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "focus-duration",
-            title: "Focus on Duration (Continuous)",
+            title: "Focus on Duration",
             icon: "⏱️",
             stepNumber: 2,
             explanation: `
                 <h3>How Long Before That Moment?</h3>
-                <p>Use <strong>Past Perfect Continuous</strong> (had been + verb-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
+                <p>Use <strong>The Past Perfect (Duration)</strong> (had been + verb-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
 
                 <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #6d28d9;">Duration Before a Past Moment</h4>
@@ -582,7 +582,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Simple</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Order</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -595,7 +595,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #6d28d9;">Continuous</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #6d28d9;">Duration</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -612,8 +612,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
                     <tr style="background: #f8fafc;">
                         <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Context</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Simple (What happened first)</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Continuous (How long before)</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">Order (What first)</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">Duration (How long)</th>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 0.5rem;">Work</td>
@@ -636,7 +636,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 {
                     id: "ex-pp-positive",
                     title: "Complete with the Correct Form",
-                    instructions: "Use Simple (had + past participle) or Continuous (had been + -ing) based on context.",
+                    instructions: "Use Order (had + participle) or Duration (had been + -ing) based on context.",
                     items: [
                         {
                             type: "text",
@@ -681,7 +681,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Simple Negative</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Order Negative</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -694,7 +694,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #6d28d9;">Continuous Negative</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #6d28d9;">Duration Negative</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -734,25 +734,25 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "She was nervous because she ___ (not / fly) before. [Simple]",
+                            label: "She was nervous because she ___ (not / fly) before. [Order]",
                             expectedAnswer: "hadn't flown",
                             placeholder: "hadn't flown",
                         },
                         {
                             type: "text",
-                            label: "He ___ (not / work) there long when he got promoted. [Continuous]",
+                            label: "He ___ (not / work) there long when he got promoted. [Duration]",
                             expectedAnswer: "hadn't been working",
                             placeholder: "hadn't been working",
                         },
                         {
                             type: "text",
-                            label: "We ___ (not / meet) before that day. [Simple]",
+                            label: "We ___ (not / meet) before that day. [Order]",
                             expectedAnswer: "hadn't met",
                             placeholder: "hadn't met",
                         },
                         {
                             type: "text",
-                            label: "I ___ (not / feel) well lately. [Continuous]",
+                            label: "I ___ (not / feel) well lately. [Duration]",
                             expectedAnswer: "hadn't been feeling",
                             placeholder: "hadn't been feeling",
                         },
@@ -775,7 +775,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f59e0b;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Simple Questions</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Order Questions</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #fef3c7; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #f59e0b;">Had</span>
                             <span>+</span>
@@ -789,7 +789,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #6d28d9;">Continuous Questions</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #6d28d9;">Duration Questions</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #ede9fe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #8b5cf6;">Had</span>
                             <span>+</span>

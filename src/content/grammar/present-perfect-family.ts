@@ -1,7 +1,5 @@
 import type {
     InteractiveGuideContent,
-    InteractiveGuideSection,
-    MiniQuizQuestion,
 } from "@/types/activity";
 
 export const presentPerfectFamilyContent: InteractiveGuideContent = {
@@ -24,12 +22,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </p>
                     <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #c86b51; margin-top: 0;">1. The Finisher (Simple)</h4>
+                            <h4 style="color: #c86b51; margin-top: 0;">1. The Finisher (Result)</h4>
                             <p style="font-size: 0.95rem; color: #4b5563;">"I <strong>have finished</strong> my work."</p>
                             <span style="display: inline-block; background: #fff7ed; color: #c2410c; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: RESULT / COMPLETION</span>
                         </div>
                         <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #6366f1; margin-top: 0;">2. The Worker (Continuous)</h4>
+                            <h4 style="color: #6366f1; margin-top: 0;">2. The Worker (Duration)</h4>
                             <p style="font-size: 0.95rem; color: #4b5563;">"I <strong>have been working</strong> all day."</p>
                             <span style="display: inline-block; background: #eef2ff; color: #4338ca; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: DURATION / ACTIVITY</span>
                         </div>
@@ -41,12 +39,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Simple Answer:</p>
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Result Answer:</p>
                         <p style="margin: 0; font-size: 1.1rem;">"I <strong>have made</strong> pasta."</p>
                         <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ The pasta is ready! (Result)</p>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca;">Continuous Answer:</p>
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca;">Duration Answer:</p>
                         <p style="margin: 0; font-size: 1.1rem;">"I <strong>have been cooking</strong> for an hour."</p>
                         <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ That explains why you're tired! (Activity)</p>
                     </div>
@@ -63,8 +61,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
                     <tr style="background: #f8fafc;">
                         <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Situation</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Simple (Result)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Continuous (Activity)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration</th>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Cleaning the house</td>
@@ -98,7 +96,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "What does the SIMPLE form focus on?",
+                            label: "What does the RESULT form focus on?",
                             options: [
                                 { value: "result", label: "The result or completion" },
                                 { value: "duration", label: "How long something took" },
@@ -107,7 +105,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "What does the CONTINUOUS form focus on?",
+                            label: "What does the DURATION form focus on?",
                             options: [
                                 { value: "result", label: "The finished product" },
                                 { value: "duration", label: "The activity or duration" },
@@ -118,8 +116,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "'I have read 3 books this month.' - This emphasizes:",
                             options: [
-                                { value: "simple", label: "The number/result (Simple)" },
-                                { value: "continuous", label: "The time spent (Continuous)" },
+                                { value: "simple", label: "The number/result" },
+                                { value: "continuous", label: "The time spent (Duration)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -127,8 +125,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "'I have been reading all afternoon.' - This emphasizes:",
                             options: [
-                                { value: "simple", label: "How many books (Simple)" },
-                                { value: "continuous", label: "The duration/activity (Continuous)" },
+                                { value: "simple", label: "How many books (Result)" },
+                                { value: "continuous", label: "The duration/activity" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -197,9 +195,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
-                    <!-- Simple Timeline -->
+                    <!-- Result Timeline -->
                     <div style="background: white; border: 2px solid #f97316; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #c2410c;">Simple: The Result</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #c2410c;">Result Focus</h4>
                         <div style="position: relative; height: 60px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
@@ -219,9 +217,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="text-align: center; margin: 0; font-size: 0.8rem; color: #9ca3af;">Focus: The result is here now.</p>
                     </div>
 
-                    <!-- Continuous Timeline -->
+                    <!-- Duration Timeline -->
                     <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #4338ca;">Continuous: The Duration</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #4338ca;">Duration Focus</h4>
                         <div style="position: relative; height: 60px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
@@ -247,7 +245,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Simple Examples:</p>
+                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Result Examples:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li>"I <strong>have lost</strong> my phone." → <em>It's still lost NOW</em></li>
                             <li>"She <strong>has broken</strong> her leg." → <em>It's still broken NOW</em></li>
@@ -255,7 +253,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         </ul>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Continuous Examples:</p>
+                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Duration Examples:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li>"I <strong>have been waiting</strong> for an hour." → <em>Still waiting NOW</em></li>
                             <li>"It <strong>has been raining</strong> all day." → <em>The ground is wet NOW</em></li>
@@ -312,12 +310,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "focus-result",
-            title: "Focus on Result (Simple)",
+            title: "Focus on Result",
             icon: "✅",
             stepNumber: 2,
             explanation: `
                 <h3>When "Done" Matters</h3>
-                <p>Use <strong>Present Perfect Simple</strong> (have + <strong>past participle</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
+                <p>Use <strong>The Present Perfect (Result)</strong> (have + <strong>past participle</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
 
                 <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                      <h4 style="text-align: center; margin-top: 0; color: #d97706;">Timeline: The Completed Action</h4>
@@ -344,7 +342,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                      <p style="text-align: center; margin-top: 0.5rem;">"She <strong>has written</strong> 5 emails." → <span style="color: #64748b;">(Result: 5 completed items.)</span></p>
                 </div>
 
-                <h3>Three Main Uses for Present Perfect Simple</h3>
+                <h3>Three Main Uses for the Result Form</h3>
 
                 <div style="display: grid; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
@@ -431,12 +429,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "focus-duration",
-            title: "Focus on Duration (Continuous)",
+            title: "Focus on Duration",
             icon: "⏱️",
             stepNumber: 3,
             explanation: `
                 <h3>When "Time" Matters</h3>
-                <p>Use <strong>Present Perfect Continuous</strong> (have + <strong>been</strong> + <strong>-ing</strong>) when you want to show <strong>how long</strong> something has been happening, or emphasizing the <strong>activity</strong> itself (even if it's finished!).</p>
+                <p>Use <strong>The Present Perfect (Duration)</strong> (have + <strong>been</strong> + <strong>-ing</strong>) when you want to show <strong>how long</strong> something has been happening...</p>
 
                 <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="text-align: center; margin-top: 0; color: #4338ca;">Timeline: The Ongoing Duration</h4>
@@ -461,7 +459,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <p style="text-align: center; margin-top: 0.5rem; font-size: 0.9em; color: #666;">(Focus is on the 20 minutes of waiting time)</p>
                 </div>
 
-                <h3>Three Main Uses for Present Perfect Continuous</h3>
+                <h3>Three Main Uses for the Duration Form</h3>
 
                 <div style="display: grid; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
@@ -562,9 +560,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <p>The negative forms also have slightly different meanings. Understanding these will help you express exactly what you mean.</p>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
-                    <!-- Simple Negative -->
+                    <!-- Result Negative -->
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">Simple Negative</h4>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">Result Negative</h4>
                         <div style="font-weight: bold; margin-bottom: 0.5rem;">have NOT + Past Participle</div>
                         <p style="font-style: italic; color: #4b5563;">"I <strong>haven't finished</strong> yet."</p>
                         <ul style="font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 0;">
@@ -574,9 +572,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         </ul>
                     </div>
 
-                    <!-- Continuous Negative -->
+                    <!-- Duration Negative -->
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">Continuous Negative</h4>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">Duration Negative</h4>
                         <div style="font-weight: bold; margin-bottom: 0.5rem;">have NOT + BEEN + -ING</div>
                         <p style="font-style: italic; color: #4b5563;">"I <strong>haven't been sleeping</strong> well."</p>
                         <ul style="font-size: 0.9rem; padding-left: 1.2rem; margin-bottom: 0;">
@@ -636,8 +634,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
                     <p style="margin: 0; font-weight: 600;">💡 Quick Guide:</p>
                     <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem;">
-                        <li><strong>Simple negative</strong> = The action hasn't happened (zero times, incomplete)</li>
-                        <li><strong>Continuous negative</strong> = The activity hasn't been part of your life/routine lately</li>
+                    <li><strong>Result negative</strong> = The action hasn't happened (zero times, incomplete)</li>
+                    <li><strong>Duration negative</strong> = The activity hasn't been part of your life/routine lately</li>
                     </ul>
                 </div>
             `,
@@ -696,17 +694,17 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </tr>
                     <tr style="background-color: #fff7ed;">
                         <td style="padding: 0.75rem; font-weight: 500;">If it is DONE</td>
-                        <td style="padding: 0.75rem;">Simple</td>
+                        <td style="padding: 0.75rem;">Result</td>
                         <td style="padding: 0.75rem; color: #c2410c; font-weight: bold;">Have you finished...?</td>
                     </tr>
                     <tr style="background-color: #eef2ff;">
                         <td style="padding: 0.75rem; font-weight: 500;">The DURATION</td>
-                        <td style="padding: 0.75rem;">Continuous</td>
+                        <td style="padding: 0.75rem;">Duration</td>
                         <td style="padding: 0.75rem; color: #4338ca; font-weight: bold;">How long...?</td>
                     </tr>
                     <tr style="background-color: #fff7ed;">
                         <td style="padding: 0.75rem; font-weight: 500;">The QUANTITY</td>
-                        <td style="padding: 0.75rem;">Simple</td>
+                        <td style="padding: 0.75rem;">Result</td>
                         <td style="padding: 0.75rem; color: #c2410c; font-weight: bold;">How many...?</td>
                     </tr>
                 </table>
@@ -715,7 +713,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #c2410c;">Simple Questions (Result/Count)</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #c2410c;">Result Questions (Done/Count)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li><strong>Have</strong> you <strong>finished</strong> your homework?</li>
                             <li><strong>Has</strong> she <strong>called</strong> you back yet?</li>
@@ -725,7 +723,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         </ul>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #4338ca;">Continuous Questions (Duration/Activity)</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #4338ca;">Duration Questions (Time/Activity)</h4>
                         <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li><strong>How long have</strong> you <strong>been waiting</strong>?</li>
                             <li><strong>What have</strong> you <strong>been doing</strong> all day?</li>
@@ -742,27 +740,27 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">Topic: Reading</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "How many books <strong>have</strong> you <strong>read</strong>?" → Wants a number</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "What <strong>have</strong> you <strong>been reading</strong>?" → Wants to know about the activity</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result:</strong> "How many books <strong>have</strong> you <strong>read</strong>?" → Wants a number</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration:</strong> "What <strong>have</strong> you <strong>been reading</strong>?" → Wants to know about the activity</p>
                     </div>
 
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">Topic: Work</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "<strong>Have</strong> you <strong>finished</strong> the report?" → Is it done?</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "How long <strong>have</strong> you <strong>been working</strong> on it?" → How much time?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result:</strong> "<strong>Have</strong> you <strong>finished</strong> the report?" → Is it done?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration:</strong> "How long <strong>have</strong> you <strong>been working</strong> on it?" → How much time?</p>
                     </div>
 
                     <div>
                         <p style="margin: 0; font-weight: 600;">Topic: Exercise (noticing sweat)</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "<strong>Have</strong> you <strong>exercised</strong> today?" → Did it happen?</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "<strong>Have</strong> you <strong>been exercising</strong>?" → I see evidence of activity!</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result:</strong> "<strong>Have</strong> you <strong>exercised</strong> today?" → Did it happen?</p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration:</strong> "<strong>Have</strong> you <strong>been exercising</strong>?" → I see evidence of activity!</p>
                     </div>
                 </div>
 
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Question Formation</h4>
-                    <p style="margin: 0; font-size: 0.9rem;"><strong>Simple:</strong> Have/Has + subject + past participle...?</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Continuous:</strong> Have/Has + subject + been + verb-ing...?</p>
+                    <p style="margin: 0; font-size: 0.9rem;"><strong>Result:</strong> Have/Has + subject + past participle...?</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Duration:</strong> Have/Has + subject + been + verb-ing...?</p>
                 </div>
             `,
              exercises: [
