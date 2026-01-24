@@ -674,7 +674,7 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
 
         if (activity.type === 'guide' && activity.category === 'grammar') {
             isGrammarGuide = true;
-            isReleased = grammarReleases[activity.id] ?? false;
+            isReleased = grammarReleases[activity.id] ?? activity.isReleased ?? false;
         } else {
             try {
                 const content = JSON.parse(activity.content || '{}');
