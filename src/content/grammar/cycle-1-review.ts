@@ -349,7 +349,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             `,
             formula: [
                 { text: "Subject", type: "subject" },
-                { text: "Auxiliary be (am/is/are/was/were/will be)", type: "verb" },
+                { text: "Helping verb be (am/is/are/was/were/will be)", type: "verb" },
                 { text: "Main verb + -ing", type: "other" }
             ],
             usageMeanings: [
@@ -514,7 +514,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Commonly confused moments: pause and notice",
             icon: "⚠️",
             explanation: `
-                <p>Because the tenses share similar vocabulary, we sometimes use the wrong helper verb. This section pauses on a few crowded corners so you can feel the difference.</p>
+                <p>Because the tenses share similar vocabulary, we sometimes use the wrong helping verb. This section pauses on a few crowded corners so you can feel the difference.</p>
                 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Time Comparison -->
@@ -721,12 +721,12 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         <span style="background: #f472b6; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">50% Sometimes</span>
                         <span style="background: #94a3b8; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">0% Never</span>
                     </div>
-                    <p style="margin: 0; font-size: 0.95rem; color: #9d174d;"><strong>The Rule:</strong> Place them before the main verb, but <em>after</em> auxiliary verbs (be/have).</p>
+                    <p style="margin: 0; font-size: 0.95rem; color: #9d174d;"><strong>The Rule:</strong> Place them before the main verb, but <em>after</em> helping verbs (be/have).</p>
                 </div>
             `,
             tipBox: {
                 title: "📌 Placement tip",
-                content: "Frequency adverbs usually sit before the main verb: 'She always takes notes.' If there is an auxiliary (like have or am), the adverb follows that auxiliary."
+                content: "Frequency adverbs usually sit before the main verb: 'She always takes notes.' If there is a helping verb (like have or am), the adverb follows that helping verb."
             },
             exercises: [
                 {

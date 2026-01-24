@@ -165,7 +165,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "💡 The Key Insight",
-                content: "All perfect tenses use the same pattern: auxiliary 'have' + past participle. Only the form of 'have' changes: have/has (present), had (past), will have (future).",
+                content: "All perfect tenses use the same pattern: helping verb 'have' + past participle. Only the form of 'have' changes: have/has (present), had (past), will have (future).",
             },
             exercises: [
                 {
