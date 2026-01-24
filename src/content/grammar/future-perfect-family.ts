@@ -5,196 +5,43 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
     tableOfContents: true,
     sections: [
         // -------------------------------------------------------------------------
-        // 1. Introduction: The Future Perfect Family
+        // 1. Introduction
         // -------------------------------------------------------------------------
         {
             id: "family-intro",
-            title: "The Future Perfect Family",
+            title: "The Future Perfect Family: Looking Back from the Future",
             icon: "🎯",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem; border-left: 5px solid #06b6d4;">
-                    <h3 style="margin-top: 0; color: #06b6d4; font-size: 1.4rem;">Looking Back from the Future</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.6;">
-                        The <strong>Future Perfect Family</strong> helps you talk about achievements and milestones. Imagine standing at a future point and looking back at what will be <strong>done</strong> or how long something will have been <strong>happening</strong>.
-                    </p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #06b6d4; margin-top: 0;">1. The Goal Setter (Goal)</h4>
-                            <p style="font-size: 0.95rem; color: #4b5563;">"By June, I <strong>will have graduated</strong>."</p>
-                            <span style="display: inline-block; background: #cffafe; color: #0e7490; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: COMPLETED BY DEADLINE</span>
-                        </div>
-                        <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #a855f7; margin-top: 0;">2. The Journey Tracker (Duration)</h4>
-                            <p style="font-size: 0.95rem; color: #4b5563;">"By June, I <strong>will have been studying</strong> for 4 years."</p>
-                            <span style="display: inline-block; background: #f3e8ff; color: #7c3aed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: DURATION UP TO THAT POINT</span>
-                        </div>
-                    </div>
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about your goals and milestones. "By June, I will have graduated." "By then, I will have been studying for 4 years." These forms let you talk about what will be <strong>done</strong> or how long something will have been <strong>happening</strong> at a specific future point.</p>
                 </div>
 
-                <h3>Why Do We Need the Future Perfect?</h3>
-                <p>Sometimes we need to talk about what will be true AT a specific future moment. Think about planning and goals:</p>
-
-                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e2e8f0;">
-                    <p style="margin: 0 0 1rem 0; font-style: italic; color: #64748b;">"Next December will be special. Let me tell you why..."</p>
-                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #94a3b8; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">NOW</span>
-                        <span style="font-size: 1.5rem;">→</span>
-                        <span style="background: #06b6d4; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">working hard</span>
-                        <span style="font-size: 1.5rem;">→</span>
-                        <span style="background: #22c55e; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">BY DECEMBER: ✓ done!</span>
-                    </div>
-                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">"By December, I <strong>will have saved</strong> enough money for a vacation!"</p>
-                </div>
-
-                <h3>The Key Question to Ask Yourself</h3>
-                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0;">
-                    <p style="margin: 0; font-size: 1.15rem; text-align: center;">
-                        <strong>"Am I talking about COMPLETION (done by then) or DURATION (how long by then)?"</strong>
-                    </p>
-                </div>
-
-                <h3>More Examples: Goals vs Duration</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Future Moment</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">The Goal (Completion)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">The Duration (How Long)</th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By next year...</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>will have finished</strong> my degree."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The degree is done!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>will have been studying</strong> for 4 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's how long my journey is!</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By 6pm...</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"She <strong>will have cooked</strong> dinner."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Dinner is ready!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"She <strong>will have been cooking</strong> for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ She started at 4pm!</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By our anniversary...</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"We <strong>will have visited</strong> 10 countries."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Count of achievements!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"We <strong>will have been traveling</strong> together for 5 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Journey duration!</span></td>
-                    </tr>
-                </table>
-
-                <h3>Real-Life Scenarios</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #0e7490;">🎓 Graduation Day:</p>
-                        <p style="margin: 0; font-size: 0.95rem;">"By May, I <strong>will have completed</strong> 120 credits and I <strong>will have been attending</strong> this university for 4 years."</p>
-                    </div>
-                    <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #7c3aed;">💼 Work Anniversary:</p>
-                        <p style="margin: 0; font-size: 0.95rem;">"Next month, I <strong>will have worked</strong> here for 10 years! I <strong>will have been managing</strong> this team since 2020."</p>
-                    </div>
-                    <div style="background: #dcfce7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #22c55e;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #16a34a;">🏃 Marathon Day:</p>
-                        <p style="margin: 0; font-size: 0.95rem;">"By the time I finish, I <strong>will have run</strong> 42 kilometers and I <strong>will have been running</strong> for over 4 hours!"</p>
-                    </div>
-                </div>
-
-                <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #10b981; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 When to use: Deadlines, milestones, anniversaries, and predictions!</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Common trigger words: <strong>by</strong> (the time), <strong>by</strong> (next week/year), <strong>before</strong>, <strong>when</strong>, <strong>in</strong> (3 years)</p>
-                </div>
-
-                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308; margin-top: 1rem;">
-                    <p style="margin: 0; font-weight: 600;">⚠️ Important: Both forms need a FUTURE REFERENCE POINT!</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Future Perfect always needs "by...", "before...", or "when..." to show the deadline.</p>
-                    <div style="margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626; font-size: 0.9rem;">❌ "I will have finished." (Alone - unclear)</p>
-                        </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a; font-size: 0.9rem;">✓ "I will have finished <strong>by Friday</strong>." (With deadline)</p>
-                        </div>
-                    </div>
-                </div>
+                <h3>Why This Matters</h3>
+                <p>Future Perfect is your planning and goal-setting tool. It helps you talk about deadlines, milestones, and achievements. Perfect for discussing what you'll accomplish by a certain time!</p>
             `,
             exercises: [
                 {
-                    id: "intro-understanding",
-                    title: "Check Your Understanding",
-                    instructions: "Based on what you just learned, choose the best answer.",
+                    id: "intro-check",
+                    title: "Quick Check: Completion or Duration?",
+                    instructions: "Choose what each sentence emphasizes.",
                     items: [
                         {
                             type: "radio",
-                            label: "What does Future Perfect (Goal) focus on?",
+                            label: "\"By June, I will have graduated.\"",
                             options: [
-                                { value: "completion", label: "Completion by a deadline" },
-                                { value: "duration", label: "How long something will last" },
+                                { value: "completion", label: "Completion: The graduation is done" },
+                                { value: "duration", label: "Duration: How long I've been in school" },
                             ],
                             expectedAnswer: "completion",
                         },
                         {
                             type: "radio",
-                            label: "What does Future Perfect (Duration) focus on?",
+                            label: "\"By June, I will have been studying for 4 years.\"",
                             options: [
-                                { value: "completion", label: "The finished result" },
-                                { value: "duration", label: "The duration up to that future point" },
+                                { value: "completion", label: "Completion: The studying is finished" },
+                                { value: "duration", label: "Duration: The length of time studying" },
                             ],
                             expectedAnswer: "duration",
-                        },
-                        {
-                            type: "radio",
-                            label: "'By 2030, I will have saved $50,000.' - This shows:",
-                            options: [
-                                { value: "simple", label: "A goal completed by then (Goal)" },
-                                { value: "continuous", label: "How long I've been saving (Duration)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "'By next month, I will have been working here for 5 years.' - This shows:",
-                            options: [
-                                { value: "simple", label: "Completed work (Goal)" },
-                                { value: "continuous", label: "Duration up to that milestone (Duration)" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                    ],
-                },
-                {
-                    id: "intro-planning",
-                    title: "Planning and Goals",
-                    instructions: "Which form fits better for each goal or milestone?",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "By December, I ___ 12 books this year. (counting achievement)",
-                            options: [
-                                { value: "simple", label: "will have read (Goal - count/result)" },
-                                { value: "continuous", label: "will have been reading (Duration - duration)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "When the movie ends, we ___ in this theater for 3 hours. (time spent)",
-                            options: [
-                                { value: "simple", label: "will have sat (Goal - completion)" },
-                                { value: "continuous", label: "will have been sitting (Duration - duration)" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time you arrive, I ___ dinner. (meal is ready)",
-                            options: [
-                                { value: "simple", label: "will have made (Goal - completed task)" },
-                                { value: "continuous", label: "will have been making (Duration - in progress)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "Next week, they ___ on this project for 6 months. (project timeline)",
-                            options: [
-                                { value: "simple", label: "will have worked (Goal - completion)" },
-                                { value: "continuous", label: "will have been working (Duration - duration)" },
-                            ],
-                            expectedAnswer: "continuous",
                         },
                     ],
                 },
@@ -208,19 +55,20 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "timeline-comparison",
             title: "Visual Comparison: Two Timelines",
             icon: "📊",
+            stepNumber: 1,
             explanation: `
                 <h3>See the Difference</h3>
                 <p>Both forms look forward to a future moment, but they show different things. Think of it like this:</p>
 
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0;"><strong>Goal = Checkpoint:</strong> "Will this be done by then?" ✓</p>
+                    <p style="margin: 0;"><strong>Completion = Checkpoint:</strong> "Will this be done by then?" ✓</p>
                     <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Journey:</strong> "How long will I have been doing this?"</p>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Goal Timeline -->
                     <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #0e7490;">Goal Focus: Done by the Deadline</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #0e7490;">Completion Focus: Done by the Deadline</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 3px; background: linear-gradient(to right, #94a3b8, #06b6d4, #22c55e); transform: translateY(-50%);"></div>
@@ -264,21 +112,39 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <h3>Understanding "Looking Back from the Future"</h3>
-                <p>The Future Perfect is unique: you imagine yourself IN THE FUTURE, looking back at what has happened!</p>
+                <h3>More Examples Side by Side</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Future Moment</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">The Completion (Done)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">The Duration (How Long)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By next year...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>will have finished</strong> my degree."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The degree is done!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>will have been studying</strong> for 4 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's how long my journey is!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By 6pm...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"She <strong>will have cooked</strong> dinner."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Dinner is ready!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"She <strong>will have been cooking</strong> for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ She started at 4pm!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By our anniversary...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"We <strong>will have visited</strong> 10 countries."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Count of achievements!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"We <strong>will have been traveling</strong> together for 5 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Journey duration!</span></td>
+                    </tr>
+                </table>
 
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0; font-style: italic; color: #64748b;">"Imagine it's December 2025..."</p>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
-                        <div style="background: #cffafe; padding: 0.75rem; border-radius: 0.5rem;">
-                            <p style="margin: 0; font-weight: 600; color: #0e7490;">Standing at that future point:</p>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"By December, I <strong>will have saved</strong> $10,000."</p>
-                            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Looking back: The saving is complete!</p>
+                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600;">⚠️ Important: Both forms need a FUTURE REFERENCE POINT!</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Future Perfect always needs "by...", "before...", or "when..." to show the deadline.</p>
+                    <div style="margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626; font-size: 0.9rem;">❌ "I will have finished." (Alone - unclear)</p>
                         </div>
-                        <div style="background: #f3e8ff; padding: 0.75rem; border-radius: 0.5rem;">
-                            <p style="margin: 0; font-weight: 600; color: #7c3aed;">Standing at that future point:</p>
-                            <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"By December, I <strong>will have been saving</strong> for 2 years."</p>
-                            <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Looking back: That's the journey length!</p>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a; font-size: 0.9rem;">✓ "I will have finished <strong>by Friday</strong>." (With deadline)</p>
                         </div>
                     </div>
                 </div>
@@ -291,7 +157,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "ex-fp-timeline",
-                    title: "Which Timeline?",
+                    title: "Which Form Fits?",
                     instructions: "Match each sentence to the correct focus.",
                     items: [
                         {
@@ -323,6 +189,49 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    id: "ex-planning-goals",
+                    title: "Planning and Goals",
+                    instructions: "Which form fits better for each goal or milestone?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "By December, I ___ 12 books this year. (counting achievement)",
+                            options: [
+                                { value: "simple", label: "will have read (Completion - count/result)" },
+                                { value: "continuous", label: "will have been reading (Duration)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "When the movie ends, we ___ in this theater for 3 hours. (time spent)",
+                            options: [
+                                { value: "simple", label: "will have sat (Completion)" },
+                                { value: "continuous", label: "will have been sitting (Duration)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "By the time you arrive, I ___ dinner. (meal is ready)",
+                            options: [
+                                { value: "simple", label: "will have made (Completion - task done)" },
+                                { value: "continuous", label: "will have been making (Duration - in progress)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "Next week, they ___ on this project for 6 months. (project timeline)",
+                            options: [
+                                { value: "simple", label: "will have worked (Completion)" },
+                                { value: "continuous", label: "will have been working (Duration)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
             ],
         },
 
@@ -333,7 +242,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "focus-goals",
             title: "Focus on Goals & Deadlines",
             icon: "🏆",
-            stepNumber: 1,
+            stepNumber: 2,
             explanation: `
                 <h3>What Will Be Done By Then?</h3>
                 <p>Use <strong>The Future Perfect (Goal)</strong> (will have + past participle) to talk about actions that will be <strong>completed before</strong> a future deadline or moment.</p>

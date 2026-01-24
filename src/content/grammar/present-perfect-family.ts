@@ -7,171 +7,43 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
     tableOfContents: true,
     sections: [
         // -------------------------------------------------------------------------
-        // 1. Introduction: The Two Sides of the Same Coin
+        // 1. Introduction
         // -------------------------------------------------------------------------
         {
             id: "family-intro",
-            title: "The Present Perfect Family",
+            title: "The Present Perfect Family: Connecting Past to Present",
             icon: "👨‍👩‍👧‍👦",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem; border-left: 5px solid #6366f1;">
-                    <h3 style="margin-top: 0; color: #6366f1; font-size: 1.4rem;">Connecting Past & Present</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.6;">
-                        The <strong>Present Perfect Family</strong> tells the story of how the past affects the present.
-                        They are like two siblings with different personalities:
-                    </p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #c86b51; margin-top: 0;">1. The Finisher (Result)</h4>
-                            <p style="font-size: 0.95rem; color: #4b5563;">"I <strong>have finished</strong> my work."</p>
-                            <span style="display: inline-block; background: #fff7ed; color: #c2410c; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: RESULT / COMPLETION</span>
-                        </div>
-                        <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #6366f1; margin-top: 0;">2. The Worker (Duration)</h4>
-                            <p style="font-size: 0.95rem; color: #4b5563;">"I <strong>have been working</strong> all day."</p>
-                            <span style="display: inline-block; background: #eef2ff; color: #4338ca; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: DURATION / ACTIVITY</span>
-                        </div>
-                    </div>
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about telling someone about your day. "I've finished my report." "I've been working all morning." Same situation, two different ways to talk about it. That's the Present Perfect family! One focuses on what's <strong>done</strong>, the other on what you've been <strong>doing</strong>.</p>
                 </div>
 
-                <h3>Why Do We Need Two Forms?</h3>
-                <p>Think about this situation: You've been cooking dinner. Your friend asks about it. You could answer two different ways:</p>
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Result Answer:</p>
-                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have made</strong> pasta."</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ The pasta is ready! (Result)</p>
-                    </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca;">Duration Answer:</p>
-                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have been cooking</strong> for an hour."</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ That explains why you're tired! (Activity)</p>
-                    </div>
-                </div>
-
-                <h3>The Key Question to Ask Yourself</h3>
-                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0;">
-                    <p style="margin: 0; font-size: 1.15rem; text-align: center;">
-                        <strong>"Do I want to talk about the RESULT or the ACTIVITY?"</strong>
-                    </p>
-                </div>
-
-                <h3>More Examples to Understand the Difference</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Situation</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration</th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Cleaning the house</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have cleaned</strong> the kitchen."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The kitchen is clean now!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been cleaning</strong> all morning."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's why I'm exhausted!</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Writing emails</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have written</strong> 5 emails."<br><span style="font-size: 0.8rem; color: #6b7280;">→ 5 emails are done!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been writing</strong> emails for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I've spent 2 hours on this!</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Learning English</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have learned</strong> 500 new words."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Look at my vocabulary!</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been learning</strong> English for 2 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ It's been a long journey!</span></td>
-                    </tr>
-                </table>
-
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Real-Life Tip:</p>
-                    <p style="margin: 0.5rem 0 0 0;">Native speakers often use BOTH forms in the same conversation! For example: "I <strong>have been working</strong> on this project for 3 weeks, and I <strong>have completed</strong> 80% of it."</p>
-                </div>
-
-                <p style="margin-top: 1.5rem;">We use them together all the time! Let's learn to mix and match them naturally.</p>
+                <h3>Why This Matters</h3>
+                <p>The Present Perfect connects past actions to the present moment. Whether you want to show a completed result or emphasize ongoing effort, these two forms give you the flexibility to express exactly what you mean.</p>
             `,
             exercises: [
                 {
-                    id: "intro-understanding",
-                    title: "Check Your Understanding",
-                    instructions: "Based on what you just learned, choose the best answer.",
+                    id: "intro-check",
+                    title: "Quick Check: Result or Activity?",
+                    instructions: "Choose what each sentence emphasizes.",
                     items: [
                         {
                             type: "radio",
-                            label: "What does the RESULT form focus on?",
+                            label: "\"I have finished my homework.\"",
                             options: [
-                                { value: "result", label: "The result or completion" },
-                                { value: "duration", label: "How long something took" },
+                                { value: "result", label: "Result: The homework is done" },
+                                { value: "duration", label: "Duration: How long I worked on it" },
                             ],
                             expectedAnswer: "result",
                         },
                         {
                             type: "radio",
-                            label: "What does the DURATION form focus on?",
+                            label: "\"I have been studying all afternoon.\"",
                             options: [
-                                { value: "result", label: "The finished product" },
-                                { value: "duration", label: "The activity or duration" },
+                                { value: "result", label: "Result: The studying is complete" },
+                                { value: "duration", label: "Duration: The time spent studying" },
                             ],
                             expectedAnswer: "duration",
-                        },
-                        {
-                            type: "radio",
-                            label: "'I have read 3 books this month.' - This emphasizes:",
-                            options: [
-                                { value: "simple", label: "The number/result" },
-                                { value: "continuous", label: "The time spent (Duration)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "'I have been reading all afternoon.' - This emphasizes:",
-                            options: [
-                                { value: "simple", label: "How many books (Result)" },
-                                { value: "continuous", label: "The duration/activity" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                    ],
-                },
-                {
-                    id: "intro-matching",
-                    title: "Match the Situation",
-                    instructions: "Which form would you use in each situation?",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "Your hands are dirty. Someone asks why.",
-                            options: [
-                                { value: "continuous", label: "I have been gardening. (Shows activity)" },
-                                { value: "simple", label: "I have gardened. (Shows result)" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                        {
-                            type: "radio",
-                            label: "You want to show your friend the 10 photos you took.",
-                            options: [
-                                { value: "simple", label: "I have taken 10 photos! (Shows count)" },
-                                { value: "continuous", label: "I have been taking photos. (Shows activity)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "You're sweating because you exercised.",
-                            options: [
-                                { value: "continuous", label: "I have been exercising. (Explains your condition)" },
-                                { value: "simple", label: "I have exercised. (Just states completion)" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                        {
-                            type: "radio",
-                            label: "You finished all your homework and want to tell your parent.",
-                            options: [
-                                { value: "simple", label: "I have finished my homework! (Result is ready)" },
-                                { value: "continuous", label: "I have been finishing my homework. (Incorrect)" },
-                            ],
-                            expectedAnswer: "simple",
                         },
                     ],
                 },
@@ -185,13 +57,14 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "timeline-comparison",
             title: "Visual Comparison: Two Timelines",
             icon: "⏱️",
+            stepNumber: 1,
             explanation: `
                 <h3>See the Difference</h3>
                 <p>Both forms connect past to present, but they show different things. Think of it like taking a photo vs. recording a video:</p>
 
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0;"><strong>Simple = Photo:</strong> "Here's the finished result!" 📸</p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>Continuous = Video:</strong> "Watch how long I've been doing this!" 🎥</p>
+                    <p style="margin: 0;"><strong>Result = Photo:</strong> "Here's the finished result!" 📸</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Video:</strong> "Watch how long I've been doing this!" 🎥</p>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
@@ -240,38 +113,56 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <h3>Understanding the Connection to NOW</h3>
-                <p>The key thing to remember: <strong>both forms connect to the present moment</strong>. That's why it's called "Present" Perfect!</p>
+                <h3>Same Situation, Two Different Answers</h3>
+                <p>Think about this: You've been cooking dinner. Your friend asks about it. You could answer two different ways:</p>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Result Examples:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I <strong>have lost</strong> my phone." → <em>It's still lost NOW</em></li>
-                            <li>"She <strong>has broken</strong> her leg." → <em>It's still broken NOW</em></li>
-                            <li>"They <strong>have moved</strong> to Spain." → <em>They live there NOW</em></li>
-                        </ul>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Result Answer:</p>
+                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have made</strong> pasta."</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ The pasta is ready! (Result)</p>
                     </div>
-                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Duration Examples:</p>
-                        <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
-                            <li>"I <strong>have been waiting</strong> for an hour." → <em>Still waiting NOW</em></li>
-                            <li>"It <strong>has been raining</strong> all day." → <em>The ground is wet NOW</em></li>
-                            <li>"She <strong>has been crying</strong>." → <em>Her eyes are red NOW</em></li>
-                        </ul>
+                    <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                        <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #4338ca;">Duration Answer:</p>
+                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have been cooking</strong> for an hour."</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ That explains why you're tired! (Activity)</p>
                     </div>
                 </div>
 
-                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
-                    <p style="margin: 0; font-weight: 600;">💡 Quick Test:</p>
-                    <p style="margin: 0.5rem 0 0 0;">If you can add "...and it still matters now" to your sentence, you're probably using the Present Perfect correctly!</p>
+                <h3>More Examples Side by Side</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Situation</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Cleaning the house</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have cleaned</strong> the kitchen."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The kitchen is clean now!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been cleaning</strong> all morning."<br><span style="font-size: 0.8rem; color: #6b7280;">→ That's why I'm exhausted!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Writing emails</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have written</strong> 5 emails."<br><span style="font-size: 0.8rem; color: #6b7280;">→ 5 emails are done!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been writing</strong> emails for 2 hours."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I've spent 2 hours on this!</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">Learning English</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have learned</strong> 500 new words."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Look at my vocabulary!</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>have been learning</strong> English for 2 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ It's been a long journey!</span></td>
+                    </tr>
+                </table>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600;">💡 Real-Life Tip:</p>
+                    <p style="margin: 0.5rem 0 0 0;">Native speakers often use BOTH forms in the same conversation! For example: "I <strong>have been working</strong> on this project for 3 weeks, and I <strong>have completed</strong> 80% of it."</p>
                 </div>
             `,
             exercises: [
                 {
                     id: "ex-timeline-concept",
-                    title: "Which Timeline?",
-                    instructions: "Match each sentence to the correct timeline focus.",
+                    title: "Which Form Fits?",
+                    instructions: "Match each sentence to the correct focus.",
                     items: [
                         {
                             type: "radio",
@@ -299,6 +190,49 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                                 { value: "duration", label: "Duration: how long she's been looking" },
                             ],
                             expectedAnswer: "result",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-situation-match",
+                    title: "Match the Situation",
+                    instructions: "Which form would you use in each situation?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Your hands are dirty. Someone asks why.",
+                            options: [
+                                { value: "continuous", label: "I have been gardening. (Shows activity)" },
+                                { value: "simple", label: "I have gardened. (Shows result)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "You want to show your friend the 10 photos you took.",
+                            options: [
+                                { value: "simple", label: "I have taken 10 photos! (Shows count)" },
+                                { value: "continuous", label: "I have been taking photos. (Shows activity)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "You're sweating because you exercised.",
+                            options: [
+                                { value: "continuous", label: "I have been exercising. (Explains your condition)" },
+                                { value: "simple", label: "I have exercised. (Just states completion)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "You finished all your homework and want to tell your parent.",
+                            options: [
+                                { value: "simple", label: "I have finished my homework! (Result is ready)" },
+                                { value: "continuous", label: "I have been finishing my homework. (Incorrect)" },
+                            ],
+                            expectedAnswer: "simple",
                         },
                     ],
                 },

@@ -5,187 +5,43 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
     tableOfContents: true,
     sections: [
         // -------------------------------------------------------------------------
-        // 1. Introduction: The Past Perfect Family
+        // 1. Introduction
         // -------------------------------------------------------------------------
         {
             id: "family-intro",
-            title: "The Past Perfect Family",
+            title: "The Past Perfect Family: Looking Back from the Past",
             icon: "🕰️",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem; border-left: 5px solid #f59e0b;">
-                    <h3 style="margin-top: 0; color: #f59e0b; font-size: 1.4rem;">Looking Back at Two Past Events</h3>
-                    <p style="font-size: 1.1rem; line-height: 1.6;">
-                        The <strong>Past Perfect Family</strong> helps you tell stories about the past by showing the <strong>order</strong> of events or the <strong>duration</strong> before something happened.
-                    </p>
-                    <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #f59e0b; margin-top: 0;">1. The Time Traveler (Order)</h4>
-                            <p style="font-size: 0.95rem; color: #4b5563;">"When I arrived, she <strong>had already left</strong>."</p>
-                            <span style="display: inline-block; background: #fef3c7; color: #b45309; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: WHAT HAPPENED FIRST</span>
-                        </div>
-                        <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #8b5cf6; margin-top: 0;">2. The Background Painter (Duration)</h4>
-                            <p style="font-size: 0.95rem; color: #4b5563;">"I was tired because I <strong>had been working</strong> all day."</p>
-                            <span style="display: inline-block; background: #ede9fe; color: #6d28d9; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: HOW LONG BEFORE</span>
-                        </div>
-                    </div>
+                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about telling a story from last week. "When I arrived, she had already left." "I was tired because I had been working all day." These forms let you show what happened <strong>first</strong> or how long something was happening <strong>before</strong> another past event.</p>
                 </div>
 
-                <h3>Why Do We Need the Past Perfect?</h3>
-                <p>Imagine you're telling a story about yesterday. You need to show that one thing happened <strong>before</strong> another:</p>
-
-                <div style="background: #f8fafc; padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e2e8f0;">
-                    <p style="margin: 0 0 1rem 0; font-style: italic; color: #64748b;">"I went to the cinema yesterday. But wait... let me go back further..."</p>
-                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                        <span style="background: #f59e0b; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">EARLIER: had finished work</span>
-                        <span style="font-size: 1.5rem;">→</span>
-                        <span style="background: #14b8a6; color: white; padding: 0.5rem 0.75rem; border-radius: 0.5rem; font-weight: 600;">LATER: went to cinema</span>
-                    </div>
-                    <p style="margin: 1rem 0 0 0; font-size: 1.1rem;">"I went to the cinema after I <strong>had finished</strong> work."</p>
-                </div>
-
-                <h3>The Key Question to Ask Yourself</h3>
-                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 0.5rem; padding: 1.25rem; margin: 1rem 0;">
-                    <p style="margin: 0; font-size: 1.15rem; text-align: center;">
-                        <strong>"Am I talking about SEQUENCE (what happened first) or DURATION (how long before)?"</strong>
-                    </p>
-                </div>
-
-                <h3>More Examples: Order vs Duration</h3>
-                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Story Context</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">The Order (What First)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">The Duration (How Long)</th>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">The movie started...</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...but I <strong>had already seen</strong> it."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I saw it before (sequence)</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>had been waiting</strong> for 30 minutes."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The waiting time (duration)</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">She got the job...</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...because she <strong>had studied</strong> hard."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Completed preparation (result)</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...after she <strong>had been applying</strong> for months."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Long process (duration)</span></td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">When I met him...</td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...he <strong>had just arrived</strong> from Spain."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Recent completed action</span></td>
-                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...he <strong>had been living</strong> in Spain for 5 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ How long before our meeting</span></td>
-                    </tr>
-                </table>
-
-                <h3>Real Story Example</h3>
-                <div style="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%); padding: 1.25rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0 0 0.5rem 0; font-weight: 600;">🎬 A Day at Work:</p>
-                    <p style="margin: 0; font-size: 1.05rem; line-height: 1.8;">
-                        "When my boss arrived at 10am, I <strong style="color: #b45309;">had already finished</strong> the report.
-                        I was exhausted because I <strong style="color: #6d28d9;">had been working</strong> since 6am.
-                        I <strong style="color: #b45309;">had drunk</strong> 4 cups of coffee, and I <strong style="color: #6d28d9;">had been checking</strong> my emails constantly."
-                    </p>
-                    <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #4b5563;">
-                        Notice: <span style="color: #b45309; font-weight: 600;">Order</span> = completed actions (finished, drunk) |
-                        <span style="color: #6d28d9; font-weight: 600;">Duration</span> = duration/ongoing activity (working, checking)
-                    </p>
-                </div>
-
-                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308; margin-top: 1.5rem;">
-                    <p style="margin: 0; font-weight: 600;">⚠️ Important: Both forms need TWO past references!</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Past Perfect always works with another past action or time marker. You can't use it alone!</p>
-                    <div style="margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626; font-size: 0.9rem;">❌ "I had eaten breakfast." (Alone - unclear)</p>
-                        </div>
-                        <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a; font-size: 0.9rem;">✓ "I had eaten breakfast <strong>before I left</strong>." (With reference)</p>
-                        </div>
-                    </div>
-                </div>
+                <h3>Why This Matters</h3>
+                <p>Past Perfect is your storytelling tool. It creates a "flashback" in your stories, helping you explain background events and show the order of what happened. Without it, your stories would sound flat!</p>
             `,
             exercises: [
                 {
-                    id: "intro-understanding",
-                    title: "Check Your Understanding",
-                    instructions: "Based on what you just learned, choose the best answer.",
+                    id: "intro-check",
+                    title: "Quick Check: Order or Duration?",
+                    instructions: "Choose what each sentence emphasizes.",
                     items: [
                         {
                             type: "radio",
-                            label: "What does Past Perfect (Order) focus on?",
+                            label: "\"When I arrived, she had already left.\"",
                             options: [
-                                { value: "sequence", label: "Which action happened first (sequence)" },
-                                { value: "duration", label: "How long something lasted" },
+                                { value: "order", label: "Order: She left first, then I arrived" },
+                                { value: "duration", label: "Duration: How long she had been there" },
                             ],
-                            expectedAnswer: "sequence",
+                            expectedAnswer: "order",
                         },
                         {
                             type: "radio",
-                            label: "What does Past Perfect (Duration) focus on?",
+                            label: "\"I was tired because I had been working all day.\"",
                             options: [
-                                { value: "sequence", label: "The order of events" },
-                                { value: "duration", label: "The duration before a past moment" },
+                                { value: "order", label: "Order: The sequence of events" },
+                                { value: "duration", label: "Duration: How long I was working" },
                             ],
                             expectedAnswer: "duration",
-                        },
-                        {
-                            type: "radio",
-                            label: "'When I arrived, she had already left.' - This shows:",
-                            options: [
-                                { value: "simple", label: "Order - she left BEFORE I arrived" },
-                                { value: "continuous", label: "Duration - how long she waited" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "'I was tired because I had been working all day.' - This shows:",
-                            options: [
-                                { value: "simple", label: "A completed action (Order)" },
-                                { value: "continuous", label: "Duration that explains my tiredness" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                    ],
-                },
-                {
-                    id: "intro-story-context",
-                    title: "Choose the Right Form for the Story",
-                    instructions: "Which form fits better in each storytelling situation?",
-                    items: [
-                        {
-                            type: "radio",
-                            label: "The party was over. Everyone ___ home. (completed action before)",
-                            options: [
-                                { value: "simple", label: "had gone (Order - they left earlier)" },
-                                { value: "continuous", label: "had been going (Duration - how long)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "Her eyes were red. She ___. (activity that explains her condition)",
-                            options: [
-                                { value: "simple", label: "had cried (Order - just states it happened)" },
-                                { value: "continuous", label: "had been crying (Duration - ongoing activity)" },
-                            ],
-                            expectedAnswer: "continuous",
-                        },
-                        {
-                            type: "radio",
-                            label: "By the time I woke up, my parents ___ to work. (completed departure)",
-                            options: [
-                                { value: "simple", label: "had already gone (Order - sequence)" },
-                                { value: "continuous", label: "had been going (Duration - duration)" },
-                            ],
-                            expectedAnswer: "simple",
-                        },
-                        {
-                            type: "radio",
-                            label: "The ground was wet. It ___ all night. (duration of weather)",
-                            options: [
-                                { value: "simple", label: "had rained (Order - just states fact)" },
-                                { value: "continuous", label: "had been raining (Duration - emphasizes duration)" },
-                            ],
-                            expectedAnswer: "continuous",
                         },
                     ],
                 },
@@ -199,13 +55,14 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "timeline-comparison",
             title: "Visual Comparison: Two Timelines",
             icon: "📊",
+            stepNumber: 1,
             explanation: `
                 <h3>See the Difference</h3>
                 <p>Both forms look backward from a past moment, but they focus on different things. Think of it like this:</p>
 
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0;"><strong>Simple = Sequence:</strong> "This happened, THEN that happened." (1st → 2nd)</p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>Continuous = Background:</strong> "Something WAS happening before that moment."</p>
+                    <p style="margin: 0;"><strong>Order = Sequence:</strong> "This happened, THEN that happened." (1st → 2nd)</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Background:</strong> "Something WAS happening before that moment."</p>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
@@ -257,19 +114,40 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <h3>Understanding "Looking Back from the Past"</h3>
-                <p>The key difference from Present Perfect: We're standing in the PAST, looking FURTHER back!</p>
+                <h3>More Examples Side by Side</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: #f8fafc;">
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Story Context</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f59e0b; color: #b45309;">The Order (What First)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #8b5cf6; color: #6d28d9;">The Duration (How Long)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">The movie started...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...but I <strong>had already seen</strong> it."<br><span style="font-size: 0.8rem; color: #6b7280;">→ I saw it before (sequence)</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"I <strong>had been waiting</strong> for 30 minutes."<br><span style="font-size: 0.8rem; color: #6b7280;">→ The waiting time (duration)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">She got the job...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...because she <strong>had studied</strong> hard."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Completed preparation</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...after she <strong>had been applying</strong> for months."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Long process (duration)</span></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">When I met him...</td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...he <strong>had just arrived</strong> from Spain."<br><span style="font-size: 0.8rem; color: #6b7280;">→ Recent completed action</span></td>
+                        <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">"...he <strong>had been living</strong> in Spain for 5 years."<br><span style="font-size: 0.8rem; color: #6b7280;">→ How long before our meeting</span></td>
+                    </tr>
+                </table>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
-                    <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Present Perfect (looking back from NOW):</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"I <strong>have seen</strong> that movie."</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Past action connected to NOW</p>
-                    </div>
-                    <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #b45309;">Past Perfect (looking back from a PAST moment):</p>
-                        <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">"When you asked me, I <strong>had already seen</strong> it."</p>
-                        <p style="margin: 0.25rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ Even FURTHER back from that past moment</p>
+                <div style="background: #fef9c3; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #eab308; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600;">⚠️ Important: Both forms need TWO past references!</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Past Perfect always works with another past action or time marker. You can't use it alone!</p>
+                    <div style="margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #dc2626; font-size: 0.9rem;">❌ "I had eaten breakfast." (Alone - unclear)</p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #16a34a; font-size: 0.9rem;">✓ "I had eaten breakfast <strong>before I left</strong>." (With reference)</p>
+                        </div>
                     </div>
                 </div>
 
@@ -281,7 +159,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             exercises: [
                 {
                     id: "ex-pp-timeline",
-                    title: "Which Timeline?",
+                    title: "Which Form Fits?",
                     instructions: "Match each sentence to the correct focus.",
                     items: [
                         {
@@ -313,6 +191,49 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    id: "ex-story-context",
+                    title: "Choose the Right Form for the Story",
+                    instructions: "Which form fits better in each storytelling situation?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "The party was over. Everyone ___ home. (completed action before)",
+                            options: [
+                                { value: "simple", label: "had gone (Order - they left earlier)" },
+                                { value: "continuous", label: "had been going (Duration)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "Her eyes were red. She ___. (activity that explains her condition)",
+                            options: [
+                                { value: "simple", label: "had cried (Order - just states it happened)" },
+                                { value: "continuous", label: "had been crying (Duration - ongoing activity)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                        {
+                            type: "radio",
+                            label: "By the time I woke up, my parents ___ to work. (completed departure)",
+                            options: [
+                                { value: "simple", label: "had already gone (Order - sequence)" },
+                                { value: "continuous", label: "had been going (Duration)" },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "The ground was wet. It ___ all night. (duration of weather)",
+                            options: [
+                                { value: "simple", label: "had rained (Order - just states fact)" },
+                                { value: "continuous", label: "had been raining (Duration - emphasizes duration)" },
+                            ],
+                            expectedAnswer: "continuous",
+                        },
+                    ],
+                },
             ],
         },
 
@@ -323,7 +244,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "focus-order",
             title: "Focus on Order",
             icon: "🔢",
-            stepNumber: 1,
+            stepNumber: 2,
             explanation: `
                 <h3>What Happened First?</h3>
                 <p>Use <strong>The Past Perfect (Order)</strong> (had + past participle) to show which action happened <strong>FIRST</strong> when telling a story about two past events.</p>

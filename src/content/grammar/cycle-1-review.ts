@@ -12,7 +12,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(59, 130, 246, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 2rem; border-left: 5px solid #22c55e;">
                     <h3 style="margin-top: 0; color: #16a34a; font-size: 1.4rem;">Cycle 1: The Foundation</h3>
                     <p style="font-size: 1.1rem; line-height: 1.6;">
-                        Cycle 1 asked you to notice how time and meaning play together in everyday routines. This review is a calm check-in—no frantic memorization, just reminders that your grammar toolkit already follows a rhythm.
+                        Cycle 1 asked you to notice how time and meaning play together in everyday routines. This is a quick review to see what you remember and what we need to practice more before we start Cycle 2.
                     </p>
                     <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
@@ -825,6 +825,156 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             ]
         },
         {
+            id: "superlatives",
+            title: "Superlatives: The Most, The Best, The -est",
+            icon: "🏆",
+            explanation: `
+                <p>Superlatives help you find the <strong>extreme</strong> in a group—the highest, lowest, best, worst. Use them when comparing <strong>three or more</strong> things.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-top: 3px solid #22c55e;">
+                        <h4 style="margin: 0; color: #16a34a;">Short adjectives: -est</h4>
+                        <p style="margin: 0.4rem 0 0 0; font-size: 0.85rem;">cheap → <strong>the cheapest</strong><br>old → <strong>the oldest</strong><br>busy → <strong>the busiest</strong></p>
+                    </div>
+                    <div style="background: #eff6ff; padding: 1rem; border-radius: 0.5rem; border-top: 3px solid #3b82f6;">
+                        <h4 style="margin: 0; color: #1d4ed8;">Long adjectives: most/least</h4>
+                        <p style="margin: 0.4rem 0 0 0; font-size: 0.85rem;">expensive → <strong>the most expensive</strong><br>comfortable → <strong>the most comfortable</strong></p>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+                    <p style="margin: 0;"><strong>Irregular forms:</strong> good → <strong>the best</strong> | bad → <strong>the worst</strong> | far → <strong>the farthest</strong></p>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Comparatives vs Superlatives",
+                content: "Comparatives compare 2 things (cheaper than). Superlatives find the extreme in 3+ things (the cheapest of all)."
+            },
+            exercises: [
+                {
+                    id: "cycle1-superlatives",
+                    title: "Form the superlative",
+                    instructions: "Complete with the correct superlative form.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "This is ___ (cheap) apartment in the building.",
+                            expectedAnswer: "the cheapest"
+                        },
+                        {
+                            type: "text",
+                            label: "Monday is ___ (busy) day of the week.",
+                            expectedAnswer: "the busiest"
+                        },
+                        {
+                            type: "text",
+                            label: "She's ___ (experienced) person on our team.",
+                            expectedAnswer: "the most experienced"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: "quantifiers",
+            title: "Quantifiers: How Much? How Many?",
+            icon: "🔢",
+            explanation: `
+                <p>Quantifiers describe amounts. The key is knowing if the noun is <strong>countable</strong> (you can count it) or <strong>uncountable</strong> (you can't count it).</p>
+
+                <div style="overflow-x: auto; margin: 1.5rem 0;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 400px;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 0.75rem; border-bottom: 2px solid #e2e8f0; text-align: left;"></th>
+                                <th style="padding: 0.75rem; border-bottom: 2px solid #22c55e; text-align: left; color: #16a34a;">Countable (hours, jobs)</th>
+                                <th style="padding: 0.75rem; border-bottom: 2px solid #3b82f6; text-align: left; color: #1d4ed8;">Uncountable (time, money)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Large amount</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>many</strong> hours</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>much</strong> time</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Small amount</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>few</strong> options</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>little</strong> money</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>Comparing</strong></td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>fewer</strong> hours</td>
+                                <td style="padding: 0.75rem; border-bottom: 1px solid #f1f5f9;"><strong>less</strong> time</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444;">
+                    <p style="margin: 0; font-weight: 600; color: #dc2626;">⚠️ Common Mistakes</p>
+                    <p style="margin: 0.5rem 0 0 0;">❌ "How <strong>much</strong> hours?" → ✓ "How <strong>many</strong> hours?" (hours are countable)</p>
+                    <p style="margin: 0.25rem 0 0 0;">❌ "<strong>less</strong> employees" → ✓ "<strong>fewer</strong> employees" (employees are countable)</p>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Quick Test",
+                content: "Can you put a number in front of it? '1 hour, 2 hours' = countable (use many/few/fewer). 'Money' (not 1 money) = uncountable (use much/little/less)."
+            },
+            exercises: [
+                {
+                    id: "cycle1-quantifiers-choice",
+                    title: "Many or Much?",
+                    instructions: "Choose the correct quantifier.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "How ___ vacation days do you get?",
+                            options: [
+                                { value: "many", label: "many" },
+                                { value: "much", label: "much" }
+                            ],
+                            expectedAnswer: "many"
+                        },
+                        {
+                            type: "radio",
+                            label: "I don't have ___ experience with computers.",
+                            options: [
+                                { value: "many", label: "many" },
+                                { value: "much", label: "much" }
+                            ],
+                            expectedAnswer: "much"
+                        }
+                    ]
+                },
+                {
+                    id: "cycle1-quantifiers-fewer-less",
+                    title: "Fewer or Less?",
+                    instructions: "Choose the correct word for comparing.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "This job has ___ hours than my last one.",
+                            options: [
+                                { value: "fewer", label: "fewer" },
+                                { value: "less", label: "less" }
+                            ],
+                            expectedAnswer: "fewer"
+                        },
+                        {
+                            type: "radio",
+                            label: "I want a job with ___ stress.",
+                            options: [
+                                { value: "fewer", label: "fewer" },
+                                { value: "less", label: "less" }
+                            ],
+                            expectedAnswer: "less"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             id: "connectors",
             title: "Connectors: glue time, actions, and meaning",
             icon: "🧵",
@@ -970,6 +1120,19 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                                 <p style="margin: 0;">Short: <strong>-er than</strong> (faster)</p>
                                 <p style="margin: 0.4rem 0;">Long: <strong>more...than</strong> (more creative)</p>
                                 <p style="margin: 0;">Irregular: <strong>better / worse</strong></p>
+                            </div>
+
+                            <h3 style="color: #b45309; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🏆 Superlatives</h3>
+                            <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                                <p style="margin: 0;">Short: <strong>the + -est</strong> (the cheapest)</p>
+                                <p style="margin: 0.4rem 0;">Long: <strong>the most/least</strong> (the most expensive)</p>
+                                <p style="margin: 0;">Irregular: <strong>the best / the worst</strong></p>
+                            </div>
+
+                            <h3 style="color: #7c3aed; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🔢 Quantifiers</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                                <div style="background: #f0fdf4; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;">Countable: <strong>many/few/fewer</strong></div>
+                                <div style="background: #eff6ff; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;">Uncountable: <strong>much/little/less</strong></div>
                             </div>
 
                             <h3 style="color: #059669; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🧵 Connectors</h3>
@@ -1195,6 +1358,50 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 { value: "or", label: "or" }
             ],
             correctAnswer: "before"
+        },
+        {
+            id: "q21",
+            question: "Which is the correct superlative form?",
+            options: [
+                { value: "a", label: "This is the most cheap apartment." },
+                { value: "b", label: "This is the cheapest apartment." },
+                { value: "c", label: "This is the cheaper apartment." }
+            ],
+            correctAnswer: "b",
+            explanation: "'Cheap' is a short adjective, so use -est: the cheapest."
+        },
+        {
+            id: "q22",
+            question: "Choose the correct quantifier: 'How ___ experience do you have?'",
+            options: [
+                { value: "a", label: "many" },
+                { value: "b", label: "much" },
+                { value: "c", label: "few" }
+            ],
+            correctAnswer: "b",
+            explanation: "'Experience' is uncountable, so use 'much.'"
+        },
+        {
+            id: "q23",
+            question: "Which is correct? 'My new job has ___ hours than my old one.'",
+            options: [
+                { value: "a", label: "fewer" },
+                { value: "b", label: "less" },
+                { value: "c", label: "little" }
+            ],
+            correctAnswer: "a",
+            explanation: "'Hours' are countable, so use 'fewer' for comparisons."
+        },
+        {
+            id: "q24",
+            question: "Choose the correct sentence:",
+            options: [
+                { value: "a", label: "She's the most experienced person on the team." },
+                { value: "b", label: "She's the experiencedest person on the team." },
+                { value: "c", label: "She's the more experienced person on the team." }
+            ],
+            correctAnswer: "a",
+            explanation: "'Experienced' is a long adjective, so use 'the most' + adjective."
         }
     ]
 };
