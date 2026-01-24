@@ -110,13 +110,21 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         }
     }, [completionKey]);
 
-    const awardCompletion = useCallback(async () => {
-        if (!completionKey || awardSent) return;
+    const awardCompletion = useCallback(async (quizScore?: number, quizTotal?: number) => {
+        if (!completionKey) return;
+        // Don't skip if it's a quiz score update, as students can take it multiple times
+        if (awardSent && quizScore === undefined) return;
+
         try {
             await fetch("/api/grammar/complete", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ slug: completionKey }),
+                body: JSON.stringify({ 
+                    slug: completionKey, 
+                    score: quizScore,
+                    total: quizTotal,
+                    activityId 
+                }),
             });
             // Also save 100% progress if activityId is provided
             if (activityId) {
@@ -125,7 +133,9 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         } catch {
             // non-blocking; user still reached completion
         } finally {
-            setAwardSent(true);
+            if (quizScore === undefined) {
+                setAwardSent(true);
+            }
         }
     }, [completionKey, awardSent, activityId]);
 
@@ -303,9 +313,9 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
-    const handleQuizComplete = useCallback(() => {
+    const handleQuizComplete = useCallback((score: number, total: number) => {
         setShowQuiz(false);
-        void awardCompletion();
+        void awardCompletion(score, total);
         if (onComplete) {
             onComplete();
         }

@@ -219,6 +219,48 @@ export async function GET(
         };
     });
 
+    // Get grammar guide quiz results for this student
+    const grammarGuideActivities = await prisma.activity.findMany({
+        where: {
+            type: 'guide',
+            category: 'grammar'
+        },
+        select: {
+            id: true,
+            title: true
+        }
+    });
+
+    const grammarQuizSubmissions = await prisma.submission.findMany({
+        where: {
+            userId: studentId,
+            activityId: {
+                in: grammarGuideActivities.map(a => a.id)
+            },
+            score: { not: null }
+        },
+        select: {
+            id: true,
+            activityId: true,
+            score: true,
+            createdAt: true
+        },
+        orderBy: {
+            createdAt: 'desc'
+        }
+    });
+
+    const grammarQuizResults = grammarGuideActivities.map(activity => {
+        const submission = grammarQuizSubmissions.find(s => s.activityId === activity.id);
+        return {
+            id: activity.id,
+            title: activity.title,
+            score: submission?.score ?? null,
+            submittedAt: submission?.createdAt ?? null,
+            completed: submission !== undefined
+        };
+    }).filter(r => r.completed); // Only show guides where the quiz was actually taken
+
     return NextResponse.json({
         student: {
             ...student,
@@ -264,6 +306,7 @@ export async function GET(
             activity: entry.reason,
             timestamp: entry.createdAt
         })),
-        verbQuizResults
+        verbQuizResults,
+        grammarQuizResults
     });
 }

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 
 interface MiniQuizSectionProps {
     questions: MiniQuizQuestion[];
-    onComplete: () => void;
+    onComplete: (score: number, total: number) => void;
     topicTitle?: string;
 }
 
@@ -150,7 +150,7 @@ export function MiniQuizSection({ questions, onComplete, topicTitle = "this gram
                                 <Button variant="outline" onClick={handleReset} className="w-full sm:w-auto">
                                     Try Again
                                 </Button>
-                                <Button variant="success" onClick={onComplete} className="w-full sm:w-auto">
+                                <Button variant="success" onClick={() => onComplete(score, questions.length)} className="w-full sm:w-auto">
                                     Finish
                                 </Button>
                             </motion.div>
