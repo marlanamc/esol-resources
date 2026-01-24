@@ -19,12 +19,12 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </p>
                     <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #06b6d4; margin-top: 0;">1. The Goal Setter (Simple)</h4>
+                            <h4 style="color: #06b6d4; margin-top: 0;">1. The Goal Setter (Goal)</h4>
                             <p style="font-size: 0.95rem; color: #4b5563;">"By June, I <strong>will have graduated</strong>."</p>
                             <span style="display: inline-block; background: #cffafe; color: #0e7490; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: COMPLETED BY DEADLINE</span>
                         </div>
                         <div style="flex: 1; min-width: 250px; background: white; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
-                            <h4 style="color: #a855f7; margin-top: 0;">2. The Journey Tracker (Continuous)</h4>
+                            <h4 style="color: #a855f7; margin-top: 0;">2. The Journey Tracker (Duration)</h4>
                             <p style="font-size: 0.95rem; color: #4b5563;">"By June, I <strong>will have been studying</strong> for 4 years."</p>
                             <span style="display: inline-block; background: #f3e8ff; color: #7c3aed; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; font-weight: 600;">Focus: DURATION UP TO THAT POINT</span>
                         </div>
@@ -53,12 +53,12 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </p>
                 </div>
 
-                <h3>More Examples: Simple vs Continuous</h3>
+                <h3>More Examples: Goals vs Duration</h3>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
                     <tr style="background: #f8fafc;">
                         <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Future Moment</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">Simple (Completion)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Continuous (Duration)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">The Goal (Completion)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">The Duration (How Long)</th>
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border-bottom: 1px solid #e2e8f0;">By next year...</td>
@@ -119,7 +119,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "What does Future Perfect SIMPLE focus on?",
+                            label: "What does Future Perfect (Goal) focus on?",
                             options: [
                                 { value: "completion", label: "Completion by a deadline" },
                                 { value: "duration", label: "How long something will last" },
@@ -128,7 +128,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "What does Future Perfect CONTINUOUS focus on?",
+                            label: "What does Future Perfect (Duration) focus on?",
                             options: [
                                 { value: "completion", label: "The finished result" },
                                 { value: "duration", label: "The duration up to that future point" },
@@ -139,8 +139,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "'By 2030, I will have saved $50,000.' - This shows:",
                             options: [
-                                { value: "simple", label: "A goal completed by then (Simple)" },
-                                { value: "continuous", label: "How long I've been saving (Continuous)" },
+                                { value: "simple", label: "A goal completed by then (Goal)" },
+                                { value: "continuous", label: "How long I've been saving (Duration)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -148,8 +148,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "'By next month, I will have been working here for 5 years.' - This shows:",
                             options: [
-                                { value: "simple", label: "Completed work (Simple)" },
-                                { value: "continuous", label: "Duration up to that milestone (Continuous)" },
+                                { value: "simple", label: "Completed work (Goal)" },
+                                { value: "continuous", label: "Duration up to that milestone (Duration)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -164,8 +164,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By December, I ___ 12 books this year. (counting achievement)",
                             options: [
-                                { value: "simple", label: "will have read (Simple - count/result)" },
-                                { value: "continuous", label: "will have been reading (Continuous - duration)" },
+                                { value: "simple", label: "will have read (Goal - count/result)" },
+                                { value: "continuous", label: "will have been reading (Duration - duration)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -173,8 +173,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When the movie ends, we ___ in this theater for 3 hours. (time spent)",
                             options: [
-                                { value: "simple", label: "will have sat (Simple - completion)" },
-                                { value: "continuous", label: "will have been sitting (Continuous - duration)" },
+                                { value: "simple", label: "will have sat (Goal - completion)" },
+                                { value: "continuous", label: "will have been sitting (Duration - duration)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -182,8 +182,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By the time you arrive, I ___ dinner. (meal is ready)",
                             options: [
-                                { value: "simple", label: "will have made (Simple - completed task)" },
-                                { value: "continuous", label: "will have been making (Continuous - in progress)" },
+                                { value: "simple", label: "will have made (Goal - completed task)" },
+                                { value: "continuous", label: "will have been making (Duration - in progress)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -191,8 +191,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Next week, they ___ on this project for 6 months. (project timeline)",
                             options: [
-                                { value: "simple", label: "will have worked (Simple - completion)" },
-                                { value: "continuous", label: "will have been working (Continuous - duration)" },
+                                { value: "simple", label: "will have worked (Goal - completion)" },
+                                { value: "continuous", label: "will have been working (Duration - duration)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -213,14 +213,14 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <p>Both forms look forward to a future moment, but they show different things. Think of it like this:</p>
 
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p style="margin: 0;"><strong>Simple = Checkpoint:</strong> "Will this be done by then?" ✓</p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>Continuous = Journey:</strong> "How long will I have been doing this?"</p>
+                    <p style="margin: 0;"><strong>Goal = Checkpoint:</strong> "Will this be done by then?" ✓</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Duration = Journey:</strong> "How long will I have been doing this?"</p>
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
-                    <!-- Simple Timeline -->
+                    <!-- Goal Timeline -->
                     <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #0e7490;">Simple: Done by the Deadline</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #0e7490;">Goal Focus: Done by the Deadline</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 3px; background: linear-gradient(to right, #94a3b8, #06b6d4, #22c55e); transform: translateY(-50%);"></div>
@@ -241,9 +241,9 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <p style="text-align: center; margin: 1rem 0 0 0; font-size: 0.85rem; color: #4b5563;">"By June, I <strong>will have graduated</strong>."</p>
                     </div>
 
-                    <!-- Continuous Timeline -->
+                    <!-- Duration Timeline -->
                     <div style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.25rem;">
-                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #7c3aed;">Continuous: Duration Up to That Point</h4>
+                        <h4 style="text-align: center; margin: 0 0 1rem 0; color: #7c3aed;">Duration Focus</h4>
                         <div style="position: relative; height: 80px; margin: 1rem 0;">
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
@@ -331,12 +331,12 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "focus-goals",
-            title: "Focus on Goals & Deadlines (Simple)",
+            title: "Focus on Goals & Deadlines",
             icon: "🏆",
             stepNumber: 1,
             explanation: `
                 <h3>What Will Be Done By Then?</h3>
-                <p>Use <strong>Future Perfect Simple</strong> (will have + past participle) to talk about actions that will be <strong>completed before</strong> a future deadline or moment.</p>
+                <p>Use <strong>The Future Perfect (Goal)</strong> (will have + past participle) to talk about actions that will be <strong>completed before</strong> a future deadline or moment.</p>
 
                 <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #0e7490;">The Goal Setter's Formula</h4>
@@ -352,7 +352,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Example: <strong>By December</strong>, I <strong>will have finished</strong> my course.</p>
                 </div>
 
-                <h4>When to Use Future Perfect Simple</h4>
+                <h4>When to Use the Goal Form</h4>
                 <div style="display: grid; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
                         <p style="margin: 0; font-weight: 600; color: #0e7490;">1. Goals and Deadlines</p>
@@ -465,12 +465,12 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
         // -------------------------------------------------------------------------
         {
             id: "focus-duration",
-            title: "Focus on Duration & Milestones (Continuous)",
+            title: "Focus on Duration & Milestones",
             icon: "📅",
             stepNumber: 2,
             explanation: `
                 <h3>How Long Will It Have Been Happening?</h3>
-                <p>Use <strong>Future Perfect Continuous</strong> (will have been + verb-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
+                <p>Use <strong>The Future Perfect (Duration)</strong> (will have been + verb-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
 
                 <div style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #7c3aed;">The Journey Tracker's Formula</h4>
@@ -486,7 +486,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Example: <strong>By December</strong>, I <strong>will have been working</strong> here for 5 years.</p>
                 </div>
 
-                <h4>When to Use Future Perfect Continuous</h4>
+                <h4>When to Use the Duration Form</h4>
                 <div style="display: grid; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
                         <p style="margin: 0; font-weight: 600; color: #7c3aed;">1. Work/Life Anniversaries</p>
@@ -608,7 +608,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Simple</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Goal</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -621,7 +621,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Continuous</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Duration</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -638,18 +638,18 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">WORK 💼</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Simple:</strong> "By Friday, I <strong>will have finished</strong> the report." → <em>Report is done!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Continuous:</strong> "By Friday, I <strong>will have been working</strong> on it for a week." → <em>Duration of effort!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Goal Form:</strong> "By Friday, I <strong>will have finished</strong> the report." → <em>Report is done!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Duration Form:</strong> "By Friday, I <strong>will have been working</strong> on it for a week." → <em>Duration of effort!</em></p>
                     </div>
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">TRAVEL ✈️</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Simple:</strong> "By December, I <strong>will have visited</strong> 10 countries." → <em>Count of places!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Continuous:</strong> "By December, I <strong>will have been traveling</strong> for 3 months." → <em>Duration of trip!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Goal Form:</strong> "By December, I <strong>will have visited</strong> 10 countries." → <em>Count of places!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Duration Form:</strong> "By December, I <strong>will have been traveling</strong> for 3 months." → <em>Duration of trip!</em></p>
                     </div>
                     <div>
                         <p style="margin: 0; font-weight: 600;">LEARN 📚</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Simple:</strong> "By June, I <strong>will have learned</strong> 1000 words." → <em>Achievement count!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Continuous:</strong> "By June, I <strong>will have been learning</strong> for 2 years." → <em>Study duration!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #0e7490;"><strong>Goal Form:</strong> "By June, I <strong>will have learned</strong> 1000 words." → <em>Achievement count!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #7c3aed;"><strong>Duration Form:</strong> "By June, I <strong>will have been learning</strong> for 2 years." → <em>Study duration!</em></p>
                     </div>
                 </div>
             `,
@@ -657,7 +657,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 {
                     id: "ex-fp-positive",
                     title: "Complete with the Correct Form",
-                    instructions: "Use Simple (completion) or Continuous (duration) based on context.",
+                    instructions: "Use Goal (completion) or Duration (duration) based on context.",
                     items: [
                         {
                             type: "text",
@@ -702,7 +702,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Simple Negative</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Goal Negative</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -715,7 +715,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Continuous Negative</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Duration Negative</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">Subject</span>
                             <span>+</span>
@@ -752,25 +752,25 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "I ___ (not / finish) the report by Monday. [Simple]",
+                            label: "I ___ (not / finish) the report by Monday. [Goal]",
                             expectedAnswer: "won't have finished",
                             placeholder: "won't have finished",
                         },
                         {
                             type: "text",
-                            label: "She ___ (not / work) here very long by then. [Continuous]",
+                            label: "She ___ (not / work) here very long by then. [Duration]",
                             expectedAnswer: "won't have been working",
                             placeholder: "won't have been working",
                         },
                         {
                             type: "text",
-                            label: "The project ___ (not / complete) by the deadline. [Simple]",
+                            label: "The project ___ (not / complete) by the deadline. [Goal]",
                             expectedAnswer: "won't have been completed",
                             placeholder: "won't have been completed",
                         },
                         {
                             type: "text",
-                            label: "They ___ (not / live) there for a full year yet. [Continuous]",
+                            label: "They ___ (not / live) there for a full year yet. [Duration]",
                             expectedAnswer: "won't have been living",
                             placeholder: "won't have been living",
                         },
@@ -793,7 +793,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Simple Questions</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Goal Questions</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #06b6d4;">Will</span>
                             <span>+</span>
