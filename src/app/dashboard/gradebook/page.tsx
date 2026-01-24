@@ -42,7 +42,8 @@ export default async function GradebookPage() {
     const activities = await prisma.activity.findMany({
         where: {
             category: "grammar",
-            type: "guide"
+            type: "guide",
+            isReleased: true
         },
         select: {
             id: true,
