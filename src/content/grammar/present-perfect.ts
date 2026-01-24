@@ -1328,7 +1328,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation:
-                "'Still' comes before the auxiliary in negative Present Perfect to show the situation continues.",
+                "'Still' comes before the helping verb in negative Present Perfect to show the situation continues.",
         },
         {
             id: "quiz-13",

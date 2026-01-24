@@ -164,7 +164,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "💡 The Pattern",
-                content: "All Perfect Continuous tenses use: auxiliary 'have' + been + verb-ing. Only the form of 'have' changes: have/has (present), had (past), will have (future).",
+                content: "All Perfect Continuous tenses use: helping verb 'have' + been + verb-ing. Only the form of 'have' changes: have/has (present), had (past), will have (future).",
             },
             exercises: [
                 {
@@ -415,7 +415,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             icon: "📝",
             explanation: `
                 <h3>The Formulas</h3>
-                <p>All Perfect Continuous tenses follow the same pattern: <strong>auxiliary 'have' + been + verb-ing</strong></p>
+                <p>All Perfect Continuous tenses follow the same pattern: <strong>helping verb 'have' + been + verb-ing</strong></p>
 
                 <div style="display: grid; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">

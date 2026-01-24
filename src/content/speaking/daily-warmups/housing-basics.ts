@@ -73,7 +73,7 @@ export const housingBasicsDailyWarmup: SpeakingActivityContent = {
       id: "prompt-7",
       level: "advanced",
       text: "Role-play: You're calling about an apartment ad. Ask as many questions as you can in 2 minutes. Partner: answer as the landlord.",
-      context: "Speed and accuracy! Use correct word order: Question word + auxiliary verb + subject + main verb",
+      context: "Speed and accuracy! Use correct word order: Question word + helping verb + subject + main verb",
       soloInstructions: "Prepare 8-10 questions you'd ask about an apartment. Practice saying them quickly with correct grammar",
       partnerInstructions: "Role-play apartment inquiry call: One calls about ad and asks questions, one answers as landlord."
     },
