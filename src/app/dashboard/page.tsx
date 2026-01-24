@@ -354,6 +354,13 @@ export default async function DashboardPage() {
                                             <BarChartIcon className="w-4 h-4" />
                                             <span>Student Stats</span>
                                         </Link>
+                                        <Link
+                                            href="/dashboard/gradebook"
+                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                        >
+                                            <ClipboardIcon className="w-4 h-4" />
+                                            <span>Grammar Gradebook</span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
