@@ -157,7 +157,17 @@ export default async function StatsPage() {
                                 Jump to specific results and submissions.
                             </p>
                         </div>
-                        <VerbQuizWeekSelector />
+                        <div className="flex flex-wrap items-center gap-4">
+                            <VerbQuizWeekSelector />
+                            <div className="h-8 w-px bg-border/40 hidden sm:block"></div>
+                            <Link
+                                href="/dashboard/gradebook"
+                                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 transition shadow-sm"
+                            >
+                                <ClipboardIcon className="w-4 h-4" />
+                                Grammar Gradebook
+                            </Link>
+                        </div>
                     </div>
                 </section>
                 <section className="animate-fade-in-up delay-100">
