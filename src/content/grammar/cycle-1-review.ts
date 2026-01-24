@@ -646,6 +646,27 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.75rem; color: #9a3412;">Connects Ideas</p>
                     </div>
                 </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.5rem; margin-top: 1.5rem;">
+                    <h4 style="margin-top: 0; color: #475569; font-size: 1.1rem;">How they work together:</h4>
+                    <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #be185d;">
+                            <p style="margin: 0; font-size: 0.95rem;"><strong style="color: #be185d;">Noun:</strong> The person, place, or thing doing or receiving the action. <em>"The <strong>student</strong> reads the <strong>book</strong>."</em></p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #15803d;">
+                            <p style="margin: 0; font-size: 0.95rem;"><strong style="color: #15803d;">Verb:</strong> The action or state. This is what changes with tense. <em>"She <strong>walks</strong> to work."</em> (present) or <em>"She <strong>walked</strong> to work."</em> (past)</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #1d4ed8;">
+                            <p style="margin: 0; font-size: 0.95rem;"><strong style="color: #1d4ed8;">Adjective:</strong> Adds detail to nouns. <em>"The <strong>busy</strong> student finished the <strong>long</strong> assignment."</em></p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #7e22ce;">
+                            <p style="margin: 0; font-size: 0.95rem;"><strong style="color: #7e22ce;">Adverb:</strong> Adds detail to verbs (how, when, where). <em>"She walks <strong>quickly</strong>."</em> or <em>"They practice <strong>every day</strong>."</em></p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #c2410c;">
+                            <p style="margin: 0; font-size: 0.95rem;"><strong style="color: #c2410c;">Preposition:</strong> Shows relationships (time, place, direction). <em>"We meet <strong>at</strong> the library <strong>before</strong> class."</em></p>
+                        </div>
+                    </div>
+                </div>
             `,
             exercises: [
                 {
@@ -1209,16 +1230,6 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
         },
         {
             id: "q6",
-            question: "Which sentence is Future Continuous?",
-            options: [
-                { value: "will-be-working", label: "They will be working at 3 p.m. tomorrow." },
-                { value: "work", label: "They work at 3 p.m. tomorrow." },
-                { value: "worked", label: "They worked at 3 p.m. yesterday." }
-            ],
-            correctAnswer: "will-be-working"
-        },
-        {
-            id: "q7",
             question: "Which word often appears with Present Perfect?",
             options: [
                 { value: "already", label: "already" },
@@ -1228,7 +1239,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             correctAnswer: "already"
         },
         {
-            id: "q8",
+            id: "q7",
             question: "Which sentence shows Present Perfect experience?",
             options: [
                 { value: "have-visited", label: "I have visited Boston." },
@@ -1238,7 +1249,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             correctAnswer: "have-visited"
         },
         {
-            id: "q9",
+            id: "q8",
             question: "Which word is a verb in 'She always brings snacks'?",
             options: [
                 { value: "she", label: "She" },
@@ -1249,7 +1260,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             correctAnswer: "brings"
         },
         {
-            id: "q10",
+            id: "q9",
             question: "Which word is a preposition in 'We walk to work each morning'?",
             options: [
                 { value: "walk", label: "Walk" },
@@ -1260,7 +1271,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             correctAnswer: "to"
         },
         {
-            id: "q11",
+            id: "q10",
             question: "Which adverb of frequency fits 'I ___ check the bus schedule before I leave'?",
             options: [
                 { value: "always", label: "always" },
@@ -1270,7 +1281,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             correctAnswer: "always"
         },
         {
-            id: "q12",
+            id: "q11",
             question: "Choose the comparative: 'My new job is ___ than my old job.'",
             options: [
                 { value: "more-flexible", label: "more flexible" },
@@ -1280,87 +1291,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             correctAnswer: "more-flexible"
         },
         {
-            id: "q13",
-            question: "Which connector adds information between two ideas?",
-            options: [
-                { value: "and", label: "and" },
-                { value: "but", label: "but" },
-                { value: "so", label: "so" }
-            ],
-            correctAnswer: "and"
-        },
-        {
-            id: "q14",
-            question: "Which connector shows contrast?",
-            options: [
-                { value: "but", label: "but" },
-                { value: "and", label: "and" },
-                { value: "or", label: "or" }
-            ],
-            correctAnswer: "but"
-        },
-        {
-            id: "q15",
-            question: "Which connector gives a choice between two options?",
-            options: [
-                { value: "or", label: "or" },
-                { value: "and", label: "and" },
-                { value: "so", label: "so" }
-            ],
-            correctAnswer: "or"
-        },
-        {
-            id: "q16",
-            question: "Which connector shows a result?",
-            options: [
-                { value: "so", label: "so" },
-                { value: "or", label: "or" },
-                { value: "but", label: "but" }
-            ],
-            correctAnswer: "so"
-        },
-        {
-            id: "q17",
-            question: "Which time connector fits '___ class ends, we check homework'?",
-            options: [
-                { value: "when", label: "when" },
-                { value: "after", label: "after" },
-                { value: "and", label: "and" }
-            ],
-            correctAnswer: "when"
-        },
-        {
-            id: "q18",
-            question: "Which time connector fits '___ the rain poured, we stayed inside'?",
-            options: [
-                { value: "while", label: "while" },
-                { value: "before", label: "before" },
-                { value: "so", label: "so" }
-            ],
-            correctAnswer: "while"
-        },
-        {
-            id: "q19",
-            question: "Which time connector fits '___ you finish homework, you can relax'?",
-            options: [
-                { value: "after", label: "after" },
-                { value: "and", label: "and" },
-                { value: "but", label: "but" }
-            ],
-            correctAnswer: "after"
-        },
-        {
-            id: "q20",
-            question: "Which time connector fits '___ the bus arrives, we wait outside'?",
-            options: [
-                { value: "before", label: "before" },
-                { value: "when", label: "when" },
-                { value: "or", label: "or" }
-            ],
-            correctAnswer: "before"
-        },
-        {
-            id: "q21",
+            id: "q12",
             question: "Which is the correct superlative form?",
             options: [
                 { value: "a", label: "This is the most cheap apartment." },
@@ -1371,7 +1302,58 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             explanation: "'Cheap' is a short adjective, so use -est: the cheapest."
         },
         {
-            id: "q22",
+            id: "q13",
+            question: "Which connector shows contrast?",
+            options: [
+                { value: "but", label: "but" },
+                { value: "and", label: "and" },
+                { value: "or", label: "or" }
+            ],
+            correctAnswer: "but"
+        },
+        {
+            id: "q14",
+            question: "Which connector shows a result?",
+            options: [
+                { value: "so", label: "so" },
+                { value: "or", label: "or" },
+                { value: "but", label: "but" }
+            ],
+            correctAnswer: "so"
+        },
+        {
+            id: "q15",
+            question: "Which time connector fits '___ class ends, we check homework'?",
+            options: [
+                { value: "when", label: "when" },
+                { value: "after", label: "after" },
+                { value: "and", label: "and" }
+            ],
+            correctAnswer: "when"
+        },
+        {
+            id: "q16",
+            question: "Which time connector fits '___ the rain poured, we stayed inside'?",
+            options: [
+                { value: "while", label: "while" },
+                { value: "before", label: "before" },
+                { value: "so", label: "so" }
+            ],
+            correctAnswer: "while"
+        },
+        {
+            id: "q17",
+            question: "Which noun is uncountable?",
+            options: [
+                { value: "a", label: "hour" },
+                { value: "b", label: "job" },
+                { value: "c", label: "time" }
+            ],
+            correctAnswer: "c",
+            explanation: "'Time' is uncountable (you can't say '1 time, 2 times' in this sense). 'Hour' and 'job' are countable (1 hour, 2 hours; 1 job, 2 jobs)."
+        },
+        {
+            id: "q18",
             question: "Choose the correct quantifier: 'How ___ experience do you have?'",
             options: [
                 { value: "a", label: "many" },
@@ -1382,7 +1364,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             explanation: "'Experience' is uncountable, so use 'much.'"
         },
         {
-            id: "q23",
+            id: "q19",
             question: "Which is correct? 'My new job has ___ hours than my old one.'",
             options: [
                 { value: "a", label: "fewer" },
@@ -1393,15 +1375,15 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             explanation: "'Hours' are countable, so use 'fewer' for comparisons."
         },
         {
-            id: "q24",
-            question: "Choose the correct sentence:",
+            id: "q20",
+            question: "Choose the correct quantifier: 'I don't have ___ money for the bus.'",
             options: [
-                { value: "a", label: "She's the most experienced person on the team." },
-                { value: "b", label: "She's the experiencedest person on the team." },
-                { value: "c", label: "She's the most experienceder person on the team." }
+                { value: "a", label: "many" },
+                { value: "b", label: "much" },
+                { value: "c", label: "few" }
             ],
-            correctAnswer: "a",
-            explanation: "'Experienced' is a long adjective, so use 'the most' + adjective."
+            correctAnswer: "b",
+            explanation: "'Money' is uncountable, so use 'much' (not 'many' or 'few' which are for countable nouns)."
         }
     ]
 };
