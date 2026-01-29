@@ -191,7 +191,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Questions & Negatives that keep you honest",
             icon: "❓",
             explanation: `
-                <p>Every tense can be positive, negative, or a question. Helpers move the same way: do/does/did for simple forms, will for future, and be for continuous ones.</p>
+                <p>Every tense can be affirmative, negative, or a question. Helpers move the same way: do/does/did for simple forms, will for future, and be for continuous ones.</p>
                 
                 <div style="overflow-x: auto; margin: 1.5rem 0;">
                     <table style="width: 100%; border-collapse: collapse; min-width: 500px;">
@@ -269,7 +269,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 {
                     id: "cycle1-helper-identify",
                     title: "Helper hunt",
-                    instructions: "Choose whether each sentence is positive, negative, or a question.",
+                    instructions: "Choose whether each sentence is affirmative, negative, or a question.",
                     items: [
                         {
                             type: "radio",
@@ -277,7 +277,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             options: [
                                 { value: "question", label: "Question" },
                                 { value: "negative", label: "Negative" },
-                                { value: "positive", label: "Positive" }
+                                { value: "positive", label: "Affirmative" }
                             ],
                             expectedAnswer: "question"
                         },
@@ -287,7 +287,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             options: [
                                 { value: "question", label: "Question" },
                                 { value: "negative", label: "Negative" },
-                                { value: "positive", label: "Positive" }
+                                { value: "positive", label: "Affirmative" }
                             ],
                             expectedAnswer: "negative"
                         },
@@ -297,7 +297,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             options: [
                                 { value: "question", label: "Question" },
                                 { value: "negative", label: "Negative" },
-                                { value: "positive", label: "Positive" }
+                                { value: "positive", label: "Affirmative" }
                             ],
                             expectedAnswer: "negative"
                         }

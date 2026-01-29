@@ -23,6 +23,10 @@ const studentNames = [
     'Susan',
     'Will',
     'Marlie',
+    'Tolesa',
+    'Yonatan',
+    'Hazel',
+    'Evelyn',
 ];
 
 const toUsername = (name) => name.trim().toLowerCase().replace(/\s+/g, '');
