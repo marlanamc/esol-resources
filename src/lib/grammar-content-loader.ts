@@ -16,6 +16,7 @@ const grammarContentMap: Record<
     "gerunds-infinitives": () => import("@/content/grammar/gerunds-infinitives"),
     "imperatives-declaratives": () => import("@/content/grammar/imperatives-declaratives"),
     "information-questions": () => import("@/content/grammar/information-questions"),
+    "medical-instructions-complete": () => import("@/content/grammar/medical-instructions-complete"),
     "modals-obligation-permission": () => import("@/content/grammar/modals-obligation-permission"),
     "modals-health-advice-caution-consent": () => import("@/content/grammar/modals-health-advice-caution-consent"),
     "articles-community-resources": () => import("@/content/grammar/articles-community-resources"),
