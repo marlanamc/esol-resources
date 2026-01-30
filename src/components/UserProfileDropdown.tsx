@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
+import { clearServiceWorkerCache } from "@/lib/clearCache";
 import { useRouter } from "next/navigation";
 import { UserIcon } from "@/components/icons/Icons";
 
@@ -30,7 +31,8 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
         };
     }, [isOpen]);
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        await clearServiceWorkerCache();
         signOut({ callbackUrl: "/login" });
     };
 

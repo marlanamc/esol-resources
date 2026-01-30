@@ -17,6 +17,7 @@ declare module "next-auth" {
     role: UserRole;
     username: string;
     mustChangePassword: boolean;
+    isMobile?: boolean;
   }
 }
 
@@ -26,6 +27,7 @@ declare module "next-auth/jwt" {
     role?: UserRole;
     username?: string;
     mustChangePassword?: boolean;
+    isMobile?: boolean;
   }
 }
 

@@ -31,10 +31,16 @@ self.addEventListener('install', (event) => {
   // Don't skip waiting automatically - let user decide when to update
 });
 
-// Listen for message from app to skip waiting
+// Listen for messages from app
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
+  }
+  // Clear all caches when user logs in/out (important for shared computers)
+  if (event.data && event.data.type === 'CLEAR_USER_CACHE') {
+    caches.keys().then((cacheNames) => {
+      return Promise.all(cacheNames.map((name) => caches.delete(name)));
+    });
   }
 });
 
