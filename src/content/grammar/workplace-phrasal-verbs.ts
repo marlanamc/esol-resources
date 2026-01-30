@@ -521,6 +521,37 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    id: "workplace-pv-email-compose",
+                    title: "✉️ Write Your Own Email",
+                    instructions: "Complete this email to your manager. You need to request next Monday off and explain that a coworker will cover for you. Use the phrasal verbs you learned!",
+                    items: [
+                        {
+                            type: "select",
+                            label: "<div style='background: #f6f8fc; border-radius: 8px; overflow: hidden; font-family: Arial, sans-serif; max-width: 500px; border: 1px solid #dadce0;'><div style='background: #fff; padding: 12px 16px; border-bottom: 1px solid #dadce0; display: flex; align-items: center; gap: 8px;'><span style='color: #c5221f; font-weight: bold; font-size: 20px;'>✉️</span><span style='color: #202124; font-weight: 500;'>New Message</span></div><div style='padding: 12px 16px; border-bottom: 1px solid #ebebeb;'><span style='color: #5f6368; font-size: 13px;'>To:</span> <span style='color: #202124;'>manager@company.com</span></div><div style='padding: 12px 16px; border-bottom: 1px solid #ebebeb;'><span style='color: #5f6368; font-size: 13px;'>Subject:</span> <span style='color: #202124;'>Time off request - Monday</span></div><div style='padding: 16px; background: #fff; min-height: 120px;'><p style='margin: 0 0 12px 0; color: #202124;'>Hi Ms. Chen,</p><p style='margin: 0 0 12px 0; color: #202124;'>I'm <strong>_____</strong> to request next Monday off for a family event.</p></div></div>",
+                            options: ["reaching out", "clocking in", "showing up", "wrapping up"],
+                            expectedAnswer: "reaching out",
+                        },
+                        {
+                            type: "select",
+                            label: "<div style='background: #fff; padding: 0 16px; font-family: Arial, sans-serif; max-width: 500px; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0;'><p style='margin: 0 0 12px 0; color: #202124;'>I've already talked to James, and he said he can <strong>_____</strong> me that day.</p></div>",
+                            options: ["cover for", "call out", "clock in", "turn in"],
+                            expectedAnswer: "cover for",
+                        },
+                        {
+                            type: "select",
+                            label: "<div style='background: #fff; padding: 0 16px; font-family: Arial, sans-serif; max-width: 500px; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0;'><p style='margin: 0 0 12px 0; color: #202124;'>Please let me know if I need to <strong>_____</strong> any paperwork.</p></div>",
+                            options: ["fill out", "look out", "help out", "work out"],
+                            expectedAnswer: "fill out",
+                        },
+                        {
+                            type: "select",
+                            label: "<div style='background: #fff; padding: 0 16px 16px 16px; font-family: Arial, sans-serif; max-width: 500px; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0; border-bottom: 1px solid #dadce0; border-radius: 0 0 8px 8px;'><p style='margin: 0 0 12px 0; color: #202124;'>I'll <strong>_____</strong> you if anything changes.</p><p style='margin: 16px 0 0 0; color: #202124;'>Thank you,<br>Sofia</p><div style='margin-top: 16px; padding-top: 12px; border-top: 1px solid #ebebeb;'><button style='background: #1a73e8; color: white; border: none; padding: 8px 24px; border-radius: 4px; font-weight: 500; cursor: pointer;'>Send</button></div></div>",
+                            options: ["get back to", "deal with", "take on", "set up"],
+                            expectedAnswer: "get back to",
+                        },
+                    ],
+                },
             ],
         },
 
