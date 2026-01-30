@@ -1089,6 +1089,126 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             ]
         },
         {
+            id: "conditionals",
+            title: "Conditionals: The IF-THEN Logic",
+            icon: "🔀",
+            explanation: `
+                <p>Conditionals connect a condition (IF...) to a result (THEN...). English has two main conditionals for <strong>real situations</strong>:</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
+                    <div style="background: rgba(244, 211, 94, 0.15); padding: 1.25rem; border-radius: 0.75rem; border-left: 4px solid #f4d35e;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #ca8a04;">Zero Conditional</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #374151;"><strong>Always true</strong> (facts, habits, natural laws)</p>
+                        <p style="margin: 0.75rem 0 0.5rem 0; font-weight: bold; color: #ca8a04; font-size: 0.95rem;">If + present, present</p>
+                        <p style="margin: 0; font-size: 0.85rem; color: #6b7280; font-style: italic;">"If you heat water, it boils."</p>
+                    </div>
+                    <div style="background: rgba(123, 168, 132, 0.15); padding: 1.25rem; border-radius: 0.75rem; border-left: 4px solid #7ba884;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #7ba884;">First Conditional</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #374151;"><strong>Future possibility</strong> (plans, predictions, promises)</p>
+                        <p style="margin: 0.75rem 0 0.5rem 0; font-weight: bold; color: #7ba884; font-size: 0.95rem;">If + present, will + verb</p>
+                        <p style="margin: 0; font-size: 0.85rem; color: #6b7280; font-style: italic;">"If it rains tomorrow, I will bring an umbrella."</p>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 1.5rem;">Zero Conditional Examples (Always True)</h4>
+                <div style="background: #fffbeb; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                    <ul style="margin: 0; padding-left: 1.25rem;">
+                        <li>If you <strong>heat</strong> ice, it <strong>melts</strong>. (science fact)</li>
+                        <li>If I <strong>feel</strong> tired, I <strong>drink</strong> coffee. (my habit)</li>
+                        <li>If the light <strong>turns</strong> red, you <strong>stop</strong>. (rule)</li>
+                    </ul>
+                </div>
+
+                <h4>First Conditional Examples (Future Plans)</h4>
+                <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                    <ul style="margin: 0; padding-left: 1.25rem;">
+                        <li>If the weather <strong>is</strong> nice, I <strong>will go</strong> to the park. (weekend plan)</li>
+                        <li>If you <strong>study</strong> hard, you <strong>will pass</strong> the exam. (prediction)</li>
+                        <li>If we <strong>leave</strong> early, we <strong>will avoid</strong> traffic. (plan)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #fef2f2; border-left: 4px solid #ef4444; padding: 1rem; border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600; color: #dc2626;">Common Mistakes to Avoid</p>
+                    <p style="margin: 0.5rem 0 0 0;">Never use "will" in the IF clause!</p>
+                    <p style="margin: 0.25rem 0 0 0;">❌ "If I <strong>will go</strong>..." → ✓ "If I <strong>go</strong>..."</p>
+                    <p style="margin: 0.25rem 0 0 0;">❌ "If it <strong>will rain</strong>..." → ✓ "If it <strong>rains</strong>..."</p>
+                </div>
+            `,
+            tipBox: {
+                title: "🎯 Quick Decision Rule",
+                content: "Ask yourself: 'Is this ALWAYS true (a fact or habit)?' → Use Zero (present + present). 'Is this a FUTURE plan or possibility?' → Use First (present + will)."
+            },
+            exercises: [
+                {
+                    id: "cycle1-conditionals-identify",
+                    title: "Zero or First?",
+                    instructions: "Decide whether each sentence describes something always true (zero) or a future possibility (first).",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "\"If you heat water to 100°C, it boils.\"",
+                            options: [
+                                { value: "zero", label: "Zero (always true - science fact)" },
+                                { value: "first", label: "First (future possibility)" }
+                            ],
+                            expectedAnswer: "zero"
+                        },
+                        {
+                            type: "radio",
+                            label: "\"If it rains tomorrow, I will bring an umbrella.\"",
+                            options: [
+                                { value: "zero", label: "Zero (always true)" },
+                                { value: "first", label: "First (future plan for tomorrow)" }
+                            ],
+                            expectedAnswer: "first"
+                        },
+                        {
+                            type: "radio",
+                            label: "\"If I'm tired, I go to bed early.\"",
+                            options: [
+                                { value: "zero", label: "Zero (always true - my habit)" },
+                                { value: "first", label: "First (future possibility)" }
+                            ],
+                            expectedAnswer: "zero"
+                        },
+                        {
+                            type: "radio",
+                            label: "\"If you study hard, you will pass the test.\"",
+                            options: [
+                                { value: "zero", label: "Zero (always true)" },
+                                { value: "first", label: "First (prediction about your future)" }
+                            ],
+                            expectedAnswer: "first"
+                        }
+                    ]
+                },
+                {
+                    id: "cycle1-conditionals-complete",
+                    title: "Complete the conditional",
+                    instructions: "Fill in the blank with the correct form based on the conditional type.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "Zero conditional: If you heat ice, it _____ (melt).",
+                            expectedAnswer: "melts"
+                        },
+                        {
+                            type: "text",
+                            label: "First conditional: If the weather is nice, we _____ (will go) to the beach.",
+                            expectedAnswer: "will go"
+                        },
+                        {
+                            type: "select",
+                            label: "Choose the correct form: If I have time tomorrow, I _____ you.",
+                            options: ["call", "will call", "called"],
+                            expectedAnswer: "will call"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             id: "summary",
             title: "Grammar Quick Reference Cheat Sheet",
             icon: "📋",
@@ -1163,6 +1283,12 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                                 <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>so:</strong> result</div>
                                 <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>or:</strong> choice</div>
                                 <div style="background: #f0f9ff; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem; grid-column: span 2;"><strong>when/while:</strong> time</div>
+                            </div>
+
+                            <h3 style="color: #ca8a04; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🔀 Conditionals</h3>
+                            <div style="display: grid; gap: 0.5rem;">
+                                <div style="background: #fffbeb; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>Zero:</strong> if + present, present (facts/habits)</div>
+                                <div style="background: #f0fdf4; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>First:</strong> if + present, will + verb (future plans)</div>
                             </div>
                         </div>
                     </div>
@@ -1384,6 +1510,39 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Money' is uncountable, so use 'much' (not 'many' or 'few' which are for countable nouns)."
+        },
+        {
+            id: "q21",
+            question: "Which conditional is for facts and habits that are always true?",
+            options: [
+                { value: "zero", label: "Zero Conditional (if + present, present)" },
+                { value: "first", label: "First Conditional (if + present, will + verb)" },
+                { value: "both", label: "Both can be used" }
+            ],
+            correctAnswer: "zero",
+            explanation: "Zero conditional is for things that are always true: science facts ('If you heat water, it boils') and habits ('If I'm tired, I go to bed')."
+        },
+        {
+            id: "q22",
+            question: "Which sentence is correct for a future plan?",
+            options: [
+                { value: "a", label: "If it rains tomorrow, I stay home." },
+                { value: "b", label: "If it rains tomorrow, I will stay home." },
+                { value: "c", label: "If it will rain tomorrow, I stay home." }
+            ],
+            correctAnswer: "b",
+            explanation: "For future plans and possibilities, use first conditional: 'if + present, will + verb'. Never use 'will' in the IF clause!"
+        },
+        {
+            id: "q23",
+            question: "Which sentence shows a HABIT (zero conditional)?",
+            options: [
+                { value: "a", label: "If I feel tired, I drink coffee." },
+                { value: "b", label: "If I feel tired tonight, I will drink coffee." },
+                { value: "c", label: "If I will feel tired, I drink coffee." }
+            ],
+            correctAnswer: "a",
+            explanation: "Zero conditional ('If I feel tired, I drink coffee') shows a habit that is always true. First conditional adds 'tonight' + 'will' for a specific future plan."
         }
     ]
 };
