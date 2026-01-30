@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 
 type ActivityStat = {
     id: string;
@@ -25,16 +26,15 @@ const vocabUnitMap: Record<string, string> = {
     november: "Unit 3: November",
     december: "Unit 4: December",
     january: "Unit 5: January",
-    february: "Unit 6: February",
-    march: "Unit 7: March",
-    april: "Unit 8: April",
-    may: "Unit 9: May",
+    ...Object.fromEntries(VOCAB_WEEKLY_UNITS.map((u) => [u.id, u.label])),
     june: "Unit 10: June",
 };
 
 function getUnitLabel(activity: ActivityStat) {
     const id = activity.id.toLowerCase();
-    const found = Object.entries(vocabUnitMap).find(([key]) => id.includes(`vocab-${key}`));
+    // Match weekly slugs first (e.g. vocab-feb-3-5-packet) so longer keys take precedence
+    const sortedEntries = Object.entries(vocabUnitMap).sort(([a], [b]) => b.length - a.length);
+    const found = sortedEntries.find(([key]) => id.includes(`vocab-${key}`));
     return found ? found[1] : "Vocabulary";
 }
 

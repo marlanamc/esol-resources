@@ -356,15 +356,15 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
       ],
     },
 
-    // Section 5: Introduction to Modals
+    // Section 5: Modals Review
     {
-      id: "modals-intro",
+      id: "modals-review",
       stepNumber: 4,
-      title: "Introduction to Modals: Changing Meaning",
+      title: "Modals Review: Changing Meaning",
       icon: "🔑",
       explanation: `
-        <h3>What Are Modals?</h3>
-        <p><strong>Modals</strong> are special verbs that change the meaning of a sentence. They express advice, requirement, permission, or necessity.</p>
+        <h3>Quick Modals Review</h3>
+        <p>Remember, <strong>modals</strong> are special verbs that change the meaning of a sentence. They express advice, requirement, permission, or necessity.</p>
 
         <div style="margin: 1.5rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 2px solid #7ba884;">
           <h4>Modal Formula:</h4>

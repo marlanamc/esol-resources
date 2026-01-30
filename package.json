@@ -19,6 +19,7 @@
     "db:seed:grammar": "npx tsx prisma/seed-grammar-only.ts && node prisma/seed.js",
     "db:seed:users": "npx tsx prisma/seed-users-only.ts",
     "db:seed:vocab": "node scripts/update-all-vocab.js && node scripts/create-vocab-games.js",
+    "db:seed:weekly-vocab": "node scripts/seed-weekly-vocab.js",
     "db:seed:quizzes": "npm run import:countable-uncountable && npm run import:verb-quizzes",
     "db:seed:full": "npx tsx prisma/seed-full-reset.ts && npx tsx prisma/seed-users-only.ts && npx tsx prisma/seed-grammar-only.ts && node prisma/seed.js && npm run db:seed:vocab && npm run db:seed:quizzes",
     "db:migrate": "prisma migrate deploy",

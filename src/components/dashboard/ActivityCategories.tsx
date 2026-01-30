@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
+import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 
 interface Activity {
     id: string;
@@ -44,10 +45,7 @@ const vocabMonths = [
     { id: 'november', label: 'Unit 3: November: Community Participation' },
     { id: 'december', label: 'Unit 4: December: Consumer Smarts' },
     { id: 'january', label: 'Unit 5: January: Housing' },
-    { id: 'february', label: 'Unit 6: February: Workforce Preparation' },
-    { id: 'march', label: 'Unit 7: March: Career Awareness' },
-    { id: 'april', label: 'Unit 8: April: Health' },
-    { id: 'may', label: 'Unit 9: May: Holistic Wellness' },
+    ...VOCAB_WEEKLY_UNITS.map((u) => ({ id: u.id, label: u.label })),
     { id: 'june', label: 'Unit 10: June: Future Academic Goals' },
 ];
 
