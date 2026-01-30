@@ -348,6 +348,264 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
 
         {
+            id: "more-phrasal-verbs",
+            stepNumber: 6,
+            title: "More Workplace Phrasal Verbs",
+            icon: "📚",
+            explanation: `
+                <p>Here are six more phrasal verbs you'll hear constantly at work:</p>
+
+                <div style="margin: 1.5rem 0;">
+                    <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: #3b82f6; margin-top: 0;">take on</h4>
+                        <p style="margin: 0;">= accept responsibility or extra work</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"I can <strong>take on</strong> that project if you need help."</p>
+                    </div>
+
+                    <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: #a855f7; margin-top: 0;">deal with</h4>
+                        <p style="margin: 0;">= handle a situation or problem</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"HR will <strong>deal with</strong> the complaint."</p>
+                    </div>
+
+                    <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: #22c55e; margin-top: 0;">set up</h4>
+                        <p style="margin: 0;">= arrange, organize, or prepare something</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Can you <strong>set up</strong> the meeting room for the training?"</p>
+                    </div>
+
+                    <div style="background: rgba(249, 115, 22, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: #f97316; margin-top: 0;">put off</h4>
+                        <p style="margin: 0;">= postpone, delay until later</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"We need to <strong>put off</strong> the meeting until next week."</p>
+                    </div>
+
+                    <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="color: #d97757; margin-top: 0;">work out</h4>
+                        <p style="margin: 0;">= solve, figure out, or find a solution</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Let's <strong>work out</strong> a schedule that works for everyone."</p>
+                    </div>
+
+                    <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem;">
+                        <h4 style="color: #7ba884; margin-top: 0;">wrap up</h4>
+                        <p style="margin: 0;">= finish, complete, bring to an end</p>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"Let's <strong>wrap up</strong> this meeting - we're out of time."</p>
+                    </div>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "workplace-pv-more-1",
+                    title: "Practice: More Phrasal Verbs",
+                    instructions: "Choose the best phrasal verb for each situation.",
+                    items: [
+                        {
+                            type: "select",
+                            label: "The team is busy, but Maria agreed to _____ the extra project.",
+                            options: ["take on", "put off", "clock in", "call out"],
+                            expectedAnswer: "take on",
+                        },
+                        {
+                            type: "select",
+                            label: "We can't meet today. Let's _____ the meeting until Friday.",
+                            options: ["put off", "wrap up", "fill out", "turn in"],
+                            expectedAnswer: "put off",
+                        },
+                        {
+                            type: "select",
+                            label: "Can you _____ the conference room before the clients arrive?",
+                            options: ["set up", "call back", "look over", "cover for"],
+                            expectedAnswer: "set up",
+                        },
+                        {
+                            type: "select",
+                            label: "It's almost 5:00. Let's _____ so everyone can go home.",
+                            options: ["wrap up", "take on", "deal with", "show up"],
+                            expectedAnswer: "wrap up",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "email-writing",
+            stepNumber: 7,
+            title: "Professional Email Writing",
+            icon: "✉️",
+            explanation: `
+                <p>Phrasal verbs are everywhere in workplace emails! Learning the right phrases will make your emails sound professional and natural.</p>
+
+                <h3>Common Email Phrases</h3>
+
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                    <h4 style="color: #3b82f6; margin-top: 0;">Opening an Email</h4>
+                    <ul style="margin-bottom: 0;">
+                        <li>"I'm <strong>following up on</strong> our conversation yesterday..."</li>
+                        <li>"I wanted to <strong>get back to you</strong> about the schedule..."</li>
+                        <li>"I'm <strong>reaching out</strong> to ask about..."</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(34, 197, 94, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                    <h4 style="color: #22c55e; margin-top: 0;">Making Requests</h4>
+                    <ul style="margin-bottom: 0;">
+                        <li>"Could you please <strong>fill out</strong> the attached form?"</li>
+                        <li>"Please <strong>look over</strong> the report and let me know..."</li>
+                        <li>"Can you <strong>set up</strong> a meeting for next week?"</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h4 style="color: #a855f7; margin-top: 0;">Closing an Email</h4>
+                    <ul style="margin-bottom: 0;">
+                        <li>"I'll <strong>get back to you</strong> by Friday."</li>
+                        <li>"Please <strong>follow up</strong> with me if you have questions."</li>
+                        <li>"Let me know if we need to <strong>work out</strong> a different time."</li>
+                    </ul>
+                </div>
+
+                <h3>Example Email 1: Following Up</h3>
+                <div style="background: white; border: 1px solid #ddd; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; font-family: monospace; font-size: 0.9rem;">
+                    <p style="margin: 0;"><strong>Subject:</strong> Following up on supply order</p>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 0.5rem 0;">
+                    <p style="margin: 0.5rem 0;">Hi Maria,</p>
+                    <p style="margin: 0.5rem 0;">I'm <strong>following up on</strong> the supply order from last week. Have you had a chance to <strong>look over</strong> the list?</p>
+                    <p style="margin: 0.5rem 0;">Please <strong>get back to me</strong> by Thursday so I can <strong>set up</strong> the delivery.</p>
+                    <p style="margin: 0.5rem 0;">Thanks,<br>Carlos</p>
+                </div>
+
+                <h3>Example Email 2: Requesting Time Off</h3>
+                <div style="background: white; border: 1px solid #ddd; border-radius: 0.5rem; padding: 1rem; font-family: monospace; font-size: 0.9rem;">
+                    <p style="margin: 0;"><strong>Subject:</strong> Time off request - Friday</p>
+                    <hr style="border: none; border-top: 1px solid #ddd; margin: 0.5rem 0;">
+                    <p style="margin: 0.5rem 0;">Hi Ms. Johnson,</p>
+                    <p style="margin: 0.5rem 0;">I need to request time off on Friday for a doctor's appointment. I've already asked Ana, and she can <strong>cover for</strong> me during the morning shift.</p>
+                    <p style="margin: 0.5rem 0;">Please let me know if I need to <strong>fill out</strong> any forms. I'll <strong>get back to you</strong> if anything changes.</p>
+                    <p style="margin: 0.5rem 0;">Thank you,<br>David</p>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Email Tip",
+                content: "In professional emails, phrasal verbs are perfectly acceptable! They sound natural and friendly. Using them correctly shows you understand workplace communication.",
+            },
+            exercises: [
+                {
+                    id: "workplace-pv-email-1",
+                    title: "Practice: Email Phrases",
+                    instructions: "Choose the best phrasal verb for each email sentence.",
+                    items: [
+                        {
+                            type: "select",
+                            label: "I'm _____ our conversation from Monday about the schedule change.",
+                            options: ["following up on", "clocking in", "calling out", "turning in"],
+                            expectedAnswer: "following up on",
+                        },
+                        {
+                            type: "select",
+                            label: "Could you please _____ the attached timesheet and submit it by Friday?",
+                            options: ["fill out", "call back", "show up", "wrap up"],
+                            expectedAnswer: "fill out",
+                        },
+                        {
+                            type: "select",
+                            label: "I'll _____ you tomorrow with more information about the training.",
+                            options: ["get back to", "cover for", "deal with", "take on"],
+                            expectedAnswer: "get back to",
+                        },
+                        {
+                            type: "select",
+                            label: "Please _____ the safety report before sending it to the manager.",
+                            options: ["look over", "clock out", "call out", "help out"],
+                            expectedAnswer: "look over",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "workplace-dialogues",
+            stepNumber: 8,
+            title: "Workplace Dialogues",
+            icon: "💬",
+            explanation: `
+                <p>Read these real workplace conversations and notice how phrasal verbs are used naturally.</p>
+
+                <h3>Dialogue 1: Calling In Sick</h3>
+                <div style="background: rgba(200, 107, 81, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager (on phone):</strong> Good morning, this is Sarah.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔵 David:</strong> Hi Sarah, this is David. I'm sorry, but I need to <strong>call in sick</strong> today. I have a bad cold.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> I'm sorry to hear that. Can anyone <strong>cover for</strong> you?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔵 David:</strong> I already texted Maria. She said she can <strong>fill in for</strong> me on the morning shift.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Great, thanks for <strong>working that out</strong>. Feel better! I'll <strong>get back to you</strong> if I have any questions.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔵 David:</strong> Thanks, Sarah. I'll <strong>follow up</strong> later today about tomorrow's shift.</p>
+                </div>
+
+                <h3>Dialogue 2: Asking a Coworker for Help</h3>
+                <div style="background: rgba(110, 145, 118, 0.1); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> Hey Carlos, can I ask you something?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🟢 Carlos:</strong> Sure, what's up?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> I have a doctor's appointment next Thursday. Could you <strong>cover for</strong> me for a couple hours?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🟢 Carlos:</strong> What time? I might be able to <strong>help out</strong>.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> From 2 to 4. I can <strong>take on</strong> your Saturday morning shift in exchange.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🟢 Carlos:</strong> That works! Let's <strong>work out</strong> the details later. I need to <strong>wrap up</strong> this report first.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔵 Ana:</strong> Thanks so much! I'll <strong>follow up</strong> with you at lunch.</p>
+                </div>
+
+                <h3>Dialogue 3: Manager Checking on a Project</h3>
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem;">
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Hi Nina, I'm <strong>following up on</strong> the inventory report. How's it going?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🟣 Nina:</strong> I'm almost done. I just need to <strong>look over</strong> the final numbers.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Great. When do you think you can <strong>turn it in</strong>?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🟣 Nina:</strong> I should be able to <strong>wrap it up</strong> by 3:00.</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Perfect. Oh, and there was an issue with a vendor. Can you <strong>deal with</strong> that after?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🟣 Nina:</strong> Sure, I can <strong>take that on</strong>. Should I <strong>get back to you</strong> when it's resolved?</p>
+                    <p style="margin: 0.25rem 0;"><strong>🔴 Manager:</strong> Yes, please. Thanks, Nina!</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "workplace-pv-dialogue-1",
+                    title: "Dialogue Comprehension",
+                    instructions: "Answer based on the dialogues above.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "In Dialogue 1, who will 'fill in for' David?",
+                            options: [
+                                { value: "a", label: "Sarah (the manager)" },
+                                { value: "b", label: "Maria" },
+                                { value: "c", label: "No one" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "In Dialogue 2, what does Ana offer to do in exchange for coverage?",
+                            options: [
+                                { value: "a", label: "Take on Carlos's Saturday shift" },
+                                { value: "b", label: "Fill out his timesheet" },
+                                { value: "c", label: "Call in sick for him" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "In Dialogue 3, when will Nina 'wrap up' the report?",
+                            options: [
+                                { value: "a", label: "Tomorrow morning" },
+                                { value: "b", label: "By 3:00 today" },
+                                { value: "c", label: "Next week" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
             id: "summary",
             title: "Quick Reference: Essential Workplace Phrasal Verbs",
             icon: "📋",
@@ -380,11 +638,23 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li><strong>help out</strong> - assist</li>
                 </ul>
 
+                <h3>Tasks & Projects</h3>
+                <ul>
+                    <li><strong>take on</strong> - accept responsibility/work</li>
+                    <li><strong>deal with</strong> - handle a situation</li>
+                    <li><strong>set up</strong> - arrange, organize, prepare</li>
+                    <li><strong>put off</strong> - postpone, delay</li>
+                    <li><strong>work out</strong> - solve, figure out</li>
+                    <li><strong>wrap up</strong> - finish, complete</li>
+                </ul>
+
                 <h3>Common Mistakes</h3>
                 <ul>
                     <li>❌ "Fill the form" → ✅ "Fill out the form"</li>
                     <li>❌ "I will call you again" → ✅ "I'll call you back"</li>
                     <li>❌ "Clock yourself" → ✅ "Clock in/out"</li>
+                    <li>❌ "Let's finish up" → ✅ "Let's wrap up"</li>
+                    <li>❌ "I'll respond you" → ✅ "I'll get back to you"</li>
                 </ul>
             `,
             tipBox: {
@@ -580,6 +850,72 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Show up' means to arrive. If you're sick, you can't show up for your shift.",
+        },
+        {
+            id: "quiz-16",
+            question: "What does 'take on' mean in 'Can you take on this project?'",
+            options: [
+                { value: "a", label: "Fight against it" },
+                { value: "b", label: "Accept responsibility for it" },
+                { value: "c", label: "Put it somewhere" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Take on' means to accept responsibility or additional work.",
+        },
+        {
+            id: "quiz-17",
+            question: "Complete: 'We need to ___ the meeting until next week.'",
+            options: [
+                { value: "a", label: "put off" },
+                { value: "b", label: "put in" },
+                { value: "c", label: "put up" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Put off' means to postpone or delay something until later.",
+        },
+        {
+            id: "quiz-18",
+            question: "What does 'set up' mean in 'Can you set up the meeting room?'",
+            options: [
+                { value: "a", label: "Clean it" },
+                { value: "b", label: "Arrange and prepare it" },
+                { value: "c", label: "Lock it" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Set up' means to arrange, organize, or prepare something (a room, a meeting, equipment).",
+        },
+        {
+            id: "quiz-19",
+            question: "Complete: 'Let's ___ so everyone can leave on time.'",
+            options: [
+                { value: "a", label: "wrap up" },
+                { value: "b", label: "wrap in" },
+                { value: "c", label: "work in" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Wrap up' means to finish or complete something, often used for meetings or tasks.",
+        },
+        {
+            id: "quiz-20",
+            question: "What does 'deal with' mean in 'HR will deal with the complaint'?",
+            options: [
+                { value: "a", label: "Ignore it" },
+                { value: "b", label: "Handle it / take care of it" },
+                { value: "c", label: "Create it" },
+            ],
+            correctAnswer: "b",
+            explanation: "'Deal with' means to handle a situation, problem, or person.",
+        },
+        {
+            id: "quiz-21",
+            question: "Complete: 'Let's ___ a schedule that works for everyone.'",
+            options: [
+                { value: "a", label: "work out" },
+                { value: "b", label: "work in" },
+                { value: "c", label: "work up" },
+            ],
+            correctAnswer: "a",
+            explanation: "'Work out' means to solve, figure out, or find a solution that works.",
         },
     ],
 };
