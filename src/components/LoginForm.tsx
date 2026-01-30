@@ -3,6 +3,7 @@
 import { signIn, type SignInResponse } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { clearServiceWorkerCache } from "@/lib/clearCache";
 
 export default function LoginForm() {
     const [username, setUsername] = useState("");
@@ -34,6 +35,8 @@ export default function LoginForm() {
                 console.error('[Login] Error:', result.error);
                 setError(`Invalid credentials. Please check your username and password.`);
             } else if (result?.ok) {
+                // Clear PWA cache to ensure fresh content for this user (important for shared computers)
+                await clearServiceWorkerCache();
                 router.push("/dashboard");
                 router.refresh();
             } else {
