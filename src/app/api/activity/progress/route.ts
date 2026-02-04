@@ -221,6 +221,24 @@ export async function POST(request: Request) {
                 }
 
                 points = basePoints + bonusPoints;
+            } else if (resolveActivityGameUi(activity) === 'verb-forms') {
+                // Determine difficulty based on category passed from client
+                const difficulty = (category || 'medium').toLowerCase();
+                let pointsPerVerb: number = POINTS.VERB_FORMS_MEDIUM;
+                if (difficulty === 'easy') pointsPerVerb = POINTS.VERB_FORMS_EASY;
+                if (difficulty === 'hard') pointsPerVerb = POINTS.VERB_FORMS_HARD;
+
+                // Accuracy is items correct / total verbs (usually 10)
+                const correctCount = Math.round((sanitizedAccuracy || 0) * 10 / 100);
+                
+                let sessionPoints = correctCount * pointsPerVerb;
+                
+                // Add bonus for perfection
+                if (sanitizedAccuracy === 100) {
+                    sessionPoints += POINTS.VERB_FORMS_BONUS;
+                }
+                
+                points = sessionPoints;
             }
 
             await awardPoints(userId, points, `Completed: ${activity.title}`);

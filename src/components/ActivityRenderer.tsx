@@ -23,6 +23,7 @@ import FlashcardCarousel from "./ui/FlashcardCarousel";
 import FillInBlankGame from "./ui/FillInBlankGame";
 import MatchingGame from "./ui/MatchingGame";
 import NumbersGame from "./ui/NumbersGame";
+import VerbFormsGame from "./ui/VerbFormsGame";
 import VerbQuizContainer from "./activities/VerbQuizContainer";
 import { VerbQuizContent } from "@/types/verb-quiz";
 import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
@@ -119,6 +120,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
                     case "fill-in-blank":
                         return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
+                    case "verb-forms":
+                        return <VerbFormsGame contentStr={activity.content} activityId={activity.id} />;
                     case "matching":
                         return (
                             <MatchingGame

@@ -11,11 +11,11 @@ function addSecurityHeaders(response: NextResponse): NextResponse {
     // Note: 'unsafe-inline' and 'unsafe-eval' needed for Next.js development
     const cspHeader = [
         "default-src 'self'",
-        "script-src 'self' 'unsafe-eval' 'unsafe-inline'", // Next.js requires unsafe-inline for HMR
+        "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://va.vercel-scripts.com", // Next.js requires unsafe-inline for HMR
         "style-src 'self' 'unsafe-inline'", // Required for Next.js styled-jsx and CSS modules
         "img-src 'self' data: blob:", // Allow data URIs for inline images
         "font-src 'self' data:", // Allow data URIs for fonts
-        "connect-src 'self'", // API calls restricted to same origin
+        "connect-src 'self' https://docs.google.com https://*.google.com https://*.googleusercontent.com", // API calls restricted to same origin
         "frame-ancestors 'none'", // Prevent embedding (clickjacking protection)
         "base-uri 'self'", // Restrict base tag URLs
         "form-action 'self'", // Restrict form submissions
@@ -61,6 +61,10 @@ export default withAuth(
                       mustChangePassword?: boolean;
                   }
                 | undefined;
+            
+            if (req.nextUrl.pathname.startsWith("/activity/")) {
+                console.log(`Middleware running for activity: ${req.nextUrl.pathname}`);
+            }
 
             // Force password change flow
             const isResetPage = req.nextUrl.pathname.startsWith("/password-reset");

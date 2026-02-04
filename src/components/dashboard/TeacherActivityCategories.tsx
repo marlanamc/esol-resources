@@ -11,6 +11,7 @@ interface Activity {
     type: string;
     category: string | null;
     level: string | null;
+    ui: string | null;
     content?: string;
     isReleased?: boolean;
 }
@@ -616,8 +617,11 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                 activities: activities.filter((a: Activity) => {
                     // Filter for all game activities
                     if (a.type !== 'game') return false;
-                    if (a.category !== 'games') return false;
-                    return true;
+                    
+                    // Show if in games category, or has verb-forms UI
+                    return a.category === 'games' || 
+                           a.ui === 'verb-forms' || 
+                           a.ui === 'verbforms';
                 })
             },
             {

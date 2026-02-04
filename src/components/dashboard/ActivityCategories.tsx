@@ -11,6 +11,7 @@ interface Activity {
     type: string;
     category: string | null;
     level: string | null;
+    ui: string | null;
     content?: string;
 }
 
@@ -403,8 +404,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         ];
     }, [activities]);
 
-    const categories = useMemo((): Category[] => {
-        return [
+    const categories = useMemo<Category[]>(() => [
             {
                 name: 'Vocabulary',
                 color: '#f4a261', // warm orange
@@ -438,11 +438,15 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 name: 'Games',
                 color: '#f97316', // orange
                 activities: activities.filter((a: Activity) => {
-                    // Only show specific games: numbers-game and countable-uncountable-nouns
-                    // Exclude vocabulary games (they show in Vocabulary category)
                     if (a.type !== 'game') return false;
                     if (a.id?.startsWith('vocab-')) return false;
-                    return a.id === 'numbers-game' || a.id === 'countable-uncountable-nouns';
+                    
+                    // Show specific established games or anything explicitly tagged as a game UI
+                    return a.id === 'numbers-game' || 
+                           a.id === 'countable-uncountable-nouns' || 
+                           a.ui === 'verb-forms' || 
+                           a.ui === 'verbforms' ||
+                           a.category === 'games';
                 }).sort((a, b) => {
                     // Sort by title for better organization
                     return (a.title || '').localeCompare(b.title || '');
@@ -501,8 +505,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                         return getWeekNum(a.title || '') - getWeekNum(b.title || '');
                     })
             }
-        ];
-    }, [activities, buildGrammarSubCategories]);
+        ], [activities, buildGrammarSubCategories]);
 
     const filteredCategories = useMemo(() => {
         if (showEmpty) return categories;
