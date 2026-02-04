@@ -31,6 +31,7 @@ import type { SpeakingActivityContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
+import FeedbackWidget from "./ui/FeedbackWidget";
 
 interface Props {
     activity: {
@@ -55,95 +56,120 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
     const content = parseActivityContent(activity.content);
     if (!content && activity.type === "resource") {
         return (
-            <ResourceRenderer
-                contentStr={activity.content}
-                activityId={activity.id}
-                title={activity.title}
-                category={activity.category}
-            />
-        );
-    }
-
-    // Check for external URL redirect
-    if (content && 'externalUrl' in content && typeof content.externalUrl === 'string') {
-        return <ExternalUrlRedirect url={content.externalUrl} />;
-    }
-
-    switch (activity.type) {
-        case "quiz":
-            return (
-                <QuizRenderer
-                    content={content as QuizContent}
-                    activityId={activity.id}
-                    assignmentId={assignmentId}
-                    activityTitle={activity.title}
-                    existingSubmission={existingSubmission}
-                />
-            );
-        case "worksheet":
-            return <WorksheetRenderer content={content as WorksheetContent} />;
-        case "slides":
-            return <SlidesRenderer content={content as SlidesContent} />;
-        case "guide":
-            if (isLegacyGuideContent(content)) {
-                return <LegacyGuideRenderer originalFile={content.metadata.originalFile} />;
-            }
-            if (isInteractiveGuideContent(content)) {
-                if (activity.category === "grammar") {
-                    return (
-                        <GrammarReader
-                            content={content as InteractiveGuideContent}
-                            completionKey={completionKeyFromActivityTitle(activity.title)}
-                            activityId={activity.id}
-                        />
-                    );
-                }
-                return <InteractiveGuideViewer content={content as InteractiveGuideContent} title={activity.title} />;
-            }
-            return <GuideRenderer content={content as GuideContent} />;
-        case "speaking":
-            if (isSpeakingActivityContent(content)) {
-                return (
-                    <SpeakingActivityRenderer
-                        content={content as SpeakingActivityContent}
-                        activityId={activity.id}
-                        assignmentId={assignmentId}
-                    />
-                );
-            }
-            return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid speaking activity content.</div>;
-        case "game": {
-            const gameUi = resolveActivityGameUi(activity);
-            switch (gameUi) {
-                case "numbers":
-                    return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
-                case "fill-in-blank":
-                    return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
-                case "matching":
-                    return (
-                        <MatchingGame
-                            contentStr={activity.content}
-                            activityId={activity.id}
-                            assignmentId={assignmentId}
-                        />
-                    );
-                default:
-                    return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
-            }
-        }
-        case "resource":
-            return (
+            <div className="relative">
                 <ResourceRenderer
                     contentStr={activity.content}
                     activityId={activity.id}
                     title={activity.title}
                     category={activity.category}
                 />
-            );
-        default:
-            if (!content) return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Unable to load activity content.</div>;
-            return <DefaultRenderer content={content} />;
+                <FeedbackWidget 
+                    activityId={activity.id} 
+                    activityTitle={activity.title} 
+                />
+            </div>
+        );
     }
+
+    // Check for external URL redirect
+    if (content && 'externalUrl' in content && typeof content.externalUrl === 'string') {
+        return (
+            <div className="relative">
+                <ExternalUrlRedirect url={content.externalUrl} />
+                <FeedbackWidget 
+                    activityId={activity.id} 
+                    activityTitle={activity.title} 
+                />
+            </div>
+        );
+    }
+
+    const renderActivityContent = () => {
+        switch (activity.type) {
+            case "quiz":
+                return (
+                    <QuizRenderer
+                        content={content as QuizContent}
+                        activityId={activity.id}
+                        assignmentId={assignmentId}
+                        activityTitle={activity.title}
+                        existingSubmission={existingSubmission}
+                    />
+                );
+            case "worksheet":
+                return <WorksheetRenderer content={content as WorksheetContent} />;
+            case "slides":
+                return <SlidesRenderer content={content as SlidesContent} />;
+            case "guide":
+                if (isLegacyGuideContent(content)) {
+                    return <LegacyGuideRenderer originalFile={content.metadata.originalFile} />;
+                }
+                if (isInteractiveGuideContent(content)) {
+                    if (activity.category === "grammar") {
+                        return (
+                            <GrammarReader
+                                content={content as InteractiveGuideContent}
+                                completionKey={completionKeyFromActivityTitle(activity.title)}
+                                activityId={activity.id}
+                            />
+                        );
+                    }
+                }
+                return <InteractiveGuideViewer content={content as InteractiveGuideContent} title={activity.title} />;
+            case "speaking":
+                if (isSpeakingActivityContent(content)) {
+                    return (
+                        <SpeakingActivityRenderer
+                            content={content as SpeakingActivityContent}
+                            activityId={activity.id}
+                            assignmentId={assignmentId}
+                        />
+                    );
+                }
+                return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid speaking activity content.</div>;
+            case "game": {
+                const gameUi = resolveActivityGameUi(activity);
+                switch (gameUi) {
+                    case "numbers":
+                        return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
+                    case "fill-in-blank":
+                        return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
+                    case "matching":
+                        return (
+                            <MatchingGame
+                                contentStr={activity.content}
+                                activityId={activity.id}
+                                assignmentId={assignmentId}
+                            />
+                        );
+                    default:
+                        return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
+                }
+            }
+            case "resource":
+                return (
+                    <ResourceRenderer
+                        contentStr={activity.content}
+                        activityId={activity.id}
+                        title={activity.title}
+                        category={activity.category}
+                    />
+                );
+            default:
+                if (!content) return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Unable to load activity content.</div>;
+                return <DefaultRenderer content={content} />;
+        }
+    };
+
+    return (
+        <div className="relative">
+            {renderActivityContent()}
+            <FeedbackWidget 
+                activityId={activity.id} 
+                activityTitle={activity.title} 
+            />
+        </div>
+    );
 }
 
 function QuizRenderer({
