@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface AvatarSelectorProps {
     currentAvatar?: string;
@@ -56,6 +56,15 @@ export default function AvatarSelector({
     const [selectedAvatar, setSelectedAvatar] = useState(currentAvatar);
     const [selectedColor, setSelectedColor] = useState(currentColor);
     const [selectionMode, setSelectionMode] = useState<SelectionMode>("avatar");
+    const [isHighlighted, setIsHighlighted] = useState(true);
+
+    // Remove highlight after 3 seconds
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsHighlighted(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleAvatarSelect = (avatarId: string) => {
         setSelectedAvatar(avatarId);
@@ -94,7 +103,14 @@ export default function AvatarSelector({
 
             {/* Mode Toggle */}
             <div className="flex items-center justify-center">
-                <div className="inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1">
+                <div className={`
+                    inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1
+                    transition-all duration-500
+                    ${isHighlighted 
+                        ? 'ring-4 ring-blue-200 ring-opacity-50 animate-pulse shadow-lg' 
+                        : ''
+                    }
+                `}>
                     <button
                         onClick={() => setSelectionMode("avatar")}
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
