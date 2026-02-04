@@ -181,6 +181,16 @@ button {
   color: inherit;
 }
 
+/* Preserve borders and backgrounds for buttons that explicitly have them */
+button[class*="border-"] {
+  border: inherit;
+  background: inherit;
+}
+
+button[class*="bg-"] {
+  background: inherit;
+}
+
 input,
 select,
 textarea {
