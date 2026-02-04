@@ -55,6 +55,7 @@ const AVATARS = [
     { id: "shark", emoji: "🦈", name: "Shark", category: "sea" },
     { id: "whale", emoji: "🐋", name: "Whale", category: "sea" },
     { id: "dolphin", emoji: "🐬", name: "Dolphin", category: "sea" },
+    { id: "lobster", emoji: "🦞", name: "Lobster", category: "sea" },
     
     // Insects & Bugs
     { id: "snail", emoji: "🐌", name: "Snail", category: "insects" },

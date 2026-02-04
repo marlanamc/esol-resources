@@ -44,13 +44,14 @@ const AVATARS = [
     { id: "robot", emoji: "🤖", name: "Robot" },
     
     // Sea Creatures
-    { id: "octopus", emoji: "🐙", name: "Octopus" },
-    { id: "turtle", emoji: "🐢", name: "Turtle" },
-    { id: "crab", emoji: "🦀", name: "Crab" },
-    { id: "fish", emoji: "🐠", name: "Fish" },
-    { id: "shark", emoji: "🦈", name: "Shark" },
-    { id: "whale", emoji: "🐋", name: "Whale" },
-    { id: "dolphin", emoji: "🐬", name: "Dolphin" },
+    { id: "octopus", emoji: "🐙", name: "Octopus", category: "sea" },
+    { id: "turtle", emoji: "🐢", name: "Turtle", category: "sea" },
+    { id: "crab", emoji: "🦀", name: "Crab", category: "sea" },
+    { id: "fish", emoji: "🐠", name: "Fish", category: "sea" },
+    { id: "shark", emoji: "🦈", name: "Shark", category: "sea" },
+    { id: "whale", emoji: "🐋", name: "Whale", category: "sea" },
+    { id: "dolphin", emoji: "🐬", name: "Dolphin", category: "sea" },
+    { id: "lobster", emoji: "🦞", name: "Lobster", category: "sea" },
     
     // Insects & Bugs
     { id: "snail", emoji: "🐌", name: "Snail" },
