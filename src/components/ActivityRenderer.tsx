@@ -31,7 +31,6 @@ import type { SpeakingActivityContent } from "@/types/activity";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
-import FeedbackWidget from "./ui/FeedbackWidget";
 
 interface Props {
     activity: {
@@ -56,32 +55,18 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
     const content = parseActivityContent(activity.content);
     if (!content && activity.type === "resource") {
         return (
-            <div className="relative">
-                <ResourceRenderer
-                    contentStr={activity.content}
-                    activityId={activity.id}
-                    title={activity.title}
-                    category={activity.category}
-                />
-                <FeedbackWidget 
-                    activityId={activity.id} 
-                    activityTitle={activity.title} 
-                />
-            </div>
+            <ResourceRenderer
+                contentStr={activity.content}
+                activityId={activity.id}
+                title={activity.title}
+                category={activity.category}
+            />
         );
     }
 
     // Check for external URL redirect
     if (content && 'externalUrl' in content && typeof content.externalUrl === 'string') {
-        return (
-            <div className="relative">
-                <ExternalUrlRedirect url={content.externalUrl} />
-                <FeedbackWidget 
-                    activityId={activity.id} 
-                    activityTitle={activity.title} 
-                />
-            </div>
-        );
+        return <ExternalUrlRedirect url={content.externalUrl} />;
     }
 
     const renderActivityContent = () => {
@@ -161,15 +146,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
         }
     };
 
-    return (
-        <div className="relative">
-            {renderActivityContent()}
-            <FeedbackWidget 
-                activityId={activity.id} 
-                activityTitle={activity.title} 
-            />
-        </div>
-    );
+    return renderActivityContent();
 }
 
 function QuizRenderer({
