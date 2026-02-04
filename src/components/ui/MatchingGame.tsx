@@ -896,58 +896,135 @@ function VocabMatchingUI({
                     <p className="text-white/90">You matched all {pairs.length} words correctly.</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                    <div className="space-y-2">
-                        <p className="text-sm font-medium text-gray-500">Words</p>
-                        {shuffledTerms.map((p) => {
-                            const handlers = createTermClickHandler(p.id);
-                            return (
-                                <button
-                                    key={p.id}
-                                    type="button"
-                                    {...handlers}
-                                    className={`
-                                        w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer
-                                        ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
-                                        ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10" : "border-gray-200 hover:border-gray-300"}
-                                    `}
-                                    style={{
-                                        borderStyle: 'solid',
-                                        backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : '#ffffff'),
-                                        borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : '#e5e7eb'),
-                                        borderWidth: '2px'
-                                    }}
-                                >
-                                    <span className="font-medium">{p.term}</span>
-                                </button>
-                            );
-                        })}
+                <div className="space-y-6">
+                    {/* Mobile: Selected term display */}
+                    {selectedTermId && (
+                        <div className="md:hidden bg-blue-50 border-2 border-blue-400 rounded-xl p-4 shadow-sm">
+                            <p className="text-sm text-blue-600 mb-2 font-medium">Selected Word:</p>
+                            <p className="text-xl font-bold text-blue-900">
+                                {pairs.find((p) => p.id === selectedTermId)?.term}
+                            </p>
+                            <p className="text-xs text-blue-600 mt-2">Now tap the correct definition below</p>
+                        </div>
+                    )}
+
+                    {/* Desktop: Two-column layout */}
+                    <div className="hidden md:grid md:grid-cols-2 md:gap-6">
+                        <div className="space-y-2">
+                            <p className="text-sm font-medium text-gray-500">Words</p>
+                            {shuffledTerms.map((p) => {
+                                const handlers = createTermClickHandler(p.id);
+                                return (
+                                    <button
+                                        key={p.id}
+                                        type="button"
+                                        {...handlers}
+                                        className={`
+                                            w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer
+                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
+                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10" : "border-gray-200 hover:border-gray-300"}
+                                        `}
+                                        style={{
+                                            borderStyle: 'solid',
+                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : '#ffffff'),
+                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : '#e5e7eb'),
+                                            borderWidth: '2px'
+                                        }}
+                                    >
+                                        <span className="font-medium">{p.term}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                        <div className="space-y-2">
+                            <p className="text-sm font-medium text-gray-500">Definitions</p>
+                            {shuffledDefs.map((p) => {
+                                const handlers = createDefClickHandler(p.id);
+                                return (
+                                    <button
+                                        key={p.id}
+                                        type="button"
+                                        {...handlers}
+                                        className={`
+                                            w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-sm
+                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
+                                            ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse" : "border-gray-200 hover:border-gray-300"}
+                                        `}
+                                        style={{
+                                            borderStyle: 'solid',
+                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : '#ffffff'),
+                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : '#e5e7eb'),
+                                            borderWidth: '2px'
+                                        }}
+                                    >
+                                        <span>{p.definition}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
                     </div>
-                    <div className="space-y-2">
-                        <p className="text-sm font-medium text-gray-500">Definitions</p>
-                        {shuffledDefs.map((p) => {
-                            const handlers = createDefClickHandler(p.id);
-                            return (
-                                <button
-                                    key={p.id}
-                                    type="button"
-                                    {...handlers}
-                                    className={`
-                                        w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-sm
-                                        ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
-                                        ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse" : "border-gray-200 hover:border-gray-300"}
-                                    `}
-                                    style={{
-                                        borderStyle: 'solid',
-                                        backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : '#ffffff'),
-                                        borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : '#e5e7eb'),
-                                        borderWidth: '2px'
-                                    }}
-                                >
-                                    <span>{p.definition}</span>
-                                </button>
-                            );
-                        })}
+
+                    {/* Mobile: Single-column layout */}
+                    <div className="md:hidden space-y-4">
+                        {/* Words to select */}
+                        <div className="space-y-2">
+                            <p className="text-sm font-medium text-gray-500">
+                                {selectedTermId ? "Selected word shown above" : "Tap a word to start:"}
+                            </p>
+                            {!selectedTermId && shuffledTerms.map((p) => {
+                                const handlers = createTermClickHandler(p.id);
+                                return (
+                                    <button
+                                        key={p.id}
+                                        type="button"
+                                        {...handlers}
+                                        className={`
+                                            w-full text-left px-4 py-4 min-h-[60px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-base
+                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
+                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10" : "border-gray-300 hover:border-gray-400"}
+                                        `}
+                                        style={{
+                                            borderStyle: 'solid',
+                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : '#ffffff'),
+                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : '#d1d5db'),
+                                            borderWidth: '2px'
+                                        }}
+                                    >
+                                        <span className="font-medium text-lg">{p.term}</span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        {/* Definitions to match (only show when word is selected) */}
+                        {selectedTermId && (
+                            <div className="space-y-2">
+                                <p className="text-sm font-medium text-gray-500">Tap the correct definition:</p>
+                                {shuffledDefs.map((p) => {
+                                    const handlers = createDefClickHandler(p.id);
+                                    return (
+                                        <button
+                                            key={p.id}
+                                            type="button"
+                                            {...handlers}
+                                            className={`
+                                                w-full text-left px-4 py-4 min-h-[60px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-base
+                                                ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
+                                                ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse" : "border-gray-300 hover:border-gray-400"}
+                                            `}
+                                            style={{
+                                                borderStyle: 'solid',
+                                                backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : '#ffffff'),
+                                                borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : '#d1d5db'),
+                                                borderWidth: '2px'
+                                            }}
+                                        >
+                                            <span className="text-base">{p.definition}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
                 </div>
             )}
