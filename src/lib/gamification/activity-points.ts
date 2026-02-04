@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -15,6 +15,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "numbers" || ui === "numbers-game") return "numbers";
     if (ui === "fill-in-blank" || ui === "fillblank") return "fill-in-blank";
     if (ui === "flashcards" || ui === "flashcard") return "flashcards";
+    if (ui === "verb-forms" || ui === "verbforms") return "verb-forms";
   }
 
   const content = activity?.content;
@@ -28,6 +29,9 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     }
     if (content.includes("::")) {
       return "matching";
+    }
+    if (content.includes("Verb,V1,V1-3rd") || content.includes(".csv")) {
+      return "verb-forms";
     }
   }
 
@@ -57,6 +61,8 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.FLASHCARDS;
       case "numbers":
         return POINTS.NUMBERS_GAME_EASY;
+      case "verb-forms":
+        return POINTS.MATCHING_GAME; // Use matching game points for now as it's similar complexity
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }
