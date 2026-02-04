@@ -6,6 +6,7 @@ import { clearServiceWorkerCache } from "@/lib/clearCache";
 import { useRouter } from "next/navigation";
 import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
 import { UserIcon } from "@/components/icons/Icons";
+import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
 
 interface UserProfileDropdownProps {
     userName: string;
@@ -13,6 +14,8 @@ interface UserProfileDropdownProps {
 
 export default function UserProfileDropdown({ userName }: UserProfileDropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const [avatarId, setAvatarId] = useState<string>(DEFAULT_AVATAR);
+    const [colorId, setColorId] = useState<string>(DEFAULT_COLOR);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
@@ -31,6 +34,23 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [isOpen]);
+
+    // Fetch avatar data
+    useEffect(() => {
+        async function fetchAvatar() {
+            try {
+                const res = await fetch("/api/user/avatar");
+                if (res.ok) {
+                    const data = await res.json();
+                    setAvatarId(data.avatar || DEFAULT_AVATAR);
+                    setColorId(data.avatarColor || DEFAULT_COLOR);
+                }
+            } catch (error) {
+                console.error("Failed to fetch avatar:", error);
+            }
+        }
+        fetchAvatar();
+    }, []);
 
     const handleLogout = async () => {
         await clearServiceWorkerCache();
@@ -57,7 +77,11 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                <SelectedAvatarDisplay size="md" />
+                <SelectedAvatarDisplay 
+                    avatarId={avatarId}
+                    colorId={colorId}
+                    size="md" 
+                />
             </button>
 
             {isOpen && (
@@ -69,7 +93,12 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                         onClick={handleAvatarClick}
                         className="w-full text-left px-4 py-2 text-sm font-medium text-text hover:bg-bg-light transition-colors flex items-center gap-2"
                     >
-                        <SelectedAvatarDisplay size="sm" className="pointer-events-none" />
+                        <SelectedAvatarDisplay 
+                            avatarId={avatarId}
+                            colorId={colorId}
+                            size="sm" 
+                            className="pointer-events-none" 
+                        />
                         Change Avatar
                     </button>
                     <button

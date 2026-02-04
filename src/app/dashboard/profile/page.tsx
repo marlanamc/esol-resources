@@ -93,7 +93,6 @@ export default async function ProfilePage() {
     ];
 
     // Calculate category progress
-    const completedActivities = activityProgress.filter(ap => ap.status === 'completed').length;
 
     const vocabActivities = activityProgress.filter(ap => {
         const category = ap.activity.category?.toLowerCase() || '';
@@ -149,65 +148,92 @@ export default async function ProfilePage() {
 
     // Student view
     if (userRole === 'student') {
+        const totalActivities = vocabProgress.total + grammarProgress.total + numbersProgress.total + otherProgress.total;
+        const totalCompleted = vocabProgress.completed + grammarProgress.completed + numbersProgress.completed + otherProgress.completed;
+        
+        // Encouraging message based on activity
+        let welcomeMessage = "Let's learn something new today!";
+        if (user.currentStreak > 3) welcomeMessage = "You're on fire! Keep it up! 🔥";
+        else if (totalCompleted > 0) welcomeMessage = "Great progress so far!";
+        
         return (
-            <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24">
+            <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 pb-24">
+                {/* Decorative background elements */}
+                <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+                    <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl opacity-50" />
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-secondary/5 blur-3xl opacity-50" />
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
                     {/* Header */}
-                    <div className="mb-8">
+                    <div className="mb-10 animate-fade-in">
                         <Link
                             href="/dashboard"
-                            className="inline-flex items-center text-sm text-text-muted hover:text-primary mb-4 transition-colors"
+                            className="inline-flex items-center text-sm font-medium text-text-muted hover:text-primary mb-6 transition-colors group"
                         >
-                            ← Back to Dashboard
+                            <span className="w-8 h-8 rounded-full bg-white border border-border flex items-center justify-center mr-2 shadow-sm group-hover:scale-110 transition-transform">
+                                ←
+                            </span>
+                            Back to Dashboard
                         </Link>
-                        <div className="flex items-start justify-between">
-                            <div className="flex items-center gap-4">
-                                <ClickableAvatarDisplay size="lg" />
-                                <div>
-                                    <h1 className="text-4xl font-bold text-text mb-2">
-                                        {user.name || 'My Profile'}
-                                    </h1>
-                                    <p className="text-text-muted">
-                                        Track your progress and achievements
-                                    </p>
+                        
+                        <div className="flex flex-col md:flex-row items-center md:items-start gap-6 glass-card p-8 rounded-2xl relative overflow-hidden">
+                            {/* Accent decoration */}
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary" />
+                            
+                            <div className="flex-shrink-0 relative group">
+                                <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-secondary rounded-full opacity-70 blur group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div className="relative bg-white p-1 rounded-full">
+                                    <ClickableAvatarDisplay size="xl" />
                                 </div>
+                            </div>
+                            
+                            <div className="text-center md:text-left flex-1">
+                                <h1 className="text-4xl md:text-5xl font-bold font-display text-text mb-2 tracking-tight">
+                                    Hi, {user.name?.split(' ')[0] || 'Student'}! 👋
+                                </h1>
+                                <p className="text-xl text-text-muted font-medium max-w-2xl">
+                                    {welcomeMessage}
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     {/* Hero Stats Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 stagger-children">
                         <StatCard
                             label="Total Points"
-                            value={user.points}
-                            icon={<Trophy />}
+                            value={user.points.toLocaleString()}
+                            icon={<Trophy className="w-6 h-6" />}
                             color="primary"
+                            className="delay-100"
                         />
                         <StatCard
                             label="Current Streak"
-                            value={user.currentStreak}
-                            icon={<Flame />}
+                            value={`${user.currentStreak} Days`}
+                            icon={<Flame className="w-6 h-6" />}
                             color="warning"
+                            className="delay-200"
                         />
                         <StatCard
-                            label="Activities Done"
-                            value={completedActivities}
-                            icon={<BookOpen />}
-                            color="accent"
+                            label="Activities Explored"
+                            value={totalCompleted}
+                            icon={<BookOpen className="w-6 h-6" />}
+                            color="success"
+                            className="delay-300"
                         />
                     </div>
 
-                    {/* Activity Calendar and Progress by Category - Side by side on desktop */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                        {/* Streak Calendar */}
-                        <div className="bg-white/95 backdrop-blur-sm border border-border/60 rounded-xl p-6 shadow-md">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                        {/* Calendar */}
+                        <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-200">
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                                    <Calendar className="w-5 h-5 text-primary" />
+                                <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
+                                    <Calendar className="w-5 h-5 text-success" />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-bold text-text">Activity Calendar</h2>
-                                    <p className="text-sm text-text-muted">Your recent activity</p>
+                                    <h2 className="text-xl font-bold text-text">Consistency</h2>
+                                    <p className="text-sm text-text-muted">Each dot is a day you learned!</p>
                                 </div>
                             </div>
                             <StreakCalendar
@@ -216,147 +242,58 @@ export default async function ProfilePage() {
                             />
                         </div>
 
-                        {/* Progress by Category */}
-                        <div className="bg-white/95 backdrop-blur-sm border border-border/60 rounded-xl p-6 shadow-md">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-10 rounded-full bg-success/10 flex items-center justify-center">
-                                    <BookOpen className="w-5 h-5 text-success" />
-                                </div>
-                                <div>
-                                    <h2 className="text-xl font-bold text-text">Progress by Category</h2>
-                                    <p className="text-sm text-text-muted">Track your completion across different topics</p>
+                        {/* Recent Activity */}
+                        <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-300">
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
+                                        <Trophy className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl font-bold text-text">Recent Wins</h2>
+                                        <p className="text-sm text-text-muted">Latest activities</p>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div className="space-y-6">
-                                {/* Vocabulary */}
-                                {vocabProgress.total > 0 && (
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <span className="font-semibold text-text">📚 Vocabulary</span>
-                                            <span className="text-sm text-text-muted">
-                                                {vocabProgress.completed} / {vocabProgress.total} completed
-                                            </span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                                            <div
-                                                className="bg-gradient-to-r from-primary to-primary-dark h-full rounded-full transition-all duration-500"
-                                                style={{ width: `${vocabProgress.percentage}%` }}
-                                            />
-                                        </div>
-                                        <p className="text-xs text-text-muted mt-1">{vocabProgress.percentage}% complete</p>
-                                    </div>
-                                )}
-
-                                {/* Grammar */}
-                                {grammarProgress.total > 0 && (
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <span className="font-semibold text-text">✏️ Grammar</span>
-                                            <span className="text-sm text-text-muted">
-                                                {grammarProgress.completed} / {grammarProgress.total} completed
-                                            </span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                                            <div
-                                                className="bg-gradient-to-r from-success to-success-dark h-full rounded-full transition-all duration-500"
-                                                style={{ width: `${grammarProgress.percentage}%` }}
-                                            />
-                                        </div>
-                                        <p className="text-xs text-text-muted mt-1">{grammarProgress.percentage}% complete</p>
-                                    </div>
-                                )}
-
-                                {/* Numbers */}
-                                {numbersProgress.total > 0 && (
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <span className="font-semibold text-text">🔢 Numbers</span>
-                                            <span className="text-sm text-text-muted">
-                                                {numbersProgress.completed} / {numbersProgress.total} completed
-                                            </span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                                            <div
-                                                className="bg-gradient-to-r from-warning to-warning-dark h-full rounded-full transition-all duration-500"
-                                                style={{ width: `${numbersProgress.percentage}%` }}
-                                            />
-                                        </div>
-                                        <p className="text-xs text-text-muted mt-1">{numbersProgress.percentage}% complete</p>
-                                    </div>
-                                )}
-
-                                {/* Other */}
-                                {otherProgress.total > 0 && (
-                                    <div>
-                                        <div className="flex justify-between items-center mb-2">
-                                            <span className="font-semibold text-text">🎯 Other Activities</span>
-                                            <span className="text-sm text-text-muted">
-                                                {otherProgress.completed} / {otherProgress.total} completed
-                                            </span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                                            <div
-                                                className="bg-gradient-to-r from-accent to-accent-dark h-full rounded-full transition-all duration-500"
-                                                style={{ width: `${otherProgress.percentage}%` }}
-                                            />
-                                        </div>
-                                        <p className="text-xs text-text-muted mt-1">{otherProgress.percentage}% complete</p>
-                                    </div>
-                                )}
-                            </div>
+                            <ActivityTimeline activities={timelineActivities} limit={8} />
+                            {timelineActivities.length === 0 && (
+                                <div className="text-center py-6">
+                                    <p className="text-text-muted text-sm italic">No recent activity. Do a lesson to see it here!</p>
+                                </div>
+                            )}
                         </div>
-                    </div>
-
-                    {/* Achievements and Recent Activity - Side by side on desktop */}
-                    <div className={`grid grid-cols-1 gap-6 mb-8 ${user.achievements.length > 0 ? 'lg:grid-cols-2' : ''}`}>
-                        {/* Real Achievements */}
+                        
+                        {/* Achievements - Show only if exists */}
                         {user.achievements.length > 0 && (
-                            <div className="bg-white/95 backdrop-blur-sm border border-border/60 rounded-xl p-6 shadow-md">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-10 h-10 rounded-full bg-warning/10 flex items-center justify-center">
-                                        <Award className="w-5 h-5 text-warning" />
+                            <div className="lg:col-span-2 bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-8 shadow-sm animate-fade-in-up delay-400">
+                                <div className="flex items-center gap-4 mb-6">
+                                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center shadow-lg shadow-accent/20 text-white">
+                                        <Award className="w-6 h-6" />
                                     </div>
                                     <div>
-                                        <h2 className="text-xl font-bold text-text">Achievements</h2>
-                                        <p className="text-sm text-text-muted">Achievements you've earned</p>
+                                        <h2 className="text-2xl font-bold font-display text-text">Trophy Case</h2>
+                                        <p className="text-text-muted">Badges you've earned</p>
                                     </div>
                                 </div>
 
-                                <div className="space-y-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {user.achievements.map((userAchievement) => (
                                         <div
                                             key={userAchievement.id}
-                                            className="flex items-center gap-3 p-4 bg-gradient-to-r from-warning/5 to-warning/10 border border-warning/20 rounded-lg"
+                                            className="flex items-center gap-4 p-4 bg-gradient-to-br from-amber-50 to-orange-50/30 border border-amber-100/50 rounded-xl hover:shadow-md transition-shadow"
                                         >
-                                            <div className="w-8 h-8 rounded-full bg-warning/20 flex items-center justify-center shrink-0 text-lg">
+                                            <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-2xl shrink-0">
                                                 {userAchievement.achievement.icon}
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <p className="font-medium text-text">{userAchievement.achievement.name}</p>
-                                                <p className="text-xs text-text-muted mt-0.5">{userAchievement.achievement.description}</p>
+                                                <p className="font-bold text-text-dark">{userAchievement.achievement.name}</p>
+                                                <p className="text-xs text-text-muted mt-0.5 line-clamp-2">{userAchievement.achievement.description}</p>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         )}
-
-                        {/* Recent Activity Timeline */}
-                        <div className="bg-white/95 backdrop-blur-sm border border-border/60 rounded-xl p-6 shadow-md">
-                            <div className="flex items-center justify-between mb-6">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                                        <Trophy className="w-5 h-5 text-accent" />
-                                    </div>
-                                    <div>
-                                        <h2 className="text-xl font-bold text-text">Recent Activity</h2>
-                                        <p className="text-sm text-text-muted">Your latest completions and points earned</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <ActivityTimeline activities={timelineActivities} limit={10} />
-                        </div>
                     </div>
                 </div>
 
