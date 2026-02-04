@@ -113,21 +113,36 @@ export default function AvatarSelector({
                 `}>
                     <button
                         onClick={() => setSelectionMode("avatar")}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                            selectionMode === "avatar"
-                                ? "bg-white text-gray-900 shadow-sm"
-                                : "text-gray-600 hover:text-gray-900"
-                        }`}
+                        className={`
+                            px-4 py-2 rounded-md text-sm font-medium transition-all
+                            ${selectionMode === "avatar"
+                                ? "bg-white text-gray-900 shadow-sm ring-2 ring-offset-2 ring-offset-transparent"
+                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                            }
+                        `}
+                        style={{
+                            ...(selectionMode === "avatar" && {
+                                background: `linear-gradient(135deg, white 0%, white 60%, ${getCurrentColorClass()} 100%)`,
+                                backgroundClip: "padding-box",
+                            })
+                        }}
                     >
                         Emoji
                     </button>
                     <button
                         onClick={() => setSelectionMode("color")}
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                            selectionMode === "color"
-                                ? "bg-white text-gray-900 shadow-sm"
-                                : "text-gray-600 hover:text-gray-900"
-                        }`}
+                        className={`
+                            px-4 py-2 rounded-md text-sm font-medium transition-all
+                            ${selectionMode === "color"
+                                ? "bg-white text-gray-900 shadow-sm ring-2 ring-offset-2 ring-offset-transparent"
+                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                            }
+                        `}
+                        style={{
+                            ...(selectionMode === "color" && {
+                                background: getCurrentColorClass(),
+                            })
+                        }}
                     >
                         Color
                     </button>
