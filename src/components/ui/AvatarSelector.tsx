@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import {
     AVATARS,
     COLORS,
@@ -22,6 +22,17 @@ interface AvatarSelectorProps {
 
 type SelectionMode = "avatar" | "color";
 
+const CATEGORIES = [
+    { id: "animals", name: "Animals", emoji: "🐾" },
+    { id: "nature", name: "Nature", emoji: "🌿" },
+    { id: "fantasy", name: "Fantasy", emoji: "🧙" },
+    { id: "sea", name: "Sea", emoji: "🌊" },
+    { id: "insects", name: "Bugs", emoji: "🐞" },
+    { id: "food", name: "Fun", emoji: "🎉" },
+    { id: "sports", name: "Sports", emoji: "⚽" },
+    { id: "symbols", name: "Symbols", emoji: "💫" },
+] as const;
+
 export default function AvatarSelector({
     currentAvatar = DEFAULT_AVATAR,
     currentColor = DEFAULT_COLOR,
@@ -33,6 +44,7 @@ export default function AvatarSelector({
     const [selectedColor, setSelectedColor] = useState(currentColor);
     const [selectionMode, setSelectionMode] = useState<SelectionMode>("avatar");
     const [selectedCategory, setSelectedCategory] = useState<AvatarCategory>("animals");
+    const categoryScrollRef = useRef<HTMLDivElement>(null);
 
     const handleAvatarSelect = (avatarId: string) => {
         setSelectedAvatar(avatarId);
@@ -56,156 +68,194 @@ export default function AvatarSelector({
         return getAvatarCategoryCount(category);
     };
 
+    // Get color for dynamic glow effect
+    const getGlowColor = () => {
+        const color = COLORS.find(c => c.id === selectedColor);
+        // Extract the Tailwind color and map to rgba
+        const colorMap: Record<string, string> = {
+            red: "239, 68, 68",
+            orange: "251, 146, 60",
+            amber: "251, 191, 36",
+            yellow: "253, 224, 71",
+            lime: "163, 230, 53",
+            green: "74, 222, 128",
+            emerald: "52, 211, 153",
+            teal: "45, 212, 191",
+            cyan: "34, 211, 238",
+            sky: "56, 189, 248",
+            blue: "96, 165, 250",
+            indigo: "129, 140, 248",
+            violet: "167, 139, 250",
+            purple: "192, 132, 252",
+            fuchsia: "232, 121, 249",
+            pink: "244, 114, 182",
+            rose: "251, 113, 133",
+            slate: "148, 163, 184",
+            zinc: "161, 161, 170",
+            gray: "156, 163, 175",
+        };
+        return colorMap[color?.id || "blue"] || "96, 165, 250";
+    };
+
     return (
-        <div className={`space-y-4 ${className}`}>
-            <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Choose Your Avatar</h3>
-                <p className="text-sm text-gray-600">Pick an avatar to represent you in the classroom!</p>
-            </div>
-            
-            {/* Current Avatar Preview */}
-            <div className="flex items-center justify-center p-6 bg-gray-50 rounded-xl">
-                <div className="text-center">
-                    <div className={`w-20 h-20 ${getCurrentColorClass()} rounded-full flex items-center justify-center shadow-lg mb-2`}>
-                        <span className="text-4xl">
-                            {AVATARS.find(a => a.id === selectedAvatar)?.emoji}
-                        </span>
+        <div className={`space-y-6 ${className}`}>
+            {/* Hero Preview Section */}
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-white to-bg-light p-8">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-full -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-secondary/5 to-transparent rounded-full translate-y-1/2 -translate-x-1/2" />
+                
+                <div className="relative text-center">
+                    {/* Avatar with animated glow ring */}
+                    <div className="inline-block relative">
+                        {/* Outer glow ring */}
+                        <div 
+                            className="absolute inset-0 rounded-full animate-pulse"
+                            style={{
+                                boxShadow: `0 0 40px rgba(${getGlowColor()}, 0.3), 0 0 80px rgba(${getGlowColor()}, 0.15)`,
+                                transform: "scale(1.1)",
+                            }}
+                        />
+                        {/* Avatar circle */}
+                        <div 
+                            className={`relative w-28 h-28 ${getCurrentColorClass()} rounded-full flex items-center justify-center shadow-xl transition-all duration-500`}
+                            style={{
+                                boxShadow: `0 8px 32px rgba(${getGlowColor()}, 0.35), 0 4px 12px rgba(0,0,0,0.1)`,
+                            }}
+                        >
+                            <span className="text-6xl select-none transition-transform duration-300 hover:scale-110">
+                                {AVATARS.find(a => a.id === selectedAvatar)?.emoji}
+                            </span>
+                        </div>
                     </div>
-                    <p className="text-sm font-medium text-gray-700">
+                    
+                    {/* Avatar name */}
+                    <p className="mt-4 text-lg font-semibold text-text">
                         {AVATARS.find(a => a.id === selectedAvatar)?.name}
+                    </p>
+                    <p className="text-sm text-text-muted">
+                        Tap below to customize
                     </p>
                 </div>
             </div>
 
-            {/* Mode Toggle */}
+            {/* Premium Mode Toggle */}
             <div className="flex items-center justify-center">
-                <div className="inline-flex rounded-full bg-gray-200 p-1 relative">
-                    {/* Sliding Background */}
+                <div className="relative inline-flex rounded-full bg-gradient-to-r from-bg-gray to-bg-light p-1.5 shadow-inner">
+                    {/* Sliding indicator */}
                     <div 
                         className={`
-                            absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] 
-                            bg-white rounded-full shadow-md transition-all duration-300 ease-in-out
-                            ${selectionMode === "color" ? "translate-x-full" : "translate-x-0"}
+                            absolute top-1.5 h-[calc(100%-12px)] w-[calc(50%-6px)]
+                            bg-white rounded-full shadow-lg
+                            transition-all duration-300 ease-out
+                            ${selectionMode === "color" ? "left-[calc(50%+3px)]" : "left-1.5"}
                         `}
+                        style={{
+                            boxShadow: "0 2px 8px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)",
+                        }}
                     />
                     
-                    {/* Toggle Buttons */}
                     <button
                         onClick={() => setSelectionMode("avatar")}
                         className={`
-                            relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                            relative z-10 px-6 py-3 rounded-full text-sm font-semibold
+                            transition-all duration-300 flex items-center gap-2
                             ${selectionMode === "avatar"
-                                ? "text-primary font-semibold" 
-                                : "text-gray-600 hover:text-gray-900"
+                                ? "text-primary" 
+                                : "text-text-muted hover:text-text"
                             }
                         `}
                     >
-                        Emoji
+                        <span className="text-lg">🎭</span>
+                        <span>Emoji</span>
                     </button>
                     <button
                         onClick={() => setSelectionMode("color")}
                         className={`
-                            relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+                            relative z-10 px-6 py-3 rounded-full text-sm font-semibold
+                            transition-all duration-300 flex items-center gap-2
                             ${selectionMode === "color"
-                                ? "text-primary font-semibold" 
-                                : "text-gray-600 hover:text-gray-900"
+                                ? "text-primary" 
+                                : "text-text-muted hover:text-text"
                             }
                         `}
                     >
-                        Color
+                        <span className="text-lg">🎨</span>
+                        <span>Color</span>
                     </button>
                 </div>
             </div>
 
-            {/* Conditional Selection */}
-            {selectionMode === "avatar" ? (
-                <div>
-                    {/* Category Tabs */}
-                    <div className="mb-4">
-                        <div className="flex flex-wrap gap-2 justify-center">
-                            {[
-                                { id: "animals", name: "Animals", emoji: "🐾" },
-                                { id: "nature", name: "Nature", emoji: "🌿" },
-                                { id: "fantasy", name: "Fantasy", emoji: "🧙" },
-                                { id: "sea", name: "Sea", emoji: "🌊" },
-                                { id: "insects", name: "Bugs", emoji: "🐞" },
-                                { id: "food", name: "Food & Fun", emoji: "🍕" },
-                                { id: "sports", name: "Sports", emoji: "⚽" },
-                                { id: "symbols", name: "Symbols", emoji: "💫" },
-                            ].map((category) => (
+            {/* Content based on mode */}
+            <div className="relative min-h-[280px]">
+                {selectionMode === "avatar" ? (
+                    <div className="space-y-4 animate-fade-in">
+                        {/* Horizontally Scrollable Category Tabs */}
+                        <div className="relative">
+                            {/* Scroll indicator - gradient fade on right */}
+                            <div className="absolute right-0 top-0 bottom-2 w-12 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-10 flex items-center justify-end pr-1">
+                                <span className="text-text-light text-xs animate-pulse">›</span>
+                            </div>
+                            <div 
+                                ref={categoryScrollRef}
+                                className="flex gap-2 overflow-x-auto pb-2 pr-10 scrollbar-hide"
+                                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                            >
+                            {CATEGORIES.map((category) => (
                                 <button
                                     key={category.id}
                                     onClick={() => setSelectedCategory(category.id as AvatarCategory)}
                                     className={`
-                                        px-3 py-2 rounded-lg text-sm font-medium transition-all
-                                        flex items-center gap-1
+                                        flex-shrink-0 px-4 py-2.5 rounded-full text-sm font-medium
+                                        transition-all duration-200 flex items-center gap-1.5
                                         ${selectedCategory === category.id
-                                            ? "bg-primary text-white shadow-md"
-                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                            ? "bg-gradient-to-r from-primary to-primary-dark text-white shadow-md"
+                                            : "bg-white text-text-muted hover:bg-bg-light hover:text-text border border-border"
                                         }
                                     `}
                                 >
-                                    <span>{category.emoji}</span>
+                                    <span className="text-base">{category.emoji}</span>
                                     <span>{category.name}</span>
-                                    <span className="text-xs opacity-75">
-                                        ({getCategoryCount(category.id as AvatarCategory)})
+                                    <span className={`
+                                        text-xs px-1.5 py-0.5 rounded-full
+                                        ${selectedCategory === category.id
+                                            ? "bg-white/20 text-white"
+                                            : "bg-bg-gray text-text-light"
+                                        }
+                                    `}>
+                                        {getCategoryCount(category.id as AvatarCategory)}
                                     </span>
                                 </button>
                             ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Avatar Grid */}
-                    <div className="grid grid-cols-5 gap-3">
-                        {getFilteredAvatars().map((avatar) => (
-                            <button
-                                key={avatar.id}
-                                onClick={() => handleAvatarSelect(avatar.id)}
-                                className={`
-                                    relative p-3 rounded-lg border-2 transition-all
-                                    hover:scale-110 hover:shadow-md
-                                    ${selectedAvatar === avatar.id 
-                                        ? "border-primary bg-primary/10" 
-                                        : "border-gray-200 hover:border-gray-300"
-                                    }
-                                `}
-                                title={avatar.name}
-                            >
-                                <span className="text-2xl">{avatar.emoji}</span>
-                                {selectedAvatar === avatar.id && (
-                                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full flex items-center justify-center">
-                                        <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                )}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            ) : (
-                <div>
-                    <h4 className="text-md font-semibold text-gray-900 mb-3">Choose Your Color</h4>
-                    <div className="flex justify-center">
-                        <div className="grid grid-cols-5 gap-3 max-w-md">
-                            {COLORS.map((color) => (
+                        {/* Avatar Grid - Responsive columns */}
+                        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3">
+                            {getFilteredAvatars().map((avatar) => (
                                 <button
-                                    key={color.id}
-                                    onClick={() => handleColorSelect(color.id)}
+                                    key={avatar.id}
+                                    onClick={() => handleAvatarSelect(avatar.id)}
                                     className={`
-                                        relative p-3 rounded-full border-2 transition-all
-                                        hover:scale-110 hover:shadow-md
-                                        ${selectedColor === color.id 
-                                            ? "border-gray-800 shadow-lg" 
-                                            : "border-gray-200 hover:border-gray-300"
+                                        group relative aspect-square rounded-xl
+                                        flex items-center justify-center
+                                        transition-all duration-200
+                                        hover:scale-105 active:scale-95
+                                        ${selectedAvatar === avatar.id 
+                                            ? "bg-gradient-to-br from-primary/15 to-primary/5 ring-2 ring-primary ring-offset-2 shadow-md" 
+                                            : "bg-white hover:bg-bg-light border border-border hover:border-primary/30 hover:shadow-md"
                                         }
                                     `}
-                                    title={color.name}
+                                    title={avatar.name}
                                 >
-                                    <div className={`w-6 h-6 ${color.class} rounded-full`}></div>
-                                    {selectedColor === color.id && (
-                                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-gray-800 rounded-full flex items-center justify-center">
-                                            <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <span className="text-3xl sm:text-3xl transition-transform duration-200 group-hover:scale-110">
+                                        {avatar.emoji}
+                                    </span>
+                                    
+                                    {/* Selection indicator */}
+                                    {selectedAvatar === avatar.id && (
+                                        <div className="absolute -top-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center shadow-md animate-scale-in">
+                                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                             </svg>
                                         </div>
@@ -214,8 +264,61 @@ export default function AvatarSelector({
                             ))}
                         </div>
                     </div>
-                </div>
-            )}
+                ) : (
+                    <div className="space-y-4 animate-fade-in">
+                        <div className="text-center mb-6">
+                            <h4 className="text-lg font-semibold text-text mb-1">Choose Your Color</h4>
+                            <p className="text-sm text-text-muted">Select a background color for your avatar</p>
+                        </div>
+                        
+                        {/* Color Grid - Larger swatches */}
+                        <div className="flex justify-center">
+                            <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-10 gap-3 max-w-xl">
+                                {COLORS.map((color) => (
+                                    <button
+                                        key={color.id}
+                                        onClick={() => handleColorSelect(color.id)}
+                                        className={`
+                                            group relative w-12 h-12 sm:w-11 sm:h-11 rounded-full
+                                            transition-all duration-200
+                                            hover:scale-110 active:scale-95
+                                            ${selectedColor === color.id 
+                                                ? "ring-2 ring-offset-2 ring-text shadow-lg scale-105" 
+                                                : "hover:shadow-md"
+                                            }
+                                        `}
+                                        title={color.name}
+                                    >
+                                        {/* Color swatch with inner glow */}
+                                        <div 
+                                            className={`
+                                                w-full h-full ${color.class} rounded-full
+                                                transition-all duration-200
+                                            `}
+                                            style={{
+                                                boxShadow: selectedColor === color.id 
+                                                    ? "inset 0 -2px 8px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)"
+                                                    : "inset 0 -2px 4px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.2)"
+                                            }}
+                                        />
+                                        
+                                        {/* Selection checkmark */}
+                                        {selectedColor === color.id && (
+                                            <div className="absolute inset-0 flex items-center justify-center animate-scale-in">
+                                                <div className="w-6 h-6 bg-white/90 rounded-full flex items-center justify-center shadow-md">
+                                                    <svg className="w-4 h-4 text-text" fill="currentColor" viewBox="0 0 20 20">
+                                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

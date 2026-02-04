@@ -6,7 +6,7 @@ import { BottomNav } from "@/components/ui";
 import AvatarSelector from "@/components/ui/AvatarSelector";
 import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
 import { HomeIcon, BookOpenIcon, TrophyIcon, UserIcon } from "@/components/icons/Icons";
-import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
+import { DEFAULT_AVATAR, DEFAULT_COLOR, AVATARS, COLORS } from "@/lib/avatar-constants";
 
 export default function AvatarPage() {
     const router = useRouter();
@@ -90,53 +90,65 @@ export default function AvatarPage() {
         debouncedSave(currentAvatar, colorId);
     };
 
+    // Get current avatar and color info
+    const currentAvatarInfo = AVATARS.find(a => a.id === currentAvatar);
+    const currentColorInfo = COLORS.find(c => c.id === currentColor);
+
     return (
-        <div className="min-h-screen bg-bg-light">
-            {/* Header */}
-            <div className="bg-white border-b border-border/30">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="min-h-screen bg-gradient-to-b from-bg to-bg-light">
+            {/* Premium Header */}
+            <div className="sticky top-0 z-10 backdrop-blur-md bg-white/80 border-b border-border/50">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
                         <button
                             onClick={() => router.back()}
-                            className="flex items-center gap-2 text-sm text-text-muted hover:text-primary transition-colors"
+                            className="group flex items-center gap-2 text-sm text-text-muted hover:text-primary transition-all duration-200"
                         >
-                            ← Back
+                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-bg-light group-hover:bg-primary/10 transition-colors">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </span>
+                            <span className="hidden sm:inline font-medium">Back</span>
                         </button>
-                        <h1 className="text-xl font-semibold text-text">Customize Your Avatar</h1>
-                        <div className="w-16"></div> {/* Spacer for centering */}
+                        
+                        <div className="text-center">
+                            <h1 className="text-xl font-semibold text-text flex items-center gap-2 justify-center">
+                                <span className="text-2xl">✨</span>
+                                <span>Customize Avatar</span>
+                            </h1>
+                        </div>
+                        
+                        {/* Saving indicator */}
+                        <div className="w-20 flex justify-end">
+                            {isSaving && (
+                                <div className="flex items-center gap-1.5 text-sm text-text-muted animate-fade-in">
+                                    <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                                    <span>Saving</span>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-32">
                 {isLoading ? (
-                    <div className="text-center py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-                        <p className="text-text-muted">Loading your avatar...</p>
+                    <div className="flex flex-col items-center justify-center py-16">
+                        <div className="relative">
+                            {/* Animated loading ring */}
+                            <div className="w-20 h-20 rounded-full border-4 border-bg-gray animate-pulse" />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 animate-pulse" />
+                            </div>
+                        </div>
+                        <p className="mt-4 text-text-muted font-medium">Loading your avatar...</p>
                     </div>
                 ) : (
-                    <>
-                        {/* Current Avatar Display */}
-                        <div className="text-center mb-8">
-                            <h2 className="text-2xl font-bold text-text mb-4">Your Current Avatar</h2>
-                            <div className="inline-block relative">
-                                <SelectedAvatarDisplay
-                                    avatarId={currentAvatar}
-                                    colorId={currentColor}
-                                    size="lg"
-                                />
-                                {isSaving && (
-                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full animate-pulse"></div>
-                                )}
-                            </div>
-                            <p className="text-text-muted mt-4">
-                                This avatar represents you throughout the classroom
-                            </p>
-                        </div>
-
-                        {/* Avatar Selector */}
-                        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div className="space-y-6">
+                        {/* Avatar Selector Card */}
+                        <div className="glass-card rounded-2xl p-4 sm:p-6">
                             <AvatarSelector
                                 currentAvatar={currentAvatar}
                                 currentColor={currentColor}
@@ -145,21 +157,41 @@ export default function AvatarPage() {
                             />
                         </div>
 
-                        {/* Save Button */}
-                        <div className="mt-8 text-center">
+                        {/* Done Button */}
+                        <div className="flex justify-center pt-2">
                             <button
                                 onClick={() => router.push("/dashboard/profile")}
-                                className="px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-md"
+                                className="
+                                    group relative px-8 py-4 rounded-xl font-semibold text-white
+                                    bg-gradient-to-r from-primary to-primary-dark
+                                    shadow-lg hover:shadow-xl
+                                    transition-all duration-300
+                                    hover:scale-[1.02] active:scale-[0.98]
+                                    overflow-hidden
+                                "
                             >
-                                Save Avatar
+                                {/* Shine effect */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                                
+                                <span className="relative flex items-center gap-2">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Done
+                                </span>
                             </button>
                         </div>
-                    </>
+
+                        {/* Helpful tip */}
+                        <p className="text-center text-sm text-text-muted">
+                            Your avatar appears throughout the classroom
+                        </p>
+                    </div>
                 )}
             </div>
 
             {/* Bottom Navigation */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-border/30 md:hidden">
+            <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-border/30 md:hidden">
                 <BottomNav
                     items={[
                         { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
