@@ -8,6 +8,7 @@ import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
 import AvatarSection from "@/components/ui/AvatarSection";
+import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
 
@@ -161,13 +162,16 @@ export default async function ProfilePage() {
                             ← Back to Dashboard
                         </Link>
                         <div className="flex items-start justify-between">
-                            <div>
-                                <h1 className="text-4xl font-bold text-text mb-2">
-                                    {user.name || 'My Profile'}
-                                </h1>
-                                <p className="text-text-muted">
-                                    Track your progress and achievements
-                                </p>
+                            <div className="flex items-center gap-4">
+                                <SelectedAvatarDisplay size="lg" />
+                                <div>
+                                    <h1 className="text-4xl font-bold text-text mb-2">
+                                        {user.name || 'My Profile'}
+                                    </h1>
+                                    <p className="text-text-muted">
+                                        Track your progress and achievements
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
