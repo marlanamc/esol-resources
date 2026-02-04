@@ -5,10 +5,9 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 interface NavItem {
-  href?: string;
+  href: string;
   label: string;
-  icon?: React.ReactNode;
-  component?: React.ReactNode;
+  icon: React.ReactNode;
 }
 
 interface BottomNavProps {
@@ -40,21 +39,13 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
         >
           {items.map((item) => {
-            if (item.component) {
-              return (
-                <div key={item.label} className="flex flex-col items-center justify-center gap-1 transition-[color,transform] duration-150 cursor-pointer touch-manipulation relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 active:scale-95">
-                  {item.component}
-                </div>
-              );
-            }
-
             const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
 
             return (
               <Link
                 key={item.href}
-                href={item.href!}
-                onClick={(e) => handleClick(e, item.href!)}
+                href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
                 className={`flex flex-col items-center justify-center gap-1 transition-[color,transform] duration-150 cursor-pointer touch-manipulation relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                   isActive
                     ? ''
