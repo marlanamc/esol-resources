@@ -8,7 +8,7 @@ import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
 import AvatarSection from "@/components/ui/AvatarSection";
-import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
+import ClickableAvatarDisplay from "@/components/ui/ClickableAvatarDisplay";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
 
@@ -163,7 +163,7 @@ export default async function ProfilePage() {
                         </Link>
                         <div className="flex items-start justify-between">
                             <div className="flex items-center gap-4">
-                                <SelectedAvatarDisplay size="lg" />
+                                <ClickableAvatarDisplay size="lg" />
                                 <div>
                                     <h1 className="text-4xl font-bold text-text mb-2">
                                         {user.name || 'My Profile'}
