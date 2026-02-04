@@ -9,7 +9,7 @@ import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
 import ClickableAvatarDisplay from "@/components/ui/ClickableAvatarDisplay";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
-import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
+import { HomeIcon, BookOpenIcon as BookIcon, UsersIcon, UserIcon } from "@/components/icons/Icons";
 
 // Force dynamic rendering to show real-time activity data
 export const dynamic = 'force-dynamic';
@@ -364,7 +364,6 @@ export default async function ProfilePage() {
                     items={[
                         { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
                         { href: "/dashboard/activities", label: "Activities", icon: <BookIcon /> },
-                        { href: "/dashboard/leaderboard", label: "Leaderboard", icon: <TrophyIcon /> },
                         { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
                     ]}
                 />
