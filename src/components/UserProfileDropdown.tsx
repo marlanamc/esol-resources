@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { clearServiceWorkerCache } from "@/lib/clearCache";
 import { useRouter } from "next/navigation";
-import { UserIcon } from "@/components/icons/Icons";
+import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
 
 interface UserProfileDropdownProps {
     userName: string;
@@ -50,7 +50,7 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                <UserIcon className="w-6 h-6 text-text" />
+                <SelectedAvatarDisplay size="md" className="pointer-events-none" />
             </button>
 
             {isOpen && (
@@ -62,7 +62,7 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                         onClick={handleProfileClick}
                         className="w-full text-left px-4 py-2 text-sm font-medium text-text hover:bg-bg-light transition-colors flex items-center gap-2"
                     >
-                        <UserIcon className="w-4 h-4" />
+                        <SelectedAvatarDisplay size="sm" className="pointer-events-none" />
                         View Profile
                     </button>
                     <button
