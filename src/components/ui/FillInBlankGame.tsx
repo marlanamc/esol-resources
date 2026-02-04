@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { PointsToast } from "@/components/ui/PointsToast";
 
 interface FillInBlankQuestion {
     id: number;
@@ -21,6 +22,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [score, setScore] = useState(0);
     const [showExplanation, setShowExplanation] = useState(false);
+    const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
     const currentQuestion = questions[currentIndex];
     const isLastQuestion = currentIndex === questions.length - 1;
@@ -45,13 +47,28 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
     useEffect(() => {
         if (!activityId || questions.length === 0) return;
         const value = Math.round(progress);
-        void saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress");
+
+        const saveProgress = async () => {
+            const result = await saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress");
+            if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+            }
+        };
+
+        void saveProgress();
     }, [activityId, progress, questions.length]);
 
     // Save 100% progress when quiz is completed
     useEffect(() => {
         if (isComplete && activityId) {
-            void saveActivityProgress(activityId, 100, "completed");
+            const finishQuiz = async () => {
+                const result = await saveActivityProgress(activityId, 100, "completed");
+                if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                    setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+                }
+            };
+
+            void finishQuiz();
         }
     }, [isComplete, activityId]);
 
@@ -85,6 +102,14 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+            {/* Points Toast */}
+            {pointsToast && (
+                <PointsToast
+                    key={pointsToast.key}
+                    points={pointsToast.points}
+                    onComplete={() => setPointsToast(null)}
+                />
+            )}
             {/* Header with Progress */}
             <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4 flex items-center gap-3">
                 {/* Back button - only on mobile */}

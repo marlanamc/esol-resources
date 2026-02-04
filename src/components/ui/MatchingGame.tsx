@@ -2,6 +2,7 @@
 
 import { useMemo, useEffect, useState, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { PointsToast } from "@/components/ui/PointsToast";
 
 interface CountableWord {
     id: number;
@@ -114,6 +115,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
         category: "countable" | "uncountable";
         isCorrect: boolean;
     } | null>(null);
+    const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
     const dropZoneFeedbackTimeoutRef = useRef<number | null>(null);
     const explanationAutoDismissTimeoutRef = useRef<number | null>(null);
 
@@ -254,15 +256,23 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
         if (completedRoundCategoriesRef.current.has(roundNumber)) return;
         completedRoundCategoriesRef.current.add(roundNumber);
         const roundStatus = overallProgressPercent >= 100 ? "completed" : "in_progress";
-        void saveActivityProgress(
-            activityId,
-            overallProgressPercent,
-            roundStatus,
-            undefined,
-            `round-${roundNumber}`,
-            assignmentId ?? null
-        );
-    }, [activityId, currentRound, isRoundComplete, assignmentId]);
+
+        const saveRoundProgress = async () => {
+            const result = await saveActivityProgress(
+                activityId,
+                overallProgressPercent,
+                roundStatus,
+                undefined,
+                `round-${roundNumber}`,
+                assignmentId ?? null
+            );
+            if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+            }
+        };
+
+        void saveRoundProgress();
+    }, [activityId, currentRound, isRoundComplete, assignmentId, overallProgressPercent]);
 
     // Resume from saved round progress (categoryData keys like "round-1", "round-2", ...)
     useEffect(() => {
@@ -512,6 +522,15 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+            {/* Points Toast */}
+            {pointsToast && (
+                <PointsToast
+                    key={pointsToast.key}
+                    points={pointsToast.points}
+                    onComplete={() => setPointsToast(null)}
+                />
+            )}
+
             {/* Header */}
             <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
                 <div className="flex items-start gap-3">
@@ -799,6 +818,7 @@ function VocabMatchingUI({
     const [selectedTermId, setSelectedTermId] = useState<number | null>(null);
     const [matchedTermIds, setMatchedTermIds] = useState<Set<number>>(new Set());
     const [wrongFlash, setWrongFlash] = useState<number | null>(null);
+    const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
     const progressPercent =
         pairs.length > 0 ? Math.round((matchedTermIds.size / pairs.length) * 100) : 0;
@@ -807,14 +827,22 @@ function VocabMatchingUI({
     useEffect(() => {
         if (!activityId || pairs.length === 0) return;
         const status = isComplete ? "completed" : "in_progress";
-        void saveActivityProgress(
-            activityId,
-            progressPercent,
-            status,
-            undefined,
-            undefined,
-            assignmentId ?? null
-        );
+
+        const saveProgress = async () => {
+            const result = await saveActivityProgress(
+                activityId,
+                progressPercent,
+                status,
+                undefined,
+                undefined,
+                assignmentId ?? null
+            );
+            if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+            }
+        };
+
+        void saveProgress();
     }, [activityId, progressPercent, isComplete, pairs.length, assignmentId]);
 
     const handleTermClick = (pairId: number) => {

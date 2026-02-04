@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { PointsToast } from "@/components/ui/PointsToast";
 
 /**
  * FlashcardData interface matching the parser output in ActivityRenderer
@@ -30,6 +31,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
     const [mode, setMode] = useState<CardMode>("term-first");
     const [showExample, setShowExample] = useState(true);
     const [studiedCards, setStudiedCards] = useState<Set<number>>(new Set()); // Track cards that were actually flipped
+    const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
     // Touch/swipe handling
     const touchStartX = useRef<number | null>(null);
@@ -154,13 +156,30 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
         if (!activityId || total === 0) return;
         // Progress is based on cards actually studied (flipped), not just navigated
         const studiedPercent = Math.round((studiedCards.size / total) * 100);
-        void saveActivityProgress(activityId, studiedPercent, studiedPercent >= 100 ? "completed" : "in_progress");
+
+        const saveProgress = async () => {
+            const result = await saveActivityProgress(activityId, studiedPercent, studiedPercent >= 100 ? "completed" : "in_progress");
+            if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+            }
+        };
+
+        void saveProgress();
     }, [activityId, studiedCards.size, total]);
 
     const [showSettings, setShowSettings] = useState(false);
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4">
+            {/* Points Toast */}
+            {pointsToast && (
+                <PointsToast
+                    key={pointsToast.key}
+                    points={pointsToast.points}
+                    onComplete={() => setPointsToast(null)}
+                />
+            )}
+
             {/* Top Bar - Progress & Settings */}
             <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">

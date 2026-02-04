@@ -1,6 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import {
+    AVATARS,
+    COLORS,
+    getAvatarsByCategory,
+    getAvatarCategoryCount,
+    getColorClass,
+    DEFAULT_AVATAR,
+    DEFAULT_COLOR,
+    type AvatarCategory,
+} from "@/lib/avatar-constants";
 
 interface AvatarSelectorProps {
     currentAvatar?: string;
@@ -11,143 +21,18 @@ interface AvatarSelectorProps {
 }
 
 type SelectionMode = "avatar" | "color";
-type AvatarCategory = "animals" | "nature" | "fantasy" | "sea" | "insects" | "food" | "sports" | "symbols";
 
-const AVATARS = [
-    // Animals
-    { id: "cat", emoji: "🐱", name: "Cat", category: "animals" },
-    { id: "dog", emoji: "🐶", name: "Dog", category: "animals" },
-    { id: "rabbit", emoji: "🐰", name: "Rabbit", category: "animals" },
-    { id: "bear", emoji: "🐻", name: "Bear", category: "animals" },
-    { id: "panda", emoji: "🐼", name: "Panda", category: "animals" },
-    { id: "fox", emoji: "🦊", name: "Fox", category: "animals" },
-    { id: "lion", emoji: "🦁", name: "Lion", category: "animals" },
-    { id: "tiger", emoji: "🐯", name: "Tiger", category: "animals" },
-    { id: "elephant", emoji: "🐘", name: "Elephant", category: "animals" },
-    { id: "monkey", emoji: "🐵", name: "Monkey", category: "animals" },
-    { id: "owl", emoji: "🦉", name: "Owl", category: "animals" },
-    { id: "parrot", emoji: "🦜", name: "Parrot", category: "animals" },
-    
-    // Nature & Plants
-    { id: "butterfly", emoji: "🦋", name: "Butterfly", category: "nature" },
-    { id: "flower", emoji: "🌸", name: "Flower", category: "nature" },
-    { id: "tree", emoji: "🌳", name: "Tree", category: "nature" },
-    { id: "leaf", emoji: "🍃", name: "Leaf", category: "nature" },
-    { id: "sun", emoji: "☀️", name: "Sun", category: "nature" },
-    { id: "moon", emoji: "🌙", name: "Moon", category: "nature" },
-    { id: "star", emoji: "⭐", name: "Star", category: "nature" },
-    { id: "rainbow", emoji: "🌈", name: "Rainbow", category: "nature" },
-    
-    // Fantasy & Magical
-    { id: "unicorn", emoji: "🦄", name: "Unicorn", category: "fantasy" },
-    { id: "dragon", emoji: "🐲", name: "Dragon", category: "fantasy" },
-    { id: "wizard", emoji: "🧙", name: "Wizard", category: "fantasy" },
-    { id: "fairy", emoji: "🧚", name: "Fairy", category: "fantasy" },
-    { id: "ghost", emoji: "👻", name: "Ghost", category: "fantasy" },
-    { id: "alien", emoji: "👽", name: "Alien", category: "fantasy" },
-    { id: "robot", emoji: "🤖", name: "Robot", category: "fantasy" },
-    
-    // Sea Creatures
-    { id: "octopus", emoji: "🐙", name: "Octopus", category: "sea" },
-    { id: "turtle", emoji: "🐢", name: "Turtle", category: "sea" },
-    { id: "crab", emoji: "🦀", name: "Crab", category: "sea" },
-    { id: "fish", emoji: "🐠", name: "Fish", category: "sea" },
-    { id: "shark", emoji: "🦈", name: "Shark", category: "sea" },
-    { id: "whale", emoji: "🐋", name: "Whale", category: "sea" },
-    { id: "dolphin", emoji: "🐬", name: "Dolphin", category: "sea" },
-    { id: "lobster", emoji: "🦞", name: "Lobster", category: "sea" },
-    
-    // Insects & Bugs
-    { id: "snail", emoji: "🐌", name: "Snail", category: "insects" },
-    { id: "bee", emoji: "🐝", name: "Bee", category: "insects" },
-    { id: "ladybug", emoji: "🐞", name: "Ladybug", category: "insects" },
-    { id: "beetle", emoji: "🪲", name: "Beetle", category: "insects" },
-    
-    // Food & Objects
-    { id: "pizza", emoji: "🍕", name: "Pizza", category: "food" },
-    { id: "hamburger", emoji: "🍔", name: "Hamburger", category: "food" },
-    { id: "icecream", emoji: "🍦", name: "Ice Cream", category: "food" },
-    { id: "cookie", emoji: "🍪", name: "Cookie", category: "food" },
-    { id: "cake", emoji: "🎂", name: "Cake", category: "food" },
-    { id: "coffee", emoji: "☕", name: "Coffee", category: "food" },
-    { id: "book", emoji: "📚", name: "Book", category: "food" },
-    { id: "pencil", emoji: "✏️", name: "Pencil", category: "food" },
-    { id: "paintbrush", emoji: "🎨", name: "Paint Brush", category: "food" },
-    { id: "music", emoji: "🎵", name: "Music", category: "food" },
-    { id: "guitar", emoji: "🎸", name: "Guitar", category: "food" },
-    { id: "microphone", emoji: "📱", name: "Phone", category: "food" },
-    { id: "camera", emoji: "📷", name: "Camera", category: "food" },
-    { id: "gamepad", emoji: "🎮", name: "Gamepad", category: "food" },
-    { id: "rocket", emoji: "🚀", name: "Rocket", category: "food" },
-    { id: "airplane", emoji: "✈️", name: "Airplane", category: "food" },
-    { id: "car", emoji: "🚗", name: "Car", category: "food" },
-    
-    // Sports & Activities
-    { id: "soccer", emoji: "⚽", name: "Soccer", category: "sports" },
-    { id: "basketball", emoji: "🏀", name: "Basketball", category: "sports" },
-    { id: "tennis", emoji: "🎾", name: "Tennis", category: "sports" },
-    { id: "baseball", emoji: "⚾", name: "Baseball", category: "sports" },
-    { id: "football", emoji: "🏈", name: "Football", category: "sports" },
-    { id: "bicycle", emoji: "🚴", name: "Bicycle", category: "sports" },
-    { id: "skateboard", emoji: "🛹", name: "Skateboard", category: "sports" },
-    { id: "surfboard", emoji: "🏄", name: "Surfboard", category: "sports" },
-    
-    // Symbols & Emotions
-    { id: "heart", emoji: "❤️", name: "Heart", category: "symbols" },
-    { id: "thumbsup", emoji: "👍", name: "Thumbs Up", category: "symbols" },
-    { id: "fire", emoji: "🔥", name: "Fire", category: "symbols" },
-    { id: "lightning", emoji: "⚡", name: "Lightning", category: "symbols" },
-    { id: "sparkles", emoji: "✨", name: "Sparkles", category: "symbols" },
-    { id: "diamond", emoji: "💎", name: "Diamond", category: "symbols" },
-    { id: "crown", emoji: "👑", name: "Crown", category: "symbols" },
-    { id: "trophy", emoji: "🏆", name: "Trophy", category: "symbols" },
-    { id: "medal", emoji: "🏅", name: "Medal", category: "symbols" },
-    { id: "flag", emoji: "🚩", name: "Flag", category: "symbols" },
-];
-
-const COLORS = [
-    { id: "red", name: "Red", class: "bg-red-400" },
-    { id: "orange", name: "Orange", class: "bg-orange-400" },
-    { id: "amber", name: "Amber", class: "bg-amber-400" },
-    { id: "yellow", name: "Yellow", class: "bg-yellow-300" },
-    { id: "lime", name: "Lime", class: "bg-lime-400" },
-    { id: "green", name: "Green", class: "bg-green-400" },
-    { id: "emerald", name: "Emerald", class: "bg-emerald-400" },
-    { id: "teal", name: "Teal", class: "bg-teal-400" },
-    { id: "cyan", name: "Cyan", class: "bg-cyan-400" },
-    { id: "sky", name: "Sky", class: "bg-sky-400" },
-    { id: "blue", name: "Blue", class: "bg-blue-400" },
-    { id: "indigo", name: "Indigo", class: "bg-indigo-400" },
-    { id: "violet", name: "Violet", class: "bg-violet-400" },
-    { id: "purple", name: "Purple", class: "bg-purple-400" },
-    { id: "fuchsia", name: "Fuchsia", class: "bg-fuchsia-400" },
-    { id: "pink", name: "Pink", class: "bg-pink-400" },
-    { id: "rose", name: "Rose", class: "bg-rose-400" },
-    { id: "slate", name: "Slate", class: "bg-slate-400" },
-    { id: "zinc", name: "Zinc", class: "bg-zinc-400" },
-    { id: "gray", name: "Gray", class: "bg-gray-400" },
-];
-
-export default function AvatarSelector({ 
-    currentAvatar = "cat", 
-    currentColor = "blue",
-    onAvatarChange, 
+export default function AvatarSelector({
+    currentAvatar = DEFAULT_AVATAR,
+    currentColor = DEFAULT_COLOR,
+    onAvatarChange,
     onColorChange,
-    className = "" 
+    className = ""
 }: AvatarSelectorProps) {
     const [selectedAvatar, setSelectedAvatar] = useState(currentAvatar);
     const [selectedColor, setSelectedColor] = useState(currentColor);
     const [selectionMode, setSelectionMode] = useState<SelectionMode>("avatar");
     const [selectedCategory, setSelectedCategory] = useState<AvatarCategory>("animals");
-    const [isHighlighted, setIsHighlighted] = useState(true);
-
-    // Remove highlight after 3 seconds
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsHighlighted(false);
-        }, 3000);
-        return () => clearTimeout(timer);
-    }, []);
 
     const handleAvatarSelect = (avatarId: string) => {
         setSelectedAvatar(avatarId);
@@ -160,15 +45,15 @@ export default function AvatarSelector({
     };
 
     const getCurrentColorClass = () => {
-        return COLORS.find(c => c.id === selectedColor)?.class || "bg-blue-500";
+        return getColorClass(selectedColor);
     };
 
     const getFilteredAvatars = () => {
-        return AVATARS.filter(avatar => avatar.category === selectedCategory);
+        return getAvatarsByCategory(selectedCategory);
     };
 
     const getCategoryCount = (category: AvatarCategory) => {
-        return AVATARS.filter(avatar => avatar.category === category).length;
+        return getAvatarCategoryCount(category);
     };
 
     return (
@@ -335,20 +220,20 @@ export default function AvatarSelector({
     );
 }
 
-// Simple avatar display component
-export function AvatarDisplay({ 
-    avatarId, 
-    size = "md", 
-    className = "" 
-}: { 
-    avatarId: string; 
-    size?: "sm" | "md" | "lg"; 
+// Simple avatar display component (emoji only, no background)
+export function AvatarDisplay({
+    avatarId,
+    size = "md",
+    className = ""
+}: {
+    avatarId: string;
+    size?: "sm" | "md" | "lg";
     className?: string;
 }) {
     const avatar = AVATARS.find(a => a.id === avatarId);
     const sizeClasses = {
         sm: "text-2xl",
-        md: "text-4xl", 
+        md: "text-4xl",
         lg: "text-6xl"
     };
 

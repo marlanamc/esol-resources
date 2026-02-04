@@ -4,6 +4,19 @@ import { useEffect, useState } from 'react';
 import { TrophyIcon, FlameIcon, SparklesIcon } from '@/components/icons/Icons';
 import Link from 'next/link';
 import { Badge } from '@/components/ui';
+import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
+
+function LeaderboardAvatar({ avatar, avatarColor, size = "sm" }: { avatar: string | null; avatarColor: string | null; size?: "sm" | "md" }) {
+  const emoji = getAvatarEmoji(avatar);
+  const colorClass = getColorClass(avatarColor);
+  const sizeClass = size === "sm" ? "w-8 h-8 text-base" : "w-10 h-10 text-lg";
+
+  return (
+    <div className={`${sizeClass} ${colorClass} rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}>
+      <span className="select-none">{emoji}</span>
+    </div>
+  );
+}
 
 interface LeaderboardEntry {
   id: string;
@@ -13,6 +26,8 @@ interface LeaderboardEntry {
   rank: number;
   rankChange: number | null;
   lastWeekRank: number | null;
+  avatar: string | null;
+  avatarColor: string | null;
 }
 
 export default function LeaderboardPage() {
@@ -160,6 +175,11 @@ export default function LeaderboardPage() {
                     <div className={student.rank === 1 ? "text-5xl mb-2" : "text-4xl mb-2"}>
                       {getRankIcon(student.rank)}
                     </div>
+                    {student.avatar && (
+                      <div className="flex justify-center mb-2">
+                        <LeaderboardAvatar avatar={student.avatar} avatarColor={student.avatarColor} size="md" />
+                      </div>
+                    )}
                     <p className="font-bold text-lg truncate" style={{ color: '#2b3a4a' }}>
                       {student.name}
                     </p>
@@ -205,14 +225,23 @@ export default function LeaderboardPage() {
                     borderLeftColor: isUserRow ? '#d97757' : 'transparent',
                   }}
                 >
-                  <div className="flex items-center gap-4 flex-1">
-                    <div className="w-12 text-center">
-                      <span className="text-2xl font-bold" style={{ color: rankColors.text }}>
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="w-10 text-center flex-shrink-0">
+                      <span className="text-xl font-bold" style={{ color: rankColors.text }}>
                         {getRankIcon(entry.rank, hasNonZeroScores)}
                       </span>
                     </div>
-                    <div className="flex-1">
-                      <p className="font-semibold" style={{ color: '#2b3a4a' }}>
+                    {entry.avatar ? (
+                      <LeaderboardAvatar avatar={entry.avatar} avatarColor={entry.avatarColor} size="sm" />
+                    ) : (
+                      <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-gray-400 text-sm font-semibold">
+                          {entry.name.charAt(0).toUpperCase()}
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold truncate" style={{ color: '#2b3a4a' }}>
                         {entry.name}
                         {isUserRow && (
                           <span className="ml-2 text-xs font-bold" style={{ color: '#d97757' }}>
