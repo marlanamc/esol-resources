@@ -7,7 +7,6 @@ import { BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
-import AvatarSection from "@/components/ui/AvatarSection";
 import ClickableAvatarDisplay from "@/components/ui/ClickableAvatarDisplay";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
@@ -175,9 +174,6 @@ export default async function ProfilePage() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Avatar Selector */}
-                    <AvatarSection />
 
                     {/* Hero Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
