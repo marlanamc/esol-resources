@@ -170,9 +170,14 @@ export default async function DashboardPage() {
                 <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
                     <div className="max-w-[1800px] mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                         <div className="flex-1">
-                            <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
-                                ESOL CLASS<br className="sm:hidden" /> COMPANION
-                            </p>
+                            <Link href="/dashboard" className="flex items-center gap-2 group">
+                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                                    <BookOpenIcon className="w-4 h-4 text-white" />
+                                </div>
+                                <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
+                                    ESOL CLASS<br className="sm:hidden" /> COMPANION
+                                </p>
+                            </Link>
                         </div>
                         <div className="flex items-center gap-3 animate-fade-in-up delay-100">
                             <Link
@@ -197,9 +202,25 @@ export default async function DashboardPage() {
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
                             <div className="animate-fade-in-up">
-                                <h1 className="text-5xl sm:text-4xl font-display font-bold text-text mb-2 leading-tight">
-                                    Welcome, {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}!
-                                </h1>
+                                {/* Desktop: Welcome horizontal */}
+                                <div className="hidden lg:block">
+                                    <h1 className="text-4xl font-display font-bold text-text leading-tight tracking-tight">
+                                        Welcome, <span className="handwritten text-primary relative inline-block">
+                                            {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
+                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                        </span>!
+                                    </h1>
+                                </div>
+
+                                {/* Mobile: Welcome */}
+                                <div className="lg:hidden">
+                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-2 leading-[1.15] tracking-tight">
+                                        Welcome, <span className="handwritten text-primary relative inline-block">
+                                            {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
+                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                        </span>!
+                                    </h1>
+                                </div>
                             </div>
 
                             {/* Mobile Quick Actions - Only visible on mobile */}
@@ -260,20 +281,27 @@ export default async function DashboardPage() {
 
                             {/* Browse All Activities CTA */}
                             <section className="animate-fade-in-up delay-200">
-                                <div className="bg-white border border-border/40 shadow-lg rounded-2xl p-6 bg-gradient-to-b from-white to-bg-light/50">
-                                    <div className="flex items-start justify-between gap-4">
+                                <div className="glass-card rounded-2xl p-6 group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
+                                    {/* Decorative gradient blob */}
+                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
+
+                                    <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div>
-                                            <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Explore</p>
-                                            <h2 className="text-2xl font-bold font-display text-text mt-1">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 max-w-2xl">
+                                            <p className="text-xs font-bold text-secondary tracking-widest uppercase flex items-center gap-2">
+                                                <span className="w-6 h-[2px] bg-secondary rounded-full"></span>
+                                                Explore
+                                            </p>
+                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
+                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
                                                 Browse all activities organized by category. Feature assignments for your classes and create new content.
                                             </p>
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="shrink-0 px-4 py-2 rounded-lg bg-primary text-white hover:brightness-110 transition font-semibold text-sm"
+                                            className="shrink-0 px-5 py-2.5 rounded-xl bg-primary text-white hover:brightness-110 transition-all font-bold text-sm shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2"
                                         >
-                                            Browse →
+                                            Browse
+                                            <span className="arrow-animate">→</span>
                                         </Link>
                                     </div>
                                 </div>
@@ -304,59 +332,59 @@ export default async function DashboardPage() {
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
-                                    <div className="flex flex-col gap-2">
+                                    <div className="flex flex-col gap-1.5">
                                         <Link
                                             href="/dashboard/leaderboard"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <TrophyIcon className="w-4 h-4" />
                                             <span>Leaderboard</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/calendar/new"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
-                                            <UsersIcon className="w-4 h-4" />
-                                            <span>Add Event to Calendar</span>
+                                            <CalendarIcon className="w-4 h-4" />
+                                            <span>Add Event</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/teaching-schedule"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <CalendarIcon className="w-4 h-4" />
                                             <span>Teaching Schedule</span>
                                         </Link>
                                         <Link
                                             href="/grammar-map"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <MapIcon className="w-4 h-4" />
                                             <span>Grammar Map</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/activities/new"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <BookOpenIcon className="w-4 h-4" />
                                             <span>Create Activity</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/passwords"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <ClipboardIcon className="w-4 h-4" />
-                                            <span>Reset Student Passwords</span>
+                                            <span>Reset Passwords</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/stats"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <BarChartIcon className="w-4 h-4" />
                                             <span>Student Stats</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/gradebook"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <ClipboardIcon className="w-4 h-4" />
                                             <span>Grammar Gradebook</span>
@@ -525,9 +553,14 @@ export default async function DashboardPage() {
                 <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/80 border-white/40 shadow-sm transition-all">
                     <div className="max-w-[1800px] mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                         <div className="flex-1">
-                            <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
-                                ESOL CLASS<br className="sm:hidden" /> COMPANION
-                            </p>
+                            <Link href="/dashboard" className="flex items-center gap-2 group">
+                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+                                    <BookOpenIcon className="w-4 h-4 text-white" />
+                                </div>
+                                <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
+                                    ESOL CLASS<br className="sm:hidden" /> COMPANION
+                                </p>
+                            </Link>
                         </div>
                         <div className="flex items-center gap-3 animate-fade-in-up delay-100">
                             <Link
@@ -715,24 +748,24 @@ export default async function DashboardPage() {
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
                                     <h3 className="text-sm font-semibold text-text">Quick Links</h3>
-                                    <div className="flex flex-col gap-2">
+                                    <div className="flex flex-col gap-1.5">
                                         <Link
                                             href="/grammar-map"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <MapIcon className="w-4 h-4" />
                                             <span>Grammar Map</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/leaderboard"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <TrophyIcon className="w-4 h-4" />
                                             <span>Leaderboard</span>
                                         </Link>
                                         <Link
                                             href="/dashboard/profile"
-                                            className="w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition flex items-center gap-2"
+                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
                                         >
                                             <StarIcon className="w-4 h-4" />
                                             <span>My Profile</span>

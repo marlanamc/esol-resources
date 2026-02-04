@@ -76,12 +76,40 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (loading) {
         return (
             <div className="mb-8">
-                {resolvedTitle && (
-                    <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">
-                        {resolvedTitle}
-                    </h2>
-                )}
-                <div className="animate-pulse bg-bg-light rounded-xl h-32"></div>
+                <div className="bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden">
+                    {/* Skeleton header */}
+                    <div className="p-4 border-b border-border/30 bg-gradient-to-br from-white via-white to-bg-light/30">
+                        <div className="flex items-center justify-between gap-3">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl skeleton"></div>
+                                <div className="h-6 w-32 skeleton rounded-lg"></div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <div className="h-8 w-20 skeleton rounded-full"></div>
+                                <div className="h-8 w-14 skeleton rounded-full"></div>
+                            </div>
+                        </div>
+                        <div className="mt-4 h-2.5 skeleton rounded-full"></div>
+                    </div>
+
+                    {/* Skeleton rows */}
+                    <div className="divide-y divide-border/20">
+                        {[1, 2, 3].map((i) => (
+                            <div key={i} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4" style={{ borderLeft: '6px solid #e2ddd5' }}>
+                                <div className="flex items-start gap-3 flex-1">
+                                    <div className="w-[22px] h-[22px] skeleton rounded-md mt-0.5"></div>
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="h-5 w-16 skeleton rounded-md"></div>
+                                        </div>
+                                        <div className="h-5 w-48 sm:w-64 skeleton rounded-lg"></div>
+                                    </div>
+                                </div>
+                                <div className="h-10 w-24 skeleton rounded-xl sm:shrink-0"></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         );
     }
@@ -89,15 +117,38 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                {resolvedTitle && (
-                    <h2 className="text-3xl sm:text-3xl font-display font-bold text-text mb-4 leading-tight">
-                        {resolvedTitle}
-                    </h2>
-                )}
-                <div className="bg-gradient-to-br from-bg-light to-white rounded-xl p-8 text-center border border-border/60 shadow-sm">
-                    <div className="text-4xl mb-3">✨</div>
-                    <p className="text-text-muted font-medium">No featured assignments right now</p>
-                    <p className="text-sm text-text-muted mt-1">Check out the activities below to keep learning!</p>
+                <div className="bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden">
+                    {/* Header matching the normal checklist */}
+                    <div className="p-4 border-b border-border/30 bg-gradient-to-br from-white via-white to-bg-light/30 relative overflow-hidden">
+                        <div className="absolute -top-8 -right-8 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+                        <div className="flex items-center gap-3 relative z-10">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center text-lg shadow-sm">
+                                📋
+                            </div>
+                            {resolvedTitle && (
+                                <h2 className="text-xl sm:text-2xl font-display font-bold text-text leading-tight">
+                                    {resolvedTitle}
+                                </h2>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Empty state content */}
+                    <div className="p-8 text-center relative overflow-hidden">
+                        {/* Decorative background elements */}
+                        <div className="absolute top-4 left-8 w-16 h-16 bg-accent/10 rounded-full blur-2xl"></div>
+                        <div className="absolute bottom-4 right-8 w-20 h-20 bg-secondary/10 rounded-full blur-2xl"></div>
+
+                        <div className="relative z-10">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
+                                <span className="text-3xl">🎯</span>
+                            </div>
+                            <p className="text-lg font-display font-bold text-text mb-1">All caught up!</p>
+                            <p className="text-sm text-text-muted max-w-xs mx-auto">
+                                No assignments this week. Explore activities below to keep building your skills.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
