@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,29 +285,47 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 24 Plan</h1>
-            <div class="week-info">March 10–12, 2026 • Reported Speech</div>
+            <div class="week-info">March 10–12, 2026 • Gerunds &amp; Infinitives (Core Patterns)</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Reported speech helps you share what someone else said—in work, at the doctor, or in daily life. It's a core way we pass on information in English. This week we'll use it for workplace conversations, feedback, and describing what was said (e.g., "She said she would finish the report").</p>
+                <p><strong>Why this matters for you:</strong> Some verbs go with to + verb, others with -ing. Practicing both helps your English sound clear and natural at work. Also, reported speech helps you explain what someone said or told you to do. This is useful for phone calls, appointments, and messages.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice reporting what people said at work</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice reporting accidents clearly</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Use to + verb after some verbs (decide to, plan to, want to)</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Use verb + -ing after some verbs (enjoy, avoid, keep, consider)</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Choose the correct pattern when speaking and writing</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, March 10</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Jobs: Communication &amp; Feedback: Reported Speech</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Reported Speech</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Reported Speech" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Gerunds &amp; Infinitives (Core Patterns)</p>
                     </div>
                 </div>
 
@@ -306,49 +333,44 @@
                     <div class="day-header">Thursday, March 12</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Accident Reports: Reported Speech</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Reported Speech</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Present Perfect Continuous" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Special:</strong> Unit 6 Quiz (in class)</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Gerunds &amp; Infinitives (Core Patterns)</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Report workplace conversations and feedback ("My boss said I should arrive on time")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Write accident reports using reported speech</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Change direct speech to reported speech with correct verb tenses</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use reporting verbs (said, told, asked) correctly</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Communicate what others said in workplace situations</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-24" class="checklist-cb">
+                    <label for="after-writing-24">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-24" class="checklist-cb">
+                    <label for="after-vocab-24">Review March 10-12 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-24" class="checklist-cb">
+                    <label for="after-guide-24">Review Gerunds &amp; Infinitives (Core Patterns) Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-24" class="checklist-cb">
+                    <label for="after-verb-quiz-24">Take Verb Quiz 9</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-24">
@@ -357,8 +379,15 @@
                             <div class="quiz-meta">Due Tuesday, March 17 • Online, 5 verbs, ~5 minutes</div>
                         </div>
                     </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="unit-quiz-24">
+                        <div class="quiz-text">
+                            <label for="unit-quiz-24"><strong>Unit 6 Quiz (in class)</strong></label>
+                            <div class="quiz-meta">In class Thursday, March 12 • ~30 minutes</div>
+                        </div>
+                    </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

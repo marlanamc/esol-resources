@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -281,24 +290,42 @@
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Parts of speech are the building blocks of English. When you know them, you can express yourself more clearly in speaking and writing—in any situation.</p>
+                <p><strong>Why this matters for you:</strong> Parts of speech are the building blocks of English. When you know them, you can build clearer sentences in speaking and writing.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice talking about classroom &amp; school language</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice talking about new year goals</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Identify common parts of speech in sentences</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Explain the difference between content words and structure words</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Build clear sentences using different parts of speech</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, January 6</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Classroom &amp; School Language</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Parts of Speech (content words)</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Parts of Speech" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Parts of Speech</p>
                     </div>
                 </div>
 
@@ -307,49 +334,43 @@
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> New Year Goals &amp; Reflection</p>
                         <p class="meta-line"><strong>Special:</strong> Unit 4 Quiz (in class)</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Parts of Speech (structure words)</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Parts of Speech" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Parts of Speech</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Ask politely for help in class ("Could you repeat that?" "How do you spell...?")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Share your 2026 goals with a partner and ask follow-up questions</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Find the nouns, verbs, and adjectives in a sentence</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Explain the difference between content words (noun, verb) and structure words (the, is, to)</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Write 6 clear sentences using different parts of speech</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-16" class="checklist-cb">
+                    <label for="after-writing-16">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-16" class="checklist-cb">
+                    <label for="after-vocab-16">Review January 6-8 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-16" class="checklist-cb">
+                    <label for="after-guide-16">Review Parts of Speech Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-16" class="checklist-cb">
+                    <label for="after-verb-quiz-16">Take Verb Quiz 1</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-16">
@@ -366,7 +387,7 @@
                         </div>
                     </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

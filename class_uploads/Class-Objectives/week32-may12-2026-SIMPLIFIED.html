@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,79 +285,92 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 32 Plan</h1>
-            <div class="week-info">May 12–14, 2026 • Imperatives &amp; Declaratives</div>
+            <div class="week-info">May 12–14, 2026 • Used To / Be Used To / Would Rather</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Imperatives and declaratives help you give clear instructions and describe routines—at home, at work, or at the doctor. They're basic tools for getting your message across in English. This week we'll use them for self-care, directions, and daily health practices (e.g., "Take your medicine" or "You should drink water").</p>
+                <p><strong>Why this matters for you:</strong> These phrases help you talk about old habits and what you prefer. You'll use them for health and daily life. Also, passive voice is common in instructions (You are asked to…, It is required…). Understanding it helps you follow clinic and pharmacy directions.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice talking about daily care routines</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice reading food labels and talking about nutrition</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Use used to for past habits</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Use be/get used to for adjusting to new routines</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Use would rather to express preferences politely</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, May 12</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Daily Care Routines</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Imperatives &amp; Declaratives</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Imperatives &amp; Declaratives" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Daily Care Routines: Imperatives &amp; Declaratives</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Used To / Be Used To / Would Rather</p>
                     </div>
                 </div>
 
                 <div class="day-column">
                     <div class="day-header">Thursday, May 14</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Daily Self-Care</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Imperatives &amp; Declaratives</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Used To / Be Used To / Get Used To" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Food Labels &amp; Nutrition: Passive Voice</p>
+                        <p class="meta-line"><strong>Special:</strong> Unit 8 Quiz (in class)</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Used To / Be Used To / Would Rather</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Describe daily care routines using imperatives and declaratives</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Discuss daily self-care practices</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Use imperatives for instructions ("Take your medicine" "Drink water")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use declaratives for descriptions and advice ("You should rest" "It's important to exercise")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Give clear daily care instructions and explain self-care routines</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-32" class="checklist-cb">
+                    <label for="after-writing-32">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-32" class="checklist-cb">
+                    <label for="after-vocab-32">Review May 12-14 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-32" class="checklist-cb">
+                    <label for="after-guide-32">Review Used To / Be Used To / Would Rather Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-32" class="checklist-cb">
+                    <label for="after-verb-quiz-32">Take Verb Quiz 17</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-32">
@@ -357,8 +379,15 @@
                             <div class="quiz-meta">Due Tuesday, May 19 • Online, 5 verbs, ~5 minutes</div>
                         </div>
                     </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="unit-quiz-32">
+                        <div class="quiz-text">
+                            <label for="unit-quiz-32"><strong>Unit 8 Quiz (in class)</strong></label>
+                            <div class="quiz-meta">In class Thursday, May 14 • ~30 minutes</div>
+                        </div>
+                    </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

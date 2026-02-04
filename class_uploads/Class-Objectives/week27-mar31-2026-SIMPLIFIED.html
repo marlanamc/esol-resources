@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,29 +285,47 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 27 Plan</h1>
-            <div class="week-info">March 31–April 2, 2026 • Workplace Phrasal Verbs</div>
+            <div class="week-info">March 31–April 2, 2026 • Modals: Obligation &amp; Permission</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Phrasal verbs are everywhere in everyday English. Learning them helps you understand what people say and express yourself more naturally. This week we'll focus on ones you'll hear at work so you can follow instructions and communicate more confidently.</p>
+                <p><strong>Why this matters for you:</strong> These words help you sound polite and clear about rules and asking for things. You'll need them for work and applications.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice using phrasal verbs in small talk</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice common interview questions</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Use must / have to for rules and obligations</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Use can / could / may for permission and polite requests</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Use should for advice in common situations</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, March 31</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Workplace Small Talk</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Workplace Phrasal Verbs</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Workplace Phrasal Verbs" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Small Talk: Phrasal Verbs</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Modals: Obligation &amp; Permission</p>
                     </div>
                 </div>
 
@@ -307,49 +334,43 @@
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Interview: Common Questions</p>
                         
-                        <p class="meta-line"><strong>Grammar:</strong> Workplace Phrasal Verbs</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Workplace Phrasal Verbs" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Modals: Obligation &amp; Permission</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Engage in workplace small talk using phrasal verbs</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Answer common interview questions confidently</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Understand and use common workplace phrasal verbs (clock in, fill out, call out, follow up)</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use phrasal verbs naturally in workplace conversations</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Communicate more effectively in real workplace English situations</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-27" class="checklist-cb">
+                    <label for="after-writing-27">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-27" class="checklist-cb">
+                    <label for="after-vocab-27">Review March 31 – April 2 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-27" class="checklist-cb">
+                    <label for="after-guide-27">Review Modals: Obligation &amp; Permission Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-27" class="checklist-cb">
+                    <label for="after-verb-quiz-27">Take Verb Quiz 12</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-27">
@@ -359,7 +380,7 @@
                         </div>
                     </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

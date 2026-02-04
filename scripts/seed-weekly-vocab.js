@@ -84,6 +84,26 @@ function generateFillBlankContent(slug, data) {
   return content.trim();
 }
 
+const monthNames = {
+  'feb': 'February',
+  'mar': 'March',
+  'apr': 'April',
+  'may': 'May',
+  'jun': 'June'
+};
+
+function formatWeek(slug) {
+  const parts = slug.split('-');
+  const m1 = monthNames[parts[0]];
+  if (parts.length === 3) {
+    return `${m1} ${parts[1]}–${parts[2]}`;
+  } else if (parts.length === 4) {
+    const m2 = monthNames[parts[2]];
+    return `${m1} ${parts[1]} – ${m2} ${parts[3]}`;
+  }
+  return slug;
+}
+
 async function main() {
   const oldMonthlyIds = ["february", "march", "april", "may"];
   const idsToDelete = [];
@@ -109,6 +129,8 @@ async function main() {
 
     const unit = getUnitNumber(slug);
     const wordList = data.words.map((w) => w.term).join(", ");
+    const fullWeek = formatWeek(slug);
+    const activityPrefix = `Unit ${unit}: ${fullWeek} ${data.topic}`;
 
     const packetId = `vocab-${slug}-packet`;
     const flashId = `vocab-${slug}-flashcards`;
@@ -123,16 +145,16 @@ async function main() {
     await prisma.activity.upsert({
       where: { id: packetId },
       update: {
-        title: `Unit ${unit}: Word List`,
-        category: `Unit ${unit}: Word List`,
+        title: `${activityPrefix} — Word List`,
+        category: "Vocab",
         type: "resource",
         description: `Unit ${unit} vocabulary: ${data.topic}. ${wordList}`,
         content: packetContent,
       },
       create: {
         id: packetId,
-        title: `Unit ${unit}: Word List`,
-        category: `Unit ${unit}: Word List`,
+        title: `${activityPrefix} — Word List`,
+        category: "Vocab",
         type: "resource",
         level: "intermediate",
         description: `Unit ${unit} vocabulary: ${data.topic}. ${wordList}`,
@@ -143,16 +165,16 @@ async function main() {
     await prisma.activity.upsert({
       where: { id: flashId },
       update: {
-        title: `Unit ${unit}: Flash Cards`,
-        category: `Unit ${unit}: Flash Cards`,
+        title: `${activityPrefix} — Flash Cards`,
+        category: "Vocab",
         type: "game",
         description: `Unit ${unit} flash cards: ${data.topic}`,
         content: flashContent,
       },
       create: {
         id: flashId,
-        title: `Unit ${unit}: Flash Cards`,
-        category: `Unit ${unit}: Flash Cards`,
+        title: `${activityPrefix} — Flash Cards`,
+        category: "Vocab",
         type: "game",
         level: "intermediate",
         description: `Unit ${unit} flash cards: ${data.topic}`,
@@ -163,16 +185,16 @@ async function main() {
     await prisma.activity.upsert({
       where: { id: matchingId },
       update: {
-        title: `Unit ${unit}: Matching`,
-        category: `Unit ${unit}: Matching`,
+        title: `${activityPrefix} — Matching`,
+        category: "Vocab",
         type: "game",
         description: `Match terms to definitions for Unit ${unit}: ${data.topic}`,
         content: matchingContent,
       },
       create: {
         id: matchingId,
-        title: `Unit ${unit}: Matching`,
-        category: `Unit ${unit}: Matching`,
+        title: `${activityPrefix} — Matching`,
+        category: "Vocab",
         type: "game",
         level: "intermediate",
         description: `Match terms to definitions for Unit ${unit}: ${data.topic}`,
@@ -183,16 +205,16 @@ async function main() {
     await prisma.activity.upsert({
       where: { id: fillblankId },
       update: {
-        title: `Unit ${unit}: Fill-in-the-Blank`,
-        category: `Unit ${unit}: Fill-in-the-Blank`,
+        title: `${activityPrefix} — Fill-in-the-Blank`,
+        category: "Vocab",
         type: "game",
         description: `Fill-in-the-blank practice for Unit ${unit}: ${data.topic}`,
         content: fillblankContent,
       },
       create: {
         id: fillblankId,
-        title: `Unit ${unit}: Fill-in-the-Blank`,
-        category: `Unit ${unit}: Fill-in-the-Blank`,
+        title: `${activityPrefix} — Fill-in-the-Blank`,
+        category: "Vocab",
         type: "game",
         level: "intermediate",
         description: `Fill-in-the-blank practice for Unit ${unit}: ${data.topic}`,

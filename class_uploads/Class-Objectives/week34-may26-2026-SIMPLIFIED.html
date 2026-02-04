@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -281,75 +290,87 @@
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Reviewing the tenses you've learned helps you choose the right one when you speak or write—in any context. This week we'll practice them in wellness presentations and reflections so you can use them accurately there and beyond.</p>
+                <p><strong>Why this matters for you:</strong> You'll review the tenses you've learned and use them to talk about your wellness and progress.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice reviewing verb tenses for wellness</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice reflecting on wellness and verb tenses</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Choose the best tense for a timeline (past, present perfect, past perfect)</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Use time words (already, yet, just, before, after) correctly</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Edit sentences to fix tense mistakes</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, May 26</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Wellness Presentation</p>
+                        <p class="meta-line"><strong>Warmup:</strong> Wellness Review: All Verb Tenses</p>
                         <p class="meta-line"><strong>Grammar:</strong> All Verb Tenses Overview</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "All Verb Tenses Overview" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
                 <div class="day-column">
                     <div class="day-header">Thursday, May 28</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Wellness Reflection</p>
+                        <p class="meta-line"><strong>Warmup:</strong> Wellness Reflection: All Verb Tenses</p>
                         
                         <p class="meta-line"><strong>Grammar:</strong> All Verb Tenses Overview</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Verbs + Gerunds" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Give a wellness presentation using all verb tenses correctly</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Reflect on wellness using appropriate verb tenses</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Review and use all verb tenses: simple, continuous, perfect, and perfect continuous</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Choose the correct tense for different time references and situations</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Use verb tenses accurately in speaking and writing about wellness</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-34" class="checklist-cb">
+                    <label for="after-writing-34">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-34" class="checklist-cb">
+                    <label for="after-vocab-34">Review May 26-28 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-34" class="checklist-cb">
+                    <label for="after-guide-34">Review All Verb Tenses Overview Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-34" class="checklist-cb">
+                    <label for="after-verb-quiz-34">Take Verb Quiz 19</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-34">
@@ -359,7 +380,7 @@
                         </div>
                     </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,29 +285,47 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 31 Plan</h1>
-            <div class="week-info">May 5–7, 2026 • Used To / Be Used To / Would Rather</div>
+            <div class="week-info">May 5–7, 2026 • Medical Instructions: Modals, Imperatives &amp; Declaratives</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Used to, be/get used to, and would rather help you talk about past habits, adjustment, and preferences—useful whenever you're describing change or choice in English. This week we'll use them for health habits and preferences (e.g., "I used to smoke," "I'm getting used to exercising," "I would rather walk than drive").</p>
+                <p><strong>Why this matters for you:</strong> You'll practice clear, polite ways to give and follow health instructions. This helps at the clinic and in daily care. Also, used to helps you talk about past habits and changes. Would rather helps you express preferences politely. These are useful for work and daily life.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice using MyChart and talking to the office</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice talking about health habits with used to</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Give advice and instructions politely</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Understand the difference between commands and suggestions</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Describe symptoms and ask for help clearly</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, May 5</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Healthcare: Advice Modals</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Used To / Be Used To / Would Rather</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Used To / Be Used To / Would Rather" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Healthcare Communication: Advice Modals &amp; MyChart</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Medical Instructions: Modals, Imperatives &amp; Declaratives</p>
                     </div>
                 </div>
 
@@ -307,49 +334,43 @@
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Health Habits: Used To / Be Used To / Would Rather</p>
                         
-                        <p class="meta-line"><strong>Grammar:</strong> Used To / Be Used To / Would Rather</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Reported Speech" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Medical Instructions: Modals, Imperatives &amp; Declaratives</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Discuss healthcare advice using modals</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Talk about health habit changes using used to, be used to, and would rather</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Use used to for past health habits ("I used to smoke")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use be/get used to for adjusting to new health routines ("I'm getting used to exercising")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Use would rather to express health preferences ("I would rather walk than drive")</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-31" class="checklist-cb">
+                    <label for="after-writing-31">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-31" class="checklist-cb">
+                    <label for="after-vocab-31">Review May 5-7 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-31" class="checklist-cb">
+                    <label for="after-guide-31">Review Medical Instructions: Modals, Imperatives &amp; Declaratives Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-31" class="checklist-cb">
+                    <label for="after-verb-quiz-31">Take Verb Quiz 16</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-31">
@@ -359,7 +380,7 @@
                         </div>
                     </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

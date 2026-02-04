@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,80 +285,106 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 20 Plan</h1>
-            <div class="week-info">February 3–5, 2026 • Present Perfect &amp; Present Perfect Continuous</div>
+            <div class="week-info">February 3–5, 2026 • Cycle 1 Review</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Present perfect and present perfect continuous help you connect the past to now—what you've done, how long you've been doing it, and what's still true. That's useful everywhere in English. This week we'll use them to talk about work experience and what you've done so far (e.g., "I have worked here for three years" or "I have been training new employees all week").</p>
+                <p><strong>Why this matters for you:</strong> You'll practice simple, continuous, and present perfect; review superlatives and comparatives; and learn zero and first conditionals so you feel confident using them at work and in class.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice workplace small talk</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice common interview questions</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Review simple, continuous, and present perfect from Cycle 1</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Review superlatives and comparatives</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Introduce zero and first conditionals</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-6">
+                    <label for="goal-6">Use the right tense when talking about work and habits</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-7">
+                    <label for="goal-7">Fix common tense mistakes in speaking and writing</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, February 3</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Workplace Policies: Phrasal Verbs</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Present Perfect &amp; Present Perfect Continuous</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Present Perfect" and "Present Perfect Continuous" guides on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Workplace Small Talk</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Simple and Continuous Bootcamp</p>
                     </div>
                 </div>
 
                 <div class="day-column">
                     <div class="day-header">Thursday, February 5</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Workplace: Present Perfect &amp; Present Perfect Continuous</p>
-
-                        <p class="meta-line"><strong>Grammar:</strong> Present Perfect &amp; Present Perfect Continuous</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Present Perfect" and "Present Perfect Continuous" guides and mini-quizzes on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Interview: Common Questions</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Finish Cycle 1 Review grammar guide</p>
+                        <p class="meta-line">• Review superlatives and comparatives</p>
+                        <p class="meta-line">• Introduce zero and first conditionals</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Understand workplace policies using phrasal verbs</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Talk about work experience and what you've done using present perfect ("I have worked here for two years")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Describe how long you've been doing something using present perfect continuous ("I have been training all week")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use <em>for</em> and <em>since</em> with present perfect and present perfect continuous</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Tell the difference between present perfect (result/experience) and present perfect continuous (duration/ongoing)</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-20" class="checklist-cb">
+                    <label for="after-writing-20">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-20" class="checklist-cb">
+                    <label for="after-vocab-20">Review February 3-5 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-20" class="checklist-cb">
+                    <label for="after-guide-20">Review Cycle 1 Review Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-game-20" class="checklist-cb">
+                    <label for="after-verb-game-20">Practice with the Verb Conjugation Game</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-20" class="checklist-cb">
+                    <label for="after-verb-quiz-20">Take Verb Quiz 5</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-20">
@@ -359,7 +394,7 @@
                         </div>
                     </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

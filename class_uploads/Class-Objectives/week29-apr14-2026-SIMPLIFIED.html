@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,29 +285,47 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 29 Plan</h1>
-            <div class="week-info">April 14–16, 2026 • Perfect Tenses (Result vs Duration)</div>
+            <div class="week-info">April 14–16, 2026 • Mid Cycle Review</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Understanding the difference between <em>result</em> and <em>duration</em> in perfect tenses helps you say what's finished versus what's been going on for a while—in work, health, or daily life. This week we'll use it to describe health outcomes and treatment (e.g., "I have finished the medicine" vs "I have been taking medicine for a week").</p>
+                <p><strong>Why this matters for you:</strong> You'll review what you've learned so far. This helps you feel confident before we focus on health and care language.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice talking about doctor visits</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice talking about symptoms and how long they last</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Use present perfect and past perfect to connect events</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Talk about life experience and progress</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Correct common perfect tense mistakes</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, April 14</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Healthcare &amp; Doctor Visits</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Perfect Tenses (Result vs Duration)</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Perfect Tenses (Result vs Duration)" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Mid Cycle Review</p>
                     </div>
                 </div>
 
@@ -306,49 +333,44 @@
                     <div class="day-header">Thursday, April 16</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Symptoms &amp; Treatment: Result vs Duration</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Perfect Tenses (Result vs Duration)</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Imperatives vs Declaratives" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Special:</strong> Unit 7 Quiz (in class)</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Mid Cycle Review</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Discuss healthcare and doctor visits using perfect tenses</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Describe symptoms and treatment using result vs duration</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Use present perfect for results ("I have finished the medicine")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use present perfect continuous for duration ("I have been taking medicine for a week")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Choose the correct perfect tense based on whether you're talking about result or duration</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-29" class="checklist-cb">
+                    <label for="after-writing-29">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-29" class="checklist-cb">
+                    <label for="after-vocab-29">Review April 14-16 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-29" class="checklist-cb">
+                    <label for="after-guide-29">Review Mid Cycle Review Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-29" class="checklist-cb">
+                    <label for="after-verb-quiz-29">Take Verb Quiz 14</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-29">
@@ -357,8 +379,15 @@
                             <div class="quiz-meta">Due Tuesday, April 28 • Online, 5 verbs, ~5 minutes</div>
                         </div>
                     </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="unit-quiz-29">
+                        <div class="quiz-text">
+                            <label for="unit-quiz-29"><strong>Unit 7 Quiz (in class)</strong></label>
+                            <div class="quiz-meta">In class Thursday, April 16 • ~30 minutes</div>
+                        </div>
+                    </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

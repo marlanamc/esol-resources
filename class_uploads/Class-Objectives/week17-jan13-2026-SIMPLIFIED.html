@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -281,25 +290,42 @@
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Superlatives and quantifiers help you compare and describe things in English (best, worst, most, least, many, much). That helps you express your needs and choices clearly. This week we'll use them for housing, shopping, and everyday decisions.</p>
+                <p><strong>Why this matters for you:</strong> Superlatives and quantifiers help you compare and describe needs (best, worst, most, least, many, much). These are useful for housing, shopping, and everyday choices.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice talking about your home</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice talking about superlatives &amp; quantifiers</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Use superlatives to compare (best, worst, most, least)</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Use quantifiers correctly (many, much, a lot of, few, little)</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Ask and answer comparison questions in speaking</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, January 13</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Housing Basics: Describing Your Home</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Superlatives &amp; quantifiers for comparing</p>
-                        <p class="meta-line"><strong>Pronunciation:</strong> Short I vs Long E</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Superlatives &amp; Quantifiers" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Superlatives &amp; Quantifiers</p>
                     </div>
                 </div>
 
@@ -308,53 +334,43 @@
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> Food &amp; Restaurants: Superlatives &amp; Quantifiers</p>
                         
-                        <p class="meta-line"><strong>Grammar:</strong> Superlatives &amp; quantifiers (review + speaking practice)</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Superlatives &amp; Quantifiers" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> Superlatives &amp; Quantifiers</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Describe your home to a partner (rooms, features, neighborhood)</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Compare two apartments using superlatives ("This one has the most space")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Use superlatives correctly: best, worst, most, least, biggest, smallest</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Choose the right quantifier: many vs much, few vs little, a lot of</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Ask comparison questions: "Which neighborhood has the most stores?"</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-6">
-                    <label for="goal-6">Distinguish between Short I (/ɪ/) and Long E (/iː/) sounds in words like "bit" vs "beat"</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-17" class="checklist-cb">
+                    <label for="after-writing-17">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-17" class="checklist-cb">
+                    <label for="after-vocab-17">Review January 13-15 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-17" class="checklist-cb">
+                    <label for="after-guide-17">Review Superlatives &amp; Quantifiers Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-17" class="checklist-cb">
+                    <label for="after-verb-quiz-17">Take Verb Quiz 2</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-17">
@@ -364,7 +380,7 @@
                         </div>
                     </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>

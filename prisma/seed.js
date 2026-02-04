@@ -234,10 +234,10 @@ async function main() {
     const vocabSeptemberFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-september-flashcards' },
         update: {
-            title: 'Unit 1: Flash Cards',
+            title: 'Unit 1: Getting to Know You — Flash Cards',
             description: 'Unit 1 flash cards: Getting to Know You',
             type: 'game',
-            category: 'Unit 1: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) background — your life experiences and history
    Example: Her art background helps her design posters quickly.
@@ -315,10 +315,10 @@ async function main() {
     const vocabOctoberFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-october-flashcards' },
         update: {
-            title: 'Unit 2: Flash Cards',
+            title: 'Unit 2: Daily Life in the Community — Flash Cards',
             description: 'Unit 2 flash cards: Daily Life in the Community',
             type: 'game',
-            category: 'Unit 2: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) obstacle — something that blocks your way or makes progress difficult
    Example: Language was an obstacle at first, but she overcame it.
@@ -396,10 +396,10 @@ async function main() {
     const vocabNovemberFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-november-flashcards' },
         update: {
-            title: 'Unit 3: Flash Cards',
+            title: 'Unit 3: Community Participation — Flash Cards',
             description: 'Unit 3 flash cards: Community Participation',
             type: 'game',
-            category: 'Unit 3: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) waived — not required to pay
    Example: The fee was waived for low-income families.
@@ -477,10 +477,10 @@ async function main() {
     const vocabDecemberFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-december-flashcards' },
         update: {
-            title: 'Unit 4: Flash Cards',
+            title: 'Unit 4: Consumer Smarts — Flash Cards',
             description: 'Unit 4 flash cards: Consumer Smarts',
             type: 'game',
-            category: 'Unit 4: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) installation — the process of setting up equipment
    Example: The installation of the new AC takes two hours.
@@ -558,10 +558,10 @@ async function main() {
     const vocabJanuaryFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-january-flashcards' },
         update: {
-            title: 'Unit 5: Flash Cards',
+            title: 'Unit 5: Housing — Flash Cards',
             description: 'Unit 5 flash cards: Housing',
             type: 'game',
-            category: 'Unit 5: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) spacious — having plenty of room
    Example: The apartment is very spacious and bright.
@@ -639,10 +639,10 @@ async function main() {
     const vocabFebruaryFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-february-flashcards' },
         update: {
-            title: 'Unit 6: Flash Cards',
+            title: 'Unit 6: Workforce Preparation — Flash Cards',
             description: 'Unit 6 flash cards: Workforce Preparation',
             type: 'game',
-            category: 'Unit 6: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) under pressure — experiencing stress or urgency
    Example: She works well under pressure.
@@ -720,10 +720,10 @@ async function main() {
     const vocabMarchFlashcards = await prisma.activity.upsert({
         where: { id: 'vocab-march-flashcards' },
         update: {
-            title: 'Unit 7: Flash Cards',
+            title: 'Unit 7: Career Awareness — Flash Cards',
             description: 'Unit 7 flash cards: Career Awareness',
             type: 'game',
-            category: 'Unit 7: Flash Cards',
+            category: 'Vocab',
             level: 'intermediate',
             content: `1) behavior — the way someone acts
    Example: Professional behavior is important at work.

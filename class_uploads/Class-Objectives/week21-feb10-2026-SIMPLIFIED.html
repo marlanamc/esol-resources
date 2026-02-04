@@ -98,30 +98,39 @@
             margin: 0 0 8px 0;
         }
 
-        .homework {
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }
-
-        .homework strong {
-            display: inline-block;
-            margin-bottom: 2px;
-        }
-
-        .homework ul {
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }
-
-        .homework li {
-            margin: 0 0 6px 0;
-        }
-
-        .goals-section {
+        .after-class {
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }
+
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .checklist-item .checklist-cb {
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item label {
+            cursor: pointer;
+        }
+
+        .goals-section {
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }
 
         .goals-section h2 {
@@ -276,79 +285,92 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 21 Plan</h1>
-            <div class="week-info">February 10–12, 2026 • Past Perfect &amp; Past Perfect Continuous</div>
+            <div class="week-info">February 10–12, 2026 • Workplace Phrasal Verbs</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> Past perfect and past perfect continuous help you put events in order and show how long something had been going on before something else. That helps you tell stories and explain your history clearly in English. This week we'll use them for work experience and career timelines (e.g., "I had worked in retail before I became a teacher" or "I had been searching for a job for six months when I got an interview").</p>
+                <p><strong>Why this matters for you:</strong> Phrasal verbs are everywhere at work. Learning them helps you understand instructions and sound more natural.</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-1">
+                    <label for="goal-1">Practice talking about workplace policies with phrasal verbs</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-2">
+                    <label for="goal-2">Practice using past perfect for work timelines</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-3">
+                    <label for="goal-3">Understand common workplace phrasal verbs (clock in, fill out, call out)</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-4">
+                    <label for="goal-4">Use phrasal verbs to describe work routines and policies</label>
+                </div>
+                <div class="goal-item">
+                    <input type="checkbox" id="goal-5">
+                    <label for="goal-5">Follow workplace instructions more easily</label>
+                </div>
+
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">Tuesday, February 10</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Career Path Stories</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Past Perfect &amp; Past Perfect Continuous</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review "Past Perfect" and "Past Perfect Continuous" guides on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Workplace Policies: Phrasal Verbs</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Workplace Phrasal Verbs</p>
                     </div>
                 </div>
 
                 <div class="day-column">
                     <div class="day-header">Thursday, February 12</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Job Application Talk-Through</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Past Perfect &amp; Past Perfect Continuous</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete "Past Perfect" and "Past Perfect Continuous" guides and mini-quizzes on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Warmup:</strong> Workplace: Past Perfect</p>
+                        <p class="meta-line"><strong>Special:</strong> Unit 5 Quiz (in class)</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Workplace Phrasal Verbs</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Tell your career path story using past perfect ("Before I became a teacher, I had worked in retail")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Describe how long something had been happening before a past event using past perfect continuous ("I had been searching for six months when I got hired")</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Form past perfect (had + V3) and past perfect continuous (had been + verb-ing) correctly</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Use past perfect with past simple to show which experience came first</label>
-                </div>
-                <div class="goal-item">
-                    <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Talk through a job application explaining your work history in order, using both tenses</label>
+                        <div class="after-class">
+                <h2 class="section-title">After class</h2>
+                <div class="checklist">
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-writing-21" class="checklist-cb">
+                    <label for="after-writing-21">Writing Homework</label>
                 </div>
 
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-vocab-21" class="checklist-cb">
+                    <label for="after-vocab-21">Review February 10-12 Vocabulary Flash Cards</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-guide-21" class="checklist-cb">
+                    <label for="after-guide-21">Review Workplace Phrasal Verbs Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-verb-quiz-21" class="checklist-cb">
+                    <label for="after-verb-quiz-21">Take Verb Quiz 6</label>
+                </div>
+                </div>
             </div>
+
 
             
             <section class="quizzes-section">
                 <div class="quizzes-card">
                     <div class="quizzes-heading">
-                        <div class="quizzes-eyebrow">IMPORTANT</div>
-                        <h2>Quizzes &amp; Tests</h2>
+                        <div class="quizzes-eyebrow">Don't forget</div>
+                        <h2>Quizzes and due dates</h2>
                     </div>
                     <div class="quiz-item">
                         <input type="checkbox" id="verb-quiz-21">
@@ -357,8 +379,15 @@
                             <div class="quiz-meta">Due Tuesday, February 24 • Online, 5 verbs, ~5 minutes</div>
                         </div>
                     </div>
+                    <div class="quiz-item">
+                        <input type="checkbox" id="unit-quiz-21">
+                        <div class="quiz-text">
+                            <label for="unit-quiz-21"><strong>Unit 5 Quiz (in class)</strong></label>
+                            <div class="quiz-meta">In class Thursday, February 12 • ~30 minutes</div>
+                        </div>
+                    </div>
                     <div class="verb-practice">
-                        <h3>Verb forms practice (fill in the blank columns)</h3>
+                        <h3>Verb practice (fill in the blank columns)</h3>
                         <table class="verb-table">
                             <thead>
                                 <tr><th scope="col">V1</th><th scope="col">V1-3rd</th><th scope="col">V1-ing</th><th scope="col">V2</th><th scope="col">V3</th></tr>
