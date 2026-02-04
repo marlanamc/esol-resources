@@ -5,6 +5,7 @@ import { signOut } from "next-auth/react";
 import { clearServiceWorkerCache } from "@/lib/clearCache";
 import { useRouter } from "next/navigation";
 import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
+import { UserIcon } from "@/components/icons/Icons";
 
 interface UserProfileDropdownProps {
     userName: string;
@@ -41,6 +42,12 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
         router.push("/dashboard/profile");
     };
 
+    const handleAvatarClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsOpen(false);
+        router.push("/dashboard/avatar");
+    };
+
     return (
         <div className="relative" ref={dropdownRef}>
             <button
@@ -50,7 +57,9 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                <SelectedAvatarDisplay size="md" className="pointer-events-none" />
+                <div onClick={handleAvatarClick} className="cursor-pointer">
+                    <SelectedAvatarDisplay size="md" className="pointer-events-none" />
+                </div>
             </button>
 
             {isOpen && (
@@ -59,10 +68,17 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                         <p className="text-sm font-medium text-text truncate">{userName}</p>
                     </div>
                     <button
-                        onClick={handleProfileClick}
+                        onClick={handleAvatarClick}
                         className="w-full text-left px-4 py-2 text-sm font-medium text-text hover:bg-bg-light transition-colors flex items-center gap-2"
                     >
                         <SelectedAvatarDisplay size="sm" className="pointer-events-none" />
+                        Change Avatar
+                    </button>
+                    <button
+                        onClick={handleProfileClick}
+                        className="w-full text-left px-4 py-2 text-sm font-medium text-text hover:bg-bg-light transition-colors flex items-center gap-2"
+                    >
+                        <UserIcon className="w-4 h-4" />
                         View Profile
                     </button>
                     <button
