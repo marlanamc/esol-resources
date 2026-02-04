@@ -57,9 +57,7 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
-                <div onClick={handleAvatarClick} className="cursor-pointer">
-                    <SelectedAvatarDisplay size="md" className="pointer-events-none" />
-                </div>
+                <SelectedAvatarDisplay size="md" />
             </button>
 
             {isOpen && (

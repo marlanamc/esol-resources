@@ -533,6 +533,41 @@ textarea {
   transform: translateX(4px);
 }
 
+/* Quick link hover effect */
+.quick-link {
+  position: relative;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.quick-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  border-radius: inherit;
+  transition: width 0.2s ease;
+  z-index: 0;
+}
+
+.quick-link:hover::before {
+  width: 3px;
+}
+
+.quick-link:hover {
+  background-color: var(--color-bg-light);
+  border-color: var(--color-border-dark);
+  padding-left: 1rem;
+}
+
+.quick-link > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ========== Utility Classes ========== */
 .handwritten {
   font-family: var(--font-handwritten);
