@@ -1,20 +1,24 @@
 import React from "react";
 import type { InteractiveGuideSection } from "@/types/activity";
-import { ExerciseSection } from "./exercises/ExerciseSection";
+import { ExerciseSection, type ExerciseCompletionInfo } from "./exercises/ExerciseSection";
 
 interface PracticePanelProps {
     section: InteractiveGuideSection;
+    sectionId: string;
     answers: Record<string, Record<number, string>>;
     onAnswerChange: (exerciseId: string, itemIndex: number, value: string) => void;
     onSectionComplete: () => void;
+    onExerciseComplete?: (info: ExerciseCompletionInfo) => void;
     unlocked: boolean;
 }
 
 export const PracticePanel = React.memo(function PracticePanel({
     section,
+    sectionId,
     answers,
     onAnswerChange,
     onSectionComplete,
+    onExerciseComplete,
     unlocked,
 }: PracticePanelProps) {
     const hasExercises = section.exercises && section.exercises.length > 0;
@@ -59,11 +63,14 @@ export const PracticePanel = React.memo(function PracticePanel({
                         <ExerciseSection
                             key={exercise.id || index}
                             exercise={exercise}
+                            exerciseIndex={index}
+                            sectionId={sectionId}
                             answers={answers[exercise.id ?? `exercise-${index}`] || {}}
                             onAnswerChange={(itemIndex, value) =>
                                 onAnswerChange(exercise.id ?? `exercise-${index}`, itemIndex, value)
                             }
                             onComplete={onSectionComplete}
+                            onExerciseComplete={onExerciseComplete}
                         />
                     ))}
                 </div>

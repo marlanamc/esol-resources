@@ -283,6 +283,64 @@ textarea {
   }
 }
 
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progressShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 150, 50, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(255, 150, 50, 0.5);
+  }
+}
+
+@keyframes checkDraw {
+  0% {
+    stroke-dashoffset: 24;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes celebrateShimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.6s ease-out forwards;
 }
@@ -313,6 +371,156 @@ textarea {
 
 .delay-500 {
   animation-delay: 500ms;
+}
+
+/* Staggered checklist row animations */
+.checklist-row {
+  animation: slideInFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.checklist-row:nth-child(1) { animation-delay: 0ms; }
+.checklist-row:nth-child(2) { animation-delay: 60ms; }
+.checklist-row:nth-child(3) { animation-delay: 120ms; }
+.checklist-row:nth-child(4) { animation-delay: 180ms; }
+.checklist-row:nth-child(5) { animation-delay: 240ms; }
+.checklist-row:nth-child(6) { animation-delay: 300ms; }
+.checklist-row:nth-child(7) { animation-delay: 360ms; }
+.checklist-row:nth-child(8) { animation-delay: 420ms; }
+.checklist-row:nth-child(9) { animation-delay: 480ms; }
+.checklist-row:nth-child(10) { animation-delay: 540ms; }
+
+/* Progress bar shimmer animation */
+.progress-bar-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary) 0%,
+    var(--color-primary) 25%,
+    var(--color-accent) 50%,
+    var(--color-primary) 75%,
+    var(--color-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: progressShimmer 3s ease-in-out infinite;
+}
+
+/* Streak fire glow effect */
+.streak-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.streak-icon-pulse {
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+/* Stats card glow backgrounds */
+.stat-glow-orange {
+  background: radial-gradient(ellipse at center, rgba(255, 150, 50, 0.15) 0%, transparent 70%);
+}
+
+.stat-glow-gold {
+  background: radial-gradient(ellipse at center, rgba(233, 196, 106, 0.2) 0%, transparent 70%);
+}
+
+.stat-glow-sage {
+  background: radial-gradient(ellipse at center, rgba(106, 141, 115, 0.15) 0%, transparent 70%);
+}
+
+/* Glass morphism effect */
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 32px rgba(176, 87, 64, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.glass-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  box-shadow:
+    0 12px 40px rgba(176, 87, 64, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Celebration shimmer for 100% completion */
+.celebrate-complete {
+  position: relative;
+  overflow: hidden;
+}
+
+.celebrate-complete::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(233, 196, 106, 0.3) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: celebrateShimmer 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Custom checkbox styling */
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--color-border-dark);
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox:checked {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.custom-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+/* Hover effect for checklist rows */
+.checklist-row-hover {
+  transition: all 0.2s ease;
+}
+
+.checklist-row-hover:hover {
+  background-color: rgba(253, 251, 247, 0.8);
+  padding-left: calc(1rem + 4px);
+}
+
+/* Arrow animation for CTA */
+.arrow-animate {
+  transition: transform 0.2s ease;
+}
+
+.group:hover .arrow-animate {
+  transform: translateX(4px);
 }
 
 /* ========== Utility Classes ========== */

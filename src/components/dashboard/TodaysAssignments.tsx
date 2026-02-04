@@ -175,39 +175,39 @@ export const TodaysAssignments: React.FC<Props> = ({
 
         const completedCount = rows.filter((r) => r.isCompleted).length;
         const percent = rows.length ? Math.round((completedCount / rows.length) * 100) : 0;
+        const isFullyComplete = percent === 100;
 
         return (
             <div className="mb-8">
-                    <div className="flex items-center justify-between gap-4 mb-4">
-                        {resolvedTitle ? (
-                            <h2 className="text-2xl sm:text-3xl font-display font-bold text-text flex items-center gap-3 leading-tight">
-                                <span className="w-1 h-6 rounded-full bg-primary"></span>
-                                {resolvedTitle}
-                            </h2>
-                        ) : (
-                            <span />
-                        )}
-                    </div>
+                <div className={`bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden ${isFullyComplete ? 'celebrate-complete ring-2 ring-accent/50' : ''}`}>
+                    <div className="p-4 border-b border-border/30 bg-gradient-to-br from-white via-white to-bg-light/30 relative overflow-hidden">
+                        {/* Subtle decorative element */}
+                        <div className="absolute -top-8 -right-8 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
 
-                <div className="bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden">
-                    <div className="p-4 border-b border-border/30 bg-gradient-to-b from-white to-bg-light/50">
-                        <div className="flex items-center justify-between gap-3">
-                            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-base">
-                                📋
+                        <div className="flex items-center justify-between gap-3 relative z-10">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center text-lg shadow-sm">
+                                    {isFullyComplete ? '🎉' : '📋'}
+                                </div>
+                                {resolvedTitle && (
+                                    <h2 className="text-xl sm:text-2xl font-display font-bold text-text leading-tight">
+                                        {resolvedTitle}
+                                    </h2>
+                                )}
                             </div>
-                            <div className="flex items-center gap-2 text-sm font-semibold text-text/70">
-                                <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
+                            <div className="flex items-center gap-2 text-sm font-bold text-text/70">
+                                <span className="px-3 py-1.5 rounded-full bg-white border border-border/50 shadow-sm">
                                     {completedCount}/{rows.length} done
                                 </span>
-                                <span className="px-2 py-1 rounded-full bg-bg-light border border-border/40">
+                                <span className={`px-3 py-1.5 rounded-full border shadow-sm ${isFullyComplete ? 'bg-accent/20 border-accent/40 text-amber-700' : 'bg-white border-border/50'}`}>
                                     {percent}%
                                 </span>
                             </div>
                         </div>
-                        <div className="mt-3">
-                            <div className="w-full bg-border/30 rounded-full h-2 overflow-hidden">
+                        <div className="mt-4 relative z-10">
+                            <div className="w-full bg-border/40 rounded-full h-2.5 overflow-hidden shadow-inner">
                                 <div
-                                    className="h-full bg-gradient-to-r from-secondary to-primary transition-[width] duration-500"
+                                    className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'progress-bar-shimmer' : 'bg-gradient-to-r from-secondary via-primary to-primary'}`}
                                     style={{ width: `${percent}%` }}
                                 />
                             </div>
@@ -218,43 +218,46 @@ export const TodaysAssignments: React.FC<Props> = ({
                         {sortedRows.map(({ assignment, isCompleted, displayTitle, categoryStyle, dueLabel, progressValue }) => (
                             <div
                                 key={assignment.id}
-                                className="relative group"
+                                className="relative group checklist-row checklist-row-hover"
                                 style={{ borderLeft: `6px solid ${categoryStyle.accent}` }}
                             >
-                                <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+                                <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-200">
                                     <div className="flex items-start gap-3 flex-1 min-w-0">
                                         <input
                                             type="checkbox"
                                             checked={isCompleted}
                                             disabled
                                             aria-label={isCompleted ? 'Completed' : 'Not completed yet'}
-                                            className="mt-1 h-5 w-5 accent-[var(--primary)] cursor-not-allowed opacity-80"
+                                            className="custom-checkbox mt-0.5 cursor-not-allowed"
                                         />
                                         <div className="min-w-0">
-                                            <div className="flex items-center flex-wrap gap-2 mb-1">
+                                            <div className="flex items-center flex-wrap gap-2 mb-1.5">
                                                 <span
-                                                    className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide"
+                                                    className="inline-flex px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wide shadow-sm"
                                                     style={{ backgroundColor: categoryStyle.bg, color: categoryStyle.text }}
                                                 >
                                                     {categoryStyle.label}
                                                 </span>
-                                                {progressValue > 0 && (
-                                                    <span className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                                                {progressValue > 0 && !isCompleted && (
+                                                    <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
                                                         {progressValue}% done
                                                     </span>
                                                 )}
                                                 {dueLabel && (
-                                                    <span className="inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold bg-accent/50 text-text border border-border/30">
+                                                    <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
                                                         Due: {dueLabel}
                                                     </span>
                                                 )}
                                                 {isCompleted && (
-                                                    <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-secondary/10 text-secondary rounded text-[10px] font-bold uppercase tracking-wide">
-                                                        ✓ Done
+                                                    <span className="inline-flex items-center gap-1 px-2.5 py-1 bg-secondary/15 text-secondary rounded-md text-[10px] font-bold uppercase tracking-wide shadow-sm">
+                                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                        Done
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className="text-base sm:text-lg font-bold text-text font-display leading-snug truncate">
+                                            <div className={`text-base sm:text-lg font-bold font-display leading-snug truncate transition-colors ${isCompleted ? 'text-text/60 line-through decoration-secondary/40' : 'text-text group-hover:text-primary'}`}>
                                                 {displayTitle}
                                             </div>
                                         </div>
@@ -262,10 +265,10 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                                     <Link
                                         href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                        className={`inline-flex items-center justify-center px-4 py-2 text-sm font-bold transition-[box-shadow,transform] hover:shadow-md active:scale-95 rounded-lg whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                                        className={`inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold transition-all duration-200 hover:shadow-lg active:scale-95 rounded-xl whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                                             isCompleted
-                                                ? 'border border-primary text-primary hover:bg-primary/5'
-                                                : 'bg-primary text-white hover:brightness-110'
+                                                ? 'border-2 border-primary/30 text-primary hover:bg-primary/5 hover:border-primary/50'
+                                                : 'bg-gradient-to-r from-primary to-primary-dark text-white hover:brightness-110 shadow-md'
                                         }`}
                                     >
                                         {isCompleted ? 'Review' : ctaLabel}

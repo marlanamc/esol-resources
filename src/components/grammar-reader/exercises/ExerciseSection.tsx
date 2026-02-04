@@ -9,18 +9,29 @@ import { RadioExercise } from "./RadioExercise";
 import { WordScrambleExercise } from "./WordScrambleExercise";
 import { WordSelectExercise } from "./WordSelectExercise";
 
+export interface ExerciseCompletionInfo {
+    exerciseId: string;
+    sectionId: string;
+}
+
 interface ExerciseSectionProps {
     exercise: Exercise;
+    exerciseIndex: number;
+    sectionId: string;
     answers: Record<number, string>;
     onAnswerChange: (itemIndex: number, value: string) => void;
     onComplete: () => void;
+    onExerciseComplete?: (info: ExerciseCompletionInfo) => void;
 }
 
 export function ExerciseSection({
     exercise,
+    exerciseIndex,
+    sectionId,
     answers,
     onAnswerChange,
     onComplete,
+    onExerciseComplete,
 }: ExerciseSectionProps) {
     const [submitted, setSubmitted] = useState(false);
     const [results, setResults] = useState<Record<number, boolean>>({});
@@ -98,6 +109,16 @@ export function ExerciseSection({
         const allCorrect = Object.values(newResults).every((r) => r);
         if (allCorrect) {
             onComplete();
+            // Notify parent about exercise completion for points tracking
+            if (onExerciseComplete) {
+                const exerciseId = exercise.title
+                    ? exercise.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+                    : `exercise-${exerciseIndex}`;
+                onExerciseComplete({
+                    exerciseId,
+                    sectionId,
+                });
+            }
         }
     };
 
