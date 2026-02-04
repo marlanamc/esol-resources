@@ -12,10 +12,10 @@
   --color-primary-dark: #8e4432;
   --color-primary-light: #d08b78;
 
-  /* Colors - Secondary (Library Sage - more muted) */
-  --color-secondary: #4d6b53;
-  --color-secondary-dark: #3a513e;
-  --color-secondary-light: #709378;
+  /* Colors - Secondary (Library Sage - lighter and more vibrant) */
+  --color-secondary: #6a8d73;
+  --color-secondary-dark: #4d6b53;
+  --color-secondary-light: #8da693;
 
   /* Colors - Accent (Parchment Gold) */
   --color-accent: #e9c46a;
