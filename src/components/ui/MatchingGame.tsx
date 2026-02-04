@@ -26,6 +26,12 @@ interface Round {
     words: CountableWord[];
 }
 
+interface VocabPair {
+    id: number;
+    term: string;
+    definition: string;
+}
+
 interface Props {
     contentStr: string;
     activityId?: string;
@@ -40,6 +46,26 @@ enum InteractionMode {
 }
 
 export default function MatchingGame({ contentStr, activityId, assignmentId }: Props) {
+    const gameMode = useMemo(() => detectMatchingGameMode(contentStr), [contentStr]);
+    const vocabPairs = useMemo(() => (gameMode === "vocab" ? parseVocabPairs(contentStr) : []), [contentStr, gameMode]);
+
+    if (gameMode === "vocab") {
+        if (vocabPairs.length > 0) {
+            return (
+                <VocabMatchingUI
+                    pairs={vocabPairs}
+                    activityId={activityId}
+                    assignmentId={assignmentId}
+                />
+            );
+        }
+        return (
+            <div className="max-w-4xl mx-auto p-8 text-center">
+                <p className="text-gray-500">No vocabulary pairs to match.</p>
+            </div>
+        );
+    }
+
     const rounds = useMemo(() => parseRounds(contentStr), [contentStr]);
     const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
     const currentRound = rounds[currentRoundIndex];
@@ -748,7 +774,223 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
     );
 }
 
-// Helper function: Parse rounds from content
+// --- Vocab (term::definition) matching UI ---
+function VocabMatchingUI({
+    pairs,
+    activityId,
+    assignmentId,
+}: {
+    pairs: VocabPair[];
+    activityId?: string;
+    assignmentId?: string | null;
+}) {
+    const shuffleSeed = useMemo(
+        () => (activityId ? deriveShuffleSeed(1, activityId) : 1),
+        [activityId]
+    );
+    const shuffledTerms = useMemo(
+        () => deterministicShuffle([...pairs], shuffleSeed),
+        [pairs, shuffleSeed]
+    );
+    const shuffledDefs = useMemo(
+        () => deterministicShuffle([...pairs], shuffleSeed + 1),
+        [pairs, shuffleSeed]
+    );
+    const [selectedTermId, setSelectedTermId] = useState<number | null>(null);
+    const [matchedTermIds, setMatchedTermIds] = useState<Set<number>>(new Set());
+    const [wrongFlash, setWrongFlash] = useState<number | null>(null);
+
+    const progressPercent =
+        pairs.length > 0 ? Math.round((matchedTermIds.size / pairs.length) * 100) : 0;
+    const isComplete = pairs.length > 0 && matchedTermIds.size === pairs.length;
+
+    useEffect(() => {
+        if (!activityId || pairs.length === 0) return;
+        const status = isComplete ? "completed" : "in_progress";
+        void saveActivityProgress(
+            activityId,
+            progressPercent,
+            status,
+            undefined,
+            undefined,
+            assignmentId ?? null
+        );
+    }, [activityId, progressPercent, isComplete, pairs.length, assignmentId]);
+
+    const handleTermClick = (pairId: number) => {
+        if (matchedTermIds.has(pairId)) return;
+        if (selectedTermId === pairId) {
+            setSelectedTermId(null);
+            return;
+        }
+        if (selectedTermId != null) {
+            const firstPair = pairs.find((p) => p.id === selectedTermId);
+            const secondPair = pairs.find((p) => p.id === pairId);
+            if (firstPair && secondPair && firstPair.id === secondPair.id) {
+                setMatchedTermIds((prev) => new Set([...prev, pairId]));
+                setSelectedTermId(null);
+            } else {
+                setWrongFlash(pairId);
+                setTimeout(() => setWrongFlash(null), 400);
+                setSelectedTermId(null);
+            }
+            return;
+        }
+        setSelectedTermId(pairId);
+    };
+
+    const handleDefClick = (pairId: number) => {
+        if (matchedTermIds.has(pairId)) return;
+        if (selectedTermId == null) return;
+        const firstPair = pairs.find((p) => p.id === selectedTermId);
+        const secondPair = pairs.find((p) => p.id === pairId);
+        if (firstPair && secondPair && firstPair.id === secondPair.id) {
+            setMatchedTermIds((prev) => new Set([...prev, pairId]));
+            setSelectedTermId(null);
+        } else {
+            setWrongFlash(pairId);
+            setTimeout(() => setWrongFlash(null), 400);
+            setSelectedTermId(null);
+        }
+    };
+
+    const createTermClickHandler = (pairId: number) => {
+        return {
+            onClick: (e: React.MouseEvent) => {
+                e.stopPropagation();
+                handleTermClick(pairId);
+            },
+        };
+    };
+    const createDefClickHandler = (pairId: number) => {
+        return {
+            onClick: (e: React.MouseEvent) => {
+                e.stopPropagation();
+                handleDefClick(pairId);
+            },
+        };
+    };
+
+    return (
+        <div className="max-w-4xl mx-auto p-4 md:p-6">
+            <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 mb-4">
+                <h2 className="text-lg font-bold text-gray-900 mb-1">Vocabulary Matching</h2>
+                <p className="text-sm text-gray-500 mb-2">Match each word to its definition.</p>
+                <div className="flex items-center gap-2">
+                    <div className="h-2 flex-1 bg-gray-200 rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                            style={{ width: `${progressPercent}%` }}
+                        />
+                    </div>
+                    <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
+                        {matchedTermIds.size}/{pairs.length}
+                    </span>
+                </div>
+            </div>
+
+            {isComplete ? (
+                <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl">
+                    <div className="text-5xl mb-3">🎉</div>
+                    <h2 className="text-2xl font-bold mb-2">All matched!</h2>
+                    <p className="text-white/90">You matched all {pairs.length} words correctly.</p>
+                </div>
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <div className="space-y-2">
+                        <p className="text-sm font-medium text-gray-500">Words</p>
+                        {shuffledTerms.map((p) => {
+                            const handlers = createTermClickHandler(p.id);
+                            return (
+                                <button
+                                    key={p.id}
+                                    type="button"
+                                    {...handlers}
+                                    className={`
+                                        w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer
+                                        ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
+                                        ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10" : "border-gray-200 hover:border-gray-300"}
+                                    `}
+                                    style={{
+                                        borderStyle: 'solid',
+                                        backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : '#ffffff'),
+                                        borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : '#e5e7eb'),
+                                        borderWidth: '2px'
+                                    }}
+                                >
+                                    <span className="font-medium">{p.term}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                    <div className="space-y-2">
+                        <p className="text-sm font-medium text-gray-500">Definitions</p>
+                        {shuffledDefs.map((p) => {
+                            const handlers = createDefClickHandler(p.id);
+                            return (
+                                <button
+                                    key={p.id}
+                                    type="button"
+                                    {...handlers}
+                                    className={`
+                                        w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-sm
+                                        ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
+                                        ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse" : "border-gray-200 hover:border-gray-300"}
+                                    `}
+                                    style={{
+                                        borderStyle: 'solid',
+                                        backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : '#ffffff'),
+                                        borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : '#e5e7eb'),
+                                        borderWidth: '2px'
+                                    }}
+                                >
+                                    <span>{p.definition}</span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+// --- Vocab (term::definition) matching ---
+function detectMatchingGameMode(content: string): "vocab" | "countable" {
+    const hasRoundMarkers = /\[ROUND\s*\d+\]/.test(content);
+    const lines = content.split("\n");
+    let hasCountableUncountableLine = false;
+    for (const line of lines) {
+        if (!line.includes("::")) continue;
+        const afterColon = line.split("::").map((s) => s.trim())[1] ?? "";
+        const lower = afterColon.toLowerCase();
+        if (lower.startsWith("countable") || lower.startsWith("uncountable")) {
+            hasCountableUncountableLine = true;
+            break;
+        }
+    }
+    if (hasRoundMarkers && hasCountableUncountableLine) return "countable";
+    return "vocab";
+}
+
+function parseVocabPairs(content: string): VocabPair[] {
+    const pairs: VocabPair[] = [];
+    let id = 1;
+    const lines = content.split("\n").map((l) => l.trim()).filter(Boolean);
+    for (const line of lines) {
+        if (!line.includes("::")) continue;
+        const idx = line.indexOf("::");
+        const term = line.slice(0, idx).trim();
+        const definition = line.slice(idx + 2).trim();
+        if (!term || !definition) continue;
+        const lower = definition.toLowerCase();
+        if (lower.startsWith("countable") || lower.startsWith("uncountable")) continue;
+        pairs.push({ id: id++, term, definition });
+    }
+    return pairs;
+}
+
+// Helper function: Parse rounds from content (countable/uncountable format only)
 function parseRounds(content: string): Round[] {
     const rounds: Round[] = [];
     const roundBlocks = content.split(/\[ROUND \d+\]/).filter((b) => b.trim());
