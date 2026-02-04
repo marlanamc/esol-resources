@@ -193,46 +193,38 @@ export default function AvatarSelector({
 
             {/* Mode Toggle */}
             <div className="flex items-center justify-center">
-                <div className={`
-                    inline-flex rounded-lg border border-gray-200 bg-gray-50 p-1
-                    transition-all duration-500
-                    ${isHighlighted 
-                        ? 'ring-4 ring-blue-200 ring-opacity-50 animate-pulse shadow-lg' 
-                        : ''
-                    }
-                `}>
+                <div className="inline-flex rounded-full bg-gray-200 p-1 relative">
+                    {/* Sliding Background */}
+                    <div 
+                        className={`
+                            absolute top-1 left-1 w-[calc(50%-4px)] h-[calc(100%-8px)] 
+                            bg-white rounded-full shadow-md transition-all duration-300 ease-in-out
+                            ${selectionMode === "color" ? "translate-x-full" : "translate-x-0"}
+                        `}
+                    />
+                    
+                    {/* Toggle Buttons */}
                     <button
                         onClick={() => setSelectionMode("avatar")}
                         className={`
-                            px-4 py-2 rounded-md text-sm font-medium transition-all
+                            relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
                             ${selectionMode === "avatar"
-                                ? "bg-white text-gray-900 shadow-sm ring-2 ring-offset-2 ring-offset-transparent"
-                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                                ? "text-primary font-semibold" 
+                                : "text-gray-600 hover:text-gray-900"
                             }
                         `}
-                        style={{
-                            ...(selectionMode === "avatar" && {
-                                background: `linear-gradient(135deg, white 0%, white 60%, ${getCurrentColorClass()} 100%)`,
-                                backgroundClip: "padding-box",
-                            })
-                        }}
                     >
                         Emoji
                     </button>
                     <button
                         onClick={() => setSelectionMode("color")}
                         className={`
-                            px-4 py-2 rounded-md text-sm font-medium transition-all
+                            relative z-10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
                             ${selectionMode === "color"
-                                ? "bg-white text-gray-900 shadow-sm ring-2 ring-offset-2 ring-offset-transparent"
-                                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                                ? "text-primary font-semibold" 
+                                : "text-gray-600 hover:text-gray-900"
                             }
                         `}
-                        style={{
-                            ...(selectionMode === "color" && {
-                                background: getCurrentColorClass(),
-                            })
-                        }}
                     >
                         Color
                     </button>
