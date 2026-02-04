@@ -301,31 +301,33 @@ export default function AvatarSelector({
             ) : (
                 <div>
                     <h4 className="text-md font-semibold text-gray-900 mb-3">Choose Your Color</h4>
-                    <div className="grid grid-cols-5 gap-3">
-                        {COLORS.map((color) => (
-                            <button
-                                key={color.id}
-                                onClick={() => handleColorSelect(color.id)}
-                                className={`
-                                    relative p-3 rounded-full border-2 transition-all
-                                    hover:scale-110 hover:shadow-md
-                                    ${selectedColor === color.id 
-                                        ? "border-gray-800 shadow-lg" 
-                                        : "border-gray-200 hover:border-gray-300"
-                                    }
-                                `}
-                                title={color.name}
-                            >
-                                <div className={`w-6 h-6 ${color.class} rounded-full`}></div>
-                                {selectedColor === color.id && (
-                                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-gray-800 rounded-full flex items-center justify-center">
-                                        <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                )}
-                            </button>
-                        ))}
+                    <div className="flex justify-center">
+                        <div className="grid grid-cols-5 gap-3 max-w-md">
+                            {COLORS.map((color) => (
+                                <button
+                                    key={color.id}
+                                    onClick={() => handleColorSelect(color.id)}
+                                    className={`
+                                        relative p-3 rounded-full border-2 transition-all
+                                        hover:scale-110 hover:shadow-md
+                                        ${selectedColor === color.id 
+                                            ? "border-gray-800 shadow-lg" 
+                                            : "border-gray-200 hover:border-gray-300"
+                                        }
+                                    `}
+                                    title={color.name}
+                                >
+                                    <div className={`w-6 h-6 ${color.class} rounded-full`}></div>
+                                    {selectedColor === color.id && (
+                                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-gray-800 rounded-full flex items-center justify-center">
+                                            <svg className="w-2 h-2 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
