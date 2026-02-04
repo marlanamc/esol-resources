@@ -216,13 +216,13 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                     <div className="flex items-center gap-0 bg-white rounded-lg p-1 border-2 border-[var(--color-border)]">
                         <button
                             onClick={() => { setMode("term-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-[background-color,color,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${mode === "term-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 ${mode === "term-first" ? "bg-zinc-900 text-white shadow-md ring-1 ring-black/5" : "bg-transparent text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"}`}
                         >
                             Term First
                         </button>
                         <button
                             onClick={() => { setMode("def-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-[background-color,color,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${mode === "def-first" ? "bg-[var(--color-primary)] text-white shadow-sm" : "bg-transparent text-[var(--color-text-muted)] hover:text-[var(--color-text)]"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 ${mode === "def-first" ? "bg-zinc-900 text-white shadow-md ring-1 ring-black/5" : "bg-transparent text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"}`}
                         >
                             Definition First
                         </button>
