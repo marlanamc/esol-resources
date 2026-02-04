@@ -44,6 +44,17 @@ const COLORS = [
     { id: "red", name: "Red", class: "bg-red-500" },
     { id: "orange", name: "Orange", class: "bg-orange-500" },
     { id: "teal", name: "Teal", class: "bg-teal-500" },
+    { id: "indigo", name: "Indigo", class: "bg-indigo-500" },
+    { id: "cyan", name: "Cyan", class: "bg-cyan-500" },
+    { id: "lime", name: "Lime", class: "bg-lime-500" },
+    { id: "emerald", name: "Emerald", class: "bg-emerald-500" },
+    { id: "rose", name: "Rose", class: "bg-rose-500" },
+    { id: "violet", name: "Violet", class: "bg-violet-500" },
+    { id: "amber", name: "Amber", class: "bg-amber-500" },
+    { id: "sky", name: "Sky", class: "bg-sky-500" },
+    { id: "fuchsia", name: "Fuchsia", class: "bg-fuchsia-500" },
+    { id: "slate", name: "Slate", class: "bg-slate-500" },
+    { id: "zinc", name: "Zinc", class: "bg-zinc-500" },
 ];
 
 export default function AvatarSelector({ 
@@ -153,7 +164,7 @@ export default function AvatarSelector({
             {selectionMode === "avatar" ? (
                 <div>
                     <h4 className="text-md font-semibold text-gray-900 mb-3">Choose Your Avatar</h4>
-                    <div className="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 gap-3">
+                    <div className="grid grid-cols-5 gap-3">
                         {AVATARS.map((avatar) => (
                             <button
                                 key={avatar.id}
@@ -183,7 +194,7 @@ export default function AvatarSelector({
             ) : (
                 <div>
                     <h4 className="text-md font-semibold text-gray-900 mb-3">Choose Your Color</h4>
-                    <div className="grid grid-cols-4 sm:grid-cols-8 gap-3">
+                    <div className="grid grid-cols-5 gap-3">
                         {COLORS.map((color) => (
                             <button
                                 key={color.id}
