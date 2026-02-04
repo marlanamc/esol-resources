@@ -213,6 +213,26 @@ def format_day_header(class_date: date) -> str:
     return f"{class_date.strftime('%A')}, {class_date.strftime('%B')} {class_date.day}"
 
 
+def format_vocab_date_range(start: date, end: date) -> str:
+    """Format for vocab flash cards label, e.g. 'February 3-5'."""
+    if start.month == end.month:
+        return f"{start.strftime('%B')} {start.day}-{end.day}"
+    return f"{start.strftime('%B')} {start.day} – {end.strftime('%B')} {end.day}"
+
+
+def writing_homework_label(warmup_title: str) -> str:
+    """Short label for writing homework, e.g. 'Workplace Small Talk' -> 'Small Talk Writing Homework'."""
+    t = warmup_title.strip()
+    # Drop common prefixes to keep it short
+    for prefix in ("Workplace ", "Interview: ", "Health: ", "Healthcare ", "Jobs: ", "Career "):
+        if t.startswith(prefix):
+            t = t[len(prefix) :].strip()
+            break
+    if not t:
+        t = "Warmup"
+    return f"{t} Writing Homework"
+
+
 def format_due_date(due_date: date) -> str:
     return f"{due_date.strftime('%A')}, {due_date.strftime('%B')} {due_date.day}"
 
@@ -241,7 +261,7 @@ def render_verb_practice_table(verbs_v1: list[str]) -> str:
 
     return (
         "                    <div class=\"verb-practice\">\n"
-        "                        <h3>Verb forms practice (fill in the blank columns)</h3>\n"
+        "                        <h3>Verb practice (fill in the blank columns)</h3>\n"
         "                        <table class=\"verb-table\">\n"
         "                            <thead>\n"
         f"                                <tr>{header_html}</tr>\n"
@@ -292,7 +312,7 @@ def render_quizzes_section(
 
     if not items_html:
         items_html = (
-            "                    <p class=\"quiz-none\"><em>No quizzes this week.</em></p>\n"
+            "                    <p class=\"quiz-none\"><em>No quizzes or tests this week.</em></p>\n"
         )
 
     return (
@@ -300,8 +320,8 @@ def render_quizzes_section(
         "            <section class=\"quizzes-section\">\n"
         "                <div class=\"quizzes-card\">\n"
         "                    <div class=\"quizzes-heading\">\n"
-        "                        <div class=\"quizzes-eyebrow\">IMPORTANT</div>\n"
-        "                        <h2>Quizzes &amp; Tests</h2>\n"
+        "                        <div class=\"quizzes-eyebrow\">Don't forget</div>\n"
+        "                        <h2>Quizzes and due dates</h2>\n"
         "                    </div>\n"
         f"{items_html}"
         f"{table_html}"
@@ -427,11 +447,21 @@ def outcomes_for_guide(guide_slug: str) -> list[str]:
             "Describe future milestones and long-term goals",
             "Compare all three perfect continuous tenses",
         ],
+        "conditionals-second-third": [
+            "Use second conditional (If + past, would…) for unreal or unlikely situations",
+            "Use third conditional (If + had + V3, would have + V3) for past regrets or results",
+            "Choose the right conditional when talking about rules, advice, and reflection",
+        ],
+        "cycle-1-review": [
+            "Review simple, continuous, and present perfect from Cycle 1",
+            "Use the right tense when talking about work and habits",
+            "Fix common tense mistakes in speaking and writing",
+        ],
     }
 
     if guide_slug not in mapping:
         return [
-            "Practice this week’s grammar in speaking and writing",
+            "Practice this week's grammar in speaking and writing",
             "Use the grammar to share real-life information clearly",
             "Correct common grammar mistakes",
         ]
@@ -465,6 +495,8 @@ def why_for_guide(guide_slug: str) -> str:
         "future-perfect": "Future Perfect helps you talk about what will be completed by a future time. This is useful for setting goals, making predictions, and talking about future achievements.",
         "past-perfect-continuous": "Past Perfect Continuous helps you describe ongoing actions before a past event. This is useful for explaining background duration and telling career or learning stories with clear timelines.",
         "future-perfect-continuous": "Future Perfect Continuous helps you talk about duration continuing up to a future point. This is useful for describing future milestones and long-term goals.",
+        "conditionals-second-third": "Second and third conditionals help you talk about unreal situations, rules, and what might have been. You'll use them for advice, reflection, and job scenarios.",
+        "cycle-1-review": "Reviewing Cycle 1 tenses helps you feel confident with simple, continuous, and present perfect. You'll use them every day at work and in class.",
     }
     
     return mapping.get(guide_slug, "This grammar helps you communicate more clearly in real-life situations.")
@@ -500,6 +532,21 @@ def naturalize_warmup_title(title: str) -> str:
         # Workplace patterns
         (r"^Workplace.*Basics", "talking about work"),
         (r"^Career.*Basics", "talking about careers"),
+        (r"^Workplace Small Talk", "practicing workplace small talk"),
+        (r"^Interview: Common Questions", "practicing common interview questions"),
+        (r"^Workplace Policies: Phrasal Verbs", "talking about workplace policies with phrasal verbs"),
+        (r"^Workplace: Past Perfect", "using past perfect for work timelines"),
+        (r"^Career Path Stories", "sharing career path stories"),
+        (r"^Job Application Talk-Through", "walking through a job application"),
+        (r"^Career Goals:.*Future Perfect", "talking about career goals with future perfect"),
+        (r"^Future Goals:.*Future Perfect", "talking about future goals"),
+        (r"^Jobs: Communication.*Reported Speech", "reporting what people said at work"),
+        (r"^Accident Reports: Reported Speech", "reporting accidents clearly"),
+        (r"^Workplace Rights Scenarios", "talking about workplace rights"),
+        (r"^Workplace Advocacy Role-Plays", "practicing standing up for yourself at work"),
+        (r"^Negotiation:.*Conditionals", "practicing negotiation with conditionals"),
+        (r"^Exit Interview:.*Reflection", "practicing exit interview reflection"),
+        (r"^Small Talk: Phrasal Verbs", "using phrasal verbs in small talk"),
         (r"^Resume.*Cover Letter", "talking about resumes and cover letters"),
         (r"^Interview.*Questions", "practicing interview questions"),
         (r"^Job Application", "talking about job applications"),
@@ -514,9 +561,23 @@ def naturalize_warmup_title(title: str) -> str:
         (r"^Exit Interview", "practicing exit interviews"),
         
         # Health patterns
+        (r"^Healthcare Basics & Symptoms", "talking about healthcare and symptoms"),
         (r"^Healthcare.*Basics", "talking about healthcare"),
+        (r"^Healthy Habit Tracker", "tracking your healthy habits"),
+        (r"^Healthcare & Doctor Visits", "talking about doctor visits"),
+        (r"^Symptoms & Treatment:.*Duration", "talking about symptoms and how long they last"),
         (r"^Symptoms.*Duration", "describing symptoms and how long they last"),
+        (r"^Clinic Visit Steps", "talking about clinic visit steps"),
         (r"^Clinic Visit.*Steps", "talking about clinic visit steps"),
+        (r"^Symptoms & Advice", "talking about symptoms and advice"),
+        (r"^Healthcare Communication:.*MyChart", "using MyChart and talking to the office"),
+        (r"^Health Habits: Used To", "talking about health habits with used to"),
+        (r"^Daily Care Routines", "talking about daily care routines"),
+        (r"^Daily Self-Care", "talking about daily self-care"),
+        (r"^Food Labels & Nutrition", "reading food labels and talking about nutrition"),
+        (r"^Health Records & Communication", "talking about health records"),
+        (r"^Wellness Review:.*Verb Tenses", "reviewing verb tenses for wellness"),
+        (r"^Wellness Reflection:.*Verb Tenses", "reflecting on wellness and verb tenses"),
         (r"^Pharmacy.*Instructions", "understanding pharmacy instructions"),
         (r"^MyChart.*Calling.*Office", "using MyChart and calling the office"),
         (r"^Wellness.*Basics", "talking about wellness"),
@@ -540,7 +601,11 @@ def naturalize_warmup_title(title: str) -> str:
         (r"^Food.*Basics", "talking about food"),
         (r"^Transportation.*Basics", "talking about transportation"),
         (r"^New Year.*Goals", "talking about new year goals"),
-        (r"^Community Resources", "talking about community resources"),
+        (r"^Community Resources", "finding community resources"),
+        (r"^Final Presentation Rehearsal", "practicing your final presentation"),
+        (r"^Final Reflections of the School Year", "reflecting on the school year"),
+        (r"^Final Reflections \(Jun", "reflecting on the year"),
+        (r"^Summer & Next Steps", "talking about summer and next steps"),
         (r"^Final Presentation", "practicing final presentations"),
         (r"^Year.*Review", "reflecting on the year"),
         (r"^Summer.*Next Steps", "talking about summer and next steps"),
@@ -626,6 +691,32 @@ def render_week_html(
         thursday_special_html = (
             f'<p class="meta-line"><strong>Special:</strong> {html.escape(config.thursday_special, quote=False)}</p>'
         )
+
+    # After class checklist (short checklist for the week)
+    w = config.week_number
+    vocab_range = format_vocab_date_range(tuesday.class_date, thursday.class_date)
+    checklist_items = [
+        (f"after-writing-{w}", "Writing Homework"),
+        (f"after-vocab-{w}", f"Review {vocab_range} Vocabulary Flash Cards"),
+        (f"after-guide-{w}", f"Review {config.guide_title} Guide"),
+    ]
+    if verb_quiz:
+        checklist_items.append((f"after-verb-quiz-{w}", f"Take Verb Quiz {verb_quiz.quiz_number}"))
+    after_class_lines = "\n".join(
+        '                <div class="checklist-item">\n'
+        f'                    <input type="checkbox" id="{item_id}" class="checklist-cb">\n'
+        f'                    <label for="{item_id}">{html.escape(label, quote=False)}</label>\n'
+        "                </div>\n"
+        for item_id, label in checklist_items
+    )
+    after_class_checklist_html = (
+        '            <div class="after-class">\n'
+        '                <h2 class="section-title">After class</h2>\n'
+        '                <div class="checklist">\n'
+        f"{after_class_lines}"
+        "                </div>\n"
+        "            </div>\n"
+    )
 
     quizzes_html = render_quizzes_section(
         config=config,
@@ -733,30 +824,39 @@ def render_week_html(
             margin: 0 0 8px 0;
         }}
 
-        .homework {{
-            margin-top: 10px;
-            border-top: 1px solid var(--ink);
-            padding-top: 8px;
-        }}
-
-        .homework strong {{
-            display: inline-block;
-            margin-bottom: 2px;
-        }}
-
-        .homework ul {{
-            margin: 6px 0 0 18px;
-            padding: 0;
-        }}
-
-        .homework li {{
-            margin: 0 0 6px 0;
-        }}
-
-        .goals-section {{
+        .after-class {{
             margin-top: 16px;
             padding-top: 12px;
             border-top: 2px solid var(--ink);
+        }}
+
+        .checklist {{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }}
+
+        .checklist-item {{
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }}
+
+        .checklist-item .checklist-cb {{
+            margin-top: 4px;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }}
+
+        .checklist-item label {{
+            cursor: pointer;
+        }}
+
+        .goals-section {{
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--ink);
         }}
 
         .goals-section h2 {{
@@ -916,24 +1016,22 @@ def render_week_html(
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why we're learning this:</strong> {html.escape(config.why, quote=False)}</p>
+                <p><strong>Why this matters for you:</strong> {html.escape(config.why, quote=False)}</p>
             </div>
 
-            <h2 class="section-title">This Week's Focus</h2>
+            <div class="goals-section">
+                <h2>Your goals this week</h2>
+{checkbox_item("goal-1", outcomes[0])}{checkbox_item("goal-2", outcomes[1])}{checkbox_item("goal-3", outcomes[2])}{checkbox_item("goal-4", outcomes[3])}{checkbox_item("goal-5", outcomes[4])}
+            </div>
+
+            <h2 class="section-title">This week</h2>
 
             <div class="day-columns">
                 <div class="day-column">
                     <div class="day-header">{html.escape(format_day_header(tuesday.class_date), quote=False)}</div>
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> {html.escape(tuesday_warmup_title, quote=False)}</p>
-                        <p class="meta-line"><strong>Grammar:</strong> {html.escape(config.tuesday_grammar, quote=False)}</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Review \"{html.escape(config.guide_title, quote=False)}\" guide on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> {html.escape(config.guide_title, quote=False)}</p>
                     </div>
                 </div>
 
@@ -942,22 +1040,12 @@ def render_week_html(
                     <div class="day-content">
                         <p class="meta-line"><strong>Warmup:</strong> {html.escape(thursday_warmup_title, quote=False)}</p>
                         {thursday_special_html}
-                        <p class="meta-line"><strong>Grammar:</strong> {html.escape(config.thursday_grammar, quote=False)}</p>
-                        <div class="homework">
-                            <strong>Homework:</strong>
-                            <ul>
-                                <li>Complete \"{html.escape(config.guide_title, quote=False)}\" guide and mini-quiz on Class Companion</li>
-                                <li>Finish the writing from the warmup and be ready to turn it in next class</li>
-                            </ul>
-                        </div>
+                        <p class="meta-line"><strong>Grammar:</strong> {html.escape(config.guide_title, quote=False)}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="goals-section">
-                <h2>What You'll Be Able to Do This Week</h2>
-{checkbox_item("goal-1", outcomes[0])}{checkbox_item("goal-2", outcomes[1])}{checkbox_item("goal-3", outcomes[2])}{checkbox_item("goal-4", outcomes[3])}{checkbox_item("goal-5", outcomes[4])}
-            </div>
+            {after_class_checklist_html}
 
             {quizzes_html}
         </div>
@@ -994,164 +1082,163 @@ def build_week_configs() -> list[WeekConfig]:
             guide_title="Information Questions",
             tuesday_grammar="Information questions (WH- questions + word order)",
             thursday_grammar="Information questions (review + role-play practice)",
-            why="Good questions help you get important information. This week you’ll practice question word order and follow-up questions for real-life situations.",
+            why="Good questions help you get important information. This week you'll practice question word order and follow-up questions for real-life situations.",
         ),
         WeekConfig(
             week_number=19,
             guide_slug="conditionals-zero-first",
-            guide_title="Zero & First Conditionals",
-            tuesday_grammar="Type 0 conditionals (If + present, present) for facts and rules",
-            thursday_grammar="Type 1 conditionals (If + present, will…) for future plans",
-            why="Conditionals help you talk about cause and effect, rules, and future plans. Type 0 is for facts (If you pay late, you get a fee). Type 1 is for future possibilities (If I save money, I will move).",
+            guide_title="Cycle 1 Review",
+            tuesday_grammar="Cycle 1 Review (Simple, Continuous, Present Perfect)",
+            thursday_grammar="Zero & First Conditionals (If + present, present / will…)",
+            why="You'll review the main tenses from Cycle 1 and practice conditionals for facts and future plans. This builds a strong base for job and work language.",
         ),
         WeekConfig(
             week_number=20,
-            guide_slug="conditionals-zero-first",
-            guide_title="Zero & First Conditionals",
-            tuesday_grammar="Type 0 vs Type 1 conditionals (when to use which)",
-            thursday_grammar="Conditionals review + fluency practice",
-            why="Practicing both types helps you explain housing problems (Type 0) and solutions (Type 1) clearly. This is useful for talking about money, housing, and making plans.",
+            guide_slug="cycle-1-review",
+            guide_title="Cycle 1 Review",
+            tuesday_grammar="Cycle 1 Review (continue)",
+            thursday_grammar="Cycle 1 Review (speaking and writing practice)",
+            why="You'll keep practicing simple, continuous, and present perfect so you feel confident using them at work and in class.",
         ),
         WeekConfig(
             week_number=21,
-            guide_slug="past-perfect",
-            guide_title="Past Perfect & Future Perfect",
-            tuesday_grammar="Past perfect (had + V3) for timelines",
-            thursday_grammar="Future Perfect (will have + V3) for future goals",
-            why="Past perfect helps you explain what happened first in the past. Future perfect helps you talk about what will be completed by a future time. Both are useful for timelines and goals.",
+            guide_slug="workplace-phrasal-verbs",
+            guide_title="Workplace Phrasal Verbs",
+            tuesday_grammar="Workplace Phrasal Verbs (clock in, fill out, call out…)",
+            thursday_grammar="Phrasal verbs in policies and small talk",
+            why="Phrasal verbs are everywhere at work. Learning them helps you understand instructions and sound more natural.",
             thursday_special="Unit 5 Quiz (in class)",
         ),
         WeekConfig(
             week_number=22,
-            guide_slug="modals-obligation-permission",
-            guide_title="Modals: Obligation & Permission",
-            tuesday_grammar="Modals for rules, permission, and polite requests",
-            thursday_grammar="Modals (review + speaking practice)",
-            why="Modals help you sound polite and professional (must, have to, can, could, may). These are important for work rules and requests.",
+            guide_slug="present-perfect-continuous",
+            guide_title="Present Perfect Family",
+            tuesday_grammar="Present Perfect Family (have/has + V3, have been + -ing)",
+            thursday_grammar="Experience over time (How long have you been…?)",
+            why="You'll talk about what you've done and how long you've been doing something. This is useful for job applications and interviews.",
         ),
         WeekConfig(
             week_number=23,
-            guide_slug="gerunds-prepositions",
-            guide_title="Gerunds After Prepositions",
-            tuesday_grammar="Gerunds after prepositions (interested in, good at…)",
-            thursday_grammar="Gerunds vs infinitives (quick review + speaking)",
-            why="Gerunds are common in work and school English (good at…, interested in…). This helps you describe skills and routines clearly.",
+            guide_slug="past-perfect",
+            guide_title="Past Perfect Family",
+            tuesday_grammar="Past Perfect Family (had + V3, had been + -ing)",
+            thursday_grammar="Timelines and what happened first",
+            why="Past perfect helps you put events in order. You'll use it for work history and career stories.",
         ),
         WeekConfig(
             week_number=24,
-            guide_slug="present-perfect-continuous",
-            guide_title="Present Perfect Continuous & Past Perfect Continuous",
-            tuesday_grammar="Present perfect continuous (I've been…)",
-            thursday_grammar="Past Perfect Continuous (had been + -ing) for background duration",
-            why="Present perfect continuous helps you talk about experience over time. Past perfect continuous helps you describe ongoing actions before a past event. Both are useful for job and learning conversations.",
+            guide_slug="infinitives-vs-gerunds",
+            guide_title="Gerunds & Infinitives (Core Patterns)",
+            tuesday_grammar="Gerunds & Infinitives (to + verb vs verb + -ing)",
+            thursday_grammar="Core patterns (decide to, enjoy -ing, plan to…)",
+            why="Some verbs go with to + verb, others with -ing. Practicing both helps your English sound clear and natural at work.",
             thursday_special="Unit 6 Quiz (in class)",
         ),
         WeekConfig(
             week_number=25,
-            guide_slug="present-perfect-continuous",
-            guide_title="Present Perfect Continuous & Future Perfect Continuous",
-            tuesday_grammar="Present perfect continuous (workplace contexts)",
-            thursday_grammar="Future Perfect Continuous (will have been + -ing) for future milestones",
-            why="Present perfect continuous helps you describe ongoing situations and progress. Future perfect continuous helps you talk about duration continuing up to a future point. These are useful for explaining work experience and future goals.",
+            guide_slug="future-perfect",
+            guide_title="Future Perfect Family",
+            tuesday_grammar="Future Perfect Family (will have + V3, will have been + -ing)",
+            thursday_grammar="Goals and what will be done by a future time",
+            why="Future perfect helps you talk about what you will have done by a date. You'll use it for goals and plans.",
         ),
         WeekConfig(
             week_number=26,
-            guide_slug="infinitives-vs-gerunds",
-            guide_title="Infinitives vs Gerunds",
-            tuesday_grammar="Infinitives vs gerunds (to + verb vs verb + -ing)",
-            thursday_grammar="Infinitives vs gerunds (review + speaking practice)",
-            why="Some verbs use to + verb and others use -ing. Practicing both helps your English sound natural and clear at work and in daily life.",
+            guide_slug="reported-speech",
+            guide_title="Reported Speech",
+            tuesday_grammar="Reported Speech (said / told / asked)",
+            thursday_grammar="Reporting messages and accident reports",
+            why="You'll learn how to say what someone else said or asked. This helps with work messages and explaining what happened.",
         ),
         WeekConfig(
             week_number=27,
-            guide_slug="workplace-phrasal-verbs",
-            guide_title="Workplace Phrasal Verbs",
-            tuesday_grammar="Workplace phrasal verbs (clock in/out, fill out…)",
-            thursday_grammar="Phrasal verbs in workplace policies (practice)",
-            why="Phrasal verbs are very common at work. Learning them helps you understand instructions and communicate more confidently.",
+            guide_slug="modals-obligation-permission",
+            guide_title="Modals: Obligation & Permission",
+            tuesday_grammar="Modals: Obligation & Permission (must, have to, can, could, may)",
+            thursday_grammar="Polite requests and rules at work",
+            why="These words help you sound polite and clear about rules and asking for things. You'll need them for work and applications.",
         ),
         WeekConfig(
             week_number=28,
-            guide_slug="used-to-would-rather",
-            guide_title="Used To & Would Rather",
-            tuesday_grammar="Used to + would rather (habits + preferences)",
-            thursday_grammar="Used to / be used to / get used to (review)",
-            why="Used to helps you talk about past habits and changes. Would rather helps you express preferences politely. These are useful for work and daily life.",
+            guide_slug="conditionals-second-third",
+            guide_title="Second + Third Conditional",
+            tuesday_grammar="Second Conditional (If + past, would…)",
+            thursday_grammar="Third Conditional (If + had + V3, would have + V3)",
+            why="Second and third conditionals help you talk about unreal situations and what might have been. You'll use them for advice and reflection.",
         ),
         WeekConfig(
             week_number=29,
-            guide_slug="imperatives-declaratives",
-            guide_title="Imperatives vs Declaratives",
-            tuesday_grammar="Advice language (should) + clear instructions",
-            thursday_grammar="Advice and instruction review (tone + clarity)",
-            why="You’ll practice polite ways to give advice and instructions. This helps you communicate clearly in health, school, and work situations.",
+            guide_slug="perfect-tenses-review",
+            guide_title="Mid Cycle Review",
+            tuesday_grammar="Mid Cycle Review (key tenses and structures)",
+            thursday_grammar="Mid Cycle Review (speaking and writing)",
+            why="You'll review what you've learned so far. This helps you feel confident before we focus on health and care language.",
             thursday_special="Unit 7 Quiz (in class)",
         ),
         WeekConfig(
             week_number=30,
-            guide_slug="passive-voice",
-            guide_title="Passive Voice",
-            tuesday_grammar="Passive voice in step-by-step instructions",
-            thursday_grammar="Passive voice for rules and recommendations",
-            why="Passive voice is common in instructions (You are asked to…, It is required…). Understanding it helps you follow clinic and pharmacy directions.",
+            guide_slug="perfect-tenses-review",
+            guide_title="Perfect Tenses (Result vs Duration)",
+            tuesday_grammar="Perfect Tenses: Result vs Duration (what happened vs how long)",
+            thursday_grammar="Result vs duration in speaking and writing",
+            why="You'll practice saying what happened and how long something lasted. This is useful for symptoms and care conversations.",
         ),
         WeekConfig(
             week_number=31,
-            guide_slug="reported-speech",
-            guide_title="Reported Speech",
-            tuesday_grammar="Reported speech + reported commands (said/told/asked)",
-            thursday_grammar="Reported speech review + practice",
-            why="Reported speech helps you explain what someone said or told you to do. This is useful for phone calls, appointments, and messages.",
+            guide_slug="imperatives-declaratives",
+            guide_title="Medical Instructions: Modals, Imperatives & Declaratives",
+            tuesday_grammar="Medical Instructions: Modals, Imperatives & Declaratives",
+            thursday_grammar="Giving and following health advice clearly",
+            why="You'll practice clear, polite ways to give and follow health instructions. This helps at the clinic and in daily care.",
         ),
         WeekConfig(
             week_number=32,
             guide_slug="used-to-would-rather",
-            guide_title="Used To / Be Used To / Get Used To",
-            tuesday_grammar="Used to / be used to / get used to (habit change)",
-            thursday_grammar="Used to structures review + quiz practice",
-            why="These phrases help you talk about habit changes and adjusting to new routines. They’re useful for wellness goals and daily life.",
+            guide_title="Used To / Be Used To / Would Rather",
+            tuesday_grammar="Used To / Be Used To / Would Rather",
+            thursday_grammar="Habit change and preferences (health and routines)",
+            why="These phrases help you talk about old habits and what you prefer. You'll use them for health and daily life.",
             thursday_special="Unit 8 Quiz (in class)",
         ),
         WeekConfig(
             week_number=33,
-            guide_slug="future-conditional",
-            guide_title="Future Conditional",
-            tuesday_grammar="Future conditional (If + present, will…)",
-            thursday_grammar="Future conditional review in speaking",
-            why="If… will… helps you talk about cause and effect and make plans. This is useful for problem-solving and healthy habits.",
+            guide_slug="passive-voice",
+            guide_title="Passive Voice (Health-Focused)",
+            tuesday_grammar="Passive Voice (Health-Focused): instructions and labels",
+            thursday_grammar="Passive in clinic, pharmacy, and food labels",
+            why="Instructions and labels often use passive voice. Understanding it helps you follow steps at the clinic and pharmacy.",
         ),
         WeekConfig(
             week_number=34,
-            guide_slug="verbs-plus-gerunds",
-            guide_title="Verbs + Gerunds",
-            tuesday_grammar="Verbs + gerunds (avoid, keep, consider, stop…)",
-            thursday_grammar="Verbs + gerunds review + presentation practice",
-            why="Verbs like avoid, keep, consider, and stop help you talk about habits and goals. These are useful for wellness plans and clear writing.",
+            guide_slug="all-verb-tenses-overview",
+            guide_title="All Verb Tenses Overview",
+            tuesday_grammar="All Verb Tenses Overview",
+            thursday_grammar="Tense review + wellness reflection",
+            why="You'll review the tenses you've learned and use them to talk about your wellness and progress.",
         ),
         WeekConfig(
             week_number=35,
-            guide_slug="all-verb-tenses-overview",
-            guide_title="Verb Tenses Review",
-            tuesday_grammar="Tense review (past vs present perfect vs past perfect)",
-            thursday_grammar="Mixed tense review + error correction",
-            why="Reviewing key tenses helps you tell stories and explain timelines clearly. This week you’ll use tense review for directions and reflection.",
+            guide_slug="perfect-tenses-review",
+            guide_title="Paragraph Format + Comprehensive Review",
+            tuesday_grammar="Paragraph Format + Comprehensive Review",
+            thursday_grammar="Comprehensive Review + next steps",
+            why="You'll pull everything together and look ahead to your next goals. This is your chance to show what you've learned.",
         ),
         WeekConfig(
             week_number=36,
             guide_slug="perfect-tenses-review",
             guide_title="Perfect Tenses Review",
-            tuesday_grammar="Perfect tenses review (present perfect + past perfect)",
-            thursday_grammar="Perfect tenses review + speaking practice",
-            why="Perfect tenses help you connect past actions to the present. They are useful for reflecting on progress and setting goals.",
-            thursday_special="Unit 9 Quiz (in class)",
+            tuesday_grammar="Final reflections on the school year",
+            thursday_grammar="Summer and next steps",
+            why="You'll look back at the year and look ahead to summer and your next goals.",
         ),
         WeekConfig(
             week_number=37,
             guide_slug="perfect-tenses-review",
-            guide_title="Perfect Tenses Review",
-            tuesday_grammar="Perfect tenses review (practice + editing)",
-            thursday_grammar="Course wrap-up: mixed review + reflection",
-            why="You’ll use review grammar to summarize your learning and share advice. This helps you speak clearly in presentations and interviews.",
+            guide_title="Course Wrap-Up",
+            tuesday_grammar="Final presentation rehearsal",
+            thursday_grammar="Final reflections and advice",
+            why="You'll practice your presentation and share what you've learned with others.",
         ),
     ]
 
