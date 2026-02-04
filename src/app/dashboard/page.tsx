@@ -547,92 +547,110 @@ export default async function DashboardPage() {
                 </header>
 
                 <main className="container mx-auto pt-8 pb-24 md:pb-12 px-4 sm:px-6 lg:px-10 max-w-[1800px]">
-                    {/* Welcome Header */}
-                    <div className="animate-fade-in-up mb-8">
-                        {/* Desktop: Welcome + Stats horizontal */}
-                        <div className="hidden lg:flex items-center gap-4">
-                            <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0">
-                                Welcome, {session.user?.name}!
-                            </h1>
-
-                            <div className="flex gap-3">
-                                {/* Weekly Points */}
-                                {actualWeeklyPoints > 0 && (
-                                    <div className="bg-white border-2 border-primary/20 px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 group">
-                                        <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                                            <StarIcon className="text-primary" size={20} />
-                                        </div>
-                                        <div>
-                                            <div className="text-xs font-bold uppercase tracking-wide text-text-muted">This Week</div>
-                                            <div className="text-lg font-bold text-text">{actualWeeklyPoints} <span className="text-sm font-semibold text-text-muted">points</span></div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Total Points */}
-                                {currentUser && currentUser.points > 0 && (
-                                    <div className="bg-white border-2 border-secondary/20 px-4 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-3 group">
-                                        <div className="p-2 bg-secondary/10 rounded-lg group-hover:bg-secondary/20 transition-colors">
-                                            <TrophyIcon className="text-secondary" size={20} />
-                                        </div>
-                                        <div>
-                                            <div className="text-xs font-bold uppercase tracking-wide text-text-muted">Total</div>
-                                            <div className="text-lg font-bold text-text">{currentUser.points} <span className="text-sm font-semibold text-text-muted">points</span></div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        {/* Mobile: Welcome stacked */}
-                        <div className="lg:hidden">
-                            <h1 className="text-4xl font-display font-bold text-text mb-4 leading-tight">
-                                Welcome, {session.user?.name}!
-                            </h1>
-
-                            <div className="flex flex-wrap gap-3">
-                                {currentUser && currentUser.currentStreak > 0 && (
-                                    <div className="bg-white border-2 border-orange-500/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
-                                        <div className="p-1.5 bg-orange-500/10 rounded-lg">
-                                            <FlameIcon className="text-orange-500" size={18} />
-                                        </div>
-                                        <div>
-                                            <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">Streak</div>
-                                            <div className="text-base font-bold text-text">{currentUser.currentStreak} <span className="text-xs font-semibold text-text-muted">{currentUser.currentStreak === 1 ? 'day' : 'days'}</span></div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {actualWeeklyPoints > 0 && (
-                                    <div className="bg-white border-2 border-primary/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
-                                        <div className="p-1.5 bg-primary/10 rounded-lg">
-                                            <StarIcon className="text-primary" size={18} />
-                                        </div>
-                                        <div>
-                                            <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">This Week</div>
-                                            <div className="text-base font-bold text-text">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">points</span></div>
-                                        </div>
-                                    </div>
-                                )}
-
-                                {currentUser && currentUser.points > 0 && (
-                                    <div className="bg-white border-2 border-secondary/20 px-3 py-2 rounded-lg shadow-sm flex items-center gap-2.5">
-                                        <div className="p-1.5 bg-secondary/10 rounded-lg">
-                                            <TrophyIcon className="text-secondary" size={18} />
-                                        </div>
-                                        <div>
-                                            <div className="text-[10px] font-bold uppercase tracking-wide text-text-muted">Total</div>
-                                            <div className="text-base font-bold text-text">{currentUser.points} <span className="text-xs font-semibold text-text-muted">points</span></div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
                     <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                         {/* Main Content Area - Left Side */}
                         <div className="lg:col-span-3 space-y-8">
+                            {/* Welcome Header */}
+                            <div className="animate-fade-in-up">
+                                {/* Desktop: Welcome + Stats horizontal */}
+                                <div className="hidden lg:flex items-center gap-6">
+                                    <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
+                                        Welcome, <span className="handwritten text-primary relative inline-block">
+                                            {session.user?.name}
+                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                        </span>!
+                                    </h1>
+
+                                    <div className="flex items-center gap-3">
+                                        {/* Streak */}
+                                        {currentUser && currentUser.currentStreak > 0 && (
+                                            <div className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                                <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
+                                                    <FlameIcon className="text-orange-500 streak-icon-pulse" size={16} />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Streak</div>
+                                                    <div className="text-lg font-bold text-text leading-tight">{currentUser.currentStreak} <span className="text-xs font-semibold text-text-muted">days</span></div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Weekly Points */}
+                                        {actualWeeklyPoints > 0 && (
+                                            <div className="flex items-center gap-2.5 bg-white/90 border border-amber-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                                <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-full flex items-center justify-center">
+                                                    <StarIcon className="text-amber-500" size={16} />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">This Week</div>
+                                                    <div className="text-lg font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">pts</span></div>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Total Points */}
+                                        {currentUser && currentUser.points > 0 && (
+                                            <div className="flex items-center gap-2.5 bg-white/90 border border-emerald-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                                <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
+                                                    <TrophyIcon className="text-secondary" size={16} />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Total</div>
+                                                    <div className="text-lg font-bold text-text leading-tight">{currentUser.points} <span className="text-xs font-semibold text-text-muted">pts</span></div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Mobile: Welcome stacked */}
+                                <div className="lg:hidden">
+                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
+                                        Welcome, <span className="handwritten text-primary relative inline-block">
+                                            {session.user?.name}
+                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                        </span>!
+                                    </h1>
+
+                                    <div className="flex items-center gap-3">
+                                        {currentUser && currentUser.currentStreak > 0 && (
+                                            <div className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                                <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
+                                                    <FlameIcon className="text-orange-500 streak-icon-pulse" size={14} />
+                                                </div>
+                                                <div className="flex items-baseline gap-1">
+                                                    <span className="text-base font-bold text-text">{currentUser.currentStreak}</span>
+                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">day</span>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {actualWeeklyPoints > 0 && (
+                                            <div className="flex items-center gap-2 bg-white/90 border border-amber-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                                <div className="w-7 h-7 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-full flex items-center justify-center">
+                                                    <StarIcon className="text-amber-500" size={14} />
+                                                </div>
+                                                <div className="flex items-baseline gap-1">
+                                                    <span className="text-base font-bold text-text">{actualWeeklyPoints}</span>
+                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">wk</span>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {currentUser && currentUser.points > 0 && (
+                                            <div className="flex items-center gap-2 bg-white/90 border border-emerald-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                                <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
+                                                    <TrophyIcon className="text-secondary" size={14} />
+                                                </div>
+                                                <div className="flex items-baseline gap-1">
+                                                    <span className="text-base font-bold text-text">{currentUser.points}</span>
+                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">pts</span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
 
                             {/* This Week's Activities */}
                             <section className="animate-fade-in-up delay-100">
@@ -646,20 +664,27 @@ export default async function DashboardPage() {
 
                             {/* Browse All Activities CTA */}
                             <section className="animate-fade-in-up delay-200">
-                                <div className="bg-white border border-border/40 shadow-lg rounded-2xl p-6 bg-gradient-to-b from-white to-bg-light/50">
-                                    <div className="flex items-start justify-between gap-4">
+                                <div className="glass-card rounded-2xl p-6 group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
+                                    {/* Decorative gradient blob */}
+                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
+
+                                    <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div>
-                                            <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Explore</p>
-                                            <h2 className="text-2xl font-bold font-display text-text mt-1">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 max-w-2xl">
+                                            <p className="text-xs font-bold text-secondary tracking-widest uppercase flex items-center gap-2">
+                                                <span className="w-6 h-[2px] bg-secondary rounded-full"></span>
+                                                Explore
+                                            </p>
+                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
+                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
                                                 Browse everything in one place with categories and progress tracking.
                                             </p>
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="shrink-0 px-4 py-2 rounded-lg bg-primary text-white hover:brightness-110 transition font-semibold text-sm"
+                                            className="shrink-0 px-5 py-2.5 rounded-xl bg-primary text-white hover:brightness-110 transition-all font-bold text-sm shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2"
                                         >
-                                            Browse →
+                                            Browse
+                                            <span className="arrow-animate">→</span>
                                         </Link>
                                     </div>
                                 </div>

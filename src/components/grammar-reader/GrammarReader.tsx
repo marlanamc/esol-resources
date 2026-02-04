@@ -8,8 +8,10 @@ import { PracticePanel } from "./PracticePanel";
 import { ProgressBar } from "./ProgressBar";
 import { TableOfContents } from "./TableOfContents";
 import { MiniQuizSection } from "./MiniQuizSection";
+import { PointsToast } from "./PointsToast";
 import Link from "next/link";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
 
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
@@ -53,6 +55,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [activitiesHref, setActivitiesHref] = useState<string>("/dashboard/activities");
     const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
     const [showPractice, setShowPractice] = useState(true);
+    const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
@@ -262,6 +265,32 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         }
     }, [currentSection]);
 
+    const handleExerciseComplete = useCallback(async (info: ExerciseCompletionInfo) => {
+        if (!completionKey) return;
+
+        try {
+            const response = await fetch("/api/grammar/exercise-progress", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    slug: completionKey,
+                    activityId,
+                    exerciseId: info.exerciseId,
+                    sectionId: info.sectionId,
+                }),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                if (data.pointsAwarded > 0) {
+                    setPointsToast({ points: data.pointsAwarded, key: Date.now() });
+                }
+            }
+        } catch {
+            // Non-blocking; don't interrupt user experience
+        }
+    }, [completionKey, activityId]);
+
     const handleUnlockExercises = useCallback(() => {
         if (!currentSectionKey || !currentHasExercises) return;
         setUnlockedPractice((prev) => {
@@ -323,6 +352,15 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
     return (
         <div className="grammar-reader-container min-h-screen bg-bg">
+            {/* Points Toast */}
+            {pointsToast && (
+                <PointsToast
+                    key={pointsToast.key}
+                    points={pointsToast.points}
+                    onComplete={() => setPointsToast(null)}
+                />
+            )}
+
             {/* Main Content Container - Everything in one card */}
             <main className="container mx-auto px-4 py-4 pb-24 md:pb-4">
                 <div className="grammar-reader-split-screen bg-white rounded-xl shadow-lg border border-border overflow-hidden">
@@ -446,9 +484,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     >
                                         <PracticePanel
                                             section={effectiveSection!}
+                                            sectionId={currentSectionKey}
                                             answers={exerciseAnswers}
                                             onAnswerChange={handleAnswerChange}
                                             onSectionComplete={handleSectionComplete}
+                                            onExerciseComplete={handleExerciseComplete}
                                             unlocked={practiceUnlocked}
                                         />
                                     </div>

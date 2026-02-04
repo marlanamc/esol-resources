@@ -2,8 +2,16 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
-import { determineGrammarCompletionPoints } from "@/lib/gamification/grammar-points";
+import { awardPoints, updateStreak, checkAndAwardAchievements, POINTS } from "@/lib/gamification";
+
+interface GrammarExerciseCategoryData {
+    exercises: Record<string, {
+        completed: boolean;
+        completedAt: string;
+        pointsAwarded: number;
+    }>;
+    totalExercisePoints: number;
+}
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -51,26 +59,71 @@ export async function POST(request: Request) {
         });
     }
 
-    // 2. Award points (only once)
-    const existing = await prisma.pointsLedger.findFirst({
+    // 2. Check if already awarded completion points
+    const existingCompletion = await prisma.pointsLedger.findFirst({
         where: {
             userId,
             reason,
         },
     });
 
-    if (existing) {
+    if (existingCompletion) {
         return NextResponse.json({ ok: true, awarded: false, scoreRecorded: score !== undefined });
     }
 
-    const points = determineGrammarCompletionPoints();
-    await awardPoints(userId, points, reason);
+    // 3. Check exercise completion from ActivityProgress
+    const progressActivityId = activityId || `grammar:${slug}`;
+    const activityProgress = await prisma.activityProgress.findFirst({
+        where: {
+            userId,
+            activityId: progressActivityId,
+            assignmentId: null,
+        },
+        select: {
+            categoryData: true,
+        },
+    });
+
+    let exercisesCompleted = 0;
+    if (activityProgress?.categoryData) {
+        try {
+            const categoryData = JSON.parse(activityProgress.categoryData) as GrammarExerciseCategoryData;
+            exercisesCompleted = Object.values(categoryData.exercises || {}).filter(e => e.completed).length;
+        } catch {
+            // Ignore parsing errors
+        }
+    }
+
+    // 4. Require at least 1 exercise to get any completion points
+    if (exercisesCompleted === 0) {
+        return NextResponse.json({
+            ok: true,
+            awarded: false,
+            points: 0,
+            scoreRecorded: score !== undefined,
+            message: "Complete at least one exercise to earn points",
+        });
+    }
+
+    // 5. Calculate completion points: base + perfect bonus (if all exercises done)
+    // Note: We use base points only here since exercises already awarded their own points.
+    // The "perfect bonus" is if they completed ALL exercises in the guide.
+    // We don't have total exercise count here, so we just award base completion.
+    const basePoints = POINTS.GRAMMAR_GUIDE_BASE;
+
+    await awardPoints(userId, basePoints, reason);
 
     // Update streak and check for achievements
-    await updateStreak(userId, points);
+    await updateStreak(userId, basePoints);
     await checkAndAwardAchievements(userId);
 
-    return NextResponse.json({ ok: true, awarded: true, points, scoreRecorded: score !== undefined });
+    return NextResponse.json({
+        ok: true,
+        awarded: true,
+        points: basePoints,
+        exercisesCompleted,
+        scoreRecorded: score !== undefined,
+    });
 }
 
 
