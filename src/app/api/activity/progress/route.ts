@@ -160,6 +160,8 @@ export async function POST(request: Request) {
         ? (rawProgress >= 100 && updatedCategoryData && !(existing?.categoryData && JSON.parse(existing.categoryData)[category]?.completed))
         : ((existing?.progress ?? 0) < 100 && progressValue >= 100);
 
+    let pointsAwarded = 0;
+
     if (shouldAwardPoints) {
         // Get the activity to determine type
         const activity = await prisma.activity.findUnique({
@@ -178,7 +180,7 @@ export async function POST(request: Request) {
                 let basePoints: number;
                 let perfectBonus: number;
                 let highBonus: number;
-                
+
                 // Easy: Basic Numbers (0-99), Round Numbers
                 if (categoryStr.includes('basic numbers') || categoryStr.includes('round numbers')) {
                     basePoints = POINTS.NUMBERS_GAME_EASY;
@@ -203,7 +205,7 @@ export async function POST(request: Request) {
                     perfectBonus = POINTS.NUMBERS_GAME_PERFECT_HARD;
                     highBonus = POINTS.NUMBERS_GAME_HIGH_HARD;
                 }
-                
+
                 let bonusPoints = 0;
 
                 // Award accuracy-based bonus if accuracy is provided
@@ -220,17 +222,19 @@ export async function POST(request: Request) {
 
                 points = basePoints + bonusPoints;
             }
-            
+
             await awardPoints(userId, points, `Completed: ${activity.title}`);
+            pointsAwarded = points;
         } else {
             // Fallback if activity not found (shouldn't happen)
             await awardPoints(userId, 5, `Completed activity ${activityId}`);
+            pointsAwarded = 5;
         }
 
         // Update streak and check for achievements after awarding points
-        await updateStreak(userId, points);
+        await updateStreak(userId, pointsAwarded);
         await checkAndAwardAchievements(userId);
     }
 
-    return NextResponse.json({ ok: true, progress: record.progress, status: record.status });
+    return NextResponse.json({ ok: true, progress: record.progress, status: record.status, pointsAwarded });
 }

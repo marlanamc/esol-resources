@@ -57,11 +57,12 @@ export default function FeedbackWidget({ activityId, activityTitle, className = 
 
     if (!isOpen) {
         return (
-            <div className={`fixed bottom-20 right-4 z-40 ${className}`}>
+            <div className={`fixed bottom-4 right-4 z-[9999] ${className}`}>
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="bg-white shadow-lg rounded-full p-3 border border-gray-200 hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+                    className="bg-white shadow-lg rounded-full p-3 border border-gray-200 hover:shadow-xl transition-all duration-200 hover:scale-105 group cursor-pointer"
                     aria-label="Give feedback"
+                    style={{ pointerEvents: 'auto' }}
                 >
                     <div className="flex items-center gap-2">
                         <svg className="w-5 h-5 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">

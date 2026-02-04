@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { SpeakingActivityContent, SpeakingSubmission } from "@/types/activity";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { PointsToast } from "@/components/ui/PointsToast";
 import {
   getSpeakingSubmission,
   saveDraft,
@@ -22,6 +23,7 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
   const [completionError, setCompletionError] = useState<string | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
   // Check if already completed
   useEffect(() => {
@@ -80,6 +82,13 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
 
   return (
     <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
+      {pointsToast && (
+        <PointsToast
+          key={pointsToast.key}
+          points={pointsToast.points}
+          onComplete={() => setPointsToast(null)}
+        />
+      )}
       {/* Header */}
       <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
         <div className="flex items-start gap-3 sm:gap-4">
@@ -288,6 +297,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   const [showSoloHelp, setShowSoloHelp] = useState(false);
   const [showKeyPhrases, setShowKeyPhrases] = useState(false);
   const [lastSnapshot, setLastSnapshot] = useState<string | null>(null);
+  const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
   const soloChecklistLength = soloMode?.checklist.length ?? 0;
   const speakingChecklistLength = speakingMode?.checklist.length ?? 0;
@@ -510,7 +520,10 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
       setSubmissionStatus("submitted");
       setSubmittedAt(submissionStamp);
       setLastSnapshot(currentSnapshot);
-      await saveActivityProgress(activityId, 100, "submitted");
+      const progressResult = await saveActivityProgress(activityId, 100, "submitted");
+      if (progressResult?.pointsAwarded && progressResult.pointsAwarded > 0) {
+        setPointsToast({ points: progressResult.pointsAwarded, key: Date.now() });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -528,6 +541,13 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
 
   return (
     <div className="relative lg:fixed lg:inset-0 bg-bg flex flex-col min-h-screen lg:h-screen lg:w-screen">
+      {pointsToast && (
+        <PointsToast
+          key={pointsToast.key}
+          points={pointsToast.points}
+          onComplete={() => setPointsToast(null)}
+        />
+      )}
       <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
         <div className="flex items-start gap-3 sm:gap-4">
           <button

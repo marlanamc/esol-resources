@@ -8,7 +8,7 @@ import { PracticePanel } from "./PracticePanel";
 import { ProgressBar } from "./ProgressBar";
 import { TableOfContents } from "./TableOfContents";
 import { MiniQuizSection } from "./MiniQuizSection";
-import { PointsToast } from "./PointsToast";
+import { PointsToast } from "@/components/ui/PointsToast";
 import Link from "next/link";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";

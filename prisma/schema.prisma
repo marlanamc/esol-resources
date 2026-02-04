@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,230 +8,215 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  username  String   @unique
-  name      String?
-  password  String   // Hashed password
-  role      String   @default("student") // student, teacher
-  mustChangePassword Boolean @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Gamification fields
-  points           Int      @default(0)
-  currentStreak    Int      @default(0)
-  longestStreak    Int      @default(0)
-  lastActivityDate DateTime?
-  weeklyPoints     Int      @default(0) // Reset every week
-  lastWeekRank     Int?     // Previous week's rank
-
-  // Relations
-  submissions Submission[]
-  speakingSubmissions SpeakingSubmission[]
-  classes     ClassEnrollment[]
-  createdClasses Class[] @relation("ClassTeacher")
-  achievements UserAchievement[]
+  id                    String               @id @default(cuid())
+  username              String               @unique
+  name                  String?
+  password              String
+  role                  String               @default("student")
+  mustChangePassword    Boolean              @default(true)
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  points                Int                  @default(0)
+  currentStreak         Int                  @default(0)
+  longestStreak         Int                  @default(0)
+  lastActivityDate      DateTime?
+  weeklyPoints          Int                  @default(0)
+  lastWeekRank          Int?
+  avatar                String?
+  avatarColor           String?
+  activityProgress      ActivityProgress[]
   calendarEventsCreated CalendarEvent[]
-  activityProgress ActivityProgress[]
-  pointsLedger PointsLedger[]
+  createdClasses        Class[]              @relation("ClassTeacher")
+  classes               ClassEnrollment[]
+  pointsLedger          PointsLedger[]
+  speakingSubmissions   SpeakingSubmission[]
+  submissions           Submission[]
+  achievements          UserAchievement[]
 
-  // Performance indexes
   @@index([role])
   @@index([weeklyPoints])
-  @@index([role, weeklyPoints]) // Composite for leaderboard queries
+  @@index([role, weeklyPoints])
 }
 
 model Class {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  code        String   @unique // Class code for students to join
-  teacher     User     @relation("ClassTeacher", fields: [teacherId], references: [id])
-  teacherId   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Relations
-  enrollments ClassEnrollment[]
-  assignments Assignment[]
+  id             String            @id @default(cuid())
+  name           String
+  description    String?
+  code           String            @unique
+  teacherId      String
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  assignments    Assignment[]
   calendarEvents CalendarEvent[]
+  teacher        User              @relation("ClassTeacher", fields: [teacherId], references: [id])
+  enrollments    ClassEnrollment[]
 
-  // Performance indexes
-  @@index([teacherId]) // For finding teacher's classes
+  @@index([teacherId])
 }
 
 model ClassEnrollment {
   id        String   @id @default(cuid())
-  class     Class    @relation(fields: [classId], references: [id])
   classId   String
-  student   User     @relation(fields: [studentId], references: [id])
   studentId String
   joinedAt  DateTime @default(now())
-  
+  class     Class    @relation(fields: [classId], references: [id])
+  student   User     @relation(fields: [studentId], references: [id])
+
   @@unique([classId, studentId])
 }
 
 model Activity {
-  id          String   @id @default(cuid())
-  title       String
-  description String?
-  type        String   // quiz, worksheet, slides, game, guide, resource
-  category    String?  // grammar, vocab, speaking, writing-reading
-  level       String?  // beginner, intermediate, advanced
-  content     String   // JSON content for the activity structure
-  ui          String?  // Optional UI hint (matching, fill-in-blank, etc.)
-  createdBy   String?  // User ID of creator (null for legacy activities)
-  isReleased  Boolean  @default(false) // Whether activity is released to students (grammar guides)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Relations
-  submissions Submission[]
+  id                  String               @id @default(cuid())
+  title               String
+  description         String?
+  type                String
+  category            String?
+  level               String?
+  content             String
+  createdBy           String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  ui                  String?
+  isReleased          Boolean              @default(false)
+  progress            ActivityProgress[]
+  assignments         Assignment[]
   speakingSubmissions SpeakingSubmission[]
-  assignments Assignment[]
-  progress ActivityProgress[]
+  submissions         Submission[]
 
   @@index([isReleased])
   @@index([type, category, isReleased])
 }
 
 model ActivityProgress {
-  id          String   @id @default(cuid())
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      String
-  activity    Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
-  activityId  String
-  assignment  Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
+  id           String      @id @default(cuid())
+  userId       String
+  activityId   String
+  progress     Int         @default(0)
+  status       String      @default("in_progress")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  categoryData String?
   assignmentId String?
-  progress    Int      @default(0) // 0-100
-  status      String   @default("in_progress") // in_progress, completed, submitted
-  categoryData String?  @db.Text // JSON string for per-category tracking
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  activity     Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  assignment   Assignment? @relation(fields: [assignmentId], references: [id])
+  user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, activityId, assignmentId])
 }
 
 model SpeakingSubmission {
-  id                     String   @id @default(cuid())
-  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId                 String
-  activity               Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
-  activityId             String
-  assignment             Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
-  assignmentId           String?
-  selectedPromptIds      String[] // JSON array of selected prompt IDs
-  soloSentences          String[] // Array of 3 sentences
-  soloFollowUpQuestions  String[] // Array of 2 follow-up questions
-  soloCompletedStepIds   String[] // Array of completed solo step IDs
-  speakingBestSentence   String   // Best sentence from speaking mode
-  speakingCompletedStepIds String[] // Array of completed speaking step IDs
-  submittedAt            DateTime @default(now())
-  status                 String   @default("submitted") // submitted
+  id                       String      @id @default(cuid())
+  userId                   String
+  activityId               String
+  assignmentId             String?
+  selectedPromptIds        String[]
+  soloSentences            String[]
+  soloFollowUpQuestions    String[]
+  soloCompletedStepIds     String[]
+  speakingBestSentence     String
+  speakingCompletedStepIds String[]
+  submittedAt              DateTime    @default(now())
+  status                   String      @default("submitted")
+  activity                 Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  assignment               Assignment? @relation(fields: [assignmentId], references: [id])
+  user                     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, activityId, assignmentId])
 }
 
 model PointsLedger {
   id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
   userId    String
   points    Int
   reason    String?
-  source    String?  // e.g., activity, streak, achievement, manual
+  source    String?
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 
-  // Performance indexes
   @@index([createdAt])
   @@index([userId])
   @@index([source])
-  @@index([userId, createdAt]) // Composite for user-specific queries
+  @@index([userId, createdAt])
 }
 
 model Assignment {
-  id          String   @id @default(cuid())
-  class       Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
-  classId     String
-  activity    Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
-  activityId  String
-  title       String?
-  instructions String?
-  dueDate     DateTime?
-  isFeatured  Boolean  @default(false) // Featured assignments appear in "Today's Assignments"
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Relations
-  submissions Submission[]
+  id                  String               @id @default(cuid())
+  classId             String
+  activityId          String
+  title               String?
+  instructions        String?
+  dueDate             DateTime?
+  isFeatured          Boolean              @default(false)
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  activityProgress    ActivityProgress[]
+  activity            Activity             @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  class               Class                @relation(fields: [classId], references: [id], onDelete: Cascade)
   speakingSubmissions SpeakingSubmission[]
-  activityProgress ActivityProgress[]
+  submissions         Submission[]
 
-  // Performance indexes
-  @@index([classId]) // For finding class assignments
-  @@index([isFeatured]) // For filtering featured assignments
-  @@index([dueDate]) // For sorting by due date
+  @@index([classId])
+  @@index([isFeatured])
+  @@index([dueDate])
 }
 
 model Submission {
-  id         String   @id @default(cuid())
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String
-  activity   Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
-  activityId String
-  assignment Assignment? @relation(fields: [assignmentId], references: [id], onDelete: SetNull)
-  assignmentId String?
-  content    String   // JSON content of the submission
-  score      Int?
-  feedback   String?
-  status     String   @default("pending") // pending, submitted, graded
-  pointsAwarded Int    @default(0) // Points earned for this submission
-  completedAt DateTime? // When the submission was marked as completed/graded
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id            String      @id @default(cuid())
+  userId        String
+  activityId    String
+  assignmentId  String?
+  content       String
+  score         Int?
+  feedback      String?
+  status        String      @default("pending")
+  pointsAwarded Int         @default(0)
+  completedAt   DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  activity      Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  assignment    Assignment? @relation(fields: [assignmentId], references: [id])
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, activityId, assignmentId])
-  // Performance indexes
-  @@index([userId]) // For finding user submissions
-  @@index([status]) // For filtering by status
-  @@index([assignmentId]) // For finding assignment submissions
+  @@index([userId])
+  @@index([status])
+  @@index([assignmentId])
 }
 
 model Achievement {
-  id          String   @id @default(cuid())
-  name        String   // e.g., "First Steps", "Week Warrior", "Quiz Master"
-  description String   // What the achievement is for
-  icon        String   // Emoji or icon identifier
-  type        String   // streak, points, quiz, activity
-  requirement Int      // Number needed to unlock (e.g., 7 for "7-day streak")
-  points      Int      @default(0) // Bonus points for earning this
-  createdAt   DateTime @default(now())
-
-  // Relations
+  id               String            @id @default(cuid())
+  name             String
+  description      String
+  icon             String
+  type             String
+  requirement      Int
+  points           Int               @default(0)
+  createdAt        DateTime          @default(now())
   userAchievements UserAchievement[]
 }
 
 model CalendarEvent {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   title       String
   description String?
   date        DateTime
   endDate     DateTime?
-  type        String   @default("holiday") // holiday, event, reminder
-  class       Class    @relation(fields: [classId], references: [id])
+  type        String    @default("holiday")
   classId     String
-  createdBy   User?    @relation(fields: [createdById], references: [id])
   createdById String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  class       Class     @relation(fields: [classId], references: [id])
+  createdBy   User?     @relation(fields: [createdById], references: [id])
 }
 
 model UserAchievement {
   id            String      @id @default(cuid())
-  user          User        @relation(fields: [userId], references: [id])
   userId        String
-  achievement   Achievement @relation(fields: [achievementId], references: [id])
   achievementId String
   earnedAt      DateTime    @default(now())
+  achievement   Achievement @relation(fields: [achievementId], references: [id])
+  user          User        @relation(fields: [userId], references: [id])
 
   @@unique([userId, achievementId])
 }

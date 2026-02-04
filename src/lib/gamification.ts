@@ -246,6 +246,8 @@ export async function getTimeframedLeaderboard(
       name: true,
       currentStreak: true,
       lastWeekRank: true,
+      avatar: true,
+      avatarColor: true,
     },
   });
 
@@ -275,6 +277,8 @@ export async function getTimeframedLeaderboard(
     name: student.name || 'Student',
     currentStreak: student.currentStreak,
     lastWeekRank: student.lastWeekRank,
+    avatar: student.avatar,
+    avatarColor: student.avatarColor,
   }));
 
   // Filter out students with 0 points - only rank students who have earned points
@@ -310,6 +314,8 @@ export async function getTimeframedLeaderboard(
       currentStreak: r.currentStreak || 0,
       rank: rank,
       rankChange: range === 'week' ? (r.lastWeekRank ? r.lastWeekRank - rank : null) : null,
+      avatar: r.avatar,
+      avatarColor: r.avatarColor,
     };
   });
 }
