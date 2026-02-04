@@ -52,6 +52,7 @@ const COLORS = [
     { id: "rose", name: "Rose", class: "bg-rose-500" },
     { id: "slate", name: "Slate", class: "bg-slate-500" },
     { id: "zinc", name: "Zinc", class: "bg-zinc-500" },
+    { id: "gray", name: "Gray", class: "bg-gray-500" },
 ];
 
 export default function SelectedAvatarDisplay({ 
