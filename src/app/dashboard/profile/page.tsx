@@ -7,7 +7,7 @@ import { BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
-import AvatarSelector from "@/components/ui/AvatarSelector";
+import AvatarSection from "@/components/ui/AvatarSection";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon, UsersIcon } from "@/components/icons/Icons";
 
@@ -173,15 +173,7 @@ export default async function ProfilePage() {
                     </div>
 
                     {/* Avatar Selector */}
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-                        <AvatarSelector 
-                            currentAvatar="cat" 
-                            onAvatarChange={(avatarId) => {
-                                // TODO: Save avatar to user profile
-                                console.log("Avatar changed to:", avatarId);
-                            }}
-                        />
-                    </div>
+                    <AvatarSection />
 
                     {/* Hero Stats Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
