@@ -57,6 +57,32 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [showPractice, setShowPractice] = useState(true);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
 
+    // Restore last section when opening the guide (so students return to where they left off)
+    useEffect(() => {
+        if (!activityId || content.sections.length === 0) return;
+        let cancelled = false;
+        (async () => {
+            try {
+                const res = await fetch(`/api/activity/progress?activityId=${encodeURIComponent(activityId)}`);
+                if (!res.ok || cancelled) return;
+                const data = await res.json();
+                if (cancelled) return;
+                const categoryData = data.categoryData;
+                if (categoryData && typeof categoryData === "string") {
+                    const parsed = JSON.parse(categoryData) as { _guide?: { lastSectionIndex?: number } };
+                    const idx = parsed?._guide?.lastSectionIndex;
+                    if (typeof idx === "number") {
+                        const clamped = Math.max(0, Math.min(idx, content.sections.length - 1));
+                        setCurrentSectionIndex(clamped);
+                    }
+                }
+            } catch {
+                // non-blocking; start at section 0
+            }
+        })();
+        return () => { cancelled = true; };
+    }, [activityId, content.sections.length]);
+
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
         const checkDesktop = () => {
@@ -142,7 +168,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         }
     }, [completionKey, awardSent, activityId]);
 
-    // Track progress as user navigates through sections
+    // Track progress as user navigates through sections (and save last section for resume)
     useEffect(() => {
         if (!activityId || content.sections.length === 0) return;
 
@@ -157,7 +183,15 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         const completionProgress = (sectionsCompleted / totalSections) * 80;
         const totalProgress = Math.round(viewProgress + completionProgress);
 
-        void saveActivityProgress(activityId, totalProgress, totalProgress >= 100 ? "completed" : "in_progress");
+        void saveActivityProgress(
+            activityId,
+            totalProgress,
+            totalProgress >= 100 ? "completed" : "in_progress",
+            undefined,
+            undefined,
+            undefined,
+            { lastSectionIndex: currentSectionIndex }
+        );
     }, [activityId, currentSectionIndex, completedSections.size, content.sections.length]);
 
     useEffect(() => {

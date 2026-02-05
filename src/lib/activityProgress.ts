@@ -7,13 +7,18 @@ export interface ActivityProgressResult {
     pointsAwarded?: number;
 }
 
+export interface GuideState {
+    lastSectionIndex: number;
+}
+
 export async function saveActivityProgress(
     activityId: string,
     progress: number,
     status?: ActivityProgressStatus,
     accuracy?: number,
     category?: string,
-    assignmentId?: string | null
+    assignmentId?: string | null,
+    guideState?: GuideState
 ): Promise<ActivityProgressResult | null> {
     if (!activityId) return null;
     const value = Math.max(0, Math.min(100, Math.round(progress)));
@@ -29,7 +34,8 @@ export async function saveActivityProgress(
                 status: finalStatus,
                 accuracy: accuracy !== undefined ? Math.max(0, Math.min(100, Math.round(accuracy))) : undefined,
                 category: category,
-                assignmentId: assignmentId ?? undefined
+                assignmentId: assignmentId ?? undefined,
+                guideState: guideState ?? undefined
             }),
         });
 
