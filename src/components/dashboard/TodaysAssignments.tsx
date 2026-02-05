@@ -28,6 +28,7 @@ interface Props {
     title?: string;
     ctaLabel?: string;
     variant?: 'cards' | 'checklist';
+    actions?: React.ReactNode;
 }
 
 export const TodaysAssignments: React.FC<Props> = ({
@@ -35,6 +36,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     title,
     ctaLabel = "Start Activity",
     variant = 'cards',
+    actions,
 }) => {
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
     const [loading, setLoading] = useState(true);
@@ -247,6 +249,11 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 )}
                             </div>
                             <div className="flex items-center gap-2 text-sm font-bold text-text/70">
+                                {actions && (
+                                    <div className="mr-2">
+                                        {actions}
+                                    </div>
+                                )}
                                 <span className="px-3 py-1.5 rounded-full bg-white border border-border/50 shadow-sm">
                                     {completedCount}/{rows.length} done
                                 </span>
