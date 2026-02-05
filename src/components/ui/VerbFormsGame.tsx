@@ -33,7 +33,7 @@ interface GameState {
   streak: number;
   maxStreak: number;
   totalAnswered: number;
-  difficulty: 'easy' | 'medium' | 'hard';
+  difficulty: 'easy' | 'medium' | 'hard' | 'custom';
   phase: 'settings' | 'loading' | 'playing' | 'results';
   inputs: {
     v1: string;
@@ -52,6 +52,7 @@ interface GameState {
   hiddenFields: (keyof GameState['inputs'])[][];
   pointsToast: { points: number; key: number } | null;
   irregularOnly: boolean;
+  selectedForms: (keyof VerbData)[];
 }
 
 interface Props {
@@ -75,7 +76,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
     validation: null,
     hiddenFields: [],
     pointsToast: null,
-    irregularOnly: false
+    irregularOnly: false,
+    selectedForms: ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3']
   });
 
   const startGame = useCallback(async () => {
@@ -172,15 +174,29 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         const gameVerbs = shuffled.slice(0, 10);
 
         // Generate hidden fields based on difficulty
-        const allFields: (keyof GameState['inputs'])[] = ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'];
-        const numToHide = state.difficulty === 'easy' ? 1 : state.difficulty === 'medium' ? 3 : 4;
-        
         const hiddenFields = gameVerbs.map(() => {
-            const shuffledFields = [...allFields].sort(() => Math.random() - 0.5);
-            return shuffledFields.slice(0, numToHide);
+            const allFields: (keyof GameState['inputs'])[] = ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'];
+            let toHide: (keyof GameState['inputs'])[] = [];
+
+            if (state.difficulty === 'easy') {
+                const shuffledFields = [...allFields].sort(() => Math.random() - 0.5);
+                toHide = [shuffledFields[0]];
+            } else if (state.difficulty === 'medium') {
+                const shuffledFields = [...allFields].sort(() => Math.random() - 0.5);
+                toHide = shuffledFields.slice(0, 3);
+            } else if (state.difficulty === 'hard') {
+                const shuffledFields = [...allFields].sort(() => Math.random() - 0.5);
+                toHide = shuffledFields.slice(0, 4);
+            } else {
+                // Custom mode: hide what is NOT selected (actually, user said "they customize and select what they want to quiz themselves on")
+                // So if they select v1 and v2, we should hide v1 and v2.
+                toHide = state.selectedForms;
+            }
+            return toHide;
         });
 
         // Initialize first verb inputs
+        const allFields: (keyof GameState['inputs'])[] = ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'];
         const firstHidden = hiddenFields[0] || [];
         const firstVerb = gameVerbs[0];
         const initialInputs = { v1: '', v1_3rd: '', v1_ing: '', v2: '', v3: '' };
@@ -205,7 +221,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         console.error("Failed to load verbs:", error);
         setState(prev => ({ ...prev, phase: 'settings' }));
     }
-  }, [contentStr, state.difficulty, state.irregularOnly]);
+  }, [contentStr, state.difficulty, state.irregularOnly, state.selectedForms]);
 
   const handleInputChange = (field: keyof GameState['inputs'], value: string) => {
     if (state.validation) return;
@@ -294,104 +310,153 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
   // UI Components
   if (state.phase === 'settings') {
     return (
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="w-full max-w-4xl mx-auto p-0 md:p-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl shadow-xl overflow-hidden border border-sage/20"
+          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 min-h-screen md:min-h-0"
         >
-          <div className="bg-terracotta p-8 text-white text-center">
+          <div className="bg-terracotta p-8 text-white text-center pb-12">
             <Brain className="w-16 h-16 mx-auto mb-4 opacity-90" />
             <h1 className="text-4xl font-display font-bold mb-2">Verb Forms Challenge</h1>
             <p className="text-white/80">Master your verbs forms through practice!</p>
           </div>
           
-          <div className="p-8 space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {(['easy', 'medium', 'hard'] as const).map((level) => (
-                <button
-                  key={level}
-                  onClick={() => setState(prev => ({ ...prev, difficulty: level }))}
-                  className={`relative p-6 rounded-2xl border-2 transition-all flex flex-col items-center gap-2 overflow-hidden ${
-                    state.difficulty === level 
-                      ? 'border-terracotta bg-terracotta/10 shadow-md ring-1 ring-terracotta/20 scale-[1.02]' 
-                      : 'border-sage/20 hover:border-terracotta/30 bg-white'
-                  }`}
-                >
-                  <AnimatePresence>
-                    {state.difficulty === level && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.5 }}
-                        className="absolute top-3 right-3"
-                      >
-                        <div className="bg-terracotta text-white p-1 rounded-full shadow-sm">
-                          <CheckCircle2 className="w-4 h-4" />
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                  
-                  <span className={`capitalize font-black text-xl ${
-                    state.difficulty === level ? 'text-terracotta' : 'text-neutral-700'
-                  }`}>
-                    {level}
-                  </span>
-                  <span className={`text-xs font-medium ${
-                    state.difficulty === level ? 'text-terracotta/70' : 'text-neutral-500'
-                  }`}>
-                    {level === 'easy' ? '1 form missing' : level === 'medium' ? '3 forms missing' : 'Only 1 form given'}
-                  </span>
-
-                  {state.difficulty === level && (
-                    <motion.div 
-                      layoutId="active-bg"
-                      className="absolute inset-0 bg-gradient-to-br from-terracotta/5 to-transparent -z-10"
-                    />
-                  )}
-                </button>
-              ))}
+          <div className="p-6 md:p-8 space-y-10 -mt-6 bg-white rounded-t-3xl md:rounded-t-none">
+            {/* Challenge Level Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 px-2">
+                <Target className="w-4 h-4 text-terracotta" />
+                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">1. Choose Challenge Level</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {(['easy', 'medium', 'hard'] as const).map((level) => (
+                  <button
+                    key={level}
+                    onClick={() => setState(prev => ({ 
+                      ...prev, 
+                      difficulty: level,
+                      selectedForms: ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'] // Reset custom on preset selection? or keep? 
+                      // User might want to keep selection if they toggle level. 
+                      // Actually, presets define how MANY are hidden, custom defines WHICH ones.
+                      // Let's reset difficulty to presets if they click these.
+                    }))}
+                    className={`relative p-5 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 overflow-hidden ${
+                      state.difficulty === level 
+                        ? 'border-terracotta bg-terracotta/5 shadow-md ring-1 ring-terracotta/20 scale-[1.02]' 
+                        : 'border-sage/10 hover:border-terracotta/30 bg-white'
+                    }`}
+                  >
+                    <span className={`capitalize font-black text-xl ${
+                      state.difficulty === level ? 'text-terracotta' : 'text-neutral-700'
+                    }`}>
+                      {level}
+                    </span>
+                    <span className={`text-[10px] font-bold uppercase tracking-tight ${
+                      state.difficulty === level ? 'text-terracotta/60' : 'text-neutral-400'
+                    }`}>
+                      {level === 'easy' ? '1 form missing' : level === 'medium' ? '3 forms missing' : 'Only 1 form given'}
+                    </span>
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className={`
-              flex items-center justify-center py-6 rounded-2xl border-2 transition-all cursor-pointer group
-              ${state.irregularOnly 
-                ? 'bg-amber-50 border-amber-200 shadow-sm' 
-                : 'bg-neutral-50 border-neutral-200 hover:border-neutral-300 hover:bg-neutral-100'}
-            `}
-            onClick={() => setState(prev => ({ ...prev, irregularOnly: !prev.irregularOnly }))}
-            >
-              <div className="flex items-center gap-4">
-                <div className={`w-8 h-8 rounded-xl border-2 flex items-center justify-center transition-all bg-white ${
-                  state.irregularOnly 
-                    ? 'border-amber-500 text-amber-600 shadow-inner scale-110' 
-                    : 'border-neutral-300 group-hover:border-neutral-400 text-transparent'
-                }`}>
-                  <CheckCircle2 className={`w-5 h-5 transition-transform ${state.irregularOnly ? 'scale-100' : 'scale-50'}`} />
+            {/* Custom Selection Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 px-2">
+                <Settings2 className="w-4 h-4 text-terracotta" />
+                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">2. Or Customize Forms to Quiz</h3>
+              </div>
+              <div className="bg-neutral-50 p-4 rounded-2xl border border-neutral-100">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {(['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'] as (keyof VerbData)[]).map((form) => {
+                    const isSelected = state.selectedForms.includes(form) && state.difficulty === 'custom';
+                    const labels: Record<string, string> = {
+                      v1: 'V1',
+                      v1_3rd: 'V1-3rd',
+                      v1_ing: 'V1-ing',
+                      v2: 'V2',
+                      v3: 'V3'
+                    };
+                    return (
+                      <button
+                        key={form}
+                        onClick={() => {
+                          setState(prev => {
+                            const newForms = prev.selectedForms.includes(form)
+                              ? prev.selectedForms.filter(f => f !== form)
+                              : [...prev.selectedForms, form];
+                            if (newForms.length === 0) return prev;
+                            return { ...prev, selectedForms: newForms, difficulty: 'custom' };
+                          });
+                        }}
+                        className={`px-5 py-3 rounded-xl border-2 font-bold transition-all min-w-[80px] ${
+                          isSelected 
+                            ? 'bg-terracotta text-white border-terracotta shadow-md scale-105' 
+                            : 'bg-white text-neutral-400 border-neutral-200/50 hover:border-neutral-300'
+                        }`}
+                      >
+                        {labels[form]}
+                      </button>
+                    );
+                  })}
                 </div>
-                <div className="flex flex-col">
-                  <span className={`font-black text-lg select-none tracking-tight transition-colors ${
-                    state.irregularOnly ? 'text-amber-900' : 'text-neutral-700'
+                <p className="text-[10px] text-center text-neutral-400 mt-3 font-medium">
+                  {state.difficulty === 'custom' 
+                    ? 'Custom mode active: You will quiz on the forms selected above.' 
+                    : 'Selecting a form above will switch to Custom Mode.'}
+                </p>
+              </div>
+            </div>
+
+            {/* Extra Options Section */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 px-2">
+                <RotateCcw className="w-4 h-4 text-amber-500" />
+                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">3. Extra Challenge</h3>
+              </div>
+              <div className={`
+                flex items-center justify-between p-5 rounded-2xl border-2 transition-all cursor-pointer group
+                ${state.irregularOnly 
+                  ? 'bg-amber-50 border-amber-200 shadow-sm' 
+                  : 'bg-white border-neutral-100 hover:border-neutral-200'}
+              `}
+              onClick={() => setState(prev => ({ ...prev, irregularOnly: !prev.irregularOnly }))}
+              >
+                <div className="flex items-center gap-4">
+                  <div className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center transition-all bg-white ${
+                    state.irregularOnly 
+                      ? 'border-amber-500 text-amber-600 shadow-inner' 
+                      : 'border-neutral-200 group-hover:border-neutral-300 text-transparent'
                   }`}>
-                    Focus on Irregular Verbs only
-                  </span>
-                  <span className={`text-[10px] uppercase font-bold tracking-widest ${
-                    state.irregularOnly ? 'text-amber-600/70' : 'text-neutral-400'
-                  }`}>
-                    {state.irregularOnly ? 'Irregular Mode Active' : 'Practice all verbs'}
-                  </span>
+                    <CheckCircle2 className={`w-6 h-6 transition-transform ${state.irregularOnly ? 'scale-100' : 'scale-50'}`} />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <span className={`font-black text-lg select-none tracking-tight transition-colors ${
+                      state.irregularOnly ? 'text-amber-900' : 'text-neutral-700'
+                    }`}>
+                      Irregular Verbs only
+                    </span>
+                    <span className={`text-[10px] uppercase font-bold tracking-widest ${
+                      state.irregularOnly ? 'text-amber-600/70' : 'text-neutral-400'
+                    }`}>
+                      {state.irregularOnly ? 'Focusing on irregulars' : 'Practicing all verbs'}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <button 
-              onClick={startGame}
-              className="w-full bg-terracotta text-white py-5 rounded-2xl font-bold text-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
-            >
-              <Zap className="w-6 h-6" />
-              Start Training Session
-            </button>
+            <div className="pt-4">
+              <button 
+                onClick={startGame}
+                className="w-full bg-neutral-900 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:bg-neutral-800 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95"
+              >
+                <Zap className="w-6 h-6 fill-amber-400 text-amber-400" />
+                Start Training Session
+              </button>
+            </div>
           </div>
         </motion.div>
       </div>
