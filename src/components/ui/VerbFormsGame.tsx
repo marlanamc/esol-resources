@@ -53,6 +53,7 @@ interface GameState {
   pointsToast: { points: number; key: number } | null;
   irregularOnly: boolean;
   selectedForms: (keyof VerbData)[];
+  round: number;
 }
 
 interface Props {
@@ -77,7 +78,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
     hiddenFields: [],
     pointsToast: null,
     irregularOnly: false,
-    selectedForms: ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3']
+    selectedForms: [],
+    round: 1
   });
 
   const startGame = useCallback(async () => {
@@ -169,9 +171,20 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
             throw new Error("No verbs found");
         }
 
-        // Shuffle and take 10
+        // Shuffle and take N based on difficulty
         const shuffled = [...verbs].sort(() => Math.random() - 0.5);
-        const gameVerbs = shuffled.slice(0, 10);
+        
+        let limit = 10; // Default / Easy
+        if (state.difficulty === 'medium') limit = 6;
+        if (state.difficulty === 'hard') limit = 4;
+        if (state.difficulty === 'custom') {
+            // formula: 12 - (2 * numHidden), clamped at min 4
+            // 1 hidden -> 10 verbs
+            // 4 hidden -> 4 verbs
+            limit = Math.max(4, 12 - (2 * state.selectedForms.length));
+        }
+        
+        const gameVerbs = shuffled.slice(0, limit);
 
         // Generate hidden fields based on difficulty
         const hiddenFields = gameVerbs.map(() => {
@@ -279,14 +292,10 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
     setState(prev => ({ ...prev, phase: 'results' }));
 
     if (activityId) {
-      // Calculate custom points based on difficulty
-      // Rebalanced to match platform scale: Easy=1/verb, Medium=2/verb, Hard=3/verb
-      const pointsPerVerb = state.difficulty === 'easy' ? 1: state.difficulty === 'medium' ? 2 : 3;
       const accuracy = (state.score / state.verbs.length) * 100;
       
-      // Calculate bonus for perfect score
-      const bonus = state.score === state.verbs.length ? 5 : 0;
-      const totalPoints = (state.score * pointsPerVerb) + bonus;
+      // Flat 4 points per round as requested
+      const totalPoints = 4;
 
       // Note: saveActivityProgress might award its own points based on the API, 
       // but we pass category and accuracy for the database.
@@ -336,10 +345,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     onClick={() => setState(prev => ({ 
                       ...prev, 
                       difficulty: level,
-                      selectedForms: ['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'] // Reset custom on preset selection? or keep? 
-                      // User might want to keep selection if they toggle level. 
-                      // Actually, presets define how MANY are hidden, custom defines WHICH ones.
-                      // Let's reset difficulty to presets if they click these.
+                      selectedForms: [],
+                      round: 1
                     }))}
                     className={`relative p-5 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 overflow-hidden ${
                       state.difficulty === level 
@@ -379,6 +386,19 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                       v2: 'V2',
                       v3: 'V3'
                     };
+                    const colorStyles: Record<string, { bg: string; border: string }> = {
+                      v1: { bg: '#efb5b0', border: '#d09e99' },
+                      v1_3rd: { bg: '#eec99f', border: '#d3b28d' },
+                      v1_ing: { bg: '#e6e49e', border: '#cdc98b' },
+                      v2: { bg: '#b8d49f', border: '#a2bb8b' },
+                      v3: { bg: '#a4ceb5', border: '#8fb59e' }
+                    };
+
+                    const style = isSelected ? {
+                      backgroundColor: colorStyles[form].bg,
+                      borderColor: colorStyles[form].border,
+                    } : undefined;
+
                     return (
                       <button
                         key={form}
@@ -386,14 +406,17 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                           setState(prev => {
                             const newForms = prev.selectedForms.includes(form)
                               ? prev.selectedForms.filter(f => f !== form)
-                              : [...prev.selectedForms, form];
-                            if (newForms.length === 0) return prev;
+                              : prev.selectedForms.length < 4 
+                                ? [...prev.selectedForms, form] 
+                                : prev.selectedForms;
+                            
                             return { ...prev, selectedForms: newForms, difficulty: 'custom' };
                           });
                         }}
+                        style={style}
                         className={`px-5 py-3 rounded-xl border-2 font-bold transition-all min-w-[80px] ${
                           isSelected 
-                            ? 'bg-neutral-800 text-white border-neutral-800 shadow-md scale-105' 
+                            ? 'text-neutral-900 shadow-md scale-105' 
                             : 'bg-white text-neutral-400 border-neutral-200/50 hover:border-neutral-300'
                         }`}
                       >
@@ -449,9 +472,10 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
             </div>
 
             <div className="pt-4">
-              <button 
+              <button
                 onClick={startGame}
-                className="w-full bg-neutral-900 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:bg-neutral-800 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95"
+                disabled={state.difficulty === 'custom' && state.selectedForms.length === 0}
+                className="w-full bg-neutral-900 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:bg-neutral-800 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 <Zap className="w-6 h-6 fill-amber-400 text-amber-400" />
                 Start Training Session
@@ -474,10 +498,10 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
 
   if (state.phase === 'results') {
     const accuracy = Math.round((state.score / state.verbs.length) * 100);
-    const pointsPerVerb = state.difficulty === 'easy' ? 1 : state.difficulty === 'medium' ? 2 : 3;
-    const bonus = state.score === state.verbs.length ? 5 : 0;
-    const sessionPoints = (state.score * pointsPerVerb) + bonus;
-
+    // pointsPerVerb and bonus removed as they are unused with fixed scoring.
+    
+    // sessionPoints removed as we use fixed 4 points.
+    
     return (
       <div className="max-w-2xl mx-auto p-6">
         {state.pointsToast && (
@@ -494,16 +518,14 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         >
           <div className="bg-secondary p-10 text-white">
             <Trophy className="w-20 h-20 mx-auto mb-4" />
-            <h2 className="text-4xl font-display font-bold mb-1">Session Complete!</h2>
+            <h2 className="text-4xl font-display font-bold mb-1">Round {state.round} Complete!</h2>
             <div className="flex items-center justify-center gap-2 mt-2">
               <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-bold tracking-wider uppercase">
                 {state.difficulty} Mode
               </span>
-              {bonus > 0 && (
-                <span className="bg-amber-400 text-amber-950 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider animate-bounce">
-                  +5 Perfect Bonus!
-                </span>
-              )}
+              <span className="bg-amber-400 text-amber-950 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider animate-bounce">
+                +4 Points
+              </span>
             </div>
           </div>
 
@@ -526,25 +548,28 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
               </div>
               <div className="p-4 bg-amber-50 rounded-2xl border border-amber-100 shadow-sm">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-amber-600" />
-                <div className="text-2xl font-black text-amber-600 tracking-tight">{sessionPoints}</div>
-                <div className="text-[10px] text-amber-600 uppercase font-black tracking-widest">Total Points</div>
+                <div className="text-2xl font-black text-amber-600 tracking-tight">4</div>
+                <div className="text-[10px] text-amber-600 uppercase font-black tracking-widest">Round Points</div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
-                onClick={() => setState(prev => ({ ...prev, phase: 'settings' }))}
+                onClick={() => setState(prev => ({ ...prev, phase: 'settings', round: 1 }))}
                 className="flex-1 border-2 border-sage/20 text-neutral-600 py-4 rounded-2xl font-bold hover:bg-sage/5 transition-all flex items-center justify-center gap-2"
               >
                 <Settings2 className="w-5 h-5" />
                 Change Settings
               </button>
               <button 
-                onClick={startGame}
+                onClick={() => {
+                  setState(prev => ({ ...prev, round: prev.round + 1 }));
+                  startGame();
+                }}
                 className="flex-1 bg-terracotta text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <RotateCcw className="w-5 h-5" />
-                Try Again
+                Start Round {state.round + 1}
               </button>
             </div>
           </div>
@@ -561,6 +586,13 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
       {/* Header Stats */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-6">
+          <div className="flex flex-col">
+            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest mb-1">Round</span>
+            <span className="text-2xl font-display font-bold text-neutral-800">
+              {state.round}
+            </span>
+          </div>
+          <div className="h-10 w-px bg-neutral-200" />
           <div className="flex flex-col">
             <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest mb-1">Verb</span>
             <span className="text-2xl font-display font-bold text-neutral-800">
