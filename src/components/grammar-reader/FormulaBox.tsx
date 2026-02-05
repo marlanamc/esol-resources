@@ -31,7 +31,7 @@ const isSeparator = (text: string) => {
 export function FormulaBox({ parts }: FormulaBoxProps) {
     return (
         <motion.div
-            className="formula-box bg-white/90 border-2 border-primary/25 rounded-2xl px-7 py-6 sm:px-8 sm:py-7 my-6 text-center shadow-lg backdrop-blur"
+            className="formula-box bg-white/90 border-2 border-primary/25 rounded-2xl px-4 py-5 sm:px-8 sm:py-7 my-6 text-center shadow-lg backdrop-blur min-w-0 overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -44,14 +44,14 @@ export function FormulaBox({ parts }: FormulaBoxProps) {
                     const nextIsSeparator = nextPart ? isSeparator(nextPart.text) : false;
 
                     return (
-                        <div key={index} className="flex items-center gap-2 sm:gap-4">
+                        <div key={index} className="flex items-center gap-2 sm:gap-4 min-w-0 max-w-full">
                             {currentIsSeparator ? (
-                                <span className={`text-xl sm:text-2xl font-bold ${part.text === '+' ? 'text-slate-300' : 'text-slate-500'} drop-shadow-sm`}>
+                                <span className={`text-xl sm:text-2xl font-bold shrink-0 ${part.text === '+' ? 'text-slate-300' : 'text-slate-500'} drop-shadow-sm`}>
                                     {part.text}
                                 </span>
                             ) : (
                                 <motion.span
-                                    className={`formula-part px-5 py-3 rounded-2xl font-bold border-2 text-base sm:text-lg shadow-sm whitespace-nowrap ${
+                                    className={`formula-part px-3 py-2 sm:px-5 sm:py-3 rounded-2xl font-bold border-2 text-sm sm:text-lg shadow-sm whitespace-normal sm:whitespace-nowrap min-w-0 ${
                                         colorMap[
                                             isHelperVerb(part.text, part.type)
                                                 ? "helper"
