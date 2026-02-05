@@ -163,6 +163,19 @@ export default async function DashboardPage() {
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
+        const totalStudents = classes.reduce((acc, c) => acc + c.enrollments.length, 0);
+        const totalClasses = classes.length;
+        const pendingReviews = await prisma.submission.count({
+            where: {
+                status: "pending",
+                assignment: {
+                    class: {
+                        teacherId: userId
+                    }
+                }
+            }
+        });
+
 
         return (
             <div className="min-h-screen bg-bg">
@@ -202,24 +215,85 @@ export default async function DashboardPage() {
                         <div className="lg:col-span-3 space-y-8">
                             {/* Welcome Header */}
                             <div className="animate-fade-in-up">
-                                {/* Desktop: Welcome horizontal */}
-                                <div className="hidden lg:block">
-                                    <h1 className="text-4xl font-display font-bold text-text leading-tight tracking-tight">
+                                {/* Desktop: Welcome + Stats horizontal */}
+                                <div className="hidden lg:flex items-center gap-6">
+                                    <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
                                         Welcome, <span className="handwritten text-primary relative inline-block">
                                             {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
                                             <span className="absolute -bottom-1 left-0 right-0 h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
                                         </span>!
                                     </h1>
+
+                                    <div className="flex items-center gap-3">
+                                        {/* Total Students */}
+                                        <div className="flex items-center gap-2.5 bg-white/90 border border-emerald-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                            <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
+                                                <UsersIcon className="text-secondary" size={16} />
+                                            </div>
+                                            <div>
+                                                <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Students</div>
+                                                <div className="text-lg font-bold text-text leading-tight">{totalStudents} <span className="text-xs font-semibold text-text-muted">active</span></div>
+                                            </div>
+                                        </div>
+
+                                        {/* Total Classes */}
+                                        <div className="flex items-center gap-2.5 bg-white/90 border border-blue-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                            <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center">
+                                                <StarIcon className="text-info" size={16} />
+                                            </div>
+                                            <div>
+                                                <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Classes</div>
+                                                <div className="text-lg font-bold text-text leading-tight">{totalClasses} <span className="text-xs font-semibold text-text-muted">total</span></div>
+                                            </div>
+                                        </div>
+
+                                        {/* Pending Reviews */}
+                                        {pendingReviews > 0 && (
+                                            <div className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                                <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center">
+                                                    <ClipboardIcon className="text-primary" size={16} />
+                                                </div>
+                                                <div>
+                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">To Review</div>
+                                                    <div className="text-lg font-bold text-text leading-tight">{pendingReviews} <span className="text-xs font-semibold text-text-muted">new</span></div>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Mobile: Welcome */}
                                 <div className="lg:hidden">
-                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-2 leading-[1.15] tracking-tight">
+                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
                                         Welcome, <span className="handwritten text-primary relative inline-block">
                                             {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
                                             <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
                                         </span>!
                                     </h1>
+
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex items-center gap-2 bg-white/90 border border-emerald-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                            <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
+                                                <UsersIcon className="text-secondary" size={14} />
+                                            </div>
+                                            <div className="flex items-baseline gap-1">
+                                                <span className="text-base font-bold text-text">{totalStudents}</span>
+                                                <span className="text-[10px] font-semibold text-text-muted uppercase">students</span>
+                                            </div>
+                                        </div>
+
+                                        {pendingReviews > 0 && (
+                                            <div className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                                <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center">
+                                                    <ClipboardIcon className="text-primary" size={14} />
+                                                </div>
+                                                <div className="flex items-baseline gap-1">
+                                                    <span className="text-base font-bold text-text">{pendingReviews}</span>
+                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">new</span>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
 
@@ -267,15 +341,12 @@ export default async function DashboardPage() {
 
                             {/* Featured Assignments (styled like student view) */}
                             <section className="animate-fade-in-up delay-100">
-                                <div className="flex items-center justify-between mb-3">
-                                    <h2 className="text-2xl font-bold font-display text-text">Weekly Checklist</h2>
-                                    <ClearFeaturedButton />
-                                </div>
                                 <TodaysAssignments
-                                    title=""
+                                    title="Weekly Checklist"
                                     ctaLabel="Open"
                                     initialAssignments={featuredAssignmentsForDisplay}
                                     variant="checklist"
+                                    actions={<ClearFeaturedButton />}
                                 />
                             </section>
 
