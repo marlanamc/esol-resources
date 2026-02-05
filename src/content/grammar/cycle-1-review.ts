@@ -484,7 +484,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 {
                     id: "cycle1-present-perfect-scramble",
                     title: "Reorder to make a present perfect sentence",
-                    instructions: "Use the words to create a sentence about something that just happened.",
+                    instructions: "Click the words in the correct order to make a present perfect sentence (something that just happened or is connected to now).",
                     items: [
                         {
                             type: "word-scramble",
@@ -492,18 +492,27 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             words: ["have", "just", "I", "eaten", "lunch"],
                             correctAnswer: "I have just eaten lunch.",
                             hint: "Start with the subject and the helper verb."
-                        }
-                    ]
-                },
-                {
-                    id: "cycle1-present-perfect-fill",
-                    title: "Complete the present perfect",
-                    instructions: "Add the helper verb and past participle that fit the sentence.",
-                    items: [
+                        },
                         {
-                            type: "text",
-                            label: "She ___ already ___ the forms.",
-                            expectedAnswer: "has signed"
+                            type: "word-scramble",
+                            label: "Words: has / just / She / signed / the / forms",
+                            words: ["has", "just", "She", "signed", "the", "forms"],
+                            correctAnswer: "She has just signed the forms.",
+                            hint: "Subject + has + just + past participle."
+                        },
+                        {
+                            type: "word-scramble",
+                            label: "Words: have / already / They / left / the / office",
+                            words: ["have", "already", "They", "left", "the", "office"],
+                            correctAnswer: "They have already left the office.",
+                            hint: "Start with the subject (They), then the helper verb (have)."
+                        },
+                        {
+                            type: "word-scramble",
+                            label: "Words: has / He / just / finished / the / report",
+                            words: ["has", "He", "just", "finished", "the", "report"],
+                            correctAnswer: "He has just finished the report.",
+                            hint: "Subject + has + just + past participle."
                         }
                     ]
                 }
