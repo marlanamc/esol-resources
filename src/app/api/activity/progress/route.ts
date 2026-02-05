@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId } = body;
+    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState } = body;
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
@@ -94,30 +94,41 @@ export async function POST(request: Request) {
     });
 
     // Handle category data updates (Numbers Game uses accuracy; Matching Game uses category-only rounds)
+    // and guide resume state (grammar guides: last section index)
     let updatedCategoryData: string | undefined;
     let aggregatedNumbersProgress: number | undefined;
-    if (category) {
-        // Client sent a category update - merge with existing category data
-        const currentData = existing?.categoryData
-            ? JSON.parse(existing.categoryData)
-            : {};
+    const currentData: Record<string, unknown> = existing?.categoryData
+        ? (() => {
+            try {
+                return JSON.parse(existing.categoryData) as Record<string, unknown>;
+            } catch {
+                return {};
+            }
+        })()
+        : {};
 
+    if (category) {
         // Update or add this category's progress
         currentData[category] = {
             completed: rawProgress >= 100,
             ...(sanitizedAccuracy !== undefined ? { accuracy: sanitizedAccuracy } : {}),
-            completedAt: rawProgress >= 100 ? new Date().toISOString() : currentData[category]?.completedAt,
-            attempts: (currentData[category]?.attempts || 0) + 1
+            completedAt: rawProgress >= 100 ? new Date().toISOString() : (currentData[category] as { completedAt?: string })?.completedAt,
+            attempts: ((currentData[category] as { attempts?: number })?.attempts || 0) + 1
         };
 
-        updatedCategoryData = JSON.stringify(currentData);
-
         if (isNumbersGameCategoryName(category)) {
-            aggregatedNumbersProgress = calculateNumbersGameCompletionPercentage(currentData);
+            aggregatedNumbersProgress = calculateNumbersGameCompletionPercentage(currentData as Record<string, { completed?: boolean; accuracy?: number }>);
         }
+    }
 
-        // Don't override progress to 100% unless explicitly set - keep category-based progress
-        // Only set to 100 if this specific category round is complete
+    // Grammar guides: store last section index so the guide can open to the page the student left off on
+    if (guideState != null && typeof guideState === "object" && typeof (guideState as { lastSectionIndex?: number }).lastSectionIndex === "number") {
+        const lastSectionIndex = Math.max(0, Math.round((guideState as { lastSectionIndex: number }).lastSectionIndex));
+        currentData._guide = { lastSectionIndex };
+    }
+
+    if (category || "_guide" in currentData) {
+        updatedCategoryData = JSON.stringify(currentData);
     }
 
     if (aggregatedNumbersProgress !== undefined) {
