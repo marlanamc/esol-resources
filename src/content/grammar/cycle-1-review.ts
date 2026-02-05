@@ -679,38 +679,6 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             `,
             exercises: [
                 {
-                    id: "cycle1-pos-word-select",
-                    title: "Spot the nouns and verbs",
-                    instructions: "Select the words that match the part of speech requested.",
-                    items: [
-                        {
-                            type: "word-select",
-                            label: "Nouns in: \"Morning routines give families new energy.\"",
-                            tokens: [
-                                { text: "Morning", isTarget: true },
-                                { text: "routines", isTarget: true },
-                                { text: "give", isTarget: false },
-                                { text: "families", after: " ", isTarget: true },
-                                { text: "new", isTarget: false },
-                                { text: "energy", isTarget: true }
-                            ]
-                        },
-                        {
-                            type: "word-select",
-                            label: "Verbs in: \"We practice speaking while the radio plays.\"",
-                            tokens: [
-                                { text: "We", isTarget: false },
-                                { text: "practice", isTarget: true },
-                                { text: "speaking", isTarget: true },
-                                { text: "while", isTarget: false },
-                                { text: "the", isTarget: false },
-                                { text: "radio", isTarget: false },
-                                { text: "plays", isTarget: true }
-                            ]
-                        }
-                    ]
-                },
-                {
                     id: "cycle1-pos-queries",
                     title: "Name the modifiers and movers",
                     instructions: "Choose the word that matches the requested part of speech.",
@@ -723,15 +691,51 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
+                            label: "Which word describes \"student\" in \"The busy student finished early\"?",
+                            options: ["The", "Busy", "Finished", "Early"],
+                            expectedAnswer: "Busy"
+                        },
+                        {
+                            type: "select",
+                            label: "Which word describes \"day\" in \"It was a sunny day\"?",
+                            options: ["It", "Was", "Sunny", "Day"],
+                            expectedAnswer: "Sunny"
+                        },
+                        {
+                            type: "select",
                             label: "Which word is an adverb in \"She always walks slowly\"?",
                             options: ["She", "Always", "Walks", "Slowly"],
                             expectedAnswer: "Slowly"
                         },
                         {
                             type: "select",
+                            label: "Which word is an adverb in \"He spoke quietly\"?",
+                            options: ["He", "Spoke", "Quietly"],
+                            expectedAnswer: "Quietly"
+                        },
+                        {
+                            type: "select",
+                            label: "Which word is an adverb in \"They work hard every day\"?",
+                            options: ["They", "Work", "Hard", "Every", "Day"],
+                            expectedAnswer: "Hard"
+                        },
+                        {
+                            type: "select",
                             label: "Which word is a preposition in \"We sit beside the window\"?",
                             options: ["We", "Sit", "Beside", "Window"],
                             expectedAnswer: "Beside"
+                        },
+                        {
+                            type: "select",
+                            label: "Which word is a preposition in \"The book is on the table\"?",
+                            options: ["The", "Book", "Is", "On", "Table"],
+                            expectedAnswer: "On"
+                        },
+                        {
+                            type: "select",
+                            label: "Which word is a preposition in \"We left before noon\"?",
+                            options: ["We", "Left", "Before", "Noon"],
+                            expectedAnswer: "Before"
                         }
                     ]
                 }
