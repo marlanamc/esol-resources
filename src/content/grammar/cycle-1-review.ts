@@ -793,6 +793,16 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                                 { value: "right", label: "right" }
                             ],
                             expectedAnswer: "never"
+                        },
+                        {
+                            type: "radio",
+                            label: "She is _________ late to work.",
+                            options: [
+                                { value: "always", label: "always" },
+                                { value: "yesterday", label: "yesterday" },
+                                { value: "now", label: "now" }
+                            ],
+                            expectedAnswer: "always"
                         }
                     ]
                 },
