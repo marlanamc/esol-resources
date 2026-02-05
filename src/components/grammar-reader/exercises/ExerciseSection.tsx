@@ -36,9 +36,14 @@ export function ExerciseSection({
     const [submitted, setSubmitted] = useState(false);
     const [results, setResults] = useState<Record<number, boolean>>({});
 
-    // Normalize answer: lowercase, trim, and replace multiple spaces with single space
+    // Normalize answer: lowercase, trim, collapse spaces, strip trailing punctuation
+    // so "I have just eaten lunch" matches "I have just eaten lunch."
     const normalizeAnswer = (answer: string) => {
-        return answer.toLowerCase().trim().replace(/\s+/g, ' ');
+        return answer
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, " ")
+            .replace(/[.!?]+$/, "");
     };
 
     const parseSelection = (value: string): number[] => {
