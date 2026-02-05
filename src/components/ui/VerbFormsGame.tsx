@@ -366,7 +366,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-2">
                 <Settings2 className="w-4 h-4 text-terracotta" />
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">2. Or Customize Forms to Quiz</h3>
+                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">2. Select Missing Forms to Test</h3>
               </div>
               <div className="bg-neutral-50 p-4 rounded-2xl border border-neutral-100">
                 <div className="flex flex-wrap justify-center gap-2">
@@ -393,7 +393,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                         }}
                         className={`px-5 py-3 rounded-xl border-2 font-bold transition-all min-w-[80px] ${
                           isSelected 
-                            ? 'bg-terracotta text-white border-terracotta shadow-md scale-105' 
+                            ? 'bg-neutral-800 text-white border-neutral-800 shadow-md scale-105' 
                             : 'bg-white text-neutral-400 border-neutral-200/50 hover:border-neutral-300'
                         }`}
                       >
@@ -404,8 +404,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                 </div>
                 <p className="text-[10px] text-center text-neutral-400 mt-3 font-medium">
                   {state.difficulty === 'custom' 
-                    ? 'Custom mode active: You will quiz on the forms selected above.' 
-                    : 'Selecting a form above will switch to Custom Mode.'}
+                    ? 'Custom mode active: Selected forms will be hidden for the quiz.' 
+                    : 'Select any form above to switch to Custom Mode and choose what to hide.'}
                 </p>
               </div>
             </div>
