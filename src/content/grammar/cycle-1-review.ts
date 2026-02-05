@@ -1329,249 +1329,297 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             }
         }
     ],
+    // ═══════════════════════════════════════════════════════════════════════════
+    // CYCLE 1 MINI QUIZ - Diagnostic Assessment
+    // ═══════════════════════════════════════════════════════════════════════════
+    // Questions are organized by skill area with topic tags for teacher reports.
+    // Skills tested: Time Expression Recognition, Tense Formation, Usage in Context,
+    //                Spot the Error, and Production/Application
+    // ═══════════════════════════════════════════════════════════════════════════
     miniQuiz: [
+        // ─────────────────────────────────────────────────────────────────────────
+        // SECTION 1: TIME EXPRESSION RECOGNITION (Questions 1-4)
+        // Can students match time words to the correct tense?
+        // ─────────────────────────────────────────────────────────────────────────
         {
             id: "q1",
-            question: "Which tense fits the routine: 'Every morning, I ___ coffee.'?",
+            topic: "time-expressions",
+            skill: "recognition",
+            question: "Which time expression signals PRESENT SIMPLE (habits)?",
             options: [
-                { value: "present-simple", label: "Present Simple" },
-                { value: "past-simple", label: "Past Simple" },
-                { value: "future-simple", label: "Future Simple" }
+                { value: "every-day", label: "every day" },
+                { value: "right-now", label: "right now" },
+                { value: "yesterday", label: "yesterday" }
             ],
-            correctAnswer: "present-simple",
-            explanation: "Daily routines use present simple."
+            correctAnswer: "every-day",
+            explanation: "'Every day' signals a routine or habit, which uses Present Simple."
         },
         {
             id: "q2",
-            question: "Which tense describes a finished action: 'She ___ the report yesterday.'?",
+            topic: "time-expressions",
+            skill: "recognition",
+            question: "Which time expression signals PAST SIMPLE (finished)?",
             options: [
-                { value: "past-simple", label: "Past Simple" },
-                { value: "present-simple", label: "Present Simple" },
-                { value: "future-simple", label: "Future Simple" }
+                { value: "last-week", label: "last week" },
+                { value: "since-2020", label: "since 2020" },
+                { value: "tomorrow", label: "tomorrow" }
             ],
-            correctAnswer: "past-simple",
-            explanation: "A clear time (yesterday) signals past simple."
+            correctAnswer: "last-week",
+            explanation: "'Last week' is a finished, specific time — Past Simple. 'Since 2020' connects to now (Present Perfect)."
         },
         {
             id: "q3",
-            question: "Which sentence uses Past Simple instead of Present Perfect?",
+            topic: "time-expressions",
+            skill: "recognition",
+            question: "Which time expression signals PRESENT PERFECT (connected to now)?",
             options: [
-                { value: "past-simple", label: "I finished the report yesterday." },
-                { value: "present-perfect", label: "I have finished the report this week." },
-                { value: "present-continuous", label: "I am finishing the report now." }
+                { value: "already", label: "already" },
+                { value: "in-2019", label: "in 2019" },
+                { value: "next-month", label: "next month" }
             ],
-            correctAnswer: "past-simple",
-            explanation: "A specific past time (yesterday) signals Past Simple; the others keep the time open or show ongoing action."
+            correctAnswer: "already",
+            explanation: "'Already' shows something is done and matters now — Present Perfect. 'In 2019' is a specific past time."
         },
         {
             id: "q4",
-            question: "Which sentence uses Present Continuous?",
+            topic: "time-expressions",
+            skill: "recognition",
+            question: "Which time expression signals PRESENT CONTINUOUS (happening now)?",
             options: [
-                { value: "i-am-reading", label: "I am reading a book right now." },
-                { value: "i-read", label: "I read a book every night." },
-                { value: "i-will-read", label: "I will read a book tomorrow." }
+                { value: "at-the-moment", label: "at the moment" },
+                { value: "usually", label: "usually" },
+                { value: "last-night", label: "last night" }
             ],
-            correctAnswer: "i-am-reading"
+            correctAnswer: "at-the-moment",
+            explanation: "'At the moment' means right now — Present Continuous. 'Usually' is for habits (Present Simple)."
         },
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // SECTION 2: TENSE FORMATION (Questions 5-8)
+        // Can students build the correct verb form?
+        // ─────────────────────────────────────────────────────────────────────────
         {
             id: "q5",
-            question: "Which sentence describes a Past Continuous situation?",
+            topic: "present-simple",
+            skill: "formation",
+            question: "Complete with Present Simple: 'She ___ to work by bus.'",
             options: [
-                { value: "was-watching", label: "She was watching TV when the power went out." },
-                { value: "watched", label: "She watched TV last night." },
-                { value: "will-watch", label: "She will watch TV tonight." }
+                { value: "goes", label: "goes" },
+                { value: "is-going", label: "is going" },
+                { value: "went", label: "went" }
             ],
-            correctAnswer: "was-watching"
+            correctAnswer: "goes",
+            explanation: "Present Simple for habits: She goes (add -es for he/she/it)."
         },
         {
             id: "q6",
-            question: "Which word often appears with Present Perfect?",
+            topic: "past-simple",
+            skill: "formation",
+            question: "Complete with Past Simple: 'They ___ the meeting yesterday.'",
             options: [
-                { value: "already", label: "already" },
-                { value: "yesterday", label: "yesterday" },
-                { value: "tomorrow", label: "tomorrow" }
+                { value: "finished", label: "finished" },
+                { value: "have-finished", label: "have finished" },
+                { value: "are-finishing", label: "are finishing" }
             ],
-            correctAnswer: "already"
+            correctAnswer: "finished",
+            explanation: "Past Simple for finished actions with a specific time: finished (verb + -ed)."
         },
         {
             id: "q7",
-            question: "Which sentence shows Present Perfect experience?",
+            topic: "present-perfect",
+            skill: "formation",
+            question: "Complete with Present Perfect: 'I ___ that movie three times.'",
             options: [
-                { value: "have-visited", label: "I have visited Boston." },
-                { value: "visited", label: "I visited Boston last year." },
-                { value: "will-visit", label: "I will visit Boston next month." }
+                { value: "have-seen", label: "have seen" },
+                { value: "saw", label: "saw" },
+                { value: "am-seeing", label: "am seeing" }
             ],
-            correctAnswer: "have-visited"
+            correctAnswer: "have-seen",
+            explanation: "Present Perfect for experiences: have/has + past participle (seen)."
         },
         {
             id: "q8",
-            question: "Which word is a verb in 'She always brings snacks'?",
+            topic: "present-continuous",
+            skill: "formation",
+            question: "Complete with Present Continuous: 'Look! The baby ___ !'",
             options: [
-                { value: "she", label: "She" },
-                { value: "always", label: "Always" },
-                { value: "brings", label: "Brings" },
-                { value: "snacks", label: "Snacks" }
+                { value: "is-sleeping", label: "is sleeping" },
+                { value: "sleeps", label: "sleeps" },
+                { value: "slept", label: "slept" }
             ],
-            correctAnswer: "brings"
+            correctAnswer: "is-sleeping",
+            explanation: "Present Continuous for actions happening now: am/is/are + verb-ing."
         },
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // SECTION 3: USAGE IN CONTEXT (Questions 9-12)
+        // Can students choose the right tense based on meaning?
+        // ─────────────────────────────────────────────────────────────────────────
         {
             id: "q9",
-            question: "Which word is a preposition in 'We walk to work each morning'?",
+            topic: "present-simple-vs-continuous",
+            skill: "usage",
+            question: "Which sentence describes a HABIT?",
             options: [
-                { value: "walk", label: "Walk" },
-                { value: "to", label: "To" },
-                { value: "work", label: "Work" },
-                { value: "each", label: "Each" }
+                { value: "habit", label: "I drink coffee every morning." },
+                { value: "now", label: "I am drinking coffee right now." },
+                { value: "past", label: "I drank coffee this morning." }
             ],
-            correctAnswer: "to"
+            correctAnswer: "habit",
+            explanation: "Habits use Present Simple. 'Every morning' is the clue."
         },
         {
             id: "q10",
-            question: "Which adverb of frequency fits 'I ___ check the bus schedule before I leave'?",
+            topic: "past-simple-vs-perfect",
+            skill: "usage",
+            question: "Which sentence best answers: 'Why is the floor wet?'",
             options: [
-                { value: "always", label: "always" },
-                { value: "yesterday", label: "yesterday" },
-                { value: "soon", label: "soon" }
+                { value: "perfect", label: "I have just mopped it." },
+                { value: "past", label: "I mopped it yesterday." },
+                { value: "continuous", label: "I am mopping it." }
             ],
-            correctAnswer: "always"
+            correctAnswer: "perfect",
+            explanation: "The result matters NOW (wet floor), so use Present Perfect: 'have just mopped.'"
         },
         {
             id: "q11",
-            question: "Choose the comparative: 'My new job is ___ than my old job.'",
+            topic: "past-continuous",
+            skill: "usage",
+            question: "Which sentence shows an INTERRUPTED action?",
             options: [
-                { value: "more-flexible", label: "more flexible" },
-                { value: "flexiblier", label: "flexiblier" },
-                { value: "flexible", label: "flexible" }
+                { value: "interrupted", label: "I was cooking when the phone rang." },
+                { value: "finished", label: "I cooked dinner at 7 p.m." },
+                { value: "habit", label: "I cook dinner every night." }
             ],
-            correctAnswer: "more-flexible"
+            correctAnswer: "interrupted",
+            explanation: "Past Continuous + Past Simple shows one action interrupting another: 'was cooking... rang.'"
         },
         {
             id: "q12",
-            question: "Which is the correct superlative form?",
+            topic: "future-simple",
+            skill: "usage",
+            question: "Which sentence is a PROMISE about the future?",
             options: [
-                { value: "a", label: "This is the most cheap apartment." },
-                { value: "b", label: "This is the cheapest apartment." },
-                { value: "c", label: "This is the cheaper apartment." }
+                { value: "promise", label: "I will call you tomorrow." },
+                { value: "habit", label: "I call my mom every Sunday." },
+                { value: "plan", label: "I am meeting her at 3 p.m." }
             ],
-            correctAnswer: "b",
-            explanation: "'Cheap' is a short adjective, so use -est: the cheapest."
+            correctAnswer: "promise",
+            explanation: "Promises and predictions use Future Simple: will + verb."
         },
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // SECTION 4: SPOT THE ERROR (Questions 13-16)
+        // Can students identify what's wrong in a sentence?
+        // ─────────────────────────────────────────────────────────────────────────
         {
             id: "q13",
-            question: "Which connector shows contrast?",
+            topic: "present-simple",
+            skill: "error-detection",
+            question: "Which sentence has a MISTAKE?",
             options: [
-                { value: "but", label: "but" },
-                { value: "and", label: "and" },
-                { value: "or", label: "or" }
+                { value: "wrong", label: "She don't like coffee." },
+                { value: "correct1", label: "She doesn't like coffee." },
+                { value: "correct2", label: "They don't like coffee." }
             ],
-            correctAnswer: "but"
+            correctAnswer: "wrong",
+            explanation: "'She' uses 'doesn't' (not 'don't'). Remember: he/she/it = doesn't."
         },
         {
             id: "q14",
-            question: "Which connector shows a result?",
+            topic: "present-perfect",
+            skill: "error-detection",
+            question: "Which sentence has a MISTAKE?",
             options: [
-                { value: "so", label: "so" },
-                { value: "or", label: "or" },
-                { value: "but", label: "but" }
+                { value: "wrong", label: "I have saw that movie." },
+                { value: "correct1", label: "I have seen that movie." },
+                { value: "correct2", label: "I saw that movie last week." }
             ],
-            correctAnswer: "so"
+            correctAnswer: "wrong",
+            explanation: "Present Perfect uses past participle: 'have seen' (not 'have saw')."
         },
         {
             id: "q15",
-            question: "Which time connector fits '___ class ends, we check homework'?",
+            topic: "past-simple",
+            skill: "error-detection",
+            question: "Which sentence has a MISTAKE?",
             options: [
-                { value: "when", label: "when" },
-                { value: "after", label: "after" },
-                { value: "and", label: "and" }
+                { value: "wrong", label: "Did she went to the store?" },
+                { value: "correct1", label: "Did she go to the store?" },
+                { value: "correct2", label: "She went to the store." }
             ],
-            correctAnswer: "when"
+            correctAnswer: "wrong",
+            explanation: "After 'did,' use the base verb: 'Did she go' (not 'went')."
         },
         {
             id: "q16",
-            question: "Which time connector fits '___ the rain poured, we stayed inside'?",
+            topic: "present-continuous",
+            skill: "error-detection",
+            question: "Which sentence has a MISTAKE?",
             options: [
-                { value: "while", label: "while" },
-                { value: "before", label: "before" },
-                { value: "so", label: "so" }
+                { value: "wrong", label: "They is working right now." },
+                { value: "correct1", label: "They are working right now." },
+                { value: "correct2", label: "She is working right now." }
             ],
-            correctAnswer: "while"
+            correctAnswer: "wrong",
+            explanation: "'They' uses 'are' (not 'is'). Match the subject to the correct form of 'be.'"
         },
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // SECTION 5: PRODUCTION / APPLICATION (Questions 17-20)
+        // Can students apply tense knowledge in new situations?
+        // ─────────────────────────────────────────────────────────────────────────
         {
             id: "q17",
-            question: "Which noun is uncountable?",
+            topic: "negative-formation",
+            skill: "production",
+            question: "Make this negative: 'She works on Saturdays.'",
             options: [
-                { value: "a", label: "hour" },
-                { value: "b", label: "job" },
-                { value: "c", label: "time" }
+                { value: "correct", label: "She doesn't work on Saturdays." },
+                { value: "wrong1", label: "She don't work on Saturdays." },
+                { value: "wrong2", label: "She isn't work on Saturdays." }
             ],
-            correctAnswer: "c",
-            explanation: "'Time' is uncountable (you can't say '1 time, 2 times' in this sense). 'Hour' and 'job' are countable (1 hour, 2 hours; 1 job, 2 jobs)."
+            correctAnswer: "correct",
+            explanation: "Present Simple negative: She doesn't + base verb."
         },
         {
             id: "q18",
-            question: "Choose the correct quantifier: 'How ___ experience do you have?'",
+            topic: "question-formation",
+            skill: "production",
+            question: "Make this a question: 'You have finished the report.'",
             options: [
-                { value: "a", label: "many" },
-                { value: "b", label: "much" },
-                { value: "c", label: "few" }
+                { value: "correct", label: "Have you finished the report?" },
+                { value: "wrong1", label: "Do you have finished the report?" },
+                { value: "wrong2", label: "You have finished the report?" }
             ],
-            correctAnswer: "b",
-            explanation: "'Experience' is uncountable, so use 'much.'"
+            correctAnswer: "correct",
+            explanation: "Present Perfect question: Move 'have' to the front."
         },
         {
             id: "q19",
-            question: "Which is correct? 'My new job has ___ hours than my old one.'",
+            topic: "tense-choice",
+            skill: "production",
+            question: "Your friend asks: 'What are you doing?' Which is the best answer?",
             options: [
-                { value: "a", label: "fewer" },
-                { value: "b", label: "less" },
-                { value: "c", label: "little" }
+                { value: "correct", label: "I am studying for my exam." },
+                { value: "wrong1", label: "I study for my exam." },
+                { value: "wrong2", label: "I studied for my exam." }
             ],
-            correctAnswer: "a",
-            explanation: "'Hours' are countable, so use 'fewer' for comparisons."
+            correctAnswer: "correct",
+            explanation: "The question is about NOW, so answer with Present Continuous: 'I am studying.'"
         },
         {
             id: "q20",
-            question: "Choose the correct quantifier: 'I don't have ___ money for the bus.'",
+            topic: "tense-choice",
+            skill: "production",
+            question: "Complete the story: 'Yesterday, I ___ (walk) to work when I ___ (see) an old friend.'",
             options: [
-                { value: "a", label: "many" },
-                { value: "b", label: "much" },
-                { value: "c", label: "few" }
+                { value: "correct", label: "was walking... saw" },
+                { value: "wrong1", label: "walked... was seeing" },
+                { value: "wrong2", label: "walk... see" }
             ],
-            correctAnswer: "b",
-            explanation: "'Money' is uncountable, so use 'much' (not 'many' or 'few' which are for countable nouns)."
-        },
-        {
-            id: "q21",
-            question: "Which conditional is for facts and habits that are always true?",
-            options: [
-                { value: "zero", label: "Zero Conditional (if + present, present)" },
-                { value: "first", label: "First Conditional (if + present, will + verb)" },
-                { value: "both", label: "Both can be used" }
-            ],
-            correctAnswer: "zero",
-            explanation: "Zero conditional is for things that are always true: science facts ('If you heat water, it boils') and habits ('If I'm tired, I go to bed')."
-        },
-        {
-            id: "q22",
-            question: "Which sentence is correct for a future plan?",
-            options: [
-                { value: "a", label: "If it rains tomorrow, I stay home." },
-                { value: "b", label: "If it rains tomorrow, I will stay home." },
-                { value: "c", label: "If it will rain tomorrow, I stay home." }
-            ],
-            correctAnswer: "b",
-            explanation: "For future plans and possibilities, use first conditional: 'if + present, will + verb'. Never use 'will' in the IF clause!"
-        },
-        {
-            id: "q23",
-            question: "Which sentence shows a HABIT (zero conditional)?",
-            options: [
-                { value: "a", label: "If I feel tired, I drink coffee." },
-                { value: "b", label: "If I feel tired tonight, I will drink coffee." },
-                { value: "c", label: "If I will feel tired, I drink coffee." }
-            ],
-            correctAnswer: "a",
-            explanation: "Zero conditional ('If I feel tired, I drink coffee') shows a habit that is always true. First conditional adds 'tonight' + 'will' for a specific future plan."
+            correctAnswer: "correct",
+            explanation: "Background action (was walking) + interruption (saw) = Past Continuous + Past Simple."
         }
     ]
 };

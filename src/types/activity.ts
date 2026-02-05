@@ -136,6 +136,10 @@ export interface MiniQuizQuestion {
     options: Array<{ value: string; label: string }>;
     correctAnswer: string;
     explanation?: string;
+    /** Topic tag for diagnostic reports (e.g., "present-simple", "time-expressions") */
+    topic?: string;
+    /** Skill category being tested (e.g., "recognition", "formation", "usage", "error-detection", "production") */
+    skill?: string;
 }
 
 export interface SpeakingPrompt {
