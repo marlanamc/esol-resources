@@ -681,61 +681,67 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 {
                     id: "cycle1-pos-queries",
                     title: "Name the modifiers and movers",
-                    instructions: "Choose the word that matches the requested part of speech.",
+                    instructions: "Choose the word that matches the prompt (noun, verb, adjective, adverb, or preposition).",
                     items: [
                         {
                             type: "select",
-                            label: "Which word describes \"lessons\" in \"Gentle lessons build confidence\"?",
-                            options: ["Gentle", "Build", "Confidence", "Lessons"],
+                            label: "Which word is a noun (person/place/thing) in \"The busy student finished early\"?",
+                            options: ["The", "busy", "student", "finished", "early"],
+                            expectedAnswer: "student"
+                        },
+                        {
+                            type: "select",
+                            label: "Which word is the verb (action) in \"They practice daily\"?",
+                            options: ["They", "practice", "daily"],
+                            expectedAnswer: "practice"
+                        },
+                        {
+                            type: "select",
+                            label: "Which word is an adjective in \"Gentle lessons build confidence\"?",
+                            options: ["Gentle", "lessons", "build", "confidence"],
                             expectedAnswer: "Gentle"
                         },
                         {
                             type: "select",
-                            label: "Which word describes \"student\" in \"The busy student finished early\"?",
-                            options: ["The", "Busy", "Finished", "Early"],
-                            expectedAnswer: "Busy"
+                            label: "Which word is a preposition in \"The book is on a table\"?",
+                            options: ["The", "book", "is", "on", "a", "table"],
+                            expectedAnswer: "on"
                         },
                         {
                             type: "select",
-                            label: "Which word describes \"day\" in \"It was a sunny day\"?",
-                            options: ["It", "Was", "Sunny", "Day"],
-                            expectedAnswer: "Sunny"
+                            label: "Which word tells how (adverb) in \"He spoke quietly\"?",
+                            options: ["He", "spoke", "quietly"],
+                            expectedAnswer: "quietly"
                         },
                         {
                             type: "select",
-                            label: "Which word is an adverb in \"She always walks slowly\"?",
-                            options: ["She", "Always", "Walks", "Slowly"],
-                            expectedAnswer: "Slowly"
+                            label: "Which word is the noun (place) in \"We met at the library\"?",
+                            options: ["We", "met", "at", "the", "library"],
+                            expectedAnswer: "library"
                         },
                         {
                             type: "select",
-                            label: "Which word is an adverb in \"He spoke quietly\"?",
-                            options: ["He", "Spoke", "Quietly"],
-                            expectedAnswer: "Quietly"
+                            label: "Which word is the verb in \"A teacher explains rules\"?",
+                            options: ["A", "teacher", "explains", "rules"],
+                            expectedAnswer: "explains"
                         },
                         {
                             type: "select",
-                            label: "Which word is an adverb in \"They work hard every day\"?",
-                            options: ["They", "Work", "Hard", "Every", "Day"],
-                            expectedAnswer: "Hard"
+                            label: "Which word describes \"scarf\" in \"She wore a red scarf\"?",
+                            options: ["She", "wore", "a", "red", "scarf"],
+                            expectedAnswer: "red"
                         },
                         {
                             type: "select",
-                            label: "Which word is a preposition in \"We sit beside the window\"?",
-                            options: ["We", "Sit", "Beside", "Window"],
-                            expectedAnswer: "Beside"
+                            label: "Which word shows direction (preposition) in \"We walked through the park\"?",
+                            options: ["We", "walked", "through", "the", "park"],
+                            expectedAnswer: "through"
                         },
                         {
                             type: "select",
-                            label: "Which word is a preposition in \"The book is on the table\"?",
-                            options: ["The", "Book", "Is", "On", "Table"],
-                            expectedAnswer: "On"
-                        },
-                        {
-                            type: "select",
-                            label: "Which word is a preposition in \"We left before noon\"?",
-                            options: ["We", "Left", "Before", "Noon"],
-                            expectedAnswer: "Before"
+                            label: "Which word tells how often (adverb of frequency) in \"She always arrives early\"?",
+                            options: ["She", "always", "arrives", "early"],
+                            expectedAnswer: "always"
                         }
                     ]
                 }
