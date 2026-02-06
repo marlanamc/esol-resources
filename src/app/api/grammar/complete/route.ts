@@ -13,13 +13,22 @@ interface GrammarExerciseCategoryData {
     totalExercisePoints: number;
 }
 
+interface QuizResponseData {
+    questionId: string;
+    userAnswer: string;
+    isCorrect: boolean;
+    skillTag?: string;
+    difficulty?: string;
+    topic?: string;
+}
+
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { slug, score, total, activityId } = await request.json();
+    const { slug, score, total, activityId, responses } = await request.json();
     if (!slug || typeof slug !== "string") {
         return NextResponse.json({ error: "slug is required" }, { status: 400 });
     }
@@ -30,7 +39,7 @@ export async function POST(request: Request) {
     // 1. Record the quiz score if provided
     if (score !== undefined && total !== undefined) {
         const percentage = Math.round((score / total) * 100);
-        
+
         // We use upsert here to maintain compatibility with the current unique constraint.
         // This will store the LATEST score for the student.
         await prisma.submission.upsert({
@@ -57,6 +66,25 @@ export async function POST(request: Request) {
                 completedAt: new Date()
             }
         });
+
+        // 1b. Store individual question responses for diagnostic reporting
+        if (responses && Array.isArray(responses)) {
+            const quizResponses = responses.map((r: QuizResponseData) => ({
+                userId,
+                activityId: activityId || slug,
+                assignmentId: null,
+                questionId: r.questionId,
+                userAnswer: r.userAnswer,
+                isCorrect: r.isCorrect,
+                skillTag: r.skillTag || null,
+                difficulty: r.difficulty || null,
+                topic: r.topic || null,
+            }));
+
+            await prisma.quizResponse.createMany({
+                data: quizResponses,
+            });
+        }
     }
 
     // 2. Check if already awarded completion points

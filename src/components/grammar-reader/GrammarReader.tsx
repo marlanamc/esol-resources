@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
-import type { InteractiveGuideContent, InteractiveGuideSection } from "@/types/activity";
+import type { InteractiveGuideContent, InteractiveGuideSection, QuestionResponse } from "@/types/activity";
 import { SectionHeader } from "./SectionHeader";
 import { ExplanationPanel } from "./ExplanationPanel";
 import { PracticePanel } from "./PracticePanel";
@@ -139,7 +139,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         }
     }, [completionKey]);
 
-    const awardCompletion = useCallback(async (quizScore?: number, quizTotal?: number) => {
+    const awardCompletion = useCallback(async (quizScore?: number, quizTotal?: number, responses?: QuestionResponse[]) => {
         if (!completionKey) return;
         // Don't skip if it's a quiz score update, as students can take it multiple times
         if (awardSent && quizScore === undefined) return;
@@ -148,11 +148,12 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             await fetch("/api/grammar/complete", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    slug: completionKey, 
+                body: JSON.stringify({
+                    slug: completionKey,
                     score: quizScore,
                     total: quizTotal,
-                    activityId 
+                    activityId,
+                    responses
                 }),
             });
             // Also save 100% progress if activityId is provided
@@ -376,13 +377,18 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
-    const handleQuizComplete = useCallback((score: number, total: number) => {
+    // Save quiz score and responses immediately when student submits (before they click "Finish")
+    const handleQuizScoreSubmit = useCallback((score: number, total: number, responses?: QuestionResponse[]) => {
+        void awardCompletion(score, total, responses);
+    }, [awardCompletion]);
+
+    // Called when student clicks "Finish" - just closes the quiz view
+    const handleQuizComplete = useCallback((_score: number, _total: number) => {
         setShowQuiz(false);
-        void awardCompletion(score, total);
         if (onComplete) {
             onComplete();
         }
-    }, [awardCompletion, onComplete]);
+    }, [onComplete]);
 
     return (
         <div className="grammar-reader-container min-h-screen bg-bg">
@@ -479,6 +485,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <MiniQuizSection
                                 questions={content.miniQuiz}
                                 onComplete={handleQuizComplete}
+                                onScoreSubmit={handleQuizScoreSubmit}
                                 topicTitle={guideTitle}
                             />
                         </div>

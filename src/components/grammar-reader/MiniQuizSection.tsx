@@ -3,29 +3,47 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles } from "lucide-react";
-import type { MiniQuizQuestion } from "@/types/activity";
+import type { MiniQuizQuestion, QuestionResponse } from "@/types/activity";
 import { Button } from "@/components/ui/Button";
 
 interface MiniQuizSectionProps {
     questions: MiniQuizQuestion[];
     onComplete: (score: number, total: number) => void;
+    onScoreSubmit?: (score: number, total: number, responses?: QuestionResponse[]) => void;
     topicTitle?: string;
 }
 
-export function MiniQuizSection({ questions, onComplete, topicTitle = "this grammar topic" }: MiniQuizSectionProps) {
+export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTitle = "this grammar topic" }: MiniQuizSectionProps) {
     const [answers, setAnswers] = useState<Record<string, string>>({});
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(0);
 
     const handleSubmit = () => {
+        const responses: QuestionResponse[] = [];
         let correct = 0;
+
         questions.forEach((q) => {
-            if (answers[q.id] === q.correctAnswer) {
-                correct++;
-            }
+            const userAnswer = answers[q.id];
+            const isCorrect = userAnswer === q.correctAnswer;
+            if (isCorrect) correct++;
+
+            responses.push({
+                questionId: q.id,
+                userAnswer,
+                isCorrect,
+                skillTag: q.skillTag,
+                difficulty: q.difficulty,
+                topic: q.topic,
+            });
         });
+
         setScore(correct);
         setSubmitted(true);
+
+        // Save the grade and detailed responses when quiz is submitted (not waiting for "Finish" click)
+        if (onScoreSubmit) {
+            onScoreSubmit(correct, questions.length, responses);
+        }
     };
 
     const handleReset = () => {

@@ -29,6 +29,7 @@ model User {
   createdClasses        Class[]              @relation("ClassTeacher")
   classes               ClassEnrollment[]
   pointsLedger          PointsLedger[]
+  quizResponses         QuizResponse[]
   speakingSubmissions   SpeakingSubmission[]
   submissions           Submission[]
   achievements          UserAchievement[]
@@ -80,6 +81,7 @@ model Activity {
   isReleased          Boolean              @default(false)
   progress            ActivityProgress[]
   assignments         Assignment[]
+  quizResponses       QuizResponse[]
   speakingSubmissions SpeakingSubmission[]
   submissions         Submission[]
 
@@ -152,6 +154,7 @@ model Assignment {
   activityProgress    ActivityProgress[]
   activity            Activity             @relation(fields: [activityId], references: [id], onDelete: Cascade)
   class               Class                @relation(fields: [classId], references: [id], onDelete: Cascade)
+  quizResponses       QuizResponse[]
   speakingSubmissions SpeakingSubmission[]
   submissions         Submission[]
 
@@ -219,4 +222,28 @@ model UserAchievement {
   user          User        @relation(fields: [userId], references: [id])
 
   @@unique([userId, achievementId])
+}
+
+model QuizResponse {
+  id           String      @id @default(cuid())
+  userId       String
+  activityId   String
+  assignmentId String?
+  questionId   String
+  userAnswer   String
+  isCorrect    Boolean
+  skillTag     String?
+  difficulty   String?
+  topic        String?
+  createdAt    DateTime    @default(now())
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activity   Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  assignment Assignment? @relation(fields: [assignmentId], references: [id])
+
+  @@index([userId])
+  @@index([activityId])
+  @@index([skillTag])
+  @@index([userId, activityId])
+  @@index([activityId, skillTag])
 }

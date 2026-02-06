@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import { BarChart3 } from "lucide-react";
 
 interface Student {
     id: string;
@@ -21,13 +22,28 @@ interface Submission {
     updatedAt: Date;
 }
 
+interface ClassOption {
+    id: string;
+    name: string;
+}
+
 interface Props {
     students: Student[];
     activities: Activity[];
     submissions: Submission[];
+    classes?: ClassOption[];
+    selectedClassId?: string | null;
+    onClassChange?: (classId: string | null) => void;
 }
 
-export default function GrammarGradebook({ students, activities, submissions }: Props) {
+export default function GrammarGradebook({
+    students,
+    activities,
+    submissions,
+    classes,
+    selectedClassId,
+    onClassChange,
+}: Props) {
     const [searchQuery, setSearchQuery] = useState("");
 
     const filteredStudents = useMemo(() => {
@@ -58,13 +74,31 @@ export default function GrammarGradebook({ students, activities, submissions }: 
     return (
         <div className="space-y-6">
             <div className="bg-white p-4 rounded-xl border border-border/40 shadow-sm">
-                <input
-                    type="text"
-                    placeholder="Search students..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full max-w-md px-4 py-2 rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
-                />
+                <div className="flex flex-col sm:flex-row gap-4">
+                    <input
+                        type="text"
+                        placeholder="Search students..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="flex-1 max-w-md px-4 py-2 rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                    />
+                    {classes && classes.length > 0 && onClassChange && (
+                        <select
+                            value={selectedClassId || ""}
+                            onChange={(e) =>
+                                onClassChange(e.target.value || null)
+                            }
+                            className="px-4 py-2 rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                        >
+                            <option value="">All Classes</option>
+                            {classes.map((c) => (
+                                <option key={c.id} value={c.id}>
+                                    {c.name}
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                </div>
             </div>
 
             <div className="bg-white rounded-2xl border border-border/40 shadow-xl overflow-hidden">
@@ -80,9 +114,18 @@ export default function GrammarGradebook({ students, activities, submissions }: 
                                         key={activity.id}
                                         className="px-4 py-4 text-center text-[10px] font-bold uppercase tracking-tighter text-text-muted border-r border-border/20 max-w-[120px] whitespace-normal flex-shrink-0"
                                     >
-                                        <div className="line-clamp-2 leading-tight">
+                                        <div className="line-clamp-2 leading-tight mb-2">
                                             {activity.title}
                                         </div>
+                                        {selectedClassId && (
+                                            <Link
+                                                href={`/dashboard/diagnostics?classId=${selectedClassId}&activityId=${activity.id}`}
+                                                className="inline-flex items-center gap-1 text-[9px] text-primary hover:text-primary/80 font-normal normal-case tracking-normal transition-colors"
+                                            >
+                                                <BarChart3 className="w-3 h-3" />
+                                                Diagnostics
+                                            </Link>
+                                        )}
                                     </th>
                                 ))}
                             </tr>
