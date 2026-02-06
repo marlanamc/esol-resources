@@ -211,39 +211,10 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                     </button>
                 </div>
 
-                {/* Desktop: Navigation + Progress + Settings in one row */}
-                <div className="hidden md:flex items-center justify-between gap-4">
-                    {/* Left: Prev button */}
-                    <button
-                        onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                        className="p-3 rounded-xl border-2 border-[var(--color-primary)]/30 bg-white hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
-                        aria-label="Previous card"
-                    >
-                        <ChevronLeftIcon className="w-5 h-5" />
-                    </button>
-
-                    {/* Center: Flip button */}
-                    <button
-                        onClick={(e) => { e.stopPropagation(); handleFlip(); }}
-                        className="py-3 px-10 rounded-full bg-white border-2 border-[var(--color-border)] text-[var(--color-text)] font-bold shadow-sm hover:shadow-md transition-[box-shadow,transform] text-base active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
-                    >
-                        {isFlipped ? "Back" : "Flip"}
-                    </button>
-
-                    {/* Right: Next button */}
-                    <button
-                        onClick={(e) => { e.stopPropagation(); goNext(); }}
-                        className="p-3 rounded-xl border-2 border-[var(--color-border)] bg-white hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
-                        aria-label="Next card"
-                    >
-                        <ChevronRightIcon className="w-5 h-5" />
-                    </button>
-
-                    {/* Spacer */}
-                    <div className="flex-1" />
-
-                    {/* Progress */}
-                    <div className="flex items-center gap-2">
+                {/* Desktop: Navigation centered, Progress + Settings on right */}
+                <div className="hidden md:flex items-center gap-4">
+                    {/* Left spacer for balance */}
+                    <div className="flex-1 flex items-center gap-2">
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {studiedCards.size} / {total} studied
                         </div>
@@ -255,14 +226,42 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                         </div>
                     </div>
 
-                    {/* Settings */}
-                    <button
-                        onClick={() => setShowSettings(!showSettings)}
-                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
-                        aria-label="Settings"
-                    >
-                        <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
-                    </button>
+                    {/* Center: Navigation controls */}
+                    <div className="flex items-center gap-3">
+                        <button
+                            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                            className="p-3 rounded-xl border-2 border-[var(--color-primary)]/30 bg-white hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            aria-label="Previous card"
+                        >
+                            <ChevronLeftIcon className="w-5 h-5" />
+                        </button>
+
+                        <button
+                            onClick={(e) => { e.stopPropagation(); handleFlip(); }}
+                            className="py-3 px-10 rounded-full bg-white border-2 border-[var(--color-border)] text-[var(--color-text)] font-bold shadow-sm hover:shadow-md transition-[box-shadow,transform] text-base active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                        >
+                            {isFlipped ? "Back" : "Flip"}
+                        </button>
+
+                        <button
+                            onClick={(e) => { e.stopPropagation(); goNext(); }}
+                            className="p-3 rounded-xl border-2 border-[var(--color-border)] bg-white hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            aria-label="Next card"
+                        >
+                            <ChevronRightIcon className="w-5 h-5" />
+                        </button>
+                    </div>
+
+                    {/* Right: Settings */}
+                    <div className="flex-1 flex justify-end">
+                        <button
+                            onClick={() => setShowSettings(!showSettings)}
+                            className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
+                            aria-label="Settings"
+                        >
+                            <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
+                        </button>
+                    </div>
                 </div>
             </div>
 
