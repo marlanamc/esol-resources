@@ -1,15 +1,13 @@
 /**
- * Seed weekly vocabulary activities (Feb–Jun). Creates for each week:
- * - Word List (packet, resource)
- * - Flash Cards (game)
- * - Matching (game)
- * - Fill-in-the-Blank (game)
+ * Seed consolidated weekly vocabulary activities (Feb–Jun)
+ * Creates a SINGLE consolidated activity per week combining:
+ * - Word List
+ * - Flash Cards
+ * - Matching
+ * - Fill-in-the-Blank
  *
  * Run: node scripts/seed-weekly-vocab.js
  * Or: npx tsx scripts/seed-weekly-vocab.js (if you prefer tsx)
- *
- * Removes old monthly vocab activities (february, march, april, may) and creates
- * the new weekly ones (feb-3-5, feb-10-12, ... jun-2-4).
  */
 
 const { PrismaClient } = require("@prisma/client");
@@ -27,37 +25,39 @@ function getUnitNumber(slug) {
 }
 
 function generatePacketContent(slug, data) {
-  if (!data) return "";
+  if (!data) return {};
   const unit = getUnitNumber(slug);
-  let content = `Unit ${unit}: ${data.topic}\n\n`;
-  data.words.forEach((word, idx) => {
-    content += `${idx + 1}) ${word.term} — ${word.def}\n`;
-    if (word.ex) content += `   Example: ${word.ex}\n`;
-    content += "\n";
-  });
-  return content.trim();
+  const cards = data.words.map((word) => ({
+    term: word.term,
+    definition: word.def,
+    example: word.ex,
+  }));
+  return { cards };
 }
 
 function generateFlashcardContent(slug, data) {
-  if (!data) return "";
-  let content = "";
-  data.words.forEach((word, idx) => {
-    content += `${idx + 1}) ${word.term} — ${word.def}\n`;
-    if (word.ex) content += `   Example: ${word.ex}\n`;
-    content += "\n";
-  });
-  return content.trim();
+  if (!data) return {};
+  const cards = data.words.map((word) => ({
+    term: word.term,
+    definition: word.def,
+    example: word.ex,
+  }));
+  return { cards };
 }
 
 function generateMatchingContent(slug, data) {
-  if (!data || !data.words) return "";
-  return data.words.map((w) => `${w.term} :: ${w.def}`).join("\n");
+  if (!data || !data.words) return {};
+  const pairs = data.words.map((w, idx) => ({
+    id: idx,
+    term: w.term,
+    definition: w.def,
+  }));
+  return { pairs };
 }
 
 function generateFillBlankContent(slug, data) {
-  if (!data || !data.words) return "";
-  let content = "";
-  for (const word of data.words) {
+  if (!data || !data.words) return {};
+  const sentences = data.words.map((word, idx) => {
     const termLower = word.term.toLowerCase();
     const exLower = (word.ex || "").toLowerCase();
     const firstIndex = exLower.indexOf(termLower);
@@ -76,12 +76,16 @@ function generateFillBlankContent(slug, data) {
       .slice(0, numWrong)
       .map((w) => w.term);
     const allOptions = [word.term, ...wrongOptions].sort(() => 0.5 - Math.random());
-    content += `Q: ${sentence}\n`;
-    content += `A: ${word.term}\n`;
-    content += `OPTIONS: ${allOptions.join(", ")}\n`;
-    content += `EXPLAIN: ${word.def}\n\n`;
-  }
-  return content.trim();
+    return {
+      id: `sentence-${idx}`,
+      text: sentence,
+      blanks: [word.term],
+      correctAnswers: [word.term],
+      options: allOptions,
+      explanation: word.def,
+    };
+  });
+  return { sentences };
 }
 
 const monthNames = {
@@ -130,102 +134,43 @@ async function main() {
     const unit = getUnitNumber(slug);
     const wordList = data.words.map((w) => w.term).join(", ");
     const fullWeek = formatWeek(slug);
-    const activityPrefix = `Unit ${unit}: ${fullWeek} ${data.topic}`;
+    const activityId = `vocab-${slug}`;
+    const title = `Unit ${unit}: ${fullWeek} ${data.topic}`;
 
-    const packetId = `vocab-${slug}-packet`;
-    const flashId = `vocab-${slug}-flashcards`;
-    const matchingId = `vocab-${slug}-matching`;
-    const fillblankId = `vocab-${slug}-fillblank`;
+    // Generate content for all 4 vocabulary types
+    const consolidatedContent = {
+      type: "vocabulary",
+      wordList: generatePacketContent(slug, data),
+      flashcards: generateFlashcardContent(slug, data),
+      matching: generateMatchingContent(slug, data),
+      fillInBlank: generateFillBlankContent(slug, data),
+    };
 
-    const packetContent = generatePacketContent(slug, data);
-    const flashContent = generateFlashcardContent(slug, data);
-    const matchingContent = generateMatchingContent(slug, data);
-    const fillblankContent = generateFillBlankContent(slug, data);
-
+    // Create or update single consolidated activity
     await prisma.activity.upsert({
-      where: { id: packetId },
+      where: { id: activityId },
       update: {
-        title: `${activityPrefix} — Word List`,
+        title,
         category: "Vocab",
-        type: "resource",
+        type: "vocabulary",
         description: `Unit ${unit} vocabulary: ${data.topic}. ${wordList}`,
-        content: packetContent,
+        content: JSON.stringify(consolidatedContent),
       },
       create: {
-        id: packetId,
-        title: `${activityPrefix} — Word List`,
+        id: activityId,
+        title,
         category: "Vocab",
-        type: "resource",
+        type: "vocabulary",
         level: "intermediate",
         description: `Unit ${unit} vocabulary: ${data.topic}. ${wordList}`,
-        content: packetContent,
-      },
-    });
-
-    await prisma.activity.upsert({
-      where: { id: flashId },
-      update: {
-        title: `${activityPrefix} — Flash Cards`,
-        category: "Vocab",
-        type: "game",
-        description: `Unit ${unit} flash cards: ${data.topic}`,
-        content: flashContent,
-      },
-      create: {
-        id: flashId,
-        title: `${activityPrefix} — Flash Cards`,
-        category: "Vocab",
-        type: "game",
-        level: "intermediate",
-        description: `Unit ${unit} flash cards: ${data.topic}`,
-        content: flashContent,
-      },
-    });
-
-    await prisma.activity.upsert({
-      where: { id: matchingId },
-      update: {
-        title: `${activityPrefix} — Matching`,
-        category: "Vocab",
-        type: "game",
-        description: `Match terms to definitions for Unit ${unit}: ${data.topic}`,
-        content: matchingContent,
-      },
-      create: {
-        id: matchingId,
-        title: `${activityPrefix} — Matching`,
-        category: "Vocab",
-        type: "game",
-        level: "intermediate",
-        description: `Match terms to definitions for Unit ${unit}: ${data.topic}`,
-        content: matchingContent,
-      },
-    });
-
-    await prisma.activity.upsert({
-      where: { id: fillblankId },
-      update: {
-        title: `${activityPrefix} — Fill-in-the-Blank`,
-        category: "Vocab",
-        type: "game",
-        description: `Fill-in-the-blank practice for Unit ${unit}: ${data.topic}`,
-        content: fillblankContent,
-      },
-      create: {
-        id: fillblankId,
-        title: `${activityPrefix} — Fill-in-the-Blank`,
-        category: "Vocab",
-        type: "game",
-        level: "intermediate",
-        description: `Fill-in-the-blank practice for Unit ${unit}: ${data.topic}`,
-        content: fillblankContent,
+        content: JSON.stringify(consolidatedContent),
       },
     });
 
     console.log(`✓ ${slug} (Unit ${unit}): ${data.topic} — ${data.words.length} words`);
   }
 
-  console.log(`\n✅ Created/updated ${slugs.length * 4} weekly vocab activities (${slugs.length} weeks × 4 activities each).`);
+  console.log(`\n✅ Created/updated ${slugs.length} consolidated weekly vocab activities.`);
 }
 
 main()

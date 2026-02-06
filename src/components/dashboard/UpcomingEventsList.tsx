@@ -7,9 +7,10 @@ import { CalendarEvent } from "./MiniCalendar";
 interface Props {
     events: CalendarEvent[];
     allowDelete?: boolean;
+    showSyncedLabel?: boolean;
 }
 
-export default function UpcomingEventsList({ events, allowDelete = true }: Props) {
+export default function UpcomingEventsList({ events, allowDelete = true, showSyncedLabel = true }: Props) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
     const [error, setError] = useState("");
@@ -40,7 +41,9 @@ export default function UpcomingEventsList({ events, allowDelete = true }: Props
         <div>
             <div className="flex items-center justify-between mb-2">
                 <p className="text-xs font-semibold text-text-muted uppercase tracking-wide">Upcoming dates</p>
-                <span className="text-[10px] text-text-muted/70">Synced to students</span>
+                {showSyncedLabel && (
+                    <span className="text-[10px] text-text-muted/70">Synced to students</span>
+                )}
             </div>
             {error && <p className="text-xs text-red-600 mb-2">{error}</p>}
             {events.length === 0 ? (

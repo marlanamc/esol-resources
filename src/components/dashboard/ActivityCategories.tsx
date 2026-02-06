@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
+import { VOCAB_WEEKLY_UNITS, VOCAB_WEEKLY_UNIT_NUMBER } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 
 interface Activity {
@@ -41,14 +41,21 @@ interface ActivityCategoriesProps {
     showEmpty?: boolean;
 }
 
-const vocabMonths = [
+const vocabCycle1 = [
     { id: 'september', label: 'Unit 1: September: Getting to Know You' },
     { id: 'october', label: 'Unit 2: October: Daily Life in the Community' },
     { id: 'november', label: 'Unit 3: November: Community Participation' },
     { id: 'december', label: 'Unit 4: December: Consumer Smarts' },
     { id: 'january', label: 'Unit 5: January: Housing' },
-    ...VOCAB_WEEKLY_UNITS.map((u) => ({ id: u.id, label: u.label })),
-    { id: 'june', label: 'Unit 10: June: Future Academic Goals' },
+];
+
+// Group Cycle 2 (Units 6-10) by unit number
+const vocabUnits = [
+    { unitNum: 6, label: 'Unit 6: February - Workforce Preparation', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('feb-')) },
+    { unitNum: 7, label: 'Unit 7: March - Career Awareness', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('mar-')) },
+    { unitNum: 8, label: 'Unit 8: April - Health', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('apr-')) },
+    { unitNum: 9, label: 'Unit 9: May - Holistic Wellness', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('may-')) },
+    { unitNum: 10, label: 'Unit 10: June - Future Academic Goals', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('jun-')) },
 ];
 
 const displayTitle = (title: string) =>
@@ -422,24 +429,28 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             {
                 name: 'Vocabulary',
                 color: '#f4a261', // warm orange
-                subCategories: vocabMonths.map(month => {
-                    const monthActivities = activities.filter((a: Activity) => a.id?.startsWith(`vocab-${month.id}`));
-
-                    // Define custom sort order
-                    const sortOrder = ['packet', 'flashcards', 'matching', 'fillblank'];
-                    const sorted = monthActivities.sort((a, b) => {
-                        const aType = a.id?.split('-').pop() || '';
-                        const bType = b.id?.split('-').pop() || '';
-                        const aIndex = sortOrder.indexOf(aType);
-                        const bIndex = sortOrder.indexOf(bType);
-                        return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
-                    });
-
-                    return {
-                        name: month.label,
-                        activities: sorted
-                    };
-                }),
+                subCategories: [
+                    {
+                        name: 'Cycle 1',
+                        activities: vocabCycle1.flatMap(month =>
+                            activities.filter((a: Activity) => a.id === `vocab-${month.id}`)
+                        )
+                    },
+                    ...vocabUnits.map(unit => {
+                        // Create a sub-category for each unit (6-10) with its weeks as nested sub-categories
+                        return {
+                            name: unit.label,
+                            activities: [],
+                            subCategories: unit.weeks.map(week => {
+                                const weekActivities = activities.filter((a: Activity) => a.id === `vocab-${week.id}`);
+                                return {
+                                    name: week.label,
+                                    activities: weekActivities
+                                };
+                            })
+                        };
+                    })
+                ],
                 activities: []
             },
             {
@@ -616,27 +627,27 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                 <div key={subKey}>
                                                     <button
                                                         onClick={() => toggleSubCategory(subKey)}
-                                                        className="w-full flex items-center justify-between p-4 pl-6 hover:bg-white/50 transition-colors group text-left cursor-pointer touch-manipulation"
+                                                        className="w-full flex items-center justify-between p-4 pl-6 hover:bg-white/50 transition-colors group cursor-pointer touch-manipulation"
                                                         style={{
                                                             touchAction: 'manipulation'
                                                         }}
                                                     >
-                                                        <div className="flex items-center gap-3 flex-1 min-w-0">
-                                                            <span className="text-base font-semibold text-text group-hover:text-primary transition-colors text-left pointer-events-none">
-                                                                {subCategory.name}
-                                                            </span>
-                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-1 rounded-full shrink-0 pointer-events-none">
+                                                        <span className="flex-1 min-w-0 text-left text-base font-semibold text-text group-hover:text-primary transition-colors pointer-events-none">
+                                                            {subCategory.name}
+                                                        </span>
+                                                        <div className="flex items-center gap-2 shrink-0">
+                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-1 rounded-full pointer-events-none">
                                                                 {getSubCategoryCount(subCategory)}
                                                             </span>
+                                                            <svg
+                                                                className={`w-5 h-5 text-text-muted transition-transform duration-300 pointer-events-none ${isSubExpanded ? 'rotate-90' : ''}`}
+                                                                fill="none"
+                                                                stroke="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                            </svg>
                                                         </div>
-                                                        <svg
-                                                            className={`w-5 h-5 text-text-muted transition-transform duration-300 shrink-0 ml-2 pointer-events-none ${isSubExpanded ? 'rotate-180' : ''}`}
-                                                            fill="none"
-                                                            stroke="currentColor"
-                                                            viewBox="0 0 24 24"
-                                                        >
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                        </svg>
                                                     </button>
 
                                                     {isSubExpanded && (
@@ -698,27 +709,27 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                                             <div key={subSubKey}>
                                                                                 <button
                                                                                     onClick={() => toggleSubCategory(subSubKey)}
-                                                                                    className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
+                                                                                    className="w-full flex items-center justify-between p-3 pl-10 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
                                                                                     style={{
                                                                                         touchAction: 'manipulation'
                                                                                     }}
                                                                                 >
-                                                                                    <div className="flex items-center gap-2">
-                                                                                        <span className="text-sm font-medium text-text group-hover:text-primary transition-colors pointer-events-none">
-                                                                                            {subSubCategory.name}
-                                                                                        </span>
+                                                                                    <span className="flex-1 min-w-0 text-left text-sm font-medium text-text group-hover:text-primary transition-colors pointer-events-none">
+                                                                                        {subSubCategory.name}
+                                                                                    </span>
+                                                                                    <div className="flex items-center gap-2 shrink-0">
                                                                                         <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full pointer-events-none">
                                                                                             {subSubCategory.activities.length}
                                                                                         </span>
+                                                                                        <svg
+                                                                                            className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-90' : ''}`}
+                                                                                            fill="none"
+                                                                                            stroke="currentColor"
+                                                                                            viewBox="0 0 24 24"
+                                                                                        >
+                                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                                                        </svg>
                                                                                     </div>
-                                                                                    <svg
-                                                                                        className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-180' : ''}`}
-                                                                                        fill="none"
-                                                                                        stroke="currentColor"
-                                                                                        viewBox="0 0 24 24"
-                                                                                    >
-                                                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                                                    </svg>
                                                                                 </button>
 
                                                                                 {isSubSubExpanded && subSubCategory.activities.length > 0 && (

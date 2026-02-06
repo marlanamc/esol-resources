@@ -131,6 +131,7 @@ export default async function CalendarPage() {
                             return eventEndDate >= today;
                         })}
                         allowDelete={userRole === 'teacher'}
+                        showSyncedLabel={userRole === 'teacher'}
                     />
                 </div>
             </main>

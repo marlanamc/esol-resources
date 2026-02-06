@@ -54,7 +54,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState } = body;
+    const { activityId, progress = 100, status: statusInput, accuracy, category, assignmentId, guideState, vocabType } = body;
 
     // SECURITY: Input validation
     if (!activityId || typeof activityId !== "string") {
@@ -121,6 +121,30 @@ export async function POST(request: Request) {
         }
     }
 
+    // Handle vocabulary type updates (word-list, flashcards, matching, fill-blank)
+    if (vocabType) {
+        const validVocabTypes = ['word-list', 'flashcards', 'matching', 'fill-blank'];
+        if (validVocabTypes.includes(vocabType)) {
+            currentData[vocabType] = {
+                completed: rawProgress >= 100,
+                progress: rawProgress,
+                completedAt: rawProgress >= 100 ? new Date().toISOString() : (currentData[vocabType] as { completedAt?: string })?.completedAt,
+            };
+
+            // Calculate overall progress across all 4 vocab types
+            let completedCount = 0;
+            const completedTypes: string[] = [];
+            for (const vType of validVocabTypes) {
+                const typeData = currentData[vType] as { completed?: boolean } | undefined;
+                if (typeData?.completed) {
+                    completedCount++;
+                    completedTypes.push(vType);
+                }
+            }
+            aggregatedNumbersProgress = (completedCount / validVocabTypes.length) * 100;
+        }
+    }
+
     // Grammar guides: store last section index so the guide can open to the page the student left off on
     if (guideState != null && typeof guideState === "object" && typeof (guideState as { lastSectionIndex?: number }).lastSectionIndex === "number") {
         const lastSectionIndex = Math.max(0, Math.round((guideState as { lastSectionIndex: number }).lastSectionIndex));
@@ -165,11 +189,18 @@ export async function POST(request: Request) {
 
     // Award points based on activity type
     // - For category-based activities WITH accuracy (Numbers Game), award per category completion
+    // - For vocabulary types, award per type completion (once per type)
     // - For other activities (including Matching Game round tracking), award once when overall progress hits 100%
     const isAccuracyCategoryUpdate = category && sanitizedAccuracy !== undefined;
-    const shouldAwardPoints = isAccuracyCategoryUpdate
-        ? (rawProgress >= 100 && updatedCategoryData && !(existing?.categoryData && JSON.parse(existing.categoryData)[category]?.completed))
-        : ((existing?.progress ?? 0) < 100 && progressValue >= 100);
+    const isVocabularyTypeUpdate = vocabType && ['word-list', 'flashcards', 'matching', 'fill-blank'].includes(vocabType);
+    const existingCategoryData = existing?.categoryData ? JSON.parse(existing.categoryData) : {};
+    const wasVocabTypeCompleted = isVocabularyTypeUpdate && existingCategoryData[vocabType]?.completed;
+
+    const shouldAwardPoints = isVocabularyTypeUpdate
+        ? (rawProgress >= 100 && !wasVocabTypeCompleted)
+        : (isAccuracyCategoryUpdate
+            ? (rawProgress >= 100 && updatedCategoryData && !(existingCategoryData[category]?.completed))
+            : ((existing?.progress ?? 0) < 100 && progressValue >= 100));
 
     let pointsAwarded = 0;
 
@@ -182,7 +213,18 @@ export async function POST(request: Request) {
 
         let points = 5; // Default fallback points
         if (activity) {
-            points = getActivityPoints(activity.type, activity);
+            // Special handling for vocabulary activities - award type-specific points
+            if (activity.type === 'vocabulary' && isVocabularyTypeUpdate) {
+                const vocabPoints: Record<string, number> = {
+                    'word-list': 5,
+                    'flashcards': 4,
+                    'matching': 7,
+                    'fill-blank': 5,
+                };
+                points = vocabPoints[vocabType] || 5;
+            } else {
+                points = getActivityPoints(activity.type, activity);
+            }
 
             // Special handling for numbers game - award difficulty-based points per category
             if (resolveActivityGameUi(activity) === 'numbers') {

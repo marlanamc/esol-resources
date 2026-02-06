@@ -4,7 +4,7 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Script from "next/script";
-import { type ActivityContent, isInteractiveGuideContent, isLegacyGuideContent, parseActivityContent } from "@/types/activity";
+import { type ActivityContent, isInteractiveGuideContent, isLegacyGuideContent, isVocabularyContent, parseActivityContent } from "@/types/activity";
 import ActivityRenderer from "@/components/ActivityRenderer";
 import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
 import { CategoryProgressDisplay } from "@/components/CategoryProgressDisplay";
@@ -170,6 +170,20 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         );
     }
 
+    // Vocabulary activities: full-screen only when in activity mode (?ui=xxx)
+    // The hub/menu page keeps the standard header with back button
+    if (activity.type === "vocabulary" && parsedContent && isVocabularyContent(parsedContent) && ui) {
+        return (
+            <div className="min-h-screen bg-bg">
+                <ActivityRenderer
+                    activity={{ ...activity, ui: ui || activity.ui }}
+                    assignmentId={assignmentId}
+                    existingSubmission={submission}
+                />
+            </div>
+        );
+    }
+
     // Full screen layout for interactive guides
     if (isInteractiveGuide) {
         return (
@@ -232,24 +246,22 @@ export default async function ActivityPage({ params, searchParams }: Props) {
             <header className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                     {/* Mobile Layout: Stacked */}
-                    <div className="flex flex-col gap-3 sm:hidden">
-                        <div className="flex items-center justify-between">
+                    <div className="flex flex-col gap-2 sm:hidden">
+                        <div className="flex items-center justify-between gap-2">
                             <Link
                                 href="/dashboard"
-                                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:border-gray-400 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex-shrink-0"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                                 Back
                             </Link>
-                        </div>
-                        <div className="flex items-center justify-between gap-2">
-                            <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0">
-                                {activity.title}
-                            </h1>
                             <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                         </div>
+                        <h1 className="text-base sm:text-lg font-bold text-gray-900 line-clamp-2 leading-snug">
+                            {activity.title}
+                        </h1>
                     </div>
 
                     {/* Desktop Layout: Horizontal */}
