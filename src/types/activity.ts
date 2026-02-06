@@ -140,6 +140,20 @@ export interface MiniQuizQuestion {
     topic?: string;
     /** Skill category being tested (e.g., "recognition", "formation", "usage", "error-detection", "production") */
     skill?: string;
+    /** Specific skill tag for granular diagnostic tracking (e.g., "form-positive-he-she-it", "meaning-habit-vs-now") */
+    skillTag?: string;
+    /** Difficulty level for adaptive learning and reporting */
+    difficulty?: "easy" | "medium" | "hard";
+}
+
+/** Individual question response for diagnostic tracking */
+export interface QuestionResponse {
+    questionId: string;
+    userAnswer: string;
+    isCorrect: boolean;
+    skillTag?: string;
+    difficulty?: string;
+    topic?: string;
 }
 
 export interface SpeakingPrompt {

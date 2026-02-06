@@ -4,9 +4,13 @@ import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { GrammarGradebook } from "@/components/dashboard";
+import { GradebookClient } from "./GradebookClient";
 
-export default async function GradebookPage() {
+export default async function GradebookPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ classId?: string }>;
+}) {
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -19,6 +23,9 @@ export default async function GradebookPage() {
     if (userRole !== "teacher") {
         redirect("/dashboard");
     }
+
+    const params = await searchParams;
+    const selectedClassId = params.classId || null;
 
     // Get teacher's classes and students
     const classes = await prisma.class.findMany({
@@ -37,6 +44,11 @@ export default async function GradebookPage() {
             }
         }
     });
+
+    // Filter students by selected class if one is selected
+    const filteredClasses = selectedClassId
+        ? classes.filter((c) => c.id === selectedClassId)
+        : classes;
 
     // Get all grammar guide activities
     const activities = await prisma.activity.findMany({
@@ -69,8 +81,14 @@ export default async function GradebookPage() {
     }));
 
     const studentIds = Array.from(
-        new Set(classes.flatMap(c => c.enrollments.map(e => e.student.id)))
+        new Set(filteredClasses.flatMap(c => c.enrollments.map(e => e.student.id)))
     );
+
+    // Create class options for the dropdown
+    const classOptions = classes.map((c) => ({
+        id: c.id,
+        name: c.name,
+    }));
 
     const students = await prisma.user.findMany({
         where: {
@@ -126,10 +144,12 @@ export default async function GradebookPage() {
             </header>
 
             <main className="container mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8">
-                <GrammarGradebook 
-                    students={students} 
-                    activities={activitiesWithQuizzes} 
-                    submissions={submissions} 
+                <GradebookClient
+                    students={students}
+                    activities={activitiesWithQuizzes}
+                    submissions={submissions}
+                    classes={classOptions}
+                    selectedClassId={selectedClassId}
                 />
             </main>
         </div>
