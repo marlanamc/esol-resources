@@ -436,6 +436,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Future Simple uses will + base verb: will call.",
+            skillTag: "form-will-base-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -446,7 +448,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "She will not comes." },
             ],
             correctAnswer: "b",
-            explanation: "Won't + base verb (come, not comes).",
+            explanation: "Won't is followed by the base verb: won't come.",
+            skillTag: "form-negative-wont-base-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -457,7 +461,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "You will help me?" },
             ],
             correctAnswer: "b",
-            explanation: "Question: Will + subject + base verb.",
+            explanation: "Question form: Will + subject + base verb.",
+            skillTag: "form-question-will-subject-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -469,6 +475,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "A decision made right now often uses will: I'll answer.",
+            skillTag: "meaning-spontaneous-decision",
+            difficulty: "medium",
         },
         {
             id: "quiz-5",
@@ -479,7 +487,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "I fix it after class." },
             ],
             correctAnswer: "b",
-            explanation: "Promise/offer: will + base verb → will fix.",
+            explanation: "Promises and offers use will + base verb: will fix.",
+            skillTag: "meaning-promise-offer",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
@@ -491,6 +501,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Predictions about the future often use will.",
+            skillTag: "meaning-prediction-general",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
@@ -501,7 +513,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "Ill text you later." },
             ],
             correctAnswer: "b",
-            explanation: "I'll = I will. (No extra spaces, and 'Ill' changes the meaning.)",
+            explanation: "I'll = I will. No extra spaces, and 'Ill' without an apostrophe is a different word.",
+            skillTag: "form-contractions-will",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
@@ -512,7 +526,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "I renew my ID tomorrow." },
             ],
             correctAnswer: "a",
-            explanation: "A plan made before now is often going to (or Present Continuous for an appointment).",
+            explanation: "A plan made before now is often expressed with going to (or Present Continuous for an appointment).",
+            skillTag: "contrast-will-going-to-plan",
+            difficulty: "medium",
         },
         {
             id: "quiz-9",
@@ -524,6 +540,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "We often use Present Continuous for arranged appointments: I'm meeting…",
+            skillTag: "contrast-will-present-continuous-appointment",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -535,6 +553,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Will is followed by the base verb: will come.",
+            skillTag: "form-will-base-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
@@ -545,7 +565,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "Will she calls you?" },
             ],
             correctAnswer: "b",
-            explanation: "Question form: Will + subject + base verb.",
+            explanation: "Question form: Will + subject + base verb (no 'to' and no -s).",
+            skillTag: "form-question-will-subject-verb",
+            difficulty: "medium",
         },
         {
             id: "quiz-12",
@@ -557,6 +579,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Won't can show refusal or 'it refuses to': it won't turn on.",
+            skillTag: "meaning-refusal-wont",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
@@ -568,6 +592,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Future Simple often appears with future time words: tomorrow, next week, soon.",
+            skillTag: "time-expression-future",
+            difficulty: "easy",
         },
         {
             id: "quiz-14",
@@ -579,6 +605,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Offers made in the moment often use will: I'll carry…",
+            skillTag: "meaning-promise-offer",
+            difficulty: "easy",
         },
         {
             id: "quiz-15",
@@ -590,6 +618,38 @@ export const futureSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Predictions based on present evidence often use going to: it's going to rain.",
+            skillTag: "meaning-prediction-based-evidence-going-to",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Future Simple
+
+    Skill map by skillTag:
+    - form-will-base-verb: questions 1, 10
+    - form-negative-wont-base-verb: question 2
+    - form-question-will-subject-verb: questions 3, 11
+    - form-contractions-will: question 7
+    - meaning-spontaneous-decision: question 4
+    - meaning-promise-offer: questions 5, 14
+    - meaning-prediction-general: question 6
+    - meaning-prediction-based-evidence-going-to: question 15
+    - meaning-refusal-wont: question 12
+    - time-expression-future: question 13
+    - contrast-will-going-to-plan: question 8
+    - contrast-will-present-continuous-appointment: question 9
+
+    How to use this data:
+    - If many students miss questions with skillTag "form-will-base-verb" or "form-negative-wont-base-verb",
+      review the basic form: will/won't + base verb, and correct errors like "will to call" or "won't comes".
+    - If scores are low on "form-question-will-subject-verb", practice question order (Will + subject + base verb)
+      with speaking drills and substitution exercises.
+    - If students struggle with "meaning-spontaneous-decision" versus planned actions, contrast will with going to
+      and Present Continuous using real classroom examples (decisions made now vs plans made before class).
+    - Weak performance on "contrast-will-going-to-plan" or "contrast-will-present-continuous-appointment"
+      suggests you should revisit the section on will vs going to vs Present Continuous for future.
+    - If "meaning-prediction-based-evidence-going-to" is low, highlight the difference between general
+      predictions (will) and predictions based on what we see now (going to).
+    - If "meaning-refusal-wont" is weak, show more examples of won't for refusal or things that "refuse" to work.
+    */
 };
