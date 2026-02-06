@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
 
 /**
  * Safely fetches an activity ID during build time.
@@ -12,6 +13,12 @@ export async function getActivityIdSafely(
     category: string
 ): Promise<string | undefined> {
     try {
+        if (type === "guide" && category === "grammar") {
+            // Prefer the canonical released mini-quiz guide when duplicate titles exist.
+            const canonicalId = await resolveCanonicalGrammarActivityId({ title });
+            if (canonicalId) return canonicalId;
+        }
+
         const activity = await prisma.activity.findFirst({
             where: { title, type, category },
             select: { id: true }
