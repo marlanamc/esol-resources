@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import GrammarMapClient from '@/components/grammar-map/GrammarMapClient';
-import Link from 'next/link';
+import { BackButton } from '@/components/ui/BackButton';
 import { MapIcon } from '@/components/icons/Icons';
 import { grammarTopics } from '@/data/grammar-map';
 
@@ -98,15 +98,7 @@ export default async function GrammarMapPage() {
         <div className="min-h-screen bg-[var(--background)]">
             <header className="sticky top-0 backdrop-blur-lg border-b z-40 bg-white/90 border-border/60 shadow-sm">
                 <div className="container mx-auto py-4 px-4 sm:px-6 flex items-center gap-4">
-                    <Link
-                        href="/dashboard"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        Back to Dashboard
-                    </Link>
+                    <BackButton href="/dashboard">Back to Dashboard</BackButton>
                     <MapIcon className="w-7 h-7 text-primary" />
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold font-display text-[var(--text)]">

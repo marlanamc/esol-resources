@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { BottomNav } from "@/components/ui";
+import { BackButton, BottomNav } from "@/components/ui";
 import AvatarSelector from "@/components/ui/AvatarSelector";
 import SelectedAvatarDisplay from "@/components/ui/SelectedAvatarDisplay";
 import { HomeIcon, BookOpenIcon, TrophyIcon, UserIcon } from "@/components/icons/Icons";
@@ -100,17 +100,9 @@ export default function AvatarPage() {
             <div className="sticky top-0 z-10 backdrop-blur-md bg-white/80 border-b border-border/50">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
-                        <button
-                            onClick={() => router.back()}
-                            className="group flex items-center gap-2 text-sm text-text-muted hover:text-primary transition-all duration-200"
-                        >
-                            <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-bg-light group-hover:bg-primary/10 transition-colors">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </span>
-                            <span className="hidden sm:inline font-medium">Back</span>
-                        </button>
+                        <BackButton onClick={() => router.back()}>
+                            <span className="hidden sm:inline">Back</span>
+                        </BackButton>
                         
                         <div className="text-center">
                             <h1 className="text-xl font-semibold text-text flex items-center gap-2 justify-center">

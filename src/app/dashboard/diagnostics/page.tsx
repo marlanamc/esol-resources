@@ -3,8 +3,8 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { DiagnosticReport } from "@/components/dashboard/DiagnosticReport";
-import Link from "next/link";
-import { ArrowLeft, BarChart3 } from "lucide-react";
+import { BackButton } from "@/components/ui/BackButton";
+import { BarChart3 } from "lucide-react";
 
 export default async function DiagnosticsPage({
     searchParams,
@@ -48,13 +48,7 @@ export default async function DiagnosticsPage({
             {/* Header */}
             <header className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                 <div className="container mx-auto py-4 px-6">
-                    <Link
-                        href="/dashboard/gradebook"
-                        className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 mb-3 transition-colors"
-                    >
-                        <ArrowLeft className="w-4 h-4" />
-                        Back to Gradebook
-                    </Link>
+                    <BackButton href="/dashboard/gradebook" className="mb-3">Back to Gradebook</BackButton>
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                             <BarChart3 className="w-5 h-5 text-primary" />

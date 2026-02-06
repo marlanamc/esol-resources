@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
+import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -37,12 +37,7 @@ export default async function VerbQuizResultsPage({
                 <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                     <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                         <div>
-                            <Link
-                                href="/dashboard/stats"
-                                className="text-xs font-semibold text-primary underline decoration-primary/40 underline-offset-4"
-                            >
-                                ← Back to Stats
-                            </Link>
+                            <BackButton href="/dashboard/stats" className="mb-1">Back to Stats</BackButton>
                             <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
                                 Invalid Week Number
                             </h1>
@@ -68,12 +63,7 @@ export default async function VerbQuizResultsPage({
                 <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                     <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                         <div>
-                            <Link
-                                href="/dashboard/stats"
-                                className="text-xs font-semibold text-primary underline decoration-primary/40 underline-offset-4"
-                            >
-                                ← Back to Stats
-                            </Link>
+                            <BackButton href="/dashboard/stats" className="mb-1">Back to Stats</BackButton>
                             <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
                                 Verb Quiz {weekNumber} Results
                             </h1>
@@ -110,12 +100,7 @@ export default async function VerbQuizResultsPage({
             <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1000px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>
-                        <Link
-                            href="/dashboard/stats"
-                            className="text-xs font-semibold text-primary underline decoration-primary/40 underline-offset-4"
-                        >
-                            ← Back to Stats
-                        </Link>
+                        <BackButton href="/dashboard/stats" className="mb-1">Back to Stats</BackButton>
                         <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
                             {activity.title} Results
                         </h1>

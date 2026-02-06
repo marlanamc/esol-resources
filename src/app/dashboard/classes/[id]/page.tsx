@@ -4,6 +4,7 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
+import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton } from "@/components/dashboard";
 
 interface Props {
@@ -59,9 +60,7 @@ export default async function ClassDetailPage({ params }: Props) {
             <header className="bg-white shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>
-                        <Link href="/dashboard" className="text-indigo-600 hover:text-indigo-900 mb-2 inline-block">
-                            &larr; Back to Dashboard
-                        </Link>
+                        <BackButton href="/dashboard" className="mb-2">Back to Dashboard</BackButton>
                         <h1 className="text-3xl font-bold text-gray-900">{classItem.name}</h1>
                         <p className="text-gray-600 mt-1">{classItem.description}</p>
                     </div>

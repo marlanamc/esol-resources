@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
+import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StatCard, BottomNav } from "@/components/ui";
@@ -126,12 +127,7 @@ export default async function StatsPage() {
             <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1200px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>
-                        <Link
-                            href="/dashboard"
-                            className="text-xs font-semibold text-primary underline decoration-primary/40 underline-offset-4"
-                        >
-                            ← Back to Dashboard
-                        </Link>
+                        <BackButton href="/dashboard" className="mb-1">Back to Dashboard</BackButton>
                         <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
                             Student Stats
                         </h1>

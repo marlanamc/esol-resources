@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { RotateCcw } from "lucide-react";
+import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 
 interface NumbersGameContent {
@@ -434,13 +435,10 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                 {/* Header */}
                 <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4">
                     <div className="flex items-center gap-3">
-                        <button
+                        <BackButton
                             onClick={() => window.history.back()}
-                            className="p-2 rounded-lg hover:bg-gray-100 transition-colors md:hidden flex-shrink-0"
-                            aria-label="Go back"
-                        >
-                            <XIcon className="w-6 h-6 text-gray-600" />
-                        </button>
+                            className="shrink-0 md:hidden"
+                        />
                         <h1 className="text-xl md:text-2xl font-bold text-gray-900 flex-1">
                             Numbers to English Words
                         </h1>
@@ -532,13 +530,10 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
             {/* Header */}
             <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-[var(--color-border)] p-4">
                 <div className="flex items-center gap-3 mb-4">
-                    <button
+                    <BackButton
                         onClick={() => window.history.back()}
-                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors md:hidden flex-shrink-0"
-                        aria-label="Go back"
-                    >
-                        <XIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
-                    </button>
+                        className="shrink-0 md:hidden"
+                    />
                     <div className="flex-1">
                         <h1 className="text-xl md:text-2xl font-bold text-[var(--color-text)]">
                             Numbers to English Words
@@ -753,16 +748,6 @@ function SettingsIcon({ className }: { className?: string }) {
             <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24"/>
             <path d="M1 12h6m6 0h6"/>
             <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24"/>
-        </svg>
-    );
-}
-
-// XIcon component
-function XIcon({ className }: { className?: string }) {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
     );
 }

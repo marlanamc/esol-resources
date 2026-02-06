@@ -5,7 +5,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { StudentPasswordManager } from "@/components/StudentPasswordManager";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { BottomNav } from "@/components/ui";
+import { BackButton, BottomNav } from "@/components/ui";
 import { HomeIcon, BookOpenIcon, UsersIcon, UserIcon } from "@/components/icons/Icons";
 
 type StudentSummary = {
@@ -63,12 +63,7 @@ export default async function PasswordsPage() {
             <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1800px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>
-                        <Link
-                            href="/dashboard"
-                            className="text-xs font-semibold text-primary underline decoration-primary/40 underline-offset-4"
-                        >
-                            ← Back to Dashboard
-                        </Link>
+                        <BackButton href="/dashboard" className="mb-1">Back to Dashboard</BackButton>
                         <h1 className="text-2xl md:text-3xl font-display font-bold text-text mt-1">
                             Password Management
                         </h1>

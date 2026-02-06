@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 
 interface FillInBlankQuestion {
@@ -112,14 +113,10 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
             )}
             {/* Header with Progress */}
             <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4 flex items-center gap-3">
-                {/* Back button - only on mobile */}
-                <button
+                <BackButton
                     onClick={() => window.history.back()}
-                    className="p-2 rounded-lg hover:bg-gray-100 transition-colors md:hidden flex-shrink-0"
-                    aria-label="Go back"
-                >
-                    <XIcon className="w-6 h-6 text-gray-600" />
-                </button>
+                    className="shrink-0 md:hidden"
+                />
                 <div className="flex-1">
                     <div className="flex items-center justify-between mb-3">
                         <div className="text-sm font-medium text-gray-600">
@@ -275,16 +272,6 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
                 </div>
             </div>
         </div>
-    );
-}
-
-// XIcon component
-function XIcon({ className }: { className?: string }) {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
     );
 }
 

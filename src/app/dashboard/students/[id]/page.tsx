@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import StudentDetailView from "@/components/dashboard/StudentDetailView";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default async function StudentDetailPage({
     params
@@ -59,12 +60,7 @@ export default async function StudentDetailPage({
                     <p className="text-red-700 mb-4">
                         This student is not enrolled in any of your classes.
                     </p>
-                    <Link
-                        href="/dashboard/stats"
-                        className="text-red-900 hover:text-red-700 underline"
-                    >
-                        ← Back to Stats
-                    </Link>
+                    <BackButton href="/dashboard/stats">Back to Stats</BackButton>
                 </div>
             </div>
         );
@@ -98,12 +94,7 @@ export default async function StudentDetailPage({
                                 @{enrollment.student.username} · {enrollment.class.name}
                             </p>
                         </div>
-                        <Link
-                            href="/dashboard/stats"
-                            className="px-4 py-2 bg-white border border-border rounded-lg hover:bg-bg-light transition-colors text-sm"
-                        >
-                            ← Back to Stats
-                        </Link>
+                        <BackButton href="/dashboard/stats">Back to Stats</BackButton>
                     </div>
                 </div>
 

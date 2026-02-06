@@ -14,7 +14,8 @@ import {
   type SpeakingSubmissionPayload,
 } from "@/lib/speakingSubmissions";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lightbulb, ChevronDown, ChevronUp, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { Lightbulb, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
+import { BackButton } from "@/components/ui/BackButton";
 
 // WARMUP MODE COMPONENT
 function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
@@ -92,13 +93,7 @@ function WarmupModeRenderer({ content, activityId, assignmentId }: Props) {
       {/* Header */}
       <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
         <div className="flex items-start gap-3 sm:gap-4">
-          <button
-            onClick={() => router.back()}
-            className="flex-shrink-0 mt-1 sm:mt-1.5 p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
-            aria-label="Go back"
-          >
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
-          </button>
+          <BackButton onClick={() => router.back()} className="flex-shrink-0 mt-1 sm:mt-1.5" />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
               {content.title}
@@ -550,13 +545,7 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
       )}
       <header className="sticky lg:relative top-0 flex-none px-4 sm:px-6 py-4 sm:py-5 border-b border-border/60 bg-white/90 backdrop-blur-md z-10">
         <div className="flex items-start gap-3 sm:gap-4">
-          <button
-            onClick={() => router.back()}
-            className="flex-shrink-0 mt-1 sm:mt-1.5 p-2 -ml-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
-            aria-label="Go back"
-          >
-            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
-          </button>
+          <BackButton onClick={() => router.back()} className="flex-shrink-0 mt-1 sm:mt-1.5" />
           <div className="flex-1 min-w-0">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1.5 sm:mb-2 font-display leading-tight">
               {content.title}

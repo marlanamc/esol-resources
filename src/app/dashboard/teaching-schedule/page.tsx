@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
-import Link from "next/link";
 import { redirect } from "next/navigation";
+import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { TeacherCalendar } from "@/components/dashboard/TeacherCalendar";
 import { loadEsol3TeachingScheduleData } from "@/lib/teachingSchedule";
@@ -34,12 +34,7 @@ export default async function TeachingSchedulePage() {
                         <p className="text-xs font-semibold text-primary tracking-widest uppercase">Teacher</p>
                         <h1 className="text-2xl font-display font-bold text-text">Teaching Schedule</h1>
                     </div>
-                    <Link
-                        href="/dashboard"
-                        className="shrink-0 px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg hover:bg-bg-light transition"
-                    >
-                        ← Back to Dashboard
-                    </Link>
+                    <BackButton href="/dashboard" className="shrink-0">Back to Dashboard</BackButton>
                 </div>
             </header>
 
