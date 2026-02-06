@@ -145,7 +145,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         if (awardSent && quizScore === undefined) return;
 
         try {
-            await fetch("/api/grammar/complete", {
+            const completionResponse = await fetch("/api/grammar/complete", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -156,12 +156,16 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                     responses
                 }),
             });
+            if (!completionResponse.ok) {
+                throw new Error(`/api/grammar/complete failed with ${completionResponse.status}`);
+            }
             // Also save 100% progress if activityId is provided
             if (activityId) {
                 await saveActivityProgress(activityId, 100, "completed");
             }
-        } catch {
-            // non-blocking; user still reached completion
+        } catch (error) {
+            // Non-blocking; user still reached completion. Keep a console trace for debugging.
+            console.error("Failed to record grammar completion", error);
         } finally {
             if (quizScore === undefined) {
                 setAwardSent(true);

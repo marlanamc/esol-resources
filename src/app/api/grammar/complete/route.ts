@@ -23,6 +23,83 @@ interface QuizResponseData {
     topic?: string;
 }
 
+async function saveMiniQuizSubmission(params: {
+    userId: string;
+    activityId: string;
+    score: number;
+    total: number;
+    slug: string;
+}) {
+    const { userId, activityId, score, total, slug } = params;
+    const payload = JSON.stringify({ type: "mini-quiz", score, total, slug });
+    const now = new Date();
+
+    try {
+        // Preferred path when there is only one NULL-assignment row for this user/activity.
+        await prisma.submission.upsert({
+            where: {
+                userId_activityId_assignmentId: {
+                    userId,
+                    activityId,
+                    assignmentId: null as any,
+                },
+            },
+            update: {
+                score,
+                content: payload,
+                status: "submitted",
+                completedAt: now,
+            },
+            create: {
+                userId,
+                activityId,
+                assignmentId: null,
+                score,
+                content: payload,
+                status: "submitted",
+                completedAt: now,
+            },
+        });
+    } catch {
+        // Legacy data can contain duplicate NULL-assignment rows in Postgres.
+        // Fallback: update the newest existing row or create one.
+        const existing = await prisma.submission.findFirst({
+            where: {
+                userId,
+                activityId,
+                assignmentId: null,
+            },
+            select: { id: true },
+            orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
+        });
+
+        if (existing) {
+            await prisma.submission.update({
+                where: { id: existing.id },
+                data: {
+                    score,
+                    content: payload,
+                    status: "submitted",
+                    completedAt: now,
+                },
+            });
+            return;
+        }
+
+        await prisma.submission.create({
+            data: {
+                userId,
+                activityId,
+                assignmentId: null,
+                score,
+                content: payload,
+                status: "submitted",
+                completedAt: now,
+            },
+        });
+    }
+}
+
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
@@ -45,33 +122,27 @@ export async function POST(request: Request) {
 
     // 1. Record the quiz score if provided
     if (score !== undefined && total !== undefined) {
+        const activityExists = await prisma.activity.findUnique({
+            where: { id: canonicalActivityId },
+            select: { id: true },
+        });
+        if (!activityExists) {
+            return NextResponse.json(
+                { error: `Unknown grammar activity id: ${canonicalActivityId}` },
+                { status: 400 }
+            );
+        }
+
         const percentage = Math.round((score / total) * 100);
 
-        // Upsert guarantees one submission row per user+activity (assignmentId=null)
-        // and updates it with the latest mini-quiz percentage.
-        await prisma.submission.upsert({
-            where: {
-                userId_activityId_assignmentId: {
-                    userId,
-                    activityId: canonicalActivityId,
-                    assignmentId: null as any
-                }
-            },
-            update: {
-                score: percentage,
-                content: JSON.stringify({ type: 'mini-quiz', score, total, slug }),
-                status: 'submitted',
-                completedAt: new Date()
-            },
-            create: {
-                userId,
-                activityId: canonicalActivityId,
-                assignmentId: null,
-                score: percentage,
-                content: JSON.stringify({ type: 'mini-quiz', score, total, slug }),
-                status: 'submitted',
-                completedAt: new Date()
-            }
+        // Persist mini-quiz submission for this grammar activity, with a fallback path
+        // for legacy duplicate NULL-assignment rows.
+        await saveMiniQuizSubmission({
+            userId,
+            activityId: canonicalActivityId,
+            score: percentage,
+            total,
+            slug,
         });
 
         // 1b. Store individual question responses for diagnostic reporting
