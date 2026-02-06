@@ -180,34 +180,90 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                 />
             )}
 
-            {/* Top Bar - Progress & Settings */}
-            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    {/* Back button - only on mobile */}
+            {/* Top Bar - Progress & Settings (+ Navigation on Desktop) */}
+            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3">
+                {/* Mobile: Progress row */}
+                <div className="flex items-center justify-between md:hidden">
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => window.history.back()}
+                            className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
+                            aria-label="Go back"
+                        >
+                            <XIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
+                        </button>
+                        <div className="text-sm font-bold text-[var(--color-text-muted)]">
+                            {studiedCards.size} / {total} studied
+                        </div>
+                        <div className="h-2 w-24 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                                style={{ width: `${(studiedCards.size / total) * 100}%` }}
+                            />
+                        </div>
+                    </div>
                     <button
-                        onClick={() => window.history.back()}
-                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors md:hidden"
-                        aria-label="Go back"
+                        onClick={() => setShowSettings(!showSettings)}
+                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
+                        aria-label="Settings"
                     >
-                        <XIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
+                        <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
                     </button>
-                    <div className="text-sm font-bold text-[var(--color-text-muted)]">
-                        {studiedCards.size} / {total} studied
-                    </div>
-                    <div className="h-2 w-24 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
-                            style={{ width: `${(studiedCards.size / total) * 100}%` }}
-                        />
-                    </div>
                 </div>
-                <button
-                    onClick={() => setShowSettings(!showSettings)}
-                    className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
-                    aria-label="Settings"
-                >
-                    <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
-                </button>
+
+                {/* Desktop: Navigation + Progress + Settings in one row */}
+                <div className="hidden md:flex items-center justify-between gap-4">
+                    {/* Left: Prev button */}
+                    <button
+                        onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                        className="p-3 rounded-xl border-2 border-[var(--color-primary)]/30 bg-white hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                        aria-label="Previous card"
+                    >
+                        <ChevronLeftIcon className="w-5 h-5" />
+                    </button>
+
+                    {/* Center: Flip button */}
+                    <button
+                        onClick={(e) => { e.stopPropagation(); handleFlip(); }}
+                        className="py-3 px-10 rounded-full bg-white border-2 border-[var(--color-border)] text-[var(--color-text)] font-bold shadow-sm hover:shadow-md transition-[box-shadow,transform] text-base active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                    >
+                        {isFlipped ? "Back" : "Flip"}
+                    </button>
+
+                    {/* Right: Next button */}
+                    <button
+                        onClick={(e) => { e.stopPropagation(); goNext(); }}
+                        className="p-3 rounded-xl border-2 border-[var(--color-border)] bg-white hover:bg-[var(--color-bg-light)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                        aria-label="Next card"
+                    >
+                        <ChevronRightIcon className="w-5 h-5" />
+                    </button>
+
+                    {/* Spacer */}
+                    <div className="flex-1" />
+
+                    {/* Progress */}
+                    <div className="flex items-center gap-2">
+                        <div className="text-sm font-bold text-[var(--color-text-muted)]">
+                            {studiedCards.size} / {total} studied
+                        </div>
+                        <div className="h-2 w-32 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                                style={{ width: `${(studiedCards.size / total) * 100}%` }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Settings */}
+                    <button
+                        onClick={() => setShowSettings(!showSettings)}
+                        className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
+                        aria-label="Settings"
+                    >
+                        <SettingsIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
+                    </button>
+                </div>
             </div>
 
             {/* Settings Panel - Collapsible */}
@@ -289,8 +345,8 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                 </div>
             </div>
 
-            {/* Bottom Navigation - Large touch targets */}
-            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-4 flex items-center justify-center gap-4">
+            {/* Bottom Navigation - Large touch targets (Mobile only) */}
+            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-4 flex items-center justify-center gap-4 md:hidden">
                 <button
                     onClick={(e) => { e.stopPropagation(); goPrev(); }}
                     className="p-4 rounded-full bg-[var(--color-bg-light)] hover:bg-[var(--color-border)] text-[var(--color-text)] transition-[background-color,transform] active:scale-95 min-h-[56px] min-w-[56px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
