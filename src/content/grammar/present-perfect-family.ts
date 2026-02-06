@@ -1477,165 +1477,232 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
     ],
     miniQuiz: [
-        // Concepts & Usage (1-5)
         {
-            id: "fq-1",
-            question: "Why do we use Present Perfect Continuous here: 'I have been cooking all morning.'",
+            id: "quiz-1",
+            question: "Choose the sentence that focuses on a completed result.",
             options: [
-                { value: "a", label: "To show the kitchen is messy." },
-                { value: "b", label: "To emphasize the duration (how long)." },
-                { value: "c", label: "To show the food is ready." },
+                { value: "a", label: "I have been cleaning the kitchen all morning." },
+                { value: "b", label: "I have cleaned the kitchen." },
+                { value: "c", label: "I cleaned the kitchen yesterday." },
             ],
             correctAnswer: "b",
-            explanation: "Focus on 'all morning' (duration) takes Continuous.",
+            explanation: "Present Perfect Simple focuses on a completed action with a result now.",
+            skillTag: "result-completed-action",
+            difficulty: "easy",
         },
         {
-            id: "fq-2",
-            question: "Why do we use Present Perfect Simple here: 'I have answered 20 emails.'",
+            id: "quiz-2",
+            question: "Which sentence correctly uses Present Perfect Continuous?",
             options: [
-                { value: "a", label: "To emphasize the quantity/result." },
-                { value: "b", label: "To show I am tired." },
-                { value: "c", label: "To show it took a long time." },
+                { value: "a", label: "She has worked here since 2020." },
+                { value: "b", label: "She has been working here since 2020." },
+                { value: "c", label: "She worked here since 2020." },
+            ],
+            correctAnswer: "b",
+            explanation: "Present Perfect Continuous emphasizes duration from the past to now.",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-3",
+            question: "Fill in the blank: \"I ___ three emails this morning.\"",
+            options: [
+                { value: "a", label: "have been writing" },
+                { value: "b", label: "have written" },
+                { value: "c", label: "wrote" },
+            ],
+            correctAnswer: "b",
+            explanation: "When you can count completed actions, use Present Perfect Simple.",
+            skillTag: "result-count-how-many",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-4",
+            question: "Which sentence talks about life experience?",
+            options: [
+                { value: "a", label: "I have been traveling for two weeks." },
+                { value: "b", label: "I have traveled to Mexico twice." },
+                { value: "c", label: "I traveled to Mexico last year." },
+            ],
+            correctAnswer: "b",
+            explanation: "Life experience uses Present Perfect Simple with ever/never or counts.",
+            skillTag: "result-life-experience-ever-never",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-5",
+            question: "Choose the correct sentence.",
+            options: [
+                { value: "a", label: "I have been knowing her for years." },
+                { value: "b", label: "I have known her for years." },
+                { value: "c", label: "I knew her for years." },
+            ],
+            correctAnswer: "b",
+            explanation: "State verbs like 'know' do not use continuous forms.",
+            skillTag: "error-stative-verb-continuous",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-6",
+            question: "Which sentence explains visible evidence?",
+            options: [
+                { value: "a", label: "I have cooked dinner." },
+                { value: "b", label: "I have been cooking all afternoon." },
+                { value: "c", label: "I cooked dinner at 6." },
+            ],
+            correctAnswer: "b",
+            explanation: "Present Perfect Continuous explains current evidence or effects.",
+            skillTag: "duration-recent-activity-evidence",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question: "Fill in the blank: \"She ___ just finished her homework.\"",
+            options: [
+                { value: "a", label: "has been" },
+                { value: "b", label: "has" },
+                { value: "c", label: "is" },
+            ],
+            correctAnswer: "b",
+            explanation: "Words like 'just' go with Present Perfect Simple.",
+            skillTag: "result-recent-completion-just-already-yet",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-8",
+            question: "Which sentence is incorrect?",
+            options: [
+                { value: "a", label: "I have been reading for two hours." },
+                { value: "b", label: "I have read three books this month." },
+                { value: "c", label: "I have been reading three books this month." },
+            ],
+            correctAnswer: "c",
+            explanation: "Counting completed items requires Present Perfect Simple, not continuous.",
+            skillTag: "error-count-with-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-9",
+            question: "Choose the sentence that emphasizes time, not result.",
+            options: [
+                { value: "a", label: "I have written the report." },
+                { value: "b", label: "I have been writing the report all day." },
+                { value: "c", label: "I wrote the report yesterday." },
+            ],
+            correctAnswer: "b",
+            explanation: "Continuous focuses on duration or activity, not completion.",
+            skillTag: "contrast-result-vs-duration",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence is NOT correct?",
+            options: [
+                { value: "a", label: "I have seen her yesterday." },
+                { value: "b", label: "I saw her yesterday." },
+                { value: "c", label: "I have seen her before." },
             ],
             correctAnswer: "a",
-            explanation: "Focus on the number/result (20 emails) takes Simple.",
+            explanation: "Specific past time expressions require Past Simple, not Present Perfect.",
+            skillTag: "error-specific-past-time",
+            difficulty: "easy",
         },
         {
-            id: "fq-3",
-            question: "Which question asks about DURATION?",
+            id: "quiz-11",
+            question: "Which question asks about duration?",
             options: [
-                { value: "a", label: "How much have you done?" },
-                { value: "b", label: "How long have you been doing it?" },
-                { value: "c", label: "What have you done?" },
+                { value: "a", label: "How many emails have you written?" },
+                { value: "b", label: "Have you finished your work?" },
+                { value: "c", label: "How long have you been working?" },
             ],
-            correctAnswer: "b",
-            explanation: "'How long' is the key question word for duration/continuous forms.",
+            correctAnswer: "c",
+            explanation: "How long signals duration and Present Perfect Continuous.",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
         },
         {
-            id: "fq-4",
-            question: "Which form suggests the action might NOT be finished?",
+            id: "quiz-12",
+            question: "Choose the better answer: \"Why are you tired?\"",
             options: [
-                { value: "a", label: "Present Perfect Simple" },
-                { value: "b", label: "Present Perfect Continuous" },
+                { value: "a", label: "I have finished my homework." },
+                { value: "b", label: "I have been doing homework all night." },
+                { value: "c", label: "I did homework." },
             ],
             correctAnswer: "b",
-            explanation: "Continuous suggests the activity is ongoing or just stopped, but the task might not be complete.",
+            explanation: "Present Perfect Continuous explains a current condition.",
+            skillTag: "duration-ongoing-temporary",
+            difficulty: "medium",
         },
         {
-            id: "fq-5",
-            question: "What is the rule for State Verbs (like 'know', 'believe')?",
+            id: "quiz-13",
+            question: "Which sentence focuses on quantity?",
             options: [
-                { value: "a", label: "Always use Continuous" },
-                { value: "b", label: "Always use Simple" },
-                { value: "c", label: "Use both equally" },
+                { value: "a", label: "She has been calling all morning." },
+                { value: "b", label: "She has called five times." },
+                { value: "c", label: "She called this morning." },
             ],
             correctAnswer: "b",
-            explanation: "State verbs describe a state, not an action, so they take Simple forms (I have known, not I have been knowing).",
+            explanation: "Counting actions uses Present Perfect Simple.",
+            skillTag: "result-count-how-many",
+            difficulty: "easy",
         },
+        {
+            id: "quiz-14",
+            question: "Choose the sentence that sounds natural.",
+            options: [
+                { value: "a", label: "I have been owning this car for years." },
+                { value: "b", label: "I have owned this car for years." },
+                { value: "c", label: "I owned this car for years." },
+            ],
+            correctAnswer: "b",
+            explanation: "State verbs like 'own' stay in the simple form.",
+            skillTag: "result-state-verb-duration",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence best explains the difference in meaning?",
+            options: [
+                { value: "a", label: "I have written emails. / I have been writing emails." },
+                { value: "b", label: "I wrote emails. / I have written emails." },
+                { value: "c", label: "I am writing emails. / I have written emails." },
+            ],
+            correctAnswer: "a",
+            explanation: "Simple focuses on result, continuous focuses on activity or duration.",
+            skillTag: "contrast-simple-vs-continuous-meaning",
+            difficulty: "medium",
+        },
+    ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Present Perfect Family Mini Quiz
 
-        // Sentence Completion (6-10)
-        {
-            id: "fq-6",
-            question: "Choose the correct form: 'I ___ three cups of coffee today.'",
-            options: [
-                { value: "a", label: "have been drinking" },
-                { value: "b", label: "have drunk" },
-            ],
-            correctAnswer: "b",
-            explanation: "Quantity (three cups) = Simple.",
-        },
-        {
-            id: "fq-7",
-            question: "Choose the correct form: 'Look at the ground! It ___.'",
-            options: [
-                { value: "a", label: "has rained" },
-                { value: "b", label: "has been raining" },
-            ],
-            correctAnswer: "b",
-            explanation: "Evidence of recent activity (wet ground, but maybe stopped raining now) = Continuous.",
-        },
-        {
-            id: "fq-8",
-            question: "Choose the correct form: 'I ___ for you for 45 minutes!'",
-            options: [
-                { value: "a", label: "have waited" },
-                { value: "b", label: "have been waiting" },
-            ],
-            correctAnswer: "b",
-            explanation: "Emphasis on duration (45 minutes) = Continuous.",
-        },
-        {
-            id: "fq-9",
-            question: "Choose the correct form: 'She ___ her keys. She can't open the door.'",
-            options: [
-                { value: "a", label: "has lost" },
-                { value: "b", label: "has been losing" },
-            ],
-            correctAnswer: "a",
-            explanation: "Result (lost keys = locked out) = Simple.",
-        },
-        {
-            id: "fq-10",
-            question: "Choose the correct form: 'We ___ each other since childhood.'",
-            options: [
-                { value: "a", label: "have been knowing" },
-                { value: "b", label: "have known" },
-            ],
-            correctAnswer: "b",
-            explanation: "State verb 'know' = Simple.",
-        },
+    Result-focused issues:
+    - result-completed-action
+    - result-count-how-many
+    - result-life-experience-ever-never
+    - result-recent-completion-just-already-yet
+    - result-state-verb-duration
 
-        // Forms and Negatives (11-15)
-        {
-            id: "fq-11",
-            question: "Is this correct? ' I haven't been finishing my lunch yet.'",
-            options: [
-                { value: "a", label: "Yes" },
-                { value: "b", label: "No" },
-            ],
-            correctAnswer: "b",
-            explanation: "No. 'Finish' is a completion event. We say 'I haven't finished' (Simple).",
-        },
-        {
-            id: "fq-12",
-            question: "Which negative emphasizes 'lack of recent activity'?",
-            options: [
-                { value: "a", label: "I haven't practiced." },
-                { value: "b", label: "I haven't been practicing." },
-            ],
-            correctAnswer: "b",
-            explanation: "Continuous negative ('haven't been practicing') emphasizes how you've been spending your time lately.",
-        },
-        {
-            id: "fq-13",
-            question: "Make it a question: 'You / cry / ?' (Evidence: red eyes)",
-            options: [
-                { value: "a", label: "Have you cried?" },
-                { value: "b", label: "Have you been crying?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Evidence of recent activity (red eyes) = Continuous question.",
-        },
-         {
-            id: "fq-14",
-            question: "Make it a question: 'How many times / you / visit / New York / ?'",
-            options: [
-                { value: "a", label: "How many times have you visited New York?" },
-                { value: "b", label: "How many times have you been visiting New York?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Frequency/Quantity (how many times) = Simple question.",
-        },
-        {
-            id: "fq-15",
-            question: "Choose the best summary of the Difference:",
-            options: [
-                { value: "a", label: "Simple is for the past, Continuous is for the present." },
-                { value: "b", label: "Simple is for Completed Result/Count; Continuous is for Activity Duration." },
-                { value: "c", label: "There is no difference." },
-            ],
-            correctAnswer: "b",
-            explanation: "This is the core rule of the Present Perfect Family.",
-        },
-    ]
+    → If weak: review completion vs counting, and remind students that state verbs stay simple.
+
+    Duration-focused issues:
+    - duration-for-since-how-long
+    - duration-recent-activity-evidence
+    - duration-ongoing-temporary
+
+    → If weak: revisit for/since, visible evidence, and explaining current conditions.
+
+    Contrast issues:
+    - contrast-result-vs-duration
+    - contrast-simple-vs-continuous-meaning
+
+    → If weak: re-teach the guiding question: “Do I care about the result or the time?”
+
+    Common error patterns:
+    - error-stative-verb-continuous
+    - error-count-with-continuous
+    - error-specific-past-time
+
+    → If weak: do quick reset drills with stative verbs, counting phrases, and past time markers.
+    */
 };

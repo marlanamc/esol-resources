@@ -814,7 +814,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
         },
     ],
 
-    // Mini Quiz
+    // Mini Quiz (15 questions)
     miniQuiz: [
         {
             id: "quiz-1",
@@ -826,6 +826,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             ],
             correctAnswer: "c",
             explanation: "'Cheap' is a short adjective (1 syllable), so use -est: the cheapest.",
+            skillTag: "superlative-short-adjective-est",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -836,7 +838,10 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "few" },
             ],
             correctAnswer: "b",
-            explanation: "'Experience' is uncountable, so use 'much.' You can't say 'one experience' in this context.",
+            explanation:
+                "'Experience' is uncountable, so use 'much.' You can't say 'one experience' in this meaning.",
+            skillTag: "quantifier-much-uncount-experience",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -848,6 +853,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Hours' are countable (1 hour, 2 hours), so use 'fewer' for comparisons.",
+            skillTag: "quantifier-fewer-count-hours",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -858,29 +865,40 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "less" },
             ],
             correctAnswer: "b",
-            explanation: "'Time' is uncountable, and we're not comparing, so 'little' is correct (very little = almost none).",
+            explanation:
+                "'Time' is uncountable, and we are not comparing, so 'little' is correct (very little = almost none).",
+            skillTag: "quantifier-little-uncount-time-negative",
+            difficulty: "medium",
         },
         {
             id: "quiz-5",
-            question: "Which sentence correctly uses superlatives AND quantifiers? 'Of all the options, this apartment has...'",
+            question:
+                "Which sentence correctly uses superlatives AND quantifiers? 'Of all the options, this apartment has...'",
             options: [
                 { value: "a", label: "the most space and the fewer problems." },
                 { value: "b", label: "the most space and the fewest problems." },
                 { value: "c", label: "the much space and the least problems." },
             ],
             correctAnswer: "b",
-            explanation: "'The most space' (superlative + uncountable) and 'the fewest problems' (superlative + count) are both correct.",
+            explanation:
+                "'The most space' (superlative + uncountable) and 'the fewest problems' (superlative + countable) are both correct.",
+            skillTag: "superlative-most-space-fewest-problems",
+            difficulty: "medium",
         },
         {
             id: "quiz-6",
-            question: "Complete the sentence: 'I have ___ friends here, so I'm happy.' (meaning: I do have some friends)",
+            question:
+                "Complete the sentence: 'I have ___ friends here, so I'm happy.' (meaning: I do have some friends)",
             options: [
                 { value: "a", label: "few" },
                 { value: "b", label: "a few" },
                 { value: "c", label: "little" },
             ],
             correctAnswer: "b",
-            explanation: "'A few' has a positive meaning (some friends = good). 'Few' without 'a' means almost none (negative).",
+            explanation:
+                "'A few' has a positive meaning (some friends = good). 'Few' without 'a' means almost none (negative).",
+            skillTag: "quantifier-a-few-positive-friends",
+            difficulty: "medium",
         },
         {
             id: "quiz-7",
@@ -891,29 +909,40 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "This job requires little experience than that one." },
             ],
             correctAnswer: "a",
-            explanation: "'Experience' is uncountable, so use 'less' for comparisons. 'Fewer' is for countable nouns, and 'little' is not used for comparisons.",
+            explanation:
+                "'Experience' is uncountable, so use 'less' for comparisons. 'Fewer' is for countable nouns, and 'little' is not used with 'than' in this way.",
+            skillTag: "quantifier-less-uncount-experience-comparison",
+            difficulty: "medium",
         },
         {
             id: "quiz-8",
-            question: "What's the superlative form? 'Of all the apartments I saw, this one was ___ (expensive).'",
+            question:
+                "What's the superlative form? 'Of all the apartments I saw, this one was ___ (expensive).'",
             options: [
                 { value: "a", label: "the expensivest" },
                 { value: "b", label: "the most expensive" },
                 { value: "c", label: "the more expensive" },
             ],
             correctAnswer: "b",
-            explanation: "'Expensive' is a long adjective (3+ syllables), so use 'the most' + adjective. Never use -est with long adjectives.",
+            explanation:
+                "'Expensive' is a long adjective (3+ syllables), so use 'the most' + adjective. Never use -est with long adjectives.",
+            skillTag: "superlative-long-adjective-most",
+            difficulty: "medium",
         },
         {
             id: "quiz-9",
-            question: "Complete: 'There are very ___ good apartments available right now.' (meaning: almost none, negative)",
+            question:
+                "Complete: 'There are very ___ good apartments available right now.' (meaning: almost none, negative)",
             options: [
                 { value: "a", label: "few" },
                 { value: "b", label: "a few" },
                 { value: "c", label: "little" },
             ],
             correctAnswer: "a",
-            explanation: "'Few' (without 'a') means almost none (negative). 'A few' would mean some (positive), and 'little' is for uncountable nouns.",
+            explanation:
+                "'Few' (without 'a') means almost none (negative). 'A few' would mean some (positive), and 'little' is for uncountable nouns.",
+            skillTag: "quantifier-few-negative-apartments",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -924,7 +953,10 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "This job offers the most vacation days and requires the fewest experience." },
             ],
             correctAnswer: "a",
-            explanation: "'The most vacation days' (countable noun) and 'the least experience' (uncountable noun) are both correct superlatives. 'Less' and 'fewest' are wrong here.",
+            explanation:
+                "'The most vacation days' (countable noun) and 'the least experience' (uncountable noun) are both correct superlatives.",
+            skillTag: "superlative-most-least-jobs",
+            difficulty: "medium",
         },
         {
             id: "quiz-11",
@@ -935,18 +967,25 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "the best" },
             ],
             correctAnswer: "c",
-            explanation: "'Good' is irregular. The superlative is 'the best,' not 'the goodest' or 'the most good.'",
+            explanation:
+                "'Good' is irregular. The superlative is 'the best,' not 'the goodest' or 'the most good.'",
+            skillTag: "superlative-irregular-good-best",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
-            question: "Complete: 'I need ___ help with this project.' (meaning: some help, positive)",
+            question:
+                "Complete: 'I need ___ help with this project.' (meaning: some help, positive)",
             options: [
                 { value: "a", label: "little" },
                 { value: "b", label: "a little" },
                 { value: "c", label: "few" },
             ],
             correctAnswer: "b",
-            explanation: "'A little' means some (positive). 'Little' without 'a' means almost none (negative). 'Few' is for countable nouns.",
+            explanation:
+                "'A little' means some (positive). 'Little' without 'a' means almost none (negative). 'Few' is for countable nouns.",
+            skillTag: "quantifier-a-little-positive-help",
+            difficulty: "easy",
         },
         {
             id: "quiz-13",
@@ -957,29 +996,114 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 { value: "c", label: "fewer" },
             ],
             correctAnswer: "b",
-            explanation: "'Crime' is typically uncountable (you don't say 'one crime, two crimes' in this context), so use 'the least.' 'Fewer' is for comparisons, not superlatives.",
+            explanation:
+                "'Crime' is typically uncountable in this context, so use 'the least.' 'Fewer' and 'the fewest' are used with countable nouns.",
+            skillTag: "superlative-least-uncount-crime",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
-            question: "What's wrong with this sentence? 'This job has less benefits than my last one.'",
+            question:
+                "What's wrong with this sentence? 'This job has less benefits than my last one.'",
             options: [
                 { value: "a", label: "Nothing - it's correct" },
                 { value: "b", label: "Should be 'fewer benefits' (benefits are countable)" },
                 { value: "c", label: "Should be 'little benefits' (benefits are uncountable)" },
             ],
             correctAnswer: "b",
-            explanation: "'Benefits' are countable (1 benefit, 2 benefits), so use 'fewer,' not 'less.' This is a very common mistake!",
+            explanation:
+                "'Benefits' are countable (1 benefit, 2 benefits), so use 'fewer,' not 'less.' This is a very common mistake.",
+            skillTag: "fewer-vs-less-benefits-count",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
-            question: "Complete: 'I have ___ patience for rude customers.' (meaning: almost none, negative)",
+            question:
+                "Complete: 'I have ___ patience for rude customers.' (meaning: almost none, negative)",
             options: [
                 { value: "a", label: "few" },
                 { value: "b", label: "a few" },
                 { value: "c", label: "little" },
             ],
             correctAnswer: "c",
-            explanation: "'Patience' is uncountable, and 'little' (without 'a') means almost none (negative). 'Few' is for countable nouns.",
+            explanation:
+                "'Patience' is uncountable, and 'little' (without 'a') means almost none (negative). 'Few' is for countable nouns.",
+            skillTag: "quantifier-little-negative-patience",
+            difficulty: "medium",
         },
     ],
+
+    /*
+    TEACHER DIAGNOSTIC NOTES – Superlatives & Quantifiers Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Form superlatives correctly with short adjectives (-est), long adjectives (most/least), and irregular adjectives (good → best).
+    - Distinguish countable vs uncountable nouns and choose the correct quantifiers (many/much, few/little, fewer/less).
+    - Use a few vs few and a little vs little to show positive vs negative meaning.
+    - Combine superlatives and quantifiers in real-life situations (jobs, apartments, neighborhoods).
+
+    Skill tags:
+
+    Superlatives
+    - superlative-short-adjective-est
+    - superlative-long-adjective-most
+    - superlative-irregular-good-best
+    - superlative-most-space-fewest-problems
+    - superlative-most-least-jobs
+    - superlative-least-uncount-crime
+
+    Quantifiers – count vs uncountable
+    - quantifier-much-uncount-experience
+    - quantifier-fewer-count-hours
+    - quantifier-little-uncount-time-negative
+    - quantifier-few-negative-apartments
+    - quantifier-a-few-positive-friends
+    - quantifier-a-little-positive-help
+    - quantifier-little-negative-patience
+    - quantifier-less-uncount-experience-comparison
+    - fewer-vs-less-benefits-count
+
+    How to read the diagnostics:
+    - If superlative tags are weak (superlative-short-adjective-est, superlative-long-adjective-most, superlative-irregular-good-best, superlative-most-space-fewest-problems, superlative-most-least-jobs, superlative-least-uncount-crime) →
+      Rebuild the superlative chart:
+      • Short adjectives (1 syllable): the + adj + -est → the cheapest, the busiest.
+      • Long adjectives (2+ syllables): the most/least + adj → the most expensive, the least crowded.
+      • Irregular: good → the best, bad → the worst.
+      Practice with real examples from housing and jobs: cheapest apartment, most experience, least traffic, most vacation days.
+
+    - If basic quantifier tags are weak (quantifier-much-uncount-experience, quantifier-fewer-count-hours, quantifier-little-uncount-time-negative, quantifier-less-uncount-experience-comparison, fewer-vs-less-benefits-count) →
+      Go back to countable vs uncountable:
+      • Countable: use many/few/fewer (jobs, hours, benefits).
+      • Uncountable: use much/little/less (money, time, experience, patience).
+      Use a T-chart on the board with real nouns from students' lives (jobs, hours, rent, traffic) and sort them together.
+
+    - If a few vs few or a little vs little tags are weak (quantifier-a-few-positive-friends, quantifier-few-negative-apartments, quantifier-a-little-positive-help, quantifier-little-negative-patience) →
+      Contrast positive vs negative meaning:
+      • a few / a little = some (enough, positive).
+      • few / little = almost none (not enough, negative).
+      Have students write pairs:
+      • I have a few friends here. (positive)
+      • I have few friends here. (negative)
+      • I have a little time. (positive)
+      • I have little time. (negative)
+
+    - If combined superlative + quantifier tags are weak (superlative-most-space-fewest-problems, superlative-most-least-jobs, superlative-least-uncount-crime) →
+      Use comparison tables:
+      • Compare 3 job offers (pay, hours, vacation, experience).
+      • Compare 3 apartments (rooms, rent, problems, space).
+      Ask students to write sentences using:
+      • the most + count/uncount (the most vacation days, the most space).
+      • the least + uncount (the least experience, the least crime).
+      • the fewest + count (the fewest problems, the fewest bedrooms).
+
+    Suggested use:
+    - Use this mini quiz after students have:
+      • Reviewed superlative formation (short/long/irregular).
+      • Practiced count vs uncountable nouns.
+      • Practiced many/much, few/little, fewer/less, most/least.
+    - At the class level:
+      • If superlatives are red, spend more time on short vs long adjective patterns with real housing and job examples.
+      • If quantifiers are red, slow down and do quick daily warm ups sorting nouns into countable/uncountable, then choose many/much/few/little/fewer/less.
+      • If the positive vs negative forms (a few vs few, a little vs little) are red, use simple feelings-based examples (lonely, rushed, happy, relaxed) to make the meaning contrast clear.
+    */
 };

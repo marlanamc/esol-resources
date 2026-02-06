@@ -1242,175 +1242,238 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
     // Mini Quiz: 15 Questions
     // -------------------------------------------------------------------------
     miniQuiz: [
-        // Concepts & Usage (1-5)
         {
-            id: "fpf-q1",
-            question: "When do we use Future Perfect Simple?",
+            id: "quiz-1",
+            question: "Which sentence focuses on a goal completed by a deadline?",
             options: [
-                { value: "a", label: "To show how long something will have been happening" },
-                { value: "b", label: "To show what will be COMPLETED by a future deadline" },
-                { value: "c", label: "To describe what is happening now" },
+                { value: "a", label: "By Friday, I will have been working on the report all day." },
+                { value: "b", label: "By Friday, I will have finished the report." },
+                { value: "c", label: "On Friday, I will finish the report." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect Simple shows completion by a deadline - looking back from a future point at what will be done.",
+            explanation: "Future Perfect Simple (will have + past participle) focuses on completion by a future deadline.",
+            skillTag: "result-future-completed-by-deadline",
+            difficulty: "easy",
         },
         {
-            id: "fpf-q2",
-            question: "When do we use Future Perfect Continuous?",
+            id: "quiz-2",
+            question: "Which sentence emphasizes how long the action will have been happening by a future time?",
             options: [
-                { value: "a", label: "To show DURATION up to a future point" },
-                { value: "b", label: "To count completed actions" },
-                { value: "c", label: "To describe past events" },
+                { value: "a", label: "By June, she will have finished her degree." },
+                { value: "b", label: "By June, she will have been studying here for four years." },
+                { value: "c", label: "In June, she will study for her exams." },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Perfect Continuous (will have been + -ing) highlights duration up to a future point.",
+            skillTag: "duration-future-how-long-by-then",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-3",
+            question: "Fill in the blank: \"By this time tomorrow, we ___ the exam.\" (focus on completion)",
+            options: [
+                { value: "a", label: "will have finished" },
+                { value: "b", label: "will have been finishing" },
+                { value: "c", label: "will finish" },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect Continuous emphasizes how long something will have been happening by a future moment.",
+            explanation: "A completed exam by a specific future time uses Future Perfect Simple.",
+            skillTag: "result-future-by-deadline",
+            difficulty: "easy",
         },
         {
-            id: "fpf-q3",
-            question: "Which sentence talks about a WORK ANNIVERSARY?",
+            id: "quiz-4",
+            question: "Fill in the blank: \"By 8 pm, they ___ for six hours.\" (focus on how long)",
             options: [
-                { value: "a", label: "By December, I will have finished my project." },
-                { value: "b", label: "By December, I will have been working here for 5 years." },
+                { value: "a", label: "will have driven" },
+                { value: "b", label: "will have been driving" },
+                { value: "c", label: "will drive" },
             ],
             correctAnswer: "b",
-            explanation: "Work anniversaries focus on duration ('for 5 years'), so we use Continuous.",
+            explanation: "We are interested in the duration of driving, so Future Perfect Continuous is best.",
+            skillTag: "duration-future-ongoing-activity",
+            difficulty: "medium",
         },
         {
-            id: "fpf-q4",
-            question: "What time marker is REQUIRED with Future Perfect?",
+            id: "quiz-5",
+            question: "Which sentence uses the time marker \"by\" correctly with Future Perfect?",
             options: [
-                { value: "a", label: "yesterday" },
-                { value: "b", label: "by, before, or by the time" },
-                { value: "c", label: "now" },
+                { value: "a", label: "I will have finished next week." },
+                { value: "b", label: "I will have finished by next week." },
+                { value: "c", label: "I will have been finished next week." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect needs a deadline marker like 'by', 'before', or 'by the time' to show the future reference point.",
+            explanation: "Future Perfect normally needs a deadline marker such as \"by next week\".",
+            skillTag: "error-future-perfect-missing-by",
+            difficulty: "easy",
         },
         {
-            id: "fpf-q5",
-            question: "\"By graduation, I will have been studying English for 6 years.\" What's the focus?",
+            id: "quiz-6",
+            question: "Choose the most natural sentence for a duration milestone.",
             options: [
-                { value: "a", label: "The completion of English study" },
-                { value: "b", label: "The duration of English study (6 years)" },
-                { value: "c", label: "Starting to study English" },
+                { value: "a", label: "By 2030, we will live in this city for 20 years." },
+                { value: "b", label: "By 2030, we will have lived in this city for 20 years." },
+                { value: "c", label: "By 2030, we will have been living in this city for 20 years." },
             ],
-            correctAnswer: "b",
-            explanation: "\"For 6 years\" emphasizes duration, so we use Continuous to track the journey.",
+            correctAnswer: "c",
+            explanation: "For a duration milestone, Future Perfect Continuous is the clearest and most natural choice.",
+            skillTag: "contrast-future-perfect-vs-simple-future",
+            difficulty: "medium",
         },
-
-        // Sentence Completion (6-10)
         {
-            id: "fpf-q6",
-            question: "By next Friday, I ___ the report.",
+            id: "quiz-7",
+            question: "Fill in the blank: \"By the end of the year, I ___ 12 books.\" (focus on number of books)",
             options: [
-                { value: "a", label: "will have completed" },
-                { value: "b", label: "will complete" },
-                { value: "c", label: "have completed" },
+                { value: "a", label: "will have read" },
+                { value: "b", label: "will have been reading" },
+                { value: "c", label: "will read" },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect Simple (will have completed) shows the report will be done BY the deadline.",
+            explanation: "Counting completed achievements uses Future Perfect Simple.",
+            skillTag: "result-future-count-how-many",
+            difficulty: "easy",
         },
         {
-            id: "fpf-q7",
-            question: "By December, she ___ here for exactly 10 years.",
+            id: "quiz-8",
+            question: "Which sentence correctly describes a shared milestone goal?",
             options: [
-                { value: "a", label: "will work" },
+                { value: "a", label: "By our 10th anniversary, we will visit 15 countries." },
+                { value: "b", label: "By our 10th anniversary, we will have been visiting 15 countries." },
+                { value: "c", label: "By our 10th anniversary, we will have visited 15 countries." },
+            ],
+            correctAnswer: "c",
+            explanation: "The count of countries is a completed-goal focus, so Future Perfect Simple fits best.",
+            skillTag: "result-future-milestone",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "By next year, I will have been knowing him for 10 years." },
+                { value: "b", label: "By next year, I will have known him for 10 years." },
+                { value: "c", label: "By next year, I will know him for 10 years." },
+            ],
+            correctAnswer: "b",
+            explanation: "\"Know\" is a state verb, so we use Future Perfect Simple, not Continuous.",
+            skillTag: "error-future-continuous-stative-verb",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-10",
+            question: "Which pair shows a natural contrast between goal and duration?",
+            options: [
+                {
+                    value: "a",
+                    label: "By Friday, I will have finished the project. / By Friday, I will work on it for a week.",
+                },
+                {
+                    value: "b",
+                    label: "By Friday, I will have finished the project. / By Friday, I will have been working on it for a week.",
+                },
+                {
+                    value: "c",
+                    label: "By Friday, I will finish the project. / By Friday, I will have been working on it for a week.",
+                },
+            ],
+            correctAnswer: "b",
+            explanation: "The first sentence uses Future Perfect Simple for completion; the second uses Future Perfect Continuous for duration.",
+            skillTag: "contrast-future-goal-vs-duration",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-11",
+            question: "Fill in the blank: \"By 5 pm, I ___ all afternoon, so I'll be tired.\"",
+            options: [
+                { value: "a", label: "will have taught" },
+                { value: "b", label: "will have been teaching" },
+                { value: "c", label: "will teach" },
+            ],
+            correctAnswer: "b",
+            explanation: "We are explaining a future result (feeling tired) by focusing on the long activity.",
+            skillTag: "duration-future-ongoing-activity",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete the question: \"___ you ___ the course by June?\" (completion)",
+            options: [
+                { value: "a", label: "Will you have finished" },
+                { value: "b", label: "Will you have been finishing" },
+                { value: "c", label: "Will you finish" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Perfect Simple question form: Will + subject + have + past participle.",
+            skillTag: "form-future-perfect-question",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-13",
+            question: "Complete the question: \"How long ___ they ___ here by the time we arrive?\"",
+            options: [
+                { value: "a", label: "will they have worked" },
+                { value: "b", label: "will they have been working" },
+                { value: "c", label: "will they work" },
+            ],
+            correctAnswer: "b",
+            explanation: "\"How long\" questions about future duration usually use Future Perfect Continuous.",
+            skillTag: "form-future-perfect-continuous-question",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "When you will arrive, we will have eaten." },
+                { value: "b", label: "When you arrive, we will have eaten." },
+                { value: "c", label: "When you are arriving, we will have eaten." },
+            ],
+            correctAnswer: "b",
+            explanation: "Future time clauses use present forms (When you arrive), not \"will\".",
+            skillTag: "error-future-perfect-time-clause-will",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-15",
+            question: "Fill in the blank: \"By this time next year, I ___ at my new job for twelve months.\" (focus on how long)",
+            options: [
+                { value: "a", label: "will have worked" },
                 { value: "b", label: "will have been working" },
-                { value: "c", label: "has been working" },
+                { value: "c", label: "will work" },
             ],
             correctAnswer: "b",
-            explanation: "\"For 10 years\" emphasizes duration (work anniversary), so we use Continuous.",
-        },
-        {
-            id: "fpf-q8",
-            question: "By the time you arrive, the meeting ___.",
-            options: [
-                { value: "a", label: "will have started" },
-                { value: "b", label: "will start" },
-                { value: "c", label: "started" },
-            ],
-            correctAnswer: "a",
-            explanation: "\"By the time\" signals Future Perfect - the meeting will be in progress when you arrive.",
-        },
-        {
-            id: "fpf-q9",
-            question: "How many countries ___ you ___ by age 30?",
-            options: [
-                { value: "a", label: "will / have visited" },
-                { value: "b", label: "will / have been visiting" },
-                { value: "c", label: "did / visit" },
-            ],
-            correctAnswer: "a",
-            explanation: "Counting countries (how many) = Simple, not Continuous.",
-        },
-        {
-            id: "fpf-q10",
-            question: "By 6 PM, I ___ for 8 hours straight.",
-            options: [
-                { value: "a", label: "will work" },
-                { value: "b", label: "will have been working" },
-                { value: "c", label: "worked" },
-            ],
-            correctAnswer: "b",
-            explanation: "\"For 8 hours\" emphasizes the duration of working, so we use Continuous.",
-        },
-
-        // Form Accuracy (11-13)
-        {
-            id: "fpf-q11",
-            question: "What is the correct negative form of \"She will have finished\"?",
-            options: [
-                { value: "a", label: "She won't have finished" },
-                { value: "b", label: "She hasn't finished" },
-                { value: "c", label: "She didn't have finished" },
-            ],
-            correctAnswer: "a",
-            explanation: "Future Perfect negative: will not (won't) have + past participle.",
-        },
-        {
-            id: "fpf-q12",
-            question: "Which question form is correct?",
-            options: [
-                { value: "a", label: "Will you have been working here long?" },
-                { value: "b", label: "Have you will been working here long?" },
-                { value: "c", label: "Are you will have been working here long?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Question form: Will + subject + have been + verb-ing?",
-        },
-        {
-            id: "fpf-q13",
-            question: "Choose the correct structure for Future Perfect Continuous:",
-            options: [
-                { value: "a", label: "will have + past participle" },
-                { value: "b", label: "will have been + verb-ing" },
-                { value: "c", label: "have been + verb-ing" },
-            ],
-            correctAnswer: "b",
-            explanation: "Future Perfect Continuous: will have been + verb-ing (e.g., will have been working).",
-        },
-
-        // Error Identification (14-15)
-        {
-            id: "fpf-q14",
-            question: "Is this correct? \"I will have been finishing by Friday.\"",
-            options: [
-                { value: "a", label: "Yes, it's correct" },
-                { value: "b", label: "No - 'finish' is a completion verb, use Simple" },
-            ],
-            correctAnswer: "b",
-            explanation: "\"Finish\" is a completion verb. Correct: \"I will have finished by Friday.\"",
-        },
-        {
-            id: "fpf-q15",
-            question: "Choose the best summary of the Future Perfect Family:",
-            options: [
-                { value: "a", label: "Simple shows completion by deadline; Continuous shows duration up to that point" },
-                { value: "b", label: "Both forms are exactly the same" },
-                { value: "c", label: "Simple is for past; Continuous is for present" },
-            ],
-            correctAnswer: "a",
-            explanation: "This is the core distinction: Simple = goal achieved; Continuous = journey tracked.",
+            explanation: "The sentence highlights duration at a future reference point, so Future Perfect Continuous is best.",
+            skillTag: "duration-future-how-long-by-then",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Future Perfect Family Mini Quiz
+
+    Result / goal-focused skills:
+    - result-future-completed-by-deadline
+    - result-future-by-deadline
+    - result-future-count-how-many
+    - result-future-milestone
+
+    Duration-focused skills:
+    - duration-future-how-long-by-then
+    - duration-future-ongoing-activity
+    - form-future-perfect-continuous-question ("How long" questions)
+
+    Contrast skills:
+    - contrast-future-perfect-vs-simple-future
+    - contrast-future-goal-vs-duration
+
+    Common error patterns:
+    - error-future-perfect-missing-by (no clear deadline marker)
+    - error-future-perfect-time-clause-will (using "will" in time clauses)
+    - error-future-continuous-stative-verb (using continuous with state verbs like know, own)
+
+    Reteaching suggestions:
+    - If goal/result tags are weak → review the idea of looking back from a future deadline and the formula will have + past participle.
+    - If duration tags are weak → revisit for/how long questions and practice milestones (work, study, living) with will have been + -ing.
+    - If contrast tags are weak → use timelines to compare "completed by that time" vs "how long by that time" and ask: "Do I care about the goal or the duration?".
+    - If error tags are weak → do quick drills on adding "by" to deadlines, using present forms in time clauses (when, before, after), and avoiding continuous with state verbs.
+    */
 };

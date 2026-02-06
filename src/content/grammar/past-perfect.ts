@@ -1141,101 +1141,244 @@ export const pastPerfectContent: InteractiveGuideContent = {
 
     // Mini Quiz for comprehension
     miniQuiz: [
+        // 1. Sequence meaning
         {
             id: "quiz-1",
-            question: "When do we use Past Perfect?",
+            skillTag: "past-perfect-two-past-actions-sequence",
+            difficulty: "easy",
+            question: "Which sentence clearly shows which action happened first?",
             options: [
-                { value: "a", label: "For any past action" },
-                { value: "b", label: "To show which of TWO past actions happened FIRST" },
-                { value: "c", label: "For actions happening now" },
+                { value: "a", label: "When I arrived, they had finished dinner." },
+                { value: "b", label: "When I arrived, they finish dinner." },
+                { value: "c", label: "When I had arrived, they finished dinner." },
             ],
-            correctAnswer: "b",
-            explanation:
-                "Past Perfect is almost always used with TWO verbs to show which action happened first in the past.",
+            correctAnswer: "a",
+            explanation: "Past Perfect ('had finished') shows the first action. They finished dinner before I arrived.",
         },
+        // 2. First action identification
         {
             id: "quiz-2",
-            question: "What is the formula for Past Perfect?",
+            skillTag: "past-perfect-first-action-identification",
+            difficulty: "easy",
+            question: "In the sentence 'After the bell had rung, the students left the classroom,' which happened first?",
             options: [
-                { value: "a", label: "have/has + past participle" },
-                { value: "b", label: "had + past participle" },
-                { value: "c", label: "was/were + verb-ing" },
+                { value: "a", label: "The students left the classroom" },
+                { value: "b", label: "The bell rang" },
             ],
             correctAnswer: "b",
-            explanation:
-                "Past Perfect uses 'had' (not have/has) + past participle. Everyone uses 'had' regardless of the subject.",
+            explanation: "The bell rang (Past Perfect) first, then the students left.",
         },
+        // 3. Cause-effect
         {
             id: "quiz-3",
-            question: "In 'When I arrived, she had left,' which action happened first?",
+            skillTag: "past-perfect-cause-effect",
+            difficulty: "medium",
+            question: "Why was Maria tired? She was tired because she had worked all night.",
             options: [
-                { value: "a", label: "I arrived" },
-                { value: "b", label: "She left" },
-                { value: "c", label: "They happened at the same time" },
+                { value: "a", label: "She worked after she was tired." },
+                { value: "b", label: "She worked before she was tired." },
             ],
             correctAnswer: "b",
-            explanation:
-                "'Had left' uses Past Perfect, so it happened FIRST. She left before I arrived.",
+            explanation: "The Past Perfect ('had worked') shows the cause happened first.",
         },
+        // 4. Positive form
         {
             id: "quiz-4",
-            question: "What is the negative form of 'He had finished'?",
+            skillTag: "form-past-perfect-positive",
+            difficulty: "easy",
+            question: "Choose the correct Past Perfect form:",
             options: [
-                { value: "a", label: "He hadn't finished" },
-                { value: "b", label: "He hasn't finished" },
-                { value: "c", label: "He didn't finish" },
-            ],
-            correctAnswer: "a",
-            explanation:
-                "Past Perfect negative: had not (hadn't) + past participle.",
-        },
-        {
-            id: "quiz-5",
-            question: "Which words commonly signal Past Perfect?",
-            options: [
-                { value: "a", label: "before / after / when / by the time" },
-                { value: "b", label: "yesterday / last week / ago" },
-                { value: "c", label: "now / today / currently" },
-            ],
-            correctAnswer: "a",
-            explanation:
-                "Words like 'before,' 'after,' 'when,' and 'by the time' show sequence between two past actions.",
-        },
-        {
-            id: "quiz-6",
-            question: "Is this sentence correct? 'I had eaten lunch yesterday.'",
-            options: [
-                { value: "a", label: "Yes, it's correct" },
-                { value: "b", label: "No, Past Perfect needs TWO actions" },
-                { value: "c", label: "Yes, but only in formal writing" },
+                { value: "a", label: "She had ate breakfast before school." },
+                { value: "b", label: "She had eaten breakfast before school." },
+                { value: "c", label: "She have eaten breakfast before school." },
             ],
             correctAnswer: "b",
-            explanation:
-                "This sentence only has ONE past action ('ate lunch'). Past Perfect needs a second action to show sequence. Correct: 'I ate lunch yesterday.' OR 'I had eaten lunch before the meeting started.'",
+            explanation: "'Had + past participle' = 'had eaten'.",
         },
+        // 5. Negative form
         {
-            id: "quiz-7",
-            question: "How do you make a Past Perfect question?",
+            id: "quiz-5",
+            skillTag: "form-past-perfect-negative",
+            difficulty: "easy",
+            question: "Complete the sentence: When I arrived, they ___ (not leave) yet.",
             options: [
-                { value: "a", label: "Did + subject + verb" },
-                { value: "b", label: "Have/Has + subject + past participle" },
-                { value: "c", label: "Had + subject + past participle" },
-            ],
-            correctAnswer: "c",
-            explanation:
-                "Past Perfect questions: Had + subject + past participle?",
-        },
-        {
-            id: "quiz-8",
-            question: "Choose the correct sentence:",
-            options: [
-                { value: "a", label: "She had finished her homework before she went to bed." },
-                { value: "b", label: "She had finished her homework before she had gone to bed." },
-                { value: "c", label: "She finished her homework before she had gone to bed." },
+                { value: "a", label: "hadn't left" },
+                { value: "b", label: "haven't left" },
+                { value: "c", label: "didn't left" },
             ],
             correctAnswer: "a",
-            explanation:
-                "FIRST action (finished homework) = Past Perfect. SECOND action (went to bed) = Past Simple. Both verbs cannot be Past Perfect—only the first action uses it!",
+            explanation: "Negative Past Perfect: hadn't + past participle.",
+        },
+        // 6. Question form
+        {
+            id: "quiz-6",
+            skillTag: "form-past-perfect-question",
+            difficulty: "easy",
+            question: "Which is a correct Past Perfect question?",
+            options: [
+                { value: "a", label: "Had you finished your homework before dinner?" },
+                { value: "b", label: "Did you had finished your homework before dinner?" },
+                { value: "c", label: "Have you finished your homework before dinner?" },
+            ],
+            correctAnswer: "a",
+            explanation: "Question form: Had + subject + past participle.",
+        },
+        // 7. Pattern: when
+        {
+            id: "quiz-7",
+            skillTag: "pattern-when-past-perfect",
+            difficulty: "easy",
+            question: "Which sentence uses 'when' with Past Perfect correctly?",
+            options: [
+                { value: "a", label: "When I had finished, I went home." },
+                { value: "b", label: "When I finished, I had went home." },
+                { value: "c", label: "When I had finish, I go home." },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Perfect: had finished (first), Past Simple: went (second).",
+        },
+        // 8. Pattern: before
+        {
+            id: "quiz-8",
+            skillTag: "pattern-before-past-perfect",
+            difficulty: "easy",
+            question: "Fill in the blank: She ___ (already eat) before she left for work.",
+            options: [
+                { value: "a", label: "had already eaten" },
+                { value: "b", label: "already had ate" },
+                { value: "c", label: "already ate" },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Perfect: had already eaten.",
+        },
+        // 9. Pattern: after
+        {
+            id: "quiz-9",
+            skillTag: "pattern-after-past-perfect",
+            difficulty: "easy",
+            question: "Choose the correct sentence:",
+            options: [
+                { value: "a", label: "After they had left, we locked the door." },
+                { value: "b", label: "After they leave, we had locked the door." },
+                { value: "c", label: "After they had leave, we locked the door." },
+            ],
+            correctAnswer: "a",
+            explanation: "After + Past Perfect (had left), then Past Simple (locked).",
+        },
+        // 10. Pattern: by the time
+        {
+            id: "quiz-10",
+            skillTag: "pattern-by-the-time-past-perfect",
+            difficulty: "easy",
+            question: "By the time I got to the station, the train ___ (already/leave).",
+            options: [
+                { value: "a", label: "already left" },
+                { value: "b", label: "had already left" },
+                { value: "c", label: "has already left" },
+            ],
+            correctAnswer: "b",
+            explanation: "By the time + Past Simple, Past Perfect for the earlier action.",
+        },
+        // 11. Error: overuse
+        {
+            id: "quiz-11",
+            skillTag: "error-past-perfect-overuse",
+            difficulty: "medium",
+            question: "Is this sentence correct? 'I had visited New York last year.'",
+            options: [
+                { value: "a", label: "Yes, it's correct" },
+                { value: "b", label: "No, Past Perfect is not needed for one action" },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Perfect is for TWO past actions. Use Past Simple: 'I visited New York last year.'",
+        },
+        // 12. Error: Past Simple instead of Past Perfect
+        {
+            id: "quiz-12",
+            skillTag: "error-past-simple-instead-of-past-perfect",
+            difficulty: "medium",
+            question: "Find the error: 'When I arrived at the airport, the plane left.'",
+            options: [
+                { value: "a", label: "The first action should be Past Perfect: 'the plane had left.'" },
+                { value: "b", label: "No error; the sentence is fine." },
+            ],
+            correctAnswer: "a",
+            explanation: "The plane left before I arrived, so use Past Perfect for the first action.",
+        },
+        // 13. Error: double Past Perfect
+        {
+            id: "quiz-13",
+            skillTag: "error-double-past-perfect",
+            difficulty: "medium",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "After she had finished her homework, she had gone to bed." },
+                { value: "b", label: "After she had finished her homework, she went to bed." },
+            ],
+            correctAnswer: "b",
+            explanation: "Only the first action uses Past Perfect; the second uses Past Simple.",
+        },
+        // 14. Contrast: Past Perfect vs Past Simple
+        {
+            id: "quiz-14",
+            skillTag: "contrast-past-perfect-vs-past-simple",
+            difficulty: "medium",
+            question: "Choose the best option: 'Before I moved to Boston, I ___ in Chicago.'",
+            options: [
+                { value: "a", label: "had lived" },
+                { value: "b", label: "lived" },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Perfect ('had lived') shows the action happened before the move.",
+        },
+        // 15. Meaning choice (sequence)
+        {
+            id: "quiz-15",
+            skillTag: "past-perfect-two-past-actions-sequence",
+            difficulty: "medium",
+            question: "Which sentence clearly explains the timeline?",
+            options: [
+                { value: "a", label: "He had eaten dinner before he watched TV." },
+                { value: "b", label: "He ate dinner before he had watched TV." },
+                { value: "c", label: "He was eating dinner before he watched TV." },
+            ],
+            correctAnswer: "a",
+            explanation: "The Past Perfect shows he finished eating before watching TV.",
         },
     ],
+
+/*
+TEACHER DIAGNOSTIC NOTES – Past Perfect Mini Quiz
+
+Meaning gaps:
+- past-perfect-two-past-actions-sequence
+- past-perfect-first-action-identification
+- past-perfect-cause-effect
+
+Form issues:
+- form-past-perfect-positive
+- form-past-perfect-negative
+- form-past-perfect-question
+
+Pattern confusion:
+- pattern-when-past-perfect
+- pattern-before-past-perfect
+- pattern-after-past-perfect
+- pattern-by-the-time-past-perfect
+
+Common errors:
+- error-past-perfect-overuse
+- error-past-simple-instead-of-past-perfect
+- error-double-past-perfect
+
+Contrast issues:
+- contrast-past-perfect-vs-past-simple
+
+Reteaching guidance:
+- If meaning tags are weak → re-teach the TWO-VERB RULE and force students to label FIRST vs SECOND actions.
+- If form tags are weak → drill had + past participle in positive, negative, and question forms.
+- If pattern tags are weak → practice sentence frames with when / before / after / by the time.
+- If overuse errors appear → reset rule: ONE past action = Past Simple.
+- If contrast is weak → timeline drills comparing single past events vs past sequences.
+*/
 };

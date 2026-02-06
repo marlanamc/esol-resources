@@ -666,6 +666,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       correctAnswer: "a",
       explanation:
         "After a preposition, you MUST use a gerund. Example: 'I'm interested in learning' (not 'in to learn').",
+      skillTag: "prep-plus-gerund-core-rule",
+      difficulty: "easy",
     },
     {
       id: "quiz-2",
@@ -678,6 +680,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       correctAnswer: "b",
       explanation:
         "'Enjoy' is always followed by a gerund, never an infinitive. Correct: 'I enjoy reading books.'",
+      skillTag: "verb-plus-gerund-enjoy-like-love",
+      difficulty: "easy",
     },
     {
       id: "quiz-3",
@@ -690,30 +694,36 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       correctAnswer: "b",
       explanation:
         "'Want' is always followed by an infinitive, never a gerund. Correct: 'I want to visit Japan.'",
+      skillTag: "verb-plus-infinitive-want-hope-plan",
+      difficulty: "easy",
     },
     {
       id: "quiz-4",
-      question: "When the verb is the subject, which form do you use?",
+      question: "When the verb is the subject, which form is more natural in modern English?",
       options: [
         { value: "a", label: "Gerund: 'Swimming is fun'" },
         { value: "b", label: "Infinitive: 'To swim is fun'" },
-        { value: "c", label: "Both are equally common" },
+        { value: "c", label: "Both are equally wrong" },
       ],
       correctAnswer: "a",
       explanation:
-        "When a verb is the subject, use the gerund. 'Swimming is fun' is much more natural than 'To swim is fun.'",
+        "When a verb is the subject, we usually use the gerund: 'Swimming is fun.' 'To swim is fun' is possible but sounds more formal or old‑fashioned.",
+      skillTag: "subject-gerund-choice",
+      difficulty: "easy",
     },
     {
       id: "quiz-5",
       question: "What's the difference: 'I stopped smoking' vs 'I stopped to smoke'?",
       options: [
-        { value: "a", label: "No difference - same meaning" },
+        { value: "a", label: "No difference – same meaning" },
         { value: "b", label: "'stopped smoking' = quit the habit, 'stopped to smoke' = paused to have a cigarette" },
-        { value: "c", label: "'stopped smoking' is wrong" },
+        { value: "c", label: "'stopped smoking' is wrong in English" },
       ],
       correctAnswer: "b",
       explanation:
-        "Stop + gerund = quit doing something. Stop + infinitive = pause one activity to do another. The meaning completely changes!",
+        "Stop + gerund = quit doing something. Stop + infinitive = pause one activity to do another. The meaning completely changes.",
+      skillTag: "special-stop-gerund-vs-infinitive",
+      difficulty: "medium",
     },
     {
       id: "quiz-6",
@@ -726,6 +736,8 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       correctAnswer: "c",
       explanation:
         "'For' is a preposition, so it must be followed by a gerund: 'Thank you for helping me.'",
+      skillTag: "prep-for-plus-gerund",
+      difficulty: "easy",
     },
     {
       id: "quiz-7",
@@ -737,11 +749,13 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "After an adjective (happy), use an infinitive: 'I'm happy to see you.'",
+        "After an adjective (happy), we use an infinitive: 'I'm happy to see you.'",
+      skillTag: "adjective-plus-infinitive-feelings",
+      difficulty: "easy",
     },
     {
       id: "quiz-8",
-      question: "Which is correct for past memory?",
+      question: "Which is correct for a past memory?",
       options: [
         { value: "a", label: "I remember to meet you at the party." },
         { value: "b", label: "I remember meeting you at the party." },
@@ -749,7 +763,9 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "Remember + gerund = recall a past event. 'I remember meeting you' means I have a memory of meeting you.",
+        "Remember + gerund = recall a past event. 'I remember meeting you' means you have a memory of that event.",
+      skillTag: "special-remember-gerund-past-memory",
+      difficulty: "medium",
     },
     {
       id: "quiz-9",
@@ -761,19 +777,163 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "'To' in 'look forward to' is a PREPOSITION, not an infinitive marker. After prepositions, always use gerund: 'I look forward to seeing you.'",
+        "'To' in 'look forward to' is a preposition, not an infinitive marker. After prepositions, always use a gerund: 'I look forward to seeing you.'",
+      skillTag: "phrase-look-forward-to-plus-gerund",
+      difficulty: "medium",
     },
     {
       id: "quiz-10",
-      question: "What determines whether to use gerund or infinitive?",
+      question: "What is the best strategy for choosing gerund or infinitive?",
       options: [
-        { value: "a", label: "Personal preference" },
-        { value: "b", label: "What comes BEFORE the verb (preposition, adjective, specific verbs, etc.)" },
-        { value: "c", label: "The meaning of the verb" },
+        { value: "a", label: "Use your favorite form" },
+        { value: "b", label: "Look at what comes BEFORE the verb (preposition, adjective, specific verbs, etc.)" },
+        { value: "c", label: "Always use gerunds with long verbs and infinitives with short verbs" },
       ],
       correctAnswer: "b",
       explanation:
-        "The KEY is to look at what comes BEFORE the verb. That tells you which form to use!",
+        "The key is to look at what comes BEFORE the verb. Prepositions, specific verbs, adjectives, and nouns usually decide gerund vs infinitive.",
+      skillTag: "meta-look-before-verb-strategy",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-11",
+      question: "Which sentence correctly follows 'adjective + preposition + gerund'?",
+      options: [
+        { value: "a", label: "She is good at to solve problems." },
+        { value: "b", label: "She is good at solving problems." },
+        { value: "c", label: "She is good to solving problems." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "After a preposition (at), we must use a gerund: 'good at solving problems.'",
+      skillTag: "adj-prep-plus-gerund",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-12",
+      question: "Which sentence is a correct example of noun + infinitive?",
+      options: [
+        { value: "a", label: "I have the ability speaking three languages." },
+        { value: "b", label: "I have the ability to speak three languages." },
+        { value: "c", label: "I have the ability speak three languages." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Certain nouns are followed by an infinitive: 'the ability to speak three languages.'",
+      skillTag: "noun-plus-infinitive-ability-chance-time",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-13",
+      question: "Which is correct?",
+      options: [
+        { value: "a", label: "I plan studying nursing next year." },
+        { value: "b", label: "I plan to study nursing next year." },
+        { value: "c", label: "I plan study nursing next year." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Plan' is followed by an infinitive: 'plan to study nursing next year.'",
+      skillTag: "verb-plus-infinitive-plan-decide-hope",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-14",
+      question: "Which sentence uses 'try' to show an experiment (see if it helps)?",
+      options: [
+        { value: "a", label: "I'll try to drink more water every day." },
+        { value: "b", label: "I'll try drinking more water to see if it helps." },
+        { value: "c", label: "I'll try drink more water." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Try + gerund is used for experiments (see if it helps). Try + infinitive is used for effort.",
+      skillTag: "special-try-gerund-vs-infinitive",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-15",
+      question: "Which is correct if you don’t want to forget an action?",
+      options: [
+        { value: "a", label: "Remember calling your mother tonight." },
+        { value: "b", label: "Remember to call your mother tonight." },
+        { value: "c", label: "Remember call your mother tonight." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Remember + infinitive is used for not forgetting to do something: 'Remember to call your mother tonight.'",
+      skillTag: "special-remember-infinitive-future-duty",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-16",
+      question: "Which sentence has a gerund as the subject?",
+      options: [
+        { value: "a", label: "To study late at night is hard for me." },
+        { value: "b", label: "Studying late at night is hard for me." },
+        { value: "c", label: "I study late at night." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Studying' is a gerund used as the subject of the sentence.",
+      skillTag: "subject-gerund-identification",
+      difficulty: "easy",
     },
   ],
+  /*
+  TEACHER DIAGNOSTIC NOTES – Gerunds & Infinitives Mini Quiz
+
+  This mini quiz checks whether students can:
+  - Apply the core rule: after a preposition → ALWAYS gerund.
+  - Recognize common verb + gerund and verb + infinitive patterns.
+  - Use subject = gerund naturally.
+  - Use adjective + infinitive and noun + infinitive patterns.
+  - Understand meaning changes with stop / remember / try.
+  - Use the strategy “look at what comes BEFORE the verb” to choose form.
+
+  Skill tags:
+
+  Core rule & strategy:
+  - prep-plus-gerund-core-rule
+  - meta-look-before-verb-strategy
+
+  Preposition + gerund patterns:
+  - prep-for-plus-gerund
+  - phrase-look-forward-to-plus-gerund
+  - adj-prep-plus-gerund
+
+  Verb + gerund patterns:
+  - verb-plus-gerund-enjoy-like-love
+  - special-stop-gerund-vs-infinitive
+  - special-remember-gerund-past-memory
+  - special-try-gerund-vs-infinitive
+
+  Verb + infinitive patterns:
+  - verb-plus-infinitive-want-hope-plan
+  - verb-plus-infinitive-plan-decide-hope
+  - special-remember-infinitive-future-duty
+
+  Adjective / noun + infinitive patterns:
+  - adjective-plus-infinitive-feelings
+  - noun-plus-infinitive-ability-chance-time
+
+  Subject = gerund:
+  - subject-gerund-choice
+  - subject-gerund-identification
+
+  How to read the diagnostics:
+  - If prep-plus-gerund tags are weak → Re-teach the golden rule: after a preposition, always -ing. Use color-coding to highlight the prepositions and circle the gerunds (in, at, about, for, without, before, after, to in “look forward to”).
+  - If verb-plus-gerund tags are weak → Focus on the high-frequency set (enjoy, like, love, finish, keep, avoid, consider, suggest, recommend). Build a verb wall where students add their own examples with gerunds.
+  - If verb-plus-infinitive tags are weak → Revisit the “goal and plan” verbs (want, hope, plan, decide, need, learn, agree, offer). Have students write 3 true sentences about their goals using these verbs + to + verb.
+  - If adjective/noun + infinitive tags are weak → Practice common frames: happy to…, ready to…, important to…, ability to…, time to…, chance to…. Use sentence stems your students can personalize (I’m happy to…, I don’t have time to…).
+  - If special stop/remember/try tags are weak → Re-teach using short contrast pairs on the board: stop smoking vs stop to smoke, remember meeting vs remember to meet, try drinking vs try to drink. Ask students which one is about PAST memory, which is about FUTURE duty, and which is about EXPERIMENT vs EFFORT.
+  - If subject-gerund tags are weak → Give pairs like “Cooking at home saves money” / “To cook at home saves money” and have students choose the more natural version. Emphasize that in modern English, gerunds are the normal choice for subjects.
+
+  Suggested use:
+  - Use this mini quiz after students have worked through the main patterns (subject = gerund, verb + gerund, preposition + gerund, adjective/noun/verb + infinitive, and the special-case verbs).
+  - Use class-level skillTag results to decide which pattern to revisit:
+    • Many errors on preposition tags → do more “preposition + -ing” drills.
+    • Many errors on verb group tags → slow down and sort VERB CARDS into “+ gerund” and “+ infinitive” piles together as a class.
+    • Many errors on special-case tags → spend a short focused day on stop / remember / try with timeline drawings.
+  */
 };

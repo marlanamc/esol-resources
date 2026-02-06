@@ -492,6 +492,8 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Future Perfect Continuous: will have been + verb-ing. The -ing form is required.",
+            skillTag: "form-future-perfect-continuous-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -503,6 +505,8 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Future Perfect Continuous = how long something will have been happening BY a future point.",
+            skillTag: "duration-future-how-long-by-then",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -514,6 +518,8 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Negative: won't have been + verb-ing. 'Have been' stays together.",
+            skillTag: "form-future-perfect-continuous-negative",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -524,7 +530,9 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "Describing your daily routine" },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect Continuous is perfect for milestones: 'By June, I will have been working here for 10 years.'",
+            explanation: "Future Perfect Continuous is perfect for milestones: \"By June, I will have been working here for 10 years.\"",
+            skillTag: "result-future-milestone-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -536,17 +544,21 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Future Perfect Continuous = will have been + verb-ing. It's the same for ALL subjects.",
+            skillTag: "form-future-perfect-continuous-structure",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
-            question: "Fill in: 'By the time she graduates, she ___ (study) for 4 years.'",
+            question: "Fill in: \"By the time she graduates, she ___ (study) for 4 years.\"",
             options: [
                 { value: "a", label: "will have been studying" },
                 { value: "b", label: "has been studying" },
                 { value: "c", label: "was studying" },
             ],
             correctAnswer: "a",
-            explanation: "'By the time she graduates' = future point. Use Future Perfect Continuous to show duration up to that point.",
+            explanation: "\"By the time she graduates\" = future point. Use Future Perfect Continuous to show duration up to that point.",
+            skillTag: "pattern-by-the-time-future-perfect-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
@@ -558,21 +570,25 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Question form: Will + subject + have been + verb-ing? 'Will' comes before the subject.",
+            skillTag: "form-future-perfect-continuous-question",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
-            question: "What does 'by' signal in Future Perfect Continuous?",
+            question: "What does \"by\" signal in Future Perfect (Continuous) sentences?",
             options: [
                 { value: "a", label: "A future deadline or point in time" },
                 { value: "b", label: "A present habit" },
                 { value: "c", label: "A past event" },
             ],
             correctAnswer: "a",
-            explanation: "'By' + future time = the deadline when you measure the duration. 'By June' = at that point.",
+            explanation: "\"By\" + future time = the deadline when you measure the duration (by June, by tomorrow, by 2028).",
+            skillTag: "signal-by-future-perfect",
+            difficulty: "easy",
         },
         {
             id: "quiz-9",
-            question: "Which sentence explains WHY someone will be tired?",
+            question: "Which sentence explains WHY someone will be tired using Future Perfect Continuous?",
             options: [
                 { value: "a", label: "She will be tired because she will have been traveling all day." },
                 { value: "b", label: "She was tired because she traveled." },
@@ -580,6 +596,8 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Future Perfect Continuous can explain a future state by showing the ongoing action causing it.",
+            skillTag: "future-perfect-continuous-cause-effect",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -590,18 +608,22 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "Perfect is past; Continuous is present" },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect = 'I will have finished.' Future Perfect Continuous = 'I will have been working for 5 years.'",
+            explanation: "Future Perfect = \"I will have finished.\" Future Perfect Continuous = \"I will have been working for 5 years.\"",
+            skillTag: "contrast-future-perfect-vs-future-perfect-continuous",
+            difficulty: "medium",
         },
         {
             id: "quiz-11",
-            question: "Complete: 'By midnight, they ___ (drive) for 10 hours.'",
+            question: "Complete: \"By midnight, they ___ (drive) for 10 hours.\"",
             options: [
                 { value: "a", label: "will have been driving" },
                 { value: "b", label: "will be driving" },
                 { value: "c", label: "have been driving" },
             ],
             correctAnswer: "a",
-            explanation: "'By midnight' + duration (10 hours) = Future Perfect Continuous.",
+            explanation: "\"By midnight\" + duration (10 hours) = Future Perfect Continuous.",
+            skillTag: "duration-future-how-long-by-then",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
@@ -612,33 +634,39 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "right now, at the moment" },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect Continuous uses 'by' + future time and 'for' + duration.",
+            explanation: "Future Perfect Continuous uses \"by\" + future time and \"for\" + duration.",
+            skillTag: "time-words-future-perfect-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-13",
-            question: "Fix the error: 'By June, I will have been work here for 5 years.'",
+            question: "Fix the error: \"By June, I will have been work here for 5 years.\"",
             options: [
                 { value: "a", label: "By June, I will have been working here for 5 years." },
                 { value: "b", label: "By June, I have been working here for 5 years." },
                 { value: "c", label: "By June, I was working here for 5 years." },
             ],
             correctAnswer: "a",
-            explanation: "After 'will have been', use the -ing form: 'will have been working.'",
+            explanation: "After \"will have been\", use the -ing form: \"will have been working.\"",
+            skillTag: "error-base-verb-after-have",
+            difficulty: "easy",
         },
         {
             id: "quiz-14",
-            question: "Is Future Perfect Continuous common or rare?",
+            question: "Is Future Perfect Continuous common or rare in everyday English?",
             options: [
                 { value: "a", label: "It's the rarest English tense, used mainly for milestones" },
                 { value: "b", label: "It's the most common tense" },
                 { value: "c", label: "It's only used in British English" },
             ],
             correctAnswer: "a",
-            explanation: "This is the least common tense! Focus on understanding it when you hear it.",
+            explanation: "This is the least common tense. Focus on understanding it when you hear it and using it for special situations.",
+            skillTag: "meta-future-perfect-continuous-usage",
+            difficulty: "easy",
         },
         {
             id: "quiz-15",
-            question: "Which sentence is a work anniversary milestone?",
+            question: "Which sentence is a work anniversary milestone using Future Perfect Continuous?",
             options: [
                 { value: "a", label: "By next month, I will have been working here for 10 years!" },
                 { value: "b", label: "I worked here for 10 years." },
@@ -646,6 +674,44 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Future Perfect Continuous is perfect for celebrating how long you WILL have been doing something by a future date.",
+            skillTag: "result-future-milestone-continuous",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Future Perfect Continuous Mini Quiz
+
+    Meaning and duration:
+    - duration-future-how-long-by-then
+    - future-perfect-continuous-cause-effect
+    - result-future-milestone-continuous
+
+    Form skills:
+    - form-future-perfect-continuous-positive
+    - form-future-perfect-continuous-negative
+    - form-future-perfect-continuous-question
+    - form-future-perfect-continuous-structure
+
+    Time words & patterns:
+    - signal-by-future-perfect
+    - pattern-by-the-time-future-perfect-continuous
+    - time-words-future-perfect-continuous
+
+    Contrast skills:
+    - contrast-future-perfect-vs-future-perfect-continuous
+
+    Common error patterns:
+    - error-base-verb-after-have
+
+    Meta understanding:
+    - meta-future-perfect-continuous-usage
+
+    Reteaching guidance:
+    - If duration tags are weak → go back to the "HOW LONG by then" question and use timeline visuals with a clear future point (by June, by next year).
+    - If form tags are weak → drill will / won't + have been + verb-ing across all subjects, with special focus on keeping "have been" together and using the -ing form.
+    - If time-word tags are weak → contrast AT vs BY and build sentence frames with by + future time and for + duration.
+    - If contrast tags are weak → compare Future Perfect ("will have finished") vs Future Perfect Continuous ("will have been working") and ask: "Do we care about the RESULT or the DURATION?"
+    - If error tags appear (base verb after have) → do quick sentence surgery exercises turning *will have been work* into *will have been working*.
+    - If meta usage is weak → remind students that this tense is rare and mostly used for milestones, so recognition is more important than production perfection.
+    */
 };

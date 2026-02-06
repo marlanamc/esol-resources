@@ -748,7 +748,9 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I have been work here for 5 years." },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Continuous: have/has been + verb-ing.",
+            explanation: "Present Perfect Continuous = have/has been + verb-ing.",
+            skillTag: "form-present-perfect-continuous-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -759,18 +761,22 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will have been working" },
             ],
             correctAnswer: "b",
-            explanation: "Duration before a past state (tired) = Past Perfect Continuous.",
+            explanation: "The tired feeling happened in the past, so the duration happened before it.",
+            skillTag: "past-perfect-continuous-cause-effect",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
-            question: "Which is correct for a future milestone?",
+            question: "Which sentence shows a future milestone?",
             options: [
                 { value: "a", label: "By next year, I have been working here for 10 years." },
                 { value: "b", label: "By next year, I will have been working here for 10 years." },
                 { value: "c", label: "By next year, I had been working here for 10 years." },
             ],
             correctAnswer: "b",
-            explanation: "Duration up to a future point = Future Perfect Continuous.",
+            explanation: "Future Perfect Continuous shows duration up to a future point.",
+            skillTag: "duration-future-how-long-by-then",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -780,17 +786,128 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "b", label: "since" },
             ],
             correctAnswer: "b",
-            explanation: "2020 is a starting point → use 'since'. Use 'for' with durations (for 5 years).",
+            explanation: "'Since' is used with a starting point. 'For' is used with a duration.",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
-            question: "Perfect vs Perfect Continuous: 'How many books ___ you ___?'",
+            question: "Which sentence correctly uses Past Perfect Continuous?",
             options: [
-                { value: "a", label: "have you read (counting result)" },
-                { value: "b", label: "have you been reading (duration)" },
+                { value: "a", label: "I was waiting for an hour when she arrived." },
+                { value: "b", label: "I had been waiting for an hour when she arrived." },
+                { value: "c", label: "I have been waiting for an hour when she arrived." },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Perfect Continuous shows duration before another past event.",
+            skillTag: "form-past-perfect-continuous-positive",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-6",
+            question: "Which question form is correct?",
+            options: [
+                { value: "a", label: "How long have you been studying English?" },
+                { value: "b", label: "How long you have been studying English?" },
+                { value: "c", label: "How long did you been studying English?" },
             ],
             correctAnswer: "a",
-            explanation: "'How many' asks about quantity/result → use Perfect, not Perfect Continuous.",
+            explanation: "Question form: Have/Has + subject + been + verb-ing.",
+            skillTag: "form-present-perfect-continuous-question",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence explains a result using duration?",
+            options: [
+                { value: "a", label: "She passed the test because she studied." },
+                { value: "b", label: "She passed the test because she had been studying all week." },
+                { value: "c", label: "She studies every week." },
+            ],
+            correctAnswer: "b",
+            explanation: "Perfect Continuous can explain a result by showing duration.",
+            skillTag: "perfect-continuous-cause-effect",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-8",
+            question: "Perfect vs Perfect Continuous: 'How many emails ___ you ___?'",
+            options: [
+                { value: "a", label: "have you sent" },
+                { value: "b", label: "have you been sending" },
+            ],
+            correctAnswer: "a",
+            explanation: "'How many' asks about result or quantity, not duration.",
+            skillTag: "contrast-perfect-vs-perfect-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence has a common error?",
+            options: [
+                { value: "a", label: "I have been knowing her for years." },
+                { value: "b", label: "I have known her for years." },
+                { value: "c", label: "I have been working here for years." },
+            ],
+            correctAnswer: "a",
+            explanation: "Stative verbs like 'know' usually do not use continuous forms.",
+            skillTag: "error-stative-verb-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-10",
+            question: "Which tense answers the question 'How long by then?'",
+            options: [
+                { value: "a", label: "Present Perfect Continuous" },
+                { value: "b", label: "Past Perfect Continuous" },
+                { value: "c", label: "Future Perfect Continuous" },
+            ],
+            correctAnswer: "c",
+            explanation: "Future Perfect Continuous measures duration up to a future point.",
+            skillTag: "meta-perfect-continuous-meaning",
+            difficulty: "easy",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Perfect Continuous Tenses Review Mini Quiz
+
+    This review mini quiz is designed to give you a quick cross-check of all three Perfect Continuous tenses.
+
+    Form skills:
+    - form-present-perfect-continuous-positive
+    - form-present-perfect-continuous-question
+    - form-past-perfect-continuous-positive
+
+    Meaning & duration skills:
+    - past-perfect-continuous-cause-effect
+    - duration-future-how-long-by-then
+    - duration-for-since-how-long
+    - perfect-continuous-cause-effect
+    - meta-perfect-continuous-meaning
+
+    Contrast skills:
+    - contrast-perfect-vs-perfect-continuous
+
+    Common error patterns:
+    - error-stative-verb-continuous
+
+    How to read the diagnostics:
+    - If present perfect cont. form tags are weak → reteach have/has been + verb-ing and the question pattern (Have/Has + subject + been + verb-ing?).
+    - If past perfect cont. cause-effect is weak → go back to timelines that show duration BEFORE a past event (had been waiting → bus arrived).
+    - If future duration tags are weak → use "By next year / By June" milestone sentences and ask "How long by then?" explicitly.
+    - If for/since tags are weak → build a T-chart: FOR = length of time, SINCE = starting point, and practice swapping incorrect examples.
+    - If contrast-perfect-vs-perfect-continuous is weak → use pairs like:
+        • "How many emails have you sent?" (result)
+        • "How long have you been sending emails?" (duration)
+      and have students choose RESULT vs DURATION.
+    - If stative-verb error tags appear → highlight a short "no continuous" list (know, believe, love, understand) and convert sentences like
+      "have been knowing" → "have known".
+
+    Suggested use:
+    - Use this review after students complete the individual Present / Past / Future Perfect Continuous guides.
+    - Use the skillTags to decide whether to review:
+        • one tense (present / past / future),
+        • one concept (for vs since, result vs duration),
+        • or one error type (stative verbs in continuous).
+    */
 };

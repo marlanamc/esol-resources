@@ -926,10 +926,12 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Last year' is a specific past time → use Past Simple, not Present Perfect.",
+            skillTag: "error-specific-past-time",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
-            question: "Choose the correct tense: 'When I arrived, she ___ already.'",
+            question: "Choose the correct tense: \"When I arrived, she ___ already.\"",
             options: [
                 { value: "a", label: "has left" },
                 { value: "b", label: "had left" },
@@ -937,6 +939,8 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Two past actions, showing which was first → Past Perfect for the earlier action.",
+            skillTag: "past-perfect-two-past-actions-sequence",
+            difficulty: "medium",
         },
         {
             id: "quiz-3",
@@ -948,16 +952,20 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'By Friday' = before the deadline → Future Perfect.",
+            skillTag: "result-future-completed-by-deadline",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
-            question: "Present Perfect vs Present Perfect Continuous: 'How many books ___ you ___?'",
+            question: "Present Perfect vs Present Perfect Continuous: \"How many books ___ you ___?\"",
             options: [
                 { value: "a", label: "have you read (counting result)" },
                 { value: "b", label: "have you been reading (duration)" },
             ],
             correctAnswer: "a",
-            explanation: "'How many' asks about quantity/result → Present Perfect.",
+            explanation: "'How many' asks about quantity/result → Present Perfect Simple.",
+            skillTag: "result-count-how-many",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -968,7 +976,173 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "She had left at 5 PM." },
             ],
             correctAnswer: "b",
-            explanation: "Past Perfect needs TWO past references. 'Tired' (later) because 'worked' (earlier).",
+            explanation: "Past Perfect is used to show the cause that happened before another past result.",
+            skillTag: "past-perfect-cause-effect",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-6",
+            question: "Choose the best sentence for a past action connected to now.",
+            options: [
+                { value: "a", label: "I worked here for 5 years." },
+                { value: "b", label: "I have worked here for 5 years." },
+                { value: "c", label: "I had worked here for 5 years." },
+            ],
+            correctAnswer: "b",
+            explanation: "Present Perfect (have worked) connects past duration to NOW (still true).",
+            skillTag: "result-state-verb-duration",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence is correct for ONE past action this morning?",
+            options: [
+                { value: "a", label: "I had eaten breakfast this morning." },
+                { value: "b", label: "I have eaten breakfast this morning." },
+                { value: "c", label: "I ate breakfast this morning." },
+            ],
+            correctAnswer: "c",
+            explanation: "Only one past action at a specific time → Past Simple is enough.",
+            skillTag: "error-past-perfect-overuse",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-8",
+            question: "Choose the correct sentence about a future time clause.",
+            options: [
+                { value: "a", label: "When you will arrive, I will have finished." },
+                { value: "b", label: "When you arrive, I will have finished." },
+                { value: "c", label: "When you are arriving, I will have finished." },
+            ],
+            correctAnswer: "b",
+            explanation: "Future time clauses use present forms (When you arrive), not 'will'.",
+            skillTag: "error-future-perfect-time-clause-will",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-9",
+            question: "Which sentence shows that Past Perfect is NOT necessary?",
+            options: [
+                { value: "a", label: "When I got home, she had already left." },
+                { value: "b", label: "I had eaten breakfast this morning." },
+                { value: "c", label: "I was tired because I had worked all day.",
+                },
+            ],
+            correctAnswer: "b",
+            explanation: "Only one past action with a clear time (this morning) → Past Simple would be better.",
+            skillTag: "error-past-perfect-overuse",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence is correct?",
+            options: [
+                { value: "a", label: "She has lived here in 2019." },
+                { value: "b", label: "She lived here in 2019." },
+                { value: "c", label: "She has been lived here in 2019." },
+            ],
+            correctAnswer: "b",
+            explanation: "Specific past year (2019) → Past Simple only.",
+            skillTag: "error-specific-past-time",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence talks about life experience (no specific time)?",
+            options: [
+                { value: "a", label: "I have seen this movie three times." },
+                { value: "b", label: "I saw this movie last night." },
+                { value: "c", label: "I had seen this movie last night." },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect is used for life experience and repeated actions up to now.",
+            skillTag: "result-life-experience-ever-never",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence correctly uses Future Perfect for a milestone?",
+            options: [
+                { value: "a", label: "By next year, she will work here for 10 years." },
+                { value: "b", label: "By next year, she will have worked here for 10 years." },
+                { value: "c", label: "By next year, she will have been worked here for 10 years." },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Perfect shows a completed duration by a future time.",
+            skillTag: "result-future-milestone",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-13",
+            question: "Which tense do you use for: past action → connected to NOW?",
+            options: [
+                { value: "a", label: "Present Perfect" },
+                { value: "b", label: "Past Perfect" },
+                { value: "c", label: "Future Perfect" },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect connects past actions or states to the present moment.",
+            skillTag: "meta-choose-present-perfect",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence correctly uses Present Perfect (no specific time)?",
+            options: [
+                { value: "a", label: "I have finished my homework." },
+                { value: "b", label: "I have finished my homework yesterday." },
+                { value: "c", label: "I finished my homework since yesterday." },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect is fine without a specific past time expression.",
+            skillTag: "result-completed-action",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-15",
+            question: "Which situation is best for Future Perfect?",
+            options: [
+                { value: "a", label: "Talking about an action at 5 PM tomorrow (at that time)" },
+                { value: "b", label: "Talking about an action that will be finished BEFORE 5 PM tomorrow" },
+                { value: "c", label: "Talking about a habit in the future" },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Perfect is used for actions completed before a future time or event.",
+            skillTag: "contrast-future-perfect-vs-simple-future",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Perfect Tenses Review Mini Quiz
+
+    Present Perfect vs Past Simple:
+    - result-completed-action
+    - result-life-experience-ever-never
+    - error-specific-past-time
+
+    Present Perfect vs Present Perfect Continuous:
+    - result-count-how-many
+
+    Past Perfect vs Past Simple:
+    - past-perfect-two-past-actions-sequence
+    - past-perfect-cause-effect
+    - error-past-perfect-overuse
+
+    Future Perfect vs Future Simple:
+    - result-future-completed-by-deadline
+    - result-future-milestone
+    - contrast-future-perfect-vs-simple-future
+    - error-future-perfect-time-clause-will
+
+    Meta understanding:
+    - meta-choose-present-perfect
+
+    If Present Perfect vs Past Simple tags are weak → review specific past time words (yesterday, last year, in 2019) vs no specific time and life experience.
+    If Past Perfect tags are weak → focus on timelines with TWO past actions and highlight which one happened first.
+    If Future Perfect tags are weak → contrast BY (before a time) vs AT/ON/WHEN (at that time), and practice “By the time…” sentences.
+    If error tags are weak → do quick correction drills on:
+      - Present Perfect + specific time (✗ I have visited Paris last year → ✓ I visited Paris last year)
+      - Unnecessary Past Perfect for single past actions (✗ I had eaten breakfast this morning → ✓ I ate breakfast this morning)
+      - Using “will” inside time clauses (✗ When you will arrive → ✓ When you arrive)
+    */
 };

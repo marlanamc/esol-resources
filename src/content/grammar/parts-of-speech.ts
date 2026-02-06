@@ -1437,186 +1437,333 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
         },
     ],
 
-    miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "What part of speech is 'hospital' in: 'I work at the hospital'?",
-            options: [
-                { value: "a", label: "Noun" },
-                { value: "b", label: "Verb" },
-                { value: "c", label: "Adjective" },
-                { value: "d", label: "Adverb" },
-            ],
-            correctAnswer: "a",
-            explanation: "'Hospital' is a noun - it's a place/thing.",
-        },
-        {
-            id: "quiz-2",
-            question: "What part of speech is 'carefully' in: 'Drive carefully'?",
-            options: [
-                { value: "a", label: "Noun" },
-                { value: "b", label: "Verb" },
-                { value: "c", label: "Adjective" },
-                { value: "d", label: "Adverb" },
-            ],
-            correctAnswer: "d",
-            explanation: "'Carefully' is an adverb - it describes HOW to drive (ends in -ly).",
-        },
-        {
-            id: "quiz-3",
-            question: "What part of speech is 'good' in: 'She's a good teacher'?",
-            options: [
-                { value: "a", label: "Noun" },
-                { value: "b", label: "Verb" },
-                { value: "c", label: "Adjective" },
-                { value: "d", label: "Adverb" },
-            ],
-            correctAnswer: "c",
-            explanation: "'Good' is an adjective - it describes the noun 'teacher'.",
-        },
-        {
-            id: "quiz-4",
-            question: "What part of speech is 'walk' in: 'I walk to work'?",
-            options: [
-                { value: "a", label: "Noun" },
-                { value: "b", label: "Verb" },
-                { value: "c", label: "Adjective" },
-                { value: "d", label: "Adverb" },
-            ],
-            correctAnswer: "b",
-            explanation: "'Walk' is a verb - it's an action you do.",
-        },
-        {
-            id: "quiz-5",
-            question: "What part of speech is 'she' in: 'She works at the hospital'?",
-            options: [
-                { value: "a", label: "Noun" },
-                { value: "b", label: "Verb" },
-                { value: "c", label: "Pronoun" },
-                { value: "d", label: "Article" },
-            ],
-            correctAnswer: "c",
-            explanation: "'She' is a pronoun - it replaces a person's name (subject pronoun).",
-        },
-        {
-            id: "quiz-6",
-            question: "What part of speech is 'the' in: 'I went to the store'?",
-            options: [
-                { value: "a", label: "Preposition" },
-                { value: "b", label: "Article" },
-                { value: "c", label: "Conjunction" },
-                { value: "d", label: "Pronoun" },
-            ],
-            correctAnswer: "b",
-            explanation: "'The' is an article - one of only 3 articles in English (a, an, the).",
-        },
-        {
-            id: "quiz-7",
-            question: "What part of speech is 'at' in: 'Class starts at 6:00 PM'?",
-            options: [
-                { value: "a", label: "Pronoun" },
-                { value: "b", label: "Article" },
-                { value: "c", label: "Preposition" },
-                { value: "d", label: "Conjunction" },
-            ],
-            correctAnswer: "c",
-            explanation: "'At' is a preposition - it shows time (when the class starts).",
-        },
-        {
-            id: "quiz-8",
-            question: "What part of speech is 'but' in: 'I'm tired, but I need to work'?",
-            options: [
-                { value: "a", label: "Preposition" },
-                { value: "b", label: "Conjunction" },
-                { value: "c", label: "Adverb" },
-                { value: "d", label: "Pronoun" },
-            ],
-            correctAnswer: "b",
-            explanation: "'But' is a conjunction - it connects two contrasting ideas (FANBOYS).",
-        },
-        {
-            id: "quiz-9",
-            question: "Choose the correct pronoun: 'The teacher called ___ yesterday.' (talking about yourself)",
-            options: [
-                { value: "a", label: "I" },
-                { value: "b", label: "me" },
-                { value: "c", label: "my" },
-                { value: "d", label: "mine" },
-            ],
-            correctAnswer: "b",
-            explanation: "'Me' is correct - it's an object pronoun (comes after the verb). 'I' is a subject pronoun (comes before the verb).",
-        },
-	        {
-	            id: "quiz-10",
-	            question: "Choose the correct preposition: 'Class is ___ Tuesdays.'",
-	            options: [
-	                { value: "a", label: "in" },
-	                { value: "b", label: "at" },
-	                { value: "c", label: "on" },
-	                { value: "d", label: "to" },
-	            ],
-	            correctAnswer: "c",
-	            explanation: "'On' is correct - we use 'on' for days of the week (on Monday, on Tuesday, etc.).",
-	        },
-	        {
-	            id: "quiz-11",
-	            question: "What part of speech is 'and' in: 'I work and I study'?",
-	            options: [
-	                { value: "a", label: "Noun" },
-	                { value: "b", label: "Verb" },
-	                { value: "c", label: "Conjunction" },
-	                { value: "d", label: "Preposition" },
-	            ],
-	            correctAnswer: "c",
-	            explanation: "'And' is a conjunction - it connects two similar ideas.",
-	        },
-	        {
-	            id: "quiz-12",
-	            question: "What part of speech is 'because' in: 'I stayed home because I was sick'?",
-	            options: [
-	                { value: "a", label: "Preposition" },
-	                { value: "b", label: "Conjunction" },
-	                { value: "c", label: "Adverb" },
-	                { value: "d", label: "Article" },
-	            ],
-	            correctAnswer: "b",
-	            explanation: "'Because' connects an action and a reason. It's a (subordinating) conjunction.",
-	        },
-	        {
-	            id: "quiz-13",
-	            question: "Choose the correct article: 'I have ___ appointment at the clinic.'",
-	            options: [
-	                { value: "a", label: "a" },
-	                { value: "b", label: "an" },
-	                { value: "c", label: "the" },
-	                { value: "d", label: "(no article)" },
-	            ],
-	            correctAnswer: "b",
-	            explanation: "Use 'an' before a vowel sound: an appointment.",
-	        },
-	        {
-	            id: "quiz-14",
-	            question: "What part of speech is 'quickly' in: 'She quickly answered the phone'?",
-	            options: [
-	                { value: "a", label: "Noun" },
-	                { value: "b", label: "Verb" },
-	                { value: "c", label: "Adjective" },
-	                { value: "d", label: "Adverb" },
-	            ],
-	            correctAnswer: "d",
-	            explanation: "'Quickly' is an adverb - it describes how she answered.",
-	        },
-	        {
-	            id: "quiz-15",
-	            question: "Choose the correct adjective: 'This is a ___ apartment.'",
-	            options: [
-	                { value: "a", label: "safe" },
-	                { value: "b", label: "safely" },
-	                { value: "c", label: "safety" },
-	                { value: "d", label: "safer" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "'Safe' is an adjective (describes a noun). 'Safely' is an adverb, and 'safety' is a noun.",
-	        },
-	    ],
+        // Mini Quiz (16 questions)
+        miniQuiz: [
+            {
+                id: "quiz-1",
+                question:
+                    "What part of speech is 'hospital' in: 'I work at the hospital'?",
+                options: [
+                    { value: "a", label: "Noun" },
+                    { value: "b", label: "Verb" },
+                    { value: "c", label: "Adjective" },
+                    { value: "d", label: "Adverb" },
+                ],
+                correctAnswer: "a",
+                explanation: "'Hospital' is a noun because it names a place.",
+                skillTag: "identify-noun-place",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-2",
+                question: "What part of speech is 'carefully' in: 'Drive carefully'?",
+                options: [
+                    { value: "a", label: "Noun" },
+                    { value: "b", label: "Verb" },
+                    { value: "c", label: "Adjective" },
+                    { value: "d", label: "Adverb" },
+                ],
+                correctAnswer: "d",
+                explanation:
+                    "'Carefully' is an adverb because it describes HOW to drive and ends in -ly.",
+                skillTag: "identify-adverb-manner-ly",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-3",
+                question: "What part of speech is 'good' in: 'She is a good teacher'?",
+                options: [
+                    { value: "a", label: "Noun" },
+                    { value: "b", label: "Verb" },
+                    { value: "c", label: "Adjective" },
+                    { value: "d", label: "Adverb" },
+                ],
+                correctAnswer: "c",
+                explanation: "'Good' is an adjective because it describes the noun 'teacher'.",
+                skillTag: "identify-adjective-quality",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-4",
+                question: "What part of speech is 'walk' in: 'I walk to work'?",
+                options: [
+                    { value: "a", label: "Noun" },
+                    { value: "b", label: "Verb" },
+                    { value: "c", label: "Adjective" },
+                    { value: "d", label: "Adverb" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'Walk' is a verb here because it shows the action you do to go to work.",
+                skillTag: "identify-verb-action",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-5",
+                question:
+                    "What part of speech is 'they' in: 'They are my classmates'?",
+                options: [
+                    { value: "a", label: "Pronoun" },
+                    { value: "b", label: "Noun" },
+                    { value: "c", label: "Verb" },
+                    { value: "d", label: "Article" },
+                ],
+                correctAnswer: "a",
+                explanation:
+                    "'They' is a pronoun because it replaces a group of people (the classmates).",
+                skillTag: "identify-pronoun-subject",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-6",
+                question: "What part of speech is 'the' in: 'Close the door'?",
+                options: [
+                    { value: "a", label: "Adjective" },
+                    { value: "b", label: "Article" },
+                    { value: "c", label: "Preposition" },
+                    { value: "d", label: "Conjunction" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'The' is an article because it comes before a specific noun ('door').",
+                skillTag: "identify-article-the",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-7",
+                question:
+                    "What part of speech is 'on' in: 'The book is on the table'?",
+                options: [
+                    { value: "a", label: "Adverb" },
+                    { value: "b", label: "Preposition" },
+                    { value: "c", label: "Conjunction" },
+                    { value: "d", label: "Adjective" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'On' is a preposition because it shows the relationship of location between the book and the table.",
+                skillTag: "identify-preposition-location",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-8",
+                question:
+                    "What part of speech is 'and' in: 'I need bread and milk'?",
+                options: [
+                    { value: "a", label: "Preposition" },
+                    { value: "b", label: "Conjunction" },
+                    { value: "c", label: "Adverb" },
+                    { value: "d", label: "Article" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'And' is a conjunction because it connects two nouns in a list.",
+                skillTag: "identify-conjunction-and",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-9",
+                question:
+                    "In the sentence 'The friendly nurse carefully explained the form,' what part of speech is 'friendly'?",
+                options: [
+                    { value: "a", label: "Noun" },
+                    { value: "b", label: "Adjective" },
+                    { value: "c", label: "Adverb" },
+                    { value: "d", label: "Pronoun" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'Friendly' is an adjective because it describes the noun 'nurse'.",
+                skillTag: "identify-adjective-describing-person",
+                difficulty: "medium",
+            },
+            {
+                id: "quiz-10",
+                question:
+                    "In the sentence 'She usually takes the bus to class,' what part of speech is 'usually'?",
+                options: [
+                    { value: "a", label: "Noun" },
+                    { value: "b", label: "Adverb" },
+                    { value: "c", label: "Adjective" },
+                    { value: "d", label: "Preposition" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'Usually' is an adverb of frequency because it shows how often she takes the bus.",
+                skillTag: "identify-adverb-frequency",
+                difficulty: "medium",
+            },
+            {
+                id: "quiz-11",
+                question:
+                    "In the sentence 'My coworkers and I had a long meeting,' what part of speech is 'my'?",
+                options: [
+                    { value: "a", label: "Pronoun" },
+                    { value: "b", label: "Possessive adjective" },
+                    { value: "c", label: "Article" },
+                    { value: "d", label: "Conjunction" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'My' is a possessive adjective because it shows who the coworkers belong to and comes before the noun.",
+                skillTag: "identify-possessive-adjective",
+                difficulty: "medium",
+            },
+            {
+                id: "quiz-12",
+                question:
+                    "In the sentence 'The students sat in the small classroom,' which word is a preposition?",
+                options: [
+                    { value: "a", label: "students" },
+                    { value: "b", label: "in" },
+                    { value: "c", label: "small" },
+                    { value: "d", label: "classroom" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'In' is the preposition because it shows the relationship between the students and the classroom.",
+                skillTag: "identify-preposition-in",
+                difficulty: "easy",
+            },
+            {
+                id: "quiz-13",
+                question:
+                    "In the sentence 'We were tired, so we left early,' what part of speech is 'so'?",
+                options: [
+                    { value: "a", label: "Adverb" },
+                    { value: "b", label: "Conjunction" },
+                    { value: "c", label: "Preposition" },
+                    { value: "d", label: "Pronoun" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'So' is a conjunction because it connects the reason (we were tired) with the result (we left early).",
+                skillTag: "identify-conjunction-so-result",
+                difficulty: "medium",
+            },
+            {
+                id: "quiz-14",
+                question:
+                    "In the sentence 'They helped us with the application,' what part of speech is 'us'?",
+                options: [
+                    { value: "a", label: "Subject pronoun" },
+                    { value: "b", label: "Object pronoun" },
+                    { value: "c", label: "Noun" },
+                    { value: "d", label: "Article" },
+                ],
+                correctAnswer: "b",
+                explanation:
+                    "'Us' is an object pronoun because it receives the action of the verb 'helped'.",
+                skillTag: "identify-pronoun-object",
+                difficulty: "medium",
+            },
+            {
+                id: "quiz-15",
+                question:
+                    "In the sentence 'The doctor quickly wrote a note,' which two words are the verb and adverb?",
+                options: [
+                    { value: "a", label: "'doctor' and 'note'" },
+                    { value: "b", label: "'quickly' and 'note'" },
+                    { value: "c", label: "'wrote' and 'quickly'" },
+                    { value: "d", label: "'the' and 'wrote'" },
+                ],
+                correctAnswer: "c",
+                explanation:
+                    "'Wrote' is the verb (the action) and 'quickly' is the adverb that describes how the doctor wrote.",
+                skillTag: "identify-verb-plus-adverb",
+                difficulty: "medium",
+            },
+            {
+                id: "quiz-16",
+                question:
+                    "In the sentence 'The new student is very quiet,' what part of speech is 'very'?",
+                options: [
+                    { value: "a", label: "Adverb" },
+                    { value: "b", label: "Adjective" },
+                    { value: "c", label: "Noun" },
+                    { value: "d", label: "Pronoun" },
+                ],
+                correctAnswer: "a",
+                explanation:
+                    "'Very' is an adverb of degree because it shows how quiet the student is.",
+                skillTag: "identify-adverb-degree",
+                difficulty: "medium",
+            },
+        ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Parts of Speech Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Recognize all eight parts of speech in real-world sentences.
+    - Distinguish nouns, verbs, adjectives, and adverbs with simple tests.
+    - Identify pronouns and possessive adjectives and understand their function.
+    - Spot articles, prepositions, and conjunctions in context.
+    - Connect what they see here to the color-coding and examples in the guide.
+
+    Skill tags:
+
+    Nouns and verbs
+    - identify-noun-place
+    - identify-verb-action
+    - identify-verb-plus-adverb
+
+    Adjectives and adverbs
+    - identify-adjective-quality
+    - identify-adjective-describing-person
+    - identify-adverb-manner-ly
+    - identify-adverb-frequency
+    - identify-adverb-degree
+
+    Pronouns and possessives
+    - identify-pronoun-subject
+    - identify-pronoun-object
+    - identify-possessive-adjective
+
+    Articles, prepositions, conjunctions
+    - identify-article-the
+    - identify-preposition-location
+    - identify-preposition-in
+    - identify-conjunction-and
+    - identify-conjunction-so-result
+
+    How to read the diagnostics:
+    - If noun and verb tags are weak (identify-noun-place, identify-verb-action, identify-verb-plus-adverb) →
+      Return to the basic tests:
+      • Noun test: Can you put "a/an/the" before it? Can it be a person, place, thing, or idea?
+      • Verb test: Can you put it after "I am" with -ing? (I am walking, I am working)
+      Practice having students highlight all nouns in blue and all verbs in red in short sentences.
+
+    - If adjective and adverb tags are weak (identify-adjective-quality, identify-adjective-describing-person, identify-adverb-manner-ly, identify-adverb-frequency, identify-adverb-degree) →
+      Rebuild the adjective vs adverb chart:
+      • Adjectives describe nouns: good teacher, small room, friendly nurse.
+      • Adverbs describe verbs/adjectives/other adverbs: speak clearly, very quiet, drive carefully.
+      Do contrast drills:
+      • She is a careful driver vs She drives carefully.
+      • The test is hard vs She worked hard.
+
+    - If pronoun and possessive tags are weak (identify-pronoun-subject, identify-pronoun-object, identify-possessive-adjective) →
+      Revisit the pronoun table:
+      • Subject: I, you, he, she, it, we, they.
+      • Object: me, you, him, her, it, us, them.
+      • Possessive adjectives: my, your, his, her, its, our, their.
+      Have students transform sentences:
+      • Maria and Carlos are late → They are late.
+      • The teacher helps the students → The teacher helps them.
+      • This is the car of my brother → This is my brother's car.
+
+    - If article, preposition, and conjunction tags are weak (identify-article-the, identify-preposition-location, identify-preposition-in, identify-conjunction-and, identify-conjunction-so-result) →
+      Use simple pattern charts:
+      • Articles: a, an, the + noun.
+      • Prepositions: in, on, at, to, from, next to, behind, under.
+      • Conjunctions (FANBOYS): and, but, or, so.
+      Give students short sentences and ask them to label only these small words. Then ask: What do these little words do in the sentence?
+
+    Suggested use:
+    - Use this mini quiz at the end of the Parts of Speech guide as a checkpoint.
+    - At the class level:
+      • If nouns and verbs are red → slow down and practice marking them with colors before moving to more advanced grammar.
+      • If adjectives vs adverbs are red → pause and do more compare/contrast sentences, especially with -ly adverbs and common adjectives.
+      • If pronouns and possessives are red → integrate quick corrections into writing and speaking tasks ("Me and my friend" vs "My friend and I").
+      • If articles/prepositions/conjunctions are red → focus on short, high-frequency phrases (at work, in the morning, on Tuesday, and/but/so) before returning to long sentences.
+    */
 };

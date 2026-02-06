@@ -800,6 +800,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
         },
     ],
 
+    // Mini Quiz (15 questions)
     miniQuiz: [
         {
             id: "quiz-1",
@@ -811,6 +812,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Used to' describes a past habit that is no longer true.",
+            skillTag: "used-to-past-habit-form-base-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -822,6 +825,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Would rather' is followed by the base verb (no 'to', no '-ing').",
+            skillTag: "would-rather-base-verb-preference",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -833,6 +838,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "In negatives, use 'didn't use to' (no 'd' on 'use').",
+            skillTag: "used-to-negative-didnt-use-to",
+            difficulty: "medium",
         },
         {
             id: "quiz-4",
@@ -844,6 +851,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Would' cannot be used for states like 'be'. Use 'used to' instead.",
+            skillTag: "would-vs-used-to-states",
+            difficulty: "medium",
         },
         {
             id: "quiz-5",
@@ -855,6 +864,8 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             ],
             correctAnswer: "c",
             explanation: "Both 'used to' and 'would' can describe repeated past actions.",
+            skillTag: "used-to-vs-would-past-actions",
+            difficulty: "medium",
         },
         {
             id: "quiz-6",
@@ -866,6 +877,199 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Would rather' expresses a preference, not a past action or future plan.",
+            skillTag: "would-rather-meaning-preference",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence correctly uses 'be used to' for something that is normal for you now?",
+            options: [
+                { value: "a", label: "I am used to waking up early for my class." },
+                { value: "b", label: "I used to waking up early for my class." },
+                { value: "c", label: "I am used to wake up early for my class." },
+            ],
+            correctAnswer: "a",
+            explanation: "Be used to is followed by a noun or -ing form and describes something that is normal or comfortable for you now.",
+            skillTag: "be-used-to-ing-form",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-8",
+            question: "What is the correct question form with 'used to'?",
+            options: [
+                { value: "a", label: "Did you used to live in East Boston?" },
+                { value: "b", label: "Used you to live in East Boston?" },
+                { value: "c", label: "Did you use to live in East Boston?" },
+            ],
+            correctAnswer: "c",
+            explanation: "The correct question form is Did + subject + use to + base verb. No extra 'd' on use.",
+            skillTag: "used-to-question-did-you-use-to",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-9",
+            question: "Choose the correct negative with 'would rather'.",
+            options: [
+                { value: "a", label: "I'd rather not work nights." },
+                { value: "b", label: "I'd not rather work nights." },
+                { value: "c", label: "I wouldn't rather work nights." },
+            ],
+            correctAnswer: "a",
+            explanation: "Use would rather not + base verb to show a negative preference.",
+            skillTag: "would-rather-negative-not-verb",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence correctly compares two options with 'would rather... than... '?",
+            options: [
+                { value: "a", label: "I'd rather cook at home than eat out." },
+                { value: "b", label: "I'd rather cook at home than eating out." },
+                { value: "c", label: "I'd rather to cook at home than to eat out." },
+            ],
+            correctAnswer: "a",
+            explanation: "Would rather is followed by the base verb, and we use than to compare two actions.",
+            skillTag: "would-rather-than-comparison",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-11",
+            question: "You are talking about a past habit that is not true now. Which is best?",
+            options: [
+                { value: "a", label: "I used to drink soda every day." },
+                { value: "b", label: "I'd rather drink soda every day." },
+                { value: "c", label: "I am used to drink soda every day." },
+            ],
+            correctAnswer: "a",
+            explanation: "Used to + base verb describes a past habit that is not true now.",
+            skillTag: "used-to-past-habit-meaning",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-12",
+            question: "You want to talk about your preference now. Which is best?",
+            options: [
+                { value: "a", label: "I used to take the bus." },
+                { value: "b", label: "I'd rather take the bus than drive." },
+                { value: "c", label: "I would take the bus every day." },
+            ],
+            correctAnswer: "b",
+            explanation: "Would rather + base verb describes what you prefer now.",
+            skillTag: "used-to-vs-would-meaning",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-13",
+            question: "Which sentence correctly contrasts a past habit and a current preference?",
+            options: [
+                { value: "a", label: "I used to smoke, but now I'd rather drink tea." },
+                { value: "b", label: "I would smoke, but now I used to drink tea." },
+                { value: "c", label: "I am used to smoke, but now I'd rather drinking tea." },
+            ],
+            correctAnswer: "a",
+            explanation: "Used to shows the past habit, and would rather shows the new preference now.",
+            skillTag: "used-to-plus-would-rather-contrast-then-now",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence is INCORRECT?",
+            options: [
+                { value: "a", label: "I used to live near Logan Airport." },
+                { value: "b", label: "Did you use to work night shifts?" },
+                { value: "c", label: "I would be tired all the time." },
+            ],
+            correctAnswer: "c",
+            explanation: "Would should not be used for states like be in this structure. Use used to be tired all the time.",
+            skillTag: "would-vs-used-to-states",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-15",
+            question: "In which sentence does 'would' show a repeated past action (not a future or conditional idea)?",
+            options: [
+                { value: "a", label: "When I had days off, I would walk along the Harborwalk with my friends." },
+                { value: "b", label: "I would rather walk along the Harborwalk." },
+                { value: "c", label: "I would work from home if I could." },
+            ],
+            correctAnswer: "a",
+            explanation: "Here would + base verb describes a repeated past action with a clear past time reference.",
+            skillTag: "would-past-habit-actions-only",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Used To, Would, and Would Rather Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Use used to to describe past habits and states that are not true now.
+    - Form negatives and questions with used to correctly (didn't use to / Did you use to... ?).
+    - Distinguish used to (past habit) from be used to (accustomed to now).
+    - Use would for repeated past actions only (not for states).
+    - Use would rather + base verb (and would rather... than...) to express preferences, including negative preferences with would rather not.
+
+    Skill tags:
+
+    Used to – form and meaning
+    - used-to-past-habit-form-base-verb
+    - used-to-past-habit-meaning
+    - used-to-negative-didnt-use-to
+    - used-to-question-did-you-use-to
+    - be-used-to-ing-form
+    - would-vs-used-to-states
+    - used-to-vs-would-past-actions
+    - used-to-plus-would-rather-contrast-then-now
+
+    Would for past habits
+    - used-to-vs-would-past-actions
+    - would-past-habit-actions-only
+    - would-vs-used-to-states
+
+    Would rather – preferences
+    - would-rather-base-verb-preference
+    - would-rather-meaning-preference
+    - would-rather-negative-not-verb
+    - would-rather-than-comparison
+    - used-to-vs-would-meaning
+    - used-to-plus-would-rather-contrast-then-now
+
+    How to read the diagnostics:
+    - If used to form/meaning tags are weak (used-to-past-habit-form-base-verb, used-to-past-habit-meaning, used-to-negative-didnt-use-to, used-to-question-did-you-use-to) →
+      Rebuild the core pattern:
+      • Positive: subject + used to + base verb → I used to smoke.
+      • Negative: subject + didn't use to + base verb → I didn't use to exercise.
+      • Question: Did + subject + use to + base verb? → Did you use to work nights?
+      Use quick correction drills with common mistakes: use to / used to / didn't used to.
+
+    - If be used to vs used to tags are weak (be-used-to-ing-form, used-to-plus-would-rather-contrast-then-now) →
+      Contrast the meanings clearly:
+      • used to + base verb = past habit (not now): I used to smoke.
+      • be used to + noun/-ing = accustomed/comfortable now: I'm used to waking up early.
+      Have students sort example sentences into two columns (past habit vs comfortable now), then write their own.
+
+    - If would vs used to tags are weak (used-to-vs-would-past-actions, would-past-habit-actions-only, would-vs-used-to-states) →
+      Focus on:
+      • would + base verb = repeated past action with a clear time frame: On Sundays, we would visit my grandmother.
+      • used to = habits and states: I used to be shy, I used to live in Mexico.
+      Remind students: do not use would for states (be, have, live, know). Practice by giving base sentences and asking students to choose used to or would.
+
+    - If would rather tags are weak (would-rather-base-verb-preference, would-rather-meaning-preference, would-rather-negative-not-verb, would-rather-than-comparison, used-to-vs-would-meaning) →
+      Rebuild the pattern:
+      • would rather + base verb → I'd rather walk.
+      • would rather... than... → I'd rather walk than drive.
+      • would rather not + base verb → I'd rather not work nights.
+      Use real-life preference questions about work, transport, food, and schedules so students talk about their actual lives.
+
+    Suggested use:
+    - Use this mini quiz after students have:
+      • Practiced used to / didn't use to / Did you use to...? for habits and states.
+      • Learned be used to + -ing for things that feel normal now.
+      • Practiced would for repeated past actions (with time phrases like every day, on weekends, when I was a child).
+      • Practiced would rather for preferences (including would rather not and would rather... than...).
+    - At the class level:
+      • If used to is red, slow down and work on simple then vs now contrasts with timelines and personal examples.
+      • If be used to is red, do more present-tense sentences about students’ current lives (what they are used to now).
+      • If would vs used to is red, keep states with used to and actions with either used to or would, using color-coding or gesture.
+      • If would rather is red, shift to speaking activities: students choose between two options (walk vs drive, nights vs days, cash vs card) and report their preferences using would rather.
+    */
 };

@@ -820,171 +820,395 @@ export const paragraphFormatContent: InteractiveGuideContent = {
         },
     ],
 
+    // Mini Quiz (16 questions)
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "A paragraph about the East Boston Harborwalk should include which three parts?",
+            question:
+                "A paragraph about the East Boston Harborwalk should include which three parts?",
             options: [
                 { value: "a", label: "Beginning, middle, end" },
-                { value: "b", label: "Topic sentence, supporting details, conclusion" },
+                {
+                    value: "b",
+                    label: "Topic sentence, supporting details, conclusion",
+                },
                 { value: "c", label: "Introduction, examples, summary" },
             ],
             correctAnswer: "b",
-            explanation: "Even when writing about the Harborwalk, a paragraph still needs a topic sentence, supporting details, and a conclusion.",
+            explanation:
+                "A strong paragraph, even about the Harborwalk, needs a topic sentence, supporting details, and a conclusion sentence.",
+            skillTag: "paragraph-structure-three-parts",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
-            question: "Where should the topic sentence appear in a paragraph about community gardens?",
+            question:
+                "Where should the topic sentence usually appear in a paragraph about community gardens?",
             options: [
                 { value: "a", label: "At the end" },
                 { value: "b", label: "In the middle" },
                 { value: "c", label: "At the beginning" },
             ],
             correctAnswer: "c",
-            explanation: "Start with the topic sentence so readers immediately understand the main idea about the garden.",
+            explanation:
+                "The topic sentence typically comes first so readers immediately understand the main idea.",
+            skillTag: "topic-sentence-position-first",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
-            question: "Which sentence is the best topic sentence for a Harborwalk paragraph?",
+            question:
+                "Which sentence is the best topic sentence for a Harborwalk paragraph?",
             options: [
                 { value: "a", label: "I like walking the Harborwalk with friends." },
-                { value: "b", label: "Walking the Harborwalk daily keeps my heart strong." },
+                {
+                    value: "b",
+                    label: "Walking the Harborwalk daily keeps my heart strong.",
+                },
                 { value: "c", label: "Yesterday I walked for 32 minutes." },
             ],
             correctAnswer: "b",
-            explanation: "Option b states a clear central idea that all following sentences can support.",
+            explanation:
+                "Option b states a clear main idea that many supporting details can explain and expand.",
+            skillTag: "topic-sentence-quality-clear-main-idea",
+            difficulty: "medium",
         },
         {
             id: "quiz-4",
-            question: "What does unity mean when describing East Boston stories?",
+            question:
+                "What does 'unity' mean when describing East Boston stories?",
             options: [
-                { value: "a", label: "Every sentence uses transition words" },
-                { value: "b", label: "All sentences support the same main idea" },
-                { value: "c", label: "Each sentence is about a different topic" },
+                {
+                    value: "a",
+                    label: "Every sentence uses transition words like 'First' and 'Next'",
+                },
+                {
+                    value: "b",
+                    label: "All sentences support the same main idea",
+                },
+                {
+                    value: "c",
+                    label: "Each sentence is about a different topic",
+                },
             ],
             correctAnswer: "b",
-            explanation: "Unity keeps the paragraph focused on one idea, whether it’s the Harborwalk or the community garden.",
+            explanation:
+                "Unity means every sentence in the paragraph helps explain the same main idea.",
+            skillTag: "unity-all-sentences-support-main-idea",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
-            question: "How many sentences should a paragraph about the Blue Line schedule include?",
+            question:
+                "How many sentences should a typical paragraph about the Blue Line schedule include?",
             options: [
                 { value: "a", label: "1-2 sentences" },
                 { value: "b", label: "At least 5-7 sentences" },
                 { value: "c", label: "10-12 sentences" },
             ],
             correctAnswer: "b",
-            explanation: "A mini paragraph still needs 5-7 sentences: topic, supporting detail(s), and conclusion.",
+            explanation:
+                "A well-developed paragraph usually has 5-7 sentences: topic sentence, 3-5 supporting details, and a conclusion.",
+            skillTag: "paragraph-length-5-to-7-sentences",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
-            question: "How do transition words help a paragraph about East Boston events?",
+            question:
+                "How do transition words help a paragraph about East Boston events?",
             options: [
-                { value: "a", label: "Replace the topic sentence" },
-                { value: "b", label: "Make sentences longer" },
-                { value: "c", label: "Connect ideas and guide the reader" },
+                { value: "a", label: "They replace the topic sentence." },
+                { value: "b", label: "They make sentences longer." },
+                {
+                    value: "c",
+                    label: "They connect ideas and guide the reader through the paragraph.",
+                },
             ],
             correctAnswer: "c",
-            explanation: "Words like 'Also,' 'Later,' and 'Finally' help the paragraph flow from one idea to the next.",
+            explanation:
+                "Transition words like 'First,' 'Also,' and 'Finally' connect ideas and help readers follow the order.",
+            skillTag: "transitions-purpose-connect-ideas",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
-            question: "Which sentence is off-topic in a paragraph about Harborwalk benefits?",
+            question:
+                "Which sentence is off-topic in a paragraph about Harborwalk benefits?",
             options: [
-                { value: "a", label: "Walking the Harborwalk improves our mood." },
-                { value: "b", label: "It helps us meet neighbors after work." },
-                { value: "c", label: "The Red Sox won last night’s game." },
+                {
+                    value: "a",
+                    label: "Walking the Harborwalk improves our mood.",
+                },
+                {
+                    value: "b",
+                    label: "It helps us meet neighbors after work.",
+                },
+                {
+                    value: "c",
+                    label: "The Red Sox won last night’s game.",
+                },
             ],
             correctAnswer: "c",
-            explanation: "Mentioning sports scores distracts from the Harborwalk focus.",
+            explanation:
+                "A sentence about a baseball score does not support the main idea of Harborwalk benefits.",
+            skillTag: "unity-identify-off-topic-sentence",
+            difficulty: "medium",
         },
         {
             id: "quiz-8",
-            question: "Which sentence is a supporting detail for 'The community garden keeps neighbors healthy'?",
+            question:
+                "Which sentence is a good supporting detail for 'The community garden keeps neighbors healthy'?",
             options: [
-                { value: "a", label: "Gardening takes place next to the Harborwalk." },
-                { value: "b", label: "Volunteers plant vegetables every Saturday." },
-                { value: "c", label: "The garden is open once a year." },
+                {
+                    value: "a",
+                    label: "Gardening takes place next to the Harborwalk.",
+                },
+                {
+                    value: "b",
+                    label: "Volunteers plant vegetables every Saturday.",
+                },
+                {
+                    value: "c",
+                    label: "The garden is open once a year.",
+                },
             ],
             correctAnswer: "b",
-            explanation: "Detail b explains how the garden supports health through regular work.",
+            explanation:
+                "Planting vegetables regularly shows how the garden supports health through fresh food and activity.",
+            skillTag: "supporting-detail-identify-relevant-example",
+            difficulty: "medium",
         },
         {
             id: "quiz-9",
-            question: "What is the main job of a conclusion sentence about Logan Airport shuttles?",
+            question:
+                "What is the main job of a conclusion sentence about Logan Airport shuttles?",
             options: [
-                { value: "a", label: "Introduce a new idea about the shuttle route" },
-                { value: "b", label: "Summarize the main idea or restate reasons" },
-                { value: "c", label: "Ask the reader a question" },
+                {
+                    value: "a",
+                    label: "Introduce a new idea about a different shuttle route",
+                },
+                {
+                    value: "b",
+                    label: "Summarize the main idea or restate the reasons",
+                },
+                { value: "c", label: "Ask the reader a new question" },
             ],
             correctAnswer: "b",
-            explanation: "The conclusion wraps up the paragraph and reminds readers of the key point.",
+            explanation:
+                "The conclusion wraps up the paragraph by restating the main idea or summarizing the key points.",
+            skillTag: "conclusion-function-restatement-summary",
+            difficulty: "easy",
         },
         {
             id: "quiz-10",
-            question: "You want to write about a different topic (East Boston schools). What should you do?",
+            question:
+                "You want to write about a different topic (East Boston schools) instead of the Harborwalk. What should you do?",
             options: [
                 { value: "a", label: "Start a new paragraph" },
                 { value: "b", label: "Keep writing in the same paragraph" },
                 { value: "c", label: "Repeat the same topic sentence" },
             ],
             correctAnswer: "a",
-            explanation: "New main ideas belong in new paragraphs to keep unity and clarity.",
+            explanation:
+                "A new main idea belongs in a new paragraph to keep unity and organization.",
+            skillTag: "paragraph-break-new-topic-new-paragraph",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
-            question: "What does coherence mean after describing Harborwalk improvements?",
+            question:
+                "What does 'coherence' mean after describing Harborwalk improvements?",
             options: [
-                { value: "a", label: "Ideas flow logically from sentence to sentence" },
-                { value: "b", label: "Every sentence is the same length" },
-                { value: "c", label: "Sentences use the same verb tense" },
+                {
+                    value: "a",
+                    label: "Ideas flow in a logical order that is easy to follow",
+                },
+                {
+                    value: "b",
+                    label: "Every sentence is the same length",
+                },
+                {
+                    value: "c",
+                    label: "All sentences use the same verb tense",
+                },
             ],
             correctAnswer: "a",
-            explanation: "Coherence ensures neighbors can follow your paragraph about future improvements.",
+            explanation:
+                "Coherence means sentences are ordered and connected so the paragraph feels smooth and logical.",
+            skillTag: "coherence-logical-flow-of-ideas",
+            difficulty: "medium",
         },
         {
             id: "quiz-12",
-            question: "Which transition word best shows that you are adding another idea about community safety?",
+            question:
+                "Which transition word best shows that you are adding another idea about community safety?",
             options: [
                 { value: "a", label: "Also" },
                 { value: "b", label: "Yesterday" },
                 { value: "c", label: "However" },
             ],
             correctAnswer: "a",
-            explanation: "'Also' adds another idea about safety without changing the direction of the paragraph.",
+            explanation:
+                "'Also' adds another idea to the same point, which is useful when listing safety reasons.",
+            skillTag: "transitions-adding-ideas-also",
+            difficulty: "easy",
         },
         {
             id: "quiz-13",
-            question: "Why is 'Walking daily keeps the Harborwalk clean' a good topic sentence?",
+            question:
+                "Why is 'Walking daily keeps the Harborwalk clean' a strong topic sentence?",
             options: [
-                { value: "a", label: "Because it introduces the topic and prepares for details" },
+                {
+                    value: "a",
+                    label: "Because it introduces a clear main idea and prepares for details",
+                },
                 { value: "b", label: "Because it is a question" },
-                { value: "c", label: "Because it lists dates" },
+                { value: "c", label: "Because it lists exact times and dates" },
             ],
             correctAnswer: "a",
-            explanation: "It clearly states the main idea and sets up supporting details about cleanliness.",
+            explanation:
+                "It clearly states a focus (clean Harborwalk) that supporting sentences can explain.",
+            skillTag: "topic-sentence-explainable-main-idea",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
-            question: "Which sentence functions as a conclusion for a paragraph about neighborhood meetings?",
+            question:
+                "Which sentence works best as a conclusion for a paragraph about neighborhood meetings?",
             options: [
-                { value: "a", label: "Meetings happen in the community center Tuesday nights." },
-                { value: "b", label: "These meetings help neighbors solve parking problems." },
-                { value: "c", label: "For these reasons, we should keep meeting every week." },
+                {
+                    value: "a",
+                    label: "Meetings happen in the community center Tuesday nights.",
+                },
+                {
+                    value: "b",
+                    label: "These meetings help neighbors solve parking problems.",
+                },
+                {
+                    value: "c",
+                    label: "For these reasons, we should keep meeting every week.",
+                },
             ],
             correctAnswer: "c",
-            explanation: "This sentence summarizes and pushes the reader to continue the meetings.",
+            explanation:
+                "This sentence summarizes the idea and gives a final recommendation, which is ideal for a conclusion.",
+            skillTag: "conclusion-identify-strong-ending",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
-            question: "What is an example of a supporting detail for safety improvements on the Harborwalk?",
+            question:
+                "What is an example of a strong supporting detail for safety improvements on the Harborwalk?",
             options: [
                 { value: "a", label: "The Harborwalk is a great place." },
-                { value: "b", label: "New lights now cover the path from Maverick to Bremen Street." },
+                {
+                    value: "b",
+                    label: "New lights now cover the path from Maverick to Bremen Street.",
+                },
                 { value: "c", label: "Portland has a wide pathway." },
             ],
             correctAnswer: "b",
-            explanation: "It gives a specific detail about new lights that supports the main idea about safety.",
+            explanation:
+                "This sentence gives a specific example (new lights) that supports the idea of safety improvements.",
+            skillTag: "supporting-detail-specific-evidence",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-16",
+            question:
+                "Read this short paragraph: 'The Harborwalk is free, clean, and full of plants. We see more neighbors there every day. The path shines after a fresh rain.' What is missing?",
+            options: [
+                { value: "a", label: "Topic sentence" },
+                { value: "b", label: "Supporting details" },
+                { value: "c", label: "Conclusion sentence" },
+            ],
+            correctAnswer: "c",
+            explanation:
+                "The paragraph already has a clear main idea and details, but it needs a final conclusion sentence to wrap it up.",
+            skillTag: "paragraph-missing-conclusion-identification",
+            difficulty: "medium",
         },
     ],
+
+    /*
+    TEACHER DIAGNOSTIC NOTES – Paragraph Format Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Identify the three main parts of a paragraph (topic sentence, supporting details, conclusion).
+    - Recognize a strong topic sentence (clear, focused, explainable main idea).
+    - Distinguish supporting details from off-topic sentences.
+    - Understand the roles of unity and coherence.
+    - Use and recognize transition words for adding and organizing ideas.
+    - Recognize the purpose of a conclusion sentence and when a paragraph is missing one.
+    - Apply these skills to real-world East Boston topics (Harborwalk, community gardens, neighborhood meetings).
+
+    Skill tags:
+
+    Paragraph structure and length
+    - paragraph-structure-three-parts
+    - paragraph-length-5-to-7-sentences
+    - paragraph-break-new-topic-new-paragraph
+
+    Topic sentence skills
+    - topic-sentence-position-first
+    - topic-sentence-quality-clear-main-idea
+    - topic-sentence-explainable-main-idea
+
+    Supporting details and evidence
+    - supporting-detail-identify-relevant-example
+    - supporting-detail-specific-evidence
+
+    Unity and off-topic sentences
+    - unity-all-sentences-support-main-idea
+    - unity-identify-off-topic-sentence
+
+    Coherence and transitions
+    - coherence-logical-flow-of-ideas
+    - transitions-purpose-connect-ideas
+    - transitions-adding-ideas-also
+
+    Conclusion awareness
+    - conclusion-function-restatement-summary
+    - conclusion-identify-strong-ending
+    - paragraph-missing-conclusion-identification
+
+    How to read the diagnostics:
+    - If paragraph structure and length tags are weak (paragraph-structure-three-parts, paragraph-length-5-to-7-sentences, paragraph-break-new-topic-new-paragraph) →
+      Revisit the basic structure:
+      • Topic sentence → Supporting details → Conclusion.
+      Draw a visual “paragraph sandwich” or 3-box diagram and have students label each part and write one example sentence in each box.
+
+    - If topic sentence tags are weak (topic-sentence-position-first, topic-sentence-quality-clear-main-idea, topic-sentence-explainable-main-idea) →
+      Practice sorting and rewriting:
+      • Give several topic sentence options and ask: Too general? Too specific? Just right?
+      • Have students fix weak topic sentences for real East Boston topics (Harborwalk, Logan Airport shuttles, community garden).
+
+    - If supporting detail tags are weak (supporting-detail-identify-relevant-example, supporting-detail-specific-evidence) →
+      Use a T-chart:
+      • LEFT: Possible supporting details.
+      • RIGHT: Does this support the main idea? YES/NO.
+      Ask students to explain why each detail belongs or does not belong in the paragraph.
+
+    - If unity tags are weak (unity-all-sentences-support-main-idea, unity-identify-off-topic-sentence) →
+      Show short paragraphs that mix on-topic and off-topic sentences.
+      • Have students highlight or delete off-topic sentences.
+      • Ask them to write a new sentence that better supports the main idea.
+
+    - If coherence and transition tags are weak (coherence-logical-flow-of-ideas, transitions-purpose-connect-ideas, transitions-adding-ideas-also) →
+      Give a list of scrambled sentences and have students put them in logical order using transitions.
+      • Build a small transition word bank on the board by function (First, Next, Also, Finally).
+      • Have students add transitions to bare paragraphs that feel “choppy.”
+
+    - If conclusion tags are weak (conclusion-function-restatement-summary, conclusion-identify-strong-ending, paragraph-missing-conclusion-identification) →
+      Practice writing only conclusion sentences:
+      • Give a topic sentence and 2-3 supporting details and ask students to write a one-sentence conclusion.
+      • Compare weak vs strong endings (“I like it.” vs “For these reasons, we should keep meeting every week.”).
+
+    Suggested use:
+    - Use this mini quiz after students complete the paragraph structure and unity/coherence sections.
+    - At the class level:
+      • If structure and topic sentence tags are red → slow down and do more guided practice building paragraphs from sentence strips.
+      • If unity/coherence and transition tags are red → focus on editing and rearranging activities (fixing paragraphs instead of writing from zero).
+      • If conclusion tags are red → model multiple conclusion options and have students choose and improve them before writing their own.
+    */
 };

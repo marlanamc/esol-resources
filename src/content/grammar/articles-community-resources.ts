@@ -198,9 +198,9 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
             `,
             exercises: [
                 {
-                    id: "articles-quiz-1",
-                    title: "Quiz Question 1",
-                    instructions: "Choose the correct article.",
+                    id: "articles-quiz",
+                    title: "Mini Quiz: Articles in Community Contexts",
+                    instructions: "Choose the best article (a/an/the/(no article)) for each sentence.",
                     items: [
                         {
                             type: "radio",
@@ -212,13 +212,6 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "a",
                         },
-                    ],
-                },
-                {
-                    id: "articles-quiz-2", 
-                    title: "Quiz Question 2",
-                    instructions: "Choose the correct article.",
-                    items: [
                         {
                             type: "radio",
                             label: "___ manager I spoke to was very helpful.",
@@ -229,13 +222,6 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "the",
                         },
-                    ],
-                },
-                {
-                    id: "articles-quiz-3",
-                    title: "Quiz Question 3", 
-                    instructions: "Choose the correct article.",
-                    items: [
                         {
                             type: "radio",
                             label: "We attend ___ community meetings every month.",
@@ -246,13 +232,6 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "zero",
                         },
-                    ],
-                },
-                {
-                    id: "articles-quiz-4",
-                    title: "Quiz Question 4",
-                    instructions: "Choose the correct article.",
-                    items: [
                         {
                             type: "radio",
                             label: "She is looking for ___ apartment near ___ T station.",
@@ -263,16 +242,29 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "an-the",
                         },
-                    ],
-                },
-                {
-                    id: "articles-quiz-5",
-                    title: "Quiz Question 5",
-                    instructions: "Choose the correct article.",
-                    items: [
                         {
                             type: "radio",
-                            label: "___ health is most important thing.",
+                            label: "I went to ___ community center on Meridian Street. ___ center offers free childcare.",
+                            options: [
+                                { value: "a-the", label: "a / the" },
+                                { value: "the-the", label: "the / the" },
+                                { value: "zero-the", label: "(no article) / the" },
+                            ],
+                            expectedAnswer: "a-the",
+                        },
+                        {
+                            type: "radio",
+                            label: "___ housing office can help you with your application.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "the",
+                        },
+                        {
+                            type: "radio",
+                            label: "We learned about ___ tenants' rights in class.",
                             options: [
                                 { value: "a", label: "a" },
                                 { value: "the", label: "the" },
@@ -280,9 +272,46 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             ],
                             expectedAnswer: "zero",
                         },
+                        {
+                            type: "radio",
+                            label: "I have an appointment at ___ East Boston Neighborhood Health Center.",
+                            options: [
+                                { value: "a", label: "a" },
+                                { value: "the", label: "the" },
+                                { value: "zero", label: "(no article)" },
+                            ],
+                            expectedAnswer: "the",
+                        },
                     ],
                 },
             ],
         },
+        /*
+        TEACHER DIAGNOSTIC NOTES – Articles & Community Resources Mini Quiz
+
+        This mini quiz checks whether students can:
+        - Choose a vs the vs zero for jobs, services, and community spaces.
+        - Use first mention vs second mention correctly.
+        - Recognize when a place is unique and needs the.
+
+        Question focus:
+        - Q1: "a job" → Indefinite article with singular, countable noun (any job, not specific).
+        - Q2: "the manager" → Definite article for a specific person already identified by the phrase "I spoke to".
+        - Q3: zero article with plural, general noun ("community meetings") for habits/routines.
+        - Q4: "an apartment / the T station" → Indefinite for any apartment; definite for the specific, known T station.
+        - Q5: "a community center / the center" → First mention = a; second mention = the (now specific and shared).
+        - Q6: "the housing office" → Unique local service (the main housing office students already know about).
+        - Q7: zero article with abstract/general concept ("tenants' rights") in a general statement.
+        - Q8: "the East Boston Neighborhood Health Center" → Proper name of a unique place with the.
+
+        How to use results:
+        - If Q1 and Q2 are weak → Revisit the difference between a/an (new/any) and the (known/specific). Use simple job and counselor examples.
+        - If Q3 and Q7 are weak → Practice zero article with plural/general nouns and abstract ideas (community events, health information, tenants' rights).
+        - If Q4 and Q5 are weak → Do a short story drill: first line with a/an, second line with the for the same noun.
+        - If Q6 and Q8 are weak → Review unique local places (the housing office, the East Boston Branch Library, the EBNHC) and why they take the.
+
+        Suggested follow-up:
+        - Have students write 3–4 sentences about real East Boston services using a/an, the, and zero, then underline the article choices and explain why.
+        */
     ],
 };

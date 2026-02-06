@@ -818,7 +818,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "I will finished the work by tomorrow." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect: will have + past participle (finished). Always use the past participle form after 'will have'.",
+            explanation: "Future Perfect requires will have + past participle.",
+            skillTag: "form-future-perfect-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -829,7 +831,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "She won't has arrived by 6 PM." },
             ],
             correctAnswer: "a",
-            explanation: "Negative Future Perfect: won't have + past participle. 'Have' never changes—it's always 'have', not 'has' or 'haven't'.",
+            explanation: "Negative form is won't have + past participle.",
+            skillTag: "form-future-perfect-negative",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -840,7 +844,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "Have you will finished by tomorrow?" },
             ],
             correctAnswer: "a",
-            explanation: "Question form: Will + subject + have + past participle? 'Will' always comes first in questions.",
+            explanation: "Questions use Will + subject + have + past participle.",
+            skillTag: "form-future-perfect-question",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -851,7 +857,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "When talking about daily habits" },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect = action complete BEFORE a future point (BY). Future Simple = action happens AT a future time.",
+            explanation: "Future Perfect focuses on completion before a future time.",
+            skillTag: "contrast-future-perfect-vs-simple-future",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -862,7 +870,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "I finished my homework by 6 PM." },
             ],
             correctAnswer: "b",
-            explanation: "'By 6 PM' signals a deadline. Future Perfect shows the homework will be complete BEFORE 6 PM arrives.",
+            explanation: "'By' signals a deadline, so we use Future Perfect.",
+            skillTag: "result-future-completed-by-deadline",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
@@ -873,7 +883,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "will + base verb" },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect = will have + past participle (V3). This formula works for all subjects—no changes needed!",
+            explanation: "Future Perfect uses will have + past participle.",
+            skillTag: "form-future-perfect-structure",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
@@ -884,7 +896,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "every day" },
             ],
             correctAnswer: "a",
-            explanation: "'By' + future time signals a deadline. When you see 'by', think Future Perfect for actions completed before that time.",
+            explanation: "'By' is the strongest signal for Future Perfect deadlines.",
+            skillTag: "signal-by-future-perfect",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
@@ -895,7 +909,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "am cooking" },
             ],
             correctAnswer: "a",
-            explanation: "'By the time you arrive' = future deadline. Cooking will be DONE before you arrive—that's Future Perfect!",
+            explanation: "The cooking is complete before you arrive.",
+            skillTag: "pattern-by-the-time-future-perfect",
+            difficulty: "easy",
         },
         {
             id: "quiz-9",
@@ -906,7 +922,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "I studied here last year." },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect is perfect for milestones: showing duration UP TO a future point (5 years by next month).",
+            explanation: "Milestones describe duration completed by a future time.",
+            skillTag: "result-future-milestone",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -917,7 +935,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "They have arrived by 6 PM." },
             ],
             correctAnswer: "a",
-            explanation: "After 'will have', use the past participle: 'arrived' not 'arrive'. The past participle is required in Future Perfect.",
+            explanation: "Past participle is required after 'will have'.",
+            skillTag: "error-base-verb-after-have",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
@@ -928,7 +948,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "She cleaned the kitchen yesterday." },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect = standing at a future point (Friday) and looking back at a completed action. That's the time machine perspective!",
+            explanation: "Future Perfect looks back from a future point.",
+            skillTag: "meaning-look-back-from-future",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
@@ -939,7 +961,9 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "sent" },
             ],
             correctAnswer: "a",
-            explanation: "'Before the meeting starts' = deadline. The email will be DONE before that point—Future Perfect!",
+            explanation: "The email will be sent before the meeting starts.",
+            skillTag: "pattern-before-future-perfect",
+            difficulty: "easy",
         },
         {
             id: "quiz-13",
@@ -950,18 +974,22 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "By next year, I completed my certification." },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect emphasizes the certification will be FINISHED by that deadline—perfect for showing career goals in interviews!",
+            explanation: "Future Perfect emphasizes completed goals by a deadline.",
+            skillTag: "result-future-career-goal",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
             question: "What's the difference: 'I will finish AT 6' vs 'I will have finished BY 6'?",
             options: [
-                { value: "a", label: "AT 6 = action happens at that time; BY 6 = action complete before that time" },
+                { value: "a", label: "AT 6 = happens at that time; BY 6 = complete before that time" },
                 { value: "b", label: "They mean the same thing" },
                 { value: "c", label: "BY 6 is past tense" },
             ],
             correctAnswer: "a",
-            explanation: "AT = when it happens (Future Simple). BY = when it's already done (Future Perfect). That's the key difference!",
+            explanation: "AT vs BY distinguishes Future Simple from Future Perfect.",
+            skillTag: "contrast-at-vs-by",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
@@ -972,7 +1000,41 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 { value: "c", label: "The store will closing by the time we get there." },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect makes predictions about what will be COMPLETE by a future moment. The store closes before we arrive.",
+            explanation: "Future Perfect predicts completion before a future event.",
+            skillTag: "prediction-future-perfect",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Future Perfect Mini Quiz
+
+    Core meaning:
+    - meaning-look-back-from-future
+    - result-future-completed-by-deadline
+    - result-future-milestone
+
+    Form issues:
+    - form-future-perfect-positive
+    - form-future-perfect-negative
+    - form-future-perfect-question
+    - form-future-perfect-structure
+
+    Pattern understanding:
+    - signal-by-future-perfect
+    - pattern-by-the-time-future-perfect
+    - pattern-before-future-perfect
+
+    Contrast issues:
+    - contrast-future-perfect-vs-simple-future
+    - contrast-at-vs-by
+
+    Common errors:
+    - error-base-verb-after-have
+
+    Reteaching guidance:
+    - If meaning tags are weak → re-teach the "future deadline → look back" mental model.
+    - If form tags are weak → drill will / won't + have + past participle across subjects.
+    - If pattern tags are weak → practice sentence frames with by, before, and by the time.
+    - If contrast tags are weak → force AT vs BY sorting exercises.
+    */
 };

@@ -663,62 +663,391 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
         },
     ],
 
-    // Mini Quiz
+    // Mini Quiz (16 questions)
     miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "Which sentence expresses obligation (you're required to do it)?",
-            options: [
-                { value: "a", label: "You should clock in before your shift." },
-                { value: "b", label: "You must clock in before your shift." },
-                { value: "c", label: "You can clock in before your shift." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Must' = obligation/requirement. 'Should' = advice (recommended but not required). 'Can' = permission/ability.",
-        },
-        {
-            id: "quiz-2",
-            question: "Which is the most polite way to ask your boss for help?",
-            options: [
-                { value: "a", label: "Can you help me?" },
-                { value: "b", label: "Help me with this." },
-                { value: "c", label: "Could you help me with this when you have a moment?" },
-            ],
-            correctAnswer: "c",
-            explanation: "'Could you' is more polite than 'Can you,' and adding 'when you have a moment' shows respect for their time.",
-        },
-        {
-            id: "quiz-3",
-            question: "What's the difference? 'You don't have to wear a tie' vs 'You must not wear jeans'",
-            options: [
-                { value: "a", label: "They mean the same thing." },
-                { value: "b", label: "First = optional (you can choose). Second = forbidden (you can't do it)." },
-                { value: "c", label: "First = forbidden. Second = optional." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Don't have to' = not necessary (you can if you want). 'Must not' = prohibited (you're not allowed).",
-        },
-        {
-            id: "quiz-4",
-            question: "Your manager says: 'You should finish this by Friday.' What does this mean?",
-            options: [
-                { value: "a", label: "It's just a suggestion, you can finish whenever." },
-                { value: "b", label: "It's strongly recommended/expected (closer to must in a work context)." },
-                { value: "c", label: "You are absolutely required to finish by Friday or you'll be fired." },
-            ],
-            correctAnswer: "b",
-            explanation: "At work, 'should' from your boss usually means it's expected, not just a casual suggestion. Context matters!",
-        },
-        {
-            id: "quiz-5",
-            question: "Which sentence is grammatically correct?",
-            options: [
-                { value: "a", label: "She cans work overtime tomorrow." },
-                { value: "b", label: "She can works overtime tomorrow." },
-                { value: "c", label: "She can work overtime tomorrow." },
-            ],
-            correctAnswer: "c",
-            explanation: "Modals don't take -s, and the verb after a modal is always the base form (no -s, no -ing): can work.",
-        },
+      {
+        id: "quiz-1",
+        question:
+          "Which sentence expresses obligation (you are required to do it)?",
+        options: [
+          { value: "a", label: "You should clock in before your shift." },
+          { value: "b", label: "You must clock in before your shift." },
+          { value: "c", label: "You can clock in before your shift." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Must' shows a rule or strong obligation. 'Should' is advice. 'Can' is permission or ability.",
+        skillTag: "meaning-obligation-must",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-2",
+        question: "Which is the most polite way to ask your boss for help?",
+        options: [
+          { value: "a", label: "Can you help me?" },
+          { value: "b", label: "Help me with this." },
+          {
+            value: "c",
+            label: "Could you help me with this when you have a moment?",
+          },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "'Could you...when you have a moment?' is a polite request that respects the boss's time.",
+        skillTag: "politeness-request-could-boss",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-3",
+        question:
+          "What is the difference? 'You don't have to wear a tie' vs 'You must not wear jeans'",
+        options: [
+          { value: "a", label: "They mean the same thing." },
+          {
+            value: "b",
+            label:
+              "First = optional (you can choose). Second = forbidden (you are not allowed).",
+          },
+          {
+            value: "c",
+            label: "First = forbidden. Second = optional.",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Don't have to' means something is not necessary. 'Must not' means something is prohibited.",
+        skillTag: "contrast-dont-have-to-vs-must-not",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-4",
+        question:
+          "Your manager says: 'You should finish this by Friday.' What does this usually mean at work?",
+        options: [
+          {
+            value: "a",
+            label: "It is just a casual idea, you can finish whenever.",
+          },
+          {
+            value: "b",
+            label:
+              "It is strongly recommended and expected (close to a requirement).",
+          },
+          {
+            value: "c",
+            label:
+              "You will be fired if you do not finish by Friday, no exceptions.",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "In workplace context, 'should' from a boss usually means a strong expectation, not a light suggestion.",
+        skillTag: "meaning-should-workplace-expectation",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-5",
+        question: "Which sentence is grammatically correct?",
+        options: [
+          { value: "a", label: "She cans work overtime tomorrow." },
+          { value: "b", label: "She can works overtime tomorrow." },
+          { value: "c", label: "She can work overtime tomorrow." },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "After a modal, use the base verb: 'can work', not 'cans work' or 'can works'.",
+        skillTag: "form-modal-plus-base-verb",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-6",
+        question:
+          "The sign on the wall says: 'Employees ___ wash their hands before returning to work.'",
+        options: [
+          { value: "a", label: "should" },
+          { value: "b", label: "must" },
+          { value: "c", label: "can" },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "Official rules and signs often use 'must' to show strong obligation.",
+        skillTag: "meaning-obligation-must-rule",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-7",
+        question:
+          "Your boss put you on the schedule for Saturday. Which sentence matches this situation?",
+        options: [
+          { value: "a", label: "I must relax on Saturday." },
+          { value: "b", label: "I have to work on Saturday." },
+          { value: "c", label: "I can work on Saturday if I feel like it." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Have to' fits external rules or schedules made by someone else, like a boss.",
+        skillTag: "meaning-obligation-have-to-external",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-8",
+        question:
+          "Choose the best sentence about something that is NOT necessary:",
+        options: [
+          {
+            value: "a",
+            label: "You must not come to the meeting if you are busy.",
+          },
+          {
+            value: "b",
+            label: "You do not have to come to the meeting if you are busy.",
+          },
+          {
+            value: "c",
+            label: "You should not come to the meeting if you are busy.",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Do not have to' means something is optional. 'Must not' means it is forbidden.",
+        skillTag: "meaning-not-necessary-dont-have-to",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-9",
+        question:
+          "You want to ask a coworker a quick question. What is most natural?",
+        options: [
+          { value: "a", label: "May I ask you a question?" },
+          { value: "b", label: "Could I request to ask a question?" },
+          { value: "c", label: "Can I ask you a question?" },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "'Can I ask you a question?' is the most common casual way to ask a coworker for a quick moment.",
+        skillTag: "permission-can-casual-coworker",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-10",
+        question:
+          "You have a serious family emergency and need to ask your manager for time off. Which is best?",
+        options: [
+          { value: "a", label: "Can I have tomorrow off?" },
+          {
+            value: "b",
+            label: "Could I have tomorrow off for a family emergency?",
+          },
+          {
+            value: "c",
+            label: "May I take tomorrow because I want to relax?",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Could I...' sounds more careful and respectful for a serious request, and giving the reason is helpful.",
+        skillTag: "permission-could-polite-manager",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-11",
+        question:
+          "You need to ask the HR manager about an important policy. Which is most appropriate?",
+        options: [
+          {
+            value: "a",
+            label: "May I ask you a question about the attendance policy?",
+          },
+          { value: "b", label: "Can I know about the rule?" },
+          { value: "c", label: "Tell me the rule about attendance." },
+        ],
+        correctAnswer: "a",
+        explanation:
+          "'May I ask...' is a polite and formal way to start a question with HR or management.",
+        skillTag: "permission-may-formal-hr",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-12",
+        question:
+          "Which request is the most polite way to ask a busy supervisor for help?",
+        options: [
+          { value: "a", label: "Help me with this report." },
+          {
+            value: "b",
+            label: "Could you help me with this report when you have time?",
+          },
+          {
+            value: "c",
+            label:
+              "I was wondering if you might be able to help me with this report when you have a moment?",
+          },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "Using 'I was wondering if you might be able to...' is very polite and softens the request.",
+        skillTag: "politeness-ladder-indirect-request",
+        difficulty: "hard",
+      },
+      {
+        id: "quiz-13",
+        question:
+          "Complete the sentence: 'You ___ arrive 10 minutes early on your first day.' (good idea, not a strict rule)",
+        options: [
+          { value: "a", label: "must" },
+          { value: "b", label: "should" },
+          { value: "c", label: "can" },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Should' expresses advice or recommendation, not a strict rule.",
+        skillTag: "meaning-advice-should",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-14",
+        question:
+          "Complete the sentence: 'You ___ wear your ID badge at all times in the building.' (company rule)",
+        options: [
+          { value: "a", label: "should" },
+          { value: "b", label: "must" },
+          { value: "c", label: "can" },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "Company rules about safety or security often use 'must' to show obligation.",
+        skillTag: "meaning-rule-must-id-badge",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-15",
+        question: "Which sentence is correct with 'must'?",
+        options: [
+          { value: "a", label: "I must to leave now." },
+          { value: "b", label: "I must leaving now." },
+          { value: "c", label: "I must leave now." },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "After 'must', use the base verb: 'must leave', not 'must to leave' or 'must leaving'.",
+        skillTag: "form-must-plus-base-verb",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-16",
+        question:
+          "Which question is grammatically correct and polite with a modal first?",
+        options: [
+          {
+            value: "a",
+            label: "May I speak with you about my schedule?",
+          },
+          {
+            value: "b",
+            label: "I may speak with you about my schedule?",
+          },
+          {
+            value: "c",
+            label: "Do I may speak with you about my schedule?",
+          },
+        ],
+        correctAnswer: "a",
+        explanation:
+          "Modal questions use the pattern: modal + subject + base verb. 'May I speak...?' follows this pattern.",
+        skillTag: "form-modal-question-word-order",
+        difficulty: "medium",
+      },
     ],
+
+  /*
+  TEACHER DIAGNOSTIC NOTES – Modals: Obligation, Permission, Politeness Mini Quiz
+
+  This mini quiz checks whether students can:
+  - Understand the meaning difference between MUST, HAVE TO, SHOULD, CAN, MAY, COULD, and DO NOT HAVE TO.
+  - Distinguish:
+    • obligation vs advice vs permission vs not necessary vs forbidden.
+    • workplace expectations vs strict rules.
+  - Use correct grammar patterns:
+    • Subject + modal + base verb (no -s, no -ing, no 'to' after must/can).
+    • Correct question word order: modal + subject + base verb.
+  - Choose appropriate politeness level when speaking to coworkers, supervisors, and HR.
+
+  Skill tags:
+
+  Meaning: obligation, advice, not necessary, rules
+  - meaning-obligation-must
+  - meaning-obligation-must-rule
+  - meaning-obligation-have-to-external
+  - meaning-advice-should
+  - meaning-should-workplace-expectation
+  - meaning-not-necessary-dont-have-to
+  - contrast-dont-have-to-vs-must-not
+
+  Permission and politeness
+  - permission-can-casual-coworker
+  - permission-could-polite-manager
+  - permission-may-formal-hr
+  - form-modal-question-word-order
+  - politeness-request-could-boss
+  - politeness-ladder-indirect-request
+
+  Form: modal + base verb
+  - form-modal-plus-base-verb
+  - form-must-plus-base-verb
+
+  Rules and workplace context
+  - meaning-rule-must-id-badge
+
+  How to read the diagnostics:
+  - If obligation vs advice tags are weak (meaning-obligation-must, meaning-obligation-have-to-external, meaning-advice-should, meaning-should-workplace-expectation) →
+    Rebuild the chart from the guide:
+    • MUST / HAVE TO = required (rules, schedules, laws).
+    • SHOULD = advice/expectation (good idea, but grammar softer).
+    Use real example sentences from your students' jobs and have them sort them into REQUIRED vs RECOMMENDED.
+
+  - If not necessary vs forbidden tags are weak (meaning-not-necessary-dont-have-to, contrast-dont-have-to-vs-must-not) →
+    Make a three-column chart:
+    • REQUIRED: must, have to.
+    • NOT NECESSARY: do not have to.
+    • FORBIDDEN: must not.
+    Ask students to move sentence cards into the correct column, then explain in their own words.
+
+  - If form tags are weak (form-modal-plus-base-verb, form-must-plus-base-verb, form-modal-question-word-order) →
+    Go back to the pattern:
+    • Statement: Subject + modal + base verb → She can work. I must leave.
+    • Question: Modal + subject + base verb → Can I leave? May I ask?
+    Do quick error-correction drills:
+    • She cans work → She can work.
+    • I must to leave → I must leave.
+    • I may speak with you? → May I speak with you?
+
+  - If permission/politeness tags are weak (permission-can-casual-coworker, permission-could-polite-manager, permission-may-formal-hr, politeness-request-could-boss, politeness-ladder-indirect-request) →
+    Re-teach the politeness ladder:
+    • Can you...? (casual)
+    • Could you...? (standard polite)
+    • May I...? (formal)
+    • I was wondering if you could... (very polite, indirect)
+    Use role-plays with different power levels:
+    • Coworker to coworker → Can you / Could you.
+    • Employee to supervisor → Could you / Would it be possible.
+    • Employee to HR or director → May I / I was wondering if I could.
+
+  - If rules and workplace context tags are weak (meaning-obligation-must-rule, meaning-rule-must-id-badge) →
+    Collect real workplace signs and policies:
+    • Employees must...
+    • Visitors must...
+    • You must wear...
+    Have students rewrite them in spoken language with HAVE TO, and also rewrite spoken sentences back into formal sign language with MUST.
+
+  Suggested use:
+  - Use this mini quiz after students complete the sections on:
+    • Must vs Have to.
+    • Can/May/Could for permission.
+    • Should for advice and workplace expectations.
+    • Politeness ladder for requests at work.
+  - At the class level:
+    • If meaning tags are red → spend more time on charts, scenarios, and sentence sorting (Required vs Recommended vs Optional vs Forbidden).
+    • If form tags are red → do short, high-repetition drills focusing on modal + base verb and question word order.
+    • If politeness tags are red → prioritize speaking activities and role-plays where students practice asking for help, time off, and clarification in different levels of formality.
+  */
 };
