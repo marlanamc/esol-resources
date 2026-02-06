@@ -945,6 +945,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Present Simple: he/she/it needs -s ending on main verbs: works, answers.",
+            skillTag: "form-present-he-she-it-s",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -956,6 +958,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "c",
             explanation: "Present Simple negative: doesn't + base verb (no -s on main verb).",
+            skillTag: "form-present-negative-doesnt-base-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -967,6 +971,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Team' is singular, so Does + base verb: Does your team have…?",
+            skillTag: "form-present-question-does-subject-verb",
+            difficulty: "medium",
         },
         {
             id: "quiz-4",
@@ -978,6 +984,8 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Frequency adverbs go before the main verb: I always check…",
+            skillTag: "time-expression-present-frequency",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -988,18 +996,184 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I will drink coffee every morning at 7." },
             ],
             correctAnswer: "a",
-            explanation: "Habits/routines use Present Simple: I drink…; not continuous or future.",
+            explanation: "Habits and routines use Present Simple: I drink… (not continuous or future).",
+            skillTag: "meaning-present-habit-vs-now",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
-            question: "Which tense fits: 'She promised she'd help, so she ___ tomorrow.'",
+            question: "Which sentence correctly talks about a future promise?",
             options: [
-                { value: "a", label: "helps" },
-                { value: "b", label: "will help" },
-                { value: "c", label: "helped" },
+                { value: "a", label: "She helps you tomorrow, she promised." },
+                { value: "b", label: "She will help you tomorrow, she promised." },
+                { value: "c", label: "She helped you tomorrow, she promised." },
             ],
             correctAnswer: "b",
-            explanation: "Future promises/decisions use Future Simple: will help.",
+            explanation: "Future promises and quick decisions use Future Simple: will help.",
+            skillTag: "meaning-future-promise-decision",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question: "Which sentence is correct for a finished action with a clear past time?",
+            options: [
+                { value: "a", label: "I have paid the rent yesterday." },
+                { value: "b", label: "I paid the rent yesterday." },
+                { value: "c", label: "I pay the rent yesterday." },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Simple is used with finished time expressions like 'yesterday': I paid the rent yesterday.",
+            skillTag: "meaning-past-finished-time",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-8",
+            question: "Choose the correct Past Simple negative.",
+            options: [
+                { value: "a", label: "We didn't went to class last night." },
+                { value: "b", label: "We didn't go to class last night." },
+                { value: "c", label: "We don't went to class last night." },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Simple negative: didn't + base verb (not verb 2): didn't go.",
+            skillTag: "form-past-negative-didnt-base-verb",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-9",
+            question: "Which question is correct for a past event?",
+            options: [
+                { value: "a", label: "Saw you the email yesterday?" },
+                { value: "b", label: "Did you saw the email yesterday?" },
+                { value: "c", label: "Did you see the email yesterday?" },
+            ],
+            correctAnswer: "c",
+            explanation: "Past Simple questions use Did + subject + base verb: Did you see…?",
+            skillTag: "form-past-question-did-subject-verb",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-10",
+            question: "Which sentence is correct for a fixed schedule (not a one-time plan)?",
+            options: [
+                { value: "a", label: "The clinic opens at 9 AM on Mondays." },
+                { value: "b", label: "The clinic opened at 9 AM on Mondays." },
+                { value: "c", label: "The clinic will opens at 9 AM on Mondays." },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Simple is used for schedules and timetables: The clinic opens at 9 AM on Mondays.",
+            skillTag: "meaning-present-schedule",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-11",
+            question: "Which sentence is about a regular habit, not a single past time?",
+            options: [
+                { value: "a", label: "I take the bus to work every day." },
+                { value: "b", label: "I took the bus to work yesterday." },
+                { value: "c", label: "I will take the bus to work tomorrow." },
+            ],
+            correctAnswer: "a",
+            explanation: "'Every day' shows a habit, so we use Present Simple: I take the bus to work every day.",
+            skillTag: "contrast-simple-habit-vs-one-time",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence matches the time expression 'three years ago'?",
+            options: [
+                { value: "a", label: "We move to this city three years ago." },
+                { value: "b", label: "We moved to this city three years ago." },
+                { value: "c", label: "We will move to this city three years ago." },
+            ],
+            correctAnswer: "b",
+            explanation: "'Ago' signals Past Simple: We moved to this city three years ago.",
+            skillTag: "time-expression-past-ago",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-13",
+            question: "Which sentence matches the time expression 'next week'?",
+            options: [
+                { value: "a", label: "I start my new job next week." },
+                { value: "b", label: "I started my new job next week." },
+                { value: "c", label: "I will start my new job next week." },
+            ],
+            correctAnswer: "c",
+            explanation: "'Next week' is a future time expression, so Future Simple fits well here: I will start my new job next week.",
+            skillTag: "time-expression-future-next",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence correctly describes a past experience (not a habit)?",
+            options: [
+                { value: "a", label: "I visit my aunt every Sunday." },
+                { value: "b", label: "I visited my aunt last Sunday." },
+                { value: "c", label: "I will visit my aunt every Sunday." },
+            ],
+            correctAnswer: "b",
+            explanation: "'Last Sunday' is one finished time in the past, so we use Past Simple: I visited my aunt last Sunday.",
+            skillTag: "contrast-past-vs-present-habit",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-15",
+            question: "Which sentence uses the best tense for talking about your regular commute?",
+            options: [
+                { value: "a", label: "I drive to work every day." },
+                { value: "b", label: "I drove to work every day." },
+                { value: "c", label: "I will drive to work every day." },
+            ],
+            correctAnswer: "a",
+            explanation: "Regular commute = present habit, so Present Simple: I drive to work every day.",
+            skillTag: "contrast-all-simple-habits",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-16",
+            question: "Which sentence has all tenses used correctly?",
+            options: [
+                { value: "a", label: "Yesterday I finish my shift at 5, and tomorrow I will start at 9." },
+                { value: "b", label: "Yesterday I finished my shift at 5, and tomorrow I will start at 9." },
+                { value: "c", label: "Yesterday I finished my shift at 5, and tomorrow I start at 9." },
+            ],
+            correctAnswer: "b",
+            explanation: "Finished time in the past uses Past Simple (finished), and a plan for tomorrow fits Future Simple (will start).",
+            skillTag: "contrast-all-three-simple-tenses",
+            difficulty: "hard",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Simple Tenses Review
+
+    Skill map by skillTag:
+    - form-present-he-she-it-s: question 1
+    - form-present-negative-doesnt-base-verb: question 2
+    - form-present-question-does-subject-verb: question 3
+    - time-expression-present-frequency: question 4
+    - meaning-present-habit-vs-now: question 5
+    - meaning-future-promise-decision: question 6
+    - meaning-past-finished-time: question 7
+    - form-past-negative-didnt-base-verb: question 8
+    - form-past-question-did-subject-verb: question 9
+    - meaning-present-schedule: question 10
+    - contrast-simple-habit-vs-one-time: question 11
+    - time-expression-past-ago: question 12
+    - time-expression-future-next: question 13
+    - contrast-past-vs-present-habit: question 14
+    - contrast-all-simple-habits: question 15
+    - contrast-all-three-simple-tenses: question 16
+
+    How to use this data:
+    - If students miss questions 1–3, review Present Simple form: he/she/it + -s, doesn't + base verb, and Does + subject + base verb.
+    - If questions 7–9 are weak, spend more time on Past Simple with finished time expressions (yesterday, last week, ago) and the patterns
+      didn't + base verb / Did + subject + base verb.
+    - Low scores on questions 6, 10, 13, or 16 suggest confusion about when to use Future Simple vs Present Simple for schedules and
+      promises/decisions. Revisit will + base verb for decisions and promises, and Present Simple for fixed schedules and timetables.
+    - If questions 11, 14, or 15 are weak, focus on contrasting habits (every day, usually) with one-time events (last night, three years ago).
+      Have learners sort sentences into "habit" vs "one time" piles.
+    - Use this quiz as a snapshot of how confidently students move between all three simple tenses. If many skills show red in the
+      diagnostics, slow down and recycle more mixed-tense practice in speaking and writing.
+    */
 };
