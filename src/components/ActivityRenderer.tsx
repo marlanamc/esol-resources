@@ -14,7 +14,9 @@ import type {
 import {
     isInteractiveGuideContent,
     isLegacyGuideContent,
-    parseActivityContent
+    parseActivityContent,
+    isVocabularyContent,
+    type VocabularyContent
 } from "@/types/activity";
 import InteractiveGuideViewer from "./InteractiveGuideViewer";
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
@@ -30,6 +32,7 @@ import { VerbQuizContent } from "@/types/verb-quiz";
 import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
 import { isSpeakingActivityContent } from "@/types/activity";
 import type { SpeakingActivityContent } from "@/types/activity";
+import VocabularyRenderer from "./activities/VocabularyRenderer";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
@@ -114,6 +117,18 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                     );
                 }
                 return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid speaking activity content.</div>;
+            case "vocabulary":
+                if (isVocabularyContent(content)) {
+                    return (
+                        <VocabularyRenderer
+                            content={content as VocabularyContent}
+                            activityId={activity.id}
+                            title={activity.title}
+                            assignmentId={assignmentId}
+                        />
+                    );
+                }
+                return <div className="p-4 text-red-500 bg-red-50 rounded-lg">Invalid vocabulary activity content.</div>;
             case "game": {
                 const gameUi = resolveActivityGameUi(activity);
                 switch (gameUi) {
@@ -159,79 +174,9 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
         }
     };
 
-    const showVocabNav = activity.category?.toLowerCase() === 'vocab' || activity.category?.toLowerCase() === 'vocabulary';
-    const currentUi = activity.ui || resolveActivityGameUi(activity);
-
     return (
         <div className="space-y-6">
-            {showVocabNav && (
-                <VocabModeSelector
-                    activityId={activity.id}
-                    assignmentId={assignmentId}
-                    currentUi={currentUi}
-                />
-            )}
             {renderActivityContent()}
-        </div>
-    );
-}
-
-function VocabModeSelector({
-    activityId,
-    assignmentId,
-    currentUi,
-}: {
-    activityId: string;
-    assignmentId?: string | null;
-    currentUi: string;
-}) {
-    const baseHref = `/activity/${activityId}${assignmentId ? `?assignment=${assignmentId}&` : '?'}`;
-    
-    // Helper to check active state (simple string check)
-    const isActive = (ui: string) => currentUi === ui;
-
-    return (
-        <div className="flex flex-wrap gap-2">
-            <Link
-                href={`${baseHref}ui=word-list`}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
-                    isActive('word-list')
-                        ? 'bg-slate-200 text-slate-800 border-slate-300'
-                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
-                }`}
-            >
-                <span className="text-base">📄</span> Word List
-            </Link>
-            <Link
-                href={`${baseHref}ui=flashcards`}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
-                    isActive('flashcards')
-                        ? 'bg-orange-100 text-orange-800 border-orange-200'
-                        : 'bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100'
-                }`}
-            >
-                <span className="text-base">🎴</span> Flash Cards
-            </Link>
-            <Link
-                href={`${baseHref}ui=matching`}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
-                    isActive('matching')
-                        ? 'bg-pink-100 text-pink-800 border-pink-200'
-                        : 'bg-pink-50 text-pink-700 border-pink-200 hover:bg-pink-100'
-                }`}
-            >
-                <span className="text-base">🧩</span> Matching
-            </Link>
-            <Link
-                href={`${baseHref}ui=fill-in-blank`}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
-                    isActive('fill-in-blank')
-                        ? 'bg-indigo-100 text-indigo-800 border-indigo-200'
-                        : 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100'
-                }`}
-            >
-                <span className="text-base">✍️</span> Fill in the Blank
-            </Link>
         </div>
     );
 }

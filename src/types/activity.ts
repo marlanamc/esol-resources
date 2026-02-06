@@ -323,6 +323,43 @@ export interface GuideContent {
     metadata?: LegacyGuideMetadata;
 }
 
+export interface FlashcardContent {
+    cards?: Array<{
+        term: string;
+        definition: string;
+        example?: string;
+        pos?: string;
+    }>;
+    [key: string]: unknown;
+}
+
+export interface MatchingContent {
+    pairs?: Array<{
+        id: number;
+        term: string;
+        definition: string;
+    }>;
+    [key: string]: unknown;
+}
+
+export interface FillInBlankContent {
+    sentences?: Array<{
+        id: string;
+        text: string;
+        blanks: string[];
+        correctAnswers: string[];
+    }>;
+    [key: string]: unknown;
+}
+
+export interface VocabularyContent {
+    type: "vocabulary";
+    wordList?: Record<string, unknown>;
+    flashcards?: FlashcardContent;
+    matching?: MatchingContent;
+    fillInBlank?: FillInBlankContent;
+}
+
 export type ActivityContent =
     | QuizContent
     | WorksheetContent
@@ -331,6 +368,7 @@ export type ActivityContent =
     | LegacyGuideContent
     | SlidesContent
     | SpeakingActivityContent
+    | VocabularyContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {
@@ -369,4 +407,10 @@ export function isSpeakingActivityContent(value: unknown): value is SpeakingActi
     if (!value || typeof value !== "object") return false;
     const candidate = value as Record<string, unknown>;
     return candidate["type"] === "speaking" && Array.isArray(candidate["prompts"]);
+}
+
+export function isVocabularyContent(value: unknown): value is VocabularyContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "vocabulary";
 }

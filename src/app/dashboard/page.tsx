@@ -815,6 +815,7 @@ export default async function DashboardPage() {
                                         return eventEndDate >= today;
                                     })}
                                     allowDelete={false}
+                                    showSyncedLabel={false}
                                 />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">

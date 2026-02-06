@@ -73,7 +73,25 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
     return POINTS.SPEAKING_ACTIVITY;
   } else if (type === "quiz") {
     return 0;
+  } else if (type === "vocabulary") {
+    // Vocabulary activities award points per type (handled per-type in progress API)
+    // This is a fallback that shouldn't normally be used
+    return POINTS.ACTIVITY_COMPLETION;
   }
 
   return POINTS.ACTIVITY_COMPLETION;
+}
+
+/**
+ * Get points for a specific vocabulary type
+ * Called when awarding points for individual vocab type completion
+ */
+export function getVocabularyTypePoints(vocabType: string): number {
+  const vocabPoints: Record<string, number> = {
+    'word-list': 5,
+    'flashcards': 4,
+    'matching': 7,
+    'fill-blank': 5,
+  };
+  return vocabPoints[vocabType] || 5;
 }
