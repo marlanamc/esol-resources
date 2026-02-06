@@ -962,6 +962,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I will be eating lunch at the moment." },
             ],
             correctAnswer: "a",
+            skillTag: "meaning-present-cont-now",
+            difficulty: "easy",
             explanation: "Present Continuous (am eating) for actions happening right now. 'At the moment' signals present time.",
         },
         {
@@ -973,6 +975,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will not be working" },
             ],
             correctAnswer: "a",
+            skillTag: "form-present-cont-negative",
+            difficulty: "easy",
             explanation: "Present Continuous negative: is not + verb-ing for current temporary situations.",
         },
         {
@@ -984,6 +988,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will be sleeping" },
             ],
             correctAnswer: "b",
+            skillTag: "meaning-past-cont-interrupted",
+            difficulty: "easy",
             explanation: "Past Continuous (was sleeping) for ongoing past action that was interrupted by another action ('rang' = Past Simple).",
         },
         {
@@ -995,6 +1001,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "Will you be waiting" },
             ],
             correctAnswer: "b",
+            skillTag: "form-past-cont-question",
+            difficulty: "medium",
             explanation: "Past Continuous question: Were + subject + verb-ing. The word 'long' suggests asking about a duration that already happened.",
         },
         {
@@ -1006,6 +1014,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I lived with my parents." },
             ],
             correctAnswer: "a",
+            skillTag: "meaning-present-cont-temporary",
+            difficulty: "easy",
             explanation: "Present Continuous (am living) for temporary situations. 'This month' shows it's not permanent.",
         },
         {
@@ -1017,6 +1027,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will be working" },
             ],
             correctAnswer: "c",
+            skillTag: "meaning-future-cont-specific-time",
+            difficulty: "easy",
             explanation: "Future Continuous (will be working) for actions in progress at a specific future time.",
         },
         {
@@ -1028,6 +1040,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "runeing" },
             ],
             correctAnswer: "b",
+            skillTag: "spelling-ing-double-consonant",
+            difficulty: "easy",
             explanation: "One-syllable verbs ending in consonant-vowel-consonant (CVC) double the final consonant: run → running.",
         },
         {
@@ -1039,6 +1053,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I am studying for the test." },
             ],
             correctAnswer: "a",
+            skillTag: "error-stative-verb-continuous",
+            difficulty: "medium",
             explanation: "'Know' is a stative verb—it describes a state, not an action. We say 'I know' (simple), NOT 'I am knowing.'",
         },
         {
@@ -1050,6 +1066,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will be having" },
             ],
             correctAnswer: "b",
+            skillTag: "meaning-past-cont-interrupted",
+            difficulty: "easy",
             explanation: "Past Continuous (were having) for an ongoing action interrupted by another past event ('went out').",
         },
         {
@@ -1061,6 +1079,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "will be + verb-ing" },
             ],
             correctAnswer: "c",
+            skillTag: "form-future-cont-structure",
+            difficulty: "easy",
             explanation: "Future Continuous = will be + verb-ing. It's the same for ALL subjects (I/you/he/she/we/they).",
         },
         {
@@ -1072,6 +1092,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "I meet my friend every Tuesday." },
             ],
             correctAnswer: "a",
+            skillTag: "meaning-present-cont-near-future",
+            difficulty: "medium",
             explanation: "Present Continuous can express arranged future plans, especially with a specific time ('at 3 PM').",
         },
         {
@@ -1083,6 +1105,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "are" },
             ],
             correctAnswer: "b",
+            skillTag: "form-present-cont-be-agreement",
+            difficulty: "easy",
             explanation: "am = I, is = he/she/it, are = you/we/they. So 'She is working' is correct.",
         },
         {
@@ -1094,6 +1118,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "We not were watching TV." },
             ],
             correctAnswer: "a",
+            skillTag: "form-past-cont-negative",
+            difficulty: "easy",
             explanation: "To make Past Continuous negative, add 'not' after was/were: were not = weren't.",
         },
         {
@@ -1105,6 +1131,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "writing" },
             ],
             correctAnswer: "c",
+            skillTag: "spelling-ing-drop-e",
+            difficulty: "easy",
             explanation: "Verbs ending in -e drop the -e before adding -ing: write → writing.",
         },
         {
@@ -1116,7 +1144,37 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                 { value: "c", label: "Only Future Continuous" },
             ],
             correctAnswer: "a",
+            skillTag: "meaning-continuous-duration",
+            difficulty: "easy",
             explanation: "All continuous tenses show actions in progress over time—that's what makes them 'continuous'!",
         },
     ],
+/*
+TEACHER DIAGNOSTIC NOTES – Continuous Tenses Review
+
+Skill focus by tag:
+- meaning-present-cont-now: understanding actions happening at the moment of speaking
+- meaning-present-cont-temporary: distinguishing temporary vs permanent situations
+- meaning-present-cont-near-future: using present continuous for scheduled plans
+- meaning-past-cont-interrupted: background action interrupted by past simple
+- meaning-future-cont-specific-time: actions in progress at a future time
+- meaning-continuous-duration: recognizing that all continuous tenses emphasize duration
+
+Form focus:
+- form-present-cont-negative
+- form-present-cont-be-agreement
+- form-past-cont-question
+- form-past-cont-negative
+- form-future-cont-structure
+
+Common error patterns:
+- error-stative-verb-continuous: reteach stative vs action verbs (know, believe, own)
+- spelling-ing-double-consonant
+- spelling-ing-drop-e
+
+If this review shows widespread issues:
+- Red on meaning tags → revisit timelines and "what is happening at this time?"
+- Red on form tags → reset be + verb-ing formulas by tense
+- Red on stative verbs → do quick contrast drills (I know vs I am learning)
+*/
 };

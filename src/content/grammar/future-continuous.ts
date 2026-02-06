@@ -369,6 +369,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Future Continuous: will be + verb-ing. The -ing form is required after 'will be'.",
+            skillTag: "form-future-cont-will-be-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -379,7 +381,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "She cooks when you arrive." },
             ],
             correctAnswer: "b",
-            explanation: "Future Continuous shows an ongoing action overlapping another future event. She starts cooking BEFORE you arrive.",
+            explanation: "Future Continuous shows an ongoing action overlapping another future event. She starts cooking before you arrive.",
+            skillTag: "meaning-future-overlap-when",
+            difficulty: "medium",
         },
         {
             id: "quiz-3",
@@ -391,6 +395,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Question form: Will + subject + be + verb-ing? All three parts (will, be, -ing) are needed.",
+            skillTag: "form-future-cont-question-will-subject-be-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -401,7 +407,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I'll be visiting family tomorrow, so I can't meet." },
             ],
             correctAnswer: "c",
-            explanation: "Future Continuous is often used to set expectations/availability politely—it's softer than saying 'I can't'.",
+            explanation: "Future Continuous is often used to set expectations/availability politely. It sounds softer than a direct 'I can't'.",
+            skillTag: "meaning-future-cont-polite-availability",
+            difficulty: "medium",
         },
         {
             id: "quiz-5",
@@ -413,6 +421,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Negative: won't be + verb-ing. 'Be' is required in the negative form too.",
+            skillTag: "form-future-cont-negative-wont-be-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
@@ -424,6 +434,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Future Continuous uses future time expressions like 'at 8 PM tomorrow' or 'this time next week'.",
+            skillTag: "time-expressions-future-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
@@ -434,7 +446,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "am traveling" },
             ],
             correctAnswer: "a",
-            explanation: "'This time next week' signals a future point in time—use Future Continuous for an ongoing action then.",
+            explanation: "'This time next week' signals a future point in time. Use Future Continuous for an ongoing action then.",
+            skillTag: "meaning-future-in-progress-specific-time",
+            difficulty: "medium",
         },
         {
             id: "quiz-8",
@@ -445,18 +459,22 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "be going to + verb" },
             ],
             correctAnswer: "a",
-            explanation: "Future Continuous = will be + verb-ing. It's the same for ALL subjects (I/you/he/she/we/they).",
+            explanation: "Future Continuous = will be + verb-ing. It's the same for all subjects (I/you/he/she/we/they).",
+            skillTag: "form-future-cont-will-be-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-9",
-            question: "Which sentence shows TWO overlapping future actions?",
+            question: "Which sentence shows two overlapping future actions?",
             options: [
                 { value: "a", label: "I'll call you at 6 PM." },
                 { value: "b", label: "I'll be driving when you call." },
                 { value: "c", label: "I drive to work every day." },
             ],
             correctAnswer: "b",
-            explanation: "'I'll be driving when you call' shows driving (ongoing) overlapping with your call (point in time).",
+            explanation: "'I'll be driving when you call' shows driving (ongoing) overlapping with your call (a point in time).",
+            skillTag: "meaning-future-overlap-when",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -467,7 +485,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "She is working late tonight." },
             ],
             correctAnswer: "a",
-            explanation: "After 'will be', you must use the -ing form: 'will be working'—not 'will be work'.",
+            explanation: "After 'will be', you must use the -ing form: 'will be working', not 'will be work'.",
+            skillTag: "error-future-cont-missing-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
@@ -479,17 +499,21 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Will you be studying' asks about an action in progress at a specific future time (9 PM).",
+            skillTag: "form-future-cont-question-will-subject-be-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
             question: "When do you use Future Continuous instead of Future Simple?",
             options: [
-                { value: "a", label: "To emphasize the action will be IN PROGRESS at a specific future time" },
+                { value: "a", label: "To emphasize the action will be in progress at a specific future time" },
                 { value: "b", label: "To describe a quick decision made now" },
                 { value: "c", label: "To describe a completed action" },
             ],
             correctAnswer: "a",
             explanation: "Future Continuous = action in progress. Future Simple = one-off event or decision.",
+            skillTag: "contrast-future-cont-vs-future-simple",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
@@ -500,7 +524,9 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "sleeps" },
             ],
             correctAnswer: "a",
-            explanation: "'At midnight' specifies a future point when the action will be IN PROGRESS—use Future Continuous.",
+            explanation: "'At midnight' specifies a future point when the action will be in progress—use Future Continuous.",
+            skillTag: "meaning-future-in-progress-specific-time",
+            difficulty: "easy",
         },
         {
             id: "quiz-14",
@@ -512,6 +538,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Future Continuous ('I'll be working') sounds softer and more polite than a flat refusal.",
+            skillTag: "meaning-future-cont-polite-availability",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
@@ -523,6 +551,19 @@ export const futureContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Both can express future actions, but Future Continuous uses 'will be + -ing' while Present Continuous uses 'am/is/are + -ing'.",
+            skillTag: "form-vs-present-continuous-future",
+            difficulty: "medium",
         },
     ],
+
+    // Teacher Diagnostic Notes (for reference, not shown to students)
+    // -------------------------------------------------------------
+    // These notes help teachers interpret student performance on the miniQuiz.
+    // - Questions tagged 'form-future-cont-will-be-verb-ing', 'form-future-cont-question-will-subject-be-verb-ing', etc. reveal issues with structure and accuracy.
+    // - Questions tagged 'meaning-future-overlap-when', 'meaning-future-in-progress-specific-time', etc. show if students grasp the concept of ongoing/overlapping future actions.
+    // - Items with skillTag 'meaning-future-cont-polite-availability' indicate students' pragmatic awareness (polite refusals, setting context).
+    // - Difficulty: 'easy' = checks basic formula or recognition; 'medium' = requires contrast/meaning or subtle pragmatic use.
+    // - If students miss 'easy' form questions, review the formula and drill the structure.
+    // - If students miss 'medium' meaning/pragmatic questions, use more real-life scenarios and contrast with Future Simple/Present Continuous.
+    // - Use the skillTag to target follow-up activities and group students for extra practice as needed.
 };
