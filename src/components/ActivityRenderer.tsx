@@ -19,6 +19,7 @@ import {
 import InteractiveGuideViewer from "./InteractiveGuideViewer";
 import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
+import Link from "next/link";
 import FlashcardCarousel from "./ui/FlashcardCarousel";
 import FillInBlankGame from "./ui/FillInBlankGame";
 import MatchingGame from "./ui/MatchingGame";
@@ -122,15 +123,24 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
                     case "verb-forms":
                         return <VerbFormsGame contentStr={activity.content} activityId={activity.id} />;
-                    case "matching":
-                        return (
-                            <MatchingGame
-                                contentStr={activity.content}
-                                activityId={activity.id}
-                                assignmentId={assignmentId}
-                            />
-                        );
-                    default:
+                     case "matching":
+                         return (
+                             <MatchingGame
+                                 contentStr={activity.content}
+                                 activityId={activity.id}
+                                 assignmentId={assignmentId}
+                             />
+                         );
+                     case "word-list":
+                         return (
+                             <ResourceRenderer
+                                 contentStr={activity.content}
+                                 activityId={activity.id}
+                                 title={activity.title}
+                                 category={activity.category}
+                             />
+                         );
+                     default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }
             }
@@ -149,7 +159,81 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
         }
     };
 
-    return renderActivityContent();
+    const showVocabNav = activity.category?.toLowerCase() === 'vocab' || activity.category?.toLowerCase() === 'vocabulary';
+    const currentUi = activity.ui || resolveActivityGameUi(activity);
+
+    return (
+        <div className="space-y-6">
+            {showVocabNav && (
+                <VocabModeSelector
+                    activityId={activity.id}
+                    assignmentId={assignmentId}
+                    currentUi={currentUi}
+                />
+            )}
+            {renderActivityContent()}
+        </div>
+    );
+}
+
+function VocabModeSelector({
+    activityId,
+    assignmentId,
+    currentUi,
+}: {
+    activityId: string;
+    assignmentId?: string | null;
+    currentUi: string;
+}) {
+    const baseHref = `/activity/${activityId}${assignmentId ? `?assignment=${assignmentId}&` : '?'}`;
+    
+    // Helper to check active state (simple string check)
+    const isActive = (ui: string) => currentUi === ui;
+
+    return (
+        <div className="flex flex-wrap gap-2">
+            <Link
+                href={`${baseHref}ui=word-list`}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
+                    isActive('word-list')
+                        ? 'bg-slate-200 text-slate-800 border-slate-300'
+                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
+                }`}
+            >
+                <span className="text-base">📄</span> Word List
+            </Link>
+            <Link
+                href={`${baseHref}ui=flashcards`}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
+                    isActive('flashcards')
+                        ? 'bg-orange-100 text-orange-800 border-orange-200'
+                        : 'bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100'
+                }`}
+            >
+                <span className="text-base">🎴</span> Flash Cards
+            </Link>
+            <Link
+                href={`${baseHref}ui=matching`}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
+                    isActive('matching')
+                        ? 'bg-pink-100 text-pink-800 border-pink-200'
+                        : 'bg-pink-50 text-pink-700 border-pink-200 hover:bg-pink-100'
+                }`}
+            >
+                <span className="text-base">🧩</span> Matching
+            </Link>
+            <Link
+                href={`${baseHref}ui=fill-in-blank`}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wide rounded-md border transition-colors ${
+                    isActive('fill-in-blank')
+                        ? 'bg-indigo-100 text-indigo-800 border-indigo-200'
+                        : 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100'
+                }`}
+            >
+                <span className="text-base">✍️</span> Fill in the Blank
+            </Link>
+        </div>
+    );
 }
 
 function QuizRenderer({
@@ -531,21 +615,47 @@ function parsePlainVocabulary(contentStr: string): Array<{ term: string; pos?: s
     const entries: Array<{ term: string; pos?: string; definition: string; example?: string }> = [];
     for (let i = 0; i < lines.length; i++) {
         const line = lines[i];
-        // Matches "1) Term (part of speech) — Definition" or "1) Term — Definition"
-        // Capture groups: 1 = term, 2 = optional POS (without parens), 3 = definition
-        const match = line.match(/^\d+\)\s*(.+?)(?:\s+\((.+?)\))?\s+—\s+(.*)$/);
+        let term = "";
+        let pos = "";
+        let definition = "";
+        
+        // 1. Try standard regex with number, POS, and em-dash
+        // "1) Term (part of speech) — Definition"
+        const fullMatch = line.match(/^\d+\)\s*(.+?)\s+\((.+?)\)\s+[—-]\s+(.*)$/);
+        
+        // 2. Try number, no POS, em-dash or hyphen
+        // "1) Term — Definition" or "1) Term - Definition"
+        const simpleMatch = !fullMatch && line.match(/^\d+\)\s*(.+?)\s+[—-]\s+(.*)$/);
+        
+        // 3. Try no number, em-dash or hyphen
+        // "Term — Definition" or "Term - Definition"
+        const noNumMatch = !fullMatch && !simpleMatch && line.match(/^(.+?)\s+[—-]\s+(.*)$/);
 
-        if (match) {
-            const term = match[1].trim();
-            const pos = match[2]?.trim();
-            const definition = match[3].trim();
+        if (fullMatch) {
+            term = fullMatch[1].trim();
+            pos = fullMatch[2].trim();
+            definition = fullMatch[3].trim();
+        } else if (simpleMatch) {
+            term = simpleMatch[1].trim();
+            definition = simpleMatch[2].trim();
+        } else if (noNumMatch) {
+            term = noNumMatch[1].trim();
+            definition = noNumMatch[2].trim();
+        }
+
+        if (term && definition) {
+            // Check for Example in next line
             let example: string | undefined;
             const next = lines[i + 1];
             if (next && next.toLowerCase().startsWith("example:")) {
                 example = next.replace(/^example:\s*/i, "").trim();
                 i += 1; // skip example line
             }
-            entries.push({ term, pos, definition, example });
+            // Skip special countable definitions
+            const lowerDef = definition.toLowerCase();
+            if (!lowerDef.startsWith("countable") && !lowerDef.startsWith("uncountable")) {
+                 entries.push({ term, pos, definition, example });
+            }
         }
     }
     return entries;

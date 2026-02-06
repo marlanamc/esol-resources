@@ -1065,6 +1065,8 @@ function detectMatchingGameMode(content: string): "vocab" | "countable" {
     const hasRoundMarkers = /\[ROUND\s*\d+\]/.test(content);
     const lines = content.split("\n");
     let hasCountableUncountableLine = false;
+    
+    // Check for countable game indicators
     for (const line of lines) {
         if (!line.includes("::")) continue;
         const afterColon = line.split("::").map((s) => s.trim())[1] ?? "";
@@ -1074,6 +1076,7 @@ function detectMatchingGameMode(content: string): "vocab" | "countable" {
             break;
         }
     }
+    
     if (hasRoundMarkers && hasCountableUncountableLine) return "countable";
     return "vocab";
 }
@@ -1082,14 +1085,46 @@ function parseVocabPairs(content: string): VocabPair[] {
     const pairs: VocabPair[] = [];
     let id = 1;
     const lines = content.split("\n").map((l) => l.trim()).filter(Boolean);
+    
     for (const line of lines) {
-        if (!line.includes("::")) continue;
-        const idx = line.indexOf("::");
-        const term = line.slice(0, idx).trim();
-        const definition = line.slice(idx + 2).trim();
+        let term = "";
+        let definition = "";
+
+        // Support "Term::Definition" format
+        if (line.includes("::")) {
+            const idx = line.indexOf("::");
+            term = line.slice(0, idx).trim();
+            definition = line.slice(idx + 2).trim();
+        } 
+        // Support "1) Term — Definition" or "Term — Definition" format (em-dash)
+        else if (line.includes("—")) {
+            // Remove optional numbering like "1) "
+            const cleanLine = line.replace(/^\d+\)\s*/, "");
+            const parts = cleanLine.split("—");
+            if (parts.length >= 2) {
+                term = parts[0].trim();
+                definition = parts.slice(1).join("—").trim(); // Rejoin in case def has dash
+            }
+        }
+        // Support "1) Term - Definition" format (hyphen)
+        else if (line.match(/^\d+\)\s*.+\s+-\s+.+$/)) {
+             const cleanLine = line.replace(/^\d+\)\s*/, "");
+             const firstDash = cleanLine.indexOf("-");
+             if (firstDash > 0) {
+                 term = cleanLine.substring(0, firstDash).trim();
+                 definition = cleanLine.substring(firstDash + 1).trim();
+             }
+        }
+
         if (!term || !definition) continue;
+        
+        // Skip special countable definitions
         const lower = definition.toLowerCase();
         if (lower.startsWith("countable") || lower.startsWith("uncountable")) continue;
+        
+        // Remove Part of Speech from term if present e.g. "Term (noun)"
+        term = term.replace(/\s*\([^)]+\)$/, "").trim();
+
         pairs.push({ id: id++, term, definition });
     }
     return pairs;

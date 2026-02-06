@@ -15,13 +15,13 @@ import { numbersGameCategoryNames } from "@/data/numbersGameCategories";
 
 interface Props {
     params: Promise<{ id: string }>;
-    searchParams: Promise<{ assignment?: string }>;
+    searchParams: Promise<{ assignment?: string; ui?: string }>;
 }
 
 export default async function ActivityPage({ params, searchParams }: Props) {
     const session = await getServerSession(authOptions);
     const { id } = await params;
-    const { assignment: assignmentId } = await searchParams;
+    const { assignment: assignmentId, ui } = await searchParams;
 
     if (!session?.user) {
         redirect("/login");
@@ -214,7 +214,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                 {/* Full Screen Guide */}
                 <div className="flex-1 overflow-hidden min-h-0">
                     <ActivityRenderer
-                        activity={activity}
+                        activity={{ ...activity, ui: ui || activity.ui }}
                         assignmentId={assignmentId}
                         existingSubmission={submission}
                     />
@@ -281,7 +281,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Activity Content */}
                     <div className="bg-white shadow sm:rounded-lg p-6">
                         <ActivityRenderer
-                            activity={activity}
+                            activity={{ ...activity, ui: ui || activity.ui }}
                             assignmentId={assignmentId}
                             existingSubmission={submission}
                         />

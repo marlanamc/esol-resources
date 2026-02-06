@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
+import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 
 interface Activity {
     id: string;
@@ -51,10 +52,12 @@ const vocabMonths = [
 ];
 
 const displayTitle = (title: string) =>
-    title
-        .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
-        .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
-        .trim();
+    stripVocabTypeSuffix(
+        title
+            .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
+            .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
+            .trim()
+    );
 
 const parseTitleDateMs = (title?: string | null) => {
     if (!title) return null;
@@ -133,11 +136,11 @@ const ActivityCard = React.memo(function ActivityCard({
     progressMap
 }: ActivityCardProps) {
     const progressText = getCategoryProgressText(activity.id, progressMap);
+    const vocabType = getVocabActivityType(activity.id);
 
     return (
-        <Link
-            href={`/activity/${activity.id}`}
-            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-[transform,border-color,box-shadow] duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
+        <div
+            className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-[transform,border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-primary/50 focus-within:ring-offset-2 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
                 }`}
         >
             {isCompleted && (
@@ -152,14 +155,25 @@ const ActivityCard = React.memo(function ActivityCard({
             <div className="flex items-start gap-3">
                 <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                    <h4 className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate ${isCompleted ? 'text-secondary' : 'text-text'
-                        }`}>
+                    <Link
+                        href={`/activity/${activity.id}`}
+                        className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors truncate block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:rounded ${isCompleted ? 'text-secondary' : 'text-text'
+                            }`}
+                    >
                         {displayTitle(activity.title)}
-                    </h4>
-                    <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                        <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                            {activity.type}
-                        </span>
+                    </Link>
+                    <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-text-muted">
+                        {vocabType ? (
+                            <span
+                                className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                            >
+                                {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
+                            </span>
+                        ) : (
+                            <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                {activity.type}
+                            </span>
+                        )}
                         {progressValue > 0 && (
                             <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
                                 {activity.id === 'numbers-game' && progressText
@@ -178,7 +192,7 @@ const ActivityCard = React.memo(function ActivityCard({
                     />
                 </div>
             )}
-        </Link>
+        </div>
     );
 });
 
