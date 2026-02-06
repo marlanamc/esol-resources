@@ -454,7 +454,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I am cooking when the smoke alarm rang." },
             ],
             correctAnswer: "a",
-            explanation: "Past Continuous (was cooking) is the longer background action; Past Simple (rang) interrupts it.",
+            explanation: "Past Continuous (was cooking) is the longer background action; Past Simple (rang) is the interruption.",
+            skillTag: "meaning-interrupted-action-past",
+            difficulty: "medium",
         },
         {
             id: "quiz-2",
@@ -466,6 +468,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Past Continuous highlights what was happening at a specific past moment: were eating.",
+            skillTag: "meaning-past-in-progress-specific-time",
+            difficulty: "medium",
         },
         {
             id: "quiz-3",
@@ -476,7 +480,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "They are waiting for the bus." },
             ],
             correctAnswer: "b",
-            explanation: "Past Continuous uses was/were + verb-ing: they were waiting.",
+            explanation: "Past Continuous uses was/were + verb-ing: They were waiting.",
+            skillTag: "form-past-cont-be-agreement",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -487,7 +493,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I am cooking, and my roommate cleaned." },
             ],
             correctAnswer: "a",
-            explanation: "Past Continuous with while often shows two background actions happening at the same time.",
+            explanation: "Past Continuous with 'while' often shows two background actions happening at the same time.",
+            skillTag: "meaning-two-actions-same-time-past",
+            difficulty: "medium",
         },
         {
             id: "quiz-5",
@@ -498,7 +506,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "They were talking when the teacher walked in." },
             ],
             correctAnswer: "a",
-            explanation: "Stative verbs like know usually avoid -ing; use Past Simple: she knew.",
+            explanation: "Stative verbs like 'know' usually avoid -ing; use Past Simple instead (She knew the answer.).",
+            skillTag: "error-stative-verb-past-continuous",
+            difficulty: "hard",
         },
         {
             id: "quiz-6",
@@ -510,6 +520,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Question form: Was/Were + subject + verb-ing.",
+            skillTag: "form-past-cont-question",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
@@ -521,6 +533,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Negative Past Continuous is wasn't/weren't + verb-ing.",
+            skillTag: "form-past-cont-negative",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
@@ -532,6 +546,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Past Continuous sets the scene for what was in progress when something happened.",
+            skillTag: "meaning-interrupted-action-past",
+            difficulty: "medium",
         },
         {
             id: "quiz-9",
@@ -542,7 +558,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "She was fill out the form when the pen ran out." },
             ],
             correctAnswer: "a",
-            explanation: "Background action uses was/were + verb-ing; interruption uses Past Simple.",
+            explanation: "Background action uses was/were + verb-ing; the interruption uses Past Simple.",
+            skillTag: "meaning-interrupted-action-past",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -554,6 +572,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Past Continuous works well with specific times to show an action in progress.",
+            skillTag: "meaning-past-in-progress-specific-time",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
@@ -565,6 +585,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Shop → shopping (double the final consonant + ing).",
+            skillTag: "spelling-ing-double-consonant",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
@@ -576,17 +598,21 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Past Continuous answers 'what was happening at that time' questions.",
+            skillTag: "meaning-past-in-progress-specific-time",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
-            question: "Which sentence correctly uses while?",
+            question: "Which sentence correctly uses 'while'?",
             options: [
                 { value: "a", label: "While I cooked, the kids were doing homework." },
                 { value: "b", label: "While I was cooking, the kids were doing homework." },
                 { value: "c", label: "While I am cooking, the kids did homework." },
             ],
             correctAnswer: "b",
-            explanation: "While often introduces the background action in Past Continuous.",
+            explanation: "'While' often introduces the background action in Past Continuous.",
+            skillTag: "meaning-two-actions-same-time-past",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
@@ -598,6 +624,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "They → were. Question: Were they + verb-ing?",
+            skillTag: "form-past-cont-be-agreement",
+            difficulty: "easy",
         },
         {
             id: "quiz-15",
@@ -609,6 +637,34 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Past Continuous often appears with while/when and specific past times (at 9 PM, all night).",
+            skillTag: "time-expressions-past-continuous",
+            difficulty: "easy",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Past Continuous
+
+    Skill map by skillTag:
+    - meaning-interrupted-action-past: questions 1, 8, 9
+    - meaning-past-in-progress-specific-time: questions 2, 10, 12
+    - form-past-cont-be-agreement: questions 3, 14
+    - meaning-two-actions-same-time-past: questions 4, 13
+    - error-stative-verb-past-continuous: question 5
+    - form-past-cont-question: question 6
+    - form-past-cont-negative: question 7
+    - spelling-ing-double-consonant: question 11
+    - time-expressions-past-continuous: question 15
+
+    How to use this data:
+    - If many students miss questions 1, 8, or 9, spend more time on the Interrupted Action pattern:
+      longer background action in Past Continuous + shorter event in Past Simple (was/were + verb-ing WHEN verb-2).
+    - Weak scores on questions 2, 10, or 12 suggest confusion about "what was happening at a specific past time".
+      Practice questions like "What were you doing at 6 PM yesterday?" and have students answer with Past Continuous.
+    - If questions 3, 6, 7, or 14 are low, review the basic form chart: was/were + verb-ing, including negatives
+      (wasn't/weren't) and question order (Was/Were + subject + verb-ing).
+    - If question 5 is often wrong, highlight common stative verbs (know, like, understand, believe) and show that we
+      normally use Past Simple for these in simple sentences.
+    - Low scores on questions 4, 11, 13, or 15 indicate students may need more work with "while" sentences, -ing spelling
+      rules, and time expressions (while/when, at 9 PM, all night). Use timelines and story chains to recycle these.
+    */
 };

@@ -399,6 +399,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Use am/is/are + verb-ing for actions happening at this moment.",
+            skillTag: "form-present-continuous-basic",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -410,6 +412,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Present Continuous fits temporary arrangements that are true for a short period.",
+            skillTag: "meaning-temporary-situation",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -421,6 +425,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "We often use Present Continuous for arranged plans: I'm meeting… tomorrow.",
+            skillTag: "meaning-near-future-plan",
+            difficulty: "medium",
         },
         {
             id: "quiz-4",
@@ -432,6 +438,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Question form: Am/Is/Are + subject + verb-ing.",
+            skillTag: "form-question-am-is-are-subject-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -443,6 +451,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Negative Present Continuous: am/is/are not + verb-ing.",
+            skillTag: "form-negative-am-is-are-not-verb-ing",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
@@ -453,7 +463,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "They're waiting for the bus right now." },
             ],
             correctAnswer: "a",
-            explanation: "Stative verbs like know rarely take -ing; use 'I know the answer.'",
+            explanation: "Stative verbs like 'know' rarely take -ing; we normally say 'I know the answer.'",
+            skillTag: "error-stative-verb-ing",
+            difficulty: "hard",
         },
         {
             id: "quiz-7",
@@ -464,7 +476,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "writting" },
             ],
             correctAnswer: "b",
-            explanation: "Drop final -e: write → writing.",
+            explanation: "Drop final -e, then add -ing: write → writing.",
+            skillTag: "spelling-ing-drop-e",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
@@ -476,6 +490,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "One-syllable CVC verbs double the last consonant: run → running.",
+            skillTag: "spelling-ing-double-consonant",
+            difficulty: "easy",
         },
         {
             id: "quiz-9",
@@ -487,6 +503,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Habits/routines usually use Present Simple: I take… every day.",
+            skillTag: "contrast-present-simple-vs-continuous-habit",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -497,7 +515,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "The kids played outside right now." },
             ],
             correctAnswer: "b",
-            explanation: "Right now → Present Continuous: are playing.",
+            explanation: "'Right now' signals Present Continuous: are playing.",
+            skillTag: "meaning-happening-now",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
@@ -509,6 +529,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Questions: WH-word + am/is/are + subject + verb-ing.",
+            skillTag: "form-question-word-order-present-continuous",
+            difficulty: "medium",
         },
         {
             id: "quiz-12",
@@ -519,7 +541,9 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I answer the door." },
             ],
             correctAnswer: "b",
-            explanation: "A spontaneous decision right now often uses will: I'll answer.",
+            explanation: "A spontaneous decision right now usually uses will: I'll answer.",
+            skillTag: "contrast-will-vs-present-continuous-decision",
+            difficulty: "hard",
         },
         {
             id: "quiz-13",
@@ -531,6 +555,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Present Continuous needs am/is/are + verb-ing: is cooking.",
+            skillTag: "error-missing-be-verb-present-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-14",
@@ -542,6 +568,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Right now/currently/at the moment often signal Present Continuous.",
+            skillTag: "time-expressions-present-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-15",
@@ -552,7 +580,41 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "He worked the night shift this week." },
             ],
             correctAnswer: "b",
-            explanation: "This week suggests a temporary situation, so Present Continuous fits: is working.",
+            explanation: "'This week' suggests a temporary situation, so Present Continuous fits: is working.",
+            skillTag: "meaning-temporary-work-schedule",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Present Continuous
+
+    Skill map by skillTag:
+    - form-present-continuous-basic: questions 1, 13
+    - meaning-temporary-situation: question 2
+    - meaning-near-future-plan: question 3
+    - form-question-am-is-are-subject-verb-ing: question 4
+    - form-negative-am-is-are-not-verb-ing: question 5
+    - error-stative-verb-ing: question 6
+    - spelling-ing-drop-e: question 7
+    - spelling-ing-double-consonant: question 8
+    - contrast-present-simple-vs-continuous-habit: question 9
+    - meaning-happening-now: question 10
+    - form-question-word-order-present-continuous: question 11
+    - contrast-will-vs-present-continuous-decision: question 12
+    - time-expressions-present-continuous: question 14
+    - meaning-temporary-work-schedule: question 15
+
+    How to use this data:
+    - If students miss questions 1, 4, 5, or 13, review the basic Present Continuous form: am/is/are + verb-ing, including negatives
+      and simple yes/no questions.
+    - If question 6 (error-stative-verb-ing) is weak, spend time on common stative verbs (know, like, understand, believe) and
+      show that these usually do NOT use -ing in simple sentences.
+    - Weak scores on questions 2, 3, 9, 10, or 15 suggest confusion about WHEN to use Present Continuous versus Present Simple or
+      Future Simple. Recycle contrasts like: I work nights vs I'm working the day shift this week; I take the bus every day vs
+      I'm taking the bus today; I'll answer the door vs I'm answering the door.
+    - If question 11 is low, practice WH-questions with Present Continuous (Why/What/Where + am/is/are + subject + verb-ing)
+      using real-life prompts.
+    - If spelling questions (7 and 8) are often wrong, revisit the -ing spelling rules from the guide and have students build their
+      own mini word lists for drop-e and double-consonant verbs.
+    */
 };
