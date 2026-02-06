@@ -297,6 +297,22 @@ export const TodaysAssignments: React.FC<Props> = ({
                                                 >
                                                     {categoryStyle.label}
                                                 </span>
+                                                {/* Vocab type chip - next to category, before % done */}
+                                                {(() => {
+                                                    const vocabType = getVocabActivityType(assignment.activityId);
+                                                    if (!vocabType) return null;
+                                                    const chip = VOCAB_CHIP_CONFIG[vocabType];
+                                                    const qs = assignment.id ? `?assignment=${assignment.id}` : '';
+                                                    return (
+                                                        <Link
+                                                            href={`/activity/${assignment.activityId}${qs}`}
+                                                            className={`shrink-0 inline-flex items-center px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 whitespace-nowrap shadow-sm ${chip.className}`}
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            {chip.icon} {chip.label}
+                                                        </Link>
+                                                    );
+                                                })()}
                                                 {progressValue > 0 && !isCompleted && (
                                                     <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
                                                         {progressValue}% done
@@ -319,25 +335,6 @@ export const TodaysAssignments: React.FC<Props> = ({
                                             <div className={`text-base sm:text-lg font-bold font-display leading-snug break-words transition-colors ${isCompleted ? 'text-text/60 line-through decoration-secondary/40' : 'text-text group-hover:text-primary'}`}>
                                                 {displayTitle}
                                             </div>
-                                            
-                                            {/* Vocab Activity Chip - show only the type for this activity */}
-                                            {(() => {
-                                                const vocabType = getVocabActivityType(assignment.activityId);
-                                                if (!vocabType) return null;
-                                                const chip = VOCAB_CHIP_CONFIG[vocabType];
-                                                const qs = assignment.id ? `?assignment=${assignment.id}` : '';
-                                                return (
-                                                    <div className="flex flex-nowrap gap-2 mt-2 pb-1">
-                                                        <Link
-                                                            href={`/activity/${assignment.activityId}${qs}`}
-                                                            className={`shrink-0 inline-flex items-center px-2 py-1 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 whitespace-nowrap ${chip.className}`}
-                                                            onClick={(e) => e.stopPropagation()}
-                                                        >
-                                                            {chip.icon} {chip.label}
-                                                        </Link>
-                                                    </div>
-                                                );
-                                            })()}
                                         </div>
                                     </div>
 
@@ -392,7 +389,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                             <div className="flex flex-col sm:flex-row sm:items-center gap-3 p-4 pl-5">
                                 {/* Content */}
                                 <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 mb-1.5">
+                                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
                                         {/* Category badge */}
                                         <span
                                             className="inline-flex px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide"
@@ -403,6 +400,30 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         >
                                             {categoryStyle.label}
                                         </span>
+
+                                        {/* Vocab type chip - next to category, before % done */}
+                                        {(() => {
+                                            const vocabType = getVocabActivityType(assignment.activityId);
+                                            if (!vocabType) return null;
+                                            const chip = VOCAB_CHIP_CONFIG[vocabType];
+                                            const qs = assignment.id ? `?assignment=${assignment.id}` : '';
+                                            return (
+                                                <Link
+                                                    href={`/activity/${assignment.activityId}${qs}`}
+                                                    className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    {chip.icon} {chip.label}
+                                                </Link>
+                                            );
+                                        })()}
+
+                                        {/* % done chip */}
+                                        {assignment.progress != null && assignment.progress > 0 && !isCompleted && (
+                                            <span className="inline-flex px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                                {Math.round(assignment.progress)}% done
+                                            </span>
+                                        )}
 
                                         {/* Completion badge */}
                                         {isCompleted && (
@@ -416,25 +437,6 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     <h3 className="text-base sm:text-lg font-bold text-text group-hover:text-primary transition-colors font-display leading-snug">
                                         {displayTitle}
                                     </h3>
-
-                                    {/* Vocab Activity Chip - show only the type for this activity */}
-                                    {(() => {
-                                        const vocabType = getVocabActivityType(assignment.activityId);
-                                        if (!vocabType) return null;
-                                        const chip = VOCAB_CHIP_CONFIG[vocabType];
-                                        const qs = assignment.id ? `?assignment=${assignment.id}` : '';
-                                        return (
-                                            <div className="flex flex-wrap gap-2 mt-3 mb-1">
-                                                <Link
-                                                    href={`/activity/${assignment.activityId}${qs}`}
-                                                    className={`inline-flex items-center px-2 py-1 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
-                                                    onClick={(e) => e.stopPropagation()}
-                                                >
-                                                    {chip.icon} {chip.label}
-                                                </Link>
-                                            </div>
-                                        );
-                                    })()}
                                 </div>
 
                                 {/* CTA Button */}
