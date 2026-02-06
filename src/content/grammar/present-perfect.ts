@@ -1185,186 +1185,247 @@ export const presentPerfectContent: InteractiveGuideContent = {
 
     // Mini Quiz for comprehension
     miniQuiz: [
+        // 1. result-completed-action (easy)
         {
-            id: "quiz-1",
-            question: "Which sentence uses Present Perfect correctly?",
+            id: "ppq-1",
+            skillTag: "result-completed-action",
+            difficulty: "easy",
+            question: "Choose the correct sentence to show a completed action with a present result.",
             options: [
-                { value: "a", label: "I have visited the New England Aquarium last weekend." },
-                { value: "b", label: "I have visited the New England Aquarium three times this year." },
-                { value: "c", label: "I have visited the New England Aquarium yesterday." },
+                { value: "a", label: "I have locked the door, so the office is safe now." },
+                { value: "b", label: "I lock the door, so the office is safe now." },
+                { value: "c", label: "I locked the door yesterday, so the office is safe now." }
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect connects the past action to a present result. Past Simple with 'yesterday' is not correct here."
+        },
+        // 2. result-life-experience-ever-never (easy)
+        {
+            id: "ppq-2",
+            skillTag: "result-life-experience-ever-never",
+            difficulty: "easy",
+            question: "Which question correctly asks about life experience?",
+            options: [
+                { value: "a", label: "Did you ever visit the new library?" },
+                { value: "b", label: "Have you ever visited the new library?" },
+                { value: "c", label: "Do you ever visited the new library?" }
             ],
             correctAnswer: "b",
-            explanation:
-                "Present Perfect describes experiences without a specific past time; use Past Simple for 'last weekend' or 'yesterday.'",
+            explanation: "'Have you ever...' is the correct Present Perfect question for life experience."
         },
+        // 3. result-recent-completion-just-already-yet (easy)
         {
-            id: "quiz-2",
-            question: "When do we use 'since' with Present Perfect?",
+            id: "ppq-3",
+            skillTag: "result-recent-completion-just-already-yet",
+            difficulty: "easy",
+            question: "Complete the sentence: 'She ___ finished her application.'",
             options: [
-                { value: "a", label: "For a duration of time (5 years, a long time)" },
-                { value: "b", label: "For a starting point in time (2019, Monday)" },
-                { value: "c", label: "For recent actions" },
+                { value: "a", label: "has just" },
+                { value: "b", label: "just has" },
+                { value: "c", label: "has justed" }
+            ],
+            correctAnswer: "a",
+            explanation: "'Just' goes between 'has' and the past participle in Present Perfect."
+        },
+        // 4. result-state-verb-duration (easy)
+        {
+            id: "ppq-4",
+            skillTag: "result-state-verb-duration",
+            difficulty: "easy",
+            question: "Choose the correct sentence to show a state that started in the past and continues now.",
+            options: [
+                { value: "a", label: "I have known Maria for three years." },
+                { value: "b", label: "I knew Maria for three years." },
+                { value: "c", label: "I know Maria since three years." }
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect is used for state verbs (like 'know') with duration up to now."
+        },
+        // 5. result-count-how-many (easy)
+        {
+            id: "ppq-5",
+            skillTag: "result-count-how-many",
+            difficulty: "easy",
+            question: "Fill in the blank: 'We ___ taken the English test twice this year.'",
+            options: [
+                { value: "a", label: "have" },
+                { value: "b", label: "has" },
+                { value: "c", label: "did" }
+            ],
+            correctAnswer: "a",
+            explanation: "Use 'have' with 'we' for Present Perfect. 'Twice this year' means up to now."
+        },
+        // 6. duration-for-since-how-long (easy)
+        {
+            id: "ppq-6",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
+            question: "Which word completes the sentence? 'She has lived here ___ 2019.'",
+            options: [
+                { value: "a", label: "since" },
+                { value: "b", label: "for" },
+                { value: "c", label: "from" }
+            ],
+            correctAnswer: "a",
+            explanation: "'Since' + starting point (2019); 'for' needs a length of time."
+        },
+        // 7. error-specific-past-time (medium)
+        {
+            id: "ppq-7",
+            skillTag: "error-specific-past-time",
+            difficulty: "medium",
+            question: "Find the error: 'I have seen that movie last Friday.'",
+            options: [
+                { value: "a", label: "Correct" },
+                { value: "b", label: "Wrong tense: 'saw' should be used with 'last Friday'" },
+                { value: "c", label: "Missing 'the' before movie" }
             ],
             correctAnswer: "b",
-            explanation:
-                "'Since' introduces the starting point (since 2019, since Monday) and links that past point to now.",
+            explanation: "Specific past times (like 'last Friday') require Past Simple: 'I saw that movie last Friday.'"
         },
+        // 8. error-already-placement (medium)
         {
-            id: "quiz-3",
-            question:
-                'What is the difference between "She has lived here for 5 years" and "She lived here for 5 years"?',
+            id: "ppq-8",
+            skillTag: "error-already-placement",
+            difficulty: "medium",
+            question: "Which is correct?",
             options: [
-                { value: "a", label: "No difference - they mean the same thing" },
-                { value: "b", label: "Present Perfect = she still lives here. Past Simple = she doesn't live here anymore." },
-                { value: "c", label: "Past Simple = she still lives here. Present Perfect = she doesn't live here anymore." },
-            ],
-            correctAnswer: "b",
-            explanation:
-                "Present Perfect means the action continues to now (she still lives here); Past Simple means it's finished and she moved away.",
-        },
-        {
-            id: "quiz-4",
-            question: "Which time expression is NOT used with Present Perfect?",
-            options: [
-                { value: "a", label: "already" },
-                { value: "b", label: "yesterday" },
-                { value: "c", label: "just" },
-            ],
-            correctAnswer: "b",
-            explanation:
-                "'Yesterday' refers to a finished time, so Past Simple is required. Present Perfect uses words like 'already', 'just', 'yet', 'still', 'ever', 'never'.",
-        },
-        {
-            id: "quiz-5",
-            question: "What is the correct negative form of 'She has finished her homework'?",
-            options: [
-                { value: "a", label: "She hasn't finished her homework." },
-                { value: "b", label: "She doesn't have finished her homework." },
-                { value: "c", label: "She haven't finished her homework." },
+                { value: "a", label: "I have already finished my homework." },
+                { value: "b", label: "I already have finished my homework." },
+                { value: "c", label: "I have finished already my homework." }
             ],
             correctAnswer: "a",
-            explanation:
-                "Use hasn't + past participle for third-person singular: 'She hasn't finished.'",
+            explanation: "'Already' comes between 'have' and the past participle in Present Perfect."
         },
+        // 9. error-still-negative (medium)
         {
-            id: "quiz-6",
-            question: "Which sentence describes a life experience with no specific time?",
+            id: "ppq-9",
+            skillTag: "error-still-negative",
+            difficulty: "medium",
+            question: "Choose the correct sentence with 'still' and Present Perfect negative.",
             options: [
-                { value: "a", label: "I have taught at the community center three times." },
-                { value: "b", label: "I taught at the community center last spring." },
-                { value: "c", label: "I have taught at the community center last spring." },
+                { value: "a", label: "I still haven't received my paycheck." },
+                { value: "b", label: "I haven't still received my paycheck." },
+                { value: "c", label: "I didn't still receive my paycheck." }
             ],
             correctAnswer: "a",
-            explanation:
-                "Present Perfect expresses experiences without specific times; 'last spring' needs Past Simple.",
+            explanation: "'Still' goes before 'haven't/hasn't' in Present Perfect negative."
         },
+        // 10. error-yet-negative-question (easy)
         {
-            id: "quiz-7",
-            question: "Which question uses 'ever' to ask about an experience?",
+            id: "ppq-10",
+            skillTag: "error-yet-negative-question",
+            difficulty: "easy",
+            question: "Which question is correct?",
             options: [
-                { value: "a", label: "Do you ever go to the farmers' market?" },
-                { value: "b", label: "Have you ever gone to the farmers' market?" },
-                { value: "c", label: "Are you ever going to the farmers' market?" },
-            ],
-            correctAnswer: "b",
-            explanation:
-                "'Have you ever…?' asks about life experience; 'Do you ever…?' asks about habits.",
-        },
-        {
-            id: "quiz-8",
-            question: "Complete: 'How long ___ at the shelter?'",
-            options: [
-                { value: "a", label: "have you worked" },
-                { value: "b", label: "did you work" },
-                { value: "c", label: "are you working" },
+                { value: "a", label: "Have you finished your homework yet?" },
+                { value: "b", label: "Did you finished your homework yet?" },
+                { value: "c", label: "Have you yet finished your homework?" }
             ],
             correctAnswer: "a",
-            explanation:
-                "Use Present Perfect to ask about duration connected to now: 'How long have you worked…?'",
+            explanation: "'Yet' goes at the end in Present Perfect questions."
         },
+        // 11. contrast-present-perfect-vs-past-simple (medium)
         {
-            id: "quiz-9",
-            question: "Which sentence uses Present Perfect + 'for' to describe ongoing action?",
+            id: "ppq-11",
+            skillTag: "contrast-present-perfect-vs-past-simple",
+            difficulty: "medium",
+            question: "Choose the sentence that shows an experience with no finished time.",
             options: [
-                { value: "a", label: "She has worked at the diner for two years and still cooks breakfast." },
-                { value: "b", label: "She worked at the diner for two years last decade." },
-                { value: "c", label: "She has worked at the diner since two years." },
+                { value: "a", label: "I have visited the Science Museum several times." },
+                { value: "b", label: "I visited the Science Museum last month." },
+                { value: "c", label: "I have visited the Science Museum last month." }
             ],
             correctAnswer: "a",
-            explanation:
-                "'For' + duration with Present Perfect shows something ongoing; 'since two years' is not correct English.",
+            explanation: "Present Perfect is used for experiences with no specific finished time."
         },
+        // 12. result-recent-completion-just-already-yet (easy)
         {
-            id: "quiz-10",
-            question: "Which sentence shows a past action with a present result?",
+            id: "ppq-12",
+            skillTag: "result-recent-completion-just-already-yet",
+            difficulty: "easy",
+            question: "Fill in the blank: 'They haven't called me ___. (I am still waiting)'",
             options: [
-                { value: "a", label: "I have locked the community center door, so the mail is safe." },
-                { value: "b", label: "I locked the door last night." },
-                { value: "c", label: "I am locking the door now." },
+                { value: "a", label: "yet" },
+                { value: "b", label: "already" },
+                { value: "c", label: "just" }
             ],
             correctAnswer: "a",
-            explanation:
-                "Present Perfect links the past action (locked the door) to a present result (mail is safe).",
+            explanation: "Use 'yet' in Present Perfect negative to show something is still not done."
         },
+        // 13. result-count-how-many (medium)
         {
-            id: "quiz-11",
-            question: "Which sentence uses 'already' correctly with Present Perfect?",
+            id: "ppq-13",
+            skillTag: "result-count-how-many",
+            difficulty: "medium",
+            question: "How many times ___ you ___ (see) the new mural on Main Street?",
             options: [
-                { value: "a", label: "I have already submitted the rent form today." },
-                { value: "b", label: "I already submitted the rent form today." },
-                { value: "c", label: "I have already submitted the rent form yesterday." },
+                { value: "a", label: "have / seen" },
+                { value: "b", label: "did / see" },
+                { value: "c", label: "has / saw" }
             ],
             correctAnswer: "a",
-            explanation:
-                "'Already' goes before the past participle in Present Perfect and 'today' can stay because the day isn't over yet.",
+            explanation: "Use 'have/has' + past participle for Present Perfect questions about experiences."
         },
+        // 14. duration-for-since-how-long (medium)
         {
-            id: "quiz-12",
-            question: "Which sentence uses 'still' to show an ongoing situation?",
+            id: "ppq-14",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "medium",
+            question: "Choose the correct sentence to ask about duration.",
             options: [
-                { value: "a", label: "We still haven't heard from the landlord about the repairs." },
-                { value: "b", label: "We haven't still heard from the landlord." },
-                { value: "c", label: "We still didn't hear from the landlord." },
+                { value: "a", label: "How long have you lived in this apartment?" },
+                { value: "b", label: "How long did you lived in this apartment?" },
+                { value: "c", label: "How long do you live in this apartment?" }
             ],
             correctAnswer: "a",
-            explanation:
-                "'Still' comes before the helping verb in negative Present Perfect to show the situation continues.",
+            explanation: "Present Perfect ('have you lived') is used to ask about duration up to now."
         },
+        // 15. result-life-experience-ever-never (medium)
         {
-            id: "quiz-13",
-            question: "Complete: 'I ___ (not finish) my report yet.'",
+            id: "ppq-15",
+            skillTag: "result-life-experience-ever-never",
+            difficulty: "medium",
+            question: "Which sentence is correct?",
             options: [
-                { value: "a", label: "haven't finished" },
-                { value: "b", label: "didn't finish" },
-                { value: "c", label: "don't finish" },
+                { value: "a", label: "I have never tried Ethiopian food." },
+                { value: "b", label: "I never have tried Ethiopian food." },
+                { value: "c", label: "I have tried never Ethiopian food." }
             ],
             correctAnswer: "a",
-            explanation:
-                "Use Present Perfect negative + 'yet' to show the report is still unfinished now.",
-        },
-        {
-            id: "quiz-14",
-            question: "Which question asks if someone has completed the community survey yet?",
-            options: [
-                { value: "a", label: "Have you completed the community survey yet?" },
-                { value: "b", label: "Did you complete the community survey yet?" },
-                { value: "c", label: "Are you completing the community survey yet?" },
-            ],
-            correctAnswer: "a",
-            explanation:
-                "Use Present Perfect with 'yet' when asking about completion that affects the present.",
-        },
-        {
-            id: "quiz-15",
-            question: "Which sentence uses Present Perfect with 'since' to describe continuing work?",
-            options: [
-                { value: "a", label: "I have lived on this block since 2018." },
-                { value: "b", label: "I lived on this block since 2018." },
-                { value: "c", label: "I have lived on this block for 2018." },
-            ],
-            correctAnswer: "a",
-            explanation:
-                "'Since' needs a starting point with Present Perfect; 'for 2018' is not correct, and Past Simple does not connect to now.",
+            explanation: "'Never' goes between 'have' and the past participle in Present Perfect."
         },
     ],
+
+/*
+TEACHER DIAGNOSTIC NOTES – Present Perfect Mini Quiz
+
+Result-focused gaps:
+- result-completed-action
+- result-life-experience-ever-never
+- result-recent-completion-just-already-yet
+- result-count-how-many
+
+Duration gaps:
+- duration-for-since-how-long
+- result-state-verb-duration
+
+Time confusion:
+- error-specific-past-time
+
+Form & placement errors:
+- error-already-placement
+- error-still-negative
+- error-yet-negative-question
+
+Contrast issues:
+- contrast-present-perfect-vs-past-simple
+
+Reteaching guidance:
+- If result tags are weak → reinforce "What changed NOW?"
+- If duration tags are weak → drill for vs since with timelines
+- If time errors are weak → do a hard reset on yesterday / last / in + year
+- If placement errors are weak → sentence surgery with already / yet / still
+- If contrast is weak → anchor the question: "Is the time finished?"
+*/
 };

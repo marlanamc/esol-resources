@@ -312,4 +312,328 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
             ],
         },
     ],
+    // Mini Quiz for diagnostics (16 questions)
+    miniQuiz: [
+        {
+            id: "quiz-1",
+            question:
+                "My appointment is ___ Friday morning.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "on", label: "on" },
+                { value: "in", label: "in" },
+            ],
+            correctAnswer: "on",
+            explanation:
+                "We use 'on' for days and dates: on Friday, on July 4, on Monday morning.",
+            skillTag: "time-on-day-date",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-2",
+            question:
+                "I work ___ 9 AM ___ 5 PM.",
+            options: [
+                { value: "at-on", label: "at / on" },
+                { value: "at-to", label: "at / to" },
+                { value: "from-to", label: "from / to" },
+            ],
+            correctAnswer: "from-to",
+            explanation:
+                "Use 'from...to...' to show a time range: I work from 9 to 5.",
+            skillTag: "time-from-to-range",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-3",
+            question:
+                "The class starts ___ 6:30 PM.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "on", label: "on" },
+                { value: "in", label: "in" },
+            ],
+            correctAnswer: "at",
+            explanation:
+                "Use 'at' for exact clock times: at 6:30 PM.",
+            skillTag: "time-at-clock-time",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-4",
+            question:
+                "My son was born ___ January.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "on", label: "on" },
+                { value: "in", label: "in" },
+            ],
+            correctAnswer: "in",
+            explanation:
+                "Use 'in' for months, years, and seasons: in January, in 2020, in the summer.",
+            skillTag: "time-in-month-season",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-5",
+            question:
+                "The clinic is very busy ___ the winter.",
+            options: [
+                { value: "during", label: "during" },
+                { value: "in", label: "in" },
+                { value: "at", label: "at" },
+            ],
+            correctAnswer: "during",
+            explanation:
+                "Use 'during' to focus on what happens in a whole period: during the winter, during the summer.",
+            skillTag: "time-during-period",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-6",
+            question:
+                "I usually study English ___ the evening after work.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "in", label: "in" },
+                { value: "on", label: "on" },
+            ],
+            correctAnswer: "in",
+            explanation:
+                "Use 'in' for parts of the day: in the morning, in the afternoon, in the evening.",
+            skillTag: "time-in-part-of-day",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question:
+                "The library is ___ Central Square.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "in", label: "in" },
+                { value: "on", label: "on" },
+            ],
+            correctAnswer: "in",
+            explanation:
+                "Use 'in' for neighborhoods, cities, and squares: in East Boston, in Central Square.",
+            skillTag: "place-in-neighborhood-area",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-8",
+            question:
+                "The shuttle stops ___ the East Boston community center.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "in", label: "in" },
+                { value: "on", label: "on" },
+            ],
+            correctAnswer: "at",
+            explanation:
+                "'At' is used for specific points and buildings: at the bus stop, at the community center.",
+            skillTag: "place-at-specific-point-building",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-9",
+            question:
+                "The apartment is ___ the third floor.",
+            options: [
+                { value: "in", label: "in" },
+                { value: "on", label: "on" },
+                { value: "at", label: "at" },
+            ],
+            correctAnswer: "on",
+            explanation:
+                "We say 'on the third floor' for levels of a building.",
+            skillTag: "place-on-floor-level",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-10",
+            question:
+                "We live ___ the community center, so we can walk there.",
+            options: [
+                { value: "at", label: "at" },
+                { value: "near", label: "near" },
+                { value: "on", label: "on" },
+            ],
+            correctAnswer: "near",
+            explanation:
+                "'Near' shows that something is close but not inside or exactly at the place.",
+            skillTag: "place-near-landmark",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-11",
+            question:
+                "The job center is ___ the park and the bakery.",
+            options: [
+                { value: "between", label: "between" },
+                { value: "across", label: "across" },
+                { value: "through", label: "through" },
+            ],
+            correctAnswer: "between",
+            explanation:
+                "Use 'between' with two places: between the park and the bakery.",
+            skillTag: "place-between-two-places",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-12",
+            question:
+                "Walk ___ the tunnel and turn left at the stairs.",
+            options: [
+                { value: "toward", label: "toward" },
+                { value: "through", label: "through" },
+                { value: "between", label: "between" },
+            ],
+            correctAnswer: "through",
+            explanation:
+                "'Through' is used when you go inside a space from one side to the other (through the tunnel, through the park).",
+            skillTag: "direction-through-enclosed-space",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-13",
+            question:
+                "The clinic is ___ the street from the blue apartment building.",
+            options: [
+                { value: "across", label: "across" },
+                { value: "between", label: "between" },
+                { value: "in", label: "in" },
+            ],
+            correctAnswer: "across",
+            explanation:
+                "'Across (the street) from' means it is on the other side of the street.",
+            skillTag: "place-across-from-landmark",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-14",
+            question:
+                "I am waiting ___ the bus ___ the station.",
+            options: [
+                { value: "for-at", label: "for / at" },
+                { value: "to-on", label: "to / on" },
+                { value: "at-in", label: "at / in" },
+            ],
+            correctAnswer: "for-at",
+            explanation:
+                "We say 'wait for' something or someone and 'at' a specific place: waiting for the bus at the station.",
+            skillTag: "verb-prep-wait-for-at-place",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-15",
+            question:
+                "She applied ___ a job program ___ the community center.",
+            options: [
+                { value: "for-at", label: "for / at" },
+                { value: "to-in", label: "to / in" },
+                { value: "for-in", label: "for / in" },
+            ],
+            correctAnswer: "for-at",
+            explanation:
+                "We use 'apply for' a program or job and 'at' for the specific place: applied for a job program at the community center.",
+            skillTag: "verb-prep-apply-for-at",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-16",
+            question:
+                "They arrived ___ East Boston ___ 2019.",
+            options: [
+                { value: "at-on", label: "at / on" },
+                { value: "in-in", label: "in / in" },
+                { value: "in-on", label: "in / on" },
+            ],
+            correctAnswer: "in-in",
+            explanation:
+                "We usually say 'arrive in' for a city or neighborhood and 'in' for a year: arrived in East Boston in 2019.",
+            skillTag: "verb-prep-arrive-in-place-time",
+            difficulty: "medium",
+        },
+    ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Prepositions of Time & Place Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Choose the correct preposition for time: at, on, in, during, from...to.
+    - Choose the correct preposition for place: at, in, on, near, between, across.
+    - Use prepositions for direction and movement in real East Boston contexts.
+    - Use common verb + preposition combinations used in housing, jobs, and daily life.
+    - Connect quiz items with the charts and examples from this guide.
+
+    Skill tags:
+
+    Time prepositions
+    - time-on-day-date
+    - time-from-to-range
+    - time-at-clock-time
+    - time-in-month-season
+    - time-during-period
+    - time-in-part-of-day
+
+    Place prepositions
+    - place-in-neighborhood-area
+    - place-at-specific-point-building
+    - place-on-floor-level
+    - place-near-landmark
+    - place-between-two-places
+    - place-across-from-landmark
+
+    Direction and movement
+    - direction-through-enclosed-space
+
+    Verb + preposition combinations
+    - verb-prep-wait-for-at-place
+    - verb-prep-apply-for-at
+    - verb-prep-arrive-in-place-time
+
+    How to read the diagnostics:
+    - If time preposition tags are weak (time-at-clock-time, time-on-day-date, time-in-month-season, time-during-period, time-from-to-range, time-in-part-of-day) →
+      Rebuild the time chart from the guide:
+      • AT = clock times and certain fixed expressions (at 3:30, at noon).
+      • ON = days and dates (on Monday, on July 4).
+      • IN = months, years, long periods, parts of the day (in May, in 2025, in the evening).
+      • DURING = what happens in a period (during the winter, during my shift).
+      • FROM...TO... = start and end of a range.
+      Use real schedules (clinic, work, school) and have students write 3–4 true sentences about their week using these patterns.
+
+    - If place preposition tags are weak (place-in-neighborhood-area, place-at-specific-point-building, place-on-floor-level, place-near-landmark, place-between-two-places, place-across-from-landmark) →
+      Draw a simple East Boston map on the board:
+      • Put a park, clinic, community center, bus stop, and a few buildings.
+      Practice:
+      • 'The clinic is in East Boston.' (area)
+      • 'The bus stop is at the corner.' (point)
+      • 'My apartment is on the third floor.' (level)
+      • 'The bakery is near the station.' (close to)
+      • 'The job center is between the park and the bakery.' (two places)
+      • 'The clinic is across the street from the blue building.' (other side)
+      Have students give directions to each other using these phrases.
+
+    - If direction/movement tags are weak (direction-through-enclosed-space) →
+      Practice short commands with arrows on the board:
+      • Walk through the tunnel.
+      • Go through the lobby.
+      Contrast with 'toward' and 'across' if you have covered those: toward = general direction, across = from one side to another.
+
+    - If verb + preposition tags are weak (verb-prep-wait-for-at-place, verb-prep-apply-for-at, verb-prep-arrive-in-place-time) →
+      Build a verb + preposition mini-chart:
+      • wait for the bus at the station.
+      • apply for a job at the community center.
+      • arrive in East Boston in 2019.
+      Have students correct common errors:
+      • wait the bus → wait for the bus.
+      • apply to a job → apply for a job.
+      • arrive to East Boston → arrive in East Boston.
+
+    Suggested use:
+    - Use this mini quiz after students work through the time and place sections and the verb + preposition section.
+    - At the class level:
+      • If time prepositions are red → slow down and use students' real schedules (work, school, childcare) to practice AT/ON/IN/DURING/FROM...TO...
+      • If place prepositions are red → do more map and direction activities with local East Boston landmarks.
+      • If verb + preposition tags are red → integrate quick 5-minute drills at the beginning of class, focusing on one or two verb + preposition pairs each day.
+    */
 };

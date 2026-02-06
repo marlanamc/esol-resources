@@ -1337,289 +1337,383 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
     //                Spot the Error, and Production/Application
     // ═══════════════════════════════════════════════════════════════════════════
     miniQuiz: [
-        // ─────────────────────────────────────────────────────────────────────────
-        // SECTION 1: TIME EXPRESSION RECOGNITION (Questions 1-4)
-        // Can students match time words to the correct tense?
-        // ─────────────────────────────────────────────────────────────────────────
         {
-            id: "q1",
-            topic: "time-expressions",
-            skill: "recognition",
-            question: "Which time expression signals PRESENT SIMPLE (habits)?",
+            id: "cycle1-quiz-1",
+            question: "Which tense sounds best? \"Every evening, I ___ dinner at home.\"",
             options: [
-                { value: "every-day", label: "every day" },
-                { value: "right-now", label: "right now" },
-                { value: "yesterday", label: "yesterday" }
+                { value: "present-simple", label: "cook" },
+                { value: "present-continuous", label: "am cooking" },
+                { value: "past-simple", label: "cooked" },
             ],
-            correctAnswer: "every-day",
-            explanation: "'Every day' signals a routine or habit, which uses Present Simple."
+            correctAnswer: "present-simple",
+            explanation:
+                "For daily routines and habits, use present simple: Every evening, I cook dinner at home.",
+            skillTag: "tense-choice-present-habit-simple-vs-continuous",
+            difficulty: "easy",
         },
         {
-            id: "q2",
-            topic: "time-expressions",
-            skill: "recognition",
-            question: "Which time expression signals PAST SIMPLE (finished)?",
+            id: "cycle1-quiz-2",
+            question: "Which sentence matches the time word \"right now\"?",
             options: [
-                { value: "last-week", label: "last week" },
-                { value: "since-2020", label: "since 2020" },
-                { value: "tomorrow", label: "tomorrow" }
+                { value: "present-simple", label: "She works on her homework right now." },
+                { value: "present-continuous", label: "She is working on her homework right now." },
+                { value: "past-simple", label: "She worked on her homework right now." },
             ],
-            correctAnswer: "last-week",
-            explanation: "'Last week' is a finished, specific time — Past Simple. 'Since 2020' connects to now (Present Perfect)."
+            correctAnswer: "present-continuous",
+            explanation:
+                "\"Right now\" usually takes present continuous (be + verb-ing): She is working on her homework right now.",
+            skillTag: "tense-choice-present-continuous-now",
+            difficulty: "easy",
         },
         {
-            id: "q3",
-            topic: "time-expressions",
-            skill: "recognition",
-            question: "Which time expression signals PRESENT PERFECT (connected to now)?",
+            id: "cycle1-quiz-3",
+            question: "Which option fits best? \"Yesterday, they ___ the apartment.\"",
             options: [
-                { value: "already", label: "already" },
-                { value: "in-2019", label: "in 2019" },
-                { value: "next-month", label: "next month" }
+                { value: "present-simple", label: "clean" },
+                { value: "past-simple", label: "cleaned" },
+                { value: "present-perfect", label: "have cleaned" },
             ],
-            correctAnswer: "already",
-            explanation: "'Already' shows something is done and matters now — Present Perfect. 'In 2019' is a specific past time."
+            correctAnswer: "past-simple",
+            explanation:
+                "With a finished, specific past time (yesterday, last week), we use past simple: They cleaned the apartment.",
+            skillTag: "tense-choice-past-simple-specific-time",
+            difficulty: "easy",
         },
         {
-            id: "q4",
-            topic: "time-expressions",
-            skill: "recognition",
-            question: "Which time expression signals PRESENT CONTINUOUS (happening now)?",
+            id: "cycle1-quiz-4",
+            question: "Which sentence sounds most natural with \"this week\"?",
             options: [
-                { value: "at-the-moment", label: "at the moment" },
-                { value: "usually", label: "usually" },
-                { value: "last-night", label: "last night" }
+                { value: "past-simple", label: "This week, I applied for three jobs." },
+                { value: "present-perfect", label: "This week, I have applied for three jobs." },
+                { value: "present-continuous", label: "This week, I am applying for three jobs right now." },
             ],
-            correctAnswer: "at-the-moment",
-            explanation: "'At the moment' means right now — Present Continuous. 'Usually' is for habits (Present Simple)."
+            correctAnswer: "present-perfect",
+            explanation:
+                "With \"this week\" (a time period that is not finished), we often use present perfect to connect past actions to now: I have applied for three jobs.",
+            skillTag: "tense-choice-present-perfect-this-week",
+            difficulty: "medium",
         },
+        {
+            id: "cycle1-quiz-5",
+            question: "Where does the adverb of frequency go? \"She ___ ___ to class on time.\"",
+            options: [
+                { value: "always-before-verb", label: "always comes" },
+                { value: "always-after-verb", label: "comes always" },
+                { value: "always-end", label: "comes on time always" },
+            ],
+            correctAnswer: "always-before-verb",
+            explanation:
+                "Most adverbs of frequency go before the main verb: She always comes to class on time.",
+            skillTag: "frequency-adverb-placement-main-verb",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-6",
+            question: "Choose the correct comparative: \"This class is ___ than my last one.\"",
+            options: [
+                { value: "more-easier", label: "more easier" },
+                { value: "easier", label: "easier" },
+                { value: "the-easiest", label: "the easiest" },
+            ],
+            correctAnswer: "easier",
+            explanation:
+                "For short adjectives like \"easy\", use -er for comparisons: This class is easier than my last one.",
+            skillTag: "comparative-form-short-adjective",
+            difficulty: "easy",
+        },
+        {
+            id: "cycle1-quiz-7",
+            question: "Choose the correct superlative: \"He is ___ person in the office.\"",
+            options: [
+                { value: "the-more-friendly", label: "the more friendly" },
+                { value: "the-friendliest", label: "the friendliest" },
+                { value: "friendlier", label: "friendlier" },
+            ],
+            correctAnswer: "the-friendliest",
+            explanation:
+                "Superlatives with short adjectives take the + -est: He is the friendliest person in the office.",
+            skillTag: "superlative-form-short-adjective",
+            difficulty: "easy",
+        },
+        {
+            id: "cycle1-quiz-8",
+            question: "Which quantifier is correct? \"There are ___ students on the waitlist.\"",
+            options: [
+                { value: "many", label: "many" },
+                { value: "much", label: "much" },
+            ],
+            correctAnswer: "many",
+            explanation:
+                "Students are countable, so we use many: There are many students on the waitlist.",
+            skillTag: "quantifier-many-vs-much-countable",
+            difficulty: "easy",
+        },
+        {
+            id: "cycle1-quiz-9",
+            question: "Which sentence is best? \"I have ___ free time this month than last month.\"",
+            options: [
+                { value: "fewer", label: "fewer" },
+                { value: "less", label: "less" },
+            ],
+            correctAnswer: "less",
+            explanation:
+                "\"Free time\" is uncountable, so we use less, not fewer.",
+            skillTag: "quantifier-fewer-vs-less-uncountable",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-10",
+            question: "Choose the connector that fits: \"I was tired, ___ I finished my homework.\"",
+            options: [
+                { value: "and", label: "and" },
+                { value: "but", label: "but" },
+                { value: "so", label: "so" },
+            ],
+            correctAnswer: "but",
+            explanation:
+                "\"But\" shows contrast: even though I was tired, I finished my homework.",
+            skillTag: "connector-meaning-contrast-but",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-11",
+            question: "Which word is the adverb in this sentence? \"The busy student arrived early.\"",
+            options: [
+                { value: "busy", label: "busy" },
+                { value: "student", label: "student" },
+                { value: "early", label: "early" },
+            ],
+            correctAnswer: "early",
+            explanation:
+                "\"Early\" describes how the student arrived, so it is an adverb.",
+            skillTag: "pos-adverb-identification",
+            difficulty: "easy",
+        },
+        {
+            id: "cycle1-quiz-12",
+            question: "Which sentence is FIRST conditional (future possibility)?",
+            options: [
+                { value: "zero-habit", label: "If I'm tired, I go to bed early." },
+                { value: "first-future", label: "If I'm tired tonight, I will go to bed early." },
+                { value: "present-perfect", label: "I have gone to bed early if I'm tired." },
+            ],
+            correctAnswer: "first-future",
+            explanation:
+                "First conditional is for real future possibilities: If + present, will + base verb. \"If I'm tired tonight, I will go to bed early.\"",
+            skillTag: "contrast-zero-vs-first-conditional-cycle1",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-13",
+            question: "Which tense fits best? \"This month, I ___ more vegetables.\"",
+            options: [
+                { value: "present-simple", label: "eat" },
+                { value: "past-simple", label: "ate" },
+                { value: "present-perfect", label: "have eaten" },
+            ],
+            correctAnswer: "present-perfect",
+            explanation:
+                "\"This month\" is an open time period that includes now, so present perfect is natural: I have eaten more vegetables.",
+            skillTag: "tense-choice-present-perfect-this-month",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-14",
+            question: "Where does the adverb go? \"She ___ ___ late to work.\"",
+            options: [
+                { value: "always-is-late", label: "always is" },
+                { value: "is-always-late", label: "is always" },
+                { value: "is-late-always", label: "is late always" },
+            ],
+            correctAnswer: "is-always-late",
+            explanation:
+                "With the verb be, frequency adverbs usually come after be: She is always late to work.",
+            skillTag: "frequency-adverb-placement-be-verb",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-15",
+            question: "Choose the correct comparative: \"My new schedule is ___ than my old one.\"",
+            options: [
+                { value: "comfortabler", label: "comfortabler" },
+                { value: "more-comfortable", label: "more comfortable" },
+                { value: "most-comfortable", label: "most comfortable" },
+            ],
+            correctAnswer: "more-comfortable",
+            explanation:
+                "Comfortable is a longer adjective, so we use more, not -er: more comfortable than my old one.",
+            skillTag: "comparative-form-long-adjective",
+            difficulty: "medium",
+        },
+        {
+            id: "cycle1-quiz-16",
+            question: "Choose the connector that shows a result: \"I was very tired, ___ I went to bed early.\"",
+            options: [
+                { value: "and", label: "and" },
+                { value: "but", label: "but" },
+                { value: "so", label: "so" },
+            ],
+            correctAnswer: "so",
+            explanation:
+                "\"So\" shows a result: I was very tired, so I went to bed early.",
+            skillTag: "connector-meaning-result-so",
+            difficulty: "easy",
+        },
+        {
+            id: "cycle1-quiz-17",
+            question: "Which quantifier is best? \"I have ___ time before class, so I can help you quickly.\"",
+            options: [
+                { value: "few", label: "few" },
+                { value: "little", label: "little" },
+            ],
+            correctAnswer: "little",
+            explanation:
+                "\"Time\" is uncountable, so we say little time, not few time.",
+            skillTag: "quantifier-little-vs-few-time",
+            difficulty: "medium",
+        },
+    ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Cycle 1 Review Mini Quiz
 
-        // ─────────────────────────────────────────────────────────────────────────
-        // SECTION 2: TENSE FORMATION (Questions 5-8)
-        // Can students build the correct verb form?
-        // ─────────────────────────────────────────────────────────────────────────
-        {
-            id: "q5",
-            topic: "present-simple",
-            skill: "formation",
-            question: "Complete with Present Simple: 'She ___ to work by bus.'",
-            options: [
-                { value: "goes", label: "goes" },
-                { value: "is-going", label: "is going" },
-                { value: "went", label: "went" }
-            ],
-            correctAnswer: "goes",
-            explanation: "Present Simple for habits: She goes (add -es for he/she/it)."
-        },
-        {
-            id: "q6",
-            topic: "past-simple",
-            skill: "formation",
-            question: "Complete with Past Simple: 'They ___ the meeting yesterday.'",
-            options: [
-                { value: "finished", label: "finished" },
-                { value: "have-finished", label: "have finished" },
-                { value: "are-finishing", label: "are finishing" }
-            ],
-            correctAnswer: "finished",
-            explanation: "Past Simple for finished actions with a specific time: finished (verb + -ed)."
-        },
-        {
-            id: "q7",
-            topic: "present-perfect",
-            skill: "formation",
-            question: "Complete with Present Perfect: 'I ___ that movie three times.'",
-            options: [
-                { value: "have-seen", label: "have seen" },
-                { value: "saw", label: "saw" },
-                { value: "am-seeing", label: "am seeing" }
-            ],
-            correctAnswer: "have-seen",
-            explanation: "Present Perfect for experiences: have/has + past participle (seen)."
-        },
-        {
-            id: "q8",
-            topic: "present-continuous",
-            skill: "formation",
-            question: "Complete with Present Continuous: 'Look! The baby ___ !'",
-            options: [
-                { value: "is-sleeping", label: "is sleeping" },
-                { value: "sleeps", label: "sleeps" },
-                { value: "slept", label: "slept" }
-            ],
-            correctAnswer: "is-sleeping",
-            explanation: "Present Continuous for actions happening now: am/is/are + verb-ing."
-        },
+    This mini quiz checks foundational control of Cycle 1 grammar concepts across
+    simple tenses, helpers, motion vs fact, and core sentence-building tools.
+    Use skill-level diagnostics to decide whether students need:
+    - form review
+    - meaning clarification
+    - contrast practice
+    - or targeted error correction
 
-        // ─────────────────────────────────────────────────────────────────────────
-        // SECTION 3: USAGE IN CONTEXT (Questions 9-12)
-        // Can students choose the right tense based on meaning?
-        // ─────────────────────────────────────────────────────────────────────────
-        {
-            id: "q9",
-            topic: "present-simple-vs-continuous",
-            skill: "usage",
-            question: "Which sentence describes a HABIT?",
-            options: [
-                { value: "habit", label: "I drink coffee every morning." },
-                { value: "now", label: "I am drinking coffee right now." },
-                { value: "past", label: "I drank coffee this morning." }
-            ],
-            correctAnswer: "habit",
-            explanation: "Habits use Present Simple. 'Every morning' is the clue."
-        },
-        {
-            id: "q10",
-            topic: "past-simple-vs-perfect",
-            skill: "usage",
-            question: "Which sentence best answers: 'Why is the floor wet?'",
-            options: [
-                { value: "perfect", label: "I have just mopped it." },
-                { value: "past", label: "I mopped it yesterday." },
-                { value: "continuous", label: "I am mopping it." }
-            ],
-            correctAnswer: "perfect",
-            explanation: "The result matters NOW (wet floor), so use Present Perfect: 'have just mopped.'"
-        },
-        {
-            id: "q11",
-            topic: "past-continuous",
-            skill: "usage",
-            question: "Which sentence shows an INTERRUPTED action?",
-            options: [
-                { value: "interrupted", label: "I was cooking when the phone rang." },
-                { value: "finished", label: "I cooked dinner at 7 p.m." },
-                { value: "habit", label: "I cook dinner every night." }
-            ],
-            correctAnswer: "interrupted",
-            explanation: "Past Continuous + Past Simple shows one action interrupting another: 'was cooking... rang.'"
-        },
-        {
-            id: "q12",
-            topic: "future-simple",
-            skill: "usage",
-            question: "Which sentence is a PROMISE about the future?",
-            options: [
-                { value: "promise", label: "I will call you tomorrow." },
-                { value: "habit", label: "I call my mom every Sunday." },
-                { value: "plan", label: "I am meeting her at 3 p.m." }
-            ],
-            correctAnswer: "promise",
-            explanation: "Promises and predictions use Future Simple: will + verb."
-        },
+    ────────────────────────
+    TENSE CHOICE & TIME MEANING
+    ────────────────────────
+    Skill tags:
+    - tense-choice-present-simple-habit
+    - tense-choice-past-simple-finished
+    - tense-choice-future-simple-plan
+    - tense-choice-present-perfect-this-week
+    - tense-choice-present-perfect-this-month
 
-        // ─────────────────────────────────────────────────────────────────────────
-        // SECTION 4: SPOT THE ERROR (Questions 13-16)
-        // Can students identify what's wrong in a sentence?
-        // ─────────────────────────────────────────────────────────────────────────
-        {
-            id: "q13",
-            topic: "present-simple",
-            skill: "error-detection",
-            question: "Which sentence has a MISTAKE?",
-            options: [
-                { value: "wrong", label: "She don't like coffee." },
-                { value: "correct1", label: "She doesn't like coffee." },
-                { value: "correct2", label: "They don't like coffee." }
-            ],
-            correctAnswer: "wrong",
-            explanation: "'She' uses 'doesn't' (not 'don't'). Remember: he/she/it = doesn't."
-        },
-        {
-            id: "q14",
-            topic: "present-perfect",
-            skill: "error-detection",
-            question: "Which sentence has a MISTAKE?",
-            options: [
-                { value: "wrong", label: "I have saw that movie." },
-                { value: "correct1", label: "I have seen that movie." },
-                { value: "correct2", label: "I saw that movie last week." }
-            ],
-            correctAnswer: "wrong",
-            explanation: "Present Perfect uses past participle: 'have seen' (not 'have saw')."
-        },
-        {
-            id: "q15",
-            topic: "past-simple",
-            skill: "error-detection",
-            question: "Which sentence has a MISTAKE?",
-            options: [
-                { value: "wrong", label: "Did she went to the store?" },
-                { value: "correct1", label: "Did she go to the store?" },
-                { value: "correct2", label: "She went to the store." }
-            ],
-            correctAnswer: "wrong",
-            explanation: "After 'did,' use the base verb: 'Did she go' (not 'went')."
-        },
-        {
-            id: "q16",
-            topic: "present-continuous",
-            skill: "error-detection",
-            question: "Which sentence has a MISTAKE?",
-            options: [
-                { value: "wrong", label: "They is working right now." },
-                { value: "correct1", label: "They are working right now." },
-                { value: "correct2", label: "She is working right now." }
-            ],
-            correctAnswer: "wrong",
-            explanation: "'They' uses 'are' (not 'is'). Match the subject to the correct form of 'be.'"
-        },
+    If students struggle here:
+    • Re-teach finished vs open time (yesterday vs this week/month)
+    • Emphasize that present perfect connects past to now without a finished timestamp
+    • Revisit signal words: yesterday, last ___, this week, this month
 
-        // ─────────────────────────────────────────────────────────────────────────
-        // SECTION 5: PRODUCTION / APPLICATION (Questions 17-20)
-        // Can students apply tense knowledge in new situations?
-        // ─────────────────────────────────────────────────────────────────────────
-        {
-            id: "q17",
-            topic: "negative-formation",
-            skill: "production",
-            question: "Make this negative: 'She works on Saturdays.'",
-            options: [
-                { value: "correct", label: "She doesn't work on Saturdays." },
-                { value: "wrong1", label: "She don't work on Saturdays." },
-                { value: "wrong2", label: "She isn't work on Saturdays." }
-            ],
-            correctAnswer: "correct",
-            explanation: "Present Simple negative: She doesn't + base verb."
-        },
-        {
-            id: "q18",
-            topic: "question-formation",
-            skill: "production",
-            question: "Make this a question: 'You have finished the report.'",
-            options: [
-                { value: "correct", label: "Have you finished the report?" },
-                { value: "wrong1", label: "Do you have finished the report?" },
-                { value: "wrong2", label: "You have finished the report?" }
-            ],
-            correctAnswer: "correct",
-            explanation: "Present Perfect question: Move 'have' to the front."
-        },
-        {
-            id: "q19",
-            topic: "tense-choice",
-            skill: "production",
-            question: "Your friend asks: 'What are you doing?' Which is the best answer?",
-            options: [
-                { value: "correct", label: "I am studying for my exam." },
-                { value: "wrong1", label: "I study for my exam." },
-                { value: "wrong2", label: "I studied for my exam." }
-            ],
-            correctAnswer: "correct",
-            explanation: "The question is about NOW, so answer with Present Continuous: 'I am studying.'"
-        },
-        {
-            id: "q20",
-            topic: "tense-choice",
-            skill: "production",
-            question: "Complete the story: 'Yesterday, I ___ (walk) to work when I ___ (see) an old friend.'",
-            options: [
-                { value: "correct", label: "was walking... saw" },
-                { value: "wrong1", label: "walked... was seeing" },
-                { value: "wrong2", label: "walk... see" }
-            ],
-            correctAnswer: "correct",
-            explanation: "Background action (was walking) + interruption (saw) = Past Continuous + Past Simple."
-        }
-    ]
+    ────────────────────────
+    QUESTIONS & NEGATIVES (HELPER VERBS)
+    ────────────────────────
+    Skill tags:
+    - helper-do-does-question
+    - helper-did-question
+    - helper-will-question
+    - negative-form-simple
+    - negative-form-continuous
+
+    If students struggle here:
+    • Review that helpers carry the tense, not the main verb
+    • Practice hearing the helper first (do / did / will / be)
+    • Contrast simple vs continuous negatives (don’t vs isn’t)
+
+    ────────────────────────
+    SIMPLE vs CONTINUOUS (FACT vs MOTION)
+    ────────────────────────
+    Skill tags:
+    - contrast-simple-vs-continuous-now
+    - contrast-simple-vs-continuous-habit
+    - continuous-meaning-in-progress
+    - past-continuous-background
+
+    If students struggle here:
+    • Re-anchor continuous as “action in motion”
+    • Use timelines to show background vs finished actions
+    • Reinforce that simple tense states facts or habits
+
+    ────────────────────────
+    ADVERBS OF FREQUENCY
+    ────────────────────────
+    Skill tags:
+    - frequency-adverb-placement-main-verb
+    - frequency-adverb-placement-be-verb
+
+    If students struggle here:
+    • Re-teach placement rule:
+    – before main verbs (always take)
+    – after be/have (is always, has always)
+    • Practice with be-verbs separately from action verbs
+
+    ────────────────────────
+    COMPARATIVES
+    ────────────────────────
+    Skill tags:
+    - comparative-form-short-adjective
+    - comparative-form-long-adjective
+
+    If students struggle here:
+    • Reinforce the sound test:
+    – short adjective → -er
+    – long adjective → more
+    • Watch for overgeneralization (*more friendlier*)
+
+    ────────────────────────
+    SUPERLATIVES
+    ────────────────────────
+    Skill tags:
+    - superlative-form-short-adjective
+    - superlative-form-long-adjective
+    - superlative-irregular-forms
+
+    If students struggle here:
+    • Re-teach difference between comparing 2 (comparative) vs 3+ (superlative)
+    • Review irregulars: best, worst, farthest
+
+    ────────────────────────
+    QUANTIFIERS
+    ────────────────────────
+    Skill tags:
+    - quantifier-many-vs-much
+    - quantifier-fewer-vs-less
+    - quantifier-little-vs-few-time
+
+    If students struggle here:
+    • Revisit countable vs uncountable nouns
+    • Use the “Can I count it?” test
+    • Explicitly practice time/money as uncountable
+
+    ────────────────────────
+    CONNECTORS (MEANING LINKS)
+    ────────────────────────
+    Skill tags:
+    - connector-meaning-addition-and
+    - connector-meaning-contrast-but
+    - connector-meaning-result-so
+    - connector-time-when-while
+
+    If students struggle here:
+    • Focus on sentence meaning, not memorization
+    • Ask: Am I adding, contrasting, choosing, or showing a result?
+    • Reinforce so = result, not sequence
+
+    ────────────────────────
+    CONDITIONALS (ZERO vs FIRST)
+    ────────────────────────
+    Skill tags:
+    - zero-conditional-form
+    - first-conditional-form
+    - conditional-time-logic
+
+    If students struggle here:
+    • Re-anchor zero conditional as “always true”
+    • Reinforce rule: never use will in the IF clause
+    • Contrast habits vs future plans clearly
+
+    ────────────────────────
+    SUGGESTED USE
+    ────────────────────────
+    • Use after all Cycle 1 grammar guides
+    • Best for identifying weak areas before Cycle 2
+    • Diagnostic patterns often point to:
+    – time awareness issues
+    – helper verb confusion
+    – motion vs fact misunderstanding
+    */
 };

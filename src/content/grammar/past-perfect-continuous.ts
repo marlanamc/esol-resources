@@ -643,6 +643,8 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Past Perfect Continuous: had been + verb-ing.",
+            skillTag: "form-ppc-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -654,6 +656,8 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Negative: hadn't been + verb-ing.",
+            skillTag: "form-ppc-negative",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -665,6 +669,8 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Question: Had + subject + been + verb-ing.",
+            skillTag: "form-ppc-question",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -675,18 +681,189 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "When talking about future plans" },
             ],
             correctAnswer: "b",
-            explanation: "Past Perfect Continuous = duration before. Past Continuous = action at a moment.",
+            explanation: "Past Perfect Continuous = duration before another past event. Past Continuous = action at a past moment.",
+            skillTag: "contrast-past-perfect-continuous-vs-past-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
-            question: "Choose the best answer: 'She was tired because she ___ all day.'",
+            question: "Choose the best answer: \"She was tired because she ___ all day.\"",
             options: [
                 { value: "a", label: "was working" },
                 { value: "b", label: "had been working" },
                 { value: "c", label: "worked" },
             ],
             correctAnswer: "b",
-            explanation: "Explaining a past state (tired) with prior duration = Past Perfect Continuous.",
+            explanation: "Explaining a past state (tired) with prior duration uses Past Perfect Continuous.",
+            skillTag: "past-perfect-continuous-cause-effect",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-6",
+            question: "Fill in the blank: \"I ___ for three hours when my friend called.\"",
+            options: [
+                { value: "a", label: "had been studying" },
+                { value: "b", label: "was studying" },
+                { value: "c", label: "studied" },
+            ],
+            correctAnswer: "a",
+            explanation: "We show duration before a past event (the call), so we use Past Perfect Continuous.",
+            skillTag: "past-perfect-continuous-two-past-actions-sequence",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-7",
+            question: "Complete the sentence: \"They had been living there ___ 2010.\"",
+            options: [
+                { value: "a", label: "since" },
+                { value: "b", label: "for" },
+                { value: "c", label: "at" },
+            ],
+            correctAnswer: "a",
+            explanation: "Since + starting point (since 2010). For + duration.",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-8",
+            question: "Complete the sentence: \"We had been waiting ___ two hours when the doors opened.\"",
+            options: [
+                { value: "a", label: "for" },
+                { value: "b", label: "since" },
+                { value: "c", label: "during" },
+            ],
+            correctAnswer: "a",
+            explanation: "For + a length of time (for two hours).",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-9",
+            question: "In this sentence, which action happened first? \"I had been working at the company for five years when it closed.\"",
+            options: [
+                { value: "a", label: "The company closed." },
+                { value: "b", label: "I started working at the company." },
+                { value: "c", label: "I looked for a new job." },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Perfect Continuous (had been working) describes the earlier, longer action.",
+            skillTag: "past-perfect-continuous-first-action-identification",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-10",
+            question: "Choose the best option: \"By the time we arrived, they ___ for two hours.\"",
+            options: [
+                { value: "a", label: "were waiting" },
+                { value: "b", label: "had been waiting" },
+                { value: "c", label: "waited" },
+            ],
+            correctAnswer: "b",
+            explanation: "\"By the time\" plus duration before that past point → Past Perfect Continuous.",
+            skillTag: "pattern-by-the-time-past-perfect-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-11",
+            question: "Which question correctly asks about duration before another past event?",
+            options: [
+                { value: "a", label: "How long were you waiting when the bus came?" },
+                { value: "b", label: "How long had you been waiting when the bus came?" },
+                { value: "c", label: "How long have you been waiting when the bus came?" },
+            ],
+            correctAnswer: "b",
+            explanation: "We ask about duration before a past event with: How long + had + subject + been + verb-ing.",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-12",
+            question: "Which sentence is correct and natural?",
+            options: [
+                { value: "a", label: "I had been knowing him for years before we got married." },
+                { value: "b", label: "I had known him for years before we got married." },
+                { value: "c", label: "I had been known him for years before we got married." },
+            ],
+            correctAnswer: "b",
+            explanation: "State verbs like know do not usually take continuous forms; use Past Perfect Simple instead.",
+            skillTag: "error-stative-verb-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-13",
+            question: "Choose the best sentence to show duration before a past moment.",
+            options: [
+                { value: "a", label: "When the teacher came in, we were talking for a long time." },
+                { value: "b", label: "When the teacher came in, we had been talking for a long time." },
+                { value: "c", label: "When the teacher came in, we had talked for a long time." },
+            ],
+            correctAnswer: "b",
+            explanation: "\"Had been talking\" emphasizes how long the action had been happening before the teacher came in.",
+            skillTag: "contrast-past-perfect-continuous-vs-past-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-14",
+            question: "Which sentence correctly uses Past Perfect Continuous with \"when\"?",
+            options: [
+                { value: "a", label: "When I arrived, they had been eating dinner for an hour." },
+                { value: "b", label: "When I had arrived, they were eating dinner for an hour." },
+                { value: "c", label: "When I had been arriving, they ate dinner for an hour." },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Perfect Continuous describes the ongoing action before the simple past event (I arrived).",
+            skillTag: "pattern-when-past-perfect-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-15",
+            question: "What question does Past Perfect Continuous usually answer?",
+            options: [
+                { value: "a", label: "What will happen in the future?" },
+                { value: "b", label: "How long had something been happening before another past event?" },
+                { value: "c", label: "What is happening right now?" },
+            ],
+            correctAnswer: "b",
+            explanation: "Past Perfect Continuous focuses on duration before another past moment.",
+            skillTag: "meta-ppc-meaning",
+            difficulty: "easy",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Past Perfect Continuous Mini Quiz
+
+    Meaning and sequence:
+    - past-perfect-continuous-two-past-actions-sequence
+    - past-perfect-continuous-first-action-identification
+    - past-perfect-continuous-cause-effect
+
+    Duration skills:
+    - duration-for-since-how-long
+
+    Form skills:
+    - form-ppc-positive
+    - form-ppc-negative
+    - form-ppc-question
+
+    Pattern skills:
+    - pattern-by-the-time-past-perfect-continuous
+    - pattern-when-past-perfect-continuous
+
+    Contrast skills:
+    - contrast-past-perfect-continuous-vs-past-continuous
+
+    Common error patterns:
+    - error-stative-verb-continuous
+
+    Meta understanding:
+    - meta-ppc-meaning
+
+    Reteaching guidance:
+    - If meaning/sequence tags are weak → go back to the TWO-VERB RULE and have students label FIRST and SECOND actions on a timeline.
+    - If duration tags are weak → drill for vs since and HOW LONG questions anchored to a later past event (when, by the time, before).
+    - If form tags are weak → practice had been + verb-ing across subjects in positive, negative, and question forms.
+    - If pattern tags are weak → build sentence frames with "by the time" and "when" plus Past Perfect Continuous + Past Simple.
+    - If contrast tags are weak → compare pairs like "was waiting" vs "had been waiting" and ask: "Am I talking about what was happening at that moment, or how long before it?"
+    - If stative-verb errors appear → review common stative verbs (know, like, love, believe, understand) and replace Past Perfect Continuous with Past Perfect Simple in those cases.
+    */
 };

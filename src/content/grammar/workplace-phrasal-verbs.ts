@@ -716,6 +716,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
     ],
 
+    // Mini Quiz (20 questions)
     miniQuiz: [
         {
             id: "quiz-1",
@@ -726,7 +727,10 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "Fix a clock" },
             ],
             correctAnswer: "b",
-            explanation: "'Clock in' (or 'punch in') means to record your arrival time at work, usually using a time clock or computer system.",
+            explanation:
+                "'Clock in' (or 'punch in') means to record your arrival time at work, usually using a time clock or computer system.",
+            skillTag: "pv-clock-in-record-arrival",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -737,21 +741,13 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "fill up" },
             ],
             correctAnswer: "b",
-            explanation: "'Fill out' (or 'fill in') means to complete a form by writing the required information.",
+            explanation:
+                "'Fill out' (or 'fill in') means to complete a form by writing the required information.",
+            skillTag: "pv-fill-out-complete-form",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
-            question: "What does 'I'll get back to you' mean?",
-            options: [
-                { value: "a", label: "I'll return to where you are" },
-                { value: "b", label: "I'll respond to you later" },
-                { value: "c", label: "I'll give you something back" },
-            ],
-            correctAnswer: "b",
-            explanation: "'Get back to someone' means to respond or reply later, usually with information or an answer.",
-        },
-        {
-            id: "quiz-4",
             question: "If you 'cover for' someone, you:",
             options: [
                 { value: "a", label: "Hide them" },
@@ -760,20 +756,25 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Cover for someone' means to do their work or take their shift while they're absent.",
+            skillTag: "pv-cover-for-substitute",
+            difficulty: "easy",
         },
         {
-            id: "quiz-5",
+            id: "quiz-4",
             question: "What should you do if you're sick and can't work?",
             options: [
                 { value: "a", label: "Call out" },
-                { value: "b", label: "Call in" },
+                { value: "b", label: "Call in sick" },
                 { value: "c", label: "Both A and B are correct" },
             ],
             correctAnswer: "c",
-            explanation: "Both 'call out' and 'call in sick' are correct ways to notify your employer that you can't come to work due to illness.",
+            explanation:
+                "Both 'call out' and 'call in sick' are correct ways to notify your employer that you can't come to work due to illness.",
+            skillTag: "pv-call-out-call-in-sick",
+            difficulty: "medium",
         },
         {
-            id: "quiz-6",
+            id: "quiz-5",
             question: "Complete: 'Before you leave, make sure you ___.'",
             options: [
                 { value: "a", label: "clock in" },
@@ -782,9 +783,11 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Clock out' (or 'punch out') means to record the time you leave work.",
+            skillTag: "pv-clock-out-record-departure",
+            difficulty: "easy",
         },
         {
-            id: "quiz-7",
+            id: "quiz-6",
             question: "What does 'turn in' mean in 'Turn in your timesheet'?",
             options: [
                 { value: "a", label: "Submit it to the right person/system" },
@@ -793,9 +796,11 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Turn in' means to submit something (a form, a timesheet, a document).",
+            skillTag: "pv-turn-in-submit",
+            difficulty: "easy",
         },
         {
-            id: "quiz-8",
+            id: "quiz-7",
             question: "Complete: 'Can you ___ this email before I send it to HR?'",
             options: [
                 { value: "a", label: "look over" },
@@ -804,9 +809,11 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Look over' means to review something carefully for mistakes or details.",
+            skillTag: "pv-look-over-review",
+            difficulty: "medium",
         },
         {
-            id: "quiz-9",
+            id: "quiz-8",
             question: "If you missed a call, you can say: 'I'll ___ in a few minutes.'",
             options: [
                 { value: "a", label: "call out" },
@@ -815,9 +822,11 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Call back' means to return a phone call.",
+            skillTag: "pv-call-back-return-call",
+            difficulty: "easy",
         },
         {
-            id: "quiz-10",
+            id: "quiz-9",
             question: "What does 'follow up on' mean?",
             options: [
                 { value: "a", label: "Check again / ask for an update" },
@@ -825,10 +834,13 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "Leave work early" },
             ],
             correctAnswer: "a",
-            explanation: "'Follow up on' means to check the status (a request, an order, an email) and ask what happened.",
+            explanation:
+                "'Follow up on' means to check the status (a request, an order, an email) and ask what happened.",
+            skillTag: "pv-follow-up-check-status",
+            difficulty: "medium",
         },
         {
-            id: "quiz-11",
+            id: "quiz-10",
             question: "Complete: 'Sorry I'm late. Thanks for ___ me.'",
             options: [
                 { value: "a", label: "covering for" },
@@ -836,10 +848,13 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "turning in" },
             ],
             correctAnswer: "a",
-            explanation: "'Cover for' means to do someone's job temporarily while they are away.",
+            explanation:
+                "'Cover for' means to do someone's job temporarily while they are away (for example, answer the phone or help customers).",
+            skillTag: "pv-cover-for-substitute",
+            difficulty: "easy",
         },
         {
-            id: "quiz-12",
+            id: "quiz-11",
             question: "Complete: 'Nina is ___ the manager this week.'",
             options: [
                 { value: "a", label: "filling in for" },
@@ -847,21 +862,26 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "calling back" },
             ],
             correctAnswer: "a",
-            explanation: "'Fill in for someone' means to substitute for them (often for a longer shift or several days).",
+            explanation:
+                "'Fill in for someone' means to substitute for them (often for a longer shift or several days).",
+            skillTag: "pv-fill-in-for-substitute",
+            difficulty: "medium",
         },
         {
-            id: "quiz-13",
+            id: "quiz-12",
             question: "What does 'help out' mean?",
             options: [
-                { value: "a", label: "Assist" },
+                { value: "a", label: "Assist, especially when things are busy" },
                 { value: "b", label: "Quit your job" },
                 { value: "c", label: "Get paid extra automatically" },
             ],
             correctAnswer: "a",
-            explanation: "'Help out' means to assist, especially when things are busy.",
+            explanation: "'Help out' means to assist, especially when a place is busy or short-staffed.",
+            skillTag: "pv-help-out-assist",
+            difficulty: "easy",
         },
         {
-            id: "quiz-14",
+            id: "quiz-13",
             question: "Complete: 'I don't know yet, but I'll ___ you by the end of the day.'",
             options: [
                 { value: "a", label: "get back to" },
@@ -869,10 +889,13 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "get up" },
             ],
             correctAnswer: "a",
-            explanation: "Use 'get back to + person' when you will reply later: 'I'll get back to you.'",
+            explanation:
+                "Use 'get back to + person' when you will reply later: 'I'll get back to you.'",
+            skillTag: "pv-get-back-to-respond-later",
+            difficulty: "medium",
         },
         {
-            id: "quiz-15",
+            id: "quiz-14",
             question: "Complete: 'I'm sick, so I can't ___ for my shift today.'",
             options: [
                 { value: "a", label: "show up" },
@@ -881,9 +904,11 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Show up' means to arrive. If you're sick, you can't show up for your shift.",
+            skillTag: "pv-show-up-arrive",
+            difficulty: "easy",
         },
         {
-            id: "quiz-16",
+            id: "quiz-15",
             question: "What does 'take on' mean in 'Can you take on this project?'",
             options: [
                 { value: "a", label: "Fight against it" },
@@ -892,10 +917,12 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Take on' means to accept responsibility or additional work.",
+            skillTag: "pv-take-on-accept-work",
+            difficulty: "medium",
         },
         {
-            id: "quiz-17",
-            question: "Complete: 'We need to ___ the meeting until next week.'",
+            id: "quiz-16",
+            question: "Complete: 'We can't meet today. Let's ___ the meeting until next week.'",
             options: [
                 { value: "a", label: "put off" },
                 { value: "b", label: "put in" },
@@ -903,9 +930,11 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "'Put off' means to postpone or delay something until later.",
+            skillTag: "pv-put-off-postpone",
+            difficulty: "medium",
         },
         {
-            id: "quiz-18",
+            id: "quiz-17",
             question: "What does 'set up' mean in 'Can you set up the meeting room?'",
             options: [
                 { value: "a", label: "Clean it" },
@@ -913,21 +942,27 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "Lock it" },
             ],
             correctAnswer: "b",
-            explanation: "'Set up' means to arrange, organize, or prepare something (a room, a meeting, equipment).",
+            explanation:
+                "'Set up' means to arrange, organize, or prepare something (a room, a meeting, equipment).",
+            skillTag: "pv-set-up-arrange",
+            difficulty: "medium",
         },
         {
-            id: "quiz-19",
-            question: "Complete: 'Let's ___ so everyone can leave on time.'",
+            id: "quiz-18",
+            question: "Complete: 'It's almost 5:00. Let's ___ so everyone can leave on time.'",
             options: [
                 { value: "a", label: "wrap up" },
                 { value: "b", label: "wrap in" },
                 { value: "c", label: "work in" },
             ],
             correctAnswer: "a",
-            explanation: "'Wrap up' means to finish or complete something, often used for meetings or tasks.",
+            explanation:
+                "'Wrap up' means to finish or complete something, often used for meetings or tasks.",
+            skillTag: "pv-wrap-up-finish",
+            difficulty: "easy",
         },
         {
-            id: "quiz-20",
+            id: "quiz-19",
             question: "What does 'deal with' mean in 'HR will deal with the complaint'?",
             options: [
                 { value: "a", label: "Ignore it" },
@@ -935,10 +970,13 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "Create it" },
             ],
             correctAnswer: "b",
-            explanation: "'Deal with' means to handle a situation, problem, or person.",
+            explanation:
+                "'Deal with' means to handle a situation, problem, or person (for example, a complaint or conflict).",
+            skillTag: "pv-deal-with-handle-problem",
+            difficulty: "medium",
         },
         {
-            id: "quiz-21",
+            id: "quiz-20",
             question: "Complete: 'Let's ___ a schedule that works for everyone.'",
             options: [
                 { value: "a", label: "work out" },
@@ -946,7 +984,102 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                 { value: "c", label: "work up" },
             ],
             correctAnswer: "a",
-            explanation: "'Work out' means to solve, figure out, or find a solution that works.",
+            explanation:
+                "'Work out' means to solve, figure out, or find a solution that works for everyone.",
+            skillTag: "pv-work-out-solve-plan",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Workplace Phrasal Verbs Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Understand core workplace phrasal verbs for time and attendance (clock in/out, call out, show up).
+    - Use common phrasal verbs for forms and paperwork (fill out, turn in, look over).
+    - Understand key communication phrasal verbs (call back, get back to, follow up on).
+    - Recognize coverage and help verbs (cover for, fill in for, help out).
+    - Understand project and task verbs (take on, put off, set up, wrap up, deal with, work out).
+
+    Skill tags:
+
+    Time & attendance
+    - pv-clock-in-record-arrival
+    - pv-clock-out-record-departure
+    - pv-call-out-call-in-sick
+    - pv-show-up-arrive
+
+    Forms & paperwork
+    - pv-fill-out-complete-form
+    - pv-turn-in-submit
+    - pv-look-over-review
+
+    Communication
+    - pv-call-back-return-call
+    - pv-get-back-to-respond-later
+    - pv-follow-up-check-status
+
+    Coverage & help
+    - pv-cover-for-substitute
+    - pv-fill-in-for-substitute
+    - pv-help-out-assist
+
+    Tasks & projects
+    - pv-take-on-accept-work
+    - pv-put-off-postpone
+    - pv-set-up-arrange
+    - pv-wrap-up-finish
+    - pv-deal-with-handle-problem
+    - pv-work-out-solve-plan
+
+    How to read the diagnostics:
+    - If time & attendance tags are weak (pv-clock-in-record-arrival, pv-clock-out-record-departure, pv-call-out-call-in-sick, pv-show-up-arrive) →
+      Rebuild the core phrases with real workplace routines:
+      • clock in / clock out with a simple daily schedule (What time do you clock in? What time do you clock out?).
+      • call out / call in sick with phone-call role plays.
+      • show up for + shift / meeting (show up late, show up early).
+      Use short dialogues and simple policy sentences from students' real jobs.
+
+    - If forms & paperwork tags are weak (pv-fill-out-complete-form, pv-turn-in-submit, pv-look-over-review) →
+      Practice the full phrases, not single words:
+      • fill out / fill in + application, form, timesheet.
+      • turn in + timesheet, report, homework.
+      • look over + form, report, email.
+      Give students sample forms to fill out, then turn in, then look over for mistakes in pairs.
+
+    - If communication tags are weak (pv-call-back-return-call, pv-get-back-to-respond-later, pv-follow-up-check-status) →
+      Build a mini email and phone script bank:
+      • I'll call you back in 10 minutes.
+      • I'll get back to you tomorrow.
+      • I'm following up on the schedule / order / email.
+      Have students match sentences to meanings, then rewrite real messages from their jobs using these phrases.
+
+    - If coverage & help tags are weak (pv-cover-for-substitute, pv-fill-in-for-substitute, pv-help-out-assist) →
+      Focus on schedules and coverage conversations:
+      • Can you cover for me on Friday?
+      • Maria is filling in for the manager this week.
+      • Can you help out for an hour? We're very busy.
+      Use shift charts and have students practice asking and answering about coverage.
+
+    - If tasks & projects tags are weak (pv-take-on-accept-work, pv-put-off-postpone, pv-set-up-arrange, pv-wrap-up-finish, pv-deal-with-handle-problem, pv-work-out-solve-plan) →
+      Connect phrasal verbs to real work tasks:
+      • take on a project / extra shift.
+      • put off a meeting until next week.
+      • set up a room / call / Zoom meeting.
+      • wrap up a meeting / shift / report.
+      • deal with a complaint / problem / customer.
+      • work out a schedule / solution / plan.
+      Have students sort example sentences into categories (schedule, meetings, customer problems, projects) and then write their own.
+
+    Suggested use:
+    - Use this mini quiz after students have:
+      • Met the phrasal verbs in dialogues, policies, and email examples.
+      • Practiced them in controlled exercises (select, match, fill-in).
+      • Tried them in role-plays for calling in sick, asking for coverage, and talking to managers.
+    - At the class level:
+      • If time & attendance is red, spend more time on real company rules (clock in/out times, call-out procedures).
+      • If forms & paperwork is red, bring real or sample forms and walk through fill out → look over → turn in as a three-step routine.
+      • If communication is red, assign short email and phone scripts that recycle call back, get back to, follow up.
+      • If coverage & help is red, run partner activities where students negotiate coverage and help out for different shifts.
+      • If tasks & projects is red, use weekly-planning activities where students choose which tasks to take on, put off, set up, and wrap up, then share their plans using the target verbs.
+    */
 };

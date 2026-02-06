@@ -920,7 +920,7 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
     },
   ],
 
-  // Mini Quiz (10 questions)
+  // Mini Quiz (16 questions)
   miniQuiz: [
     {
       id: "quiz-1",
@@ -931,18 +931,24 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "c", label: "I recommend resting." },
       ],
       correctAnswer: "b",
-      explanation: "Imperatives start with the base verb (no subject). 'Rest for a week' is a command.",
+      explanation:
+        "Imperatives start with the base verb and have no subject. 'Rest for a week' is an imperative command, the subject 'you' is understood.",
+      skillTag: "sentence-type-identification-imperative",
+      difficulty: "easy",
     },
     {
       id: "quiz-2",
-      question: "Which is most appropriate for a patient speaking to a doctor?",
+      question: "Which sentence is a declarative?",
       options: [
-        { value: "a", label: "Give me a referral." },
-        { value: "b", label: "I need a referral." },
-        { value: "c", label: "Refer me to a specialist." },
+        { value: "a", label: "Don't eat before the test." },
+        { value: "b", label: "Please wait here." },
+        { value: "c", label: "You need to fast before the test." },
       ],
-      correctAnswer: "b",
-      explanation: "Patients should use declaratives when speaking to doctors to show respect.",
+      correctAnswer: "c",
+      explanation:
+        "Declaratives have a subject + verb. 'You need to fast before the test' includes the subject 'you' and gives information/advice.",
+      skillTag: "sentence-type-identification-declarative",
+      difficulty: "easy",
     },
     {
       id: "quiz-3",
@@ -953,65 +959,36 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "c", label: "Taking this twice a day." },
       ],
       correctAnswer: "b",
-      explanation: "Imperatives remove the subject and start with the base verb.",
+      explanation:
+        "To form an imperative, remove the subject and start with the base verb: 'Take this twice a day.'",
+      skillTag: "transformation-declarative-to-imperative",
+      difficulty: "medium",
     },
     {
       id: "quiz-4",
-      question: "Which sentence is a declarative?",
+      question: "Convert to declarative: 'Don't drive after taking this medication.'",
       options: [
-        { value: "a", label: "Don't eat before the test." },
-        { value: "b", label: "Please wait here." },
-        { value: "c", label: "You need to fast before the test." },
+        {
+          value: "a",
+          label: "You must drive after taking this medication.",
+        },
+        {
+          value: "b",
+          label: "You shouldn't drive after taking this medication.",
+        },
+        {
+          value: "c",
+          label: "You will drive after taking this medication.",
+        },
       ],
-      correctAnswer: "c",
-      explanation: "Declaratives have a subject + verb. 'You need to fast' includes the subject 'you'.",
+      correctAnswer: "b",
+      explanation:
+        "A matching declarative uses a subject and modal: 'You shouldn't drive after taking this medication.'",
+      skillTag: "transformation-imperative-to-declarative",
+      difficulty: "medium",
     },
     {
       id: "quiz-5",
-      question: "Which sentence expresses health advice (recommended but not required)?",
-      options: [
-        { value: "a", label: "You must take this medicine twice daily." },
-        { value: "b", label: "You should take this medicine with food." },
-        { value: "c", label: "You can take this medicine with food." },
-      ],
-      correctAnswer: "b",
-      explanation: "'Should' = advice/recommendation. 'Must' = required. 'Can' = permission.",
-    },
-    {
-      id: "quiz-6",
-      question: "Which is a safety warning (dangerous/forbidden)?",
-      options: [
-        { value: "a", label: "You should not drink alcohol." },
-        { value: "b", label: "You must not drink alcohol while taking this." },
-        { value: "c", label: "You don't need to drink alcohol." },
-      ],
-      correctAnswer: "b",
-      explanation: "'Must not' = dangerous/forbidden (safety warning). 'Should not' = advice.",
-    },
-    {
-      id: "quiz-7",
-      question: "What's the difference? 'You should rest' vs 'You must rest'",
-      options: [
-        { value: "a", label: "They mean the same thing." },
-        { value: "b", label: "First = advice. Second = required." },
-        { value: "c", label: "First = required. Second = advice." },
-      ],
-      correctAnswer: "b",
-      explanation: "'Should' = advice (good idea but optional). 'Must' = required (necessary).",
-    },
-    {
-      id: "quiz-8",
-      question: "Which is better for an employee emailing their boss?",
-      options: [
-        { value: "a", label: "Approve my time off request." },
-        { value: "b", label: "I'd like to request time off." },
-        { value: "c", label: "Give me Friday off." },
-      ],
-      correctAnswer: "b",
-      explanation: "Use declaratives when speaking to authority. 'I'd like to request' shows respect.",
-    },
-    {
-      id: "quiz-9",
       question: "Which sentence would you see on a prescription label?",
       options: [
         { value: "a", label: "You should take one tablet daily." },
@@ -1019,7 +996,66 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "c", label: "I recommend taking one tablet daily." },
       ],
       correctAnswer: "b",
-      explanation: "Prescription labels use imperatives for clarity: 'Take one tablet daily.'",
+      explanation:
+        "Prescription labels use imperatives for clarity and brevity: 'Take one tablet daily with food.'",
+      skillTag: "context-prescription-label-imperative",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-6",
+      question: "Which sentence expresses health advice (recommended but not required)?",
+      options: [
+        { value: "a", label: "You must take this medicine twice daily." },
+        { value: "b", label: "You should take this medicine with food." },
+        { value: "c", label: "You can take this medicine with food." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Should' expresses advice or recommendation. 'Must' is required/necessary. 'Can' is permission.",
+      skillTag: "modals-should-vs-must-vs-can-advice",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-7",
+      question: "Which is a safety warning (dangerous/forbidden)?",
+      options: [
+        { value: "a", label: "You should not drink alcohol." },
+        { value: "b", label: "You must not drink alcohol while taking this." },
+        { value: "c", label: "You don't need to drink alcohol." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Must not' is used for strong safety warnings: something is dangerous or forbidden.",
+      skillTag: "modals-must-not-safety-warning",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-8",
+      question: "What is the difference between 'You should rest' and 'You must rest'?",
+      options: [
+        { value: "a", label: "They mean the same thing." },
+        { value: "b", label: "First = advice. Second = required." },
+        { value: "c", label: "First = required. Second = advice." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Should' is advice (good idea but optional). 'Must' is required (necessary, no choice).",
+      skillTag: "modals-should-vs-must-contrast",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-9",
+      question: "Which is most appropriate for a patient speaking to a doctor?",
+      options: [
+        { value: "a", label: "Give me a referral." },
+        { value: "b", label: "I need a referral." },
+        { value: "c", label: "Refer me to a specialist." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Patients should use declaratives with doctors to sound respectful: 'I need a referral.'",
+      skillTag: "politeness-patient-to-doctor-declarative",
+      difficulty: "medium",
     },
     {
       id: "quiz-10",
@@ -1030,7 +1066,186 @@ export const medicalInstructionsCompleteContent: InteractiveGuideContent = {
         { value: "c", label: "I must ask you a question." },
       ],
       correctAnswer: "b",
-      explanation: "'May I' is more formal and polite than 'Can I' when asking for permission.",
+      explanation:
+        "'May I' is more formal and polite than 'Can I' when asking for permission in medical or workplace settings.",
+      skillTag: "permission-can-vs-may-polite",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-11",
+      question: "Which sentence talks about a patient right?",
+      options: [
+        { value: "a", label: "I can see my records." },
+        {
+          value: "b",
+          label: "I am allowed to access my medical records.",
+        },
+        { value: "c", label: "I should see my records." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Are allowed to' clearly expresses a legal right or official permission.",
+      skillTag: "rights-are-allowed-to-medical-records",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-12",
+      question: "Complete the sentence: 'You ___ fast for 12 hours before this blood test.' (required)",
+      options: [
+        { value: "a", label: "should" },
+        { value: "b", label: "need to" },
+        { value: "c", label: "can" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Need to' shows necessity in conversation, similar to 'must', but more natural with patients.",
+      skillTag: "necessity-need-to-vs-should",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-13",
+      question:
+        "Complete the sentence: 'You ___ bring anything special for a routine checkup.' (not required)",
+      options: [
+        { value: "a", label: "don't need to" },
+        { value: "b", label: "must not" },
+        { value: "c", label: "should" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "'Don't need to' means something is not necessary, which matches 'not required'.",
+      skillTag: "necessity-dont-need-to-not-required",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-14",
+      question: "Which is better for an employee emailing their boss?",
+      options: [
+        { value: "a", label: "Approve my time off request." },
+        { value: "b", label: "I'd like to request time off." },
+        { value: "c", label: "Give me Friday off." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Employees should use polite declaratives with bosses: 'I'd like to request time off.'",
+      skillTag: "register-employee-to-boss-declarative",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-15",
+      question: "Which is a polite imperative between coworkers?",
+      options: [
+        { value: "a", label: "Send me that file now." },
+        { value: "b", label: "Please send me that file when you can." },
+        { value: "c", label: "You send me that file." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "With coworkers, polite imperatives are fine. 'Please send me that file when you can' is direct but respectful.",
+      skillTag: "register-coworker-polite-imperative",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-16",
+      question: "Which sentence is most appropriate for a clinic sign?",
+      options: [
+        { value: "a", label: "You should turn off your phone." },
+        { value: "b", label: "Please turn off your phone." },
+        { value: "c", label: "I recommend turning off your phone." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Clinic signs typically use polite imperatives: 'Please turn off your phone.'",
+      skillTag: "context-clinic-sign-polite-imperative",
+      difficulty: "easy",
     },
   ],
+
+  /*
+  TEACHER DIAGNOSTIC NOTES – Medical Instructions Mini Quiz
+
+  This mini quiz checks whether students can:
+  - Recognize imperatives vs declaratives by structure (subject/no subject).
+  - Transform between imperatives and declaratives with matching meaning.
+  - Use modals (should/must/can/need to/don't need to) accurately for advice, requirements, safety, and permission.
+  - Choose respectful language when speaking to doctors and bosses.
+  - Recognize typical contexts: prescription labels, clinic signs, workplace emails, patient rights.
+
+  Skill tags:
+
+  Sentence type:
+  - sentence-type-identification-imperative
+  - sentence-type-identification-declarative
+
+  Transformations:
+  - transformation-declarative-to-imperative
+  - transformation-imperative-to-declarative
+
+  Modals: advice, safety, necessity, permission:
+  - modals-should-vs-must-vs-can-advice
+  - modals-must-not-safety-warning
+  - modals-should-vs-must-contrast
+  - necessity-need-to-vs-should
+  - necessity-dont-need-to-not-required
+  - permission-can-vs-may-polite
+
+  Rights and register:
+  - rights-are-allowed-to-medical-records
+  - politeness-patient-to-doctor-declarative
+  - register-employee-to-boss-declarative
+  - register-coworker-polite-imperative
+
+  Context patterns:
+  - context-prescription-label-imperative
+  - context-clinic-sign-polite-imperative
+
+  How to read the diagnostics:
+  - If sentence-type tags are weak →
+    Revisit the basic formulas:
+    • Imperative: base verb (no subject) → 'Take this.', 'Don't drive.'
+    • Declarative: subject + verb → 'You should take this.', 'You must not drive.'
+    Use side‑by‑side tables from this guide and have students label each sentence as IMP or DEC.
+
+  - If transformation tags are weak →
+    Practice converting in both directions:
+    • You should rest. → Rest.
+    • You must not drink alcohol. → Don't drink alcohol.
+    • Don't drive after taking this. → You shouldn't drive after taking this.
+    Emphasize keeping the same meaning (advice vs requirement vs danger).
+
+  - If modal tags (should/must/can/need to/don't need to) are weak →
+    Build a three‑column chart on the board:
+    • ADVICE (should/shouldn't) → good idea
+    • SAFETY (must/must not) → dangerous/required
+    • NECESSITY (need to/don't need to) → required/not required
+    Sort real sentences from the guide into the chart and ask students to explain why.
+
+  - If permission and rights tags are weak →
+    Contrast informal vs formal permission and rights:
+    • Can I…? (informal question)
+    • May I…? (formal question, respectful)
+    • I am allowed to… (right/legal permission)
+    Practice short role‑plays: patient with doctor, patient with receptionist, employee with HR.
+
+  - If politeness/register tags are weak →
+    Re‑teach the power relationships:
+    • Doctor/Boss → use declaratives and polite questions ('I need…', 'Could I…?').
+    • Patient/Employee giving instructions → usually not appropriate.
+    • Coworkers → polite imperatives with 'please' are okay.
+    Have students rewrite too‑direct imperatives as polite declaratives/questions.
+
+  - If context tags (labels/signs/emails) are weak →
+    Sort sentences by context:
+    • Prescription labels and clinic signs → mostly imperatives.
+    • Patient‑to‑doctor and employee‑to‑boss → declaratives/questions.
+    • Workplace emails → polite declaratives and indirect questions.
+    Ask: Where would you see this sentence? Who is speaking to whom?
+
+  Suggested use:
+  - Use this mini quiz after students complete the main sections on imperatives, declaratives, and modals in medical/workplace contexts.
+  - At the class level:
+    • If sentence‑type and transformation tags are red → slow down and do more structural practice and sentence‑rewriting.
+    • If modal and safety tags are red → spend time on ADVICE vs MUST vs MUST NOT with real medication examples.
+    • If politeness/register and rights tags are red → focus on role‑plays (doctor visits, clinic front desk, workplace conversations).
+  */
 };

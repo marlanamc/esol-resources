@@ -976,19 +976,23 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "Imperatives start with the base verb (no subject). 'Rest for a week' is a command—the subject 'you' is understood.",
+        "Imperatives start with the base verb and have no subject. 'Rest for a week' is an imperative command, the subject 'you' is understood.",
+      skillTag: "sentence-type-identification-imperative",
+      difficulty: "easy",
     },
     {
       id: "quiz-2",
-      question: "Which is most appropriate for a patient speaking to a doctor?",
+      question: "Which sentence is a declarative?",
       options: [
-        { value: "a", label: "Give me a referral." },
-        { value: "b", label: "I need a referral." },
-        { value: "c", label: "Refer me to a specialist." },
+        { value: "a", label: "Don't eat before the test." },
+        { value: "b", label: "Please wait here." },
+        { value: "c", label: "You need to fast before the test." },
       ],
-      correctAnswer: "b",
+      correctAnswer: "c",
       explanation:
-        "Patients should use declaratives (not imperatives) when speaking to doctors to show respect. 'I need a referral' is polite and appropriate.",
+        "Declaratives have a subject + verb. 'You need to fast before the test' includes the subject 'you' and gives information/advice.",
+      skillTag: "sentence-type-identification-declarative",
+      difficulty: "easy",
     },
     {
       id: "quiz-3",
@@ -1000,72 +1004,13 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "b",
       explanation:
-        "Imperatives remove the subject and start with the base verb: 'Take this twice a day.' This is the standard format for prescription labels.",
+        "To form an imperative, remove the subject and start with the base verb: 'Take this twice a day.' This is the standard form on prescription labels.",
+      skillTag: "transformation-declarative-to-imperative",
+      difficulty: "medium",
     },
     {
       id: "quiz-4",
-      question: "Which sentence is a declarative?",
-      options: [
-        { value: "a", label: "Don't eat before the test." },
-        { value: "b", label: "Please wait here." },
-        { value: "c", label: "You need to fast before the test." },
-      ],
-      correctAnswer: "c",
-      explanation:
-        "Declaratives have a subject + verb. 'You need to fast' includes the subject 'you' and expresses necessity politely.",
-    },
-    {
-      id: "quiz-5",
-      question: "How can you make an imperative more polite?",
-      options: [
-        { value: "a", label: "Add 'please'" },
-        { value: "b", label: "Add an exclamation mark" },
-        { value: "c", label: "Make it louder" },
-      ],
-      correctAnswer: "a",
-      explanation:
-        "Adding 'please' softens the imperative and makes it sound more polite: 'Please wait here' vs 'Wait here.'",
-    },
-    {
-      id: "quiz-6",
-      question: "Which is better for an employee emailing their boss?",
-      options: [
-        { value: "a", label: "Approve my time off request." },
-        { value: "b", label: "I'd like to request time off." },
-        { value: "c", label: "Give me Friday off." },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "Use declaratives when speaking to authority. 'I'd like to request' shows respect and professionalism.",
-    },
-    {
-      id: "quiz-7",
-      question: "What makes 'Don't lift anything heavy' an imperative?",
-      options: [
-        { value: "a", label: "It starts with 'Don't' + base verb, no subject" },
-        { value: "b", label: "It has a subject 'you'" },
-        { value: "c", label: "It uses a modal verb" },
-      ],
-      correctAnswer: "a",
-      explanation:
-        "Negative imperatives use 'Don't' + base verb. The subject 'you' is understood but not stated.",
-    },
-    {
-      id: "quiz-8",
-      question: "Which sentence would you see on a prescription label?",
-      options: [
-        { value: "a", label: "You should take one tablet daily." },
-        { value: "b", label: "Take one tablet daily with food." },
-        { value: "c", label: "I recommend taking one tablet daily." },
-      ],
-      correctAnswer: "b",
-      explanation:
-        "Prescription labels use imperatives for clarity and authority. 'Take one tablet daily' is direct and clear.",
-    },
-    {
-      id: "quiz-9",
-      question:
-        "Convert to declarative: 'Call the office if you have questions.'",
+      question: "Convert to declarative: 'Call the office if you have questions.'",
       options: [
         {
           value: "a",
@@ -1076,23 +1021,103 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "a",
       explanation:
-        "To convert an imperative to a declarative, add a subject ('you') and often a modal ('should'): 'You should call the office...'",
+        "To convert an imperative to a declarative, add a subject ('you') and often a modal like 'should': 'You should call the office if you have questions.'",
+      skillTag: "transformation-imperative-to-declarative",
+      difficulty: "medium",
     },
     {
-      id: "quiz-10",
-      question: "Which is a polite imperative?",
+      id: "quiz-5",
+      question: "What makes 'Don't lift anything heavy' an imperative?",
       options: [
-        { value: "a", label: "Fill out this form now." },
-        { value: "b", label: "Please fill out this form." },
-        { value: "c", label: "You fill out this form." },
+        {
+          value: "a",
+          label: "It starts with 'Don't' + base verb and has no subject",
+        },
+        { value: "b", label: "It has a subject 'you' written" },
+        { value: "c", label: "It uses a past tense verb" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "Negative imperatives use 'Don't' + base verb. The subject 'you' is understood but not written.",
+      skillTag: "form-negative-imperative-dont",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-6",
+      question: "How can you make an imperative more polite?",
+      options: [
+        { value: "a", label: "Add 'please' to the sentence" },
+        { value: "b", label: "Add an exclamation mark" },
+        { value: "c", label: "Make it louder" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "Adding 'please' softens the tone of an imperative: 'Please wait here' sounds more polite than 'Wait here.'",
+      skillTag: "form-polite-imperative-please",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-7",
+      question: "Which sentence would you see on a prescription label?",
+      options: [
+        { value: "a", label: "You should take one tablet daily." },
+        { value: "b", label: "Take one tablet daily with food." },
+        { value: "c", label: "I recommend taking one tablet daily." },
       ],
       correctAnswer: "b",
       explanation:
-        "Adding 'please' makes an imperative polite. 'Please fill out this form' is appropriate for clinic signs and professional settings.",
+        "Prescription labels use imperatives for clarity and authority. 'Take one tablet daily with food' is direct and standard.",
+      skillTag: "context-prescription-label-imperative",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-8",
+      question:
+        "Which is most appropriate for a patient speaking to a doctor?",
+      options: [
+        { value: "a", label: "Give me a referral." },
+        { value: "b", label: "I need a referral." },
+        { value: "c", label: "Refer me to a specialist." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Patients should use declaratives with doctors to show respect. 'I need a referral' is polite and appropriate.",
+      skillTag: "register-patient-to-doctor-declarative",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-9",
+      question: "Which is better for an employee emailing their boss?",
+      options: [
+        { value: "a", label: "Approve my time off request." },
+        { value: "b", label: "I'd like to request time off." },
+        { value: "c", label: "Give me Friday off." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "When speaking to a boss, employees should use polite declaratives. 'I'd like to request time off' sounds respectful and professional.",
+      skillTag: "register-employee-to-boss-declarative",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-10",
+      question:
+        "Which sentence is a good polite imperative between coworkers?",
+      options: [
+        { value: "a", label: "Send me that file now." },
+        { value: "b", label: "Please send me that file when you can." },
+        { value: "c", label: "You send me that file." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "With coworkers, polite imperatives are fine. 'Please send me that file when you can' is direct but respectful.",
+      skillTag: "register-coworker-polite-imperative",
+      difficulty: "easy",
     },
     {
       id: "quiz-11",
-      question: "Why do doctors sometimes use imperatives with patients?",
+      question:
+        "Why do doctors sometimes use imperatives with patients?",
       options: [
         {
           value: "a",
@@ -1107,42 +1132,38 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "a",
       explanation:
-        "Doctors use imperatives for clear, authoritative instructions. 'Take this twice a day' is standard medical communication.",
+        "Doctors use imperatives for clear, authoritative instructions: 'Take this twice a day' is short and easy to follow.",
+      skillTag: "context-doctor-to-patient-imperative",
+      difficulty: "easy",
     },
     {
       id: "quiz-12",
-      question: "Which sentence type would a coworker use to ask for help?",
+      question:
+        "When writing a workplace manual or instruction sheet, which form is standard?",
       options: [
-        { value: "a", label: "Help me with this. (polite imperative)" },
-        { value: "b", label: "Could you help me with this? (question)" },
-        { value: "c", label: "Both are acceptable" },
+        {
+          value: "a",
+          label: "Imperatives – 'Press the green button to start.'",
+        },
+        {
+          value: "b",
+          label: "Declaratives – 'You should press the green button.'",
+        },
+        {
+          value: "c",
+          label: "Questions – 'Would you press the green button?'",
+        },
       ],
-      correctAnswer: "c",
+      correctAnswer: "a",
       explanation:
-        "With coworkers (equals), both polite imperatives and questions are acceptable. The context and relationship determine which is best.",
+        "Written instructions (manuals, recipes, procedures) usually use imperatives: 'Press the green button to start.'",
+      skillTag: "context-workplace-instructions-imperative",
+      difficulty: "easy",
     },
     {
       id: "quiz-13",
       question:
-        "'You shouldn't drive after taking this medication.' What type is this?",
-      options: [
-        {
-          value: "a",
-          label: "Declarative - it has a subject 'you' and gives advice",
-        },
-        {
-          value: "b",
-          label: "Imperative - it tells someone not to do something",
-        },
-        { value: "c", label: "Question - it's asking about driving" },
-      ],
-      correctAnswer: "a",
-      explanation:
-        "This is a declarative because it has a subject ('you') + modal ('shouldn't'). The imperative version would be 'Don't drive after taking this.'",
-    },
-    {
-      id: "quiz-14",
-      question: "Which is the MOST direct way to give an instruction?",
+        "Which sentence is the MOST direct way to give an instruction?",
       options: [
         { value: "a", label: "You might want to stop smoking." },
         { value: "b", label: "I recommend that you stop smoking." },
@@ -1150,29 +1171,124 @@ export const imperativesDeclarativesContent: InteractiveGuideContent = {
       ],
       correctAnswer: "c",
       explanation:
-        "'Stop smoking' is the most direct—it's an imperative with no softening. Options A and B are declaratives that sound more polite but less urgent.",
+        "'Stop smoking' is a bare imperative with no softening. It is more direct than the advice-style declaratives in A and B.",
+      skillTag: "tone-directness-imperative-vs-declarative",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-14",
+      question:
+        "'You shouldn't drive after taking this medication.' What type is this?",
+      options: [
+        {
+          value: "a",
+          label: "Declarative – it has subject 'you' and gives advice",
+        },
+        {
+          value: "b",
+          label: "Imperative – it tells someone not to do something",
+        },
+        { value: "c", label: "Question – it's asking about driving" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "This is a declarative because it has a subject ('you') and a modal ('shouldn't'). The imperative version would be 'Don't drive after taking this.'",
+      skillTag: "sentence-type-identification-declarative-negative",
+      difficulty: "easy",
     },
     {
       id: "quiz-15",
       question:
-        "When writing workplace instructions (like a manual), which form is standard?",
+        "Which sentence correctly uses a polite imperative on a clinic sign?",
+      options: [
+        { value: "a", label: "Turn off your phone." },
+        { value: "b", label: "Please turn off your phone." },
+        { value: "c", label: "You turn off your phone." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Clinic signs often use polite imperatives with 'please' to sound respectful: 'Please turn off your phone.'",
+      skillTag: "context-clinic-sign-polite-imperative",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-16",
+      question:
+        "As a patient, why is it better to say 'Could you explain that again?' instead of 'Explain that again.'?",
       options: [
         {
           value: "a",
-          label: "Imperatives - 'Press the green button to start.'",
+          label: "Because questions and declaratives sound more polite to authority",
         },
-        {
-          value: "b",
-          label: "Declaratives - 'You should press the green button.'",
-        },
-        {
-          value: "c",
-          label: "Questions - 'Would you press the green button?'",
-        },
+        { value: "b", label: "Because imperatives are always grammatically wrong" },
+        { value: "c", label: "Because doctors do not understand imperatives" },
       ],
       correctAnswer: "a",
       explanation:
-        "Written instructions (manuals, recipes, procedures) use imperatives for clarity and brevity: 'Press the green button to start.'",
+        "With authority figures like doctors, using questions and declaratives ('Could you…?') sounds respectful. Bare imperatives from patients can sound rude or bossy.",
+      skillTag: "politeness-choice-patient-questions-vs-imperatives",
+      difficulty: "medium",
     },
   ],
+  /*
+  TEACHER DIAGNOSTIC NOTES – Imperatives vs Declaratives Mini Quiz
+
+  This mini quiz checks whether students can:
+  - Recognize imperatives vs declaratives by structure (subject/no subject).
+  - Form basic and negative imperatives correctly.
+  - Choose polite forms (please, modals, questions) based on power and context.
+  - Distinguish typical contexts: prescription labels, clinic signs, workplace manuals, emails.
+  - Adjust tone when speaking to doctors, bosses, coworkers, and patients.
+
+  Skill tags:
+
+  Sentence type:
+  - sentence-type-identification-imperative
+  - sentence-type-identification-declarative
+  - sentence-type-identification-declarative-negative
+
+  Form of imperatives:
+  - form-negative-imperative-dont
+  - form-polite-imperative-please
+  - transformation-declarative-to-imperative
+  - transformation-imperative-to-declarative
+
+  Tone and register:
+  - tone-directness-imperative-vs-declarative
+  - register-patient-to-doctor-declarative
+  - register-employee-to-boss-declarative
+  - register-coworker-polite-imperative
+  - politeness-choice-patient-questions-vs-imperatives
+
+  Context patterns:
+  - context-prescription-label-imperative
+  - context-doctor-to-patient-imperative
+  - context-workplace-instructions-imperative
+  - context-clinic-sign-polite-imperative
+
+  How to read the diagnostics:
+  - If sentence-type tags are weak → Revisit the basic formulas:
+    • Imperatives: base verb (no subject) → 'Take this.', 'Don't eat.'
+    • Declaratives: subject + verb → 'You should take this.', 'I will call you.'
+    Use side-by-side tables from this guide and have students label each sentence as IMP or DEC.
+  - If form-of-imperative tags are weak → Practice building commands from declaratives:
+    • You should rest. → Rest.
+    • You shouldn't drive. → Don't drive.
+    Then add 'please' to soften: 'Please rest.', 'Please don't drive.'
+  - If tone/register tags are weak → Re-teach the hierarchy:
+    • To doctors/bosses → use declaratives/questions ('I need…', 'Could you…?').
+    • To patients/employees → imperatives are expected ('Take…', 'Sign…').
+    • To coworkers → polite imperatives or soft questions.
+    Role‑play short dialogues where students choose between an imperative, a declarative, or a question.
+  - If context tags are weak → Sort example sentences into groups:
+    • Prescription label / clinic sign / workplace manual / email to boss.
+    Ask: Where would you see this sentence? Who is speaking to whom?
+
+  Suggested use:
+  - Use this mini quiz after students have completed the main sections (medical contexts, workplace contexts, practice).
+  - Use class‑level skillTag results to decide focus:
+    • Many errors in sentence-type tags → slow down and do more form work (structure).
+    • Many errors in tone/register tags → spend a day on role‑plays and politeness choices.
+    • Many errors in context tags → revisit the tables and signs from the guide and re-sort sentences by situation.
+  */
 };

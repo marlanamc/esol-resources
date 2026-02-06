@@ -757,11 +757,13 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             options: [
                 { value: "a", label: "For future plans and possibilities" },
                 { value: "b", label: "For facts, habits, and things that are always true" },
-                { value: "c", label: "For impossible situations" },
+                { value: "c", label: "For impossible or unreal situations" },
             ],
             correctAnswer: "b",
             explanation:
-                "Zero conditional is used for things that are always true: science facts (if you heat water, it boils), habits (if I'm tired, I sleep), and general truths.",
+                "Zero conditional is used for things that are always true: science facts (If you heat water, it boils), habits (If I'm tired, I sleep), and general truths.",
+            skillTag: "use-zero-conditional-facts-habits-truths",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -774,10 +776,12 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             correctAnswer: "b",
             explanation:
                 "First conditional uses 'if + present simple, will + base verb' for real future possibilities.",
+            skillTag: "form-first-conditional-structure",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
-            question: "Which sentence is correct?",
+            question: "Which sentence is correct for first conditional?",
             options: [
                 { value: "a", label: "If it will rain, I will bring an umbrella." },
                 { value: "b", label: "If it rains, I will bring an umbrella." },
@@ -785,7 +789,9 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Never use 'will' in the IF clause! Use present simple in the IF clause and 'will + verb' in the result clause.",
+                "Never use 'will' in the IF clause. Use present simple in the IF clause and 'will + verb' in the result clause.",
+            skillTag: "error-will-in-if-clause-first-conditional",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -797,7 +803,9 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation:
-                "Zero conditional uses present simple in both clauses for facts that are always true. Ice always melts when you heat it!",
+                "Zero conditional uses present simple in both clauses for facts that are always true. Ice always melts when you heat it.",
+            skillTag: "form-zero-conditional-structure",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -809,11 +817,13 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Yes! You can use can (ability), may/might (possibility), should (advice), must (necessity), or even imperatives instead of 'will'.",
+                "Yes. You can use can (ability), may/might (possibility), should (advice), must (necessity), or even imperatives instead of 'will'.",
+            skillTag: "modal-variations-first-conditional",
+            difficulty: "medium",
         },
         {
             id: "quiz-6",
-            question: "Where does the comma go? 'If you study hard _____ you will pass the test.'",
+            question: "Where does the comma go when the IF clause comes first? 'If you study hard _____ you will pass the test.'",
             options: [
                 { value: "a", label: "After 'hard' (If you study hard, you will pass the test.)" },
                 { value: "b", label: "After 'will' (If you study hard you will, pass the test.)" },
@@ -822,30 +832,77 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             correctAnswer: "a",
             explanation:
                 "When the IF clause comes first, put a comma after it, before the result clause.",
+            skillTag: "comma-after-if-clause-zero-first",
+            difficulty: "medium",
         },
         {
             id: "quiz-7",
             question: "What's the difference between 'If I'm tired, I sleep' and 'If I'm tired tonight, I will sleep early'?",
             options: [
-                { value: "a", label: "No difference - they mean the same thing" },
+                { value: "a", label: "No difference, they mean the same thing" },
                 { value: "b", label: "First is a general habit (zero), second is a specific future plan (first)" },
                 { value: "c", label: "First is wrong, second is correct" },
             ],
             correctAnswer: "b",
             explanation:
                 "The first sentence (zero conditional) describes a general habit that is always true. The second (first conditional) is about a specific plan for tonight.",
+            skillTag: "contrast-zero-vs-first-habit-vs-plan",
+            difficulty: "medium",
         },
         {
             id: "quiz-8",
-            question: "Choose the correct sentence:",
+            question: "Choose the best sentence for a future plan: tomorrow's weather.",
             options: [
-                { value: "a", label: "If it rains tomorrow, we stay home. (general habit)" },
-                { value: "b", label: "If it rains tomorrow, we will stay home. (tomorrow's plan)" },
-                { value: "c", label: "Both are correct depending on meaning" },
+                { value: "a", label: "If it rains tomorrow, we stay home." },
+                { value: "b", label: "If it rains tomorrow, we will stay home." },
+                { value: "c", label: "If it rains, we stay home, always." },
             ],
             correctAnswer: "b",
             explanation:
-                "Since 'tomorrow' indicates a specific future time, we use first conditional (will stay). If it said 'If it rains, we stay home' with no time reference, that could be zero conditional for a general habit.",
+                "With 'tomorrow' (a specific future time), we use first conditional: If it rains tomorrow, we will stay home. Sentence C could describe a general habit but does not mention the specific future time.",
+            skillTag: "contrast-zero-vs-first-with-time-expression",
+            difficulty: "medium",
         },
     ],
+
+    /*
+    TEACHER DIAGNOSTIC NOTES – Zero & First Conditionals Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Decide when to use zero vs first conditional (habit/fact vs future plan).
+    - Use the correct structures (form) for each type.
+    - Avoid the most common zero/first conditional errors.
+    - Understand how modals (can/may/might/should/must) change meaning.
+    - Use commas correctly when the IF clause comes first.
+
+    Skill tags:
+
+    Use & meaning:
+    - use-zero-conditional-facts-habits-truths
+    - contrast-zero-vs-first-habit-vs-plan
+    - contrast-zero-vs-first-with-time-expression
+
+    Form:
+    - form-first-conditional-structure
+    - form-zero-conditional-structure
+
+    Modal variations:
+    - modal-variations-first-conditional
+
+    Common error patterns:
+    - error-will-in-if-clause-first-conditional
+    - comma-after-if-clause-zero-first
+
+    How to read the diagnostics:
+    - If zero-conditional use tags are weak → Revisit the idea that zero is for facts, habits, and things that are always true. Use your science/habit examples (If you heat ice, it melts / If I'm tired, I drink coffee).
+    - If first-conditional form tags are weak → Go back to the formula strip: IF + present / WILL + base verb. Have students build sentence halves and match IF clauses to result clauses.
+    - If 'will in IF clause' error tags appear → Do a quick error-hunt using wrong sentences (If it will rain, I will...) and fix them to If it rains, I will....
+    - If modal-variation tags are weak → Contrast would vs can vs may/might vs should in short conditional sentences and ask: Is this a plan, a possibility, advice, or a rule?
+    - If comma-after-if-clause tags are weak → Have students add commas in a short paragraph where all commas are missing, focusing only on sentences where IF comes first.
+    - If contrast-zero-vs-first tags are weak → Use pairs like: If I'm tired, I sleep (habit) vs If I'm tired tonight, I will sleep early (plan), and If it rains, we stay home (habit) vs If it rains tomorrow, we will stay home (this weekend's plan).
+
+    Suggested use:
+    - Use this mini quiz after students have practiced both zero and first conditionals in context.
+    - If many students miss both zero and first conditional questions, teach them separately again (one day only facts/habits, another day only future plans with will and other modals).
+    */
 };

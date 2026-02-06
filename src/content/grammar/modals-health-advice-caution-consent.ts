@@ -705,62 +705,394 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
         },
     ],
 
-    // Mini Quiz
+    // Mini Quiz (16 questions)
     miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "Which sentence expresses health advice (recommended but not required)?",
-            options: [
-                { value: "a", label: "You must take this medicine twice daily." },
-                { value: "b", label: "You should take this medicine with food." },
-                { value: "c", label: "You can take this medicine with food." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Should' = advice/recommendation. 'Must' = required. 'Can' = permission.",
-        },
-        {
-            id: "quiz-2",
-            question: "Which is a safety warning (dangerous/forbidden)?",
-            options: [
-                { value: "a", label: "You should not drink alcohol." },
-                { value: "b", label: "You must not drink alcohol while taking this medication." },
-                { value: "c", label: "You don't need to drink alcohol." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Must not' = dangerous/forbidden (safety warning). 'Should not' = advice. 'Don't need to' = not required.",
-        },
-        {
-            id: "quiz-3",
-            question: "Which is the most polite way to ask your doctor for permission?",
-            options: [
-                { value: "a", label: "Can I ask you a question?" },
-                { value: "b", label: "May I ask you a question?" },
-                { value: "c", label: "I must ask you a question." },
-            ],
-            correctAnswer: "b",
-            explanation: "'May I' is more formal and polite than 'Can I' when asking for permission. 'Must' = obligation, not permission.",
-        },
-        {
-            id: "quiz-4",
-            question: "What's the difference? 'You should rest' vs 'You must rest'",
-            options: [
-                { value: "a", label: "They mean the same thing." },
-                { value: "b", label: "First = advice (recommended). Second = required (necessary)." },
-                { value: "c", label: "First = required. Second = advice." },
-            ],
-            correctAnswer: "b",
-            explanation: "'Should' = advice/recommendation (good idea but optional). 'Must' = required/necessary (no choice).",
-        },
-        {
-            id: "quiz-5",
-            question: "Which sentence is grammatically correct?",
-            options: [
-                { value: "a", label: "You shoulds take it with food." },
-                { value: "b", label: "You should to take it with food." },
-                { value: "c", label: "You should take it with food." },
-            ],
-            correctAnswer: "c",
-            explanation: "Modals don't take -s, and the verb after a modal is always the base form (no -s, no -ing, no 'to'): should take.",
-        },
+      {
+        id: "quiz-1",
+        question:
+          "Which sentence expresses health advice (recommended but not required)?",
+        options: [
+          { value: "a", label: "You must take this medicine twice daily." },
+          { value: "b", label: "You should take this medicine with food." },
+          { value: "c", label: "You can take this medicine with food." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Should' gives advice or recommendation. 'Must' is required. 'Can' is permission.",
+        skillTag: "meaning-advice-should",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-2",
+        question: "Which is a safety warning (dangerous/forbidden)?",
+        options: [
+          { value: "a", label: "You should not drink alcohol." },
+          {
+            value: "b",
+            label: "You must not drink alcohol while taking this medication.",
+          },
+          { value: "c", label: "You don't need to drink alcohol." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Must not' is used for strong safety warnings, when something is dangerous or forbidden.",
+        skillTag: "meaning-caution-must-not",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-3",
+        question: "Which is the most polite way to ask your doctor for permission?",
+        options: [
+          { value: "a", label: "Can I ask you a question?" },
+          { value: "b", label: "May I ask you a question?" },
+          { value: "c", label: "I must ask you a question." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'May I...?' is more formal and polite than 'Can I...?' in medical settings.",
+        skillTag: "permission-may-formal-polite",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-4",
+        question: "What is the difference between 'You should rest' and 'You must rest'?",
+        options: [
+          { value: "a", label: "They mean the same thing." },
+          {
+            value: "b",
+            label:
+              "First = advice (recommended). Second = required (necessary, no choice).",
+          },
+          { value: "c", label: "First = required. Second = advice." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Should' is strong advice (good idea). 'Must' is necessity (required for your health).",
+        skillTag: "contrast-should-vs-must-meaning",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-5",
+        question: "Which sentence is grammatically correct?",
+        options: [
+          { value: "a", label: "You shoulds take it with food." },
+          { value: "b", label: "You should to take it with food." },
+          { value: "c", label: "You should take it with food." },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "Modals do not take -s and the verb after a modal is the base form: 'should take'.",
+        skillTag: "form-modal-plus-base-verb",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-6",
+        question: "Which sentence is a correct safety warning with 'must not'?",
+        options: [
+          { value: "a", label: "You must not to drive after taking this." },
+          { value: "b", label: "You must not drive after taking this." },
+          { value: "c", label: "You mustn't to drive after taking this." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "After 'must not', use the base verb with no 'to': 'must not drive'.",
+        skillTag: "form-must-not-plus-base-verb",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-7",
+        question:
+          "The label says this action is NOT required. Which sentence matches that meaning?",
+        options: [
+          {
+            value: "a",
+            label: "You must not bring your old medicine bottles.",
+          },
+          {
+            value: "b",
+            label: "You don't need to bring your old medicine bottles.",
+          },
+          {
+            value: "c",
+            label: "You should not bring your old medicine bottles.",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Don't need to' means something is not necessary, not required.",
+        skillTag: "meaning-necessity-dont-need-to",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-8",
+        question:
+          "Complete the sentence: 'You ___ fast for 12 hours before this blood test.' (required for accurate results)",
+        options: [
+          { value: "a", label: "should" },
+          { value: "b", label: "need to" },
+          { value: "c", label: "can" },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Need to' shows necessity in everyday speech, similar to 'must'.",
+        skillTag: "meaning-necessity-need-to",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-9",
+        question:
+          "Complete the sentence: 'You ___ bring anything special for a routine checkup.' (not required)",
+        options: [
+          { value: "a", label: "don't need to" },
+          { value: "b", label: "must not" },
+          { value: "c", label: "should" },
+        ],
+        correctAnswer: "a",
+        explanation:
+          "'Don't need to' means it is not necessary. 'Must not' would mean it is forbidden.",
+        skillTag: "contrast-dont-need-to-vs-must-not",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-10",
+        question: "Which sentence clearly talks about a patient right?",
+        options: [
+          { value: "a", label: "You can drink water if you want." },
+          {
+            value: "b",
+            label: "You are allowed to see your medical records.",
+          },
+          { value: "c", label: "You should ask about your medical records." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Are allowed to' points to a legal right or official permission.",
+        skillTag: "rights-are-allowed-to-health-records",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-11",
+        question:
+          "You are talking to the receptionist about accessing your records. Which sounds most appropriate?",
+        options: [
+          { value: "a", label: "Can I see my records?" },
+          {
+            value: "b",
+            label: "May I request access to my medical records?",
+          },
+          { value: "c", label: "I must see my records now." },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "In a formal setting, 'May I request access...' is polite and professional.",
+        skillTag: "permission-may-request-records-formal",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-12",
+        question:
+          "You are explaining rights to a new patient. Which sentence is best?",
+        options: [
+          {
+            value: "a",
+            label: "You can maybe ask for a translator if they say yes.",
+          },
+          {
+            value: "b",
+            label: "You are allowed to request a translator for your visit.",
+          },
+          {
+            value: "c",
+            label: "You should ask for a translator if they give permission.",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'You are allowed to...' clearly states that the patient has this right.",
+        skillTag: "rights-are-allowed-to-translator",
+        difficulty: "medium",
+      },
+      {
+        id: "quiz-13",
+        question:
+          "The medication label says: 'Take with food to avoid stomach upset.' Which sentence matches the tone (advice, not strict rule)?",
+        options: [
+          {
+            value: "a",
+            label: "You should take this medicine with food.",
+          },
+          {
+            value: "b",
+            label: "You must take this medicine with food.",
+          },
+          {
+            value: "c",
+            label: "You don't need to take this medicine with food.",
+          },
+        ],
+        correctAnswer: "a",
+        explanation:
+          "This is strong advice to help you feel better, but not usually a strict requirement.",
+        skillTag: "label-advice-should-with-food",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-14",
+        question:
+          "The warning says: 'Do not operate machinery after taking this medication.' Which sentence matches this warning?",
+        options: [
+          {
+            value: "a",
+            label: "You should not drive after taking this medication.",
+          },
+          {
+            value: "b",
+            label: "You must not drive after taking this medication.",
+          },
+          {
+            value: "c",
+            label: "You don't need to drive after taking this medication.",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "'Must not' matches a strong safety warning on a label: something is dangerous/forbidden.",
+        skillTag: "label-warning-must-not-drive",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-15",
+        question:
+          "You are in the exam room and want to ask a quick question. Which is most natural?",
+        options: [
+          { value: "a", label: "Must I ask you a question?" },
+          { value: "b", label: "Should I ask you a question?" },
+          { value: "c", label: "Can I ask you a question?" },
+        ],
+        correctAnswer: "c",
+        explanation:
+          "'Can I ask you a question?' is the most natural way to ask permission during a visit.",
+        skillTag: "permission-can-informal-visit",
+        difficulty: "easy",
+      },
+      {
+        id: "quiz-16",
+        question:
+          "Which question is grammatically correct and uses the right modal pattern?",
+        options: [
+          {
+            value: "a",
+            label: "Can you explaining this medicine to me?",
+          },
+          {
+            value: "b",
+            label: "Can you explain this medicine to me?",
+          },
+          {
+            value: "c",
+            label: "Can you to explain this medicine to me?",
+          },
+        ],
+        correctAnswer: "b",
+        explanation:
+          "After a modal, use the base verb: 'can you explain', not 'explaining' or 'to explain'.",
+        skillTag: "form-modal-question-can-plus-base-verb",
+        difficulty: "easy",
+      },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Modals for Health: Advice, Caution & Consent Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Understand the meaning difference between SHOULD, MUST, CAN, MAY, NEED TO, and DON'T NEED TO.
+    - Choose the correct modal for advice, safety warnings, necessity, permission, and rights.
+    - Use the correct grammar pattern: modal + base verb (no -s, no -ing, no 'to').
+    - Distinguish between:
+      • MUST NOT (forbidden/dangerous) vs DON'T NEED TO (not required).
+      • CAN (informal permission) vs MAY (formal permission) vs ARE ALLOWED TO (rights).
+    - Apply these forms to real healthcare contexts: labels, clinic visits, records, translators.
+
+    Skill tags:
+
+    Meaning: advice, caution, necessity, permission, rights
+    - meaning-advice-should
+    - meaning-caution-must-not
+    - meaning-necessity-need-to
+    - meaning-necessity-dont-need-to
+    - contrast-should-vs-must-meaning
+    - contrast-dont-need-to-vs-must-not
+
+    Form: modal + base verb
+    - form-modal-plus-base-verb
+    - form-must-not-plus-base-verb
+    - form-modal-question-can-plus-base-verb
+
+    Permission and politeness
+    - permission-may-formal-polite
+    - permission-can-informal-visit
+    - permission-may-request-records-formal
+
+    Rights and healthcare access
+    - rights-are-allowed-to-health-records
+    - rights-are-allowed-to-translator
+
+    Label and context meaning
+    - label-advice-should-with-food
+    - label-warning-must-not-drive
+
+    How to read the diagnostics:
+    - If advice vs must tags are weak (meaning-advice-should, contrast-should-vs-must-meaning) →
+      Rebuild the ADVICE vs MUST chart from the guide:
+      • SHOULD = recommended (good idea).
+      • MUST / NEED TO = required/necessary.
+      Use real sentences from the guide and have students sort them into ADVICE vs REQUIRED.
+
+    - If safety warning tags are weak (meaning-caution-must-not, label-warning-must-not-drive) →
+      Focus on MUST NOT vs SHOULD NOT vs DON'T NEED TO:
+      • MUST NOT = dangerous/forbidden.
+      • SHOULD NOT = advice (not a good idea).
+      • DON'T NEED TO = not required.
+      Highlight warning icons and colors on labels so students connect grammar to safety.
+
+    - If necessity tags are weak (meaning-necessity-need-to, meaning-necessity-dont-need-to, contrast-dont-need-to-vs-must-not) →
+      Make a three-column chart:
+      • REQUIRED: must / need to.
+      • NOT REQUIRED: don't need to.
+      • FORBIDDEN: must not.
+      Have students place real health sentences in the correct column and explain why.
+
+    - If form tags are weak (form-modal-plus-base-verb, form-must-not-plus-base-verb, form-modal-question-can-plus-base-verb) →
+      Go back to the pattern:
+      Subject + modal + base verb.
+      Do quick board drills correcting mistakes:
+      • You shoulds to take → You should take.
+      • You must not to drive → You must not drive.
+      • Can you explaining → Can you explain.
+
+    - If permission and politeness tags are weak (permission-may-formal-polite, permission-can-informal-visit, permission-may-request-records-formal) →
+      Contrast:
+      • Clinic room, quick question → CAN I...?
+      • Front desk / records / policy questions → MAY I...?
+      Practice short role-plays:
+      • Patient with doctor (Can I ask you a question?).
+      • Patient with receptionist (May I request access to my records?).
+
+    - If rights tags are weak (rights-are-allowed-to-health-records, rights-are-allowed-to-translator) →
+      Review the rights section in the guide.
+      Ask students to underline or highlight sentences with 'are allowed to' and rewrite them
+      as simple rights statements:
+      • You are allowed to see your records.
+      • You are allowed to request a translator.
+
+    Suggested use:
+    - Use this mini quiz after students complete the sections on:
+      • Advice (should/shouldn't).
+      • Caution (must/must not).
+      • Consent and rights (can/may/are allowed to).
+      • Necessity (need to/don't need to).
+    - At the class level:
+      • If meaning tags are red → focus on meaning charts, picture prompts, and scenario sorting activities.
+      • If form tags are red → do more short, high-repetition drills with the modal + base verb pattern.
+      • If rights/permission tags are red → spend time on patient rights, practice real sentences students can use in clinics and hospitals.
+    */
 };

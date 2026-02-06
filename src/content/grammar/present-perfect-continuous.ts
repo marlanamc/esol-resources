@@ -637,7 +637,9 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "I have working here for 5 years." },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Continuous: have/has been + verb-ing.",
+            explanation: "Present Perfect Continuous uses have/has been + verb-ing.",
+            skillTag: "form-ppc-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -648,7 +650,9 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "She haven't been sleeping well." },
             ],
             correctAnswer: "a",
-            explanation: "Negative: hasn't been + verb-ing (for she/he/it).",
+            explanation: "Negative form: hasn't been + verb-ing for she/he/it.",
+            skillTag: "form-ppc-negative",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -659,7 +663,9 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "Are you been waiting long?" },
             ],
             correctAnswer: "a",
-            explanation: "Question: Have/Has + subject + been + verb-ing.",
+            explanation: "Question form: Have/Has + subject + been + verb-ing.",
+            skillTag: "form-ppc-question",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -667,21 +673,25 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
             options: [
                 { value: "a", label: "When counting completed actions" },
                 { value: "b", label: "When emphasizing duration or ongoing activity" },
-                { value: "c", label: "When talking about finished past events" },
+                { value: "c", label: "When talking about finished past events with yesterday or last" },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Continuous = duration/ongoing. Present Perfect = result/completion.",
+            explanation: "Present Perfect Continuous focuses on duration/ongoing activity. Present Perfect focuses on result/completion.",
+            skillTag: "contrast-result-vs-duration",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
-            question: "Choose the best answer: 'Your eyes are red. ___ you ___?'",
+            question: "Choose the best answer: \"Your eyes are red. ___ you ___?\"",
             options: [
                 { value: "a", label: "Have you cried" },
                 { value: "b", label: "Have you been crying" },
                 { value: "c", label: "Did you cry" },
             ],
             correctAnswer: "b",
-            explanation: "Visible result (red eyes) + recent activity = Present Perfect Continuous.",
+            explanation: "Visible evidence (red eyes) plus recent activity is usually expressed with Present Perfect Continuous.",
+            skillTag: "duration-recent-activity-evidence",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
@@ -692,29 +702,35 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "was/were + verb-ing" },
             ],
             correctAnswer: "a",
-            explanation: "Present Perfect Continuous = have/has been + verb-ing (three parts!).",
+            explanation: "Present Perfect Continuous = have/has been + verb-ing.",
+            skillTag: "form-ppc-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-7",
-            question: "Complete: 'I have been waiting ___ 7 AM.'",
+            question: "Complete: \"I have been waiting ___ 7 AM.\"",
             options: [
-                { value: "a", label: "since (starting point)" },
-                { value: "b", label: "for (duration)" },
-                { value: "c", label: "at (time)" },
+                { value: "a", label: "since" },
+                { value: "b", label: "for" },
+                { value: "c", label: "at" },
             ],
             correctAnswer: "a",
-            explanation: "'Since' = starting point (7 AM). 'For' = duration (for 3 hours).",
+            explanation: "Since + starting point (since 7 AM). For + duration (for three hours).",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
-            question: "Complete: 'She has been studying ___ two hours.'",
+            question: "Complete: \"She has been studying ___ two hours.\"",
             options: [
-                { value: "a", label: "for (duration)" },
-                { value: "b", label: "since (starting point)" },
-                { value: "c", label: "at (time)" },
+                { value: "a", label: "for" },
+                { value: "b", label: "since" },
+                { value: "c", label: "at" },
             ],
             correctAnswer: "a",
-            explanation: "'For' = duration (two hours, 5 years, 30 minutes).",
+            explanation: "For + a length of time (for two hours).",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
         },
         {
             id: "quiz-9",
@@ -725,7 +741,9 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "She stays with her cousin every week." },
             ],
             correctAnswer: "a",
-            explanation: "Present Perfect Continuous shows temporary situations happening around now.",
+            explanation: "Present Perfect Continuous often describes temporary situations happening around now.",
+            skillTag: "duration-ongoing-temporary",
+            difficulty: "easy",
         },
         {
             id: "quiz-10",
@@ -736,62 +754,100 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                 { value: "c", label: "He has been work hard." },
             ],
             correctAnswer: "b",
-            explanation: "Use 'has been' with he, she, it. Use 'have been' with I, you, we, they.",
+            explanation: "Use has been with he/she/it and verb-ing.",
+            skillTag: "form-ppc-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-11",
-            question: "Which asks about HOW LONG (duration)?",
+            question: "Which question asks about HOW LONG (duration)?",
             options: [
                 { value: "a", label: "How long have you been waiting?" },
                 { value: "b", label: "How many pages have you read?" },
                 { value: "c", label: "Did you wait yesterday?" },
             ],
             correctAnswer: "a",
-            explanation: "Present Perfect Continuous answers 'How long have you been...?' questions.",
+            explanation: "How long + have/has + been + verb-ing asks about duration.",
+            skillTag: "duration-for-since-how-long",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
-            question: "Compare: 'I have read 3 books' vs 'I have been reading all day.' What's the difference?",
+            question: "Compare: \"I have read 3 books\" vs \"I have been reading all day.\" What's the difference?",
             options: [
                 { value: "a", label: "First = result/quantity. Second = duration/ongoing activity." },
-                { value: "b", label: "They mean the same thing." },
+                { value: "b", label: "They mean exactly the same thing." },
                 { value: "c", label: "First = future. Second = past." },
             ],
             correctAnswer: "a",
-            explanation: "Present Perfect = result (3 books). Present Perfect Continuous = duration (all day).",
+            explanation: "Present Perfect focuses on result or quantity; Present Perfect Continuous focuses on duration or activity.",
+            skillTag: "contrast-simple-vs-continuous-meaning",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
-            question: "Fix the error: 'They has been living here for 5 years.'",
+            question: "Fix the error: \"They has been living here for 5 years.\"",
             options: [
                 { value: "a", label: "They have been living here for 5 years." },
                 { value: "b", label: "They has been live here for 5 years." },
                 { value: "c", label: "They been living here for 5 years." },
             ],
             correctAnswer: "a",
-            explanation: "Use 'have been' with they (not 'has been').",
+            explanation: "With they, use have been + verb-ing.",
+            skillTag: "form-ppc-positive",
+            difficulty: "easy",
         },
         {
             id: "quiz-14",
-            question: "Which shows visible evidence of recent activity?",
+            question: "Which sentence is NOT natural in Present Perfect Continuous?",
             options: [
-                { value: "a", label: "You're sweating. Have you been running?" },
-                { value: "b", label: "Did you run yesterday?" },
-                { value: "c", label: "Will you run tomorrow?" },
+                { value: "a", label: "I have been knowing her for years." },
+                { value: "b", label: "I have known her for years." },
+                { value: "c", label: "We have been working together for years." },
             ],
             correctAnswer: "a",
-            explanation: "Visible result (sweating) + question about recent activity = Present Perfect Continuous.",
+            explanation: "State verbs like know, like, love usually do not take continuous forms.",
+            skillTag: "error-stative-verb-continuous",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
-            question: "Which time words often go with Present Perfect Continuous?",
+            question: "Which sentence correctly uses Present Perfect Continuous (not Present Perfect)?",
             options: [
-                { value: "a", label: "for, since, all day, all morning, lately, recently" },
-                { value: "b", label: "yesterday, last week, in 2020" },
-                { value: "c", label: "tomorrow, next week, soon" },
+                { value: "a", label: "I have been drinking coffee all morning." },
+                { value: "b", label: "I have drunk coffee all morning." },
+                { value: "c", label: "I drank coffee all morning." },
             ],
             correctAnswer: "a",
-            explanation: "These time words emphasize duration up to now—perfect for Present Perfect Continuous.",
+            explanation: "For an ongoing activity with duration (all morning), Present Perfect Continuous is the best choice.",
+            skillTag: "duration-ongoing-temporary",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Present Perfect Continuous Mini Quiz
+
+    Duration-focused skills:
+    - duration-for-since-how-long
+    - duration-ongoing-temporary
+    - duration-recent-activity-evidence
+
+    Form skills:
+    - form-ppc-positive
+    - form-ppc-negative
+    - form-ppc-question
+
+    Contrast skills:
+    - contrast-result-vs-duration
+    - contrast-simple-vs-continuous-meaning
+
+    Common error patterns:
+    - error-stative-verb-continuous
+
+    Reteaching guidance:
+    - If duration tags are weak → revisit the HOW LONG question and practice for vs since with timelines.
+    - If form tags are weak → drill have/has been + verb-ing in positive, negative, and question forms (especially has vs have).
+    - If contrast tags are weak → use side-by-side sentences (I have read 3 pages vs I have been reading for an hour) and ask: "Do we care about RESULT or DURATION?"
+    - If stative-verb errors appear → create a no-continuous list (know, like, love, believe, understand) and substitute Present Perfect instead.
+    */
 };

@@ -933,6 +933,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
         },
     ],
 
+    // Mini Quiz (15 questions)
     miniQuiz: [
         {
             id: "quiz-1",
@@ -944,6 +945,8 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "'Tell' needs a person/object (me/you/us).",
+            skillTag: "say-vs-tell-tell-with-object",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -954,7 +957,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "She said to me that the office was closed." },
             ],
             correctAnswer: "b",
-            explanation: "'Say' doesn't take an indirect object (no 'me') in this structure.",
+            explanation: "'Say' does not take an indirect object in this pattern. Use 'said that...' or change to 'told me that...'.",
+            skillTag: "say-vs-tell-say-with-that",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -965,7 +970,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "I was on the late shift" },
             ],
             correctAnswer: "b",
-            explanation: "Present → past (am → was) in reported speech when reporting from the past.",
+            explanation: "Present am changes to past was in reported speech when we report from the past.",
+            skillTag: "backshift-present-be-to-past",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -976,7 +983,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "I would email you tomorrow" },
             ],
             correctAnswer: "b",
-            explanation: "Will → would, and tomorrow → the next day.",
+            explanation: "Will usually becomes would, and tomorrow becomes the next day in reported speech.",
+            skillTag: "backshift-will-to-would-time-tomorrow-next-day",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -987,7 +996,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "sign this form" },
             ],
             correctAnswer: "a",
-            explanation: "Requests/commands use asked/told + person + to + base verb.",
+            explanation: "Commands and requests use asked/told + person + to + base verb.",
+            skillTag: "reported-command-asked-person-to-verb",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
@@ -998,7 +1009,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "don\'t park here" },
             ],
             correctAnswer: "b",
-            explanation: "Negative commands use NOT to + base verb: told us not to park…",
+            explanation: "Negative commands use told/asked + person + not to + base verb.",
+            skillTag: "reported-command-negative-not-to-verb",
+            difficulty: "medium",
         },
         {
             id: "quiz-7",
@@ -1009,7 +1022,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "she will help me" },
             ],
             correctAnswer: "b",
-            explanation: "Can → could in reported speech when backshifting.",
+            explanation: "Can usually becomes could in reported speech when backshifting.",
+            skillTag: "backshift-can-to-could",
+            difficulty: "easy",
         },
         {
             id: "quiz-8",
@@ -1021,6 +1036,8 @@ export const reportedSpeechContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Must often changes to had to in reported speech.",
+            skillTag: "backshift-must-to-had-to",
+            difficulty: "medium",
         },
         {
             id: "quiz-9",
@@ -1031,7 +1048,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "she was late" },
             ],
             correctAnswer: "b",
-            explanation: "You → I (because the speaker is reporting the message about themselves).",
+            explanation: "When the speaker reports about themselves, you changes to I and the verb shifts to was.",
+            skillTag: "pronoun-change-you-to-I",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
@@ -1042,7 +1061,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "the next day" },
             ],
             correctAnswer: "b",
-            explanation: "Today → that day in reported speech.",
+            explanation: "Today usually changes to that day in reported speech.",
+            skillTag: "time-word-today-to-that-day",
+            difficulty: "medium",
         },
         {
             id: "quiz-11",
@@ -1053,7 +1074,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "He told me that he was sick." },
             ],
             correctAnswer: "b",
-            explanation: "Don’t use 'said to me that…' in this pattern; use 'said that…' or 'told me that…'.",
+            explanation: "Avoid said to me that in this structure. Use said that or told me that.",
+            skillTag: "avoid-said-to-me-that",
+            difficulty: "medium",
         },
         {
             id: "quiz-12",
@@ -1064,7 +1087,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "we are closed then" },
             ],
             correctAnswer: "a",
-            explanation: "Pronoun can stay 'we' if you're reporting the same group; now → then and are → were.",
+            explanation: "If the same group reports the message, we can keep we. Now usually changes to then, and are changes to were.",
+            skillTag: "backshift-present-to-past-with-now-then",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
@@ -1075,7 +1100,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "She said class will start at 6 PM. (It is still true.)" },
             ],
             correctAnswer: "b",
-            explanation: "If it’s still true, you can keep the present: starts.",
+            explanation: "If something is still true now, we can keep the present simple in reported speech.",
+            skillTag: "no-backshift-still-true-exception",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
@@ -1086,7 +1113,9 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "They told that my paperwork was incomplete and said me to bring it the next day." },
             ],
             correctAnswer: "a",
-            explanation: "Backshift is → was, tomorrow → the next day, and use told + person + to…",
+            explanation: "Is becomes was, tomorrow becomes the next day, and told needs a person plus to verb.",
+            skillTag: "reported-speech-message-backshift-and-command",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
@@ -1097,7 +1126,108 @@ export const reportedSpeechContent: InteractiveGuideContent = {
                 { value: "c", label: "he wouldn\'t mind to work late" },
             ],
             correctAnswer: "b",
-            explanation: "Present simple doesn’t → didn’t when backshifting, and 'mind' is followed by a gerund: working.",
+            explanation: "Present simple does not mind becomes did not mind in reported speech, and mind is followed by a gerund: working.",
+            skillTag: "backshift-present-simple-negative-to-past",
+            difficulty: "medium",
         },
     ],
+
+    /*
+    TEACHER DIAGNOSTIC NOTES – Reported Speech Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Choose the correct structure with say and tell in reported speech.
+    - Backshift tenses correctly when reporting from the past.
+    - Report commands and requests with told/asked + person + to + verb and NOT to + verb.
+    - Change pronouns and time words correctly.
+    - Avoid common error patterns like said to me that and will or can staying in the present.
+    - Apply these rules to real world messages from supervisors, clinics, receptionists, and clerks.
+
+    Skill tags:
+
+    Say vs tell
+    - say-vs-tell-tell-with-object
+    - say-vs-tell-say-with-that
+    - avoid-said-to-me-that
+
+    Backshifting tenses
+    - backshift-present-be-to-past
+    - backshift-will-to-would-time-tomorrow-next-day
+    - backshift-can-to-could
+    - backshift-must-to-had-to
+    - backshift-present-to-past-with-now-then
+    - backshift-present-simple-negative-to-past
+    - no-backshift-still-true-exception
+
+    Commands and requests
+    - reported-command-asked-person-to-verb
+    - reported-command-negative-not-to-verb
+    - reported-speech-message-backshift-and-command
+
+    Pronouns and time words
+    - pronoun-change-you-to-I
+    - time-word-today-to-that-day
+
+    How to read the diagnostics:
+    - If say vs tell tags are weak (say-vs-tell-tell-with-object, say-vs-tell-say-with-that, avoid-said-to-me-that) →
+      Go back to the core contrast:
+      • Say + that + statement, no person: She said that the office was closed.
+      • Tell + person + that + statement: She told me that the office was closed.
+      Use short correction drills with common mistakes:
+      • She said me that... → She said that...
+      • He told that... → He told me that...
+
+    - If backshifting tags are weak (backshift-present-be-to-past, backshift-will-to-would-time-tomorrow-next-day, backshift-can-to-could, backshift-must-to-had-to, backshift-present-to-past-with-now-then, backshift-present-simple-negative-to-past) →
+      Rebuild the mini chart from the guide:
+      • am/is/are → was/were
+      • will → would
+      • can → could
+      • must → had to
+      • now → then, today → that day, tomorrow → the next day
+      Have students work in pairs. One student says a direct sentence, the other reports it with the correct backshift. Then switch roles.
+
+    - If the still true exception tag is weak (no-backshift-still-true-exception) →
+      Practice with personal facts that are still true:
+      • Direct: "Class starts at 6 PM."
+      • Reported now: She said class starts at 6 PM.
+      Contrast with information that is finished:
+      • Direct: "We are short staffed today."
+      • Reported later: She said they were short staffed that day.
+
+    - If command and request tags are weak (reported-command-asked-person-to-verb, reported-command-negative-not-to-verb, reported-speech-message-backshift-and-command) →
+      Reuse clinic and workplace examples:
+      • Direct: "Please bring your ID." → Reported: She asked me to bring my ID.
+      • Direct: "Do not eat before the test." → Reported: They told me not to eat before the test.
+      Have students underline the person and the verb in each sentence and write their own real commands and requests from work or appointments.
+
+    - If pronoun and time word tags are weak (pronoun-change-you-to-I, time-word-today-to-that-day) →
+      Build two mini tables on the board:
+
+      Pronouns:
+      • I → he/she
+      • you → I/me
+      • we → they
+      • my → his/her
+
+      Time words:
+      • today → that day
+      • tomorrow → the next day
+      • yesterday → the day before
+      • now → then
+
+      Have students transform short quotes and focus only on pronouns and time words first, then add tense changes later.
+
+    Suggested use:
+    - Use this mini quiz after students have worked through:
+      • Direct vs reported speech.
+      • Say vs tell.
+      • Tense backshifting.
+      • Reported commands and requests.
+      • Pronoun and time word changes.
+    - At the class level:
+      • If say vs tell is red, slow down and practice with simple workplace and clinic sentences where students choose between said and told.
+      • If backshifting is red, spend more time on the tense chart and oral drilling before long writing tasks.
+      • If commands and requests are red, do more role plays with receptionists, doctors, supervisors, and family members using told/asked + person + to + verb.
+      • If pronouns and time words are red, strip sentences down to just pronoun and time word changes until this feels automatic, then add the full reported sentences.
+    */
 };

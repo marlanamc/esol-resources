@@ -814,6 +814,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
         },
     ],
 
+    // Mini Quiz (16 questions)
     miniQuiz: [
         {
             id: "quiz-1",
@@ -824,7 +825,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "The nurse will explain the instructions." },
             ],
             correctAnswer: "b",
-            explanation: "Passive voice uses be + past participle. The subject (instructions) receives the action.",
+            explanation:
+                "In passive voice the subject receives the action. 'The instructions' receive the action 'were explained' (be + past participle).",
+            skillTag: "identify-passive-basic",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -835,7 +839,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "checked" },
             ],
             correctAnswer: "b",
-            explanation: "Present simple passive (plural): are + past participle → are checked.",
+            explanation:
+                "Present simple passive (plural) uses are + past participle: forms are checked.",
+            skillTag: "form-present-simple-passive-medical",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
@@ -846,7 +853,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "will be checked" },
             ],
             correctAnswer: "b",
-            explanation: "Past time word (yesterday) → past simple passive: was checked.",
+            explanation:
+                "The time word 'yesterday' calls for past simple passive: was checked.",
+            skillTag: "form-past-simple-passive-medical",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -857,7 +867,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "are calling" },
             ],
             correctAnswer: "b",
-            explanation: "Future passive = will be + past participle: will be called.",
+            explanation:
+                "Future passive uses will be + past participle: you will be called.",
+            skillTag: "form-future-passive-medical",
+            difficulty: "easy",
         },
         {
             id: "quiz-5",
@@ -868,18 +881,24 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "be took" },
             ],
             correctAnswer: "b",
-            explanation: "Modal passive = modal + be + past participle: should be taken.",
+            explanation:
+                "Modal passive uses modal + be + past participle: should be taken.",
+            skillTag: "form-modal-passive-medical",
+            difficulty: "easy",
         },
         {
             id: "quiz-6",
-            question: "Which sentence is INCORRECT?",
+            question: "Which sentence is INCORRECT passive voice?",
             options: [
                 { value: "a", label: "My blood was drawn yesterday." },
                 { value: "b", label: "The results were sent to my doctor." },
                 { value: "c", label: "I was gave medication." },
             ],
             correctAnswer: "c",
-            explanation: "'Gave' is past tense, not past participle. Correct: 'I was given medication.'",
+            explanation:
+                "'Gave' is simple past, not past participle. Correct passive is 'I was given medication.'",
+            skillTag: "avoid-wrong-past-participle",
+            difficulty: "medium",
         },
         {
             id: "quiz-7",
@@ -890,7 +909,10 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "The results are emailing." },
             ],
             correctAnswer: "a",
-            explanation: "Past passive: were + past participle → were emailed.",
+            explanation:
+                "Past passive uses were + past participle: the results were emailed.",
+            skillTag: "convert-active-to-passive-medical",
+            difficulty: "medium",
         },
         {
             id: "quiz-8",
@@ -901,29 +923,40 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "to" },
             ],
             correctAnswer: "b",
-            explanation: "Use by to name the doer/agent: written by Dr. Lee.",
+            explanation:
+                "Use by + person to show the agent (doer) in passive sentences: written by Dr. Lee.",
+            skillTag: "form-passive-with-by-agent",
+            difficulty: "easy",
         },
         {
             id: "quiz-9",
-            question: "You need to say exactly who did the action. Which is better?",
+            question:
+                "You need to say exactly who did the action. Which sentence is better?",
             options: [
                 { value: "a", label: "The medication was prescribed." },
                 { value: "b", label: "Dr. Patel prescribed the medication." },
                 { value: "c", label: "The medication prescribed." },
             ],
             correctAnswer: "b",
-            explanation: "Use active voice when the doer matters (Dr. Patel).",
+            explanation:
+                "When the doer matters, active voice is clearer: 'Dr. Patel prescribed the medication.'",
+            skillTag: "choose-active-when-doer-important",
+            difficulty: "medium",
         },
         {
             id: "quiz-10",
-            question: 'What tense is this? "Your appointment has been scheduled."',
+            question:
+                'What tense is this passive sentence? "Your appointment has been scheduled."',
             options: [
                 { value: "a", label: "Present Simple Passive" },
                 { value: "b", label: "Present Perfect Passive" },
                 { value: "c", label: "Past Simple Passive" },
             ],
             correctAnswer: "b",
-            explanation: "Has been scheduled = present perfect passive (has/have been + past participle).",
+            explanation:
+                "'Has been scheduled' is present perfect passive (has/have been + past participle).",
+            skillTag: "identify-present-perfect-passive",
+            difficulty: "medium",
         },
         {
             id: "quiz-11",
@@ -934,18 +967,25 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "writed" },
             ],
             correctAnswer: "b",
-            explanation: "Write is irregular: write → wrote → written (past participle).",
+            explanation:
+                "Write → wrote → written. 'Written' is the past participle used in passive voice.",
+            skillTag: "irregular-past-participle-write",
+            difficulty: "easy",
         },
         {
             id: "quiz-12",
-            question: "Complete the question: '_____ your insurance card checked at the front desk?'",
+            question:
+                "Complete the question: '_____ your insurance card checked at the front desk?'",
             options: [
                 { value: "a", label: "Was" },
                 { value: "b", label: "Did" },
                 { value: "c", label: "Is" },
             ],
             correctAnswer: "a",
-            explanation: "Past passive question uses was/were + subject + past participle: Was your card checked?",
+            explanation:
+                "Past passive question uses was/were + subject + past participle: Was your insurance card checked?",
+            skillTag: "question-form-past-passive",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
@@ -956,29 +996,148 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 { value: "c", label: "isn't" },
             ],
             correctAnswer: "a",
-            explanation: "Present perfect passive negative: hasn't been + past participle → hasn't been sent yet.",
+            explanation:
+                "Present perfect passive negative: hasn't been + past participle → hasn't been sent yet.",
+            skillTag: "negative-present-perfect-passive",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
-            question: 'Why is passive voice used here? "Your temperature will be taken."',
+            question:
+                'Why is passive voice used here? "Your temperature will be taken."',
             options: [
-                { value: "a", label: "To focus on what happens to the patient, not who does it" },
+                {
+                    value: "a",
+                    label:
+                        "To focus on what happens to the patient, not who does it",
+                },
                 { value: "b", label: "Because passive is always more correct" },
                 { value: "c", label: "To hide information from patients" },
             ],
             correctAnswer: "a",
-            explanation: "In instructions, the action is the important information.",
+            explanation:
+                "In medical instructions, the action (what happens to you) is more important than the person doing it.",
+            skillTag: "reason-use-passive-medical-context",
+            difficulty: "easy",
         },
         {
             id: "quiz-15",
-            question: "Which sentence is correct?",
+            question: "Which sentence is correct passive voice?",
             options: [
                 { value: "a", label: "The test performed yesterday." },
                 { value: "b", label: "The test was performed yesterday." },
                 { value: "c", label: "The test was perform yesterday." },
             ],
             correctAnswer: "b",
-            explanation: "Passive needs be + past participle: was performed.",
+            explanation:
+                "Passive needs be + past participle: was performed (not perform).",
+            skillTag: "avoid-missing-be-or-base-form",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-16",
+            question:
+                "Which sentence is a good example of passive voice in a clinic sign?",
+            options: [
+                {
+                    value: "a",
+                    label: "Patients must arrive early.",
+                },
+                {
+                    value: "b",
+                    label: "Patients must be checked in 15 minutes before appointment.",
+                },
+                {
+                    value: "c",
+                    label: "The front desk checks in patients.",
+                },
+            ],
+            correctAnswer: "b",
+            explanation:
+                "Sentence b uses must be + past participle and focuses on what happens to patients, which is typical for clinic signs.",
+            skillTag: "identify-passive-medical-signs",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Passive Voice Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Recognize passive voice in medical sentences and clinic language.
+    - Form present, past, future, and modal passive correctly (be + past participle).
+    - Use irregular past participles correctly in passive (drawn, given, written, etc.).
+    - Understand when passive is appropriate (focus on action/receiver) and when active is better (doer is important).
+    - Avoid common errors: missing "be", wrong tense of "be", wrong past participle, or unnatural overuse of passive.
+
+    Skill tags:
+
+    Identifying passive vs active
+    - identify-passive-basic
+    - identify-passive-medical-signs
+    - choose-active-when-doer-important
+    - reason-use-passive-medical-context
+
+    Forming passive in different tenses
+    - form-present-simple-passive-medical
+    - form-past-simple-passive-medical
+    - form-future-passive-medical
+    - form-modal-passive-medical
+    - convert-active-to-passive-medical
+    - form-passive-with-by-agent
+
+    Irregular past participles and aspect
+    - irregular-past-participle-write
+    - identify-present-perfect-passive
+    - negative-present-perfect-passive
+    - question-form-past-passive
+
+    Common error patterns
+    - avoid-wrong-past-participle
+    - avoid-missing-be-or-base-form
+
+    How to read the diagnostics:
+    - If basic identification tags are weak (identify-passive-basic, identify-passive-medical-signs, reason-use-passive-medical-context) →
+      Revisit the core contrast:
+      • Active: subject does the action (The nurse drew my blood).
+      • Passive: subject receives the action (My blood was drawn).
+      Highlight subject, verb, and object in pairs of sentences and ask: Who does the action? Who receives it?
+
+    - If tense/form tags are weak (form-present-simple-passive-medical, form-past-simple-passive-medical, form-future-passive-medical, form-modal-passive-medical, convert-active-to-passive-medical, form-passive-with-by-agent) →
+      Build a passive mini-chart on the board using medical examples:
+      • Present: is/are + past participle (Forms are checked).
+      • Past: was/were + past participle (My ID was checked).
+      • Future: will be + past participle (You will be called).
+      • Modal: must/should/can + be + past participle (This form must be completed).
+      Then do quick transformations: give an active sentence and have students say the passive version aloud before writing.
+
+    - If irregular participle and aspect tags are weak (irregular-past-participle-write, identify-present-perfect-passive, negative-present-perfect-passive, question-form-past-passive) →
+      Focus on a small irregular list that actually appears in medical English:
+      • draw → drawn, give → given, write → written, send → sent, tell → told.
+      Practice short substitution drills:
+      • My blood was ____ yesterday. (drawn)
+      • The note has been ____ for you. (written)
+      • The results have not been ____ yet. (sent)
+
+    - If error-pattern tags are weak (avoid-wrong-past-participle, avoid-missing-be-or-base-form) →
+      Use "fix the sentence" activities:
+      • The test performed yesterday. → The test was performed yesterday.
+      • I was gave medication. → I was given medication.
+      Ask students to circle the form of "be" and underline the past participle in each corrected sentence.
+
+    - If "choose-active-when-doer-important" is weak →
+      Contrast pairs:
+      • Passive: The medication was prescribed. (Who?)
+      • Active: Dr. Patel prescribed the medication. (Clear doer.)
+      Have students decide: clinic sign or conversation with the doctor? Then choose active or passive.
+
+    Suggested use:
+    - Use this mini quiz after students have worked through:
+      • Active vs passive section.
+      • Forming passive in different tenses.
+      • Medical context examples and common mistakes.
+    - At the class level:
+      • If identification is red but form is green → spend more time reading and noticing passive in real patient portal messages, signs, and labels.
+      • If form is red (especially modals and future) → slow down and do more controlled transformation drills before freer production.
+      • If error tags are red → integrate quick warm-ups where students correct 3–4 passive mistakes at the start of class using real medical-style sentences.
+    */
 };

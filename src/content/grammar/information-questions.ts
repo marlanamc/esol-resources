@@ -1315,336 +1315,336 @@ export const informationQuestionsContent: InteractiveGuideContent = {
     ],
 
     // Mini Quiz
-    miniQuiz: [
-        {
-            id: "quiz-1",
-            question: "Which question is correct?",
-            options: [
-                { value: "a", label: "How much bedrooms does the apartment have?" },
-                { value: "b", label: "How many bedrooms the apartment has?" },
-                { value: "c", label: "How many bedrooms does the apartment have?" },
-            ],
-            correctAnswer: "c",
-            explanation: "Correct! 'Bedrooms' are countable (use 'how many'), and questions need the helping verb ('does') before the subject.",
-        },
-        {
-            id: "quiz-2",
-            question: "Choose the correct subject question:",
-            options: [
-                { value: "a", label: "Who does pay the utilities?" },
-                { value: "b", label: "Who pays the utilities?" },
-                { value: "c", label: "Who do pay the utilities?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! This is a subject question ('Who' is the one doing the action), so we don't use 'do/does'. We also add '-s' to the verb ('pays').",
-        },
-        {
-            id: "quiz-3",
-            question: "Put the words in correct order: (rent / when / due / is / the)",
-            options: [
-                { value: "a", label: "When the rent is due?" },
-                { value: "b", label: "When is the rent due?" },
-                { value: "c", label: "When is due the rent?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! The pattern is: WH-word (When) + Helping Verb (is) + Subject (the rent) + due.",
-        },
-        {
-            id: "quiz-4",
-            question: "Which question asks about a person?",
-            options: [
-                { value: "a", label: "What should I call for emergencies?" },
-                { value: "b", label: "Who should I call for emergencies?" },
-                { value: "c", label: "When should I call for emergencies?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'Who' is used for people. 'What' is for things/information, and 'When' is for time.",
-        },
-        {
-            id: "quiz-5",
-            question: "What's the correct question: 'I want to know the amount of the deposit.'",
-            options: [
-                { value: "a", label: "How much is the deposit?" },
-                { value: "b", label: "How many is the deposit?" },
-                { value: "c", label: "What many is the deposit?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! Money/rent is uncountable, so we use 'How much'.",
-        },
-        {
-            id: "quiz-6",
-            question: "Which WH-word asks about a reason?",
-            options: [
-                { value: "a", label: "Where" },
-                { value: "b", label: "Why" },
-                { value: "c", label: "When" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'Why' asks for reasons, explanations, or causes.",
-        },
-        {
-            id: "quiz-7",
-            question: "Fix the error: 'Where you live?'",
-            options: [
-                { value: "a", label: "Where do you live?" },
-                { value: "b", label: "Where you do live?" },
-                { value: "c", label: "Where are you live?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! Standard questions need a helping verb ('do/does') after the question word.",
-        },
-        {
-            id: "quiz-8",
-            question: "Which is an indirect (polite) question?",
-            options: [
-                { value: "a", label: "What time does the meeting start?" },
-                { value: "b", label: "Could you tell me what time the meeting starts?" },
-                { value: "c", label: "What time the meeting starts?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! Indirect questions use polite phrases like 'Could you tell me...' and they use statement word order (the meeting starts).",
-        },
-        {
-            id: "quiz-9",
-            question: "What's the formula for standard information questions?",
-            options: [
-                { value: "a", label: "WH-word + Subject + Helping Verb + Verb" },
-                { value: "b", label: "WH-word + Helping Verb + Subject + Verb" },
-                { value: "c", label: "Subject + WH-word + Verb + Helping Verb" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! WH-word + Helping Verb (do/does) + Subject + Main Verb.",
-        },
-        {
-            id: "quiz-10",
-            question: "Which question asks about location?",
-            options: [
-                { value: "a", label: "When is the laundry room?" },
-                { value: "b", label: "Where is the laundry room?" },
-                { value: "c", label: "What is the laundry room?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'Where' is the word for places and locations.",
-        },
-        {
-            id: "quiz-11",
-            question: "Choose the correct question about time:",
-            options: [
-                { value: "a", label: "What time does the shift start?" },
-                { value: "b", label: "What time the shift starts?" },
-                { value: "c", label: "What time does the shift starts?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! When we use 'does', the main verb ('start') stays in its base form (no '-s').",
-        },
-        {
-            id: "quiz-12",
-            question: "Which is correct: asking about method?",
-            options: [
-                { value: "a", label: "How can I pay rent?" },
-                { value: "b", label: "How I can pay rent?" },
-                { value: "c", label: "How can pay I rent?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! 'How' is for method. The order is: How + can + Subject + Verb.",
-        },
-        {
-            id: "quiz-13",
-            question: "Subject question or object question? 'Who did you call?'",
-            options: [
-                { value: "a", label: "Subject question (no helping verb needed)" },
-                { value: "b", label: "Object question (helping verb required)" },
-                { value: "c", label: "Neither" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! This is an object question because 'you' is the subject (the doer). The question asks about the person receiving the call.",
-        },
-        {
-            id: "quiz-14",
-            question: "What's wrong with: 'How many money do you need?'",
-            options: [
-                { value: "a", label: "Should be 'How much money' (money is uncountable)" },
-                { value: "b", label: "Should be 'What many money'" },
-                { value: "c", label: "Nothing is wrong" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! 'Money' is uncountable. We use 'How much' for uncountable amounts.",
-        },
-        {
-            id: "quiz-15",
-            question: "Which indirect question has correct word order?",
-            options: [
-                { value: "a", label: "Do you know where is the office?" },
-                { value: "b", label: "Do you know where the office is?" },
-                { value: "c", label: "Do you know is where the office?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! In indirect questions, the second part follows statement order (Subject + Verb: the office is).",
-        },
-        {
-            id: "quiz-16",
-            question: "What vs Which: You see three keys on the table. You ask:",
-            options: [
-                { value: "a", label: "What key is for the mailbox?" },
-                { value: "b", label: "Which key is for the mailbox?" },
-                { value: "c", label: "Where key is for the mailbox?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! Use 'which' when choosing from a limited number of options (here, 3 keys).",
-        },
-        {
-            id: "quiz-17",
-            question: "What vs Which: You want to know someone's phone number. You ask:",
-            options: [
-                { value: "a", label: "What is your phone number?" },
-                { value: "b", label: "Which is your phone number?" },
-                { value: "c", label: "Where is your phone number?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! Use 'what' when there are unlimited possibilities (any phone number).",
-        },
-        {
-            id: "quiz-18",
-            question: "Which is a subject question?",
-            options: [
-                { value: "a", label: "Who do you know?" },
-                { value: "b", label: "Who knows the answer?" },
-                { value: "c", label: "Who did you call?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'Who knows the answer?' - 'Who' is doing the action (knowing), so no helping verb is needed.",
-        },
-        {
-            id: "quiz-19",
-            question: "Which is an object question?",
-            options: [
-                { value: "a", label: "Who lives here?" },
-                { value: "b", label: "Who did you see?" },
-                { value: "c", label: "Who owns the building?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'Who did you see?' - 'You' is doing the action (seeing), so we need 'did'.",
-        },
-        {
-            id: "quiz-20",
-            question: "Choose the correct embedded question:",
-            options: [
-                { value: "a", label: "I'm wondering if the position offers health insurance." },
-                { value: "b", label: "I'm wondering does the position offer health insurance." },
-                { value: "c", label: "I'm wondering if does the position offer health insurance." },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! Embedded questions use statement word order: 'if the position offers' (not 'does the position offer').",
-        },
-        {
-            id: "quiz-21",
-            question: "Which question is Level 1 (Initial) in the 4-level question strategy?",
-            options: [
-                { value: "a", label: "How much is the rent per month?" },
-                { value: "b", label: "Does that include utilities?" },
-                { value: "c", label: "What happens if I need to break the lease early?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! Level 1 asks the basic question (What? When? How much?).",
-        },
-        {
-            id: "quiz-22",
-            question: "Which question is Level 2 (Clarify) in the 4-level question strategy?",
-            options: [
-                { value: "a", label: "How much is the rent per month?" },
-                { value: "b", label: "Does that include heat and water?" },
-                { value: "c", label: "Is there flexibility on the move-in date?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! Level 2 clarifies specific details with questions like 'Does that include...?'",
-        },
-        {
-            id: "quiz-23",
-            question: "Which question is Level 4 (Plan ahead) in the 4-level question strategy?",
-            options: [
-                { value: "a", label: "How much is the rent per month?" },
-                { value: "b", label: "Does that include utilities?" },
-                { value: "c", label: "What happens if I need to break the lease early?" },
-            ],
-            correctAnswer: "c",
-            explanation: "Correct! Level 4 plans for scenarios with 'What if...?' or 'What happens if...?' questions.",
-        },
-        {
-            id: "quiz-24",
-            question: "Fix the error: 'Where you work?'",
-            options: [
-                { value: "a", label: "Where do you work?" },
-                { value: "b", label: "Where you do work?" },
-                { value: "c", label: "Where are you work?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! Standard questions need a helping verb ('do/does') after the question word.",
-        },
-        {
-            id: "quiz-25",
-            question: "Choose the correct indirect question about time:",
-            options: [
-                { value: "a", label: "Could you tell me when does the clinic close?" },
-                { value: "b", label: "Could you tell me when the clinic closes?" },
-                { value: "c", label: "Could you tell me when closes the clinic?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! Indirect questions use statement word order: 'when the clinic closes' (not 'when does the clinic close').",
-        },
-        {
-            id: "quiz-26",
-            question: "Which question asks about method or manner?",
-            options: [
-                { value: "a", label: "When do I pay rent?" },
-                { value: "b", label: "How do I pay rent?" },
-                { value: "c", label: "Where do I pay rent?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'How' asks about the method or way something is done.",
-        },
-        {
-            id: "quiz-27",
-            question: "Subject question: What should the verb form be?",
-            options: [
-                { value: "a", label: "Who pay the rent? (no -s)" },
-                { value: "b", label: "Who pays the rent? (with -s)" },
-                { value: "c", label: "Who does pay the rent? (with do)" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! When 'Who' is the subject (doer), we treat it like 'He/She/It', so the verb needs '-s' (pays).",
-        },
-        {
-            id: "quiz-28",
-            question: "Which question correctly uses 'What + noun'?",
-            options: [
-                { value: "a", label: "What time does the meeting start?" },
-                { value: "b", label: "What does time the meeting start?" },
-                { value: "c", label: "What time the meeting starts?" },
-            ],
-            correctAnswer: "a",
-            explanation: "Correct! 'What time' is a common combination. The question still needs the helping verb 'does'.",
-        },
-        {
-            id: "quiz-29",
-            question: "Choose the correct question about uncountable amount:",
-            options: [
-                { value: "a", label: "How many notice do I need to give?" },
-                { value: "b", label: "How much notice do I need to give?" },
-                { value: "c", label: "How much notices do I need to give?" },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'Notice' (time) is uncountable, so use 'How much'. Also, uncountable nouns don't take plural form.",
-        },
-        {
-            id: "quiz-30",
-            question: "Which is the correct polite way to ask about salary?",
-            options: [
-                { value: "a", label: "How much is the salary?" },
-                { value: "b", label: "I'd like to know how much the salary is." },
-                { value: "c", label: "Tell me how much is the salary." },
-            ],
-            correctAnswer: "b",
-            explanation: "Correct! 'I'd like to know...' is a polite embedded question. It uses statement word order: 'how much the salary is'.",
-        },
-    ],
+      // Mini Quiz
+  miniQuiz: [
+    {
+      id: "quiz-1",
+      question: "Which question is correct?",
+      options: [
+        { value: "a", label: "How much bedrooms does the apartment have?" },
+        { value: "b", label: "How many bedrooms the apartment has?" },
+        { value: "c", label: "How many bedrooms does the apartment have?" },
+      ],
+      correctAnswer: "c",
+      explanation:
+        "Use 'How many' with countable nouns like 'bedrooms', and use the helping verb before the subject: 'How many bedrooms does the apartment have?'",
+      skillTag: "how-many-vs-how-much-countable",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-2",
+      question: "Choose the correct question about money:",
+      options: [
+        { value: "a", label: "How many is the rent per month?" },
+        { value: "b", label: "How much is the rent per month?" },
+        { value: "c", label: "How much are the rent per month?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Money/rent is uncountable, so we use 'How much' and a singular verb: 'How much is the rent per month?'",
+      skillTag: "how-much-vs-how-many-uncountable",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-3",
+      question: "Put the words in correct order: (rent / when / due / is / the)",
+      options: [
+        { value: "a", label: "When the rent is due?" },
+        { value: "b", label: "When is the rent due?" },
+        { value: "c", label: "When is due the rent?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Information questions follow WH-word + helping verb + subject + main verb: 'When is the rent due?'",
+      skillTag: "word-order-wh-aux-subject-verb",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-4",
+      question: "Choose the correct subject question:",
+      options: [
+        { value: "a", label: "Who does pay the utilities?" },
+        { value: "b", label: "Who pays the utilities?" },
+        { value: "c", label: "Who do pay the utilities?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Here 'Who' is the subject (the doer), so we do NOT use 'do/does'. The verb takes -s: 'Who pays the utilities?'",
+      skillTag: "subject-question-who-no-aux",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-5",
+      question: "Choose the correct object question:",
+      options: [
+        { value: "a", label: "Who you pay every month?" },
+        { value: "b", label: "Who do you pay every month?" },
+        { value: "c", label: "Who does you pay every month?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Here 'you' is the subject (the doer), so we need the helping verb: 'Who do you pay every month?'",
+      skillTag: "object-question-who-does-do",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-6",
+      question: "Which question asks about a person?",
+      options: [
+        { value: "a", label: "What should I call for emergencies?" },
+        { value: "b", label: "Who should I call for emergencies?" },
+        { value: "c", label: "When should I call for emergencies?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Who' is used for people. 'What' is for things/information, and 'When' is for time.",
+      skillTag: "wh-choice-who-vs-what-when",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-7",
+      question: "You see two buses at the stop. What is the best question?",
+      options: [
+        { value: "a", label: "What bus goes to downtown?" },
+        { value: "b", label: "Which bus goes to downtown?" },
+        { value: "c", label: "Where bus goes to downtown?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "You are choosing from a small number of options (two buses), so use 'Which bus goes to downtown?'",
+      skillTag: "what-vs-which-limited-choice",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-8",
+      question: "Choose the correct question about a phone number:",
+      options: [
+        { value: "a", label: "Which is your phone number?" },
+        { value: "b", label: "What is your phone number?" },
+        { value: "c", label: "What number is your phone?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "There are many possible answers, so we use 'What is your phone number?' not 'Which'.",
+      skillTag: "what-vs-which-unlimited-choice",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-9",
+      question: "Which question correctly asks about method?",
+      options: [
+        { value: "a", label: "How do I pay rent?" },
+        { value: "b", label: "What do I pay rent?" },
+        { value: "c", label: "Why do I pay rent?" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "'How' asks about method or process: 'How do I pay rent?'",
+      skillTag: "wh-choice-how-method",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-10",
+      question: "Choose the correct question about reason:",
+      options: [
+        { value: "a", label: "When is the rent going up?" },
+        { value: "b", label: "Where is the rent going up?" },
+        { value: "c", label: "Why is the rent going up?" },
+      ],
+      correctAnswer: "c",
+      explanation:
+        "'Why' asks about reason: 'Why is the rent going up?'",
+      skillTag: "wh-choice-why-reason",
+      difficulty: "easy",
+    },
+    {
+      id: "quiz-11",
+      question: "Choose the correct indirect question:",
+      options: [
+        { value: "a", label: "Could you tell me where is the office?" },
+        { value: "b", label: "Could you tell me where the office is?" },
+        { value: "c", label: "Could you tell me where does the office is?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "In indirect questions, the inner clause uses statement word order: 'where the office is', not 'where is the office'.",
+      skillTag: "indirect-question-statement-word-order",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-12",
+      question: "Choose the correct embedded question:",
+      options: [
+        { value: "a", label: "I'm wondering what time does the clinic close." },
+        { value: "b", label: "I'm wondering what time the clinic closes." },
+        { value: "c", label: "I'm wondering what time is the clinic closing." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Embedded questions also use statement word order: 'what time the clinic closes'.",
+      skillTag: "embedded-question-statement-word-order",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-13",
+      question:
+        "You want to be polite with your boss. Which question is more professional?",
+      options: [
+        { value: "a", label: "When is my paycheck ready?" },
+        { value: "b", label: "Could you tell me when my paycheck is ready?" },
+        { value: "c", label: "When my paycheck is ready?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "Adding a polite phrase and using an indirect question sounds more professional: 'Could you tell me when my paycheck is ready?'",
+      skillTag: "politeness-indirect-vs-direct-question",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-14",
+      question:
+        "You want to ask your landlord about utilities. Which is the best housing question?",
+      options: [
+        { value: "a", label: "How many is the utilities?" },
+        { value: "b", label: "What are the building rules?" },
+        { value: "c", label: "Which utilities are included in the rent?" },
+      ],
+      correctAnswer: "c",
+      explanation:
+        "This question is specific and useful: 'Which utilities are included in the rent?' connects directly to housing and money.",
+      skillTag: "housing-context-which-utilities-included",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-15",
+      question:
+        "You want to know the exact date to move out. Which question is best?",
+      options: [
+        { value: "a", label: "When can I move in?" },
+        { value: "b", label: "How much notice do I need to give before moving out?" },
+        { value: "c", label: "Where is the laundry?" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'How much notice do I need to give before moving out?' is the key housing question about time and rules.",
+      skillTag: "housing-context-how-much-notice",
+      difficulty: "medium",
+    },
+    {
+      id: "quiz-16",
+      question:
+        "Which question is a correct object question using 'who'?",
+      options: [
+        { value: "a", label: "Who do I contact if the heat doesn't work?" },
+        { value: "b", label: "Who I contact if the heat doesn't work?" },
+        { value: "c", label: "Who does contact I if the heat doesn't work?" },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "Here 'I' is the subject, so we need the helping verb 'do': 'Who do I contact if the heat doesn't work?'",
+      skillTag: "object-question-who-do-i-contact",
+      difficulty: "medium",
+    },
+  ],
+    /*
+  TEACHER DIAGNOSTIC NOTES – Information Questions Mini Quiz
+
+  This mini quiz checks whether students can:
+  - Choose the correct WH-word (who/what/when/where/why/how).
+  - Choose between HOW MUCH vs HOW MANY for money, time, and countable nouns.
+  - Use the standard word order: WH-word + helping verb + subject + main verb.
+  - Distinguish SUBJECT vs OBJECT questions with WHO.
+  - Use WHAT vs WHICH based on how many choices they have.
+  - Use statement word order inside indirect and embedded questions.
+  - Apply this to real housing, landlord, and work situations.
+
+  Skill tags:
+
+  WH-word choice:
+  - wh-choice-who-vs-what-when
+  - wh-choice-how-method
+  - wh-choice-why-reason
+
+  How much / How many:
+  - how-many-vs-how-much-countable
+  - how-much-vs-how-many-uncountable
+
+  Word order:
+  - word-order-wh-aux-subject-verb
+
+  Subject vs object questions:
+  - subject-question-who-no-aux
+  - object-question-who-does-do
+  - object-question-who-do-i-contact
+
+  What vs Which:
+  - what-vs-which-limited-choice
+  - what-vs-which-unlimited-choice
+
+  Indirect & embedded questions:
+  - indirect-question-statement-word-order
+  - embedded-question-statement-word-order
+  - politeness-indirect-vs-direct-question
+
+  Housing / landlord context:
+  - housing-context-which-utilities-included
+  - housing-context-how-much-notice
+
+  How to read the diagnostics:
+  - If HOW MUCH / HOW MANY tags are weak →
+    Re-teach the countable/uncountable contrast using money, rooms, people, time.
+    Use housing examples: rent, deposit, notice, bedrooms, people.
+
+  - If WH-choice tags are weak →
+    Sort questions by type of information:
+    • WHO → person
+    • WHAT → thing/information
+    • WHEN → time
+    • WHERE → place
+    • WHY → reason
+    • HOW → method
+    Have students match landlord/doctor/job questions to the right WH-word.
+
+  - If word-order tags are weak →
+    Go back to the core formula:
+    WH-word + helping verb + subject + main verb + ?
+    Do quick board drills starting from statements:
+    • You pay rent on the first. → When do you pay rent?
+    • The office is on the third floor. → Where is the office?
+
+  - If subject/object WHO tags are weak →
+    Use the “Who is the doer?” test:
+    • If WHO is the doer → no DO/DOES (Who pays the rent?)
+    • If YOU/another person is the doer → use DO/DOES (Who do you pay?)
+    Practice turning one sentence into both a subject question and an object question.
+
+  - If WHAT vs WHICH tags are weak →
+    Practice with real objects in the room and housing images:
+    • Many possible answers → WHAT apartment complex is this?
+    • Small set of choices → WHICH apartment do you want, 3A or 3B?
+
+  - If indirect/embedded tags are weak →
+    Contrast pairs on the board:
+    • Where is the office? → Could you tell me where the office is?
+    • What time does the clinic close? → Do you know what time the clinic closes?
+    Highlight that inside the longer sentence we use statement order (subject + verb).
+
+  - If housing-context tags are weak →
+    Revisit the “Essential Housing Questions” section.
+    Have students build their own landlord question list and check each one for:
+    • Correct WH-word.
+    • Correct money/time word (How much / How many).
+    • Correct word order.
+
+  Suggested use:
+  - Use this mini quiz after students have completed the main sections:
+    WH-words, How much/How many, word order, subject/object questions, What vs Which,
+    and indirect/embedded questions.
+  - At the class level, use skillTag patterns to decide:
+    • If WH-choice and How much/How many are red → do more controlled grammar drills.
+    • If indirect/embedded and politeness tags are red → focus on role-plays with bosses,
+      landlords, and doctors using indirect questions.
+    • If housing-context tags are red → repeat the landlord interview activity and
+      have students rewrite their questions using correct forms.
+  */
 };

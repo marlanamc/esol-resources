@@ -824,10 +824,12 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
         },
     ],
 
+	    // Mini Quiz (15 questions)
 	    miniQuiz: [
 	        {
 	            id: "quiz-1",
-	            question: "Which needs a comma? 'I wanted to go to class but the Blue Line was delayed.'",
+	            question:
+	                "Which needs a comma? 'I wanted to go to class but the Blue Line was delayed.'",
 	            options: [
 	                { value: "a", label: "No comma needed" },
 	                { value: "b", label: "After 'class'" },
@@ -835,7 +837,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            ],
 	            correctAnswer: "b",
 	            explanation:
-	                "This is a compound sentence (two complete ideas). Use a comma before FANBOYS: 'I wanted to go to class, but the Blue Line was delayed.'",
+	                "This is a compound sentence with two complete ideas. Use a comma before FANBOYS: 'I wanted to go to class, but the Blue Line was delayed.'",
+	            skillTag: "comma-compound-fanboys",
+	            difficulty: "medium",
 	        },
 	        {
 	            id: "quiz-2",
@@ -846,7 +850,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "That's my doctor's office." },
 	            ],
 	            correctAnswer: "c",
-	            explanation: "Need apostrophes for both: 'That's' (that is) and 'doctor's' (possessive).",
+	            explanation:
+	                "You need apostrophes for both: 'That's' (that is) and 'doctor's' (possessive).",
+	            skillTag: "apostrophe-contraction-plus-possession",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-3",
@@ -858,30 +865,38 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            ],
 	            correctAnswer: "c",
 	            explanation:
-	                "Capitalize: I (pronoun), English (language), and Bunker Hill Community College (proper noun).",
+	                "Capitalize the pronoun I, languages, and proper names of schools: Bunker Hill Community College.",
+	            skillTag: "capitalization-proper-nouns-school-language",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-4",
 	            question: "What's wrong? 'The childrens toys are here.'",
-            options: [
-                { value: "a", label: "Nothing, it's correct" },
-                { value: "b", label: "Needs apostrophe: children's" },
-                { value: "c", label: "Should be: childrens'" },
-            ],
-            correctAnswer: "b",
-            explanation: "Irregular plurals add 's for possession: 'The children's toys are here.'",
-        },
-        {
-            id: "quiz-5",
-            question: "Which is correct?",
-            options: [
-                { value: "a", label: "Its a beautiful day." },
-                { value: "b", label: "It's a beautiful day." },
-                { value: "c", label: "Its' a beautiful day." },
-            ],
-            correctAnswer: "b",
-            explanation: "'It's' = contraction for 'it is'. 'Its' = possessive (no apostrophe).",
-        },
+	            options: [
+	                { value: "a", label: "Nothing, it's correct" },
+	                { value: "b", label: "Needs apostrophe: children's" },
+	                { value: "c", label: "Should be: childrens'" },
+	            ],
+	            correctAnswer: "b",
+	            explanation:
+	                "Irregular plurals add 's for possession: 'The children's toys are here.'",
+	            skillTag: "apostrophe-irregular-plural-childrens",
+	            difficulty: "easy",
+	        },
+	        {
+	            id: "quiz-5",
+	            question: "Which is correct?",
+	            options: [
+	                { value: "a", label: "Its a beautiful day." },
+	                { value: "b", label: "It's a beautiful day." },
+	                { value: "c", label: "Its' a beautiful day." },
+	            ],
+	            correctAnswer: "b",
+	            explanation:
+	                "'It's' is the contraction for 'it is'. 'Its' is possessive and has no apostrophe.",
+	            skillTag: "apostrophe-its-vs-its",
+	            difficulty: "easy",
+	        },
 	        {
 	            id: "quiz-6",
 	            question: "Where do commas go? 'I need bread milk eggs and cheese.'",
@@ -891,29 +906,40 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "No commas needed" },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "Lists need commas: 'I need bread, milk, eggs, and cheese.'",
+	            explanation:
+	                "Lists with three or more items need commas: 'I need bread, milk, eggs, and cheese.'",
+	            skillTag: "comma-list-items",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-7",
-	            question: "Which end punctuation is correct? 'Can you tell me where Maverick Station is___'",
+	            question:
+	                "Which end punctuation is correct? 'I wonder where Maverick Station is___'",
 	            options: [
 	                { value: "a", label: "Period (.)" },
 	                { value: "b", label: "Question mark (?)" },
 	                { value: "c", label: "Exclamation point (!)" },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "This is an indirect question inside a statement, so it ends with a period.",
+	            explanation:
+	                "This is an indirect question inside a statement, so it ends with a period, not a question mark.",
+	            skillTag: "end-punctuation-indirect-question",
+	            difficulty: "medium",
 	        },
 	        {
 	            id: "quiz-8",
-	            question: "Where should the comma go? 'After work ___ I'm taking the Blue Line home.'",
+	            question:
+	                "Where should the comma go? 'After work ___ I'm taking the Blue Line home.'",
 	            options: [
 	                { value: "a", label: "After 'After work'" },
 	                { value: "b", label: "After 'Line'" },
 	                { value: "c", label: "No comma needed" },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "Put a comma after an introductory phrase: 'After work, I'm taking the Blue Line home.'",
+	            explanation:
+	                "Put a comma after an introductory phrase: 'After work, I'm taking the Blue Line home.'",
+	            skillTag: "comma-after-intro-phrase",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-9",
@@ -924,7 +950,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "I live in Chelsea, massachusetts." },
 	            ],
 	            correctAnswer: "b",
-	            explanation: "Use a comma between city and state, and capitalize the state name: Chelsea, Massachusetts.",
+	            explanation:
+	                "Use a comma between city and state, and capitalize the state name: Chelsea, Massachusetts.",
+	            skillTag: "capitalization-city-state-comma",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-10",
@@ -935,7 +964,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: 'The teacher said "Bring your notebook".' },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "For direct speech, use quotation marks, and put the period inside the quotes.",
+	            explanation:
+	                "For direct speech, use quotation marks and put the period inside the quotes.",
+	            skillTag: "quotation-marks-direct-speech-period-inside",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-11",
@@ -946,7 +978,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "We Have Class On Monday." },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "Capitalize days of the week, and only capitalize the first word of the sentence.",
+	            explanation:
+	                "Capitalize days of the week and only the first word of the sentence.",
+	            skillTag: "capitalization-days-of-week",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-12",
@@ -957,7 +992,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "I Like spring and fall." },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "Seasons are not capitalized in English (unless they start a sentence).",
+	            explanation:
+	                "Seasons are not capitalized in English unless they start a sentence.",
+	            skillTag: "capitalization-seasons-lowercase",
+	            difficulty: "easy",
 	        },
 	        {
 	            id: "quiz-13",
@@ -968,7 +1006,10 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "the nurses station" },
 	            ],
 	            correctAnswer: "b",
-	            explanation: "Plural nouns ending in -s add an apostrophe after the s: nurses' station.",
+	            explanation:
+	                "Plural nouns ending in -s add an apostrophe after the s for possession: nurses' station.",
+	            skillTag: "apostrophe-plural-possession-nurses",
+	            difficulty: "medium",
 	        },
 	        {
 	            id: "quiz-14",
@@ -979,18 +1020,108 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                { value: "c", label: "its'" },
 	            ],
 	            correctAnswer: "a",
-	            explanation: "'Its' is possessive (belongs to the bus). 'It's' means 'it is'.",
+	            explanation:
+	                "'Its' is possessive and means the route belongs to the bus. 'It's' means 'it is'.",
+	            skillTag: "apostrophe-its-possessive-thing",
+	            difficulty: "medium",
 	        },
 	        {
 	            id: "quiz-15",
-	            question: "You email your supervisor. Which ending punctuation is most professional?",
+	            question:
+	                "You email your supervisor. Which ending punctuation is most professional?",
 	            options: [
 	                { value: "a", label: "Please call me!" },
 	                { value: "b", label: "Please call me." },
 	                { value: "c", label: "Please call me??" },
 	            ],
 	            correctAnswer: "b",
-	            explanation: "In professional writing, use periods for a calm, clear tone. Avoid extra punctuation like '!!' or '??'.",
+	            explanation:
+	                "In professional writing, use periods for a calm, clear tone. Avoid extra punctuation like exclamation points or double question marks.",
+	            skillTag: "tone-professional-ending-punctuation",
+	            difficulty: "medium",
 	        },
 	    ],
+
+	    /*
+	    TEACHER DIAGNOSTIC NOTES – Punctuation and Capitalization Mini Quiz
+
+	    This mini quiz checks whether students can:
+	    - Use commas correctly in lists, after introductory phrases, and in compound sentences.
+	    - Use apostrophes correctly for contractions, regular plural possession, and irregular plural possession.
+	    - Distinguish between its and it's in different contexts.
+	    - Apply capitalization rules for proper nouns, cities and states, days, seasons, and school names.
+	    - Choose correct end punctuation for indirect questions and professional emails.
+	    - Use quotation marks correctly for direct speech.
+
+	    Skill tags:
+
+	    Commas
+	    - comma-compound-fanboys
+	    - comma-list-items
+	    - comma-after-intro-phrase
+
+	    Apostrophes
+	    - apostrophe-contraction-plus-possession
+	    - apostrophe-irregular-plural-childrens
+	    - apostrophe-its-vs-its
+	    - apostrophe-plural-possession-nurses
+	    - apostrophe-its-possessive-thing
+
+	    Capitalization
+	    - capitalization-proper-nouns-school-language
+	    - capitalization-city-state-comma
+	    - capitalization-days-of-week
+	    - capitalization-seasons-lowercase
+
+	    End punctuation and tone
+	    - end-punctuation-indirect-question
+	    - tone-professional-ending-punctuation
+
+	    Quotation marks
+	    - quotation-marks-direct-speech-period-inside
+
+	    How to read the diagnostics:
+	    - If comma tags are weak (comma-compound-fanboys, comma-list-items, comma-after-intro-phrase) →
+	      Go back to the three core patterns:
+	      • Lists: item, item, and item.
+	      • Intro phrase + comma: After work, I take the Blue Line.
+	      • Compound sentence: sentence, but sentence.
+	      Have students read sentences out loud and raise a hand where they feel a natural pause. Then show that most natural pauses are commas, not random.
+
+	    - If apostrophe tags are weak (apostrophe-contraction-plus-possession, apostrophe-irregular-plural-childrens, apostrophe-plural-possession-nurses, apostrophe-its-vs-its, apostrophe-its-possessive-thing) →
+	      Build a simple chart:
+	      • Contractions: it is → it's, that is → that's.
+	      • Singular possession: doctor's office.
+	      • Plural possession: nurses' station.
+	      • Irregular plural possession: children's toys, women's clothing.
+	      • Its vs it's: its tail (belongs to it) versus it's raining (it is raining).
+	      Give quick correction drills with real phrases from class or workplace English.
+
+	    - If capitalization tags are weak (capitalization-proper-nouns-school-language, capitalization-city-state-comma, capitalization-days-of-week, capitalization-seasons-lowercase) →
+	      Rebuild the capitalization list:
+	      • Always: first word of sentences, I, names of people, cities, countries, languages, schools, organizations, days and months.
+	      • Not usually: seasons, jobs, school subjects except languages.
+	      Use student information sheets. Have them write three sentences about themselves and then edit only for capital letters.
+
+	    - If end punctuation and tone tags are weak (end-punctuation-indirect-question, tone-professional-ending-punctuation) →
+	      Contrast pairs:
+	      • Direct question: Where do you live?
+	      • Indirect: I wonder where you live.
+	      Have students transform questions into indirect statements and choose period versus question mark.
+	      For tone, compare email endings: Please call me. versus Please call me!! and talk about how the punctuation changes the feeling.
+
+	    - If quotation mark tags are weak (quotation-marks-direct-speech-period-inside) →
+	      Use color to separate the reporting verb from the quote:
+	      • The teacher said, "Bring your notebook."
+	      Show that:
+	      • Commas and periods stay inside the quotes in American English.
+	      • Capitalize the first word inside the quotation when it is a full sentence.
+
+	    Suggested use:
+	    - Use this mini quiz after students have worked through the end punctuation, commas, apostrophes, capitalization, and quotation mark sections.
+	    - At the class level:
+	      • If commas and apostrophes are red, slow down and do short daily editing warm ups with one or two sentences.
+	      • If capitalization is red, have students rewrite a short paragraph with no capital letters and fix it together.
+	      • If punctuation and tone are red, practice rewriting texts and WhatsApp messages into more professional email style.
+	    */
 };

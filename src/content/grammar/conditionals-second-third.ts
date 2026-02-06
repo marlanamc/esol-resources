@@ -736,7 +736,9 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Second conditional is for unreal or unlikely situations in the present or future: dreams, wishes, advice (If I won the lottery..., If I were you...).",
+                "Second conditional is for unreal or unlikely situations in the present or future: dreams, wishes, hypotheticals, and advice (If I won the lottery..., If I were you...).",
+            skillTag: "use-second-conditional-unreal-present-future",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -748,11 +750,13 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Third conditional uses 'if + past perfect, would have + past participle' for reflecting on past situations.",
+                "Third conditional uses 'if + past perfect' and 'would have + past participle' to talk about unreal past situations and their imagined results.",
+            skillTag: "form-third-conditional-structure",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
-            question: "Which is correct?",
+            question: "Which is correct for giving advice?",
             options: [
                 { value: "a", label: "If I was you, I would study harder." },
                 { value: "b", label: "If I were you, I would study harder." },
@@ -760,7 +764,9 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Always use 'were' (not 'was') in second conditional for all subjects: 'If I were you'.",
+                "In second conditional with 'be', we usually use 'were' for all subjects: If I were you, If he were here, If she were taller.",
+            skillTag: "form-second-conditional-were-not-was",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
@@ -772,7 +778,9 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Third conditional = if + past perfect (had had), would have + past participle (would have traveled). This is past reflection.",
+                "Third conditional = if + past perfect (had had), would have + past participle (would have traveled). It is about an unreal past and its imagined result.",
+            skillTag: "tense-id-third-conditional",
+            difficulty: "medium",
         },
         {
             id: "quiz-5",
@@ -784,7 +792,9 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Yes! Could = ability/possibility, might = less certain. Works in both second and third conditionals.",
+                "Yes. In second and third conditionals, 'could' shows ability/possibility and 'might' shows a less certain, maybe result.",
+            skillTag: "modal-variations-second-third-conditionals",
+            difficulty: "medium",
         },
         {
             id: "quiz-6",
@@ -796,19 +806,23 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation:
-                "Never use 'would' in the IF clause! Second conditional = if + past simple, would + verb.",
+                "Never use 'would' in the IF clause. Second conditional = if + past simple, would + base verb.",
+            skillTag: "error-would-in-if-clause-second",
+            difficulty: "medium",
         },
         {
             id: "quiz-7",
             question: "What's wrong with this sentence? 'If I had studied, I would passed.'",
             options: [
                 { value: "a", label: "Nothing, it's correct" },
-                { value: "b", label: "Missing 'have' - should be 'would have passed'" },
+                { value: "b", label: "Missing 'have' - it should be 'would have passed'" },
                 { value: "c", label: "Should use 'will' instead of 'would'" },
             ],
             correctAnswer: "b",
             explanation:
-                "Third conditional result clause needs: would have + past participle. Correct: 'If I had studied, I would have passed.'",
+                "Third conditional result clauses need 'would have + past participle': If I had studied, I would have passed.",
+            skillTag: "error-missing-have-third-conditional",
+            difficulty: "medium",
         },
         {
             id: "quiz-8",
@@ -816,11 +830,53 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             options: [
                 { value: "a", label: "First conditional (real future possibility)" },
                 { value: "b", label: "Second conditional (unreal present/future)" },
-                { value: "c", label: "Third conditional (past reflection)" },
+                { value: "c", label: "Third conditional (unreal past)" },
             ],
             correctAnswer: "a",
             explanation:
-                "This is FIRST conditional (not second or third). First = real future possibility with will. Second would be 'If it rained, I would stay home' (unlikely). Third would be 'If it had rained, I would have stayed home' (past).",
+                "This is FIRST conditional: real future possibility with 'if + present, will + verb'. Second would be 'If it rained, I would stay home' (unreal). Third would be 'If it had rained, I would have stayed home' (past reflection).",
+            skillTag: "contrast-first-vs-second-vs-third-conditional",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Second & Third Conditionals Mini Quiz
+
+    This mini quiz checks whether students can:
+    - Distinguish when to use second vs third conditional.
+    - Use the correct structures (form) for each type.
+    - Avoid the most common conditional errors.
+    - Recognize how modals (could/might) change meaning.
+    - Tell the difference between first, second, and third conditional.
+
+    Skill tags:
+
+    Use & meaning:
+    - use-second-conditional-unreal-present-future
+    - tense-id-third-conditional
+    - contrast-first-vs-second-vs-third-conditional
+
+    Form:
+    - form-third-conditional-structure
+    - form-second-conditional-were-not-was
+
+    Modal variations:
+    - modal-variations-second-third-conditionals
+
+    Common error patterns:
+    - error-would-in-if-clause-second
+    - error-missing-have-third-conditional
+
+    How to read the diagnostics:
+    - If second-conditional use tags are weak → Revisit the idea that second conditional is UNREAL or UNLIKELY now / in the future. Contrast real future (first: If it rains, I will…) with unreal (second: If it rained, I would…).
+    - If third-conditional structure tags are weak → Go back to the formula strip: IF + had + past participle / WOULD HAVE + past participle. Build color-coded sentence halves and have students match beginnings and endings.
+    - If 'were' form tags are weak → Drill "If I were you…" and a few other examples. Have students correct sentences with "If I was you" into "If I were you".
+    - If modal-variation tags are weak → Show parallel sentences with would / could / might and ask: Is this certain, possible, or less certain? (would = likely, could = ability/possibility, might = maybe).
+    - If 'would in IF clause' error tags appear → Do a quick error-hunt activity using wrong sentences (If I would have more time…) and fix them to If I had more time….
+    - If 'missing have' error tags appear → Focus on the result clause only: would have + past participle. Practice swapping verbs into the frame: would have passed, would have called, would have helped.
+
+    Suggested use:
+    - Use this mini quiz after students have seen both second and third conditionals with examples.
+    - If many students miss both second- and third-conditional questions, teach one at a time again (for example, review only second conditional with advice and dreams, then come back to third conditional with past regrets).
+    */
 };

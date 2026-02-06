@@ -516,173 +516,246 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
         },
     ],
 
-	    miniQuiz: [
-	        {
-	            id: "quiz-1",
-	            question: "Which tense do you use MOST often in everyday conversation?",
+    miniQuiz: [
+        {
+            id: "quiz-1",
+            question: "Which tense do you use MOST often in everyday conversation?",
             options: [
                 { value: "a", label: "Future Perfect Continuous" },
                 { value: "b", label: "Present Simple" },
                 { value: "c", label: "Past Perfect Continuous" },
             ],
             correctAnswer: "b",
-            explanation: "Present Simple is the most common - you use it for current facts, habits, and routines every single day!",
+            explanation: "Present Simple is the most common tense for everyday facts, habits, and routines.",
+            skillTag: "meta-tense-frequency-present-simple",
+            difficulty: "easy",
         },
-	        {
-	            id: "quiz-2",
-	            question: 'What tense is this: "I have been working at this clinic for 5 years"?',
-	            options: [
-	                { value: "a", label: "Present Perfect" },
-	                { value: "b", label: "Present Perfect Continuous" },
-	                { value: "c", label: "Past Perfect Continuous" },
-	            ],
-	            correctAnswer: "b",
-	            explanation: "Present Perfect Continuous: have/has been + verb-ing. It emphasizes the duration (5 years) from past until now.",
-	        },
+        {
+            id: "quiz-2",
+            question: 'What tense is this: "I have been working at this clinic for 5 years"?',
+            options: [
+                { value: "a", label: "Present Perfect" },
+                { value: "b", label: "Present Perfect Continuous" },
+                { value: "c", label: "Past Perfect Continuous" },
+            ],
+            correctAnswer: "b",
+            explanation: "Present Perfect Continuous: have/has been + verb-ing. It emphasizes the duration from past until now.",
+            skillTag: "tense-id-present-perfect-continuous",
+            difficulty: "easy",
+        },
         {
             id: "quiz-3",
-            question: 'Which tense is this: "I was sleeping when the phone rang"?',
+            question: 'What tense is this: "I was sleeping when the phone rang"?',
             options: [
                 { value: "a", label: "Past Simple" },
                 { value: "b", label: "Past Continuous" },
                 { value: "c", label: "Past Perfect" },
             ],
             correctAnswer: "b",
-            explanation: "Past Continuous ('was sleeping') shows an ongoing action interrupted by a past simple event ('rang').",
+            explanation: "Past Continuous (was/were + verb-ing) shows an ongoing action interrupted by a past simple event.",
+            skillTag: "tense-id-past-continuous",
+            difficulty: "easy",
         },
         {
             id: "quiz-4",
             question: "How many verb tenses should you be able to USE confidently for ESOL Level 3?",
             options: [
                 { value: "a", label: "All 12 tenses" },
-                { value: "b", label: "7-8 tenses (simple, continuous, and perfect)" },
+                { value: "b", label: "7–8 tenses (simple, continuous, and perfect)" },
                 { value: "c", label: "Only 3 tenses (past, present, future simple)" },
             ],
             correctAnswer: "b",
-            explanation: "You should confidently USE 7-8 tenses. The other 4-5 you just need to recognize when you hear them. That's excellent for Level 3!",
+            explanation: "At this level, you use simple, continuous, and perfect tenses confidently and just recognize the rest.",
+            skillTag: "meta-esol-level-3-tense-expectation",
+            difficulty: "easy",
         },
-	        {
-	            id: "quiz-5",
-	            question:
-	                'In this story, how many different tenses are used? "I moved to East Boston three years ago. I have been working at a clinic since then. Next year, I will apply for nursing school."',
-	            options: [
-	                { value: "a", label: "2 tenses" },
-	                { value: "b", label: "3 tenses" },
-	                { value: "c", label: "4 tenses" },
-	            ],
-	            correctAnswer: "b",
-	            explanation:
-	                "3 tenses: Past Simple (moved), Present Perfect Continuous (have been working), and Future Simple (will apply). Mixing tenses helps you tell a complete story.",
-	        },
-	        {
-	            id: "quiz-6",
-	            question: 'What tense is this: "She takes the subway to work every morning"?',
-	            options: [
-	                { value: "a", label: "Present Simple" },
-	                { value: "b", label: "Present Continuous" },
-	                { value: "c", label: "Past Simple" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Present Simple describes habits and routines (every morning).",
-	        },
-	        {
-	            id: "quiz-7",
-	            question: "Complete: 'Right now, we ___ for the bus.'",
-	            options: [
-	                { value: "a", label: "wait" },
-	                { value: "b", label: "are waiting" },
-	                { value: "c", label: "waited" },
-	            ],
-	            correctAnswer: "b",
-	            explanation: "Use Present Continuous (am/is/are + verb-ing) for something happening right now.",
-	        },
-	        {
-	            id: "quiz-8",
-	            question: 'What tense is this: "I am meeting my caseworker tomorrow"?',
-	            options: [
-	                { value: "a", label: "Present Continuous (future plan)" },
-	                { value: "b", label: "Future Perfect" },
-	                { value: "c", label: "Past Continuous" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Present Continuous can describe a scheduled future plan: 'I am meeting...' tomorrow.",
-	        },
-	        {
-	            id: "quiz-9",
-	            question: 'What tense is this: "I have lived in this apartment since 2021"?',
-	            options: [
-	                { value: "a", label: "Present Perfect" },
-	                { value: "b", label: "Past Simple" },
-	                { value: "c", label: "Future Simple" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Present Perfect (have/has + past participle) connects the past to now: since 2021 until today.",
-	        },
-	        {
-	            id: "quiz-10",
-	            question: 'What tense is this: "When I got home, my roommate had already cooked dinner"?',
-	            options: [
-	                { value: "a", label: "Past Perfect" },
-	                { value: "b", label: "Past Continuous" },
-	                { value: "c", label: "Present Perfect" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Past Perfect (had + past participle) shows one past action happened before another past action.",
-	        },
-	        {
-	            id: "quiz-11",
-	            question: 'What tense is this: "I had been waiting for two hours when they called my name"?',
-	            options: [
-	                { value: "a", label: "Past Perfect Continuous" },
-	                { value: "b", label: "Present Perfect Continuous" },
-	                { value: "c", label: "Future Continuous" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Past Perfect Continuous (had been + verb-ing) emphasizes duration before a past moment.",
-	        },
-	        {
-	            id: "quiz-12",
-	            question: "Complete: 'By next summer, I ___ here for two years.'",
-	            options: [
-	                { value: "a", label: "will live" },
-	                { value: "b", label: "will have lived" },
-	                { value: "c", label: "have lived" },
-	            ],
-	            correctAnswer: "b",
-	            explanation: "Future Perfect (will have + past participle) shows something will be completed by a future time.",
-	        },
-	        {
-	            id: "quiz-13",
-	            question: "Complete: 'At 3 p.m. tomorrow, I ___ in class.'",
-	            options: [
-	                { value: "a", label: "will be sitting" },
-	                { value: "b", label: "am sitting" },
-	                { value: "c", label: "sat" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Future Continuous (will be + verb-ing) describes an action in progress at a future time.",
-	        },
-	        {
-	            id: "quiz-14",
-	            question: "Complete: 'If I ___ early, I will catch the train.'",
-	            options: [
-	                { value: "a", label: "leave" },
-	                { value: "b", label: "will leave" },
-	                { value: "c", label: "left" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "In an if-clause about the future, use Present Simple: If I leave..., I will catch....",
-	        },
-	        {
-	            id: "quiz-15",
-	            question: "Which formula is correct for Present Perfect?",
-	            options: [
-	                { value: "a", label: "have/has + past participle" },
-	                { value: "b", label: "was/were + verb-ing" },
-	                { value: "c", label: "will have been + verb-ing" },
-	            ],
-	            correctAnswer: "a",
-	            explanation: "Present Perfect uses have/has + past participle (e.g., 'I have finished').",
-	        },
-	    ],
+        {
+            id: "quiz-5",
+            question:
+                'In this story, how many different tenses are used? "I moved to East Boston three years ago. I have been working at a clinic since then. Next year, I will apply for nursing school."',
+            options: [
+                { value: "a", label: "2 tenses" },
+                { value: "b", label: "3 tenses" },
+                { value: "c", label: "4 tenses" },
+            ],
+            correctAnswer: "b",
+            explanation:
+                "There are 3 tenses: Past Simple (moved), Present Perfect Continuous (have been working), and Future Simple (will apply).",
+            skillTag: "timeline-mixed-tenses-identification",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-6",
+            question: 'What tense is this: "She takes the subway to work every morning"?',
+            options: [
+                { value: "a", label: "Present Simple" },
+                { value: "b", label: "Present Continuous" },
+                { value: "c", label: "Past Simple" },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Simple describes habits and routines (every morning).",
+            skillTag: "tense-id-present-simple",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-7",
+            question: "Complete: \"Right now, we ___ for the bus.\"",
+            options: [
+                { value: "a", label: "wait" },
+                { value: "b", label: "are waiting" },
+                { value: "c", label: "waited" },
+            ],
+            correctAnswer: "b",
+            explanation: "Use Present Continuous (am/is/are + verb-ing) for actions happening right now.",
+            skillTag: "tense-choice-present-continuous-now",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-8",
+            question: 'What tense is this: "I am meeting my caseworker tomorrow"?',
+            options: [
+                { value: "a", label: "Present Continuous (future plan)" },
+                { value: "b", label: "Future Perfect" },
+                { value: "c", label: "Past Continuous" },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Continuous can describe a scheduled future plan when you add a future time word.",
+            skillTag: "future-forms-present-continuous-schedule",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-9",
+            question: 'What tense is this: "I have lived in this apartment since 2021"?',
+            options: [
+                { value: "a", label: "Present Perfect" },
+                { value: "b", label: "Past Simple" },
+                { value: "c", label: "Future Simple" },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect (have/has + past participle) connects the past (since 2021) to now.",
+            skillTag: "tense-id-present-perfect",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-10",
+            question: 'What tense is this: "When I got home, my roommate had already cooked dinner"?',
+            options: [
+                { value: "a", label: "Past Perfect" },
+                { value: "b", label: "Past Continuous" },
+                { value: "c", label: "Present Perfect" },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Perfect (had + past participle) shows one past action happened before another past action.",
+            skillTag: "tense-id-past-perfect",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-11",
+            question: 'What tense is this: "I had been waiting for two hours when they called my name"?',
+            options: [
+                { value: "a", label: "Past Perfect Continuous" },
+                { value: "b", label: "Present Perfect Continuous" },
+                { value: "c", label: "Future Continuous" },
+            ],
+            correctAnswer: "a",
+            explanation: "Past Perfect Continuous (had been + verb-ing) emphasizes duration before a past moment.",
+            skillTag: "tense-id-past-perfect-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-12",
+            question: "Complete: \"By next summer, I ___ here for two years.\"",
+            options: [
+                { value: "a", label: "will live" },
+                { value: "b", label: "will have lived" },
+                { value: "c", label: "have lived" },
+            ],
+            correctAnswer: "b",
+            explanation: "Future Perfect (will have + past participle) shows something will be completed by a future time.",
+            skillTag: "form-future-perfect",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-13",
+            question: "Complete: \"At 3 p.m. tomorrow, I ___ in class.\"",
+            options: [
+                { value: "a", label: "will be sitting" },
+                { value: "b", label: "am sitting" },
+                { value: "c", label: "sat" },
+            ],
+            correctAnswer: "a",
+            explanation: "Future Continuous (will be + verb-ing) describes an action in progress at a future time.",
+            skillTag: "form-future-continuous",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-14",
+            question: "Complete: \"If I ___ early, I will catch the train.\"",
+            options: [
+                { value: "a", label: "leave" },
+                { value: "b", label: "will leave" },
+                { value: "c", label: "left" },
+            ],
+            correctAnswer: "a",
+            explanation: "In a real future conditional, the if-clause uses Present Simple, and the result clause uses will + verb.",
+            skillTag: "conditional-first-if-clause-form",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-15",
+            question: "Which formula is correct for Present Perfect?",
+            options: [
+                { value: "a", label: "have/has + past participle" },
+                { value: "b", label: "was/were + verb-ing" },
+                { value: "c", label: "will have been + verb-ing" },
+            ],
+            correctAnswer: "a",
+            explanation: "Present Perfect uses have/has + past participle (for example, 'I have finished').",
+            skillTag: "form-present-perfect",
+            difficulty: "easy",
+        },
+    ],
+
+    /*
+    TEACHER DIAGNOSTIC NOTES – All Verb Tenses Overview Mini Quiz
+
+    This mini quiz checks big-picture understanding of the tense system, not just one tense.
+
+    Skills and tags:
+
+    Meta / overview:
+    - meta-tense-frequency-present-simple
+    - meta-esol-level-3-tense-expectation
+
+    Tense identification:
+    - tense-id-present-simple
+    - tense-id-past-continuous
+    - tense-id-present-perfect
+    - tense-id-present-perfect-continuous
+    - tense-id-past-perfect
+    - tense-id-past-perfect-continuous
+
+    Timeline and mixing:
+    - timeline-mixed-tenses-identification
+    - future-forms-present-continuous-schedule
+
+    Form knowledge:
+    - form-present-perfect
+    - form-future-perfect
+    - form-future-continuous
+
+    Conditional control:
+    - conditional-first-if-clause-form
+
+    Reteaching guidance:
+    - If tense-ID tags are weak → go back to the timeline table near the top of the guide and practice matching example sentences to the 12 boxes.
+    - If timeline-mixed-tenses-identification is weak → have students color-code past, present, and future verbs in short stories and label the tenses.
+    - If future form tags are weak → contrast "will" (decision/prediction) with Present Continuous for scheduled plans and Future Perfect/Continuous for milestones.
+    - If form tags are weak → build a one-page formula chart (tense, formula, example) and use it as a reference during speaking and writing.
+    - If conditional-first-if-clause-form is weak → drill short patterns: "If I leave early, I will..." / "If it rains, we will..." and highlight Present Simple in the if-clause.
+
+    Suggested use:
+    - Use this mini quiz at the end of the course as a quick diagnostic of overall tense awareness.
+    - If multiple tags show low performance, choose ONE focus area (for example, tense identification, future forms, or conditionals) for a short review lesson before presentations.
+    */
 };
