@@ -199,12 +199,24 @@ export const TodaysAssignments: React.FC<Props> = ({
             return { assignment, submission, isCompleted, displayTitle, categoryStyle, dueLabel, progressValue, index };
         });
 
+        const getCategoryPriority = (category?: string | null): number => {
+            const key = (category || '').toLowerCase();
+            if (key === 'quiz' || key === 'quizzes') return 0;
+            if (key === 'grammar') return 2;
+            if (key === 'vocab' || key === 'vocabulary') return 3;
+            return 1; // Activity (default) and everything else
+        };
+
         const sortedRows = [...rows].sort((a, b) => {
             if (a.isCompleted !== b.isCompleted) {
                 return a.isCompleted ? 1 : -1;
             }
 
             if (!a.isCompleted) {
+                const aPriority = getCategoryPriority(a.assignment.activity.category);
+                const bPriority = getCategoryPriority(b.assignment.activity.category);
+                if (aPriority !== bPriority) return aPriority - bPriority;
+
                 const getDateFromTitle = (title: string) => {
                     const match = title.match(/(\d{1,2})\/(\d{1,2})\/(\d{2})/);
                     if (!match) return null;
