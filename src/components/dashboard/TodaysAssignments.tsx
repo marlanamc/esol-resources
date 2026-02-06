@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 
 interface FeaturedAssignment {
     id: string;
@@ -191,7 +192,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 assignment.progressStatus === 'completed' ||
                 !!submission?.completedAt;
             const rawTitle = assignment.title || assignment.activity.title;
-            const displayTitle = rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide');
+            const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
             const categoryStyle = getCategoryStyle(assignment.activity.category);
             const dueLabel = formatDueDate(assignment.dueDate);
 
@@ -315,9 +316,28 @@ export const TodaysAssignments: React.FC<Props> = ({
                                                     </span>
                                                 )}
                                             </div>
-                                            <div className={`text-base sm:text-lg font-bold font-display leading-snug truncate transition-colors ${isCompleted ? 'text-text/60 line-through decoration-secondary/40' : 'text-text group-hover:text-primary'}`}>
+                                            <div className={`text-base sm:text-lg font-bold font-display leading-snug break-words transition-colors ${isCompleted ? 'text-text/60 line-through decoration-secondary/40' : 'text-text group-hover:text-primary'}`}>
                                                 {displayTitle}
                                             </div>
+                                            
+                                            {/* Vocab Activity Chip - show only the type for this activity */}
+                                            {(() => {
+                                                const vocabType = getVocabActivityType(assignment.activityId);
+                                                if (!vocabType) return null;
+                                                const chip = VOCAB_CHIP_CONFIG[vocabType];
+                                                const qs = assignment.id ? `?assignment=${assignment.id}` : '';
+                                                return (
+                                                    <div className="flex flex-nowrap gap-2 mt-2 pb-1">
+                                                        <Link
+                                                            href={`/activity/${assignment.activityId}${qs}`}
+                                                            className={`shrink-0 inline-flex items-center px-2 py-1 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 whitespace-nowrap ${chip.className}`}
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            {chip.icon} {chip.label}
+                                                        </Link>
+                                                    </div>
+                                                );
+                                            })()}
                                         </div>
                                     </div>
 
@@ -353,7 +373,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                     const isCompleted = submission?.completedAt;
                     const categoryStyle = getCategoryStyle(assignment.activity.category);
                     const rawTitle = assignment.title || assignment.activity.title;
-                    const displayTitle = rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide');
+                    const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
 
                     return (
                         <div
@@ -396,6 +416,25 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     <h3 className="text-base sm:text-lg font-bold text-text group-hover:text-primary transition-colors font-display leading-snug">
                                         {displayTitle}
                                     </h3>
+
+                                    {/* Vocab Activity Chip - show only the type for this activity */}
+                                    {(() => {
+                                        const vocabType = getVocabActivityType(assignment.activityId);
+                                        if (!vocabType) return null;
+                                        const chip = VOCAB_CHIP_CONFIG[vocabType];
+                                        const qs = assignment.id ? `?assignment=${assignment.id}` : '';
+                                        return (
+                                            <div className="flex flex-wrap gap-2 mt-3 mb-1">
+                                                <Link
+                                                    href={`/activity/${assignment.activityId}${qs}`}
+                                                    className={`inline-flex items-center px-2 py-1 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
+                                                    onClick={(e) => e.stopPropagation()}
+                                                >
+                                                    {chip.icon} {chip.label}
+                                                </Link>
+                                            </div>
+                                        );
+                                    })()}
                                 </div>
 
                                 {/* CTA Button */}

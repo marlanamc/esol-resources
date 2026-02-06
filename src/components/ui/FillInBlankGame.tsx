@@ -291,6 +291,8 @@ function XIcon({ className }: { className?: string }) {
 // Parse the content string into questions
 function parseQuestions(content: string): FillInBlankQuestion[] {
     const questions: FillInBlankQuestion[] = [];
+    
+    // 1. Try resolving standard format
     const blocks = content.trim().split(/\n\n+/);
 
     let id = 1;
@@ -319,5 +321,102 @@ function parseQuestions(content: string): FillInBlankQuestion[] {
         }
     }
 
+    if (questions.length > 0) return questions;
+
+    // 2. Fallback: Try generating from Vocab List (Term - Definition - Example)
+    return parseVocabToQuestions(content);
+}
+
+function parseVocabToQuestions(content: string): FillInBlankQuestion[] {
+    const questions: FillInBlankQuestion[] = [];
+    const lines = content.split("\n").map(l => l.trim()).filter(Boolean);
+    
+    interface VocabItem {
+        term: string;
+        definition: string;
+        example?: string;
+    }
+    
+    const items: VocabItem[] = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        let term = "";
+        let definition = "";
+
+        // Parse Term line
+        if (line.includes("::")) {
+            const parts = line.split("::");
+            term = parts[0].trim();
+            definition = parts[1]?.trim() || "";
+        } else if (line.includes("—")) {
+             // Term — Definition
+             const clean = line.replace(/^\d+\)\s*/, "");
+             const parts = clean.split("—");
+             term = parts[0].trim();
+             definition = parts.slice(1).join("—").trim();
+        } else if (line.match(/^\d+\)\s*.+\s+-\s+.+$/)) {
+             // Term - Definition
+             const clean = line.replace(/^\d+\)\s*/, "");
+             const dashIdx = clean.indexOf("-");
+             term = clean.substring(0, dashIdx).trim();
+             definition = clean.substring(dashIdx + 1).trim();
+        }
+        
+        if (!term) continue;
+
+        // Simplify term (remove PoS)
+        term = term.replace(/\s*\([^)]+\)$/, "").trim();
+        
+        // Look for Example in next line
+        let example: string | undefined;
+        if (lines[i+1] && lines[i+1].toLowerCase().startsWith("example:")) {
+            example = lines[i+1].replace(/^example:\s*/i, "").trim();
+            i++; // skip next line
+        }
+        
+        items.push({ term, definition, example });
+    }
+    
+    // Generate questions
+    const terms = items.map(i => i.term);
+    let id = 1;
+
+    for (const item of items) {
+        if (!item.example) continue;
+        
+        // Find term in example (case insensitive)
+        const regex = new RegExp(`\\b${escapeRegExp(item.term)}\\b`, "i");
+        if (!regex.test(item.example)) continue;
+        
+        const sentence = item.example.replace(regex, "_____");
+        
+        // Generate distractors
+        const otherTerms = terms.filter(t => t !== item.term);
+        const distractors = shuffleArray(otherTerms).slice(0, 3);
+        const options = shuffleArray([item.term, ...distractors]);
+        
+        questions.push({
+             id: id++,
+             sentence,
+             correctAnswer: item.term,
+             options,
+             explanation: `Definition: ${item.definition}`
+        });
+    }
+    
     return questions;
+}
+
+function escapeRegExp(string: string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function shuffleArray<T>(array: T[]): T[] {
+    const newArr = [...array];
+    for (let i = newArr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+    return newArr;
 }

@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -12,6 +12,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
   const ui = activity?.ui?.trim().toLowerCase();
   if (ui) {
     if (ui === "matching") return "matching";
+    if (ui === "word-list" || ui === "wordlist" || ui === "list") return "word-list";
     if (ui === "numbers" || ui === "numbers-game") return "numbers";
     if (ui === "fill-in-blank" || ui === "fillblank") return "fill-in-blank";
     if (ui === "flashcards" || ui === "flashcard") return "flashcards";

@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
+import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 
 interface Activity {
     id: string;
@@ -110,10 +111,12 @@ const parseWeekNumFromTitle = (title?: string | null): number | null => {
 };
 
 const displayTitle = (title: string) =>
-    title
-        .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
-        .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
-        .trim();
+    stripVocabTypeSuffix(
+        title
+            .replace(/\s*-\s*Complete Step-by-Step Guide\s*$/i, ' Guide')
+            .replace(/\s*-\s*Complete Guide\s*$/i, ' Guide')
+            .trim()
+    );
 
 const ActivityCard = React.memo(function ActivityCard({
     activity,
@@ -130,6 +133,7 @@ const ActivityCard = React.memo(function ActivityCard({
     defaultClassId,
 }: ActivityCardProps) {
     const [isReleasing, setIsReleasing] = React.useState(false);
+    const vocabType = getVocabActivityType(activity.id);
 
     const handleRelease = async () => {
         setIsReleasing(true);
@@ -157,17 +161,27 @@ const ActivityCard = React.memo(function ActivityCard({
                 <div className="flex-1 min-w-0">
                     <h4 className={`font-semibold group-hover:text-primary transition-colors truncate ${isFeatured ? 'text-accent' : 'text-text'
                         }`}>
-                        {activity.title}
+                        {displayTitle(activity.title)}
                     </h4>
                     <p className="text-sm text-text-muted line-clamp-2 mt-1 mb-3">
                         {activity.description}
                     </p>
-                    <div className="flex items-center gap-2 mb-3">
-                        <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
-                            {activity.type}
-                        </span>
-
-                    </div>
+                    {vocabType ? (
+                        <div className="flex flex-wrap gap-1.5 mb-3">
+                            <Link
+                                href={`/activity/${activity.id}`}
+                                className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                            >
+                                {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
+                            </Link>
+                        </div>
+                    ) : (
+                        <div className="flex items-center gap-2 mb-3">
+                            <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
+                                {activity.type}
+                            </span>
+                        </div>
+                    )}
                     <div className="flex gap-2">
                         <Link
                             href={`/activity/${activity.id}`}
