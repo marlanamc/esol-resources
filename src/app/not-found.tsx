@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { BackButton } from '@/components/ui/BackButton';
 
 export default function NotFound() {
     return (
@@ -20,12 +21,7 @@ export default function NotFound() {
                         >
                             Go to Dashboard
                         </Link>
-                        <Link
-                            href="/login"
-                            className="block w-full px-6 py-3 bg-white text-text font-semibold rounded-lg border-2 border-border hover:bg-bg-light transition-all"
-                        >
-                            Back to Login
-                        </Link>
+                        <BackButton href="/login" className="w-full justify-center">Back to Login</BackButton>
                     </div>
                 </div>
 

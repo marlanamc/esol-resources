@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
+import { BackButton } from "@/components/ui/BackButton";
 
 export default function GlobalError({
     error,
@@ -37,12 +37,7 @@ export default function GlobalError({
                     >
                         Try again
                     </button>
-                    <Link
-                        href="/dashboard"
-                        className="px-4 py-2 rounded-lg bg-white border border-border/60 text-text font-semibold hover:border-primary/40 transition"
-                    >
-                        Back to Dashboard
-                    </Link>
+                    <BackButton href="/dashboard">Back to Dashboard</BackButton>
                 </div>
 
                 {process.env.NODE_ENV !== "production" ? (

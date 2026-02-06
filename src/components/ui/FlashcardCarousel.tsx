@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
+import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 
 /**
@@ -185,13 +186,7 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
                 {/* Mobile: Progress row */}
                 <div className="flex items-center justify-between md:hidden">
                     <div className="flex items-center gap-2">
-                        <button
-                            onClick={() => window.history.back()}
-                            className="p-2 rounded-lg hover:bg-[var(--color-bg-light)] transition-colors"
-                            aria-label="Go back"
-                        >
-                            <XIcon className="w-6 h-6 text-[var(--color-text-muted)]" />
-                        </button>
+                        <BackButton onClick={() => window.history.back()} className="shrink-0" />
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {studiedCards.size} / {total} studied
                         </div>
@@ -489,15 +484,6 @@ function SettingsIcon({ className }: { className?: string }) {
             <path d="m4.93 4.93 4.24 4.24m5.66 5.66 4.24 4.24"/>
             <path d="M1 12h6m6 0h6"/>
             <path d="m4.93 19.07 4.24-4.24m5.66-5.66 4.24-4.24"/>
-        </svg>
-    );
-}
-
-function XIcon({ className }: { className?: string }) {
-    return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
     );
 }

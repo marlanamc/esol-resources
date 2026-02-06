@@ -3,7 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
-import { BottomNav } from "@/components/ui";
+import { BackButton, BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
@@ -167,15 +167,7 @@ export default async function ProfilePage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
                     {/* Header */}
                     <div className="mb-10 animate-fade-in">
-                        <Link
-                            href="/dashboard"
-                            className="inline-flex items-center text-sm font-medium text-text-muted hover:text-primary mb-6 transition-colors group"
-                        >
-                            <span className="w-8 h-8 rounded-full bg-white border border-border flex items-center justify-center mr-2 shadow-sm group-hover:scale-110 transition-transform">
-                                ←
-                            </span>
-                            Back to Dashboard
-                        </Link>
+                        <BackButton href="/dashboard" className="mb-6">Back to Dashboard</BackButton>
                         
                         <div className="flex flex-col md:flex-row items-center md:items-start gap-6 glass-card p-8 rounded-2xl relative overflow-hidden">
                             {/* Accent decoration */}
@@ -320,12 +312,7 @@ export default async function ProfilePage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24">
                 {/* Header */}
                 <div className="mb-8">
-                    <Link
-                        href="/dashboard"
-                        className="inline-flex items-center text-sm text-text-muted hover:text-primary mb-4 transition-colors"
-                    >
-                        ← Back to Dashboard
-                    </Link>
+                    <BackButton href="/dashboard" className="mb-4">Back to Dashboard</BackButton>
                     <div>
                         <h1 className="text-4xl font-bold text-text mb-2">
                             {user.name || 'Teacher Profile'}

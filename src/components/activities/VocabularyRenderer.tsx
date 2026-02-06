@@ -6,6 +6,7 @@ import { VocabularyContent, isVocabularyContent } from "@/types/activity";
 import FlashcardCarousel from "@/components/ui/FlashcardCarousel";
 import MatchingGame from "@/components/ui/MatchingGame";
 import FillInBlankGame from "@/components/ui/FillInBlankGame";
+import { BackButton } from "@/components/ui/BackButton";
 import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
 
 interface VocabularyRendererProps {
@@ -289,15 +290,10 @@ function ActivityMode({
         <div className="w-full">
             {/* Minimal back bar */}
             <div className="px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 border-b border-border/50">
-                <button
-                    onClick={onBack}
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-text-muted hover:text-text transition-colors"
-                >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
+                <BackButton onClick={onBack}>
                     <span className="hidden sm:inline">Back to activities</span>
-                </button>
+                    <span className="sm:hidden">Back</span>
+                </BackButton>
                 <span className="text-border">|</span>
                 <span className="text-sm font-medium text-text">{config.icon} {config.name}</span>
             </div>

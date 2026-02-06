@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import type { InteractiveGuideContent, FormulaPart, Exercise } from "@/types/activity";
+import { BackButton } from "@/components/ui/BackButton";
 
 interface Props {
     content: InteractiveGuideContent;
@@ -44,13 +45,10 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <div className="flex items-center gap-4">
                     {/* Back button - only on mobile when no onClose */}
                     {!onClose && (
-                        <button
+                        <BackButton
                             onClick={() => window.history.back()}
-                            className="p-2 -ml-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-primary transition-colors rounded-full hover:bg-primary/10 md:hidden"
-                            aria-label="Go back"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                        </button>
+                            className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center"
+                        />
                     )}
                     <h1 className="text-base sm:text-lg font-display font-bold text-text truncate max-w-md">
                         {title || "Grammar Presentation Mode"}

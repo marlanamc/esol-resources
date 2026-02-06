@@ -2,8 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
+import { BackButton } from "@/components/ui/BackButton";
 import SubmissionsList from "@/components/SubmissionsList";
 
 interface Props {
@@ -67,9 +67,7 @@ export default async function SubmissionsPage({ params }: Props) {
             <header className="bg-white shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     <div>
-                        <Link href={`/dashboard/classes/${id}`} className="text-indigo-600 hover:text-indigo-900 mb-2 inline-block">
-                            &larr; Back to Class
-                        </Link>
+                        <BackButton href={`/dashboard/classes/${id}`} className="mb-2">Back to Class</BackButton>
                         <h1 className="text-2xl font-bold text-gray-900">
                             Submissions: {assignment.title || assignment.activity.title}
                         </h1>
