@@ -591,7 +591,9 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "I teach my coworker how to use the printer yesterday." },
             ],
             correctAnswer: "b",
-            explanation: "Teach is irregular: teach → taught. The time word 'yesterday' signals Past Simple.",
+            explanation: "Teach is irregular: teach → taught. 'Yesterday' signals Past Simple.",
+            skillTag: "form-irregular-past",
+            difficulty: "easy",
         },
         {
             id: "quiz-2",
@@ -603,9 +605,50 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Finished past time ('last night') uses Past Simple: cleaned.",
+            skillTag: "form-regular-ed-spelling",
+            difficulty: "easy",
         },
         {
             id: "quiz-3",
+            question: "Which sentence correctly uses Past Simple with a verb ending in -e?",
+            options: [
+                { value: "a", label: "She arrived at the clinic on time." },
+                { value: "b", label: "She arriveed at the clinic on time." },
+                { value: "c", label: "She arrives at the clinic on time yesterday." },
+            ],
+            correctAnswer: "a",
+            explanation: "Arrive ends in -e, so we add -d: arrive → arrived.",
+            skillTag: "form-regular-ed-spelling",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-4",
+            question: "Choose the correct Past Simple spelling for a verb ending in -y.",
+            options: [
+                { value: "a", label: "He studyed for the driver test last weekend." },
+                { value: "b", label: "He studied for the driver test last weekend." },
+                { value: "c", label: "He studies for the driver test last weekend." },
+            ],
+            correctAnswer: "b",
+            explanation: "Study → studied (change y to i + ed).",
+            skillTag: "form-regular-y-ied",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-5",
+            question: "Choose the correct Past Simple spelling for a one-syllable CVC verb.",
+            options: [
+                { value: "a", label: "The bus stoped suddenly, so everyone held on." },
+                { value: "b", label: "The bus stopped suddenly, so everyone held on." },
+                { value: "c", label: "The bus stops suddenly, so everyone holds on." },
+            ],
+            correctAnswer: "b",
+            explanation: "Stop → stopped (double the final consonant + ed).",
+            skillTag: "form-regular-double-consonant",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-6",
             question: "Which negative sentence is correct (watch the main verb form)?",
             options: [
                 { value: "a", label: "I didn't went to the appointment." },
@@ -614,9 +657,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "After didn't, the main verb stays base form: didn't go (not didn't went).",
+            skillTag: "form-negative-didnt-base-verb",
+            difficulty: "easy",
         },
         {
-            id: "quiz-4",
+            id: "quiz-7",
             question: "Which question is correct in Past Simple?",
             options: [
                 { value: "a", label: "Did you paid the bill yesterday?" },
@@ -625,31 +670,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Questions use Did + subject + base verb: Did you pay…?",
+            skillTag: "form-question-did-subject-verb",
+            difficulty: "easy",
         },
         {
-            id: "quiz-5",
-            question: "Choose the correct Past Simple spelling for a verb ending in -y.",
-            options: [
-                { value: "a", label: "She studyed for the test last weekend." },
-                { value: "b", label: "She studied for the test last weekend." },
-                { value: "c", label: "She studies for the test last weekend." },
-            ],
-            correctAnswer: "b",
-            explanation: "Study → studied (change y to i + ed).",
-        },
-        {
-            id: "quiz-6",
-            question: "Choose the correct Past Simple spelling for a one-syllable CVC verb.",
-            options: [
-                { value: "a", label: "The bus stoped suddenly, so everyone held on." },
-                { value: "b", label: "The bus stopped suddenly, so everyone held on." },
-                { value: "c", label: "The bus stoped suddenly, so everyone holds on." },
-            ],
-            correctAnswer: "b",
-            explanation: "Stop → stopped (double the final consonant + ed).",
-        },
-        {
-            id: "quiz-7",
+            id: "quiz-8",
             question: "Choose the correct Past Simple form of 'be'.",
             options: [
                 { value: "a", label: "I was at the clinic yesterday afternoon." },
@@ -658,9 +683,11 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "a",
             explanation: "Past of 'be' is was/were: I was, you/we/they were.",
+            skillTag: "form-be-was-were",
+            difficulty: "easy",
         },
         {
-            id: "quiz-8",
+            id: "quiz-9",
             question: "Which sentence is best for a finished action with a clear past time?",
             options: [
                 { value: "a", label: "I have met my caseworker last Friday." },
@@ -669,20 +696,37 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "A specific finished time ('last Friday') uses Past Simple: met.",
+            skillTag: "meaning-finished-time",
+            difficulty: "medium",
         },
         {
-            id: "quiz-9",
-            question: "Which sentence correctly uses a time expression with Past Simple?",
+            id: "quiz-10",
+            question: "Which sentence correctly uses Past Simple with 'ago'?",
             options: [
                 { value: "a", label: "We called maintenance two days ago." },
                 { value: "b", label: "We have called maintenance two days ago." },
                 { value: "c", label: "We call maintenance two days ago." },
             ],
             correctAnswer: "a",
-            explanation: "'Two days ago' is a finished past time, so Past Simple is required: called.",
+            explanation: "'Ago' points to a finished past time, so Past Simple is correct: called.",
+            skillTag: "time-expression-ago",
+            difficulty: "easy",
         },
         {
-            id: "quiz-10",
+            id: "quiz-11",
+            question: "Which sentence describes a past habit that has ended?",
+            options: [
+                { value: "a", label: "I take the bus every day now." },
+                { value: "b", label: "I took the bus every day when I lived downtown." },
+                { value: "c", label: "I have taken the bus every day this week." },
+            ],
+            correctAnswer: "b",
+            explanation: "A past habit uses Past Simple with a finished time in the past: when I lived downtown.",
+            skillTag: "meaning-past-habit",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-12",
             question: "Which sentence correctly tells a short sequence of events?",
             options: [
                 { value: "a", label: "She was calling, then she was leaving a message, then she was going home." },
@@ -690,44 +734,52 @@ export const pastSimpleContent: InteractiveGuideContent = {
                 { value: "c", label: "She calls, leaves a message, and goes home." },
             ],
             correctAnswer: "b",
-            explanation: "Past Simple is the storytelling tense for finished steps in a story: called → left → went.",
-        },
-        {
-            id: "quiz-11",
-            question: "Pick the correct question with the verb 'take'.",
-            options: [
-                { value: "a", label: "Did you took the bus this morning?" },
-                { value: "b", label: "Did you take the bus this morning?" },
-                { value: "c", label: "Do you took the bus this morning?" },
-            ],
-            correctAnswer: "b",
-            explanation: "With did, use the base verb: did take (not did took).",
-        },
-        {
-            id: "quiz-12",
-            question: "Which sentence correctly uses Past Simple with 'ago'?",
-            options: [
-                { value: "a", label: "I moved here three years ago." },
-                { value: "b", label: "I have moved here three years ago." },
-                { value: "c", label: "I move here three years ago." },
-            ],
-            correctAnswer: "a",
-            explanation: "'Ago' points to a finished past time, so Past Simple is correct: moved.",
+            explanation: "Past Simple is the storytelling tense for finished steps: called → left → went.",
+            skillTag: "meaning-story-sequence",
+            difficulty: "medium",
         },
         {
             id: "quiz-13",
-            question: "Choose the correct Past Simple form of 'make'.",
+            question: "Choose the best sentence for a finished time in the past.",
             options: [
-                { value: "a", label: "He maked a mistake on the form." },
-                { value: "b", label: "He made a mistake on the form." },
-                { value: "c", label: "He makes a mistake on the form yesterday." },
+                { value: "a", label: "I have met my manager in 2022." },
+                { value: "b", label: "I met my manager in 2022." },
+                { value: "c", label: "I meet my manager in 2022." },
             ],
             correctAnswer: "b",
-            explanation: "Make is irregular: make → made.",
+            explanation: "A finished time ('in 2022') needs Past Simple: met.",
+            skillTag: "contrast-past-simple-present-perfect",
+            difficulty: "hard",
         },
         {
             id: "quiz-14",
-            question: "Which sentence correctly uses Past Simple in a negative?",
+            question: "Which sentence is correct with a finished past time?",
+            options: [
+                { value: "a", label: "We have paid the rent yesterday." },
+                { value: "b", label: "We paid the rent yesterday." },
+                { value: "c", label: "We pay the rent yesterday." },
+            ],
+            correctAnswer: "b",
+            explanation: "'Yesterday' is a finished time, so use Past Simple: paid.",
+            skillTag: "contrast-past-simple-present-perfect",
+            difficulty: "hard",
+        },
+        {
+            id: "quiz-15",
+            question: "Choose the correct sentence with an irregular past form.",
+            options: [
+                { value: "a", label: "He buyed a monthly pass last week." },
+                { value: "b", label: "He bought a monthly pass last week." },
+                { value: "c", label: "He buys a monthly pass last week." },
+            ],
+            correctAnswer: "b",
+            explanation: "Buy is irregular: buy → bought.",
+            skillTag: "error-detection-irregular-form",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-16",
+            question: "Which sentence is correct in a Past Simple negative?",
             options: [
                 { value: "a", label: "She didn't received the text." },
                 { value: "b", label: "She didn't receive the text." },
@@ -735,17 +787,62 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
             correctAnswer: "b",
             explanation: "Negative Past Simple is didn't + base verb: didn't receive.",
+            skillTag: "error-detection-didnt-verb2",
+            difficulty: "medium",
         },
         {
-            id: "quiz-15",
-            question: "When should you choose Past Simple instead of Present Perfect?",
+            id: "quiz-17",
+            question: "Which sentence correctly uses a time word like 'yesterday'?",
             options: [
-                { value: "a", label: "For a finished action in a finished time (yesterday, last week, in 2022)" },
-                { value: "b", label: "For a life experience with no time given" },
-                { value: "c", label: "For an action that started in the past and continues now" },
+                { value: "a", label: "My childcare starts yesterday." },
+                { value: "b", label: "My child’s childcare started yesterday." },
+                { value: "c", label: "My childcare has started yesterday." },
             ],
-            correctAnswer: "a",
-            explanation: "Past Simple is for finished actions in finished times; Present Perfect connects to now.",
+            correctAnswer: "b",
+            explanation: "'Yesterday' is a finished time, so use Past Simple: started.",
+            skillTag: "time-expression-last-yesterday",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-18",
+            question: "Which sentence best describes a finished action at a clear past time?",
+            options: [
+                { value: "a", label: "I have submitted the form on Monday." },
+                { value: "b", label: "I submitted the form on Monday." },
+                { value: "c", label: "I submit the form on Monday." },
+            ],
+            correctAnswer: "b",
+            explanation: "A specific finished time ('on Monday') needs Past Simple: submitted.",
+            skillTag: "meaning-finished-time",
+            difficulty: "medium",
         },
     ],
+    /*
+    TEACHER DIAGNOSTIC NOTES – Past Simple
+
+    Skill map by skillTag:
+    - form-irregular-past: questions 1
+    - form-regular-ed-spelling: questions 2, 3
+    - form-regular-y-ied: question 4
+    - form-regular-double-consonant: question 5
+    - form-negative-didnt-base-verb: question 6
+    - form-question-did-subject-verb: question 7
+    - form-be-was-were: question 8
+    - meaning-finished-time: questions 9, 18
+    - time-expression-ago: question 10
+    - meaning-past-habit: question 11
+    - meaning-story-sequence: question 12
+    - contrast-past-simple-present-perfect: questions 13, 14
+    - error-detection-irregular-form: question 15
+    - error-detection-didnt-verb2: question 16
+    - time-expression-last-yesterday: question 17
+
+    How to use this data:
+    - If many students miss "form-negative-didnt-base-verb" or "error-detection-didnt-verb2",
+      review negative form: subject + didn't + base verb, and correct errors like "didn't went".
+    - If scores are low on "contrast-past-simple-present-perfect", spend more time on
+      finished time expressions (yesterday, last week, in 2022) versus life experience or present relevance.
+    - If "meaning-story-sequence" is weak, practice short storytelling with ordered steps
+      using Past Simple verbs in sequence (first, then, after that).
+    */
 };
