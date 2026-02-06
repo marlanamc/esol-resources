@@ -5,6 +5,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { GradebookClient } from "./GradebookClient";
+import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 
 export default async function GradebookPage({
     searchParams,
@@ -104,20 +105,59 @@ export default async function GradebookPage({
         }
     });
 
-    // Get all submissions for these activities and students
-    const submissions = await prisma.submission.findMany({
+    // Fetch grammar guide submissions broadly, then remap legacy duplicate activity IDs
+    // to the canonical gradebook activity ID by normalized title.
+    const rawSubmissions = await prisma.submission.findMany({
         where: {
             userId: { in: studentIds },
-            activityId: { in: activitiesWithQuizzes.map(a => a.id) },
-            score: { not: null }
+            score: { not: null },
+            activity: {
+                category: "grammar",
+                type: "guide",
+            }
         },
         select: {
             userId: true,
             activityId: true,
             score: true,
-            updatedAt: true
+            updatedAt: true,
+            activity: {
+                select: {
+                    title: true,
+                }
+            }
         }
     });
+
+    const displayActivityIds = new Set(activitiesWithQuizzes.map((a) => a.id));
+    const displayIdByNormalizedTitle = new Map(
+        activitiesWithQuizzes.map((a) => [normalizeGuideTitle(a.title), a.id] as const)
+    );
+
+    // Keep only the newest score per (student + canonical activity).
+    const submissionByKey = new Map<string, { userId: string; activityId: string; score: number; updatedAt: Date }>();
+    for (const submission of rawSubmissions) {
+        if (submission.score === null) continue;
+
+        const canonicalActivityId = displayActivityIds.has(submission.activityId)
+            ? submission.activityId
+            : displayIdByNormalizedTitle.get(normalizeGuideTitle(submission.activity.title));
+
+        if (!canonicalActivityId) continue;
+
+        const key = `${submission.userId}:${canonicalActivityId}`;
+        const existing = submissionByKey.get(key);
+        if (!existing || submission.updatedAt > existing.updatedAt) {
+            submissionByKey.set(key, {
+                userId: submission.userId,
+                activityId: canonicalActivityId,
+                score: submission.score,
+                updatedAt: submission.updatedAt,
+            });
+        }
+    }
+
+    const submissions = Array.from(submissionByKey.values());
 
     return (
         <div className="min-h-screen bg-bg">

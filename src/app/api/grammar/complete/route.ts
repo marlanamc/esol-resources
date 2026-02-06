@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { awardPoints, updateStreak, checkAndAwardAchievements, POINTS } from "@/lib/gamification";
+import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -34,19 +35,25 @@ export async function POST(request: Request) {
     }
 
     const userId = session.user.id;
+    // Resolve to one canonical grammar guide ID so mini-quiz scores and question-level
+    // diagnostics are always saved under the same activity the gradebook displays.
+    const canonicalActivityId =
+        (await resolveCanonicalGrammarActivityId({ activityId, slug })) ||
+        activityId ||
+        slug;
     const reason = `grammar:${slug}`;
 
     // 1. Record the quiz score if provided
     if (score !== undefined && total !== undefined) {
         const percentage = Math.round((score / total) * 100);
 
-        // We use upsert here to maintain compatibility with the current unique constraint.
-        // This will store the LATEST score for the student.
+        // Upsert guarantees one submission row per user+activity (assignmentId=null)
+        // and updates it with the latest mini-quiz percentage.
         await prisma.submission.upsert({
             where: {
                 userId_activityId_assignmentId: {
                     userId,
-                    activityId: activityId || slug,
+                    activityId: canonicalActivityId,
                     assignmentId: null as any
                 }
             },
@@ -58,7 +65,7 @@ export async function POST(request: Request) {
             },
             create: {
                 userId,
-                activityId: activityId || slug,
+                activityId: canonicalActivityId,
                 assignmentId: null,
                 score: percentage,
                 content: JSON.stringify({ type: 'mini-quiz', score, total, slug }),
@@ -71,7 +78,7 @@ export async function POST(request: Request) {
         if (responses && Array.isArray(responses)) {
             const quizResponses = responses.map((r: QuizResponseData) => ({
                 userId,
-                activityId: activityId || slug,
+                activityId: canonicalActivityId,
                 assignmentId: null,
                 questionId: r.questionId,
                 userAnswer: r.userAnswer,
@@ -100,7 +107,7 @@ export async function POST(request: Request) {
     }
 
     // 3. Check exercise completion from ActivityProgress
-    const progressActivityId = activityId || `grammar:${slug}`;
+    const progressActivityId = canonicalActivityId || `grammar:${slug}`;
     const activityProgress = await prisma.activityProgress.findFirst({
         where: {
             userId,
@@ -153,5 +160,3 @@ export async function POST(request: Request) {
         scoreRecorded: score !== undefined,
     });
 }
-
-
