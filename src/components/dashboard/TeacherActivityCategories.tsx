@@ -57,14 +57,21 @@ interface ActivityCardProps {
     defaultClassId: string | null;
 }
 
-const vocabMonths = [
+const vocabCycle1 = [
     { id: 'september', label: 'Unit 1: September: Getting to Know You' },
     { id: 'october', label: 'Unit 2: October: Daily Life in the Community' },
     { id: 'november', label: 'Unit 3: November: Community Participation' },
     { id: 'december', label: 'Unit 4: December: Consumer Smarts' },
     { id: 'january', label: 'Unit 5: January: Housing' },
-    ...VOCAB_WEEKLY_UNITS.map((u) => ({ id: u.id, label: u.label })),
-    { id: 'june', label: 'Unit 10: June: Future Academic Goals' },
+];
+
+// Group Cycle 2 (Units 6-10) by unit number
+const vocabUnits = [
+    { unitNum: 6, label: 'Unit 6: February - Workforce Preparation', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('feb-')) },
+    { unitNum: 7, label: 'Unit 7: March - Career Awareness', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('mar-')) },
+    { unitNum: 8, label: 'Unit 8: April - Health', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('apr-')) },
+    { unitNum: 9, label: 'Unit 9: May - Holistic Wellness', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('may-')) },
+    { unitNum: 10, label: 'Unit 10: June - Future Academic Goals', weeks: VOCAB_WEEKLY_UNITS.filter(u => u.id.startsWith('jun-')) },
 ];
 
 const parseTitleDateMs = (title?: string | null) => {
@@ -599,24 +606,28 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             {
                 name: 'Vocabulary',
                 color: '#f4a261', // warm orange
-                subCategories: vocabMonths.map(month => {
-                    const monthActivities = activities.filter((a: Activity) => a.id?.startsWith(`vocab-${month.id}`));
-
-                    // Define custom sort order
-                    const sortOrder = ['packet', 'flashcards', 'matching', 'fillblank'];
-                    const sorted = monthActivities.sort((a: Activity, b: Activity) => {
-                        const aType = a.id?.split('-').pop() || '';
-                        const bType = b.id?.split('-').pop() || '';
-                        const aIndex = sortOrder.indexOf(aType);
-                        const bIndex = sortOrder.indexOf(bType);
-                        return (aIndex === -1 ? 999 : aIndex) - (bIndex === -1 ? 999 : bIndex);
-                    });
-
-                    return {
-                        name: month.label,
-                        activities: sorted
-                    };
-                }),
+                subCategories: [
+                    {
+                        name: 'Cycle 1',
+                        activities: vocabCycle1.flatMap(month =>
+                            activities.filter((a: Activity) => a.id === `vocab-${month.id}`)
+                        )
+                    },
+                    ...vocabUnits.map(unit => {
+                        // Create a sub-category for each unit (6-10) with its weeks as nested sub-categories
+                        return {
+                            name: unit.label,
+                            activities: [],
+                            subCategories: unit.weeks.map(week => {
+                                const weekActivities = activities.filter((a: Activity) => a.id === `vocab-${week.id}`);
+                                return {
+                                    name: week.label,
+                                    activities: weekActivities
+                                };
+                            })
+                        };
+                    })
+                ],
                 activities: []
             },
             {
