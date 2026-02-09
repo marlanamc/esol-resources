@@ -24,7 +24,8 @@ export async function GET(request: Request) {
     const userId = session.user.id;
     const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
 
-    const record = await prisma.activityProgress.findFirst({
+    // First try to find with specific assignmentId
+    let record = await prisma.activityProgress.findFirst({
         where: {
             userId,
             activityId,
@@ -36,13 +37,40 @@ export async function GET(request: Request) {
             categoryData: true,
             updatedAt: true,
         },
+        orderBy: {
+            updatedAt: "desc",
+        },
     });
+
+    // Fallback: if assignment-specific progress doesn't exist, use the newest record for this activity.
+    // This avoids stale/empty state when a vocab sub-activity saved under a different assignment context.
+    if (!record) {
+        record = await prisma.activityProgress.findFirst({
+            where: {
+                userId,
+                activityId,
+            },
+            select: {
+                progress: true,
+                status: true,
+                categoryData: true,
+                updatedAt: true,
+            },
+            orderBy: {
+                updatedAt: 'desc',
+            },
+        });
+    }
 
     return NextResponse.json({
         progress: record?.progress ?? 0,
         status: record?.status ?? "in_progress",
         categoryData: record?.categoryData ?? null,
         updatedAt: record?.updatedAt ?? null,
+    }, {
+        headers: {
+            "Cache-Control": "no-store",
+        },
     });
 }
 
@@ -151,8 +179,9 @@ export async function POST(request: Request) {
         currentData._guide = { lastSectionIndex };
     }
 
-    if (category || "_guide" in currentData) {
+    if (category || "_guide" in currentData || vocabType) {
         updatedCategoryData = JSON.stringify(currentData);
+        console.log('[VOCAB DEBUG] Setting categoryData:', { vocabType, currentData, updatedCategoryData: updatedCategoryData.substring(0, 100) });
     }
 
     if (aggregatedNumbersProgress !== undefined) {
@@ -168,6 +197,9 @@ export async function POST(request: Request) {
     };
     if (updatedCategoryData) {
         Object.assign(progressData, { categoryData: updatedCategoryData });
+        console.log('[VOCAB DEBUG] Progress data includes categoryData:', Object.keys(progressData));
+    } else {
+        console.log('[VOCAB DEBUG] No categoryData to include in progressData');
     }
 
     let record;
@@ -185,6 +217,58 @@ export async function POST(request: Request) {
                 ...progressData,
             },
         });
+    }
+
+    // For vocabulary activities with assignmentId, also sync to a global progress record
+    if (vocabType && assignmentKey && updatedCategoryData) {
+        try {
+            // Find the global record (without assignmentId)
+            const globalRecord = await prisma.activityProgress.findFirst({
+                where: {
+                    userId,
+                    activityId,
+                    assignmentId: null,
+                },
+            });
+
+            if (globalRecord) {
+                // Merge the categoryData - update this vocabType while preserving others
+                const existingGlobalData = globalRecord.categoryData ?
+                    (typeof globalRecord.categoryData === 'string' ? JSON.parse(globalRecord.categoryData) : globalRecord.categoryData) : {};
+                const newData = typeof updatedCategoryData === 'string' ? JSON.parse(updatedCategoryData) : updatedCategoryData;
+
+                // Merge: take the new data for this vocabType, keep existing for others
+                const mergedData = { ...existingGlobalData, ...newData };
+
+                // Calculate overall progress
+                const vocabTypes = ['word-list', 'flashcards', 'matching', 'fill-blank'];
+                const completedCount = vocabTypes.filter(vType => mergedData[vType]?.completed).length;
+                const globalProgress = (completedCount / vocabTypes.length) * 100;
+                const globalStatus = globalProgress >= 100 ? 'completed' : 'in_progress';
+
+                await prisma.activityProgress.update({
+                    where: { id: globalRecord.id },
+                    data: {
+                        categoryData: JSON.stringify(mergedData),
+                        progress: globalProgress,
+                        status: globalStatus,
+                    },
+                });
+            } else {
+                // Create new global record
+                await prisma.activityProgress.create({
+                    data: {
+                        userId,
+                        activityId,
+                        assignmentId: null,
+                        ...progressData,
+                    },
+                });
+            }
+        } catch (error) {
+            // Log error but don't fail the main operation
+            console.error('Failed to sync global vocabulary progress:', error);
+        }
     }
 
     // Award points based on activity type

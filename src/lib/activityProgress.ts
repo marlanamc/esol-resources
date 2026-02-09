@@ -18,7 +18,8 @@ export async function saveActivityProgress(
     accuracy?: number,
     category?: string,
     assignmentId?: string | null,
-    guideState?: GuideState
+    guideState?: GuideState,
+    vocabType?: string
 ): Promise<ActivityProgressResult | null> {
     if (!activityId) return null;
     const value = Math.max(0, Math.min(100, Math.round(progress)));
@@ -35,7 +36,8 @@ export async function saveActivityProgress(
                 accuracy: accuracy !== undefined ? Math.max(0, Math.min(100, Math.round(accuracy))) : undefined,
                 category: category,
                 assignmentId: assignmentId ?? undefined,
-                guideState: guideState ?? undefined
+                guideState: guideState ?? undefined,
+                vocabType: vocabType ?? undefined
             }),
         });
 

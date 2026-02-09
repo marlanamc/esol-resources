@@ -14,9 +14,10 @@ interface FillInBlankQuestion {
 interface Props {
     contentStr: string;
     activityId?: string;
+    vocabType?: string;
 }
 
-export default function FillInBlankGame({ contentStr, activityId }: Props) {
+export default function FillInBlankGame({ contentStr, activityId, vocabType }: Props) {
     const questions = parseQuestions(contentStr);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -50,7 +51,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
         const value = Math.round(progress);
 
         const saveProgress = async () => {
-            const result = await saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress");
+            const result = await saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress", undefined, undefined, undefined, undefined, vocabType);
             if (result?.pointsAwarded && result.pointsAwarded > 0) {
                 setPointsToast({ points: result.pointsAwarded, key: Date.now() });
             }
@@ -63,7 +64,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
     useEffect(() => {
         if (isComplete && activityId) {
             const finishQuiz = async () => {
-                const result = await saveActivityProgress(activityId, 100, "completed");
+                const result = await saveActivityProgress(activityId, 100, "completed", undefined, undefined, undefined, undefined, vocabType);
                 if (result?.pointsAwarded && result.pointsAwarded > 0) {
                     setPointsToast({ points: result.pointsAwarded, key: Date.now() });
                 }
@@ -89,7 +90,7 @@ export default function FillInBlankGame({ contentStr, activityId }: Props) {
         setScore(0);
         setShowExplanation(false);
         if (activityId) {
-            void saveActivityProgress(activityId, 0, "in_progress");
+            void saveActivityProgress(activityId, 0, "in_progress", undefined, undefined, undefined, undefined, vocabType);
         }
     };
 

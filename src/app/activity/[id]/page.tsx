@@ -156,6 +156,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     // Check if this is an interactive or legacy guide
     const isInteractiveGuide =
         parsedContent && (isInteractiveGuideContent(parsedContent) || isLegacyGuideContent(parsedContent));
+    const shouldShowHeaderProgressBadge = activity.type !== "vocabulary";
 
     // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
@@ -197,7 +198,9 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
                                 {activity.title}
                             </h1>
-                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            {shouldShowHeaderProgressBadge && (
+                                <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            )}
                         </div>
                         {activity.description && (
                             <p className="text-xs text-gray-600 line-clamp-1">{activity.description}</p>
@@ -216,7 +219,9 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                             )}
                         </div>
                         <div className="ml-4 flex-shrink-0">
-                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            {shouldShowHeaderProgressBadge && (
+                                <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            )}
                         </div>
                     </div>
                 </header>
@@ -245,7 +250,9 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
                             <BackButton href="/dashboard" className="flex-shrink-0" />
-                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            {shouldShowHeaderProgressBadge && (
+                                <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                            )}
                         </div>
                         <h1 className="text-base sm:text-lg font-bold text-gray-900 line-clamp-2 leading-snug">
                             {activity.title}
@@ -262,7 +269,9 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         </h1>
 
                         {/* Progress Badge */}
-                        <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                        {shouldShowHeaderProgressBadge && (
+                            <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
+                        )}
                     </div>
                 </div>
             </header>

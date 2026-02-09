@@ -38,6 +38,7 @@ interface Props {
     contentStr: string;
     activityId?: string;
     assignmentId?: string | null;
+    vocabType?: string;
 }
 
 enum InteractionMode {
@@ -47,7 +48,7 @@ enum InteractionMode {
     Checking = "checking",
 }
 
-export default function MatchingGame({ contentStr, activityId, assignmentId }: Props) {
+export default function MatchingGame({ contentStr, activityId, assignmentId, vocabType }: Props) {
     const gameMode = useMemo(() => detectMatchingGameMode(contentStr), [contentStr]);
     const vocabPairs = useMemo(() => (gameMode === "vocab" ? parseVocabPairs(contentStr) : []), [contentStr, gameMode]);
 
@@ -58,6 +59,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                     pairs={vocabPairs}
                     activityId={activityId}
                     assignmentId={assignmentId}
+                    vocabType={vocabType}
                 />
             );
         }
@@ -248,8 +250,8 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
     useEffect(() => {
         if (!activityId || totalWordsAcrossRounds === 0) return;
         const status = overallProgressPercent >= 100 ? "completed" : "in_progress";
-        void saveActivityProgress(activityId, overallProgressPercent, status, undefined, undefined, assignmentId ?? null);
-    }, [activityId, overallProgressPercent, totalWordsAcrossRounds, assignmentId]);
+        void saveActivityProgress(activityId, overallProgressPercent, status, undefined, undefined, assignmentId ?? null, undefined, vocabType);
+    }, [activityId, overallProgressPercent, totalWordsAcrossRounds, assignmentId, vocabType]);
 
     useEffect(() => {
         if (!activityId || !currentRound || !isRoundComplete) return;
@@ -265,7 +267,9 @@ export default function MatchingGame({ contentStr, activityId, assignmentId }: P
                 roundStatus,
                 undefined,
                 `round-${roundNumber}`,
-                assignmentId ?? null
+                assignmentId ?? null,
+                undefined,
+                vocabType
             );
             if (result?.pointsAwarded && result.pointsAwarded > 0) {
                 setPointsToast({ points: result.pointsAwarded, key: Date.now() });
@@ -795,10 +799,12 @@ function VocabMatchingUI({
     pairs,
     activityId,
     assignmentId,
+    vocabType,
 }: {
     pairs: VocabPair[];
     activityId?: string;
     assignmentId?: string | null;
+    vocabType?: string;
 }) {
     const shuffleSeed = useMemo(
         () => (activityId ? deriveShuffleSeed(1, activityId) : 1),
@@ -832,7 +838,9 @@ function VocabMatchingUI({
                 status,
                 undefined,
                 undefined,
-                assignmentId ?? null
+                assignmentId ?? null,
+                undefined,
+                vocabType
             );
             if (result?.pointsAwarded && result.pointsAwarded > 0) {
                 setPointsToast({ points: result.pointsAwarded, key: Date.now() });
@@ -840,7 +848,7 @@ function VocabMatchingUI({
         };
 
         void saveProgress();
-    }, [activityId, progressPercent, isComplete, pairs.length, assignmentId]);
+    }, [activityId, progressPercent, isComplete, pairs.length, assignmentId, vocabType]);
 
     const handleTermClick = (pairId: number) => {
         if (matchedTermIds.has(pairId)) return;

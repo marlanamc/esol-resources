@@ -18,11 +18,12 @@ interface FlashcardData {
 interface FlashcardCarouselProps {
     cards: FlashcardData[];
     activityId?: string;
+    vocabType?: string;
 }
 
 type CardMode = "term-first" | "def-first";
 
-export default function FlashcardCarousel({ cards, activityId }: FlashcardCarouselProps) {
+export default function FlashcardCarousel({ cards, activityId, vocabType }: FlashcardCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [order, setOrder] = useState(cards.map((_, i) => i));
@@ -159,14 +160,14 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
         const studiedPercent = Math.round((studiedCards.size / total) * 100);
 
         const saveProgress = async () => {
-            const result = await saveActivityProgress(activityId, studiedPercent, studiedPercent >= 100 ? "completed" : "in_progress");
+            const result = await saveActivityProgress(activityId, studiedPercent, studiedPercent >= 100 ? "completed" : "in_progress", undefined, undefined, undefined, undefined, vocabType);
             if (result?.pointsAwarded && result.pointsAwarded > 0) {
                 setPointsToast({ points: result.pointsAwarded, key: Date.now() });
             }
         };
 
         void saveProgress();
-    }, [activityId, studiedCards.size, total]);
+    }, [activityId, studiedCards.size, total, vocabType]);
 
     const [showSettings, setShowSettings] = useState(false);
 
@@ -306,8 +307,8 @@ export default function FlashcardCarousel({ cards, activityId }: FlashcardCarous
             )}
 
             {/* Card Container - Takes up remaining space */}
-            <div 
-                className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer md:py-8" 
+            <div
+                className="flex-1 flex items-center justify-center p-4 perspective-1000 cursor-pointer md:items-start md:pt-8"
                 onClick={handleFlip}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
