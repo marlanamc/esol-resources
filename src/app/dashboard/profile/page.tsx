@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { trackLogin } from "@/lib/gamification";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import Link from "next/link";
@@ -222,6 +223,9 @@ export default async function ProfilePage() {
     if (!userId) {
         redirect("/login");
     }
+
+    // Count daily app opens toward streak even when session is still active.
+    await trackLogin(userId);
 
     // Get user data with stats
     const user = await prisma.user.findUnique({

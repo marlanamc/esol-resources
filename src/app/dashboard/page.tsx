@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { trackLogin } from "@/lib/gamification";
 import { parseCategoryData } from "@/lib/categoryData";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import Link from "next/link";
@@ -103,6 +104,9 @@ export default async function DashboardPage() {
 
     const userRole = session.user.role;
     const userId = session.user.id;
+
+    // Count daily app opens toward streak even when session is still active.
+    await trackLogin(userId);
 
     if (userRole === "teacher") {
         // Teacher Dashboard

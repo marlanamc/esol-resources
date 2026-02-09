@@ -1,7 +1,7 @@
 import { prisma } from './prisma';
 import type { Prisma } from "@prisma/client";
 import { POINTS } from "./gamification/constants";
-import { shouldAwardStreak, getEffectiveStreak } from "./gamification/streak-utils";
+import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./gamification/streak-utils";
 export { POINTS } from "./gamification/constants";
 export { getActivityPoints, resolveActivityGameUi } from "./gamification/activity-points";
 
@@ -29,26 +29,54 @@ async function logPointsLedger(userId: string, points: number, reason: string, s
  */
 export async function trackLogin(userId: string) {
   try {
-    // Check if we already have a login entry for today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    // Check if we already have a login entry for today (UTC-aligned with streak math)
+    const now = new Date();
+    const todayUtcStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+    const tomorrowUtcStart = new Date(todayUtcStart);
+    tomorrowUtcStart.setUTCDate(tomorrowUtcStart.getUTCDate() + 1);
 
     const existingLogin = await prisma.pointsLedger.findFirst({
       where: {
         userId,
         source: 'login',
         createdAt: {
-          gte: today,
-          lt: tomorrow,
+          gte: todayUtcStart,
+          lt: tomorrowUtcStart,
         },
       },
     });
 
-    // Only create if we don't have a login entry for today
+    // Only process the first login marker of the UTC day
     if (!existingLogin) {
       await logPointsLedger(userId, 0, 'Daily login', 'login');
+
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { currentStreak: true, longestStreak: true, lastActivityDate: true },
+      });
+      if (!user) return;
+
+      const { streakUpdated, newStreak } = getNextStreakState(
+        user.currentStreak,
+        user.lastActivityDate,
+        now
+      );
+
+      if (streakUpdated) {
+        await prisma.user.update({
+          where: { id: userId },
+          data: {
+            currentStreak: newStreak,
+            longestStreak: Math.max(newStreak, user.longestStreak),
+            lastActivityDate: now,
+          },
+        });
+      } else {
+        await prisma.user.update({
+          where: { id: userId },
+          data: { lastActivityDate: now },
+        });
+      }
     }
   } catch (err) {
     console.error('[Gamification] Failed to track login', err);
@@ -87,52 +115,16 @@ export async function updateStreak(userId: string, activityPoints: number): Prom
 
   const now = new Date();
   
-  // Normalize dates to UTC for consistent day comparison
-  // This avoids timezone issues where dates might appear as different days
-  const getUTCDayStart = (date: Date): Date => {
-    const utcDate = new Date(Date.UTC(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate()
-    ));
-    return utcDate;
-  };
-  
-  const todayUTC = getUTCDayStart(now);
-  const lastActivity = user.lastActivityDate ? new Date(user.lastActivityDate) : null;
-  const lastActivityDayUTC = lastActivity ? getUTCDayStart(lastActivity) : null;
-
-  let streakUpdated = false;
-  let newStreak = user.currentStreak;
+  const { streakUpdated, newStreak } = getNextStreakState(
+    user.currentStreak,
+    user.lastActivityDate,
+    now
+  );
   let pointsAwarded = 0;
-
-  // If no last activity or last activity was yesterday, increment streak
-  if (!lastActivityDayUTC) {
-    // First activity ever
-    newStreak = 1;
-    streakUpdated = true;
+  if (streakUpdated) {
     pointsAwarded = POINTS.DAILY_STREAK;
-  } else {
-    const daysSinceLastActivity = Math.floor((todayUTC.getTime() - lastActivityDayUTC.getTime()) / (1000 * 60 * 60 * 24));
-
-    if (daysSinceLastActivity === 0) {
-      // Already did activity today, no streak update
-      streakUpdated = false;
-    } else if (daysSinceLastActivity === 1) {
-      // Did activity yesterday, continue streak
-      newStreak = user.currentStreak + 1;
-      streakUpdated = true;
-      pointsAwarded = POINTS.DAILY_STREAK;
-
-      // Bonus for weekly streak
-      if (newStreak % 7 === 0) {
-        pointsAwarded += POINTS.WEEKLY_STREAK;
-      }
-    } else {
-      // Missed a day, reset streak
-      newStreak = 1;
-      streakUpdated = true;
-      pointsAwarded = POINTS.DAILY_STREAK;
+    if (newStreak % 7 === 0) {
+      pointsAwarded += POINTS.WEEKLY_STREAK;
     }
   }
 
