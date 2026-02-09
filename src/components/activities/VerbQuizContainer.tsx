@@ -112,7 +112,15 @@ export default function VerbQuizContainer({
         }),
       });
 
-      const responseData = await response.json();
+      const text = await response.text();
+      let responseData: { error?: string; points?: number } = {};
+      if (text.trim()) {
+        try {
+          responseData = JSON.parse(text);
+        } catch {
+          throw new Error(response.ok ? 'Invalid response from server' : 'Failed to submit quiz');
+        }
+      }
 
       if (!response.ok) {
         throw new Error(responseData.error || 'Failed to submit quiz');
