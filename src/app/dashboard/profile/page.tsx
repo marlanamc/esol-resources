@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
+import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import Link from "next/link";
 import { BackButton, BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
@@ -489,13 +490,15 @@ export default async function ProfilePage() {
     const gradedVerbQuizCount = verbQuizGrades.filter((quiz) => quiz.score !== null).length;
     const gradedMiniQuizCount = miniQuizGrades.filter((quiz) => quiz.score !== null).length;
 
+    const effectiveCurrentStreak = getEffectiveStreak(user.currentStreak, user.lastActivityDate);
+
     // Student view
     if (userRole === 'student') {
         const totalCompleted = vocabProgress.completed + grammarProgress.completed + numbersProgress.completed + otherProgress.completed;
         
         // Encouraging message based on activity
         let welcomeMessage = "Let's learn something new today!";
-        if (user.currentStreak > 3) welcomeMessage = "You're on fire! Keep it up! 🔥";
+        if (effectiveCurrentStreak > 3) welcomeMessage = "You're on fire! Keep it up! 🔥";
         else if (totalCompleted > 0) welcomeMessage = "Great progress so far!";
         
         return (
@@ -544,7 +547,7 @@ export default async function ProfilePage() {
                         />
                         <StatCard
                             label="Current Streak"
-                            value={`${user.currentStreak} Days`}
+                            value={`${effectiveCurrentStreak} Days`}
                             icon={<Flame className="w-6 h-6" />}
                             color="warning"
                             className="delay-200"

@@ -1,7 +1,7 @@
 import { prisma } from './prisma';
 import type { Prisma } from "@prisma/client";
 import { POINTS } from "./gamification/constants";
-import { shouldAwardStreak } from "./gamification/streak-utils";
+import { shouldAwardStreak, getEffectiveStreak } from "./gamification/streak-utils";
 export { POINTS } from "./gamification/constants";
 export { getActivityPoints, resolveActivityGameUi } from "./gamification/activity-points";
 
@@ -245,6 +245,7 @@ export async function getTimeframedLeaderboard(
       id: true,
       name: true,
       currentStreak: true,
+      lastActivityDate: true,
       lastWeekRank: true,
       avatar: true,
       avatarColor: true,
@@ -275,7 +276,7 @@ export async function getTimeframedLeaderboard(
     userId: student.id,
     points: pointsMap.get(student.id) || 0,
     name: student.name || 'Student',
-    currentStreak: student.currentStreak,
+    currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
     lastWeekRank: student.lastWeekRank,
     avatar: student.avatar,
     avatarColor: student.avatarColor,
@@ -431,16 +432,13 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
       name: true,
       weeklyPoints: true,
       currentStreak: true,
+      lastActivityDate: true,
       lastWeekRank: true,
     },
   });
 
   // Add rank and rank change (same rank for ties)
-  return students.map(
-    (
-      student: { id: string; lastWeekRank: number | null; weeklyPoints: number },
-      index: number
-    ) => {
+  return students.map((student, index: number) => {
       // Find the rank: same as first student with same points, otherwise index + 1
       let rank = index + 1;
       if (index > 0) {
@@ -453,12 +451,15 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
       }
 
       return {
-        ...student,
+        id: student.id,
+        name: student.name,
+        weeklyPoints: student.weeklyPoints,
+        currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
+        lastWeekRank: student.lastWeekRank,
         rank: rank,
         rankChange: student.lastWeekRank ? student.lastWeekRank - rank : null,
       };
-    }
-  );
+    });
 }
 
 /**
@@ -523,7 +524,7 @@ export async function getUserGamificationStats(userId: string) {
   return {
     points: user.points,
     weeklyPoints: user.weeklyPoints,
-    currentStreak: user.currentStreak,
+    currentStreak: getEffectiveStreak(user.currentStreak, user.lastActivityDate),
     longestStreak: user.longestStreak,
     rank: rank > 0 ? rank : null,
     lastWeekRank: user.lastWeekRank,

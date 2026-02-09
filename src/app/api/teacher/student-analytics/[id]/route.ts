@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 
 export async function GET(
     request: Request,
@@ -43,6 +44,7 @@ export async function GET(
             weeklyPoints: true,
             currentStreak: true,
             longestStreak: true,
+            lastActivityDate: true,
             createdAt: true
         }
     });
@@ -50,6 +52,7 @@ export async function GET(
     if (!student) {
         return NextResponse.json({ error: "Student not found" }, { status: 404 });
     }
+    const effectiveCurrentStreak = getEffectiveStreak(student.currentStreak, student.lastActivityDate);
 
     // Run independent queries in parallel to eliminate async waterfall
     const [activityProgress, pointsHistory] = await Promise.all([
@@ -264,6 +267,7 @@ export async function GET(
     return NextResponse.json({
         student: {
             ...student,
+            currentStreak: effectiveCurrentStreak,
             lastActive,
             daysActiveThisMonth
         },
@@ -272,7 +276,7 @@ export async function GET(
             activitiesInProgress: inProgressActivities.length,
             totalActivitiesStarted: activityProgress.length,
             favoriteActivities,
-            currentStreak: student.currentStreak || 0,
+            currentStreak: effectiveCurrentStreak,
             longestStreak: student.longestStreak || 0
         },
         progress: {

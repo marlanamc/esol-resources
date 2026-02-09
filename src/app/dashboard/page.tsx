@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { parseCategoryData } from "@/lib/categoryData";
+import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { BottomNav } from "@/components/ui";
@@ -176,6 +177,71 @@ export default async function DashboardPage() {
                 }
             }
         });
+        const importantPageSections = [
+            {
+                heading: "Student Insights",
+                links: [
+                    {
+                        href: "/dashboard/leaderboard",
+                        title: "Leaderboard",
+                        subtitle: "See who is leading this week.",
+                        icon: TrophyIcon,
+                    },
+                    {
+                        href: "/dashboard/stats",
+                        title: "Student Stats",
+                        subtitle: "Review progress, points, and engagement.",
+                        icon: BarChartIcon,
+                    },
+                    {
+                        href: "/dashboard/gradebook",
+                        title: "Grammar Gradebook",
+                        subtitle: "Check mini-quiz scores by student.",
+                        icon: ClipboardIcon,
+                    },
+                ],
+            },
+            {
+                heading: "Planning",
+                links: [
+                    {
+                        href: "/dashboard/calendar/new",
+                        title: "Add Event",
+                        subtitle: "Post class dates, due dates, or reminders.",
+                        icon: CalendarIcon,
+                    },
+                    {
+                        href: "/dashboard/teaching-schedule",
+                        title: "Teaching Schedule",
+                        subtitle: "Plan and review your weekly teaching flow.",
+                        icon: CalendarIcon,
+                    },
+                ],
+            },
+            {
+                heading: "Content & Setup",
+                links: [
+                    {
+                        href: "/grammar-map",
+                        title: "Grammar Map",
+                        subtitle: "Browse all grammar topics and connections.",
+                        icon: MapIcon,
+                    },
+                    {
+                        href: "/dashboard/activities/new",
+                        title: "Create Activity",
+                        subtitle: "Build a new lesson, quiz, or guide.",
+                        icon: BookOpenIcon,
+                    },
+                    {
+                        href: "/dashboard/passwords",
+                        title: "Reset Passwords",
+                        subtitle: "Help students regain account access.",
+                        icon: ClipboardIcon,
+                    },
+                ],
+            },
+        ];
 
 
         return (
@@ -402,66 +468,36 @@ export default async function DashboardPage() {
                                     allowDelete={true}
                                 />
 
-                                <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
+                                <div className="pt-4 mt-4 border-t border-border/40 space-y-4">
                                     <h3 className="text-sm font-semibold text-text">Important Pages</h3>
-                                    <div className="flex flex-col gap-1.5">
-                                        <Link
-                                            href="/dashboard/leaderboard"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <TrophyIcon className="w-4 h-4" />
-                                            <span>Leaderboard</span>
-                                        </Link>
-                                        <Link
-                                            href="/dashboard/calendar/new"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <CalendarIcon className="w-4 h-4" />
-                                            <span>Add Event</span>
-                                        </Link>
-                                        <Link
-                                            href="/dashboard/teaching-schedule"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <CalendarIcon className="w-4 h-4" />
-                                            <span>Teaching Schedule</span>
-                                        </Link>
-                                        <Link
-                                            href="/grammar-map"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <MapIcon className="w-4 h-4" />
-                                            <span>Grammar Map</span>
-                                        </Link>
-                                        <Link
-                                            href="/dashboard/activities/new"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <BookOpenIcon className="w-4 h-4" />
-                                            <span>Create Activity</span>
-                                        </Link>
-                                        <Link
-                                            href="/dashboard/passwords"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <ClipboardIcon className="w-4 h-4" />
-                                            <span>Reset Passwords</span>
-                                        </Link>
-                                        <Link
-                                            href="/dashboard/stats"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <BarChartIcon className="w-4 h-4" />
-                                            <span>Student Stats</span>
-                                        </Link>
-                                        <Link
-                                            href="/dashboard/gradebook"
-                                            className="quick-link w-full px-3 py-2 text-sm font-semibold text-text border border-border/50 rounded-lg flex items-center gap-2"
-                                        >
-                                            <ClipboardIcon className="w-4 h-4" />
-                                            <span>Grammar Gradebook</span>
-                                        </Link>
-                                    </div>
+                                    <p className="text-xs text-text-muted">
+                                        Organized by task so you can find tools faster.
+                                    </p>
+                                    {importantPageSections.map((section) => (
+                                        <div key={section.heading} className="space-y-1.5">
+                                            <p className="text-[11px] font-semibold uppercase tracking-wide text-text-muted">
+                                                {section.heading}
+                                            </p>
+                                            <div className="flex flex-col gap-1.5">
+                                                {section.links.map((link) => {
+                                                    const Icon = link.icon;
+                                                    return (
+                                                        <Link
+                                                            key={link.href}
+                                                            href={link.href}
+                                                            className="quick-link w-full px-3 py-2 text-text border border-border/50 rounded-lg flex items-start gap-2.5"
+                                                        >
+                                                            <Icon className="w-4 h-4 mt-0.5 shrink-0" />
+                                                            <div className="leading-tight">
+                                                                <p className="text-sm font-semibold text-text">{link.title}</p>
+                                                                <p className="text-xs text-text-muted mt-0.5">{link.subtitle}</p>
+                                                            </div>
+                                                        </Link>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </aside>
@@ -617,8 +653,12 @@ export default async function DashboardPage() {
                 currentStreak: true,
                 longestStreak: true,
                 points: true,
+                lastActivityDate: true,
             }
         });
+        const effectiveCurrentStreak = currentUser
+            ? getEffectiveStreak(currentUser.currentStreak, currentUser.lastActivityDate)
+            : 0;
 
         // Calculate actual weekly points from PointsLedger (last 7 days)
         const oneWeekAgo = new Date();
@@ -685,14 +725,14 @@ export default async function DashboardPage() {
 
                                     <div className="flex items-center gap-3">
                                         {/* Streak */}
-                                        {currentUser && currentUser.currentStreak > 0 && (
+                                        {currentUser && effectiveCurrentStreak > 0 && (
                                             <div className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
                                                 <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
                                                     <FlameIcon className="text-orange-500 streak-icon-pulse" size={16} />
                                                 </div>
                                                 <div>
                                                     <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Streak</div>
-                                                    <div className="text-lg font-bold text-text leading-tight">{currentUser.currentStreak} <span className="text-xs font-semibold text-text-muted">days</span></div>
+                                                    <div className="text-lg font-bold text-text leading-tight">{effectiveCurrentStreak} <span className="text-xs font-semibold text-text-muted">days</span></div>
                                                 </div>
                                             </div>
                                         )}
@@ -735,13 +775,13 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-3">
-                                        {currentUser && currentUser.currentStreak > 0 && (
+                                        {currentUser && effectiveCurrentStreak > 0 && (
                                             <div className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
                                                 <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
                                                     <FlameIcon className="text-orange-500 streak-icon-pulse" size={14} />
                                                 </div>
                                                 <div className="flex items-baseline gap-1">
-                                                    <span className="text-base font-bold text-text">{currentUser.currentStreak}</span>
+                                                    <span className="text-base font-bold text-text">{effectiveCurrentStreak}</span>
                                                     <span className="text-[10px] font-semibold text-text-muted uppercase">day</span>
                                                 </div>
                                             </div>
