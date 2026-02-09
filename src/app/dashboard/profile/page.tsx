@@ -51,6 +51,152 @@ const cleanGuideTitle = (title: string): string => {
         .trim();
 };
 
+const getOrderedGrammarGuidesForActivities = <T extends { title: string }>(guides: T[]): T[] => {
+    const normalizeTitle = (title?: string | null) => cleanGuideTitle(title || "").toLowerCase();
+    const sortAlpha = (list: T[]) =>
+        list.sort((a, b) => cleanGuideTitle(a.title || "").localeCompare(cleanGuideTitle(b.title || "")));
+
+    const sortByTenseOrder = (list: T[]) => {
+        const order = ["present", "past", "future", "review"];
+        const getOrder = (t: string) => {
+            for (let i = 0; i < order.length; i++) {
+                if (t.includes(order[i])) return i;
+            }
+            return order.length;
+        };
+
+        return list.sort((a, b) => {
+            const aNorm = normalizeTitle(a.title);
+            const bNorm = normalizeTitle(b.title);
+            const aIdx = getOrder(aNorm);
+            const bIdx = getOrder(bNorm);
+            if (aIdx !== bIdx) return aIdx - bIdx;
+            return cleanGuideTitle(a.title || "").localeCompare(cleanGuideTitle(b.title || ""));
+        });
+    };
+
+    const sortByKeywordOrder = (list: T[], keywordsInOrder: string[]) => {
+        const getKeywordIndex = (t: string) => {
+            for (let i = 0; i < keywordsInOrder.length; i++) {
+                if (t.includes(keywordsInOrder[i])) return i;
+            }
+            return keywordsInOrder.length;
+        };
+
+        return list.sort((a, b) => {
+            const aNorm = normalizeTitle(a.title);
+            const bNorm = normalizeTitle(b.title);
+            const aIdx = getKeywordIndex(aNorm);
+            const bIdx = getKeywordIndex(bNorm);
+            if (aIdx !== bIdx) return aIdx - bIdx;
+            return cleanGuideTitle(a.title || "").localeCompare(cleanGuideTitle(b.title || ""));
+        });
+    };
+
+    const remaining = [...guides];
+    const take = (predicate: (guide: T) => boolean) => {
+        const matched: T[] = [];
+        for (let i = remaining.length - 1; i >= 0; i--) {
+            const item = remaining[i];
+            if (predicate(item)) {
+                matched.push(item);
+                remaining.splice(i, 1);
+            }
+        }
+        return matched.reverse();
+    };
+
+    const simple = sortByTenseOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("simple") && !t.includes("vs");
+        })
+    );
+    const perfectContinuous = sortByTenseOrder(take((guide) => normalizeTitle(guide.title).includes("perfect continuous")));
+    const continuous = sortByTenseOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("continuous") && !t.includes("perfect continuous") && !t.includes("vs");
+        })
+    );
+    const perfect = sortByTenseOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("perfect") && !t.includes("continuous") && !t.includes("vs");
+        })
+    );
+
+    const mixedAllTenses = sortAlpha(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            if (t.includes("gerund") || t.includes("infinitive")) return false;
+            return t.includes("tenses") || t.includes("review") || t.includes(" vs ");
+        })
+    );
+    const questionsAndCommands = sortByKeywordOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("question") || t.includes("imperative") || t.includes("declarative");
+        }),
+        ["information questions", "imperatives", "declaratives"]
+    );
+    const conditionals = sortByKeywordOrder(
+        take((guide) => normalizeTitle(guide.title).includes("conditional")),
+        ["zero", "first", "second", "third"]
+    );
+    const modals = sortAlpha(take((guide) => normalizeTitle(guide.title).includes("modal")));
+    const habitsAndPreferences = sortAlpha(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("used to") || t.includes("would rather");
+        })
+    );
+    const voiceAndReporting = sortByKeywordOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("passive") || t.includes("reported");
+        }),
+        ["passive", "reported"]
+    );
+    const gerundsAndInfinitives = sortByKeywordOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("gerund") || t.includes("infinitive");
+        }),
+        ["infinitives vs gerunds", "verbs + gerunds", "gerunds after prepositions"]
+    );
+    const phrasalVerbs = sortAlpha(take((guide) => normalizeTitle(guide.title).includes("phrasal")));
+    const wordsAndQuantity = sortByKeywordOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("parts of speech") || t.includes("superlative") || t.includes("quantifier");
+        }),
+        ["parts of speech", "superlatives", "quantifiers"]
+    );
+    const writingMechanics = sortByKeywordOrder(
+        take((guide) => {
+            const t = normalizeTitle(guide.title);
+            return t.includes("punctuation") || t.includes("capitalization") || t.includes("paragraph");
+        }),
+        ["punctuation", "capitalization", "paragraph"]
+    );
+
+    const otherGrammar = sortAlpha(remaining);
+    return [
+        ...simple,
+        ...continuous,
+        ...perfect,
+        ...perfectContinuous,
+        ...mixedAllTenses,
+        ...sortAlpha([...questionsAndCommands, ...modals, ...voiceAndReporting]),
+        ...gerundsAndInfinitives,
+        ...sortAlpha([...phrasalVerbs, ...habitsAndPreferences]),
+        ...conditionals,
+        ...sortAlpha(wordsAndQuantity),
+        ...sortAlpha([...writingMechanics, ...otherGrammar]),
+    ];
+};
+
 const getVerbQuizOrder = (title: string): number => {
     const weekMatch = title.match(/(\d+)/);
     return weekMatch ? Number(weekMatch[1]) : Number.MAX_SAFE_INTEGER;
@@ -171,7 +317,7 @@ export default async function ProfilePage() {
                 title: true,
                 content: true,
             },
-            orderBy: { title: "asc" },
+            orderBy: { createdAt: "desc" },
         }),
         prisma.submission.findMany({
             where: {
@@ -301,7 +447,8 @@ export default async function ProfilePage() {
         };
     });
 
-    const releasedMiniQuizActivities = releasedGrammarGuideActivities.filter((activity) =>
+    const orderedReleasedGrammarGuideActivities = getOrderedGrammarGuidesForActivities(releasedGrammarGuideActivities);
+    const releasedMiniQuizActivities = orderedReleasedGrammarGuideActivities.filter((activity) =>
         hasMiniQuiz(activity.content)
     );
 
