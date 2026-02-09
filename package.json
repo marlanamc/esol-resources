@@ -12,7 +12,7 @@
     "analyze": "ANALYZE=true next build",
     "analyze:server": "BUNDLE_ANALYZE=server ANALYZE=true next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser ANALYZE=true next build",
-    "test:gamification": "tsx scripts/tests/gamification-helpers.test.ts",
+    "test:gamification": "node --import tsx scripts/tests/gamification-helpers.test.ts",
     "test:activity-submit": "node --import tsx scripts/tests/activity-submit-assignmentid.test.ts",
     "lint": "eslint",
     "check:nullable-upserts": "node scripts/check-null-assignment-upserts.mjs",

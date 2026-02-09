@@ -5,6 +5,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { StatCard, BottomNav } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon, BarChartIcon } from "@/components/icons/Icons";
 import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
@@ -75,6 +76,7 @@ export default async function StatsPage() {
             weeklyPoints: true,
             currentStreak: true,
             longestStreak: true,
+            lastActivityDate: true,
         },
         orderBy: { name: 'asc' }
     });
@@ -118,6 +120,7 @@ export default async function StatsPage() {
     // Enrich students with last active and activity counts
     const enrichedStudents = students.map(student => ({
         ...student,
+        currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
         lastActive: lastActiveMap[student.id] || null,
         activitiesToday: activitiesTodayMap[student.id] || 0
     }));
