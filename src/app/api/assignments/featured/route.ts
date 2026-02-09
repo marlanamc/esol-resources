@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { parseCategoryData } from "@/lib/categoryData";
 
 export async function GET() {
     try {
@@ -55,14 +56,29 @@ export async function GET() {
                         userId,
                         activityId: { in: activityIds },
                     },
-                      select: { activityId: true, progress: true, status: true },
+                      select: { activityId: true, progress: true, status: true, categoryData: true, updatedAt: true },
+                      orderBy: { updatedAt: "desc" },
                   });
 
-        const progressMap = new Map<string, { progress: number; status: string }>(
-            (progressRows as Array<{ activityId: string; progress: number; status: string }>).map((p) => [
-                p.activityId,
-                { progress: p.progress, status: p.status },
-            ])
+        const progressMap = (progressRows as Array<{
+            activityId: string;
+            progress: number;
+            status: string;
+            categoryData: string | null;
+        }>).reduce<Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>>(
+            (map, row) => {
+                if (map.has(row.activityId)) {
+                    return map;
+                }
+
+                map.set(row.activityId, {
+                    progress: row.progress,
+                    status: row.status,
+                    categoryData: parseCategoryData(row.categoryData),
+                });
+                return map;
+            },
+            new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
         );
 
         const withProgress = featuredAssignments.map((a) => {
@@ -71,6 +87,7 @@ export async function GET() {
                 ...a,
                 progress: p?.progress ?? 0,
                 progressStatus: p?.status ?? "in_progress",
+                categoryData: p?.categoryData ?? null,
             };
         });
 

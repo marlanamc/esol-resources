@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { parseCategoryData } from "@/lib/categoryData";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { BottomNav } from "@/components/ui";
@@ -556,13 +557,29 @@ export default async function DashboardPage() {
                 ? []
                 : await prisma.activityProgress.findMany({
                       where: { userId, activityId: { in: featuredActivityIds } },
-                      select: { activityId: true, progress: true, status: true },
+                      select: { activityId: true, progress: true, status: true, categoryData: true, updatedAt: true },
+                      orderBy: { updatedAt: "desc" },
                   });
-        const featuredProgressMap = new Map<string, { progress: number; status: string }>(
-            (featuredProgressRows as Array<{ activityId: string; progress: number; status: string }>).map((p) => [
-                p.activityId,
-                { progress: p.progress, status: p.status },
-            ])
+
+        const featuredProgressMap = (featuredProgressRows as Array<{
+            activityId: string;
+            progress: number;
+            status: string;
+            categoryData: string | null;
+        }>).reduce<Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>>(
+            (map, row) => {
+                if (map.has(row.activityId)) {
+                    return map;
+                }
+
+                map.set(row.activityId, {
+                    progress: row.progress,
+                    status: row.status,
+                    categoryData: parseCategoryData(row.categoryData),
+                });
+                return map;
+            },
+            new Map<string, { progress: number; status: string; categoryData: Record<string, unknown> | null }>()
         );
 
         const featuredAssignments = featuredAssignmentsRaw.map((a) => {
@@ -571,6 +588,7 @@ export default async function DashboardPage() {
                 ...a,
                 progress: p?.progress ?? 0,
                 progressStatus: p?.status ?? "in_progress",
+                categoryData: p?.categoryData ?? null,
             };
         });
 

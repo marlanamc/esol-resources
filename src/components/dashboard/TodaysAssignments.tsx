@@ -3,6 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { parseCategoryData } from '@/lib/categoryData';
+
+interface VocabCategoryData {
+    'word-list'?: { completed: boolean; progress: number; completedAt?: string };
+    'flashcards'?: { completed: boolean; progress: number; completedAt?: string };
+    'matching'?: { completed: boolean; progress: number; completedAt?: string };
+    'fill-blank'?: { completed: boolean; progress: number; completedAt?: string };
+}
 
 interface FeaturedAssignment {
     id: string;
@@ -11,6 +19,7 @@ interface FeaturedAssignment {
     dueDate?: string | Date | null;
     progress?: number;
     progressStatus?: string;
+    categoryData?: VocabCategoryData | string | null;
     activity: {
         title: string;
         description: string | null;
@@ -164,6 +173,23 @@ export const TodaysAssignments: React.FC<Props> = ({
         return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     };
 
+    const getVocabProgress = (assignment: FeaturedAssignment) => {
+        if (!assignment.activityId.startsWith('vocab-') || !assignment.categoryData) {
+            return null;
+        }
+
+        const parsedCategoryData = parseCategoryData<VocabCategoryData>(assignment.categoryData);
+        if (!parsedCategoryData) {
+            return null;
+        }
+
+        const types: Array<keyof VocabCategoryData> = ['word-list', 'flashcards', 'matching', 'fill-blank'];
+        const completed = types.filter(type => parsedCategoryData[type]?.completed).length;
+        const total = types.length;
+
+        return { completed, total, types, categoryData: parsedCategoryData };
+    };
+
     const getCategoryStyle = (category?: string | null) => {
         const categoryKey = (category || '').toLowerCase();
         const categoryStyles: Record<string, { label: string; bg: string; text: string; accent: string }> = {
@@ -187,10 +213,17 @@ export const TodaysAssignments: React.FC<Props> = ({
         const rows = assignments.map((assignment, index) => {
             const submission = assignment.submissions[0];
             const progressValue = typeof assignment.progress === 'number' ? assignment.progress : 0;
-            const isCompleted =
-                progressValue >= 100 ||
-                assignment.progressStatus === 'completed' ||
-                !!submission?.completedAt;
+
+            // For vocabulary activities, check if all 4 sub-activities are complete
+            const vocabProgress = getVocabProgress(assignment);
+            const isVocabComplete = vocabProgress ? vocabProgress.completed === vocabProgress.total : false;
+
+            const isCompleted = vocabProgress
+                ? isVocabComplete
+                : (progressValue >= 100 ||
+                   assignment.progressStatus === 'completed' ||
+                   !!submission?.completedAt);
+
             const rawTitle = assignment.title || assignment.activity.title;
             const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
             const categoryStyle = getCategoryStyle(assignment.activity.category);
@@ -325,11 +358,39 @@ export const TodaysAssignments: React.FC<Props> = ({
                                                         </Link>
                                                     );
                                                 })()}
-                                                {progressValue > 0 && !isCompleted && (
-                                                    <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
-                                                        {progressValue}% done
-                                                    </span>
-                                                )}
+                                                {(() => {
+                                                    const vocabProgress = getVocabProgress(assignment);
+                                                    if (vocabProgress) {
+                                                        const isVocabComplete = vocabProgress.completed === vocabProgress.total;
+                                                        if (!isVocabComplete) {
+                                                            return (
+                                                                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-50 text-amber-700 border border-amber-200 shadow-sm">
+                                                                    <span>{vocabProgress.completed}/{vocabProgress.total}</span>
+                                                                    <div className="flex items-center gap-0.5">
+                                                                        {vocabProgress.types.map(type => {
+                                                                            const isComplete = vocabProgress.categoryData[type]?.completed;
+                                                                            return (
+                                                                                <div
+                                                                                    key={type}
+                                                                                    className={`w-1.5 h-1.5 rounded-full ${isComplete ? 'bg-amber-700' : 'bg-amber-200'}`}
+                                                                                />
+                                                                            );
+                                                                        })}
+                                                                    </div>
+                                                                </div>
+                                                            );
+                                                        }
+                                                        return null;
+                                                    }
+                                                    if (progressValue > 0 && !isCompleted) {
+                                                        return (
+                                                            <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
+                                                                {progressValue}% done
+                                                            </span>
+                                                        );
+                                                    }
+                                                    return null;
+                                                })()}
                                                 {dueLabel && (
                                                     <span className="inline-flex px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
                                                         Due: {dueLabel}

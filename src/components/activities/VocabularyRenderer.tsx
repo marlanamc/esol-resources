@@ -1,13 +1,15 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VocabularyContent, isVocabularyContent } from "@/types/activity";
 import FlashcardCarousel from "@/components/ui/FlashcardCarousel";
 import MatchingGame from "@/components/ui/MatchingGame";
 import FillInBlankGame from "@/components/ui/FillInBlankGame";
 import { BackButton } from "@/components/ui/BackButton";
 import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
+import { saveActivityProgress } from "@/lib/activityProgress";
+import { parseCategoryData } from "@/lib/categoryData";
 
 interface VocabularyRendererProps {
     content: VocabularyContent;
@@ -69,6 +71,16 @@ export default function VocabularyRenderer({
     const router = useRouter();
     const searchParams = useSearchParams();
     const currentUi = searchParams.get("ui") as VocabType | null;
+    const previousUiRef = useRef<VocabType | null>(currentUi);
+    const [selectionRefreshTick, setSelectionRefreshTick] = useState(0);
+
+    useEffect(() => {
+        // Force a fresh fetch when returning from a vocab sub-activity back to the selector.
+        if (previousUiRef.current && !currentUi) {
+            setSelectionRefreshTick((tick) => tick + 1);
+        }
+        previousUiRef.current = currentUi;
+    }, [currentUi]);
 
     if (!isVocabularyContent(content)) {
         return <div className="p-4 text-red-500">Invalid vocabulary content</div>;
@@ -95,6 +107,8 @@ export default function VocabularyRenderer({
     return (
         <SelectionMode
             activityId={activityId}
+            assignmentId={assignmentId}
+            refreshToken={`${searchParams.toString()}::${selectionRefreshTick}`}
             onSelectType={(vocabType) => {
                 const params = new URLSearchParams(searchParams);
                 params.set("ui", vocabType);
@@ -106,25 +120,67 @@ export default function VocabularyRenderer({
 
 interface SelectionModeProps {
     activityId: string;
+    assignmentId?: string | null;
+    refreshToken: string;
     onSelectType: (type: VocabType) => void;
 }
 
-function SelectionMode({ activityId, onSelectType }: SelectionModeProps) {
-    // Get progress data from localStorage (will be populated by API)
-    const progressData = useMemo(() => {
-        if (typeof window === "undefined") return null;
-        const stored = localStorage.getItem(`vocab-progress-${activityId}`);
-        return stored ? JSON.parse(stored) : null;
-    }, [activityId]);
+type VocabProgressEntry = {
+    progress?: number;
+    completed?: boolean;
+};
+
+type VocabProgressMap = Partial<Record<VocabType, VocabProgressEntry>>;
+
+function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }: SelectionModeProps) {
+    // Fetch progress data from API
+    const [progressData, setProgressData] = useState<VocabProgressMap>({});
+
+    useEffect(() => {
+        const fetchProgress = async () => {
+            try {
+                const params = new URLSearchParams({ activityId });
+                if (assignmentId) {
+                    params.set("assignmentId", assignmentId);
+                }
+
+                const response = await fetch(`/api/activity/progress?${params.toString()}`, { cache: "no-store" });
+                if (response.ok) {
+                    const data = await response.json();
+                    const parsedCategoryData = parseCategoryData<VocabProgressMap>(data.categoryData);
+                    setProgressData(parsedCategoryData ?? {});
+                }
+            } catch (error) {
+                console.error('Failed to fetch vocabulary progress:', error);
+            }
+        };
+        fetchProgress();
+
+        const handleFocus = () => {
+            void fetchProgress();
+        };
+
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "visible") {
+                void fetchProgress();
+            }
+        };
+
+        window.addEventListener("focus", handleFocus);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            window.removeEventListener("focus", handleFocus);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
+    }, [activityId, assignmentId, refreshToken]);
 
     const getTypeProgress = (type: VocabType): number => {
-        if (!progressData?.categoryData) return 0;
-        return progressData.categoryData[type]?.progress ?? 0;
+        return progressData[type]?.progress ?? 0;
     };
 
     const isTypeCompleted = (type: VocabType): boolean => {
-        if (!progressData?.categoryData) return false;
-        return progressData.categoryData[type]?.completed ?? false;
+        return progressData[type]?.completed ?? false;
     };
 
     const types: VocabType[] = ["word-list", "flashcards", "matching", "fill-blank"];
@@ -132,22 +188,22 @@ function SelectionMode({ activityId, onSelectType }: SelectionModeProps) {
     const overallProgress = Math.round((completedCount / types.length) * 100);
 
     return (
-        <div className="w-full max-w-3xl mx-auto px-3 pt-1 pb-4 md:px-8 md:pt-4 md:pb-10">
+        <div className="w-full max-w-2xl md:max-w-3xl mx-auto px-4 pt-1 pb-4 md:px-8 md:pt-4 md:pb-10">
             {/* Header Section - minimal on mobile */}
-            <div className="text-center mb-3 md:mb-8">
+            <div className="text-center mb-4 md:mb-8">
                 <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                     <span>Vocabulary Practice</span>
                 </div>
-                <h2 className="font-display text-lg md:text-3xl font-bold text-text tracking-tight">
+                <h2 className="font-display text-xl md:text-3xl font-bold text-text tracking-tight">
                     Choose Your Activity
                 </h2>
             </div>
 
-            {/* Activity Cards Grid - 2x2 on mobile */}
-            <div className="grid grid-cols-2 gap-2.5 md:gap-5">
+            {/* Activity Cards Grid - centered, responsive */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-xl sm:max-w-full mx-auto">
                 {types.map((type, index) => {
                     const config = VOCAB_CONFIG[type];
                     const progress = getTypeProgress(type);
@@ -162,7 +218,7 @@ function SelectionMode({ activityId, onSelectType }: SelectionModeProps) {
                                 group relative overflow-hidden rounded-xl md:rounded-2xl
                                 bg-gradient-to-br ${config.gradient}
                                 border border-border/60
-                                p-3 md:p-6 text-left
+                                p-4 md:p-6 text-left
                                 transition-all duration-300 ease-out
                                 hover:shadow-xl hover:shadow-black/5
                                 ${config.borderHover}
@@ -203,24 +259,17 @@ function SelectionMode({ activityId, onSelectType }: SelectionModeProps) {
                                     {config.description}
                                 </p>
 
-                                {/* Progress Section - simplified on mobile */}
-                                <div className="space-y-1 md:space-y-2">
-                                    <div className="flex items-center justify-between text-[10px] md:text-xs">
-                                        <span className={`font-medium ${isCompleted ? 'text-secondary' : 'text-text-muted'}`}>
-                                            {isCompleted ? 'Done' : `${Math.round(progress)}%`}
-                                        </span>
+                                {/* Progress Section - show checkmark when complete */}
+                                {!isCompleted && (
+                                    <div className="space-y-1 md:space-y-2">
+                                        <div className="relative w-full h-1.5 md:h-2 bg-white/60 rounded-full overflow-hidden">
+                                            <div
+                                                className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out ${config.accentColor}`}
+                                                style={{ width: `${Math.max(progress, 2)}%` }}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="relative w-full h-1.5 md:h-2 bg-white/60 rounded-full overflow-hidden">
-                                        <div
-                                            className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out ${
-                                                isCompleted
-                                                    ? "bg-gradient-to-r from-secondary to-secondary-light"
-                                                    : `${config.accentColor}`
-                                            }`}
-                                            style={{ width: `${Math.max(progress, 2)}%` }}
-                                        />
-                                    </div>
-                                </div>
+                                )}
 
                                 {/* Start/Continue indicator - desktop only */}
                                 <div className="hidden md:flex mt-4 items-center gap-1.5 text-xs font-medium text-text-muted opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
@@ -236,28 +285,28 @@ function SelectionMode({ activityId, onSelectType }: SelectionModeProps) {
             </div>
 
             {/* Tip Section - compact on mobile */}
-            <div className="mt-3 md:mt-10">
-                <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-r from-accent-light/30 to-accent/20 border border-accent/30 px-3 py-2 md:p-5">
+            <div className="mt-4 md:mt-10">
+                <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-r from-accent-light/30 to-accent/20 border border-accent/30 px-4 py-3 md:p-5">
                     <div className="absolute -bottom-4 -right-4 w-16 md:w-20 h-16 md:h-20 rounded-full bg-accent/20 blur-xl" />
-                    <div className="relative flex items-center gap-2 md:gap-3">
+                    <div className="relative flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3">
                         <div className="hidden md:flex flex-shrink-0 w-8 h-8 rounded-lg bg-accent/30 items-center justify-center">
                             <svg className="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
                         </div>
-                        <div className="flex-1 min-w-0 flex items-center gap-2 md:block">
-                            <p className="text-xs md:text-sm text-text font-medium whitespace-nowrap">
+                        <div className="flex-1 w-full min-w-0">
+                            <p className="text-xs md:text-sm text-text font-medium mb-2 md:mb-0">
                                 <span className="text-amber-700 font-semibold">Complete all 4</span>
                                 <span className="hidden md:inline"> activities to finish this vocabulary unit.</span>
                             </p>
-                            <div className="flex-1 md:mt-2 flex items-center gap-2">
+                            <div className="md:mt-2 flex items-center gap-2">
                                 <div className="flex-1 h-1.5 bg-white/50 rounded-full overflow-hidden">
                                     <div
                                         className="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-all duration-500"
                                         style={{ width: `${overallProgress}%` }}
                                     />
                                 </div>
-                                <span className="text-xs font-semibold text-amber-700 tabular-nums">
+                                <span className="text-xs font-semibold text-amber-700 tabular-nums flex-shrink-0">
                                     {completedCount}/4
                                 </span>
                             </div>
@@ -328,6 +377,7 @@ function RenderActivityContent({
                 <WordListRenderer
                     content={content.wordList}
                     activityId={activityId}
+                    vocabType={vocabType}
                 />
             );
         case "flashcards":
@@ -335,6 +385,7 @@ function RenderActivityContent({
                 <FlashcardsRenderer
                     content={content.flashcards}
                     activityId={activityId}
+                    vocabType={vocabType}
                 />
             );
         case "matching": {
@@ -348,6 +399,7 @@ function RenderActivityContent({
                     contentStr={matchingStr}
                     activityId={activityId}
                     assignmentId={assignmentId ?? null}
+                    vocabType={vocabType}
                 />
             );
         }
@@ -361,6 +413,7 @@ function RenderActivityContent({
                 <FillInBlankGame
                     contentStr={fillBlankStr}
                     activityId={activityId}
+                    vocabType={vocabType}
                 />
             );
         }
@@ -372,15 +425,23 @@ function RenderActivityContent({
 interface WordListRendererProps {
     content?: Record<string, unknown>;
     activityId: string;
+    vocabType: string;
 }
 
-function WordListRenderer({ content, activityId }: WordListRendererProps) {
+function WordListRenderer({ content, activityId, vocabType }: WordListRendererProps) {
     // Parse the word list content - it has a 'raw' property with plain text
     const contentStr = typeof content === 'object' && 'raw' in content
         ? (content as any).raw
         : JSON.stringify(content || {});
 
     const entries = parsePlainVocabulary(contentStr);
+
+    // Auto-save progress when word list is viewed (mark as complete)
+    useEffect(() => {
+        if (entries && entries.length > 0) {
+            saveActivityProgress(activityId, 100, "completed", undefined, undefined, undefined, undefined, vocabType);
+        }
+    }, [activityId, entries, vocabType]);
 
     if (!entries || entries.length === 0) {
         return (
@@ -444,9 +505,10 @@ function WordListRenderer({ content, activityId }: WordListRendererProps) {
 interface FlashcardsRendererProps {
     content?: Record<string, unknown>;
     activityId: string;
+    vocabType: string;
 }
 
-function FlashcardsRenderer({ content, activityId }: FlashcardsRendererProps) {
+function FlashcardsRenderer({ content, activityId, vocabType }: FlashcardsRendererProps) {
     // Parse the flashcards content - it has a 'raw' property with plain text
     const contentStr = typeof content === 'object' && 'raw' in content
         ? (content as any).raw
@@ -466,6 +528,7 @@ function FlashcardsRenderer({ content, activityId }: FlashcardsRendererProps) {
         <FlashcardCarousel
             cards={cards}
             activityId={activityId}
+            vocabType={vocabType}
         />
     );
 }

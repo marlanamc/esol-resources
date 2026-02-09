@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import Link from "next/link";
 import { BackButton, BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
@@ -15,6 +16,52 @@ import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UsersIcon, UserIcon } f
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
+interface ParsedActivityContent {
+    released?: boolean;
+    miniQuiz?: unknown;
+}
+
+interface QuizGradeRow {
+    id: string;
+    title: string;
+    score: number | null;
+    submittedAt: Date | null;
+}
+
+const parseActivityContent = (content: string): ParsedActivityContent | null => {
+    try {
+        const parsed: unknown = JSON.parse(content);
+        if (!parsed || typeof parsed !== "object") return null;
+        return parsed as ParsedActivityContent;
+    } catch {
+        return null;
+    }
+};
+
+const hasMiniQuiz = (content: string): boolean => {
+    const parsed = parseActivityContent(content);
+    return Boolean(parsed?.miniQuiz);
+};
+
+const cleanGuideTitle = (title: string): string => {
+    return title
+        .replace(/\s*-\s*Complete Guide$/i, "")
+        .replace(/\s+Guide$/i, "")
+        .replace(/\s+/g, " ")
+        .trim();
+};
+
+const getVerbQuizOrder = (title: string): number => {
+    const weekMatch = title.match(/(\d+)/);
+    return weekMatch ? Number(weekMatch[1]) : Number.MAX_SAFE_INTEGER;
+};
+
+const getScoreBadgeClasses = (score: number): string => {
+    if (score >= 80) return "bg-emerald-100 text-emerald-800 border-emerald-200";
+    if (score >= 60) return "bg-amber-100 text-amber-800 border-amber-200";
+    return "bg-rose-100 text-rose-800 border-rose-200";
+};
+
 export default async function ProfilePage() {
     const session = await getServerSession(authOptions);
 
@@ -24,6 +71,10 @@ export default async function ProfilePage() {
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
+
+    if (!userId) {
+        redirect("/login");
+    }
 
     // Get user data with stats
     const user = await prisma.user.findUnique({
@@ -56,7 +107,16 @@ export default async function ProfilePage() {
     }
 
     // Run all independent database queries in parallel to eliminate async waterfall
-    const [activityProgress, recentPointsLedger, pointsLedgerDates, activityProgressDates] = await Promise.all([
+    const [
+        activityProgress,
+        recentPointsLedger,
+        pointsLedgerDates,
+        activityProgressDates,
+        releasedVerbQuizActivitiesRaw,
+        releasedGrammarGuideActivities,
+        verbQuizSubmissions,
+        grammarQuizSubmissions,
+    ] = await Promise.all([
         // Get activity progress for category stats
         prisma.activityProgress.findMany({
             where: { userId },
@@ -83,6 +143,75 @@ export default async function ProfilePage() {
             select: { updatedAt: true },
             orderBy: { updatedAt: 'desc' },
             take: 365,
+        }),
+        prisma.activity.findMany({
+            where: {
+                type: "quiz",
+                category: "quizzes",
+                content: {
+                    contains: "\"type\":\"verb-quiz\"",
+                },
+            },
+            select: {
+                id: true,
+                title: true,
+                content: true,
+                createdAt: true,
+            },
+            orderBy: { createdAt: "asc" },
+        }),
+        prisma.activity.findMany({
+            where: {
+                type: "guide",
+                category: "grammar",
+                isReleased: true,
+            },
+            select: {
+                id: true,
+                title: true,
+                content: true,
+            },
+            orderBy: { title: "asc" },
+        }),
+        prisma.submission.findMany({
+            where: {
+                userId,
+                score: { not: null },
+                activity: {
+                    type: "quiz",
+                    category: "quizzes",
+                    content: {
+                        contains: "\"type\":\"verb-quiz\"",
+                    },
+                },
+            },
+            select: {
+                activityId: true,
+                score: true,
+                updatedAt: true,
+            },
+            orderBy: { updatedAt: "desc" },
+        }),
+        prisma.submission.findMany({
+            where: {
+                userId,
+                score: { not: null },
+                activity: {
+                    type: "guide",
+                    category: "grammar",
+                },
+            },
+            select: {
+                activityId: true,
+                score: true,
+                updatedAt: true,
+                activity: {
+                    select: {
+                        title: true,
+                    },
+                },
+            },
+            orderBy: { updatedAt: "desc" },
         }),
     ]);
 
@@ -146,9 +275,75 @@ export default async function ProfilePage() {
             reason: entry.source !== 'award' && entry.source ? entry.source : undefined,
         }));
 
+    const releasedVerbQuizActivities = releasedVerbQuizActivitiesRaw
+        .filter((activity) => parseActivityContent(activity.content)?.released === true)
+        .sort((a, b) => getVerbQuizOrder(a.title) - getVerbQuizOrder(b.title));
+
+    const latestVerbSubmissionByActivityId = new Map<string, { score: number; submittedAt: Date }>();
+    for (const submission of verbQuizSubmissions) {
+        if (submission.score === null) continue;
+        const existing = latestVerbSubmissionByActivityId.get(submission.activityId);
+        if (!existing || submission.updatedAt > existing.submittedAt) {
+            latestVerbSubmissionByActivityId.set(submission.activityId, {
+                score: submission.score,
+                submittedAt: submission.updatedAt,
+            });
+        }
+    }
+
+    const verbQuizGrades: QuizGradeRow[] = releasedVerbQuizActivities.map((activity) => {
+        const submission = latestVerbSubmissionByActivityId.get(activity.id);
+        return {
+            id: activity.id,
+            title: activity.title,
+            score: submission?.score ?? null,
+            submittedAt: submission?.submittedAt ?? null,
+        };
+    });
+
+    const releasedMiniQuizActivities = releasedGrammarGuideActivities.filter((activity) =>
+        hasMiniQuiz(activity.content)
+    );
+
+    const releasedMiniQuizActivityIds = new Set(releasedMiniQuizActivities.map((activity) => activity.id));
+    const releasedMiniQuizIdByTitle = new Map(
+        releasedMiniQuizActivities.map((activity) => [normalizeGuideTitle(activity.title), activity.id] as const)
+    );
+
+    const latestMiniQuizSubmissionByActivityId = new Map<string, { score: number; submittedAt: Date }>();
+    for (const submission of grammarQuizSubmissions) {
+        if (submission.score === null) continue;
+
+        const canonicalActivityId = releasedMiniQuizActivityIds.has(submission.activityId)
+            ? submission.activityId
+            : releasedMiniQuizIdByTitle.get(normalizeGuideTitle(submission.activity.title));
+
+        if (!canonicalActivityId) continue;
+
+        const existing = latestMiniQuizSubmissionByActivityId.get(canonicalActivityId);
+        if (!existing || submission.updatedAt > existing.submittedAt) {
+            latestMiniQuizSubmissionByActivityId.set(canonicalActivityId, {
+                score: submission.score,
+                submittedAt: submission.updatedAt,
+            });
+        }
+    }
+
+    const miniQuizGrades: QuizGradeRow[] = releasedMiniQuizActivities.map((activity) => {
+        const submission = latestMiniQuizSubmissionByActivityId.get(activity.id);
+        return {
+            id: activity.id,
+            title: cleanGuideTitle(activity.title),
+            score: submission?.score ?? null,
+            submittedAt: submission?.submittedAt ?? null,
+        };
+    });
+
+    const gradedVerbQuizCount = verbQuizGrades.filter((quiz) => quiz.score !== null).length;
+    const gradedMiniQuizCount = miniQuizGrades.filter((quiz) => quiz.score !== null).length;
+
     // Student view
     if (userRole === 'student') {
-        const totalActivities = vocabProgress.total + grammarProgress.total + numbersProgress.total + otherProgress.total;
         const totalCompleted = vocabProgress.completed + grammarProgress.completed + numbersProgress.completed + otherProgress.completed;
         
         // Encouraging message based on activity
@@ -216,26 +411,117 @@ export default async function ProfilePage() {
                         />
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-                        {/* Calendar */}
-                        <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-200">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
-                                    <Calendar className="w-5 h-5 text-success" />
+                    <div className="mb-10 space-y-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            {/* Calendar */}
+                            <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-200">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
+                                        <Calendar className="w-5 h-5 text-success" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl font-bold text-text">Consistency</h2>
+                                        <p className="text-sm text-text-muted">Each dot is a day you learned!</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h2 className="text-xl font-bold text-text">Consistency</h2>
-                                    <p className="text-sm text-text-muted">Each dot is a day you learned!</p>
+                                <StreakCalendar
+                                    activityDates={activityDates}
+                                    className="w-full"
+                                />
+                            </div>
+
+                            {/* Released Quiz Grades */}
+                            <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-300">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                                        <BookOpen className="w-5 h-5 text-primary" />
+                                    </div>
+                                    <div>
+                                        <h2 className="text-xl font-bold text-text">Quiz Grades</h2>
+                                        <p className="text-sm text-text-muted">
+                                            Released quizzes: {gradedVerbQuizCount}/{verbQuizGrades.length} Verb · {gradedMiniQuizCount}/{miniQuizGrades.length} Mini
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6 max-h-[520px] overflow-y-auto pr-1">
+                                    <div>
+                                        <h3 className="text-xs font-semibold uppercase tracking-wide text-text-muted mb-3">Verb Quizzes</h3>
+                                        {verbQuizGrades.length === 0 ? (
+                                            <div className="rounded-lg border border-dashed border-border/60 bg-bg/60 p-3">
+                                                <p className="text-sm text-text-muted">No released verb quizzes yet.</p>
+                                            </div>
+                                        ) : (
+                                            <div className="space-y-2">
+                                                {verbQuizGrades.map((quiz) => (
+                                                    <div
+                                                        key={quiz.id}
+                                                        className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3"
+                                                    >
+                                                        <div className="min-w-0">
+                                                            <p className="text-sm font-semibold text-text truncate">{quiz.title}</p>
+                                                            <p className="text-xs text-text-muted">
+                                                                {quiz.submittedAt
+                                                                    ? `Last attempt ${quiz.submittedAt.toLocaleDateString()}`
+                                                                    : "Released - not submitted yet"}
+                                                            </p>
+                                                        </div>
+                                                        {quiz.score !== null ? (
+                                                            <span className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold ${getScoreBadgeClasses(quiz.score)}`}>
+                                                                {quiz.score}%
+                                                            </span>
+                                                        ) : (
+                                                            <span className="shrink-0 rounded-full border border-border/60 bg-white px-2.5 py-1 text-xs font-medium text-text-muted">
+                                                                Not submitted
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div>
+                                        <h3 className="text-xs font-semibold uppercase tracking-wide text-text-muted mb-3">Mini Quizzes</h3>
+                                        {miniQuizGrades.length === 0 ? (
+                                            <div className="rounded-lg border border-dashed border-border/60 bg-bg/60 p-3">
+                                                <p className="text-sm text-text-muted">No released mini quizzes yet.</p>
+                                            </div>
+                                        ) : (
+                                            <div className="space-y-2">
+                                                {miniQuizGrades.map((quiz) => (
+                                                    <div
+                                                        key={quiz.id}
+                                                        className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3"
+                                                    >
+                                                        <div className="min-w-0">
+                                                            <p className="text-sm font-semibold text-text truncate">{quiz.title}</p>
+                                                            <p className="text-xs text-text-muted">
+                                                                {quiz.submittedAt
+                                                                    ? `Last attempt ${quiz.submittedAt.toLocaleDateString()}`
+                                                                    : "Released - not submitted yet"}
+                                                            </p>
+                                                        </div>
+                                                        {quiz.score !== null ? (
+                                                            <span className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-semibold ${getScoreBadgeClasses(quiz.score)}`}>
+                                                                {quiz.score}%
+                                                            </span>
+                                                        ) : (
+                                                            <span className="shrink-0 rounded-full border border-border/60 bg-white px-2.5 py-1 text-xs font-medium text-text-muted">
+                                                                Not submitted
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
-                            <StreakCalendar
-                                activityDates={activityDates}
-                                className="w-full"
-                            />
                         </div>
 
                         {/* Recent Activity */}
-                        <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-300">
+                        <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-6 shadow-sm animate-fade-in-up delay-400">
                             <div className="flex items-center justify-between mb-6">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
@@ -254,10 +540,10 @@ export default async function ProfilePage() {
                                 </div>
                             )}
                         </div>
-                        
+
                         {/* Achievements - Show only if exists */}
                         {user.achievements.length > 0 && (
-                            <div className="lg:col-span-2 bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-8 shadow-sm animate-fade-in-up delay-400">
+                            <div className="bg-white/80 backdrop-blur-md border border-border/60 rounded-2xl p-8 shadow-sm animate-fade-in-up delay-500">
                                 <div className="flex items-center gap-4 mb-6">
                                     <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center shadow-lg shadow-accent/20 text-white">
                                         <Award className="w-6 h-6" />
