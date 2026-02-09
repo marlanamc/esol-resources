@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { POINTS } from "@/lib/gamification/constants";
 import { getActivityPoints, resolveActivityGameUi } from "@/lib/gamification/activity-points";
-import { shouldAwardStreak, getEffectiveStreak } from "@/lib/gamification/streak-utils";
+import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "@/lib/gamification/streak-utils";
 import { determineGrammarCompletionPoints } from "@/lib/gamification/grammar-points";
 
 console.log("Running lightweight gamification sanity checks...");
@@ -18,6 +18,16 @@ assert.strictEqual(
   getEffectiveStreak(5, new Date("2026-02-09T12:00:00.000Z"), new Date("2026-02-12T12:00:00.000Z")),
   0,
   "Streak should display as 0 after more than one missed day"
+);
+assert.deepStrictEqual(
+  getNextStreakState(5, new Date("2026-02-09T12:00:00.000Z"), new Date("2026-02-10T12:00:00.000Z")),
+  { streakUpdated: true, newStreak: 6 },
+  "Next streak state should increment when last activity was yesterday"
+);
+assert.deepStrictEqual(
+  getNextStreakState(5, new Date("2026-02-09T12:00:00.000Z"), new Date("2026-02-12T12:00:00.000Z")),
+  { streakUpdated: true, newStreak: 1 },
+  "Next streak state should reset when more than one day was missed"
 );
 
 // 2. Grammar completion always uses the defined constant
