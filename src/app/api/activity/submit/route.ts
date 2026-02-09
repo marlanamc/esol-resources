@@ -4,6 +4,127 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { awardPoints, updateStreak, checkAndAwardAchievements, calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
 
+type SubmissionRecord = {
+    id: string;
+    score: number | null;
+};
+
+type SubmissionDelegate = {
+    upsert(args: {
+        where: {
+            userId_activityId_assignmentId: {
+                userId: string;
+                activityId: string;
+                assignmentId: string;
+            };
+        };
+        create: {
+            userId: string;
+            activityId: string;
+            assignmentId: string;
+            content: string;
+            score: number | null;
+            pointsAwarded: number;
+            status: "submitted";
+            completedAt: Date;
+        };
+        update: {
+            content: string;
+            score: number | null;
+            pointsAwarded: number;
+            status: "submitted";
+            completedAt: Date;
+        };
+    }): Promise<SubmissionRecord>;
+    findFirst(args: {
+        where: { userId: string; activityId: string; assignmentId: null };
+        orderBy: { updatedAt: "desc" };
+    }): Promise<{ id: string } | null>;
+    update(args: {
+        where: { id: string };
+        data: {
+            content: string;
+            score: number | null;
+            pointsAwarded: number;
+            status: "submitted";
+            completedAt: Date;
+        };
+    }): Promise<SubmissionRecord>;
+    create(args: {
+        data: {
+            userId: string;
+            activityId: string;
+            assignmentId: null;
+            content: string;
+            score: number | null;
+            pointsAwarded: number;
+            status: "submitted";
+            completedAt: Date;
+        };
+    }): Promise<SubmissionRecord>;
+};
+
+export async function saveActivitySubmission(params: {
+    submission: SubmissionDelegate;
+    userId: string;
+    activityId: string;
+    assignmentId: string | null;
+    content: unknown;
+    score: number | null;
+    pointsAwarded: number;
+}): Promise<SubmissionRecord> {
+    const { submission, userId, activityId, assignmentId, content, score, pointsAwarded } = params;
+    const submissionPayload = {
+        content: JSON.stringify(content ?? null),
+        score: typeof score === "number" ? score : null,
+        pointsAwarded,
+        status: "submitted" as const,
+        completedAt: new Date(),
+    };
+
+    // Prisma can't upsert with nullable fields in composite unique where input.
+    // For non-assignment practice submissions, fall back to find/update-or-create.
+    if (assignmentId) {
+        return submission.upsert({
+            where: {
+                userId_activityId_assignmentId: {
+                    userId,
+                    activityId,
+                    assignmentId,
+                },
+            },
+            create: {
+                userId,
+                activityId,
+                assignmentId,
+                ...submissionPayload,
+            },
+            update: submissionPayload,
+        });
+    }
+
+    const existingSubmission = await submission.findFirst({
+        where: { userId, activityId, assignmentId: null },
+        orderBy: { updatedAt: "desc" },
+    });
+
+    if (existingSubmission) {
+        return submission.update({
+            where: { id: existingSubmission.id },
+            data: submissionPayload,
+        });
+    }
+
+    return submission.create({
+        data: {
+            userId,
+            activityId,
+            assignmentId: null,
+            ...submissionPayload,
+        },
+    });
+}
+
 export async function POST(request: Request) {
     try {
         const session = await getServerSession(authOptions);
@@ -43,36 +164,21 @@ export async function POST(request: Request) {
             ? calculateQuizPoints(score ?? null)
             : getActivityPoints(activity.type, activity);
 
-        // Create or update submission
-        const submission = await prisma.submission.upsert({
-            where: {
-                userId_activityId_assignmentId: {
-                    userId,
-                    activityId,
-                    assignmentId: (assignmentId || null) as any,
-                },
-            },
-            create: {
-                userId,
-                activityId,
-                assignmentId: assignmentId || null,
-                content: JSON.stringify(content),
-                score: score || null,
-                pointsAwarded: calculatedPoints,
-                status: 'submitted',
-                completedAt: new Date(),
-            },
-            update: {
-                content: JSON.stringify(content),
-                score: score || null,
-                pointsAwarded: calculatedPoints,
-                status: 'submitted',
-                completedAt: new Date(),
-            },
+        const assignmentKey =
+            typeof assignmentId === "string" && assignmentId.trim() !== "" && assignmentId !== "null"
+                ? assignmentId
+                : null;
+        const submission = await saveActivitySubmission({
+            submission: prisma.submission,
+            userId,
+            activityId,
+            assignmentId: assignmentKey,
+            content,
+            score: typeof score === "number" ? score : null,
+            pointsAwarded: calculatedPoints,
         });
 
         // Update activity progress to completed
-        const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
         const progressWhere = {
             userId,
             activityId,
@@ -95,7 +201,7 @@ export async function POST(request: Request) {
                 data: {
                     userId,
                     activityId,
-                    assignmentId: typeof assignmentId === "string" ? assignmentId : null,
+                    assignmentId: assignmentKey,
                     progress: 100,
                     status: 'completed',
                 },

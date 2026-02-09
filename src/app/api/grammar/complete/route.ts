@@ -33,71 +33,42 @@ async function saveMiniQuizSubmission(params: {
     const { userId, activityId, score, total, slug } = params;
     const payload = JSON.stringify({ type: "mini-quiz", score, total, slug });
     const now = new Date();
+    // For NULL-assignment records, avoid composite-key upsert and use deterministic
+    // find/update-or-create so this works across Prisma/Postgres behaviors.
+    const existing = await prisma.submission.findFirst({
+        where: {
+            userId,
+            activityId,
+            assignmentId: null,
+        },
+        select: { id: true },
+        orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
+    });
 
-    try {
-        // Preferred path when there is only one NULL-assignment row for this user/activity.
-        await prisma.submission.upsert({
-            where: {
-                userId_activityId_assignmentId: {
-                    userId,
-                    activityId,
-                    assignmentId: null as any,
-                },
-            },
-            update: {
-                score,
-                content: payload,
-                status: "submitted",
-                completedAt: now,
-            },
-            create: {
-                userId,
-                activityId,
-                assignmentId: null,
-                score,
-                content: payload,
-                status: "submitted",
-                completedAt: now,
-            },
-        });
-    } catch {
-        // Legacy data can contain duplicate NULL-assignment rows in Postgres.
-        // Fallback: update the newest existing row or create one.
-        const existing = await prisma.submission.findFirst({
-            where: {
-                userId,
-                activityId,
-                assignmentId: null,
-            },
-            select: { id: true },
-            orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
-        });
-
-        if (existing) {
-            await prisma.submission.update({
-                where: { id: existing.id },
-                data: {
-                    score,
-                    content: payload,
-                    status: "submitted",
-                    completedAt: now,
-                },
-            });
-            return;
-        }
-
-        await prisma.submission.create({
+    if (existing) {
+        await prisma.submission.update({
+            where: { id: existing.id },
             data: {
-                userId,
-                activityId,
-                assignmentId: null,
                 score,
                 content: payload,
                 status: "submitted",
                 completedAt: now,
             },
         });
+        return;
     }
+
+    await prisma.submission.create({
+        data: {
+            userId,
+            activityId,
+            assignmentId: null,
+            score,
+            content: payload,
+            status: "submitted",
+            completedAt: now,
+        },
+    });
 }
 
 export async function POST(request: Request) {

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-env.mjs",
+    "prebuild": "node scripts/check-env.mjs && npm run check:nullable-upserts",
     "build": "prisma generate && next build",
     "deploy": "prisma migrate deploy && next build",
     "postinstall": "prisma generate",
@@ -13,7 +13,9 @@
     "analyze:server": "BUNDLE_ANALYZE=server ANALYZE=true next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser ANALYZE=true next build",
     "test:gamification": "tsx scripts/tests/gamification-helpers.test.ts",
+    "test:activity-submit": "node --import tsx scripts/tests/activity-submit-assignmentid.test.ts",
     "lint": "eslint",
+    "check:nullable-upserts": "node scripts/check-null-assignment-upserts.mjs",
     "typecheck": "tsc --noEmit",
     "db:seed": "npm run db:seed:grammar",
     "db:seed:grammar": "npx tsx prisma/seed-grammar-only.ts && node prisma/seed.js",
