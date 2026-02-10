@@ -1087,10 +1087,27 @@ function detectMatchingGameMode(content: string): "vocab" | "countable" {
 }
 
 function parseVocabPairs(content: string): VocabPair[] {
+    // Try to parse as JSON first (for consolidated vocab activities)
+    try {
+        const parsed = JSON.parse(content);
+        if (parsed && typeof parsed === 'object' && 'pairs' in parsed && Array.isArray(parsed.pairs)) {
+            return parsed.pairs
+                .filter((p: any) => p && p.term && p.definition)
+                .map((p: any, index: number) => ({
+                    id: p.id ?? index + 1,
+                    term: String(p.term).trim(),
+                    definition: String(p.definition).trim()
+                }));
+        }
+    } catch {
+        // Not JSON, fall through to plain text parsing
+    }
+
+    // Plain text parsing (legacy format)
     const pairs: VocabPair[] = [];
     let id = 1;
     const lines = content.split("\n").map((l) => l.trim()).filter(Boolean);
-    
+
     for (const line of lines) {
         let term = "";
         let definition = "";
@@ -1100,7 +1117,7 @@ function parseVocabPairs(content: string): VocabPair[] {
             const idx = line.indexOf("::");
             term = line.slice(0, idx).trim();
             definition = line.slice(idx + 2).trim();
-        } 
+        }
         // Support "1) Term — Definition" or "Term — Definition" format (em-dash)
         else if (line.includes("—")) {
             // Remove optional numbering like "1) "
@@ -1122,11 +1139,11 @@ function parseVocabPairs(content: string): VocabPair[] {
         }
 
         if (!term || !definition) continue;
-        
+
         // Skip special countable definitions
         const lower = definition.toLowerCase();
         if (lower.startsWith("countable") || lower.startsWith("uncountable")) continue;
-        
+
         // Remove Part of Speech from term if present e.g. "Term (noun)"
         term = term.replace(/\s*\([^)]+\)$/, "").trim();
 

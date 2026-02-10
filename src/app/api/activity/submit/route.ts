@@ -210,10 +210,15 @@ export async function POST(request: Request) {
 
         // Award points (calculated server-side)
         if (calculatedPoints > 0) {
+            // Include activity type in the reason for better display
+            const activityTypeLabel = activity.type.toLowerCase() === 'quiz' ? 'Quiz' : '';
+            const reason = activityTypeLabel
+                ? `${activity.title || activityId}|${activityTypeLabel}`
+                : `Completed: ${activity.title || activityId}`;
             await awardPoints(
                 userId,
                 calculatedPoints,
-                `Completed: ${activity.title || activityId}`
+                reason
             );
 
             // Update streak and check for achievements

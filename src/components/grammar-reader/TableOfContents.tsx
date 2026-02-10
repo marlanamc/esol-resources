@@ -1,4 +1,5 @@
 import React from "react";
+import { Brain } from "lucide-react";
 import type { InteractiveGuideSection } from "@/types/activity";
 
 interface TableOfContentsProps {
@@ -6,6 +7,9 @@ interface TableOfContentsProps {
     currentIndex: number;
     completedSections: Set<string>;
     onSelectSection: (index: number) => void;
+    hasMiniQuiz?: boolean;
+    showingQuiz?: boolean;
+    onSelectQuiz?: () => void;
 }
 
 export const TableOfContents = React.memo(function TableOfContents({
@@ -13,6 +17,9 @@ export const TableOfContents = React.memo(function TableOfContents({
     currentIndex,
     completedSections,
     onSelectSection,
+    hasMiniQuiz,
+    showingQuiz,
+    onSelectQuiz,
 }: TableOfContentsProps) {
     return (
         <div className="table-of-contents bg-gradient-to-br from-primary/5 to-secondary/5 border-2 border-primary rounded-lg p-6">
@@ -31,7 +38,7 @@ export const TableOfContents = React.memo(function TableOfContents({
             <ul className="space-y-2">
                 {sections.map((section, index) => {
                     const isCompleted = section.id && completedSections.has(section.id);
-                    const isCurrent = index === currentIndex;
+                    const isCurrent = index === currentIndex && !showingQuiz;
                     const displayNumber = index + 1;
 
                     return (
@@ -105,6 +112,53 @@ export const TableOfContents = React.memo(function TableOfContents({
                         </li>
                     );
                 })}
+
+                {/* Mini Quiz Entry */}
+                {hasMiniQuiz && onSelectQuiz && (
+                    <li>
+                        <button
+                            onClick={onSelectQuiz}
+                            className={`w-full text-left px-4 py-3 rounded-lg border transition-[background-color,color,border-color,box-shadow] duration-200 flex items-center gap-3 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${showingQuiz
+                                    ? "bg-primary text-white border-primary shadow-md"
+                                    : "bg-white text-text border-border hover:bg-bg-light hover:border-primary/60"
+                                }`}
+                            aria-current={showingQuiz ? "page" : undefined}
+                            aria-label={`Mini Quiz${showingQuiz ? " (current)" : ""}`}
+                        >
+                            {/* Brain Icon */}
+                            <span className="flex-shrink-0">
+                                <Brain className={`w-6 h-6 ${showingQuiz ? "text-white" : "text-primary"}`} />
+                            </span>
+
+                            {/* Title */}
+                            <span className="flex-1 text-sm font-medium">
+                                <span className="font-bold mr-2">
+                                    {sections.length + 1}.
+                                </span>
+                                Mini Quiz
+                            </span>
+
+                            {/* Current Indicator */}
+                            {showingQuiz && (
+                                <span className="flex-shrink-0">
+                                    <svg
+                                        className="w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M9 5l7 7-7 7"
+                                        />
+                                    </svg>
+                                </span>
+                            )}
+                        </button>
+                    </li>
+                )}
             </ul>
         </div>
     );

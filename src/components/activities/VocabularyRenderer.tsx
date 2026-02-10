@@ -188,130 +188,167 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
     const overallProgress = Math.round((completedCount / types.length) * 100);
 
     return (
-        <div className="w-full max-w-2xl md:max-w-3xl mx-auto px-4 pt-1 pb-4 md:px-8 md:pt-4 md:pb-10">
-            {/* Header Section - minimal on mobile */}
-            <div className="text-center mb-4 md:mb-8">
-                <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
-                    <span>Vocabulary Practice</span>
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-0 md:bg-transparent">
+            {/* Mobile Header - Back + Progress */}
+            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 md:hidden">
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <BackButton onClick={() => window.history.back()} className="shrink-0" />
+                        <div className="text-sm font-bold text-[var(--color-text-muted)]">
+                            {completedCount}/4 complete
+                        </div>
+                    </div>
+                    <div className="h-2 w-20 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                            style={{ width: `${overallProgress}%` }}
+                        />
+                    </div>
                 </div>
-                <h2 className="font-display text-xl md:text-3xl font-bold text-text tracking-tight">
-                    Choose Your Activity
-                </h2>
             </div>
 
-            {/* Activity Cards Grid - centered, responsive */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 max-w-xl sm:max-w-full mx-auto">
-                {types.map((type, index) => {
-                    const config = VOCAB_CONFIG[type];
-                    const progress = getTypeProgress(type);
-                    const isCompleted = isTypeCompleted(type);
+            {/* Main Content Area - Scrollable */}
+            <div className="flex-1 overflow-y-auto">
+                <div className="w-full max-w-2xl md:max-w-3xl mx-auto px-4 pt-4 pb-4 md:px-8 md:pt-4 md:pb-10">
+                    {/* Header Section - desktop only */}
+                    <div className="text-center mb-4 md:mb-8">
+                        <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                            <span>Vocabulary Practice</span>
+                        </div>
+                        <h2 className="font-display text-xl md:text-3xl font-bold text-text tracking-tight">
+                            Choose Your Activity
+                        </h2>
+                    </div>
 
-                    return (
-                        <button
-                            key={type}
-                            onClick={() => onSelectType(type)}
-                            className={`
-                                vocab-activity-card
-                                group relative overflow-hidden rounded-xl md:rounded-2xl
-                                bg-gradient-to-br ${config.gradient}
-                                border border-border/60
-                                p-4 md:p-6 text-left
-                                transition-all duration-300 ease-out
-                                hover:shadow-xl hover:shadow-black/5
-                                ${config.borderHover}
-                                md:hover:-translate-y-1
-                                active:scale-[0.98]
-                                focus-visible:outline-none focus-visible:ring-2 ${config.ringColor} focus-visible:ring-offset-2
-                            `}
-                            style={{
-                                animationDelay: `${index * 80}ms`,
-                            }}
-                        >
-                            {/* Decorative corner accent */}
-                            <div className={`absolute -top-6 -right-6 md:-top-8 md:-right-8 w-16 md:w-24 h-16 md:h-24 rounded-full ${config.accentColor} opacity-[0.08] transition-transform duration-500 group-hover:scale-150`} />
+                    {/* Activity Cards Grid - 2x2 on mobile, fills space */}
+                    <div className="grid grid-cols-2 gap-3 md:gap-5 max-w-xl sm:max-w-full mx-auto">
+                        {types.map((type, index) => {
+                            const config = VOCAB_CONFIG[type];
+                            const progress = getTypeProgress(type);
+                            const isCompleted = isTypeCompleted(type);
 
-                            {/* Completion checkmark badge */}
-                            {isCompleted && (
-                                <div className="absolute top-2 right-2 md:top-4 md:right-4">
-                                    <div className="flex items-center justify-center w-5 h-5 md:w-7 md:h-7 rounded-full bg-secondary text-white shadow-md">
-                                        <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            )}
+                            return (
+                                <button
+                                    key={type}
+                                    onClick={() => onSelectType(type)}
+                                    className={`
+                                        vocab-activity-card
+                                        group relative overflow-hidden rounded-2xl
+                                        bg-gradient-to-br ${config.gradient}
+                                        border border-border/60
+                                        p-4 md:p-6 text-left
+                                        min-h-[140px] md:min-h-0
+                                        transition-all duration-300 ease-out
+                                        hover:shadow-xl hover:shadow-black/5
+                                        ${config.borderHover}
+                                        md:hover:-translate-y-1
+                                        active:scale-[0.98]
+                                        focus-visible:outline-none focus-visible:ring-2 ${config.ringColor} focus-visible:ring-offset-2
+                                    `}
+                                    style={{
+                                        animationDelay: `${index * 80}ms`,
+                                    }}
+                                >
+                                    {/* Decorative corner accent */}
+                                    <div className={`absolute -top-6 -right-6 md:-top-8 md:-right-8 w-16 md:w-24 h-16 md:h-24 rounded-full ${config.accentColor} opacity-[0.08] transition-transform duration-500 group-hover:scale-150`} />
 
-                            {/* Content */}
-                            <div className="relative z-10">
-                                {/* Icon */}
-                                <div className={`inline-flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl ${config.iconBg} mb-2 md:mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
-                                    <span className="text-xl md:text-3xl">{config.icon}</span>
-                                </div>
+                                    {/* Completion checkmark badge */}
+                                    {isCompleted && (
+                                        <div className="absolute top-2 right-2 md:top-4 md:right-4">
+                                            <div className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-secondary text-white shadow-md">
+                                                <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    )}
 
-                                {/* Title & Description */}
-                                <h3 className="font-display text-sm md:text-xl font-bold text-text mb-0.5 md:mb-1.5 tracking-tight leading-tight">
-                                    {config.name}
-                                </h3>
-                                <p className="text-xs md:text-sm text-text-muted mb-2 md:mb-5 leading-snug line-clamp-2">
-                                    {config.description}
-                                </p>
+                                    {/* Content */}
+                                    <div className="relative z-10 flex flex-col h-full">
+                                        {/* Icon */}
+                                        <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                                            <span className="text-2xl md:text-3xl">{config.icon}</span>
+                                        </div>
 
-                                {/* Progress Section - show checkmark when complete */}
-                                {!isCompleted && (
-                                    <div className="space-y-1 md:space-y-2">
-                                        <div className="relative w-full h-1.5 md:h-2 bg-white/60 rounded-full overflow-hidden">
-                                            <div
-                                                className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out ${config.accentColor}`}
-                                                style={{ width: `${Math.max(progress, 2)}%` }}
-                                            />
+                                        {/* Title & Description */}
+                                        <h3 className="font-display text-base md:text-xl font-bold text-text mb-1 md:mb-1.5 tracking-tight leading-tight">
+                                            {config.name}
+                                        </h3>
+                                        <p className="text-xs md:text-sm text-text-muted mb-auto leading-snug line-clamp-2">
+                                            {config.description}
+                                        </p>
+
+                                        {/* Progress Section - show checkmark when complete */}
+                                        {!isCompleted && (
+                                            <div className="mt-3 md:mt-4 space-y-1 md:space-y-2">
+                                                <div className="relative w-full h-1.5 md:h-2 bg-white/60 rounded-full overflow-hidden">
+                                                    <div
+                                                        className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out ${config.accentColor}`}
+                                                        style={{ width: `${Math.max(progress, 2)}%` }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        {/* Start/Continue indicator - desktop only */}
+                                        <div className="hidden md:flex mt-4 items-center gap-1.5 text-xs font-medium text-text-muted opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                                            <span>{isCompleted ? 'Review again' : progress > 0 ? 'Continue' : 'Start'}</span>
+                                            <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                            </svg>
                                         </div>
                                     </div>
-                                )}
+                                </button>
+                            );
+                        })}
+                    </div>
 
-                                {/* Start/Continue indicator - desktop only */}
-                                <div className="hidden md:flex mt-4 items-center gap-1.5 text-xs font-medium text-text-muted opacity-0 translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                                    <span>{isCompleted ? 'Review again' : progress > 0 ? 'Continue' : 'Start'}</span>
-                                    <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    {/* Tip Section - desktop only */}
+                    <div className="hidden md:block mt-10">
+                        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-accent-light/30 to-accent/20 border border-accent/30 p-5">
+                            <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-accent/20 blur-xl" />
+                            <div className="relative flex flex-row items-center gap-3">
+                                <div className="flex flex-shrink-0 w-8 h-8 rounded-lg bg-accent/30 items-center justify-center">
+                                    <svg className="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
                                 </div>
-                            </div>
-                        </button>
-                    );
-                })}
-            </div>
-
-            {/* Tip Section - compact on mobile */}
-            <div className="mt-4 md:mt-10">
-                <div className="relative overflow-hidden rounded-lg md:rounded-xl bg-gradient-to-r from-accent-light/30 to-accent/20 border border-accent/30 px-4 py-3 md:p-5">
-                    <div className="absolute -bottom-4 -right-4 w-16 md:w-20 h-16 md:h-20 rounded-full bg-accent/20 blur-xl" />
-                    <div className="relative flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3">
-                        <div className="hidden md:flex flex-shrink-0 w-8 h-8 rounded-lg bg-accent/30 items-center justify-center">
-                            <svg className="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
-                        </div>
-                        <div className="flex-1 w-full min-w-0">
-                            <p className="text-xs md:text-sm text-text font-medium mb-2 md:mb-0">
-                                <span className="text-amber-700 font-semibold">Complete all 4</span>
-                                <span className="hidden md:inline"> activities to finish this vocabulary unit.</span>
-                            </p>
-                            <div className="md:mt-2 flex items-center gap-2">
-                                <div className="flex-1 h-1.5 bg-white/50 rounded-full overflow-hidden">
-                                    <div
-                                        className="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-all duration-500"
-                                        style={{ width: `${overallProgress}%` }}
-                                    />
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-sm text-text font-medium">
+                                        <span className="text-amber-700 font-semibold">Complete all 4</span> activities to finish this vocabulary unit.
+                                    </p>
+                                    <div className="mt-2 flex items-center gap-2">
+                                        <div className="flex-1 h-1.5 bg-white/50 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-all duration-500"
+                                                style={{ width: `${overallProgress}%` }}
+                                            />
+                                        </div>
+                                        <span className="text-xs font-semibold text-amber-700 tabular-nums flex-shrink-0">
+                                            {completedCount}/4
+                                        </span>
+                                    </div>
                                 </div>
-                                <span className="text-xs font-semibold text-amber-700 tabular-nums flex-shrink-0">
-                                    {completedCount}/4
-                                </span>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {/* Mobile Bottom Bar - Progress Tip */}
+            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-3 md:hidden">
+                <div className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                        <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <p className="text-sm text-text flex-1">
+                        <span className="text-amber-700 font-semibold">Complete all 4</span> to finish!
+                    </p>
                 </div>
             </div>
         </div>
@@ -429,12 +466,28 @@ interface WordListRendererProps {
 }
 
 function WordListRenderer({ content, activityId, vocabType }: WordListRendererProps) {
-    // Parse the word list content - it has a 'raw' property with plain text
-    const contentStr = typeof content === 'object' && 'raw' in content
-        ? (content as any).raw
-        : JSON.stringify(content || {});
+    // Support two formats:
+    // 1) Plain text stored in a `raw` property
+    // 2) Structured cards array from weekly vocab seed (`{ cards: [{ term, definition, example }] }`)
+    let entries: Array<{ term: string; pos?: string; definition: string; example?: string }> = [];
 
-    const entries = parsePlainVocabulary(contentStr);
+    if (content && typeof content === "object" && "cards" in content && Array.isArray((content as any).cards)) {
+        const cards = (content as any).cards as Array<{ term?: string; definition?: string; example?: string }>;
+        entries = cards
+            .map((card) => ({
+                term: card.term?.trim() ?? "",
+                definition: card.definition?.trim() ?? "",
+                example: card.example,
+            }))
+            .filter((e) => e.term && e.definition);
+    } else {
+        // Fallback: parse legacy plain-text vocabulary
+        const contentStr =
+            typeof content === "object" && content !== null && "raw" in content
+                ? (content as any).raw
+                : JSON.stringify(content || {});
+        entries = parsePlainVocabulary(contentStr);
+    }
 
     // Auto-save progress when word list is viewed (mark as complete)
     useEffect(() => {
@@ -509,12 +562,28 @@ interface FlashcardsRendererProps {
 }
 
 function FlashcardsRenderer({ content, activityId, vocabType }: FlashcardsRendererProps) {
-    // Parse the flashcards content - it has a 'raw' property with plain text
-    const contentStr = typeof content === 'object' && 'raw' in content
-        ? (content as any).raw
-        : JSON.stringify(content || {});
+    let cards: Array<{ id: string; term: string; definition: string; example?: string }> = [];
 
-    const cards = parseFlashcards(contentStr);
+    // Support two formats:
+    // 1) Structured cards array from weekly vocab seed (`{ cards: [{ term, definition, example }] }`)
+    // 2) Plain text stored in a `raw` property (legacy format)
+    if (content && typeof content === "object" && "cards" in content && Array.isArray((content as any).cards)) {
+        const rawCards = (content as any).cards as Array<{ term?: string; definition?: string; example?: string }>;
+        cards = rawCards
+            .map((card, idx) => ({
+                id: `card-${idx}`,
+                term: card.term?.trim() ?? "",
+                definition: card.definition?.trim() ?? "",
+                example: card.example,
+            }))
+            .filter((c) => c.term && c.definition);
+    } else {
+        // Fallback: parse legacy plain-text flashcards
+        const contentStr = typeof content === 'object' && 'raw' in content
+            ? (content as any).raw
+            : JSON.stringify(content || {});
+        cards = parseFlashcards(contentStr);
+    }
 
     if (!cards || cards.length === 0) {
         return (

@@ -477,6 +477,9 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                         onSelectSection={handleJumpToSection}
                                         currentIndex={currentSectionIndex}
                                         completedSections={completedSections}
+                                        hasMiniQuiz={!!content.miniQuiz}
+                                        showingQuiz={showQuiz}
+                                        onSelectQuiz={() => setShowQuiz(true)}
                                     />
                                 </div>
                             </div>
@@ -485,12 +488,13 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
                     {/* Mini Quiz Section */}
                     {showQuiz && content.miniQuiz && (
-                        <div className="p-6">
+                        <div className="md:p-6">
                             <MiniQuizSection
                                 questions={content.miniQuiz}
                                 onComplete={handleQuizComplete}
                                 onScoreSubmit={handleQuizScoreSubmit}
                                 topicTitle={guideTitle}
+                                onBack={() => setShowQuiz(false)}
                             />
                         </div>
                     )}

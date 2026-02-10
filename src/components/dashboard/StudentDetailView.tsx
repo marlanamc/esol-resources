@@ -448,11 +448,38 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 <p className="text-text-muted text-sm">No activity yet</p>
                             ) : (
                                 data.timeline.map(entry => {
-                                    const activityName = entry.activity.split(':')[1]
-                                        ?.replace(/-/g, ' ')
-                                        .split(' ')
-                                        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-                                        .join(' ') || entry.activity;
+                                    // Parse the new format: "Title|Type" or legacy formats
+                                    let activityName = entry.activity;
+                                    let activityType: string | undefined;
+
+                                    if (entry.activity.includes('|')) {
+                                        // New format: "Title|Type"
+                                        const [title, type] = entry.activity.split('|');
+                                        activityName = title.trim();
+                                        activityType = type?.trim();
+                                    } else if (entry.activity.startsWith('Completed: ')) {
+                                        // Legacy format
+                                        activityName = entry.activity.replace('Completed: ', '');
+                                    } else if (entry.activity.includes(':')) {
+                                        // Legacy grammar format: "grammar:slug"
+                                        const formatted = entry.activity.split(':')[1]
+                                            ?.replace(/-/g, ' ')
+                                            .split(' ')
+                                            .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                                            .join(' ') || entry.activity;
+                                        activityName = formatted;
+                                        if (entry.activity.startsWith('grammar:')) {
+                                            activityType = 'Grammar Guide';
+                                        }
+                                    }
+
+                                    // Special handling for streak and achievement entries
+                                    if (entry.activity === 'Streak bonus' || entry.activity === 'Streak + weekly bonus') {
+                                        activityType = 'Streak Bonus';
+                                    } else if (entry.activity.startsWith('Achievement:')) {
+                                        activityType = 'Achievement';
+                                        activityName = entry.activity.replace('Achievement: ', '');
+                                    }
 
                                     return (
                                         <div
@@ -468,7 +495,12 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                                 <div className="text-sm font-medium text-text">
                                                     {activityName}
                                                 </div>
-                                                <div className="text-xs text-text-muted">
+                                                {activityType && (
+                                                    <span className="inline-block mt-1 px-2 py-0.5 text-[10px] font-medium text-secondary bg-secondary/10 rounded-full">
+                                                        {activityType}
+                                                    </span>
+                                                )}
+                                                <div className="text-xs text-text-muted mt-1">
                                                     {new Date(entry.timestamp).toLocaleDateString()} at{' '}
                                                     {new Date(entry.timestamp).toLocaleTimeString([], {
                                                         hour: '2-digit',

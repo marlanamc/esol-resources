@@ -416,15 +416,45 @@ export default async function ProfilePage() {
     const otherProgress = calcCategoryProgress(otherActivities);
 
     // Format timeline activities (exclude login entries with 0 points)
+    // Parse the new reason format: "Activity Title|Activity Type" or legacy "Completed: Title"
     const timelineActivities = recentPointsLedger
         .filter(entry => entry.points > 0)
-        .map(entry => ({
-            id: entry.id,
-            activityName: entry.reason || 'Activity completed',
-            points: entry.points,
-            completedAt: entry.createdAt,
-            reason: entry.source !== 'award' && entry.source ? entry.source : undefined,
-        }));
+        .map(entry => {
+            const reason = entry.reason || 'Activity completed';
+            let activityName = reason;
+            let activityType: string | undefined;
+
+            // Check for new format with pipe separator: "Title|Type"
+            if (reason.includes('|')) {
+                const [title, type] = reason.split('|');
+                activityName = title.trim();
+                activityType = type?.trim();
+            } else if (reason.startsWith('Completed: ')) {
+                // Legacy format: strip "Completed: " prefix
+                activityName = reason.replace('Completed: ', '');
+            } else if (reason.startsWith('grammar:')) {
+                // Legacy grammar format: format the slug
+                activityName = reason.replace('grammar:', '').replace(/-/g, ' ')
+                    .split(' ')
+                    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+                    .join(' ');
+                activityType = 'Grammar Guide';
+            } else if (reason === 'Streak bonus' || reason === 'Streak + weekly bonus') {
+                activityType = 'Streak Bonus';
+            } else if (reason.startsWith('Achievement:')) {
+                activityType = 'Achievement';
+                activityName = reason.replace('Achievement: ', '');
+            }
+
+            return {
+                id: entry.id,
+                activityName,
+                points: entry.points,
+                completedAt: entry.createdAt,
+                activityType,
+                reason: entry.source !== 'award' && entry.source && !activityType ? entry.source : undefined,
+            };
+        });
 
     const releasedVerbQuizActivities = releasedVerbQuizActivitiesRaw
         .filter((activity) => parseActivityContent(activity.content)?.released === true)
@@ -608,12 +638,13 @@ export default async function ProfilePage() {
                                         ) : (
                                             <div className="space-y-2">
                                                 {verbQuizGrades.map((quiz) => (
-                                                    <div
+                                                    <Link
                                                         key={quiz.id}
-                                                        className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3"
+                                                        href={`/activity/${quiz.id}`}
+                                                        className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3 hover:bg-primary/5 hover:border-primary/30 transition-colors group"
                                                     >
-                                                        <div className="min-w-0">
-                                                            <p className="text-sm font-semibold text-text truncate">{quiz.title}</p>
+                                                        <div className="min-w-0 flex-1">
+                                                            <p className="text-sm font-semibold text-text truncate group-hover:text-primary transition-colors">{quiz.title}</p>
                                                             <p className="text-xs text-text-muted">
                                                                 {quiz.submittedAt
                                                                     ? `Last attempt ${quiz.submittedAt.toLocaleDateString()}`
@@ -629,7 +660,8 @@ export default async function ProfilePage() {
                                                                 Not submitted
                                                             </span>
                                                         )}
-                                                    </div>
+                                                        <ChevronRight className="w-4 h-4 text-text-muted shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    </Link>
                                                 ))}
                                             </div>
                                         )}
@@ -644,12 +676,13 @@ export default async function ProfilePage() {
                                         ) : (
                                             <div className="space-y-2">
                                                 {miniQuizGrades.map((quiz) => (
-                                                    <div
+                                                    <Link
                                                         key={quiz.id}
-                                                        className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3"
+                                                        href={`/activity/${quiz.id}`}
+                                                        className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3 hover:bg-primary/5 hover:border-primary/30 transition-colors group"
                                                     >
-                                                        <div className="min-w-0">
-                                                            <p className="text-sm font-semibold text-text truncate">{quiz.title}</p>
+                                                        <div className="min-w-0 flex-1">
+                                                            <p className="text-sm font-semibold text-text truncate group-hover:text-primary transition-colors">{quiz.title}</p>
                                                             <p className="text-xs text-text-muted">
                                                                 {quiz.submittedAt
                                                                     ? `Last attempt ${quiz.submittedAt.toLocaleDateString()}`
@@ -665,7 +698,8 @@ export default async function ProfilePage() {
                                                                 Not submitted
                                                             </span>
                                                         )}
-                                                    </div>
+                                                        <ChevronRight className="w-4 h-4 text-text-muted shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                    </Link>
                                                 ))}
                                             </div>
                                         )}
