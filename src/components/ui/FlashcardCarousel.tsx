@@ -18,12 +18,13 @@ interface FlashcardData {
 interface FlashcardCarouselProps {
     cards: FlashcardData[];
     activityId?: string;
+    assignmentId?: string | null;
     vocabType?: string;
 }
 
 type CardMode = "term-first" | "def-first";
 
-export default function FlashcardCarousel({ cards, activityId, vocabType }: FlashcardCarouselProps) {
+export default function FlashcardCarousel({ cards, activityId, assignmentId, vocabType }: FlashcardCarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isFlipped, setIsFlipped] = useState(false);
     const [order, setOrder] = useState(cards.map((_, i) => i));
@@ -160,14 +161,23 @@ export default function FlashcardCarousel({ cards, activityId, vocabType }: Flas
         const studiedPercent = Math.round((studiedCards.size / total) * 100);
 
         const saveProgress = async () => {
-            const result = await saveActivityProgress(activityId, studiedPercent, studiedPercent >= 100 ? "completed" : "in_progress", undefined, undefined, undefined, undefined, vocabType);
+            const result = await saveActivityProgress(
+                activityId,
+                studiedPercent,
+                studiedPercent >= 100 ? "completed" : "in_progress",
+                undefined,
+                undefined,
+                assignmentId ?? null,
+                undefined,
+                vocabType
+            );
             if (result?.pointsAwarded && result.pointsAwarded > 0) {
                 setPointsToast({ points: result.pointsAwarded, key: Date.now() });
             }
         };
 
         void saveProgress();
-    }, [activityId, studiedCards.size, total, vocabType]);
+    }, [activityId, assignmentId, studiedCards.size, total, vocabType]);
 
     const [showSettings, setShowSettings] = useState(false);
 

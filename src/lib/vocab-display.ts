@@ -15,6 +15,61 @@ const VOCAB_TYPES = ['packet', 'flashcards', 'matching', 'fillblank'] as const;
 export type VocabActivityType = (typeof VOCAB_TYPES)[number];
 
 /**
+ * Parse a vocab type from a short label/value (e.g. "Word List", "fill-blank").
+ */
+export function parseVocabTypeLabel(value: string | null | undefined): VocabActivityType | null {
+  if (!value) return null;
+
+  const normalized = value.toLowerCase().trim();
+
+  if (
+    normalized === 'packet' ||
+    normalized === 'word list' ||
+    normalized === 'word-list' ||
+    normalized === 'wordlist'
+  ) {
+    return 'packet';
+  }
+  if (
+    normalized === 'flashcards' ||
+    normalized === 'flash cards' ||
+    normalized === 'flash-cards' ||
+    normalized === 'flashcard'
+  ) {
+    return 'flashcards';
+  }
+  if (normalized === 'matching') {
+    return 'matching';
+  }
+  if (
+    normalized === 'fill in the blank' ||
+    normalized === 'fill-in-the-blank' ||
+    normalized === 'fill in blank' ||
+    normalized === 'fill-blank' ||
+    normalized === 'fillblank'
+  ) {
+    return 'fillblank';
+  }
+
+  return null;
+}
+
+/**
+ * Parse vocab type from common title suffixes.
+ * e.g. "Unit 6 — Flash Cards" -> "flashcards"
+ */
+export function getVocabTypeFromTitle(title: string | null | undefined): VocabActivityType | null {
+  if (!title) return null;
+
+  if (/\s*[—–-]\s*Word\s*List\s*$/i.test(title)) return 'packet';
+  if (/\s*[—–-]\s*Flash\s*Cards?\s*(?:GAME)?\s*$/i.test(title)) return 'flashcards';
+  if (/\s*[—–-]\s*Matching\s*$/i.test(title)) return 'matching';
+  if (/\s*[—–-]\s*Fill-?in-?(?:the-?)?Blank\s*$/i.test(title)) return 'fillblank';
+
+  return null;
+}
+
+/**
  * Returns the vocab activity type from the activity ID.
  * e.g. vocab-feb-3-5-flashcards → 'flashcards'
  */

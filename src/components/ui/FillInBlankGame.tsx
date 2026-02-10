@@ -14,10 +14,11 @@ interface FillInBlankQuestion {
 interface Props {
     contentStr: string;
     activityId?: string;
+    assignmentId?: string | null;
     vocabType?: string;
 }
 
-export default function FillInBlankGame({ contentStr, activityId, vocabType }: Props) {
+export default function FillInBlankGame({ contentStr, activityId, assignmentId, vocabType }: Props) {
     const questions = parseQuestions(contentStr);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
@@ -51,20 +52,38 @@ export default function FillInBlankGame({ contentStr, activityId, vocabType }: P
         const value = Math.round(progress);
 
         const saveProgress = async () => {
-            const result = await saveActivityProgress(activityId, value, value >= 100 ? "completed" : "in_progress", undefined, undefined, undefined, undefined, vocabType);
+            const result = await saveActivityProgress(
+                activityId,
+                value,
+                value >= 100 ? "completed" : "in_progress",
+                undefined,
+                undefined,
+                assignmentId ?? null,
+                undefined,
+                vocabType
+            );
             if (result?.pointsAwarded && result.pointsAwarded > 0) {
                 setPointsToast({ points: result.pointsAwarded, key: Date.now() });
             }
         };
 
         void saveProgress();
-    }, [activityId, progress, questions.length]);
+    }, [activityId, assignmentId, progress, questions.length, vocabType]);
 
     // Save 100% progress when quiz is completed
     useEffect(() => {
         if (isComplete && activityId) {
             const finishQuiz = async () => {
-                const result = await saveActivityProgress(activityId, 100, "completed", undefined, undefined, undefined, undefined, vocabType);
+                const result = await saveActivityProgress(
+                    activityId,
+                    100,
+                    "completed",
+                    undefined,
+                    undefined,
+                    assignmentId ?? null,
+                    undefined,
+                    vocabType
+                );
                 if (result?.pointsAwarded && result.pointsAwarded > 0) {
                     setPointsToast({ points: result.pointsAwarded, key: Date.now() });
                 }
@@ -72,7 +91,7 @@ export default function FillInBlankGame({ contentStr, activityId, vocabType }: P
 
             void finishQuiz();
         }
-    }, [isComplete, activityId]);
+    }, [isComplete, activityId, assignmentId, vocabType]);
 
     const handleNext = () => {
         if (currentIndex < questions.length - 1) {
@@ -90,7 +109,7 @@ export default function FillInBlankGame({ contentStr, activityId, vocabType }: P
         setScore(0);
         setShowExplanation(false);
         if (activityId) {
-            void saveActivityProgress(activityId, 0, "in_progress", undefined, undefined, undefined, undefined, vocabType);
+            void saveActivityProgress(activityId, 0, "in_progress", undefined, undefined, assignmentId ?? null, undefined, vocabType);
         }
     };
 
