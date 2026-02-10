@@ -447,6 +447,17 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 </div>
 
                 <p>We often see words like <strong>already</strong>, <strong>yet</strong>, <strong>for</strong>, and <strong>since</strong>.</p>
+
+                <div style="background: #fef3c7; border: 1px solid #fcd34d; border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #92400e;">⏰ "This week / This month / This year" = Present Perfect</h4>
+                    <p style="margin: 0 0 0.75rem 0; font-size: 0.95rem; color: #78350f;">When the time period is <strong>not finished yet</strong>, use present perfect:</p>
+                    <ul style="margin: 0; font-size: 0.9rem; color: #78350f;">
+                        <li><em>This week, I <strong>have applied</strong> for three jobs.</em> (The week isn't over.)</li>
+                        <li><em>This month, she <strong>has visited</strong> the library twice.</em> (The month continues.)</li>
+                        <li><em>This year, we <strong>have learned</strong> a lot.</em> (The year is still going.)</li>
+                    </ul>
+                    <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #92400e;"><strong>Compare:</strong> <em>"Last week, I <strong>applied</strong> for three jobs."</em> (Past simple—the week is finished.)</p>
+                </div>
             `,
             formula: [
                 { text: "Subject", type: "subject" },
@@ -454,6 +465,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 { text: "past participle", type: "other" }
             ],
             timeExpressions: [
+                { word: "this week / month / year", usage: "Unfinished time periods", examples: ["I have studied a lot this week.", "She has traveled twice this year."] },
                 { word: "already / yet", usage: "Recently finished actions", examples: ["I have already finished the task.", "Have you finished yet?"] },
                 { word: "ever / never", usage: "Experiences up to now", examples: ["Have you ever tried falafel?", "I have never been to Boston."] },
                 { word: "for / since", usage: "Actions that continue to the present", examples: ["She has lived here for five years.", "They have known each other since 2010."] }
@@ -524,7 +536,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             icon: "⚠️",
             explanation: `
                 <p>Because the tenses share similar vocabulary, we sometimes use the wrong helping verb. This section pauses on a few crowded corners so you can feel the difference.</p>
-                
+
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0;">
                     <!-- Time Comparison -->
                     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
@@ -539,7 +551,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             <p style="margin: 0.25rem 0; font-size: 0.95rem;">"I have eaten today." ✓</p>
                         </div>
                     </div>
-                    
+
                     <!-- Motion Comparison -->
                     <div style="background: white; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
                         <h4 style="margin: 0 0 1rem 0; color: #475569; border-bottom: 2px solid #cbd5e1; padding-bottom: 0.5rem;">Fact vs Motion</h4>
@@ -552,6 +564,23 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             <p style="margin: 0.25rem 0; font-size: 0.95rem;">"I am working now."</p>
                         </div>
                     </div>
+                </div>
+
+                <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0;">
+                    <h4 style="margin: 0 0 1rem 0; color: #92400e;">🔑 Key Rule: "This week" vs "Last week"</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+                            <p style="margin: 0; font-size: 0.8rem; color: #dc2626; font-weight: 600;">LAST week/month/year = FINISHED</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;"><em>Last week, I <strong>applied</strong> for a job.</em></p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: #64748b;">→ Past Simple (the week is over)</p>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 0.5rem;">
+                            <p style="margin: 0; font-size: 0.8rem; color: #16a34a; font-weight: 600;">THIS week/month/year = STILL OPEN</p>
+                            <p style="margin: 0.5rem 0 0 0; font-size: 0.95rem;"><em>This week, I <strong>have applied</strong> for a job.</em></p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.8rem; color: #64748b;">→ Present Perfect (the week continues)</p>
+                        </div>
+                    </div>
+                    <p style="margin: 1rem 0 0 0; font-size: 0.9rem; color: #78350f; text-align: center;"><strong>Ask yourself:</strong> Is the time period over? If yes → past simple. If no → present perfect.</p>
                 </div>
             `,
             tipBox: {
@@ -599,6 +628,24 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                                 { value: "continuous", label: "Continuous tense" }
                             ],
                             expectedAnswer: "continuous"
+                        },
+                        {
+                            type: "radio",
+                            label: "\"This month, she ___ three books.\"",
+                            options: [
+                                { value: "past-simple", label: "Past Simple (read)" },
+                                { value: "present-perfect", label: "Present Perfect (has read)" }
+                            ],
+                            expectedAnswer: "present-perfect"
+                        },
+                        {
+                            type: "radio",
+                            label: "\"Last month, she ___ three books.\"",
+                            options: [
+                                { value: "past-simple", label: "Past Simple (read)" },
+                                { value: "present-perfect", label: "Present Perfect (has read)" }
+                            ],
+                            expectedAnswer: "past-simple"
                         }
                     ]
                 },
@@ -616,6 +663,11 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "text",
                             label: "Right now he ___ (talk) to the coach (present continuous).",
                             expectedAnswer: "is talking"
+                        },
+                        {
+                            type: "text",
+                            label: "This year we ___ (visit) the museum twice (present perfect).",
+                            expectedAnswer: "have visited"
                         }
                     ]
                 }
@@ -753,7 +805,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             icon: "🔁",
             explanation: `
                 <p>Adverbs of frequency describe how steady a habit feels.</p>
-                
+
                 <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 0.75rem; padding: 1.25rem; margin: 1.5rem 0;">
                     <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
                         <span style="background: #be185d; color: white; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem;">100% Always</span>
@@ -763,10 +815,26 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                     </div>
                     <p style="margin: 0; font-size: 0.95rem; color: #9d174d;"><strong>The Rule:</strong> Place them before the main verb, but <em>after</em> helping verbs (be/have).</p>
                 </div>
+
+                <h4 style="margin-top: 1.5rem;">With state verbs (be, have, like, know...)</h4>
+                <p>Frequency adverbs go <strong>after</strong> the verb <em>be</em>:</p>
+                <ul style="margin: 0.5rem 0;">
+                    <li><em>She <strong>is always</strong> late for class.</em></li>
+                    <li><em>They <strong>are never</strong> tired in the morning.</em></li>
+                    <li><em>He <strong>is usually</strong> happy to help.</em></li>
+                </ul>
+
+                <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 0.75rem; padding: 1rem; margin: 1.5rem 0;">
+                    <p style="margin: 0; font-size: 0.95rem; color: #065f46;"><strong>💡 Flexible adverbs:</strong> <em>Sometimes</em> and <em>usually</em> can also go at the <strong>beginning</strong> or <strong>end</strong> of a sentence:</p>
+                    <ul style="margin: 0.5rem 0 0 0; font-size: 0.9rem; color: #065f46;">
+                        <li><em><strong>Sometimes</strong> I take the bus.</em> / <em>I take the bus <strong>sometimes</strong>.</em></li>
+                        <li><em><strong>Usually</strong> we eat dinner at 7.</em> / <em>We eat dinner at 7 <strong>usually</strong>.</em></li>
+                    </ul>
+                </div>
             `,
             tipBox: {
                 title: "📌 Placement tip",
-                content: "Frequency adverbs usually sit before the main verb: 'She always takes notes.' If there is a helping verb (like have or am), the adverb follows that helping verb."
+                content: "Frequency adverbs usually sit before the main verb: 'She always takes notes.' With the verb BE, place the adverb after: 'She is always late.'"
             },
             exercises: [
                 {
@@ -807,14 +875,39 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                     ]
                 },
                 {
-                    id: "cycle1-frequency-write",
-                    title: "Write it naturally",
-                    instructions: "Place 'usually' so the sentence sounds natural.",
+                    id: "cycle1-frequency-placement",
+                    title: "Where does it go?",
+                    instructions: "Choose the correct placement for the adverb.",
                     items: [
                         {
-                            type: "text",
-                            label: "I ___ take the bus after class.",
-                            expectedAnswer: "I usually take the bus after class."
+                            type: "radio",
+                            label: "Where does 'always' go? → He ___ ___ tired after work.",
+                            options: [
+                                { value: "is-always", label: "is always" },
+                                { value: "always-is", label: "always is" },
+                                { value: "tired-always", label: "tired always" }
+                            ],
+                            expectedAnswer: "is-always"
+                        },
+                        {
+                            type: "radio",
+                            label: "Where does 'never' go? → They ___ ___ homework on Fridays.",
+                            options: [
+                                { value: "never-have", label: "never have" },
+                                { value: "have-never", label: "have never" },
+                                { value: "homework-never", label: "homework never" }
+                            ],
+                            expectedAnswer: "never-have"
+                        },
+                        {
+                            type: "radio",
+                            label: "Where does 'usually' go? → ___ she ___ late?",
+                            options: [
+                                { value: "is-usually", label: "Is ... usually" },
+                                { value: "usually-is", label: "Usually is ..." },
+                                { value: "late-usually", label: "Is ... late usually" }
+                            ],
+                            expectedAnswer: "is-usually"
                         }
                     ]
                 }
