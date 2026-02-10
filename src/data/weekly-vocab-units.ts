@@ -11,7 +11,7 @@ export interface WeeklyVocabUnit {
 
 export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [
   { id: "feb-3-5", label: "Unit 6: February 3–5 Jobs: Foundations" },
-  { id: "feb-10-12", label: "Unit 6: February 10–12 Jobs: Real Workplace English" },
+  { id: "feb-10-12", label: "Unit 6: February 10–12 Cycle 1 Review + Workplace Phrasal Verbs" },
   { id: "feb-24-26", label: "Unit 6: February 24–26 Jobs: Experience & Timelines" },
   { id: "mar-3-5", label: "Unit 7: March 3–5 Jobs: Skills & Qualifications" },
   { id: "mar-10-12", label: "Unit 7: March 10–12 Jobs: Goals & Planning" },
