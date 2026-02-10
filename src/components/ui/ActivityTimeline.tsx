@@ -9,6 +9,7 @@ interface ActivityTimelineItem {
   points: number;
   completedAt: Date;
   reason?: string;
+  activityType?: string;
 }
 
 interface ActivityTimelineProps {
@@ -72,10 +73,15 @@ export const ActivityTimeline: React.FC<ActivityTimelineProps> = ({
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-text truncate">
+                  <p className="font-semibold text-text text-sm leading-snug">
                     {activity.activityName}
                   </p>
-                  {activity.reason && (
+                  {activity.activityType && (
+                    <span className="inline-block mt-1 px-2 py-0.5 text-[10px] font-medium text-secondary bg-secondary/10 rounded-full">
+                      {activity.activityType}
+                    </span>
+                  )}
+                  {!activity.activityType && activity.reason && (
                     <p className="text-xs text-text-muted mt-0.5">
                       {activity.reason}
                     </p>

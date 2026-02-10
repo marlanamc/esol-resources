@@ -96,11 +96,16 @@ export async function POST(request: NextRequest) {
             });
         }
 
-        // Award participation points
+        // Award participation points - get activity title for better display
+        const activityWithTitle = await prisma.activity.findUnique({
+            where: { id: activityId },
+            select: { title: true },
+        });
+        const activityTitle = activityWithTitle?.title || activityId;
         const updatedUser = await awardPoints(
             user.id,
             participationPoints,
-            `Warmup participation: ${activityId}`
+            `${activityTitle}|Warmup`
         );
 
         // Update streak (awards streak bonuses automatically)

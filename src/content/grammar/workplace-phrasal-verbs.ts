@@ -26,7 +26,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
                     <ul style="margin: 0.5rem 0 0 0;">
                         <li>Making workplace small talk ("How's the new schedule working out?")</li>
-                        <li>Understanding workplace policies ("You need to clock in before 9 AM" "Fill out this form")</li>
+                        <li>Understanding workplace policies ("You need to clock in before your shift" "Fill out this form")</li>
                         <li>Following instructions ("Turn in your timesheet" "Call back if you can't make it")</li>
                         <li>Role-playing common workplace situations</li>
                     </ul>

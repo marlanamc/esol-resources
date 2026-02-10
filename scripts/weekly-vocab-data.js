@@ -26,7 +26,7 @@ const weeklyVocabData = {
   "feb-10-12": {
     topic: "Cycle 1 Review + Workplace Phrasal Verbs",
     words: [
-      { term: "clock in", def: "to arrive at work and record your start time", ex: "I clock in at 8:00 a.m. every morning." },
+      { term: "clock in", def: "to arrive at work and record your start time", ex: "I always clock in when my shift starts." },
       { term: "clock out", def: "to leave work and record your end time", ex: "She clocked out at 4:30 p.m. and went home." },
       { term: "call out", def: "to phone your job to say you will not work that day", ex: "I had to call out on Monday because my son was sick." },
       { term: "fill out", def: "to write information on a form", ex: "Please fill out this safety form before you start." },
@@ -35,7 +35,7 @@ const weeklyVocabData = {
       { term: "go over", def: "to review or explain again", ex: "Let's go over the safety rules one more time." },
       { term: "follow up", def: "to check in later about something", ex: "I will follow up with an email after our meeting." },
       { term: "supervisor", def: "the person who manages you at work", ex: "If you are sick, call your supervisor before your shift." },
-      { term: "shift", def: "your scheduled hours of work", ex: "I work the morning shift from 7 a.m. to 3 p.m." },
+      { term: "shift", def: "your scheduled hours of work", ex: "My shift is eight hours, and it changes every week." },
       { term: "timesheet", def: "a form that records your work hours", ex: "Turn in your timesheet by Friday so you get paid on time." },
       { term: "policy", def: "a rule or guideline at work", ex: "Our company policy says you must call out if you cannot come to work." },
     ],

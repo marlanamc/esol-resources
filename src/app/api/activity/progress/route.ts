@@ -297,6 +297,9 @@ export async function POST(request: Request) {
 
         let points = 5; // Default fallback points
         if (activity) {
+            // Determine activity type label for display
+            let activityTypeLabel = '';
+
             // Special handling for vocabulary activities - award type-specific points
             if (activity.type === 'vocabulary' && isVocabularyTypeUpdate) {
                 const vocabPoints: Record<string, number> = {
@@ -306,8 +309,33 @@ export async function POST(request: Request) {
                     'fill-blank': 5,
                 };
                 points = vocabPoints[vocabType] || 5;
+
+                // Set type label for vocab activities
+                const vocabTypeLabels: Record<string, string> = {
+                    'word-list': 'Word List',
+                    'flashcards': 'Flashcards',
+                    'matching': 'Matching',
+                    'fill-blank': 'Fill in the Blank',
+                };
+                activityTypeLabel = vocabTypeLabels[vocabType] || vocabType;
             } else {
                 points = getActivityPoints(activity.type, activity);
+
+                // Set type label for game activities
+                const gameUi = resolveActivityGameUi(activity);
+                const gameTypeLabels: Record<string, string> = {
+                    'numbers': 'Numbers Game',
+                    'matching': 'Matching Game',
+                    'fill-in-blank': 'Fill in the Blank',
+                    'flashcards': 'Flashcards',
+                    'verb-forms': 'Verb Forms',
+                    'word-list': 'Word List',
+                };
+                if (activity.type === 'game' && gameTypeLabels[gameUi]) {
+                    activityTypeLabel = gameTypeLabels[gameUi];
+                } else if (activity.type === 'guide') {
+                    activityTypeLabel = 'Grammar Guide';
+                }
             }
 
             // Special handling for numbers game - award difficulty-based points per category
@@ -378,7 +406,11 @@ export async function POST(request: Request) {
                 points = sessionPoints;
             }
 
-            await awardPoints(userId, points, `Completed: ${activity.title}`);
+            // Include activity type in the reason for better display
+            const reason = activityTypeLabel
+                ? `${activity.title}|${activityTypeLabel}`
+                : `Completed: ${activity.title}`;
+            await awardPoints(userId, points, reason);
             pointsAwarded = points;
         } else {
             // Fallback if activity not found (shouldn't happen)

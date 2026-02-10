@@ -278,8 +278,27 @@ export default function FillInBlankGame({ contentStr, activityId, vocabType }: P
 
 // Parse the content string into questions
 function parseQuestions(content: string): FillInBlankQuestion[] {
+    // Try to parse as JSON first (for consolidated vocab activities)
+    try {
+        const parsed = JSON.parse(content);
+        if (parsed && typeof parsed === 'object' && 'sentences' in parsed && Array.isArray(parsed.sentences)) {
+            return parsed.sentences
+                .filter((s: any) => s && s.text && s.correctAnswers && s.options)
+                .map((s: any, index: number) => ({
+                    id: s.id ?? index + 1,
+                    sentence: String(s.text).trim(),
+                    correctAnswer: Array.isArray(s.correctAnswers) ? s.correctAnswers[0] : String(s.correctAnswers),
+                    options: Array.isArray(s.options) ? s.options.map((o: any) => String(o).trim()) : [],
+                    explanation: s.explanation ? String(s.explanation).trim() : ''
+                }));
+        }
+    } catch {
+        // Not JSON, fall through to plain text parsing
+    }
+
+    // Plain text parsing (legacy format)
     const questions: FillInBlankQuestion[] = [];
-    
+
     // 1. Try resolving standard format
     const blocks = content.trim().split(/\n\n+/);
 

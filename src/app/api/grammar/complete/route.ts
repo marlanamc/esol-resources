@@ -188,7 +188,15 @@ export async function POST(request: Request) {
     // We don't have total exercise count here, so we just award base completion.
     const basePoints = POINTS.GRAMMAR_GUIDE_BASE;
 
-    await awardPoints(userId, basePoints, reason);
+    // Get activity title for better display in Recent Wins
+    const grammarActivity = await prisma.activity.findUnique({
+        where: { id: canonicalActivityId },
+        select: { title: true },
+    });
+    const displayReason = grammarActivity?.title
+        ? `${grammarActivity.title}|Grammar Guide`
+        : reason;
+    await awardPoints(userId, basePoints, displayReason);
 
     // Update streak and check for achievements
     await updateStreak(userId, basePoints);
