@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { trackLogin } from "@/lib/gamification";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
+import { getVocabTypeFromTitle, parseVocabTypeLabel, stripVocabTypeSuffix, VOCAB_CHIP_CONFIG } from "@/lib/vocab-display";
 import Link from "next/link";
 import { BackButton, BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
@@ -446,12 +447,25 @@ export default async function ProfilePage() {
                 activityName = reason.replace('Achievement: ', '');
             }
 
+            let vocabType = parseVocabTypeLabel(activityType);
+            if (!vocabType) {
+                const inferredFromTitle = getVocabTypeFromTitle(activityName);
+                if (inferredFromTitle) {
+                    vocabType = inferredFromTitle;
+                    activityName = stripVocabTypeSuffix(activityName);
+                }
+            }
+            if (vocabType && !activityType) {
+                activityType = VOCAB_CHIP_CONFIG[vocabType].label;
+            }
+
             return {
                 id: entry.id,
                 activityName,
                 points: entry.points,
                 completedAt: entry.createdAt,
                 activityType,
+                vocabType,
                 reason: entry.source !== 'award' && entry.source && !activityType ? entry.source : undefined,
             };
         });

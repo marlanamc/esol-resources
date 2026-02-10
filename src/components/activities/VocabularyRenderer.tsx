@@ -193,7 +193,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
             <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 md:hidden">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <BackButton onClick={() => window.history.back()} className="shrink-0" />
+                        <BackButton href="/dashboard" className="shrink-0" />
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {completedCount}/4 complete
                         </div>
@@ -414,6 +414,7 @@ function RenderActivityContent({
                 <WordListRenderer
                     content={content.wordList}
                     activityId={activityId}
+                    assignmentId={assignmentId}
                     vocabType={vocabType}
                 />
             );
@@ -422,6 +423,7 @@ function RenderActivityContent({
                 <FlashcardsRenderer
                     content={content.flashcards}
                     activityId={activityId}
+                    assignmentId={assignmentId}
                     vocabType={vocabType}
                 />
             );
@@ -450,6 +452,7 @@ function RenderActivityContent({
                 <FillInBlankGame
                     contentStr={fillBlankStr}
                     activityId={activityId}
+                    assignmentId={assignmentId}
                     vocabType={vocabType}
                 />
             );
@@ -462,10 +465,11 @@ function RenderActivityContent({
 interface WordListRendererProps {
     content?: Record<string, unknown>;
     activityId: string;
+    assignmentId?: string | null;
     vocabType: string;
 }
 
-function WordListRenderer({ content, activityId, vocabType }: WordListRendererProps) {
+function WordListRenderer({ content, activityId, assignmentId, vocabType }: WordListRendererProps) {
     // Support two formats:
     // 1) Plain text stored in a `raw` property
     // 2) Structured cards array from weekly vocab seed (`{ cards: [{ term, definition, example }] }`)
@@ -492,9 +496,9 @@ function WordListRenderer({ content, activityId, vocabType }: WordListRendererPr
     // Auto-save progress when word list is viewed (mark as complete)
     useEffect(() => {
         if (entries && entries.length > 0) {
-            saveActivityProgress(activityId, 100, "completed", undefined, undefined, undefined, undefined, vocabType);
+            saveActivityProgress(activityId, 100, "completed", undefined, undefined, assignmentId ?? null, undefined, vocabType);
         }
-    }, [activityId, entries, vocabType]);
+    }, [activityId, assignmentId, entries, vocabType]);
 
     if (!entries || entries.length === 0) {
         return (
@@ -558,10 +562,11 @@ function WordListRenderer({ content, activityId, vocabType }: WordListRendererPr
 interface FlashcardsRendererProps {
     content?: Record<string, unknown>;
     activityId: string;
+    assignmentId?: string | null;
     vocabType: string;
 }
 
-function FlashcardsRenderer({ content, activityId, vocabType }: FlashcardsRendererProps) {
+function FlashcardsRenderer({ content, activityId, assignmentId, vocabType }: FlashcardsRendererProps) {
     let cards: Array<{ id: string; term: string; definition: string; example?: string }> = [];
 
     // Support two formats:
@@ -597,6 +602,7 @@ function FlashcardsRenderer({ content, activityId, vocabType }: FlashcardsRender
         <FlashcardCarousel
             cards={cards}
             activityId={activityId}
+            assignmentId={assignmentId}
             vocabType={vocabType}
         />
     );
