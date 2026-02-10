@@ -6,6 +6,110 @@ import type { ActivityProgressStatus } from "@/lib/activityProgress";
 import { awardPoints, getActivityPoints, POINTS, resolveActivityGameUi, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
 import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } from "@/data/numbersGameCategories";
 
+const VOCAB_TYPES = ['word-list', 'flashcards', 'matching', 'fill-blank'] as const;
+
+type ProgressRecord = {
+    progress: number;
+    status: string;
+    categoryData: string | null;
+    updatedAt: Date;
+};
+
+function parseCategoryData(value: string | null): Record<string, unknown> | null {
+    if (!value) return null;
+    try {
+        const parsed = JSON.parse(value) as unknown;
+        if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+            return parsed as Record<string, unknown>;
+        }
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+function asObject(value: unknown): Record<string, unknown> | null {
+    if (value && typeof value === "object" && !Array.isArray(value)) {
+        return value as Record<string, unknown>;
+    }
+    return null;
+}
+
+function asBoolean(value: unknown): boolean {
+    return value === true;
+}
+
+function asNumber(value: unknown): number | null {
+    return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function isVocabCategoryData(data: Record<string, unknown> | null): boolean {
+    if (!data) return false;
+    return VOCAB_TYPES.some((type) => Object.prototype.hasOwnProperty.call(data, type));
+}
+
+function mergeVocabProgressRecords(assignmentRecord: ProgressRecord, globalRecord: ProgressRecord): ProgressRecord | null {
+    const assignmentData = parseCategoryData(assignmentRecord.categoryData);
+    const globalData = parseCategoryData(globalRecord.categoryData);
+
+    if (!isVocabCategoryData(assignmentData) && !isVocabCategoryData(globalData)) {
+        return null;
+    }
+
+    const mergedData: Record<string, unknown> = {
+        ...(globalData ?? {}),
+        ...(assignmentData ?? {}),
+    };
+
+    let completedCount = 0;
+
+    for (const vocabType of VOCAB_TYPES) {
+        const assignmentTypeData = asObject(assignmentData?.[vocabType]);
+        const globalTypeData = asObject(globalData?.[vocabType]);
+
+        if (!assignmentTypeData && !globalTypeData) {
+            continue;
+        }
+
+        const assignmentCompleted = asBoolean(assignmentTypeData?.completed);
+        const globalCompleted = asBoolean(globalTypeData?.completed);
+        const assignmentProgress = asNumber(assignmentTypeData?.progress) ?? (assignmentCompleted ? 100 : 0);
+        const globalProgress = asNumber(globalTypeData?.progress) ?? (globalCompleted ? 100 : 0);
+        const mergedProgress = Math.max(assignmentProgress, globalProgress);
+        const mergedCompleted = assignmentCompleted || globalCompleted || mergedProgress >= 100;
+
+        if (mergedCompleted) {
+            completedCount += 1;
+        }
+
+        const assignmentCompletedAt = typeof assignmentTypeData?.completedAt === "string" ? assignmentTypeData.completedAt : undefined;
+        const globalCompletedAt = typeof globalTypeData?.completedAt === "string" ? globalTypeData.completedAt : undefined;
+
+        mergedData[vocabType] = {
+            ...(globalTypeData ?? {}),
+            ...(assignmentTypeData ?? {}),
+            completed: mergedCompleted,
+            progress: mergedProgress,
+            ...(assignmentCompletedAt || globalCompletedAt
+                ? { completedAt: assignmentCompletedAt ?? globalCompletedAt }
+                : {}),
+        };
+    }
+
+    const progress = Math.round((completedCount / VOCAB_TYPES.length) * 100);
+    const status = progress >= 100 ? "completed" : "in_progress";
+
+    return {
+        progress,
+        status,
+        categoryData: JSON.stringify(mergedData),
+        updatedAt:
+            assignmentRecord.updatedAt.getTime() >= globalRecord.updatedAt.getTime()
+                ? assignmentRecord.updatedAt
+                : globalRecord.updatedAt,
+    };
+}
+
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
 
@@ -24,40 +128,77 @@ export async function GET(request: Request) {
     const userId = session.user.id;
     const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
 
-    // First try to find with specific assignmentId
-    let record = await prisma.activityProgress.findFirst({
-        where: {
-            userId,
-            activityId,
-            assignmentId: assignmentKey,
-        },
-        select: {
-            progress: true,
-            status: true,
-            categoryData: true,
-            updatedAt: true,
-        },
-        orderBy: {
-            updatedAt: "desc",
-        },
-    });
+    const select = {
+        progress: true,
+        status: true,
+        categoryData: true,
+        updatedAt: true,
+    } as const;
 
-    // Fallback: if assignment-specific progress doesn't exist, use the newest record for this activity.
-    // This avoids stale/empty state when a vocab sub-activity saved under a different assignment context.
+    let record: {
+        progress: number;
+        status: string;
+        categoryData: string | null;
+        updatedAt: Date;
+    } | null = null;
+
+    if (assignmentKey) {
+        const [assignmentRecord, globalRecord] = await Promise.all([
+            prisma.activityProgress.findFirst({
+                where: {
+                    userId,
+                    activityId,
+                    assignmentId: assignmentKey,
+                },
+                select,
+                orderBy: {
+                    updatedAt: "desc",
+                },
+            }),
+            prisma.activityProgress.findFirst({
+                where: {
+                    userId,
+                    activityId,
+                    assignmentId: null,
+                },
+                select,
+                orderBy: {
+                    updatedAt: "desc",
+                },
+            }),
+        ]);
+
+        if (assignmentRecord && globalRecord) {
+            const mergedVocabRecord = mergeVocabProgressRecords(assignmentRecord, globalRecord);
+            record = mergedVocabRecord ?? assignmentRecord;
+        } else {
+            record = assignmentRecord ?? globalRecord;
+        }
+    } else {
+        record = await prisma.activityProgress.findFirst({
+            where: {
+                userId,
+                activityId,
+                assignmentId: null,
+            },
+            select,
+            orderBy: {
+                updatedAt: "desc",
+            },
+        });
+    }
+
+    // Fallback: if no preferred record exists, use the newest record for this activity.
+    // This avoids stale/empty state when progress saved under a different assignment context.
     if (!record) {
         record = await prisma.activityProgress.findFirst({
             where: {
                 userId,
                 activityId,
             },
-            select: {
-                progress: true,
-                status: true,
-                categoryData: true,
-                updatedAt: true,
-            },
+            select,
             orderBy: {
-                updatedAt: 'desc',
+                updatedAt: "desc",
             },
         });
     }
