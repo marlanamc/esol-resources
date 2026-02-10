@@ -652,7 +652,7 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                 {
                     id: "cycle1-confusions-fill",
                     title: "Fix the confusion",
-                    instructions: "Rewrite the sentence using the tense that matches the description.",
+                    instructions: "Write only the verb in the correct tense (e.g., \"have finished\").",
                     items: [
                         {
                             type: "text",
@@ -816,7 +816,15 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 0.95rem; color: #9d174d;"><strong>The Rule:</strong> Place them before the main verb, but <em>after</em> helping verbs (be/have).</p>
                 </div>
 
-                <h4 style="margin-top: 1.5rem;">With state verbs (be, have, like, know...)</h4>
+                <h4 style="margin-top: 1.5rem;">With action verbs (go, eat, work, study...)</h4>
+                <p>Frequency adverbs go <strong>before</strong> the main verb:</p>
+                <ul style="margin: 0.5rem 0;">
+                    <li><em>She <strong>always takes</strong> notes in class.</em></li>
+                    <li><em>They <strong>usually eat</strong> lunch at noon.</em></li>
+                    <li><em>I <strong>never forget</strong> my keys.</em></li>
+                </ul>
+
+                <h4 style="margin-top: 1.5rem;">With the verb BE</h4>
                 <p>Frequency adverbs go <strong>after</strong> the verb <em>be</em>:</p>
                 <ul style="margin: 0.5rem 0;">
                     <li><em>She <strong>is always</strong> late for class.</em></li>
@@ -1335,84 +1343,76 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             title: "Grammar Quick Reference Cheat Sheet",
             icon: "📋",
             explanation: `
-                <div style="background: white; border: 2px solid #e2e8f0; border-radius: 1rem; padding: 2rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
-                    <h2 style="margin-top: 0; text-align: center; color: #1e293b; border-bottom: 3px solid #3b82f6; padding-bottom: 0.5rem; display: inline-block; width: 100%;">Cycle 1 Grammar Reference</h2>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
-                        <!-- Left Column: Tenses -->
-                        <div>
-                            <h3 style="color: #2563eb; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">⏱️ Verb Tenses</h3>
-                            <div style="display: grid; gap: 0.75rem;">
-                                <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 0.5rem;">
-                                    <strong>Simple Present:</strong> I <strong>work</strong> daily.
-                                </div>
-                                <div style="background: #eff6ff; padding: 0.75rem; border-radius: 0.5rem;">
-                                    <strong>Present Continuous:</strong> I <strong>am working</strong> now.
-                                </div>
-                                <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 0.5rem;">
-                                    <strong>Simple Past:</strong> I <strong>worked</strong> yesterday.
-                                </div>
-                                <div style="background: #eff6ff; padding: 0.75rem; border-radius: 0.5rem;">
-                                    <strong>Past Continuous:</strong> I <strong>was working</strong> when...
-                                </div>
-                                <div style="background: #f0fdf4; padding: 0.75rem; border-radius: 0.5rem;">
-                                    <strong>Simple Future:</strong> I <strong>will work</strong> soon.
-                                </div>
-                                <div style="background: #fffbeb; padding: 0.75rem; border-radius: 0.5rem;">
-                                    <strong>Present Perfect:</strong> I <strong>have worked</strong>.
-                                </div>
-                            </div>
+                <div style="background: white; border: 2px solid #e2e8f0; border-radius: 1rem; padding: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
+                    <h2 style="margin-top: 0; text-align: center; color: #1e293b; border-bottom: 3px solid #3b82f6; padding-bottom: 0.5rem;">Cycle 1 Grammar Reference</h2>
 
-                            <h3 style="color: #2563eb; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">📅 Time expressions</h3>
-                            <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
-                                <p style="margin: 0;"><strong>Past:</strong> yesterday, ago, last...</p>
-                                <p style="margin: 0.5rem 0;"><strong>Present:</strong> now, today, these days</p>
-                                <p style="margin: 0;"><strong>Future:</strong> tomorrow, soon, next...</p>
-                            </div>
+                    <h3 style="color: #2563eb; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">⏱️ Verb Tenses</h3>
+                    <div style="display: grid; gap: 0.5rem;">
+                        <div style="background: #f0fdf4; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                            <strong>Simple Present:</strong> I <strong>work</strong> daily.
                         </div>
-
-                        <!-- Right Column: Others -->
-                        <div>
-                            <h3 style="color: #db2777; display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">🔁 Frequency</h3>
-                            <p style="background: #fdf2f8; padding: 0.75rem; border-radius: 0.5rem; font-size: 0.9rem;">
-                                always → usually → sometimes → never
-                            </p>
-
-                            <h3 style="color: #d97706; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">⚖️ Comparatives</h3>
-                            <div style="background: #fffbeb; padding: 1rem; border-radius: 0.5rem; font-size: 0.9rem;">
-                                <p style="margin: 0;">Short: <strong>-er than</strong> (faster)</p>
-                                <p style="margin: 0.4rem 0;">Long: <strong>more...than</strong> (more creative)</p>
-                                <p style="margin: 0;">Irregular: <strong>better / worse</strong></p>
-                            </div>
-
-                            <h3 style="color: #b45309; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🏆 Superlatives</h3>
-                            <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; font-size: 0.9rem;">
-                                <p style="margin: 0;">Short: <strong>the + -est</strong> (the cheapest)</p>
-                                <p style="margin: 0.4rem 0;">Long: <strong>the most/least</strong> (the most expensive)</p>
-                                <p style="margin: 0;">Irregular: <strong>the best / the worst</strong></p>
-                            </div>
-
-                            <h3 style="color: #7c3aed; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🔢 Quantifiers</h3>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                                <div style="background: #f0fdf4; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;">Countable: <strong>many/few/fewer</strong></div>
-                                <div style="background: #eff6ff; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;">Uncountable: <strong>much/little/less</strong></div>
-                            </div>
-
-                            <h3 style="color: #059669; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🧵 Connectors</h3>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
-                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>and:</strong> add</div>
-                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>but:</strong> contrast</div>
-                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>so:</strong> result</div>
-                                <div style="background: #ecfdf5; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>or:</strong> choice</div>
-                                <div style="background: #f0f9ff; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem; grid-column: span 2;"><strong>when/while:</strong> time</div>
-                            </div>
-
-                            <h3 style="color: #ca8a04; display: flex; align-items: center; gap: 0.5rem; margin-top: 2rem;">🔀 Conditionals</h3>
-                            <div style="display: grid; gap: 0.5rem;">
-                                <div style="background: #fffbeb; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>Zero:</strong> if + present, present (facts/habits)</div>
-                                <div style="background: #f0fdf4; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>First:</strong> if + present, will + verb (future plans)</div>
-                            </div>
+                        <div style="background: #eff6ff; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                            <strong>Present Continuous:</strong> I <strong>am working</strong> now.
                         </div>
+                        <div style="background: #f0fdf4; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                            <strong>Simple Past:</strong> I <strong>worked</strong> yesterday.
+                        </div>
+                        <div style="background: #eff6ff; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                            <strong>Past Continuous:</strong> I <strong>was working</strong> when...
+                        </div>
+                        <div style="background: #f0fdf4; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                            <strong>Simple Future:</strong> I <strong>will work</strong> soon.
+                        </div>
+                        <div style="background: #fffbeb; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.9rem;">
+                            <strong>Present Perfect:</strong> I <strong>have worked</strong>.
+                        </div>
+                    </div>
+
+                    <h3 style="color: #2563eb; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">📅 Time Expressions</h3>
+                    <div style="background: #f8fafc; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #e2e8f0; font-size: 0.9rem;">
+                        <p style="margin: 0;"><strong>Past:</strong> yesterday, ago, last...</p>
+                        <p style="margin: 0.4rem 0;"><strong>Present:</strong> now, today, these days</p>
+                        <p style="margin: 0;"><strong>Future:</strong> tomorrow, soon, next...</p>
+                    </div>
+
+                    <h3 style="color: #db2777; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">🔁 Frequency</h3>
+                    <p style="background: #fdf2f8; padding: 0.6rem; border-radius: 0.5rem; font-size: 0.85rem; margin: 0;">
+                        always → usually → sometimes → never
+                    </p>
+
+                    <h3 style="color: #d97706; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">⚖️ Comparatives</h3>
+                    <div style="background: #fffbeb; padding: 0.75rem; border-radius: 0.5rem; font-size: 0.85rem;">
+                        <p style="margin: 0;">Short: <strong>-er than</strong> (faster)</p>
+                        <p style="margin: 0.3rem 0;">Long: <strong>more...than</strong> (more creative)</p>
+                        <p style="margin: 0;">Irregular: <strong>better / worse</strong></p>
+                    </div>
+
+                    <h3 style="color: #b45309; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">🏆 Superlatives</h3>
+                    <div style="background: #fff7ed; padding: 0.75rem; border-radius: 0.5rem; font-size: 0.85rem;">
+                        <p style="margin: 0;">Short: <strong>the + -est</strong> (the cheapest)</p>
+                        <p style="margin: 0.3rem 0;">Long: <strong>the most/least</strong> (the most expensive)</p>
+                        <p style="margin: 0;">Irregular: <strong>the best / the worst</strong></p>
+                    </div>
+
+                    <h3 style="color: #7c3aed; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">🔢 Quantifiers</h3>
+                    <div style="display: grid; gap: 0.4rem;">
+                        <div style="background: #f0fdf4; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;">Countable: <strong>many / few / fewer</strong></div>
+                        <div style="background: #eff6ff; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;">Uncountable: <strong>much / little / less</strong></div>
+                    </div>
+
+                    <h3 style="color: #059669; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">🧵 Connectors</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem;">
+                        <div style="background: #ecfdf5; padding: 0.4rem 0.5rem; border-radius: 0.4rem; font-size: 0.8rem;"><strong>and:</strong> add</div>
+                        <div style="background: #ecfdf5; padding: 0.4rem 0.5rem; border-radius: 0.4rem; font-size: 0.8rem;"><strong>but:</strong> contrast</div>
+                        <div style="background: #ecfdf5; padding: 0.4rem 0.5rem; border-radius: 0.4rem; font-size: 0.8rem;"><strong>so:</strong> result</div>
+                        <div style="background: #ecfdf5; padding: 0.4rem 0.5rem; border-radius: 0.4rem; font-size: 0.8rem;"><strong>or:</strong> choice</div>
+                    </div>
+                    <div style="background: #f0f9ff; padding: 0.4rem 0.5rem; border-radius: 0.4rem; font-size: 0.8rem; margin-top: 0.4rem;"><strong>when/while:</strong> time</div>
+
+                    <h3 style="color: #ca8a04; display: flex; align-items: center; gap: 0.5rem; margin-top: 1.5rem;">🔀 Conditionals</h3>
+                    <div style="display: grid; gap: 0.4rem;">
+                        <div style="background: #fffbeb; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>Zero:</strong> if + present, present (facts)</div>
+                        <div style="background: #f0fdf4; padding: 0.5rem; border-radius: 0.4rem; font-size: 0.85rem;"><strong>First:</strong> if + present, will + verb (future)</div>
                     </div>
                 </div>
             `,
