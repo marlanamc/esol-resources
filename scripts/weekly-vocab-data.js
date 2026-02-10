@@ -27,7 +27,7 @@ const weeklyVocabData = {
     topic: "Cycle 1 Review + Workplace Phrasal Verbs",
     words: [
       { term: "clock in", def: "to arrive at work and record your start time", ex: "I always clock in when my shift starts." },
-      { term: "clock out", def: "to leave work and record your end time", ex: "She clocked out at 4:30 p.m. and went home." },
+      { term: "clock out", def: "to leave work and record your end time", ex: "Please clock out when your shift ends." },
       { term: "call out", def: "to phone your job to say you will not work that day", ex: "I had to call out on Monday because my son was sick." },
       { term: "fill out", def: "to write information on a form", ex: "Please fill out this safety form before you start." },
       { term: "turn in", def: "to give homework or forms to your teacher or boss", ex: "You need to turn in your timesheet every Friday." },

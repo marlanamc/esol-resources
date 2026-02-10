@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
@@ -19,7 +19,10 @@ interface Props {
 }
 
 export default function FillInBlankGame({ contentStr, activityId, assignmentId, vocabType }: Props) {
-    const questions = parseQuestions(contentStr);
+    const questions = useMemo(
+        () => shuffleArray(parseQuestions(contentStr)),
+        [contentStr]
+    );
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
