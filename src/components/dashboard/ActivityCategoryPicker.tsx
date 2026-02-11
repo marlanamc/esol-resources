@@ -25,14 +25,6 @@ interface CategoryCardDef {
 
 const CATEGORY_CARDS: CategoryCardDef[] = [
     {
-        key: 'vocabulary',
-        name: 'Vocabulary',
-        subtitle: 'Words · Meaning · Use',
-        emoji: '📖',
-        bgColor: '#c8e6c9',
-        iconBg: '#a5d6a7',
-    },
-    {
         key: 'grammar',
         name: 'Grammar',
         subtitle: 'Sentences · Rules',
@@ -47,6 +39,14 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
         emoji: '🎮',
         bgColor: '#d1c4e9',
         iconBg: '#b39ddb',
+    },
+    {
+        key: 'vocabulary',
+        name: 'Vocabulary',
+        subtitle: 'Words · Meaning · Use',
+        emoji: '📖',
+        bgColor: '#c8e6c9',
+        iconBg: '#a5d6a7',
     },
     {
         key: 'quizzes',

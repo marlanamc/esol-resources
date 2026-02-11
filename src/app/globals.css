@@ -423,6 +423,11 @@ textarea {
   animation: categoryCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
+/* Checklist group card animations */
+.checklist-group {
+  animation: categoryCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
 .checklist-row:nth-child(1) {
   animation-delay: 0ms;
 }
