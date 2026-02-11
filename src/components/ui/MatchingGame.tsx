@@ -286,9 +286,11 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         const roundStatus = overallProgressPercent >= 100 ? "completed" : "in_progress";
 
         const saveRoundProgress = async () => {
+            // Pass 100 for the round's own progress (since the round is complete),
+            // but use overallProgressPercent for the activity status
             const result = await saveActivityProgress(
                 activityId,
-                overallProgressPercent,
+                100, // Round is complete, so its progress is 100%
                 roundStatus,
                 undefined,
                 `round-${roundNumber}`,
@@ -1291,9 +1293,11 @@ function TimeIndicatorSortingUI({
         const roundStatus = overallProgressPercent >= 100 ? "completed" : "in_progress";
 
         const saveRoundProgress = async () => {
+            // Pass 100 for the round's own progress (since the round is complete),
+            // but use overallProgressPercent for the activity status
             const result = await saveActivityProgress(
                 activityId,
-                overallProgressPercent,
+                100, // Round is complete, so its progress is 100%
                 roundStatus,
                 undefined,
                 `round-${roundNumber}`,
