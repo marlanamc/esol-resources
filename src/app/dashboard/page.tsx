@@ -280,10 +280,10 @@ export default async function DashboardPage() {
                     </div>
                 </header>
 
-                <main className="container mx-auto pt-8 pb-24 md:pb-12 px-4 sm:px-6 lg:px-10 max-w-[1800px]">
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <main className="container mx-auto pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                         {/* Main Content Area - Left Side */}
-                        <div className="lg:col-span-3 space-y-8">
+                        <div className="md:col-span-8 lg:col-span-9 space-y-6">
                             {/* Welcome Header */}
                             <div className="animate-fade-in-up">
                                 {/* Desktop: Welcome + Stats horizontal */}
@@ -451,7 +451,7 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
-                        <aside className="animate-fade-in-up delay-100 hidden md:block">
+                        <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
@@ -712,10 +712,10 @@ export default async function DashboardPage() {
                     </div>
                 </header>
 
-                <main className="container mx-auto pt-8 pb-24 md:pb-12 px-4 sm:px-6 lg:px-10 max-w-[1800px]">
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <main className="container mx-auto pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                         {/* Main Content Area - Left Side */}
-                        <div className="lg:col-span-3 space-y-8">
+                        <div className="md:col-span-8 lg:col-span-9 space-y-6">
                             {/* Welcome Header */}
                             <div className="animate-fade-in-up">
                                 {/* Desktop: Welcome + Stats horizontal */}
@@ -778,7 +778,7 @@ export default async function DashboardPage() {
                                         </span>!
                                     </h1>
 
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-3 flex-wrap">
                                         {currentUser && effectiveCurrentStreak > 0 && (
                                             <div className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
                                                 <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
@@ -841,7 +841,7 @@ export default async function DashboardPage() {
                                                 Explore
                                             </p>
                                             <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
-                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
+                                            <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed line-clamp-2">
                                                 Browse everything in one place with categories and progress tracking.
                                             </p>
                                         </div>
@@ -858,7 +858,7 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
-                        <aside className="animate-fade-in-up delay-100 hidden md:block">
+                        <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
