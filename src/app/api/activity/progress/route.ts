@@ -415,17 +415,22 @@ export async function POST(request: Request) {
     // Award points based on activity type
     // - For category-based activities WITH accuracy (Numbers Game), award per category completion
     // - For vocabulary types, award per type completion (once per type)
-    // - For other activities (including Matching Game round tracking), award once when overall progress hits 100%
+    // - For round-based games (Matching/Sorting games), award per round completion
+    // - For other activities, award once when overall progress hits 100%
     const isAccuracyCategoryUpdate = category && sanitizedAccuracy !== undefined;
+    const isRoundCategoryUpdate = category && /^round-\d+$/.test(category);
     const isVocabularyTypeUpdate = vocabType && ['word-list', 'flashcards', 'matching', 'fill-blank'].includes(vocabType);
     const existingCategoryData = existing?.categoryData ? JSON.parse(existing.categoryData) : {};
     const wasVocabTypeCompleted = isVocabularyTypeUpdate && existingCategoryData[vocabType]?.completed;
+    const wasRoundCompleted = isRoundCategoryUpdate && existingCategoryData[category]?.completed;
 
     const shouldAwardPoints = isVocabularyTypeUpdate
         ? (rawProgress >= 100 && !wasVocabTypeCompleted)
         : (isAccuracyCategoryUpdate
             ? (rawProgress >= 100 && updatedCategoryData && !(existingCategoryData[category]?.completed))
-            : ((existing?.progress ?? 0) < 100 && progressValue >= 100));
+            : (isRoundCategoryUpdate
+                ? (updatedCategoryData && !wasRoundCompleted)
+                : ((existing?.progress ?? 0) < 100 && progressValue >= 100)));
 
     let pointsAwarded = 0;
 
