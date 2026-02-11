@@ -560,7 +560,7 @@ export default async function ProfilePage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
                     {/* Header */}
                     <div className="mb-10 animate-fade-in">
-                        <BackButton href="/dashboard" variant="home" className="mb-6" />
+                        <BackButton href="/dashboard" variant="home" className="mb-6" hideOnMobile />
                         
                         <div className="flex flex-col md:flex-row items-center md:items-start gap-6 glass-card p-8 rounded-2xl relative overflow-hidden">
                             {/* Accent decoration */}
