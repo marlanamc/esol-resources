@@ -55,7 +55,7 @@ export default async function ActivitiesPage() {
             <div className="min-h-screen bg-bg">
                 <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                        <BackButton href="/dashboard" variant="home" className="mb-2" />
+                        <BackButton href="/dashboard" variant="home" className="mb-2" hideOnMobile />
                         <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Browse</p>
                         <h1 className="text-3xl font-display font-bold text-text">All Activities</h1>
                     </div>
@@ -100,7 +100,7 @@ export default async function ActivitiesPage() {
         <div className="min-h-screen bg-bg">
             <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                    <BackButton href="/dashboard" variant="home" className="mb-2" />
+                    <BackButton href="/dashboard" variant="home" className="mb-2" hideOnMobile />
                 </div>
             </header>
 

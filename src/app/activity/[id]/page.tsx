@@ -194,7 +194,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0" />
+                            <BackButton href="/dashboard" className="flex-shrink-0" hideOnMobile />
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
                                 {activity.title}
                             </h1>
@@ -249,7 +249,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0" />
+                            <BackButton href="/dashboard" className="flex-shrink-0" hideOnMobile />
                             {shouldShowHeaderProgressBadge && (
                                 <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                             )}
