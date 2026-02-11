@@ -829,7 +829,7 @@ export default async function DashboardPage() {
                             </section>
 
                             {/* Browse All Activities CTA */}
-                            <section className="animate-fade-in-up delay-200">
+                            <section className="animate-fade-in-up delay-200 mt-2">
                                 <div className="glass-card rounded-2xl p-6 group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
                                     {/* Decorative gradient blob */}
                                     <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
@@ -859,7 +859,7 @@ export default async function DashboardPage() {
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
                         <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
+                            <div className="card-elevated p-6 sticky top-24 rounded-2xl space-y-5">
                                 <div className="flex items-center justify-between">
                                     <h2 className="text-xl font-bold text-text">
                                         Calendar
