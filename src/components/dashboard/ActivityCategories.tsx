@@ -437,17 +437,13 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                         )
                     },
                     ...vocabUnits.map(unit => {
-                        // Create a sub-category for each unit (6-10) with its weeks as nested sub-categories
+                        // Create a sub-category for each unit (6-10) with all week activities flattened
+                        const allUnitActivities = unit.weeks.flatMap(week =>
+                            activities.filter((a: Activity) => a.id === `vocab-${week.id}`)
+                        );
                         return {
                             name: unit.label,
-                            activities: [],
-                            subCategories: unit.weeks.map(week => {
-                                const weekActivities = activities.filter((a: Activity) => a.id === `vocab-${week.id}`);
-                                return {
-                                    name: week.label,
-                                    activities: weekActivities
-                                };
-                            })
+                            activities: allUnitActivities
                         };
                     })
                 ],
