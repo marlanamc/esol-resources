@@ -10,22 +10,22 @@ export interface WeeklyVocabUnit {
 }
 
 export const VOCAB_WEEKLY_UNITS: WeeklyVocabUnit[] = [
-  { id: "feb-3-5", label: "Unit 6: February 3–5 Jobs: Foundations" },
-  { id: "feb-10-12", label: "Unit 6: February 10–12 Cycle 1 Review + Workplace Phrasal Verbs" },
-  { id: "feb-24-26", label: "Unit 6: February 24–26 Jobs: Experience & Timelines" },
-  { id: "mar-3-5", label: "Unit 7: March 3–5 Jobs: Skills & Qualifications" },
-  { id: "mar-10-12", label: "Unit 7: March 10–12 Jobs: Goals & Planning" },
-  { id: "mar-17-19", label: "Unit 7: March 17–19 Jobs: Communication & Feedback" },
-  { id: "mar-24-26", label: "Unit 7: March 24–26 Jobs: Rights, Rules & Advocacy" },
-  { id: "mar-31-apr-2", label: "Unit 7: March 31 – April 2 Jobs: Advice, Risk & Reflection" },
-  { id: "apr-7-9", label: "Unit 8: April 7–9 Jobs: Rules & Expectations" },
-  { id: "apr-14-16", label: "Unit 8: April 14–16 Health: Symptoms & Care" },
-  { id: "apr-28-30", label: "Unit 8: April 28–30 Health: Results & Duration" },
-  { id: "may-5-7", label: "Unit 9: May 5–7 Health: Change & Adjustment" },
-  { id: "may-12-14", label: "Unit 9: May 12–14 Holistic Health: Daily Care" },
-  { id: "may-19-21", label: "Unit 9: May 19–21 Holistic Health: Life Skills" },
-  { id: "may-26-28", label: "Unit 9: May 26–28 Holistic Health: Review" },
-  { id: "jun-2-4", label: "Unit 10: June 2–4 Wrap-Up & Next Steps" },
+  { id: "feb-3-5", label: "Unit 6: February 3–5" },
+  { id: "feb-10-12", label: "Unit 6: February 10–12" },
+  { id: "feb-24-26", label: "Unit 6: February 24–26" },
+  { id: "mar-3-5", label: "Unit 7: March 3–5" },
+  { id: "mar-10-12", label: "Unit 7: March 10–12" },
+  { id: "mar-17-19", label: "Unit 7: March 17–19" },
+  { id: "mar-24-26", label: "Unit 7: March 24–26" },
+  { id: "mar-31-apr-2", label: "Unit 7: March 31 – April 2" },
+  { id: "apr-7-9", label: "Unit 8: April 7–9" },
+  { id: "apr-14-16", label: "Unit 8: April 14–16" },
+  { id: "apr-28-30", label: "Unit 8: April 28–30" },
+  { id: "may-5-7", label: "Unit 9: May 5–7" },
+  { id: "may-12-14", label: "Unit 9: May 12–14" },
+  { id: "may-19-21", label: "Unit 9: May 19–21" },
+  { id: "may-26-28", label: "Unit 9: May 26–28" },
+  { id: "jun-2-4", label: "Unit 10: June 2–4" },
 ];
 
 /** Map slug id -> unit number (6 = Feb, 7 = Mar, 8 = Apr, 9 = May, 10 = Jun) */

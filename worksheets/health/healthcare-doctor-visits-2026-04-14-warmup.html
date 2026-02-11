@@ -211,5 +211,35 @@
       <p class="optional-note">Optional challenge: Use Future Perfect to talk about when you will have finished your treatment.</p>
     </section>
   </div>
+
+  <script>
+    // Shuffle vocab definitions on page load for randomized matching exercises
+    (function() {
+      const defsContainer = document.querySelector('.vocab-defs');
+      if (!defsContainer) return;
+
+      const defs = Array.from(defsContainer.querySelectorAll('.vocab-def'));
+      if (defs.length === 0) return;
+
+      // Fisher-Yates shuffle
+      for (let i = defs.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [defs[i], defs[j]] = [defs[j], defs[i]];
+      }
+
+      // Re-assign letters after shuffling
+      const letters = 'abcdefghijklmnopqrstuvwxyz';
+      defs.forEach((def, idx) => {
+        const letterSpan = def.querySelector('.letter');
+        if (letterSpan) {
+          letterSpan.textContent = letters[idx] + '.';
+        }
+      });
+
+      // Clear and re-append in shuffled order
+      defsContainer.innerHTML = '';
+      defs.forEach(def => defsContainer.appendChild(def));
+    })();
+  </script>
 </body>
 </html>
