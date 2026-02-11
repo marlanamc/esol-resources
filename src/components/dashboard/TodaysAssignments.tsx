@@ -207,6 +207,22 @@ export const TodaysAssignments: React.FC<Props> = ({
         return categoryStyles[categoryKey] || categoryStyles.default;
     };
 
+    const getGameEmoji = (assignment: FeaturedAssignment) => {
+        const id = (assignment.activityId || '').toLowerCase();
+        const title = (assignment.title || assignment.activity.title || '').toLowerCase();
+        const haystack = `${id} ${title}`;
+
+        if (haystack.includes('time indicator')) return '⏰';
+        if (haystack.includes('verb form')) return '🔤';
+        if (haystack.includes('numbers')) return '🔢';
+        if (haystack.includes('countable') || haystack.includes('uncountable')) return '🧺';
+        if (haystack.includes('matching') || haystack.includes('match')) return '🧩';
+        if (haystack.includes('flashcard')) return '🃏';
+        if (haystack.includes('fill') || haystack.includes('blank')) return '📝';
+
+        return '🎮';
+    };
+
     if (variant === 'checklist') {
         const rows = assignments.map((assignment, index) => {
             const submission = assignment.submissions[0];
@@ -306,7 +322,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         </div>
                     ) : (
                         <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center text-lg">
-                            🎮
+                            {getGameEmoji(assignment)}
                         </div>
                     )}
                 </div>
