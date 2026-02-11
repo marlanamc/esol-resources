@@ -194,7 +194,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0">Back</BackButton>
+                            <BackButton href="/dashboard" className="flex-shrink-0" />
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
                                 {activity.title}
                             </h1>
@@ -211,7 +211,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     <div className="hidden sm:flex items-center justify-between">
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-4 mb-1">
-                                <BackButton href="/dashboard">Back to Dashboard</BackButton>
+                                <BackButton href="/dashboard" variant="home" />
                                 <h1 className="text-xl font-bold text-gray-900 truncate">{activity.title}</h1>
                             </div>
                             {activity.description && (
@@ -261,7 +261,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
                     {/* Desktop Layout: Horizontal */}
                     <div className="hidden sm:flex items-center justify-between">
-                        <BackButton href="/dashboard" />
+                        <BackButton href="/dashboard" variant="home" />
 
                         {/* Centered Title */}
                         <h1 className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold text-gray-900">

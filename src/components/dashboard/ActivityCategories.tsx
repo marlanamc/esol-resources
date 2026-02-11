@@ -2,8 +2,9 @@
 
 import React, { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
-import { VOCAB_WEEKLY_UNITS, VOCAB_WEEKLY_UNIT_NUMBER } from "@/data/weekly-vocab-units";
+import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
+import { resolveActivityGameUi, getActivityPoints, type GameUi } from '@/lib/gamification/activity-points';
 
 interface Activity {
     id: string;
@@ -39,6 +40,7 @@ interface ActivityCategoriesProps {
     completedActivityIds?: Set<string>;
     progressMap?: Record<string, { progress: number; categoryData?: string }>;
     showEmpty?: boolean;
+    filterCategory?: string;
 }
 
 const vocabCycle1 = [
@@ -114,6 +116,10 @@ interface ActivityCardProps {
     isCompleted: boolean;
     progressValue: number;
     progressMap?: Record<string, { progress: number; categoryData?: string }>;
+    accentColor?: string;
+    hideTypeChip?: boolean;
+    gameUi?: GameUi;
+    points?: number;
 }
 
 const getCategoryProgressText = (activityId: string, progressMap?: Record<string, { progress: number; categoryData?: string }>) => {
@@ -140,7 +146,11 @@ const ActivityCard = React.memo(function ActivityCard({
     activity,
     isCompleted,
     progressValue,
-    progressMap
+    progressMap,
+    accentColor,
+    hideTypeChip,
+    gameUi,
+    points
 }: ActivityCardProps) {
     const progressText = getCategoryProgressText(activity.id, progressMap);
     const vocabType = getVocabActivityType(activity.id);
@@ -149,9 +159,10 @@ const ActivityCard = React.memo(function ActivityCard({
         <div
             className={`group relative block rounded-xl border bg-white/95 p-3.5 hover:-translate-y-[1px] hover:border-primary/50 hover:shadow-md transition-[transform,border-color,box-shadow] duration-200 focus-within:ring-2 focus-within:ring-primary/50 focus-within:ring-offset-2 ${isCompleted ? 'border-secondary/40 bg-secondary/5' : 'border-border/40'
                 }`}
+            style={accentColor ? { borderLeftWidth: '3px', borderLeftColor: accentColor } : undefined}
         >
             {isCompleted && (
-                <div className="absolute top-3 right-3">
+                <div className="absolute top-3 right-3 z-20">
                     <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -160,7 +171,17 @@ const ActivityCard = React.memo(function ActivityCard({
                 </div>
             )}
             <div className="flex items-start gap-3">
-                <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                {gameUi ? (
+                    <span className="mt-0.5 text-xl flex-shrink-0">
+                        {gameUi === 'numbers' ? '🔢' : 
+                         gameUi === 'matching' ? '🧩' : 
+                         gameUi === 'fill-in-blank' ? '📝' : 
+                         gameUi === 'verb-forms' ? '⚔️' : 
+                         gameUi === 'flashcards' ? '🃏' : '🎮'}
+                    </span>
+                ) : (
+                    <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
+                )}
                 <div className="flex-1 min-w-0">
                     <Link
                         href={`/activity/${activity.id}`}
@@ -170,22 +191,29 @@ const ActivityCard = React.memo(function ActivityCard({
                         {displayTitle(activity.title)}
                     </Link>
                     <div className="mt-1.5 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                        {vocabType ? (
-                            <span
-                                className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
-                            >
-                                {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
-                            </span>
-                        ) : (
-                            <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
-                                {activity.type}
-                            </span>
+                        {!hideTypeChip && (
+                            vocabType ? (
+                                <span
+                                    className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                                >
+                                    {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
+                                </span>
+                            ) : (
+                                <span className="px-2 py-1 bg-secondary/10 text-secondary font-bold rounded-full uppercase tracking-tight">
+                                    {activity.type}
+                                </span>
+                            )
                         )}
                         {progressValue > 0 && (
                             <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100 font-semibold">
                                 {activity.id === 'numbers-game' && progressText
                                     ? progressText
                                     : `${progressValue}% done`}
+                            </span>
+                        )}
+                        {points !== undefined && points > 0 && (
+                            <span className="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-100 font-bold">
+                                +{points} pts
                             </span>
                         )}
                     </div>
@@ -207,7 +235,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
     activities,
     completedActivityIds = new Set(),
     progressMap,
-    showEmpty = false
+    showEmpty = false,
+    filterCategory
 }: ActivityCategoriesProps) {
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubCategories, setExpandedSubCategories] = useState<Set<string>>(new Set());
@@ -529,31 +558,39 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         ], [activities, buildGrammarSubCategories]);
 
     const filteredCategories = useMemo(() => {
-        if (showEmpty) return categories;
+        let result = categories;
 
-        return categories
-            // Hide any categories (and their subcategories) that have zero activities
-            .map(category => {
-                const filteredSubCategories = category.subCategories
-                    ? category.subCategories
-                        .map(sub => ({
-                            ...sub,
-                            subCategories: sub.subCategories
-                                ? sub.subCategories.filter(subSub => (subSub.activities?.length || 0) > 0)
-                                : undefined
-                        }))
-                        .filter(sub => getSubCategoryCount(sub) > 0)
-                    : undefined;
+        // When filtering to a single category, find it by name (case-insensitive)
+        if (filterCategory) {
+            result = result.filter(cat => cat.name.toLowerCase() === filterCategory.toLowerCase());
+        }
 
-                return {
-                    ...category,
-                    subCategories: filteredSubCategories
-                };
-            })
-            .filter(cat => getCategoryCount(cat) > 0);
-    }, [categories, showEmpty]);
+        if (!showEmpty) {
+            result = result
+                .map(category => {
+                    const filteredSubCategories = category.subCategories
+                        ? category.subCategories
+                            .map(sub => ({
+                                ...sub,
+                                subCategories: sub.subCategories
+                                    ? sub.subCategories.filter(subSub => (subSub.activities?.length || 0) > 0)
+                                    : undefined
+                            }))
+                            .filter(sub => getSubCategoryCount(sub) > 0)
+                        : undefined;
 
-    const renderActivityCard = useCallback((activity: Activity) => {
+                    return {
+                        ...category,
+                        subCategories: filteredSubCategories
+                    };
+                })
+                .filter(cat => getCategoryCount(cat) > 0);
+        }
+
+        return result;
+    }, [categories, showEmpty, filterCategory]);
+
+    const renderActivityCard = useCallback((activity: Activity, accentColor?: string, hideTypeChip?: boolean) => {
         const progressValue = getProgress(activity.id, progressMap);
         const isCompleted = completedActivityIds.has(activity.id) || progressValue >= 100;
         return (
@@ -563,9 +600,117 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 isCompleted={isCompleted}
                 progressValue={progressValue}
                 progressMap={progressMap}
+                accentColor={accentColor}
+                hideTypeChip={hideTypeChip}
+                gameUi={activity.type === 'game' ? resolveActivityGameUi(activity) : undefined}
+                points={activity.type === 'game' ? getActivityPoints(activity.type, activity) : undefined}
             />
         );
     }, [completedActivityIds, progressMap]);
+
+    // Soft palette for section accents
+    const SECTION_COLORS = ['#A3D9A5', '#A5C9E1', '#C5B3E6', '#F4B0B7', '#89CFF0', '#F0E68C'];
+
+    // When filtering to a single category, render ALL activities in a flat list (no accordions)
+    if (filterCategory && filteredCategories.length > 0) {
+        const category = filteredCategories[0];
+
+        // Collect all activities from every level into a flat list with optional group labels
+        const sections: { label?: string; rawLabel?: string; activities: Activity[] }[] = [];
+
+        if (category.subCategories) {
+            for (const sub of category.subCategories) {
+                if (sub.subCategories) {
+                    // E.g. Grammar → Tenses → Simple/Continuous/Perfect
+                    for (const subSub of sub.subCategories) {
+                        if (subSub.activities.length > 0) {
+                            sections.push({
+                                label: subSub.name,
+                                rawLabel: `${sub.name} — ${subSub.name}`,
+                                activities: subSub.activities,
+                            });
+                        }
+                    }
+                }
+                if (sub.activities.length > 0) {
+                    sections.push({
+                        label: sub.name,
+                        activities: sub.activities,
+                    });
+                }
+            }
+        }
+
+        if (category.activities.length > 0) {
+            sections.push({ activities: category.activities });
+        }
+
+        if (sections.length === 0) {
+            return (
+                <p className="text-text-muted text-center py-8 text-sm">No activities yet</p>
+            );
+        }
+
+        // Calculate total stats
+        const allActivities = sections.flatMap(s => s.activities);
+        const totalCount = allActivities.length;
+        const completedCount = allActivities.filter(a => {
+            const progress = getProgress(a.id, progressMap);
+            return completedActivityIds.has(a.id) || progress >= 100;
+        }).length;
+
+        return (
+            <div className="animate-fade-in">
+                {/* Visual grouping header summary */}
+                {filterCategory !== 'games' && (
+                    <div className="mb-6 pb-2 border-b border-border/20 flex items-center justify-between">
+                        <p className="text-xs font-bold text-text-muted/80 uppercase tracking-widest">
+                            {totalCount} activities
+                        </p>
+                        <div className="flex items-center gap-3">
+                            <p className="text-xs font-bold text-secondary">
+                                {completedCount} / {totalCount} done
+                            </p>
+                            <div className="w-24 h-1.5 bg-border/20 rounded-full overflow-hidden">
+                                <div 
+                                    className="h-full bg-secondary transition-all duration-500"
+                                    style={{ width: `${(completedCount / totalCount) * 100}%` }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                <div className="space-y-6">
+                    {sections.map((section, sIdx) => {
+                        const accentColor = SECTION_COLORS[sIdx % SECTION_COLORS.length];
+                        
+                        // Sort: Incomplete first, then completed at the bottom
+                        const sortedActivities = [...section.activities].sort((a, b) => {
+                            const aDone = completedActivityIds.has(a.id) || getProgress(a.id, progressMap) >= 100;
+                            const bDone = completedActivityIds.has(b.id) || getProgress(b.id, progressMap) >= 100;
+                            if (aDone && !bDone) return 1;
+                            if (!aDone && bDone) return -1;
+                            return 0;
+                        });
+
+                        return (
+                            <div key={section.rawLabel || section.label || sIdx} className="space-y-2">
+                                {section.label && (
+                                    <p className="text-[11px] font-bold uppercase tracking-widest text-text-muted/70 mb-2 pl-3 border-l-2" style={{ borderLeftColor: accentColor }}>
+                                        {section.label}
+                                    </p>
+                                )}
+                                <div className={`space-y-2 ${filterCategory === 'games' ? 'grid grid-cols-1 sm:grid-cols-2 gap-3 space-y-0' : ''}`}>
+                                    {sortedActivities.map(activity => renderActivityCard(activity, accentColor, true))}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-4">
@@ -686,7 +831,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
                                                                                     {isSubSubExpanded && subSubCategory.activities.length > 0 && (
                                                                                         <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                            {subSubCategory.activities.map(renderActivityCard)}
+                                                                                            {subSubCategory.activities.map((a) => renderActivityCard(a))}
                                                                                         </div>
                                                                                     )}
                                                                                 </div>
@@ -730,7 +875,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
                                                                                 {isSubSubExpanded && subSubCategory.activities.length > 0 && (
                                                                                     <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                        {subSubCategory.activities.map(renderActivityCard)}
+                                                                                        {subSubCategory.activities.map((a) => renderActivityCard(a))}
                                                                                     </div>
                                                                                 )}
                                                                             </div>
@@ -741,7 +886,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                         ) : subCategory.activities.length > 0 && (
                                                             // No sub-subcategories - show activities directly
                                                             <div className="pl-12 pr-4 pb-4 space-y-2">
-                                                                {subCategory.activities.map(renderActivityCard)}
+                                                                {subCategory.activities.map(a => renderActivityCard(a))}
                                                             </div>
                                                         )
                                                     )}
@@ -753,7 +898,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                     // No subcategories - show activities directly
                                     <div className="p-4 space-y-2">
                                         {category.activities.length > 0 ? (
-                                            category.activities.map(renderActivityCard)
+                                            category.activities.map(a => renderActivityCard(a))
                                         ) : (
                                             <p className="text-text-muted text-center py-4 text-sm">No activities yet</p>
                                         )}

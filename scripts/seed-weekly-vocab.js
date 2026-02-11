@@ -161,7 +161,7 @@ async function main() {
     const wordList = data.words.map((w) => w.term).join(", ");
     const fullWeek = formatWeek(slug);
     const activityId = `vocab-${slug}`;
-    const title = `Unit ${unit}: ${fullWeek} ${data.topic}`;
+    const title = `Unit ${unit}: ${fullWeek}`;
 
     // Generate content for all 4 vocabulary types
     const consolidatedContent = {

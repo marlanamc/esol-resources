@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { HomeIcon } from "@/components/icons/Icons";
 
 const baseClass =
   "inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white border border-[var(--color-border)] text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-bg-light)] hover:border-[var(--color-border-dark)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2";
@@ -10,6 +11,8 @@ interface BackButtonBaseProps {
   children?: React.ReactNode;
   className?: string;
   "aria-label"?: string;
+  variant?: "back" | "home";
+  hideOnMobile?: boolean;
 }
 
 interface BackButtonLinkProps extends BackButtonBaseProps {
@@ -29,16 +32,57 @@ export function BackButton({
   onClick,
   children = "Back",
   className = "",
-  "aria-label": ariaLabel = "Go back",
+  variant = "back",
+  hideOnMobile = false,
+  "aria-label": ariaLabel,
 }: BackButtonProps) {
-  const combinedClass = [baseClass, className].filter(Boolean).join(" ");
-  const icon = <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden />;
+  const isHome = variant === "home";
+  
+  // Responsive classes:
+  // - If home: circular on md+, standard on mobile
+  // - If back: standard everywhere
+  const buttonClasses = isHome 
+    ? [
+        "inline-flex items-center transition-colors shadow-sm active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2",
+        "md:justify-center md:w-10 md:h-10 md:rounded-full md:bg-white md:border md:border-[var(--color-border)] md:text-[var(--color-text)] md:hover:bg-[var(--color-bg-light)] md:hover:border-[var(--color-border-dark)]", // Desktop (Home style)
+        "rounded-lg bg-white border border-[var(--color-border)] text-sm font-medium text-[var(--color-text)] hover:bg-[var(--color-bg-light)] hover:border-[var(--color-border-dark)] gap-2 px-3 py-2 md:px-0 md:py-0", // Mobile (Standard style override)
+      ].join(" ")
+    : [baseClass, className].join(" ");
+
+  const combinedClass = [
+    isHome ? buttonClasses : baseClass,
+    hideOnMobile ? "hidden md:inline-flex" : "",
+    className
+  ].filter(Boolean).join(" ");
+  
+  const defaultAria = isHome ? "Go to Dashboard" : "Go back";
+  const finalAriaLabel = ariaLabel || defaultAria;
+
+  const icon = isHome ? (
+    <>
+      <HomeIcon size={20} className="hidden md:block shrink-0" aria-hidden />
+      <ArrowLeft className="block md:hidden w-4 h-4 shrink-0" aria-hidden />
+    </>
+  ) : (
+    <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden />
+  );
+
+  const content = (
+    <>
+      {icon}
+      {/* Show children if not home, or if home AND mobile */}
+      {(!isHome || (isHome && children)) && (
+        <span className={isHome ? "block md:hidden" : ""}>
+          {isHome ? "Back" : children}
+        </span>
+      )}
+    </>
+  );
 
   if (href) {
     return (
-      <Link href={href} className={combinedClass} aria-label={ariaLabel}>
-        {icon}
-        <span>{children}</span>
+      <Link href={href} className={combinedClass} aria-label={finalAriaLabel}>
+        {content}
       </Link>
     );
   }
@@ -48,10 +92,9 @@ export function BackButton({
       type="button"
       onClick={onClick}
       className={combinedClass}
-      aria-label={ariaLabel}
+      aria-label={finalAriaLabel}
     >
-      {icon}
-      <span>{children}</span>
+      {content}
     </button>
   );
 }

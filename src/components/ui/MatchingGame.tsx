@@ -47,6 +47,43 @@ interface TimeIndicatorRound {
     words: TimeIndicatorWord[];
 }
 
+const VERB_TENSE_HINTS: Record<string, { emoji: string; label: string; bgClass: string; textClass: string }> = {
+    "present-simple": { emoji: "👤", label: "Present simple", bgClass: "bg-sky-100", textClass: "text-sky-800" },
+    "present-continuous": { emoji: "🔄", label: "Present continuous", bgClass: "bg-teal-100", textClass: "text-teal-800" },
+    "present-perfect": { emoji: "✨", label: "Present perfect", bgClass: "bg-violet-100", textClass: "text-violet-800" },
+    "present-perfect-continuous": { emoji: "💫", label: "Present perfect continuous", bgClass: "bg-purple-100", textClass: "text-purple-800" },
+    "past-simple": { emoji: "⏪", label: "Past simple", bgClass: "bg-amber-100", textClass: "text-amber-800" },
+    "past-continuous": { emoji: "📖", label: "Past continuous", bgClass: "bg-orange-100", textClass: "text-orange-800" },
+    "past-perfect": { emoji: "⏮️", label: "Past perfect", bgClass: "bg-rose-100", textClass: "text-rose-800" },
+    "past-perfect-continuous": { emoji: "📜", label: "Past perfect continuous", bgClass: "bg-red-100", textClass: "text-red-800" },
+    "future-simple": { emoji: "🚀", label: "Future simple", bgClass: "bg-indigo-100", textClass: "text-indigo-800" },
+    "future-continuous": { emoji: "🌊", label: "Future continuous", bgClass: "bg-cyan-100", textClass: "text-cyan-800" },
+    "future-perfect": { emoji: "🎯", label: "Future perfect", bgClass: "bg-emerald-100", textClass: "text-emerald-800" },
+};
+
+interface VerbBlank {
+    correctWord: string;
+    wrongWord: string;
+    explanation: string;
+    tense?: string;
+}
+
+interface VerbSoundsRightItem {
+    id: number;
+    sentence: string;
+    blanks: VerbBlank[];
+    // Legacy single-blank support (will be converted to blanks array)
+    correctWord?: string;
+    wrongWord?: string;
+    explanation?: string;
+    tense?: string;
+}
+
+interface VerbSoundsRightRound {
+    roundNumber: number;
+    items: VerbSoundsRightItem[];
+}
+
 interface Props {
     contentStr: string;
     activityId?: string;
@@ -69,6 +106,18 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     if (gameMode === "time-indicators") {
         return (
             <TimeIndicatorSortingUI
+                contentStr={contentStr}
+                activityId={activityId}
+                assignmentId={assignmentId}
+                vocabType={vocabType}
+            />
+        );
+    }
+
+    // Verb Sounds Right sorting game
+    if (gameMode === "verb-sounds-right") {
+        return (
+            <VerbSoundsRightSortingUI
                 contentStr={contentStr}
                 activityId={activityId}
                 assignmentId={assignmentId}
@@ -1818,17 +1867,427 @@ function TimeIndicatorSortingUI({
     );
 }
 
+// --- Verb Sounds Right Sorting UI ---
+function VerbSoundsRightSortingUI({
+    contentStr,
+    activityId,
+    assignmentId,
+    vocabType,
+}: {
+    contentStr: string;
+    activityId?: string;
+    assignmentId?: string | null;
+    vocabType?: string;
+}) {
+    const rounds = useMemo(() => parseVerbSoundsRightRounds(contentStr), [contentStr]);
+    const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
+    const currentRound = rounds[currentRoundIndex];
+    const shuffleSeed = useMemo(
+        () => deriveShuffleSeed(currentRound?.roundNumber ?? 0, activityId),
+        [currentRound?.roundNumber, activityId]
+    );
+    const shuffledItems = useMemo(
+        () => deterministicShuffle(currentRound?.items || [], shuffleSeed),
+        [currentRound, shuffleSeed]
+    );
+    const totalItemsAcrossRounds = useMemo(
+        () => rounds.reduce((sum, round) => sum + round.items.length, 0),
+        [rounds]
+    );
+    const completedItemsBeforeCurrentRound = useMemo(() => {
+        return rounds
+            .slice(0, currentRoundIndex)
+            .reduce((sum, round) => sum + round.items.length, 0);
+    }, [currentRoundIndex, rounds]);
+
+    const [gameState, setGameState] = useState({
+        currentIndex: 0,
+        currentBlankIndex: 0, // Track which blank we're filling (0 or 1 for two-blank sentences)
+        filledBlanks: [] as string[], // Store correct answers for filled blanks
+        correctCount: 0,
+        incorrectAttempts: 0,
+        completedItems: new Set<number>(),
+        showExplanation: false,
+        explanationText: "",
+        wrongWordText: "",
+        bounceCard: false,
+        selectedCorrect: false,
+    });
+    const overallCompletedItems = completedItemsBeforeCurrentRound + gameState.completedItems.size;
+    const overallProgressPercent =
+        totalItemsAcrossRounds > 0
+            ? Math.round((overallCompletedItems / totalItemsAcrossRounds) * 100)
+            : 0;
+    const completedRoundCategoriesRef = useRef(new Set<number>());
+    const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+    const [isRoundComplete, setIsRoundComplete] = useState(false);
+    const [isGameComplete, setIsGameComplete] = useState(false);
+
+    const progress =
+        shuffledItems.length > 0
+            ? Math.round((gameState.completedItems.size / shuffledItems.length) * 100)
+            : 0;
+    const currentItem = shuffledItems[gameState.currentIndex];
+
+    useEffect(() => {
+        const styleId = "verb-sounds-right-game-styles";
+        if (document.getElementById(styleId)) return;
+        const style = document.createElement("style");
+        style.id = styleId;
+        style.textContent = `
+            @keyframes bounce-back { 0% { transform: translateY(0) scale(1); } 25% { transform: translateY(-20px) scale(1.1); } 50% { transform: translateY(0) scale(1); } 75% { transform: translateY(-10px) scale(1.05); } 100% { transform: translateY(0) scale(1); } }
+            @keyframes success-pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+            @keyframes drop-zone-pulse { 0%, 100% { border-width: 4px; box-shadow: 0 0 0 0 rgba(217, 119, 87, 0.3); } 50% { border-width: 4px; box-shadow: 0 0 0 6px rgba(217, 119, 87, 0.1); } }
+            @keyframes drop-zone-correct-flash { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.0); } 20% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.18); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.0); } }
+            @keyframes drop-zone-wrong-flash { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); } 20% { transform: scale(1.02); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.18); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.0); } }
+            .animate-bounce-back { animation: bounce-back 0.5s ease-out; }
+            .animate-success-pulse { animation: success-pulse 0.6s ease-in-out; }
+            .drop-zone-ready { animation: drop-zone-pulse 1.5s ease-in-out infinite; }
+            .drop-zone-correct { border-color: #22c55e !important; background-color: rgba(34, 197, 94, 0.15) !important; animation: drop-zone-correct-flash 450ms ease-out; }
+            .drop-zone-wrong { border-color: #ef4444 !important; background-color: rgba(239, 68, 68, 0.15) !important; animation: drop-zone-wrong-flash 450ms ease-out; }
+            .touch-manipulation { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+        `;
+        document.head.appendChild(style);
+        return () => { const s = document.getElementById(styleId); if (s) document.head.removeChild(s); };
+    }, []);
+
+    useEffect(() => {
+        if (!activityId || totalItemsAcrossRounds === 0) return;
+        const status = overallProgressPercent >= 100 ? "completed" : "in_progress";
+        void saveActivityProgress(activityId, overallProgressPercent, status, undefined, undefined, assignmentId ?? null, undefined, vocabType);
+    }, [activityId, overallProgressPercent, totalItemsAcrossRounds, assignmentId, vocabType]);
+
+    useEffect(() => {
+        if (!activityId || !currentRound || !isRoundComplete) return;
+        const roundNumber = currentRound.roundNumber;
+        if (completedRoundCategoriesRef.current.has(roundNumber)) return;
+        completedRoundCategoriesRef.current.add(roundNumber);
+        const roundStatus = overallProgressPercent >= 100 ? "completed" : "in_progress";
+        const saveRoundProgress = async () => {
+            const result = await saveActivityProgress(activityId, 100, roundStatus, undefined, `round-${roundNumber}`, assignmentId ?? null, undefined, vocabType);
+            if (result?.pointsAwarded && result.pointsAwarded > 0) {
+                setPointsToast({ points: result.pointsAwarded, key: Date.now() });
+            }
+        };
+        void saveRoundProgress();
+    }, [activityId, currentRound, isRoundComplete, assignmentId, overallProgressPercent, vocabType]);
+
+    const handleWordTap = (word: string) => {
+        if (!currentItem) return;
+        const currentBlank = currentItem.blanks[gameState.currentBlankIndex];
+        if (!currentBlank) return;
+
+        const isCorrect = word === currentBlank.correctWord;
+        const isLastBlank = gameState.currentBlankIndex >= currentItem.blanks.length - 1;
+
+        if (isCorrect) {
+            if (isLastBlank) {
+                // All blanks filled - mark item complete
+                setGameState((prev) => ({
+                    ...prev,
+                    correctCount: prev.correctCount + 1,
+                    completedItems: new Set([...prev.completedItems, currentItem.id]),
+                    selectedCorrect: true,
+                    filledBlanks: [...prev.filledBlanks, word],
+                }));
+                setTimeout(() => advanceToNext(), 1000);
+            } else {
+                // Move to next blank
+                setGameState((prev) => ({
+                    ...prev,
+                    currentBlankIndex: prev.currentBlankIndex + 1,
+                    filledBlanks: [...prev.filledBlanks, word],
+                    selectedCorrect: true,
+                }));
+                // Brief delay then reset selectedCorrect for next blank
+                setTimeout(() => setGameState((p) => ({ ...p, selectedCorrect: false })), 800);
+            }
+        } else {
+            setGameState((prev) => ({
+                ...prev,
+                incorrectAttempts: prev.incorrectAttempts + 1,
+                bounceCard: true,
+                showExplanation: true,
+                explanationText: currentBlank.explanation || "",
+                wrongWordText: word,
+            }));
+            setTimeout(() => setGameState((p) => ({ ...p, bounceCard: false })), 500);
+        }
+    };
+
+    const advanceToNext = () => {
+        setGameState((prev) => {
+            const nextIndex = prev.currentIndex + 1;
+            if (nextIndex >= shuffledItems.length) {
+                setIsRoundComplete(true);
+                return prev;
+            }
+            return { ...prev, currentIndex: nextIndex, currentBlankIndex: 0, filledBlanks: [], selectedCorrect: false };
+        });
+    };
+
+    const handleNextRound = () => {
+        if (currentRoundIndex + 1 >= rounds.length) {
+            setIsGameComplete(true);
+        } else {
+            setCurrentRoundIndex(currentRoundIndex + 1);
+            setGameState({
+                currentIndex: 0,
+                currentBlankIndex: 0,
+                filledBlanks: [],
+                correctCount: 0,
+                incorrectAttempts: 0,
+                completedItems: new Set(),
+                showExplanation: false,
+                explanationText: "",
+                wrongWordText: "",
+                bounceCard: false,
+                selectedCorrect: false,
+            });
+            setIsRoundComplete(false);
+        }
+    };
+
+    const handleDismissExplanation = () => {
+        setGameState((prev) => ({ ...prev, showExplanation: false, explanationText: "", wrongWordText: "" }));
+    };
+
+    const handleReset = () => {
+        setCurrentRoundIndex(0);
+        setGameState({
+            currentIndex: 0,
+            currentBlankIndex: 0,
+            filledBlanks: [],
+            correctCount: 0,
+            incorrectAttempts: 0,
+            completedItems: new Set(),
+            showExplanation: false,
+            explanationText: "",
+            wrongWordText: "",
+            bounceCard: false,
+            selectedCorrect: false,
+        });
+        setIsRoundComplete(false);
+        setIsGameComplete(false);
+    };
+
+    if (rounds.length === 0 || !currentRound) {
+        return (
+            <div className="max-w-6xl mx-auto p-8 text-center">
+                <p className="text-gray-500">No verb sounds right items available.</p>
+            </div>
+        );
+    }
+
+    const currentBlank = currentItem?.blanks[gameState.currentBlankIndex];
+    // Simple coin flip based on item ID to randomize word order
+    const shouldSwap = currentItem ? ((currentItem.id + gameState.currentBlankIndex) % 2 === 1) : false;
+    const wordOptions = currentBlank
+        ? (shouldSwap
+            ? [currentBlank.wrongWord, currentBlank.correctWord]
+            : [currentBlank.correctWord, currentBlank.wrongWord])
+        : [];
+
+    return (
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+            {pointsToast && <PointsToast key={pointsToast.key} points={pointsToast.points} onComplete={() => setPointsToast(null)} />}
+            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
+                <div className="flex items-start gap-3">
+                    <BackButton onClick={() => window.history.back()} className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center touch-manipulation" />
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Pick the word that sounds right</h2>
+                            <div className="text-sm font-medium text-gray-600">
+                                <span className="text-green-600 font-bold">{gameState.correctCount}</span> / {shuffledItems.length} correct
+                            </div>
+                        </div>
+                        <p className="text-xs text-gray-500 mb-1">Round {currentRound.roundNumber} of {rounds.length}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3">Tap the word that fits in the sentence</p>
+                        <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                            <div className="h-full bg-[var(--color-primary)] transition-[width] duration-300" style={{ width: `${progress}%` }} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:px-0 md:py-6 flex flex-col items-center justify-start gap-8" style={{ WebkitOverflowScrolling: "touch" }}>
+                {/* Sentence Card */}
+                {!isRoundComplete && currentItem && (
+                    <div className="w-full max-w-2xl">
+                        <div
+                            className={`
+                                p-8 md:p-10 bg-white rounded-2xl shadow-lg border-4 text-center
+                                min-h-[140px] flex items-center justify-center
+                                ${gameState.bounceCard ? "animate-bounce-back border-gray-300" : "border-gray-300"}
+                            `}
+                        >
+                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-relaxed">
+                                {currentItem.sentence.split("_____").map((part, blankIdx, arr) => (
+                                    <span key={blankIdx}>
+                                        {part}
+                                        {blankIdx < arr.length - 1 && (
+                                            gameState.filledBlanks[blankIdx] ? (
+                                                // Show filled word with tense color
+                                                <span className={`inline-block px-2 mx-1 rounded ${
+                                                    currentItem.blanks[blankIdx]?.tense && VERB_TENSE_HINTS[currentItem.blanks[blankIdx].tense!]
+                                                        ? `${VERB_TENSE_HINTS[currentItem.blanks[blankIdx].tense!].bgClass} ${VERB_TENSE_HINTS[currentItem.blanks[blankIdx].tense!].textClass}`
+                                                        : "bg-green-100 text-green-800"
+                                                }`}>
+                                                    {gameState.filledBlanks[blankIdx]}
+                                                </span>
+                                            ) : blankIdx === gameState.currentBlankIndex ? (
+                                                // Active blank - pulsing
+                                                <span className="inline-block min-w-[80px] md:min-w-[100px] border-b-4 border-dashed border-[var(--color-primary)] mx-1 drop-zone-ready" />
+                                            ) : (
+                                                // Future blank - dimmed
+                                                <span className="inline-block min-w-[80px] md:min-w-[100px] border-b-4 border-dashed border-gray-300 mx-1" />
+                                            )
+                                        )}
+                                    </span>
+                                ))}
+                            </h3>
+                        </div>
+                        <p className="text-center text-sm text-gray-500 mt-3">
+                            {currentItem.blanks.length > 1
+                                ? `Blank ${gameState.currentBlankIndex + 1} of ${currentItem.blanks.length} — Tap the word that sounds right`
+                                : "Tap the word that sounds right"
+                            }
+                        </p>
+                    </div>
+                )}
+
+                {/* Word Choice Buttons */}
+                {!isRoundComplete && currentItem && currentBlank && (
+                    <div className="w-full max-w-2xl">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
+                            {wordOptions.map((word, idx) => {
+                                const isCorrect = word === currentBlank.correctWord;
+                                const isSelectedCorrect = gameState.selectedCorrect && isCorrect;
+                                const showWrong = gameState.showExplanation && word === gameState.wrongWordText;
+                                const tenseHint = currentBlank.tense ? VERB_TENSE_HINTS[currentBlank.tense] : null;
+
+                                // Alternate colors for visual distinction
+                                const colors = idx === 0
+                                    ? { border: "border-violet-300", bg: "bg-violet-50", hoverBorder: "hover:border-violet-500", hoverBg: "hover:bg-violet-100", text: "text-violet-600", emoji: "✨" }
+                                    : { border: "border-amber-300", bg: "bg-amber-50", hoverBorder: "hover:border-amber-500", hoverBg: "hover:bg-amber-100", text: "text-amber-600", emoji: "⏪" };
+
+                                return (
+                                    <button
+                                        key={word}
+                                        onClick={() => handleWordTap(word)}
+                                        disabled={gameState.selectedCorrect || gameState.showExplanation}
+                                        className={`
+                                            relative p-6 md:p-8 rounded-xl border-4 border-dashed
+                                            transition-all duration-200 cursor-pointer touch-manipulation
+                                            min-h-[140px] flex flex-col items-center justify-center gap-2
+                                            ${showWrong ? "drop-zone-wrong" : ""}
+                                            ${isSelectedCorrect ? "drop-zone-correct" : ""}
+                                            ${!gameState.selectedCorrect && !gameState.showExplanation
+                                                ? `${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg}`
+                                                : ""}
+                                            ${gameState.selectedCorrect || gameState.showExplanation ? "cursor-not-allowed opacity-75" : ""}
+                                        `}
+                                    >
+                                        <div className="text-4xl md:text-5xl mb-2">
+                                            {isSelectedCorrect ? "✅" : showWrong ? "❌" : colors.emoji}
+                                        </div>
+                                        <div className="font-bold text-gray-900 text-2xl md:text-3xl">
+                                            {word}
+                                        </div>
+                                        {isSelectedCorrect && tenseHint && (
+                                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mt-2 ${tenseHint.bgClass} ${tenseHint.textClass}`}>
+                                                <span>{tenseHint.emoji}</span>
+                                                <span>{tenseHint.label}</span>
+                                            </span>
+                                        )}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
+
+                {isRoundComplete && (
+                    <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-2xl p-8 text-center shadow-xl w-full max-w-md">
+                        <div className="text-6xl md:text-7xl mb-4">🎉</div>
+                        {isGameComplete ? (
+                            <>
+                                <h2 className="text-3xl md:text-4xl font-bold mb-3">You did it!</h2>
+                                <p className="text-lg md:text-xl text-white/90 mb-2">You completed all {rounds.length} rounds!</p>
+                                <p className="text-sm text-white/80">Great ear for verb forms! 🏆</p>
+                            </>
+                        ) : (
+                            <>
+                                <h2 className="text-3xl md:text-4xl font-bold mb-3">Great job!</h2>
+                                <p className="text-lg md:text-xl text-white/90 mb-2">You sorted all {shuffledItems.length} sentences!</p>
+                                <p className="text-sm text-white/80 mb-4">Ready for Round {currentRound.roundNumber + 1}?</p>
+                                <button
+                                    onClick={handleNextRound}
+                                    className="inline-block px-6 py-3 bg-white text-emerald-600 font-bold rounded-lg hover:bg-gray-100 active:scale-95 transition-colors"
+                                >
+                                    Next Round →
+                                </button>
+                            </>
+                        )}
+                    </div>
+                )}
+
+                {gameState.showExplanation && currentBlank && (
+                    <div className="w-full max-w-md">
+                        <div className="bg-red-50 border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg">
+                            <div className="flex items-start gap-3 mb-3">
+                                <span className="text-2xl">❌</span>
+                                <div className="flex-1">
+                                    <h3 className="font-bold text-red-900 text-base md:text-lg">Not quite!</h3>
+                                    <p className="text-sm text-red-800 mt-1">The correct answer is: <strong>{currentBlank.correctWord}</strong></p>
+                                    {currentBlank.tense && VERB_TENSE_HINTS[currentBlank.tense] && (
+                                        <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mt-2 ${VERB_TENSE_HINTS[currentBlank.tense].bgClass} ${VERB_TENSE_HINTS[currentBlank.tense].textClass}`}>
+                                            <span>{VERB_TENSE_HINTS[currentBlank.tense].emoji}</span>
+                                            <span>{VERB_TENSE_HINTS[currentBlank.tense].label}</span>
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                            {gameState.explanationText && (
+                                <p className="text-sm text-red-800 mb-4 leading-relaxed">{gameState.explanationText}</p>
+                            )}
+                            <button
+                                onClick={handleDismissExplanation}
+                                className="w-full px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors touch-manipulation active:scale-95"
+                            >
+                                Try Again
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {isGameComplete && (
+                <div className="flex-shrink-0 flex justify-center px-3 pb-4 md:pb-0">
+                    <button onClick={handleReset} className="w-full md:w-auto min-h-[48px] px-6 md:px-8 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 active:scale-95 transition-colors shadow-lg touch-manipulation">
+                        Play Again
+                    </button>
+                </div>
+            )}
+        </div>
+    );
+}
+
 // --- Vocab (term::definition) matching ---
-function detectMatchingGameMode(content: string): "vocab" | "countable" | "time-indicators" {
-    const hasRoundMarkers = /\[ROUND\s*\d+\]/.test(content);
+function detectMatchingGameMode(content: string): "vocab" | "countable" | "time-indicators" | "verb-sounds-right" {
+    // Match [ROUND 1], [ROUND 2 - Title], etc.
+    const hasRoundMarkers = /\[ROUND\s*\d+/.test(content);
     const lines = content.split("\n");
     let hasCountableUncountableLine = false;
     let hasTimeIndicatorLine = false;
+    let hasVerbSoundsRightLine = false;
 
     // Check for game mode indicators
     for (const line of lines) {
         if (!line.includes("::")) continue;
-        const afterColon = line.split("::").map((s) => s.trim())[1] ?? "";
+        const parts = line.split("::").map((s) => s.trim());
+        const first = parts[0] ?? "";
+        const afterColon = parts[1] ?? "";
         const lower = afterColon.toLowerCase();
         if (lower.startsWith("countable") || lower.startsWith("uncountable")) {
             hasCountableUncountableLine = true;
@@ -1836,8 +2295,13 @@ function detectMatchingGameMode(content: string): "vocab" | "countable" | "time-
         if (lower.startsWith("specified") || lower.startsWith("unspecified")) {
             hasTimeIndicatorLine = true;
         }
+        // Verb sounds right: sentence with _____ and at least 3 parts (sentence :: correct :: wrong)
+        if (first.includes("_____") && parts.length >= 3 && !lower.startsWith("countable") && !lower.startsWith("uncountable") && !lower.startsWith("specified") && !lower.startsWith("unspecified")) {
+            hasVerbSoundsRightLine = true;
+        }
     }
 
+    if (hasRoundMarkers && hasVerbSoundsRightLine) return "verb-sounds-right";
     if (hasRoundMarkers && hasTimeIndicatorLine) return "time-indicators";
     if (hasRoundMarkers && hasCountableUncountableLine) return "countable";
     return "vocab";
@@ -1953,6 +2417,88 @@ function parseRounds(content: string): Round[] {
                 roundNumber,
                 words,
             });
+            roundNumber++;
+        }
+    }
+
+    return rounds;
+}
+
+// Helper function: Parse rounds from content (verb-sounds-right format)
+// Single-blank format: sentence :: correctWord :: wrongWord :: tense :: explanation
+// Two-blank format: sentence :: correct1 :: wrong1 :: tense1 :: explain1 :: correct2 :: wrong2 :: tense2 :: explain2
+function parseVerbSoundsRightRounds(content: string): VerbSoundsRightRound[] {
+    const rounds: VerbSoundsRightRound[] = [];
+    const roundBlocks = content.split(/\[ROUND\s*\d+(?:\s*-\s*[^\]]+)?\]/).filter((b) => b.trim());
+
+    let roundNumber = 1;
+    let globalId = 1;
+
+    for (const block of roundBlocks) {
+        const items: VerbSoundsRightItem[] = [];
+        const lines = block.trim().split("\n").filter((l) => l.trim());
+
+        for (const line of lines) {
+            if (!line.includes("_____") || !line.includes("::")) continue;
+            const parts = line.split("::").map((s) => s.trim());
+            if (parts.length < 3) continue;
+
+            const sentence = parts[0];
+            const blankCount = (sentence.match(/_____/g) || []).length;
+
+            if (blankCount === 1) {
+                // Single-blank: sentence :: correct :: wrong :: tense :: explanation
+                const correctWord = parts[1];
+                const wrongWord = parts[2];
+                const tense = parts[3] ?? "";
+                const explanation = parts[4] ?? "";
+                if (!correctWord || !wrongWord) continue;
+
+                items.push({
+                    id: globalId++,
+                    sentence,
+                    blanks: [{
+                        correctWord,
+                        wrongWord,
+                        tense: tense && VERB_TENSE_HINTS[tense] ? tense : undefined,
+                        explanation,
+                    }],
+                });
+            } else if (blankCount === 2 && parts.length >= 7) {
+                // Two-blank: sentence :: correct1 :: wrong1 :: tense1 :: explain1 :: correct2 :: wrong2 :: tense2 :: explain2
+                const correct1 = parts[1];
+                const wrong1 = parts[2];
+                const tense1 = parts[3] ?? "";
+                const explain1 = parts[4] ?? "";
+                const correct2 = parts[5];
+                const wrong2 = parts[6];
+                const tense2 = parts[7] ?? "";
+                const explain2 = parts[8] ?? "";
+                if (!correct1 || !wrong1 || !correct2 || !wrong2) continue;
+
+                items.push({
+                    id: globalId++,
+                    sentence,
+                    blanks: [
+                        {
+                            correctWord: correct1,
+                            wrongWord: wrong1,
+                            tense: tense1 && VERB_TENSE_HINTS[tense1] ? tense1 : undefined,
+                            explanation: explain1,
+                        },
+                        {
+                            correctWord: correct2,
+                            wrongWord: wrong2,
+                            tense: tense2 && VERB_TENSE_HINTS[tense2] ? tense2 : undefined,
+                            explanation: explain2,
+                        },
+                    ],
+                });
+            }
+        }
+
+        if (items.length > 0) {
+            rounds.push({ roundNumber, items });
             roundNumber++;
         }
     }
