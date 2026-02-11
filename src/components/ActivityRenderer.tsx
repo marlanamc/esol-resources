@@ -135,7 +135,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                     case "numbers":
                         return <NumbersGame contentStr={activity.content} activityId={activity.id} />;
                     case "fill-in-blank":
-                        return <FillInBlankGame contentStr={activity.content} activityId={activity.id} />;
+                        return <FillInBlankGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
                     case "verb-forms":
                         return <VerbFormsGame contentStr={activity.content} activityId={activity.id} />;
                      case "matching":

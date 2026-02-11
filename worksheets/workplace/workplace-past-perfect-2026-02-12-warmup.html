@@ -69,6 +69,16 @@
     .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
     .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
     .front-page { margin-bottom: 24px; }
+    .verb-chart { margin-bottom: 18px; }
+    .verb-chart-context { font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+    .verb-forms-table, .verb-tense-table { border-collapse: collapse; font-size: 12px; }
+    .verb-forms-table { width: 100%; }
+    .verb-tense-table { width: 100%; max-width: 8in; table-layout: fixed; }
+    .verb-tense-table th:first-child, .verb-tense-table .tense-cell { width: 120px; }
+    .verb-forms-table th, .verb-forms-table td, .verb-tense-table th, .verb-tense-table td { border: 1px solid var(--ink); padding: 6px 8px; }
+    .verb-forms-table th, .verb-tense-table th { font-weight: bold; text-align: center; }
+    .verb-forms-table td input { width: 100%; border: none; border-bottom: 1px solid var(--line); background: transparent; font-family: inherit; font-size: 12px; padding: 2px 0; }
+    .verb-tense-table .tense-cell { font-weight: bold; white-space: nowrap; }
     @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
       .page-break { page-break-before: always; } }
       .pron { font-size: 11px; color: var(--light); font-style: italic; margin-left: 4px; }
@@ -167,39 +177,103 @@
     </div>
 
     <section class="section page-break">
+      <div class="verb-chart">
+        <p class="instruction">After reading the verb chart, fill out the tables below.</p>
+        <div class="verb-chart-context">1. Verb: write | Subject: he</div>
+        <table class="verb-forms-table">
+          <thead>
+            <tr>
+              <th>V1 (BASE)</th>
+              <th>V1-3RD</th>
+              <th>V1-ING</th>
+              <th>V2 (PAST)</th>
+              <th>V3 (PAST PARTICIPLE)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="verb-tense-table">
+          <thead>
+            <tr>
+              <th>TENSE</th>
+              <th>AFFIRMATIVE</th>
+              <th>NEGATIVE</th>
+              <th>QUESTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tense-cell">Present Simple</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="tense-cell">Past Simple</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="tense-cell">Future Simple</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="tense-cell">Present Cont.</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="tense-cell">Past Cont.</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="tense-cell">Future Cont.</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="tense-cell">Present Perfect</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <div class="section-header"><h2 class="section-title">Reading</h2></div>
       <div class="reading-text">
         <p>Rosa works at a warehouse. She works the morning shift from 7:00 a.m. to 3:00 p.m. Every Monday, her supervisor meets with the team to go over the safety policy. If there is a problem, Rosa emails her supervisor and promises to follow up later with more information.</p>
-        <p>At the end of each week, Rosa checks her hours and fills out her timesheet. Before she leaves, she turns in the timesheet to the office. Clear policies, helpful supervisors, and good communication help Rosa feel confident at work.</p>
+        <p>Last month, Rosa noticed a broken step near the loading dock. She told her supervisor right away and sent a photo by email. Her supervisor said she would check with the maintenance team and asked Rosa to follow up with her the next day. The step was fixed within two days. Rosa was glad she spoke up.</p>
+        <p>At the end of each week, Rosa checks her hours and fills out her timesheet. Before she leaves, she turns in the timesheet to the office. The company policy says all timesheets must be submitted by Friday at 4:00 p.m. Rosa likes to finish hers early so she never forgets.</p>
+        <p>Sometimes Rosa's shift changes when the warehouse is very busy. When that happens, her supervisor sends an email or talks to her in person to explain the new schedule. Clear policies, helpful supervisors, and good communication help Rosa feel confident at work.</p>
       </div>
       <div class="question">
-        <div class="question-text"><b>1)</b> What time does Rosa's shift start and end?</div>
+        <div class="question-text"><b>1)</b> Why might Rosa promise to "follow up later with more information" when she emails about a problem? What does that show about good workplace communication?</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>2)</b> What do Rosa and her supervisor go over on Mondays?</div>
+        <div class="question-text"><b>2)</b> The passage says clear policies help Rosa feel confident. Give one reason why knowing the rules might make someone feel more confident at work.</div>
         <div class="answer-line"></div>
       </div>
       <div class="question">
-        <div class="question-text"><b>3)</b> What does Rosa do with her timesheet at the end of the week?</div>
+        <div class="question-text"><b>3)</b> Describe one way your work or school routine is similar to Rosa's, or one way it is different.</div>
         <div class="answer-line"></div>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Writing Homework</h2>
-        <span class="section-time">6–8 sentences</span>
-      </div>
-      <div class="writing-prompt">
-        <b>Prompt:</b> Describe a work or school day. Use at least <b>4</b> words from this sheet (for example: <em>go over, follow up, supervisor, shift, timesheet, policy</em>). Write about who you talk to, what rules you follow, and how you keep track of your hours or responsibilities.
-      </div>
-      
-      <div class="writing-lines">
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-      </div>
-      <p class="optional-note">Optional challenge: Use <b>5</b> different words from this sheet in one short paragraph.</p>
     </section>
   </div>
 

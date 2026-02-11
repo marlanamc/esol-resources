@@ -314,7 +314,8 @@ textarea {
 }
 
 @keyframes gentlePulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -325,7 +326,8 @@ textarea {
 }
 
 @keyframes glowPulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 8px rgba(255, 150, 50, 0.3);
   }
   50% {
@@ -405,16 +407,52 @@ textarea {
   animation: vocabCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
-.checklist-row:nth-child(1) { animation-delay: 0ms; }
-.checklist-row:nth-child(2) { animation-delay: 60ms; }
-.checklist-row:nth-child(3) { animation-delay: 120ms; }
-.checklist-row:nth-child(4) { animation-delay: 180ms; }
-.checklist-row:nth-child(5) { animation-delay: 240ms; }
-.checklist-row:nth-child(6) { animation-delay: 300ms; }
-.checklist-row:nth-child(7) { animation-delay: 360ms; }
-.checklist-row:nth-child(8) { animation-delay: 420ms; }
-.checklist-row:nth-child(9) { animation-delay: 480ms; }
-.checklist-row:nth-child(10) { animation-delay: 540ms; }
+/* Category picker card animations */
+@keyframes categoryCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.category-card {
+  animation: categoryCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.checklist-row:nth-child(1) {
+  animation-delay: 0ms;
+}
+.checklist-row:nth-child(2) {
+  animation-delay: 60ms;
+}
+.checklist-row:nth-child(3) {
+  animation-delay: 120ms;
+}
+.checklist-row:nth-child(4) {
+  animation-delay: 180ms;
+}
+.checklist-row:nth-child(5) {
+  animation-delay: 240ms;
+}
+.checklist-row:nth-child(6) {
+  animation-delay: 300ms;
+}
+.checklist-row:nth-child(7) {
+  animation-delay: 360ms;
+}
+.checklist-row:nth-child(8) {
+  animation-delay: 420ms;
+}
+.checklist-row:nth-child(9) {
+  animation-delay: 480ms;
+}
+.checklist-row:nth-child(10) {
+  animation-delay: 540ms;
+}
 
 /* Progress bar shimmer animation */
 .progress-bar-shimmer {
@@ -441,15 +479,27 @@ textarea {
 
 /* Stats card glow backgrounds */
 .stat-glow-orange {
-  background: radial-gradient(ellipse at center, rgba(255, 150, 50, 0.15) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 150, 50, 0.15) 0%,
+    transparent 70%
+  );
 }
 
 .stat-glow-gold {
-  background: radial-gradient(ellipse at center, rgba(233, 196, 106, 0.2) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(233, 196, 106, 0.2) 0%,
+    transparent 70%
+  );
 }
 
 .stat-glow-sage {
-  background: radial-gradient(ellipse at center, rgba(106, 141, 115, 0.15) 0%, transparent 70%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(106, 141, 115, 0.15) 0%,
+    transparent 70%
+  );
 }
 
 /* Glass morphism effect */
@@ -563,7 +613,11 @@ textarea {
   top: 0;
   bottom: 0;
   width: 0;
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  background: linear-gradient(
+    90deg,
+    var(--color-primary) 0%,
+    var(--color-primary-light) 100%
+  );
   border-radius: inherit;
   transition: width 0.2s ease;
   z-index: 0;
@@ -928,52 +982,53 @@ kbd {
 
 /* ========== Celebration Animations ========== */
 @keyframes fall {
-    0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-    }
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
 }
 
 @keyframes star-burst {
-    0% {
-        transform: scale(0) rotate(0deg);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1.5) rotate(180deg);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(0) rotate(360deg);
-        opacity: 0;
-    }
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 @keyframes sparkle {
-    0%, 100% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
+  0%,
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .animate-fall {
-    animation: fall 3s linear forwards;
+  animation: fall 3s linear forwards;
 }
 
 .animate-star-burst {
-    animation: star-burst 2s ease-out forwards;
+  animation: star-burst 2s ease-out forwards;
 }
 
 .animate-sparkle {
-    animation: sparkle 2s ease-in-out infinite;
+  animation: sparkle 2s ease-in-out infinite;
 }
 
 /* ========== Responsive Typography ========== */

@@ -97,9 +97,7 @@ export default function LeaderboardPage() {
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
         <div className="container mx-auto py-4 px-4 sm:px-6">
-          <BackButton href="/dashboard" className="hidden md:inline-flex mb-2">
-            Back to Dashboard
-          </BackButton>
+          <BackButton href="/dashboard" variant="home" className="mb-2" />
           <div className="flex items-center gap-4">
             <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
             <div>

@@ -2,7 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { ActivityCategories, TeacherActivityCategories } from "@/components/dashboard";
+import { TeacherActivityCategories } from "@/components/dashboard";
+import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
 import { BackButton } from "@/components/ui/BackButton";
 
 export default async function ActivitiesPage() {
@@ -54,7 +55,7 @@ export default async function ActivitiesPage() {
             <div className="min-h-screen bg-bg">
                 <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                        <BackButton href="/dashboard" className="mb-2">Back to Dashboard</BackButton>
+                        <BackButton href="/dashboard" variant="home" className="mb-2" />
                         <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Browse</p>
                         <h1 className="text-3xl font-display font-bold text-text">All Activities</h1>
                     </div>
@@ -99,14 +100,12 @@ export default async function ActivitiesPage() {
         <div className="min-h-screen bg-bg">
             <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                    <BackButton href="/dashboard" className="mb-2">Back to Dashboard</BackButton>
-                    <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Browse</p>
-                    <h1 className="text-3xl font-display font-bold text-text">All Activities</h1>
+                    <BackButton href="/dashboard" variant="home" className="mb-2" />
                 </div>
             </header>
 
-            <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 pb-24 md:pb-12">
-                <ActivityCategories
+            <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12">
+                <ActivityCategoryPicker
                     activities={activities}
                     completedActivityIds={completedActivityIds}
                     progressMap={progressMap}
