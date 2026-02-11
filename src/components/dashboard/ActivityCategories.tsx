@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { resolveActivityGameUi, getActivityPoints, type GameUi } from '@/lib/gamification/activity-points';
+import { getGameEmojiForActivity } from '@/lib/game-emoji';
 
 interface Activity {
     id: string;
@@ -154,6 +155,9 @@ const ActivityCard = React.memo(function ActivityCard({
 }: ActivityCardProps) {
     const progressText = getCategoryProgressText(activity.id, progressMap);
     const vocabType = getVocabActivityType(activity.id);
+    const gameEmoji = gameUi
+        ? getGameEmojiForActivity({ activityId: activity.id, title: activity.title, gameUi })
+        : null;
 
     return (
         <div
@@ -173,11 +177,7 @@ const ActivityCard = React.memo(function ActivityCard({
             <div className="flex items-start gap-3">
                 {gameUi ? (
                     <span className="mt-0.5 text-xl flex-shrink-0">
-                        {gameUi === 'numbers' ? '🔢' : 
-                         gameUi === 'matching' ? '🧩' : 
-                         gameUi === 'fill-in-blank' ? '📝' : 
-                         gameUi === 'verb-forms' ? '⚔️' : 
-                         gameUi === 'flashcards' ? '🃏' : '🎮'}
+                        {gameEmoji}
                     </span>
                 ) : (
                     <span className="mt-1 w-2 h-2 rounded-full bg-primary/60 flex-shrink-0" />
