@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useEffect, useState, useRef } from "react";
-import { saveActivityProgress } from "@/lib/activityProgress";
+import { saveActivityProgress, fetchActivityProgress } from "@/lib/activityProgress";
 import { BackButton } from "@/components/ui/BackButton";
 import { PointsToast } from "@/components/ui/PointsToast";
 
@@ -1922,6 +1922,60 @@ function VerbSoundsRightSortingUI({
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
     const [isRoundComplete, setIsRoundComplete] = useState(false);
     const [isGameComplete, setIsGameComplete] = useState(false);
+    const [isLoadingProgress, setIsLoadingProgress] = useState(true);
+    const hasLoadedProgressRef = useRef(false);
+
+    // Load saved progress on mount
+    useEffect(() => {
+        if (!activityId || hasLoadedProgressRef.current) {
+            setIsLoadingProgress(false);
+            return;
+        }
+        hasLoadedProgressRef.current = true;
+
+        const loadProgress = async () => {
+            try {
+                const saved = await fetchActivityProgress(activityId, assignmentId);
+                if (saved?.categoryData) {
+                    // Find the highest completed round
+                    let highestCompletedRound = 0;
+                    for (const key of Object.keys(saved.categoryData)) {
+                        const match = key.match(/^round-(\d+)$/);
+                        if (match && saved.categoryData[key]?.completed) {
+                            const roundNum = parseInt(match[1], 10);
+                            if (roundNum > highestCompletedRound) {
+                                highestCompletedRound = roundNum;
+                            }
+                        }
+                    }
+
+                    // If there are completed rounds, start at the next uncompleted round
+                    if (highestCompletedRound > 0) {
+                        // Mark completed rounds in the ref so they don't re-award points
+                        for (let i = 1; i <= highestCompletedRound; i++) {
+                            completedRoundCategoriesRef.current.add(i);
+                        }
+
+                        // Find the index of the next round to play
+                        const nextRoundIndex = rounds.findIndex(r => r.roundNumber > highestCompletedRound);
+                        if (nextRoundIndex !== -1) {
+                            setCurrentRoundIndex(nextRoundIndex);
+                        } else if (highestCompletedRound >= rounds.length) {
+                            // All rounds completed
+                            setCurrentRoundIndex(rounds.length - 1);
+                            setIsGameComplete(true);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to load activity progress:", error);
+            } finally {
+                setIsLoadingProgress(false);
+            }
+        };
+
+        void loadProgress();
+    }, [activityId, assignmentId, rounds]);
 
     const progress =
         shuffledItems.length > 0
@@ -2070,6 +2124,14 @@ function VerbSoundsRightSortingUI({
         setIsRoundComplete(false);
         setIsGameComplete(false);
     };
+
+    if (isLoadingProgress) {
+        return (
+            <div className="max-w-6xl mx-auto p-8 text-center">
+                <p className="text-gray-500">Loading your progress...</p>
+            </div>
+        );
+    }
 
     if (rounds.length === 0 || !currentRound) {
         return (
