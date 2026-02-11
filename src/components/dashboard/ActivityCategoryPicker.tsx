@@ -151,11 +151,6 @@ export function ActivityCategoryPicker({
     if (!selectedCategory) {
         return (
             <div className="animate-fade-in">
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-text text-center mb-8 sm:mb-10">
-                    What do you want to{' '}
-                    <span className="text-primary italic">practice</span> today?
-                </h2>
-
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
                     {visibleCards.map((card, idx) => (
                         <button
