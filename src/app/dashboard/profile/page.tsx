@@ -211,6 +211,37 @@ const getScoreBadgeClasses = (score: number): string => {
     return "bg-rose-100 text-rose-800 border-rose-200";
 };
 
+const toReadableLabel = (value: string): string => {
+    return value
+        .replace(/[-_]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+const parseGrammarExerciseReason = (
+    reason: string
+): { activityName: string; activityType: string } | null => {
+    if (!reason.startsWith("grammar-exercise:")) return null;
+
+    const parts = reason.split(":");
+    const slug = parts[1] || "";
+    const sectionId = parts[2] || "";
+    const exerciseId = parts.slice(3).join(":") || sectionId;
+
+    const guideTitle = toReadableLabel(slug);
+    const exerciseTitle = toReadableLabel(exerciseId);
+
+    if (!guideTitle && !exerciseTitle) return null;
+
+    return {
+        activityName: guideTitle && exerciseTitle
+            ? `${guideTitle}: ${exerciseTitle}`
+            : guideTitle || exerciseTitle,
+        activityType: "Grammar Exercise",
+    };
+};
+
 export default async function ProfilePage() {
     const session = await getServerSession(authOptions);
 
@@ -424,12 +455,16 @@ export default async function ProfilePage() {
             const reason = entry.reason || 'Activity completed';
             let activityName = reason;
             let activityType: string | undefined;
+            const grammarExercise = parseGrammarExerciseReason(reason);
 
             // Check for new format with pipe separator: "Title|Type"
             if (reason.includes('|')) {
                 const [title, type] = reason.split('|');
                 activityName = title.trim();
                 activityType = type?.trim();
+            } else if (grammarExercise) {
+                activityName = grammarExercise.activityName;
+                activityType = grammarExercise.activityType;
             } else if (reason.startsWith('Completed: ')) {
                 // Legacy format: strip "Completed: " prefix
                 activityName = reason.replace('Completed: ', '');

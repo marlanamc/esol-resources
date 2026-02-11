@@ -122,8 +122,77 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
 
         {
-            id: "clock-verbs",
+            id: "phrasal-verb-forms",
             stepNumber: 2,
+            title: "Phrasal Verb Forms: V1, V1-3rd, V1-ing, V2, V3",
+            icon: "🔁",
+            explanation: `
+                <h3>Key Rule: Change the Verb, Keep the Particle</h3>
+                <p>With phrasal verbs, only the first word changes form. The particle/preposition stays the same.</p>
+
+                <div style="margin: 1rem 0; padding: 1rem; background: rgba(59, 130, 246, 0.08); border-radius: 0.5rem;">
+                    <ul style="margin: 0;">
+                        <li><strong>call out</strong> → calls out (V1-3rd), calling out (V1-ing), called out (V2), called out (V3)</li>
+                        <li><strong>clock in</strong> → clocks in (V1-3rd), clocking in (V1-ing), clocked in (V2), clocked in (V3)</li>
+                        <li><strong>fill out</strong> → fills out (V1-3rd), filling out (V1-ing), filled out (V2), filled out (V3)</li>
+                        <li><strong>turn in</strong> → turns in (V1-3rd), turning in (V1-ing), turned in (V2), turned in (V3)</li>
+                    </ul>
+                </div>
+
+                <h4>How You Hear These Forms at Work</h4>
+                <ul>
+                    <li><strong>V1-3rd (simple present):</strong> "She <strong>calls out</strong> only when she is very sick."</li>
+                    <li><strong>V1-ing (continuous):</strong> "I am <strong>filling out</strong> the incident form now."</li>
+                    <li><strong>V2 (past):</strong> "I <strong>called out</strong> yesterday."</li>
+                    <li><strong>V3 (perfect):</strong> "She has <strong>turned in</strong> her timesheet."</li>
+                </ul>
+
+                <p style="margin-top: 0.75rem;"><strong>Tip:</strong> Most workplace phrasal verbs in this lesson are regular, so V2 and V3 are usually the same (called, clocked, filled, turned).</p>
+            `,
+            exercises: [
+                {
+                    id: "workplace-pv-forms-0",
+                    title: "Practice: Verb Forms",
+                    instructions: "Choose the form that fits each sentence.",
+                    items: [
+                        {
+                            type: "select",
+                            label: "Right now, I am _____ the onboarding paperwork.",
+                            options: ["filling out", "filled out", "fill out", "turned in"],
+                            expectedAnswer: "filling out",
+                        },
+                        {
+                            type: "select",
+                            label: "Yesterday, Jamal _____ because he had a fever.",
+                            options: ["called out", "calling out", "call out", "has called out"],
+                            expectedAnswer: "called out",
+                        },
+                        {
+                            type: "select",
+                            label: "Every Monday, he _____ right at 8:00 a.m.",
+                            options: ["clocks in", "clock in", "clocking in", "clocked in"],
+                            expectedAnswer: "clocks in",
+                        },
+                        {
+                            type: "select",
+                            label: "By 9:05, everyone has _____ and started work.",
+                            options: ["clocked in", "clocking in", "clock in", "calls in"],
+                            expectedAnswer: "clocked in",
+                        },
+                        {
+                            type: "select",
+                            label: "Please check if Ana has _____ her timesheet yet.",
+                            options: ["turned in", "turning in", "turn in", "turns in"],
+                            expectedAnswer: "turned in",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "clock-verbs",
+            stepNumber: 3,
             title: "Clock In/Out: Time & Attendance",
             icon: "⏰",
             explanation: `
@@ -142,8 +211,14 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
                     <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 0.5rem;">
                         <h4 style="color: #3b82f6; margin-top: 0;">call out / call in sick</h4>
-                        <p style="margin: 0;">= notify that you can't come to work (usually illness)</p>
-                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"I had to <strong>call out</strong> sick yesterday."</p>
+                        <p style="margin: 0;">= notify work that you can't come in</p>
+                        <ul style="margin: 0.5rem 0 0 1.25rem; padding: 0;">
+                            <li><strong>call out</strong>: very common in shift-based jobs (retail, restaurants, warehouses); often used for any urgent absence</li>
+                            <li><strong>call in sick</strong>: very common in office/HR language; specifically illness</li>
+                        </ul>
+                        <p style="margin: 0.5rem 0 0 0; font-style: italic;">"I need to <strong>call in sick</strong> today."</p>
+                        <p style="margin: 0.35rem 0 0 0; font-style: italic;">"I had to <strong>call out</strong> for tonight's shift."</p>
+                        <p style="margin: 0.6rem 0 0 0;"><strong>Important:</strong> Outside workplace attendance, <strong>call out</strong> can also mean criticize someone publicly.</p>
                     </div>
                 </div>
             `,
@@ -167,8 +242,14 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "You wake up with a fever and can't work today. You should _____.",
-                            options: ["call out", "call back", "show up", "look over"],
+                            label: "You email HR: 'I have a fever, so I need to _____ today.'",
+                            options: ["call in sick", "call back", "show up", "look over"],
+                            expectedAnswer: "call in sick",
+                        },
+                        {
+                            type: "select",
+                            label: "Your restaurant manager says: 'If you can't work, please _____ before your shift starts.'",
+                            options: ["call out", "clock in", "turn in", "follow up"],
                             expectedAnswer: "call out",
                         },
                     ],
@@ -178,7 +259,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
         {
             id: "forms-paperwork",
-            stepNumber: 3,
+            stepNumber: 4,
             title: "Fill Out/In, Turn In: Forms & Paperwork",
             icon: "📝",
             explanation: `
@@ -233,7 +314,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
         {
             id: "communication",
-            stepNumber: 4,
+            stepNumber: 5,
             title: "Call Back, Get Back, Follow Up: Communication",
             icon: "📞",
             explanation: `
@@ -300,7 +381,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
         {
             id: "coverage-substitution",
-            stepNumber: 5,
+            stepNumber: 6,
             title: "Cover For, Fill In For: Coverage & Substitution",
             icon: "🔄",
             explanation: `
@@ -349,7 +430,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
         {
             id: "more-phrasal-verbs",
-            stepNumber: 6,
+            stepNumber: 7,
             title: "More Workplace Phrasal Verbs",
             icon: "📚",
             explanation: `
@@ -430,7 +511,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
         {
             id: "email-writing",
-            stepNumber: 7,
+            stepNumber: 8,
             title: "Professional Email Writing",
             icon: "✉️",
             explanation: `
@@ -557,7 +638,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
 
         {
             id: "workplace-dialogues",
-            stepNumber: 8,
+            stepNumber: 9,
             title: "Workplace Dialogues",
             icon: "💬",
             explanation: `
@@ -679,6 +760,14 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li><strong>wrap up</strong> - finish, complete</li>
                 </ul>
 
+                <h3>Form Pattern (V1, V1-3rd, V1-ing, V2, V3)</h3>
+                <ul>
+                    <li><strong>call out</strong> → call out / calls out / calling out / called out / called out</li>
+                    <li><strong>clock in</strong> → clock in / clocks in / clocking in / clocked in / clocked in</li>
+                    <li><strong>fill out</strong> → fill out / fills out / filling out / filled out / filled out</li>
+                    <li><strong>turn in</strong> → turn in / turns in / turning in / turned in / turned in</li>
+                </ul>
+
                 <h3>Common Mistakes</h3>
                 <ul>
                     <li>❌ "Fill the form" → ✅ "Fill out the form"</li>
@@ -686,6 +775,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     <li>❌ "Clock yourself" → ✅ "Clock in/out"</li>
                     <li>❌ "Let's finish up" → ✅ "Let's wrap up"</li>
                     <li>❌ "I'll respond you" → ✅ "I'll get back to you"</li>
+                    <li>❌ "I have call out sick" → ✅ "I have called out sick"</li>
                 </ul>
             `,
             tipBox: {
@@ -709,6 +799,12 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             label: "You missed a call: Please _____ when you can.",
                             options: ["call back", "call out", "look over", "show up"],
                             expectedAnswer: "call back",
+                        },
+                        {
+                            type: "select",
+                            label: "Choose the correct V3 form: 'I have already _____ my report.'",
+                            options: ["turned in", "turning in", "turn in", "turns in"],
+                            expectedAnswer: "turned in",
                         },
                     ],
                 },
@@ -734,15 +830,15 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Complete: 'Please ___ this onboarding form.'",
+            question: "Complete: 'I have already ___ this onboarding form.'",
             options: [
-                { value: "a", label: "fill" },
-                { value: "b", label: "fill out" },
-                { value: "c", label: "fill up" },
+                { value: "a", label: "fill out" },
+                { value: "b", label: "filled out" },
+                { value: "c", label: "filling out" },
             ],
             correctAnswer: "b",
             explanation:
-                "'Fill out' (or 'fill in') means to complete a form by writing the required information.",
+                "After 'have', use the V3 form: 'filled out.' The base phrasal verb is 'fill out.'",
             skillTag: "pv-fill-out-complete-form",
             difficulty: "easy",
         },
@@ -761,15 +857,15 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-4",
-            question: "What should you do if you're sick and can't work?",
+            question: "In many office/HR policies, which phrase is most specific to illness?",
             options: [
                 { value: "a", label: "Call out" },
                 { value: "b", label: "Call in sick" },
-                { value: "c", label: "Both A and B are correct" },
+                { value: "c", label: "Call back" },
             ],
-            correctAnswer: "c",
+            correctAnswer: "b",
             explanation:
-                "Both 'call out' and 'call in sick' are correct ways to notify your employer that you can't come to work due to illness.",
+                "'Call in sick' explicitly means illness. 'Call out' is very common in shift-based industries and can mean reporting any urgent absence. Outside attendance contexts, 'call out' can also mean criticize publicly.",
             skillTag: "pv-call-out-call-in-sick",
             difficulty: "medium",
         },
