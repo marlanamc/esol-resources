@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
+import { PenLine, Gamepad2, BookOpen, ClipboardList } from 'lucide-react';
 
 interface VocabCategoryData {
     'word-list'?: { completed: boolean; progress: number; completedAt?: string };
@@ -192,9 +193,9 @@ export const TodaysAssignments: React.FC<Props> = ({
     const getCategoryStyle = (category?: string | null) => {
         const categoryKey = (category || '').toLowerCase();
         const categoryStyles: Record<string, { label: string; bg: string; text: string; accent: string }> = {
-            vocab: { label: 'VOCAB', bg: '#e8f5e9', text: '#2e7d32', accent: '#a5d6a7' },
-            vocabulary: { label: 'VOCAB', bg: '#e8f5e9', text: '#2e7d32', accent: '#a5d6a7' },
-            grammar: { label: 'GRAMMAR', bg: '#e3f2fd', text: '#1565c0', accent: '#90caf9' },
+            vocab: { label: 'VOCAB', bg: '#e3f2fd', text: '#1565c0', accent: '#90caf9' },
+            vocabulary: { label: 'VOCAB', bg: '#e3f2fd', text: '#1565c0', accent: '#90caf9' },
+            grammar: { label: 'GRAMMAR', bg: '#e8f5e9', text: '#2e7d32', accent: '#a5d6a7' },
             numbers: { label: 'NUMBERS', bg: '#e3f2fd', text: '#1e5aa8', accent: '#4a90e2' },
             number: { label: 'NUMBERS', bg: '#e3f2fd', text: '#1e5aa8', accent: '#4a90e2' },
             reading: { label: 'READING', bg: '#e8f6f3', text: '#217f72', accent: '#2a9d8f' },
@@ -275,12 +276,17 @@ export const TodaysAssignments: React.FC<Props> = ({
         const percent = rows.length ? Math.round((completedCount / rows.length) * 100) : 0;
         const isFullyComplete = percent === 100;
 
-        // Group sorted rows by category
-        const CHECKLIST_GROUPS = [
-            { key: 'grammar', label: 'Grammar', emoji: '✏️', match: (c: string) => c === 'grammar' },
-            { key: 'activity', label: 'Games', emoji: '🎮', match: (c: string) => !['quiz','quizzes','grammar','vocab','vocabulary'].includes(c) },
-            { key: 'vocabulary', label: 'Vocabulary', emoji: '📖', match: (c: string) => c === 'vocab' || c === 'vocabulary' },
-            { key: 'quizzes', label: 'Quizzes', emoji: '📋', match: (c: string) => c === 'quiz' || c === 'quizzes' },
+        // Group sorted rows by category - using Lucide icons instead of emojis
+        const CHECKLIST_GROUPS: Array<{
+            key: string;
+            label: string;
+            icon: React.ReactNode;
+            match: (c: string) => boolean;
+        }> = [
+            { key: 'grammar', label: 'Grammar', icon: <PenLine className="w-5 h-5" />, match: (c: string) => c === 'grammar' },
+            { key: 'activity', label: 'Games', icon: <Gamepad2 className="w-5 h-5" />, match: (c: string) => !['quiz','quizzes','grammar','vocab','vocabulary'].includes(c) },
+            { key: 'vocabulary', label: 'Vocabulary', icon: <BookOpen className="w-5 h-5" />, match: (c: string) => c === 'vocab' || c === 'vocabulary' },
+            { key: 'quizzes', label: 'Quizzes', icon: <ClipboardList className="w-5 h-5" />, match: (c: string) => c === 'quiz' || c === 'quizzes' },
         ];
 
         const groups = CHECKLIST_GROUPS.map(group => {
@@ -292,27 +298,23 @@ export const TodaysAssignments: React.FC<Props> = ({
 
 
 
-        const renderChecklistRow = ({ assignment, isCompleted, displayTitle, dueLabel, progressValue }: typeof sortedRows[0], isGameGroup = false) => (
-            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex items-center gap-3 transition-all duration-200 hover:bg-bg-light/30 border-b border-border/10 last:border-0">
-                
+        const renderChecklistRow = (
+            { assignment, isCompleted, displayTitle, dueLabel, progressValue }: typeof sortedRows[0],
+            isGameGroup = false,
+            categoryStyle: { text: string; accent: string }
+        ) => (
+            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-3 sm:px-4 flex items-center gap-3 transition-all duration-200 hover:bg-white/60 border-b border-border/10 last:border-0">
+
                 {/* Checkbox (or Game Icon placeholder) */}
                 <div className="shrink-0 pt-0.5 self-start sm:self-center">
-                    {!isGameGroup ? (
-                        <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
-                            isCompleted 
-                                ? 'bg-secondary/10 border-secondary/20 text-secondary' 
-                                : 'bg-white border-border/40 text-transparent'
-                        }`}>
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        </div>
-                    ) : (
-                        <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-500 flex items-center justify-center text-lg">
-                            {getGameEmojiForActivity({
-                                activityId: assignment.activityId,
-                                title: assignment.title || assignment.activity.title,
-                            })}
-                        </div>
-                    )}
+                    {/* Checkbox for all rows - games get same treatment as other categories */}
+                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                        isCompleted
+                            ? 'bg-secondary/10 border-secondary/20 text-secondary'
+                            : 'bg-white border-border/40 text-transparent'
+                    }`}>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    </div>
                 </div>
 
                 {/* Content */}
@@ -331,17 +333,16 @@ export const TodaysAssignments: React.FC<Props> = ({
                             }
                             return null;
                         })()}
-                        
-                        {!isGameGroup && dueLabel && !isCompleted && (
-                            <span className={`text-[10px] font-semibold ${
-                                new Date(assignment.dueDate as string) < new Date() ? 'text-red-500' : 'text-text-muted'
-                            }`}>
+
+                        {/* Only show due date if overdue */}
+                        {!isGameGroup && dueLabel && !isCompleted && new Date(assignment.dueDate as string) < new Date() && (
+                            <span className="text-[10px] font-semibold text-red-500">
                                 {dueLabel}
                             </span>
                         )}
                     </div>
 
-                    <div className={`text-sm sm:text-base font-bold font-display leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/50 line-through decoration-text/20' : 'text-text'}`}>
+                    <div className={`text-sm sm:text-base font-bold font-display leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/35 line-through decoration-text/15 decoration-1' : 'text-text'}`}>
                         {displayTitle}
                     </div>
 
@@ -365,14 +366,13 @@ export const TodaysAssignments: React.FC<Props> = ({
                             );
                         }
 
-                        // Generic Progress Bar (if started but not done)
+                        // Generic Progress Bar (if started but not done) - bar only, no percentage text
                         if (!isCompleted && progressValue > 0) {
                             return (
-                                <div className="flex items-center gap-2 mt-1">
-                                    <div className="h-1.5 flex-1 max-w-[100px] bg-border/20 rounded-full overflow-hidden">
-                                        <div className="h-full bg-emerald-400 rounded-full" style={{ width: `${progressValue}%` }} />
+                                <div className="mt-1.5">
+                                    <div className="h-1 w-24 max-w-full bg-border/20 rounded-full overflow-hidden">
+                                        <div className="h-full bg-emerald-400/80 rounded-full transition-all" style={{ width: `${progressValue}%` }} />
                                     </div>
-                                    <span className="text-[10px] font-bold text-emerald-600">{Math.round(progressValue)}%</span>
                                 </div>
                             );
                         }
@@ -380,18 +380,34 @@ export const TodaysAssignments: React.FC<Props> = ({
                     })()}
                 </div>
 
-                {/* Action Button - Always inline on right */}
+                {/* Action Button - Category-colored outline style */}
                 <div className="shrink-0 self-center pl-1">
                     <Link
                         href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                        className={`inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold transition-all duration-200 rounded-lg whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 ${
-                            !isGameGroup && isCompleted
-                                ? 'bg-transparent text-primary hover:bg-primary/5 border border-transparent hover:border-primary/20'
-                                : 'bg-primary text-white shadow-sm hover:bg-primary-dark hover:shadow-md'
-                        }`}
+                        className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-lg whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+                        style={isCompleted ? {} : {
+                            color: categoryStyle.text,
+                            borderWidth: '1px',
+                            borderStyle: 'solid',
+                            borderColor: `${categoryStyle.accent}80`,
+                        }}
+                        onMouseEnter={(e) => {
+                            if (!isCompleted) {
+                                e.currentTarget.style.borderColor = categoryStyle.accent;
+                                e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
+                            }
+                        }}
+                        onMouseLeave={(e) => {
+                            if (!isCompleted) {
+                                e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
+                                e.currentTarget.style.backgroundColor = 'transparent';
+                            }
+                        }}
                         aria-label={`${isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                     >
-                        {isCompleted ? 'Review' : isGameGroup ? 'Play' : 'Start'}
+                        <span className={isCompleted ? 'text-text-muted/60' : ''}>
+                            {isCompleted ? 'Review' : isGameGroup ? 'Play' : 'Start'}
+                        </span>
                     </Link>
                 </div>
             </div>
@@ -399,9 +415,10 @@ export const TodaysAssignments: React.FC<Props> = ({
 
         return (
             <div className="mb-8">
-                {/* Progress header card */}
-                <div className={`bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden ${isFullyComplete ? 'celebrate-complete ring-2 ring-accent/50' : ''}`}>
-                    <div className="px-4 py-3 border-b border-border/10 bg-white">
+                {/* Unified checklist container - header + category groups connected */}
+                <div className={`card-elevated rounded-2xl overflow-hidden ${isFullyComplete ? 'celebrate-complete ring-2 ring-accent/50' : ''}`}>
+                    {/* Progress header */}
+                    <div className="px-4 py-3 border-b border-border/20">
                         <div className="flex items-center justify-between gap-3 mb-3">
                             <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-lg">
@@ -419,38 +436,39 @@ export const TodaysAssignments: React.FC<Props> = ({
                             <div className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-accent' : 'bg-primary'}`} style={{ width: `${percent}%` }} />
                         </div>
                     </div>
-                </div>
 
-                {/* Grouped category sections */}
-                <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
-                    {groups.map((group, groupIdx) => {
-                        const groupStyle = getCategoryStyle(group.key);
-                        return (
-                            <div
-                                key={group.key}
-                                className="checklist-group bg-white rounded-xl border border-border/40 shadow-sm overflow-hidden"
-                                style={{ animationDelay: `${groupIdx * 100}ms` }}
-                            >
-                                <div
-                                    className="w-full px-3 py-2 bg-gradient-to-r from-white to-bg-light/30 border-b border-border/20 flex items-center justify-between"
-                                    style={{ borderLeft: `4px solid ${groupStyle.accent}` }}
-                                >
-                                    
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-xl">{group.emoji}</span>
-                                        <h3 className="font-display font-bold text-text text-base sm:text-lg">{group.label}</h3>
-                                        <span className="text-xs font-bold text-text-muted px-2 py-0.5 rounded-full bg-black/5">
-                                            {group.isGameGroup ? `${group.items.length}` : `${group.doneInGroup}/${group.items.length}`}
-                                        </span>
+                    {/* Category sections inside the same container */}
+                    <div className="p-3 sm:p-4 bg-bg-light/30">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            {groups.map((group, groupIdx) => {
+                                const groupStyle = getCategoryStyle(group.key);
+                                return (
+                                    <div
+                                        key={group.key}
+                                        className="checklist-group bg-white rounded-xl border border-border/30 overflow-hidden shadow-sm"
+                                        style={{ animationDelay: `${groupIdx * 100}ms` }}
+                                    >
+                                        <div
+                                            className="w-full px-3 py-2.5 bg-gradient-to-r from-white to-bg-light/30 border-b border-border/15 flex items-center justify-between"
+                                            style={{ borderLeft: `4px solid ${groupStyle.accent}` }}
+                                        >
+                                            <div className="flex items-center gap-2">
+                                                <span className="text-text-muted/70">{group.icon}</span>
+                                                <h3 className="font-display font-bold text-text text-base sm:text-lg">{group.label}</h3>
+                                                <span className="text-[11px] font-semibold text-text-muted/70 px-1.5 py-0.5 rounded bg-black/[0.03]">
+                                                    {group.isGameGroup ? `${group.items.length}` : `${group.doneInGroup}/${group.items.length}`}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div className="divide-y divide-border/10">
+                                            {group.items.map((row) => renderChecklistRow(row, group.isGameGroup, groupStyle))}
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div className="divide-y divide-border/10">
-                                    {group.items.map((row) => renderChecklistRow(row, group.isGameGroup))}
-                                </div>
-                            </div>
-                        );
-                    })}
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
 
             </div>

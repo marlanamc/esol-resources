@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool } from 'lucide-react';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -18,9 +19,9 @@ interface CategoryCardDef {
     key: string;
     name: string;
     subtitle: string;
-    emoji: string;
+    icon: React.ReactNode;
     bgColor: string;       // top section background
-    iconBg: string;         // icon circle background
+    iconColor: string;     // icon stroke color
 }
 
 const CATEGORY_CARDS: CategoryCardDef[] = [
@@ -28,49 +29,49 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
         key: 'grammar',
         name: 'Grammar',
         subtitle: 'Sentences · Rules',
-        emoji: '✏️',
-        bgColor: '#bbdefb',
-        iconBg: '#90caf9',
+        icon: <PenLine className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
+        bgColor: '#c8e6c9',  // green (swapped with vocab)
+        iconColor: '#2e7d32',
     },
     {
         key: 'games',
         name: 'Games',
         subtitle: 'Practice + fun',
-        emoji: '🎮',
+        icon: <Gamepad2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
         bgColor: '#d1c4e9',
-        iconBg: '#b39ddb',
+        iconColor: '#4527a0',
     },
     {
         key: 'vocabulary',
         name: 'Vocabulary',
         subtitle: 'Words · Meaning · Use',
-        emoji: '📖',
-        bgColor: '#c8e6c9',
-        iconBg: '#a5d6a7',
+        icon: <BookOpen className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
+        bgColor: '#bbdefb',  // blue (swapped with grammar)
+        iconColor: '#1565c0',
     },
     {
         key: 'quizzes',
         name: 'Quizzes',
         subtitle: 'Points · Grades',
-        emoji: '📋',
+        icon: <ClipboardList className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
         bgColor: '#ffcdd2',
-        iconBg: '#ef9a9a',
+        iconColor: '#c62828',
     },
     {
         key: 'speaking',
         name: 'Speaking',
         subtitle: 'Say it out loud',
-        emoji: '🎙️',
+        icon: <Mic className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
         bgColor: '#ffe0b2',
-        iconBg: '#ffcc80',
+        iconColor: '#e65100',
     },
     {
         key: 'writing',
         name: 'Writing',
         subtitle: 'Short answers',
-        emoji: '✍️',
+        icon: <PenTool className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
         bgColor: '#d7ccc8',
-        iconBg: '#bcaaa4',
+        iconColor: '#5d4037',
     },
 ];
 
@@ -156,23 +157,28 @@ export function ActivityCategoryPicker({
                         <button
                             key={card.key}
                             onClick={() => setSelectedCategory(card.key)}
-                            className="category-card group flex flex-col rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
+                            className="category-card group flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-200/60 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
                             style={{
                                 animationDelay: `${idx * 80}ms`,
                             }}
                         >
                             {/* Colored icon area */}
                             <div
-                                className="flex items-center justify-center py-6 sm:py-8 transition-transform duration-300"
+                                className="flex items-center justify-center py-6 sm:py-8 transition-transform duration-300 relative"
                                 style={{ backgroundColor: card.bgColor }}
                             >
-                                <span className="text-4xl sm:text-5xl select-none group-hover:scale-110 transition-transform duration-300">
-                                    {card.emoji}
+                                {/* Subtle inner shadow for depth */}
+                                <div className="absolute inset-0 shadow-[inset_0_-8px_12px_-8px_rgba(0,0,0,0.08)]" />
+                                <span
+                                    className="select-none group-hover:scale-110 transition-transform duration-300 relative z-10"
+                                    style={{ color: card.iconColor }}
+                                >
+                                    {card.icon}
                                 </span>
                             </div>
 
-                            {/* Label area */}
-                            <div className="flex flex-col items-center gap-1 py-3 sm:py-4 px-2">
+                            {/* Label area - white background */}
+                            <div className="flex flex-col items-center gap-1 py-3 sm:py-4 px-2 bg-white">
                                 <span className="text-base sm:text-lg font-bold font-display text-text">
                                     {card.name}
                                 </span>
@@ -219,10 +225,10 @@ export function ActivityCategoryPicker({
             <div className="flex items-center gap-3 mb-6">
                 {selectedCardDef && (
                     <div
-                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-2xl"
-                        style={{ backgroundColor: selectedCardDef.bgColor }}
+                        className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center"
+                        style={{ backgroundColor: selectedCardDef.bgColor, color: selectedCardDef.iconColor }}
                     >
-                        {selectedCardDef.emoji}
+                        {selectedCardDef.icon}
                     </div>
                 )}
                 <h2 className="text-2xl sm:text-3xl font-display font-bold text-text">
