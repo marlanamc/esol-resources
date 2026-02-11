@@ -1684,9 +1684,6 @@ function TimeIndicatorSortingUI({
                                 <p className="text-xs font-semibold text-blue-600 mt-1">
                                     → Use Past Simple
                                 </p>
-                                <p className="text-xs text-gray-500 mt-1 text-center">
-                                    yesterday, last week, in 2020...
-                                </p>
                             </div>
 
                             {/* Unspecified Time Zone */}
@@ -1724,9 +1721,6 @@ function TimeIndicatorSortingUI({
                                 </div>
                                 <p className="text-xs font-semibold text-purple-600 mt-1">
                                     → Use Present Perfect
-                                </p>
-                                <p className="text-xs text-gray-500 mt-1 text-center">
-                                    ever, yet, for, since, this week...
                                 </p>
                             </div>
                         </div>
