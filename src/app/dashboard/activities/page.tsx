@@ -101,6 +101,10 @@ export default async function ActivitiesPage() {
             <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
                     <BackButton href="/dashboard" variant="home" className="mb-2" hideOnMobile />
+                    <h1 className="text-2xl sm:text-3xl font-display font-bold text-text text-center">
+                        What do you want to{" "}
+                        <span className="text-primary italic">practice</span> today?
+                    </h1>
                 </div>
             </header>
 
@@ -114,7 +118,6 @@ export default async function ActivitiesPage() {
         </div>
     );
 }
-
 
 
 
