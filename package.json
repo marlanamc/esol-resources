@@ -28,6 +28,7 @@
     "import:simple-tenses": "node scripts/import-simple-tenses.mjs",
     "import:countable-uncountable": "npx tsx scripts/import/import-countable-uncountable-game.ts",
     "import:verb-quizzes": "npx tsx scripts/import/import-verb-quizzes.ts",
+    "import:time-indicators": "npx tsx scripts/import/import-time-indicators-game.ts",
     "delete:verb-quizzes": "npx tsx scripts/import/delete-verb-quizzes.ts"
   },
   "dependencies": {
