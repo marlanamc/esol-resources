@@ -43,6 +43,8 @@ type TeacherAssignment = {
     };
     isFeatured: boolean;
     dueDate: Date | null;
+    createdAt: Date;
+    updatedAt: Date;
 };
 
 type StudentSummary = {
@@ -84,6 +86,8 @@ type StudentEnrollment = {
             };
             isFeatured: boolean;
             dueDate: Date | null;
+            createdAt: Date;
+            updatedAt: Date;
         }[];
         calendarEvents: {
             id: string;
@@ -94,6 +98,14 @@ type StudentEnrollment = {
         }[];
     };
 };
+
+const NEW_RELEASE_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
+    if (!date) return false;
+    const ageMs = Date.now() - date.getTime();
+    return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
+}
 
 export default async function DashboardPage() {
     const session = await getServerSession(authOptions);
@@ -142,6 +154,8 @@ export default async function DashboardPage() {
             id: assignment.id,
             title: assignment.title,
             activityId: assignment.activityId,
+            featuredAt: assignment.updatedAt ?? assignment.createdAt,
+            isNewRelease: isWithinNewReleaseWindow(assignment.updatedAt ?? assignment.createdAt),
             activity: {
                 title: assignment.activity.title,
                 description: assignment.activity.description,
@@ -626,6 +640,8 @@ export default async function DashboardPage() {
             const p = featuredProgressMap.get(a.activityId);
             return {
                 ...a,
+                featuredAt: a.updatedAt ?? a.createdAt,
+                isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
                 progress: p?.progress ?? 0,
                 progressStatus: p?.status ?? "in_progress",
                 categoryData: p?.categoryData ?? null,
