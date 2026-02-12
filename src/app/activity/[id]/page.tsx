@@ -30,9 +30,16 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     const userId = session.user.id;
     const userRole = session.user.role;
 
-    const activity = await prisma.activity.findUnique({
-        where: { id },
-    });
+    const activity = await (async () => {
+        try {
+            return await prisma.activity.findUnique({
+                where: { id },
+            });
+        } catch (error) {
+            console.error("Failed to load activity", { id, error });
+            redirect("/dashboard");
+        }
+    })();
 
     if (!activity) {
         notFound();
@@ -67,24 +74,40 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     // Get assignment if provided
     let assignment = null;
     if (assignmentId) {
-        assignment = await prisma.assignment.findUnique({
-            where: { id: assignmentId },
-            include: {
-                class: true,
-            },
-        });
+        try {
+            assignment = await prisma.assignment.findUnique({
+                where: { id: assignmentId },
+                include: {
+                    class: true,
+                },
+            });
+        } catch (error) {
+            console.error("Failed to load assignment for activity", { assignmentId, id, error });
+            redirect("/dashboard");
+        }
 
         // Verify student is enrolled or teacher owns the class
-        if (assignment) {
+        if (assignment?.class) {
             if (userRole === "student") {
-                const enrollment = await prisma.classEnrollment.findUnique({
-                    where: {
-                        classId_studentId: {
-                            classId: assignment.classId,
-                            studentId: userId,
+                let enrollment = null;
+                try {
+                    enrollment = await prisma.classEnrollment.findUnique({
+                        where: {
+                            classId_studentId: {
+                                classId: assignment.classId,
+                                studentId: userId,
+                            },
                         },
-                    },
-                });
+                    });
+                } catch (error) {
+                    console.error("Failed to verify class enrollment", {
+                        assignmentId,
+                        classId: assignment.classId,
+                        userId,
+                        error,
+                    });
+                    redirect("/dashboard");
+                }
                 if (!enrollment) {
                     redirect("/dashboard");
                 }
@@ -93,34 +116,49 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     redirect("/dashboard");
                 }
             }
+        } else if (assignmentId) {
+            // Guard against orphaned assignments and stale URLs.
+            redirect("/dashboard");
         }
     }
 
     // Run independent queries in parallel to eliminate async waterfall
-    const [submissionResult, progressRecord] = await Promise.all([
-        // Get existing submission (for students only)
-        userRole === "student"
-            ? prisma.submission.findFirst({
-                  where: {
-                      userId,
-                      activityId: id,
-                      assignmentId: assignmentId ?? null,
-                  },
-              })
-            : Promise.resolve(null),
-        // Get progress record
-        prisma.activityProgress.findFirst({
-            where: {
-                userId,
+    const [submissionResult, progressRecord] = await (async () => {
+        try {
+            return await Promise.all([
+                // Get existing submission (for students only)
+                userRole === "student"
+                    ? prisma.submission.findFirst({
+                          where: {
+                              userId,
+                              activityId: id,
+                              assignmentId: assignmentId ?? null,
+                          },
+                      })
+                    : Promise.resolve(null),
+                // Get progress record
+                prisma.activityProgress.findFirst({
+                    where: {
+                        userId,
+                        activityId: id,
+                        assignmentId: assignmentId ?? null,
+                    },
+                    select: {
+                        progress: true,
+                        categoryData: true,
+                    },
+                }),
+            ]);
+        } catch (error) {
+            console.error("Failed to load activity submission/progress", {
                 activityId: id,
                 assignmentId: assignmentId ?? null,
-            },
-            select: {
-                progress: true,
-                categoryData: true,
-            },
-        }),
-    ]);
+                userId,
+                error,
+            });
+            return [null, null] as const;
+        }
+    })();
 
     // Process submission content if found
     let submission = submissionResult;

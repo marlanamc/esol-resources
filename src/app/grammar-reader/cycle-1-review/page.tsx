@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 export default async function Cycle1ReviewPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
+    const userRole = (session.user as { role?: string }).role;
 
     const activityId = await getActivityIdSafely(
         "Cycle 1 Review",
@@ -24,13 +25,19 @@ export default async function Cycle1ReviewPage() {
     );
 
     // SECURITY: Block student access to unreleased guides
-    if ((session.user as any).role === "student" && activityId) {
-        const activity = await prisma.activity.findUnique({
-            where: { id: activityId },
-            select: { isReleased: true }
-        });
+    if (userRole === "student" && activityId) {
+        try {
+            const activity = await prisma.activity.findUnique({
+                where: { id: activityId },
+                select: { isReleased: true }
+            });
 
-        if (!activity?.isReleased) {
+            if (!activity?.isReleased) {
+                redirect("/dashboard");
+            }
+        } catch (error) {
+            // Fail closed for students if release-state lookup fails.
+            console.error("Cycle 1 release check failed", error);
             redirect("/dashboard");
         }
     }

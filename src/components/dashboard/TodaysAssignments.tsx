@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
-import { PenLine, Gamepad2, BookOpen, ClipboardList } from 'lucide-react';
+import { PenLine, Gamepad2, BookOpen, ClipboardList, Sparkles } from 'lucide-react';
 
 interface VocabCategoryData {
     'word-list'?: { completed: boolean; progress: number; completedAt?: string };
@@ -54,6 +54,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     variant = 'cards',
     actions,
 }) => {
+    const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 text-amber-950 shadow-[0_2px_8px_rgba(245,158,11,0.25)]";
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
     const [loading, setLoading] = useState(true);
 
@@ -362,8 +363,10 @@ export const TodaysAssignments: React.FC<Props> = ({
                         })()}
 
                         {isNew && (
-                            <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide rounded bg-red-600 text-white shadow-sm">
+                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide`}>
+                                <Sparkles className="h-2.5 w-2.5 text-amber-600 animate-pulse" aria-hidden />
                                 New!
+                                <Sparkles className="h-2.5 w-2.5 text-yellow-500 animate-pulse [animation-delay:180ms]" aria-hidden />
                             </span>
                         )}
 
@@ -561,8 +564,10 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         </span>
 
                                         {isNew && (
-                                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-red-600 text-white shadow-sm">
+                                            <span className={`${featuredNewBadgeClassName} px-2 py-0.5 text-[10px] font-black uppercase tracking-wide`}>
+                                                <Sparkles className="h-2.5 w-2.5 text-amber-600 animate-pulse" aria-hidden />
                                                 New!
+                                                <Sparkles className="h-2.5 w-2.5 text-yellow-500 animate-pulse [animation-delay:180ms]" aria-hidden />
                                             </span>
                                         )}
 
