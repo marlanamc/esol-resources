@@ -217,6 +217,11 @@ export const TodaysAssignments: React.FC<Props> = ({
         return categoryStyles[categoryKey] || categoryStyles.default;
     };
 
+    const isGameCategory = (category?: string | null): boolean => {
+        const key = (category || '').toLowerCase();
+        return !['quiz', 'quizzes', 'grammar', 'vocab', 'vocabulary'].includes(key);
+    };
+
     const withHexAlpha = (hex: string, alphaHex: string): string => {
         return /^#[0-9a-fA-F]{6}$/.test(hex) ? `${hex}${alphaHex}` : hex;
     };
@@ -226,12 +231,15 @@ export const TodaysAssignments: React.FC<Props> = ({
             const submission = assignment.submissions[0];
             const progressValue = typeof assignment.progress === 'number' ? assignment.progress : 0;
             const isNew = isNewlyFeatured(assignment);
+            const isGameRow = isGameCategory(assignment.activity.category);
 
             // For vocabulary activities, check if all 4 sub-activities are complete
             const vocabProgress = getVocabProgress(assignment);
             const isVocabComplete = vocabProgress ? vocabProgress.completed === vocabProgress.total : false;
 
-            const isCompleted = vocabProgress
+            const isCompleted = isGameRow
+                ? false
+                : vocabProgress
                 ? isVocabComplete
                 : (progressValue >= 100 ||
                    assignment.progressStatus === 'completed' ||
@@ -242,7 +250,7 @@ export const TodaysAssignments: React.FC<Props> = ({
             const categoryStyle = getCategoryStyle(assignment.activity.category);
             const dueLabel = formatDueDate(assignment.dueDate);
 
-            return { assignment, submission, isCompleted, isNew, displayTitle, categoryStyle, dueLabel, progressValue, index };
+            return { assignment, submission, isCompleted, isNew, isGameRow, displayTitle, categoryStyle, dueLabel, progressValue, index };
         });
 
         const getCategoryPriority = (category?: string | null): number => {
@@ -285,8 +293,9 @@ export const TodaysAssignments: React.FC<Props> = ({
             return a.index - b.index;
         });
 
-        const completedCount = rows.filter((r) => r.isCompleted).length;
-        const percent = rows.length ? Math.round((completedCount / rows.length) * 100) : 0;
+        const checklistRows = rows.filter((r) => !r.isGameRow);
+        const completedCount = checklistRows.filter((r) => r.isCompleted).length;
+        const percent = checklistRows.length ? Math.round((completedCount / checklistRows.length) * 100) : 0;
         const isFullyComplete = percent === 100;
 
         // Group sorted rows by category - using Lucide icons instead of emojis
@@ -320,14 +329,19 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                 {/* Checkbox (or Game Icon placeholder) */}
                 <div className="shrink-0 pt-0.5 self-start sm:self-center">
-                    {/* Checkbox for all rows - games get same treatment as other categories */}
-                    <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
-                        isCompleted
-                            ? 'bg-secondary/10 border-secondary/20 text-secondary'
-                            : 'bg-white border-border/40 text-transparent'
-                    }`}>
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                    </div>
+                    {isGameGroup ? (
+                        <div className="w-5 h-5 flex items-center justify-center text-[18px] leading-none">
+                            {getGameEmojiForActivity({ activityId: assignment.activityId, title: assignment.title || assignment.activity.title })}
+                        </div>
+                    ) : (
+                        <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                            isCompleted
+                                ? 'bg-secondary/10 border-secondary/20 text-secondary'
+                                : 'bg-white border-border/40 text-transparent'
+                        }`}>
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                        </div>
+                    )}
                 </div>
 
                 {/* Content */}
@@ -367,6 +381,8 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* Progress: Vocab 4-dots chip OR Generic Bar */}
                     {(() => {
+                        if (isGameGroup) return null;
+
                         const vocabProgress = getVocabProgress(assignment);
                         // Show 4-dots chip if it's a vocab assignment and not fully complete
                         if (vocabProgress && vocabProgress.completed < vocabProgress.total) {
@@ -422,10 +438,10 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 e.currentTarget.style.backgroundColor = 'transparent';
                             }
                         }}
-                        aria-label={`${isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
+                        aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                     >
-                        <span className={isCompleted ? 'text-text-muted/60' : ''}>
-                            {isCompleted ? 'Review' : isGameGroup ? 'Play' : 'Start'}
+                        <span className={isCompleted && !isGameGroup ? 'text-text-muted/60' : ''}>
+                            {isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'}
                         </span>
                     </Link>
                 </div>
@@ -447,7 +463,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                             </div>
                             <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                                 {actions && <div className="mr-2">{actions}</div>}
-                                <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-bg-light border border-border/50">{completedCount}/{rows.length} done</span>
+                                <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-bg-light border border-border/50">{completedCount}/{checklistRows.length} done</span>
                                 <span className={`px-2 py-1 rounded-md border ${isFullyComplete ? 'bg-accent/10 border-accent/30 text-amber-700' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
                             </div>
                         </div>
