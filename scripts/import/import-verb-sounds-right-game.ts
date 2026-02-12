@@ -15,6 +15,102 @@
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
+const SUPPORTED_TENSES = new Set([
+  'present-simple',
+  'present-continuous',
+  'present-perfect',
+  'present-perfect-continuous',
+  'past-simple',
+  'past-continuous',
+  'past-perfect',
+  'past-perfect-continuous',
+  'future-simple',
+  'future-continuous',
+  'future-perfect',
+]);
+
+function normalizeOption(value: string): string {
+  return value.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function validateGameContent(content: string): void {
+  const issues: string[] = [];
+  const lines = content.split('\n');
+
+  const addIssue = (lineNumber: number, message: string, line: string) => {
+    issues.push(`Line ${lineNumber}: ${message} -> ${line}`);
+  };
+
+  lines.forEach((rawLine, index) => {
+    const lineNumber = index + 1;
+    const line = rawLine.trim();
+    if (!line || line.startsWith('[ROUND') || !line.includes('_____') || !line.includes('::')) return;
+
+    const parts = line.split('::').map((s) => s.trim());
+    const sentence = parts[0] ?? '';
+    const blankCount = (sentence.match(/_____/g) || []).length;
+
+    if (blankCount === 1) {
+      const correct = parts[1] ?? '';
+      const wrong = parts[2] ?? '';
+      if (!correct || !wrong) {
+        addIssue(lineNumber, 'Missing single-blank options', line);
+        return;
+      }
+      if (normalizeOption(correct) === normalizeOption(wrong)) {
+        addIssue(lineNumber, `Duplicate single-blank options "${correct}"`, line);
+      }
+      return;
+    }
+
+    if (blankCount !== 2) return;
+
+    let correct1 = '';
+    let wrong1 = '';
+    let correct2 = '';
+    let wrong2 = '';
+
+    if (parts.length >= 9) {
+      // Canonical two-blank format:
+      // sentence :: correct1 :: wrong1 :: tense1 :: explain1 :: correct2 :: wrong2 :: tense2 :: explain2
+      correct1 = parts[1] ?? '';
+      wrong1 = parts[2] ?? '';
+      correct2 = parts[5] ?? '';
+      wrong2 = parts[6] ?? '';
+    } else if (parts.length >= 8 && !SUPPORTED_TENSES.has(parts[3] ?? '') && SUPPORTED_TENSES.has(parts[5] ?? '')) {
+      // Legacy compact two-blank format:
+      // sentence :: correct1 :: wrong1 :: correct2 :: wrong2 :: tense1 :: tense2 :: explanation
+      correct1 = parts[1] ?? '';
+      wrong1 = parts[2] ?? '';
+      correct2 = parts[3] ?? '';
+      wrong2 = parts[4] ?? '';
+    } else if (parts.length >= 7) {
+      // Best-effort fallback when explanation fields are omitted.
+      correct1 = parts[1] ?? '';
+      wrong1 = parts[2] ?? '';
+      correct2 = parts[5] ?? '';
+      wrong2 = parts[6] ?? '';
+    } else {
+      addIssue(lineNumber, 'Too few fields for two-blank row', line);
+      return;
+    }
+
+    if (!correct1 || !wrong1 || !correct2 || !wrong2) {
+      addIssue(lineNumber, 'Missing two-blank options', line);
+      return;
+    }
+    if (normalizeOption(correct1) === normalizeOption(wrong1)) {
+      addIssue(lineNumber, `Duplicate blank-1 options "${correct1}"`, line);
+    }
+    if (normalizeOption(correct2) === normalizeOption(wrong2)) {
+      addIssue(lineNumber, `Duplicate blank-2 options "${correct2}"`, line);
+    }
+  });
+
+  if (issues.length > 0) {
+    throw new Error(`Game content validation failed with ${issues.length} issue(s):\n${issues.join('\n')}`);
+  }
+}
 
 const gameContent = `[ROUND 1 - Present Simple vs Past Simple]
 She _____ to work every day. :: goes :: went :: present-simple :: "Every day" tells us this is a regular habit, so we use present simple: "She goes."
@@ -43,13 +139,13 @@ At 8pm last night, we _____ dinner. :: were eating :: are eating :: past-continu
 [ROUND 3 - Present Perfect vs Past Simple]
 I have _____ that movie three times. :: seen :: saw :: present-perfect :: "Three times" counts experiences in your life up to now: "I have seen."
 She _____ to Paris last summer. :: went :: has gone :: past-simple :: "Last summer" is a specific finished time: "She went."
-They have _____ in London for five years. :: lived :: lived :: present-perfect :: "For five years" and they still live there now: "They have lived."
+They have _____ in London for five years. :: lived :: live :: present-perfect :: "For five years" and they still live there now: "They have lived."
 He _____ his homework an hour ago. :: finished :: has finished :: past-simple :: "An hour ago" is a specific past time: "He finished."
 I have never _____ sushi. :: eaten :: ate :: present-perfect :: "Never" talks about your whole life experience: "I have never eaten."
 We _____ married in 2019. :: got :: have gotten :: past-simple :: "In 2019" is a specific year in the past: "We got married."
-She has _____ a lot of money this year. :: spent :: spent :: present-perfect :: "This year" includes the present, so: "She has spent."
+She has _____ a lot of money this year. :: spent :: spend :: present-perfect :: "This year" includes the present, so: "She has spent."
 They _____ to the new restaurant yesterday. :: went :: have gone :: past-simple :: "Yesterday" is finished: "They went."
-I have _____ my report. Can I go home? :: submitted :: submitted :: present-perfect :: The action just finished and affects now (can I go?): "I have submitted."
+I have _____ my report. Can I go home? :: submitted :: submit :: present-perfect :: The action just finished and affects now (can I go?): "I have submitted."
 He _____ his job last week. :: lost :: has lost :: past-simple :: "Last week" is a specific finished time: "He lost."
 
 [ROUND 4 - Future Simple vs Present Continuous (future)]
@@ -92,6 +188,8 @@ By the time you _____, I _____ dinner. :: arrive :: will arrive :: present-simpl
 async function importGame() {
   try {
     console.log('🎮 Starting "Pick the Word That Sounds Right" game import...\n');
+    validateGameContent(gameContent);
+    console.log('✓ Content validation passed (no duplicate options)\n');
 
     const teacher = await prisma.user.findFirst({
       where: { role: 'teacher' }

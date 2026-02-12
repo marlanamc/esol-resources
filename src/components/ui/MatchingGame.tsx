@@ -84,6 +84,34 @@ interface VerbSoundsRightRound {
     items: VerbSoundsRightItem[];
 }
 
+function normalizeVerbOption(word: string): string {
+    return word.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function isSupportedVerbTense(value: string | undefined): boolean {
+    return !!(value && VERB_TENSE_HINTS[value]);
+}
+
+function buildVerbOptions(blank: VerbBlank, shouldSwap: boolean): string[] {
+    const ordered = shouldSwap
+        ? [blank.wrongWord, blank.correctWord]
+        : [blank.correctWord, blank.wrongWord];
+    const options: string[] = [];
+    const seen = new Set<string>();
+
+    for (const rawOption of ordered) {
+        const option = rawOption.trim();
+        const normalized = normalizeVerbOption(option);
+        if (!normalized || seen.has(normalized)) continue;
+        seen.add(normalized);
+        options.push(option);
+    }
+
+    if (options.length > 0) return options;
+    const fallback = blank.correctWord.trim();
+    return fallback ? [fallback] : [];
+}
+
 interface Props {
     contentStr: string;
     activityId?: string;
@@ -1924,6 +1952,9 @@ function VerbSoundsRightSortingUI({
     const [isGameComplete, setIsGameComplete] = useState(false);
     const [isLoadingProgress, setIsLoadingProgress] = useState(true);
     const hasLoadedProgressRef = useRef(false);
+    const advanceTimeoutRef = useRef<number | null>(null);
+    const selectedCorrectTimeoutRef = useRef<number | null>(null);
+    const bounceTimeoutRef = useRef<number | null>(null);
 
     // Load saved progress on mount
     useEffect(() => {
@@ -1962,7 +1993,25 @@ function VerbSoundsRightSortingUI({
                             setCurrentRoundIndex(nextRoundIndex);
                         } else if (highestCompletedRound >= rounds.length) {
                             // All rounds completed
-                            setCurrentRoundIndex(rounds.length - 1);
+                            if (rounds.length > 0) {
+                                const finalRoundIndex = rounds.length - 1;
+                                const finalRoundItems = rounds[finalRoundIndex]?.items ?? [];
+                                setCurrentRoundIndex(finalRoundIndex);
+                                setGameState((prev) => ({
+                                    ...prev,
+                                    currentIndex: Math.max(finalRoundItems.length - 1, 0),
+                                    correctCount: finalRoundItems.length,
+                                    completedItems: new Set(finalRoundItems.map((item) => item.id)),
+                                    currentBlankIndex: 0,
+                                    filledBlanks: [],
+                                    selectedCorrect: false,
+                                    bounceCard: false,
+                                    showExplanation: false,
+                                    explanationText: "",
+                                    wrongWordText: "",
+                                }));
+                            }
+                            setIsRoundComplete(true);
                             setIsGameComplete(true);
                         }
                     }
@@ -1976,6 +2025,20 @@ function VerbSoundsRightSortingUI({
 
         void loadProgress();
     }, [activityId, assignmentId, rounds]);
+
+    useEffect(() => {
+        return () => {
+            if (advanceTimeoutRef.current !== null) {
+                window.clearTimeout(advanceTimeoutRef.current);
+            }
+            if (selectedCorrectTimeoutRef.current !== null) {
+                window.clearTimeout(selectedCorrectTimeoutRef.current);
+            }
+            if (bounceTimeoutRef.current !== null) {
+                window.clearTimeout(bounceTimeoutRef.current);
+            }
+        };
+    }, []);
 
     const progress =
         shuffledItems.length > 0
@@ -2031,7 +2094,7 @@ function VerbSoundsRightSortingUI({
         const currentBlank = currentItem.blanks[gameState.currentBlankIndex];
         if (!currentBlank) return;
 
-        const isCorrect = word === currentBlank.correctWord;
+        const isCorrect = normalizeVerbOption(word) === normalizeVerbOption(currentBlank.correctWord);
         const isLastBlank = gameState.currentBlankIndex >= currentItem.blanks.length - 1;
 
         if (isCorrect) {
@@ -2044,7 +2107,13 @@ function VerbSoundsRightSortingUI({
                     selectedCorrect: true,
                     filledBlanks: [...prev.filledBlanks, word],
                 }));
-                setTimeout(() => advanceToNext(), 1000);
+                if (advanceTimeoutRef.current !== null) {
+                    window.clearTimeout(advanceTimeoutRef.current);
+                }
+                advanceTimeoutRef.current = window.setTimeout(() => {
+                    advanceToNext();
+                    advanceTimeoutRef.current = null;
+                }, 1000);
             } else {
                 // Move to next blank
                 setGameState((prev) => ({
@@ -2054,7 +2123,13 @@ function VerbSoundsRightSortingUI({
                     selectedCorrect: true,
                 }));
                 // Brief delay then reset selectedCorrect for next blank
-                setTimeout(() => setGameState((p) => ({ ...p, selectedCorrect: false })), 800);
+                if (selectedCorrectTimeoutRef.current !== null) {
+                    window.clearTimeout(selectedCorrectTimeoutRef.current);
+                }
+                selectedCorrectTimeoutRef.current = window.setTimeout(() => {
+                    setGameState((p) => ({ ...p, selectedCorrect: false }));
+                    selectedCorrectTimeoutRef.current = null;
+                }, 800);
             }
         } else {
             setGameState((prev) => ({
@@ -2065,7 +2140,13 @@ function VerbSoundsRightSortingUI({
                 explanationText: currentBlank.explanation || "",
                 wrongWordText: word,
             }));
-            setTimeout(() => setGameState((p) => ({ ...p, bounceCard: false })), 500);
+            if (bounceTimeoutRef.current !== null) {
+                window.clearTimeout(bounceTimeoutRef.current);
+            }
+            bounceTimeoutRef.current = window.setTimeout(() => {
+                setGameState((p) => ({ ...p, bounceCard: false }));
+                bounceTimeoutRef.current = null;
+            }, 500);
         }
     };
 
@@ -2081,6 +2162,18 @@ function VerbSoundsRightSortingUI({
     };
 
     const handleNextRound = () => {
+        if (advanceTimeoutRef.current !== null) {
+            window.clearTimeout(advanceTimeoutRef.current);
+            advanceTimeoutRef.current = null;
+        }
+        if (selectedCorrectTimeoutRef.current !== null) {
+            window.clearTimeout(selectedCorrectTimeoutRef.current);
+            selectedCorrectTimeoutRef.current = null;
+        }
+        if (bounceTimeoutRef.current !== null) {
+            window.clearTimeout(bounceTimeoutRef.current);
+            bounceTimeoutRef.current = null;
+        }
         if (currentRoundIndex + 1 >= rounds.length) {
             setIsGameComplete(true);
         } else {
@@ -2107,6 +2200,18 @@ function VerbSoundsRightSortingUI({
     };
 
     const handleReset = () => {
+        if (advanceTimeoutRef.current !== null) {
+            window.clearTimeout(advanceTimeoutRef.current);
+            advanceTimeoutRef.current = null;
+        }
+        if (selectedCorrectTimeoutRef.current !== null) {
+            window.clearTimeout(selectedCorrectTimeoutRef.current);
+            selectedCorrectTimeoutRef.current = null;
+        }
+        if (bounceTimeoutRef.current !== null) {
+            window.clearTimeout(bounceTimeoutRef.current);
+            bounceTimeoutRef.current = null;
+        }
         setCurrentRoundIndex(0);
         setGameState({
             currentIndex: 0,
@@ -2144,11 +2249,7 @@ function VerbSoundsRightSortingUI({
     const currentBlank = currentItem?.blanks[gameState.currentBlankIndex];
     // Simple coin flip based on item ID to randomize word order
     const shouldSwap = currentItem ? ((currentItem.id + gameState.currentBlankIndex) % 2 === 1) : false;
-    const wordOptions = currentBlank
-        ? (shouldSwap
-            ? [currentBlank.wrongWord, currentBlank.correctWord]
-            : [currentBlank.correctWord, currentBlank.wrongWord])
-        : [];
+    const wordOptions = currentBlank ? buildVerbOptions(currentBlank, shouldSwap) : [];
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
@@ -2223,9 +2324,10 @@ function VerbSoundsRightSortingUI({
                     <div className="w-full max-w-2xl">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
                             {wordOptions.map((word, idx) => {
-                                const isCorrect = word === currentBlank.correctWord;
+                                const isCorrect = normalizeVerbOption(word) === normalizeVerbOption(currentBlank.correctWord);
                                 const isSelectedCorrect = gameState.selectedCorrect && isCorrect;
-                                const showWrong = gameState.showExplanation && word === gameState.wrongWordText;
+                                const showWrong = gameState.showExplanation
+                                    && normalizeVerbOption(word) === normalizeVerbOption(gameState.wrongWordText);
                                 const tenseHint = currentBlank.tense ? VERB_TENSE_HINTS[currentBlank.tense] : null;
 
                                 // Alternate colors for visual distinction
@@ -2235,7 +2337,7 @@ function VerbSoundsRightSortingUI({
 
                                 return (
                                     <button
-                                        key={word}
+                                        key={`${currentItem.id}-${gameState.currentBlankIndex}-${idx}-${normalizeVerbOption(word)}`}
                                         onClick={() => handleWordTap(word)}
                                         disabled={gameState.selectedCorrect || gameState.showExplanation}
                                         className={`
@@ -2489,6 +2591,7 @@ function parseRounds(content: string): Round[] {
 // Helper function: Parse rounds from content (verb-sounds-right format)
 // Single-blank format: sentence :: correctWord :: wrongWord :: tense :: explanation
 // Two-blank format: sentence :: correct1 :: wrong1 :: tense1 :: explain1 :: correct2 :: wrong2 :: tense2 :: explain2
+// Legacy two-blank format (still supported): sentence :: correct1 :: wrong1 :: correct2 :: wrong2 :: tense1 :: tense2 :: explanation
 function parseVerbSoundsRightRounds(content: string): VerbSoundsRightRound[] {
     const rounds: VerbSoundsRightRound[] = [];
     const roundBlocks = content.split(/\[ROUND\s*\d+(?:\s*-\s*[^\]]+)?\]/).filter((b) => b.trim());
@@ -2515,6 +2618,7 @@ function parseVerbSoundsRightRounds(content: string): VerbSoundsRightRound[] {
                 const tense = parts[3] ?? "";
                 const explanation = parts[4] ?? "";
                 if (!correctWord || !wrongWord) continue;
+                if (normalizeVerbOption(correctWord) === normalizeVerbOption(wrongWord)) continue;
 
                 items.push({
                     id: globalId++,
@@ -2527,16 +2631,50 @@ function parseVerbSoundsRightRounds(content: string): VerbSoundsRightRound[] {
                     }],
                 });
             } else if (blankCount === 2 && parts.length >= 7) {
-                // Two-blank: sentence :: correct1 :: wrong1 :: tense1 :: explain1 :: correct2 :: wrong2 :: tense2 :: explain2
-                const correct1 = parts[1];
-                const wrong1 = parts[2];
-                const tense1 = parts[3] ?? "";
-                const explain1 = parts[4] ?? "";
-                const correct2 = parts[5];
-                const wrong2 = parts[6];
-                const tense2 = parts[7] ?? "";
-                const explain2 = parts[8] ?? "";
+                let correct1 = "";
+                let wrong1 = "";
+                let tense1 = "";
+                let explain1 = "";
+                let correct2 = "";
+                let wrong2 = "";
+                let tense2 = "";
+                let explain2 = "";
+
+                if (parts.length >= 9) {
+                    // Canonical two-blank format
+                    correct1 = parts[1] ?? "";
+                    wrong1 = parts[2] ?? "";
+                    tense1 = parts[3] ?? "";
+                    explain1 = parts[4] ?? "";
+                    correct2 = parts[5] ?? "";
+                    wrong2 = parts[6] ?? "";
+                    tense2 = parts[7] ?? "";
+                    explain2 = parts[8] ?? "";
+                } else if (parts.length >= 8 && !isSupportedVerbTense(parts[3]) && isSupportedVerbTense(parts[5])) {
+                    // Legacy compact format with one shared explanation
+                    correct1 = parts[1] ?? "";
+                    wrong1 = parts[2] ?? "";
+                    correct2 = parts[3] ?? "";
+                    wrong2 = parts[4] ?? "";
+                    tense1 = parts[5] ?? "";
+                    tense2 = parts[6] ?? "";
+                    explain1 = parts[7] ?? "";
+                    explain2 = parts[7] ?? "";
+                } else {
+                    // Fallback for shorter canonical rows
+                    correct1 = parts[1] ?? "";
+                    wrong1 = parts[2] ?? "";
+                    tense1 = parts[3] ?? "";
+                    explain1 = parts[4] ?? "";
+                    correct2 = parts[5] ?? "";
+                    wrong2 = parts[6] ?? "";
+                    tense2 = parts[7] ?? "";
+                    explain2 = parts[8] ?? "";
+                }
+
                 if (!correct1 || !wrong1 || !correct2 || !wrong2) continue;
+                if (normalizeVerbOption(correct1) === normalizeVerbOption(wrong1)) continue;
+                if (normalizeVerbOption(correct2) === normalizeVerbOption(wrong2)) continue;
 
                 items.push({
                     id: globalId++,
@@ -2649,4 +2787,3 @@ function deterministicShuffle<T>(arr: T[], seed: number): T[] {
 
     return shuffled;
 }
-
