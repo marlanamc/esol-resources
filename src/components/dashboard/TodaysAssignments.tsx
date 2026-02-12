@@ -19,6 +19,10 @@ interface FeaturedAssignment {
     title?: string | null;
     activityId: string;
     dueDate?: string | Date | null;
+    featuredAt?: string | Date | null;
+    updatedAt?: string | Date | null;
+    createdAt?: string | Date | null;
+    isNewRelease?: boolean;
     progress?: number;
     progressStatus?: string;
     categoryData?: VocabCategoryData | string | null;
@@ -173,6 +177,10 @@ export const TodaysAssignments: React.FC<Props> = ({
         return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     };
 
+    const isNewlyFeatured = (assignment: FeaturedAssignment): boolean => {
+        return assignment.isNewRelease === true;
+    };
+
     const getVocabProgress = (assignment: FeaturedAssignment) => {
         if (!assignment.activityId.startsWith('vocab-') || !assignment.categoryData) {
             return null;
@@ -213,6 +221,7 @@ export const TodaysAssignments: React.FC<Props> = ({
         const rows = assignments.map((assignment, index) => {
             const submission = assignment.submissions[0];
             const progressValue = typeof assignment.progress === 'number' ? assignment.progress : 0;
+            const isNew = isNewlyFeatured(assignment);
 
             // For vocabulary activities, check if all 4 sub-activities are complete
             const vocabProgress = getVocabProgress(assignment);
@@ -229,7 +238,7 @@ export const TodaysAssignments: React.FC<Props> = ({
             const categoryStyle = getCategoryStyle(assignment.activity.category);
             const dueLabel = formatDueDate(assignment.dueDate);
 
-            return { assignment, submission, isCompleted, displayTitle, categoryStyle, dueLabel, progressValue, index };
+            return { assignment, submission, isCompleted, isNew, displayTitle, categoryStyle, dueLabel, progressValue, index };
         });
 
         const getCategoryPriority = (category?: string | null): number => {
@@ -299,7 +308,7 @@ export const TodaysAssignments: React.FC<Props> = ({
 
 
         const renderChecklistRow = (
-            { assignment, isCompleted, displayTitle, dueLabel, progressValue }: typeof sortedRows[0],
+            { assignment, isCompleted, isNew, displayTitle, dueLabel, progressValue }: typeof sortedRows[0],
             isGameGroup = false,
             categoryStyle: { text: string; accent: string }
         ) => (
@@ -321,7 +330,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 <div className="min-w-0 flex-1 flex flex-col gap-0.5">
                     <div className="flex items-center gap-2 mb-0.5">
                         {/* Mobile-only badges row */}
-                         {(() => {
+                        {(() => {
                             const vocabType = getVocabActivityType(assignment.activityId);
                             if (vocabType) {
                                 const chip = VOCAB_CHIP_CONFIG[vocabType];
@@ -333,6 +342,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                             }
                             return null;
                         })()}
+
+                        {isNew && (
+                            <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide rounded bg-red-600 text-white shadow-sm">
+                                New!
+                            </span>
+                        )}
 
                         {/* Only show due date if overdue */}
                         {!isGameGroup && dueLabel && !isCompleted && new Date(assignment.dueDate as string) < new Date() && (
@@ -486,6 +501,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                     {assignments.map((assignment, index) => {
                     const submission = assignment.submissions[0];
                     const isCompleted = submission?.completedAt;
+                    const isNew = isNewlyFeatured(assignment);
                     const categoryStyle = getCategoryStyle(assignment.activity.category);
                     const rawTitle = assignment.title || assignment.activity.title;
                     const displayTitle = stripVocabTypeSuffix(rawTitle.replace(/ - Complete Step-by-Step Guide$/i, ' Guide'));
@@ -518,6 +534,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         >
                                             {categoryStyle.label}
                                         </span>
+
+                                        {isNew && (
+                                            <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-red-600 text-white shadow-sm">
+                                                New!
+                                            </span>
+                                        )}
 
                                         {/* Vocab type chip - next to category, before % done */}
                                         {(() => {

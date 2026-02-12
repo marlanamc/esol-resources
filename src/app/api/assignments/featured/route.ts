@@ -4,6 +4,14 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { parseCategoryData } from "@/lib/categoryData";
 
+const NEW_RELEASE_WINDOW_MS = 24 * 60 * 60 * 1000;
+
+function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
+    if (!date) return false;
+    const ageMs = Date.now() - date.getTime();
+    return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
+}
+
 export async function GET() {
     try {
         const session = await getServerSession(authOptions);
@@ -85,6 +93,8 @@ export async function GET() {
             const p = progressMap.get(a.activityId);
             return {
                 ...a,
+                featuredAt: a.updatedAt ?? a.createdAt,
+                isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
                 progress: p?.progress ?? 0,
                 progressStatus: p?.status ?? "in_progress",
                 categoryData: p?.categoryData ?? null,
