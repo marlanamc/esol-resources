@@ -217,6 +217,10 @@ export const TodaysAssignments: React.FC<Props> = ({
         return categoryStyles[categoryKey] || categoryStyles.default;
     };
 
+    const withHexAlpha = (hex: string, alphaHex: string): string => {
+        return /^#[0-9a-fA-F]{6}$/.test(hex) ? `${hex}${alphaHex}` : hex;
+    };
+
     if (variant === 'checklist') {
         const rows = assignments.map((assignment, index) => {
             const submission = assignment.submissions[0];
@@ -457,6 +461,8 @@ export const TodaysAssignments: React.FC<Props> = ({
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {groups.map((group, groupIdx) => {
                                 const groupStyle = getCategoryStyle(group.key);
+                                const bannerStart = withHexAlpha(groupStyle.accent, '2B');
+                                const bannerEnd = withHexAlpha(groupStyle.accent, '14');
                                 return (
                                     <div
                                         key={group.key}
@@ -464,13 +470,16 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         style={{ animationDelay: `${groupIdx * 100}ms` }}
                                     >
                                         <div
-                                            className="w-full px-3 py-2.5 bg-gradient-to-r from-white to-bg-light/30 border-b border-border/15 flex items-center justify-between"
-                                            style={{ borderLeft: `4px solid ${groupStyle.accent}` }}
+                                            className="w-full px-3 py-2.5 border-b border-border/15 flex items-center justify-between"
+                                            style={{
+                                                borderLeft: `4px solid ${groupStyle.accent}`,
+                                                background: `linear-gradient(90deg, ${bannerStart} 0%, ${bannerEnd} 68%, #ffffff 100%)`,
+                                            }}
                                         >
                                             <div className="flex items-center gap-2">
-                                                <span className="text-text-muted/70">{group.icon}</span>
-                                                <h3 className="font-display font-bold text-text text-base sm:text-lg">{group.label}</h3>
-                                                <span className="text-[11px] font-semibold text-text-muted/70 px-1.5 py-0.5 rounded bg-black/[0.03]">
+                                                <span style={{ color: groupStyle.text }}>{group.icon}</span>
+                                                <h3 className="font-display font-bold text-base sm:text-lg" style={{ color: groupStyle.text }}>{group.label}</h3>
+                                                <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-white/70 border border-white/80" style={{ color: groupStyle.text }}>
                                                     {group.isGameGroup ? `${group.items.length}` : `${group.doneInGroup}/${group.items.length}`}
                                                 </span>
                                             </div>
