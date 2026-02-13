@@ -34,8 +34,8 @@ export async function GET() {
             where: {
                 classId: { in: classIds },
                 isFeatured: true,
-                // ensure the activity still exists; prevents "ghost" featured cards
-                activity: { id: { not: "" } }
+                // Hide assignments tied to archived activities
+                activity: { deletedAt: null }
             },
             include: {
                 activity: true,

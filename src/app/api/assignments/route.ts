@@ -41,8 +41,11 @@ export async function POST(request: NextRequest) {
         }
 
         // Verify activity exists
-        const activity = await prisma.activity.findUnique({
-            where: { id: activityId },
+        const activity = await prisma.activity.findFirst({
+            where: {
+                id: activityId,
+                deletedAt: null,
+            },
         });
 
         if (!activity) {
@@ -124,7 +127,6 @@ export async function PATCH(request: NextRequest) {
         );
     }
 }
-
 
 
 

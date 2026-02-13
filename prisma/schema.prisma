@@ -77,6 +77,7 @@ model Activity {
   createdBy           String?
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
+  deletedAt           DateTime?
   ui                  String?
   isReleased          Boolean              @default(false)
   progress            ActivityProgress[]
@@ -87,6 +88,7 @@ model Activity {
 
   @@index([isReleased])
   @@index([type, category, isReleased])
+  @@index([deletedAt])
 }
 
 model ActivityProgress {
@@ -99,7 +101,7 @@ model ActivityProgress {
   updatedAt    DateTime    @updatedAt
   categoryData String?
   assignmentId String?
-  activity     Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activity     Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -119,7 +121,7 @@ model SpeakingSubmission {
   speakingCompletedStepIds String[]
   submittedAt              DateTime    @default(now())
   status                   String      @default("submitted")
-  activity                 Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activity                 Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
   assignment               Assignment? @relation(fields: [assignmentId], references: [id])
   user                     User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -152,7 +154,7 @@ model Assignment {
   createdAt           DateTime             @default(now())
   updatedAt           DateTime             @updatedAt
   activityProgress    ActivityProgress[]
-  activity            Activity             @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activity            Activity             @relation(fields: [activityId], references: [id], onDelete: Restrict)
   class               Class                @relation(fields: [classId], references: [id], onDelete: Cascade)
   quizResponses       QuizResponse[]
   speakingSubmissions SpeakingSubmission[]
@@ -176,7 +178,7 @@ model Submission {
   completedAt   DateTime?
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  activity      Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activity      Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
   assignment    Assignment? @relation(fields: [assignmentId], references: [id])
   user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -238,7 +240,7 @@ model QuizResponse {
   createdAt    DateTime    @default(now())
 
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  activity   Activity    @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activity   Activity    @relation(fields: [activityId], references: [id], onDelete: Restrict)
   assignment Assignment? @relation(fields: [assignmentId], references: [id])
 
   @@index([userId])

@@ -149,8 +149,11 @@ export async function POST(request: Request) {
         const userId = session.user.id;
 
         // Fetch activity to calculate points server-side
-        const activity = await prisma.activity.findUnique({
-            where: { id: activityId },
+        const activity = await prisma.activity.findFirst({
+            where: {
+                id: activityId,
+                deletedAt: null,
+            },
             select: { title: true, type: true, id: true, content: true, ui: true }
         });
 

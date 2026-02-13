@@ -32,8 +32,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
     const activity = await (async () => {
         try {
-            return await prisma.activity.findUnique({
-                where: { id },
+            return await prisma.activity.findFirst({
+                where: {
+                    id,
+                    deletedAt: null,
+                },
             });
         } catch (error) {
             console.error("Failed to load activity", { id, error });

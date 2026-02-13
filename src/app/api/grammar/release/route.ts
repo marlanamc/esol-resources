@@ -36,8 +36,11 @@ export async function POST(request: Request) {
         }
 
         // Verify it's a grammar guide
-        const activity = await prisma.activity.findUnique({
-            where: { id: activityId },
+        const activity = await prisma.activity.findFirst({
+            where: {
+                id: activityId,
+                deletedAt: null,
+            },
             select: { type: true, category: true, title: true }
         });
 

@@ -23,8 +23,11 @@ export async function POST(request: Request) {
     }
 
     // Update the activity's content to include released status
-    const activity = await prisma.activity.findUnique({
-        where: { id: activityId },
+    const activity = await prisma.activity.findFirst({
+        where: {
+            id: activityId,
+            deletedAt: null,
+        },
         select: { content: true, title: true }
     });
 

@@ -18,6 +18,7 @@ export default async function ActivitiesPage() {
     const activities = await prisma.activity.findMany({
         where: userRole === "student"
             ? {
+                deletedAt: null,
                 OR: [
                     // Released grammar guides only
                     { type: "guide", category: "grammar", isReleased: true },
@@ -25,7 +26,7 @@ export default async function ActivitiesPage() {
                     { NOT: { AND: [{ type: "guide" }, { category: "grammar" }] } }
                 ]
             }
-            : undefined,
+            : { deletedAt: null },
         orderBy: { createdAt: "desc" },
     });
     const visibleActivities = collapseEdPronunciationActivities(activities);
@@ -120,5 +121,4 @@ export default async function ActivitiesPage() {
         </div>
     );
 }
-
 
