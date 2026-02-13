@@ -262,6 +262,15 @@ export async function POST(request: Request) {
         where: progressWhere,
     });
 
+    const activity = await prisma.activity.findUnique({
+        where: { id: activityId },
+        select: { type: true, title: true, content: true, ui: true, category: true }
+    });
+    const activityGameUi = activity ? resolveActivityGameUi(activity) : "unknown";
+    const isPronunciationPracticeActivity =
+        activity?.type === "game" &&
+        (activity.category === "pronunciation" || activityGameUi === "ed-pronunciation" || activityGameUi === "minimal-pairs");
+
     // Handle category data updates (Numbers Game uses accuracy; Matching Game uses category-only rounds)
     // and guide resume state (grammar guides: last section index)
     let updatedCategoryData: string | undefined;
@@ -328,6 +337,12 @@ export async function POST(request: Request) {
     if (aggregatedNumbersProgress !== undefined) {
         progressValue = aggregatedNumbersProgress;
         statusValue = aggregatedNumbersProgress >= 100 ? "completed" : "in_progress";
+    }
+
+    // Pronunciation games are intentionally open-ended practice and should never show as completed.
+    if (isPronunciationPracticeActivity) {
+        progressValue = 0;
+        statusValue = "in_progress";
     }
 
     const finalStatus: ActivityProgressStatus = statusValue ?? (progressValue >= 100 ? "completed" : "in_progress");
@@ -435,12 +450,6 @@ export async function POST(request: Request) {
     let pointsAwarded = 0;
 
     if (shouldAwardPoints) {
-        // Get the activity to determine type
-        const activity = await prisma.activity.findUnique({
-            where: { id: activityId },
-            select: { type: true, title: true, content: true, ui: true }
-        });
-
         let points = 5; // Default fallback points
         if (activity) {
             // Determine activity type label for display
@@ -468,7 +477,6 @@ export async function POST(request: Request) {
                 points = getActivityPoints(activity.type, activity);
 
                 // Set type label for game activities
-                const gameUi = resolveActivityGameUi(activity);
                 const gameTypeLabels: Record<string, string> = {
                     'numbers': 'Numbers Game',
                     'matching': 'Matching Game',
@@ -479,15 +487,15 @@ export async function POST(request: Request) {
                     'ed-pronunciation': '-ed Pronunciation',
                     'minimal-pairs': 'Minimal Pairs',
                 };
-                if (activity.type === 'game' && gameTypeLabels[gameUi]) {
-                    activityTypeLabel = gameTypeLabels[gameUi];
+                if (activity.type === 'game' && gameTypeLabels[activityGameUi]) {
+                    activityTypeLabel = gameTypeLabels[activityGameUi];
                 } else if (activity.type === 'guide') {
                     activityTypeLabel = 'Grammar Guide';
                 }
             }
 
             // Special handling for numbers game - award difficulty-based points per category
-            if (resolveActivityGameUi(activity) === 'numbers') {
+            if (activityGameUi === 'numbers') {
                 // Determine difficulty based on category
                 const categoryStr = (category || '').toLowerCase();
                 let basePoints: number;
@@ -534,7 +542,7 @@ export async function POST(request: Request) {
                 }
 
                 points = basePoints + bonusPoints;
-            } else if (resolveActivityGameUi(activity) === 'verb-forms') {
+            } else if (activityGameUi === 'verb-forms') {
                 // Determine difficulty based on category passed from client
                 const difficulty = (category || 'medium').toLowerCase();
                 let pointsPerVerb: number = POINTS.VERB_FORMS_MEDIUM;
