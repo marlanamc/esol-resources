@@ -13,6 +13,7 @@ interface TextInputExerciseProps {
     submitted: boolean;
     onChange: (value: string) => void;
     itemNumber: number;
+    defaultPlaceholder?: string;
 }
 
 export function TextInputExercise({
@@ -23,6 +24,7 @@ export function TextInputExercise({
     submitted,
     onChange,
     itemNumber,
+    defaultPlaceholder,
 }: TextInputExerciseProps) {
     return (
         <motion.div
@@ -45,7 +47,7 @@ export function TextInputExercise({
                     type="text"
                     value={userAnswer}
                     onChange={(e) => onChange(e.target.value)}
-                    placeholder={item.placeholder || "Type your answer…"}
+                    placeholder={item.placeholder || defaultPlaceholder || "Type your answer..."}
                     disabled={submitted}
                     className={`w-full px-4 py-3 border-2 rounded-lg transition-[border-color,background-color] ${submitted
                             ? isCorrect

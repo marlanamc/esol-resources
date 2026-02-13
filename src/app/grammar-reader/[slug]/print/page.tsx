@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
 import { getGrammarContent } from "@/lib/grammar-content-loader";
+import {
+    getExerciseAnswerExpectation,
+    getExerciseAnswerExpectationMessage,
+} from "@/lib/exercise-answer-expectation";
 import { sanitizeHtml } from "@/utils/sanitize";
 
 interface Props {
@@ -29,7 +33,7 @@ export default async function GrammarPrintPage({ params }: Props) {
             .join(" ");
         
         // Handle special cases for better formatting
-        let formattedTitle = formattedSlug
+        const formattedTitle = formattedSlug
             .replace(/\s+Vs\s+/gi, " vs ")
             .replace(/\s+And\s+/gi, " and ");
         
@@ -190,6 +194,12 @@ export default async function GrammarPrintPage({ params }: Props) {
                     font-style: italic;
                     color: #666;
                     margin-bottom: 1rem;
+                }
+                .exercise-answer-expectation {
+                    font-style: normal;
+                    font-weight: 600;
+                    color: #111;
+                    margin-top: 0.35rem;
                 }
                 .exercise-item {
                     margin-bottom: 1.5rem;
@@ -454,14 +464,24 @@ export default async function GrammarPrintPage({ params }: Props) {
                     {section.exercises && section.exercises.length > 0 && (
                         <div className="exercises">
                             <h3>Practice Exercises</h3>
-                            {section.exercises.map((exercise) => (
+                            {section.exercises.map((exercise) => {
+                                const answerExpectation = getExerciseAnswerExpectation(exercise);
+                                const answerExpectationMessage =
+                                    getExerciseAnswerExpectationMessage(answerExpectation);
+
+                                return (
                                 <div key={exercise.id} className="exercise">
                                     <div className="exercise-title">
                                         {exercise.title}
                                     </div>
-                                    {exercise.instructions && (
+                                    {(exercise.instructions || answerExpectationMessage) && (
                                         <div className="exercise-instructions">
-                                            {exercise.instructions}
+                                            {exercise.instructions && <div>{exercise.instructions}</div>}
+                                            {answerExpectationMessage && (
+                                                <div className="exercise-answer-expectation">
+                                                    Expected input: {answerExpectationMessage}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                     {exercise.items.map((item, itemIdx) => (
@@ -557,7 +577,8 @@ export default async function GrammarPrintPage({ params }: Props) {
                                         </div>
                                     ))}
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     )}
                 </div>

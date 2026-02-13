@@ -60,6 +60,8 @@ export type ExerciseItem =
 export interface Exercise {
     title: string;
     instructions?: string;
+    /** Explicitly declare whether learners should type missing words or a full sentence. */
+    answerExpectation?: "missing-words" | "full-sentence";
     items: ExerciseItem[];
     id?: string; // For tracking completion
 }
