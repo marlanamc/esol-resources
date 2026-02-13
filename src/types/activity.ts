@@ -360,6 +360,23 @@ export interface VocabularyContent {
     fillInBlank?: FillInBlankContent;
 }
 
+export interface EdPronunciationContent {
+    type: "ed-pronunciation";
+    mode: "sorting" | "minimal-pairs" | "mixed";
+    difficulty?: "easy" | "medium" | "hard" | "mixed";
+    /** Optional list of specific verbs to use (base forms). If omitted, uses built-in list. */
+    verbs?: string[];
+    /** Number of verbs per round (default: 15) */
+    roundSize?: number;
+}
+
+export interface MinimalPairsContent {
+    type: "minimal-pairs";
+    contrastId?: "mixed" | "short-i-long-e" | "b-v" | "r-l" | "sh-ch";
+    difficulty?: "easy" | "medium" | "hard" | "mixed";
+    roundSize?: number;
+}
+
 export type ActivityContent =
     | QuizContent
     | WorksheetContent
@@ -369,6 +386,8 @@ export type ActivityContent =
     | SlidesContent
     | SpeakingActivityContent
     | VocabularyContent
+    | EdPronunciationContent
+    | MinimalPairsContent
     | Record<string, unknown>;
 
 export interface LegacyGuideResponse {
@@ -413,4 +432,16 @@ export function isVocabularyContent(value: unknown): value is VocabularyContent 
     if (!value || typeof value !== "object") return false;
     const candidate = value as Record<string, unknown>;
     return candidate["type"] === "vocabulary";
+}
+
+export function isEdPronunciationContent(value: unknown): value is EdPronunciationContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "ed-pronunciation";
+}
+
+export function isMinimalPairsContent(value: unknown): value is MinimalPairsContent {
+    if (!value || typeof value !== "object") return false;
+    const candidate = value as Record<string, unknown>;
+    return candidate["type"] === "minimal-pairs";
 }

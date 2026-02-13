@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool } from 'lucide-react';
+import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2 } from 'lucide-react';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -64,6 +64,14 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
         icon: <Mic className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
         bgColor: '#ffe0b2',
         iconColor: '#e65100',
+    },
+    {
+        key: 'pronunciation',
+        name: 'Pronunciation',
+        subtitle: 'Sounds · minimal pairs',
+        icon: <Volume2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
+        bgColor: '#fbcfe8',
+        iconColor: '#be185d',
     },
     {
         key: 'writing',
@@ -141,6 +149,11 @@ export function ActivityCategoryPicker({
         // Writing
         map['writing'] = activities.some(
             (a) => a.category === 'writing' || a.category === 'writing-reading'
+        );
+
+        // Pronunciation
+        map['pronunciation'] = activities.some(
+            (a) => a.category === 'pronunciation' || a.ui === 'ed-pronunciation' || a.ui === 'minimal-pairs'
         );
 
         return map;

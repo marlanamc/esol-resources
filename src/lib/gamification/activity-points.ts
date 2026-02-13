@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -17,6 +17,8 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "fill-in-blank" || ui === "fillblank") return "fill-in-blank";
     if (ui === "flashcards" || ui === "flashcard") return "flashcards";
     if (ui === "verb-forms" || ui === "verbforms") return "verb-forms";
+    if (ui === "ed-pronunciation" || ui === "ed-sounds" || ui === "pronunciation") return "ed-pronunciation";
+    if (ui === "minimal-pairs" || ui === "minimalpairs" || ui === "minimal-pairs-listening") return "minimal-pairs";
   }
 
   const content = activity?.content;
@@ -33,6 +35,14 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     }
     if (content.includes("Verb,V1,V1-3rd") || content.includes(".csv")) {
       return "verb-forms";
+    }
+    // Check for ed-pronunciation content type
+    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "ed-pronunciation") {
+      return "ed-pronunciation";
+    }
+    // Check for minimal-pairs content type
+    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "minimal-pairs") {
+      return "minimal-pairs";
     }
   }
 
@@ -64,6 +74,10 @@ export function getActivityPoints(activityType: string, activity?: ActivityMeta)
         return POINTS.NUMBERS_GAME_EASY;
       case "verb-forms":
         return POINTS.MATCHING_GAME; // Use matching game points for now as it's similar complexity
+      case "ed-pronunciation":
+        return POINTS.ED_PRONUNCIATION;
+      case "minimal-pairs":
+        return POINTS.MINIMAL_PAIRS;
       default:
         return POINTS.ACTIVITY_COMPLETION;
     }

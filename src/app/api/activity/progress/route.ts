@@ -476,6 +476,8 @@ export async function POST(request: Request) {
                     'flashcards': 'Flashcards',
                     'verb-forms': 'Verb Forms',
                     'word-list': 'Word List',
+                    'ed-pronunciation': '-ed Pronunciation',
+                    'minimal-pairs': 'Minimal Pairs',
                 };
                 if (activity.type === 'game' && gameTypeLabels[gameUi]) {
                     activityTypeLabel = gameTypeLabels[gameUi];
