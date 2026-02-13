@@ -43,6 +43,19 @@ function asNumber(value: unknown): number | null {
     return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
+function sanitizeGuideCompletedSectionIds(value: unknown): string[] | undefined {
+    if (!Array.isArray(value)) return undefined;
+
+    const cleaned = value
+        .filter((item): item is string => typeof item === "string")
+        .map((item) => item.trim())
+        .filter((item) => item.length > 0)
+        .slice(0, 200);
+
+    if (cleaned.length === 0) return undefined;
+    return Array.from(new Set(cleaned));
+}
+
 function isVocabCategoryData(data: Record<string, unknown> | null): boolean {
     if (!data) return false;
     return VOCAB_TYPES.some((type) => Object.prototype.hasOwnProperty.call(data, type));
@@ -323,10 +336,18 @@ export async function POST(request: Request) {
         }
     }
 
-    // Grammar guides: store last section index so the guide can open to the page the student left off on
+    // Grammar guides: store resume state so the guide can restore section and completion state.
     if (guideState != null && typeof guideState === "object" && typeof (guideState as { lastSectionIndex?: number }).lastSectionIndex === "number") {
-        const lastSectionIndex = Math.max(0, Math.round((guideState as { lastSectionIndex: number }).lastSectionIndex));
-        currentData._guide = { lastSectionIndex };
+        const parsedGuideState = guideState as { lastSectionIndex: number; completedSectionIds?: unknown };
+        const lastSectionIndex = Math.max(0, Math.round(parsedGuideState.lastSectionIndex));
+        const completedSectionIds = sanitizeGuideCompletedSectionIds(parsedGuideState.completedSectionIds);
+        const existingGuide = asObject(currentData._guide) ?? {};
+
+        currentData._guide = {
+            ...existingGuide,
+            lastSectionIndex,
+            ...(completedSectionIds ? { completedSectionIds } : {}),
+        };
     }
 
     if (category || "_guide" in currentData || vocabType) {

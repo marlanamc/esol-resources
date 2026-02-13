@@ -16,6 +16,7 @@ export interface FetchedActivityProgress {
 
 export interface GuideState {
     lastSectionIndex: number;
+    completedSectionIds?: string[];
 }
 
 export async function fetchActivityProgress(
