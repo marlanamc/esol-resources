@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import type { InteractiveGuideContent, InteractiveGuideSection, QuestionResponse } from "@/types/activity";
+import { useRouter } from "next/navigation";
 import { SectionHeader } from "./SectionHeader";
 import { ExplanationPanel } from "./ExplanationPanel";
 import { PracticePanel } from "./PracticePanel";
@@ -38,6 +39,7 @@ function formatGuideTitle(raw: string | null | undefined): string {
 }
 
 export function GrammarReader({ content, onComplete, completionKey, activityId }: GrammarReaderProps) {
+    const router = useRouter();
     const storageKey = `grammarReader:${completionKey || "guide"}:unlocked`;
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [completedSections, setCompletedSections] = useState<Set<string>>(
@@ -57,6 +59,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [showPractice, setShowPractice] = useState(true);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
     const [progressHydrated, setProgressHydrated] = useState(false);
+    const quizSavePromiseRef = useRef<Promise<void> | null>(null);
     const persistedProgressRef = useRef(0);
     const hasSkippedInitialProgressSaveRef = useRef(false);
     const sectionKeys = useMemo(
@@ -486,18 +489,58 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
+    const buildMiniQuizCertificateHref = useCallback((score: number, total: number) => {
+        const params = new URLSearchParams();
+        params.set("score", String(score));
+        params.set("total", String(total));
+        params.set("title", guideTitle);
+        if (completionKey) {
+            params.set("slug", completionKey);
+        }
+        if (activityId) {
+            params.set("activityId", activityId);
+        }
+        const assignmentId = readAssignmentId();
+        if (assignmentId) {
+            params.set("assignment", assignmentId);
+        }
+        return `/dashboard/certificates/mini-quiz?${params.toString()}`;
+    }, [activityId, completionKey, guideTitle, readAssignmentId]);
+
     // Save quiz score and responses immediately when student submits (before they click "Finish")
     const handleQuizScoreSubmit = useCallback((score: number, total: number, responses?: QuestionResponse[]) => {
-        void awardCompletion(score, total, responses);
+        const savePromise = awardCompletion(score, total, responses);
+        quizSavePromiseRef.current = savePromise;
+        void savePromise.finally(() => {
+            if (quizSavePromiseRef.current === savePromise) {
+                quizSavePromiseRef.current = null;
+            }
+        });
     }, [awardCompletion]);
 
-    // Called when student clicks "Finish" - just closes the quiz view
-    const handleQuizComplete = useCallback((_score: number, _total: number) => {
+    // Called when student clicks "Finish" after seeing score.
+    const handleQuizComplete = useCallback(async (score: number, total: number) => {
+        const pendingSave = quizSavePromiseRef.current;
+        if (pendingSave) {
+            try {
+                await pendingSave;
+            } catch {
+                // Non-blocking; continue to certificate view.
+            }
+        } else {
+            try {
+                await awardCompletion(score, total);
+            } catch {
+                // Non-blocking; continue to certificate view.
+            }
+        }
+
         setShowQuiz(false);
+        router.push(buildMiniQuizCertificateHref(score, total));
         if (onComplete) {
             onComplete();
         }
-    }, [onComplete]);
+    }, [awardCompletion, buildMiniQuizCertificateHref, onComplete, router]);
 
     return (
         <div className="grammar-reader-container min-h-screen bg-bg">

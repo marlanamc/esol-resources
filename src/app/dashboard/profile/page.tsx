@@ -6,12 +6,15 @@ import { trackLogin } from "@/lib/gamification";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { getVocabTypeFromTitle, parseVocabTypeLabel, stripVocabTypeSuffix, VOCAB_CHIP_CONFIG } from "@/lib/vocab-display";
+import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import Link from "next/link";
 import { BackButton, BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
 import ClickableAvatarDisplay from "@/components/ui/ClickableAvatarDisplay";
+import { MiniCertificateCard, EmptyCertificateCard, NeedsImprovementCard } from "@/components/ui/MiniCertificateCard";
+import { qualifiesForMedal } from "@/lib/medal-utils";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UsersIcon, UserIcon } from "@/components/icons/Icons";
 
@@ -29,6 +32,14 @@ interface QuizGradeRow {
     title: string;
     score: number | null;
     submittedAt: Date | null;
+}
+
+interface MiniQuizCertificateBanner {
+    activityId: string;
+    slug: string;
+    title: string;
+    score: number;
+    issuedAt: Date | null;
 }
 
 const parseActivityContent = (content: string): ParsedActivityContent | null => {
@@ -573,6 +584,24 @@ export default async function ProfilePage() {
     const gradedVerbQuizCount = verbQuizGrades.filter((quiz) => quiz.score !== null).length;
     const gradedMiniQuizCount = miniQuizGrades.filter((quiz) => quiz.score !== null).length;
 
+    // Split mini quiz results into medals (70%+) and needs improvement (<70%)
+    const allMiniQuizResults: MiniQuizCertificateBanner[] = miniQuizGrades
+        .filter((quiz): quiz is QuizGradeRow & { score: number } => quiz.score !== null)
+        .sort((a, b) => (b.submittedAt?.getTime() ?? 0) - (a.submittedAt?.getTime() ?? 0))
+        .map((quiz) => ({
+            activityId: quiz.id,
+            slug: completionKeyFromActivityTitle(quiz.title),
+            title: quiz.title,
+            score: quiz.score,
+            issuedAt: quiz.submittedAt,
+        }));
+
+    // Certificates for medals (70% or higher)
+    const miniQuizCertificates = allMiniQuizResults.filter(cert => qualifiesForMedal(cert.score));
+
+    // Quizzes that need improvement (under 70%)
+    const needsImprovementQuizzes = allMiniQuizResults.filter(cert => !qualifiesForMedal(cert.score));
+
     const effectiveCurrentStreak = getEffectiveStreak(user.currentStreak, user.lastActivityDate);
 
     // Student view
@@ -597,51 +626,137 @@ export default async function ProfilePage() {
                     <div className="mb-10 animate-fade-in">
                         <BackButton href="/dashboard" variant="home" className="mb-6" hideOnMobile />
                         
-                        <div className="flex flex-col md:flex-row items-center md:items-start gap-6 glass-card p-8 rounded-2xl relative overflow-hidden">
+                        <div className="flex flex-col glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
                             {/* Accent decoration */}
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary" />
-                            
-                            <div className="flex-shrink-0 relative group">
-                                <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-secondary rounded-full opacity-70 blur group-hover:opacity-100 transition-opacity duration-500"></div>
-                                <div className="relative bg-white p-1 rounded-full">
-                                    <ClickableAvatarDisplay size="xl" />
+
+                            {/* Top section: Avatar + Name + Stats */}
+                            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                                <div className="flex-shrink-0 relative group">
+                                    <div className="absolute -inset-1 bg-gradient-to-br from-primary via-accent to-secondary rounded-full opacity-70 blur group-hover:opacity-100 transition-opacity duration-500"></div>
+                                    <div className="relative bg-white p-1 rounded-full">
+                                        <ClickableAvatarDisplay size="lg" />
+                                    </div>
+                                </div>
+
+                                <div className="text-center sm:text-left flex-1 min-w-0">
+                                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display text-text mb-1 tracking-tight">
+                                        Hi, {user.name?.split(' ')[0] || 'Student'}! 👋
+                                    </h1>
+                                    <p className="text-base sm:text-lg text-text-muted font-medium">
+                                        {welcomeMessage}
+                                    </p>
+                                </div>
+
+                                {/* Inline stats - visible on larger screens */}
+                                <div className="hidden lg:flex items-center gap-6">
+                                    <div className="flex items-center gap-2 text-primary">
+                                        <Trophy className="w-5 h-5" />
+                                        <div className="text-right">
+                                            <p className="text-xl font-bold leading-tight">{user.points.toLocaleString()}</p>
+                                            <p className="text-xs text-text-muted">Points</p>
+                                        </div>
+                                    </div>
+                                    <div className="w-px h-10 bg-border/60" />
+                                    <div className="flex items-center gap-2 text-amber-500">
+                                        <Flame className="w-5 h-5" />
+                                        <div className="text-right">
+                                            <p className="text-xl font-bold leading-tight">{effectiveCurrentStreak}</p>
+                                            <p className="text-xs text-text-muted">Day Streak</p>
+                                        </div>
+                                    </div>
+                                    <div className="w-px h-10 bg-border/60" />
+                                    <div className="flex items-center gap-2 text-success">
+                                        <BookOpen className="w-5 h-5" />
+                                        <div className="text-right">
+                                            <p className="text-xl font-bold leading-tight">{totalCompleted}</p>
+                                            <p className="text-xs text-text-muted">Explored</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div className="text-center md:text-left flex-1">
-                                <h1 className="text-4xl md:text-5xl font-bold font-display text-text mb-2 tracking-tight">
-                                    Hi, {user.name?.split(' ')[0] || 'Student'}! 👋
-                                </h1>
-                                <p className="text-xl text-text-muted font-medium max-w-2xl">
-                                    {welcomeMessage}
-                                </p>
+
+                            {/* Stats row for mobile/tablet - shown below greeting */}
+                            <div className="lg:hidden grid grid-cols-3 gap-3 mt-5 pt-5 border-t border-border/40">
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="flex items-center gap-1.5 text-primary mb-1">
+                                        <Trophy className="w-4 h-4" />
+                                        <span className="text-lg sm:text-xl font-bold">{user.points.toLocaleString()}</span>
+                                    </div>
+                                    <p className="text-xs text-text-muted">Points</p>
+                                </div>
+                                <div className="flex flex-col items-center text-center border-x border-border/40">
+                                    <div className="flex items-center gap-1.5 text-amber-500 mb-1">
+                                        <Flame className="w-4 h-4" />
+                                        <span className="text-lg sm:text-xl font-bold">{effectiveCurrentStreak}</span>
+                                    </div>
+                                    <p className="text-xs text-text-muted">Day Streak</p>
+                                </div>
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="flex items-center gap-1.5 text-success mb-1">
+                                        <BookOpen className="w-4 h-4" />
+                                        <span className="text-lg sm:text-xl font-bold">{totalCompleted}</span>
+                                    </div>
+                                    <p className="text-xs text-text-muted">Explored</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Hero Stats Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 stagger-children">
-                        <StatCard
-                            label="Total Points"
-                            value={user.points.toLocaleString()}
-                            icon={<Trophy className="w-6 h-6" />}
-                            color="primary"
-                            className="delay-100"
-                        />
-                        <StatCard
-                            label="Current Streak"
-                            value={`${effectiveCurrentStreak} Days`}
-                            icon={<Flame className="w-6 h-6" />}
-                            color="warning"
-                            className="delay-200"
-                        />
-                        <StatCard
-                            label="Activities Explored"
-                            value={totalCompleted}
-                            icon={<BookOpen className="w-6 h-6" />}
-                            color="success"
-                            className="delay-300"
-                        />
+                    {/* Mini Quiz Certificates - Medal Collection */}
+                    <div id="mini-quiz-certificates" className="mb-10 rounded-2xl border border-amber-200/60 bg-gradient-to-br from-amber-50/50 via-white to-amber-50/30 p-6 shadow-sm animate-fade-in-up delay-300">
+                        <div className="mb-6 flex items-center gap-3">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-100 to-amber-50 text-amber-600 shadow-inner">
+                                <Award className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h2 className="text-xl font-bold text-text">Achievement Medals</h2>
+                                <p className="text-sm text-text-muted">
+                                    {miniQuizCertificates.length > 0
+                                        ? `${miniQuizCertificates.length} medal${miniQuizCertificates.length === 1 ? "" : "s"} earned (70%+ to earn a medal)`
+                                        : "Score 70% or higher to earn medals"}
+                                </p>
+                            </div>
+                        </div>
+
+                        {miniQuizCertificates.length === 0 && needsImprovementQuizzes.length === 0 ? (
+                            <div className="flex justify-center">
+                                <EmptyCertificateCard />
+                            </div>
+                        ) : (
+                            <div className="space-y-6">
+                                {/* Earned Medals */}
+                                {miniQuizCertificates.length > 0 && (
+                                    <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory -mx-2 px-2">
+                                        {miniQuizCertificates.map((certificate) => (
+                                            <MiniCertificateCard
+                                                key={certificate.activityId}
+                                                certificate={certificate}
+                                                className="snap-start"
+                                            />
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Needs Improvement Section */}
+                                {needsImprovementQuizzes.length > 0 && (
+                                    <div>
+                                        <p className="text-sm font-medium text-text-muted mb-3">
+                                            Keep practicing - you can do it!
+                                        </p>
+                                        <div className="flex gap-4 overflow-x-auto pb-3 snap-x snap-mandatory -mx-2 px-2">
+                                            {needsImprovementQuizzes.map((quiz) => (
+                                                <NeedsImprovementCard
+                                                    key={quiz.activityId}
+                                                    certificate={quiz}
+                                                    className="snap-start"
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
 
                     <div className="mb-10 space-y-8">

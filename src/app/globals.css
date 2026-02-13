@@ -1054,6 +1054,301 @@ kbd {
   animation: sparkle 2s ease-in-out infinite;
 }
 
+/* ========== Certificate Medal System ========== */
+
+/* Medal Tier Color Variables */
+:root {
+  /* Bronze Tier (0-59%) */
+  --medal-bronze-primary: #cd7f32;
+  --medal-bronze-dark: #8b5a2b;
+  --medal-bronze-light: #daa06d;
+  --medal-bronze-glow: rgba(205, 127, 50, 0.4);
+
+  /* Silver Tier (60-79%) */
+  --medal-silver-primary: #c0c0c0;
+  --medal-silver-dark: #808080;
+  --medal-silver-light: #e8e8e8;
+  --medal-silver-glow: rgba(192, 192, 192, 0.5);
+
+  /* Gold Tier (80-99%) */
+  --medal-gold-primary: #e9c46a;
+  --medal-gold-dark: #cba342;
+  --medal-gold-light: #f4e4a8;
+  --medal-gold-glow: rgba(233, 196, 106, 0.5);
+
+  /* Platinum Tier (100%) */
+  --medal-platinum-primary: #e5e4e2;
+  --medal-platinum-dark: #b8b8b8;
+  --medal-platinum-light: #ffffff;
+  --medal-platinum-glow: rgba(185, 242, 255, 0.6);
+}
+
+/* Medal Keyframe Animations */
+@keyframes medalReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotateY(-180deg);
+  }
+  60% {
+    transform: scale(1.1) rotateY(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0);
+  }
+}
+
+@keyframes medalShine {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(150%) rotate(25deg);
+  }
+}
+
+@keyframes medalFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes medalGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--medal-glow-color, rgba(233, 196, 106, 0.4));
+  }
+  50% {
+    box-shadow: 0 0 40px var(--medal-glow-color, rgba(233, 196, 106, 0.6));
+  }
+}
+
+@keyframes rainbowShimmer {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes ribbonSway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Medal Animation Classes */
+.animate-medal-reveal {
+  animation: medalReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-medal-shine {
+  animation: medalShine 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-medal-float {
+  animation: medalFloat 3s ease-in-out infinite;
+}
+
+.animate-medal-glow {
+  animation: medalGlow 2s ease-in-out infinite;
+}
+
+.animate-rainbow-shimmer {
+  animation: rainbowShimmer 3s linear infinite;
+}
+
+.animate-ribbon-sway {
+  animation: ribbonSway 4s ease-in-out infinite;
+}
+
+/* Medal Base Styles */
+.medal-ring {
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medal-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 4px;
+  background: conic-gradient(
+    from 45deg,
+    var(--medal-dark) 0%,
+    var(--medal-light) 25%,
+    var(--medal-dark) 50%,
+    var(--medal-light) 75%,
+    var(--medal-dark) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.medal-body {
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.medal-shine-overlay {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Medal Tier Styles */
+.medal-bronze {
+  --medal-primary: var(--medal-bronze-primary);
+  --medal-dark: var(--medal-bronze-dark);
+  --medal-light: var(--medal-bronze-light);
+  --medal-glow-color: var(--medal-bronze-glow);
+  background: linear-gradient(145deg, var(--medal-bronze-light), var(--medal-bronze-dark));
+  box-shadow:
+    0 -2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 4px 8px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(139, 90, 43, 0.3),
+    0 0 30px var(--medal-bronze-glow);
+}
+
+.medal-silver {
+  --medal-primary: var(--medal-silver-primary);
+  --medal-dark: var(--medal-silver-dark);
+  --medal-light: var(--medal-silver-light);
+  --medal-glow-color: var(--medal-silver-glow);
+  background: linear-gradient(145deg, var(--medal-silver-light), var(--medal-silver-dark));
+  box-shadow:
+    0 -2px 4px rgba(255, 255, 255, 0.5),
+    inset 0 4px 8px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(128, 128, 128, 0.3),
+    0 0 30px var(--medal-silver-glow);
+}
+
+.medal-gold {
+  --medal-primary: var(--medal-gold-primary);
+  --medal-dark: var(--medal-gold-dark);
+  --medal-light: var(--medal-gold-light);
+  --medal-glow-color: var(--medal-gold-glow);
+  background: linear-gradient(145deg, var(--medal-gold-light), var(--medal-gold-dark));
+  box-shadow:
+    0 -2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 4px 8px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(203, 163, 66, 0.35),
+    0 0 30px var(--medal-gold-glow);
+}
+
+.medal-platinum {
+  --medal-primary: var(--medal-platinum-primary);
+  --medal-dark: var(--medal-platinum-dark);
+  --medal-light: var(--medal-platinum-light);
+  --medal-glow-color: var(--medal-platinum-glow);
+  background: linear-gradient(
+    145deg,
+    var(--medal-platinum-light),
+    var(--medal-platinum-primary),
+    #b9f2ff,
+    var(--medal-platinum-light)
+  );
+  box-shadow:
+    0 -2px 6px rgba(255, 255, 255, 0.7),
+    inset 0 4px 8px rgba(0, 0, 0, 0.1),
+    0 8px 24px rgba(185, 242, 255, 0.4),
+    0 0 40px var(--medal-platinum-glow);
+}
+
+/* Ribbon Styles */
+.medal-ribbon {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+
+.medal-ribbon-left,
+.medal-ribbon-right {
+  position: absolute;
+  top: 100%;
+  width: 18px;
+  height: 40px;
+  border-radius: 0 0 4px 4px;
+}
+
+.medal-ribbon-left {
+  left: 50%;
+  transform: translateX(-120%) rotate(-8deg);
+  transform-origin: top center;
+}
+
+.medal-ribbon-right {
+  right: 50%;
+  transform: translateX(120%) rotate(8deg);
+  transform-origin: top center;
+}
+
+.ribbon-bronze {
+  background: linear-gradient(180deg, #8b5a2b 0%, #6b4423 100%);
+}
+
+.ribbon-silver {
+  background: linear-gradient(180deg, #a8a8a8 0%, #808080 100%);
+}
+
+.ribbon-gold {
+  background: linear-gradient(180deg, #cba342 0%, #a88734 100%);
+}
+
+.ribbon-platinum {
+  background: linear-gradient(180deg, #b8b8b8 0%, #9090a0 100%);
+}
+
+/* Certificate Showcase Background */
+.certificate-showcase-bg {
+  background:
+    radial-gradient(ellipse at center, var(--medal-glow-color, rgba(233, 196, 106, 0.3)) 0%, transparent 50%),
+    linear-gradient(180deg, var(--color-bg) 0%, #1a1a2e 100%);
+}
+
+/* Certificate Plaque Styles */
+.certificate-plaque {
+  background: linear-gradient(
+    135deg,
+    rgba(253, 251, 247, 0.95) 0%,
+    rgba(244, 228, 168, 0.3) 50%,
+    rgba(253, 251, 247, 0.95) 100%
+  );
+  border: 2px solid var(--medal-gold-dark);
+  box-shadow:
+    0 4px 16px rgba(203, 163, 66, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
 /* ========== Responsive Typography ========== */
 @media (min-width: 640px) {
   :root {
