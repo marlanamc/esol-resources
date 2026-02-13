@@ -199,6 +199,14 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                                 ? "Good job! Review the sections you missed."
                                                 : "Keep practicing! Review the guide and try again."}
                                     </motion.p>
+                                    <motion.p
+                                        className="text-sm text-text-muted mb-4"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: 0.45 }}
+                                    >
+                                        Click <span className="font-semibold text-text">Finish</span> to see your certificate.
+                                    </motion.p>
                                     {/* Desktop result buttons */}
                                     <motion.div
                                         className="hidden sm:flex flex-row items-center justify-center gap-3"
