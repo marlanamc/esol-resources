@@ -45,9 +45,14 @@ next-env.d.ts
 
 # database backups
 backup-*.json
+backup-*.json.gz
+backup-*.json.gz.enc
 *.backup.json
 prisma/backups/*.db
 prisma/backups/*.db.bak
+backups/*.json.gz
+backups/*.enc
+backups/*.sha256
 
 # database files (dev only - prod uses external DB)
 prisma/dev.db

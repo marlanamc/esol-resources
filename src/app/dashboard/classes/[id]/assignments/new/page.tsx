@@ -41,6 +41,7 @@ export default async function NewAssignmentPage({ params }: Props) {
     }
 
     const activities = await prisma.activity.findMany({
+        where: { deletedAt: null },
         orderBy: { createdAt: "desc" },
     });
     const visibleActivities = collapseEdPronunciationActivities(activities);
@@ -62,7 +63,6 @@ export default async function NewAssignmentPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

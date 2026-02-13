@@ -22,8 +22,11 @@ export default async function EditActivityPage({ params }: Props) {
         redirect("/dashboard");
     }
 
-    const activity = await prisma.activity.findUnique({
-        where: { id },
+    const activity = await prisma.activity.findFirst({
+        where: {
+            id,
+            deletedAt: null,
+        },
     });
 
     if (!activity) {
@@ -46,7 +49,6 @@ export default async function EditActivityPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

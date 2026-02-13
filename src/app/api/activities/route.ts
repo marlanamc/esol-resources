@@ -64,6 +64,7 @@ export async function GET() {
         if (userRole === "student") {
             const activities = await prisma.activity.findMany({
                 where: {
+                    deletedAt: null,
                     OR: [
                         // Released grammar guides only
                         {
@@ -105,6 +106,7 @@ export async function GET() {
 
         // Teachers see all activities
         const activities = await prisma.activity.findMany({
+            where: { deletedAt: null },
             orderBy: { createdAt: "desc" },
         });
 
@@ -118,7 +120,6 @@ export async function GET() {
         );
     }
 }
-
 
 
 

@@ -244,15 +244,15 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 min-h-screen md:min-h-0"
+          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20"
         >
-          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-8 text-white text-center pb-12">
-            <Ear className="w-16 h-16 mx-auto mb-4 opacity-90" />
-            <h1 className="text-4xl font-display font-bold mb-2">Minimal Pairs Lab</h1>
+          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-6 sm:p-8 text-white text-center pb-8 sm:pb-12">
+            <Ear className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 opacity-90" />
+            <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">Minimal Pairs Lab</h1>
             <p className="text-white/90">Train your ear with high-impact contrasts for Spanish-speaking learners.</p>
           </div>
 
-          <div className="p-6 md:p-8 space-y-8 -mt-6 bg-white rounded-t-3xl md:rounded-t-none">
+          <div className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 -mt-4 sm:-mt-6 bg-white rounded-t-3xl md:rounded-t-none">
             <div className="space-y-3">
               <div className="flex items-center gap-2 px-1">
                 <Target className="w-4 h-4 text-cyan-600" />
@@ -363,7 +363,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
             <button
               onClick={startGame}
-              className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95"
+              className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95"
             >
               Start Listening Round
             </button>
@@ -464,8 +464,37 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-4 md:p-6 min-h-screen md:min-h-0 flex flex-col">
-      <div className="flex items-center justify-between gap-2 mb-6">
+    <div className="max-w-2xl mx-auto p-3 sm:p-4 md:p-6 min-h-[calc(100dvh-11rem)] sm:min-h-[calc(100dvh-12rem)] md:min-h-[calc(100dvh-14rem)] flex flex-col">
+      <div className="sm:hidden mb-4 space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <button
+            onClick={resetToMenu}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Settings
+          </button>
+          <div className="rounded-xl border border-cyan-100 bg-cyan-50 px-3 py-2 text-right min-w-[90px]">
+            <span className="text-[10px] uppercase font-bold text-cyan-600/80 tracking-widest">Score</span>
+            <div className="text-lg font-bold text-cyan-700 leading-tight">{state.score}</div>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
+            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Question</span>
+            <div className="text-lg font-bold text-neutral-800 leading-tight">{state.currentIndex + 1} / {state.questions.length}</div>
+          </div>
+          <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
+            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Streak</span>
+            <div className="flex items-center gap-1 leading-tight">
+              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
+              <span className="text-lg font-bold text-neutral-800">{state.streak}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden sm:flex items-center justify-between gap-2 mb-6">
         <button
           onClick={resetToMenu}
           className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
@@ -495,29 +524,29 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
         </div>
       </div>
 
-      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden mb-8">
+      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden mb-5 sm:mb-8">
         <motion.div
           animate={{ width: `${progress}%` }}
           className="h-full bg-gradient-to-r from-cyan-600 to-blue-600"
         />
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <div className="text-center mb-8">
+      <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-6 pb-2 sm:pb-4">
+        <div className="text-center mb-2">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold mb-4">
             {question.contrastLabel}
           </div>
-          <div className="text-xl text-neutral-600 mb-4">What word did you hear?</div>
+          <div className="text-lg sm:text-xl text-neutral-600 mb-3">What word did you hear?</div>
           <button
             onClick={() => targetWord && playAudio(targetWord)}
-            className="flex items-center gap-3 mx-auto px-8 py-4 rounded-full font-bold text-xl transition-all bg-cyan-600 text-white hover:bg-cyan-700 active:scale-95 shadow-lg"
+            className="flex items-center gap-3 mx-auto px-6 py-3 rounded-full font-bold text-lg sm:text-xl transition-all bg-cyan-600 text-white hover:bg-cyan-700 active:scale-95 shadow-lg"
           >
             <Volume2 className="w-6 h-6" />
             {state.audioPlayed ? 'Play Again' : 'Play Sound'}
           </button>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 w-full max-w-md mb-8">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md mb-2">
           {(['left', 'right'] as const).map((choice) => {
             const word = choice === 'left' ? question.pair.leftWord : question.pair.rightWord;
             const ipa = choice === 'left' ? question.pair.leftIpa : question.pair.rightIpa;
@@ -531,7 +560,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                 onClick={() => handleAnswer(choice)}
                 disabled={state.showFeedback}
                 className={`
-                  p-5 rounded-2xl font-black transition-all border-2
+                  p-4 sm:p-5 rounded-2xl font-black transition-all border-2
                   ${state.showFeedback
                     ? isCorrect
                       ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
@@ -589,7 +618,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={nextQuestion}
-            className="bg-neutral-800 text-white px-12 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 active:scale-95"
+            className="w-full max-w-xs bg-neutral-800 text-white px-8 sm:px-12 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 active:scale-95"
           >
             {state.currentIndex < state.questions.length - 1 ? 'Next' : 'See Results'}
             <ChevronRight className="w-5 h-5" />

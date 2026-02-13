@@ -31,8 +31,11 @@ export async function PUT(request: NextRequest, { params }: Props) {
         }
 
         // Verify activity exists
-        const existingActivity = await prisma.activity.findUnique({
-            where: { id },
+        const existingActivity = await prisma.activity.findFirst({
+            where: {
+                id,
+                deletedAt: null,
+            },
         });
 
         if (!existingActivity) {
@@ -78,20 +81,27 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         const { id } = await params;
 
         // Verify activity exists
-        const activity = await prisma.activity.findUnique({
-            where: { id },
+        const activity = await prisma.activity.findFirst({
+            where: {
+                id,
+                deletedAt: null,
+            },
         });
 
         if (!activity) {
             return NextResponse.json({ error: "Activity not found" }, { status: 404 });
         }
 
-        // Delete activity
-        await prisma.activity.delete({
+        // Soft-delete activity to preserve historical submissions and recoverability.
+        await prisma.activity.update({
             where: { id },
+            data: {
+                deletedAt: new Date(),
+                isReleased: false,
+            },
         });
 
-        return NextResponse.json({ message: "Activity deleted successfully" });
+        return NextResponse.json({ message: "Activity archived successfully" });
     } catch (error: unknown) {
         console.error("Error deleting activity:", error);
         const message = error instanceof Error ? error.message : undefined;
@@ -101,7 +111,6 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         );
     }
 }
-
 
 
 

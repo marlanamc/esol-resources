@@ -316,15 +316,15 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 min-h-screen md:min-h-0"
+          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20"
         >
-          <div className="bg-gradient-to-br from-fuchsia-200 to-rose-300 p-8 text-white text-center pb-12">
-            <Volume2 className="w-16 h-16 mx-auto mb-4 opacity-90" />
-            <h1 className="text-4xl font-display font-bold mb-2">-ed Sounds</h1>
+          <div className="bg-gradient-to-br from-fuchsia-200 to-rose-300 p-6 sm:p-8 text-white text-center pb-8 sm:pb-12">
+            <Volume2 className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 opacity-90" />
+            <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">-ed Sounds</h1>
             <p className="text-white/80">Master the three pronunciations of -ed endings</p>
           </div>
 
-          <div className="p-6 md:p-8 space-y-8 -mt-6 bg-white rounded-t-3xl md:rounded-t-none">
+          <div className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 -mt-4 sm:-mt-6 bg-white rounded-t-3xl md:rounded-t-none">
             {/* The three sounds explanation */}
             <div className="grid grid-cols-3 gap-3 text-center">
               <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
@@ -371,14 +371,14 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             <div className="space-y-4">
               <button
                 onClick={() => startGame('sorting')}
-                className="w-full bg-gradient-to-r from-fuchsia-600 to-violet-600 border-2 border-fuchsia-300/80 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:brightness-105 transition-all flex items-center justify-center gap-3 active:scale-95"
+                className="w-full bg-gradient-to-r from-fuchsia-600 to-violet-600 border-2 border-fuchsia-300/80 text-white py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:brightness-105 transition-all flex items-center justify-center gap-3 active:scale-95"
               >
                 <ArrowLeftRight className="w-6 h-6" />
                 Sound Sorting
               </button>
               <button
                 onClick={() => startGame('minimal-pairs')}
-                className="w-full bg-gradient-to-r from-violet-600 to-indigo-600 border-2 border-fuchsia-300/70 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:brightness-105 transition-all flex items-center justify-center gap-3 active:scale-95"
+                className="w-full bg-gradient-to-r from-violet-600 to-indigo-600 border-2 border-fuchsia-300/70 text-white py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 hover:brightness-105 transition-all flex items-center justify-center gap-3 active:scale-95"
               >
                 <Ear className="w-6 h-6" />
                 Minimal Pairs
@@ -533,9 +533,40 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   const progress = ((state.currentIndex + 1) / state.verbs.length) * 100;
 
   return (
-    <div className="max-w-2xl mx-auto p-4 md:p-6 min-h-screen md:min-h-0 flex flex-col">
+    <div className="max-w-2xl mx-auto p-3 sm:p-4 md:p-6 min-h-[calc(100dvh-11rem)] sm:min-h-[calc(100dvh-12rem)] md:min-h-[calc(100dvh-14rem)] flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between gap-2 mb-6">
+      <div className="sm:hidden mb-4 space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <button
+            onClick={resetGame}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Settings
+          </button>
+          <div className="rounded-xl border border-violet-100 bg-violet-50 px-3 py-2 text-right min-w-[90px]">
+            <span className="text-[10px] uppercase font-bold text-violet-500/80 tracking-widest">Score</span>
+            <div className="text-lg font-bold text-violet-600 leading-tight">{state.score}</div>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
+            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Question</span>
+            <div className="text-lg font-bold text-neutral-800 leading-tight">
+              {state.currentIndex + 1} / {state.verbs.length}
+            </div>
+          </div>
+          <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
+            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Streak</span>
+            <div className="flex items-center gap-1 leading-tight">
+              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
+              <span className="text-lg font-bold text-neutral-800">{state.streak}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden sm:flex items-center justify-between gap-2 mb-6">
         <button
           onClick={resetGame}
           className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
@@ -566,7 +597,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
       </div>
 
       {/* Progress bar */}
-      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden mb-8">
+      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden mb-5 sm:mb-8">
         <motion.div
           animate={{ width: `${progress}%` }}
           className="h-full bg-gradient-to-r from-violet-500 to-purple-600"
@@ -574,7 +605,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
       </div>
 
       {/* Main game area */}
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-6 pb-2 sm:pb-4">
         {state.mode === 'sorting' ? (
           // Sound Sorting Mode
           <>
@@ -583,15 +614,15 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               key={state.currentIndex}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center mb-8"
+              className="text-center mb-2"
             >
-              <div className="text-5xl md:text-6xl font-black text-neutral-800 mb-4">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-black text-neutral-800 mb-3">
                 {currentVerb.past}
               </div>
               <button
                 onClick={() => playAudio(currentVerb.past)}
                 disabled={!isAudioSupported}
-                className={`flex items-center gap-2 mx-auto px-6 py-3 rounded-full font-bold transition-all ${
+                className={`flex items-center gap-2 mx-auto px-5 py-2.5 rounded-full font-bold transition-all ${
                   isAudioSupported
                     ? 'bg-violet-100 text-violet-700 hover:bg-violet-200 active:scale-95'
                     : 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
@@ -603,7 +634,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             </motion.div>
 
             {/* Sound buttons */}
-            <div className="grid grid-cols-3 gap-4 w-full max-w-md mb-8">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-md mb-2">
               {(['d', 't', 'id'] as EdSound[]).map((sound) => {
                 const isSelected = state.selectedAnswer === sound;
                 const isCorrect = state.showFeedback && sound === currentVerb.sound;
@@ -615,7 +646,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     onClick={() => handleSortingAnswer(sound)}
                     disabled={state.showFeedback}
                     className={`
-                      p-6 rounded-2xl font-black text-2xl transition-all border-2
+                      p-4 sm:p-6 rounded-2xl font-black text-xl sm:text-2xl transition-all border-2
                       ${state.showFeedback
                         ? isCorrect
                           ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
@@ -640,13 +671,13 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               key={state.currentIndex}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="text-center mb-8"
+              className="text-center mb-2"
             >
-              <div className="text-xl text-neutral-500 mb-4">What did you hear?</div>
+              <div className="text-lg sm:text-xl text-neutral-500 mb-3">What did you hear?</div>
               <button
                 onClick={() => playAudio(state.minimalPairTarget === 'base' ? currentVerb.base : currentVerb.past)}
                 disabled={!isAudioSupported}
-                className={`flex items-center gap-3 mx-auto px-8 py-4 rounded-full font-bold text-xl transition-all ${
+                className={`flex items-center gap-3 mx-auto px-6 py-3 rounded-full font-bold text-lg sm:text-xl transition-all ${
                   isAudioSupported
                     ? 'bg-indigo-500 text-white hover:bg-indigo-600 active:scale-95 shadow-lg'
                     : 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
@@ -658,7 +689,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             </motion.div>
 
             {/* Choice buttons */}
-            <div className="grid grid-cols-2 gap-4 w-full max-w-md mb-8">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 w-full max-w-md mb-2">
               {(['base', 'past'] as const).map((choice) => {
                 const word = choice === 'base' ? currentVerb.base : currentVerb.past;
                 const isSelected = state.selectedAnswer === choice;
@@ -671,7 +702,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     onClick={() => handleMinimalPairAnswer(choice)}
                     disabled={state.showFeedback}
                     className={`
-                      p-6 rounded-2xl font-black text-2xl transition-all border-2
+                      p-4 sm:p-6 rounded-2xl font-black text-xl sm:text-2xl transition-all border-2
                       ${state.showFeedback
                         ? isCorrect
                           ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
@@ -739,7 +770,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={nextQuestion}
-            className="bg-neutral-800 text-white px-12 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 active:scale-95"
+            className="w-full max-w-xs bg-neutral-800 text-white px-8 sm:px-12 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 active:scale-95"
           >
             {state.currentIndex < state.verbs.length - 1 ? 'Next' : 'See Results'}
             <ChevronRight className="w-5 h-5" />
