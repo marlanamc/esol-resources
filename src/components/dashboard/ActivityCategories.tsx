@@ -1132,8 +1132,12 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             },
             {
                 name: 'Pronunciation',
-                color: '#6a4c93', // purple
-                activities: activities.filter((a: Activity) => a.category === 'pronunciation')
+                color: '#ec4899', // pink
+                activities: activities.filter((a: Activity) =>
+                    a.category === 'pronunciation' ||
+                    a.ui === 'ed-pronunciation' ||
+                    a.ui === 'minimal-pairs'
+                )
             },
             {
                 name: 'Speaking',

@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
 import { BackButton } from "@/components/ui/BackButton";
@@ -27,6 +28,7 @@ export default async function ActivitiesPage() {
             : undefined,
         orderBy: { createdAt: "desc" },
     });
+    const visibleActivities = collapseEdPronunciationActivities(activities);
 
     if (userRole === "teacher") {
         // Teacher View - Get featured assignments and class info
@@ -63,7 +65,7 @@ export default async function ActivitiesPage() {
 
                 <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 pb-24 md:pb-12">
                     <TeacherActivityCategories
-                        activities={activities}
+                        activities={visibleActivities}
                         featuredActivityIds={featuredActivityIds}
                         defaultClassId={defaultClassId}
                         activityAssignmentMap={activityAssignmentMap}
@@ -110,7 +112,7 @@ export default async function ActivitiesPage() {
 
             <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12">
                 <ActivityCategoryPicker
-                    activities={activities}
+                    activities={visibleActivities}
                     completedActivityIds={completedActivityIds}
                     progressMap={progressMap}
                 />
@@ -118,6 +120,5 @@ export default async function ActivitiesPage() {
         </div>
     );
 }
-
 
 

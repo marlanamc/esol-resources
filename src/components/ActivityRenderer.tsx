@@ -27,6 +27,8 @@ import FillInBlankGame from "./ui/FillInBlankGame";
 import MatchingGame from "./ui/MatchingGame";
 import NumbersGame from "./ui/NumbersGame";
 import VerbFormsGame from "./ui/VerbFormsGame";
+import EdPronunciationGame from "./ui/EdPronunciationGame";
+import MinimalPairsGame from "./ui/MinimalPairsGame";
 import VerbQuizContainer from "./activities/VerbQuizContainer";
 import { VerbQuizContent } from "@/types/verb-quiz";
 import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
@@ -138,6 +140,10 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                         return <FillInBlankGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
                     case "verb-forms":
                         return <VerbFormsGame contentStr={activity.content} activityId={activity.id} />;
+                    case "ed-pronunciation":
+                        return <EdPronunciationGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
+                    case "minimal-pairs":
+                        return <MinimalPairsGame contentStr={activity.content} activityId={activity.id} assignmentId={assignmentId} />;
                      case "matching":
                          return (
                              <MatchingGame

@@ -31,6 +31,9 @@ export function getGameEmojiForActivity({
       return "📝";
     case "verb-forms":
       return "🔤";
+    case "ed-pronunciation":
+    case "minimal-pairs":
+      return "🔊";
     case "flashcards":
       return "🃏";
     default:

@@ -662,7 +662,11 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             {
                 name: 'Pronunciation',
                 color: '#6a4c93', // purple
-                activities: activities.filter((a: Activity) => a.category === 'pronunciation')
+                activities: activities.filter((a: Activity) =>
+                    a.category === 'pronunciation' ||
+                    a.ui === 'ed-pronunciation' ||
+                    a.ui === 'minimal-pairs'
+                )
             },
             {
                 name: 'Speaking',

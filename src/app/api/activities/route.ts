@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 
 export async function POST(request: NextRequest) {
     try {
@@ -99,7 +100,7 @@ export async function GET() {
                 }
             });
 
-            return NextResponse.json(filteredActivities);
+            return NextResponse.json(collapseEdPronunciationActivities(filteredActivities));
         }
 
         // Teachers see all activities
@@ -107,7 +108,7 @@ export async function GET() {
             orderBy: { createdAt: "desc" },
         });
 
-        return NextResponse.json(activities);
+        return NextResponse.json(collapseEdPronunciationActivities(activities));
     } catch (error: unknown) {
         console.error("Error fetching activities:", error);
         const message = error instanceof Error ? error.message : undefined;
@@ -117,7 +118,6 @@ export async function GET() {
         );
     }
 }
-
 
 
 

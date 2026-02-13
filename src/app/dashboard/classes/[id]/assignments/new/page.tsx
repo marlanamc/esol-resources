@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import CreateAssignmentForm from "@/components/CreateAssignmentForm";
 import { BackButton } from "@/components/ui/BackButton";
 
@@ -42,6 +43,7 @@ export default async function NewAssignmentPage({ params }: Props) {
     const activities = await prisma.activity.findMany({
         orderBy: { createdAt: "desc" },
     });
+    const visibleActivities = collapseEdPronunciationActivities(activities);
 
     return (
         <div className="min-h-screen bg-gray-50">
@@ -54,13 +56,12 @@ export default async function NewAssignmentPage({ params }: Props) {
             </header>
             <main className="max-w-3xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
-                    <CreateAssignmentForm classId={id} activities={activities} />
+                    <CreateAssignmentForm classId={id} activities={visibleActivities} />
                 </div>
             </main>
         </div>
     );
 }
-
 
 
 
