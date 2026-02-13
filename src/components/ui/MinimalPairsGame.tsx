@@ -16,7 +16,7 @@ import {
   Zap,
   Coins,
 } from 'lucide-react';
-import { saveActivityProgress } from '@/lib/activityProgress';
+import { saveActivityProgress, fetchActivityProgress, type FetchedActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
 import {
   type MinimalPairContrastId,
@@ -46,6 +46,7 @@ interface GameState {
   answers: Array<{ question: MinimalPairQuestion; userAnswer: MinimalPairSide; correct: boolean }>;
   pointsToast: { points: number; key: number } | null;
   audioPlayed: boolean;
+  completedContrasts: Set<string>;
 }
 
 interface ContentConfig {
@@ -79,6 +80,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
     answers: [],
     pointsToast: null,
     audioPlayed: false,
+    completedContrasts: new Set(),
   });
 
   const [isAudioSupported, setIsAudioSupported] = useState(true);
@@ -202,20 +204,62 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
     }));
   }, [state.currentIndex, state.phase, state.questions, state.showFeedback]);
 
+  // Fetch existing progress
+  useEffect(() => {
+    if (!activityId) return;
+    
+    fetchActivityProgress(activityId, assignmentId).then((data: FetchedActivityProgress | null) => {
+      if (data?.categoryData) {
+        const completed = new Set<string>();
+        Object.entries(data.categoryData).forEach(([key, val]) => {
+            const castVal = val as { completed?: boolean } | null;
+            if (castVal && castVal.completed) {
+                completed.add(key);
+            }
+        });
+        setState(prev => ({ ...prev, completedContrasts: completed }));
+      }
+    });
+  }, [activityId, assignmentId]);
+
   const nextQuestion = useCallback(async () => {
     const isFinalQuestion = state.currentIndex >= state.questions.length - 1;
 
     if (isFinalQuestion) {
-      setState((prev) => ({ ...prev, phase: 'results' }));
+      // Calculate results
+      const accuracy = Math.round((state.score / state.questions.length) * 100);
+      
+      // Update completed contrasts
+      const newCompletedContrasts = new Set(state.completedContrasts);
+      
+      // Only mark as complete if not 'mixed' and accuracy is decent (> 50%?)
+      // For now, completion = finishing the round, similar to other games, 
+      // but strictly for the specific contrast.
+      if (state.contrast !== 'mixed') {
+        newCompletedContrasts.add(state.contrast);
+      }
 
-      if (activityId && state.questions.length > 0) {
-        const accuracy = (state.score / state.questions.length) * 100;
+      // Calculate overall progress: (completed contrasts / total contrasts) * 100
+      const totalContrasts = MINIMAL_PAIR_CONTRASTS.length;
+      const percentComplete = Math.min(100, Math.round((newCompletedContrasts.size / totalContrasts) * 100));
+      const status = percentComplete >= 100 ? 'completed' : 'in_progress';
+
+      setState((prev) => ({ 
+          ...prev, 
+          phase: 'results', 
+          completedContrasts: newCompletedContrasts 
+      }));
+
+      if (activityId) {
+        // If it's a specific contrast, save it as a completed category
+        const categoryToSave = state.contrast !== 'mixed' ? state.contrast : undefined;
+
         const result = await saveActivityProgress(
           activityId,
-          100,
-          'completed',
+          percentComplete,
+          status,
           accuracy,
-          `minimal-pairs:${state.contrast}`,
+          categoryToSave,
           assignmentId
         );
 
@@ -236,35 +280,41 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
       showFeedback: false,
       audioPlayed: false,
     }));
-  }, [activityId, assignmentId, state.contrast, state.currentIndex, state.questions.length, state.score]);
+  }, [activityId, assignmentId, state.contrast, state.currentIndex, state.questions.length, state.score, state.completedContrasts]);
 
   if (state.phase === 'menu') {
     return (
-      <div className="w-full max-w-4xl mx-auto p-0 md:p-6">
+      <div className="fixed inset-0 z-50 bg-white overflow-y-auto md:relative md:inset-auto md:z-auto md:bg-transparent md:max-w-4xl md:mx-auto md:p-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20"
+          className="min-h-full md:min-h-0 bg-white md:rounded-3xl md:shadow-xl md:overflow-hidden md:border border-sage/20"
         >
-          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-6 sm:p-8 text-white text-center pb-8 sm:pb-12">
+          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-6 sm:p-8 text-white text-center pb-12 rounded-b-[2.5rem] md:rounded-b-none shadow-lg md:shadow-none relative">
+            <button 
+              onClick={() => window.history.back()}
+              className="absolute top-4 left-4 p-2 bg-white/20 rounded-full hover:bg-white/30 text-white transition-colors"
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </button>
             <Ear className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-4 opacity-90" />
             <h1 className="text-3xl sm:text-4xl font-display font-bold mb-2">Minimal Pairs Lab</h1>
-            <p className="text-white/90">Train your ear with high-impact contrasts for Spanish-speaking learners.</p>
+            <p className="text-white/90 font-medium">Train your ear with high-impact contrasts.</p>
           </div>
 
-          <div className="p-4 sm:p-6 md:p-8 space-y-6 sm:space-y-8 -mt-4 sm:-mt-6 bg-white rounded-t-3xl md:rounded-t-none">
-            <div className="space-y-3">
+          <div className="px-4 pb-8 -mt-6 md:mt-0 md:p-8 space-y-6 md:space-y-8 max-w-lg mx-auto md:max-w-none">
+            <div className="space-y-3 relative z-10">
               <div className="flex items-center gap-2 px-1">
                 <Target className="w-4 h-4 text-cyan-600" />
                 <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">Contrast Focus</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-white rounded-2xl md:bg-transparent shadow-sm md:shadow-none border border-neutral-100 md:border-0 p-2 md:p-0">
                 {(() => {
                   const isSelected = state.contrast === 'mixed';
                   return (
                     <button
                       onClick={() => setState((prev) => ({ ...prev, contrast: 'mixed' }))}
-                      className={`text-left p-4 rounded-2xl border transition-all ${
+                      className={`text-left p-4 rounded-xl md:rounded-2xl border transition-all ${
                         isSelected
                           ? 'border-cyan-600 bg-cyan-100 shadow-md ring-2 ring-cyan-200'
                           : 'border-neutral-200 bg-white hover:border-cyan-300 hover:bg-cyan-50/40'
@@ -285,7 +335,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                       <button
                         key={contrast.id}
                         onClick={() => setState((prev) => ({ ...prev, contrast: contrast.id }))}
-                        className={`text-left p-4 rounded-2xl border transition-all ${
+                        className={`text-left p-4 rounded-xl md:rounded-2xl border transition-all ${
                           isSelected
                             ? 'border-cyan-600 bg-cyan-100 shadow-md ring-2 ring-cyan-200'
                             : 'border-neutral-200 bg-white hover:border-cyan-300 hover:bg-cyan-50/40'
@@ -302,14 +352,14 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
             <div className="space-y-3">
               <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest px-1">Difficulty</h3>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
                 {(['easy', 'medium', 'hard', 'mixed'] as const).map((level) => {
                   const isSelected = state.difficulty === level;
                   return (
                     <button
                       key={level}
                       onClick={() => setState((prev) => ({ ...prev, difficulty: level }))}
-                      className={`px-4 py-2 rounded-xl font-bold capitalize transition-all border ${
+                      className={`px-4 py-3 sm:py-2 rounded-xl font-bold capitalize transition-all border text-sm sm:text-base ${
                         isSelected
                           ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white border-cyan-700 shadow-lg ring-2 ring-cyan-200 -translate-y-0.5'
                           : 'bg-white text-neutral-700 border-neutral-200 hover:border-cyan-300 hover:bg-cyan-50'
@@ -331,7 +381,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                     <button
                       key={size}
                       onClick={() => setState((prev) => ({ ...prev, roundSize: size }))}
-                      className={`px-4 py-2 rounded-xl font-bold transition-all border ${
+                      className={`px-4 py-3 sm:py-2 rounded-xl font-bold transition-all border text-sm sm:text-base ${
                         isSelected
                           ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white border-cyan-700 shadow-lg ring-2 ring-cyan-200 -translate-y-0.5'
                           : 'bg-white text-neutral-700 border-neutral-200 hover:border-cyan-300 hover:bg-cyan-50'
@@ -363,7 +413,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
             <button
               onClick={startGame}
-              className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 sm:py-5 rounded-2xl font-black text-lg sm:text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95"
+              className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95 active:translate-y-1 border-b-4 border-cyan-800 active:border-b-0"
             >
               Start Listening Round
             </button>
@@ -378,7 +428,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
     const accuracy = total === 0 ? 0 : Math.round((state.score / total) * 100);
 
     return (
-      <div className="max-w-2xl mx-auto p-6">
+      <div className="fixed inset-0 z-50 bg-white overflow-y-auto md:relative md:inset-auto md:z-auto md:bg-transparent md:max-w-2xl md:mx-auto md:p-6">
         {state.pointsToast && (
           <PointsToast
             key={state.pointsToast.key}
@@ -390,32 +440,32 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="bg-white rounded-3xl shadow-2xl overflow-hidden text-center border border-sage/20"
+          className="min-h-full md:min-h-0 bg-white md:rounded-3xl md:shadow-2xl md:overflow-hidden md:border border-sage/20"
         >
-          <div className="bg-gradient-to-br from-cyan-600 to-blue-600 p-10 text-white">
+          <div className="bg-gradient-to-br from-cyan-600 to-blue-600 p-10 text-white text-center">
             <Trophy className="w-20 h-20 mx-auto mb-4" />
             <h2 className="text-4xl font-display font-bold mb-1">Listening Complete</h2>
             <p className="text-white/90">Keep training your ear every day.</p>
           </div>
 
-          <div className="p-10">
+          <div className="p-6 md:p-10 max-w-lg mx-auto md:max-w-none">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
+              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
                 <Target className="w-6 h-6 mx-auto mb-2 text-cyan-600" />
                 <div className="text-2xl font-black text-neutral-800">{accuracy}%</div>
                 <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Accuracy</div>
               </div>
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
+              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
                 <Zap className="w-6 h-6 mx-auto mb-2 text-amber-500" />
                 <div className="text-2xl font-black text-neutral-800">{state.maxStreak}</div>
                 <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Best Streak</div>
               </div>
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100">
+              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
                 <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-emerald-500" />
                 <div className="text-2xl font-black text-neutral-800">{state.score}/{total}</div>
                 <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Correct</div>
               </div>
-              <div className="p-4 bg-cyan-50 rounded-2xl border border-cyan-100 shadow-sm">
+              <div className="p-4 bg-cyan-50 rounded-2xl border border-cyan-100 shadow-sm text-center">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-cyan-700" />
                 <div className="text-2xl font-black text-cyan-700">6</div>
                 <div className="text-[10px] text-cyan-700 uppercase font-black tracking-widest">Points</div>
@@ -464,34 +514,39 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-3 sm:p-4 md:p-6 min-h-[calc(100dvh-11rem)] sm:min-h-[calc(100dvh-12rem)] md:min-h-[calc(100dvh-14rem)] flex flex-col">
-      <div className="sm:hidden mb-4 space-y-3">
-        <div className="flex items-center justify-between gap-3">
-          <button
-            onClick={resetToMenu}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Settings
-          </button>
-          <div className="rounded-xl border border-cyan-100 bg-cyan-50 px-3 py-2 text-right min-w-[90px]">
-            <span className="text-[10px] uppercase font-bold text-cyan-600/80 tracking-widest">Score</span>
-            <div className="text-lg font-bold text-cyan-700 leading-tight">{state.score}</div>
-          </div>
+    <div className="fixed inset-0 z-50 bg-white md:relative md:inset-auto md:z-auto md:bg-transparent max-w-2xl mx-auto md:p-6 min-h-[100dvh] md:min-h-[calc(100dvh-14rem)] flex flex-col">
+      <div className="px-4 py-3 border-b border-neutral-100 flex items-center justify-between bg-white md:hidden">
+        <button
+          onClick={resetToMenu}
+          className="p-2 -ml-2 rounded-full hover:bg-neutral-100 text-neutral-500 transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        
+        <div className="flex items-center gap-3">
+           <div className="flex items-center gap-1.5 px-3 py-1 bg-neutral-100 rounded-full">
+             <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+               {state.currentIndex + 1}/{state.questions.length}
+             </span>
+           </div>
+           
+           <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full">
+            <Zap className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
+            <span className="text-xs font-bold">{state.streak}</span>
+           </div>
+           
+           <div className="min-w-[40px] text-right font-black text-cyan-700">
+             {state.score}
+           </div>
         </div>
-        <div className="grid grid-cols-2 gap-2">
-          <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Question</span>
-            <div className="text-lg font-bold text-neutral-800 leading-tight">{state.currentIndex + 1} / {state.questions.length}</div>
-          </div>
-          <div className="rounded-xl border border-neutral-200 bg-white px-3 py-2">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Streak</span>
-            <div className="flex items-center gap-1 leading-tight">
-              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
-              <span className="text-lg font-bold text-neutral-800">{state.streak}</span>
-            </div>
-          </div>
-        </div>
+      </div>
+
+       {/* Mobile progress bar added to top */}
+      <div className="h-1 bg-neutral-100 md:hidden">
+        <motion.div
+            animate={{ width: `${progress}%` }}
+            className="h-full bg-gradient-to-r from-cyan-600 to-blue-600"
+          />
       </div>
 
       <div className="hidden sm:flex items-center justify-between gap-2 mb-6">

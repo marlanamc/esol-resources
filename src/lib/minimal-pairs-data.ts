@@ -90,6 +90,53 @@ export const MINIMAL_PAIR_CONTRASTS = [
       { leftWord: "shin", rightWord: "chin", leftIpa: "/SIn/", rightIpa: "/tSIn/", difficulty: "hard" },
     ],
   },
+  {
+    id: "s-th",
+    label: "S vs Th",
+    description: "Distinguish between /s/ and /θ/ (sink vs think).",
+    spanishTip: "For 'th', stick your tongue tip slightly between your teeth. For 's', keep tongue inside.",
+    pairs: [
+      { leftWord: "sink", rightWord: "think", leftIpa: "/sɪŋk/", rightIpa: "/θɪŋk/", difficulty: "easy" },
+      { leftWord: "sick", rightWord: "thick", leftIpa: "/sɪk/", rightIpa: "/θɪk/", difficulty: "easy" },
+      { leftWord: "sum", rightWord: "thumb", leftIpa: "/sʌm/", rightIpa: "/θʌm/", difficulty: "easy" },
+      { leftWord: "pass", rightWord: "path", leftIpa: "/pæs/", rightIpa: "/pæθ/", difficulty: "medium" },
+      { leftWord: "mouse", rightWord: "mouth", leftIpa: "/maʊs/", rightIpa: "/maʊθ/", difficulty: "medium" },
+      { leftWord: "face", rightWord: "faith", leftIpa: "/feɪs/", rightIpa: "/feɪθ/", difficulty: "medium" },
+      { leftWord: "miss", rightWord: "myth", leftIpa: "/mɪs/", rightIpa: "/mɪθ/", difficulty: "hard" },
+      { leftWord: "sought", rightWord: "thought", leftIpa: "/sɔːt/", rightIpa: "/θɔːt/", difficulty: "hard" },
+    ],
+  },
+  {
+    id: "v-w",
+    label: "V vs W",
+    description: "Contrast /v/ (friction) and /w/ (glide).",
+    spanishTip: "For /v/, bite your lip slightly. For /w/, round your lips like a kiss.",
+    pairs: [
+      { leftWord: "vet", rightWord: "wet", leftIpa: "/vet/", rightIpa: "/wet/", difficulty: "easy" },
+      { leftWord: "vest", rightWord: "west", leftIpa: "/vest/", rightIpa: "/west/", difficulty: "easy" },
+      { leftWord: "vine", rightWord: "wine", leftIpa: "/vaɪn/", rightIpa: "/waɪn/", difficulty: "easy" },
+      { leftWord: "vent", rightWord: "went", leftIpa: "/vent/", rightIpa: "/went/", difficulty: "medium" },
+      { leftWord: "veil", rightWord: "whale", leftIpa: "/veɪl/", rightIpa: "/weɪl/", difficulty: "medium" },
+      { leftWord: "vow", rightWord: "wow", leftIpa: "/vaʊ/", rightIpa: "/waʊ/", difficulty: "hard" },
+      { leftWord: "rover", rightWord: "rower", leftIpa: "/ˈroʊvər/", rightIpa: "/ˈroʊər/", difficulty: "hard" },
+    ],
+  },
+  {
+    id: "p-b",
+    label: "P vs B",
+    description: "Hear the difference between voiceless /p/ and voiced /b/.",
+    spanishTip: "/p/ has a puff of air (explosion). /b/ has vibration in the throat.",
+    pairs: [
+      { leftWord: "pat", rightWord: "bat", leftIpa: "/pæt/", rightIpa: "/bæt/", difficulty: "easy" },
+      { leftWord: "pack", rightWord: "back", leftIpa: "/pæk/", rightIpa: "/bæk/", difficulty: "easy" },
+      { leftWord: "cap", rightWord: "cab", leftIpa: "/kæp/", rightIpa: "/kæb/", difficulty: "easy" },
+      { leftWord: "pay", rightWord: "bay", leftIpa: "/peɪ/", rightIpa: "/beɪ/", difficulty: "easy" },
+      { leftWord: "rope", rightWord: "robe", leftIpa: "/roʊp/", rightIpa: "/roʊb/", difficulty: "medium" },
+      { leftWord: "cup", rightWord: "cub", leftIpa: "/kʌp/", rightIpa: "/kʌb/", difficulty: "medium" },
+      { leftWord: "staple", rightWord: "stable", leftIpa: "/ˈsteɪpəl/", rightIpa: "/ˈsteɪbəl/", difficulty: "hard" },
+      { leftWord: "pear", rightWord: "bear", leftIpa: "/per/", rightIpa: "/ber/", difficulty: "medium" },
+    ],
+  },
 ] as const satisfies MinimalPairContrast[];
 
 export type MinimalPairContrastId = (typeof MINIMAL_PAIR_CONTRASTS)[number]["id"];
