@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { TrophyIcon, FlameIcon, SparklesIcon } from '@/components/icons/Icons';
 import { Badge } from '@/components/ui';
-import { BackButton } from '@/components/ui/BackButton';
 import { getAvatarEmoji, getColorClass } from '@/lib/avatar-constants';
 
 function LeaderboardAvatar({ avatar, avatarColor, size = "sm" }: { avatar: string | null; avatarColor: string | null; size?: "sm" | "md" }) {
@@ -97,7 +96,6 @@ export default function LeaderboardPage() {
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
         <div className="container mx-auto py-4 px-4 sm:px-6">
-          <BackButton href="/dashboard" variant="home" className="mb-2" hideOnMobile />
           <div className="flex items-center gap-4">
             <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
             <div>

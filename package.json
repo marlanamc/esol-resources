@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-env.mjs && npm run check:nullable-upserts",
+    "prebuild": "node scripts/check-env.mjs && npm run check:nullable-upserts && npm run audit:answer-position",
     "build": "prisma generate && next build",
     "deploy": "prisma migrate deploy && next build",
     "postinstall": "prisma generate",
@@ -15,6 +15,8 @@
     "test:gamification": "node --import tsx scripts/tests/gamification-helpers.test.ts",
     "test:activity-submit": "node --import tsx scripts/tests/activity-submit-assignmentid.test.ts",
     "lint": "eslint",
+    "audit:answer-position": "node scripts/audit-answer-position-bias.js",
+    "audit:answer-position:update-baseline": "node scripts/audit-answer-position-bias.js --update-baseline",
     "check:nullable-upserts": "node scripts/check-null-assignment-upserts.mjs",
     "typecheck": "tsc --noEmit",
     "db:seed": "npm run db:seed:grammar",

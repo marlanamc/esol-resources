@@ -64,8 +64,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             label: "You <span class='eg-helper'>must not</span> drink alcohol while taking this medication.",
                             options: [
                                 { value: "advice", label: "Advice (not recommended)" },
-                                { value: "caution", label: "Caution/Warning (forbidden, dangerous)" },
                                 { value: "permission", label: "Permission (not allowed)" },
+                                { value: "caution", label: "Caution/Warning (forbidden, dangerous)" },
                             ],
                             expectedAnswer: "caution",
                         },
@@ -73,9 +73,9 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             type: "radio",
                             label: "<span class='eg-helper'>Can I</span> ask you a question about my prescription?",
                             options: [
+                                { value: "consent", label: "Asking for permission (consent)" },
                                 { value: "advice", label: "Asking for advice" },
                                 { value: "caution", label: "Giving a warning" },
-                                { value: "consent", label: "Asking for permission (consent)" },
                             ],
                             expectedAnswer: "consent",
                         },
@@ -146,8 +146,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             type: "radio",
                             label: "Which is correct?",
                             options: [
-                                { value: "a", label: "You should take this medicine with food." },
                                 { value: "b", label: "You should takes this medicine with food." },
+                                { value: "a", label: "You should take this medicine with food." },
                                 { value: "c", label: "You should to take this medicine with food." },
                             ],
                             expectedAnswer: "a",
@@ -157,8 +157,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             label: "Which is correct?",
                             options: [
                                 { value: "a", label: "You must not to drive after taking this." },
-                                { value: "b", label: "You must not drive after taking this." },
                                 { value: "c", label: "You must not driving after taking this." },
+                                { value: "b", label: "You must not drive after taking this." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -322,8 +322,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             type: "radio",
                             label: "Warning: 'You ___ drive after taking this medication.' (dangerous)",
                             options: [
-                                { value: "must not", label: "must not" },
                                 { value: "don't have to", label: "don't have to" },
+                                { value: "must not", label: "must not" },
                                 { value: "should not", label: "should not" },
                             ],
                             expectedAnswer: "must not",
@@ -333,8 +333,8 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             label: "The doctor says: 'You ___ finish all the antibiotics.' (required)",
                             options: [
                                 { value: "should", label: "should" },
-                                { value: "must", label: "must" },
                                 { value: "can", label: "can" },
+                                { value: "must", label: "must" },
                             ],
                             expectedAnswer: "must",
                         },
@@ -575,9 +575,9 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
                             type: "radio",
                             label: "You want to ask your doctor a question during the appointment:",
                             options: [
-                                { value: "can", label: "Can I ask you a question?" },
                                 { value: "must", label: "Must I ask you a question?" },
                                 { value: "should", label: "Should I ask you a question?" },
+                                { value: "can", label: "Can I ask you a question?" },
                             ],
                             expectedAnswer: "can",
                         },
@@ -712,11 +712,11 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
         question:
           "Which sentence expresses health advice (recommended but not required)?",
         options: [
-          { value: "a", label: "You must take this medicine twice daily." },
           { value: "b", label: "You should take this medicine with food." },
+          { value: "a", label: "You must take this medicine twice daily." },
           { value: "c", label: "You can take this medicine with food." },
-        ],
-        correctAnswer: "b",
+      ],
+      correctAnswer: "b",
         explanation:
           "'Should' gives advice or recommendation. 'Must' is required. 'Can' is permission.",
         skillTag: "meaning-advice-should",
@@ -789,11 +789,11 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
         id: "quiz-6",
         question: "Which sentence is a correct safety warning with 'must not'?",
         options: [
-          { value: "a", label: "You must not to drive after taking this." },
           { value: "b", label: "You must not drive after taking this." },
+          { value: "a", label: "You must not to drive after taking this." },
           { value: "c", label: "You mustn't to drive after taking this." },
-        ],
-        correctAnswer: "b",
+      ],
+      correctAnswer: "b",
         explanation:
           "After 'must not', use the base verb with no 'to': 'must not drive'.",
         skillTag: "form-must-not-plus-base-verb",
@@ -843,11 +843,11 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
         question:
           "Complete the sentence: 'You ___ bring anything special for a routine checkup.' (not required)",
         options: [
-          { value: "a", label: "don't need to" },
           { value: "b", label: "must not" },
           { value: "c", label: "should" },
-        ],
-        correctAnswer: "a",
+          { value: "a", label: "don't need to" },
+      ],
+      correctAnswer: "a",
         explanation:
           "'Don't need to' means it is not necessary. 'Must not' would mean it is forbidden.",
         skillTag: "contrast-dont-need-to-vs-must-not",
@@ -965,11 +965,11 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
         question:
           "You are in the exam room and want to ask a quick question. Which is most natural?",
         options: [
+          { value: "c", label: "Can I ask you a question?" },
           { value: "a", label: "Must I ask you a question?" },
           { value: "b", label: "Should I ask you a question?" },
-          { value: "c", label: "Can I ask you a question?" },
-        ],
-        correctAnswer: "c",
+      ],
+      correctAnswer: "c",
         explanation:
           "'Can I ask you a question?' is the most natural way to ask permission during a visit.",
         skillTag: "permission-can-informal-visit",

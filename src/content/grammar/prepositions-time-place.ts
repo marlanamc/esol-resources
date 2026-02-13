@@ -155,8 +155,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             label: "Walk ___ the community market and turn right.",
                             options: [
                                 { value: "toward", label: "toward" },
-                                { value: "through", label: "through" },
                                 { value: "between", label: "between" },
+                                { value: "through", label: "through" },
                             ],
                             expectedAnswer: "through",
                         },
@@ -193,8 +193,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I am waiting ___ the doctor's office.",
                             options: [
-                                { value: "at", label: "at" },
                                 { value: "on", label: "on" },
+                                { value: "at", label: "at" },
                                 { value: "in", label: "in" },
                             ],
                             expectedAnswer: "at",
@@ -203,9 +203,9 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "She applied ___ a job program last week.",
                             options: [
-                                { value: "for", label: "for" },
                                 { value: "at", label: "at" },
                                 { value: "to", label: "to" },
+                                { value: "for", label: "for" },
                             ],
                             expectedAnswer: "for",
                         },
@@ -233,8 +233,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "My appointment is ___ Friday morning.",
                             options: [
-                                { value: "at", label: "at" },
                                 { value: "on", label: "on" },
+                                { value: "at", label: "at" },
                                 { value: "in", label: "in" },
                             ],
                             expectedAnswer: "on",
@@ -251,8 +251,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             label: "I work ___ 9 AM ___ 5 PM.",
                             options: [
                                 { value: "at-on", label: "at / on" },
-                                { value: "at-to", label: "at / to" },
                                 { value: "from-to", label: "from / to" },
+                                { value: "at-to", label: "at / to" },
                             ],
                             expectedAnswer: "from-to",
                         },
@@ -268,8 +268,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             label: "The library is ___ Central Square.",
                             options: [
                                 { value: "at", label: "at" },
-                                { value: "in", label: "in" },
                                 { value: "on", label: "on" },
+                                { value: "in", label: "in" },
                             ],
                             expectedAnswer: "in",
                         },
@@ -284,8 +284,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "We live ___ the community center.",
                             options: [
-                                { value: "at", label: "at" },
                                 { value: "near", label: "near" },
+                                { value: "at", label: "at" },
                                 { value: "on", label: "on" },
                             ],
                             expectedAnswer: "near",
@@ -301,8 +301,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I'm waiting ___ the bus ___ the station.",
                             options: [
-                                { value: "for-at", label: "for / at" },
                                 { value: "to-on", label: "to / on" },
+                                { value: "for-at", label: "for / at" },
                                 { value: "at-in", label: "at / in" },
                             ],
                             expectedAnswer: "for-at",
@@ -320,8 +320,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                 "My appointment is ___ Friday morning.",
             options: [
                 { value: "at", label: "at" },
-                { value: "on", label: "on" },
                 { value: "in", label: "in" },
+                { value: "on", label: "on" },
             ],
             correctAnswer: "on",
             explanation:
@@ -334,9 +334,9 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
             question:
                 "I work ___ 9 AM ___ 5 PM.",
             options: [
+                { value: "from-to", label: "from / to" },
                 { value: "at-on", label: "at / on" },
                 { value: "at-to", label: "at / to" },
-                { value: "from-to", label: "from / to" },
             ],
             correctAnswer: "from-to",
             explanation:
@@ -349,8 +349,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
             question:
                 "The class starts ___ 6:30 PM.",
             options: [
-                { value: "at", label: "at" },
                 { value: "on", label: "on" },
+                { value: "at", label: "at" },
                 { value: "in", label: "in" },
             ],
             correctAnswer: "at",
@@ -410,8 +410,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                 "The library is ___ Central Square.",
             options: [
                 { value: "at", label: "at" },
-                { value: "in", label: "in" },
                 { value: "on", label: "on" },
+                { value: "in", label: "in" },
             ],
             correctAnswer: "in",
             explanation:
@@ -455,8 +455,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                 "We live ___ the community center, so we can walk there.",
             options: [
                 { value: "at", label: "at" },
-                { value: "near", label: "near" },
                 { value: "on", label: "on" },
+                { value: "near", label: "near" },
             ],
             correctAnswer: "near",
             explanation:
@@ -499,9 +499,9 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
             question:
                 "The clinic is ___ the street from the blue apartment building.",
             options: [
-                { value: "across", label: "across" },
                 { value: "between", label: "between" },
                 { value: "in", label: "in" },
+                { value: "across", label: "across" },
             ],
             correctAnswer: "across",
             explanation:
@@ -529,8 +529,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
             question:
                 "She applied ___ a job program ___ the community center.",
             options: [
-                { value: "for-at", label: "for / at" },
                 { value: "to-in", label: "to / in" },
+                { value: "for-at", label: "for / at" },
                 { value: "for-in", label: "for / in" },
             ],
             correctAnswer: "for-at",
@@ -545,8 +545,8 @@ export const prepositionsTimePlaceContent: InteractiveGuideContent = {
                 "They arrived ___ East Boston ___ 2019.",
             options: [
                 { value: "at-on", label: "at / on" },
-                { value: "in-in", label: "in / in" },
                 { value: "in-on", label: "in / on" },
+                { value: "in-in", label: "in / in" },
             ],
             correctAnswer: "in-in",
             explanation:

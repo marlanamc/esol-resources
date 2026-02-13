@@ -23,8 +23,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The phone is ringing — <span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>answer</span> it.",
                             options: [
-                                { value: "decision", label: "Spontaneous decision, right now" },
                                 { value: "past", label: "Finished past action" },
+                                { value: "decision", label: "Spontaneous decision, right now" },
                                 { value: "habit", label: "Daily routine/habit" },
                             ],
                             expectedAnswer: "decision",
@@ -100,9 +100,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"<span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>pick</span> up your prescription from the pharmacy on my way home.\"",
                             options: [
-                                { value: "promise", label: "Promise/offer" },
                                 { value: "plan", label: "Pre-planned schedule" },
                                 { value: "habit", label: "Habit" },
+                                { value: "promise", label: "Promise/offer" },
                             ],
                             expectedAnswer: "promise",
                         },
@@ -120,8 +120,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"Someone's at the door. <span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>get</span> it.\"",
                             options: [
-                                { value: "decision", label: "Decision made now" },
                                 { value: "schedule", label: "Fixed schedule" },
+                                { value: "decision", label: "Decision made now" },
                                 { value: "ongoing", label: "Ongoing action" },
                             ],
                             expectedAnswer: "decision",
@@ -405,8 +405,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is correct?",
                             options: [
-                                { value: "a", label: "She will comes tomorrow." },
                                 { value: "b", label: "She will come tomorrow." },
+                                { value: "a", label: "She will comes tomorrow." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -414,8 +414,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which negative is correct?",
                             options: [
-                                { value: "a", label: "They won't go tonight." },
                                 { value: "b", label: "They won't to go tonight." },
+                                { value: "a", label: "They won't go tonight." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -444,8 +444,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             question: "Which negative is correct?",
             options: [
                 { value: "a", label: "She won't comes." },
-                { value: "b", label: "She won't come." },
                 { value: "c", label: "She will not comes." },
+                { value: "b", label: "She won't come." },
             ],
             correctAnswer: "b",
             explanation: "Won't is followed by the base verb: won't come.",
@@ -456,8 +456,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Which question is correct?",
             options: [
-                { value: "a", label: "Will you helps me?" },
                 { value: "b", label: "Will you help me?" },
+                { value: "a", label: "Will you helps me?" },
                 { value: "c", label: "You will help me?" },
             ],
             correctAnswer: "b",
@@ -483,8 +483,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             question: "Pick the correct promise/offer.",
             options: [
                 { value: "a", label: "I will fixing it after class." },
-                { value: "b", label: "I will fix it after class." },
                 { value: "c", label: "I fix it after class." },
+                { value: "b", label: "I will fix it after class." },
             ],
             correctAnswer: "b",
             explanation: "Promises and offers use will + base verb: will fix.",
@@ -495,8 +495,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-6",
             question: "Which sentence is a prediction?",
             options: [
-                { value: "a", label: "I will help you carry the bags." },
                 { value: "b", label: "It will rain later today." },
+                { value: "a", label: "I will help you carry the bags." },
                 { value: "c", label: "I'm going to the store now." },
             ],
             correctAnswer: "b",
@@ -521,9 +521,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Choose 'will' or 'going to': The plan is already arranged.",
             options: [
-                { value: "a", label: "I'm going to renew my ID tomorrow." },
                 { value: "b", label: "I'll renew my ID tomorrow (I planned it last week)." },
                 { value: "c", label: "I renew my ID tomorrow." },
+                { value: "a", label: "I'm going to renew my ID tomorrow." },
             ],
             correctAnswer: "a",
             explanation: "A plan made before now is often expressed with going to (or Present Continuous for an appointment).",
@@ -561,8 +561,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             question: "Which question is correct?",
             options: [
                 { value: "a", label: "Will she to call you?" },
-                { value: "b", label: "Will she call you?" },
                 { value: "c", label: "Will she calls you?" },
+                { value: "b", label: "Will she call you?" },
             ],
             correctAnswer: "b",
             explanation: "Question form: Will + subject + base verb (no 'to' and no -s).",
@@ -586,8 +586,8 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Which time expression often goes with Future Simple?",
             options: [
-                { value: "a", label: "tomorrow" },
                 { value: "b", label: "yesterday" },
+                { value: "a", label: "tomorrow" },
                 { value: "c", label: "in 2020" },
             ],
             correctAnswer: "a",
@@ -599,9 +599,9 @@ export const futureSimpleContent: InteractiveGuideContent = {
             id: "quiz-14",
             question: "Pick the best offer.",
             options: [
-                { value: "a", label: "I'll carry that box for you." },
                 { value: "b", label: "I'm carrying that box for you (right now decision)." },
                 { value: "c", label: "I carry that box for you." },
+                { value: "a", label: "I'll carry that box for you." },
             ],
             correctAnswer: "a",
             explanation: "Offers made in the moment often use will: I'll carry…",

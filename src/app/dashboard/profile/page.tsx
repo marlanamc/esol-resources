@@ -8,7 +8,7 @@ import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { getVocabTypeFromTitle, parseVocabTypeLabel, stripVocabTypeSuffix, VOCAB_CHIP_CONFIG } from "@/lib/vocab-display";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import Link from "next/link";
-import { BackButton, BottomNav } from "@/components/ui";
+import { BottomNav } from "@/components/ui";
 import { StatCard } from "@/components/ui/StatCard";
 import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
@@ -624,8 +624,6 @@ export default async function ProfilePage() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
                     {/* Header */}
                     <div className="mb-10 animate-fade-in">
-                        <BackButton href="/dashboard" variant="home" className="mb-6" hideOnMobile />
-                        
                         <div className="flex flex-col glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
                             {/* Accent decoration */}
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-accent to-secondary" />
@@ -950,7 +948,6 @@ export default async function ProfilePage() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24">
                 {/* Header */}
                 <div className="mb-8">
-                    <BackButton href="/dashboard" className="mb-4">Back to Dashboard</BackButton>
                     <div>
                         <h1 className="text-4xl font-bold text-text mb-2">
                             {user.name || 'Teacher Profile'}

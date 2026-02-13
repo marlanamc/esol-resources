@@ -137,8 +137,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"My daughter <span class=\'eg-verb\'>graduated</span> from college in May 2023."',
                             options: [
-                                { value: "timestamp", label: "Finished action with a time" },
                                 { value: "habit", label: "Ongoing habit" },
+                                { value: "timestamp", label: "Finished action with a time" },
                                 { value: "present", label: "Connected to now" },
                             ],
                             expectedAnswer: "timestamp",
@@ -147,9 +147,9 @@ export const pastSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"We <span class=\'eg-verb\'>packed</span> our bags, <span class=\'eg-verb\'>locked</span> the door, and <span class=\'eg-verb\'>drove</span> to the airport."',
                             options: [
-                                { value: "sequence", label: "Story/sequence of events" },
                                 { value: "unfinished", label: "Still happening now" },
                                 { value: "future", label: "Future plan" },
+                                { value: "sequence", label: "Story/sequence of events" },
                             ],
                             expectedAnswer: "sequence",
                         },
@@ -570,8 +570,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
                             label: "She ___ her homework last night.",
                             options: [
                                 { value: "finish", label: "finish" },
-                                { value: "finished", label: "finished" },
                                 { value: "finishing", label: "finishing" },
+                                { value: "finished", label: "finished" },
                             ],
                             expectedAnswer: "finished",
                         },
@@ -586,8 +586,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly uses Past Simple with an irregular verb?",
             options: [
-                { value: "a", label: "I teached my coworker how to use the printer yesterday." },
                 { value: "b", label: "I taught my coworker how to use the printer yesterday." },
+                { value: "a", label: "I teached my coworker how to use the printer yesterday." },
                 { value: "c", label: "I teach my coworker how to use the printer yesterday." },
             ],
             correctAnswer: "b",
@@ -599,8 +599,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence correctly uses Past Simple with a regular verb?",
             options: [
-                { value: "a", label: "We cleaned the classroom after class last night." },
                 { value: "b", label: "We clean the classroom after class last night." },
+                { value: "a", label: "We cleaned the classroom after class last night." },
                 { value: "c", label: "We have cleaned the classroom after class last night." },
             ],
             correctAnswer: "a",
@@ -612,9 +612,9 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Which sentence correctly uses Past Simple with a verb ending in -e?",
             options: [
-                { value: "a", label: "She arrived at the clinic on time." },
                 { value: "b", label: "She arriveed at the clinic on time." },
                 { value: "c", label: "She arrives at the clinic on time yesterday." },
+                { value: "a", label: "She arrived at the clinic on time." },
             ],
             correctAnswer: "a",
             explanation: "Arrive ends in -e, so we add -d: arrive → arrived.",
@@ -625,8 +625,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Choose the correct Past Simple spelling for a verb ending in -y.",
             options: [
-                { value: "a", label: "He studyed for the driver test last weekend." },
                 { value: "b", label: "He studied for the driver test last weekend." },
+                { value: "a", label: "He studyed for the driver test last weekend." },
                 { value: "c", label: "He studies for the driver test last weekend." },
             ],
             correctAnswer: "b",
@@ -652,8 +652,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             question: "Which negative sentence is correct (watch the main verb form)?",
             options: [
                 { value: "a", label: "I didn't went to the appointment." },
-                { value: "b", label: "I didn't go to the appointment." },
                 { value: "c", label: "I no went to the appointment." },
+                { value: "b", label: "I didn't go to the appointment." },
             ],
             correctAnswer: "b",
             explanation: "After didn't, the main verb stays base form: didn't go (not didn't went).",
@@ -664,8 +664,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Which question is correct in Past Simple?",
             options: [
-                { value: "a", label: "Did you paid the bill yesterday?" },
                 { value: "b", label: "Did you pay the bill yesterday?" },
+                { value: "a", label: "Did you paid the bill yesterday?" },
                 { value: "c", label: "You did pay the bill yesterday?" },
             ],
             correctAnswer: "b",
@@ -677,8 +677,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Choose the correct Past Simple form of 'be'.",
             options: [
-                { value: "a", label: "I was at the clinic yesterday afternoon." },
                 { value: "b", label: "I were at the clinic yesterday afternoon." },
+                { value: "a", label: "I was at the clinic yesterday afternoon." },
                 { value: "c", label: "I am at the clinic yesterday afternoon." },
             ],
             correctAnswer: "a",
@@ -691,8 +691,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             question: "Which sentence is best for a finished action with a clear past time?",
             options: [
                 { value: "a", label: "I have met my caseworker last Friday." },
-                { value: "b", label: "I met my caseworker last Friday." },
                 { value: "c", label: "I meet my caseworker last Friday." },
+                { value: "b", label: "I met my caseworker last Friday." },
             ],
             correctAnswer: "b",
             explanation: "A specific finished time ('last Friday') uses Past Simple: met.",
@@ -730,8 +730,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             question: "Which sentence correctly tells a short sequence of events?",
             options: [
                 { value: "a", label: "She was calling, then she was leaving a message, then she was going home." },
-                { value: "b", label: "She called, left a message, and went home." },
                 { value: "c", label: "She calls, leaves a message, and goes home." },
+                { value: "b", label: "She called, left a message, and went home." },
             ],
             correctAnswer: "b",
             explanation: "Past Simple is the storytelling tense for finished steps: called → left → went.",
@@ -742,8 +742,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Choose the best sentence for a finished time in the past.",
             options: [
-                { value: "a", label: "I have met my manager in 2022." },
                 { value: "b", label: "I met my manager in 2022." },
+                { value: "a", label: "I have met my manager in 2022." },
                 { value: "c", label: "I meet my manager in 2022." },
             ],
             correctAnswer: "b",
@@ -769,8 +769,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             question: "Choose the correct sentence with an irregular past form.",
             options: [
                 { value: "a", label: "He buyed a monthly pass last week." },
-                { value: "b", label: "He bought a monthly pass last week." },
                 { value: "c", label: "He buys a monthly pass last week." },
+                { value: "b", label: "He bought a monthly pass last week." },
             ],
             correctAnswer: "b",
             explanation: "Buy is irregular: buy → bought.",
@@ -781,8 +781,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             id: "quiz-16",
             question: "Which sentence is correct in a Past Simple negative?",
             options: [
-                { value: "a", label: "She didn't received the text." },
                 { value: "b", label: "She didn't receive the text." },
+                { value: "a", label: "She didn't received the text." },
                 { value: "c", label: "She doesn't received the text." },
             ],
             correctAnswer: "b",
@@ -808,8 +808,8 @@ export const pastSimpleContent: InteractiveGuideContent = {
             question: "Which sentence best describes a finished action at a clear past time?",
             options: [
                 { value: "a", label: "I have submitted the form on Monday." },
-                { value: "b", label: "I submitted the form on Monday." },
                 { value: "c", label: "I submit the form on Monday." },
+                { value: "b", label: "I submitted the form on Monday." },
             ],
             correctAnswer: "b",
             explanation: "A specific finished time ('on Monday') needs Past Simple: submitted.",

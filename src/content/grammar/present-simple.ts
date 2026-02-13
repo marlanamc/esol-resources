@@ -808,8 +808,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is correct?",
                             options: [
-                                { value: "a", label: "She work on Mondays." },
                                 { value: "b", label: "She works on Mondays." },
+                                { value: "a", label: "She work on Mondays." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -817,8 +817,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which question is correct?",
                             options: [
-                                { value: "a", label: "Does she work here?" },
                                 { value: "b", label: "Does she works here?" },
+                                { value: "a", label: "Does she work here?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -836,8 +836,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             question: "My coworker ___ the bus to work every morning.",
             options: [
                 { value: "a", label: "take" },
-                { value: "b", label: "takes" },
                 { value: "c", label: "is taking" },
+                { value: "b", label: "takes" },
             ],
             correctAnswer: "b",
             explanation: "With he/she/it subjects, add -s to the verb in Present Simple: takes.",
@@ -848,8 +848,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "The washing machine ___ a strange noise when it finishes.",
             options: [
-                { value: "a", label: "make" },
                 { value: "b", label: "makes" },
+                { value: "a", label: "make" },
                 { value: "c", label: "makees" },
             ],
             correctAnswer: "b",
@@ -874,9 +874,9 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "My daughter ___ piano lessons every Tuesday afternoon.",
             options: [
-                { value: "a", label: "takes" },
                 { value: "b", label: "take" },
                 { value: "c", label: "taking" },
+                { value: "a", label: "takes" },
             ],
             correctAnswer: "a",
             explanation: "For he/she/it, add -s to the base verb: take → takes.",
@@ -959,8 +959,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             question: "Which sentence has the frequency adverb in the WRONG position?",
             options: [
                 { value: "a", label: "She usually checks her emails before breakfast." },
-                { value: "b", label: "She checks usually her emails before breakfast." },
                 { value: "c", label: "Usually, she checks her emails before breakfast." },
+                { value: "b", label: "She checks usually her emails before breakfast." },
             ],
             correctAnswer: "b",
             explanation: "Frequency adverbs go BEFORE the main verb (usually checks) or at the start of a sentence with a comma (Usually, she...). Putting 'usually' after the verb is incorrect.",
@@ -971,8 +971,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-11",
             question: "Which sentence is correct with the word 'always'?",
             options: [
-                { value: "a", label: "He always is tired after work." },
                 { value: "b", label: "He is always tired after work." },
+                { value: "a", label: "He always is tired after work." },
                 { value: "c", label: "Always he is tired after work." },
             ],
             correctAnswer: "b",
@@ -999,9 +999,9 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Choose the correct pair of sentences.",
             options: [
-                { value: "a", label: "Habit: She drinks coffee every morning. / Right now: She is drinking coffee." },
                 { value: "b", label: "Habit: She is drinking coffee every morning. / Right now: She drinks coffee." },
                 { value: "c", label: "Habit: She drinking coffee every morning. / Right now: She drink coffee." },
+                { value: "a", label: "Habit: She drinks coffee every morning. / Right now: She is drinking coffee." },
             ],
             correctAnswer: "a",
             explanation: "Present Simple for habits (drinks every morning). Present Continuous for right now (is drinking).",
@@ -1014,8 +1014,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-14",
             question: "The train ___ at 7:45 every morning. (fixed schedule)",
             options: [
-                { value: "a", label: "is leaving" },
                 { value: "b", label: "leaves" },
+                { value: "a", label: "is leaving" },
                 { value: "c", label: "leave" },
             ],
             correctAnswer: "b",
@@ -1028,8 +1028,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             question: "Water ___ at 100 degrees Celsius. (scientific fact)",
             options: [
                 { value: "a", label: "is boiling" },
-                { value: "b", label: "boil" },
                 { value: "c", label: "boils" },
+                { value: "b", label: "boil" },
             ],
             correctAnswer: "c",
             explanation: "Use Present Simple for facts and universal truths: Water boils at 100°C.",
@@ -1041,8 +1041,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             question: "Which sentence correctly describes someone's job (permanent situation)?",
             options: [
                 { value: "a", label: "My brother is working as a nurse at the hospital." },
-                { value: "b", label: "My brother works as a nurse at the hospital." },
                 { value: "c", label: "My brother work as a nurse at the hospital." },
+                { value: "b", label: "My brother works as a nurse at the hospital." },
             ],
             correctAnswer: "b",
             explanation: "Use Present Simple for life situations like jobs: He works as a nurse. (Present Continuous suggests temporary.)",
@@ -1055,8 +1055,8 @@ export const presentSimpleContent: InteractiveGuideContent = {
             id: "quiz-17",
             question: "Which sentence has an ERROR?",
             options: [
-                { value: "a", label: "She works at the supermarket." },
                 { value: "b", label: "She work at the supermarket." },
+                { value: "a", label: "She works at the supermarket." },
                 { value: "c", label: "She doesn't work at the supermarket." },
             ],
             correctAnswer: "b",

@@ -162,8 +162,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Choose the correct zero conditional:",
                             options: [
-                                { value: "a", label: "If it rains, the ground gets wet." },
                                 { value: "b", label: "If it rains, the ground will get wet." },
+                                { value: "a", label: "If it rains, the ground gets wet." },
                                 { value: "c", label: "If it will rain, the ground gets wet." },
                             ],
                             expectedAnswer: "a",
@@ -179,9 +179,9 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence describes a habit (always true)?",
                             options: [
-                                { value: "a", label: "If I have free time, I read books." },
                                 { value: "b", label: "If I have free time, I will read books." },
                                 { value: "c", label: "If I will have free time, I read books." },
+                                { value: "a", label: "If I have free time, I read books." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -371,8 +371,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Complete: 'If I practice every day, I _____ speak English better.'",
                             options: [
-                                { value: "a", label: "can speak (ability/possibility)" },
                                 { value: "b", label: "must speak (strong necessity)" },
+                                { value: "a", label: "can speak (ability/possibility)" },
                                 { value: "c", label: "speak (no modal needed)" },
                             ],
                             expectedAnswer: "a",
@@ -381,9 +381,9 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Complete: 'If you feel sick, you _____ see a doctor.'",
                             options: [
-                                { value: "a", label: "should see (advice)" },
                                 { value: "b", label: "might see (uncertain)" },
                                 { value: "c", label: "see (imperative)" },
+                                { value: "a", label: "should see (advice)" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -443,8 +443,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Fix: 'If I will study hard, I will pass.'",
                             options: [
-                                { value: "a", label: "If I study hard, I will pass." },
                                 { value: "b", label: "If I will study hard, I pass." },
+                                { value: "a", label: "If I study hard, I will pass." },
                                 { value: "c", label: "If I studied hard, I will pass." },
                             ],
                             expectedAnswer: "a",
@@ -463,8 +463,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is correct for a science fact (always true)?",
                             options: [
-                                { value: "a", label: "If you drop a ball, it falls." },
                                 { value: "b", label: "If you drop a ball, it will fall." },
+                                { value: "a", label: "If you drop a ball, it falls." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -629,8 +629,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Your general habit: \"If I have money, I _____ it.\"",
                             options: [
-                                { value: "save", label: "save (Zero - my habit)" },
                                 { value: "will-save", label: "will save (First - specific future)" },
+                                { value: "save", label: "save (Zero - my habit)" },
                             ],
                             expectedAnswer: "save",
                         },
@@ -638,8 +638,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Tomorrow's plan: \"If it rains tomorrow, I _____ home.\"",
                             options: [
-                                { value: "stay", label: "stay (Zero - always true)" },
                                 { value: "will-stay", label: "will stay (First - tomorrow's plan)" },
+                                { value: "stay", label: "stay (Zero - always true)" },
                             ],
                             expectedAnswer: "will-stay",
                         },
@@ -647,8 +647,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Science fact: \"If you mix blue and yellow, you _____ green.\"",
                             options: [
-                                { value: "get", label: "get (Zero - always true fact)" },
                                 { value: "will-get", label: "will get (First - future possibility)" },
+                                { value: "get", label: "get (Zero - always true fact)" },
                             ],
                             expectedAnswer: "get",
                         },
@@ -770,8 +770,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             question: "What is the formula for first conditional?",
             options: [
                 { value: "a", label: "if + present, present" },
-                { value: "b", label: "if + present, will + verb" },
                 { value: "c", label: "if + past, would + verb" },
+                { value: "b", label: "if + present, will + verb" },
             ],
             correctAnswer: "b",
             explanation:
@@ -783,8 +783,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Which sentence is correct for first conditional?",
             options: [
-                { value: "a", label: "If it will rain, I will bring an umbrella." },
                 { value: "b", label: "If it rains, I will bring an umbrella." },
+                { value: "a", label: "If it will rain, I will bring an umbrella." },
                 { value: "c", label: "If it rain, I will bring an umbrella." },
             ],
             correctAnswer: "b",
@@ -797,8 +797,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Which is an example of zero conditional?",
             options: [
-                { value: "a", label: "If you heat ice, it melts." },
                 { value: "b", label: "If you heat ice, it will melt." },
+                { value: "a", label: "If you heat ice, it melts." },
                 { value: "c", label: "If you heated ice, it would melt." },
             ],
             correctAnswer: "a",
@@ -812,8 +812,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             question: "Can you use other modals instead of 'will' in first conditional?",
             options: [
                 { value: "a", label: "No, you must always use 'will'" },
-                { value: "b", label: "Yes, you can use can, may, might, should, must, or imperatives" },
                 { value: "c", label: "Only 'can' and 'may' are allowed" },
+                { value: "b", label: "Yes, you can use can, may, might, should, must, or imperatives" },
             ],
             correctAnswer: "b",
             explanation:
@@ -854,8 +854,8 @@ export const conditionalsZeroFirstContent: InteractiveGuideContent = {
             question: "Choose the best sentence for a future plan: tomorrow's weather.",
             options: [
                 { value: "a", label: "If it rains tomorrow, we stay home." },
-                { value: "b", label: "If it rains tomorrow, we will stay home." },
                 { value: "c", label: "If it rains, we stay home, always." },
+                { value: "b", label: "If it rains tomorrow, we will stay home." },
             ],
             correctAnswer: "b",
             explanation:

@@ -9,8 +9,22 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             title: "Continuous Tenses Review: The -ing Action Tenses",
             icon: "📚",
             explanation: `
+                <div style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(139, 92, 246, 0.1) 50%, rgba(6, 182, 212, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.25rem;">
+                    <h3 style="margin-top: 0; color: #7c3aed; font-size: 1.2rem;">🎯 The Big Idea</h3>
+                    <p style="margin-bottom: 0;">Continuous tenses are one family: <strong style="color: #c86b51;">be + verb-ing</strong>. The structure stays consistent, but the time perspective changes: present, past, or future.</p>
+                </div>
+
                 <p>All the "-ing" tenses in one place: what's happening now, what was happening then, and what will be happening later.</p>
                 <p><strong>Continuous Tenses:</strong> Present (now/temporary), Past (in progress in the past), Future (in progress at a future time)</p>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.25rem;">
+                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.05rem;">🗣️ When You'll Use This Review</h3>
+                    <ul style="margin: 0;">
+                        <li>Switching tenses clearly while telling a full story</li>
+                        <li>Reporting incidents ("I was walking when...", "I'm still recovering...", "I'll be meeting...")</li>
+                        <li>Professional communication across time frames in work, housing, and healthcare contexts</li>
+                    </ul>
+                </div>
             `,
             exercises: [
                 {
@@ -22,8 +36,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What do continuous tenses show?",
                             options: [
-                                { value: "a", label: "Actions in motion - what's happening now, was happening then, or will be happening later" },
                                 { value: "b", label: "Completed actions" },
+                                { value: "a", label: "Actions in motion - what's happening now, was happening then, or will be happening later" },
                                 { value: "c", label: "Habits and routines" },
                             ],
                             expectedAnswer: "a",
@@ -32,9 +46,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What are the three continuous tenses?",
                             options: [
-                                { value: "a", label: "Present Continuous (now/temporary), Past Continuous (in progress in past), Future Continuous (in progress at future time)" },
                                 { value: "b", label: "Present, Past, Future Simple" },
                                 { value: "c", label: "Perfect tenses only" },
+                                { value: "a", label: "Present Continuous (now/temporary), Past Continuous (in progress in past), Future Continuous (in progress at future time)" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -67,15 +81,15 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     description: "For actions in progress as you speak",
                     examples: [
                         {
-                            sentence: "I <span style=\"color: #f0b45a; font-weight: 600;\">am watching</span> TV while my dinner cooks.",
+                            sentence: "I <span style=\"color: #8b5cf6; font-weight: 600;\">am watching</span> TV while my dinner cooks.",
                             explanation: "✓ In-progress action this exact moment",
                         },
                         {
-                            sentence: "She <span style=\"color: #f0b45a; font-weight: 600;\">is talking</span> on the phone, and her kid <span style=\"color: #f0b45a; font-weight: 600;\">is yelling</span> in the background.",
+                            sentence: "She <span style=\"color: #8b5cf6; font-weight: 600;\">is talking</span> on the phone, and her kid <span style=\"color: #8b5cf6; font-weight: 600;\">is yelling</span> in the background.",
                             explanation: "✓ Multiple ongoing actions right now",
                         },
                         {
-                            sentence: "They <span style=\"color: #f0b45a; font-weight: 600;\">are waiting</span> for the bus that's late again.",
+                            sentence: "They <span style=\"color: #8b5cf6; font-weight: 600;\">are waiting</span> for the bus that's late again.",
                             explanation: "✓ Still happening as we speak",
                         },
                     ],
@@ -85,15 +99,15 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     description: "For short-term arrangements that aren't permanent",
                     examples: [
                         {
-                            sentence: "I'm <span style=\"color: #f0b45a; font-weight: 600;\">staying</span> with my sister this month while my apartment gets painted.",
+                            sentence: "I'm <span style=\"color: #8b5cf6; font-weight: 600;\">staying</span> with my sister this month while my apartment gets painted.",
                             explanation: "✓ Temporary living situation",
                         },
                         {
-                            sentence: "He <span style=\"color: #f0b45a; font-weight: 600;\">is working</span> the closing shift this week.",
+                            sentence: "He <span style=\"color: #8b5cf6; font-weight: 600;\">is working</span> the closing shift this week.",
                             explanation: "✓ Short-term schedule change",
                         },
                         {
-                            sentence: "We <span style=\"color: #f0b45a; font-weight: 600;\">are trying</span> a new recipe for dinner tonight.",
+                            sentence: "We <span style=\"color: #8b5cf6; font-weight: 600;\">are trying</span> a new recipe for dinner tonight.",
                             explanation: "✓ Temporary experiment",
                         },
                     ],
@@ -103,11 +117,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     description: "For arranged future activities (like 'going to')",
                     examples: [
                         {
-                            sentence: "I'm <span style=\"color: #f0b45a; font-weight: 600;\">meeting</span> my friend for coffee at 3 PM.",
+                            sentence: "I'm <span style=\"color: #8b5cf6; font-weight: 600;\">meeting</span> my friend for coffee at 3 PM.",
                             explanation: "✓ Scheduled soon - confirmed plan",
                         },
                         {
-                            sentence: "They're <span style=\"color: #f0b45a; font-weight: 600;\">going</span> to the movies tonight.",
+                            sentence: "They're <span style=\"color: #8b5cf6; font-weight: 600;\">going</span> to the movies tonight.",
                             explanation: "✓ Near-future arrangement",
                         },
                     ],
@@ -117,15 +131,15 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     description: "For actions in progress at a specific past time",
                     examples: [
                         {
-                            sentence: "I <span style=\"color: #8b5cf6; font-weight: 600;\">was walking</span> home when it started raining.",
+                            sentence: "I <span style=\"color: #f0b45a; font-weight: 600;\">was walking</span> home when it started raining.",
                             explanation: "✓ Ongoing action interrupted by another",
                         },
                         {
-                            sentence: "She <span style=\"color: #8b5cf6; font-weight: 600;\">was studying</span> when her phone rang.",
+                            sentence: "She <span style=\"color: #f0b45a; font-weight: 600;\">was studying</span> when her phone rang.",
                             explanation: "✓ Background action at specific past moment",
                         },
                         {
-                            sentence: "They <span style=\"color: #8b5cf6; font-weight: 600;\">were playing</span> soccer at 3 PM yesterday.",
+                            sentence: "They <span style=\"color: #f0b45a; font-weight: 600;\">were playing</span> soccer at 3 PM yesterday.",
                             explanation: "✓ In progress during a past time period",
                         },
                     ],
@@ -163,11 +177,11 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"The baby <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>sleeping</span> in the nursery while I prepare her bottle."',
                             options: [
-                                { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
                                 { value: "near-future", label: "Near-future plan" },
                                 { value: "past-ongoing", label: "Past ongoing action" },
                                 { value: "future-ongoing", label: "Future ongoing action" },
+                                { value: "now", label: "Action happening right now" },
                             ],
                             expectedAnswer: "now",
                         },
@@ -175,8 +189,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"My uncle <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>renting</span> an apartment while his house is being renovated."',
                             options: [
-                                { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
+                                { value: "now", label: "Action happening right now" },
                                 { value: "near-future", label: "Near-future plan" },
                                 { value: "past-ongoing", label: "Past ongoing action" },
                                 { value: "future-ongoing", label: "Future ongoing action" },
@@ -188,9 +202,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             label: '"The hikers <span class=\'eg-helper\'>were</span> <span class=\'eg-verb\'>climbing</span> the trail when the thunderstorm started."',
                             options: [
                                 { value: "now", label: "Action happening right now" },
+                                { value: "past-ongoing", label: "Past ongoing action" },
                                 { value: "temporary", label: "Temporary situation" },
                                 { value: "near-future", label: "Near-future plan" },
-                                { value: "past-ongoing", label: "Past ongoing action" },
                                 { value: "future-ongoing", label: "Future ongoing action" },
                             ],
                             expectedAnswer: "past-ongoing",
@@ -201,9 +215,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             options: [
                                 { value: "now", label: "Action happening right now" },
                                 { value: "temporary", label: "Temporary situation" },
+                                { value: "future-ongoing", label: "Future ongoing action" },
                                 { value: "near-future", label: "Near-future plan" },
                                 { value: "past-ongoing", label: "Past ongoing action" },
-                                { value: "future-ongoing", label: "Future ongoing action" },
                             ],
                             expectedAnswer: "future-ongoing",
                         },
@@ -218,9 +232,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"The kids ___ (play) in the park right now." (action in progress)',
                             options: [
-                                { value: "are playing", label: "are playing" },
                                 { value: "were playing", label: "were playing" },
                                 { value: "will be playing", label: "will be playing" },
+                                { value: "are playing", label: "are playing" },
                             ],
                             expectedAnswer: "are playing",
                         },
@@ -228,8 +242,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"My sister ___ (practice) piano when the power went out." (past ongoing)',
                             options: [
-                                { value: "is practicing", label: "is practicing" },
                                 { value: "was practicing", label: "was practicing" },
+                                { value: "is practicing", label: "is practicing" },
                                 { value: "will be practicing", label: "will be practicing" },
                             ],
                             expectedAnswer: "was practicing",
@@ -239,8 +253,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             label: '"They ___ (travel) next month." (future ongoing)',
                             options: [
                                 { value: "are traveling", label: "are traveling" },
-                                { value: "were traveling", label: "were traveling" },
                                 { value: "will be traveling", label: "will be traveling" },
+                                { value: "were traveling", label: "were traveling" },
                             ],
                             expectedAnswer: "will be traveling",
                         },
@@ -249,8 +263,87 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             ],
         },
         {
-            id: "timeline-visualization",
+            id: "continuous-vs-simple",
             stepNumber: 2,
+            title: "Continuous vs Simple: Which Lens to Use?",
+            icon: "🔍",
+            explanation: `
+                <h3>Continuous = action in motion. Simple = fact, routine, or completed event.</h3>
+                <p>This comparison helps you decide whether to focus on process/duration or a general/finished fact.</p>
+
+                <div style="overflow-x: auto; margin-top: 1rem;">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left;">Time Frame</th>
+                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left;">Continuous (in progress)</th>
+                                <th style="padding: 0.75rem; border: 1px solid #e2e8f0; text-align: left;">Simple (habit/fact/event)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600;">Present</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I am working late today.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I work nights.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600;">Past</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I was walking when it started raining.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">It started raining at 6 PM.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0; font-weight: 600;">Future</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I will be driving at 8 PM.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #e2e8f0;">I will drive you home.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Choice Rule",
+                content: "Ask: Do I need to show the action as ongoing at that time? If yes, use continuous. If no, simple tense is often better.",
+            },
+            exercises: [
+                {
+                    id: "ex-continuous-vs-simple-1",
+                    title: "Choose Continuous or Simple",
+                    instructions: "Pick the best sentence for each context.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "You are describing your normal work routine:",
+                            options: [
+                                { value: "simple", label: "I work from 9 to 5." },
+                                { value: "continuous", label: "I am working from 9 to 5." },
+                            ],
+                            expectedAnswer: "simple",
+                        },
+                        {
+                            type: "radio",
+                            label: "You are talking about tonight at 9 PM:",
+                            options: [
+                                { value: "future-simple", label: "I will study at 9 PM and finish quickly." },
+                                { value: "future-cont", label: "I will be studying at 9 PM." },
+                            ],
+                            expectedAnswer: "future-cont",
+                        },
+                        {
+                            type: "radio",
+                            label: "You want to show background + interruption:",
+                            options: [
+                                { value: "past-mix", label: "I was cooking when the phone rang." },
+                                { value: "past-simple", label: "I cooked when the phone rang." },
+                            ],
+                            expectedAnswer: "past-mix",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "timeline-visualization",
+            stepNumber: 3,
             title: "Timeline: Duration Across All Three Times",
             icon: "⏰",
             explanation: `
@@ -326,11 +419,32 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                         </div>
 
                     </div>
+
+                    <div style="margin-top: 1.5rem; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 0.5rem; padding: 1rem;">
+                        <h4 style="margin-top: 0; color: #c2410c;">Interrupted Action Pattern (Past)</h4>
+                        <p style="margin: 0;">I <strong>was walking</strong> home <strong>when</strong> it <strong>started</strong> raining.</p>
+                        <p style="margin: 0.5rem 0 0 0; font-size: 0.88rem; color: #7c2d12;">Background duration (Past Continuous) + short point event (Past Simple)</p>
+                    </div>
+
+                    <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.85rem;">
+                            <h4 style="margin: 0 0 0.35rem 0;">While Pattern</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">While I <strong>was cooking</strong>, my son <strong>was setting</strong> the table.</p>
+                        </div>
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.85rem;">
+                            <h4 style="margin: 0 0 0.35rem 0;">When Pattern</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">I <strong>was cooking</strong> when the smoke alarm <strong>went off</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1rem; background: #eef2ff; border-left: 4px solid #6366f1; border-radius: 0.5rem; padding: 0.9rem;">
+                        <p style="margin: 0;"><strong>Duration vs Point-in-Time:</strong> Continuous answers "What was happening during this period?" Simple often answers "What happened at this point?"</p>
+                    </div>
                 </div>
             `,
             tipBox: {
                 title: "💡 The Pattern",
-                content: "All three use the SAME -ing verb. Only 'be' changes across time: was/were (past), am/is/are (now), will be (future). The bars show DURATION—these actions happen over a period of time, not just at one moment.",
+                content: "All three use the SAME -ing verb. Only 'be' changes across time: was/were (past), am/is/are (now), will be (future). Pair this with while/when patterns to show duration vs interruptions clearly.",
             },
             exercises: [
                 {
@@ -342,9 +456,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"At 7 PM last night, I ___ dinner."',
                             options: [
-                                { value: "was cooking", label: "was cooking" },
                                 { value: "am cooking", label: "am cooking" },
                                 { value: "will be cooking", label: "will be cooking" },
+                                { value: "was cooking", label: "was cooking" },
                             ],
                             expectedAnswer: "was cooking",
                         },
@@ -352,8 +466,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"Right now, the kids ___ in the living room."',
                             options: [
-                                { value: "were playing", label: "were playing" },
                                 { value: "are playing", label: "are playing" },
+                                { value: "were playing", label: "were playing" },
                                 { value: "will be playing", label: "will be playing" },
                             ],
                             expectedAnswer: "are playing",
@@ -363,8 +477,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             label: '"Tomorrow at 9 AM, I ___ on the bus to work."',
                             options: [
                                 { value: "was riding", label: "was riding" },
-                                { value: "am riding", label: "am riding" },
                                 { value: "will be riding", label: "will be riding" },
+                                { value: "am riding", label: "am riding" },
                             ],
                             expectedAnswer: "will be riding",
                         },
@@ -372,9 +486,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which form of 'be' is used in Future Continuous?",
                             options: [
-                                { value: "will be", label: "will be" },
                                 { value: "are", label: "are" },
                                 { value: "was", label: "was" },
+                                { value: "will be", label: "will be" },
                             ],
                             expectedAnswer: "will be",
                         },
@@ -383,8 +497,221 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             ],
         },
         {
+            id: "common-mistakes-all-continuous",
+            stepNumber: 4,
+            title: "Common Mistakes Across All Continuous Tenses",
+            icon: "⚠️",
+            explanation: `
+                <h3>These errors appear in present, past, and future continuous</h3>
+                <p>If you fix these four areas, your accuracy improves fast.</p>
+            `,
+            verbTable: {
+                title: "High-Frequency Stative Verbs (Usually Not Continuous)",
+                headers: ["Category", "Examples"],
+                rows: [
+                    ["Emotion", "love, hate, prefer, want, need"],
+                    ["Mental state", "know, believe, understand, remember"],
+                    ["Possession", "have (possession), own, belong"],
+                    ["State/appearance", "seem, appear, consist, contain"],
+                ],
+            },
+            usageMeanings: [
+                {
+                    title: "❌ Missing 'be' Verb",
+                    description: "Every continuous tense needs a form of 'be'",
+                    examples: [
+                        {
+                            sentence: "❌ She <span style=\"color: #ef4444;\">working</span> now.",
+                            explanation: "✓ She <strong>is working</strong> now.",
+                        },
+                        {
+                            sentence: "❌ They <span style=\"color: #ef4444;\">waiting</span> when I arrived.",
+                            explanation: "✓ They <strong>were waiting</strong> when I arrived.",
+                        },
+                    ],
+                },
+                {
+                    title: "❌ Wrong Form After 'be'",
+                    description: "Use -ing after am/is/are, was/were, will be",
+                    examples: [
+                        {
+                            sentence: "❌ I am <span style=\"color: #ef4444;\">study</span> tonight.",
+                            explanation: "✓ I am <strong>studying</strong> tonight.",
+                        },
+                        {
+                            sentence: "❌ We will be <span style=\"color: #ef4444;\">work</span> late.",
+                            explanation: "✓ We will be <strong>working</strong> late.",
+                        },
+                    ],
+                },
+                {
+                    title: "❌ -ing Spelling Problems",
+                    description: "Watch double consonants and dropping final -e",
+                    examples: [
+                        {
+                            sentence: "❌ runing / writeing / stoping",
+                            explanation: "✓ running / writing / stopping",
+                        },
+                    ],
+                },
+                {
+                    title: "❌ Confusing Continuous with Simple",
+                    description: "Use simple for facts/habits and many stative verbs",
+                    examples: [
+                        {
+                            sentence: "❌ I am knowing the answer.",
+                            explanation: "✓ I <strong>know</strong> the answer.",
+                        },
+                        {
+                            sentence: "❌ I was owning a car in 2010.",
+                            explanation: "✓ I <strong>owned</strong> a car in 2010.",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Fast Self-Check",
+                content: "Check 1) Is 'be' present? 2) Is the main verb in -ing? 3) Is this verb action-type or stative?",
+            },
+            exercises: [
+                {
+                    id: "ex-common-mistakes-all-cont-1",
+                    title: "Fix the Mistake",
+                    instructions: "Rewrite each sentence correctly.",
+                    items: [
+                        { type: "text", label: "He working at the front desk today.", expectedAnswer: "He is working at the front desk today" },
+                        { type: "text", label: "I was know the answer yesterday.", expectedAnswer: "I knew the answer yesterday" },
+                        { type: "text", label: "They will be come at 7 PM.", expectedAnswer: "They will be coming at 7 PM" },
+                        { type: "text", label: "She is runing late right now.", expectedAnswer: "She is running late right now" },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "commonly-confused-patterns",
+            stepNumber: 5,
+            title: "Commonly Confused Patterns",
+            icon: "🧠",
+            explanation: `
+                <h3>Use meaning + time clues to choose the right tense</h3>
+                <p>These are high-confusion pairs for multilingual learners.</p>
+            `,
+            usageMeanings: [
+                {
+                    title: "1) Present Continuous vs Present Perfect Continuous",
+                    description: "Now in progress vs duration up to now",
+                    examples: [
+                        {
+                            sentence: "I <strong>am waiting</strong> for the bus. (what is happening now)",
+                            explanation: "Current action in progress",
+                        },
+                        {
+                            sentence: "I <strong>have been waiting</strong> for two hours. (duration until now)",
+                            explanation: "Length of ongoing action",
+                        },
+                    ],
+                },
+                {
+                    title: "2) Past Continuous vs Past Simple",
+                    description: "Background process vs completed event",
+                    examples: [
+                        {
+                            sentence: "I <strong>was walking</strong> home when it started raining.",
+                            explanation: "Background + interruption",
+                        },
+                        {
+                            sentence: "I <strong>walked</strong> home at 6 PM.",
+                            explanation: "Completed event at a point in time",
+                        },
+                    ],
+                },
+                {
+                    title: "3) Future Continuous vs Will / Going to / Present Continuous (future)",
+                    description: "In progress at future point vs decision/plan types",
+                    examples: [
+                        {
+                            sentence: "I'll <strong>be working</strong> at 8 PM. (future action in progress)",
+                            explanation: "Future Continuous",
+                        },
+                        {
+                            sentence: "I'll help you. (decision now) / I'm going to move. (intention) / I'm meeting Sara at 4. (arrangement)",
+                            explanation: "Other future forms",
+                        },
+                    ],
+                },
+                {
+                    title: "4) Time Expressions Matter",
+                    description: "Match tense to signal words and context",
+                    examples: [
+                        {
+                            sentence: "<strong>Right now</strong> → Present Continuous",
+                            explanation: "Action in progress now",
+                        },
+                        {
+                            sentence: "<strong>At 9 PM yesterday</strong> → Past Continuous / <strong>This time tomorrow</strong> → Future Continuous",
+                            explanation: "Specific past or future points",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Decision Frame",
+                content: "Ask: What time is this? Is the action in progress or completed? Do I need duration, interruption, or arrangement meaning?",
+            },
+            exercises: [
+                {
+                    id: "ex-confused-patterns-1",
+                    title: "Which Tense Fits Best?",
+                    instructions: "Choose the tense that matches the meaning and time clue.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "You started waiting at 8:00. It is 10:00 now.",
+                            options: [
+                                { value: "ppc", label: "I have been waiting for two hours." },
+                                { value: "pc", label: "I am waiting for two hours." },
+                                { value: "ps", label: "I waited for two hours." },
+                            ],
+                            expectedAnswer: "ppc",
+                        },
+                        {
+                            type: "radio",
+                            label: "At 9 PM tomorrow, during your shift:",
+                            options: [
+                                { value: "future-simple", label: "I will work." },
+                                { value: "future-cont", label: "I will be working." },
+                                { value: "present-simple", label: "I work." },
+                            ],
+                            expectedAnswer: "future-cont",
+                        },
+                        {
+                            type: "radio",
+                            label: "You describe a completed event yesterday at 6 PM:",
+                            options: [
+                                { value: "past-cont", label: "I was finishing the report at 6 PM." },
+                                { value: "present-cont", label: "I am finishing the report at 6 PM yesterday." },
+                                { value: "past-simple", label: "I finished the report at 6 PM." },
+                            ],
+                            expectedAnswer: "past-simple",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-which-continuous-diagnostic-1",
+                    title: "Diagnostic: Which Continuous Tense?",
+                    instructions: "Write the best continuous form for each context.",
+                    items: [
+                        { type: "text", label: "Right now, she ___ (talk) with the landlord.", expectedAnswer: "is talking" },
+                        { type: "text", label: "At midnight, they ___ (drive) to the hospital.", expectedAnswer: "were driving" },
+                        { type: "text", label: "This time next week, we ___ (travel) to visit family.", expectedAnswer: "will be traveling" },
+                        { type: "text", label: "While I ___ (fill out) the form, the clerk was explaining the process.", expectedAnswer: "was filling out" },
+                    ],
+                },
+            ],
+        },
+        {
             id: "present-forms",
-            stepNumber: 3,
+            stepNumber: 6,
             title: "Present Continuous Forms",
             explanation: `
                 <h3>The Formula for Right Now</h3>
@@ -447,7 +774,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "past-forms",
-            stepNumber: 4,
+            stepNumber: 7,
             title: "Past Continuous Forms",
             explanation: `
                 <h3>The Formula for Past Ongoing Actions</h3>
@@ -498,7 +825,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "future-forms",
-            stepNumber: 5,
+            stepNumber: 8,
             title: "Future Continuous Forms",
             explanation: `
                 <h3>The Formula for Future Ongoing Actions</h3>
@@ -549,7 +876,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "practice",
-            stepNumber: 6,
+            stepNumber: 9,
             title: "Mixed Practice: All Continuous Tenses",
             explanation: `
                 <h3>Put It All Together</h3>
@@ -585,7 +912,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "verb-conjugation",
-            stepNumber: 4,
+            stepNumber: 10,
             title: "Verb Conjugation Practice: Master All Continuous Forms",
             icon: "📊",
             explanation: `
@@ -679,7 +1006,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "advanced-practice",
-            stepNumber: 5,
+            stepNumber: 11,
             title: "Advanced Practice: Mastering Continuous Tenses",
             icon: "🎯",
             explanation: `
@@ -708,8 +1035,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I'm knowing the answer." },
                                 { value: "b", label: "I know the answer." },
+                                { value: "a", label: "I'm knowing the answer." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -726,8 +1053,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "They are understanding the concept now." },
                                 { value: "b", label: "They understand the concept now." },
+                                { value: "a", label: "They are understanding the concept now." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -812,8 +1139,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Action happening RIGHT NOW as you speak:",
                             options: [
-                                { value: "a", label: "She was writing an email." },
                                 { value: "b", label: "She is writing an email." },
+                                { value: "a", label: "She was writing an email." },
                                 { value: "c", label: "She will be writing an email." },
                             ],
                             expectedAnswer: "b",
@@ -941,8 +1268,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I am working right now." },
                                 { value: "b", label: "I am work right now." },
+                                { value: "a", label: "I am working right now." },
                                 { value: "c", label: "I will working right now." },
                             ],
                             expectedAnswer: "a",
@@ -957,9 +1284,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly shows an action happening right now?",
             options: [
-                { value: "a", label: "I am eating lunch at the moment." },
                 { value: "b", label: "I was eating lunch at the moment." },
                 { value: "c", label: "I will be eating lunch at the moment." },
+                { value: "a", label: "I am eating lunch at the moment." },
             ],
             correctAnswer: "a",
             skillTag: "meaning-present-cont-now",
@@ -997,8 +1324,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             question: "Pick the correct question: '___ you ___ (wait) long?'",
             options: [
                 { value: "a", label: "Are you waiting" },
-                { value: "b", label: "Were you waiting" },
                 { value: "c", label: "Will you be waiting" },
+                { value: "b", label: "Were you waiting" },
             ],
             correctAnswer: "b",
             skillTag: "form-past-cont-question",
@@ -1023,8 +1350,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             question: "Which fits a future ongoing action: 'At 8 PM tomorrow, I ___ (work).'",
             options: [
                 { value: "a", label: "am working" },
-                { value: "b", label: "was working" },
                 { value: "c", label: "will be working" },
+                { value: "b", label: "was working" },
             ],
             correctAnswer: "c",
             skillTag: "meaning-future-cont-specific-time",
@@ -1036,8 +1363,8 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             question: "What is the -ing form of 'run'?",
             options: [
                 { value: "a", label: "runing" },
-                { value: "b", label: "running" },
                 { value: "c", label: "runeing" },
+                { value: "b", label: "running" },
             ],
             correctAnswer: "b",
             skillTag: "spelling-ing-double-consonant",
@@ -1113,9 +1440,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Change to negative: 'We were watching TV.'",
             options: [
-                { value: "a", label: "We weren't watching TV." },
                 { value: "b", label: "We wasn't watching TV." },
                 { value: "c", label: "We not were watching TV." },
+                { value: "a", label: "We weren't watching TV." },
             ],
             correctAnswer: "a",
             skillTag: "form-past-cont-negative",
@@ -1126,9 +1453,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-14",
             question: "What's the -ing form of 'write'?",
             options: [
+                { value: "c", label: "writing" },
                 { value: "a", label: "writeing" },
                 { value: "b", label: "writting" },
-                { value: "c", label: "writing" },
             ],
             correctAnswer: "c",
             skillTag: "spelling-ing-drop-e",
@@ -1139,14 +1466,79 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-15",
             question: "Which continuous tense emphasizes an action's DURATION?",
             options: [
-                { value: "a", label: "All continuous tenses (present, past, future)" },
                 { value: "b", label: "Only Past Continuous" },
+                { value: "a", label: "All continuous tenses (present, past, future)" },
                 { value: "c", label: "Only Future Continuous" },
             ],
             correctAnswer: "a",
             skillTag: "meaning-continuous-duration",
             difficulty: "easy",
             explanation: "All continuous tenses show actions in progress over time—that's what makes them 'continuous'!",
+        },
+        {
+            id: "quiz-16",
+            question: "Choose the best sentence: action happening now vs duration up to now.",
+            options: [
+                { value: "a", label: "I am waiting for two hours." },
+                { value: "c", label: "I was waiting for two hours now." },
+                { value: "b", label: "I have been waiting for two hours." },
+            ],
+            correctAnswer: "b",
+            skillTag: "contrast-present-cont-vs-present-perfect-continuous",
+            difficulty: "hard",
+            explanation: "Use Present Perfect Continuous for duration that started earlier and continues up to now.",
+        },
+        {
+            id: "quiz-17",
+            question: "Which sentence correctly uses a stative verb?",
+            options: [
+                { value: "b", label: "I know the answer now." },
+                { value: "a", label: "I am knowing the answer now." },
+                { value: "c", label: "I was knowing the answer." },
+            ],
+            correctAnswer: "b",
+            skillTag: "error-stative-verb-continuous",
+            difficulty: "medium",
+            explanation: "Know is usually stative, so simple forms are preferred over continuous forms.",
+        },
+        {
+            id: "quiz-18",
+            question: "Which pair best shows background + interruption?",
+            options: [
+                { value: "b", label: "I drove when I was seeing the accident." },
+                { value: "a", label: "I was driving when I saw the accident." },
+                { value: "c", label: "I am driving when I saw the accident." },
+            ],
+            correctAnswer: "a",
+            skillTag: "contrast-past-cont-vs-past-simple",
+            difficulty: "medium",
+            explanation: "Past Continuous sets background; Past Simple marks the shorter interrupting event.",
+        },
+        {
+            id: "quiz-19",
+            question: "Which form is best for a scheduled arrangement tomorrow at 3 PM?",
+            options: [
+                { value: "b", label: "I'll be meet my advisor at 3 PM tomorrow." },
+                { value: "c", label: "I meeted my advisor at 3 PM tomorrow." },
+                { value: "a", label: "I'm meeting my advisor at 3 PM tomorrow." },
+            ],
+            correctAnswer: "a",
+            skillTag: "contrast-future-forms-arrangement",
+            difficulty: "medium",
+            explanation: "Present Continuous is common for fixed arranged appointments in the near future.",
+        },
+        {
+            id: "quiz-20",
+            question: "Choose the best sentence for a specific future time in progress.",
+            options: [
+                { value: "a", label: "At 8 PM tonight, I will be working." },
+                { value: "b", label: "At 8 PM tonight, I am work." },
+                { value: "c", label: "At 8 PM tonight, I worked." },
+            ],
+            correctAnswer: "a",
+            skillTag: "meaning-future-cont-specific-time",
+            difficulty: "easy",
+            explanation: "Future Continuous (will be + verb-ing) fits actions in progress at a future clock time.",
         },
     ],
 /*
@@ -1159,6 +1551,9 @@ Skill focus by tag:
 - meaning-past-cont-interrupted: background action interrupted by past simple
 - meaning-future-cont-specific-time: actions in progress at a future time
 - meaning-continuous-duration: recognizing that all continuous tenses emphasize duration
+- contrast-present-cont-vs-present-perfect-continuous: now-in-progress vs duration-up-to-now
+- contrast-past-cont-vs-past-simple: background action vs completed event
+- contrast-future-forms-arrangement: choosing arrangement forms for future schedules
 
 Form focus:
 - form-present-cont-negative

@@ -1313,8 +1313,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
         return (
             <div className="animate-fade-in">
-                {/* Visual grouping header summary */}
-                {filterCategory !== 'games' && (
+                {/* Visual grouping header summary - hidden for games and pronunciation (counted as play, not complete) */}
+                {filterCategory !== 'games' && filterCategory !== 'pronunciation' && (
                     <div className="mb-6 pb-2 border-b border-border/20 flex items-center justify-between">
                         <p className="text-xs font-bold text-text-muted/80 uppercase tracking-widest">
                             {totalCount} activities
@@ -1381,16 +1381,18 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                         >
                                             {section.label}
                                         </p>
-                                        <span
-                                            className="text-[10px] font-medium px-2 py-0.5 rounded-full border"
-                                            style={{
-                                                backgroundColor: sectionTexture ? `${sectionTexture.color}08` : 'white',
-                                                borderColor: sectionTexture ? `${sectionTexture.color}20` : 'rgba(243, 244, 246, 1)',
-                                                color: sectionTexture ? sectionTexture.color : 'var(--text-muted)'
-                                            }}
-                                        >
-                                            {sectionCompleted}/{sectionTotal}
-                                        </span>
+                                        {filterCategory !== 'games' && filterCategory !== 'pronunciation' && (
+                                            <span
+                                                className="text-[10px] font-medium px-2 py-0.5 rounded-full border"
+                                                style={{
+                                                    backgroundColor: sectionTexture ? `${sectionTexture.color}08` : 'white',
+                                                    borderColor: sectionTexture ? `${sectionTexture.color}20` : 'rgba(243, 244, 246, 1)',
+                                                    color: sectionTexture ? sectionTexture.color : 'var(--text-muted)'
+                                                }}
+                                            >
+                                                {sectionCompleted}/{sectionTotal}
+                                            </span>
+                                        )}
                                     </div>
                                 )}
                                 <div className={`space-y-2.5 ${filterCategory === 'games' ? 'grid grid-cols-1 sm:grid-cols-2 gap-3 space-y-0' : ''}`}>

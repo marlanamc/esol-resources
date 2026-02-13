@@ -32,8 +32,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Why are punctuation and capitalization important?",
                             options: [
-                                { value: "a", label: "They make writing professional, clear, and show attention to detail" },
                                 { value: "b", label: "They're only important in formal writing" },
+                                { value: "a", label: "They make writing professional, clear, and show attention to detail" },
                                 { value: "c", label: "They don't matter" },
                             ],
                             expectedAnswer: "a",
@@ -42,9 +42,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Where are punctuation and capitalization essential?",
                             options: [
-                                { value: "a", label: "Professional communication, academic writing, clarity, credibility" },
                                 { value: "b", label: "Only in emails" },
                                 { value: "c", label: "Only in essays" },
+                                { value: "a", label: "Professional communication, academic writing, clarity, credibility" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -117,8 +117,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"I live in East Boston" — choose: <span class=\'eg-punctuation\'>.</span> <span class=\'eg-punctuation\'>?</span> <span class=\'eg-punctuation\'>!</span>',
                             options: [
-                                { value: "period", label: "Period (<span class='eg-punctuation'>.</span>) - statement" },
                                 { value: "question", label: "Question mark (<span class='eg-punctuation'>?</span>) - question" },
+                                { value: "period", label: "Period (<span class='eg-punctuation'>.</span>) - statement" },
                                 { value: "exclamation", label: "Exclamation point (<span class='eg-punctuation'>!</span>) - strong emotion" },
                             ],
                             expectedAnswer: "period",
@@ -128,8 +128,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             label: '"Where do you live" — choose: <span class=\'eg-punctuation\'>.</span> <span class=\'eg-punctuation\'>?</span> <span class=\'eg-punctuation\'>!</span>',
                             options: [
                                 { value: "period", label: "Period (<span class='eg-punctuation'>.</span>)" },
-                                { value: "question", label: "Question mark (<span class='eg-punctuation'>?</span>) - direct question" },
                                 { value: "exclamation", label: "Exclamation point (<span class='eg-punctuation'>!</span>)" },
+                                { value: "question", label: "Question mark (<span class='eg-punctuation'>?</span>) - direct question" },
                             ],
                             expectedAnswer: "question",
                         },
@@ -325,8 +325,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence uses an apostrophe (<span class='eg-punctuation'>&apos;</span>) correctly for a contraction?",
                             options: [
-                                { value: "a", label: "I<span class='eg-punctuation'>&apos;</span>m going to the store<span class='eg-punctuation'>.</span>" },
                                 { value: "b", label: "Im going to the store." },
+                                { value: "a", label: "I<span class='eg-punctuation'>&apos;</span>m going to the store<span class='eg-punctuation'>.</span>" },
                                 { value: "c", label: "I,m going to the store." },
                             ],
                             expectedAnswer: "a",
@@ -446,9 +446,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence capitalizes the title correctly?",
                             options: [
-                                { value: "a", label: "<span class='eg-capital'>Doctor</span> Rivera is my doctor<span class='eg-punctuation'>.</span>" },
                                 { value: "b", label: "doctor Rivera is my Doctor." },
                                 { value: "c", label: "Doctor Rivera is my Doctor." },
+                                { value: "a", label: "<span class='eg-capital'>Doctor</span> Rivera is my doctor<span class='eg-punctuation'>.</span>" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -466,8 +466,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence correctly capitalizes subjects?",
                             options: [
-                                { value: "a", label: "I study math, science, and English." },
                                 { value: "b", label: "I study Math, Science, and english." },
+                                { value: "a", label: "I study math, science, and English." },
                                 { value: "c", label: "I study math, science, and english." },
                             ],
                             expectedAnswer: "a",
@@ -516,9 +516,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When should you use quotation marks?",
                             options: [
-                                { value: "a", label: "For direct speech (exact words someone said)" },
                                 { value: "b", label: "For all sentences" },
                                 { value: "c", label: "Only for questions" },
+                                { value: "a", label: "For direct speech (exact words someone said)" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -648,8 +648,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Add a comma (<span class='eg-punctuation'>,</span>): If I have time I'll call you.",
                             options: [
-                                { value: "a", label: "If I have time<span class='eg-punctuation'>,</span> I<span class='eg-punctuation'>&apos;</span>ll call you<span class='eg-punctuation'>.</span>" },
                                 { value: "b", label: "If I have time I'll call you." },
+                                { value: "a", label: "If I have time<span class='eg-punctuation'>,</span> I<span class='eg-punctuation'>&apos;</span>ll call you<span class='eg-punctuation'>.</span>" },
                                 { value: "c", label: "If I have time; I'll call you." },
                             ],
                             expectedAnswer: "a",
@@ -665,9 +665,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Fix: The childrens toys are in the box.",
                             options: [
-                                { value: "a", label: "The children's toys are in the box." },
                                 { value: "b", label: "The childrens toys are in the box." },
                                 { value: "c", label: "The childrens' toys are in the box." },
+                                { value: "a", label: "The children's toys are in the box." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -699,8 +699,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Fix: Its a beautiful day. (it is a beautiful day)",
                             options: [
-                                { value: "a", label: "It's a beautiful day." },
                                 { value: "b", label: "Its a beautiful day." },
+                                { value: "a", label: "It's a beautiful day." },
                                 { value: "c", label: "It's a beautiful day" },
                             ],
                             expectedAnswer: "a",
@@ -772,9 +772,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When do you use a period (.)?",
                             options: [
-                                { value: "a", label: "For statements and commands" },
                                 { value: "b", label: "For questions only" },
                                 { value: "c", label: "For strong emotions" },
+                                { value: "a", label: "For statements and commands" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -792,8 +792,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the difference between 'its' and 'it's'?",
                             options: [
-                                { value: "a", label: "'its' = possessive (no apostrophe) | 'it's' = contraction for 'it is'" },
                                 { value: "b", label: "They mean the same thing" },
+                                { value: "a", label: "'its' = possessive (no apostrophe) | 'it's' = contraction for 'it is'" },
                                 { value: "c", label: "'its' = contraction | 'it's' = possessive" },
                             ],
                             expectedAnswer: "a",
@@ -802,9 +802,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What should be capitalized?",
                             options: [
-                                { value: "a", label: "Beginning of sentences, pronoun 'I', proper nouns, days/months, languages/nationalities, titles before names" },
                                 { value: "b", label: "Only the first word of every sentence" },
                                 { value: "c", label: "All nouns" },
+                                { value: "a", label: "Beginning of sentences, pronoun 'I', proper nouns, days/months, languages/nationalities, titles before names" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -859,9 +859,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            id: "quiz-3",
 	            question: "Which is capitalized correctly?",
 	            options: [
+	                { value: "c", label: "I study English at Bunker Hill Community College." },
 	                { value: "a", label: "i study english at bunker hill community college." },
 	                { value: "b", label: "I study English at bunker hill community college." },
-	                { value: "c", label: "I study English at Bunker Hill Community College." },
 	            ],
 	            correctAnswer: "c",
 	            explanation:
@@ -888,8 +888,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            question: "Which is correct?",
 	            options: [
 	                { value: "a", label: "Its a beautiful day." },
-	                { value: "b", label: "It's a beautiful day." },
 	                { value: "c", label: "Its' a beautiful day." },
+	                { value: "b", label: "It's a beautiful day." },
 	            ],
 	            correctAnswer: "b",
 	            explanation:
@@ -916,8 +916,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            question:
 	                "Which end punctuation is correct? 'I wonder where Maverick Station is___'",
 	            options: [
-	                { value: "a", label: "Period (.)" },
 	                { value: "b", label: "Question mark (?)" },
+	                { value: "a", label: "Period (.)" },
 	                { value: "c", label: "Exclamation point (!)" },
 	            ],
 	            correctAnswer: "a",
@@ -931,9 +931,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            question:
 	                "Where should the comma go? 'After work ___ I'm taking the Blue Line home.'",
 	            options: [
-	                { value: "a", label: "After 'After work'" },
 	                { value: "b", label: "After 'Line'" },
 	                { value: "c", label: "No comma needed" },
+	                { value: "a", label: "After 'After work'" },
 	            ],
 	            correctAnswer: "a",
 	            explanation:
@@ -945,8 +945,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            id: "quiz-9",
 	            question: "Which is correct?",
 	            options: [
-	                { value: "a", label: "I live in Chelsea Massachusetts." },
 	                { value: "b", label: "I live in Chelsea, Massachusetts." },
+	                { value: "a", label: "I live in Chelsea Massachusetts." },
 	                { value: "c", label: "I live in Chelsea, massachusetts." },
 	            ],
 	            correctAnswer: "b",
@@ -973,8 +973,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            id: "quiz-11",
 	            question: "Which sentence is capitalized correctly?",
 	            options: [
-	                { value: "a", label: "We have class on Monday." },
 	                { value: "b", label: "We have class on monday." },
+	                { value: "a", label: "We have class on Monday." },
 	                { value: "c", label: "We Have Class On Monday." },
 	            ],
 	            correctAnswer: "a",
@@ -987,9 +987,9 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            id: "quiz-12",
 	            question: "Which sentence is correct?",
 	            options: [
-	                { value: "a", label: "I like spring and fall." },
 	                { value: "b", label: "I like Spring and Fall." },
 	                { value: "c", label: "I Like spring and fall." },
+	                { value: "a", label: "I like spring and fall." },
 	            ],
 	            correctAnswer: "a",
 	            explanation:
@@ -1001,8 +1001,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            id: "quiz-13",
 	            question: "Which shows plural possession (more than one nurse)?",
 	            options: [
-	                { value: "a", label: "the nurse's station" },
 	                { value: "b", label: "the nurses' station" },
+	                { value: "a", label: "the nurse's station" },
 	                { value: "c", label: "the nurses station" },
 	            ],
 	            correctAnswer: "b",
@@ -1015,8 +1015,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	            id: "quiz-14",
 	            question: "Choose the correct word: 'The bus changed ___ route today.'",
 	            options: [
-	                { value: "a", label: "its" },
 	                { value: "b", label: "it's" },
+	                { value: "a", label: "its" },
 	                { value: "c", label: "its'" },
 	            ],
 	            correctAnswer: "a",
@@ -1031,8 +1031,8 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	                "You email your supervisor. Which ending punctuation is most professional?",
 	            options: [
 	                { value: "a", label: "Please call me!" },
-	                { value: "b", label: "Please call me." },
 	                { value: "c", label: "Please call me??" },
+	                { value: "b", label: "Please call me." },
 	            ],
 	            correctAnswer: "b",
 	            explanation:

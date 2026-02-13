@@ -154,8 +154,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is correct second conditional?",
                             options: [
-                                { value: "a", label: "If I spoke Spanish, I would move to Spain." },
                                 { value: "b", label: "If I speak Spanish, I will move to Spain." },
+                                { value: "a", label: "If I spoke Spanish, I would move to Spain." },
                                 { value: "c", label: "If I would speak Spanish, I would move to Spain." },
                             ],
                             expectedAnswer: "a",
@@ -399,8 +399,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "If I had more money, I _____ travel more. (ability/possibility)",
                             options: [
-                                { value: "would", label: "would travel" },
                                 { value: "could", label: "could travel (ability)" },
+                                { value: "would", label: "would travel" },
                             ],
                             expectedAnswer: "could",
                         },
@@ -472,8 +472,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"If you heat ice, it melts."',
                             options: [
-                                { value: "zero", label: "Zero (always true)" },
                                 { value: "first", label: "First (real future)" },
+                                { value: "zero", label: "Zero (always true)" },
                                 { value: "second", label: "Second (unreal present)" },
                                 { value: "third", label: "Third (unreal past)" },
                             ],
@@ -566,8 +566,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Fix: 'If I had known, I would called you.'",
                             options: [
-                                { value: "a", label: "If I had known, I would have called you." },
                                 { value: "b", label: "If I knew, I would have called you." },
+                                { value: "a", label: "If I had known, I would have called you." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -730,8 +730,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "When do we use second conditional?",
             options: [
-                { value: "a", label: "For real future possibilities" },
                 { value: "b", label: "For unreal or unlikely present/future situations" },
+                { value: "a", label: "For real future possibilities" },
                 { value: "c", label: "For reflecting on the past" },
             ],
             correctAnswer: "b",
@@ -759,8 +759,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             question: "Which is correct for giving advice?",
             options: [
                 { value: "a", label: "If I was you, I would study harder." },
-                { value: "b", label: "If I were you, I would study harder." },
                 { value: "c", label: "If I am you, I would study harder." },
+                { value: "b", label: "If I were you, I would study harder." },
             ],
             correctAnswer: "b",
             explanation:
@@ -772,8 +772,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Which sentence is third conditional (past reflection)?",
             options: [
-                { value: "a", label: "If I had more money, I would travel." },
                 { value: "b", label: "If I had had more money, I would have traveled." },
+                { value: "a", label: "If I had more money, I would travel." },
                 { value: "c", label: "If I have more money, I will travel." },
             ],
             correctAnswer: "b",
@@ -801,8 +801,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             question: "Which is the correct second conditional?",
             options: [
                 { value: "a", label: "If I would have more time, I would exercise." },
-                { value: "b", label: "If I had more time, I would exercise." },
                 { value: "c", label: "If I have more time, I would exercise." },
+                { value: "b", label: "If I had more time, I would exercise." },
             ],
             correctAnswer: "b",
             explanation:
@@ -814,8 +814,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "What's wrong with this sentence? 'If I had studied, I would passed.'",
             options: [
-                { value: "a", label: "Nothing, it's correct" },
                 { value: "b", label: "Missing 'have' - it should be 'would have passed'" },
+                { value: "a", label: "Nothing, it's correct" },
                 { value: "c", label: "Should use 'will' instead of 'would'" },
             ],
             correctAnswer: "b",
@@ -828,8 +828,8 @@ export const conditionalsSecondThirdContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Which conditional is this? 'If it rains tomorrow, I will stay home.'",
             options: [
-                { value: "a", label: "First conditional (real future possibility)" },
                 { value: "b", label: "Second conditional (unreal present/future)" },
+                { value: "a", label: "First conditional (real future possibility)" },
                 { value: "c", label: "Third conditional (unreal past)" },
             ],
             correctAnswer: "a",

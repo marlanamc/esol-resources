@@ -51,8 +51,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You <span class='eg-helper'>must</span> clock in before your shift.",
                             options: [
-                                { value: "required", label: "Required (no choice)" },
                                 { value: "suggestion", label: "Suggestion (optional)" },
+                                { value: "required", label: "Required (no choice)" },
                                 { value: "permission", label: "Permission (allowed)" },
                             ],
                             expectedAnswer: "required",
@@ -61,9 +61,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "<span class='eg-helper'>Could</span> I leave early today?",
                             options: [
-                                { value: "permission", label: "Asking for permission (very polite)" },
                                 { value: "required", label: "Stating a rule" },
                                 { value: "past", label: "Talking about the past" },
+                                { value: "permission", label: "Asking for permission (very polite)" },
                             ],
                             expectedAnswer: "permission",
                         },
@@ -192,8 +192,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "My boss says I ___ work this Saturday.",
                             options: [
-                                { value: "must", label: "must" },
                                 { value: "have-to", label: "have to" },
+                                { value: "must", label: "must" },
                             ],
                             expectedAnswer: "have-to",
                         },
@@ -201,8 +201,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The sign says: 'Visitors ___ sign in at the front desk.'",
                             options: [
-                                { value: "must", label: "must" },
                                 { value: "have-to", label: "have to" },
+                                { value: "must", label: "must" },
                             ],
                             expectedAnswer: "must",
                         },
@@ -276,9 +276,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Asking your coworker if you can borrow their pen:",
                             options: [
-                                { value: "can", label: "Can I borrow your pen?" },
                                 { value: "may", label: "May I borrow your pen?" },
                                 { value: "could", label: "Could I possibly borrow your pen?" },
+                                { value: "can", label: "Can I borrow your pen?" },
                             ],
                             expectedAnswer: "can",
                         },
@@ -286,9 +286,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Asking your supervisor for time off for a family emergency:",
                             options: [
+                                { value: "could", label: "Could I request Friday off for a family emergency?" },
                                 { value: "can", label: "Can I have Friday off?" },
                                 { value: "may", label: "May I have Friday off?" },
-                                { value: "could", label: "Could I request Friday off for a family emergency?" },
                             ],
                             expectedAnswer: "could",
                         },
@@ -520,8 +520,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             label: "Your boss asks you to work overtime, but you have plans:",
                             options: [
                                 { value: "a", label: "I can't, I have plans." },
-                                { value: "b", label: "I have a prior commitment tonight. Would it be possible to do it tomorrow instead?" },
                                 { value: "c", label: "No thanks." },
+                                { value: "b", label: "I have a prior commitment tonight. Would it be possible to do it tomorrow instead?" },
                             ],
                             expectedAnswer: "b",
                         },
@@ -529,9 +529,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You need a coworker to switch shifts with you:",
                             options: [
+                                { value: "c", label: "I have a situation on Friday. Would you be able to switch shifts with me?" },
                                 { value: "a", label: "Can you take my shift?" },
                                 { value: "b", label: "Switch with me." },
-                                { value: "c", label: "I have a situation on Friday. Would you be able to switch shifts with me?" },
                             ],
                             expectedAnswer: "c",
                         },
@@ -671,10 +671,10 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
           "Which sentence expresses obligation (you are required to do it)?",
         options: [
           { value: "a", label: "You should clock in before your shift." },
-          { value: "b", label: "You must clock in before your shift." },
           { value: "c", label: "You can clock in before your shift." },
-        ],
-        correctAnswer: "b",
+          { value: "b", label: "You must clock in before your shift." },
+      ],
+      correctAnswer: "b",
         explanation:
           "'Must' shows a rule or strong obligation. 'Should' is advice. 'Can' is permission or ability.",
         skillTag: "meaning-obligation-must",
@@ -749,11 +749,11 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
         id: "quiz-5",
         question: "Which sentence is grammatically correct?",
         options: [
+          { value: "c", label: "She can work overtime tomorrow." },
           { value: "a", label: "She cans work overtime tomorrow." },
           { value: "b", label: "She can works overtime tomorrow." },
-          { value: "c", label: "She can work overtime tomorrow." },
-        ],
-        correctAnswer: "c",
+      ],
+      correctAnswer: "c",
         explanation:
           "After a modal, use the base verb: 'can work', not 'cans work' or 'can works'.",
         skillTag: "form-modal-plus-base-verb",
@@ -780,10 +780,10 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
           "Your boss put you on the schedule for Saturday. Which sentence matches this situation?",
         options: [
           { value: "a", label: "I must relax on Saturday." },
-          { value: "b", label: "I have to work on Saturday." },
           { value: "c", label: "I can work on Saturday if I feel like it." },
-        ],
-        correctAnswer: "b",
+          { value: "b", label: "I have to work on Saturday." },
+      ],
+      correctAnswer: "b",
         explanation:
           "'Have to' fits external rules or schedules made by someone else, like a boss.",
         skillTag: "meaning-obligation-have-to-external",
@@ -818,11 +818,11 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
         question:
           "You want to ask a coworker a quick question. What is most natural?",
         options: [
+          { value: "c", label: "Can I ask you a question?" },
           { value: "a", label: "May I ask you a question?" },
           { value: "b", label: "Could I request to ask a question?" },
-          { value: "c", label: "Can I ask you a question?" },
-        ],
-        correctAnswer: "c",
+      ],
+      correctAnswer: "c",
         explanation:
           "'Can I ask you a question?' is the most common casual way to ask a coworker for a quick moment.",
         skillTag: "permission-can-casual-coworker",
@@ -910,10 +910,10 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
           "Complete the sentence: 'You ___ wear your ID badge at all times in the building.' (company rule)",
         options: [
           { value: "a", label: "should" },
-          { value: "b", label: "must" },
           { value: "c", label: "can" },
-        ],
-        correctAnswer: "b",
+          { value: "b", label: "must" },
+      ],
+      correctAnswer: "b",
         explanation:
           "Company rules about safety or security often use 'must' to show obligation.",
         skillTag: "meaning-rule-must-id-badge",
@@ -923,11 +923,11 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
         id: "quiz-15",
         question: "Which sentence is correct with 'must'?",
         options: [
+          { value: "c", label: "I must leave now." },
           { value: "a", label: "I must to leave now." },
           { value: "b", label: "I must leaving now." },
-          { value: "c", label: "I must leave now." },
-        ],
-        correctAnswer: "c",
+      ],
+      correctAnswer: "c",
         explanation:
           "After 'must', use the base verb: 'must leave', not 'must to leave' or 'must leaving'.",
         skillTag: "form-must-plus-base-verb",

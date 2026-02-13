@@ -39,8 +39,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I arrived at the bus stop. The bus was already gone.",
                             options: [
-                                { value: "a", label: "The bus had already left when I arrived." },
                                 { value: "b", label: "The bus left when I had arrived." },
+                                { value: "a", label: "The bus had already left when I arrived." },
                                 { value: "c", label: "The bus has left when I arrived." },
                             ],
                             expectedAnswer: "a",
@@ -170,8 +170,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "After they had eaten dinner, they watched a movie.",
                             options: [
-                                { value: "eaten", label: "They ate dinner" },
                                 { value: "watched", label: "They watched a movie" },
+                                { value: "eaten", label: "They ate dinner" },
                             ],
                             expectedAnswer: "eaten",
                         },
@@ -179,8 +179,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By the time the ambulance arrived, the patient had died.",
                             options: [
-                                { value: "arrived", label: "The ambulance arrived" },
                                 { value: "died", label: "The patient died" },
+                                { value: "arrived", label: "The ambulance arrived" },
                             ],
                             expectedAnswer: "died",
                         },
@@ -206,8 +206,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "After I had brushed my teeth, I went to bed.",
                             options: [
-                                { value: "brushed", label: "I brushed my teeth" },
                                 { value: "went", label: "I went to bed" },
+                                { value: "brushed", label: "I brushed my teeth" },
                             ],
                             expectedAnswer: "brushed",
                         },
@@ -215,8 +215,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When we got to the cinema, the film had started.",
                             options: [
-                                { value: "got", label: "We got to the cinema" },
                                 { value: "started", label: "The film started" },
+                                { value: "got", label: "We got to the cinema" },
                             ],
                             expectedAnswer: "started",
                         },
@@ -305,8 +305,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             label: "After she had finished cooking, she called everyone for dinner.",
                             options: [
                                 { value: "pattern1", label: "Pattern 1: When + Past Simple, Past Perfect" },
-                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
                                 { value: "pattern3", label: "Pattern 3: After + Past Perfect, Past Simple" },
+                                { value: "pattern2", label: "Pattern 2: Past Perfect + before + Past Simple" },
                                 { value: "pattern4", label: "Pattern 4: By the time + Past Simple, Past Perfect" },
                             ],
                             expectedAnswer: "pattern3",
@@ -423,8 +423,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The game had started before we arrived at the stadium.",
                             options: [
-                                { value: "started", label: "The game started (1st on timeline)" },
                                 { value: "arrived", label: "We arrived (2nd on timeline)" },
+                                { value: "started", label: "The game started (1st on timeline)" },
                             ],
                             expectedAnswer: "started",
                         },
@@ -432,8 +432,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When the police arrived, the thief had escaped.",
                             options: [
-                                { value: "arrived", label: "The police arrived (2nd on timeline)" },
                                 { value: "escaped", label: "The thief escaped (1st on timeline)" },
+                                { value: "arrived", label: "The police arrived (2nd on timeline)" },
                             ],
                             expectedAnswer: "escaped",
                         },
@@ -886,8 +886,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "He was tired because he ___ all day.",
                             options: [
-                                { value: "had-worked", label: "had worked (Past Perfect)" },
                                 { value: "worked", label: "worked (Past Simple)" },
+                                { value: "had-worked", label: "had worked (Past Perfect)" },
                             ],
                             expectedAnswer: "had-worked",
                         },
@@ -895,8 +895,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "They ___ in Los Angeles last year.",
                             options: [
-                                { value: "had-lived", label: "had lived (Past Perfect)" },
                                 { value: "lived", label: "lived (Past Simple)" },
+                                { value: "had-lived", label: "had lived (Past Perfect)" },
                             ],
                             expectedAnswer: "lived",
                         },
@@ -904,8 +904,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By the time I arrived, the bus ___.",
                             options: [
-                                { value: "had-left", label: "had left (Past Perfect)" },
                                 { value: "left", label: "left (Past Simple)" },
+                                { value: "had-left", label: "had left (Past Perfect)" },
                             ],
                             expectedAnswer: "had-left",
                         },
@@ -913,8 +913,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "We ___ pizza for dinner yesterday.",
                             options: [
-                                { value: "had-ordered", label: "had ordered (Past Perfect)" },
                                 { value: "ordered", label: "ordered (Past Simple)" },
+                                { value: "had-ordered", label: "had ordered (Past Perfect)" },
                             ],
                             expectedAnswer: "ordered",
                         },
@@ -922,8 +922,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "After we ___ our homework, we played video games.",
                             options: [
-                                { value: "had-finished", label: "had finished (Past Perfect)" },
                                 { value: "finished", label: "finished (Past Simple)" },
+                                { value: "had-finished", label: "had finished (Past Perfect)" },
                             ],
                             expectedAnswer: "had-finished",
                         },
@@ -931,8 +931,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I ___ my keys this morning.",
                             options: [
-                                { value: "had-lost", label: "had lost (Past Perfect)" },
                                 { value: "lost", label: "lost (Past Simple)" },
+                                { value: "had-lost", label: "had lost (Past Perfect)" },
                             ],
                             expectedAnswer: "lost",
                         },
@@ -1162,8 +1162,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "In the sentence 'After the bell had rung, the students left the classroom,' which happened first?",
             options: [
-                { value: "a", label: "The students left the classroom" },
                 { value: "b", label: "The bell rang" },
+                { value: "a", label: "The students left the classroom" },
             ],
             correctAnswer: "b",
             explanation: "The bell rang (Past Perfect) first, then the students left.",
@@ -1188,8 +1188,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Choose the correct Past Perfect form:",
             options: [
-                { value: "a", label: "She had ate breakfast before school." },
                 { value: "b", label: "She had eaten breakfast before school." },
+                { value: "a", label: "She had ate breakfast before school." },
                 { value: "c", label: "She have eaten breakfast before school." },
             ],
             correctAnswer: "b",
@@ -1202,8 +1202,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Complete the sentence: When I arrived, they ___ (not leave) yet.",
             options: [
-                { value: "a", label: "hadn't left" },
                 { value: "b", label: "haven't left" },
+                { value: "a", label: "hadn't left" },
                 { value: "c", label: "didn't left" },
             ],
             correctAnswer: "a",
@@ -1216,9 +1216,9 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Which is a correct Past Perfect question?",
             options: [
-                { value: "a", label: "Had you finished your homework before dinner?" },
                 { value: "b", label: "Did you had finished your homework before dinner?" },
                 { value: "c", label: "Have you finished your homework before dinner?" },
+                { value: "a", label: "Had you finished your homework before dinner?" },
             ],
             correctAnswer: "a",
             explanation: "Question form: Had + subject + past participle.",
@@ -1244,8 +1244,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Fill in the blank: She ___ (already eat) before she left for work.",
             options: [
-                { value: "a", label: "had already eaten" },
                 { value: "b", label: "already had ate" },
+                { value: "a", label: "had already eaten" },
                 { value: "c", label: "already ate" },
             ],
             correctAnswer: "a",
@@ -1258,9 +1258,9 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Choose the correct sentence:",
             options: [
-                { value: "a", label: "After they had left, we locked the door." },
                 { value: "b", label: "After they leave, we had locked the door." },
                 { value: "c", label: "After they had leave, we locked the door." },
+                { value: "a", label: "After they had left, we locked the door." },
             ],
             correctAnswer: "a",
             explanation: "After + Past Perfect (had left), then Past Simple (locked).",
@@ -1272,8 +1272,8 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "By the time I got to the station, the train ___ (already/leave).",
             options: [
-                { value: "a", label: "already left" },
                 { value: "b", label: "had already left" },
+                { value: "a", label: "already left" },
                 { value: "c", label: "has already left" },
             ],
             correctAnswer: "b",
@@ -1338,9 +1338,9 @@ export const pastPerfectContent: InteractiveGuideContent = {
             difficulty: "medium",
             question: "Which sentence clearly explains the timeline?",
             options: [
-                { value: "a", label: "He had eaten dinner before he watched TV." },
                 { value: "b", label: "He ate dinner before he had watched TV." },
                 { value: "c", label: "He was eating dinner before he watched TV." },
+                { value: "a", label: "He had eaten dinner before he watched TV." },
             ],
             correctAnswer: "a",
             explanation: "The Past Perfect shows he finished eating before watching TV.",

@@ -254,8 +254,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "<strong>time</strong>",
                             options: [
-                                { value: "count", label: "Countable noun" },
                                 { value: "noncount", label: "Uncountable noun" },
+                                { value: "count", label: "Countable noun" },
                             ],
                             expectedAnswer: "noncount",
                         },
@@ -384,8 +384,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How ___ vacation days do you get?",
                             options: [
-                                { value: "many", label: "many" },
                                 { value: "much", label: "much" },
+                                { value: "many", label: "many" },
                             ],
                             expectedAnswer: "many",
                         },
@@ -393,8 +393,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I don't have ___ experience with computers.",
                             options: [
-                                { value: "many", label: "many" },
                                 { value: "much", label: "much" },
+                                { value: "many", label: "many" },
                             ],
                             expectedAnswer: "much",
                         },
@@ -402,8 +402,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "There aren't ___ affordable apartments available.",
                             options: [
-                                { value: "many", label: "many" },
                                 { value: "much", label: "much" },
+                                { value: "many", label: "many" },
                             ],
                             expectedAnswer: "many",
                         },
@@ -411,8 +411,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "This job requires too ___ travel.",
                             options: [
-                                { value: "many", label: "many" },
                                 { value: "much", label: "much" },
+                                { value: "many", label: "many" },
                             ],
                             expectedAnswer: "much",
                         },
@@ -473,8 +473,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "There are very ___ good apartments in my budget.",
                             options: [
-                                { value: "few", label: "few" },
                                 { value: "little", label: "little" },
+                                { value: "few", label: "few" },
                             ],
                             expectedAnswer: "few",
                         },
@@ -482,8 +482,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I have very ___ patience for rude customers.",
                             options: [
-                                { value: "few", label: "few" },
                                 { value: "little", label: "little" },
+                                { value: "few", label: "few" },
                             ],
                             expectedAnswer: "little",
                         },
@@ -491,8 +491,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "We received ___ applications for the position. (only 3)",
                             options: [
-                                { value: "few", label: "few" },
                                 { value: "little", label: "little" },
+                                { value: "few", label: "few" },
                             ],
                             expectedAnswer: "few",
                         },
@@ -781,9 +781,9 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "My new job offers ___ vacation days than my last job, but I have ___ stress.",
                             options: [
-                                { value: "fewer-less", label: "fewer / less" },
                                 { value: "less-fewer", label: "less / fewer" },
                                 { value: "fewer-fewer", label: "fewer / fewer" },
+                                { value: "fewer-less", label: "fewer / less" },
                                 { value: "less-less", label: "less / less" },
                             ],
                             expectedAnswer: "fewer-less",
@@ -821,8 +821,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             question: "Which sentence is correct?",
             options: [
                 { value: "a", label: "This is the most cheap apartment in the building." },
-                { value: "b", label: "This is the cheaper apartment in the building." },
                 { value: "c", label: "This is the cheapest apartment in the building." },
+                { value: "b", label: "This is the cheaper apartment in the building." },
             ],
             correctAnswer: "c",
             explanation: "'Cheap' is a short adjective (1 syllable), so use -est: the cheapest.",
@@ -834,8 +834,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             question: "Choose the correct quantifier: 'How ___ experience do you have?'",
             options: [
                 { value: "a", label: "many" },
-                { value: "b", label: "much" },
                 { value: "c", label: "few" },
+                { value: "b", label: "much" },
             ],
             correctAnswer: "b",
             explanation:
@@ -876,8 +876,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 "Which sentence correctly uses superlatives AND quantifiers? 'Of all the options, this apartment has...'",
             options: [
                 { value: "a", label: "the most space and the fewer problems." },
-                { value: "b", label: "the most space and the fewest problems." },
                 { value: "c", label: "the much space and the least problems." },
+                { value: "b", label: "the most space and the fewest problems." },
             ],
             correctAnswer: "b",
             explanation:
@@ -890,8 +890,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             question:
                 "Complete the sentence: 'I have ___ friends here, so I'm happy.' (meaning: I do have some friends)",
             options: [
-                { value: "a", label: "few" },
                 { value: "b", label: "a few" },
+                { value: "a", label: "few" },
                 { value: "c", label: "little" },
             ],
             correctAnswer: "b",
@@ -904,8 +904,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Which sentence is correct?",
             options: [
-                { value: "a", label: "This job requires less experience than that one." },
                 { value: "b", label: "This job requires fewer experience than that one." },
+                { value: "a", label: "This job requires less experience than that one." },
                 { value: "c", label: "This job requires little experience than that one." },
             ],
             correctAnswer: "a",
@@ -920,8 +920,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 "What's the superlative form? 'Of all the apartments I saw, this one was ___ (expensive).'",
             options: [
                 { value: "a", label: "the expensivest" },
-                { value: "b", label: "the most expensive" },
                 { value: "c", label: "the more expensive" },
+                { value: "b", label: "the most expensive" },
             ],
             correctAnswer: "b",
             explanation:
@@ -948,8 +948,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             id: "quiz-10",
             question: "Which sentence correctly combines superlatives and quantifiers?",
             options: [
-                { value: "a", label: "This job offers the most vacation days and requires the least experience." },
                 { value: "b", label: "This job offers the most vacation days and requires the less experience." },
+                { value: "a", label: "This job offers the most vacation days and requires the least experience." },
                 { value: "c", label: "This job offers the most vacation days and requires the fewest experience." },
             ],
             correctAnswer: "a",
@@ -977,8 +977,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             question:
                 "Complete: 'I need ___ help with this project.' (meaning: some help, positive)",
             options: [
-                { value: "a", label: "little" },
                 { value: "b", label: "a little" },
+                { value: "a", label: "little" },
                 { value: "c", label: "few" },
             ],
             correctAnswer: "b",
@@ -1007,8 +1007,8 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
                 "What's wrong with this sentence? 'This job has less benefits than my last one.'",
             options: [
                 { value: "a", label: "Nothing - it's correct" },
-                { value: "b", label: "Should be 'fewer benefits' (benefits are countable)" },
                 { value: "c", label: "Should be 'little benefits' (benefits are uncountable)" },
+                { value: "b", label: "Should be 'fewer benefits' (benefits are countable)" },
             ],
             correctAnswer: "b",
             explanation:
@@ -1021,9 +1021,9 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
             question:
                 "Complete: 'I have ___ patience for rude customers.' (meaning: almost none, negative)",
             options: [
+                { value: "c", label: "little" },
                 { value: "a", label: "few" },
                 { value: "b", label: "a few" },
-                { value: "c", label: "little" },
             ],
             correctAnswer: "c",
             explanation:

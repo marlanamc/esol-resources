@@ -9,19 +9,38 @@ export const pastContinuousContent: InteractiveGuideContent = {
             title: "Past Continuous: What Was Going On",
             icon: "📚",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.12) 0%, rgba(128, 156, 245, 0.12) 100%); padding: 1.25rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="margin: 0; font-size: 1.05rem;">Past Continuous is your play-by-play: what was happening <strong>at a specific moment in the past</strong>, especially when something else interrupted.</p>
+                <div style="background: linear-gradient(135deg, rgba(240, 180, 90, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="margin-top: 0; color: #f0b45a; font-size: 1.25rem;">🎯 The Big Idea</h3>
+                    <p style="font-size: 1.05rem; margin-bottom: 0;">Past Continuous is your <strong style="color: #c86b51;">storytelling tense</strong>—it sets the scene for what was happening at a specific moment, shows background actions that got interrupted, and paints a picture of the past in motion.</p>
                 </div>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                <h3>Real-Life Uses</h3>
+                <ul style="list-style: none; padding-left: 0; margin: 0;">
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Interrupted actions</strong>: "I was walking home when it started raining."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Specific past time</strong>: "At midnight, my neighbors were playing loud music."</li>
+                    <li style="padding: 0.5rem; margin: 0.35rem 0; background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.25rem;">✓ <strong>Setting the scene</strong>: "The sun was setting. People were walking home from work."</li>
+                </ul>
+
+                <div style="background: #fff9e6; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b; margin-top: 1.5rem;">
+                    <p style="margin: 0; font-weight: 600;">📝 Formula: <span style="color: #f0b45a; font-size: 1.125rem;">was/were + verb-ing</span></p>
+                </div>
+
+                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
                     <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
                     <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
-                        <li>Telling detailed housing problem stories ("I was sleeping when the phone rang")</li>
-                        <li>Using "when" and "while" to connect two actions ("While I was cooking, the fire alarm went off")</li>
-                        <li>Describing what was happening at a specific time ("At midnight, my neighbors were playing loud music")</li>
+                    <ul style="margin: 0.5rem 0;">
+                        <li>Telling detailed housing problem stories</li>
+                        <li>Using "when" and "while" to connect two actions</li>
+                        <li>Describing what was happening at a specific time</li>
                     </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎬 Past Continuous adds drama to your stories - it sets the scene!</p>
+                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong>Incident reports</strong>: "I was walking to the bus stop when I slipped on ice."</li>
+                        <li><strong>Medical history</strong>: "I was having chest pain when I called 911."</li>
+                        <li><strong>Housing complaints</strong>: "At midnight, my neighbors were playing loud music."</li>
+                        <li><strong>Workplace explanations</strong>: "I wasn't ignoring you—I was helping another customer."</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">🎬 Past Continuous adds drama to your stories—it sets the scene!</p>
                 </div>
             `,
             exercises: [
@@ -34,8 +53,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What does Past Continuous describe?",
                             options: [
-                                { value: "a", label: "What was happening at a specific moment in the past, especially when interrupted" },
                                 { value: "b", label: "Completed past actions" },
+                                { value: "a", label: "What was happening at a specific moment in the past, especially when interrupted" },
                                 { value: "c", label: "Future plans" },
                             ],
                             expectedAnswer: "a",
@@ -44,9 +63,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"I <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>sleeping</span> when you called." What does this show?',
                             options: [
-                                { value: "a", label: "An action in progress that was interrupted" },
                                 { value: "b", label: "A completed action" },
                                 { value: "c", label: "A habit" },
+                                { value: "a", label: "An action in progress that was interrupted" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -69,6 +88,10 @@ export const pastContinuousContent: InteractiveGuideContent = {
             stepNumber: 1,
             title: "When Real Life Needs Past Continuous",
             icon: "⭐",
+            explanation: `
+                <h3>Past Continuous Helps You Reconstruct What Was Happening</h3>
+                <p>Use it for background actions, overlapping activities, and scene-setting details that make your story clear.</p>
+            `,
             usageMeanings: [
                 {
                     title: "⏸️ 1. Action In Progress at a Past Time",
@@ -79,8 +102,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             explanation: "✓ Ongoing action at a specific past time",
                         },
                         {
-                            sentence: "They <strong>were cooking</strong> while we <strong>were watching</strong> TV.",
-                            explanation: "✓ Background actions in progress",
+                            sentence: "At midnight, my neighbors <strong>were playing</strong> loud music.",
+                            explanation: "✓ Describes what was in progress at a clock time",
                         },
                     ],
                 },
@@ -98,6 +121,62 @@ export const pastContinuousContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    title: "🤝 3. Parallel Actions",
+                    description: "Two longer actions happening at the same time in the past",
+                    examples: [
+                        {
+                            sentence: "While I <strong>was cooking</strong>, my husband <strong>was cleaning</strong> the kitchen.",
+                            explanation: "✓ Two simultaneous background actions",
+                        },
+                        {
+                            sentence: "I <strong>was studying</strong> while my son <strong>was doing</strong> his homework.",
+                            explanation: "✓ Both actions continued over the same period",
+                        },
+                    ],
+                },
+                {
+                    title: "🎬 4. Scene-Setting in Stories",
+                    description: "Paint the atmosphere before the main event",
+                    examples: [
+                        {
+                            sentence: "The sun <strong>was setting</strong>. People <strong>were walking</strong> home. Kids <strong>were playing</strong> outside.",
+                            explanation: "✓ Builds a clear background scene",
+                        },
+                        {
+                            sentence: "It <strong>was snowing</strong> and cars <strong>were moving</strong> slowly when the bus arrived.",
+                            explanation: "✓ Describes the environment in motion",
+                        },
+                    ],
+                },
+                {
+                    title: "🙏 5. Polite Requests (Softening Language)",
+                    description: "Use Past Continuous to sound less direct in requests",
+                    examples: [
+                        {
+                            sentence: "I <strong>was wondering</strong> if you could help me with this form.",
+                            explanation: "✓ Softer than a direct request",
+                        },
+                        {
+                            sentence: "I <strong>was hoping</strong> we could reschedule the appointment.",
+                            explanation: "✓ Diplomatic and polite tone",
+                        },
+                    ],
+                },
+                {
+                    title: "😤 6. Repeated Past Habits (with 'always')",
+                    description: "Show irritation about repeated past behavior",
+                    examples: [
+                        {
+                            sentence: "She <strong>was always complaining</strong> about the noise.",
+                            explanation: "✓ Repeated behavior with emotional tone",
+                        },
+                        {
+                            sentence: "He <strong>was always leaving</strong> dirty dishes in the sink.",
+                            explanation: "✓ Ongoing annoying pattern in the past",
+                        },
+                    ],
+                },
             ],
             tipBox: {
                 title: "💡 Quick Contrast",
@@ -107,14 +186,14 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 {
                     id: "ex-usage-past-cont-1",
                     title: "Was It In Progress?",
-                    instructions: "Choose when Past Continuous is the best fit.",
+                    instructions: "Choose the best reason for using Past Continuous.",
                     items: [
                         {
                             type: "radio",
                             label: '"She <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>walking</span> when it started raining."',
                             options: [
-                                { value: "interrupted", label: "Interrupted action in progress" },
                                 { value: "finished", label: "Finished one-time action" },
+                                { value: "interrupted", label: "Interrupted action in progress" },
                                 { value: "habit", label: "Habit/routine" },
                             ],
                             expectedAnswer: "interrupted",
@@ -123,19 +202,39 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"They <span class=\'eg-helper\'>were</span> <span class=\'eg-verb\'>sleeping</span> at 3 AM yesterday."',
                             options: [
-                                { value: "time-in-progress", label: "Action in progress at a past time" },
                                 { value: "completed", label: "Completed past action" },
                                 { value: "future", label: "Future plan" },
+                                { value: "time-in-progress", label: "Action in progress at a past time" },
                             ],
                             expectedAnswer: "time-in-progress",
                         },
                         {
                             type: "radio",
+                            label: '"While I <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>cooking</span>, my roommate <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>cleaning</span>."',
+                            options: [
+                                { value: "parallel", label: "Parallel actions happening at the same time" },
+                                { value: "interrupted", label: "One short interruption" },
+                                { value: "habit", label: "Daily routine" },
+                            ],
+                            expectedAnswer: "parallel",
+                        },
+                        {
+                            type: "radio",
+                            label: '"The wind <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>blowing</span>. People <span class=\'eg-helper\'>were</span> <span class=\'eg-verb\'>running</span> for cover."',
+                            options: [
+                                { value: "future", label: "Future arrangement" },
+                                { value: "scene", label: "Scene-setting background description" },
+                                { value: "fact", label: "General fact" },
+                            ],
+                            expectedAnswer: "scene",
+                        },
+                        {
+                            type: "radio",
                             label: '"I <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>driving</span> when my phone rang."',
                             options: [
-                                { value: "interrupted", label: "Interrupted action" },
                                 { value: "habit", label: "Habit" },
                                 { value: "future", label: "Future ongoing" },
+                                { value: "interrupted", label: "Interrupted action" },
                             ],
                             expectedAnswer: "interrupted",
                         },
@@ -235,8 +334,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "She <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>reading</span> when her friend called.",
                             options: [
-                                { value: "a", label: "Ongoing: reading (PC), Interruption: called (PS)" },
                                 { value: "b", label: "Ongoing: called (PC), Interruption: reading (PS)" },
+                                { value: "a", label: "Ongoing: reading (PC), Interruption: called (PS)" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -254,8 +353,213 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
         },
         {
-            id: "step-positive",
+            id: "while-vs-when",
             stepNumber: 3,
+            title: "While vs When: Build Clear Past Stories",
+            icon: "🧭",
+            explanation: `
+                <h3>Use <strong>while</strong> for longer background actions. Use <strong>when</strong> for shorter events.</h3>
+                <p>This pattern helps listeners understand which action was already in progress and which action interrupted it.</p>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0;">
+                    <div style="background: #fef9f3; border: 2px solid #f0b45a; border-radius: 0.5rem; padding: 1rem;">
+                        <h4 style="margin-top: 0; color: #f0b45a;">WHILE + Past Continuous</h4>
+                        <p style="margin: 0.5rem 0;">Shows the longer background action.</p>
+                        <p style="margin: 0; font-size: 0.92rem;">While I <strong>was cooking</strong>, my daughter was setting the table.</p>
+                    </div>
+                    <div style="background: #fff5f0; border: 2px solid #d97757; border-radius: 0.5rem; padding: 1rem;">
+                        <h4 style="margin-top: 0; color: #d97757;">WHEN + Past Simple</h4>
+                        <p style="margin: 0.5rem 0;">Introduces the short interrupting event.</p>
+                        <p style="margin: 0; font-size: 0.92rem;">I was cooking <strong>when</strong> the smoke alarm rang.</p>
+                    </div>
+                </div>
+
+                <div style="background: #f8fafc; border-left: 4px solid #f0b45a; border-radius: 0.5rem; padding: 1rem;">
+                    <p style="margin: 0;"><strong>Pattern:</strong> While + Past Continuous, Past Continuous OR Past Continuous + when + Past Simple</p>
+                    <p style="margin: 0.5rem 0 0 0;">Examples: "While I was walking, I was listening to a podcast." / "I was walking when I slipped on ice."</p>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Quick Rule",
+                content: "If both actions were long and parallel, use while + Past Continuous in both clauses. If one action interrupts, use when + Past Simple for the interruption.",
+            },
+            exercises: [
+                {
+                    id: "ex-while-when-story-1",
+                    title: "Story Completion: While or When?",
+                    instructions: "Complete each sentence with while/when and the correct tense.",
+                    items: [
+                        { type: "text", label: "I ___ (walk) to the bus stop ___ I slipped on ice.", expectedAnswer: "was walking when" },
+                        { type: "text", label: "___ I ___ (fill out) the report, my manager was asking questions.", expectedAnswer: "While I was filling out" },
+                        { type: "text", label: "My neighbors ___ (play) loud music ___ I was trying to sleep.", expectedAnswer: "were playing while" },
+                        { type: "text", label: "She ___ (wait) for the train ___ she saw her coworker.", expectedAnswer: "was waiting when" },
+                    ],
+                },
+                {
+                    id: "ex-while-when-scramble-1",
+                    title: "Word Scramble: Build the Pattern",
+                    instructions: "Reorder the words to make correct while/when sentences.",
+                    items: [
+                        {
+                            type: "word-scramble",
+                            label: "was / while / cooking / he / I / dishes / washing / the / was",
+                            words: ["was", "while", "cooking", "he", "I", "dishes", "washing", "the", "was"],
+                            correctAnswer: "I was cooking while he was washing the dishes",
+                        },
+                        {
+                            type: "word-scramble",
+                            label: "phone / when / was / the / rang / I / driving",
+                            words: ["phone", "when", "was", "the", "rang", "I", "driving"],
+                            correctAnswer: "I was driving when the phone rang",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "comparison",
+            stepNumber: 4,
+            title: "Past Continuous vs Past Simple",
+            icon: "⚖️",
+            explanation: `
+                <h3>Background vs Main Event</h3>
+                <p>Past Continuous usually gives context; Past Simple usually gives the key event.</p>
+            `,
+            comparison: {
+                title: "Side-by-Side Comparison",
+                leftLabel: "Past Continuous",
+                rightLabel: "Past Simple",
+                rows: [
+                    { label: "Focus", left: "In progress (background)", right: "Completed (main event)" },
+                    { label: "Duration", left: "Longer action over time", right: "Shorter/point action" },
+                    { label: "Time Signals", left: "while, at 10 PM, all evening", right: "when, suddenly, then, last night" },
+                    { label: "Example", left: "I was walking home...", right: "...when it started raining." },
+                    { label: "Example", left: "She was studying...", right: "...when the phone rang." },
+                ],
+            },
+            tipBox: {
+                title: "💡 Memory Trick",
+                content: "Think movie scene: Past Continuous is the background camera shot; Past Simple is the moment something happens.",
+            },
+            exercises: [
+                {
+                    id: "ex-comparison-past-cont-1",
+                    title: "Choose the Best Pair",
+                    instructions: "Pick the sentence that correctly combines background + event.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence is best?",
+                            options: [
+                                { value: "a", label: "I was taking a shower when the power went out." },
+                                { value: "b", label: "I took a shower when the power was going out." },
+                                { value: "c", label: "I was taking a shower when the power was go out." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence shows parallel background actions?",
+                            options: [
+                                { value: "b", label: "While we cooked, the kids set the table." },
+                                { value: "a", label: "While we were cooking, the kids were setting the table." },
+                                { value: "c", label: "While we are cooking, the kids were setting the table." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "common-mistakes",
+            stepNumber: 5,
+            title: "Common Mistakes with Past Continuous",
+            icon: "⚠️",
+            explanation: `
+                <h3>Three Problems Learners Often Make</h3>
+                <ul style="margin: 0.75rem 0 0 0;">
+                    <li>Using Past Continuous for a short, completed one-time action</li>
+                    <li>Using stative verbs in Past Continuous (I was knowing)</li>
+                    <li>Using "while" with Past Simple when a background action is intended</li>
+                </ul>
+            `,
+            usageMeanings: [
+                {
+                    title: "❌ Mistake 1: Past Continuous for Completed Events",
+                    description: "Use Past Simple for short completed actions",
+                    examples: [
+                        {
+                            sentence: "❌ The bus <span style=\"color: #ef4444;\">was arriving</span> at 8:01.",
+                            explanation: "✓ The bus <strong>arrived</strong> at 8:01.",
+                        },
+                        {
+                            sentence: "❌ I <span style=\"color: #ef4444;\">was dropping</span> my keys yesterday.",
+                            explanation: "✓ I <strong>dropped</strong> my keys yesterday.",
+                        },
+                    ],
+                },
+                {
+                    title: "❌ Mistake 2: Stative Verbs in Past Continuous",
+                    description: "Many state verbs usually stay in simple past",
+                    examples: [
+                        {
+                            sentence: "❌ I <span style=\"color: #ef4444;\">was knowing</span> the answer.",
+                            explanation: "✓ I <strong>knew</strong> the answer.",
+                        },
+                        {
+                            sentence: "❌ She <span style=\"color: #ef4444;\">was having</span> two cars.",
+                            explanation: "✓ She <strong>had</strong> two cars. (possession)",
+                        },
+                    ],
+                },
+                {
+                    title: "❌ Mistake 3: While + Wrong Tense",
+                    description: "When the action is ongoing, use Past Continuous after while",
+                    examples: [
+                        {
+                            sentence: "❌ While I <span style=\"color: #ef4444;\">cooked</span>, he was cleaning.",
+                            explanation: "✓ While I <strong>was cooking</strong>, he was cleaning.",
+                        },
+                        {
+                            sentence: "✓ While I <strong>was cooking</strong>, the phone rang. (background + interruption)",
+                            explanation: "✓ 'While' highlights the longer action in progress",
+                        },
+                    ],
+                },
+            ],
+            tipBox: {
+                title: "💡 Stative Reminder",
+                content: "Common stative verbs: know, believe, understand, love, hate, own, belong. In many cases, use Past Simple with these.",
+            },
+            exercises: [
+                {
+                    id: "ex-common-mistakes-past-1",
+                    title: "Error Correction",
+                    instructions: "Rewrite each sentence correctly.",
+                    items: [
+                        { type: "text", label: "I was knowing it was a bad idea.", expectedAnswer: "I knew it was a bad idea" },
+                        { type: "text", label: "While we cooked, our neighbors were arguing.", expectedAnswer: "While we were cooking, our neighbors were arguing" },
+                        { type: "text", label: "She was droping the plate when I walked in.", expectedAnswer: "She was dropping the plate when I walked in" },
+                        { type: "text", label: "They was waiting outside when the office opened.", expectedAnswer: "They were waiting outside when the office opened" },
+                        { type: "text", label: "He were helping another customer when I arrived.", expectedAnswer: "He was helping another customer when I arrived" },
+                    ],
+                },
+                {
+                    id: "ex-scene-setting-past-1",
+                    title: "Scene-Setting Practice",
+                    instructions: "Complete with Past Continuous to create a background scene.",
+                    items: [
+                        { type: "text", label: "At midnight, the wind ___ (blow) and people ___ (run) for shelter.", expectedAnswer: "was blowing and were running" },
+                        { type: "text", label: "During the storm, the lights ___ (flash) and rain ___ (hit) the windows.", expectedAnswer: "were flashing and was hitting" },
+                        { type: "text", label: "While the nurse ___ (ask) questions, the patient ___ (hold) his chest.", expectedAnswer: "was asking and was holding" },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "step-positive",
+            stepNumber: 6,
             title: "Positive Form",
             explanation: `<p>Formula: <strong>was/were + verb-ing</strong>. Same pattern for everyone—just choose was or were.</p>`,
             formula: [
@@ -288,7 +592,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-negative",
-            stepNumber: 4,
+            stepNumber: 7,
             title: "Negative Form",
             explanation: `<p>Add <strong>not</strong> after was/were to show what wasn't happening.</p>`,
             formula: [
@@ -316,7 +620,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-questions",
-            stepNumber: 5,
+            stepNumber: 8,
             title: "Question Form",
             explanation: `<p>Flip was/were to the front to ask about what was going on.</p>`,
             formula: [
@@ -342,9 +646,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the question form for past continuous?",
                             options: [
-                                { value: "a", label: "Was/Were + subject + verb-ing?" },
                                 { value: "b", label: "Subject + was/were + verb-ing?" },
                                 { value: "c", label: "Did + subject + verb-ing?" },
+                                { value: "a", label: "Was/Were + subject + verb-ing?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -362,8 +666,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which question correctly uses 'was'?",
                             options: [
-                                { value: "a", label: "Was she cooking when you arrived?" },
                                 { value: "b", label: "Were she cooking when you arrived?" },
+                                { value: "a", label: "Was she cooking when you arrived?" },
                                 { value: "c", label: "Was she cook when you arrived?" },
                             ],
                             expectedAnswer: "a",
@@ -381,6 +685,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
                     <li><strong>Use:</strong> Actions in progress at a specific past time; background actions interrupted by shorter events</li>
                     <li><strong>Form:</strong> was/were + verb-ing</li>
                     <li><strong>Signal words:</strong> while, when, at 8pm yesterday, during, all night</li>
+                    <li><strong>Need full tense contrast?</strong> Review <em>Continuous Tenses Review</em> for present vs past vs future choices.</li>
                 </ul>
             `,
             exercises: [
@@ -393,9 +698,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the formula for Past Continuous?",
                             options: [
-                                { value: "a", label: "was/were + verb-ing" },
                                 { value: "b", label: "am/is/are + verb-ing" },
                                 { value: "c", label: "will be + verb-ing" },
+                                { value: "a", label: "was/were + verb-ing" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -413,8 +718,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What are signal words for Past Continuous?",
                             options: [
-                                { value: "a", label: "while, when, at 8pm yesterday, during, all night" },
                                 { value: "b", label: "now, at the moment, currently" },
+                                { value: "a", label: "while, when, at 8pm yesterday, during, all night" },
                                 { value: "c", label: "tomorrow, next week, soon" },
                             ],
                             expectedAnswer: "a",
@@ -423,9 +728,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence is correct?",
                             options: [
-                                { value: "a", label: "I was cooking when the phone rang." },
                                 { value: "b", label: "I cooked when the phone rang." },
                                 { value: "c", label: "I am cooking when the phone rang." },
+                                { value: "a", label: "I was cooking when the phone rang." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -449,8 +754,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which sentence correctly shows an interrupted action?",
             options: [
-                { value: "a", label: "I was cooking when the smoke alarm rang." },
                 { value: "b", label: "I cooked when the smoke alarm was ringing." },
+                { value: "a", label: "I was cooking when the smoke alarm rang." },
                 { value: "c", label: "I am cooking when the smoke alarm rang." },
             ],
             correctAnswer: "a",
@@ -462,9 +767,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence fits 'action in progress at a specific past time'?",
             options: [
-                { value: "a", label: "At 8 PM last night, we were eating dinner." },
                 { value: "b", label: "At 8 PM last night, we ate dinner." },
                 { value: "c", label: "At 8 PM last night, we are eating dinner." },
+                { value: "a", label: "At 8 PM last night, we were eating dinner." },
             ],
             correctAnswer: "a",
             explanation: "Past Continuous highlights what was happening at a specific past moment: were eating.",
@@ -475,8 +780,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Choose the correct form of 'be' for Past Continuous.",
             options: [
-                { value: "a", label: "They was waiting for the bus." },
                 { value: "b", label: "They were waiting for the bus." },
+                { value: "a", label: "They was waiting for the bus." },
                 { value: "c", label: "They are waiting for the bus." },
             ],
             correctAnswer: "b",
@@ -488,8 +793,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "Which sentence shows two actions happening at the same time?",
             options: [
-                { value: "a", label: "While I was cooking, my roommate was cleaning." },
                 { value: "b", label: "I cooked, and my roommate cleaned." },
+                { value: "a", label: "While I was cooking, my roommate was cleaning." },
                 { value: "c", label: "I am cooking, and my roommate cleaned." },
             ],
             correctAnswer: "a",
@@ -501,9 +806,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-5",
             question: "Which sentence is NOT a good Past Continuous use?",
             options: [
-                { value: "a", label: "She was knowing the answer during the quiz." },
                 { value: "b", label: "She was studying when I texted her." },
                 { value: "c", label: "They were talking when the teacher walked in." },
+                { value: "a", label: "She was knowing the answer during the quiz." },
             ],
             correctAnswer: "a",
             explanation: "Stative verbs like 'know' usually avoid -ing; use Past Simple instead (She knew the answer.).",
@@ -527,8 +832,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Which negative sentence is correct?",
             options: [
-                { value: "a", label: "We weren't listening when the announcement played." },
                 { value: "b", label: "We didn't listening when the announcement played." },
+                { value: "a", label: "We weren't listening when the announcement played." },
                 { value: "c", label: "We wasn't listening when the announcement played." },
             ],
             correctAnswer: "a",
@@ -540,9 +845,9 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Pick the best sentence to set the scene (background action).",
             options: [
-                { value: "a", label: "I was walking home when I saw the police lights." },
                 { value: "b", label: "I walked home when I saw the police lights." },
                 { value: "c", label: "I am walking home when I saw the police lights." },
+                { value: "a", label: "I was walking home when I saw the police lights." },
             ],
             correctAnswer: "a",
             explanation: "Past Continuous sets the scene for what was in progress when something happened.",
@@ -566,8 +871,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             id: "quiz-10",
             question: "Which sentence is correct?",
             options: [
-                { value: "a", label: "At midnight, my neighbors were playing loud music." },
                 { value: "b", label: "At midnight, my neighbors played loud music." },
+                { value: "a", label: "At midnight, my neighbors were playing loud music." },
                 { value: "c", label: "At midnight, my neighbors are playing loud music." },
             ],
             correctAnswer: "a",
@@ -580,8 +885,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             question: "Which sentence has correct verb-ing form?",
             options: [
                 { value: "a", label: "They were shoping when it started raining." },
-                { value: "b", label: "They were shopping when it started raining." },
                 { value: "c", label: "They were shop when it started raining." },
+                { value: "b", label: "They were shopping when it started raining." },
             ],
             correctAnswer: "b",
             explanation: "Shop → shopping (double the final consonant + ing).",
@@ -619,8 +924,8 @@ export const pastContinuousContent: InteractiveGuideContent = {
             question: "Which sentence is correct?",
             options: [
                 { value: "a", label: "Was they waiting outside?" },
-                { value: "b", label: "Were they waiting outside?" },
                 { value: "c", label: "Did they waiting outside?" },
+                { value: "b", label: "Were they waiting outside?" },
             ],
             correctAnswer: "b",
             explanation: "They → were. Question: Were they + verb-ing?",

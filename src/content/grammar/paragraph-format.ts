@@ -32,8 +32,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the main purpose of a paragraph?",
                             options: [
-                                { value: "a", label: "To present ONE main idea clearly" },
                                 { value: "b", label: "To include as many ideas as possible" },
+                                { value: "a", label: "To present ONE main idea clearly" },
                                 { value: "c", label: "To use complex vocabulary" },
                             ],
                             expectedAnswer: "a",
@@ -42,9 +42,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What are the three parts of a paragraph?",
                             options: [
-                                { value: "a", label: "Topic sentence, supporting details, conclusion sentence" },
                                 { value: "b", label: "Introduction, middle, end" },
                                 { value: "c", label: "First sentence, second sentence, last sentence" },
+                                { value: "a", label: "Topic sentence, supporting details, conclusion sentence" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -107,8 +107,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "In the example paragraph, which sentence is the topic sentence?",
                             options: [
-                                { value: "a", label: "Exercise is important for good health." },
                                 { value: "b", label: "First, it helps you lose weight and stay in shape." },
+                                { value: "a", label: "Exercise is important for good health." },
                                 { value: "c", label: "For these reasons, everyone should try to exercise at least 30 minutes a day." },
                             ],
                             expectedAnswer: "a",
@@ -117,9 +117,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How many supporting detail sentences are in a typical paragraph?",
                             options: [
-                                { value: "a", label: "3-5 sentences" },
                                 { value: "b", label: "1-2 sentences" },
                                 { value: "c", label: "10 or more sentences" },
+                                { value: "a", label: "3-5 sentences" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -223,8 +223,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Why is 'Exercise is good' not a good topic sentence?",
                             options: [
-                                { value: "a", label: "It's too general and doesn't give a clear focus" },
                                 { value: "b", label: "It's too long" },
+                                { value: "a", label: "It's too general and doesn't give a clear focus" },
                                 { value: "c", label: "It uses the wrong words" },
                             ],
                             expectedAnswer: "a",
@@ -233,9 +233,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What makes a good topic sentence?",
                             options: [
-                                { value: "a", label: "States the main idea clearly, is complete, not too specific or general" },
                                 { value: "b", label: "Uses difficult vocabulary" },
                                 { value: "c", label: "Is very short" },
+                                { value: "a", label: "States the main idea clearly, is complete, not too specific or general" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -307,8 +307,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How many supporting detail sentences are usually in a paragraph?",
                             options: [
-                                { value: "a", label: "3-5 sentences" },
                                 { value: "b", label: "1-2 sentences" },
+                                { value: "a", label: "3-5 sentences" },
                                 { value: "c", label: "10 or more sentences" },
                             ],
                             expectedAnswer: "a",
@@ -317,9 +317,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What do transition words do?",
                             options: [
-                                { value: "a", label: "Help connect ideas and organize supporting details" },
                                 { value: "b", label: "Replace the topic sentence" },
                                 { value: "c", label: "Are not necessary" },
+                                { value: "a", label: "Help connect ideas and organize supporting details" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -384,8 +384,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What are ways to write a conclusion sentence?",
                             options: [
-                                { value: "a", label: "Restate the topic sentence, summarize key points, or give a final thought/recommendation" },
                                 { value: "b", label: "Introduce a new topic" },
+                                { value: "a", label: "Restate the topic sentence, summarize key points, or give a final thought/recommendation" },
                                 { value: "c", label: "Ask a question" },
                             ],
                             expectedAnswer: "a",
@@ -394,9 +394,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is a good conclusion starter?",
                             options: [
-                                { value: "a", label: "For these reasons..." },
                                 { value: "b", label: "First..." },
                                 { value: "c", label: "For example..." },
+                                { value: "a", label: "For these reasons..." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -457,8 +457,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What does 'coherence' mean in a paragraph?",
                             options: [
-                                { value: "a", label: "Ideas are connected in a logical order that's easy to follow" },
                                 { value: "b", label: "All sentences are about different topics" },
+                                { value: "a", label: "Ideas are connected in a logical order that's easy to follow" },
                                 { value: "c", label: "The paragraph has exactly five sentences" },
                             ],
                             expectedAnswer: "a",
@@ -467,9 +467,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which paragraph has a unity problem?",
                             options: [
-                                { value: "a", label: "Exercise is important. I also like pizza. Exercise helps you lose weight. (pizza doesn't support main idea)" },
                                 { value: "b", label: "Exercise is important. First, it helps you lose weight. Second, it reduces stress. (all support main idea)" },
                                 { value: "c", label: "Exercise is important. It helps you lose weight. It also reduces stress. (all support main idea)" },
+                                { value: "a", label: "Exercise is important. I also like pizza. Exercise helps you lose weight. (pizza doesn't support main idea)" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -528,8 +528,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When an East Boston newsletter starts with a detail about the Harborwalk without a clear focus, what mistake is happening?",
                             options: [
-                                { value: "a", label: "No topic sentence: the main idea is missing." },
                                 { value: "b", label: "Too many transition words crowd the paragraph." },
+                                { value: "a", label: "No topic sentence: the main idea is missing." },
                                 { value: "c", label: "Every sentence is too long." },
                             ],
                             expectedAnswer: "a",
@@ -538,9 +538,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "A writer lists the Harborwalk, the community garden, and the ferry schedule in the same paragraph. What mistake is that?",
                             options: [
-                                { value: "a", label: "Jumping between too many ideas instead of sticking to one." },
                                 { value: "b", label: "Using simple vocabulary." },
                                 { value: "c", label: "Writing all short sentences." },
+                                { value: "a", label: "Jumping between too many ideas instead of sticking to one." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -558,8 +558,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "If you write a paragraph about East Boston activities, how many sentences should it usually include?",
                             options: [
-                                { value: "a", label: "At least 5-7 sentences (topic + details + ending)." },
                                 { value: "b", label: "Exactly 3 sentences." },
+                                { value: "a", label: "At least 5-7 sentences (topic + details + ending)." },
                                 { value: "c", label: "As many as possible until you run out of paper." },
                             ],
                             expectedAnswer: "a",
@@ -583,10 +583,10 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence introduces the main idea for an East Boston Harborwalk paragraph?",
                             options: [
-                                { value: "a", label: "The Harborwalk helps neighbors stay active and friendly." },
                                 { value: "b", label: "Today, we passed the Harborwalk entrance twice." },
                                 { value: "c", label: "We stop for coffee after walking." },
                                 { value: "d", label: "Finally, the Harborwalk connects to the ferry." },
+                                { value: "a", label: "The Harborwalk helps neighbors stay active and friendly." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -601,9 +601,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which sentence does NOT belong in a paragraph about the Harborwalk?",
                             options: [
+                                { value: "c", label: "I like pizza." },
                                 { value: "a", label: "Walking on the Harborwalk is important for health." },
                                 { value: "b", label: "It builds stamina before a Blue Line commute." },
-                                { value: "c", label: "I like pizza." },
                                 { value: "d", label: "It keeps residents calmer on busy days." },
                             ],
                             expectedAnswer: "c",
@@ -677,8 +677,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             label: 'Fix this topic sentence: "I walk the Harborwalk."',
                             options: [
                                 { value: "a", label: "I walk." },
-                                { value: "b", label: "Walking the Harborwalk daily keeps my heart strong." },
                                 { value: "c", label: "Yesterday I walked at 7:15 AM." },
+                                { value: "b", label: "Walking the Harborwalk daily keeps my heart strong." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -778,8 +778,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What does a topic sentence do?",
                             options: [
-                                { value: "a", label: "States the main idea clearly (first sentence)" },
                                 { value: "b", label: "Gives examples" },
+                                { value: "a", label: "States the main idea clearly (first sentence)" },
                                 { value: "c", label: "Asks a question" },
                             ],
                             expectedAnswer: "a",
@@ -788,9 +788,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How many supporting detail sentences are usually in a paragraph?",
                             options: [
-                                { value: "a", label: "3-5 sentences" },
                                 { value: "b", label: "1-2 sentences" },
                                 { value: "c", label: "10 or more sentences" },
+                                { value: "a", label: "3-5 sentences" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -808,8 +808,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is a common mistake to avoid?",
                             options: [
-                                { value: "a", label: "Including sentences that don't relate to the topic sentence (off-topic sentences)" },
                                 { value: "b", label: "Using transition words" },
+                                { value: "a", label: "Including sentences that don't relate to the topic sentence (off-topic sentences)" },
                                 { value: "c", label: "Having a conclusion sentence" },
                             ],
                             expectedAnswer: "a",
@@ -902,8 +902,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
             question:
                 "How many sentences should a typical paragraph about the Blue Line schedule include?",
             options: [
-                { value: "a", label: "1-2 sentences" },
                 { value: "b", label: "At least 5-7 sentences" },
+                { value: "a", label: "1-2 sentences" },
                 { value: "c", label: "10-12 sentences" },
             ],
             correctAnswer: "b",
@@ -1004,8 +1004,8 @@ export const paragraphFormatContent: InteractiveGuideContent = {
             question:
                 "You want to write about a different topic (East Boston schools) instead of the Harborwalk. What should you do?",
             options: [
-                { value: "a", label: "Start a new paragraph" },
                 { value: "b", label: "Keep writing in the same paragraph" },
+                { value: "a", label: "Start a new paragraph" },
                 { value: "c", label: "Repeat the same topic sentence" },
             ],
             correctAnswer: "a",
@@ -1043,9 +1043,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
             question:
                 "Which transition word best shows that you are adding another idea about community safety?",
             options: [
-                { value: "a", label: "Also" },
                 { value: "b", label: "Yesterday" },
                 { value: "c", label: "However" },
+                { value: "a", label: "Also" },
             ],
             correctAnswer: "a",
             explanation:
@@ -1118,9 +1118,9 @@ export const paragraphFormatContent: InteractiveGuideContent = {
             question:
                 "Read this short paragraph: 'The Harborwalk is free, clean, and full of plants. We see more neighbors there every day. The path shines after a fresh rain.' What is missing?",
             options: [
+                { value: "c", label: "Conclusion sentence" },
                 { value: "a", label: "Topic sentence" },
                 { value: "b", label: "Supporting details" },
-                { value: "c", label: "Conclusion sentence" },
             ],
             correctAnswer: "c",
             explanation:

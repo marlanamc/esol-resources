@@ -202,8 +202,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Your hands are dirty. Someone asks why.",
                             options: [
-                                { value: "continuous", label: "I have been gardening. (Shows activity)" },
                                 { value: "simple", label: "I have gardened. (Shows result)" },
+                                { value: "continuous", label: "I have been gardening. (Shows activity)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -220,8 +220,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You're sweating because you exercised.",
                             options: [
-                                { value: "continuous", label: "I have been exercising. (Explains your condition)" },
                                 { value: "simple", label: "I have exercised. (Just states completion)" },
+                                { value: "continuous", label: "I have been exercising. (Explains your condition)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -330,8 +330,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Kitchen Situation",
                             options: [
-                                { value: "simple", label: "I have cleaned the kitchen. (It is clean now!)" },
                                 { value: "continuous", label: "I have been cleaning the kitchen. (I'm tired/still working)" },
+                                { value: "simple", label: "I have cleaned the kitchen. (It is clean now!)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -348,8 +348,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The empty plate",
                             options: [
-                                { value: "simple", label: "I have eaten my sandwich." },
                                 { value: "continuous", label: "I have been eating my sandwich." },
+                                { value: "simple", label: "I have eaten my sandwich." },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -453,8 +453,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Waiting for the bus",
                             options: [
-                                { value: "simple", label: "I have waited. (Done)" },
                                 { value: "continuous", label: "I have been waiting for an hour! (Stress on time)" },
+                                { value: "simple", label: "I have waited. (Done)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -471,8 +471,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Out of breath",
                             options: [
-                                { value: "simple", label: "I have run." },
                                 { value: "continuous", label: "I have been running around all morning." },
+                                { value: "simple", label: "I have run." },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -707,8 +707,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You see your friend sweating in gym clothes.",
                             options: [
-                                { value: "continuous", label: "Have you been exercising? (Focus on recent activity)" },
                                 { value: "simple", label: "Have you exercised? (Focus on result)" },
+                                { value: "continuous", label: "Have you been exercising? (Focus on recent activity)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -725,8 +725,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You are waiting for someone.",
                             options: [
-                                { value: "continuous", label: "How long have you been waiting?" },
                                 { value: "simple", label: "How long have you waited?" },
+                                { value: "continuous", label: "How long have you been waiting?" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -1196,8 +1196,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Counting completed items:",
                             options: [
-                                { value: "wrong", label: "She has been visiting Paris 4 times." },
                                 { value: "correct", label: "She has visited Paris 4 times." },
+                                { value: "wrong", label: "She has been visiting Paris 4 times." },
                             ],
                             expectedAnswer: "correct",
                         },
@@ -1214,8 +1214,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Emphasizing duration:",
                             options: [
-                                { value: "wrong", label: "I have waited for 2 hours!" },
                                 { value: "correct", label: "I have been waiting for 2 hours!" },
+                                { value: "wrong", label: "I have waited for 2 hours!" },
                             ],
                             expectedAnswer: "correct",
                         },
@@ -1297,8 +1297,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You have paint on your shirt! ___ you ___ the bedroom?",
                             options: [
-                                { value: "simple", label: "Have / painted" },
                                 { value: "continuous", label: "Have / been painting" },
+                                { value: "simple", label: "Have / painted" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -1306,8 +1306,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The bedroom looks great. I ___ it.",
                             options: [
-                                { value: "simple", label: "have painted" },
                                 { value: "continuous", label: "have been painting" },
+                                { value: "simple", label: "have painted" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -1482,8 +1482,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             question: "Choose the sentence that focuses on a completed result.",
             options: [
                 { value: "a", label: "I have been cleaning the kitchen all morning." },
-                { value: "b", label: "I have cleaned the kitchen." },
                 { value: "c", label: "I cleaned the kitchen yesterday." },
+                { value: "b", label: "I have cleaned the kitchen." },
             ],
             correctAnswer: "b",
             explanation: "Present Perfect Simple focuses on a completed action with a result now.",
@@ -1494,8 +1494,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence correctly uses Present Perfect Continuous?",
             options: [
-                { value: "a", label: "She has worked here since 2020." },
                 { value: "b", label: "She has been working here since 2020." },
+                { value: "a", label: "She has worked here since 2020." },
                 { value: "c", label: "She worked here since 2020." },
             ],
             correctAnswer: "b",
@@ -1521,8 +1521,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             question: "Which sentence talks about life experience?",
             options: [
                 { value: "a", label: "I have been traveling for two weeks." },
-                { value: "b", label: "I have traveled to Mexico twice." },
                 { value: "c", label: "I traveled to Mexico last year." },
+                { value: "b", label: "I have traveled to Mexico twice." },
             ],
             correctAnswer: "b",
             explanation: "Life experience uses Present Perfect Simple with ever/never or counts.",
@@ -1533,8 +1533,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-5",
             question: "Choose the correct sentence.",
             options: [
-                { value: "a", label: "I have been knowing her for years." },
                 { value: "b", label: "I have known her for years." },
+                { value: "a", label: "I have been knowing her for years." },
                 { value: "c", label: "I knew her for years." },
             ],
             correctAnswer: "b",
@@ -1560,8 +1560,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             question: "Fill in the blank: \"She ___ just finished her homework.\"",
             options: [
                 { value: "a", label: "has been" },
-                { value: "b", label: "has" },
                 { value: "c", label: "is" },
+                { value: "b", label: "has" },
             ],
             correctAnswer: "b",
             explanation: "Words like 'just' go with Present Perfect Simple.",
@@ -1572,9 +1572,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Which sentence is incorrect?",
             options: [
+                { value: "c", label: "I have been reading three books this month." },
                 { value: "a", label: "I have been reading for two hours." },
                 { value: "b", label: "I have read three books this month." },
-                { value: "c", label: "I have been reading three books this month." },
             ],
             correctAnswer: "c",
             explanation: "Counting completed items requires Present Perfect Simple, not continuous.",
@@ -1598,9 +1598,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-10",
             question: "Which sentence is NOT correct?",
             options: [
-                { value: "a", label: "I have seen her yesterday." },
                 { value: "b", label: "I saw her yesterday." },
                 { value: "c", label: "I have seen her before." },
+                { value: "a", label: "I have seen her yesterday." },
             ],
             correctAnswer: "a",
             explanation: "Specific past time expressions require Past Simple, not Present Perfect.",
@@ -1611,9 +1611,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-11",
             question: "Which question asks about duration?",
             options: [
+                { value: "c", label: "How long have you been working?" },
                 { value: "a", label: "How many emails have you written?" },
                 { value: "b", label: "Have you finished your work?" },
-                { value: "c", label: "How long have you been working?" },
             ],
             correctAnswer: "c",
             explanation: "How long signals duration and Present Perfect Continuous.",
@@ -1638,8 +1638,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             question: "Which sentence focuses on quantity?",
             options: [
                 { value: "a", label: "She has been calling all morning." },
-                { value: "b", label: "She has called five times." },
                 { value: "c", label: "She called this morning." },
+                { value: "b", label: "She has called five times." },
             ],
             correctAnswer: "b",
             explanation: "Counting actions uses Present Perfect Simple.",
@@ -1650,8 +1650,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-14",
             question: "Choose the sentence that sounds natural.",
             options: [
-                { value: "a", label: "I have been owning this car for years." },
                 { value: "b", label: "I have owned this car for years." },
+                { value: "a", label: "I have been owning this car for years." },
                 { value: "c", label: "I owned this car for years." },
             ],
             correctAnswer: "b",
@@ -1663,8 +1663,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-15",
             question: "Which sentence best explains the difference in meaning?",
             options: [
-                { value: "a", label: "I have written emails. / I have been writing emails." },
                 { value: "b", label: "I wrote emails. / I have written emails." },
+                { value: "a", label: "I have written emails. / I have been writing emails." },
                 { value: "c", label: "I am writing emails. / I have written emails." },
             ],
             correctAnswer: "a",

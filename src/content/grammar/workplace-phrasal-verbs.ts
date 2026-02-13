@@ -86,8 +86,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Please <span class='eg-verb'>fill out</span> the emergency contact form.",
                             options: [
-                                { value: "a", label: "Complete the form" },
                                 { value: "b", label: "Make the form bigger" },
+                                { value: "a", label: "Complete the form" },
                                 { value: "c", label: "Throw the form away" },
                             ],
                             expectedAnswer: "a",
@@ -96,9 +96,9 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I'll <span class='eg-verb'>call you back</span> after my shift ends.",
                             options: [
-                                { value: "a", label: "Call you again later" },
                                 { value: "b", label: "Meet you in person" },
                                 { value: "c", label: "Text you right now" },
+                                { value: "a", label: "Call you again later" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -348,8 +348,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I'll <span class='eg-verb'>get back to you</span> after I talk to the supervisor.",
                             options: [
-                                { value: "a", label: "I'll respond later" },
                                 { value: "b", label: "I'll return to the building" },
+                                { value: "a", label: "I'll respond later" },
                                 { value: "c", label: "I'll give you money back" },
                             ],
                             expectedAnswer: "a",
@@ -358,9 +358,9 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Please <span class='eg-verb'>call me back</span> when you have a minute.",
                             options: [
-                                { value: "a", label: "Return my phone call" },
                                 { value: "b", label: "Come back to work" },
                                 { value: "c", label: "Call my mother" },
+                                { value: "a", label: "Return my phone call" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -696,9 +696,9 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "In Dialogue 2, what does Ana offer to do in exchange for coverage?",
                             options: [
-                                { value: "a", label: "Take on Carlos's Saturday shift" },
                                 { value: "b", label: "Fill out his timesheet" },
                                 { value: "c", label: "Call in sick for him" },
+                                { value: "a", label: "Take on Carlos's Saturday shift" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -706,8 +706,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "In Dialogue 3, when will Nina 'wrap up' the report?",
                             options: [
-                                { value: "a", label: "Tomorrow morning" },
                                 { value: "b", label: "By 3:00 today" },
+                                { value: "a", label: "Tomorrow morning" },
                                 { value: "c", label: "Next week" },
                             ],
                             expectedAnswer: "b",
@@ -833,8 +833,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             question: "Complete: 'I have already ___ this onboarding form.'",
             options: [
                 { value: "a", label: "fill out" },
-                { value: "b", label: "filled out" },
                 { value: "c", label: "filling out" },
+                { value: "b", label: "filled out" },
             ],
             correctAnswer: "b",
             explanation:
@@ -846,8 +846,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "If you 'cover for' someone, you:",
             options: [
-                { value: "a", label: "Hide them" },
                 { value: "b", label: "Do their job temporarily" },
+                { value: "a", label: "Hide them" },
                 { value: "c", label: "Pay for them" },
             ],
             correctAnswer: "b",
@@ -874,8 +874,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             question: "Complete: 'Before you leave, make sure you ___.'",
             options: [
                 { value: "a", label: "clock in" },
-                { value: "b", label: "clock out" },
                 { value: "c", label: "call out" },
+                { value: "b", label: "clock out" },
             ],
             correctAnswer: "b",
             explanation: "'Clock out' (or 'punch out') means to record the time you leave work.",
@@ -899,8 +899,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Complete: 'Can you ___ this email before I send it to HR?'",
             options: [
-                { value: "a", label: "look over" },
                 { value: "b", label: "look up" },
+                { value: "a", label: "look over" },
                 { value: "c", label: "look out" },
             ],
             correctAnswer: "a",
@@ -913,8 +913,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             question: "If you missed a call, you can say: 'I'll ___ in a few minutes.'",
             options: [
                 { value: "a", label: "call out" },
-                { value: "b", label: "call back" },
                 { value: "c", label: "call in sick" },
+                { value: "b", label: "call back" },
             ],
             correctAnswer: "b",
             explanation: "'Call back' means to return a phone call.",
@@ -939,8 +939,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-10",
             question: "Complete: 'Sorry I'm late. Thanks for ___ me.'",
             options: [
-                { value: "a", label: "covering for" },
                 { value: "b", label: "filling out" },
+                { value: "a", label: "covering for" },
                 { value: "c", label: "turning in" },
             ],
             correctAnswer: "a",
@@ -953,9 +953,9 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-11",
             question: "Complete: 'Nina is ___ the manager this week.'",
             options: [
-                { value: "a", label: "filling in for" },
                 { value: "b", label: "turning in" },
                 { value: "c", label: "calling back" },
+                { value: "a", label: "filling in for" },
             ],
             correctAnswer: "a",
             explanation:
@@ -980,8 +980,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Complete: 'I don't know yet, but I'll ___ you by the end of the day.'",
             options: [
-                { value: "a", label: "get back to" },
                 { value: "b", label: "get back" },
+                { value: "a", label: "get back to" },
                 { value: "c", label: "get up" },
             ],
             correctAnswer: "a",
@@ -994,9 +994,9 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-14",
             question: "Complete: 'I'm sick, so I can't ___ for my shift today.'",
             options: [
-                { value: "a", label: "show up" },
                 { value: "b", label: "fill out" },
                 { value: "c", label: "turn in" },
+                { value: "a", label: "show up" },
             ],
             correctAnswer: "a",
             explanation: "'Show up' means to arrive. If you're sick, you can't show up for your shift.",
@@ -1007,8 +1007,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-15",
             question: "What does 'take on' mean in 'Can you take on this project?'",
             options: [
-                { value: "a", label: "Fight against it" },
                 { value: "b", label: "Accept responsibility for it" },
+                { value: "a", label: "Fight against it" },
                 { value: "c", label: "Put it somewhere" },
             ],
             correctAnswer: "b",
@@ -1020,8 +1020,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-16",
             question: "Complete: 'We can't meet today. Let's ___ the meeting until next week.'",
             options: [
-                { value: "a", label: "put off" },
                 { value: "b", label: "put in" },
+                { value: "a", label: "put off" },
                 { value: "c", label: "put up" },
             ],
             correctAnswer: "a",
@@ -1034,8 +1034,8 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             question: "What does 'set up' mean in 'Can you set up the meeting room?'",
             options: [
                 { value: "a", label: "Clean it" },
-                { value: "b", label: "Arrange and prepare it" },
                 { value: "c", label: "Lock it" },
+                { value: "b", label: "Arrange and prepare it" },
             ],
             correctAnswer: "b",
             explanation:
@@ -1075,9 +1075,9 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
             id: "quiz-20",
             question: "Complete: 'Let's ___ a schedule that works for everyone.'",
             options: [
-                { value: "a", label: "work out" },
                 { value: "b", label: "work in" },
                 { value: "c", label: "work up" },
+                { value: "a", label: "work out" },
             ],
             correctAnswer: "a",
             explanation:

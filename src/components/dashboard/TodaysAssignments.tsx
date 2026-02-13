@@ -497,7 +497,13 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         >
                                             <div className="flex items-center gap-2">
                                                 <span style={{ color: groupStyle.text }}>{group.icon}</span>
-                                                <h3 className="font-display font-bold text-base sm:text-lg" style={{ color: groupStyle.text }}>{group.label}</h3>
+                                                <Link
+                                                    href={`/dashboard/activities?category=${group.key === 'activity' ? 'games' : group.key}`}
+                                                    className="font-display font-bold text-base sm:text-lg hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
+                                                    style={{ color: groupStyle.text }}
+                                                >
+                                                    {group.label}
+                                                </Link>
                                                 <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-white/70 border border-white/80" style={{ color: groupStyle.text }}>
                                                     {group.isGameGroup ? `${group.items.length}` : `${group.doneInGroup}/${group.items.length}`}
                                                 </span>
