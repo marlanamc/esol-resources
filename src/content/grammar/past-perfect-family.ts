@@ -200,8 +200,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The party was over. Everyone ___ home. (completed action before)",
                             options: [
-                                { value: "simple", label: "had gone (Order - they left earlier)" },
                                 { value: "continuous", label: "had been going (Duration)" },
+                                { value: "simple", label: "had gone (Order - they left earlier)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -209,8 +209,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Her eyes were red. She ___. (activity that explains her condition)",
                             options: [
-                                { value: "simple", label: "had cried (Order - just states it happened)" },
                                 { value: "continuous", label: "had been crying (Duration - ongoing activity)" },
+                                { value: "simple", label: "had cried (Order - just states it happened)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -218,8 +218,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By the time I woke up, my parents ___ to work. (completed departure)",
                             options: [
-                                { value: "simple", label: "had already gone (Order - sequence)" },
                                 { value: "continuous", label: "had been going (Duration)" },
+                                { value: "simple", label: "had already gone (Order - sequence)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -227,8 +227,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The ground was wet. It ___ all night. (duration of weather)",
                             options: [
-                                { value: "simple", label: "had rained (Order - just states fact)" },
                                 { value: "continuous", label: "had been raining (Duration - emphasizes duration)" },
+                                { value: "simple", label: "had rained (Order - just states fact)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -996,8 +996,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Two past actions:",
                             options: [
-                                { value: "wrong", label: "When I arrived, she already left." },
                                 { value: "correct", label: "When I arrived, she had already left." },
+                                { value: "wrong", label: "When I arrived, she already left." },
                             ],
                             expectedAnswer: "correct",
                         },
@@ -1237,8 +1237,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             question: "When do we use Past Perfect Simple?",
             options: [
                 { value: "a", label: "To show how long something took" },
-                { value: "b", label: "To show which of two past actions happened FIRST" },
                 { value: "c", label: "To describe current situations" },
+                { value: "b", label: "To show which of two past actions happened FIRST" },
             ],
             correctAnswer: "b",
             explanation: "Past Perfect Simple shows sequence - which action happened first in a story about the past.",
@@ -1258,8 +1258,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q3",
             question: "\"When I arrived, the movie had started.\" Which action happened first?",
             options: [
-                { value: "a", label: "I arrived" },
                 { value: "b", label: "The movie started" },
+                { value: "a", label: "I arrived" },
             ],
             correctAnswer: "b",
             explanation: "The action with Past Perfect (had started) happened FIRST.",
@@ -1269,8 +1269,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             question: "Why is this sentence wrong? \"I had eaten lunch yesterday.\"",
             options: [
                 { value: "a", label: "The verb form is wrong" },
-                { value: "b", label: "Past Perfect needs TWO past references, not just one" },
                 { value: "c", label: "\"Lunch\" should be \"dinner\"" },
+                { value: "b", label: "Past Perfect needs TWO past references, not just one" },
             ],
             correctAnswer: "b",
             explanation: "Past Perfect needs two past actions or times. For a single past action, use Past Simple: \"I ate lunch yesterday.\"",
@@ -1279,8 +1279,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q5",
             question: "\"She was exhausted because she had been working all day.\" What's the focus?",
             options: [
-                { value: "a", label: "The result of finishing work" },
                 { value: "b", label: "The duration of working (all day)" },
+                { value: "a", label: "The result of finishing work" },
                 { value: "c", label: "What she will do tomorrow" },
             ],
             correctAnswer: "b",
@@ -1292,8 +1292,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q6",
             question: "By the time the ambulance arrived, the patient ___ .",
             options: [
-                { value: "a", label: "had already died" },
                 { value: "b", label: "has already died" },
+                { value: "a", label: "had already died" },
                 { value: "c", label: "already died" },
             ],
             correctAnswer: "a",
@@ -1303,9 +1303,9 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q7",
             question: "She was nervous because she ___ an interview before.",
             options: [
-                { value: "a", label: "had never done" },
                 { value: "b", label: "had never been doing" },
                 { value: "c", label: "never did" },
+                { value: "a", label: "had never done" },
             ],
             correctAnswer: "a",
             explanation: "\"Never\" + completion = Simple. She had no interview experience before that moment.",
@@ -1314,8 +1314,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q8",
             question: "They ___ in that apartment for 10 years when they decided to move.",
             options: [
-                { value: "a", label: "lived" },
                 { value: "b", label: "had been living" },
+                { value: "a", label: "lived" },
                 { value: "c", label: "have been living" },
             ],
             correctAnswer: "b",
@@ -1325,8 +1325,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q9",
             question: "After she ___ her homework, she watched TV.",
             options: [
-                { value: "a", label: "had finished" },
                 { value: "b", label: "had been finishing" },
+                { value: "a", label: "had finished" },
                 { value: "c", label: "has finished" },
             ],
             correctAnswer: "a",
@@ -1337,8 +1337,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             question: "How long ___ you ___ before the bus came?",
             options: [
                 { value: "a", label: "had / waited" },
-                { value: "b", label: "had / been waiting" },
                 { value: "c", label: "have / been waiting" },
+                { value: "b", label: "had / been waiting" },
             ],
             correctAnswer: "b",
             explanation: "\"How long\" asks about duration, so we use Continuous.",
@@ -1360,8 +1360,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q12",
             question: "Which question form is correct?",
             options: [
-                { value: "a", label: "Had they been working all day?" },
                 { value: "b", label: "Did they had been working all day?" },
+                { value: "a", label: "Had they been working all day?" },
                 { value: "c", label: "Were they had been working all day?" },
             ],
             correctAnswer: "a",
@@ -1372,8 +1372,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             question: "Choose the correct structure for Past Perfect Continuous:",
             options: [
                 { value: "a", label: "had + past participle" },
-                { value: "b", label: "had been + verb-ing" },
                 { value: "c", label: "have been + verb-ing" },
+                { value: "b", label: "had been + verb-ing" },
             ],
             correctAnswer: "b",
             explanation: "Past Perfect Continuous: had been + verb-ing (e.g., had been working).",
@@ -1394,8 +1394,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             id: "ppf-q15",
             question: "Choose the best summary of the Past Perfect Family:",
             options: [
-                { value: "a", label: "Simple shows sequence (first action); Continuous shows duration before" },
                 { value: "b", label: "Both forms are exactly the same" },
+                { value: "a", label: "Simple shows sequence (first action); Continuous shows duration before" },
                 { value: "c", label: "Simple is for present; Continuous is for past" },
             ],
             correctAnswer: "a",

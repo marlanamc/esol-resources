@@ -87,6 +87,8 @@ interface ActivityCategoryPickerProps {
     activities: Activity[];
     completedActivityIds?: Set<string>;
     progressMap?: Record<string, { progress: number; categoryData?: string }>;
+    /** Initial category to open (e.g. from ?category=grammar). Must match a CATEGORY_CARDS key. */
+    initialCategory?: string | null;
 }
 
 // Lazy-import ActivityCategories to avoid circular deps
@@ -98,9 +100,8 @@ export function ActivityCategoryPicker({
     activities,
     completedActivityIds,
     progressMap,
+    initialCategory = null,
 }: ActivityCategoryPickerProps) {
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
     // Determine which categories actually have activities so we can hide empty ones
     const categoryHasActivities = useMemo(() => {
         const map: Record<string, boolean> = {};
@@ -160,6 +161,12 @@ export function ActivityCategoryPicker({
     }, [activities]);
 
     const visibleCards = CATEGORY_CARDS.filter((c) => categoryHasActivities[c.key]);
+    const validInitialCategory =
+        initialCategory && CATEGORY_CARDS.some((c) => c.key === initialCategory) && categoryHasActivities[initialCategory]
+            ? initialCategory
+            : null;
+
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(() => validInitialCategory);
 
     // Category picker view
     if (!selectedCategory) {

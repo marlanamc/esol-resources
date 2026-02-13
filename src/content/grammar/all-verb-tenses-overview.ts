@@ -521,8 +521,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-1",
             question: "Which tense do you use MOST often in everyday conversation?",
             options: [
-                { value: "a", label: "Future Perfect Continuous" },
                 { value: "b", label: "Present Simple" },
+                { value: "a", label: "Future Perfect Continuous" },
                 { value: "c", label: "Past Perfect Continuous" },
             ],
             correctAnswer: "b",
@@ -548,8 +548,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             question: 'What tense is this: "I was sleeping when the phone rang"?',
             options: [
                 { value: "a", label: "Past Simple" },
-                { value: "b", label: "Past Continuous" },
                 { value: "c", label: "Past Perfect" },
+                { value: "b", label: "Past Continuous" },
             ],
             correctAnswer: "b",
             explanation: "Past Continuous (was/were + verb-ing) shows an ongoing action interrupted by a past simple event.",
@@ -560,8 +560,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-4",
             question: "How many verb tenses should you be able to USE confidently for ESOL Level 3?",
             options: [
-                { value: "a", label: "All 12 tenses" },
                 { value: "b", label: "7–8 tenses (simple, continuous, and perfect)" },
+                { value: "a", label: "All 12 tenses" },
                 { value: "c", label: "Only 3 tenses (past, present, future simple)" },
             ],
             correctAnswer: "b",
@@ -588,9 +588,9 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-6",
             question: 'What tense is this: "She takes the subway to work every morning"?',
             options: [
-                { value: "a", label: "Present Simple" },
                 { value: "b", label: "Present Continuous" },
                 { value: "c", label: "Past Simple" },
+                { value: "a", label: "Present Simple" },
             ],
             correctAnswer: "a",
             explanation: "Present Simple describes habits and routines (every morning).",
@@ -601,8 +601,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Complete: \"Right now, we ___ for the bus.\"",
             options: [
-                { value: "a", label: "wait" },
                 { value: "b", label: "are waiting" },
+                { value: "a", label: "wait" },
                 { value: "c", label: "waited" },
             ],
             correctAnswer: "b",
@@ -614,8 +614,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: 'What tense is this: "I am meeting my caseworker tomorrow"?',
             options: [
-                { value: "a", label: "Present Continuous (future plan)" },
                 { value: "b", label: "Future Perfect" },
+                { value: "a", label: "Present Continuous (future plan)" },
                 { value: "c", label: "Past Continuous" },
             ],
             correctAnswer: "a",
@@ -627,9 +627,9 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-9",
             question: 'What tense is this: "I have lived in this apartment since 2021"?',
             options: [
-                { value: "a", label: "Present Perfect" },
                 { value: "b", label: "Past Simple" },
                 { value: "c", label: "Future Simple" },
+                { value: "a", label: "Present Perfect" },
             ],
             correctAnswer: "a",
             explanation: "Present Perfect (have/has + past participle) connects the past (since 2021) to now.",
@@ -653,8 +653,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-11",
             question: 'What tense is this: "I had been waiting for two hours when they called my name"?',
             options: [
-                { value: "a", label: "Past Perfect Continuous" },
                 { value: "b", label: "Present Perfect Continuous" },
+                { value: "a", label: "Past Perfect Continuous" },
                 { value: "c", label: "Future Continuous" },
             ],
             correctAnswer: "a",
@@ -667,8 +667,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             question: "Complete: \"By next summer, I ___ here for two years.\"",
             options: [
                 { value: "a", label: "will live" },
-                { value: "b", label: "will have lived" },
                 { value: "c", label: "have lived" },
+                { value: "b", label: "will have lived" },
             ],
             correctAnswer: "b",
             explanation: "Future Perfect (will have + past participle) shows something will be completed by a future time.",
@@ -692,8 +692,8 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-14",
             question: "Complete: \"If I ___ early, I will catch the train.\"",
             options: [
-                { value: "a", label: "leave" },
                 { value: "b", label: "will leave" },
+                { value: "a", label: "leave" },
                 { value: "c", label: "left" },
             ],
             correctAnswer: "a",
@@ -705,9 +705,9 @@ export const allVerbTensesOverviewContent: InteractiveGuideContent = {
             id: "quiz-15",
             question: "Which formula is correct for Present Perfect?",
             options: [
-                { value: "a", label: "have/has + past participle" },
                 { value: "b", label: "was/were + verb-ing" },
                 { value: "c", label: "will have been + verb-ing" },
+                { value: "a", label: "have/has + past participle" },
             ],
             correctAnswer: "a",
             explanation: "Present Perfect uses have/has + past participle (for example, 'I have finished').",

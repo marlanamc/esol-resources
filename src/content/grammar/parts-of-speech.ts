@@ -1424,8 +1424,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "She speaks very <strong>quickly</strong>.",
                             options: [
-                                { value: "adverb", label: "Adverb" },
                                 { value: "adjective", label: "Adjective" },
+                                { value: "adverb", label: "Adverb" },
                                 { value: "noun", label: "Noun" },
                                 { value: "verb", label: "Verb" },
                             ],
@@ -1444,9 +1444,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question:
                     "What part of speech is 'hospital' in: 'I work at the hospital'?",
                 options: [
-                    { value: "a", label: "Noun" },
                     { value: "b", label: "Verb" },
                     { value: "c", label: "Adjective" },
+                    { value: "a", label: "Noun" },
                     { value: "d", label: "Adverb" },
                 ],
                 correctAnswer: "a",
@@ -1473,9 +1473,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 id: "quiz-3",
                 question: "What part of speech is 'good' in: 'She is a good teacher'?",
                 options: [
+                    { value: "c", label: "Adjective" },
                     { value: "a", label: "Noun" },
                     { value: "b", label: "Verb" },
-                    { value: "c", label: "Adjective" },
                     { value: "d", label: "Adverb" },
                 ],
                 correctAnswer: "c",
@@ -1503,9 +1503,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question:
                     "What part of speech is 'they' in: 'They are my classmates'?",
                 options: [
-                    { value: "a", label: "Pronoun" },
                     { value: "b", label: "Noun" },
                     { value: "c", label: "Verb" },
+                    { value: "a", label: "Pronoun" },
                     { value: "d", label: "Article" },
                 ],
                 correctAnswer: "a",
@@ -1519,9 +1519,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question: "What part of speech is 'the' in: 'Close the door'?",
                 options: [
                     { value: "a", label: "Adjective" },
-                    { value: "b", label: "Article" },
                     { value: "c", label: "Preposition" },
                     { value: "d", label: "Conjunction" },
+                    { value: "b", label: "Article" },
                 ],
                 correctAnswer: "b",
                 explanation:
@@ -1534,8 +1534,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question:
                     "What part of speech is 'on' in: 'The book is on the table'?",
                 options: [
-                    { value: "a", label: "Adverb" },
                     { value: "b", label: "Preposition" },
+                    { value: "a", label: "Adverb" },
                     { value: "c", label: "Conjunction" },
                     { value: "d", label: "Adjective" },
                 ],
@@ -1567,8 +1567,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     "In the sentence 'The friendly nurse carefully explained the form,' what part of speech is 'friendly'?",
                 options: [
                     { value: "a", label: "Noun" },
-                    { value: "b", label: "Adjective" },
                     { value: "c", label: "Adverb" },
+                    { value: "b", label: "Adjective" },
                     { value: "d", label: "Pronoun" },
                 ],
                 correctAnswer: "b",
@@ -1583,9 +1583,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     "In the sentence 'She usually takes the bus to class,' what part of speech is 'usually'?",
                 options: [
                     { value: "a", label: "Noun" },
-                    { value: "b", label: "Adverb" },
                     { value: "c", label: "Adjective" },
                     { value: "d", label: "Preposition" },
+                    { value: "b", label: "Adverb" },
                 ],
                 correctAnswer: "b",
                 explanation:
@@ -1598,8 +1598,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question:
                     "In the sentence 'My coworkers and I had a long meeting,' what part of speech is 'my'?",
                 options: [
-                    { value: "a", label: "Pronoun" },
                     { value: "b", label: "Possessive adjective" },
+                    { value: "a", label: "Pronoun" },
                     { value: "c", label: "Article" },
                     { value: "d", label: "Conjunction" },
                 ],
@@ -1631,8 +1631,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     "In the sentence 'We were tired, so we left early,' what part of speech is 'so'?",
                 options: [
                     { value: "a", label: "Adverb" },
-                    { value: "b", label: "Conjunction" },
                     { value: "c", label: "Preposition" },
+                    { value: "b", label: "Conjunction" },
                     { value: "d", label: "Pronoun" },
                 ],
                 correctAnswer: "b",
@@ -1647,9 +1647,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                     "In the sentence 'They helped us with the application,' what part of speech is 'us'?",
                 options: [
                     { value: "a", label: "Subject pronoun" },
-                    { value: "b", label: "Object pronoun" },
                     { value: "c", label: "Noun" },
                     { value: "d", label: "Article" },
+                    { value: "b", label: "Object pronoun" },
                 ],
                 correctAnswer: "b",
                 explanation:
@@ -1662,9 +1662,9 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question:
                     "In the sentence 'The doctor quickly wrote a note,' which two words are the verb and adverb?",
                 options: [
+                    { value: "c", label: "'wrote' and 'quickly'" },
                     { value: "a", label: "'doctor' and 'note'" },
                     { value: "b", label: "'quickly' and 'note'" },
-                    { value: "c", label: "'wrote' and 'quickly'" },
                     { value: "d", label: "'the' and 'wrote'" },
                 ],
                 correctAnswer: "c",
@@ -1678,8 +1678,8 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
                 question:
                     "In the sentence 'The new student is very quiet,' what part of speech is 'very'?",
                 options: [
-                    { value: "a", label: "Adverb" },
                     { value: "b", label: "Adjective" },
+                    { value: "a", label: "Adverb" },
                     { value: "c", label: "Noun" },
                     { value: "d", label: "Pronoun" },
                 ],

@@ -62,9 +62,9 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "We need ___ translator for the housing meeting.",
                             options: [
-                                { value: "a", label: "a" },
                                 { value: "an", label: "an" },
                                 { value: "zero", label: "(no article)" },
+                                { value: "a", label: "a" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -108,8 +108,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I go to ___ East Boston Branch Library.",
                             options: [
-                                { value: "a", label: "a" },
                                 { value: "the", label: "the" },
+                                { value: "a", label: "a" },
                                 { value: "zero", label: "(no article)" },
                             ],
                             expectedAnswer: "the",
@@ -119,8 +119,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             label: "We look for work at ___ community centers.",
                             options: [
                                 { value: "a", label: "a" },
-                                { value: "the", label: "the" },
                                 { value: "zero", label: "(no article)" },
+                                { value: "the", label: "the" },
                             ],
                             expectedAnswer: "zero",
                         },
@@ -129,8 +129,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             label: "___ safety of my family is important.",
                             options: [
                                 { value: "a", label: "a" },
-                                { value: "the", label: "the" },
                                 { value: "zero", label: "(no article)" },
+                                { value: "the", label: "the" },
                             ],
                             expectedAnswer: "the",
                         },
@@ -156,8 +156,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ bus to Maverick leaves every 20 minutes.",
                             options: [
-                                { value: "a", label: "a" },
                                 { value: "the", label: "the" },
+                                { value: "a", label: "a" },
                                 { value: "zero", label: "(no article)" },
                             ],
                             expectedAnswer: "the",
@@ -166,8 +166,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "We joined ___ volunteer group after the class.",
                             options: [
-                                { value: "a", label: "a" },
                                 { value: "an", label: "an" },
+                                { value: "a", label: "a" },
                                 { value: "zero", label: "(no article)" },
                             ],
                             expectedAnswer: "a",
@@ -176,9 +176,9 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I want ___ job that lets me work from home.",
                             options: [
-                                { value: "a", label: "a" },
                                 { value: "the", label: "the" },
                                 { value: "zero", label: "(no article)" },
+                                { value: "a", label: "a" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -246,8 +246,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I went to ___ community center on Meridian Street. ___ center offers free childcare.",
                             options: [
-                                { value: "a-the", label: "a / the" },
                                 { value: "the-the", label: "the / the" },
+                                { value: "a-the", label: "a / the" },
                                 { value: "zero-the", label: "(no article) / the" },
                             ],
                             expectedAnswer: "a-the",
@@ -257,8 +257,8 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             label: "___ housing office can help you with your application.",
                             options: [
                                 { value: "a", label: "a" },
-                                { value: "the", label: "the" },
                                 { value: "zero", label: "(no article)" },
+                                { value: "the", label: "the" },
                             ],
                             expectedAnswer: "the",
                         },
@@ -266,9 +266,9 @@ export const articlesCommunityResourcesContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "We learned about ___ tenants' rights in class.",
                             options: [
+                                { value: "zero", label: "(no article)" },
                                 { value: "a", label: "a" },
                                 { value: "the", label: "the" },
-                                { value: "zero", label: "(no article)" },
                             ],
                             expectedAnswer: "zero",
                         },

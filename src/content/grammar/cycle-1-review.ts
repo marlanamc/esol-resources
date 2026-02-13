@@ -45,9 +45,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What feels like the best description?",
                             options: [
-                                { value: "warm", label: "Warm check-in that highlights meaning" },
                                 { value: "strict", label: "Strict list of rules and exceptions" },
-                                { value: "silent", label: "Pure reference with no feeling" }
+                                { value: "warm", label: "Warm check-in that highlights meaning" },
+                                { value: "silent", label: "Pure reference with no feeling" },
                             ],
                             expectedAnswer: "warm"
                         }
@@ -137,9 +137,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"Every morning, I ___ coffee.\"",
                             options: [
-                                { value: "present-simple", label: "Present Simple" },
                                 { value: "past-simple", label: "Past Simple" },
-                                { value: "future-simple", label: "Future Simple" }
+                                { value: "future-simple", label: "Future Simple" },
+                                { value: "present-simple", label: "Present Simple" },
                             ],
                             expectedAnswer: "present-simple"
                         },
@@ -147,9 +147,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"Yesterday, we ___ the homework.\"",
                             options: [
-                                { value: "present-simple", label: "Present Simple" },
                                 { value: "past-simple", label: "Past Simple" },
-                                { value: "future-simple", label: "Future Simple" }
+                                { value: "present-simple", label: "Present Simple" },
+                                { value: "future-simple", label: "Future Simple" },
                             ],
                             expectedAnswer: "past-simple"
                         },
@@ -158,8 +158,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             label: "\"Tomorrow, I ___ you.\"",
                             options: [
                                 { value: "present-simple", label: "Present Simple" },
+                                { value: "future-simple", label: "Future Simple" },
                                 { value: "past-simple", label: "Past Simple" },
-                                { value: "future-simple", label: "Future Simple" }
                             ],
                             expectedAnswer: "future-simple"
                         }
@@ -275,9 +275,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"Do you practice every week?\"",
                             options: [
-                                { value: "question", label: "Question" },
                                 { value: "negative", label: "Negative" },
-                                { value: "positive", label: "Affirmative" }
+                                { value: "positive", label: "Affirmative" },
+                                { value: "question", label: "Question" },
                             ],
                             expectedAnswer: "question"
                         },
@@ -285,9 +285,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"She doesn't come on Saturdays.\"",
                             options: [
-                                { value: "question", label: "Question" },
                                 { value: "negative", label: "Negative" },
-                                { value: "positive", label: "Affirmative" }
+                                { value: "question", label: "Question" },
+                                { value: "positive", label: "Affirmative" },
                             ],
                             expectedAnswer: "negative"
                         },
@@ -392,9 +392,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"I am listening while you explain.\"",
                             options: [
-                                { value: "now", label: "Showing action happening right now" },
                                 { value: "past", label: "Action that finished" },
-                                { value: "future", label: "Plan for tomorrow" }
+                                { value: "future", label: "Plan for tomorrow" },
+                                { value: "now", label: "Showing action happening right now" },
                             ],
                             expectedAnswer: "now"
                         },
@@ -412,9 +412,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"We will be studying while the computers run practice tests.\"",
                             options: [
-                                { value: "future-overlap", label: "Two future actions overlapping" },
                                 { value: "past", label: "Past routine" },
-                                { value: "simple", label: "Simple future" }
+                                { value: "future-overlap", label: "Two future actions overlapping" },
+                                { value: "simple", label: "Simple future" },
                             ],
                             expectedAnswer: "future-overlap"
                         }
@@ -633,8 +633,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"This month, she ___ three books.\"",
                             options: [
+                                { value: "present-perfect", label: "Present Perfect (has read)" },
                                 { value: "past-simple", label: "Past Simple (read)" },
-                                { value: "present-perfect", label: "Present Perfect (has read)" }
                             ],
                             expectedAnswer: "present-perfect"
                         },
@@ -642,8 +642,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"Last month, she ___ three books.\"",
                             options: [
+                                { value: "present-perfect", label: "Present Perfect (has read)" },
                                 { value: "past-simple", label: "Past Simple (read)" },
-                                { value: "present-perfect", label: "Present Perfect (has read)" }
                             ],
                             expectedAnswer: "past-simple"
                         }
@@ -854,9 +854,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I ___ check the bus schedule before I leave.",
                             options: [
-                                { value: "always", label: "always" },
                                 { value: "yesterday", label: "yesterday" },
-                                { value: "now", label: "now" }
+                                { value: "now", label: "now" },
+                                { value: "always", label: "always" },
                             ],
                             expectedAnswer: "always"
                         },
@@ -874,9 +874,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "She is _________ late to work.",
                             options: [
-                                { value: "always", label: "always" },
                                 { value: "yesterday", label: "yesterday" },
-                                { value: "now", label: "now" }
+                                { value: "always", label: "always" },
+                                { value: "now", label: "now" },
                             ],
                             expectedAnswer: "always"
                         }
@@ -891,9 +891,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Where does 'always' go? → He ___ ___ tired after work.",
                             options: [
-                                { value: "is-always", label: "is always" },
                                 { value: "always-is", label: "always is" },
-                                { value: "tired-always", label: "tired always" }
+                                { value: "tired-always", label: "tired always" },
+                                { value: "is-always", label: "is always" },
                             ],
                             expectedAnswer: "is-always"
                         },
@@ -911,9 +911,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Where does 'usually' go? → ___ she ___ late?",
                             options: [
-                                { value: "is-usually", label: "Is ... usually" },
                                 { value: "usually-is", label: "Usually is ..." },
-                                { value: "late-usually", label: "Is ... late usually" }
+                                { value: "is-usually", label: "Is ... usually" },
+                                { value: "late-usually", label: "Is ... late usually" },
                             ],
                             expectedAnswer: "is-usually"
                         }
@@ -954,8 +954,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             label: "My new workplace is ___ than my old one.",
                             options: [
                                 { value: "more-friendlier", label: "more friendlier" },
+                                { value: "friendliest", label: "friendliest" },
                                 { value: "friendlier", label: "friendlier" },
-                                { value: "friendliest", label: "friendliest" }
                             ],
                             expectedAnswer: "friendlier"
                         }
@@ -1082,8 +1082,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How ___ vacation days do you get?",
                             options: [
+                                { value: "much", label: "much" },
                                 { value: "many", label: "many" },
-                                { value: "much", label: "much" }
                             ],
                             expectedAnswer: "many"
                         },
@@ -1091,8 +1091,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I don't have ___ experience with computers.",
                             options: [
+                                { value: "much", label: "much" },
                                 { value: "many", label: "many" },
-                                { value: "much", label: "much" }
                             ],
                             expectedAnswer: "much"
                         }
@@ -1107,8 +1107,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "This job has ___ hours than my last one.",
                             options: [
+                                { value: "less", label: "less" },
                                 { value: "fewer", label: "fewer" },
-                                { value: "less", label: "less" }
                             ],
                             expectedAnswer: "fewer"
                         },
@@ -1116,8 +1116,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I want a job with ___ stress.",
                             options: [
+                                { value: "less", label: "less" },
                                 { value: "fewer", label: "fewer" },
-                                { value: "less", label: "less" }
                             ],
                             expectedAnswer: "less"
                         }
@@ -1189,9 +1189,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Would you like tea ___ coffee?",
                             options: [
-                                { value: "or", label: "or" },
                                 { value: "so", label: "so" },
-                                { value: "when", label: "when" }
+                                { value: "when", label: "when" },
+                                { value: "or", label: "or" },
                             ],
                             expectedAnswer: "or"
                         }
@@ -1279,8 +1279,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"If you heat water to 100°C, it boils.\"",
                             options: [
+                                { value: "first", label: "First (future possibility)" },
                                 { value: "zero", label: "Zero (always true - science fact)" },
-                                { value: "first", label: "First (future possibility)" }
                             ],
                             expectedAnswer: "zero"
                         },
@@ -1288,8 +1288,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"If it rains tomorrow, I will bring an umbrella.\"",
                             options: [
+                                { value: "first", label: "First (future plan for tomorrow)" },
                                 { value: "zero", label: "Zero (always true)" },
-                                { value: "first", label: "First (future plan for tomorrow)" }
                             ],
                             expectedAnswer: "first"
                         },
@@ -1297,8 +1297,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"If I'm tired, I go to bed early.\"",
                             options: [
+                                { value: "first", label: "First (future possibility)" },
                                 { value: "zero", label: "Zero (always true - my habit)" },
-                                { value: "first", label: "First (future possibility)" }
                             ],
                             expectedAnswer: "zero"
                         },
@@ -1306,8 +1306,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"If you study hard, you will pass the test.\"",
                             options: [
+                                { value: "first", label: "First (prediction about your future)" },
                                 { value: "zero", label: "Zero (always true)" },
-                                { value: "first", label: "First (prediction about your future)" }
                             ],
                             expectedAnswer: "first"
                         }
@@ -1434,8 +1434,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             id: "cycle1-quiz-1",
             question: "Which tense sounds best? \"Every evening, I ___ dinner at home.\"",
             options: [
-                { value: "present-simple", label: "cook" },
                 { value: "present-continuous", label: "am cooking" },
+                { value: "present-simple", label: "cook" },
                 { value: "past-simple", label: "cooked" },
             ],
             correctAnswer: "present-simple",
@@ -1449,8 +1449,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             question: "Which sentence matches the time word \"right now\"?",
             options: [
                 { value: "present-simple", label: "She works on her homework right now." },
-                { value: "present-continuous", label: "She is working on her homework right now." },
                 { value: "past-simple", label: "She worked on her homework right now." },
+                { value: "present-continuous", label: "She is working on her homework right now." },
             ],
             correctAnswer: "present-continuous",
             explanation:
@@ -1462,8 +1462,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             id: "cycle1-quiz-3",
             question: "Which option fits best? \"Yesterday, they ___ the apartment.\"",
             options: [
-                { value: "present-simple", label: "clean" },
                 { value: "past-simple", label: "cleaned" },
+                { value: "present-simple", label: "clean" },
                 { value: "present-perfect", label: "have cleaned" },
             ],
             correctAnswer: "past-simple",
@@ -1490,9 +1490,9 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             id: "cycle1-quiz-5",
             question: "Where does the adverb of frequency go? \"She ___ ___ to class on time.\"",
             options: [
-                { value: "always-before-verb", label: "always comes" },
                 { value: "always-after-verb", label: "comes always" },
                 { value: "always-end", label: "comes on time always" },
+                { value: "always-before-verb", label: "always comes" },
             ],
             correctAnswer: "always-before-verb",
             explanation:
@@ -1504,8 +1504,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             id: "cycle1-quiz-6",
             question: "Choose the correct comparative: \"This class is ___ than my last one.\"",
             options: [
-                { value: "more-easier", label: "more easier" },
                 { value: "easier", label: "easier" },
+                { value: "more-easier", label: "more easier" },
                 { value: "the-easiest", label: "the easiest" },
             ],
             correctAnswer: "easier",
@@ -1586,8 +1586,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             id: "cycle1-quiz-12",
             question: "Which sentence is FIRST conditional (future possibility)?",
             options: [
-                { value: "zero-habit", label: "If I'm tired, I go to bed early." },
                 { value: "first-future", label: "If I'm tired tonight, I will go to bed early." },
+                { value: "zero-habit", label: "If I'm tired, I go to bed early." },
                 { value: "present-perfect", label: "I have gone to bed early if I'm tired." },
             ],
             correctAnswer: "first-future",
@@ -1601,8 +1601,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             question: "Which tense fits best? \"This month, I ___ more vegetables.\"",
             options: [
                 { value: "present-simple", label: "eat" },
-                { value: "past-simple", label: "ate" },
                 { value: "present-perfect", label: "have eaten" },
+                { value: "past-simple", label: "ate" },
             ],
             correctAnswer: "present-perfect",
             explanation:
@@ -1615,8 +1615,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             question: "Where does the adverb go? \"She ___ ___ late to work.\"",
             options: [
                 { value: "always-is-late", label: "always is" },
-                { value: "is-always-late", label: "is always" },
                 { value: "is-late-always", label: "is late always" },
+                { value: "is-always-late", label: "is always" },
             ],
             correctAnswer: "is-always-late",
             explanation:
@@ -1628,8 +1628,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             id: "cycle1-quiz-15",
             question: "Choose the correct comparative: \"My new schedule is ___ than my old one.\"",
             options: [
-                { value: "comfortabler", label: "comfortabler" },
                 { value: "more-comfortable", label: "more comfortable" },
+                { value: "comfortabler", label: "comfortabler" },
                 { value: "most-comfortable", label: "most comfortable" },
             ],
             correctAnswer: "more-comfortable",
@@ -1643,8 +1643,8 @@ export const cycleOneReviewContent: InteractiveGuideContent = {
             question: "Choose the connector that shows a result: \"I was very tired, ___ I went to bed early.\"",
             options: [
                 { value: "and", label: "and" },
-                { value: "but", label: "but" },
                 { value: "so", label: "so" },
+                { value: "but", label: "but" },
             ],
             correctAnswer: "so",
             explanation:

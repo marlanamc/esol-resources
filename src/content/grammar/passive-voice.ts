@@ -32,8 +32,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"Your blood <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>be drawn</span>."',
                             options: [
-                                { value: "passive", label: "Passive voice - subject receives the action" },
                                 { value: "active", label: "Active voice - subject does the action" },
+                                { value: "passive", label: "Passive voice - subject receives the action" },
                                 { value: "neither", label: "Neither active nor passive" },
                             ],
                             expectedAnswer: "passive",
@@ -43,8 +43,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             label: '"The nurse <span class=\'eg-verb\'>takes</span> your blood pressure."',
                             options: [
                                 { value: "passive", label: "Passive voice - subject receives the action" },
-                                { value: "active", label: "Active voice - subject does the action" },
                                 { value: "neither", label: "Neither active nor passive" },
+                                { value: "active", label: "Active voice - subject does the action" },
                             ],
                             expectedAnswer: "active",
                         },
@@ -131,8 +131,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"The nurse <span class=\'eg-verb\'>drew</span> my blood."',
                             options: [
-                                { value: "active", label: "Active - The nurse (subject) does the action" },
                                 { value: "passive", label: "Passive - Subject receives the action" },
+                                { value: "active", label: "Active - The nurse (subject) does the action" },
                             ],
                             expectedAnswer: "active",
                         },
@@ -140,8 +140,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"My blood <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>drawn</span>."',
                             options: [
-                                { value: "active", label: "Active - Subject does the action" },
                                 { value: "passive", label: "Passive - My blood (subject) receives the action" },
+                                { value: "active", label: "Active - Subject does the action" },
                             ],
                             expectedAnswer: "passive",
                         },
@@ -229,8 +229,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the formula for passive voice?",
                             options: [
-                                { value: "a", label: "be + Past Participle (form of 'be' changes based on tense)" },
                                 { value: "b", label: "have + Past Participle" },
+                                { value: "a", label: "be + Past Participle (form of 'be' changes based on tense)" },
                                 { value: "c", label: "will + base verb" },
                             ],
                             expectedAnswer: "a",
@@ -239,9 +239,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"The test <span class=\'eg-helper\'>is</span> <span class=\'eg-verb\'>performed</span> on an empty stomach." What tense is this?',
                             options: [
-                                { value: "a", label: "Present Simple Passive (is + past participle)" },
                                 { value: "b", label: "Past Simple Passive" },
                                 { value: "c", label: "Future Passive" },
+                                { value: "a", label: "Present Simple Passive (is + past participle)" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -249,8 +249,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"My blood <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>drawn</span> yesterday." What tense is this?',
                             options: [
-                                { value: "a", label: "Present Simple Passive" },
                                 { value: "b", label: "Past Simple Passive (was + past participle)" },
+                                { value: "a", label: "Present Simple Passive" },
                                 { value: "c", label: "Future Passive" },
                             ],
                             expectedAnswer: "b",
@@ -315,8 +315,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When should you use passive voice?",
                             options: [
-                                { value: "a", label: "When the doer is unknown, unimportant, or you want to focus on the action" },
                                 { value: "b", label: "Always, because it sounds more formal" },
+                                { value: "a", label: "When the doer is unknown, unimportant, or you want to focus on the action" },
                                 { value: "c", label: "Never, active voice is always better" },
                             ],
                             expectedAnswer: "a",
@@ -325,9 +325,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"My car <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>stolen</span>." Why is passive voice used here?',
                             options: [
-                                { value: "a", label: "The doer (thief) is unknown" },
                                 { value: "b", label: "The car is more important than the thief" },
                                 { value: "c", label: "Active voice would be incorrect" },
+                                { value: "a", label: "The doer (thief) is unknown" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -345,8 +345,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When should you NOT use passive voice?",
                             options: [
-                                { value: "a", label: "When the doer is important and you need to mention who did it" },
                                 { value: "b", label: "When writing formal documents" },
+                                { value: "a", label: "When the doer is important and you need to mention who did it" },
                                 { value: "c", label: "When the action is more important than the person" },
                             ],
                             expectedAnswer: "a",
@@ -444,9 +444,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"Patients <span class=\'eg-helper\'>must</span> <span class=\'eg-helper\'>be</span> <span class=\'eg-verb\'>checked</span> in 15 minutes before appointment." Why is passive voice used here?',
                             options: [
-                                { value: "a", label: "Focus is on what happens to patients, not who checks them in" },
                                 { value: "b", label: "To make the sentence shorter" },
                                 { value: "c", label: "To confuse patients" },
+                                { value: "a", label: "Focus is on what happens to patients, not who checks them in" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -464,8 +464,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"Your blood <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>be drawn</span> in the lab." Why is passive voice appropriate here?',
                             options: [
-                                { value: "a", label: "Focus is on what happens to you (the patient), not who draws the blood" },
                                 { value: "b", label: "To hide who draws the blood" },
+                                { value: "a", label: "Focus is on what happens to you (the patient), not who draws the blood" },
                                 { value: "c", label: "To make it sound more formal" },
                             ],
                             expectedAnswer: "a",
@@ -474,9 +474,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Why do patient portals use so much passive voice?",
                             options: [
-                                { value: "a", label: "To focus on what happens to the patient and what they need to know" },
                                 { value: "b", label: "To make messages longer" },
                                 { value: "c", label: "To confuse patients" },
+                                { value: "a", label: "To focus on what happens to the patient and what they need to know" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -537,8 +537,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is Mistake #2?",
                             options: [
-                                { value: "a", label: "Wrong tense of 'be' - 'The medicine is taken yesterday' should be 'was taken' (past)" },
                                 { value: "b", label: "Missing the subject" },
+                                { value: "a", label: "Wrong tense of 'be' - 'The medicine is taken yesterday' should be 'was taken' (past)" },
                                 { value: "c", label: "Using too many verbs" },
                             ],
                             expectedAnswer: "a",
@@ -547,9 +547,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is Mistake #3?",
                             options: [
-                                { value: "a", label: "Using wrong past participle - 'My blood was drew' should be 'was drawn'" },
                                 { value: "b", label: "Using present tense" },
                                 { value: "c", label: "Missing the object" },
+                                { value: "a", label: "Using wrong past participle - 'My blood was drew' should be 'was drawn'" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -633,8 +633,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: 'Fix: "My blood was drew yesterday."',
                             options: [
-                                { value: "a", label: "My blood <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>drawn</span> yesterday." },
                                 { value: "b", label: "My blood was drew yesterday." },
+                                { value: "a", label: "My blood <span class=\'eg-helper\'>was</span> <span class=\'eg-verb\'>drawn</span> yesterday." },
                                 { value: "c", label: "My blood is drew yesterday." },
                             ],
                             expectedAnswer: "a",
@@ -676,8 +676,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which is better for a medication label?",
                             options: [
-                                { value: "a", label: "You should take this with food." },
                                 { value: "b", label: "This should be taken with food." },
+                                { value: "a", label: "You should take this with food." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -772,8 +772,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the difference between active and passive voice?",
                             options: [
-                                { value: "a", label: "Active: subject does action | Passive: subject receives action" },
                                 { value: "b", label: "Active: uses past tense | Passive: uses present tense" },
+                                { value: "a", label: "Active: subject does action | Passive: subject receives action" },
                                 { value: "c", label: "There's no difference" },
                             ],
                             expectedAnswer: "a",
@@ -782,9 +782,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When should you use passive voice?",
                             options: [
-                                { value: "a", label: "When the doer is unknown, unimportant, or you want to focus on the action" },
                                 { value: "b", label: "Always, because it sounds more formal" },
                                 { value: "c", label: "Never, active voice is always better" },
+                                { value: "a", label: "When the doer is unknown, unimportant, or you want to focus on the action" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -802,8 +802,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What is the past participle of 'draw'?",
                             options: [
-                                { value: "a", label: "drawn" },
                                 { value: "b", label: "drew" },
+                                { value: "a", label: "drawn" },
                                 { value: "c", label: "drawed" },
                             ],
                             expectedAnswer: "a",
@@ -821,8 +821,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             question: "Which sentence is passive voice?",
             options: [
                 { value: "a", label: "The nurse explained the instructions." },
-                { value: "b", label: "The instructions were explained." },
                 { value: "c", label: "The nurse will explain the instructions." },
+                { value: "b", label: "The instructions were explained." },
             ],
             correctAnswer: "b",
             explanation:
@@ -834,8 +834,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Complete: 'Forms _____ at the front desk.'",
             options: [
-                { value: "a", label: "check" },
                 { value: "b", label: "are checked" },
+                { value: "a", label: "check" },
                 { value: "c", label: "checked" },
             ],
             correctAnswer: "b",
@@ -863,8 +863,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             question: "Complete: 'You _____ when the doctor is ready.'",
             options: [
                 { value: "a", label: "call" },
-                { value: "b", label: "will be called" },
                 { value: "c", label: "are calling" },
+                { value: "b", label: "will be called" },
             ],
             correctAnswer: "b",
             explanation:
@@ -876,8 +876,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-5",
             question: "Complete: 'This medication should _____ with food.'",
             options: [
-                { value: "a", label: "take" },
                 { value: "b", label: "be taken" },
+                { value: "a", label: "take" },
                 { value: "c", label: "be took" },
             ],
             correctAnswer: "b",
@@ -891,8 +891,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             question: "Which sentence is INCORRECT passive voice?",
             options: [
                 { value: "a", label: "My blood was drawn yesterday." },
-                { value: "b", label: "The results were sent to my doctor." },
                 { value: "c", label: "I was gave medication." },
+                { value: "b", label: "The results were sent to my doctor." },
             ],
             correctAnswer: "c",
             explanation:
@@ -904,9 +904,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Convert to passive: 'The clinic emailed the results.'",
             options: [
-                { value: "a", label: "The results were emailed." },
                 { value: "b", label: "The results were email." },
                 { value: "c", label: "The results are emailing." },
+                { value: "a", label: "The results were emailed." },
             ],
             correctAnswer: "a",
             explanation:
@@ -918,8 +918,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Complete: 'The prescription was written _____ Dr. Lee.'",
             options: [
-                { value: "a", label: "for" },
                 { value: "b", label: "by" },
+                { value: "a", label: "for" },
                 { value: "c", label: "to" },
             ],
             correctAnswer: "b",
@@ -949,8 +949,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
                 'What tense is this passive sentence? "Your appointment has been scheduled."',
             options: [
                 { value: "a", label: "Present Simple Passive" },
-                { value: "b", label: "Present Perfect Passive" },
                 { value: "c", label: "Past Simple Passive" },
+                { value: "b", label: "Present Perfect Passive" },
             ],
             correctAnswer: "b",
             explanation:
@@ -962,8 +962,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-11",
             question: "What is the past participle of 'write'?",
             options: [
-                { value: "a", label: "wrote" },
                 { value: "b", label: "written" },
+                { value: "a", label: "wrote" },
                 { value: "c", label: "writed" },
             ],
             correctAnswer: "b",
@@ -977,8 +977,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             question:
                 "Complete the question: '_____ your insurance card checked at the front desk?'",
             options: [
-                { value: "a", label: "Was" },
                 { value: "b", label: "Did" },
+                { value: "a", label: "Was" },
                 { value: "c", label: "Is" },
             ],
             correctAnswer: "a",
@@ -991,9 +991,9 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-13",
             question: "Complete: 'The referral _____ sent yet.'",
             options: [
-                { value: "a", label: "hasn't been" },
                 { value: "b", label: "didn't" },
                 { value: "c", label: "isn't" },
+                { value: "a", label: "hasn't been" },
             ],
             correctAnswer: "a",
             explanation:
@@ -1024,8 +1024,8 @@ export const passiveVoiceContent: InteractiveGuideContent = {
             id: "quiz-15",
             question: "Which sentence is correct passive voice?",
             options: [
-                { value: "a", label: "The test performed yesterday." },
                 { value: "b", label: "The test was performed yesterday." },
+                { value: "a", label: "The test performed yesterday." },
                 { value: "c", label: "The test was perform yesterday." },
             ],
             correctAnswer: "b",

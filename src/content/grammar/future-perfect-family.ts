@@ -198,8 +198,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By December, I ___ 12 books this year. (counting achievement)",
                             options: [
-                                { value: "simple", label: "will have read (Completion - count/result)" },
                                 { value: "continuous", label: "will have been reading (Duration)" },
+                                { value: "simple", label: "will have read (Completion - count/result)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -207,8 +207,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "When the movie ends, we ___ in this theater for 3 hours. (time spent)",
                             options: [
-                                { value: "simple", label: "will have sat (Completion)" },
                                 { value: "continuous", label: "will have been sitting (Duration)" },
+                                { value: "simple", label: "will have sat (Completion)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -216,8 +216,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By the time you arrive, I ___ dinner. (meal is ready)",
                             options: [
-                                { value: "simple", label: "will have made (Completion - task done)" },
                                 { value: "continuous", label: "will have been making (Duration - in progress)" },
+                                { value: "simple", label: "will have made (Completion - task done)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -225,8 +225,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Next week, they ___ on this project for 6 months. (project timeline)",
                             options: [
-                                { value: "simple", label: "will have worked (Completion)" },
                                 { value: "continuous", label: "will have been working (Duration)" },
+                                { value: "simple", label: "will have worked (Completion)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -858,8 +858,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By next year, I will have ___ my degree. (completion)",
                             options: [
-                                { value: "simple", label: "Simple: will have completed" },
                                 { value: "continuous", label: "Continuous: will have been completing" },
+                                { value: "simple", label: "Simple: will have completed" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -867,8 +867,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By December, she will have ___ here for 5 years. (duration)",
                             options: [
-                                { value: "simple", label: "Simple: will have worked" },
                                 { value: "continuous", label: "Continuous: will have been working" },
+                                { value: "simple", label: "Simple: will have worked" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -876,8 +876,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How many countries will you have ___ by age 30? (count)",
                             options: [
-                                { value: "simple", label: "Simple: will have visited" },
                                 { value: "continuous", label: "Continuous: will have been visiting" },
+                                { value: "simple", label: "Simple: will have visited" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -997,8 +997,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Talking about a deadline:",
                             options: [
-                                { value: "wrong", label: "I will finish the report next Friday." },
                                 { value: "correct", label: "I will have finished the report by next Friday." },
+                                { value: "wrong", label: "I will finish the report next Friday." },
                             ],
                             expectedAnswer: "correct",
                         },
@@ -1015,8 +1015,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Completion verb (finish):",
                             options: [
-                                { value: "wrong", label: "I will have been finishing by then." },
                                 { value: "correct", label: "I will have finished by then." },
+                                { value: "wrong", label: "I will have been finishing by then." },
                             ],
                             expectedAnswer: "correct",
                         },
@@ -1086,8 +1086,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By my birthday, I ___ 50 books this year.",
                             options: [
-                                { value: "simple", label: "will have read (count: 50 books)" },
                                 { value: "continuous", label: "will have been reading (duration)" },
+                                { value: "simple", label: "will have read (count: 50 books)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -1095,8 +1095,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By December, we ___ in this apartment for exactly 3 years.",
                             options: [
-                                { value: "simple", label: "will have lived (completion)" },
                                 { value: "continuous", label: "will have been living (duration/anniversary)" },
+                                { value: "simple", label: "will have lived (completion)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -1104,8 +1104,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "The project ___ by the time you arrive.",
                             options: [
-                                { value: "simple", label: "will have been completed (finished)" },
                                 { value: "continuous", label: "will have been completing (in progress)" },
+                                { value: "simple", label: "will have been completed (finished)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -1113,8 +1113,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By 6 PM, I ___ for 8 hours without a break.",
                             options: [
-                                { value: "simple", label: "will have worked (completed)" },
                                 { value: "continuous", label: "will have been working (duration emphasis)" },
+                                { value: "simple", label: "will have worked (completed)" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -1247,8 +1247,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             question: "Which sentence focuses on a goal completed by a deadline?",
             options: [
                 { value: "a", label: "By Friday, I will have been working on the report all day." },
-                { value: "b", label: "By Friday, I will have finished the report." },
                 { value: "c", label: "On Friday, I will finish the report." },
+                { value: "b", label: "By Friday, I will have finished the report." },
             ],
             correctAnswer: "b",
             explanation: "Future Perfect Simple (will have + past participle) focuses on completion by a future deadline.",
@@ -1259,8 +1259,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-2",
             question: "Which sentence emphasizes how long the action will have been happening by a future time?",
             options: [
-                { value: "a", label: "By June, she will have finished her degree." },
                 { value: "b", label: "By June, she will have been studying here for four years." },
+                { value: "a", label: "By June, she will have finished her degree." },
                 { value: "c", label: "In June, she will study for her exams." },
             ],
             correctAnswer: "b",
@@ -1272,8 +1272,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Fill in the blank: \"By this time tomorrow, we ___ the exam.\" (focus on completion)",
             options: [
-                { value: "a", label: "will have finished" },
                 { value: "b", label: "will have been finishing" },
+                { value: "a", label: "will have finished" },
                 { value: "c", label: "will finish" },
             ],
             correctAnswer: "a",
@@ -1286,8 +1286,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             question: "Fill in the blank: \"By 8 pm, they ___ for six hours.\" (focus on how long)",
             options: [
                 { value: "a", label: "will have driven" },
-                { value: "b", label: "will have been driving" },
                 { value: "c", label: "will drive" },
+                { value: "b", label: "will have been driving" },
             ],
             correctAnswer: "b",
             explanation: "We are interested in the duration of driving, so Future Perfect Continuous is best.",
@@ -1298,8 +1298,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-5",
             question: "Which sentence uses the time marker \"by\" correctly with Future Perfect?",
             options: [
-                { value: "a", label: "I will have finished next week." },
                 { value: "b", label: "I will have finished by next week." },
+                { value: "a", label: "I will have finished next week." },
                 { value: "c", label: "I will have been finished next week." },
             ],
             correctAnswer: "b",
@@ -1312,8 +1312,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             question: "Choose the most natural sentence for a duration milestone.",
             options: [
                 { value: "a", label: "By 2030, we will live in this city for 20 years." },
-                { value: "b", label: "By 2030, we will have lived in this city for 20 years." },
                 { value: "c", label: "By 2030, we will have been living in this city for 20 years." },
+                { value: "b", label: "By 2030, we will have lived in this city for 20 years." },
             ],
             correctAnswer: "c",
             explanation: "For a duration milestone, Future Perfect Continuous is the clearest and most natural choice.",
@@ -1324,9 +1324,9 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-7",
             question: "Fill in the blank: \"By the end of the year, I ___ 12 books.\" (focus on number of books)",
             options: [
-                { value: "a", label: "will have read" },
                 { value: "b", label: "will have been reading" },
                 { value: "c", label: "will read" },
+                { value: "a", label: "will have read" },
             ],
             correctAnswer: "a",
             explanation: "Counting completed achievements uses Future Perfect Simple.",
@@ -1337,9 +1337,9 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-8",
             question: "Which sentence correctly describes a shared milestone goal?",
             options: [
+                { value: "c", label: "By our 10th anniversary, we will have visited 15 countries." },
                 { value: "a", label: "By our 10th anniversary, we will visit 15 countries." },
                 { value: "b", label: "By our 10th anniversary, we will have been visiting 15 countries." },
-                { value: "c", label: "By our 10th anniversary, we will have visited 15 countries." },
             ],
             correctAnswer: "c",
             explanation: "The count of countries is a completed-goal focus, so Future Perfect Simple fits best.",
@@ -1386,8 +1386,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             question: "Fill in the blank: \"By 5 pm, I ___ all afternoon, so I'll be tired.\"",
             options: [
                 { value: "a", label: "will have taught" },
-                { value: "b", label: "will have been teaching" },
                 { value: "c", label: "will teach" },
+                { value: "b", label: "will have been teaching" },
             ],
             correctAnswer: "b",
             explanation: "We are explaining a future result (feeling tired) by focusing on the long activity.",
@@ -1425,8 +1425,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             question: "Which sentence is correct?",
             options: [
                 { value: "a", label: "When you will arrive, we will have eaten." },
-                { value: "b", label: "When you arrive, we will have eaten." },
                 { value: "c", label: "When you are arriving, we will have eaten." },
+                { value: "b", label: "When you arrive, we will have eaten." },
             ],
             correctAnswer: "b",
             explanation: "Future time clauses use present forms (When you arrive), not \"will\".",
@@ -1437,8 +1437,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             id: "quiz-15",
             question: "Fill in the blank: \"By this time next year, I ___ at my new job for twelve months.\" (focus on how long)",
             options: [
-                { value: "a", label: "will have worked" },
                 { value: "b", label: "will have been working" },
+                { value: "a", label: "will have worked" },
                 { value: "c", label: "will work" },
             ],
             correctAnswer: "b",

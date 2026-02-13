@@ -5,9 +5,10 @@ import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
-import { BackButton } from "@/components/ui/BackButton";
 
-export default async function ActivitiesPage() {
+type Props = { searchParams: Promise<{ category?: string }> };
+
+export default async function ActivitiesPage({ searchParams }: Props) {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
 
@@ -58,7 +59,6 @@ export default async function ActivitiesPage() {
             <div className="min-h-screen bg-bg">
                 <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                        <BackButton href="/dashboard" variant="home" className="mb-2" hideOnMobile />
                         <p className="text-xs font-semibold text-secondary tracking-widest uppercase">Browse</p>
                         <h1 className="text-3xl font-display font-bold text-text">All Activities</h1>
                     </div>
@@ -103,7 +103,6 @@ export default async function ActivitiesPage() {
         <div className="min-h-screen bg-bg">
             <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                    <BackButton href="/dashboard" variant="home" className="mb-2" hideOnMobile />
                     <h1 className="text-2xl sm:text-3xl font-display font-bold text-text text-center">
                         What do you want to{" "}
                         <span className="text-primary italic">practice</span> today?
@@ -116,6 +115,7 @@ export default async function ActivitiesPage() {
                     activities={visibleActivities}
                     completedActivityIds={completedActivityIds}
                     progressMap={progressMap}
+                    initialCategory={(await searchParams).category ?? null}
                 />
             </main>
         </div>

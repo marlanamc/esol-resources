@@ -659,11 +659,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-1",
       question: "What should you use after a preposition?",
       options: [
-        { value: "a", label: "Always gerund (-ing)" },
         { value: "b", label: "Always infinitive (to + verb)" },
+        { value: "a", label: "Always gerund (-ing)" },
         { value: "c", label: "Either one" },
-      ],
-      correctAnswer: "a",
+    ],
+    correctAnswer: "a",
       explanation:
         "After a preposition, you MUST use a gerund. Example: 'I'm interested in learning' (not 'in to learn').",
       skillTag: "prep-plus-gerund-core-rule",
@@ -674,10 +674,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       question: "Which is correct?",
       options: [
         { value: "a", label: "I enjoy to read books." },
-        { value: "b", label: "I enjoy reading books." },
         { value: "c", label: "I enjoy read books." },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "I enjoy reading books." },
+    ],
+    correctAnswer: "b",
       explanation:
         "'Enjoy' is always followed by a gerund, never an infinitive. Correct: 'I enjoy reading books.'",
       skillTag: "verb-plus-gerund-enjoy-like-love",
@@ -687,11 +687,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-3",
       question: "Which is correct?",
       options: [
-        { value: "a", label: "I want visiting Japan." },
         { value: "b", label: "I want to visit Japan." },
+        { value: "a", label: "I want visiting Japan." },
         { value: "c", label: "I want visit Japan." },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "'Want' is always followed by an infinitive, never a gerund. Correct: 'I want to visit Japan.'",
       skillTag: "verb-plus-infinitive-want-hope-plan",
@@ -701,11 +701,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-4",
       question: "When the verb is the subject, which form is more natural in modern English?",
       options: [
-        { value: "a", label: "Gerund: 'Swimming is fun'" },
         { value: "b", label: "Infinitive: 'To swim is fun'" },
+        { value: "a", label: "Gerund: 'Swimming is fun'" },
         { value: "c", label: "Both are equally wrong" },
-      ],
-      correctAnswer: "a",
+    ],
+    correctAnswer: "a",
       explanation:
         "When a verb is the subject, we usually use the gerund: 'Swimming is fun.' 'To swim is fun' is possible but sounds more formal or old‑fashioned.",
       skillTag: "subject-gerund-choice",
@@ -716,10 +716,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       question: "What's the difference: 'I stopped smoking' vs 'I stopped to smoke'?",
       options: [
         { value: "a", label: "No difference – same meaning" },
-        { value: "b", label: "'stopped smoking' = quit the habit, 'stopped to smoke' = paused to have a cigarette" },
         { value: "c", label: "'stopped smoking' is wrong in English" },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "'stopped smoking' = quit the habit, 'stopped to smoke' = paused to have a cigarette" },
+    ],
+    correctAnswer: "b",
       explanation:
         "Stop + gerund = quit doing something. Stop + infinitive = pause one activity to do another. The meaning completely changes.",
       skillTag: "special-stop-gerund-vs-infinitive",
@@ -729,11 +729,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-6",
       question: "Which sentence is correct?",
       options: [
+        { value: "c", label: "Thank you for helping me." },
         { value: "a", label: "Thank you for help me." },
         { value: "b", label: "Thank you for to help me." },
-        { value: "c", label: "Thank you for helping me." },
-      ],
-      correctAnswer: "c",
+    ],
+    correctAnswer: "c",
       explanation:
         "'For' is a preposition, so it must be followed by a gerund: 'Thank you for helping me.'",
       skillTag: "prep-for-plus-gerund",
@@ -758,10 +758,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       question: "Which is correct for a past memory?",
       options: [
         { value: "a", label: "I remember to meet you at the party." },
-        { value: "b", label: "I remember meeting you at the party." },
         { value: "c", label: "I remember meet you at the party." },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "I remember meeting you at the party." },
+    ],
+    correctAnswer: "b",
       explanation:
         "Remember + gerund = recall a past event. 'I remember meeting you' means you have a memory of that event.",
       skillTag: "special-remember-gerund-past-memory",
@@ -771,11 +771,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-9",
       question: "Choose the correct: 'I look forward ___ you soon.'",
       options: [
-        { value: "a", label: "to see" },
         { value: "b", label: "to seeing" },
+        { value: "a", label: "to see" },
         { value: "c", label: "seeing" },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "'To' in 'look forward to' is a preposition, not an infinitive marker. After prepositions, always use a gerund: 'I look forward to seeing you.'",
       skillTag: "phrase-look-forward-to-plus-gerund",
@@ -800,10 +800,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       question: "Which sentence correctly follows 'adjective + preposition + gerund'?",
       options: [
         { value: "a", label: "She is good at to solve problems." },
-        { value: "b", label: "She is good at solving problems." },
         { value: "c", label: "She is good to solving problems." },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "She is good at solving problems." },
+    ],
+    correctAnswer: "b",
       explanation:
         "After a preposition (at), we must use a gerund: 'good at solving problems.'",
       skillTag: "adj-prep-plus-gerund",
@@ -813,11 +813,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-12",
       question: "Which sentence is a correct example of noun + infinitive?",
       options: [
-        { value: "a", label: "I have the ability speaking three languages." },
         { value: "b", label: "I have the ability to speak three languages." },
+        { value: "a", label: "I have the ability speaking three languages." },
         { value: "c", label: "I have the ability speak three languages." },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "Certain nouns are followed by an infinitive: 'the ability to speak three languages.'",
       skillTag: "noun-plus-infinitive-ability-chance-time",
@@ -842,10 +842,10 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       question: "Which sentence uses 'try' to show an experiment (see if it helps)?",
       options: [
         { value: "a", label: "I'll try to drink more water every day." },
-        { value: "b", label: "I'll try drinking more water to see if it helps." },
         { value: "c", label: "I'll try drink more water." },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "I'll try drinking more water to see if it helps." },
+    ],
+    correctAnswer: "b",
       explanation:
         "Try + gerund is used for experiments (see if it helps). Try + infinitive is used for effort.",
       skillTag: "special-try-gerund-vs-infinitive",
@@ -855,11 +855,11 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       id: "quiz-15",
       question: "Which is correct if you don’t want to forget an action?",
       options: [
-        { value: "a", label: "Remember calling your mother tonight." },
         { value: "b", label: "Remember to call your mother tonight." },
+        { value: "a", label: "Remember calling your mother tonight." },
         { value: "c", label: "Remember call your mother tonight." },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "Remember + infinitive is used for not forgetting to do something: 'Remember to call your mother tonight.'",
       skillTag: "special-remember-infinitive-future-duty",

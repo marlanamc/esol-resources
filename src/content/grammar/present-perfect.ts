@@ -53,8 +53,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"I <span class=\'eg-helper\'>have</span> just <span class=\'eg-verb\'>updated</span> the community calendar, so everyone knows the meeting time."',
                             options: [
-                                { value: "present-perfect", label: "Present Perfect - recent action with present result" },
                                 { value: "past-simple", label: "Past Simple - finished action with specific time" },
+                                { value: "present-perfect", label: "Present Perfect - recent action with present result" },
                                 { value: "present-simple", label: "Present Simple - current habit or routine" },
                             ],
                             expectedAnswer: "present-perfect",
@@ -64,8 +64,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             label: '"I <span class=\'eg-verb\'>visited</span> the ICA last Saturday."',
                             options: [
                                 { value: "present-perfect", label: "Present Perfect - experience connected to now" },
-                                { value: "past-simple", label: "Past Simple - finished action with specific time (last Saturday)" },
                                 { value: "present-simple", label: "Present Simple - current habit" },
+                                { value: "past-simple", label: "Past Simple - finished action with specific time (last Saturday)" },
                             ],
                             expectedAnswer: "past-simple",
                         },
@@ -83,8 +83,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: '"She <span class=\'eg-helper\'>has</span> never <span class=\'eg-verb\'>ridden</span> the new ferry, but she <span class=\'eg-helper\'>has</span> <span class=\'eg-verb\'>driven</span> the same bus route 100 times."',
                             options: [
-                                { value: "present-perfect", label: "Present Perfect - life experiences up to now" },
                                 { value: "past-simple", label: "Past Simple - specific past actions" },
+                                { value: "present-perfect", label: "Present Perfect - life experiences up to now" },
                                 { value: "present-simple", label: "Present Simple - current habits" },
                             ],
                             expectedAnswer: "present-perfect",
@@ -333,9 +333,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "I have lost my wallet.",
                             options: [
-                                { value: "a", label: "I can't pay for lunch NOW" },
                                 { value: "b", label: "I lost it yesterday" },
                                 { value: "c", label: "I will find it tomorrow" },
+                                { value: "a", label: "I can't pay for lunch NOW" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -343,8 +343,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "She has broken her arm.",
                             options: [
-                                { value: "a", label: "She broke it last week" },
                                 { value: "b", label: "She can't write NOW" },
+                                { value: "a", label: "She broke it last week" },
                                 { value: "c", label: "She will heal soon" },
                             ],
                             expectedAnswer: "b",
@@ -354,8 +354,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             label: "They have moved to this block.",
                             options: [
                                 { value: "a", label: "They moved last month" },
-                                { value: "b", label: "They will live on this block" },
                                 { value: "c", label: "They live on this block NOW" },
+                                { value: "b", label: "They will live on this block" },
                             ],
                             expectedAnswer: "c",
                         },
@@ -441,9 +441,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "What do we use past participles for?",
                             options: [
-                                { value: "a", label: "To form Present Perfect tense" },
                                 { value: "b", label: "To talk about yesterday" },
                                 { value: "c", label: "To make questions only" },
+                                { value: "a", label: "To form Present Perfect tense" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -451,8 +451,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How do you make the past participle of regular verbs?",
                             options: [
-                                { value: "a", label: "Add -ing" },
                                 { value: "b", label: "Add -ed" },
+                                { value: "a", label: "Add -ing" },
                                 { value: "c", label: "No change" },
                             ],
                             expectedAnswer: "b",
@@ -462,8 +462,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
                             label: "Which is an irregular past participle?",
                             options: [
                                 { value: "a", label: "worked" },
-                                { value: "b", label: "played" },
                                 { value: "c", label: "eaten" },
+                                { value: "b", label: "played" },
                             ],
                             expectedAnswer: "c",
                         },
@@ -1192,9 +1192,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Choose the correct sentence to show a completed action with a present result.",
             options: [
-                { value: "a", label: "I have locked the door, so the office is safe now." },
                 { value: "b", label: "I lock the door, so the office is safe now." },
-                { value: "c", label: "I locked the door yesterday, so the office is safe now." }
+                { value: "c", label: "I locked the door yesterday, so the office is safe now." },
+                { value: "a", label: "I have locked the door, so the office is safe now." },
             ],
             correctAnswer: "a",
             explanation: "Present Perfect connects the past action to a present result. Past Simple with 'yesterday' is not correct here."
@@ -1206,9 +1206,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Which question correctly asks about life experience?",
             options: [
-                { value: "a", label: "Did you ever visit the new library?" },
                 { value: "b", label: "Have you ever visited the new library?" },
-                { value: "c", label: "Do you ever visited the new library?" }
+                { value: "a", label: "Did you ever visit the new library?" },
+                { value: "c", label: "Do you ever visited the new library?" },
             ],
             correctAnswer: "b",
             explanation: "'Have you ever...' is the correct Present Perfect question for life experience."
@@ -1220,9 +1220,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Complete the sentence: 'She ___ finished her application.'",
             options: [
-                { value: "a", label: "has just" },
                 { value: "b", label: "just has" },
-                { value: "c", label: "has justed" }
+                { value: "a", label: "has just" },
+                { value: "c", label: "has justed" },
             ],
             correctAnswer: "a",
             explanation: "'Just' goes between 'has' and the past participle in Present Perfect."
@@ -1234,9 +1234,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Choose the correct sentence to show a state that started in the past and continues now.",
             options: [
-                { value: "a", label: "I have known Maria for three years." },
                 { value: "b", label: "I knew Maria for three years." },
-                { value: "c", label: "I know Maria since three years." }
+                { value: "c", label: "I know Maria since three years." },
+                { value: "a", label: "I have known Maria for three years." },
             ],
             correctAnswer: "a",
             explanation: "Present Perfect is used for state verbs (like 'know') with duration up to now."
@@ -1262,9 +1262,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Which word completes the sentence? 'She has lived here ___ 2019.'",
             options: [
-                { value: "a", label: "since" },
                 { value: "b", label: "for" },
-                { value: "c", label: "from" }
+                { value: "a", label: "since" },
+                { value: "c", label: "from" },
             ],
             correctAnswer: "a",
             explanation: "'Since' + starting point (2019); 'for' needs a length of time."
@@ -1277,8 +1277,8 @@ export const presentPerfectContent: InteractiveGuideContent = {
             question: "Find the error: 'I have seen that movie last Friday.'",
             options: [
                 { value: "a", label: "Correct" },
+                { value: "c", label: "Missing 'the' before movie" },
                 { value: "b", label: "Wrong tense: 'saw' should be used with 'last Friday'" },
-                { value: "c", label: "Missing 'the' before movie" }
             ],
             correctAnswer: "b",
             explanation: "Specific past times (like 'last Friday') require Past Simple: 'I saw that movie last Friday.'"
@@ -1304,9 +1304,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "medium",
             question: "Choose the correct sentence with 'still' and Present Perfect negative.",
             options: [
-                { value: "a", label: "I still haven't received my paycheck." },
                 { value: "b", label: "I haven't still received my paycheck." },
-                { value: "c", label: "I didn't still receive my paycheck." }
+                { value: "a", label: "I still haven't received my paycheck." },
+                { value: "c", label: "I didn't still receive my paycheck." },
             ],
             correctAnswer: "a",
             explanation: "'Still' goes before 'haven't/hasn't' in Present Perfect negative."
@@ -1318,9 +1318,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Which question is correct?",
             options: [
-                { value: "a", label: "Have you finished your homework yet?" },
                 { value: "b", label: "Did you finished your homework yet?" },
-                { value: "c", label: "Have you yet finished your homework?" }
+                { value: "c", label: "Have you yet finished your homework?" },
+                { value: "a", label: "Have you finished your homework yet?" },
             ],
             correctAnswer: "a",
             explanation: "'Yet' goes at the end in Present Perfect questions."
@@ -1346,9 +1346,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "easy",
             question: "Fill in the blank: 'They haven't called me ___. (I am still waiting)'",
             options: [
-                { value: "a", label: "yet" },
                 { value: "b", label: "already" },
-                { value: "c", label: "just" }
+                { value: "a", label: "yet" },
+                { value: "c", label: "just" },
             ],
             correctAnswer: "a",
             explanation: "Use 'yet' in Present Perfect negative to show something is still not done."
@@ -1360,9 +1360,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "medium",
             question: "How many times ___ you ___ (see) the new mural on Main Street?",
             options: [
-                { value: "a", label: "have / seen" },
                 { value: "b", label: "did / see" },
-                { value: "c", label: "has / saw" }
+                { value: "c", label: "has / saw" },
+                { value: "a", label: "have / seen" },
             ],
             correctAnswer: "a",
             explanation: "Use 'have/has' + past participle for Present Perfect questions about experiences."
@@ -1388,9 +1388,9 @@ export const presentPerfectContent: InteractiveGuideContent = {
             difficulty: "medium",
             question: "Which sentence is correct?",
             options: [
-                { value: "a", label: "I have never tried Ethiopian food." },
                 { value: "b", label: "I never have tried Ethiopian food." },
-                { value: "c", label: "I have tried never Ethiopian food." }
+                { value: "a", label: "I have never tried Ethiopian food." },
+                { value: "c", label: "I have tried never Ethiopian food." },
             ],
             correctAnswer: "a",
             explanation: "'Never' goes between 'have' and the past participle in Present Perfect."

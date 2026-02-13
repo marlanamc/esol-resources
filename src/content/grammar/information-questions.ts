@@ -285,8 +285,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ does the apartment cost per month?",
                             options: [
-                                { value: "how-many", label: "How many" },
                                 { value: "how-much", label: "How much" },
+                                { value: "how-many", label: "How many" },
                             ],
                             expectedAnswer: "how-much",
                         },
@@ -294,8 +294,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ bedrooms does it have?",
                             options: [
-                                { value: "how-many", label: "How many" },
                                 { value: "how-much", label: "How much" },
+                                { value: "how-many", label: "How many" },
                             ],
                             expectedAnswer: "how-many",
                         },
@@ -303,8 +303,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ notice do I need to give before moving out?",
                             options: [
-                                { value: "how-many", label: "How many" },
                                 { value: "how-much", label: "How much" },
+                                { value: "how-many", label: "How many" },
                             ],
                             expectedAnswer: "how-much",
                         },
@@ -312,8 +312,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ people live in the building?",
                             options: [
-                                { value: "how-many", label: "How many" },
                                 { value: "how-much", label: "How much" },
+                                { value: "how-many", label: "How many" },
                             ],
                             expectedAnswer: "how-many",
                         },
@@ -521,9 +521,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ lives in apartment 3B?",
                             options: [
-                                { value: "who", label: "Who" },
                                 { value: "who-does", label: "Who does" },
                                 { value: "who-do", label: "Who do" },
+                                { value: "who", label: "Who" },
                             ],
                             expectedAnswer: "who",
                         },
@@ -531,9 +531,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ you contact for repairs?",
                             options: [
+                                { value: "who-do", label: "Who do" },
                                 { value: "who", label: "Who" },
                                 { value: "who-does", label: "Who does" },
-                                { value: "who-do", label: "Who do" },
                             ],
                             expectedAnswer: "who-do",
                         },
@@ -541,8 +541,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "___ pays for pest control?",
                             options: [
-                                { value: "who", label: "Who" },
                                 { value: "who-does", label: "Who does" },
+                                { value: "who", label: "Who" },
                                 { value: "who-do", label: "Who do" },
                             ],
                             expectedAnswer: "who",
@@ -815,9 +815,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You want to ask about the due date of rent.",
                             options: [
-                                { value: "a", label: "When is the rent due?" },
                                 { value: "b", label: "When the rent is due?" },
                                 { value: "c", label: "When is due the rent?" },
+                                { value: "a", label: "When is the rent due?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -846,8 +846,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             label: "Choose the correct question about money:",
                             options: [
                                 { value: "a", label: "How many is the rent?" },
-                                { value: "b", label: "How much is the rent?" },
                                 { value: "c", label: "How much are the rent?" },
+                                { value: "b", label: "How much is the rent?" },
                             ],
                             expectedAnswer: "b",
                         },
@@ -855,8 +855,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You see two apartments available. You ask:",
                             options: [
-                                { value: "a", label: "What apartment do you prefer?" },
                                 { value: "b", label: "Which apartment do you prefer?" },
+                                { value: "a", label: "What apartment do you prefer?" },
                                 { value: "c", label: "Where apartment do you prefer?" },
                             ],
                             expectedAnswer: "b",
@@ -876,8 +876,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             label: "Object question (needs helping verb):",
                             options: [
                                 { value: "a", label: "Who you call for repairs?" },
-                                { value: "b", label: "Who do you call for repairs?" },
                                 { value: "c", label: "Who calls for repairs?" },
+                                { value: "b", label: "Who do you call for repairs?" },
                             ],
                             expectedAnswer: "b",
                         },
@@ -885,8 +885,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Which question asks about a reason?",
                             options: [
-                                { value: "a", label: "When is the rent going up?" },
                                 { value: "b", label: "Why is the rent going up?" },
+                                { value: "a", label: "When is the rent going up?" },
                                 { value: "c", label: "Where is the rent going up?" },
                             ],
                             expectedAnswer: "b",
@@ -906,8 +906,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             label: "Which is an embedded question?",
                             options: [
                                 { value: "a", label: "What time does the clinic close?" },
-                                { value: "b", label: "I'm wondering what time the clinic closes." },
                                 { value: "c", label: "What time the clinic closes?" },
+                                { value: "b", label: "I'm wondering what time the clinic closes." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -1118,8 +1118,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You want to ask your boss about health insurance politely. Choose the best embedded question:",
                             options: [
-                                { value: "a", label: "I'm wondering if the position offers health insurance." },
                                 { value: "b", label: "I'm wondering if does the position offer health insurance." },
+                                { value: "a", label: "I'm wondering if the position offers health insurance." },
                                 { value: "c", label: "I'm wondering does the position offer health insurance." },
                                 { value: "d", label: "I'm wondering if offers the position health insurance." },
                             ],
@@ -1129,9 +1129,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You want to ask your landlord about utilities. Choose the correct embedded question:",
                             options: [
-                                { value: "a", label: "Could you clarify whether the rent includes utilities?" },
                                 { value: "b", label: "Could you clarify whether does the rent include utilities?" },
                                 { value: "c", label: "Could you clarify whether includes the rent utilities?" },
+                                { value: "a", label: "Could you clarify whether the rent includes utilities?" },
                                 { value: "d", label: "Could you clarify does the rent include utilities?" },
                             ],
                             expectedAnswer: "a",
@@ -1140,10 +1140,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You're in a job interview asking about hours. Choose the correct embedded question:",
                             options: [
-                                { value: "a", label: "I'd like to know how many hours per week this position is." },
                                 { value: "b", label: "I'd like to know how many hours per week is this position." },
                                 { value: "c", label: "I'd like to know how many hours per week does this position have." },
                                 { value: "d", label: "I'd like to know how many hours per week this position has?" },
+                                { value: "a", label: "I'd like to know how many hours per week this position is." },
                             ],
                             expectedAnswer: "a",
                         },
@@ -1151,8 +1151,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You want to ask your doctor about side effects. Choose the best embedded question:",
                             options: [
-                                { value: "a", label: "I'm wondering what are the side effects of this medication." },
                                 { value: "b", label: "I'm wondering what the side effects of this medication are." },
+                                { value: "a", label: "I'm wondering what are the side effects of this medication." },
                                 { value: "c", label: "I'm wondering what do the side effects of this medication include." },
                                 { value: "d", label: "I'm wondering what are side effects of this medication." },
                             ],
@@ -1174,8 +1174,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             label: "You want to ask about the dress code at work. Choose the best embedded question:",
                             options: [
                                 { value: "a", label: "Could you clarify what is the dress code?" },
-                                { value: "b", label: "Could you clarify what the dress code is?" },
                                 { value: "c", label: "Could you clarify what does the dress code require?" },
+                                { value: "b", label: "Could you clarify what the dress code is?" },
                                 { value: "d", label: "Could you clarify what is dress code?" },
                             ],
                             expectedAnswer: "b",
@@ -1185,9 +1185,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             label: "You're asking about overtime pay. Choose the correct embedded question:",
                             options: [
                                 { value: "a", label: "I'm wondering whether is overtime paid." },
-                                { value: "b", label: "I'm wondering whether overtime is paid." },
                                 { value: "c", label: "I'm wondering whether does overtime get paid." },
                                 { value: "d", label: "I'm wondering whether overtime paid is." },
+                                { value: "b", label: "I'm wondering whether overtime is paid." },
                             ],
                             expectedAnswer: "b",
                         },
@@ -1195,8 +1195,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You want to ask about the commission structure. Choose the best embedded question:",
                             options: [
-                                { value: "a", label: "I'd like to know how does the commission work." },
                                 { value: "b", label: "I'd like to know how the commission works." },
+                                { value: "a", label: "I'd like to know how does the commission work." },
                                 { value: "c", label: "I'd like to know how works the commission." },
                                 { value: "d", label: "I'd like to know how is the commission calculated." },
                             ],
@@ -1272,9 +1272,9 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Scenario: You're asking about a job. Initial question: 'What are the hours?' Answer: 'The shift is 9:00 AM to 5:00 PM.' What is the BEST next question to clarify?",
                             options: [
-                                { value: "a", label: "Does this shift stay the same every week, or does it change?" },
                                 { value: "b", label: "Where is the office located?" },
                                 { value: "c", label: "How much is the salary?" },
+                                { value: "a", label: "Does this shift stay the same every week, or does it change?" },
                             ],
                             expectedAnswer: "a",
                         },
@@ -1282,8 +1282,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Scenario: You're asking about an apartment. Initial question: 'Does the rent include utilities?' Answer: 'Yes, some utilities are included.' What is the BEST next question to dig deeper?",
                             options: [
-                                { value: "a", label: "How much is the rent?" },
                                 { value: "b", label: "Which utilities are included exactly (heat, water, electricity)?" },
+                                { value: "a", label: "How much is the rent?" },
                                 { value: "c", label: "Who is the landlord?" },
                             ],
                             expectedAnswer: "b",
@@ -1292,8 +1292,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Scenario: At a doctor's visit. Initial question: 'How often do I take this?' Answer: 'Twice daily with food.' What is the BEST next question to plan for scenarios?",
                             options: [
-                                { value: "a", label: "What should I do if I miss a dose?" },
                                 { value: "b", label: "What is the name of the medicine?" },
+                                { value: "a", label: "What should I do if I miss a dose?" },
                                 { value: "c", label: "When do I take it?" },
                             ],
                             expectedAnswer: "a",
@@ -1303,8 +1303,8 @@ export const informationQuestionsContent: InteractiveGuideContent = {
                             label: "Scenario: In a job interview. Initial question: 'How much vacation time do I get?' Answer: 'Two weeks per year.' What is the BEST next question to understand the process?",
                             options: [
                                 { value: "a", label: "What are the benefits?" },
-                                { value: "b", label: "What is the process for requesting time off?" },
                                 { value: "c", label: "When can I start?" },
+                                { value: "b", label: "What is the process for requesting time off?" },
                             ],
                             expectedAnswer: "b",
                         },
@@ -1321,11 +1321,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       id: "quiz-1",
       question: "Which question is correct?",
       options: [
+        { value: "c", label: "How many bedrooms does the apartment have?" },
         { value: "a", label: "How much bedrooms does the apartment have?" },
         { value: "b", label: "How many bedrooms the apartment has?" },
-        { value: "c", label: "How many bedrooms does the apartment have?" },
-      ],
-      correctAnswer: "c",
+    ],
+    correctAnswer: "c",
       explanation:
         "Use 'How many' with countable nouns like 'bedrooms', and use the helping verb before the subject: 'How many bedrooms does the apartment have?'",
       skillTag: "how-many-vs-how-much-countable",
@@ -1350,10 +1350,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       question: "Put the words in correct order: (rent / when / due / is / the)",
       options: [
         { value: "a", label: "When the rent is due?" },
-        { value: "b", label: "When is the rent due?" },
         { value: "c", label: "When is due the rent?" },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "When is the rent due?" },
+    ],
+    correctAnswer: "b",
       explanation:
         "Information questions follow WH-word + helping verb + subject + main verb: 'When is the rent due?'",
       skillTag: "word-order-wh-aux-subject-verb",
@@ -1363,11 +1363,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       id: "quiz-4",
       question: "Choose the correct subject question:",
       options: [
-        { value: "a", label: "Who does pay the utilities?" },
         { value: "b", label: "Who pays the utilities?" },
+        { value: "a", label: "Who does pay the utilities?" },
         { value: "c", label: "Who do pay the utilities?" },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "Here 'Who' is the subject (the doer), so we do NOT use 'do/does'. The verb takes -s: 'Who pays the utilities?'",
       skillTag: "subject-question-who-no-aux",
@@ -1392,10 +1392,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       question: "Which question asks about a person?",
       options: [
         { value: "a", label: "What should I call for emergencies?" },
-        { value: "b", label: "Who should I call for emergencies?" },
         { value: "c", label: "When should I call for emergencies?" },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "Who should I call for emergencies?" },
+    ],
+    correctAnswer: "b",
       explanation:
         "'Who' is used for people. 'What' is for things/information, and 'When' is for time.",
       skillTag: "wh-choice-who-vs-what-when",
@@ -1405,11 +1405,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       id: "quiz-7",
       question: "You see two buses at the stop. What is the best question?",
       options: [
-        { value: "a", label: "What bus goes to downtown?" },
         { value: "b", label: "Which bus goes to downtown?" },
+        { value: "a", label: "What bus goes to downtown?" },
         { value: "c", label: "Where bus goes to downtown?" },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "You are choosing from a small number of options (two buses), so use 'Which bus goes to downtown?'",
       skillTag: "what-vs-which-limited-choice",
@@ -1433,11 +1433,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       id: "quiz-9",
       question: "Which question correctly asks about method?",
       options: [
-        { value: "a", label: "How do I pay rent?" },
         { value: "b", label: "What do I pay rent?" },
         { value: "c", label: "Why do I pay rent?" },
-      ],
-      correctAnswer: "a",
+        { value: "a", label: "How do I pay rent?" },
+    ],
+    correctAnswer: "a",
       explanation:
         "'How' asks about method or process: 'How do I pay rent?'",
       skillTag: "wh-choice-how-method",
@@ -1447,11 +1447,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       id: "quiz-10",
       question: "Choose the correct question about reason:",
       options: [
+        { value: "c", label: "Why is the rent going up?" },
         { value: "a", label: "When is the rent going up?" },
         { value: "b", label: "Where is the rent going up?" },
-        { value: "c", label: "Why is the rent going up?" },
-      ],
-      correctAnswer: "c",
+    ],
+    correctAnswer: "c",
       explanation:
         "'Why' asks about reason: 'Why is the rent going up?'",
       skillTag: "wh-choice-why-reason",
@@ -1476,10 +1476,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       question: "Choose the correct embedded question:",
       options: [
         { value: "a", label: "I'm wondering what time does the clinic close." },
-        { value: "b", label: "I'm wondering what time the clinic closes." },
         { value: "c", label: "I'm wondering what time is the clinic closing." },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "I'm wondering what time the clinic closes." },
+    ],
+    correctAnswer: "b",
       explanation:
         "Embedded questions also use statement word order: 'what time the clinic closes'.",
       skillTag: "embedded-question-statement-word-order",
@@ -1490,11 +1490,11 @@ export const informationQuestionsContent: InteractiveGuideContent = {
       question:
         "You want to be polite with your boss. Which question is more professional?",
       options: [
-        { value: "a", label: "When is my paycheck ready?" },
         { value: "b", label: "Could you tell me when my paycheck is ready?" },
+        { value: "a", label: "When is my paycheck ready?" },
         { value: "c", label: "When my paycheck is ready?" },
-      ],
-      correctAnswer: "b",
+    ],
+    correctAnswer: "b",
       explanation:
         "Adding a polite phrase and using an indirect question sounds more professional: 'Could you tell me when my paycheck is ready?'",
       skillTag: "politeness-indirect-vs-direct-question",
@@ -1506,10 +1506,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
         "You want to ask your landlord about utilities. Which is the best housing question?",
       options: [
         { value: "a", label: "How many is the utilities?" },
-        { value: "b", label: "What are the building rules?" },
         { value: "c", label: "Which utilities are included in the rent?" },
-      ],
-      correctAnswer: "c",
+        { value: "b", label: "What are the building rules?" },
+    ],
+    correctAnswer: "c",
       explanation:
         "This question is specific and useful: 'Which utilities are included in the rent?' connects directly to housing and money.",
       skillTag: "housing-context-which-utilities-included",
@@ -1521,10 +1521,10 @@ export const informationQuestionsContent: InteractiveGuideContent = {
         "You want to know the exact date to move out. Which question is best?",
       options: [
         { value: "a", label: "When can I move in?" },
-        { value: "b", label: "How much notice do I need to give before moving out?" },
         { value: "c", label: "Where is the laundry?" },
-      ],
-      correctAnswer: "b",
+        { value: "b", label: "How much notice do I need to give before moving out?" },
+    ],
+    correctAnswer: "b",
       explanation:
         "'How much notice do I need to give before moving out?' is the key housing question about time and rules.",
       skillTag: "housing-context-how-much-notice",
