@@ -943,7 +943,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-12",
-            question: "Choose 'will' or Present Continuous: Someone knocks. You decide now.",
+            question: "Someone knocks at the door. What do you say to your family right now?",
             options: [
                 { value: "a", label: "I'm answering the door." },
                 { value: "b", label: "I'll answer the door." },
@@ -1024,12 +1024,12 @@ export const presentContinuousContent: InteractiveGuideContent = {
             question: "Which verb should NOT use continuous form?",
             options: [
                 { value: "a", label: "I'm cooking dinner." },
-                { value: "b", label: "I'm understanding this now." },
+                { value: "b", label: "I'm knowing this now." },
                 { value: "c", label: "I'm working late today." },
             ],
             correctAnswer: "b",
-            explanation: "'Understand' is a stative verb—say 'I understand' not 'I'm understanding.'",
-            skillTag: "error-stative-verb-understand",
+            explanation: "'Know' is a stative verb—say 'I know this now,' not 'I'm knowing this now.'",
+            skillTag: "error-stative-verb-know",
             difficulty: "medium",
         },
         {
@@ -1082,7 +1082,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
 
     STATIVE VERBS:
     - error-stative-verb-ing: question 6
-    - error-stative-verb-understand: question 18
+    - error-stative-verb-know: question 18
 
     SPELLING:
     - spelling-ing-drop-e: question 7

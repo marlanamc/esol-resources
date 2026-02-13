@@ -8,6 +8,11 @@ import { SelectExercise } from "./SelectExercise";
 import { RadioExercise } from "./RadioExercise";
 import { WordScrambleExercise } from "./WordScrambleExercise";
 import { WordSelectExercise } from "./WordSelectExercise";
+import {
+    getExerciseAnswerExpectation,
+    getExerciseAnswerExpectationMessage,
+    getExerciseDefaultPlaceholder,
+} from "@/lib/exercise-answer-expectation";
 
 export interface ExerciseCompletionInfo {
     exerciseId: string;
@@ -35,6 +40,9 @@ export function ExerciseSection({
 }: ExerciseSectionProps) {
     const [submitted, setSubmitted] = useState(false);
     const [results, setResults] = useState<Record<number, boolean>>({});
+    const answerExpectation = getExerciseAnswerExpectation(exercise);
+    const answerExpectationMessage = getExerciseAnswerExpectationMessage(answerExpectation);
+    const defaultTextPlaceholder = getExerciseDefaultPlaceholder(answerExpectation);
 
     // Normalize answer: lowercase, trim, collapse spaces, strip trailing punctuation
     // so "I have just eaten lunch" matches "I have just eaten lunch."
@@ -147,10 +155,15 @@ export function ExerciseSection({
 
     return (
         <div className="exercise-section bg-white border border-border rounded-lg p-6 shadow-sm">
-            <div className="mb-4">
+            <div className="mb-4 space-y-1">
                 <h4 className="text-lg font-bold text-primary mb-2">{exercise.title}</h4>
                 {exercise.instructions && (
                     <p className="text-sm text-text-muted italic">{exercise.instructions}</p>
+                )}
+                {answerExpectationMessage && (
+                    <p className="text-sm font-medium text-text">
+                        Expected input: {answerExpectationMessage}
+                    </p>
                 )}
             </div>
 
@@ -172,7 +185,11 @@ export function ExerciseSection({
                     return (
                         <div key={index}>
                             {item.type === "text" && (
-                                <TextInputExercise item={item} {...commonProps} />
+                                <TextInputExercise
+                                    item={item}
+                                    {...commonProps}
+                                    defaultPlaceholder={defaultTextPlaceholder}
+                                />
                             )}
                             {item.type === "select" && (
                                 <SelectExercise item={item} {...commonProps} />
