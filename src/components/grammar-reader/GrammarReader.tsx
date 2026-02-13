@@ -56,32 +56,100 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
     const [showPractice, setShowPractice] = useState(true);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
+    const [progressHydrated, setProgressHydrated] = useState(false);
+    const persistedProgressRef = useRef(0);
+    const hasSkippedInitialProgressSaveRef = useRef(false);
+    const sectionKeys = useMemo(
+        () => content.sections.map((section, index) => section.id || `section-${index}`),
+        [content.sections]
+    );
 
-    // Restore last section when opening the guide (so students return to where they left off)
+    const readAssignmentId = useCallback((): string | null => {
+        if (typeof window === "undefined") return null;
+        try {
+            const value = new URLSearchParams(window.location.search).get("assignment");
+            if (!value) return null;
+            const trimmed = value.trim();
+            return trimmed.length > 0 ? trimmed : null;
+        } catch {
+            return null;
+        }
+    }, []);
+
+    // Restore resume state when opening the guide (section index + completed sections).
     useEffect(() => {
         if (!activityId || content.sections.length === 0) return;
         let cancelled = false;
+        setProgressHydrated(false);
+        hasSkippedInitialProgressSaveRef.current = false;
         (async () => {
             try {
-                const res = await fetch(`/api/activity/progress?activityId=${encodeURIComponent(activityId)}`);
+                const params = new URLSearchParams({ activityId });
+                const assignmentId = readAssignmentId();
+                if (assignmentId) {
+                    params.set("assignmentId", assignmentId);
+                }
+
+                const res = await fetch(`/api/activity/progress?${params.toString()}`, {
+                    cache: "no-store",
+                });
                 if (!res.ok || cancelled) return;
                 const data = await res.json();
                 if (cancelled) return;
+
+                const fetchedProgress =
+                    typeof data.progress === "number"
+                        ? Math.max(0, Math.min(100, Math.round(data.progress)))
+                        : 0;
+                persistedProgressRef.current = fetchedProgress;
+
+                let restoredLastSectionIndex: number | null = null;
+                let restoredCompletedSectionIds: string[] = [];
                 const categoryData = data.categoryData;
                 if (categoryData && typeof categoryData === "string") {
-                    const parsed = JSON.parse(categoryData) as { _guide?: { lastSectionIndex?: number } };
+                    const parsed = JSON.parse(categoryData) as {
+                        _guide?: { lastSectionIndex?: number; completedSectionIds?: string[] };
+                    };
                     const idx = parsed?._guide?.lastSectionIndex;
                     if (typeof idx === "number") {
-                        const clamped = Math.max(0, Math.min(idx, content.sections.length - 1));
-                        setCurrentSectionIndex(clamped);
+                        restoredLastSectionIndex = idx;
                     }
+                    const savedCompleted = parsed?._guide?.completedSectionIds;
+                    if (Array.isArray(savedCompleted)) {
+                        restoredCompletedSectionIds = Array.from(
+                            new Set(
+                                savedCompleted
+                                    .filter((item): item is string => typeof item === "string")
+                                    .map((item) => item.trim())
+                                    .filter((item) => sectionKeys.includes(item))
+                            )
+                        );
+                    }
+                }
+
+                if (typeof restoredLastSectionIndex === "number") {
+                    const clamped = Math.max(0, Math.min(restoredLastSectionIndex, content.sections.length - 1));
+                    setCurrentSectionIndex(clamped);
+                }
+
+                if (restoredCompletedSectionIds.length > 0) {
+                    setCompletedSections(new Set(restoredCompletedSectionIds));
+                } else if (fetchedProgress >= 100) {
+                    // Legacy records may have progress=100 without section-level completion keys.
+                    setCompletedSections(new Set(sectionKeys));
+                } else {
+                    setCompletedSections(new Set());
                 }
             } catch {
                 // non-blocking; start at section 0
+            } finally {
+                if (!cancelled) {
+                    setProgressHydrated(true);
+                }
             }
         })();
         return () => { cancelled = true; };
-    }, [activityId, content.sections.length]);
+    }, [activityId, content.sections.length, readAssignmentId, sectionKeys]);
 
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
@@ -161,7 +229,21 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             }
             // Also save 100% progress if activityId is provided
             if (activityId) {
-                await saveActivityProgress(activityId, 100, "completed");
+                const assignmentId = readAssignmentId();
+                const result = await saveActivityProgress(
+                    activityId,
+                    100,
+                    "completed",
+                    undefined,
+                    undefined,
+                    assignmentId,
+                    {
+                        lastSectionIndex: Math.max(0, content.sections.length - 1),
+                        completedSectionIds: sectionKeys,
+                    }
+                );
+                const savedProgress = typeof result?.progress === "number" ? result.progress : 100;
+                persistedProgressRef.current = Math.max(persistedProgressRef.current, savedProgress);
             }
         } catch (error) {
             // Non-blocking; user still reached completion. Keep a console trace for debugging.
@@ -171,11 +253,15 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                 setAwardSent(true);
             }
         }
-    }, [completionKey, awardSent, activityId]);
+    }, [completionKey, awardSent, activityId, content.sections.length, readAssignmentId, sectionKeys]);
 
     // Track progress as user navigates through sections (and save last section for resume)
     useEffect(() => {
-        if (!activityId || content.sections.length === 0) return;
+        if (!activityId || content.sections.length === 0 || !progressHydrated) return;
+        if (!hasSkippedInitialProgressSaveRef.current) {
+            hasSkippedInitialProgressSaveRef.current = true;
+            return;
+        }
 
         const totalSections = content.sections.length;
         const sectionsViewed = currentSectionIndex + 1;
@@ -187,17 +273,36 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         const viewProgress = (sectionsViewed / totalSections) * 20;
         const completionProgress = (sectionsCompleted / totalSections) * 80;
         const totalProgress = Math.round(viewProgress + completionProgress);
+        const progressToSave = Math.max(totalProgress, persistedProgressRef.current);
+        const assignmentId = readAssignmentId();
 
-        void saveActivityProgress(
-            activityId,
-            totalProgress,
-            totalProgress >= 100 ? "completed" : "in_progress",
-            undefined,
-            undefined,
-            undefined,
-            { lastSectionIndex: currentSectionIndex }
-        );
-    }, [activityId, currentSectionIndex, completedSections.size, content.sections.length]);
+        let cancelled = false;
+        (async () => {
+            const result = await saveActivityProgress(
+                activityId,
+                progressToSave,
+                progressToSave >= 100 ? "completed" : "in_progress",
+                undefined,
+                undefined,
+                assignmentId,
+                {
+                    lastSectionIndex: currentSectionIndex,
+                    completedSectionIds: Array.from(completedSections),
+                }
+            );
+            if (cancelled) return;
+
+            if (typeof result?.progress === "number") {
+                persistedProgressRef.current = Math.max(persistedProgressRef.current, result.progress);
+            } else {
+                persistedProgressRef.current = Math.max(persistedProgressRef.current, progressToSave);
+            }
+        })();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [activityId, currentSectionIndex, completedSections, content.sections.length, progressHydrated, readAssignmentId]);
 
     useEffect(() => {
         try {
@@ -244,32 +349,34 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
     const isFirstSection = currentSectionIndex === 0;
     const isLastSection = currentSectionIndex === content.sections.length - 1;
+    const markCurrentSectionComplete = useCallback(() => {
+        setCompletedSections((prev) => {
+            if (prev.has(currentSectionKey)) return prev;
+            const next = new Set(prev);
+            next.add(currentSectionKey);
+            return next;
+        });
+    }, [currentSectionKey]);
 
     const handleNext = useCallback(() => {
         if (!isLastSection) {
             // Mark current section as completed
-            if (currentSection?.id) {
-                setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
-            }
+            markCurrentSectionComplete();
             setCurrentSectionIndex((prev) => prev + 1);
             window.scrollTo({ top: 0, behavior: "smooth" });
         } else if (content.miniQuiz && !showQuiz) {
             // Show quiz after last section
-            if (currentSection?.id) {
-                setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
-            }
+            markCurrentSectionComplete();
             setShowQuiz(true);
         } else if (!content.miniQuiz) {
             // Completed without quiz
-            if (currentSection?.id) {
-                setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
-            }
+            markCurrentSectionComplete();
             void awardCompletion();
             if (onComplete) {
                 onComplete();
             }
         }
-    }, [isLastSection, currentSection, content.miniQuiz, showQuiz, awardCompletion, onComplete]);
+    }, [isLastSection, content.miniQuiz, showQuiz, awardCompletion, onComplete, markCurrentSectionComplete]);
 
     const handlePrevious = useCallback(() => {
         if (showQuiz) {
@@ -299,10 +406,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     }, [handleNext, handlePrevious, isFirstSection, isLastSection, showTOC, showQuiz]);
 
     const handleSectionComplete = useCallback(() => {
-        if (currentSection?.id) {
-            setCompletedSections((prev) => new Set(prev).add(currentSection.id!));
-        }
-    }, [currentSection]);
+        markCurrentSectionComplete();
+    }, [markCurrentSectionComplete]);
 
     const handleExerciseComplete = useCallback(async (info: ExerciseCompletionInfo) => {
         if (!completionKey) return;
