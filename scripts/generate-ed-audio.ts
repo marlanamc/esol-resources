@@ -35,66 +35,10 @@ const VOICE_OPTIONS = {
 const VOICE_ID = VOICE_OPTIONS.rachel;
 
 // All verbs from ed-pronunciation-data.ts
-const VERBS = [
-  // /d/ sound
-  { base: 'play', past: 'played' },
-  { base: 'call', past: 'called' },
-  { base: 'open', past: 'opened' },
-  { base: 'close', past: 'closed' },
-  { base: 'love', past: 'loved' },
-  { base: 'live', past: 'lived' },
-  { base: 'rain', past: 'rained' },
-  { base: 'clean', past: 'cleaned' },
-  { base: 'learn', past: 'learned' },
-  { base: 'turn', past: 'turned' },
-  { base: 'enjoy', past: 'enjoyed' },
-  { base: 'arrive', past: 'arrived' },
-  { base: 'follow', past: 'followed' },
-  { base: 'listen', past: 'listened' },
-  { base: 'answer', past: 'answered' },
-  { base: 'remember', past: 'remembered' },
-  { base: 'explain', past: 'explained' },
-  { base: 'believe', past: 'believed' },
-  { base: 'surprise', past: 'surprised' },
+import { ED_VERBS } from '../src/lib/ed-pronunciation-data';
 
-  // /t/ sound
-  { base: 'walk', past: 'walked' },
-  { base: 'talk', past: 'talked' },
-  { base: 'help', past: 'helped' },
-  { base: 'stop', past: 'stopped' },
-  { base: 'watch', past: 'watched' },
-  { base: 'wash', past: 'washed' },
-  { base: 'cook', past: 'cooked' },
-  { base: 'look', past: 'looked' },
-  { base: 'ask', past: 'asked' },
-  { base: 'work', past: 'worked' },
-  { base: 'laugh', past: 'laughed' },
-  { base: 'finish', past: 'finished' },
-  { base: 'dance', past: 'danced' },
-  { base: 'miss', past: 'missed' },
-  { base: 'pass', past: 'passed' },
-  { base: 'fix', past: 'fixed' },
-  { base: 'jump', past: 'jumped' },
-  { base: 'mix', past: 'mixed' },
-  { base: 'reach', past: 'reached' },
-
-  // /ɪd/ sound
-  { base: 'want', past: 'wanted' },
-  { base: 'need', past: 'needed' },
-  { base: 'start', past: 'started' },
-  { base: 'wait', past: 'waited' },
-  { base: 'visit', past: 'visited' },
-  { base: 'end', past: 'ended' },
-  { base: 'decide', past: 'decided' },
-  { base: 'expect', past: 'expected' },
-  { base: 'invite', past: 'invited' },
-  { base: 'suggest', past: 'suggested' },
-  { base: 'count', past: 'counted' },
-  { base: 'print', past: 'printed' },
-  { base: 'protect', past: 'protected' },
-  { base: 'accept', past: 'accepted' },
-  { base: 'collect', past: 'collected' },
-];
+// All verbs from ed-pronunciation-data.ts
+const VERBS = ED_VERBS.map(v => ({ base: v.base, past: v.past }));
 
 const OUTPUT_DIR = path.join(process.cwd(), 'public', 'audio', 'verbs');
 
