@@ -62,7 +62,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 </div>
 
                 <h3 style="margin-top: 1rem;">Past Perfect (Simple): Story Sequence</h3>
-                <p style="margin-bottom: 0.5rem;">Teach with narrative signal words:</p>
+                <p style="margin-bottom: 0.5rem;">Useful narrative signal words:</p>
                 <ul>
                     <li>before</li>
                     <li>after</li>
@@ -80,7 +80,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <p><strong>"She was upset because she had been waiting for hours."</strong></p>
 
                 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
-                    <p style="margin: 0;"><strong>Teacher question:</strong> "What happened first, and what was already happening before that past moment?"</p>
+                    <p style="margin: 0;"><strong>Ask Yourself:</strong> "What happened first, and what was already happening before that past moment?"</p>
                 </div>
             `,
             exercises: [
@@ -407,9 +407,9 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "radio",
-                            label: "When the teacher came in, the students had finished the test.",
+                            label: "When the bell rang, the students had finished the test.",
                             options: [
-                                { value: "teacher", label: "The teacher came in" },
+                                { value: "bell", label: "The bell rang" },
                                 { value: "students", label: "The students finished the test" },
                             ],
                             expectedAnswer: "students",
