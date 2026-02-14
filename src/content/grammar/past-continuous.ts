@@ -258,7 +258,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
 
                     <p style="text-align: center; color: #64748b; font-size: 0.95rem; margin-bottom: 2rem;">Past Continuous shows a <strong>longer action in progress</strong> that gets interrupted by a <strong>shorter, sudden event</strong>.</p>
 
-                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 2rem 0;">
+                    <div style="position: relative; margin: 2rem auto; max-width: 650px; padding: 4rem 0 2rem;">
                         <div style="position: relative; height: 50px; background: linear-gradient(to right, rgba(240, 180, 90, 0.2), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.9), rgba(240, 180, 90, 0.2)); border-radius: 25px; border: 3px solid #f0b45a; display: flex; align-items: center; padding: 0 2rem;">
                             <span style="color: #7c5d0a; font-weight: 600; font-size: 0.875rem;">I was walking home...</span>
                             <div style="position: absolute; left: 0; top: 50%; width: 10px; height: 10px; background: #f0b45a; border-radius: 50%; transform: translate(-5px, -50%);"></div>
@@ -269,17 +269,17 @@ export const pastContinuousContent: InteractiveGuideContent = {
                             <span style="font-size: 0.75rem; color: #f0b45a; font-weight: 600;">Past Continuous = Ongoing Background Action</span>
                         </div>
 
-                        <div style="position: absolute; top: 0; left: 60%; transform: translateX(-50%);">
+                        <div style="position: absolute; top: 2rem; left: 60%; transform: translateX(-50%);">
                             <div style="width: 3px; height: 80px; background: #d97757; position: relative;">
                                 <div style="position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #d97757;"></div>
                             </div>
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; background: #d97757; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(217, 119, 87, 0.4); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 1.5rem;">
                                 ⚡
                             </div>
-                            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; color: #d97757; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                            <div style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); white-space: nowrap; background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; color: #d97757; font-weight: 600; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                                 It started raining
                             </div>
-                            <div style="position: absolute; top: -50px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #94a3b8;">
+                            <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #94a3b8;">
                                 Past Simple = Interruption
                             </div>
                         </div>

@@ -222,8 +222,8 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     <div style="position: relative; margin: 2rem auto 1.25rem auto; max-width: 680px; height: 180px;">
                         <div style="position: absolute; top: 50%; left: 8%; right: 8%; height: 4px; background: linear-gradient(to right, #e2e8f0, #06b6d4 40%, #06b6d4 60%, #e2e8f0); transform: translateY(-50%);"></div>
 
-                        <div style="position: absolute; top: calc(50% - 16px); left: 34%; right: 18%; height: 32px; background: linear-gradient(90deg, rgba(6, 182, 212, 0.25), rgba(6, 182, 212, 0.9)); border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 12px rgba(6, 182, 212, 0.25);">
-                            <span style="color: white; font-weight: 700; font-size: 0.84rem;">will be driving...</span>
+                        <div style="position: absolute; top: calc(50% - 16px); left: 34%; right: 18%; height: 32px; background: linear-gradient(90deg, rgba(6, 182, 212, 0.25), rgba(6, 182, 212, 0.9)); border-radius: 16px; display: flex; align-items: center; justify-content: flex-start; padding-left: 1.1rem; padding-right: 5.75rem; box-shadow: 0 3px 12px rgba(6, 182, 212, 0.25); overflow: hidden;">
+                            <span style="color: white; font-weight: 700; font-size: 0.84rem; white-space: nowrap;">will be driving...</span>
                         </div>
 
                         <div style="position: absolute; top: calc(50% - 52px); left: calc(62% - 35px); text-align: center;">

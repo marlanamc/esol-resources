@@ -53,7 +53,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [unlockedPractice, setUnlockedPractice] = useState<Set<string>>(new Set());
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
     const [awardSent, setAwardSent] = useState(false);
-    const [isDesktop, setIsDesktop] = useState(false);
     const [activitiesHref, setActivitiesHref] = useState<string>("/dashboard/activities");
     const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
     const [showPractice, setShowPractice] = useState(true);
@@ -62,6 +61,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const quizSavePromiseRef = useRef<Promise<void> | null>(null);
     const persistedProgressRef = useRef(0);
     const hasSkippedInitialProgressSaveRef = useRef(false);
+    const grammarActivitiesHref = "/dashboard/activities?category=grammar";
     const sectionKeys = useMemo(
         () => content.sections.map((section, index) => section.id || `section-${index}`),
         [content.sections]
@@ -153,17 +153,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         })();
         return () => { cancelled = true; };
     }, [activityId, content.sections.length, readAssignmentId, sectionKeys]);
-
-    // Detect if we're on desktop (md breakpoint: 768px)
-    useEffect(() => {
-        const checkDesktop = () => {
-            setIsDesktop(window.innerWidth >= 768);
-        };
-        
-        checkDesktop();
-        window.addEventListener('resize', checkDesktop);
-        return () => window.removeEventListener('resize', checkDesktop);
-    }, []);
 
     // Choose where the "Activities" breadcrumb should take the user based on entry point.
     useEffect(() => {
@@ -570,7 +559,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     </Link>
                                     <span className="text-text-muted flex-shrink-0">/</span>
                                     <Link
-                                        href={isDesktop ? "/dashboard" : "/dashboard/activities?category=grammar"}
+                                        href={grammarActivitiesHref}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
                                         Grammar
