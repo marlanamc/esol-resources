@@ -69,6 +69,68 @@ const displayTitle = (title: string) =>
             .trim()
     );
 
+interface GrammarChipCopy {
+    pattern: RegExp;
+    friendlyTitle: string;
+    useThisFor: string;
+}
+
+const GRAMMAR_CHIP_COPY: GrammarChipCopy[] = [
+    { pattern: /\bpresent perfect continuous\b/i, friendlyTitle: 'Talk about duration until now', useThisFor: 'showing ongoing actions up to the present' },
+    { pattern: /\bpast perfect continuous\b/i, friendlyTitle: 'Talk about duration before a past event', useThisFor: 'showing how long something happened before another past action' },
+    { pattern: /\bfuture perfect continuous\b/i, friendlyTitle: 'Talk about duration until a future time', useThisFor: 'showing ongoing duration up to a future point' },
+    { pattern: /\bperfect continuous\b.*\breview\b/i, friendlyTitle: 'Review duration-focused tenses', useThisFor: 'comparing duration-focused tense choices' },
+    { pattern: /\bpresent perfect\b/i, friendlyTitle: 'Connect past actions to now', useThisFor: 'life experience and recent results' },
+    { pattern: /\bpast perfect\b/i, friendlyTitle: 'Show which past action happened first', useThisFor: 'ordering two past actions clearly' },
+    { pattern: /\bfuture perfect\b/i, friendlyTitle: 'Talk about deadlines and completion', useThisFor: 'what will be finished before a future time' },
+    { pattern: /\bperfect tenses\b.*\breview\b/i, friendlyTitle: 'Review perfect tenses', useThisFor: 'choosing the right perfect tense by timeline' },
+    { pattern: /\bpresent continuous\b/i, friendlyTitle: 'Talk about actions happening now', useThisFor: 'describing actions in progress right now' },
+    { pattern: /\bpast continuous\b/i, friendlyTitle: 'Describe actions in progress in the past', useThisFor: 'background actions at a past moment' },
+    { pattern: /\bfuture continuous\b/i, friendlyTitle: 'Describe actions in progress in the future', useThisFor: 'actions that will be in progress later' },
+    { pattern: /\bcontinuous tenses\b.*\breview\b/i, friendlyTitle: 'Review actions in progress across time', useThisFor: 'comparing present, past, and future continuous' },
+    { pattern: /\bpresent simple\b/i, friendlyTitle: 'Talk about daily routines', useThisFor: 'habits, routines, and general facts' },
+    { pattern: /\bpast simple\b/i, friendlyTitle: 'Talk about finished past events', useThisFor: 'completed actions in the past' },
+    { pattern: /\bfuture simple\b/i, friendlyTitle: 'Talk about future plans', useThisFor: 'plans, predictions, and decisions' },
+    { pattern: /\bsimple tenses\b.*\breview\b/i, friendlyTitle: 'Review simple past, present, and future', useThisFor: 'switching between basic time frames' },
+    { pattern: /\bsimple\s*&\s*continuous tenses\b.*\breview\b/i, friendlyTitle: 'Review simple and continuous choices', useThisFor: 'choosing between habits and in-progress actions' },
+    { pattern: /\ball verb tenses overview\b/i, friendlyTitle: 'Master all verb tenses', useThisFor: 'final tense review in real communication' },
+    { pattern: /\bcycle 1 review\b/i, friendlyTitle: 'Review core grammar patterns', useThisFor: 'consolidating the key grammar from cycle 1' },
+    { pattern: /\bzero\s*&\s*first conditional/i, friendlyTitle: 'Talk about real situations and results', useThisFor: 'real conditions and likely outcomes' },
+    { pattern: /\bsecond\s*&\s*third conditional/i, friendlyTitle: 'Talk about unreal and past hypotheticals', useThisFor: 'imaginary situations and regrets' },
+    { pattern: /\bmodals?\b/i, friendlyTitle: 'Give rules, advice, and permission', useThisFor: 'must, should, can, and may in daily life' },
+    { pattern: /\binformation questions?\b/i, friendlyTitle: 'Ask clear information questions', useThisFor: 'building accurate WH-questions' },
+    { pattern: /\bimperatives?\b|\bdeclaratives?\b/i, friendlyTitle: 'Give instructions and statements', useThisFor: 'commands, advice, and clear statements' },
+    { pattern: /\bparts of speech\b/i, friendlyTitle: 'Build stronger sentences', useThisFor: 'understanding nouns, verbs, adjectives, and adverbs' },
+    { pattern: /\barticles?\b/i, friendlyTitle: 'Use a, an, and the correctly', useThisFor: 'choosing the right article in context' },
+    { pattern: /\bprepositions? of time\s*&\s*place\b/i, friendlyTitle: 'Use prepositions for time and place', useThisFor: 'at, on, in, and location/time phrases' },
+    { pattern: /\bgerunds?\b|\binfinitives?\b/i, friendlyTitle: 'Choose gerunds or infinitives', useThisFor: 'verb pattern accuracy after common verbs' },
+    { pattern: /\bpassive voice\b/i, friendlyTitle: 'Focus on actions and results', useThisFor: 'when the doer is unknown or less important' },
+    { pattern: /\breported speech\b/i, friendlyTitle: 'Report what someone said', useThisFor: 'sharing speech with correct tense changes' },
+    { pattern: /\bworkplace phrasal verbs\b/i, friendlyTitle: 'Use common workplace verb phrases', useThisFor: 'everyday work communication' },
+    { pattern: /\bsuperlatives?\b|\bquantifiers?\b/i, friendlyTitle: 'Compare things and describe quantity', useThisFor: 'more/most and amount words' },
+    { pattern: /\bpunctuation\b|\bcapitalization\b/i, friendlyTitle: 'Improve punctuation and capitalization', useThisFor: 'clearer and more correct writing' },
+    { pattern: /\bparagraph format\b/i, friendlyTitle: 'Write clear, organized paragraphs', useThisFor: 'building topic, support, and conclusion' },
+    { pattern: /\bused to\b|\bwould rather\b/i, friendlyTitle: 'Talk about past habits and preferences', useThisFor: 'describing old habits and current preferences' },
+];
+
+const getGrammarChipCopy = (title: string): { friendlyTitle: string; useThisFor: string } => {
+    const normalizedTitle = displayTitle(title).replace(/\s*guide\s*$/i, '').trim();
+    const match = GRAMMAR_CHIP_COPY.find(({ pattern }) => pattern.test(normalizedTitle));
+    if (match) {
+        return {
+            friendlyTitle: match.friendlyTitle,
+            useThisFor: match.useThisFor,
+        };
+    }
+    return {
+        friendlyTitle: 'Practice grammar in context',
+        useThisFor: 'clearer speaking and writing',
+    };
+};
+
+const capitalizeFirstLetter = (value: string): string =>
+    value ? `${value.charAt(0).toUpperCase()}${value.slice(1)}` : value;
+
 const parseTitleDateMs = (title?: string | null) => {
     if (!title) return null;
     const match = title.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2})\s*:/);
@@ -617,6 +679,12 @@ const ActivityCard = React.memo(function ActivityCard({
 }: ActivityCardProps) {
     const progressText = getCategoryProgressText(activity.id, progressMap);
     const vocabType = getVocabActivityType(activity.id);
+    const grammarChipCopy = activity.category === 'grammar'
+        ? getGrammarChipCopy(activity.title)
+        : null;
+    const progressChipLabel = activity.id === 'numbers-game' && progressText
+        ? progressText
+        : `${progressValue}% done`;
     const gameEmoji = gameUi
         ? getGameEmojiForActivity({ activityId: activity.id, title: activity.title, gameUi })
         : null;
@@ -831,30 +899,53 @@ const ActivityCard = React.memo(function ActivityCard({
                     >
                         {displayTitle(activity.title)}
                     </Link>
-                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-text-muted">
-                        {!hideTypeChip && (
-                            vocabType ? (
+                    <div className="mt-2 flex items-start gap-2 text-xs text-text-muted">
+                        <div className="flex flex-1 min-w-0 flex-wrap items-center gap-2">
+                            {grammarChipCopy && (
                                 <span
-                                    className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                                    className="px-2 py-0.5 rounded-full font-semibold text-[11px]"
+                                    style={{
+                                        backgroundColor: `${tenseTexture?.color ?? '#64748b'}14`,
+                                        color: tenseTexture?.color ?? '#475569',
+                                    }}
                                 >
-                                    {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
+                                    {grammarChipCopy.friendlyTitle}
                                 </span>
-                            ) : (
-                                <span className="px-2 py-0.5 bg-gray-100 text-gray-600 font-semibold rounded-full text-[10px] uppercase tracking-wide">
-                                    {activity.type}
+                            )}
+                            {grammarChipCopy && (
+                                <span
+                                    className="px-2 py-0.5 rounded-full border font-medium text-[11px]"
+                                    style={{
+                                        backgroundColor: `${tenseTexture?.color ?? '#64748b'}08`,
+                                        borderColor: `${tenseTexture?.color ?? '#64748b'}2A`,
+                                        color: tenseTexture?.color ?? '#475569',
+                                    }}
+                                >
+                                    {capitalizeFirstLetter(grammarChipCopy.useThisFor)}
                                 </span>
-                            )
-                        )}
+                            )}
+                            {!hideTypeChip && (
+                                vocabType ? (
+                                    <span
+                                        className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border ${VOCAB_CHIP_CONFIG[vocabType].className}`}
+                                    >
+                                        {VOCAB_CHIP_CONFIG[vocabType].icon} {VOCAB_CHIP_CONFIG[vocabType].label}
+                                    </span>
+                                ) : (
+                                    <span className="px-2 py-0.5 bg-gray-100 text-gray-600 font-semibold rounded-full text-[10px] uppercase tracking-wide">
+                                        {activity.type}
+                                    </span>
+                                )
+                            )}
+                            {points !== undefined && points > 0 && !isCompleted && (
+                                <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-semibold text-[11px]">
+                                    +{points} pts
+                                </span>
+                            )}
+                        </div>
                         {progressValue > 0 && !isCompleted && (
-                            <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[11px]">
-                                {activity.id === 'numbers-game' && progressText
-                                    ? progressText
-                                    : `${progressValue}% done`}
-                            </span>
-                        )}
-                        {points !== undefined && points > 0 && !isCompleted && (
-                            <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-semibold text-[11px]">
-                                +{points} pts
+                            <span className="ml-auto shrink-0 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[11px]">
+                                {progressChipLabel}
                             </span>
                         )}
                     </div>
