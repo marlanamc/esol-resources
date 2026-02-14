@@ -49,6 +49,75 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
         },
 
         // -------------------------------------------------------------------------
+        // 1.5 Core Idea Lens
+        // -------------------------------------------------------------------------
+        {
+            id: "core-idea-lens",
+            title: "Core Idea Lens: Completed Before a Future Point",
+            icon: "🧠",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(16, 185, 129, 0.1) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
+                    <p style="margin: 0;"><strong>Core idea:</strong> Perfect tenses connect <strong>two times</strong>.</p>
+                    <p style="margin: 0.5rem 0 0 0;">Here we look from a future point and ask what will already be done, or how long something will have been happening by then.</p>
+                </div>
+
+                <h3 style="margin-top: 1rem;">Future Perfect (Simple): Completion Before a Future Reference</h3>
+                <ul>
+                    <li><strong>Best companion words:</strong> by, by the time, in 5 years</li>
+                    <li><strong>Best context:</strong> goals, deadlines, and milestones</li>
+                </ul>
+                <p>Example: <strong>"By next year, I will have finished school."</strong></p>
+
+                <h3>Future Perfect Continuous: Duration by a Future Point</h3>
+                <p>Use it to measure how long an activity will have been happening:</p>
+                <p><strong>"By June, I will have been studying for four years."</strong></p>
+
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
+                    <p style="margin: 0;"><strong>Teacher question:</strong> "By that future time, do I care about completion or duration?"</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-core-idea-future-family",
+                    title: "Core Idea Check",
+                    instructions: "Choose the best timeline meaning.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "\"By Friday, I will have finished the report.\"",
+                            options: [
+                                { value: "completion", label: "Completed before a future deadline" },
+                                { value: "past", label: "Past-before-past story sequence" },
+                                { value: "present", label: "Past connected directly to now" },
+                            ],
+                            expectedAnswer: "completion",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"By December, she will have been working here for 10 years.\"",
+                            options: [
+                                { value: "duration", label: "Duration measured up to a future point" },
+                                { value: "single", label: "Single completed event with no duration" },
+                                { value: "experience", label: "Life experience up to now" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which phrase strongly signals Future Perfect timing?",
+                            options: [
+                                { value: "by", label: "By the time" },
+                                { value: "last", label: "Last week" },
+                                { value: "yesterday", label: "Yesterday" },
+                            ],
+                            expectedAnswer: "by",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -------------------------------------------------------------------------
         // 2. Side-by-Side Timeline Comparison
         // -------------------------------------------------------------------------
         {
