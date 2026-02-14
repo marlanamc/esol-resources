@@ -21,6 +21,7 @@ export function BreadcrumbTrail({
 }: BreadcrumbTrailProps) {
     void _onJumpToSection;
     const [isDesktop, setIsDesktop] = useState(false);
+    const grammarActivitiesHref = "/dashboard/activities?category=grammar";
 
     // Detect if we're on desktop (md breakpoint: 768px)
     useEffect(() => {
@@ -45,7 +46,7 @@ export function BreadcrumbTrail({
                     </Link>
                     <span className="text-text-muted flex-shrink-0">/</span>
                     <Link
-                        href={isDesktop ? "/dashboard" : "/dashboard/activities?category=grammar"}
+                        href={grammarActivitiesHref}
                         className="text-primary hover:underline flex-shrink-0"
                     >
                         Grammar
