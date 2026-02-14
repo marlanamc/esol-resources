@@ -58,56 +58,40 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             title: "Core Idea Lens: What Two Times Are Connected?",
             icon: "🧠",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(22, 163, 74, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1; margin-bottom: 1rem;">
-                    <p style="margin: 0;"><strong>Core idea:</strong> Perfect tenses show a <strong>connection between two times</strong>. Here, it's <strong>past → now</strong>.</p>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6">
+                    <p class="font-medium text-base text-slate-800 mb-2"><strong>Core idea:</strong> Perfect tenses connect <strong>two times</strong>. Here, the connection is <strong>past → now</strong>.</p>
+                    <p class="text-sm text-slate-700 mb-0"><strong>Ask yourself:</strong> Do I want to emphasize the <strong>result now</strong>, or the <strong>activity/duration up to now</strong>?</p>
                 </div>
 
-                <div style="background: #fdfbf7; border: 1px solid #e2ddd5; border-radius: 0.5rem; padding: 0.75rem 1rem; margin-bottom: 1.25rem; text-align: center;">
-                    <p style="margin: 0; font-size: 0.9375rem;"><strong>Quick rule:</strong> <span style="color: #b05740; font-weight: 600;">Result or completion?</span> → result form. <span style="color: #4d6b53; font-weight: 600;">Duration or activity?</span> → duration form.</p>
-                    <p style="margin: 0.35rem 0 0 0; font-size: 0.8125rem; color: #5e6b7d;"><em>"I've finished my shift"</em> = result. <em>"I've been working all morning"</em> = duration.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
+                    <div class="bg-white border border-orange-200 rounded-xl p-5">
+                        <h3 class="text-orange-700 font-bold text-lg mb-1">Result form (Present Perfect)</h3>
+                        <p class="text-sm text-slate-600 mb-3">Use this when completion or count is most important.</p>
+                        <ul class="text-sm text-slate-700 m-0 pl-5 space-y-2">
+                            <li><strong>Concept:</strong> Completion. "I have finished."</li>
+                            <li><strong>Quantity:</strong> "How many?" — "I've written 3 emails."</li>
+                            <li><strong>Evidence:</strong> Present result — "The car is clean."</li>
+                            <li><strong>Time:</strong> Life experience — <em>ever, never, before</em></li>
+                            <li><strong>Markers:</strong> <em>just, already, yet</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white border border-indigo-200 rounded-xl p-5">
+                        <h3 class="text-indigo-700 font-bold text-lg mb-1">Duration form (Present Perfect Continuous)</h3>
+                        <p class="text-sm text-slate-600 mb-3">Use this when time in progress or activity is most important.</p>
+                        <ul class="text-sm text-slate-700 m-0 pl-5 space-y-2">
+                            <li><strong>Concept:</strong> Ongoing activity. "I have been working."</li>
+                            <li><strong>Duration:</strong> "How long?" — "I've been writing all morning."</li>
+                            <li><strong>Evidence:</strong> Side effect — "My hands are dirty."</li>
+                            <li><strong>Time:</strong> Recent period — <em>lately, recently</em></li>
+                            <li><strong>Markers:</strong> <em>all day, for hours, since morning</em></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 1rem 0; border-radius: 0.5rem; overflow: hidden; border: 1px solid #e2ddd5;">
-                    <div style="background: rgba(176, 87, 64, 0.06); padding: 1rem; border-right: 1px solid #e2ddd5;">
-                        <h3 style="margin: 0 0 0.25rem 0; color: #b05740; font-size: 1rem;">Result form (Present Perfect)</h3>
-                        <p style="margin: 0 0 0.75rem 0; font-size: 0.8125rem; color: #5e6b7d;">Focus on <strong>result</strong> or <strong>time period</strong>.</p>
-                    </div>
-                    <div style="background: rgba(77, 107, 83, 0.06); padding: 1rem;">
-                        <h3 style="margin: 0 0 0.25rem 0; color: #4d6b53; font-size: 1rem;">Duration form (Present Perfect Continuous)</h3>
-                        <p style="margin: 0 0 0.75rem 0; font-size: 0.8125rem; color: #5e6b7d;">Focus on <strong>how long</strong> or <strong>what you've been doing</strong>.</p>
-                    </div>
-                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">✈️ <strong>Life experience:</strong> ever, never, before</span>
-                    </div>
-                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">⏱️ <strong>Duration:</strong> "I've been studying for two hours."</span>
-                    </div>
-                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">📈 <strong>Change over time:</strong> has grown, has improved</span>
-                    </div>
-                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">👀 <strong>Visible result:</strong> "I've been working all day."</span>
-                    </div>
-                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">📅 <strong>Unfinished time:</strong> today, this week, recently</span>
-                    </div>
-                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">💭 <strong>Emotional tone:</strong> "I've been waiting." "I've been trying."</span>
-                    </div>
-                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">⏱️ <strong>For / since:</strong> "I've lived here for five years."</span>
-                    </div>
-                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">⏱️ <strong>For / since:</strong> "I've been living here for five years."</span>
-                    </div>
-                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">💬 <strong>Markers:</strong> already, yet, just (completion)</span>
-                    </div>
-                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
-                        <span style="font-size: 0.875rem;">💬 <strong>Markers:</strong> all day/week, how long (duration)</span>
-                    </div>
+                <div class="bg-white border border-slate-200 rounded-lg px-4 py-3">
+                    <p class="text-sm text-slate-700 m-0"><strong>Contrast:</strong> "I have worked a lot <em>this week</em>" (unfinished) vs "I worked a lot <em>last week</em>" (finished).</p>
                 </div>
-                <p style="margin: 0.75rem 0 0 0; font-size: 0.8125rem; color: #5e6b7d;"><strong>Contrast:</strong> "I have worked a lot <em>this week</em>" (unfinished) vs "I worked a lot <em>last week</em>" (finished).</p>
             `,
             tipBox: {
                 title: "For & Since: Both Forms Use Them",
