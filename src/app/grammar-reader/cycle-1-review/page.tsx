@@ -26,18 +26,21 @@ export default async function Cycle1ReviewPage() {
 
     // SECURITY: Block student access to unreleased guides
     if (userRole === "student" && activityId) {
+        let isReleased = false;
+
         try {
             const activity = await prisma.activity.findUnique({
                 where: { id: activityId },
                 select: { isReleased: true }
             });
-
-            if (!activity?.isReleased) {
-                redirect("/dashboard");
-            }
+            isReleased = activity?.isReleased === true;
         } catch (error) {
             // Fail closed for students if release-state lookup fails.
             console.error("Cycle 1 release check failed", error);
+        }
+
+        // `redirect()` throws NEXT_REDIRECT; keep it outside try/catch.
+        if (!isReleased) {
             redirect("/dashboard");
         }
     }
