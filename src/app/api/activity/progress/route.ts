@@ -123,6 +123,25 @@ function mergeVocabProgressRecords(assignmentRecord: ProgressRecord, globalRecor
     };
 }
 
+function chooseBestProgressRecord(records: ProgressRecord[]): ProgressRecord | null {
+    if (records.length === 0) return null;
+
+    let best = records[0]!;
+    for (let index = 1; index < records.length; index += 1) {
+        const current = records[index]!;
+        if (current.progress > best.progress) {
+            best = current;
+            continue;
+        }
+
+        if (current.progress === best.progress && current.updatedAt.getTime() > best.updatedAt.getTime()) {
+            best = current;
+        }
+    }
+
+    return best;
+}
+
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
 
@@ -188,32 +207,52 @@ export async function GET(request: Request) {
             record = assignmentRecord ?? globalRecord;
         }
     } else {
-        record = await prisma.activityProgress.findFirst({
+        const records = await prisma.activityProgress.findMany({
             where: {
                 userId,
                 activityId,
-                assignmentId: null,
             },
             select,
             orderBy: {
                 updatedAt: "desc",
             },
         });
-    }
 
-    // Fallback: if no preferred record exists, use the newest record for this activity.
-    // This avoids stale/empty state when progress saved under a different assignment context.
-    if (!record) {
-        record = await prisma.activityProgress.findFirst({
-            where: {
-                userId,
-                activityId,
-            },
-            select,
-            orderBy: {
-                updatedAt: "desc",
-            },
-        });
+        if (records.length > 0) {
+            const vocabRecords = records.filter((entry) => isVocabCategoryData(parseCategoryData(entry.categoryData)));
+
+            if (vocabRecords.length > 0) {
+                let mergedRecord = vocabRecords[0]!;
+
+                for (let index = 1; index < vocabRecords.length; index += 1) {
+                    const candidate = vocabRecords[index]!;
+                    const merged = mergeVocabProgressRecords(mergedRecord, candidate);
+                    if (merged) {
+                        mergedRecord = merged;
+                        continue;
+                    }
+
+                    const best = chooseBestProgressRecord([mergedRecord, candidate]);
+                    if (best) {
+                        mergedRecord = best;
+                    }
+                }
+
+                const bestOverall = chooseBestProgressRecord(records);
+                if (bestOverall && bestOverall.progress > mergedRecord.progress) {
+                    record = {
+                        ...mergedRecord,
+                        progress: bestOverall.progress,
+                        status: bestOverall.progress >= 100 ? "completed" : "in_progress",
+                        updatedAt: bestOverall.updatedAt,
+                    };
+                } else {
+                    record = mergedRecord;
+                }
+            } else {
+                record = chooseBestProgressRecord(records);
+            }
+        }
     }
 
     return NextResponse.json({

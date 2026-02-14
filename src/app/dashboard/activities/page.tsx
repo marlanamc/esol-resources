@@ -7,6 +7,173 @@ import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
 
 type Props = { searchParams: Promise<{ category?: string }> };
+const VOCAB_TYPES = ["word-list", "flashcards", "matching", "fill-blank"] as const;
+
+type ProgressEntry = {
+    activityId: string;
+    progress: number;
+    categoryData: string | null;
+    updatedAt: Date;
+};
+
+function parseCategoryData(raw: string | null): Record<string, unknown> | null {
+    if (!raw) return null;
+    try {
+        const parsed = JSON.parse(raw) as unknown;
+        if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
+        return parsed as Record<string, unknown>;
+    } catch {
+        return null;
+    }
+}
+
+function asObject(value: unknown): Record<string, unknown> | null {
+    if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+    return value as Record<string, unknown>;
+}
+
+function isVocabCategoryData(data: Record<string, unknown> | null): boolean {
+    if (!data) return false;
+    return VOCAB_TYPES.some((type) => Object.prototype.hasOwnProperty.call(data, type));
+}
+
+function getVocabProgressFromCategoryData(data: Record<string, unknown> | null): number {
+    if (!data) return 0;
+
+    const completedCount = VOCAB_TYPES.filter((type) => {
+        const typeData = asObject(data[type]);
+        if (!typeData) return false;
+        const progress = typeof typeData.progress === "number" ? typeData.progress : 0;
+        return typeData.completed === true || progress >= 100;
+    }).length;
+
+    return Math.round((completedCount / VOCAB_TYPES.length) * 100);
+}
+
+function mergeVocabCategoryData(
+    existingData: Record<string, unknown> | null,
+    incomingData: Record<string, unknown> | null
+): Record<string, unknown> {
+    const merged: Record<string, unknown> = {
+        ...(existingData ?? {}),
+        ...(incomingData ?? {}),
+    };
+
+    for (const vocabType of VOCAB_TYPES) {
+        const existingTypeData = asObject(existingData?.[vocabType]);
+        const incomingTypeData = asObject(incomingData?.[vocabType]);
+
+        if (!existingTypeData && !incomingTypeData) {
+            continue;
+        }
+
+        const existingCompleted = existingTypeData?.completed === true;
+        const incomingCompleted = incomingTypeData?.completed === true;
+        const existingProgress =
+            typeof existingTypeData?.progress === "number"
+                ? existingTypeData.progress
+                : existingCompleted
+                    ? 100
+                    : 0;
+        const incomingProgress =
+            typeof incomingTypeData?.progress === "number"
+                ? incomingTypeData.progress
+                : incomingCompleted
+                    ? 100
+                    : 0;
+
+        const completedAt =
+            typeof incomingTypeData?.completedAt === "string"
+                ? incomingTypeData.completedAt
+                : typeof existingTypeData?.completedAt === "string"
+                    ? existingTypeData.completedAt
+                    : undefined;
+
+        merged[vocabType] = {
+            ...(existingTypeData ?? {}),
+            ...(incomingTypeData ?? {}),
+            completed: existingCompleted || incomingCompleted || Math.max(existingProgress, incomingProgress) >= 100,
+            progress: Math.max(existingProgress, incomingProgress),
+            ...(completedAt ? { completedAt } : {}),
+        };
+    }
+
+    return merged;
+}
+
+function buildProgressMap(progressEntries: ProgressEntry[]): Record<string, { progress: number; categoryData?: string }> {
+    type MergedProgressEntry = {
+        progress: number;
+        categoryData: Record<string, unknown> | null;
+        isVocab: boolean;
+        updatedAtMs: number;
+    };
+
+    const mergedByActivity = progressEntries.reduce<Record<string, MergedProgressEntry>>((acc, row) => {
+        const parsedCategoryData = parseCategoryData(row.categoryData);
+        const rowIsVocab = isVocabCategoryData(parsedCategoryData);
+        const rowProgress = rowIsVocab
+            ? Math.max(row.progress, getVocabProgressFromCategoryData(parsedCategoryData))
+            : row.progress;
+        const updatedAtMs = row.updatedAt.getTime();
+        const existing = acc[row.activityId];
+
+        if (!existing) {
+            acc[row.activityId] = {
+                progress: rowProgress,
+                categoryData: parsedCategoryData,
+                isVocab: rowIsVocab,
+                updatedAtMs,
+            };
+            return acc;
+        }
+
+        if (existing.isVocab || rowIsVocab) {
+            const mergedCategoryData = mergeVocabCategoryData(existing.categoryData, parsedCategoryData);
+            const mergedProgress = Math.max(
+                existing.progress,
+                rowProgress,
+                getVocabProgressFromCategoryData(mergedCategoryData)
+            );
+
+            acc[row.activityId] = {
+                progress: mergedProgress,
+                categoryData: mergedCategoryData,
+                isVocab: true,
+                updatedAtMs: Math.max(existing.updatedAtMs, updatedAtMs),
+            };
+            return acc;
+        }
+
+        const mergedCategoryData =
+            existing.categoryData || parsedCategoryData
+                ? {
+                    ...(existing.categoryData ?? {}),
+                    ...(parsedCategoryData ?? {}),
+                }
+                : null;
+        const shouldUseRow = rowProgress > existing.progress || (rowProgress === existing.progress && updatedAtMs > existing.updatedAtMs);
+
+        acc[row.activityId] = {
+            progress: shouldUseRow ? rowProgress : existing.progress,
+            categoryData: mergedCategoryData,
+            isVocab: false,
+            updatedAtMs: Math.max(existing.updatedAtMs, updatedAtMs),
+        };
+
+        return acc;
+    }, {});
+
+    return Object.fromEntries(
+        Object.entries(mergedByActivity).map(([activityId, value]) => [
+            activityId,
+            {
+                progress: value.progress,
+                ...(value.categoryData ? { categoryData: JSON.stringify(value.categoryData) } : {}),
+            },
+        ])
+    );
+}
 
 export default async function ActivitiesPage({ searchParams }: Props) {
     const session = await getServerSession(authOptions);
@@ -79,15 +246,9 @@ export default async function ActivitiesPage({ searchParams }: Props) {
     // Student View
     const progressEntries = await prisma.activityProgress.findMany({
         where: { userId },
-        select: { activityId: true, progress: true },
+        select: { activityId: true, progress: true, categoryData: true, updatedAt: true },
     });
-    const progressMap = (progressEntries as Array<{ activityId: string; progress: number }>).reduce<Record<string, { progress: number; categoryData?: string }>>(
-        (acc, p) => {
-            acc[p.activityId] = { progress: p.progress };
-            return acc;
-        },
-        {}
-    );
+    const progressMap = buildProgressMap(progressEntries as ProgressEntry[]);
 
     const completedActivities = await prisma.submission.findMany({
         where: {
@@ -121,4 +282,3 @@ export default async function ActivitiesPage({ searchParams }: Props) {
         </div>
     );
 }
-
