@@ -107,8 +107,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"Have you ever traveled alone?\"",
                             options: [
-                                { value: "experience", label: "Life experience up to now (no specific time)" },
                                 { value: "story", label: "Story order in the past" },
+                                { value: "experience", label: "Life experience up to now (no specific time)" },
                                 { value: "deadline", label: "Future deadline completion" },
                             ],
                             expectedAnswer: "experience",
@@ -117,9 +117,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"I have worked a lot this week.\" Why Present Perfect?",
                             options: [
-                                { value: "unfinished", label: "This week is unfinished time, connected to now" },
                                 { value: "finished", label: "It is a finished past time like last week" },
                                 { value: "future", label: "It is about a future point" },
+                                { value: "unfinished", label: "This week is unfinished time, connected to now" },
                             ],
                             expectedAnswer: "unfinished",
                         },
@@ -127,8 +127,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"You look tired.\" \"I've been working all day.\" What is emphasized?",
                             options: [
-                                { value: "visible", label: "Visible result now plus duration activity" },
                                 { value: "single", label: "One completed single action only" },
+                                { value: "visible", label: "Visible result now plus duration activity" },
                                 { value: "sequence", label: "Past-before-past story order" },
                             ],
                             expectedAnswer: "visible",
@@ -207,7 +207,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f97316;">
                         <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #c2410c;">Result Answer:</p>
-                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have made</strong> pasta."</p>
+                        <p style="margin: 0; font-size: 1.1rem;">"I <strong>have cooked</strong> pasta."</p>
                         <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280;">→ The pasta is ready! (Result)</p>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
@@ -256,8 +256,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "\"I have written 5 emails.\" - What's the focus?",
                             options: [
-                                { value: "result", label: "Result: 5 completed emails" },
                                 { value: "duration", label: "Duration: time spent emailing" },
+                                { value: "result", label: "Result: 5 completed emails" },
                             ],
                             expectedAnswer: "result",
                         },
@@ -299,8 +299,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "You want to show your friend the 10 photos you took.",
                             options: [
-                                { value: "simple", label: "I have taken 10 photos! (Shows count)" },
                                 { value: "continuous", label: "I have been taking photos. (Shows activity)" },
+                                { value: "simple", label: "I have taken 10 photos! (Shows count)" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -541,8 +541,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Waiting for the bus",
                             options: [
-                                { value: "continuous", label: "I have been waiting for an hour! (Stress on time)" },
                                 { value: "simple", label: "I have waited. (Done)" },
+                                { value: "continuous", label: "I have been waiting for an hour! (Stress on time)" },
                             ],
                             expectedAnswer: "continuous",
                         },
