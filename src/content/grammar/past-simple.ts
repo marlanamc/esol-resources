@@ -168,15 +168,224 @@ export const pastSimpleContent: InteractiveGuideContent = {
             ],
         },
 
+        // TIMELINE + REAL-WORLD APPLICATION
+        {
+            id: "timeline-storytelling",
+            stepNumber: 2,
+            title: "Timeline: Why Past Simple Is the Storytelling Tense",
+            icon: "⏰",
+            explanation: `
+                <h3>Past Simple puts events on a finished timeline</h3>
+                <p>Each action is complete, so you can stack events in order and make clear reports, stories, or explanations.</p>
+
+                <div style="background: white; border: 2px solid #f0b45a; border-radius: 0.75rem; padding: 1.5rem; margin: 1.25rem 0;">
+                    <h4 style="text-align: center; margin-top: 0; color: #d97757;">Finished Event Timeline</h4>
+
+                    <div style="position: relative; margin: 1.75rem 0 1rem 0; height: 130px;">
+                        <div style="position: absolute; top: 56px; left: 7%; right: 7%; height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #fb923c 100%); border-radius: 99px;"></div>
+
+                        <div style="position: absolute; top: 34px; left: 15%; text-align: center;">
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #f59e0b; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35);">1</div>
+                            <div style="font-size: 0.78rem; margin-top: 0.35rem;">called</div>
+                        </div>
+
+                        <div style="position: absolute; top: 34px; left: 42%; text-align: center;">
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #fb923c; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(251, 146, 60, 0.35);">2</div>
+                            <div style="font-size: 0.78rem; margin-top: 0.35rem;">waited</div>
+                        </div>
+
+                        <div style="position: absolute; top: 34px; left: 69%; text-align: center;">
+                            <div style="width: 46px; height: 46px; border-radius: 50%; background: #d97757; color: white; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 10px rgba(217, 119, 87, 0.35);">3</div>
+                            <div style="font-size: 0.78rem; margin-top: 0.35rem;">resolved</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 0; text-align: center; font-size: 0.95rem;">
+                        <strong>Example:</strong> "I <strong>called</strong> support, <strong>waited</strong> 20 minutes, and <strong>resolved</strong> the issue."
+                    </p>
+                </div>
+
+                <h3>High-value real-world use cases</h3>
+                <ul>
+                    <li><strong>Housing:</strong> "The heater stopped, I called maintenance, and they fixed it on Tuesday."</li>
+                    <li><strong>Work:</strong> "I submitted the report, the manager reviewed it, and we sent the final version."</li>
+                    <li><strong>Healthcare:</strong> "I felt dizzy, visited urgent care, and received medication."</li>
+                    <li><strong>Service complaints:</strong> "The store charged me twice, so I returned and requested a refund."</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 Past Story Formula",
+                content:
+                    "Use ordered connectors with Past Simple: first, then, after that, finally. This keeps your story clear and professional.",
+            },
+            exercises: [
+                {
+                    id: "ex-timeline-story-1",
+                    title: "Practice: Build a Clear Sequence",
+                    instructions: "Choose the best sequence for a finished past story.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sequence sounds natural?",
+                            options: [
+                                { value: "a", label: "I called the landlord, explained the leak, and scheduled a repair." },
+                                { value: "b", label: "I call the landlord, explain the leak, and schedule a repair yesterday." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Choose the correct timeline report:",
+                            options: [
+                                { value: "a", label: "She arrived at 8, checked the inventory, and opened the store." },
+                                { value: "b", label: "She arrives at 8, checked the inventory, and opened the store." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence correctly reports a finished complaint call?",
+                            options: [
+                                { value: "a", label: "I waited 30 minutes, spoke to an agent, and received a case number." },
+                                { value: "b", label: "I was waiting 30 minutes, speak to an agent, and receive a case number." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // STORY STRUCTURE + EMOTION VOCAB
+        {
+            id: "story-structure-emotions",
+            stepNumber: 3,
+            title: "Storytelling Structure: What Happened + How Did You Feel?",
+            icon: "🎭",
+            explanation: `
+                <h3>A professional past story has two layers</h3>
+                <p><strong>Layer 1:</strong> sequence of events. <strong>Layer 2:</strong> emotional reaction. This combination makes speaking tasks more natural and memorable.</p>
+
+                <div style="background: #f8fafc; border-left: 4px solid #d97757; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <p style="margin: 0 0 0.5rem 0;"><strong>Sequencing frame:</strong> <span style="color: #d97757; font-weight: 600;">First</span> ... <span style="color: #d97757; font-weight: 600;">then</span> ... <span style="color: #d97757; font-weight: 600;">after that</span> ... <span style="color: #d97757; font-weight: 600;">finally</span> ...</p>
+                    <p style="margin: 0;"><strong>Reflection frame:</strong> "How did you feel?" -> relieved, frustrated, proud, embarrassed, nervous, excited.</p>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                        <thead>
+                            <tr style="background: #fff7ed;">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Event Sequence</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Emotion Follow-up</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">First, I missed the bus. Then I called my boss. After that, I took a taxi. Finally, I arrived.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I felt stressed at first, but relieved when I got to work.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">First, the system crashed. Then we restarted it. After that, we tested everything. Finally, it worked.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We felt frustrated, then proud.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Speaking Upgrade",
+                content:
+                    "If you get stuck, ask yourself two questions in order: 1) What happened first? 2) How did you feel?",
+            },
+            exercises: [
+                {
+                    id: "ex-story-structure-1",
+                    title: "Practice: Complete the Sequence",
+                    instructions: "Choose the best connector in each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "___, I called the clinic. ___, I explained my symptoms.",
+                            options: [
+                                { value: "a", label: "First / then" },
+                                { value: "b", label: "Finally / first" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "I submitted my application. ___, I waited for a response.",
+                            options: [
+                                { value: "a", label: "After that" },
+                                { value: "b", label: "Yesterday now" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "The issue was solved. ___, we closed the ticket.",
+                            options: [
+                                { value: "a", label: "Finally" },
+                                { value: "b", label: "Usually" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-story-structure-2",
+                    title: "Practice: Match Event + Emotion",
+                    instructions: "Choose the best emotion for each past event.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I passed my driving test on the second try.",
+                            options: [
+                                { value: "a", label: "proud" },
+                                { value: "b", label: "confused" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "The landlord ignored my messages for two weeks.",
+                            options: [
+                                { value: "a", label: "frustrated" },
+                                { value: "b", label: "relaxed" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "The doctor said my test results were normal.",
+                            options: [
+                                { value: "a", label: "relieved" },
+                                { value: "b", label: "embarrassed" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
         // Regular vs Irregular Verbs
         {
             id: "regular-irregular",
-            stepNumber: 2,
+            stepNumber: 4,
             title: "Regular vs Irregular Verbs",
             explanation: `
                 <h3>Two Types of Past Simple Verbs</h3>
                 <p><strong>Regular verbs:</strong> Add -ed. Easy.</p>
                 <p><strong>Irregular verbs:</strong> Change form completely. You just have to memorize these—there's no shortcut.</p>
+
+                <h3 style="margin-top: 1rem;">Common irregular patterns (helps memory)</h3>
+                <ul>
+                    <li><strong>Vowel change:</strong> sing -> sang, drink -> drank, begin -> began</li>
+                    <li><strong>Ends in -ought / -aught:</strong> buy -> bought, bring -> brought, teach -> taught</li>
+                    <li><strong>No change:</strong> cut -> cut, put -> put, cost -> cost</li>
+                    <li><strong>Completely different:</strong> go -> went, be -> was/were</li>
+                </ul>
             `,
             verbTable: {
                 title: "Common Irregular Past Simple Verbs",
@@ -232,13 +441,164 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    id: "ex-irregular-patterns-1",
+                    title: "Practice: Irregular Pattern Families",
+                    instructions: "Choose the word that follows the same irregular family.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "buy -> bought. Which verb follows this family?",
+                            options: [
+                                { value: "a", label: "bring -> brought" },
+                                { value: "b", label: "make -> maked" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "drink -> drank. Which verb follows a similar vowel-change pattern?",
+                            options: [
+                                { value: "a", label: "sing -> sang" },
+                                { value: "b", label: "walk -> walked" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which verb does NOT change in Past Simple?",
+                            options: [
+                                { value: "a", label: "put -> put" },
+                                { value: "b", label: "take -> took" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -ED PRONUNCIATION + USED TO
+        {
+            id: "ed-pronunciation-used-to",
+            stepNumber: 5,
+            title: "Pronunciation of -ed + Used To for Past Habits",
+            icon: "🗣️",
+            explanation: `
+                <h3>Part A: How to pronounce -ed</h3>
+                <p>The spelling is "-ed," but the sound changes. This makes listening and speaking much easier once you notice the pattern.</p>
+
+                <div style="overflow-x: auto; margin: 1rem 0;">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                        <thead>
+                            <tr style="background: #fff7ed;">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Sound</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Rule</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;"><strong>/t/</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">after voiceless sounds (k, p, s, sh, ch, f)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">worked, stopped, missed, washed</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;"><strong>/d/</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">after voiced sounds (vowels, b, g, l, m, n, r, z)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">played, cleaned, called, lived</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;"><strong>/id/</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">after /t/ or /d/</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">wanted, needed, decided</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p><strong>Class connection:</strong> After this section, practice with the pronunciation game so you can hear and produce /t/, /d/, and /id/ in context.</p>
+
+                <h3 style="margin-top: 1rem;">Part B: Used to for past habits</h3>
+                <p>Use <strong>used to + base verb</strong> for routines or states that were true before but are not true now.</p>
+                <ul>
+                    <li>I used to work night shift. (now I work mornings)</li>
+                    <li>She used to live near downtown. (now she doesn't)</li>
+                    <li>Did you use to take the bus? (question form)</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 High-yield Pairing",
+                content:
+                    "Practice pronunciation and meaning together: say the past form correctly, then explain whether it was one finished event or a repeated past habit (used to).",
+            },
+            exercises: [
+                {
+                    id: "ex-ed-pronunciation-1",
+                    title: "Practice: Choose the -ed Sound",
+                    instructions: "Pick /t/, /d/, or /id/ for each verb.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "worked",
+                            options: [
+                                { value: "a", label: "/t/" },
+                                { value: "b", label: "/d/" },
+                                { value: "c", label: "/id/" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "played",
+                            options: [
+                                { value: "a", label: "/t/" },
+                                { value: "b", label: "/d/" },
+                                { value: "c", label: "/id/" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "wanted",
+                            options: [
+                                { value: "a", label: "/t/" },
+                                { value: "b", label: "/d/" },
+                                { value: "c", label: "/id/" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-used-to-1",
+                    title: "Practice: Used To for Past Habits",
+                    instructions: "Complete with used to / didn't use to / Did ... use to.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "I ___ work weekends, but now I have Saturdays off.",
+                            expectedAnswer: "used to",
+                        },
+                        {
+                            type: "text",
+                            label: "She ___ like spicy food, but now she loves it.",
+                            expectedAnswer: "didn't use to",
+                        },
+                        {
+                            type: "text",
+                            label: "___ you ___ commute by train before you bought a car?",
+                            expectedAnswer: "Did you use to",
+                        },
+                    ],
+                },
             ],
         },
 
         // Positive Form
         {
             id: "step-positive",
-            stepNumber: 3,
+            stepNumber: 6,
             title: "Positive Form",
             explanation: `
                 <h3>How to Form Past Simple (Positive)</h3>
@@ -313,7 +673,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
         // Negative Form
         {
             id: "step-negative",
-            stepNumber: 4,
+            stepNumber: 7,
             title: "Negative Form",
             explanation: `
                 <h3>How to Make Negative Sentences</h3>
@@ -377,7 +737,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
         // Question Form
         {
             id: "step-questions",
-            stepNumber: 5,
+            stepNumber: 8,
             title: "Question Form",
             explanation: `
                 <h3>How to Make Questions</h3>
@@ -753,67 +1113,67 @@ export const pastSimpleContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-14",
-            question: "Which sentence is correct with a finished past time?",
+            question: "Which sentence uses sequencing language correctly?",
             options: [
-                { value: "a", label: "We have paid the rent yesterday." },
-                { value: "b", label: "We paid the rent yesterday." },
-                { value: "c", label: "We pay the rent yesterday." },
+                { value: "a", label: "First, I called support. Then, I explained the issue. After that, I sent photos. Finally, they refunded me." },
+                { value: "b", label: "First, I called support. Finally, I explained the issue. Then, after that, I sent photos." },
+                { value: "c", label: "First, I call support. Then, I explain the issue yesterday." },
             ],
-            correctAnswer: "b",
-            explanation: "'Yesterday' is a finished time, so use Past Simple: paid.",
-            skillTag: "contrast-past-simple-present-perfect",
-            difficulty: "hard",
+            correctAnswer: "a",
+            explanation: "A clear past story uses connectors in logical order: first -> then -> after that -> finally.",
+            skillTag: "meaning-story-sequence-connectors",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
-            question: "Choose the correct sentence with an irregular past form.",
+            question: "Choose the best sentence that combines event + emotion.",
             options: [
-                { value: "a", label: "He buyed a monthly pass last week." },
-                { value: "c", label: "He buys a monthly pass last week." },
-                { value: "b", label: "He bought a monthly pass last week." },
+                { value: "a", label: "I lost my ID yesterday, so I felt stressed." },
+                { value: "b", label: "I lose my ID yesterday, so I feel stressed." },
+                { value: "c", label: "I lost my ID yesterday, so I am stress." },
             ],
-            correctAnswer: "b",
-            explanation: "Buy is irregular: buy → bought.",
-            skillTag: "error-detection-irregular-form",
+            correctAnswer: "a",
+            explanation: "Past Simple + emotion language helps you report events and reactions naturally.",
+            skillTag: "meaning-event-emotion-link",
             difficulty: "medium",
         },
         {
             id: "quiz-16",
-            question: "Which sentence is correct in a Past Simple negative?",
+            question: "In the verb 'wanted', the -ed ending sounds like...",
             options: [
-                { value: "b", label: "She didn't receive the text." },
-                { value: "a", label: "She didn't received the text." },
-                { value: "c", label: "She doesn't received the text." },
+                { value: "a", label: "/t/" },
+                { value: "b", label: "/d/" },
+                { value: "c", label: "/id/" },
             ],
-            correctAnswer: "b",
-            explanation: "Negative Past Simple is didn't + base verb: didn't receive.",
-            skillTag: "error-detection-didnt-verb2",
+            correctAnswer: "c",
+            explanation: "After /t/ or /d/, -ed is pronounced /id/: wanted, needed, decided.",
+            skillTag: "pronunciation-ed-id",
             difficulty: "medium",
         },
         {
             id: "quiz-17",
-            question: "Which sentence correctly uses a time word like 'yesterday'?",
+            question: "Which sentence correctly uses 'used to' for a past habit that changed?",
             options: [
-                { value: "a", label: "My childcare starts yesterday." },
-                { value: "b", label: "My child’s childcare started yesterday." },
-                { value: "c", label: "My childcare has started yesterday." },
+                { value: "a", label: "I used to take the night bus, but now I drive." },
+                { value: "b", label: "I use to take the night bus, but now I drive." },
+                { value: "c", label: "I used to took the night bus, but now I drive." },
             ],
-            correctAnswer: "b",
-            explanation: "'Yesterday' is a finished time, so use Past Simple: started.",
-            skillTag: "time-expression-last-yesterday",
-            difficulty: "easy",
+            correctAnswer: "a",
+            explanation: "'Used to + base verb' describes repeated past habits that are no longer true now.",
+            skillTag: "meaning-used-to-past-habit",
+            difficulty: "medium",
         },
         {
             id: "quiz-18",
-            question: "Which sentence best describes a finished action at a clear past time?",
+            question: "Which verb pair follows the same irregular family as buy -> bought?",
             options: [
-                { value: "a", label: "I have submitted the form on Monday." },
-                { value: "c", label: "I submit the form on Monday." },
-                { value: "b", label: "I submitted the form on Monday." },
+                { value: "a", label: "bring -> brought" },
+                { value: "b", label: "say -> said" },
+                { value: "c", label: "go -> went" },
             ],
-            correctAnswer: "b",
-            explanation: "A specific finished time ('on Monday') needs Past Simple: submitted.",
-            skillTag: "meaning-finished-time",
+            correctAnswer: "a",
+            explanation: "buy/brought belong to the -ought/-aught irregular family. Grouping by pattern helps memory.",
+            skillTag: "form-irregular-family-pattern",
             difficulty: "medium",
         },
     ],
@@ -828,21 +1188,31 @@ export const pastSimpleContent: InteractiveGuideContent = {
     - form-negative-didnt-base-verb: question 6
     - form-question-did-subject-verb: question 7
     - form-be-was-were: question 8
-    - meaning-finished-time: questions 9, 18
+    - meaning-finished-time: question 9
     - time-expression-ago: question 10
     - meaning-past-habit: question 11
     - meaning-story-sequence: question 12
-    - contrast-past-simple-present-perfect: questions 13, 14
-    - error-detection-irregular-form: question 15
-    - error-detection-didnt-verb2: question 16
-    - time-expression-last-yesterday: question 17
+    - contrast-past-simple-present-perfect: question 13
+    - meaning-story-sequence-connectors: question 14
+    - meaning-event-emotion-link: question 15
+    - pronunciation-ed-id: question 16
+    - meaning-used-to-past-habit: question 17
+    - form-irregular-family-pattern: question 18
 
     How to use this data:
-    - If many students miss "form-negative-didnt-base-verb" or "error-detection-didnt-verb2",
+    - If many students miss "form-negative-didnt-base-verb",
       review negative form: subject + didn't + base verb, and correct errors like "didn't went".
     - If scores are low on "contrast-past-simple-present-perfect", spend more time on
       finished time expressions (yesterday, last week, in 2022) versus life experience or present relevance.
     - If "meaning-story-sequence" is weak, practice short storytelling with ordered steps
       using Past Simple verbs in sequence (first, then, after that).
+    - If "meaning-story-sequence-connectors" or "meaning-event-emotion-link" is weak, practice
+      two-step storytelling frames: what happened first, and how did you feel.
+    - If "pronunciation-ed-id" is weak, run quick sorting drills for -ed sounds (/t/, /d/, /id/)
+      before speaking tasks so students can hear and produce endings clearly.
+    - If "meaning-used-to-past-habit" is weak, contrast "used to + base verb" with one-time
+      Past Simple events and drill the question pattern: Did you use to...?
+    - If "form-irregular-family-pattern" is weak, teach irregulars in families (-ought/-aught,
+      vowel-change, no-change verbs) instead of isolated memorization.
     */
 };

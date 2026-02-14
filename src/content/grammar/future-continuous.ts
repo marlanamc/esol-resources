@@ -222,8 +222,10 @@ export const futureContinuousContent: InteractiveGuideContent = {
                     <div style="position: relative; margin: 2rem auto 1.25rem auto; max-width: 680px; height: 180px;">
                         <div style="position: absolute; top: 50%; left: 8%; right: 8%; height: 4px; background: linear-gradient(to right, #e2e8f0, #06b6d4 40%, #06b6d4 60%, #e2e8f0); transform: translateY(-50%);"></div>
 
-                        <div style="position: absolute; top: calc(50% - 16px); left: 34%; right: 18%; height: 32px; background: linear-gradient(90deg, rgba(6, 182, 212, 0.25), rgba(6, 182, 212, 0.9)); border-radius: 16px; display: flex; align-items: center; justify-content: flex-start; padding-left: 1.1rem; padding-right: 5.75rem; box-shadow: 0 3px 12px rgba(6, 182, 212, 0.25); overflow: hidden;">
-                            <span style="color: white; font-weight: 700; font-size: 0.84rem; white-space: nowrap;">will be driving...</span>
+                        <div style="position: absolute; top: calc(50% - 18px); left: 31%; right: 16%; height: 36px; background: linear-gradient(90deg, rgba(8, 145, 178, 0.38), rgba(14, 116, 144, 0.96)); border-radius: 18px; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.9rem; padding-right: 6rem; box-shadow: 0 4px 14px rgba(14, 116, 144, 0.32); overflow: hidden;">
+                            <span style="display: inline-block; background: rgba(8, 47, 73, 0.76); color: #ffffff; font-weight: 800; font-size: 0.93rem; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; padding: 0.42rem 0.72rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);">
+                                will be driving...
+                            </span>
                         </div>
 
                         <div style="position: absolute; top: calc(50% - 52px); left: calc(62% - 35px); text-align: center;">
@@ -288,79 +290,160 @@ export const futureContinuousContent: InteractiveGuideContent = {
         {
             id: "future-forms-comparison",
             stepNumber: 3,
-            title: "Future Continuous vs Other Future Forms",
-            icon: "⚖️",
+            title: "Future Choices: Present Continuous, Going To, Will, or Future Continuous?",
+            icon: "🧭",
             explanation: `
-                <h3>4-Way Comparison</h3>
-                <p>These forms are all "future," but they do different jobs.</p>
+                <h3>Do not overthink it: use clue words + decision timing.</h3>
+                <p>Start with one question: <strong>When was the decision made?</strong> Then check if you are describing an <strong>action in progress at a future time</strong>.</p>
 
-                <div style="overflow-x: auto; margin-top: 1rem;">
-                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #dbeafe; border-radius: 8px; overflow: hidden;">
+                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0;">
+                    <h4 style="text-align: center; margin-top: 0; color: #0891b2;">Future Choice Flow</h4>
+                    <div style="display: grid; gap: 0.7rem;">
+                        <div style="background: #f8fafc; border-left: 4px solid #64748b; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>1) Is it a fixed arrangement on your calendar?</strong><br/>
+                            <span style="font-size: 0.9rem;">Use <strong>Present Continuous</strong>: "I'm meeting my advisor at 3 PM."</span>
+                        </div>
+                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>2) Did you decide before speaking, or do you see evidence now?</strong><br/>
+                            <span style="font-size: 0.9rem;">Use <strong>be going to + base verb</strong>: "I'm going to apply tonight." / "It's going to rain."</span>
+                        </div>
+                        <div style="background: #fef9f3; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>3) Are you deciding now, offering, or promising?</strong><br/>
+                            <span style="font-size: 0.9rem;">Use <strong>will + base verb</strong>: "Don't worry, I'll help."</span>
+                        </div>
+                        <div style="background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>4) Are you describing the middle of an action at a future time?</strong><br/>
+                            <span style="font-size: 0.9rem;">Use <strong>Future Continuous</strong>: "At 8 PM, I'll be driving home."</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Indicator Clues You Can Trust</h3>
+                <div style="overflow-x: auto; margin-top: 0.75rem;">
+                    <table style="width: 100%; min-width: 760px; border-collapse: collapse; border: 1px solid #dbeafe; border-radius: 8px; overflow: hidden;">
                         <thead>
                             <tr style="background: #ecfeff;">
-                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Use</th>
-                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Future Continuous</th>
-                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Will</th>
-                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Going to</th>
-                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Present Continuous (future)</th>
+                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Form</th>
+                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Common Clues</th>
+                                <th style="padding: 0.75rem; border: 1px solid #dbeafe; text-align: left;">Example</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Main Function</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">Action in progress at a future time</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">Spontaneous decision, promise</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">Intention or evidence-based prediction</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">Arranged plan/appointment</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Present Continuous (future)</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">arranged meeting, calendar time, fixed appointment</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">I'm meeting HR at 2 PM.</td>
                             </tr>
                             <tr style="background: #f8fafc;">
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Example</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">I'll be working at 8 PM.</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">I'll help you.</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">I'm going to visit my mom.</td>
-                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">I'm meeting John at 3.</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Going to</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">plan before speaking, visible evidence</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">Look at those clouds. It's going to rain.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Will</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">instant decision, promise, offer, no-evidence prediction</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">The phone is ringing. I'll answer it.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe; font-weight: 600;">Future Continuous</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">at 8 PM tomorrow, this time next week, when you arrive, during</td>
+                                <td style="padding: 0.75rem; border: 1px solid #dbeafe;">At 8 PM tomorrow, I'll be studying.</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             `,
             tipBox: {
-                title: "💡 Quick Choice",
-                content: "If the key meaning is 'in progress at that future moment,' choose Future Continuous.",
+                title: "💡 Fast Rule",
+                content: "Calendar = Present Continuous. Plan/evidence = going to. Instant reaction/promise = will. Middle of future action = Future Continuous.",
             },
             exercises: [
                 {
-                    id: "ex-future-forms-4way-1",
-                    title: "4-Way Choice",
-                    instructions: "Choose the best form for each context.",
+                    id: "ex-future-choice-flow-fc-1",
+                    title: "Clue Hunt: Pick the Best Future Form",
+                    instructions: "Use the clue words and context to choose the best answer.",
                     items: [
                         {
                             type: "radio",
-                            label: "You decide right now to answer the door.",
+                            label: "You hear a loud knock and react immediately:",
                             options: [
-                                { value: "future-simple", label: "I'll answer it. (will)" },
+                                { value: "will", label: "I'll answer it." },
                                 { value: "future-cont", label: "I'll be answering it." },
-                                { value: "going-to", label: "I'm going to answer it (pre-planned)." },
+                                { value: "going-to", label: "I'm going to answer it." },
+                                { value: "present-cont-future", label: "I'm answering it at 3 PM." },
                             ],
-                            expectedAnswer: "future-simple",
+                            expectedAnswer: "will",
                         },
                         {
                             type: "radio",
-                            label: "At 10 PM, during your shift:",
+                            label: "Look at the black clouds:",
                             options: [
-                                { value: "future-simple", label: "I'll work." },
-                                { value: "future-cont", label: "I'll be working." },
-                                { value: "present-cont-future", label: "I'm working. (now)" },
+                                { value: "going-to", label: "It's going to rain." },
+                                { value: "will", label: "It's raining now." },
+                                { value: "future-cont", label: "It will be rain." },
+                                { value: "present-cont-future", label: "It is raining tomorrow." },
+                            ],
+                            expectedAnswer: "going-to",
+                        },
+                        {
+                            type: "radio",
+                            label: "At 9 PM tomorrow, during the flight:",
+                            options: [
+                                { value: "will", label: "I'll fly to Dallas." },
+                                { value: "present-cont-future", label: "I'm flying to Dallas at some point." },
+                                { value: "future-cont", label: "I'll be flying to Dallas." },
+                                { value: "going-to", label: "I'm going to flying to Dallas." },
                             ],
                             expectedAnswer: "future-cont",
                         },
                         {
                             type: "radio",
-                            label: "You already have an appointment on Friday at 2 PM.",
+                            label: "It is already on your calendar for Friday at 2 PM:",
                             options: [
-                                { value: "future-simple", label: "I'll meet my lawyer at some point." },
-                                { value: "future-cont", label: "I'll be meeting my lawyer at 2 PM Friday." },
                                 { value: "present-cont-future", label: "I'm meeting my lawyer at 2 PM Friday." },
+                                { value: "will", label: "I'll meet my lawyer at 2 PM Friday." },
+                                { value: "going-to", label: "I'm going to meet my lawyer at 2 PM Friday, maybe." },
+                                { value: "future-cont", label: "I'll be meeting my lawyer now." },
+                            ],
+                            expectedAnswer: "present-cont-future",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-future-choice-signal-fc-1",
+                    title: "Signal Sprint: Which Form Does the Clue Suggest?",
+                    instructions: "Choose the form that best matches each signal phrase.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Signal: this time next week",
+                            options: [
+                                { value: "future-cont", label: "Future Continuous" },
+                                { value: "going-to", label: "Going to" },
+                                { value: "will", label: "Will" },
+                                { value: "present-cont-future", label: "Present Continuous (future)" },
+                            ],
+                            expectedAnswer: "future-cont",
+                        },
+                        {
+                            type: "radio",
+                            label: "Signal: Oh no! (instant reaction)",
+                            options: [
+                                { value: "will", label: "Will" },
+                                { value: "future-cont", label: "Future Continuous" },
+                                { value: "present-cont-future", label: "Present Continuous (future)" },
+                                { value: "going-to", label: "Going to" },
+                            ],
+                            expectedAnswer: "will",
+                        },
+                        {
+                            type: "radio",
+                            label: "Signal: fixed appointment at 4 PM",
+                            options: [
+                                { value: "present-cont-future", label: "Present Continuous (future)" },
+                                { value: "will", label: "Will" },
+                                { value: "future-cont", label: "Future Continuous" },
+                                { value: "going-to", label: "Going to" },
                             ],
                             expectedAnswer: "present-cont-future",
                         },
@@ -1017,6 +1100,45 @@ export const futureContinuousContent: InteractiveGuideContent = {
             correctAnswer: "a",
             explanation: "Two actions can be in progress at the same future time using continuous forms.",
             skillTag: "meaning-parallel-future-actions",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-19",
+            question: "You see dark clouds. Which sentence is best?",
+            options: [
+                { value: "a", label: "It's going to rain." },
+                { value: "b", label: "I'll be raining." },
+                { value: "c", label: "I'm raining at 3 PM." },
+            ],
+            correctAnswer: "a",
+            explanation: "Visible evidence usually points to going to: 'It's going to rain.'",
+            skillTag: "contrast-going-to-evidence-vs-will",
+            difficulty: "medium",
+        },
+        {
+            id: "quiz-20",
+            question: "Which clue strongly signals Future Continuous?",
+            options: [
+                { value: "b", label: "at 8 PM tomorrow" },
+                { value: "a", label: "Oh! I forgot!" },
+                { value: "c", label: "I promise." },
+            ],
+            correctAnswer: "b",
+            explanation: "A specific future time point ('at 8 PM tomorrow') often signals Future Continuous.",
+            skillTag: "meaning-indicator-future-continuous",
+            difficulty: "easy",
+        },
+        {
+            id: "quiz-21",
+            question: "Which sentence best matches a fixed appointment?",
+            options: [
+                { value: "a", label: "I'm meeting the nurse at 2 PM." },
+                { value: "b", label: "I'll meet the nurse at 2 PM right now." },
+                { value: "c", label: "I'm going to be meeting the nurse now." },
+            ],
+            correctAnswer: "a",
+            explanation: "For a scheduled appointment, Present Continuous is natural: 'I'm meeting...'.",
+            skillTag: "contrast-future-form-arranged-present-cont",
             difficulty: "medium",
         },
     ],

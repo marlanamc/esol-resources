@@ -284,10 +284,161 @@ export const presentSimpleContent: InteractiveGuideContent = {
             ],
         },
 
+        // ADVERBS OF FREQUENCY (Dedicated Module)
+        {
+            id: "frequency-adverbs",
+            stepNumber: 2,
+            title: "Adverbs of Frequency: Sound Natural in Real Conversations",
+            icon: "📊",
+            explanation: `
+                <h3>Why this matters</h3>
+                <p>Present Simple is not only about verb form. It is also about <strong>how often</strong> something happens. Adverbs of frequency make your English precise and professional.</p>
+
+                <div style="background: #f8fafc; border: 2px solid rgba(139, 92, 246, 0.2); border-radius: 0.75rem; padding: 1.25rem; margin: 1.25rem 0;">
+                    <h4 style="margin-top: 0; color: #8b5cf6; text-align: center;">Frequency Ladder</h4>
+                    <div style="display: grid; gap: 0.65rem;">
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
+                            <span style="font-weight: 700;">always</span>
+                            <div style="height: 14px; background: linear-gradient(90deg, #8b5cf6, #a78bfa); border-radius: 999px;"></div>
+                            <span style="font-size: 0.85rem;">100%</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
+                            <span style="font-weight: 700;">usually</span>
+                            <div style="height: 14px; width: 85%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 999px;"></div>
+                            <span style="font-size: 0.85rem;">85%</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
+                            <span style="font-weight: 700;">often</span>
+                            <div style="height: 14px; width: 65%; background: linear-gradient(90deg, #6d28d9, #8b5cf6); border-radius: 999px;"></div>
+                            <span style="font-size: 0.85rem;">65%</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
+                            <span style="font-weight: 700;">sometimes</span>
+                            <div style="height: 14px; width: 45%; background: linear-gradient(90deg, #7c3aed, #c4b5fd); border-radius: 999px;"></div>
+                            <span style="font-size: 0.85rem;">45%</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
+                            <span style="font-weight: 700;">rarely</span>
+                            <div style="height: 14px; width: 20%; background: linear-gradient(90deg, #8b5cf6, #ddd6fe); border-radius: 999px;"></div>
+                            <span style="font-size: 0.85rem;">20%</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 92px 1fr 56px; align-items: center; gap: 0.6rem;">
+                            <span style="font-weight: 700;">never</span>
+                            <div style="height: 14px; width: 8%; background: linear-gradient(90deg, #a78bfa, #ede9fe); border-radius: 999px;"></div>
+                            <span style="font-size: 0.85rem;">0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Position Rules (the part learners mix up)</h3>
+                <div style="overflow-x: auto; margin-top: 0.75rem;">
+                    <table style="width: 100%; min-width: 680px; border-collapse: collapse; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Pattern</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Correct Example</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Common Error</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Before main verb</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I usually check my email before class.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I check usually my email.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">After the verb "be"</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She is always prepared for meetings.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She always is prepared.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">After don't/doesn't</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We don't usually eat before 10.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We usually don't eat before 10. (possible, but changes emphasis)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 1.25rem;">Real-world use cases</h3>
+                <ul>
+                    <li><strong>Work:</strong> "I usually clock in at 6:45, but I sometimes stay late."</li>
+                    <li><strong>Healthcare:</strong> "I always take my medicine after dinner."</li>
+                    <li><strong>Parenting:</strong> "My son rarely eats breakfast before school."</li>
+                    <li><strong>Community life:</strong> "The library often hosts free workshops on Saturdays."</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 Fast Check",
+                content:
+                    "Main verb? Put the adverb before it. Verb 'be'? Put the adverb after it. This one rule fixes most adverb-of-frequency mistakes.",
+            },
+            exercises: [
+                {
+                    id: "ex-frequency-1",
+                    title: "Exercise: Choose the Best Word Order",
+                    instructions:
+                        "Pick the sentence with natural adverb placement.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which sentence sounds natural?",
+                            options: [
+                                { value: "a", label: "She usually arrives early for class." },
+                                { value: "b", label: "She arrives usually early for class." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Choose the correct option with the verb 'be':",
+                            options: [
+                                { value: "a", label: "They are always respectful in discussions." },
+                                { value: "b", label: "They always are respectful in discussions." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which one is the strongest routine statement?",
+                            options: [
+                                { value: "a", label: "I always review my notes after class." },
+                                { value: "b", label: "I sometimes review my notes after class." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-frequency-2",
+                    title: "Exercise: Complete with an Adverb of Frequency",
+                    instructions:
+                        "Use a frequency adverb that fits the meaning in parentheses.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "I ___ take the 7:15 bus because my shift starts at 8. (about 90%)",
+                            expectedAnswer: "usually",
+                        },
+                        {
+                            type: "text",
+                            label: "My manager is ___ late for meetings. (0%)",
+                            expectedAnswer: "never",
+                        },
+                        {
+                            type: "text",
+                            label: "We ___ cook at home on Fridays, but not every week. (40-50%)",
+                            expectedAnswer: "sometimes",
+                        },
+                    ],
+                },
+            ],
+        },
+
         // STEP 1: Positive Form
         {
             id: "step-1-positive",
-            stepNumber: 2,
+            stepNumber: 3,
             title: "How to Form It: Positive Sentences",
             explanation: `
                 <h3>The Pattern Everyone Uses</h3>
@@ -413,7 +564,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
         // STEP 2: Negative Form
         {
             id: "step-2-negative",
-            stepNumber: 3,
+            stepNumber: 4,
             title: "Negative Form: When You Don't",
             explanation: `
                 <h3>Saying "No" in English</h3>
@@ -504,7 +655,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
         // STEP 3: Question Form
         {
             id: "step-3-questions",
-            stepNumber: 4,
+            stepNumber: 5,
             title: "Question Form: How to Ask",
             explanation: `
                 <h3>Asking Questions</h3>
@@ -666,7 +817,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
         // STEP 4: Mixed Practice
         {
             id: "step-4-mixed",
-            stepNumber: 5,
+            stepNumber: 6,
             title: "Put It All Together: Mixed Practice",
             explanation: `
                 <h3>Real-World Application</h3>

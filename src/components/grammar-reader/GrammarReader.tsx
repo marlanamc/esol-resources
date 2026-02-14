@@ -552,6 +552,13 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <div className="flex items-center justify-between gap-4 mb-3">
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
                                     <Link
+                                        href="/dashboard"
+                                        className="text-primary hover:underline flex-shrink-0"
+                                    >
+                                        Home
+                                    </Link>
+                                    <span className="text-text-muted flex-shrink-0">/</span>
+                                    <Link
                                         href={activitiesHref}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
@@ -569,12 +576,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                 </nav>
 
                                 <div className="flex items-center gap-2 flex-shrink-0">
-                                    <Link
-                                        href="/dashboard"
-                                        className="text-xs text-primary hover:text-primary-dark px-3 py-1 rounded-full border border-border hover:border-primary transition-colors bg-white shadow-sm"
-                                    >
-                                        Home
-                                    </Link>
                                     {/* TOC Button */}
                                     {content.tableOfContents && (
                                         <button
