@@ -1163,81 +1163,80 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Avoid These Errors!</h3>
                 <p>Here are the most common mistakes students make with the Present Perfect Family. Understanding these will help you avoid them!</p>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 1: Using Continuous with State Verbs</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Using Continuous with State Verbs</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I have been knowing him for years.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have been knowing him for years.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I have known him for years.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I have known him for years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">State verbs (know, believe, like, love, want, need, have, own) don't use Continuous forms.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, like, love, want, need, have, own) don't use Continuous forms.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 2: Using Continuous for Counted Actions</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using Continuous for Counted Actions</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I have been reading 3 books this month.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have been reading 3 books this month.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I have read 3 books this month.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I have read 3 books this month.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">When counting completed items, use Simple.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">When counting completed items, use Simple.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 3: Using Continuous with "Finish"</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Using Continuous with "Finish"</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I haven't been finishing my work yet.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I haven't been finishing my work yet.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I haven't finished my work yet.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I haven't finished my work yet.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">"Finish" describes completion - always use Simple.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" describes completion - always use Simple.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 4: Using Present Perfect with Specific Past Time</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Present Perfect with Specific Past Time</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I have seen him yesterday.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have seen him yesterday.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I saw him yesterday.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I saw him yesterday.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">With specific past times (yesterday, last week, in 2020), use Past Simple, not Present Perfect.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">With specific past times (yesterday, last week, in 2020), use Past Simple, not Present Perfect.</p>
                 </div>
 
-                <h3>More Wrong vs Right Examples</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; color: #dc2626;">❌ "I have been wanting a new phone for months."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "I have wanted a new phone for months." <span style="font-size: 0.85rem; color: #6b7280;">(want = state verb)</span></p>
+                <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e5e7eb;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"I have been wanting a new phone for months."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"I have wanted a new phone for months."</span> <span style="font-size: 0.85rem; color: #4b5563;">(want = state verb)</span></p>
                     </div>
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; color: #dc2626;">❌ "She has been visiting Paris twice."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "She has visited Paris twice." <span style="font-size: 0.85rem; color: #6b7280;">(twice = counting)</span></p>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"She has been visiting Paris twice."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"She has visited Paris twice."</span> <span style="font-size: 0.85rem; color: #4b5563;">(twice = counting)</span></p>
                     </div>
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; color: #dc2626;">❌ "I have been losing my keys."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "I have lost my keys." <span style="font-size: 0.85rem; color: #6b7280;">(lose = single event with result)</span></p>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"I have been losing my keys."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"I have lost my keys."</span> <span style="font-size: 0.85rem; color: #4b5563;">(lose = single event with result)</span></p>
                     </div>
                     <div>
-                        <p style="margin: 0; color: #dc2626;">❌ "We have met at the party last Saturday."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "We met at the party last Saturday." <span style="font-size: 0.85rem; color: #6b7280;">(specific past time)</span></p>
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"We have met at the party last Saturday."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"We met at the party last Saturday."</span> <span style="font-size: 0.85rem; color: #4b5563;">(specific past time)</span></p>
                     </div>
                 </div>
 
-                <div style="background: #ecfdf5; border: 2px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #059669;">✓ Quick Decision Guide</h4>
-                    <ul style="margin: 0; padding-left: 1.2rem;">
+                <div style="background: #f0fdf4; border: 1px solid #10b981; border-left: 5px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #065f46;">✓ Quick Decision Guide</h4>
+                    <ul style="margin: 0; padding-left: 1.2rem; color: #1f2937;">
                         <li><strong>Can you count it?</strong> → Simple (3 emails, twice, never)</li>
                         <li><strong>Is it a state verb?</strong> → Simple (know, believe, own)</li>
                         <li><strong>Is it about completion?</strong> → Simple (finish, decide, arrive)</li>

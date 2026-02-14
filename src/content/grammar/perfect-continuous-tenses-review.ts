@@ -529,26 +529,30 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Watch Out for These Errors!</h3>
 
-                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1rem 0;">
-                    <p style="margin: 0; font-weight: 600; color: #dc2626;">❌ Mistake 1: Missing 'been'</p>
-                    <p style="margin: 0.5rem 0 0 0;">"I have working here for 5 years." → "I have <strong>been</strong> working here for 5 years."</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Missing 'been'</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have working here for 5 years."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have <strong>been</strong> working here for 5 years."</span></p>
                 </div>
 
-                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1rem 0;">
-                    <p style="margin: 0; font-weight: 600; color: #dc2626;">❌ Mistake 2: Wrong verb form (not -ing)</p>
-                    <p style="margin: 0.5rem 0 0 0;">"I have been work here." → "I have been work<strong>ing</strong> here."</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Wrong verb form (not -ing)</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have been work here."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have been work<strong>ing</strong> here."</span></p>
                 </div>
 
-                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1rem 0;">
-                    <p style="margin: 0; font-weight: 600; color: #dc2626;">❌ Mistake 3: For vs Since confusion</p>
-                    <p style="margin: 0.5rem 0 0 0;">"I have been working here since 5 years." → "I have been working here <strong>for</strong> 5 years."</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem; color: #64748b;">FOR = duration (5 years). SINCE = starting point (2019).</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: For vs Since confusion</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have been working here since 5 years."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have been working here <strong>for</strong> 5 years."</span></p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">FOR = duration (5 years). SINCE = starting point (2019).</p>
                 </div>
 
-                <div style="background: #fef2f2; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1rem 0;">
-                    <p style="margin: 0; font-weight: 600; color: #dc2626;">❌ Mistake 4: Using with stative verbs</p>
-                    <p style="margin: 0.5rem 0 0 0;">"I have been knowing him for years." → "I have <strong>known</strong> him for years."</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem; color: #64748b;">Stative verbs (know, believe, love, want) don't use continuous forms.</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using with stative verbs</h4>
+                    <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">"I have been knowing him for years."</span></p>
+                    <p style="margin: 0.25rem 0 0 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">"I have <strong>known</strong> him for years."</span></p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Stative verbs (know, believe, love, want) don't use continuous forms.</p>
                 </div>
             `,
             exercises: [
