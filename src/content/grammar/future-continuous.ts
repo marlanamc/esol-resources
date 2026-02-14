@@ -296,28 +296,38 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 <h3>Do not overthink it: use clue words + decision timing.</h3>
                 <p>Start with one question: <strong>When was the decision made?</strong> Then check if you are describing an <strong>action in progress at a future time</strong>.</p>
 
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #0891b2;">Future Choice Flow</h4>
-                    <div style="display: grid; gap: 0.7rem;">
-                        <div style="background: #f8fafc; border-left: 4px solid #64748b; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>1) Is it a fixed arrangement on your calendar?</strong><br/>
-                            <span style="font-size: 0.9rem;">Use <strong>Present Continuous</strong>: "I'm meeting my advisor at 3 PM."</span>
-                        </div>
-                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>2) Did you decide before speaking, or do you see evidence now?</strong><br/>
-                            <span style="font-size: 0.9rem;">Use <strong>be going to + base verb</strong>: "I'm going to apply tonight." / "It's going to rain."</span>
-                        </div>
-                        <div style="background: #fef9f3; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>3) Are you deciding now, offering, or promising?</strong><br/>
-                            <span style="font-size: 0.9rem;">Use <strong>will + base verb</strong>: "Don't worry, I'll help."</span>
-                        </div>
-                        <div style="background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>4) Are you describing the middle of an action at a future time?</strong><br/>
-                            <span style="font-size: 0.9rem;">Use <strong>Future Continuous</strong>: "At 8 PM, I'll be driving home."</span>
-                        </div>
-                    </div>
-                </div>
-
+            `,
+            futureChoiceFlow: {
+                title: "Future Choice Flow",
+                description: "Start with one question: When was the decision made?",
+                options: [
+                    {
+                        trigger: "Is it a fixed arrangement on your calendar?",
+                        form: "present-continuous",
+                        example: "I'm meeting my advisor at 3 PM.",
+                        color: "violet"
+                    },
+                    {
+                        trigger: "Did you decide before speaking, or do you see evidence now?",
+                        form: "going-to",
+                        example: "I'm going to apply tonight. / It's going to rain.",
+                        color: "green"
+                    },
+                    {
+                        trigger: "Are you deciding now, offering, or promising?",
+                        form: "will",
+                        example: "Don't worry, I'll help.",
+                        color: "cyan"
+                    },
+                    {
+                        trigger: "Are you describing the middle of an action at a future time?",
+                        form: "future-continuous",
+                        example: "At 8 PM, I'll be driving home.",
+                        color: "teal"
+                    }
+                ]
+            },
+            postExplanation: `
                 <h3>Indicator Clues You Can Trust</h3>
                 <div style="overflow-x: auto; margin-top: 0.75rem;">
                     <table style="width: 100%; min-width: 760px; border-collapse: collapse; border: 1px solid #dbeafe; border-radius: 8px; overflow: hidden;">
