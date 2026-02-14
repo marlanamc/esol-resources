@@ -710,8 +710,172 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             ],
         },
         {
-            id: "present-forms",
+            id: "future-choice-flow",
             stepNumber: 6,
+            title: "Future Choices: Present Continuous, Going To, Will, or Future Continuous?",
+            icon: "🧭",
+            explanation: `
+                <h3>Use a fast decision system so you do not overthink.</h3>
+                <p>First: when was the decision made? Next: are you describing the middle of an action at a future time?</p>
+
+                <div style="background: white; border: 2px solid #6366f1; border-radius: 0.75rem; padding: 1.2rem; margin: 1rem 0;">
+                    <h4 style="text-align: center; margin-top: 0; color: #4f46e5;">Future Decision Flow</h4>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <div style="background: #f5f3ff; border-left: 4px solid #6366f1; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Arranged appointment?</strong> -> <strong>Present Continuous (future)</strong><br/>
+                            <span style="font-size: 0.9rem;">"I'm meeting my dentist at 2 PM."</span>
+                        </div>
+                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Plan before speaking or visible evidence?</strong> -> <strong>be going to + base verb</strong><br/>
+                            <span style="font-size: 0.9rem;">"I'm going to study tonight." / "It's going to rain."</span>
+                        </div>
+                        <div style="background: #fef9f3; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Instant reaction, offer, or promise?</strong> -> <strong>will + base verb</strong><br/>
+                            <span style="font-size: 0.9rem;">"I'll help you with that."</span>
+                        </div>
+                        <div style="background: #f0fdfa; border-left: 4px solid #14b8a6; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Middle of an action at a future time?</strong> -> <strong>Future Continuous</strong><br/>
+                            <span style="font-size: 0.9rem;">"At 8 PM, I'll be working."</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Clue Word Map</h3>
+                <div style="overflow-x: auto; margin-top: 0.75rem;">
+                    <table style="width: 100%; min-width: 740px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Form</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Good Clues</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Present Continuous (future)</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">calendar event, arranged time, fixed meeting</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">We're meeting the landlord at 4 PM.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Going to</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">plan before now, look!/watch out!, clear evidence</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Look at those clouds. It's going to rain.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Will</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Oh!, wait!, no problem, I promise, probably</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">The phone is ringing. I'll answer it.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Future Continuous</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">at 8 PM tomorrow, this time next week, when you arrive</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">At 8 PM, I'll be studying.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Zero-Stress Rule",
+                content: "Calendar = Present Continuous. Plan/evidence = going to. Instant choice/promise = will. In progress at future time = Future Continuous.",
+            },
+            exercises: [
+                {
+                    id: "ex-future-choice-flow-review-1",
+                    title: "Future Choice Game: Read the Clue",
+                    instructions: "Choose the best future form for each situation.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "You react now because your friend dropped heavy bags:",
+                            options: [
+                                { value: "will", label: "I'll help you carry those." },
+                                { value: "going-to", label: "I'm going to help you carry those (I planned this yesterday)." },
+                                { value: "future-cont", label: "I'll be helping you carry those at 8 PM." },
+                                { value: "present-cont-future", label: "I'm helping you carry those tomorrow at 2." },
+                            ],
+                            expectedAnswer: "will",
+                        },
+                        {
+                            type: "radio",
+                            label: "You can see dark clouds and lightning:",
+                            options: [
+                                { value: "going-to", label: "It's going to storm." },
+                                { value: "will", label: "It storms." },
+                                { value: "future-cont", label: "It will be storm." },
+                                { value: "present-cont-future", label: "It's storming tomorrow." },
+                            ],
+                            expectedAnswer: "going-to",
+                        },
+                        {
+                            type: "radio",
+                            label: "At 10 PM tomorrow, you will be in the middle of your shift:",
+                            options: [
+                                { value: "future-cont", label: "I'll be working." },
+                                { value: "will", label: "I'll work." },
+                                { value: "going-to", label: "I'm going to work now." },
+                                { value: "present-cont-future", label: "I'm working yesterday." },
+                            ],
+                            expectedAnswer: "future-cont",
+                        },
+                        {
+                            type: "radio",
+                            label: "It is already fixed on your calendar for Friday at 4 PM:",
+                            options: [
+                                { value: "present-cont-future", label: "I'm meeting my advisor at 4 PM Friday." },
+                                { value: "will", label: "I'll meet my advisor at 4 PM Friday, I guess." },
+                                { value: "going-to", label: "I'm going to meet my advisor right now." },
+                                { value: "future-cont", label: "I'll be meeting my advisor now." },
+                            ],
+                            expectedAnswer: "present-cont-future",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-future-choice-flow-review-2",
+                    title: "Signal Match: Which Form?",
+                    instructions: "Pick the form that each signal phrase usually indicates.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Signal phrase: This time next week",
+                            options: [
+                                { value: "future-cont", label: "Future Continuous" },
+                                { value: "going-to", label: "Going to" },
+                                { value: "will", label: "Will" },
+                                { value: "present-cont-future", label: "Present Continuous (future)" },
+                            ],
+                            expectedAnswer: "future-cont",
+                        },
+                        {
+                            type: "radio",
+                            label: "Signal phrase: Oh! I forgot!",
+                            options: [
+                                { value: "will", label: "Will" },
+                                { value: "future-cont", label: "Future Continuous" },
+                                { value: "present-cont-future", label: "Present Continuous (future)" },
+                                { value: "going-to", label: "Going to" },
+                            ],
+                            expectedAnswer: "will",
+                        },
+                        {
+                            type: "radio",
+                            label: "Signal phrase: fixed appointment at 3 PM",
+                            options: [
+                                { value: "present-cont-future", label: "Present Continuous (future)" },
+                                { value: "will", label: "Will" },
+                                { value: "going-to", label: "Going to" },
+                                { value: "future-cont", label: "Future Continuous" },
+                            ],
+                            expectedAnswer: "present-cont-future",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "present-forms",
+            stepNumber: 7,
             title: "Present Continuous Forms",
             explanation: `
                 <h3>The Formula for Right Now</h3>
@@ -774,7 +938,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "past-forms",
-            stepNumber: 7,
+            stepNumber: 8,
             title: "Past Continuous Forms",
             explanation: `
                 <h3>The Formula for Past Ongoing Actions</h3>
@@ -825,7 +989,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "future-forms",
-            stepNumber: 8,
+            stepNumber: 9,
             title: "Future Continuous Forms",
             explanation: `
                 <h3>The Formula for Future Ongoing Actions</h3>
@@ -876,7 +1040,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "practice",
-            stepNumber: 9,
+            stepNumber: 10,
             title: "Mixed Practice: All Continuous Tenses",
             explanation: `
                 <h3>Put It All Together</h3>
@@ -912,7 +1076,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "verb-conjugation",
-            stepNumber: 10,
+            stepNumber: 11,
             title: "Verb Conjugation Practice: Master All Continuous Forms",
             icon: "📊",
             explanation: `
@@ -1006,7 +1170,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "advanced-practice",
-            stepNumber: 11,
+            stepNumber: 12,
             title: "Advanced Practice: Mastering Continuous Tenses",
             icon: "🎯",
             explanation: `
@@ -1540,6 +1704,32 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             difficulty: "easy",
             explanation: "Future Continuous (will be + verb-ing) fits actions in progress at a future clock time.",
         },
+        {
+            id: "quiz-21",
+            question: "You see dark clouds and strong wind. Which choice fits best?",
+            options: [
+                { value: "a", label: "It's going to rain." },
+                { value: "b", label: "It will be rain." },
+                { value: "c", label: "It's rain now." },
+            ],
+            correctAnswer: "a",
+            skillTag: "contrast-future-form-evidence-going-to",
+            difficulty: "medium",
+            explanation: "Visible evidence usually points to going to: 'It's going to rain.'",
+        },
+        {
+            id: "quiz-22",
+            question: "Your friend drops their books. What is the best immediate response?",
+            options: [
+                { value: "a", label: "I'll help you pick those up." },
+                { value: "b", label: "I'm going to help you next week." },
+                { value: "c", label: "I'm helping you yesterday." },
+            ],
+            correctAnswer: "a",
+            skillTag: "contrast-future-form-instant-will",
+            difficulty: "medium",
+            explanation: "Instant decisions and offers usually use will.",
+        },
     ],
 /*
 TEACHER DIAGNOSTIC NOTES – Continuous Tenses Review
@@ -1554,6 +1744,8 @@ Skill focus by tag:
 - contrast-present-cont-vs-present-perfect-continuous: now-in-progress vs duration-up-to-now
 - contrast-past-cont-vs-past-simple: background action vs completed event
 - contrast-future-forms-arrangement: choosing arrangement forms for future schedules
+- contrast-future-form-evidence-going-to: using going to for evidence-based future predictions
+- contrast-future-form-instant-will: using will for instant decisions and offers
 
 Form focus:
 - form-present-cont-negative

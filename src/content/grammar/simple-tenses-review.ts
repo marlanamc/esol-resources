@@ -341,8 +341,114 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             ],
         },
         {
-            id: "forms",
+            id: "decision-framework",
             stepNumber: 2,
+            title: "Decision Framework: Pick the Right Simple Tense Fast",
+            icon: "🧠",
+            explanation: `
+                <h3>Use this 3-question check before you speak or write</h3>
+                <p>When you mix tenses, the problem is usually meaning, not form. This framework helps you decide quickly.</p>
+
+                <div style="background: white; border: 2px solid rgba(139, 92, 246, 0.25); border-radius: 0.75rem; padding: 1.25rem; margin: 1.2rem 0;">
+                    <h4 style="margin-top: 0; text-align: center; color: #7c3aed;">Simple Tense Decision Tree</h4>
+                    <div style="display: grid; gap: 0.7rem;">
+                        <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>1) Is it a routine, fact, feeling, or schedule?</strong> -> <strong>Present Simple</strong><br/>
+                            <span style="font-size: 0.9rem;">"The clinic opens at 8." / "I usually take the bus."</span>
+                        </div>
+                        <div style="background: #fff7ed; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>2) Is it finished at a known past time?</strong> -> <strong>Past Simple</strong><br/>
+                            <span style="font-size: 0.9rem;">"I called yesterday." / "We moved last year."</span>
+                        </div>
+                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>3) Is it a quick decision, promise, or prediction?</strong> -> <strong>Future Simple</strong><br/>
+                            <span style="font-size: 0.9rem;">"I'll send it now." / "It will snow tonight."</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Case Lab: same topic, three tenses</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Context</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Present Simple</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Past Simple</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Future Simple</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Housing</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I pay rent on the 1st.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I paid rent yesterday.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I will pay rent tomorrow.</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Work</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She starts at 7.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She started at 7 yesterday.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">She will start at 7 tomorrow.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0; font-weight: 600;">Healthcare</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I take medicine every night.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I took it last night.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I will take it tonight.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 One-Line Rule",
+                content:
+                    "Habit/fact -> Present. Finished past with time -> Past. Decision/promise/prediction -> Future.",
+            },
+            exercises: [
+                {
+                    id: "ex-decision-framework-1",
+                    title: "Choose the Best Simple Tense",
+                    instructions: "Read each context and pick the best tense.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "You are describing your normal childcare schedule.",
+                            options: [
+                                { value: "a", label: "I drop my son off at 7:30 every morning." },
+                                { value: "b", label: "I dropped my son off at 7:30 every morning." },
+                                { value: "c", label: "I will drop my son off at 7:30 every morning." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "You are reporting what happened on Tuesday.",
+                            options: [
+                                { value: "a", label: "The manager calls me and asks for the file." },
+                                { value: "b", label: "The manager called me and asked for the file." },
+                                { value: "c", label: "The manager will call me and ask for the file." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "A classmate asks for help and you decide now.",
+                            options: [
+                                { value: "a", label: "I help you after class." },
+                                { value: "b", label: "I helped you after class." },
+                                { value: "c", label: "I'll help you after class." },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "forms",
+            stepNumber: 3,
             title: "How to Form Each Simple Tense",
             explanation: `
                 <h3>The Patterns You Need to Know</h3>
@@ -412,7 +518,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "past-forms",
-            stepNumber: 3,
+            stepNumber: 4,
             title: "Past Simple Forms",
             formula: [
                 { text: "Past Simple", type: "other" },
@@ -476,7 +582,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "future-forms",
-            stepNumber: 4,
+            stepNumber: 5,
             title: "Future Simple Forms",
             formula: [
                 { text: "Future Simple", type: "other" },
@@ -563,7 +669,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             ],
             tipBox: {
                 title: "📍 Time Expression Placement",
-                content: "Time words usually go at the END of the sentence: 'I work on Mondays.' NOT 'On Mondays I work.'",
+                content: "Time words often go at the end ('I work on Mondays'), but front position is also correct for emphasis ('On Mondays, I work from home').",
             },
             exercises: [
                 {
@@ -607,7 +713,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "practice",
-            stepNumber: 5,
+            stepNumber: 6,
             title: "Mixed Practice: All Simple Tenses",
             explanation: `
                 <h3>Put It All Together</h3>
@@ -637,7 +743,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         { type: "text", label: "2a. \"___ (you/see) the new movie?\"", expectedAnswer: "Did you see" },
                         { type: "text", label: "2b. \"No, I ___ (not see) it yet.\"", expectedAnswer: "didn't see" },
                         { type: "text", label: "3a. \"___ (they/come) to the party?\"", expectedAnswer: "Will they come" },
-                        { type: "text", label: "3b. \"Yes, they ___ (promise) to bring dessert.\"", expectedAnswer: "will promise" },
+                        { type: "text", label: "3b. \"Yes, they ___ (bring) dessert.\"", expectedAnswer: "will bring" },
                         { type: "text", label: "4a. \"Why ___ (she/look) so tired?\"", expectedAnswer: "does she look" },
                         { type: "text", label: "4b. \"She ___ (work) late last night.\"", expectedAnswer: "worked" },
                     ],
@@ -646,7 +752,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "verb-conjugation",
-            stepNumber: 4,
+            stepNumber: 7,
             title: "Verb Conjugation Practice: Master All Forms",
             icon: "📊",
             explanation: `
@@ -728,7 +834,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "advanced-practice",
-            stepNumber: 5,
+            stepNumber: 8,
             title: "Advanced Practice: Real-World Challenges",
             icon: "🎯",
             explanation: `
@@ -777,7 +883,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                     title: "Email Practice: Choose the Right Tense",
                     instructions: "Complete this work email with the correct simple tense.",
                     items: [
-                        { type: "text", label: "Hi team, I ___ (send) you the meeting notes right now.", expectedAnswer: "am sending" },
+                        { type: "text", label: "Hi team, I ___ (send) meeting notes after every weekly meeting.", expectedAnswer: "send" },
                         { type: "text", label: "We ___ (discuss) the new project yesterday.", expectedAnswer: "discussed" },
                         { type: "text", label: "The deadline ___ (be) next Friday.", expectedAnswer: "is" },
                         { type: "text", label: "I ___ (share) the final draft tomorrow morning.", expectedAnswer: "will share" },

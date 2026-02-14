@@ -239,10 +239,134 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 },
             ],
         },
+        {
+            id: "future-choice-flow",
+            stepNumber: 2,
+            title: "Future Choices: Present Continuous, Going To, or Will?",
+            icon: "🧭",
+            explanation: `
+                <h3>Yes: teach these together. Students need one decision system.</h3>
+                <p>When learners confuse future forms, ask one key question: <strong>When did you decide?</strong></p>
+
+                <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0;">
+                    <h4 style="text-align: center; margin-top: 0; color: #7c3aed;">Decision Flow</h4>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>When did you decide?</strong>
+                        </div>
+                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Before speaking</strong> -> <strong>be + going to + base verb</strong><br/>
+                            <span style="font-size: 0.9rem;">"I'm going to study tonight." / "It's going to rain."</span>
+                        </div>
+                        <div style="background: #fef9f3; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Now (instant reaction)</strong> -> <strong>will + base verb</strong><br/>
+                            <span style="font-size: 0.9rem;">"The phone is ringing. I'll answer it."</span>
+                        </div>
+                        <div style="background: #f5f3ff; border-left: 4px solid #6366f1; padding: 0.75rem; border-radius: 0.45rem;">
+                            <strong>Arranged appointment/scheduled meeting</strong> -> <strong>Present Continuous</strong><br/>
+                            <span style="font-size: 0.9rem;">"I'm meeting my advisor at 3 PM."</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Going to + infinitive (base verb)</h3>
+                <p><strong>Form:</strong> am/is/are + going to + base verb</p>
+                <ul>
+                    <li>I'm going to <strong>apply</strong> for that job.</li>
+                    <li>She's going to <strong>call</strong> her landlord.</li>
+                    <li>It's going to <strong>rain</strong>. (prediction from evidence)</li>
+                </ul>
+
+                <h3>Important contrast: same words, different grammar</h3>
+                <div style="overflow-x: auto; margin-top: 0.75rem;">
+                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #e2e8f0;">
+                        <thead>
+                            <tr style="background: #f8fafc;">
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Sentence</th>
+                                <th style="padding: 0.7rem; border: 1px solid #e2e8f0; text-align: left;">Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I'm going to the store.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Movement to a place (go + destination)</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">I'm going to study tonight.</td>
+                                <td style="padding: 0.7rem; border: 1px solid #e2e8f0;">Future intention (going to + base verb)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Classroom Shortcut",
+                content:
+                    "Ask yourself one question first: 'Did you decide before speaking, or right now?' That one question fixes most errors.",
+            },
+            exercises: [
+                {
+                    id: "ex-future-choice-flow-1",
+                    title: "Decision Flow Practice",
+                    instructions: "Choose the best form for each context.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "You planned this yesterday: \"I ___ apply for the new position tonight.\"",
+                            options: [
+                                { value: "a", label: "am going to" },
+                                { value: "b", label: "will" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Your friend drops books. You react now: \"I ___ help you pick those up.\"",
+                            options: [
+                                { value: "a", label: "am going to" },
+                                { value: "b", label: "will" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "It is already in your calendar at 2 PM:",
+                            options: [
+                                { value: "a", label: "I'm meeting my advisor at 2 PM." },
+                                { value: "b", label: "I'll meet my advisor at 2 PM (decision now)." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-going-to-infinitive-1",
+                    title: "Going To + Base Verb (Infinitive) Practice",
+                    instructions: "Complete using am/is/are + going to + base verb.",
+                    items: [
+                        {
+                            type: "text",
+                            label: "Look at the sky. It ___ (rain).",
+                            expectedAnswer: "is going to rain",
+                        },
+                        {
+                            type: "text",
+                            label: "We ___ (visit) my parents this weekend.",
+                            expectedAnswer: "are going to visit",
+                        },
+                        {
+                            type: "text",
+                            label: "She ___ (not accept) that offer.",
+                            expectedAnswer: "is not going to accept",
+                        },
+                    ],
+                },
+            ],
+        },
         // Timeline Visualization Section
         {
             id: "timeline-visualization",
-            stepNumber: 2,
+            stepNumber: 3,
             title: "Timeline: Actions in Progress",
             icon: "⏰",
             explanation: `
@@ -353,7 +477,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         // Comparison Section
         {
             id: "comparison",
-            stepNumber: 3,
+            stepNumber: 4,
             title: "Present Continuous vs Present Simple",
             icon: "⚖️",
             explanation: `
@@ -426,7 +550,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         // Common Mistakes Section
         {
             id: "common-mistakes",
-            stepNumber: 4,
+            stepNumber: 5,
             title: "Common Mistakes & Stative Verbs",
             icon: "⚠️",
             explanation: `
@@ -569,7 +693,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-positive",
-            stepNumber: 5,
+            stepNumber: 6,
             title: "Positive Form",
             explanation: `
                 <p>Formula: <strong>am/is/are + verb-ing</strong>. Same for all subjects—just swap am/is/are.</p>
@@ -632,7 +756,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-negative",
-            stepNumber: 6,
+            stepNumber: 7,
             title: "Negative Form",
             explanation: `
                 <p>Add <strong>not</strong> after am/is/are to show something is NOT happening.</p>
@@ -677,7 +801,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "step-questions",
-            stepNumber: 7,
+            stepNumber: 8,
             title: "Question Form",
             explanation: `
                 <p>Flip am/is/are to the front to ask about actions in progress.</p>
@@ -761,6 +885,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 <ul class="list-disc pl-6 space-y-2">
                     <li><strong>Use:</strong> Actions happening now, temporary situations, near-future plans</li>
                     <li><strong>Form:</strong> am/is/are + verb-ing (same structure for all subjects)</li>
+                    <li><strong>Future Decision Rule:</strong> Before speaking → going to. Now → will. Arranged appointment → Present Continuous.</li>
                     <li><strong>Signal words:</strong> right now, currently, at the moment, this week, today</li>
                     <li><strong>Need full tense contrast?</strong> Review <em>Continuous Tenses Review</em> to compare present, past, and future continuous choices.</li>
                 </ul>
@@ -969,15 +1094,15 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-14",
-            question: "Which time expression often goes with Present Continuous?",
+            question: "Which sentence correctly uses going to + base verb (infinitive)?",
             options: [
-                { value: "a", label: "right now" },
-                { value: "b", label: "in 2020" },
-                { value: "c", label: "two years ago" },
+                { value: "a", label: "It's going to rain." },
+                { value: "b", label: "It's going to raining." },
+                { value: "c", label: "It's go to rain." },
             ],
             correctAnswer: "a",
-            explanation: "Right now/currently/at the moment often signal Present Continuous.",
-            skillTag: "time-expressions-present-continuous",
+            explanation: "Future 'going to' uses: am/is/are + going to + base verb.",
+            skillTag: "form-going-to-base-verb",
             difficulty: "easy",
         },
         {
@@ -1047,16 +1172,16 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-20",
-            question: "What's missing? 'She ___ cooking dinner right now.'",
+            question: "You decided yesterday, and now you're reporting your plan. Which sentence is best?",
             options: [
-                { value: "a", label: "is" },
-                { value: "b", label: "are" },
-                { value: "c", label: "Nothing - the sentence is correct" },
+                { value: "a", label: "I'm going to call the landlord tonight." },
+                { value: "b", label: "I'll call the landlord tonight. (decision now)" },
+                { value: "c", label: "I called the landlord tonight." },
             ],
             correctAnswer: "a",
-            explanation: "Present Continuous needs am/is/are + verb-ing. She IS cooking.",
-            skillTag: "error-missing-be-verb",
-            difficulty: "easy",
+            explanation: "Decision before speaking usually uses going to; instant decisions often use will.",
+            skillTag: "contrast-going-to-vs-will-decision-time",
+            difficulty: "medium",
         },
     ],
     /*
@@ -1091,7 +1216,8 @@ export const presentContinuousContent: InteractiveGuideContent = {
     CONTRASTS:
     - contrast-present-simple-vs-continuous-habit: question 9
     - contrast-will-vs-present-continuous-decision: question 12
-    - time-expressions-present-continuous: question 14
+    - form-going-to-base-verb: question 14
+    - contrast-going-to-vs-will-decision-time: question 20
 
     How to use this data:
     - If students miss questions 1, 4, 5, 13, or 20, review the basic Present Continuous form: am/is/are + verb-ing.
@@ -1110,6 +1236,12 @@ export const presentContinuousContent: InteractiveGuideContent = {
       Recycle contrasts: "I work nights" (general) vs "I'm working the day shift this week" (temporary).
 
     - If question 11 is low, practice WH-questions: Why/What/Where + am/is/are + subject + verb-ing.
+
+    - If questions 12, 14, or 20 are weak, use the decision flow explicitly:
+      * before speaking -> going to
+      * now -> will
+      * arranged appointment -> Present Continuous
+      Also drill the form: am/is/are + going to + base verb.
 
     - If spelling questions (7 and 8) are often wrong, revisit -ing spelling rules and have students build word lists.
     */

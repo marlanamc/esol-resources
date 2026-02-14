@@ -40,91 +40,321 @@ export const futureSimpleContent: InteractiveGuideContent = {
             title: "When Real Life Needs Future Simple",
             icon: "⭐",
             explanation: `
-                <p>Use <strong>will</strong> for quick decisions, promises, offers, and predictions. If the plan is already set, you’re probably in “going to” land instead.</p>
+                <p>Use <strong>will</strong> when the future decision is happening in your head right now, when you are promising or offering, or when you are making a general prediction.</p>
+                <p><strong>Quick practice:</strong> Use mini-problems ("I dropped my books", "I forgot my key") and react immediately with <em>I'll...</em>.</p>
             `,
             usageMeanings: [
                 {
-                    title: "🔮 1. Predictions",
-                    description: "What we think will happen (weather, life, the future)",
+                    title: "⚡ 1. Spontaneous Decisions (Right Now)",
+                    description: "A quick reaction in the moment, often after a trigger phrase",
                     examples: [
                         {
-                            sentence: "It <strong>will rain</strong> tomorrow afternoon.",
-                            explanation: "✓ Weather prediction",
+                            sentence: "Oh! I <strong>forgot</strong> my wallet. I <strong>will run</strong> back for it.",
+                            explanation: "✓ decision made while speaking",
                         },
                         {
-                            sentence: "The bus <strong>will be</strong> late again—it always is.",
-                            explanation: "✓ Life prediction based on experience",
+                            sentence: "Wait, the phone is ringing. I <strong>will answer</strong> it.",
+                            explanation: "✓ immediate response",
+                        },
+                        {
+                            sentence: "Don't worry. I <strong>will drive</strong> you home.",
+                            explanation: "✓ instant decision to help",
                         },
                     ],
                 },
                 {
-                    title: "🤝 2. Promises & Offers",
-                    description: "Things you commit to do",
+                    title: "🤝 2. Promises",
+                    description: "Personal commitments with emotional weight",
                     examples: [
                         {
-                            sentence: "I <strong>will help</strong> you move this weekend.",
-                            explanation: "✓ Offer",
+                            sentence: "I <strong>promise I will call</strong> when I arrive.",
+                            explanation: "✓ clear commitment",
                         },
                         {
-                            sentence: "I <strong>will call</strong> you after work tonight.",
-                            explanation: "✓ Promise",
+                            sentence: "I <strong>won't forget</strong> your appointment.",
+                            explanation: "✓ negative promise",
+                        },
+                        {
+                            sentence: "I <strong>will help</strong> you study tonight.",
+                            explanation: "✓ promise of support",
                         },
                     ],
                 },
                 {
-                    title: "💡 3. Spontaneous Decisions",
-                    description: "Decisions made right now",
+                    title: "🙋 3. Offers (Volunteering)",
+                    description: "You offer to do something for someone",
                     examples: [
                         {
-                            sentence: "The phone is ringing—I <strong>will answer</strong> it.",
-                            explanation: "✓ Decision at the moment",
+                            sentence: "I <strong>will carry</strong> that box for you.",
+                            explanation: "✓ volunteering",
                         },
                         {
-                            sentence: "We need snacks. I <strong>will order</strong> pizza.",
-                            explanation: "✓ Instant choice",
+                            sentence: "I <strong>will open</strong> the window.",
+                            explanation: "✓ practical offer",
+                        },
+                        {
+                            sentence: "I <strong>will pay</strong> for coffee this time.",
+                            explanation: "✓ social offer",
+                        },
+                    ],
+                },
+                {
+                    title: "🔮 4. Predictions (No Clear Evidence)",
+                    description: "Personal opinion or belief about the future",
+                    examples: [
+                        {
+                            sentence: "I think she <strong>will win</strong>.",
+                            explanation: "✓ opinion prediction",
+                        },
+                        {
+                            sentence: "Maybe we <strong>will see</strong> him later.",
+                            explanation: "✓ uncertain prediction",
+                        },
+                        {
+                            sentence: "It <strong>will be</strong> expensive, probably.",
+                            explanation: "✓ general belief",
                         },
                     ],
                 },
             ],
             tipBox: {
-                title: "💡 Will vs Going To",
-                content: "Use 'will' for predictions or decisions made now. Use 'going to' for plans arranged before this moment.",
+                title: "💡 Gold Contrast",
+                content:
+                    "Use will for no-evidence predictions (I think it will rain). Use going to when you see evidence (Look at the sky. It's going to rain).",
             },
             exercises: [
                 {
                     id: "ex-usage-fs-1",
-                    title: "Practice: Why Use 'Will'?",
-                    instructions: "Choose the best reason to use Future Simple (will) in each sentence.",
+                    title: "Practice: Choose the Use of 'Will'",
+                    instructions: "Identify whether each sentence is a decision, promise, offer, or prediction.",
                     items: [
                         {
                             type: "radio",
-                            label: "\"<span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>pick</span> up your prescription from the pharmacy on my way home.\"",
+                            label: "\"Don't worry, <span class='eg-helper'>I'll</span> <span class='eg-verb'>text</span> you when I arrive.\"",
                             options: [
-                                { value: "plan", label: "Pre-planned schedule" },
-                                { value: "habit", label: "Habit" },
-                                { value: "promise", label: "Promise/offer" },
+                                { value: "decision", label: "Spontaneous decision" },
+                                { value: "promise", label: "Promise" },
+                                { value: "prediction", label: "Prediction" },
                             ],
                             expectedAnswer: "promise",
                         },
                         {
                             type: "radio",
-                            label: "\"The cherry blossoms <span class=\'eg-helper\'>will</span> <span class=\'eg-verb\'>bloom</span> in early April.\"",
+                            label: "\"Wait! The doorbell is ringing. <span class='eg-helper'>I'll</span> <span class='eg-verb'>get</span> it.\"",
                             options: [
-                                { value: "prediction", label: "Prediction" },
                                 { value: "decision", label: "Decision right now" },
-                                { value: "routine", label: "Routine" },
+                                { value: "offer", label: "Offer" },
+                                { value: "plan", label: "Pre-made plan" },
+                            ],
+                            expectedAnswer: "decision",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"I think our team <span class='eg-helper'>will</span> <span class='eg-verb'>win</span> tonight.\"",
+                            options: [
+                                { value: "offer", label: "Offer" },
+                                { value: "prediction", label: "Prediction (no evidence)" },
+                                { value: "promise", label: "Promise" },
                             ],
                             expectedAnswer: "prediction",
                         },
                         {
                             type: "radio",
-                            label: "\"Someone's at the door. <span class=\'eg-helper\'>I\'ll</span> <span class=\'eg-verb\'>get</span> it.\"",
+                            label: "\"<span class='eg-helper'>I'll</span> <span class='eg-verb'>carry</span> that bag for you.\"",
                             options: [
-                                { value: "schedule", label: "Fixed schedule" },
-                                { value: "decision", label: "Decision made now" },
-                                { value: "ongoing", label: "Ongoing action" },
+                                { value: "offer", label: "Offer" },
+                                { value: "prediction", label: "Prediction" },
+                                { value: "habit", label: "Habit" },
                             ],
-                            expectedAnswer: "decision",
+                            expectedAnswer: "offer",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "future-visual-map",
+            stepNumber: 2,
+            title: "Future Decision Map: Will vs Going To vs Present Continuous",
+            icon: "🧭",
+            explanation: `
+                <h3>Choose the right future form on purpose</h3>
+                <p>Future Simple is strongest when you need a quick decision, promise, or general prediction. Use this map to avoid the most common tense-mixing errors.</p>
+
+                <div style="background: #f8fafc; border-left: 4px solid #06b6d4; border-radius: 0.5rem; padding: 0.9rem; margin: 0.9rem 0;">
+                    <p style="margin: 0 0 0.45rem 0;"><strong>Common trigger language for will:</strong> Oh!, I forgot!, Wait!, That's okay., Don't worry.</p>
+                    <p style="margin: 0;"><strong>Prediction language:</strong> I think..., I believe..., Maybe..., Probably..., I'm sure...</p>
+                </div>
+
+                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem; margin: 1.25rem 0;">
+                    <h4 style="text-align: center; margin-top: 0; color: #0891b2;">Future Form Decision Flow</h4>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.8rem; border-radius: 0.5rem;">
+                            <strong>Decision made now?</strong> Use <strong>will</strong>. <br/>
+                            <span style="font-size: 0.9rem;">"The phone is ringing. I'll answer it."</span>
+                        </div>
+                        <div style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 0.8rem; border-radius: 0.5rem;">
+                            <strong>Plan already decided before now?</strong> Use <strong>going to</strong>. <br/>
+                            <span style="font-size: 0.9rem;">"I'm going to apply for that job tonight."</span>
+                        </div>
+                        <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 0.8rem; border-radius: 0.5rem;">
+                            <strong>Arranged appointment?</strong> Use <strong>Present Continuous</strong>. <br/>
+                            <span style="font-size: 0.9rem;">"I'm meeting HR at 2 PM."</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #dbeafe;">
+                        <thead>
+                            <tr style="background: #ecfeff;">
+                                <th style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Use</th>
+                                <th style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Best Form</th>
+                                <th style="padding: 0.7rem; border: 1px solid #dbeafe; text-align: left;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Spontaneous help/offer</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>will</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"I'll carry that bag for you."</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Intentions decided earlier</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>going to</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"I'm going to renew my license this week."</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Calendar commitment</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>Present Continuous</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"I'm seeing my doctor on Thursday."</td>
+                            </tr>
+                            <tr style="background: #f8fafc;">
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">General prediction</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>will</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"The traffic will be heavy tonight."</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">Prediction with visible evidence</td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;"><strong>going to</strong></td>
+                                <td style="padding: 0.7rem; border: 1px solid #dbeafe;">"Look at those clouds. It's going to rain."</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 style="margin-top: 1.25rem;">Real-world use cases for Future Simple</h3>
+                <ul>
+                    <li><strong>Work communication:</strong> "I'll send the updated file before lunch."</li>
+                    <li><strong>Customer service:</strong> "We will call you when your order is ready."</li>
+                    <li><strong>Healthcare:</strong> "I won't miss my follow-up appointment."</li>
+                    <li><strong>Family logistics:</strong> "I'll pick up the kids after practice."</li>
+                </ul>
+            `,
+            tipBox: {
+                title: "💡 Quick Rule",
+                content:
+                    "If your brain says, 'I decided this now,' use will. If the plan existed before this moment, use going to or Present Continuous.",
+            },
+            exercises: [
+                {
+                    id: "ex-future-map-1",
+                    title: "Practice: Choose the Best Future Form",
+                    instructions: "Pick the form that best fits the context.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Your friend drops books. You react immediately:",
+                            options: [
+                                { value: "a", label: "I'll help you pick those up." },
+                                { value: "b", label: "I'm going to help you pick those up." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "You planned this yesterday:",
+                            options: [
+                                { value: "a", label: "I'm going to visit the RMV tomorrow." },
+                                { value: "b", label: "I'll visit the RMV tomorrow. (decision now)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "It is already on your calendar:",
+                            options: [
+                                { value: "a", label: "I'm meeting my case manager at 3 PM." },
+                                { value: "b", label: "I'll meet my case manager at 3 PM. (appointment arranged)" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        {
+            id: "contractions-pronunciation",
+            stepNumber: 3,
+            title: "Contracted Forms & Pronunciation Rhythm",
+            icon: "🎙️",
+            explanation: `
+                <h3>Students need spoken Future Simple, not just written Future Simple</h3>
+                <p>In natural conversation, full forms are less common. Practice contractions early so you can understand native speed and sound more confident.</p>
+
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; margin: 1rem 0;">
+                    <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                        <strong>I'll</strong>, <strong>you'll</strong>, <strong>he'll</strong>, <strong>she'll</strong>
+                    </div>
+                    <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
+                        <strong>it'll</strong>, <strong>we'll</strong>, <strong>they'll</strong>, <strong>won't</strong>
+                    </div>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.9rem;">
+                    <p style="margin: 0 0 0.35rem 0;"><strong>Pronunciation target:</strong> <em>won't</em> (not "willn't").</p>
+                    <p style="margin: 0;"><strong>Rhythm drill lines:</strong> "I'll call you later." / "It'll be fine." / "We'll see."</p>
+                </div>
+            `,
+            tipBox: {
+                title: "💡 Speaking Drill",
+                content:
+                    "Use choral repetition with increasing speed: full form first, then contraction. Example: I will call -> I'll call.",
+            },
+            exercises: [
+                {
+                    id: "ex-contractions-1",
+                    title: "Practice: Match Full Form to Contraction",
+                    instructions: "Choose the correct contraction.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "I will text you later.",
+                            options: [
+                                { value: "a", label: "I'll text you later." },
+                                { value: "b", label: "I' ll text you later." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "They will arrive soon.",
+                            options: [
+                                { value: "a", label: "They'll arrive soon." },
+                                { value: "b", label: "Theyll arrive soon." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which negative contraction is correct?",
+                            options: [
+                                { value: "a", label: "won't" },
+                                { value: "b", label: "willn't" },
+                            ],
+                            expectedAnswer: "a",
                         },
                     ],
                 },
@@ -133,7 +363,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
 
         {
             id: "step-positive",
-            stepNumber: 2,
+            stepNumber: 4,
             title: "Positive Form",
             explanation: `
                 <h3>How to Form Future Simple (Positive)</h3>
@@ -208,7 +438,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
 
         {
             id: "step-negative",
-            stepNumber: 3,
+            stepNumber: 5,
             title: "Negative Form",
             explanation: `
                 <h3>How to Make Negative Sentences</h3>
@@ -270,7 +500,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
 
         {
             id: "step-questions",
-            stepNumber: 4,
+            stepNumber: 6,
             title: "Question Form",
             explanation: `
                 <h3>How to Make Questions</h3>
@@ -480,40 +710,40 @@ export const futureSimpleContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-5",
-            question: "Pick the correct promise/offer.",
+            question: "Which sentence is clearly a promise?",
             options: [
-                { value: "a", label: "I will fixing it after class." },
-                { value: "c", label: "I fix it after class." },
-                { value: "b", label: "I will fix it after class." },
+                { value: "a", label: "I promise I'll call you after the interview." },
+                { value: "b", label: "I'm going to call you after the interview. (already planned)" },
+                { value: "c", label: "I called you after the interview." },
             ],
-            correctAnswer: "b",
-            explanation: "Promises and offers use will + base verb: will fix.",
-            skillTag: "meaning-promise-offer",
+            correctAnswer: "a",
+            explanation: "Promises are commitments you make to someone. 'I promise I'll...' is the clearest signal.",
+            skillTag: "meaning-promise",
             difficulty: "easy",
         },
         {
             id: "quiz-6",
-            question: "Which sentence is a prediction?",
+            question: "Which sentence is an offer (volunteering)?",
             options: [
-                { value: "b", label: "It will rain later today." },
-                { value: "a", label: "I will help you carry the bags." },
-                { value: "c", label: "I'm going to the store now." },
+                { value: "a", label: "I'll carry those boxes for you." },
+                { value: "b", label: "I think it will rain later today." },
+                { value: "c", label: "I'm going to carry boxes tomorrow because it's my task." },
             ],
-            correctAnswer: "b",
-            explanation: "Predictions about the future often use will.",
-            skillTag: "meaning-prediction-general",
+            correctAnswer: "a",
+            explanation: "Offers use will to volunteer help in the moment: 'I'll carry...'",
+            skillTag: "meaning-offer-volunteering",
             difficulty: "easy",
         },
         {
             id: "quiz-7",
-            question: "Which sentence uses a contraction correctly?",
+            question: "Which contraction sentence is written correctly?",
             options: [
-                { value: "a", label: "I' ll text you later." },
-                { value: "b", label: "I'll text you later." },
-                { value: "c", label: "Ill text you later." },
+                { value: "a", label: "It' ll be fine." },
+                { value: "b", label: "It'll be fine." },
+                { value: "c", label: "Itll be fine." },
             ],
             correctAnswer: "b",
-            explanation: "I'll = I will. No extra spaces, and 'Ill' without an apostrophe is a different word.",
+            explanation: "Contractions need the apostrophe in the right place: it'll = it will.",
             skillTag: "form-contractions-will",
             difficulty: "easy",
         },
@@ -545,80 +775,80 @@ export const futureSimpleContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-10",
-            question: "Which sentence is correct?",
+            question: "Choose the best spontaneous response to this trigger: 'Oh no, I forgot my charger.'",
             options: [
-                { value: "a", label: "He will comes tomorrow." },
-                { value: "b", label: "He will come tomorrow." },
-                { value: "c", label: "He will coming tomorrow." },
+                { value: "a", label: "I'll go back and get it now." },
+                { value: "b", label: "I'm going to get it next week." },
+                { value: "c", label: "I got it yesterday." },
             ],
-            correctAnswer: "b",
-            explanation: "Will is followed by the base verb: will come.",
-            skillTag: "form-will-base-verb",
-            difficulty: "easy",
+            correctAnswer: "a",
+            explanation: "Trigger phrases like 'Oh no!' and 'I forgot!' often lead to immediate will-decisions.",
+            skillTag: "meaning-trigger-language-spontaneous",
+            difficulty: "medium",
         },
         {
             id: "quiz-11",
-            question: "Which question is correct?",
+            question: "Choose the best contrast between plan and promise.",
             options: [
-                { value: "a", label: "Will she to call you?" },
-                { value: "c", label: "Will she calls you?" },
-                { value: "b", label: "Will she call you?" },
+                { value: "a", label: "Plan: I'm going to study tonight. Promise: I'll study tonight, I promise." },
+                { value: "b", label: "Plan: I'll study tonight. Promise: I'm going to study tonight, I promise." },
+                { value: "c", label: "Plan: I studied tonight. Promise: I will studying tonight." },
             ],
-            correctAnswer: "b",
-            explanation: "Question form: Will + subject + base verb (no 'to' and no -s).",
-            skillTag: "form-question-will-subject-verb",
+            correctAnswer: "a",
+            explanation: "Going to usually marks a prior plan; will is common for promises made to someone.",
+            skillTag: "contrast-promise-vs-plan",
             difficulty: "medium",
         },
         {
             id: "quiz-12",
-            question: "Which sentence shows refusal (won't)?",
+            question: "Which is the correct negative contraction form?",
             options: [
-                { value: "a", label: "My phone won't turn on." },
-                { value: "b", label: "My phone doesn't turn on." },
-                { value: "c", label: "My phone isn't turning on." },
+                { value: "a", label: "won't" },
+                { value: "b", label: "willn't" },
+                { value: "c", label: "woun't" },
             ],
             correctAnswer: "a",
-            explanation: "Won't can show refusal or 'it refuses to': it won't turn on.",
-            skillTag: "meaning-refusal-wont",
-            difficulty: "medium",
+            explanation: "The correct contraction is won't. Learners often incorrectly create 'willn't.'",
+            skillTag: "pronunciation-wont-not-willnt",
+            difficulty: "easy",
         },
         {
             id: "quiz-13",
-            question: "Which time expression often goes with Future Simple?",
+            question: "Which sentence is a no-evidence prediction using a marker phrase?",
             options: [
-                { value: "b", label: "yesterday" },
-                { value: "a", label: "tomorrow" },
-                { value: "c", label: "in 2020" },
+                { value: "a", label: "I think she'll pass the exam." },
+                { value: "b", label: "Look at those clouds—it's going to rain." },
+                { value: "c", label: "I'm meeting her at 4 PM." },
             ],
             correctAnswer: "a",
-            explanation: "Future Simple often appears with future time words: tomorrow, next week, soon.",
-            skillTag: "time-expression-future",
-            difficulty: "easy",
+            explanation: "Marker phrases like 'I think' and 'probably' often signal no-evidence predictions with will.",
+            skillTag: "meaning-prediction-general-markers",
+            difficulty: "medium",
         },
         {
             id: "quiz-14",
-            question: "Pick the best offer.",
+            question: "Which sentence is a prediction based on visible evidence?",
             options: [
-                { value: "b", label: "I'm carrying that box for you (right now decision)." },
-                { value: "c", label: "I carry that box for you." },
-                { value: "a", label: "I'll carry that box for you." },
+                { value: "a", label: "Look at those dark clouds—it's going to rain." },
+                { value: "b", label: "I think she'll call me later." },
+                { value: "c", label: "I'll open the door." },
             ],
             correctAnswer: "a",
-            explanation: "Offers made in the moment often use will: I'll carry…",
-            skillTag: "meaning-promise-offer",
-            difficulty: "easy",
+            explanation: "Visible evidence usually pushes us to going to rather than will.",
+            skillTag: "meaning-prediction-based-evidence-going-to",
+            difficulty: "medium",
         },
         {
             id: "quiz-15",
-            question: "Which sentence is a prediction based on what you see now?",
+            question: "Which sentence uses won't to show refusal/failure?",
             options: [
-                { value: "a", label: "Look at those dark clouds—it's going to rain." },
-                { value: "b", label: "I'll go to the store later." },
-                { value: "c", label: "I went to the store yesterday." },
+                { value: "a", label: "My laptop won't start." },
+                { value: "b", label: "My laptop doesn't starts." },
+                { value: "c", label: "My laptop is going to not start." },
             ],
             correctAnswer: "a",
-            explanation: "Predictions based on present evidence often use going to: it's going to rain.",
-            skillTag: "meaning-prediction-based-evidence-going-to",
+            explanation: "Won't can express refusal/failure with machines and systems: 'It won't start.'",
+            skillTag: "meaning-refusal-wont",
             difficulty: "medium",
         },
     ],
@@ -626,16 +856,19 @@ export const futureSimpleContent: InteractiveGuideContent = {
     TEACHER DIAGNOSTIC NOTES – Future Simple
 
     Skill map by skillTag:
-    - form-will-base-verb: questions 1, 10
+    - form-will-base-verb: question 1
     - form-negative-wont-base-verb: question 2
-    - form-question-will-subject-verb: questions 3, 11
+    - form-question-will-subject-verb: question 3
     - form-contractions-will: question 7
     - meaning-spontaneous-decision: question 4
-    - meaning-promise-offer: questions 5, 14
-    - meaning-prediction-general: question 6
-    - meaning-prediction-based-evidence-going-to: question 15
-    - meaning-refusal-wont: question 12
-    - time-expression-future: question 13
+    - meaning-promise: question 5
+    - meaning-offer-volunteering: question 6
+    - meaning-trigger-language-spontaneous: question 10
+    - contrast-promise-vs-plan: question 11
+    - pronunciation-wont-not-willnt: question 12
+    - meaning-prediction-general-markers: question 13
+    - meaning-prediction-based-evidence-going-to: question 14
+    - meaning-refusal-wont: question 15
     - contrast-will-going-to-plan: question 8
     - contrast-will-present-continuous-appointment: question 9
 
@@ -644,12 +877,15 @@ export const futureSimpleContent: InteractiveGuideContent = {
       review the basic form: will/won't + base verb, and correct errors like "will to call" or "won't comes".
     - If scores are low on "form-question-will-subject-verb", practice question order (Will + subject + base verb)
       with speaking drills and substitution exercises.
-    - If students struggle with "meaning-spontaneous-decision" versus planned actions, contrast will with going to
+    - If students struggle with "meaning-spontaneous-decision" or "meaning-trigger-language-spontaneous", use trigger cards
+      (Oh!, Wait!, I forgot!, Don't worry!) and force immediate I will / I'll reactions.
+    - If students struggle with "meaning-promise" and "contrast-promise-vs-plan", contrast will with going to
       and Present Continuous using real classroom examples (decisions made now vs plans made before class).
     - Weak performance on "contrast-will-going-to-plan" or "contrast-will-present-continuous-appointment"
       suggests you should revisit the section on will vs going to vs Present Continuous for future.
-    - If "meaning-prediction-based-evidence-going-to" is low, highlight the difference between general
-      predictions (will) and predictions based on what we see now (going to).
-    - If "meaning-refusal-wont" is weak, show more examples of won't for refusal or things that "refuse" to work.
+    - If "meaning-prediction-general-markers" or "meaning-prediction-based-evidence-going-to" is low, highlight the difference
+      between no-evidence predictions (I think..., probably..., will) and evidence-based predictions (look..., going to).
+    - If "pronunciation-wont-not-willnt" is weak, drill contractions in rhythm lines: "I'll call you later," "It'll be fine," "We'll see."
+    - If "meaning-refusal-wont" is weak, show more examples of won't for refusal/failure ("The car won't start").
     */
 };
