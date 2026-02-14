@@ -15,7 +15,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             icon: "👨‍👩‍👧‍👦",
             explanation: `
                 <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(255, 165, 94, 0.12) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about telling someone about your day. "I've finished my report." "I've been working all morning." Same situation, two different ways to talk about it. That's the Present Perfect family! One focuses on what's <strong>done</strong>, the other on what you've been <strong>doing</strong>.</p>
+                    <p style="font-size: 1.125rem; margin-bottom: 0;">Think about telling someone about your day. "I've finished my shift." "I've been working all morning." Same situation—both are about work—but two different ways to talk about it. That's the Present Perfect family! One focuses on what's <strong>done</strong>, the other on what you've been <strong>doing</strong>.</p>
                 </div>
 
                 <h3>Why This Matters</h3>
@@ -58,31 +58,61 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             title: "Core Idea Lens: What Two Times Are Connected?",
             icon: "🧠",
             explanation: `
-                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
-                    <p style="margin: 0;"><strong>Core idea:</strong> Perfect tenses are not "just forms." They show a <strong>connection between two times</strong>.</p>
-                    <p style="margin: 0.5rem 0 0 0;">For this family, the main connection is <strong>past to now</strong>.</p>
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(22, 163, 74, 0.08) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1; margin-bottom: 1rem;">
+                    <p style="margin: 0;"><strong>Core idea:</strong> Perfect tenses show a <strong>connection between two times</strong>. Here, it's <strong>past → now</strong>.</p>
                 </div>
 
-                <h3 style="margin-top: 1rem;">Present Perfect (Simple): Past Action Connected to NOW</h3>
-                <ul>
-                    <li><strong>Life experience:</strong> ever, never, before</li>
-                    <li><strong>Change over time:</strong> has grown, has improved, has increased</li>
-                    <li><strong>Unfinished time:</strong> today, this week, this year, recently, lately</li>
-                    <li><strong>Conversation markers:</strong> already, yet, just</li>
-                </ul>
-                <p style="margin-top: 0.5rem;">Helpful contrast: <strong>"I have worked a lot this week"</strong> (unfinished time) vs <strong>"I worked a lot last week"</strong> (finished time).</p>
-
-                <h3>Present Perfect Continuous: Duration or Visible Result Now</h3>
-                <ul>
-                    <li><strong>Duration:</strong> for, since</li>
-                    <li><strong>Visible result:</strong> "You're tired." "I've been working all day."</li>
-                    <li><strong>Emotional tone:</strong> "I've been waiting/trying/thinking."</li>
-                </ul>
-
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
-                    <p style="margin: 0;"><strong>Ask Yourself:</strong> "Do I want to emphasize the result now, or the activity/duration/evidence up to now?"</p>
+                <div style="background: #fdfbf7; border: 1px solid #e2ddd5; border-radius: 0.5rem; padding: 0.75rem 1rem; margin-bottom: 1.25rem; text-align: center;">
+                    <p style="margin: 0; font-size: 0.9375rem;"><strong>Quick rule:</strong> <span style="color: #b05740; font-weight: 600;">Result or completion?</span> → result form. <span style="color: #4d6b53; font-weight: 600;">Duration or activity?</span> → duration form.</p>
+                    <p style="margin: 0.35rem 0 0 0; font-size: 0.8125rem; color: #5e6b7d;"><em>"I've finished my shift"</em> = result. <em>"I've been working all morning"</em> = duration.</p>
                 </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 1rem 0; border-radius: 0.5rem; overflow: hidden; border: 1px solid #e2ddd5;">
+                    <div style="background: rgba(176, 87, 64, 0.06); padding: 1rem; border-right: 1px solid #e2ddd5;">
+                        <h3 style="margin: 0 0 0.25rem 0; color: #b05740; font-size: 1rem;">Result form (Present Perfect)</h3>
+                        <p style="margin: 0 0 0.75rem 0; font-size: 0.8125rem; color: #5e6b7d;">Focus on <strong>result</strong> or <strong>time period</strong>.</p>
+                    </div>
+                    <div style="background: rgba(77, 107, 83, 0.06); padding: 1rem;">
+                        <h3 style="margin: 0 0 0.25rem 0; color: #4d6b53; font-size: 1rem;">Duration form (Present Perfect Continuous)</h3>
+                        <p style="margin: 0 0 0.75rem 0; font-size: 0.8125rem; color: #5e6b7d;">Focus on <strong>how long</strong> or <strong>what you've been doing</strong>.</p>
+                    </div>
+                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">✈️ <strong>Life experience:</strong> ever, never, before</span>
+                    </div>
+                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">⏱️ <strong>Duration:</strong> "I've been studying for two hours."</span>
+                    </div>
+                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">📈 <strong>Change over time:</strong> has grown, has improved</span>
+                    </div>
+                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">👀 <strong>Visible result:</strong> "I've been working all day."</span>
+                    </div>
+                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">📅 <strong>Unfinished time:</strong> today, this week, recently</span>
+                    </div>
+                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">💭 <strong>Emotional tone:</strong> "I've been waiting." "I've been trying."</span>
+                    </div>
+                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">⏱️ <strong>For / since:</strong> "I've lived here for five years."</span>
+                    </div>
+                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">⏱️ <strong>For / since:</strong> "I've been living here for five years."</span>
+                    </div>
+                    <div style="background: rgba(176, 87, 64, 0.04); padding: 0.6rem 1rem; border-right: 1px solid #e2ddd5; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">💬 <strong>Markers:</strong> already, yet, just (completion)</span>
+                    </div>
+                    <div style="background: rgba(77, 107, 83, 0.04); padding: 0.6rem 1rem; border-top: 1px solid #e2ddd5; display: flex; align-items: center; min-height: 2.5rem;">
+                        <span style="font-size: 0.875rem;">💬 <strong>Markers:</strong> all day/week, how long (duration)</span>
+                    </div>
+                </div>
+                <p style="margin: 0.75rem 0 0 0; font-size: 0.8125rem; color: #5e6b7d;"><strong>Contrast:</strong> "I have worked a lot <em>this week</em>" (unfinished) vs "I worked a lot <em>last week</em>" (finished).</p>
             `,
+            tipBox: {
+                title: "For & Since: Both Forms Use Them",
+                content: "Result form: <em>\"I've lived here for 5 years\"</em> (focus on the state). Duration form: <em>\"I've been living here for 5 years\"</em> (focus on the ongoing activity). Same time span, different emphasis."
+            },
             exercises: [
                 {
                     id: "ex-core-idea-present-family",
@@ -513,7 +543,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
                     <p style="margin: 0; font-weight: 600;">💡 Action May or May Not Be Finished!</p>
-                    <p style="margin: 0.5rem 0 0 0;">With Continuous, the action might still be happening OR might have just stopped. The focus is on the activity itself, not whether it's complete.</p>
+                    <p style="margin: 0.5rem 0 0 0;">With the duration form, the action might still be happening OR might have just stopped. The focus is on the activity itself, not whether it's complete.</p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;"><em>"I have been reading this book..."</em> → Maybe still reading, maybe just stopped to rest.</p>
                 </div>
             `,
@@ -600,11 +630,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="margin: 0; font-weight: 600;">Scenario: Your friend asks about your diet</p>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
                             <div>
-                                <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't eaten</strong> today."</p>
+                                <p style="margin: 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>haven't eaten</strong> today."</p>
                                 <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Zero meals. I'm hungry!</p>
                             </div>
                             <div>
-                                <p style="margin: 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>haven't been eating</strong> well lately."</p>
+                                <p style="margin: 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>haven't been eating</strong> well lately."</p>
                                 <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ My eating habits have been poor recently.</p>
                             </div>
                         </div>
@@ -614,11 +644,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="margin: 0; font-weight: 600;">Scenario: Talking about exercise</p>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
                             <div>
-                                <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't exercised</strong> this week."</p>
+                                <p style="margin: 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>haven't exercised</strong> this week."</p>
                                 <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Zero exercise sessions this week.</p>
                             </div>
                             <div>
-                                <p style="margin: 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>haven't been exercising</strong> lately."</p>
+                                <p style="margin: 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>haven't been exercising</strong> lately."</p>
                                 <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ Exercise hasn't been part of my routine recently.</p>
                             </div>
                         </div>
@@ -628,11 +658,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <p style="margin: 0; font-weight: 600;">Scenario: Someone asks about your homework</p>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
                             <div>
-                                <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't done</strong> it yet."</p>
+                                <p style="margin: 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>haven't done</strong> it yet."</p>
                                 <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ It's not complete (but I will do it).</p>
                             </div>
                             <div>
-                                <p style="margin: 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>haven't been doing</strong> my homework."</p>
+                                <p style="margin: 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>haven't been doing</strong> my homework."</p>
                                 <p style="margin: 0; font-size: 0.85rem; color: #6b7280;">→ I've been neglecting it as a regular habit.</p>
                             </div>
                         </div>
@@ -822,38 +852,38 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <p>The hardest part is choosing. Ask yourself: <strong>"Do I care about the result (count) or the time (activity)?"</strong></p>
 
                 <h3>Side-by-Side: The Same Verb, Two Meanings</h3>
-                <p>See how using Simple vs Continuous changes the meaning with the same verb:</p>
+                <p>See how using the result form vs the duration form changes the meaning with the same verb:</p>
 
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">PAINT 🎨</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>have painted</strong> two rooms." → <em>Two rooms are done!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>have been painting</strong> all day." → <em>That's why I'm tired/messy!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>have painted</strong> two rooms." → <em>Two rooms are done!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>have been painting</strong> all day." → <em>That's why I'm tired/messy!</em></p>
                     </div>
 
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">WRITE ✍️</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "She <strong>has written</strong> 5 chapters." → <em>5 chapters are complete!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "She <strong>has been writing</strong> since morning." → <em>Many hours of work!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "She <strong>has written</strong> 5 chapters." → <em>5 chapters are complete!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "She <strong>has been writing</strong> since morning." → <em>Many hours of work!</em></p>
                     </div>
 
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e2e8f0;">
                         <p style="margin: 0; font-weight: 600;">COOK 🍳</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>have cooked</strong> dinner." → <em>Dinner is ready!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>have been cooking</strong> for 2 hours." → <em>That's a lot of effort!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>have cooked</strong> dinner." → <em>Dinner is ready!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>have been cooking</strong> for 2 hours." → <em>That's a lot of effort!</em></p>
                     </div>
 
                     <div>
                         <p style="margin: 0; font-weight: 600;">LEARN 📚</p>
-                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>have learned</strong> 50 new words." → <em>My vocabulary grew by 50!</em></p>
-                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Continuous:</strong> "I <strong>have been learning</strong> Spanish for a year." → <em>One year of study!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #c2410c;"><strong>Result form:</strong> "I <strong>have learned</strong> 50 new words." → <em>My vocabulary grew by 50!</em></p>
+                        <p style="margin: 0.25rem 0 0 0; color: #4338ca;"><strong>Duration form:</strong> "I <strong>have been learning</strong> Spanish for a year." → <em>One year of study!</em></p>
                     </div>
                 </div>
             `,
             comparison: {
-                title: "Present Perfect Simple vs Continuous",
-                leftLabel: "Simple (Result)",
-                rightLabel: "Continuous (Activity)",
+                title: "Result form vs duration form (Present Perfect)",
+                leftLabel: "Result form (Result)",
+                rightLabel: "Duration form (Activity)",
                 rows: [
                     {
                         label: "Core Meaning",
@@ -896,13 +926,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
-                        <h4 style="margin: 0; color: #c2410c; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Simple</h4>
+                        <h4 style="margin: 0; color: #c2410c; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Result form</h4>
                         <div style="margin-bottom: 0.5rem;"><strong>+</strong> have + <span style="color: #c2410c;">past participle</span></div>
                         <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't + <span style="color: #c2410c;">past participle</span></div>
                         <div><strong>?</strong> Have you + <span style="color: #c2410c;">past participle</span>?</div>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
-                        <h4 style="margin: 0; color: #4338ca; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Continuous</h4>
+                        <h4 style="margin: 0; color: #4338ca; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Duration form</h4>
                         <div style="margin-bottom: 0.5rem;"><strong>+</strong> have <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span></div>
                         <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span></div>
                         <div><strong>?</strong> Have you <span style="color: #6366f1;">been</span> + <span style="color: #6366f1;">-ing</span>?</div>
@@ -914,8 +944,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr style="border-bottom: 2px solid #e2e8f0;">
                             <th style="padding: 0.5rem; text-align: left; width: 25%;">Form</th>
-                            <th style="padding: 0.5rem; text-align: left; color: #c2410c;">Simple</th>
-                            <th style="padding: 0.5rem; text-align: left; color: #4338ca;">Continuous</th>
+                            <th style="padding: 0.5rem; text-align: left; color: #c2410c;">Result form</th>
+                            <th style="padding: 0.5rem; text-align: left; color: #4338ca;">Duration form</th>
                         </tr>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
                             <td style="padding: 0.5rem; font-weight: 600;">Positive (+)</td>
@@ -957,13 +987,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "Simple: She ___ (write) three letters.",
+                            label: "Result form: She ___ (write) three letters.",
                             expectedAnswer: "has written",
                             placeholder: "has written"
                         },
                         {
                             type: "text",
-                            label: "Continuous: They ___ (play) soccer for 2 hours.",
+                            label: "Duration form: They ___ (play) soccer for 2 hours.",
                             expectedAnswer: "have been playing",
                             placeholder: "have been playing"
                         },
@@ -994,7 +1024,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 7,
             explanation: `
                 <h3>Key Time Words for Both Forms</h3>
-                <p>Both Simple and Continuous use <strong>for</strong> and <strong>since</strong>, but some words work better with one form. Learning these will help you sound more natural!</p>
+                <p>Both the result form and the duration form use <strong>for</strong> and <strong>since</strong>, but some words work better with one form. Learning these will help you sound more natural!</p>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
@@ -1032,8 +1062,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h4>Signal Words by Form</h4>
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
                     <tr style="background: #fff7ed;">
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Simple (Result/Count)</th>
-                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Continuous (Duration/Activity)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result form (Result/Count)</th>
+                        <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration form (Duration/Activity)</th>
                     </tr>
                     <tr>
                         <td style="padding: 0.5rem; vertical-align: top;">
@@ -1056,7 +1086,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Signal Words in Action</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Simple Signal Words:</p>
+                        <p style="margin: 0; font-weight: 600; color: #c2410c;">Result form signal words:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li>"I have <strong>already</strong> eaten."</li>
                             <li>"Have you finished <strong>yet</strong>?"</li>
@@ -1066,7 +1096,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         </ul>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Continuous Signal Words:</p>
+                        <p style="margin: 0; font-weight: 600; color: #4338ca;">Duration form signal words:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li>"I've been working <strong>all day</strong>."</li>
                             <li>"She's been feeling tired <strong>lately</strong>."</li>
@@ -1117,14 +1147,14 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 {
                     id: "ex-signal-words",
                     title: "Which Form Fits?",
-                    instructions: "Based on the signal word, choose Simple or Continuous.",
+                    instructions: "Based on the signal word, choose result form or duration form.",
                     items: [
                         {
                             type: "radio",
                             label: "I have ___ finished my homework. (already)",
                             options: [
-                                { value: "simple", label: "Simple: have already finished" },
-                                { value: "continuous", label: "Continuous: have been already finishing" },
+                                { value: "simple", label: "Result form: have already finished" },
+                                { value: "continuous", label: "Duration form: have been already finishing" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -1132,8 +1162,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "She has been tired ___. (lately)",
                             options: [
-                                { value: "simple", label: "Simple: has felt tired lately" },
-                                { value: "continuous", label: "Continuous: has been feeling tired lately" },
+                                { value: "simple", label: "Result form: has felt tired lately" },
+                                { value: "continuous", label: "Duration form: has been feeling tired lately" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -1141,8 +1171,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "Have you ___ been to Japan? (ever)",
                             options: [
-                                { value: "simple", label: "Simple: Have you ever been" },
-                                { value: "continuous", label: "Continuous: Have you ever been being" },
+                                { value: "simple", label: "Result form: Have you ever been" },
+                                { value: "continuous", label: "Duration form: Have you ever been being" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -1164,7 +1194,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <p>Here are the most common mistakes students make with the Present Perfect Family. Understanding these will help you avoid them!</p>
 
                 <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Using Continuous with State Verbs</h4>
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Using the duration form with state verbs</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
                             <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have been knowing him for years.</span></p>
@@ -1173,11 +1203,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I have known him for years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, like, love, want, need, have, own) don't use Continuous forms.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, like, love, want, need, have, own) don't use the duration form.</p>
                 </div>
 
                 <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using Continuous for Counted Actions</h4>
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using the duration form for counted actions</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
                             <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I have been reading 3 books this month.</span></p>
@@ -1186,11 +1216,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I have read 3 books this month.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">When counting completed items, use Simple.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">When counting completed items, use the result form.</p>
                 </div>
 
                 <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Using Continuous with "Finish"</h4>
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Using the duration form with \"Finish\"</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
                             <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I haven't been finishing my work yet.</span></p>
@@ -1199,7 +1229,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I haven't finished my work yet.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" describes completion - always use Simple.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" describes completion - always use the result form.</p>
                 </div>
 
                 <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
@@ -1237,18 +1267,18 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #f0fdf4; border: 1px solid #10b981; border-left: 5px solid #10b981; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
                     <h4 style="margin: 0 0 0.75rem 0; color: #065f46;">✓ Quick Decision Guide</h4>
                     <ul style="margin: 0; padding-left: 1.2rem; color: #1f2937;">
-                        <li><strong>Can you count it?</strong> → Simple (3 emails, twice, never)</li>
-                        <li><strong>Is it a state verb?</strong> → Simple (know, believe, own)</li>
-                        <li><strong>Is it about completion?</strong> → Simple (finish, decide, arrive)</li>
-                        <li><strong>Is it about duration/how long?</strong> → Continuous (all day, for hours)</li>
-                        <li><strong>Do you see evidence of activity?</strong> → Continuous (sweating, dirty hands)</li>
+                        <li><strong>Can you count it?</strong> → result form (3 emails, twice, never)</li>
+                        <li><strong>Is it a state verb?</strong> → result form (know, believe, own)</li>
+                        <li><strong>Is it about completion?</strong> → result form (finish, decide, arrive)</li>
+                        <li><strong>Is it about duration/how long?</strong> → duration form (all day, for hours)</li>
+                        <li><strong>Do you see evidence of activity?</strong> → duration form (sweating, dirty hands)</li>
                         <li><strong>Is there a specific past time?</strong> → Use Past Simple instead!</li>
                     </ul>
                 </div>
             `,
             tipBox: {
                 title: "💡 State Verbs List",
-                content: "Common state verbs that DON'T use Continuous: <br><strong>Mental:</strong> know, believe, think, understand, remember <br><strong>Emotional:</strong> like, love, hate, want, need, prefer <br><strong>Possession:</strong> have, own, belong, possess"
+                content: "Common state verbs that DON'T use the duration form: <br><strong>Mental:</strong> know, believe, think, understand, remember <br><strong>Emotional:</strong> like, love, hate, want, need, prefer <br><strong>Possession:</strong> have, own, belong, possess"
             },
             exercises: [
                 {
@@ -1316,11 +1346,11 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 9,
             explanation: `
                 <h3>Put It All Together!</h3>
-                <p>In real conversation, we switch back and forth between Simple and Continuous. Use your decision-making skills:</p>
+                <p>In real conversation, we switch back and forth between the result form and the duration form. Use your decision-making skills:</p>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-                    <li><strong>Result/Count/Completion?</strong> → Simple</li>
-                    <li><strong>Duration/Activity/Evidence?</strong> → Continuous</li>
-                    <li><strong>State verb?</strong> → Simple (even for duration)</li>
+                    <li><strong>Result/Count/Completion?</strong> → result form</li>
+                    <li><strong>Duration/Activity/Evidence?</strong> → duration form</li>
+                    <li><strong>State verb?</strong> → result form (even for duration)</li>
                 </ul>
 
                 <h3>Real Conversation Examples</h3>
@@ -1357,7 +1387,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
                     <p style="margin: 0; font-weight: 600;">💡 Notice the Pattern:</p>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">When telling a story, we often use <strong style="color: #4338ca;">Continuous</strong> to set the scene (what's been happening) and <strong style="color: #c2410c;">Simple</strong> to report specific results or facts.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">When telling a story, we often use <strong style="color: #4338ca;">the duration form</strong> to set the scene (what's been happening) and <strong style="color: #c2410c;">the result form</strong> to report specific results or facts.</p>
                 </div>
             `,
             exercises: [
@@ -1461,13 +1491,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">The Finisher (Simple)</h4>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">The Finisher (result form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has + past participle</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Result, completion, count</p>
                         <p style="margin: 0;"><strong>Key words:</strong> already, yet, just, ever, never, how many</p>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">The Worker (Continuous)</h4>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">The Worker (duration form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has been + verb-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration, activity, evidence</p>
                         <p style="margin: 0;"><strong>Key words:</strong> for, since, all day, lately, how long</p>
@@ -1483,8 +1513,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
                     <tr style="background: #f8fafc;">
                         <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Simple</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Continuous</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #f97316; color: #c2410c;">Result form</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #6366f1; color: #4338ca;">Duration form</th>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 0.5rem;">Life experience</td>
@@ -1525,9 +1555,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <h4>Remember:</h4>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-                    <li>State verbs (know, believe, own) → Always Simple, even for duration</li>
-                    <li>Counting completed items → Simple</li>
-                    <li>Emphasizing how long/visible evidence → Continuous</li>
+                    <li>State verbs (know, believe, own) → Always result form, even for duration</li>
+                    <li>Counting completed items → result form</li>
+                    <li>Emphasizing how long/visible evidence → duration form</li>
                     <li>Both use <strong>for</strong> (duration) and <strong>since</strong> (starting point)</li>
                     <li>Don't use Present Perfect with specific past times (yesterday, last week, in 2020)</li>
                 </ul>
@@ -1545,7 +1575,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "🚀 Keep Practicing!",
-                content: "The more you practice choosing between Simple and Continuous, the more natural it becomes. Pay attention to how native speakers use these forms in movies, podcasts, and conversations!"
+                content: "The more you practice choosing between the result form and the duration form, the more natural it becomes. Pay attention to how native speakers use these forms in movies, podcasts, and conversations!"
             },
         },
     ],
@@ -1559,7 +1589,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "I have cleaned the kitchen." },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Simple focuses on a completed action with a result now.",
+            explanation: "The result form (Present Perfect) focuses on a completed action with a result now.",
             skillTag: "result-completed-action",
             difficulty: "easy",
         },
@@ -1572,7 +1602,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "She worked here since 2020." },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Continuous emphasizes duration from the past to now.",
+            explanation: "The duration form (Present Perfect Continuous) emphasizes duration from the past to now.",
             skillTag: "duration-for-since-how-long",
             difficulty: "easy",
         },
@@ -1585,7 +1615,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "wrote" },
             ],
             correctAnswer: "b",
-            explanation: "When you can count completed actions, use Present Perfect Simple.",
+            explanation: "When you can count completed actions, use the result form.",
             skillTag: "result-count-how-many",
             difficulty: "easy",
         },
@@ -1598,7 +1628,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "I have traveled to Mexico twice." },
             ],
             correctAnswer: "b",
-            explanation: "Life experience uses Present Perfect Simple with ever/never or counts.",
+            explanation: "Life experience uses the result form with ever/never or counts.",
             skillTag: "result-life-experience-ever-never",
             difficulty: "easy",
         },
@@ -1624,7 +1654,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "I cooked dinner at 6." },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Continuous explains current evidence or effects.",
+            explanation: "The duration form explains current evidence or effects.",
             skillTag: "duration-recent-activity-evidence",
             difficulty: "easy",
         },
@@ -1637,7 +1667,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "has" },
             ],
             correctAnswer: "b",
-            explanation: "Words like 'just' go with Present Perfect Simple.",
+            explanation: "Words like 'just' go with the result form.",
             skillTag: "result-recent-completion-just-already-yet",
             difficulty: "easy",
         },
@@ -1650,7 +1680,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "I have read three books this month." },
             ],
             correctAnswer: "c",
-            explanation: "Counting completed items requires Present Perfect Simple, not continuous.",
+            explanation: "Counting completed items requires the result form, not the duration form.",
             skillTag: "error-count-with-continuous",
             difficulty: "medium",
         },
@@ -1663,7 +1693,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "I wrote the report yesterday." },
             ],
             correctAnswer: "b",
-            explanation: "Continuous focuses on duration or activity, not completion.",
+            explanation: "The duration form focuses on duration or activity, not completion.",
             skillTag: "contrast-result-vs-duration",
             difficulty: "medium",
         },
@@ -1689,7 +1719,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "Have you finished your work?" },
             ],
             correctAnswer: "c",
-            explanation: "How long signals duration and Present Perfect Continuous.",
+            explanation: "How long signals duration and the duration form.",
             skillTag: "duration-for-since-how-long",
             difficulty: "easy",
         },
@@ -1702,7 +1732,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "I did homework." },
             ],
             correctAnswer: "b",
-            explanation: "Present Perfect Continuous explains a current condition.",
+            explanation: "The duration form explains a current condition.",
             skillTag: "duration-ongoing-temporary",
             difficulty: "medium",
         },
@@ -1715,7 +1745,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "She has called five times." },
             ],
             correctAnswer: "b",
-            explanation: "Counting actions uses Present Perfect Simple.",
+            explanation: "Counting actions uses the result form.",
             skillTag: "result-count-how-many",
             difficulty: "easy",
         },
@@ -1741,7 +1771,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "I am writing emails. / I have written emails." },
             ],
             correctAnswer: "a",
-            explanation: "Simple focuses on result, continuous focuses on activity or duration.",
+            explanation: "Result form focuses on result; duration form focuses on activity or duration.",
             skillTag: "contrast-simple-vs-continuous-meaning",
             difficulty: "medium",
         },

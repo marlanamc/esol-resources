@@ -931,6 +931,21 @@ textarea {
   color: var(--color-text);
 }
 
+/* Mobile readability for inline HTML diagrams in grammar guides */
+@media (max-width: 768px) {
+  .grammar-reader-container .explanation-content [style*="grid-template-columns: 1fr 1fr"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns:1fr 1fr"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns: 1fr 1fr 1fr"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns:1fr 1fr 1fr"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns: repeat(2"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns:repeat(2"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns: repeat(3"],
+  .grammar-reader-container .explanation-content [style*="grid-template-columns:repeat(3"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+
 /* Enhanced kbd styling for keyboard shortcuts */
 kbd {
   display: inline-block;
