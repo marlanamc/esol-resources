@@ -963,56 +963,56 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Avoid These Errors!</h3>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 1: Using Past Perfect with Only ONE Action</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Using Past Perfect with Only ONE Action</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I had eaten lunch yesterday.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I had eaten lunch yesterday.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I ate lunch yesterday.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I ate lunch yesterday.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Past Perfect needs TWO past references. For single past actions, use Past Simple.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Past Perfect needs TWO past references. For single past actions, use Past Simple.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 2: Using Past Perfect for BOTH Actions</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using Past Perfect for BOTH Actions</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> She had finished before she had left.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">She had finished before she had left.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> She had finished before she left.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">She had finished before she left.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Only the FIRST action uses Past Perfect. The second uses Past Simple.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Only the FIRST action uses Past Perfect. The second uses Past Simple.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 3: Confusing with Present Perfect</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Confusing with Present Perfect</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> When I arrived, she has left.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">When I arrived, she has left.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> When I arrived, she had left.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">When I arrived, she had left.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Past Perfect (had) looks back from a past moment. Present Perfect (have/has) connects to NOW.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Past Perfect (had) looks back from a past moment. Present Perfect (have/has) connects to NOW.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 4: Using Continuous with State Verbs</h4>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Continuous with State Verbs</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I had been knowing her for years.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I had been knowing her for years.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I had known her for years.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I had known her for years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">State verbs (know, believe, like, own, want) use Simple even for duration.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, like, own, want) use Simple even for duration.</p>
                 </div>
 
                 <h3>More Wrong vs Right Examples</h3>

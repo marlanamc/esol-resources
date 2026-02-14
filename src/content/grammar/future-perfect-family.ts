@@ -966,71 +966,71 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             explanation: `
                 <h3>Avoid These Errors!</h3>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 1: Forgetting "BY" + Future Time</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Forgetting "BY" + Future Time</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I will have finished next week.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I will have finished next week.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I will have finished <strong>by</strong> next week.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I will have finished <strong>by</strong> next week.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Future Perfect needs a deadline marker like "by", "before", or "by the time".</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Future Perfect needs a deadline marker like "by", "before", or "by the time".</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 2: Using Simple Future Instead</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using Simple Future Instead</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> By 2025, I will work here for 10 years.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">By 2025, I will work here for 10 years.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> By 2025, I will have been working here for 10 years.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">By 2025, I will have been working here for 10 years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">Use Future Perfect for looking back from a future point, not Simple Future.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Use Future Perfect for looking back from a future point, not Simple Future.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 3: Confusing Completion vs Duration</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Confusing Completion vs Duration</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> I will have been finishing by Friday.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I will have been finishing by Friday.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> I will have finished by Friday.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I will have finished by Friday.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">"Finish" is a completion verb - use Simple. Continuous is for ongoing activities with duration.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" is a completion verb - use Simple. Continuous is for ongoing activities with duration.</p>
                 </div>
 
-                <div style="background: #fef2f2; border: 2px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #dc2626;">❌ Mistake 4: Using Continuous with State Verbs</h4>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Continuous with State Verbs</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #dc2626;"><strong>Wrong:</strong> By then, I will have been knowing her for 10 years.</p>
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">By then, I will have been knowing her for 10 years.</span></p>
                         </div>
                         <div style="flex: 1; min-width: 200px;">
-                            <p style="margin: 0; color: #16a34a;"><strong>Correct:</strong> By then, I will have known her for 10 years.</p>
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">By then, I will have known her for 10 years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #64748b;">State verbs (know, believe, own, love) use Simple even for duration.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, own, love) use Simple even for duration.</p>
                 </div>
 
                 <h3>More Wrong vs Right Examples</h3>
-                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; color: #dc2626;">❌ "By Friday, the project will have been being completed."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "By Friday, the project will have been completed." <span style="font-size: 0.85rem; color: #6b7280;">(passive Simple)</span></p>
+                <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e5e7eb;">
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"By Friday, the project will have been being completed."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"By Friday, the project will have been completed."</span> <span style="font-size: 0.85rem; color: #4b5563;">(passive Simple)</span></p>
                     </div>
-                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; color: #dc2626;">❌ "I will have been arriving by 6pm."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "I will have arrived by 6pm." <span style="font-size: 0.85rem; color: #6b7280;">(arrive = point action)</span></p>
+                    <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"I will have been arriving by 6pm."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"I will have arrived by 6pm."</span> <span style="font-size: 0.85rem; color: #4b5563;">(arrive = point action)</span></p>
                     </div>
                     <div>
-                        <p style="margin: 0; color: #dc2626;">❌ "By December, she will have been owning that car for 5 years."</p>
-                        <p style="margin: 0; color: #16a34a;">✓ "By December, she will have owned that car for 5 years." <span style="font-size: 0.85rem; color: #6b7280;">(own = state verb)</span></p>
+                        <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"By December, she will have been owning that car for 5 years."</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"By December, she will have owned that car for 5 years."</span> <span style="font-size: 0.85rem; color: #4b5563;">(own = state verb)</span></p>
                     </div>
                 </div>
             `,

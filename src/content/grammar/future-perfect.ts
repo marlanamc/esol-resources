@@ -519,40 +519,56 @@ export const futurePerfectContent: InteractiveGuideContent = {
                 <h3>Avoid These Errors!</h3>
                 <p>Students often make these mistakes with Future Perfect. Learn to spot and fix them.</p>
 
-                <div style="background: #fee2e2; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #ef4444;">❌ Mistake 1: Forgetting "have"</h4>
-                    <div style="background: white; padding: 1rem; border-radius: 0.375rem; margin: 0.75rem 0;">
-                        <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ I will finished by tomorrow.</p>
-                        <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ I <strong>will have</strong> finished by tomorrow.</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 1: Forgetting "have"</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">I will finished by tomorrow.</span></p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I will <strong>have</strong> finished by tomorrow.</span></p>
+                        </div>
                     </div>
-                    <p style="margin: 0.75rem 0 0 0; font-size: 0.875rem;">You need both "will" AND "have" before the past participle!</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">You need both "will" AND "have" before the past participle!</p>
                 </div>
 
-                <div style="background: #fee2e2; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #ef4444;">❌ Mistake 2: Using base form instead of past participle</h4>
-                    <div style="background: white; padding: 1rem; border-radius: 0.375rem; margin: 0.75rem 0;">
-                        <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ She will have finish by 5 PM.</p>
-                        <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ She will have <strong>finished</strong> by 5 PM.</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 2: Using base form instead of past participle</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">She will have finish by 5 PM.</span></p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">She will have <strong>finished</strong> by 5 PM.</span></p>
+                        </div>
                     </div>
-                    <p style="margin: 0.75rem 0 0 0; font-size: 0.875rem;">After "will have," always use the past participle (finished, eaten, gone, etc.).</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">After "will have," always use the past participle (finished, eaten, gone, etc.).</p>
                 </div>
 
-                <div style="background: #fee2e2; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #ef4444;">❌ Mistake 3: Wrong word order in questions</h4>
-                    <div style="background: white; padding: 1rem; border-radius: 0.375rem; margin: 0.75rem 0;">
-                        <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ You will have finished by tomorrow?</p>
-                        <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ <strong>Will</strong> you have finished by tomorrow?</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 3: Wrong word order in questions</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">You will have finished by tomorrow?</span></p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;"><strong>Will</strong> you have finished by tomorrow?</span></p>
+                        </div>
                     </div>
-                    <p style="margin: 0.75rem 0 0 0; font-size: 0.875rem;">In questions, "will" comes first, before the subject.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">In questions, "will" comes first, before the subject.</p>
                 </div>
 
-                <div style="background: #fee2e2; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #ef4444; margin: 1.5rem 0;">
-                    <h4 style="margin-top: 0; color: #ef4444;">❌ Mistake 4: Using Future Perfect when Future Simple is correct</h4>
-                    <div style="background: white; padding: 1rem; border-radius: 0.375rem; margin: 0.75rem 0;">
-                        <p style="margin: 0; color: #ef4444; font-weight: 600;">❌ The class will have started <strong>at</strong> 9 AM.</p>
-                        <p style="margin: 0.5rem 0 0 0; color: #059669; font-weight: 600;">✅ The class will start <strong>at</strong> 9 AM.</p>
+                <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Future Perfect when Future Simple is correct</h4>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 0.75rem 0;">
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">The class will have started <strong>at</strong> 9 AM.</span></p>
+                        </div>
+                        <div style="flex: 1; min-width: 200px;">
+                            <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">The class will start <strong>at</strong> 9 AM.</span></p>
+                        </div>
                     </div>
-                    <p style="margin: 0.75rem 0 0 0; font-size: 0.875rem;">"At" = exact time of action → Future Simple. "By" = before that time → Future Perfect.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"At" = exact time of action → Future Simple. "By" = before that time → Future Perfect.</p>
                 </div>
             `,
             exercises: [
