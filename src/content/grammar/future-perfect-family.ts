@@ -73,7 +73,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <p><strong>"By June, I will have been studying for four years."</strong></p>
 
                 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
-                    <p style="margin: 0;"><strong>Teacher question:</strong> "By that future time, do I care about completion or duration?"</p>
+                    <p style="margin: 0;"><strong>Ask Yourself:</strong> "By that future time, do I want to emphasize completion or duration?"</p>
                 </div>
             `,
             exercises: [

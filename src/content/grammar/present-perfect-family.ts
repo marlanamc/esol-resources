@@ -70,7 +70,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <li><strong>Unfinished time:</strong> today, this week, this year, recently, lately</li>
                     <li><strong>Conversation markers:</strong> already, yet, just</li>
                 </ul>
-                <p style="margin-top: 0.5rem;">Contrast to teach clearly: <strong>"I have worked a lot this week"</strong> (unfinished time) vs <strong>"I worked a lot last week"</strong> (finished time).</p>
+                <p style="margin-top: 0.5rem;">Helpful contrast: <strong>"I have worked a lot this week"</strong> (unfinished time) vs <strong>"I worked a lot last week"</strong> (finished time).</p>
 
                 <h3>Present Perfect Continuous: Duration or Visible Result Now</h3>
                 <ul>
@@ -80,7 +80,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 </ul>
 
                 <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
-                    <p style="margin: 0;"><strong>Teacher question:</strong> "Do I care more about the result now, or the activity/duration/evidence now?"</p>
+                    <p style="margin: 0;"><strong>Ask Yourself:</strong> "Do I want to emphasize the result now, or the activity/duration/evidence up to now?"</p>
                 </div>
             `,
             exercises: [
@@ -625,7 +625,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div>
-                        <p style="margin: 0; font-weight: 600;">Scenario: Your teacher asks about your homework</p>
+                        <p style="margin: 0; font-weight: 600;">Scenario: Someone asks about your homework</p>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
                             <div>
                                 <p style="margin: 0; color: #c2410c;"><strong>Simple:</strong> "I <strong>haven't done</strong> it yet."</p>
