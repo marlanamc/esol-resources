@@ -186,25 +186,31 @@ export const futureSimpleContent: InteractiveGuideContent = {
                     <p style="margin: 0 0 0.45rem 0;"><strong>Common trigger language for will:</strong> Oh!, I forgot!, Wait!, That's okay., Don't worry.</p>
                     <p style="margin: 0;"><strong>Prediction language:</strong> I think..., I believe..., Maybe..., Probably..., I'm sure...</p>
                 </div>
-
-                <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.25rem; margin: 1.25rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #0891b2;">Future Form Decision Flow</h4>
-                    <div style="display: grid; gap: 0.75rem;">
-                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.8rem; border-radius: 0.5rem;">
-                            <strong>Decision made now?</strong> Use <strong>will</strong>. <br/>
-                            <span style="font-size: 0.9rem;">"The phone is ringing. I'll answer it."</span>
-                        </div>
-                        <div style="background: #f0fdf4; border-left: 4px solid #22c55e; padding: 0.8rem; border-radius: 0.5rem;">
-                            <strong>Plan already decided before now?</strong> Use <strong>going to</strong>. <br/>
-                            <span style="font-size: 0.9rem;">"I'm going to apply for that job tonight."</span>
-                        </div>
-                        <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 0.8rem; border-radius: 0.5rem;">
-                            <strong>Arranged appointment?</strong> Use <strong>Present Continuous</strong>. <br/>
-                            <span style="font-size: 0.9rem;">"I'm meeting HR at 2 PM."</span>
-                        </div>
-                    </div>
-                </div>
-
+            `,
+            futureChoiceFlow: {
+                title: "Future Form Decision Flow",
+                options: [
+                    {
+                        trigger: "Decision made now?",
+                        form: "will",
+                        example: "The phone is ringing. I'll answer it.",
+                        color: "cyan"
+                    },
+                    {
+                        trigger: "Plan already decided before now?",
+                        form: "going-to",
+                        example: "I'm going to apply for that job tonight.",
+                        color: "green"
+                    },
+                    {
+                        trigger: "Arranged appointment?",
+                        form: "present-continuous",
+                        example: "I'm meeting HR at 2 PM.",
+                        color: "violet"
+                    }
+                ]
+            },
+            postExplanation: `
                 <div style="overflow-x: auto;">
                     <table style="width: 100%; min-width: 700px; border-collapse: collapse; border: 1px solid #dbeafe;">
                         <thead>

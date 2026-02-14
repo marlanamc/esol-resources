@@ -124,6 +124,17 @@ export interface InteractiveGuideSection {
             tenseLabel: string;
         }>;
     };
+    futureChoiceFlow?: {
+        title?: string;
+        description?: string;
+        options: Array<{
+            form: "will" | "going-to" | "present-continuous" | "future-continuous";
+            trigger: string;
+            example: string;
+            color: string; // e.g. "cyan", "green", "violet", "amber"
+        }>;
+    };
+    postExplanation?: string;
 }
 
 export interface LegacyGuideMetadata {

@@ -10,6 +10,7 @@ import { TimeExpressionsList } from "./TimeExpressionsList";
 import { VerbTableDisplay } from "./VerbTableDisplay";
 import { TipBox } from "./TipBox";
 import { TimelineVisual } from "./TimelineVisual";
+import { FutureChoiceFlow } from "./FutureChoiceFlow";
 import { LockKeyhole, CheckCircle2 } from "lucide-react";
 
 interface ExplanationPanelProps {
@@ -77,6 +78,19 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                 {/* Examples */}
                 {section.examples && section.examples.length > 0 && (
                     <ExampleBox examples={section.examples} formulaParts={section.formula} />
+                )}
+
+                {/* Future Choice Flow */}
+                {section.futureChoiceFlow && (
+                    <FutureChoiceFlow data={section.futureChoiceFlow} />
+                )}
+
+                {/* Post-Flow Explanation */}
+                {section.postExplanation && (
+                    <div
+                        className="explanation-content mb-6 mt-6"
+                        dangerouslySetInnerHTML={{ __html: section.postExplanation }}
+                    />
                 )}
 
                 {/* Comparison Table */}

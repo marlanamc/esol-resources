@@ -248,27 +248,32 @@ export const presentContinuousContent: InteractiveGuideContent = {
                 <h3>Yes: teach these together. Students need one decision system.</h3>
                 <p>When learners confuse future forms, ask one key question: <strong>When did you decide?</strong></p>
 
-                <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0;">
-                    <h4 style="text-align: center; margin-top: 0; color: #7c3aed;">Decision Flow</h4>
-                    <div style="display: grid; gap: 0.75rem;">
-                        <div style="background: #f8fafc; border-left: 4px solid #8b5cf6; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>When did you decide?</strong>
-                        </div>
-                        <div style="background: #ecfeff; border-left: 4px solid #06b6d4; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>Before speaking</strong> -> <strong>be + going to + base verb</strong><br/>
-                            <span style="font-size: 0.9rem;">"I'm going to study tonight." / "It's going to rain."</span>
-                        </div>
-                        <div style="background: #fef9f3; border-left: 4px solid #f59e0b; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>Now (instant reaction)</strong> -> <strong>will + base verb</strong><br/>
-                            <span style="font-size: 0.9rem;">"The phone is ringing. I'll answer it."</span>
-                        </div>
-                        <div style="background: #f5f3ff; border-left: 4px solid #6366f1; padding: 0.75rem; border-radius: 0.45rem;">
-                            <strong>Arranged appointment/scheduled meeting</strong> -> <strong>Present Continuous</strong><br/>
-                            <span style="font-size: 0.9rem;">"I'm meeting my advisor at 3 PM."</span>
-                        </div>
-                    </div>
-                </div>
-
+            `,
+            futureChoiceFlow: {
+                title: "Future Choice Decision Flow",
+                description: "When did you decide?",
+                options: [
+                    {
+                        trigger: "Did you decide before speaking?",
+                        form: "going-to",
+                        example: "I'm going to study tonight.",
+                        color: "green"
+                    },
+                    {
+                        trigger: "Are you deciding right now (instant reaction)?",
+                        form: "will",
+                        example: "The phone is ringing. I'll answer it.",
+                        color: "cyan"
+                    },
+                    {
+                        trigger: "Is it an arranged appointment?",
+                        form: "present-continuous",
+                        example: "I'm meeting my advisor at 3 PM.",
+                        color: "violet"
+                    }
+                ]
+            },
+            postExplanation: `
                 <h3>Going to + infinitive (base verb)</h3>
                 <p><strong>Form:</strong> am/is/are + going to + base verb</p>
                 <ul>
