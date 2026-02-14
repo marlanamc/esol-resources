@@ -49,6 +49,82 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
         },
 
         // -------------------------------------------------------------------------
+        // 1.5 Core Idea Lens
+        // -------------------------------------------------------------------------
+        {
+            id: "core-idea-lens",
+            title: "Core Idea Lens: The Past Before the Past",
+            icon: "🧠",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
+                    <p style="margin: 0;"><strong>Core idea:</strong> Perfect means <strong>two times connected</strong>.</p>
+                    <p style="margin: 0.5rem 0 0 0;">Here the connection is <strong>past + past</strong>: one earlier past action connected to a later past moment.</p>
+                </div>
+
+                <h3 style="margin-top: 1rem;">Past Perfect (Simple): Story Sequence</h3>
+                <p style="margin-bottom: 0.5rem;">Teach with narrative signal words:</p>
+                <ul>
+                    <li>before</li>
+                    <li>after</li>
+                    <li>by the time</li>
+                    <li>already</li>
+                </ul>
+                <p>Example: <strong>"When I arrived, she had left."</strong></p>
+
+                <h3>Past Perfect in Story Cause and Effect</h3>
+                <p>Use it to explain reasons in a story:</p>
+                <p><strong>"I was tired because I had worked all night."</strong></p>
+
+                <h3>Past Perfect Continuous: Background Duration</h3>
+                <p>Use it for the ongoing background before another past event:</p>
+                <p><strong>"She was upset because she had been waiting for hours."</strong></p>
+
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
+                    <p style="margin: 0;"><strong>Teacher question:</strong> "What happened first, and what was already happening before that past moment?"</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-core-idea-past-family",
+                    title: "Core Idea Check",
+                    instructions: "Choose the best explanation for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "\"By the time we got there, the movie had started.\"",
+                            options: [
+                                { value: "order", label: "Past-before-past sequence (movie started first)" },
+                                { value: "now", label: "Past connected directly to now" },
+                                { value: "future", label: "Future deadline completion" },
+                            ],
+                            expectedAnswer: "order",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"I was tired because I had worked all night.\" What is this doing?",
+                            options: [
+                                { value: "cause", label: "Giving a past cause for a past result" },
+                                { value: "experience", label: "Describing life experience up to now" },
+                                { value: "plan", label: "Describing a future plan" },
+                            ],
+                            expectedAnswer: "cause",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"She had been waiting for an hour before the bus came.\"",
+                            options: [
+                                { value: "duration", label: "Background duration before another past event" },
+                                { value: "single", label: "A single finished action only" },
+                                { value: "deadline", label: "Action complete by a future point" },
+                            ],
+                            expectedAnswer: "duration",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -------------------------------------------------------------------------
         // 2. Side-by-Side Timeline Comparison
         // -------------------------------------------------------------------------
         {

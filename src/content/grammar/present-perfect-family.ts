@@ -51,6 +51,80 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
 
         // -------------------------------------------------------------------------
+        // 1.5 Core Idea Lens
+        // -------------------------------------------------------------------------
+        {
+            id: "core-idea-lens",
+            title: "Core Idea Lens: What Two Times Are Connected?",
+            icon: "🧠",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #6366f1;">
+                    <p style="margin: 0;"><strong>Core idea:</strong> Perfect tenses are not "just forms." They show a <strong>connection between two times</strong>.</p>
+                    <p style="margin: 0.5rem 0 0 0;">For this family, the main connection is <strong>past to now</strong>.</p>
+                </div>
+
+                <h3 style="margin-top: 1rem;">Present Perfect (Simple): Past Action Connected to NOW</h3>
+                <ul>
+                    <li><strong>Life experience:</strong> ever, never, before</li>
+                    <li><strong>Change over time:</strong> has grown, has improved, has increased</li>
+                    <li><strong>Unfinished time:</strong> today, this week, this year, recently, lately</li>
+                    <li><strong>Conversation markers:</strong> already, yet, just</li>
+                </ul>
+                <p style="margin-top: 0.5rem;">Contrast to teach clearly: <strong>"I have worked a lot this week"</strong> (unfinished time) vs <strong>"I worked a lot last week"</strong> (finished time).</p>
+
+                <h3>Present Perfect Continuous: Duration or Visible Result Now</h3>
+                <ul>
+                    <li><strong>Duration:</strong> for, since</li>
+                    <li><strong>Visible result:</strong> "You're tired." "I've been working all day."</li>
+                    <li><strong>Emotional tone:</strong> "I've been waiting/trying/thinking."</li>
+                </ul>
+
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
+                    <p style="margin: 0;"><strong>Teacher question:</strong> "Do I care more about the result now, or the activity/duration/evidence now?"</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-core-idea-present-family",
+                    title: "Core Idea Check",
+                    instructions: "Choose the best focus for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "\"Have you ever traveled alone?\"",
+                            options: [
+                                { value: "experience", label: "Life experience up to now (no specific time)" },
+                                { value: "story", label: "Story order in the past" },
+                                { value: "deadline", label: "Future deadline completion" },
+                            ],
+                            expectedAnswer: "experience",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"I have worked a lot this week.\" Why Present Perfect?",
+                            options: [
+                                { value: "unfinished", label: "This week is unfinished time, connected to now" },
+                                { value: "finished", label: "It is a finished past time like last week" },
+                                { value: "future", label: "It is about a future point" },
+                            ],
+                            expectedAnswer: "unfinished",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"You look tired.\" \"I've been working all day.\" What is emphasized?",
+                            options: [
+                                { value: "visible", label: "Visible result now plus duration activity" },
+                                { value: "single", label: "One completed single action only" },
+                                { value: "sequence", label: "Past-before-past story order" },
+                            ],
+                            expectedAnswer: "visible",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // -------------------------------------------------------------------------
         // 2. Side-by-Side Timeline Comparison
         // -------------------------------------------------------------------------
         {

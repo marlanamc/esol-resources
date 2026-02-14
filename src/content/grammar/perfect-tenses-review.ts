@@ -87,6 +87,114 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
             ],
         },
 
+        // Core Idea Lens
+        {
+            id: "core-teaching-lens",
+            title: "Core Idea Lens: Perfect = Two Times Connected",
+            icon: "🧠",
+            explanation: `
+                <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(59, 130, 246, 0.1) 100%); padding: 1.25rem; border-radius: 0.5rem; border-left: 4px solid #10b981;">
+                    <p style="margin: 0; font-size: 1.05rem;"><strong>Perfect tenses should not feel like "just another tense."</strong> Teach the core idea first: <strong>Perfect = connection between two times.</strong></p>
+                    <p style="margin: 0.5rem 0 0 0; color: #334155;">If learners feel this connection, forms become easier and panic drops.</p>
+                </div>
+
+                <h3 style="margin-top: 1.25rem;">The Question That Simplifies Everything</h3>
+                <p style="margin-bottom: 0.5rem;">Before grammar rules, ask: <strong>"What two times are connected?"</strong></p>
+                <ul>
+                    <li><strong>Present Perfect:</strong> past + now</li>
+                    <li><strong>Past Perfect:</strong> past + past</li>
+                    <li><strong>Future Perfect:</strong> completed action + future reference point (a "past" action from a future viewpoint)</li>
+                </ul>
+
+                <h3>Present Perfect: Past Action Connected to NOW</h3>
+                <p style="margin-bottom: 0.5rem;">Teach these high-value contexts together:</p>
+                <ul>
+                    <li><strong>Life experience:</strong> ever, never, before<br/>Example: "Have you ever traveled alone?"</li>
+                    <li><strong>Change over time:</strong> has grown, has improved, has increased<br/>Example: "My English has improved."</li>
+                    <li><strong>Unfinished time:</strong> today, this week, this year, recently, lately<br/>Example: "I have worked a lot this week." vs "I worked a lot last week."</li>
+                    <li><strong>Conversation markers:</strong> already, yet, just<br/>Example: "I've already finished." / "She hasn't called yet." / "I've just eaten."</li>
+                </ul>
+
+                <h3>Present Perfect Continuous: Duration or Visible Result Now</h3>
+                <ul>
+                    <li><strong>Duration:</strong> for, since<br/>Example: "I've been studying for three hours."</li>
+                    <li><strong>Visible results:</strong> explain what students can see now<br/>Example: "You're tired." "Yes, I've been working all day."</li>
+                    <li><strong>Emotional tone:</strong> waiting, trying, thinking<br/>Example: "I've been waiting."</li>
+                </ul>
+
+                <h3>Past Perfect: The Past Before the Past</h3>
+                <ul>
+                    <li><strong>Storytelling sequence:</strong> before, after, by the time, already<br/>Example: "When I arrived, she had left."</li>
+                    <li><strong>Cause and effect in stories:</strong><br/>Example: "I was tired because I had worked all night."</li>
+                </ul>
+
+                <h3>Future Perfect: Completed Before a Future Point</h3>
+                <ul>
+                    <li><strong>Planning language:</strong> by, by the time, in 5 years<br/>Example: "By next year, I will have finished school."</li>
+                    <li><strong>Best context:</strong> goals, deadlines, and milestones</li>
+                </ul>
+
+                <div style="background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 0.5rem; padding: 1rem; margin-top: 1.25rem;">
+                    <p style="margin: 0; font-weight: 600;">Teaching move that works:</p>
+                    <p style="margin: 0.5rem 0 0 0;">Less "form + rules." More timeline thinking and real contexts:</p>
+                    <ol style="margin: 0.5rem 0 0 1.25rem;">
+                        <li>Timeline visuals</li>
+                        <li>Time-connection questions</li>
+                        <li>Real contexts (experience, change, storytelling, goals)</li>
+                    </ol>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "perfect-tenses-review-core-idea-1",
+                    title: "Practice: Identify the Two-Time Connection",
+                    instructions: "Choose the best timeline connection for each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: '"My English has improved a lot this year."',
+                            options: [
+                                { value: "a", label: "Past to NOW (change over time connected to the present)" },
+                                { value: "b", label: "Past before another past event" },
+                                { value: "c", label: "Completed before a future deadline" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                        {
+                            type: "radio",
+                            label: '"When we arrived, the movie had already started."',
+                            options: [
+                                { value: "b", label: "Past before past (story sequence)" },
+                                { value: "a", label: "Past to NOW" },
+                                { value: "c", label: "Future completion" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: '"By next summer, I will have saved $3,000."',
+                            options: [
+                                { value: "c", label: "Completed action before a future point" },
+                                { value: "a", label: "Past to NOW" },
+                                { value: "b", label: "Past before past" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                        {
+                            type: "radio",
+                            label: '"I have been waiting for an hour." What is the teaching focus?',
+                            options: [
+                                { value: "a", label: "Duration from past to now (for/since logic)" },
+                                { value: "b", label: "Single completed result only" },
+                                { value: "c", label: "Future planning" },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
         // Timeline Visualization
         {
             id: "timeline-visualization",
