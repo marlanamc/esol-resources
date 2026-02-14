@@ -218,31 +218,37 @@ export function ActivityCategoryPicker({
 
     return (
         <div className="animate-fade-in">
-            {/* Back button */}
-            <button
-                onClick={() => setSelectedCategory(null)}
-                className="inline-flex items-center gap-2 text-sm font-medium text-text-muted hover:text-primary transition-all mb-6 group cursor-pointer active:scale-95"
-            >
-                <div className="w-8 h-8 rounded-full bg-white border border-[var(--color-border)] flex items-center justify-center transition-colors group-hover:border-primary/30 group-hover:bg-primary/5">
-                    <svg
-                        className="w-4 h-4 transition-transform group-hover:-translate-x-0.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 19l-7-7 7-7"
-                        />
-                    </svg>
-                </div>
-                <span>Back</span>
-            </button>
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb" className="mb-6">
+                <ol className="flex items-center gap-2 text-sm font-medium text-text-muted">
+                    <li>
+                        <button
+                            onClick={() => setSelectedCategory(null)}
+                            className="inline-flex items-center gap-1 hover:text-primary transition-colors cursor-pointer active:scale-95"
+                        >
+                            <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 19l-7-7 7-7"
+                                />
+                            </svg>
+                            <span>Activities</span>
+                        </button>
+                    </li>
+                    <li aria-hidden="true" className="text-border">/</li>
+                    <li className="text-text font-semibold">{selectedCardDef?.name}</li>
+                </ol>
+            </nav>
 
             {/* Category header */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center justify-center gap-3 mb-6 text-center">
                 {selectedCardDef && (
                     <div
                         className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center"
