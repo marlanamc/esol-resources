@@ -325,13 +325,13 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             title: "Perfect vs Perfect Continuous: What's the Difference?",
             icon: "⚠️",
             explanation: `
-                <h3>Result vs Duration</h3>
-                <p>Perfect tenses focus on <strong>completion/result</strong>. Perfect Continuous tenses focus on <strong>duration/ongoing activity</strong>.</p>
+                <h3>Result form vs duration form</h3>
+                <p>Perfect tenses focus on <strong>completion/result</strong> (we call this the <strong>result form</strong> in the family guides). Perfect Continuous tenses focus on <strong>duration/ongoing activity</strong> (the <strong>duration form</strong>).</p>
             `,
             comparison: {
-                title: "Perfect vs Perfect Continuous",
-                leftLabel: "Perfect (Result)",
-                rightLabel: "Perfect Continuous (Duration)",
+                title: "Result form vs duration form (Perfect vs Perfect Continuous)",
+                leftLabel: "Result form (Perfect)",
+                rightLabel: "Duration form (Perfect Continuous)",
                 rows: [
                     {
                         label: "Focus",
@@ -364,7 +364,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                 {
                     id: "ex-perfect-vs-cont-1",
                     title: "Practice: Result or Duration?",
-                    instructions: "Choose Perfect for results/completion, Perfect Continuous for duration.",
+                    instructions: "Choose the result form (Perfect) for results/completion, the duration form (Perfect Continuous) for duration.",
                     items: [
                         {
                             type: "radio",
@@ -678,7 +678,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "🎯 The Golden Rule",
-                content: "Perfect Continuous = HOW LONG. Perfect = RESULT/COMPLETION. Ask: 'Am I emphasizing duration or result?'",
+                content: "Duration form (Perfect Continuous) = HOW LONG. Result form (Perfect) = RESULT/COMPLETION. Ask: 'Am I emphasizing duration or result?'",
             },
             exercises: [
                 {

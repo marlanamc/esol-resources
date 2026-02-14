@@ -106,7 +106,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                     <li><strong>Future Perfect:</strong> completed action + future reference point (a "past" action from a future viewpoint)</li>
                 </ul>
 
-                <h3>Present Perfect: Past Action Connected to NOW</h3>
+                <h3>Result form (Present Perfect): Past action connected to NOW</h3>
                 <p style="margin-bottom: 0.5rem;">Teach these high-value contexts together:</p>
                 <ul>
                     <li><strong>Life experience:</strong> ever, never, before<br/>Example: "Have you ever traveled alone?"</li>
@@ -115,7 +115,8 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                     <li><strong>Conversation markers:</strong> already, yet, just<br/>Example: "I've already finished." / "She hasn't called yet." / "I've just eaten."</li>
                 </ul>
 
-                <h3>Present Perfect Continuous: Duration or Visible Result Now</h3>
+                <h3>Duration form (Present Perfect Continuous): Duration or visible result now</h3>
+                <p style="margin-bottom: 0.5rem; font-size: 0.9375rem; color: #5e6b7d;">In the perfect family guides we call these the <strong>result form</strong> (Present Perfect) and <strong>duration form</strong> (Present Perfect Continuous) so they're not confused with Present Simple or Present Continuous.</p>
                 <ul>
                     <li><strong>Duration:</strong> for, since<br/>Example: "I've been studying for three hours."</li>
                     <li><strong>Visible results:</strong> explain what students can see now<br/>Example: "You're tired." "Yes, I've been working all day."</li>
@@ -550,9 +551,9 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 <p>Both connect past to present, but they focus on different things.</p>
             `,
             comparison: {
-                title: "Present Perfect vs Present Perfect Continuous",
-                leftLabel: "Present Perfect",
-                rightLabel: "Present Perfect Continuous",
+                title: "Result form vs duration form (Present Perfect vs Present Perfect Continuous)",
+                leftLabel: "Result form (Present Perfect)",
+                rightLabel: "Duration form (Present Perfect Continuous)",
                 rows: [
                     {
                         label: "Focus",
@@ -1071,7 +1072,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                 { value: "a", label: "have you read (counting result)" },
             ],
             correctAnswer: "a",
-            explanation: "'How many' asks about quantity/result → Present Perfect Simple.",
+            explanation: "'How many' asks about quantity/result → result form (Present Perfect).",
             skillTag: "result-count-how-many",
             difficulty: "easy",
         },

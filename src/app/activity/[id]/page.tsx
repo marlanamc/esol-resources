@@ -66,7 +66,12 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     // This avoids stale DB-stored JSON when the guide content is updated in code.
     if (activity.type === "guide" && activity.category === "grammar") {
         const slug = completionKeyFromActivityTitle(activity.title);
-        const known = new Set(grammarTopics.map((t) => t.id));
+        const known = new Set([
+            ...grammarTopics.map((t) => t.id),
+            "present-perfect-family",
+            "past-perfect-family",
+            "future-perfect-family",
+        ]);
         if (known.has(slug)) {
             const qs = new URLSearchParams();
             if (assignmentId) qs.set("assignment", assignmentId);

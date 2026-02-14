@@ -61,19 +61,29 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0.5rem 0 0 0;">Here we look from a future point and ask what will already be done, or how long something will have been happening by then.</p>
                 </div>
 
-                <h3 style="margin-top: 1rem;">Future Perfect (Simple): Completion Before a Future Reference</h3>
+                <div style="background: #fdfbf7; border: 1px solid #e2ddd5; border-radius: 0.5rem; padding: 0.875rem 1rem; margin: 1.25rem 0; text-align: center;">
+                    <p style="margin: 0; font-size: 1rem;"><strong>When to use which:</strong> <span style="color: #0e7490; font-weight: 600;">Completion by that future time?</span> → <strong>result form</strong>. <span style="color: #7c3aed; font-weight: 600;">Duration by that future time?</span> → <strong>duration form</strong>.</p>
+                </div>
+
+                <p style="margin-bottom: 0.75rem; font-size: 0.8125rem; color: #5e6b7d;">(These are also called Future Perfect and Future Perfect Continuous—different from Simple Future or Future Continuous.)</p>
+
+                <h3 style="margin-top: 1rem;">Result form (Future Perfect): Completion before a future reference</h3>
                 <ul>
                     <li><strong>Best companion words:</strong> by, by the time, in 5 years</li>
                     <li><strong>Best context:</strong> goals, deadlines, and milestones</li>
                 </ul>
                 <p>Example: <strong>"By next year, I will have finished school."</strong></p>
 
-                <h3>Future Perfect Continuous: Duration by a Future Point</h3>
-                <p>Use it to measure how long an activity will have been happening:</p>
+                <h3>Duration form (Future Perfect Continuous): Duration by a future point</h3>
+                <p>Use when you want to stress <strong>how long</strong> an activity will have been happening by that future time:</p>
                 <p><strong>"By June, I will have been studying for four years."</strong></p>
 
-                <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 0.5rem; padding: 0.75rem; margin-top: 1rem;">
-                    <p style="margin: 0;"><strong>Ask Yourself:</strong> "By that future time, do I want to emphasize completion or duration?"</p>
+                <div style="background: #f4f1ea; border: 1px solid #e2ddd5; border-radius: 0.5rem; padding: 1rem 1.25rem; margin-top: 1rem;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #1a202c;">Ask yourself</p>
+                    <ul style="margin: 0; padding-left: 1.25rem;">
+                        <li>Emphasize <strong>completion</strong> by that future time? → <strong>result form</strong>.</li>
+                        <li>Emphasize <strong>duration</strong> (how long) by that future time? → <strong>duration form</strong>.</li>
+                    </ul>
                 </div>
             `,
             exercises: [
@@ -785,7 +795,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Continuous Questions</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Duration form questions</h4>
                         <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem;">
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #a855f7;">Will</span>
                             <span>+</span>
@@ -802,7 +812,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Common Questions in Real Life</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #0e7490;">Simple Questions:</p>
+                        <p style="margin: 0; font-weight: 600; color: #0e7490;">Result form questions:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li><strong>Will</strong> you <strong>have finished</strong> by then?</li>
                             <li><strong>How many</strong> countries <strong>will</strong> you <strong>have visited</strong>?</li>
@@ -810,7 +820,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         </ul>
                     </div>
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem;">
-                        <p style="margin: 0; font-weight: 600; color: #7c3aed;">Continuous Questions:</p>
+                        <p style="margin: 0; font-weight: 600; color: #7c3aed;">Duration form questions:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.9rem;">
                             <li><strong>How long will</strong> you <strong>have been working</strong>?</li>
                             <li><strong>Will</strong> they <strong>have been living</strong> there long?</li>
@@ -827,25 +837,25 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "___ you ___ (finish) the project by Friday? [Simple]",
+                            label: "___ you ___ (finish) the project by Friday? [result form]",
                             expectedAnswer: "Will you have finished",
                             placeholder: "Will you have finished",
                         },
                         {
                             type: "text",
-                            label: "How long ___ she ___ (work) here by December? [Continuous]",
+                            label: "How long ___ she ___ (work) here by December? [duration form]",
                             expectedAnswer: "will she have been working",
                             placeholder: "will she have been working",
                         },
                         {
                             type: "text",
-                            label: "___ the package ___ (arrive) by tomorrow? [Simple]",
+                            label: "___ the package ___ (arrive) by tomorrow? [result form]",
                             expectedAnswer: "Will the package have arrived",
                             placeholder: "Will the package have arrived",
                         },
                         {
                             type: "text",
-                            label: "___ they ___ (live) there for 5 years by next month? [Continuous]",
+                            label: "___ they ___ (live) there for 5 years by next month? [duration form]",
                             expectedAnswer: "Will they have been living",
                             placeholder: "Will they have been living",
                         },
@@ -864,7 +874,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 6,
             explanation: `
                 <h3>Key Time Words</h3>
-                <p>These words signal Future Perfect usage and help you choose between Simple and Continuous.</p>
+                <p>These words signal Future Perfect usage and help you choose between the result form and the duration form.</p>
 
                 <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border-left: 4px solid #f59e0b;">
                     <h4 style="margin: 0 0 0.75rem 0; color: #b45309;">Future Perfect Markers</h4>
@@ -879,7 +889,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Simple Signal Words</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #0e7490;">Result form signal words</h4>
                         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 500;">already</span>
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 500;">yet</span>
@@ -889,7 +899,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #a855f7;">
-                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Continuous Signal Words</h4>
+                        <h4 style="margin: 0 0 0.75rem 0; color: #7c3aed;">Duration form signal words</h4>
                         <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 500;">for + duration</span>
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 500;">how long</span>
@@ -901,11 +911,11 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>Signal Words in Sentences</h3>
                 <div style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e2e8f0;">
-                        <p style="margin: 0; color: #0e7490;"><strong>Simple:</strong> "By Friday, I <strong>will have already finished</strong> the report."</p>
+                        <p style="margin: 0; color: #0e7490;"><strong>Result form:</strong> "By Friday, I <strong>will have already finished</strong> the report."</p>
                         <p style="margin: 0.25rem 0 0 0; color: #0e7490;">"<strong>How many</strong> pages <strong>will</strong> you <strong>have written</strong> by then?"</p>
                     </div>
                     <div>
-                        <p style="margin: 0; color: #7c3aed;"><strong>Continuous:</strong> "By December, I <strong>will have been studying</strong> here <strong>for</strong> 3 years."</p>
+                        <p style="margin: 0; color: #7c3aed;"><strong>Duration form:</strong> "By December, I <strong>will have been studying</strong> here <strong>for</strong> 3 years."</p>
                         <p style="margin: 0.25rem 0 0 0; color: #7c3aed;">"<strong>How long will</strong> they <strong>have been waiting</strong> when we arrive?"</p>
                     </div>
                 </div>
@@ -913,22 +923,22 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #f0fdf4; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #16a34a;">Quick Rule</h4>
                     <p style="margin: 0;"><strong>"By" + future time</strong> → Usually Future Perfect</p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>"For" + duration</strong> → Usually Continuous (emphasizing time)</p>
-                    <p style="margin: 0.5rem 0 0 0;"><strong>Counting something</strong> → Usually Simple (how many, numbers)</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>"For" + duration</strong> → Usually duration form (emphasizing time)</p>
+                    <p style="margin: 0.5rem 0 0 0;"><strong>Counting something</strong> → Usually result form (how many, numbers)</p>
                 </div>
             `,
             exercises: [
                 {
                     id: "ex-fp-time-words",
                     title: "Which Form?",
-                    instructions: "Choose Simple or Continuous based on context.",
+                    instructions: "Choose result form or duration form based on context.",
                     items: [
                         {
                             type: "radio",
                             label: "By next year, I will have ___ my degree. (completion)",
                             options: [
-                                { value: "continuous", label: "Continuous: will have been completing" },
-                                { value: "simple", label: "Simple: will have completed" },
+                                { value: "continuous", label: "Duration form: will have been completing" },
+                                { value: "simple", label: "Result form: will have completed" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -936,8 +946,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "By December, she will have ___ here for 5 years. (duration)",
                             options: [
-                                { value: "continuous", label: "Continuous: will have been working" },
-                                { value: "simple", label: "Simple: will have worked" },
+                                { value: "continuous", label: "Duration form: will have been working" },
+                                { value: "simple", label: "Result form: will have worked" },
                             ],
                             expectedAnswer: "continuous",
                         },
@@ -945,8 +955,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             type: "radio",
                             label: "How many countries will you have ___ by age 30? (count)",
                             options: [
-                                { value: "continuous", label: "Continuous: will have been visiting" },
-                                { value: "simple", label: "Simple: will have visited" },
+                                { value: "continuous", label: "Duration form: will have been visiting" },
+                                { value: "simple", label: "Result form: will have visited" },
                             ],
                             expectedAnswer: "simple",
                         },
@@ -989,7 +999,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">By 2025, I will have been working here for 10 years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Use Future Perfect for looking back from a future point, not Simple Future.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">Use Future Perfect (result or duration form) for looking back from a future point, not Simple Future.</p>
                 </div>
 
                 <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
@@ -1002,11 +1012,11 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">I will have finished by Friday.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" is a completion verb - use Simple. Continuous is for ongoing activities with duration.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">"Finish" is a completion verb - use the result form. The duration form is for ongoing activities with duration.</p>
                 </div>
 
                 <div style="background: #fffafa; border: 1px solid #ef4444; border-left: 5px solid #ef4444; border-radius: 0.5rem; padding: 1rem; margin: 1rem 0;">
-                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using Continuous with State Verbs</h4>
+                    <h4 style="margin: 0 0 0.75rem 0; color: #991b1b;">❌ Mistake 4: Using the duration form with state verbs</h4>
                     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 200px;">
                             <p style="margin: 0; color: #b91c1c; font-weight: 600;">Wrong: <span style="font-weight: 400;">By then, I will have been knowing her for 10 years.</span></p>
@@ -1015,14 +1025,14 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <p style="margin: 0; color: #15803d; font-weight: 600;">Correct: <span style="font-weight: 400;">By then, I will have known her for 10 years.</span></p>
                         </div>
                     </div>
-                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, own, love) use Simple even for duration.</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.875rem; color: #374151;">State verbs (know, believe, own, love) use the result form even for duration.</p>
                 </div>
 
                 <h3>More Wrong vs Right Examples</h3>
                 <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; margin: 1rem 0; border: 1px solid #e5e7eb;">
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
                         <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"By Friday, the project will have been being completed."</span></p>
-                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"By Friday, the project will have been completed."</span> <span style="font-size: 0.85rem; color: #4b5563;">(passive Simple)</span></p>
+                        <p style="margin: 0; color: #15803d; font-weight: 600;">✓ <span style="font-weight: 400;">"By Friday, the project will have been completed."</span> <span style="font-size: 0.85rem; color: #4b5563;">(passive result form)</span></p>
                     </div>
                     <div style="margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid #e5e7eb;">
                         <p style="margin: 0; color: #b91c1c; font-weight: 600;">❌ <span style="font-weight: 400;">"I will have been arriving by 6pm."</span></p>
@@ -1117,11 +1127,11 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <h4>Decision Guide:</h4>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-                    <li><strong>Completion/Goal achieved?</strong> → Simple (will have + past participle)</li>
-                    <li><strong>Duration/Anniversary?</strong> → Continuous (will have been + -ing)</li>
-                    <li><strong>Counting things?</strong> → Simple (10 countries, 5 books)</li>
-                    <li><strong>How long?</strong> → Continuous (for 5 years, all day)</li>
-                    <li><strong>State verbs?</strong> → Always Simple (know, own, believe)</li>
+                    <li><strong>Completion/Goal achieved?</strong> → result form (will have + past participle)</li>
+                    <li><strong>Duration/Anniversary?</strong> → duration form (will have been + -ing)</li>
+                    <li><strong>Counting things?</strong> → result form (10 countries, 5 books)</li>
+                    <li><strong>How long?</strong> → duration form (for 5 years, all day)</li>
+                    <li><strong>State verbs?</strong> → Always result form (know, own, believe)</li>
                 </ul>
 
                 <h3>More Story Examples</h3>
@@ -1149,7 +1159,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 {
                     id: "ex-fp-mixed",
                     title: "Goals and Milestones",
-                    instructions: "Choose Simple or Continuous based on context.",
+                    instructions: "Choose result form or duration form based on context.",
                     items: [
                         {
                             type: "radio",
@@ -1229,13 +1239,13 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <h3>What You've Learned</h3>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #0e7490;">The Goal Setter (Simple)</h4>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #0e7490;">The Goal Setter (result form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have + past participle</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Completed BY deadline</p>
                         <p style="margin: 0;"><strong>Key words:</strong> by, before, by the time, already, how many</p>
                     </div>
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
-                        <h4 style="margin: 0 0 0.5rem 0; color: #7c3aed;">The Journey Tracker (Continuous)</h4>
+                        <h4 style="margin: 0 0 0.5rem 0; color: #7c3aed;">The Journey Tracker (duration form)</h4>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have been + verb-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration UP TO that point</p>
                         <p style="margin: 0;"><strong>Key words:</strong> for, how long, all day/week</p>
@@ -1251,8 +1261,8 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
                     <tr style="background: #f8fafc;">
                         <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #e2e8f0;">Use...</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">Simple</th>
-                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Continuous</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #06b6d4; color: #0e7490;">Result form</th>
+                        <th style="padding: 0.5rem; text-align: left; border-bottom: 2px solid #a855f7; color: #7c3aed;">Duration form</th>
                     </tr>
                     <tr style="border-bottom: 1px solid #e2e8f0;">
                         <td style="padding: 0.5rem;">Completion by deadline</td>
@@ -1320,7 +1330,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "By Friday, I will have finished the report." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect Simple (will have + past participle) focuses on completion by a future deadline.",
+            explanation: "The result form (Future Perfect: will have + past participle) focuses on completion by a future deadline.",
             skillTag: "result-future-completed-by-deadline",
             difficulty: "easy",
         },
@@ -1333,7 +1343,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "In June, she will study for her exams." },
             ],
             correctAnswer: "b",
-            explanation: "Future Perfect Continuous (will have been + -ing) highlights duration up to a future point.",
+            explanation: "The duration form (Future Perfect Continuous: will have been + -ing) highlights duration up to a future point.",
             skillTag: "duration-future-how-long-by-then",
             difficulty: "easy",
         },
@@ -1346,7 +1356,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "will finish" },
             ],
             correctAnswer: "a",
-            explanation: "A completed exam by a specific future time uses Future Perfect Simple.",
+            explanation: "A completed exam by a specific future time uses the result form.",
             skillTag: "result-future-by-deadline",
             difficulty: "easy",
         },
@@ -1359,7 +1369,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "will have been driving" },
             ],
             correctAnswer: "b",
-            explanation: "We are interested in the duration of driving, so Future Perfect Continuous is best.",
+            explanation: "We are interested in the duration of driving, so the duration form is best.",
             skillTag: "duration-future-ongoing-activity",
             difficulty: "medium",
         },
@@ -1385,7 +1395,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "By 2030, we will have lived in this city for 20 years." },
             ],
             correctAnswer: "c",
-            explanation: "For a duration milestone, Future Perfect Continuous is the clearest and most natural choice.",
+            explanation: "For a duration milestone, the duration form is the clearest and most natural choice.",
             skillTag: "contrast-future-perfect-vs-simple-future",
             difficulty: "medium",
         },
@@ -1398,7 +1408,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "a", label: "will have read" },
             ],
             correctAnswer: "a",
-            explanation: "Counting completed achievements uses Future Perfect Simple.",
+            explanation: "Counting completed achievements uses the result form.",
             skillTag: "result-future-count-how-many",
             difficulty: "easy",
         },
@@ -1411,7 +1421,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "By our 10th anniversary, we will have been visiting 15 countries." },
             ],
             correctAnswer: "c",
-            explanation: "The count of countries is a completed-goal focus, so Future Perfect Simple fits best.",
+            explanation: "The count of countries is a completed-goal focus, so the result form fits best.",
             skillTag: "result-future-milestone",
             difficulty: "easy",
         },
@@ -1424,7 +1434,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "By next year, I will know him for 10 years." },
             ],
             correctAnswer: "b",
-            explanation: "\"Know\" is a state verb, so we use Future Perfect Simple, not Continuous.",
+            explanation: "\"Know\" is a state verb, so we use the result form, not the duration form.",
             skillTag: "error-future-continuous-stative-verb",
             difficulty: "easy",
         },
@@ -1446,7 +1456,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 },
             ],
             correctAnswer: "b",
-            explanation: "The first sentence uses Future Perfect Simple for completion; the second uses Future Perfect Continuous for duration.",
+            explanation: "The first sentence uses the result form for completion; the second uses the duration form for duration.",
             skillTag: "contrast-future-goal-vs-duration",
             difficulty: "medium",
         },
@@ -1472,7 +1482,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "Will you finish" },
             ],
             correctAnswer: "a",
-            explanation: "Future Perfect Simple question form: Will + subject + have + past participle.",
+            explanation: "Result form question: Will + subject + have + past participle.",
             skillTag: "form-future-perfect-question",
             difficulty: "easy",
         },
@@ -1485,7 +1495,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "will they work" },
             ],
             correctAnswer: "b",
-            explanation: "\"How long\" questions about future duration usually use Future Perfect Continuous.",
+            explanation: "\"How long\" questions about future duration usually use the duration form.",
             skillTag: "form-future-perfect-continuous-question",
             difficulty: "medium",
         },
@@ -1511,7 +1521,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "will work" },
             ],
             correctAnswer: "b",
-            explanation: "The sentence highlights duration at a future reference point, so Future Perfect Continuous is best.",
+            explanation: "The sentence highlights duration at a future reference point, so the duration form is best.",
             skillTag: "duration-future-how-long-by-then",
             difficulty: "medium",
         },
