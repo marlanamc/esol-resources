@@ -1616,3 +1616,28 @@ kbd {
     font-size: 1.5rem !important; /* text-2xl - was text-4xl */
   }
 }
+
+.announcement-markdown p {
+  margin: 0.25rem 0;
+}
+
+.announcement-markdown ul {
+  margin: 0.35rem 0;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+
+.announcement-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.85em;
+  background: rgba(120, 53, 15, 0.1);
+  padding: 0.05rem 0.3rem;
+  border-radius: 0.3rem;
+}
+
+.announcement-markdown a {
+  color: #92400e;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}

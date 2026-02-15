@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { trackLogin } from "@/lib/gamification";
 import { parseCategoryData } from "@/lib/categoryData";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
+import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { BottomNav } from "@/components/ui";
@@ -72,6 +73,7 @@ type StudentEnrollment = {
     classId: string;
     class: {
         name: string;
+        announcement: string | null;
         assignments: {
             id: string;
             title: string | null;
@@ -226,6 +228,12 @@ export default async function DashboardPage() {
                         title: "Add Event",
                         subtitle: "Post class dates, due dates, or reminders.",
                         icon: CalendarIcon,
+                    },
+                    {
+                        href: "/dashboard/classes",
+                        title: "Create Announcement",
+                        subtitle: "Set a class announcement for students.",
+                        icon: ClipboardIcon,
                     },
                     {
                         href: "/dashboard/teaching-schedule",
@@ -548,6 +556,13 @@ export default async function DashboardPage() {
                     className: enrollment.class.name,
                 }))
         );
+        const classAnnouncements = enrollments
+            .map((enrollment: StudentEnrollment) => ({
+                className: enrollment.class.name,
+                message: enrollment.class.announcement?.trim() || "",
+                messageHtml: renderAnnouncementMarkdown(enrollment.class.announcement),
+            }))
+            .filter((announcement) => announcement.message.length > 0);
 
         const classIds = enrollments.map(e => e.classId);
         const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await prisma.assignment.findMany({
@@ -772,6 +787,32 @@ export default async function DashboardPage() {
                                     </div>
                                 </div>
                             </div>
+
+                            {classAnnouncements.length > 0 && (
+                                <section className="animate-fade-in-up delay-75">
+                                    <div className="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-5 shadow-sm">
+                                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700">
+                                            Teacher Announcement
+                                        </p>
+                                        <div className="mt-3 space-y-3">
+                                            {classAnnouncements.map((announcement) => (
+                                                <div
+                                                    key={`${announcement.className}-${announcement.message}`}
+                                                    className="rounded-xl border border-amber-100 bg-white/70 px-3 py-2"
+                                                >
+                                                    <p className="text-xs font-semibold text-amber-800">
+                                                        {announcement.className}
+                                                    </p>
+                                                    <div
+                                                        className="mt-1 text-sm text-amber-950 announcement-markdown"
+                                                        dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </section>
+                            )}
 
                             {/* This Week's Activities */}
                             <section className="animate-fade-in-up delay-100">
