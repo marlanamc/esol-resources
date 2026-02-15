@@ -1,2 +1,2 @@
 ALTER TABLE "Class"
-ADD COLUMN "announcement" TEXT;
+ADD COLUMN IF NOT EXISTS "announcement" TEXT;
