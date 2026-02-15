@@ -7,7 +7,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { JSDOM } from 'jsdom';
+import { parse } from 'node-html-parser';
 import { PrismaClient } from '@prisma/client';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -17,15 +17,14 @@ const prisma = new PrismaClient();
 
 function extractMetadata(htmlPath) {
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-    const dom = new JSDOM(htmlContent);
-    const document = dom.window.document;
+    const root = parse(htmlContent);
 
     const getMetaContent = (name) => {
-        const meta = document.querySelector(`meta[name="${name}"]`);
+        const meta = root.querySelector(`meta[name="${name}"]`);
         return meta?.getAttribute('content') || '';
     };
 
-    const title = document.querySelector('title')?.textContent ||
+    const title = root.querySelector('title')?.textContent?.trim() ||
                   path.basename(htmlPath, '.html').replace(/-/g, ' ');
 
     const description = getMetaContent('description') ||
