@@ -26,7 +26,8 @@ import {
     CalendarEvent,
     UpcomingEventsList,
     TodaysAssignments,
-    ClearFeaturedButton
+    ClearFeaturedButton,
+    ClassAnnouncement
 } from "@/components/dashboard";
 
 type TeacherAssignment = {
@@ -788,31 +789,7 @@ export default async function DashboardPage() {
                                 </div>
                             </div>
 
-                            {classAnnouncements.length > 0 && (
-                                <section className="animate-fade-in-up delay-75">
-                                    <div className="rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-5 shadow-sm">
-                                        <p className="text-xs font-bold uppercase tracking-wider text-amber-700">
-                                            Teacher Announcement
-                                        </p>
-                                        <div className="mt-3 space-y-3">
-                                            {classAnnouncements.map((announcement) => (
-                                                <div
-                                                    key={`${announcement.className}-${announcement.message}`}
-                                                    className="rounded-xl border border-amber-100 bg-white/70 px-3 py-2"
-                                                >
-                                                    <p className="text-xs font-semibold text-amber-800">
-                                                        {announcement.className}
-                                                    </p>
-                                                    <div
-                                                        className="mt-1 text-sm text-amber-950 announcement-markdown"
-                                                        dangerouslySetInnerHTML={{ __html: announcement.messageHtml }}
-                                                    />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </section>
-                            )}
+                            <ClassAnnouncement announcements={classAnnouncements} />
 
                             {/* This Week's Activities */}
                             <section className="animate-fade-in-up delay-100">
