@@ -6,6 +6,7 @@ import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton } from "@/components/dashboard";
+import { ClassAnnouncementEditor } from "@/components/dashboard/ClassAnnouncementEditor";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -62,13 +63,22 @@ export default async function ClassDetailPage({ params }: Props) {
                     <div>
                         <BackButton href="/dashboard" className="mb-2">Back to Dashboard</BackButton>
                         <h1 className="text-3xl font-bold text-gray-900">{classItem.name}</h1>
-                        <p className="text-gray-600 mt-1">{classItem.description}</p>
+                        {classItem.description && (
+                            <p className="text-gray-600 mt-1">{classItem.description}</p>
+                        )}
                     </div>
                     <LogoutButton />
                 </div>
             </header>
             <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0 space-y-8">
+                    {isTeacher && (
+                        <ClassAnnouncementEditor
+                            classId={classItem.id}
+                            initialAnnouncement={classItem.announcement}
+                        />
+                    )}
+
                     {/* Class Info */}
                     <section className="bg-white shadow rounded-lg p-6">
                         <div className="flex items-center justify-between mb-4">

@@ -43,6 +43,7 @@ model Class {
   id             String            @id @default(cuid())
   name           String
   description    String?
+  announcement   String?
   code           String            @unique
   teacherId      String
   createdAt      DateTime          @default(now())
