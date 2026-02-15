@@ -701,7 +701,11 @@ export default async function DashboardPage() {
                                     <div className="flex items-center gap-3">
                                         {/* Streak */}
                                         {currentUser && effectiveCurrentStreak > 0 && (
-                                            <div className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                            <Link
+                                                href="/dashboard/profile"
+                                                aria-label="Open your profile from streak stats"
+                                                className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+                                            >
                                                 <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
                                                     <FlameIcon className="text-orange-500 streak-icon-pulse" size={16} />
                                                 </div>
@@ -709,12 +713,16 @@ export default async function DashboardPage() {
                                                     <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Streak</div>
                                                     <div className="text-lg font-bold text-text leading-tight">{effectiveCurrentStreak} <span className="text-xs font-semibold text-text-muted">days</span></div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )}
 
                                         {/* Weekly Points */}
                                         {actualWeeklyPoints > 0 && (
-                                            <div className="flex items-center gap-2.5 bg-white/90 border border-amber-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                            <Link
+                                                href="/dashboard/profile"
+                                                aria-label="Open your profile from weekly points stats"
+                                                className="flex items-center gap-2.5 bg-white/90 border border-amber-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                                            >
                                                 <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-full flex items-center justify-center">
                                                     <StarIcon className="text-amber-500" size={16} />
                                                 </div>
@@ -722,12 +730,16 @@ export default async function DashboardPage() {
                                                     <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">This Week</div>
                                                     <div className="text-lg font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">pts</span></div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )}
 
                                         {/* Total Points */}
                                         {currentUser && currentUser.points > 0 && (
-                                            <div className="flex items-center gap-2.5 bg-white/90 border border-emerald-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
+                                            <Link
+                                                href="/dashboard/profile"
+                                                aria-label="Open your profile from total points stats"
+                                                className="flex items-center gap-2.5 bg-white/90 border border-emerald-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                                            >
                                                 <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
                                                     <TrophyIcon className="text-secondary" size={16} />
                                                 </div>
@@ -735,7 +747,7 @@ export default async function DashboardPage() {
                                                     <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Total</div>
                                                     <div className="text-lg font-bold text-text leading-tight">{currentUser.points} <span className="text-xs font-semibold text-text-muted">pts</span></div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )}
                                     </div>
                                 </div>
@@ -751,7 +763,11 @@ export default async function DashboardPage() {
 
                                     <div className="flex items-center gap-3 flex-wrap">
                                         {currentUser && effectiveCurrentStreak > 0 && (
-                                            <div className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                            <Link
+                                                href="/dashboard/profile"
+                                                aria-label="Open your profile from streak stats"
+                                                className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+                                            >
                                                 <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
                                                     <FlameIcon className="text-orange-500 streak-icon-pulse" size={14} />
                                                 </div>
@@ -759,11 +775,15 @@ export default async function DashboardPage() {
                                                     <span className="text-base font-bold text-text">{effectiveCurrentStreak}</span>
                                                     <span className="text-[10px] font-semibold text-text-muted uppercase">day</span>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )}
 
                                         {actualWeeklyPoints > 0 && (
-                                            <div className="flex items-center gap-2 bg-white/90 border border-amber-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                            <Link
+                                                href="/dashboard/profile"
+                                                aria-label="Open your profile from weekly points stats"
+                                                className="flex items-center gap-2 bg-white/90 border border-amber-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                                            >
                                                 <div className="w-7 h-7 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-full flex items-center justify-center">
                                                     <StarIcon className="text-amber-500" size={14} />
                                                 </div>
@@ -771,11 +791,15 @@ export default async function DashboardPage() {
                                                     <span className="text-base font-bold text-text">{actualWeeklyPoints}</span>
                                                     <span className="text-[10px] font-semibold text-text-muted uppercase">wk</span>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )}
 
                                         {currentUser && currentUser.points > 0 && (
-                                            <div className="flex items-center gap-2 bg-white/90 border border-emerald-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                            <Link
+                                                href="/dashboard/profile"
+                                                aria-label="Open your profile from total points stats"
+                                                className="flex items-center gap-2 bg-white/90 border border-emerald-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                                            >
                                                 <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
                                                     <TrophyIcon className="text-secondary" size={14} />
                                                 </div>
@@ -783,7 +807,7 @@ export default async function DashboardPage() {
                                                     <span className="text-base font-bold text-text">{currentUser.points}</span>
                                                     <span className="text-[10px] font-semibold text-text-muted uppercase">pts</span>
                                                 </div>
-                                            </div>
+                                            </Link>
                                         )}
                                     </div>
                                 </div>
