@@ -11,3 +11,5 @@ export { default as CreateCalendarEventForm} from './CreateCalendarEventForm';
 export { default as UpcomingEventsList } from './UpcomingEventsList';
 export { default as ClearFeaturedButton } from './ClearFeaturedButton';
 export { default as GrammarGradebook } from './GrammarGradebook';
+export * from './ActivityCategoryPicker';
+export * from './ClassAnnouncement';
