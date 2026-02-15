@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
 const path = require('path');
-const { JSDOM } = require('jsdom');
+const { parse } = require('node-html-parser');
 
 const prisma = new PrismaClient();
 
@@ -11,19 +11,18 @@ async function importPresentPerfectGuide() {
         const htmlPath = path.join(__dirname, '../_legacy/activities/grammar/tenses/present-perfect-complete-guide.html');
         const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
         
-        const dom = new JSDOM(htmlContent);
-        const document = dom.window.document;
+        const root = parse(htmlContent);
 
         // Extract title
-        const title = document.querySelector('title')?.textContent.replace(' | ESOL Teacher Resources', '') || 'Present Perfect - Complete Guide';
+        const title = root.querySelector('title')?.textContent?.replace(' | ESOL Teacher Resources', '') || 'Present Perfect - Complete Guide';
 
         // Extract description
-        const metaDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || 
+        const metaDescription = root.querySelector('meta[name="description"]')?.getAttribute('content') || 
             'Complete step-by-step guide to Present Perfect tense with past participles, For/Since/Already/Yet/Just, and Past Simple comparison for intermediate learners.';
 
         // Extract sections
         const sections = [];
-        const stepSections = document.querySelectorAll('.step-section');
+        const stepSections = root.querySelectorAll('.step-section');
         
         stepSections.forEach((section, index) => {
             const stepNumber = section.querySelector('.step-number')?.textContent.trim() || (index + 1);

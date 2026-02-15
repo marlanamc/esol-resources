@@ -7,7 +7,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { JSDOM } from 'jsdom';
+import { parse } from 'node-html-parser';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -23,16 +23,15 @@ interface ActivityMetadata {
 
 function extractMetadata(htmlPath: string): ActivityMetadata {
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-    const dom = new JSDOM(htmlContent);
-    const document = dom.window.document;
+    const root = parse(htmlContent);
 
     // Extract metadata from meta tags
     const getMetaContent = (name: string): string => {
-        const meta = document.querySelector(`meta[name="${name}"]`);
+        const meta = root.querySelector(`meta[name="${name}"]`);
         return meta?.getAttribute('content') || '';
     };
 
-    const title = document.querySelector('title')?.textContent ||
+    const title = root.querySelector('title')?.textContent?.trim() ||
                   path.basename(htmlPath, '.html').replace(/-/g, ' ');
 
     const description = getMetaContent('description') ||

@@ -6,22 +6,21 @@
 
 const fs = require('fs');
 const path = require('path');
-const { JSDOM } = require('jsdom');
+const { parse } = require('node-html-parser');
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
 function extractMetadata(htmlPath) {
     const htmlContent = fs.readFileSync(htmlPath, 'utf-8');
-    const dom = new JSDOM(htmlContent);
-    const document = dom.window.document;
+    const root = parse(htmlContent);
 
     const getMetaContent = (name) => {
-        const meta = document.querySelector(`meta[name="${name}"]`);
+        const meta = root.querySelector(`meta[name="${name}"]`);
         return meta?.getAttribute('content') || '';
     };
 
-    const title = document.querySelector('title')?.textContent ||
+    const title = root.querySelector('title')?.textContent?.trim() ||
                   path.basename(htmlPath, '.html').replace(/-/g, ' ');
 
     const description = getMetaContent('description') ||

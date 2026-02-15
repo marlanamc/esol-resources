@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import { promises as fs } from "fs";
-import { JSDOM } from "jsdom";
+import { parse } from "node-html-parser";
 import type { LegacyGuideResponse } from "@/types/activity";
 
 const LEGACY_BASE = path.join(process.cwd(), "_legacy", "activities");
@@ -62,17 +62,16 @@ export async function GET(req: Request) {
 
     try {
         const htmlContent = await fs.readFile(resolvedPath, "utf-8");
-        const dom = new JSDOM(htmlContent);
-        const document = dom.window.document;
+        const root = parse(htmlContent);
 
-        const guideEl = document.querySelector(".grammar-guide");
-        const guideHtml = guideEl?.outerHTML || document.body.innerHTML;
-        const inlineStyles = Array.from(document.querySelectorAll("style"))
-            .map((style) => style.textContent || "")
+        const guideEl = root.querySelector(".grammar-guide");
+        const guideHtml = guideEl?.toString() ?? root.innerHTML;
+        const inlineStyles = root.querySelectorAll("style")
+            .map((style) => style.textContent?.trim() ?? "")
             .filter(Boolean);
-        const inlineScripts = Array.from(document.querySelectorAll("script"))
-            .filter((script) => !script.src)
-            .map((script) => script.textContent || "")
+        const inlineScripts = root.querySelectorAll("script")
+            .filter((script) => !script.getAttribute("src"))
+            .map((script) => script.textContent?.trim() ?? "")
             .filter(Boolean);
 
         // Load the base CSS variables from the legacy main.css
