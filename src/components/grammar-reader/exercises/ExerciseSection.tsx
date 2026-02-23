@@ -13,6 +13,7 @@ import {
     getExerciseAnswerExpectationMessage,
     getExerciseDefaultPlaceholder,
 } from "@/lib/exercise-answer-expectation";
+import { normalizeExerciseAnswer } from "@/lib/exercise-answer-normalization";
 
 export interface ExerciseCompletionInfo {
     exerciseId: string;
@@ -43,16 +44,6 @@ export function ExerciseSection({
     const answerExpectation = getExerciseAnswerExpectation(exercise);
     const answerExpectationMessage = getExerciseAnswerExpectationMessage(answerExpectation);
     const defaultTextPlaceholder = getExerciseDefaultPlaceholder(answerExpectation);
-
-    // Normalize answer: lowercase, trim, collapse spaces, strip trailing punctuation
-    // so "I have just eaten lunch" matches "I have just eaten lunch."
-    const normalizeAnswer = (answer: string) => {
-        return answer
-            .toLowerCase()
-            .trim()
-            .replace(/\s+/g, " ")
-            .replace(/[.!?]+$/, "");
-    };
 
     const parseSelection = (value: string): number[] => {
         if (!value) return [];
@@ -85,10 +76,10 @@ export function ExerciseSection({
                 return;
             }
 
-            const userAnswer = normalizeAnswer(answers[index] || "");
+            const userAnswer = normalizeExerciseAnswer(answers[index] || "");
 
             if (item.type === "word-scramble") {
-                const correctAnswer = normalizeAnswer(item.correctAnswer);
+                const correctAnswer = normalizeExerciseAnswer(item.correctAnswer);
                 newResults[index] = userAnswer === correctAnswer;
             } else if (item.type === "text" && item.acceptAnyAttempt) {
                 newResults[index] = userAnswer.length > 0;
@@ -106,7 +97,7 @@ export function ExerciseSection({
                 }
 
                 const normalizedExpected = expectedCandidates
-                    .map((a) => normalizeAnswer(a))
+                    .map((a) => normalizeExerciseAnswer(a))
                     .filter(Boolean);
 
                 newResults[index] =
