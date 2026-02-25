@@ -35,7 +35,7 @@ const VOICE_OPTIONS = {
 const VOICE_ID = VOICE_OPTIONS.rachel;
 
 // All verbs from ed-pronunciation-data.ts
-import { ED_VERBS } from '../src/lib/ed-pronunciation-data';
+import { ED_VERBS } from '../../src/lib/ed-pronunciation-data';
 
 // All verbs from ed-pronunciation-data.ts
 const VERBS = ED_VERBS.map(v => ({ base: v.base, past: v.past }));

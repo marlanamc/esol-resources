@@ -37,6 +37,98 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 The pattern BEFORE the verb tells you which form to use!</p>
         </div>
       `,
+      futureChoiceFlow: {
+        title: "🧭 Quick Decision Tree: Gerund or Infinitive?",
+        description: "Ask yourself: What comes BEFORE the verb?",
+        options: [
+          {
+            form: "going-to" as const,
+            trigger: "Is there a PREPOSITION? (in, at, for, about, of, to*)",
+            example: "I'm interested in <strong>learning</strong> Spanish.",
+            color: "green"
+          },
+          {
+            form: "present-continuous" as const,
+            trigger: "Is the verb the SUBJECT of the sentence?",
+            example: "<strong>Swimming</strong> is my favorite exercise.",
+            color: "cyan"
+          },
+          {
+            form: "will" as const,
+            trigger: "Is there an ADJECTIVE? (happy, ready, important)",
+            example: "I'm happy <strong>to help</strong> you.",
+            color: "violet"
+          },
+          {
+            form: "future-continuous" as const,
+            trigger: "Is there a NOUN? (ability, chance, time, decision)",
+            example: "I have the ability <strong>to speak</strong> three languages.",
+            color: "amber"
+          }
+        ]
+      },
+      usageMeanings: [
+        {
+          title: "💼 Job Interviews & Career",
+          description: "Talking about skills, experience, and professional goals",
+          examples: [
+            { sentence: "I <strong>enjoy working</strong> with customers.", explanation: "verb + gerund (enjoy)" },
+            { sentence: "I'm good <strong>at solving</strong> problems.", explanation: "adjective + preposition + gerund" },
+            { sentence: "I have the ability <strong>to work</strong> under pressure.", explanation: "noun + infinitive" },
+            { sentence: "I'm interested <strong>in learning</strong> new skills.", explanation: "adjective + preposition + gerund" }
+          ]
+        },
+        {
+          title: "🏥 Healthcare Settings",
+          description: "Discussing health habits, appointments, and instructions",
+          examples: [
+            { sentence: "I stopped <strong>smoking</strong> last year.", explanation: "stop + gerund = quit the habit" },
+            { sentence: "Remember <strong>to take</strong> your medication.", explanation: "remember + infinitive = don't forget" },
+            { sentence: "I'm afraid <strong>of getting</strong> a shot.", explanation: "adjective + preposition + gerund" },
+            { sentence: "It's important <strong>to exercise</strong> regularly.", explanation: "adjective + infinitive" }
+          ]
+        },
+        {
+          title: "🏠 Housing & Landlords",
+          description: "Talking about living situations and making plans",
+          examples: [
+            { sentence: "I'm tired <strong>of waiting</strong> for repairs.", explanation: "adjective + preposition + gerund" },
+            { sentence: "I plan <strong>to move</strong> next month.", explanation: "verb + infinitive (plan)" },
+            { sentence: "<strong>Finding</strong> a good apartment is challenging.", explanation: "gerund as subject" },
+            { sentence: "Thank you <strong>for fixing</strong> the sink.", explanation: "preposition + gerund" }
+          ]
+        },
+        {
+          title: "🏢 Workplace Communication",
+          description: "Professional requests, suggestions, and updates",
+          examples: [
+            { sentence: "I suggest <strong>taking</strong> a break.", explanation: "verb + gerund (suggest)" },
+            { sentence: "I finished <strong>writing</strong> the report.", explanation: "verb + gerund (finish)" },
+            { sentence: "I need <strong>to leave</strong> early today.", explanation: "verb + infinitive (need)" },
+            { sentence: "She offered <strong>to help</strong> with the project.", explanation: "verb + infinitive (offer)" }
+          ]
+        },
+        {
+          title: "🎨 Daily Life & Hobbies",
+          description: "Talking about interests, preferences, and activities",
+          examples: [
+            { sentence: "I enjoy <strong>cooking</strong> at home.", explanation: "verb + gerund (enjoy)" },
+            { sentence: "<strong>Swimming</strong> is my favorite exercise.", explanation: "gerund as subject" },
+            { sentence: "I would like <strong>to try</strong> yoga.", explanation: "verb + infinitive (would like)" },
+            { sentence: "Let's go <strong>shopping</strong> this weekend.", explanation: "go + gerund (activities)" }
+          ]
+        },
+        {
+          title: "📚 Education & Learning",
+          description: "Goals, progress, and educational experiences",
+          examples: [
+            { sentence: "I plan <strong>to study</strong> nursing.", explanation: "verb + infinitive (plan)" },
+            { sentence: "<strong>Learning</strong> English takes time.", explanation: "gerund as subject" },
+            { sentence: "I'm considering <strong>taking</strong> online classes.", explanation: "verb + gerund (consider)" },
+            { sentence: "I look forward <strong>to graduating</strong> next year.", explanation: "look forward to + gerund (to = preposition!)" }
+          ]
+        }
+      ]
     },
     {
       id: "definitions",
@@ -74,6 +166,20 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           <p><strong>💡 Key Point:</strong> Both gerunds and infinitives are verb forms used as nouns, but they follow different rules depending on what comes before them.</p>
         </div>
       `,
+      comparison: {
+        title: "⚡ Gerund vs Infinitive at a Glance",
+        leftLabel: "Gerund (-ING)",
+        rightLabel: "Infinitive (TO + verb)",
+        rows: [
+          { label: "Form", left: "verb + <strong>-ing</strong>", right: "<strong>to</strong> + base verb" },
+          { label: "After prepositions", left: "✅ <strong>ALWAYS</strong> used", right: "❌ Never used" },
+          { label: "As subject", left: "✅ Common & natural", right: "⚠️ Formal / old-fashioned" },
+          { label: "After adjective", left: "⚠️ Only with preposition<br/>(good <em>at</em> doing)", right: "✅ Common<br/>(happy <em>to</em> help)" },
+          { label: "After noun", left: "❌ Rare", right: "✅ Common<br/>(ability <em>to</em> speak)" },
+          { label: "After certain verbs", left: "enjoy, finish, avoid, suggest", right: "want, hope, plan, decide" },
+          { label: "Example", left: "<strong>Swimming</strong> is fun.", right: "I want <strong>to swim</strong>." }
+        ]
+      }
     },
     {
       id: "pattern-1",
@@ -184,6 +290,17 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           </ul>
         </div>
       `,
+      verbTable: {
+        title: "📋 Common Verbs + GERUND",
+        headers: ["Category", "Verbs", "Example"],
+        rows: [
+          ["😊 Enjoyment", "enjoy, like, love, prefer", "I <strong>enjoy reading</strong>."],
+          ["✅ Completion", "finish, keep, quit, stop", "I <strong>finished cleaning</strong>."],
+          ["🚫 Avoidance", "avoid, miss, risk", "I <strong>avoid eating</strong> sugar."],
+          ["🤔 Consideration", "consider, suggest, recommend", "I <strong>suggest taking</strong> the bus."],
+          ["🗣️ Admission", "admit, deny, mention", "He <strong>admitted stealing</strong> it."]
+        ]
+      },
       tipBox: {
         title: "💡 Remember",
         content: "These verbs ALWAYS take gerunds, never infinitives. ✅ I enjoy swimming. ❌ I enjoy to swim."
@@ -211,6 +328,49 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               label: "She loves ___ to music while she works.",
               options: ["listening", "to listen", "listen"],
               expectedAnswer: "listening"
+            }
+          ]
+        },
+        {
+          id: "pattern-2-word-select",
+          title: "Find the Gerund",
+          instructions: "Click on the gerund in each sentence.",
+          items: [
+            {
+              type: "word-select",
+              label: "Click on the gerund:",
+              selectWhat: "the gerund",
+              tokens: [
+                { text: "I", after: " " },
+                { text: "enjoy", after: " " },
+                { text: "reading", isTarget: true, after: " " },
+                { text: "mystery", after: " " },
+                { text: "novels", after: "." }
+              ]
+            },
+            {
+              type: "word-select",
+              label: "Click on the gerund:",
+              selectWhat: "the gerund",
+              tokens: [
+                { text: "She", after: " " },
+                { text: "keeps", after: " " },
+                { text: "practicing", isTarget: true, after: " " },
+                { text: "her", after: " " },
+                { text: "English", after: "." }
+              ]
+            },
+            {
+              type: "word-select",
+              label: "Click on the gerund:",
+              selectWhat: "the gerund",
+              tokens: [
+                { text: "I", after: " " },
+                { text: "recommend", after: " " },
+                { text: "visiting", isTarget: true, after: " " },
+                { text: "the", after: " " },
+                { text: "museum", after: "." }
+              ]
             }
           ]
         }
@@ -261,6 +421,20 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           </ul>
         </div>
       `,
+      verbTable: {
+        title: "📋 Common Preposition Patterns",
+        headers: ["Pattern", "Example"],
+        rows: [
+          ["interested <strong>in</strong>", "I'm interested in <strong>learning</strong> French."],
+          ["good/bad <strong>at</strong>", "She's good at <strong>solving</strong> puzzles."],
+          ["worried <strong>about</strong>", "I'm worried about <strong>failing</strong>."],
+          ["tired <strong>of</strong>", "I'm tired of <strong>waiting</strong>."],
+          ["thank you <strong>for</strong>", "Thank you for <strong>helping</strong> me."],
+          ["look forward <strong>to</strong> ⚠️", "I look forward to <strong>seeing</strong> you."],
+          ["be used <strong>to</strong> ⚠️", "I'm used to <strong>waking</strong> up early."],
+          ["instead <strong>of</strong>", "Let's walk instead of <strong>driving</strong>."]
+        ]
+      },
       tipBox: {
         title: "💡 Common Mistake Alert",
         content: "'to' can be BOTH an infinitive marker AND a preposition! As infinitive marker: I want to learn. As preposition: I look forward to learning. Other examples with 'to' as preposition: be used to, be accustomed to, object to"
@@ -288,6 +462,34 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               label: "I look forward to ___ you next week.",
               options: ["seeing", "to see", "see"],
               expectedAnswer: "seeing"
+            }
+          ]
+        },
+        {
+          id: "pattern-3-word-scramble",
+          title: "Build the Sentence",
+          instructions: "Put the words in the correct order.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Thank someone for their help:",
+              words: ["Thank", "you", "for", "helping", "me"],
+              correctAnswer: "Thank you for helping me",
+              hint: "Start with 'Thank you'"
+            },
+            {
+              type: "word-scramble",
+              label: "Express interest in learning:",
+              words: ["I'm", "interested", "in", "learning", "Spanish"],
+              correctAnswer: "I'm interested in learning Spanish",
+              hint: "Start with 'I'm interested'"
+            },
+            {
+              type: "word-scramble",
+              label: "Express anticipation:",
+              words: ["I", "look", "forward", "to", "seeing", "you"],
+              correctAnswer: "I look forward to seeing you",
+              hint: "'look forward to' is followed by -ing"
             }
           ]
         }
@@ -484,6 +686,28 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           </ul>
         </div>
       `,
+      verbTable: {
+        title: "📋 Common Verbs + INFINITIVE",
+        headers: ["Category", "Verbs", "Example"],
+        rows: [
+          ["🎯 Goals", "want, hope, expect, wish", "I <strong>want to visit</strong> Japan."],
+          ["📅 Plans", "plan, decide, choose, intend", "I <strong>decided to stay</strong>."],
+          ["📚 Learning", "learn, need, try (effort)", "I'm <strong>learning to cook</strong>."],
+          ["🤝 Offers", "offer, promise, agree, refuse", "She <strong>offered to help</strong>."]
+        ]
+      },
+      comparison: {
+        title: "⚡ Gerund Verbs vs Infinitive Verbs",
+        leftLabel: "Always + Gerund",
+        rightLabel: "Always + Infinitive",
+        rows: [
+          { label: "Enjoyment", left: "enjoy, like, love", right: "want, hope, wish" },
+          { label: "Completion", left: "finish, keep, quit", right: "plan, decide, choose" },
+          { label: "Other", left: "avoid, suggest, consider", right: "need, learn, agree" },
+          { label: "Common Error", left: "❌ I enjoy <em>to read</em>", right: "❌ I want <em>reading</em>" },
+          { label: "Correct Form", left: "✅ I enjoy <em>reading</em>", right: "✅ I want <em>to read</em>" }
+        ]
+      },
       tipBox: {
         title: "💡 Remember",
         content: "These verbs ALWAYS take infinitives, never gerunds. ✅ I want to travel. ❌ I want traveling."
@@ -511,6 +735,27 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               label: "I need ___ more English.",
               options: ["to practice", "practicing", "practice"],
               expectedAnswer: "to practice"
+            }
+          ]
+        },
+        {
+          id: "pattern-6-word-scramble",
+          title: "Build the Sentence",
+          instructions: "Put the words in the correct order.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "Express a goal:",
+              words: ["I", "want", "to", "learn", "Spanish"],
+              correctAnswer: "I want to learn Spanish",
+              hint: "want + to + verb"
+            },
+            {
+              type: "word-scramble",
+              label: "Make a plan:",
+              words: ["She", "decided", "to", "move", "to", "Boston"],
+              correctAnswer: "She decided to move to Boston",
+              hint: "decide + to + verb"
             }
           ]
         }
@@ -548,6 +793,67 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           <p>Example: I'm trying <strong>to learn</strong> Spanish. (I'm making an effort)</p>
         </div>
       `,
+      timeline: {
+        title: "⏰ Remember: Past Memory vs Future Duty",
+        description: "The direction of time changes the meaning!",
+        events: [
+          { label: "I remember meeting you at the party.", order: 1, tenseLabel: "PAST (memory)" },
+          { label: "NOW", order: 2, tenseLabel: "Present moment" },
+          { label: "Remember to call your mother tonight.", order: 3, tenseLabel: "FUTURE (duty)" }
+        ]
+      },
+      usageMeanings: [
+        {
+          title: "🛑 STOP + Gerund = Quit the Activity",
+          description: "The activity ends permanently or temporarily",
+          examples: [
+            { sentence: "I stopped <strong>smoking</strong>.", explanation: "I quit the habit of smoking." },
+            { sentence: "He stopped <strong>eating</strong> junk food.", explanation: "He quit eating junk food." },
+            { sentence: "She stopped <strong>watching</strong> TV late at night.", explanation: "She quit that habit." }
+          ]
+        },
+        {
+          title: "⏸️ STOP + Infinitive = Pause to Do Something",
+          description: "You pause one activity to start another",
+          examples: [
+            { sentence: "I stopped <strong>to buy</strong> coffee.", explanation: "I was walking, paused, bought coffee." },
+            { sentence: "She stopped <strong>to answer</strong> the phone.", explanation: "She paused her work to answer." },
+            { sentence: "We stopped <strong>to take</strong> a photo.", explanation: "We paused our walk to take a photo." }
+          ]
+        },
+        {
+          title: "🧠 REMEMBER + Gerund = Past Memory",
+          description: "You recall something that already happened",
+          examples: [
+            { sentence: "I remember <strong>meeting</strong> you.", explanation: "I have a memory of when we met." },
+            { sentence: "She remembers <strong>visiting</strong> Paris.", explanation: "She has a memory of visiting Paris." }
+          ]
+        },
+        {
+          title: "📝 REMEMBER + Infinitive = Future Duty",
+          description: "Don't forget to do something (it hasn't happened yet)",
+          examples: [
+            { sentence: "Remember <strong>to call</strong> your mother.", explanation: "Don't forget! (future action)" },
+            { sentence: "Remember <strong>to take</strong> your keys.", explanation: "Don't forget! (before leaving)" }
+          ]
+        },
+        {
+          title: "🔬 TRY + Gerund = Experiment",
+          description: "Test something to see if it works",
+          examples: [
+            { sentence: "Try <strong>drinking</strong> water.", explanation: "Let's see if water helps." },
+            { sentence: "Try <strong>restarting</strong> the computer.", explanation: "Let's see if restarting fixes it." }
+          ]
+        },
+        {
+          title: "💪 TRY + Infinitive = Make an Effort",
+          description: "Attempt something difficult",
+          examples: [
+            { sentence: "I'm trying <strong>to learn</strong> Spanish.", explanation: "I'm making an effort to learn." },
+            { sentence: "He tried <strong>to open</strong> the door.", explanation: "He attempted to open it (maybe it was hard)." }
+          ]
+        }
+      ],
       tipBox: {
         title: "💡 Quick Test",
         content: "Is it about the PAST (gerund) or FUTURE (infinitive)? 'I remember seeing you' (past memory) vs 'Remember to call' (future action)"

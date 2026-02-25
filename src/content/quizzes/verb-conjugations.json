@@ -1,0 +1,802 @@
+{
+  "Week 16": {
+    "due_date": "2026-01-06",
+    "verbs": {
+      "be": {
+        "v1": "be (am/are)",
+        "v1_3rd": "is",
+        "v1_ing": "being",
+        "v2": "was/were",
+        "v3": "been"
+      },
+      "have": {
+        "v1": "have",
+        "v1_3rd": "has",
+        "v1_ing": "having",
+        "v2": "had",
+        "v3": "had"
+      },
+      "do": {
+        "v1": "do",
+        "v1_3rd": "does",
+        "v1_ing": "doing",
+        "v2": "did",
+        "v3": "done"
+      },
+      "make": {
+        "v1": "make",
+        "v1_3rd": "makes",
+        "v1_ing": "making",
+        "v2": "made",
+        "v3": "made"
+      },
+      "go": {
+        "v1": "go",
+        "v1_3rd": "goes",
+        "v1_ing": "going",
+        "v2": "went",
+        "v3": "gone"
+      }
+    }
+  },
+  "Week 17": {
+    "due_date": "2026-01-13",
+    "verbs": {
+      "come": {
+        "v1": "come",
+        "v1_3rd": "comes",
+        "v1_ing": "coming",
+        "v2": "came",
+        "v3": "come"
+      },
+      "find": {
+        "v1": "find",
+        "v1_3rd": "finds",
+        "v1_ing": "finding",
+        "v2": "found",
+        "v3": "found"
+      },
+      "buy": {
+        "v1": "buy",
+        "v1_3rd": "buys",
+        "v1_ing": "buying",
+        "v2": "bought",
+        "v3": "bought"
+      },
+      "keep": {
+        "v1": "keep",
+        "v1_3rd": "keeps",
+        "v1_ing": "keeping",
+        "v2": "kept",
+        "v3": "kept"
+      },
+      "build": {
+        "v1": "build",
+        "v1_3rd": "builds",
+        "v1_ing": "building",
+        "v2": "built",
+        "v3": "built"
+      }
+    }
+  },
+  "Week 18": {
+    "due_date": "2026-01-20",
+    "verbs": {
+      "pay": {
+        "v1": "pay",
+        "v1_3rd": "pays",
+        "v1_ing": "paying",
+        "v2": "paid",
+        "v3": "paid"
+      },
+      "hold": {
+        "v1": "hold",
+        "v1_3rd": "holds",
+        "v1_ing": "holding",
+        "v2": "held",
+        "v3": "held"
+      },
+      "break": {
+        "v1": "break",
+        "v1_3rd": "breaks",
+        "v1_ing": "breaking",
+        "v2": "broke",
+        "v3": "broken"
+      },
+      "leave": {
+        "v1": "leave",
+        "v1_3rd": "leaves",
+        "v1_ing": "leaving",
+        "v2": "left",
+        "v3": "left"
+      },
+      "sell": {
+        "v1": "sell",
+        "v1_3rd": "sells",
+        "v1_ing": "selling",
+        "v2": "sold",
+        "v3": "sold"
+      }
+    }
+  },
+  "Week 19": {
+    "due_date": "2026-01-27",
+    "verbs": {
+      "burst": {
+        "v1": "burst",
+        "v1_3rd": "bursts",
+        "v1_ing": "bursting",
+        "v2": "burst",
+        "v3": "burst"
+      },
+      "freeze": {
+        "v1": "freeze",
+        "v1_3rd": "freezes",
+        "v1_ing": "freezing",
+        "v2": "froze",
+        "v3": "frozen"
+      },
+      "leak": {
+        "v1": "leak",
+        "v1_3rd": "leaks",
+        "v1_ing": "leaking",
+        "v2": "leaked",
+        "v3": "leaked"
+      },
+      "call": {
+        "v1": "call",
+        "v1_3rd": "calls",
+        "v1_ing": "calling",
+        "v2": "called",
+        "v3": "called"
+      },
+      "fix": {
+        "v1": "fix",
+        "v1_3rd": "fixes",
+        "v1_ing": "fixing",
+        "v2": "fixed",
+        "v3": "fixed"
+      }
+    }
+  },
+  "Week 20": {
+    "due_date": "2026-02-03",
+    "verbs": {
+      "sleep": {
+        "v1": "sleep",
+        "v1_3rd": "sleeps",
+        "v1_ing": "sleeping",
+        "v2": "slept",
+        "v3": "slept"
+      },
+      "wake": {
+        "v1": "wake",
+        "v1_3rd": "wakes",
+        "v1_ing": "waking",
+        "v2": "woke",
+        "v3": "woken"
+      },
+      "eat": {
+        "v1": "eat",
+        "v1_3rd": "eats",
+        "v1_ing": "eating",
+        "v2": "ate",
+        "v3": "eaten"
+      },
+      "drink": {
+        "v1": "drink",
+        "v1_3rd": "drinks",
+        "v1_ing": "drinking",
+        "v2": "drank",
+        "v3": "drunk"
+      },
+      "sit": {
+        "v1": "sit",
+        "v1_3rd": "sits",
+        "v1_ing": "sitting",
+        "v2": "sat",
+        "v3": "sat"
+      }
+    }
+  },
+  "Week 21": {
+    "due_date": "2026-02-10",
+    "verbs": {
+      "spend": {
+        "v1": "spend",
+        "v1_3rd": "spends",
+        "v1_ing": "spending",
+        "v2": "spent",
+        "v3": "spent"
+      },
+      "cost": {
+        "v1": "cost",
+        "v1_3rd": "costs",
+        "v1_ing": "costing",
+        "v2": "cost",
+        "v3": "cost"
+      },
+      "lend": {
+        "v1": "lend",
+        "v1_3rd": "lends",
+        "v1_ing": "lending",
+        "v2": "lent",
+        "v3": "lent"
+      },
+      "give": {
+        "v1": "give",
+        "v1_3rd": "gives",
+        "v1_ing": "giving",
+        "v2": "gave",
+        "v3": "given"
+      },
+      "send": {
+        "v1": "send",
+        "v1_3rd": "sends",
+        "v1_ing": "sending",
+        "v2": "sent",
+        "v3": "sent"
+      }
+    }
+  },
+  "Week 22": {
+    "due_date": "2026-02-17",
+    "verbs": {
+      "write": {
+        "v1": "write",
+        "v1_3rd": "writes",
+        "v1_ing": "writing",
+        "v2": "wrote",
+        "v3": "written"
+      },
+      "submit": {
+        "v1": "submit",
+        "v1_3rd": "submits",
+        "v1_ing": "submitting",
+        "v2": "submitted",
+        "v3": "submitted"
+      },
+      "work": {
+        "v1": "work",
+        "v1_3rd": "works",
+        "v1_ing": "working",
+        "v2": "worked",
+        "v3": "worked"
+      },
+      "apply": {
+        "v1": "apply",
+        "v1_3rd": "applies",
+        "v1_ing": "applying",
+        "v2": "applied",
+        "v3": "applied"
+      },
+      "meet": {
+        "v1": "meet",
+        "v1_3rd": "meets",
+        "v1_ing": "meeting",
+        "v2": "met",
+        "v3": "met"
+      }
+    }
+  },
+  "Week 23": {
+    "due_date": "2026-03-03",
+    "verbs": {
+      "speak": {
+        "v1": "speak",
+        "v1_3rd": "speaks",
+        "v1_ing": "speaking",
+        "v2": "spoke",
+        "v3": "spoken"
+      },
+      "tell": {
+        "v1": "tell",
+        "v1_3rd": "tells",
+        "v1_ing": "telling",
+        "v2": "told",
+        "v3": "told"
+      },
+      "say": {
+        "v1": "say",
+        "v1_3rd": "says",
+        "v1_ing": "saying",
+        "v2": "said",
+        "v3": "said"
+      },
+      "hear": {
+        "v1": "hear",
+        "v1_3rd": "hears",
+        "v1_ing": "hearing",
+        "v2": "heard",
+        "v3": "heard"
+      },
+      "understand": {
+        "v1": "understand",
+        "v1_3rd": "understands",
+        "v1_ing": "understanding",
+        "v2": "understood",
+        "v3": "understood"
+      }
+    }
+  },
+  "Week 24": {
+    "due_date": "2026-03-10",
+    "verbs": {
+      "forward": {
+        "v1": "forward",
+        "v1_3rd": "forwards",
+        "v1_ing": "forwarding",
+        "v2": "forwarded",
+        "v3": "forwarded"
+      },
+      "respond": {
+        "v1": "respond",
+        "v1_3rd": "responds",
+        "v1_ing": "responding",
+        "v2": "responded",
+        "v3": "responded"
+      },
+      "reply": {
+        "v1": "reply",
+        "v1_3rd": "replies",
+        "v1_ing": "replying",
+        "v2": "replied",
+        "v3": "replied"
+      },
+      "schedule": {
+        "v1": "schedule",
+        "v1_3rd": "schedules",
+        "v1_ing": "scheduling",
+        "v2": "scheduled",
+        "v3": "scheduled"
+      },
+      "confirm": {
+        "v1": "confirm",
+        "v1_3rd": "confirms",
+        "v1_ing": "confirming",
+        "v2": "confirmed",
+        "v3": "confirmed"
+      }
+    }
+  },
+  "Week 25": {
+    "due_date": "2026-03-17",
+    "verbs": {
+      "stand": {
+        "v1": "stand",
+        "v1_3rd": "stands",
+        "v1_ing": "standing",
+        "v2": "stood",
+        "v3": "stood"
+      },
+      "choose": {
+        "v1": "choose",
+        "v1_3rd": "chooses",
+        "v1_ing": "choosing",
+        "v2": "chose",
+        "v3": "chosen"
+      },
+      "report": {
+        "v1": "report",
+        "v1_3rd": "reports",
+        "v1_ing": "reporting",
+        "v2": "reported",
+        "v3": "reported"
+      },
+      "document": {
+        "v1": "document",
+        "v1_3rd": "documents",
+        "v1_ing": "documenting",
+        "v2": "documented",
+        "v3": "documented"
+      },
+      "contact": {
+        "v1": "contact",
+        "v1_3rd": "contacts",
+        "v1_ing": "contacting",
+        "v2": "contacted",
+        "v3": "contacted"
+      }
+    }
+  },
+  "Week 26": {
+    "due_date": "2026-03-24",
+    "verbs": {
+      "chat": {
+        "v1": "chat",
+        "v1_3rd": "chats",
+        "v1_ing": "chatting",
+        "v2": "chatted",
+        "v3": "chatted"
+      },
+      "discuss": {
+        "v1": "discuss",
+        "v1_3rd": "discusses",
+        "v1_ing": "discussing",
+        "v2": "discussed",
+        "v3": "discussed"
+      },
+      "mention": {
+        "v1": "mention",
+        "v1_3rd": "mentions",
+        "v1_ing": "mentioning",
+        "v2": "mentioned",
+        "v3": "mentioned"
+      },
+      "ask": {
+        "v1": "ask",
+        "v1_3rd": "asks",
+        "v1_ing": "asking",
+        "v2": "asked",
+        "v3": "asked"
+      },
+      "talk": {
+        "v1": "talk",
+        "v1_3rd": "talks",
+        "v1_ing": "talking",
+        "v2": "talked",
+        "v3": "talked"
+      }
+    }
+  },
+  "Week 27": {
+    "due_date": "2026-03-31",
+    "verbs": {
+      "resolve": {
+        "v1": "resolve",
+        "v1_3rd": "resolves",
+        "v1_ing": "resolving",
+        "v2": "resolved",
+        "v3": "resolved"
+      },
+      "address": {
+        "v1": "address",
+        "v1_3rd": "addresses",
+        "v1_ing": "addressing",
+        "v2": "addressed",
+        "v3": "addressed"
+      },
+      "solve": {
+        "v1": "solve",
+        "v1_3rd": "solves",
+        "v1_ing": "solving",
+        "v2": "solved",
+        "v3": "solved"
+      },
+      "handle": {
+        "v1": "handle",
+        "v1_3rd": "handles",
+        "v1_ing": "handling",
+        "v2": "handled",
+        "v3": "handled"
+      },
+      "suggest": {
+        "v1": "suggest",
+        "v1_3rd": "suggests",
+        "v1_ing": "suggesting",
+        "v2": "suggested",
+        "v3": "suggested"
+      }
+    }
+  },
+  "Week 28": {
+    "due_date": "2026-04-07",
+    "verbs": {
+      "drive": {
+        "v1": "drive",
+        "v1_3rd": "drives",
+        "v1_ing": "driving",
+        "v2": "drove",
+        "v3": "driven"
+      },
+      "ride": {
+        "v1": "ride",
+        "v1_3rd": "rides",
+        "v1_ing": "riding",
+        "v2": "rode",
+        "v3": "ridden"
+      },
+      "run": {
+        "v1": "run",
+        "v1_3rd": "runs",
+        "v1_ing": "running",
+        "v2": "ran",
+        "v3": "run"
+      },
+      "fly": {
+        "v1": "fly",
+        "v1_3rd": "flies",
+        "v1_ing": "flying",
+        "v2": "flew",
+        "v3": "flown"
+      },
+      "wear": {
+        "v1": "wear",
+        "v1_3rd": "wears",
+        "v1_ing": "wearing",
+        "v2": "wore",
+        "v3": "worn"
+      }
+    }
+  },
+  "Week 29": {
+    "due_date": "2026-04-21",
+    "verbs": {
+      "feel": {
+        "v1": "feel",
+        "v1_3rd": "feels",
+        "v1_ing": "feeling",
+        "v2": "felt",
+        "v3": "felt"
+      },
+      "hurt": {
+        "v1": "hurt",
+        "v1_3rd": "hurts",
+        "v1_ing": "hurting",
+        "v2": "hurt",
+        "v3": "hurt"
+      },
+      "see": {
+        "v1": "see",
+        "v1_3rd": "sees",
+        "v1_ing": "seeing",
+        "v2": "saw",
+        "v3": "seen"
+      },
+      "examine": {
+        "v1": "examine",
+        "v1_3rd": "examines",
+        "v1_ing": "examining",
+        "v2": "examined",
+        "v3": "examined"
+      },
+      "prescribe": {
+        "v1": "prescribe",
+        "v1_3rd": "prescribes",
+        "v1_ing": "prescribing",
+        "v2": "prescribed",
+        "v3": "prescribed"
+      }
+    }
+  },
+  "Week 30": {
+    "due_date": "2026-04-28",
+    "verbs": {
+      "take": {
+        "v1": "take",
+        "v1_3rd": "takes",
+        "v1_ing": "taking",
+        "v2": "took",
+        "v3": "taken"
+      },
+      "swallow": {
+        "v1": "swallow",
+        "v1_3rd": "swallows",
+        "v1_ing": "swallowing",
+        "v2": "swallowed",
+        "v3": "swallowed"
+      },
+      "use": {
+        "v1": "use",
+        "v1_3rd": "uses",
+        "v1_ing": "using",
+        "v2": "used",
+        "v3": "used"
+      },
+      "store": {
+        "v1": "store",
+        "v1_3rd": "stores",
+        "v1_ing": "storing",
+        "v2": "stored",
+        "v3": "stored"
+      },
+      "refill": {
+        "v1": "refill",
+        "v1_3rd": "refills",
+        "v1_ing": "refilling",
+        "v2": "refilled",
+        "v3": "refilled"
+      }
+    }
+  },
+  "Week 31": {
+    "due_date": "2026-05-05",
+    "verbs": {
+      "book": {
+        "v1": "book",
+        "v1_3rd": "books",
+        "v1_ing": "booking",
+        "v2": "booked",
+        "v3": "booked"
+      },
+      "cancel": {
+        "v1": "cancel",
+        "v1_3rd": "cancels",
+        "v1_ing": "canceling",
+        "v2": "canceled",
+        "v3": "canceled"
+      },
+      "reschedule": {
+        "v1": "reschedule",
+        "v1_3rd": "reschedules",
+        "v1_ing": "rescheduling",
+        "v2": "rescheduled",
+        "v3": "rescheduled"
+      },
+      "register": {
+        "v1": "register",
+        "v1_3rd": "registers",
+        "v1_ing": "registering",
+        "v2": "registered",
+        "v3": "registered"
+      },
+      "update": {
+        "v1": "update",
+        "v1_3rd": "updates",
+        "v1_ing": "updating",
+        "v2": "updated",
+        "v3": "updated"
+      }
+    }
+  },
+  "Week 32": {
+    "due_date": "2026-05-12",
+    "verbs": {
+      "prepare": {
+        "v1": "prepare",
+        "v1_3rd": "prepares",
+        "v1_ing": "preparing",
+        "v2": "prepared",
+        "v3": "prepared"
+      },
+      "plan": {
+        "v1": "plan",
+        "v1_3rd": "plans",
+        "v1_ing": "planning",
+        "v2": "planned",
+        "v3": "planned"
+      },
+      "cook": {
+        "v1": "cook",
+        "v1_3rd": "cooks",
+        "v1_ing": "cooking",
+        "v2": "cooked",
+        "v3": "cooked"
+      },
+      "avoid": {
+        "v1": "avoid",
+        "v1_3rd": "avoids",
+        "v1_ing": "avoiding",
+        "v2": "avoided",
+        "v3": "avoided"
+      },
+      "consume": {
+        "v1": "consume",
+        "v1_3rd": "consumes",
+        "v1_ing": "consuming",
+        "v2": "consumed",
+        "v3": "consumed"
+      }
+    }
+  },
+  "Week 33": {
+    "due_date": "2026-05-19",
+    "verbs": {
+      "mix": {
+        "v1": "mix",
+        "v1_3rd": "mixes",
+        "v1_ing": "mixing",
+        "v2": "mixed",
+        "v3": "mixed"
+      },
+      "heat": {
+        "v1": "heat",
+        "v1_3rd": "heats",
+        "v1_ing": "heating",
+        "v2": "heated",
+        "v3": "heated"
+      },
+      "rest": {
+        "v1": "rest",
+        "v1_3rd": "rests",
+        "v1_ing": "resting",
+        "v2": "rested",
+        "v3": "rested"
+      },
+      "apply": {
+        "v1": "apply",
+        "v1_3rd": "applies",
+        "v1_ing": "applying",
+        "v2": "applied",
+        "v3": "applied"
+      },
+      "try": {
+        "v1": "try",
+        "v1_3rd": "tries",
+        "v1_ing": "trying",
+        "v2": "tried",
+        "v3": "tried"
+      }
+    }
+  },
+  "Week 34": {
+    "due_date": "2026-05-26",
+    "verbs": {
+      "stretch": {
+        "v1": "stretch",
+        "v1_3rd": "stretches",
+        "v1_ing": "stretching",
+        "v2": "stretched",
+        "v3": "stretched"
+      },
+      "breathe": {
+        "v1": "breathe",
+        "v1_3rd": "breathes",
+        "v1_ing": "breathing",
+        "v2": "breathed",
+        "v3": "breathed"
+      },
+      "exercise": {
+        "v1": "exercise",
+        "v1_3rd": "exercises",
+        "v1_ing": "exercising",
+        "v2": "exercised",
+        "v3": "exercised"
+      },
+      "practice": {
+        "v1": "practice",
+        "v1_3rd": "practices",
+        "v1_ing": "practicing",
+        "v2": "practiced",
+        "v3": "practiced"
+      },
+      "improve": {
+        "v1": "improve",
+        "v1_3rd": "improves",
+        "v1_ing": "improving",
+        "v2": "improved",
+        "v3": "improved"
+      }
+    }
+  },
+  "Week 35": {
+    "due_date": "2026-06-02",
+    "verbs": {
+      "teach": {
+        "v1": "teach",
+        "v1_3rd": "teaches",
+        "v1_ing": "teaching",
+        "v2": "taught",
+        "v3": "taught"
+      },
+      "learn": {
+        "v1": "learn",
+        "v1_3rd": "learns",
+        "v1_ing": "learning",
+        "v2": "learned",
+        "v3": "learned"
+      },
+      "grow": {
+        "v1": "grow",
+        "v1_3rd": "grows",
+        "v1_ing": "growing",
+        "v2": "grew",
+        "v3": "grown"
+      },
+      "achieve": {
+        "v1": "achieve",
+        "v1_3rd": "achieves",
+        "v1_ing": "achieving",
+        "v2": "achieved",
+        "v3": "achieved"
+      },
+      "succeed": {
+        "v1": "succeed",
+        "v1_3rd": "succeeds",
+        "v1_ing": "succeeding",
+        "v2": "succeeded",
+        "v3": "succeeded"
+      }
+    }
+  }
+}
