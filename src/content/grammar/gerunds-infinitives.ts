@@ -43,36 +43,6 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💡 The pattern BEFORE the verb tells you which form to use!</p>
         </div>
       `,
-      futureChoiceFlow: {
-        title: "🧭 Quick Decision Tree: Gerund or Infinitive?",
-        description: "Ask yourself: What comes BEFORE the verb?",
-        options: [
-          {
-            form: "going-to" as const,
-            trigger: "Is there a PREPOSITION? (in, at, for, about, of, to*)",
-            example: "I'm interested in <strong>learning</strong> Spanish.",
-            color: "green"
-          },
-          {
-            form: "present-continuous" as const,
-            trigger: "Is the verb the SUBJECT of the sentence?",
-            example: "<strong>Swimming</strong> is my favorite exercise.",
-            color: "cyan"
-          },
-          {
-            form: "will" as const,
-            trigger: "Is there an ADJECTIVE? (happy, ready, important)",
-            example: "I'm happy <strong>to help</strong> you.",
-            color: "violet"
-          },
-          {
-            form: "future-continuous" as const,
-            trigger: "Is there a NOUN? (ability, chance, time, decision)",
-            example: "I have the ability <strong>to speak</strong> three languages.",
-            color: "amber"
-          }
-        ]
-      },
       exercises: [
         {
           id: "intro-exercise",
@@ -96,6 +66,86 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               label: "I'm happy ___ you. (adjective before verb)",
               options: ["to help", "helping", "help"],
               expectedAnswer: "to help"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "decision-tree",
+      title: "Quick Decision Tree",
+      icon: "🧭",
+      explanation: `
+        <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Ask yourself: <strong>What comes BEFORE the verb?</strong></p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: linear-gradient(135deg, rgba(217, 119, 87, 0.15) 0%, rgba(217, 119, 87, 0.05) 100%); border-left: 4px solid #d97757; border-radius: 0.5rem; padding: 1rem;">
+            <h4 style="color: #d97757; margin: 0 0 0.75rem 0; font-size: 1rem;">Use <span style="background: #d97757; color: white; padding: 0.15rem 0.4rem; border-radius: 0.25rem;">GERUND (-ING)</span></h4>
+            <div style="margin-bottom: 0.75rem;">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Preposition before verb?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"I'm interested in <strong>learning</strong> Spanish."</p>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Verb is the subject?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"<strong>Swimming</strong> is my favorite exercise."</p>
+            </div>
+            <div>
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">After certain verbs?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">enjoy, finish, avoid, consider, suggest</p>
+            </div>
+          </div>
+
+          <div style="background: linear-gradient(135deg, rgba(3, 105, 161, 0.15) 0%, rgba(3, 105, 161, 0.05) 100%); border-left: 4px solid #0369a1; border-radius: 0.5rem; padding: 1rem;">
+            <h4 style="color: #0369a1; margin: 0 0 0.75rem 0; font-size: 1rem;">Use <span style="background: #0369a1; color: white; padding: 0.15rem 0.4rem; border-radius: 0.25rem;">INFINITIVE (TO)</span></h4>
+            <div style="margin-bottom: 0.75rem;">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Adjective before verb?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"I'm happy <strong>to help</strong> you."</p>
+            </div>
+            <div style="margin-bottom: 0.75rem;">
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">Noun before verb?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">"I have the ability <strong>to speak</strong> three languages."</p>
+            </div>
+            <div>
+              <p style="margin: 0 0 0.25rem 0; font-weight: 600; font-size: 0.9rem;">After certain verbs?</p>
+              <p style="margin: 0; color: #666; font-size: 0.85rem; font-style: italic;">want, need, plan, decide, hope, offer</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(244, 211, 94, 0.2); border: 1px solid #f4d35e; border-radius: 0.5rem; padding: 1rem; text-align: center;">
+          <p style="margin: 0; font-weight: 600; color: #b8860b;">⚠️ Watch out for "TO" as a preposition!</p>
+          <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem;">"I look forward <strong>to meeting</strong> you" → "to" is a preposition here, so use gerund!</p>
+        </div>
+      `,
+      exercises: [
+        {
+          id: "decision-tree-exercise",
+          title: "Practice: Use the Decision Tree",
+          instructions: "Look at what comes BEFORE the blank and choose the correct form.",
+          items: [
+            {
+              type: "select",
+              label: "She's good at ___ languages. (preposition 'at' before verb)",
+              options: ["learning", "to learn", "learn"],
+              expectedAnswer: "learning"
+            },
+            {
+              type: "select",
+              label: "It's important ___ on time. (adjective 'important' before verb)",
+              options: ["to arrive", "arriving", "arrive"],
+              expectedAnswer: "to arrive"
+            },
+            {
+              type: "select",
+              label: "___ is relaxing. (verb is the subject)",
+              options: ["Reading", "To read", "Read"],
+              expectedAnswer: "Reading"
+            },
+            {
+              type: "select",
+              label: "I look forward to ___ you. ('to' is a preposition here!)",
+              options: ["meeting", "meet", "to meet"],
+              expectedAnswer: "meeting"
             }
           ]
         }
