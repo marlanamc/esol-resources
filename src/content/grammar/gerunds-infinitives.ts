@@ -15,15 +15,21 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         </div>
 
         <p><strong>What You'll Learn:</strong></p>
-        <ul>
-          <li><strong>Pattern 1:</strong> Subject = Gerund → "Swimming is fun"</li>
-          <li><strong>Pattern 2:</strong> Verb + Gerund → "I enjoy reading"</li>
-          <li><strong>Pattern 3:</strong> Preposition + Gerund → "I'm interested in learning Spanish"</li>
-          <li><strong>Pattern 4:</strong> Adjective + Infinitive → "I'm happy to help"</li>
-          <li><strong>Pattern 5:</strong> Noun + Infinitive → "The ability to speak three languages"</li>
-          <li><strong>Pattern 6:</strong> Verb + Infinitive → "I want to travel"</li>
-          <li><strong>Special Cases:</strong> Verbs that take BOTH (stop, remember, try) with meaning changes</li>
-        </ul>
+        <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.95rem;">
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(217, 119, 87, 0.08);"><strong style="color: #d97757;">Gerund as Subject</strong><br/><span style="color: #666;">"Swimming is fun"</span></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(217, 119, 87, 0.08);"><strong style="color: #d97757;">Verb + Gerund</strong><br/><span style="color: #666;">"I enjoy reading"</span></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(217, 119, 87, 0.08);"><strong style="color: #d97757;">Preposition + Gerund</strong><br/><span style="color: #666;">"interested in learning"</span></td>
+          </tr>
+          <tr>
+            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(3, 105, 161, 0.08);"><strong style="color: #0369a1;">Adjective + Infinitive</strong><br/><span style="color: #666;">"happy to help"</span></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(3, 105, 161, 0.08);"><strong style="color: #0369a1;">Noun + Infinitive</strong><br/><span style="color: #666;">"ability to speak"</span></td>
+            <td style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(3, 105, 161, 0.08);"><strong style="color: #0369a1;">Verb + Infinitive</strong><br/><span style="color: #666;">"I want to travel"</span></td>
+          </tr>
+          <tr>
+            <td colspan="3" style="padding: 0.75rem; border: 1px solid #e5e5e5; background: rgba(244, 211, 94, 0.15); text-align: center;"><strong style="color: #b8860b;">Special Cases:</strong> Verbs that take BOTH (stop, remember, try) with meaning changes</td>
+          </tr>
+        </table>
 
         <div style="background: rgba(3, 105, 161, 0.1); border-left: 4px solid #0369a1; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
           <h3 style="color: #0369a1; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
