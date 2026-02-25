@@ -69,7 +69,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
     phase: 'menu',
     contrast: 'mixed',
     difficulty: 'mixed',
-    roundSize: 12,
+    roundSize: 10,
     questions: [],
     currentIndex: 0,
     score: 0,
@@ -347,28 +347,6 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                     );
                   })()
                 ))}
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest px-1">Round Size</h3>
-              <div className="flex flex-wrap gap-2">
-                {ROUND_OPTIONS.map((size) => {
-                  const isSelected = state.roundSize === size;
-                  return (
-                    <button
-                      key={size}
-                      onClick={() => setState((prev) => ({ ...prev, roundSize: size }))}
-                      className={`px-4 py-3 sm:py-2 rounded-xl font-bold transition-all border text-sm sm:text-base ${
-                        isSelected
-                          ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white border-cyan-700 shadow-lg ring-2 ring-cyan-200 -translate-y-0.5'
-                          : 'bg-white text-neutral-700 border-neutral-200 hover:border-cyan-300 hover:bg-cyan-50'
-                      }`}
-                    >
-                      {size} words
-                    </button>
-                  );
-                })}
               </div>
             </div>
 
