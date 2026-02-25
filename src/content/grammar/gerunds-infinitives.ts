@@ -896,52 +896,364 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ]
     },
     {
+      id: "verbs-both",
+      stepNumber: 9,
+      title: "Verbs That Take BOTH (Same Meaning)",
+      icon: "🔀",
+      explanation: `
+        <p>Some verbs can be followed by <strong>either</strong> a gerund OR an infinitive with <strong>no change in meaning</strong>!</p>
+
+        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin: 1.5rem 0;">
+          <h3 style="margin-top: 0; color: #8b5cf6;">✨ Good News!</h3>
+          <p style="margin-bottom: 0;">These verbs are <strong>flexible</strong> – you can use gerund OR infinitive and the meaning stays the same.</p>
+        </div>
+
+        <h3>Verbs with No Meaning Difference</h3>
+        <div style="background-color: rgba(139, 92, 246, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.2);">
+          <ul>
+            <li><strong>begin:</strong> It began <strong>raining</strong>. = It began <strong>to rain</strong>.</li>
+            <li><strong>start:</strong> I started <strong>working</strong>. = I started <strong>to work</strong>.</li>
+            <li><strong>continue:</strong> She continued <strong>studying</strong>. = She continued <strong>to study</strong>.</li>
+            <li><strong>hate:</strong> I hate <strong>waiting</strong>. = I hate <strong>to wait</strong>.</li>
+            <li><strong>like:</strong> I like <strong>swimming</strong>. = I like <strong>to swim</strong>.</li>
+            <li><strong>love:</strong> She loves <strong>dancing</strong>. = She loves <strong>to dance</strong>.</li>
+            <li><strong>prefer:</strong> I prefer <strong>walking</strong>. = I prefer <strong>to walk</strong>.</li>
+          </ul>
+        </div>
+
+        <div style="background-color: #fff3cd; border-left: 4px solid #f4d35e; padding: 15px; margin: 20px 0;">
+          <p><strong>⚠️ Note:</strong> While both forms work, native speakers often prefer gerunds for general statements and infinitives for specific situations.</p>
+          <ul style="margin: 0.5rem 0 0 0;">
+            <li>"I like <strong>swimming</strong>." (general hobby)</li>
+            <li>"I'd like <strong>to swim</strong> tomorrow." (specific plan)</li>
+          </ul>
+        </div>
+      `,
+      comparison: {
+        title: "Both Forms OK – Same Meaning",
+        leftLabel: "With Gerund",
+        rightLabel: "With Infinitive",
+        rows: [
+          { label: "begin", left: "It began <em>raining</em>.", right: "It began <em>to rain</em>." },
+          { label: "start", left: "I started <em>working</em>.", right: "I started <em>to work</em>." },
+          { label: "continue", left: "She continued <em>studying</em>.", right: "She continued <em>to study</em>." },
+          { label: "like", left: "I like <em>reading</em>.", right: "I like <em>to read</em>." },
+          { label: "love", left: "He loves <em>cooking</em>.", right: "He loves <em>to cook</em>." },
+          { label: "hate", left: "I hate <em>waiting</em>.", right: "I hate <em>to wait</em>." }
+        ]
+      },
+      tipBox: {
+        title: "💡 Easy Win!",
+        content: "With begin, start, continue, like, love, hate, prefer – you can't go wrong! Both forms are correct with the same meaning."
+      },
+      exercises: [
+        {
+          id: "verbs-both-exercise",
+          title: "Practice: Both Forms OK",
+          instructions: "Both answers are correct! Choose either one.",
+          items: [
+            {
+              type: "select",
+              label: "It started ___. (both correct!)",
+              options: ["raining", "to rain"],
+              expectedAnswers: ["raining", "to rain"]
+            },
+            {
+              type: "select",
+              label: "She continued ___. (both correct!)",
+              options: ["working", "to work"],
+              expectedAnswers: ["working", "to work"]
+            },
+            {
+              type: "select",
+              label: "I love ___. (both correct!)",
+              options: ["cooking", "to cook"],
+              expectedAnswers: ["cooking", "to cook"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "go-gerund",
+      stepNumber: 10,
+      title: "GO + Gerund for Activities",
+      icon: "🏃",
+      explanation: `
+        <p>Use <strong>go + gerund</strong> for recreational activities and sports!</p>
+
+        <p><strong>Formula:</strong> <span style="background-color: #fed7aa; color: #d97757; padding: 8px 12px; border-radius: 4px; font-size: 1.1em; font-weight: 600;"><strong>go + verb-ing</strong></span></p>
+
+        <div style="background-color: #ffe6e6; border: 2px solid #d97757; padding: 15px; margin: 20px 0; border-radius: 8px;">
+          <p><strong>⚠️ Common Mistake:</strong></p>
+          <p>❌ "I go <em>to swim</em>" or "I go <em>to shop</em>"</p>
+          <p>✅ "I go <strong>swimming</strong>" or "I go <strong>shopping</strong>"</p>
+        </div>
+
+        <h3>Common "Go + Gerund" Activities</h3>
+        <div style="background-color: rgba(217, 119, 87, 0.05); padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(217, 119, 87, 0.2);">
+          <h4>🏊 Water & Outdoor:</h4>
+          <ul>
+            <li>go <strong>swimming</strong></li>
+            <li>go <strong>fishing</strong></li>
+            <li>go <strong>hiking</strong></li>
+            <li>go <strong>camping</strong></li>
+            <li>go <strong>skiing</strong></li>
+          </ul>
+
+          <h4>🏃 Sports & Exercise:</h4>
+          <ul>
+            <li>go <strong>running</strong></li>
+            <li>go <strong>jogging</strong></li>
+            <li>go <strong>cycling</strong></li>
+            <li>go <strong>bowling</strong></li>
+            <li>go <strong>dancing</strong></li>
+          </ul>
+
+          <h4>🛍️ Everyday Activities:</h4>
+          <ul>
+            <li>go <strong>shopping</strong></li>
+            <li>go <strong>sightseeing</strong></li>
+            <li>go <strong>clubbing</strong></li>
+          </ul>
+        </div>
+      `,
+      tipBox: {
+        title: "💡 Remember",
+        content: "When talking about recreational activities with 'go', always use the gerund: go swimming, go shopping, go hiking. Never use 'go to swim' or 'go to shop'."
+      },
+      exercises: [
+        {
+          id: "go-gerund-exercise",
+          title: "Practice: GO + Gerund",
+          instructions: "Choose the correct form.",
+          items: [
+            {
+              type: "select",
+              label: "Let's go ___ this weekend.",
+              options: ["hiking", "to hike", "hike"],
+              expectedAnswer: "hiking"
+            },
+            {
+              type: "select",
+              label: "We went ___ at the lake yesterday.",
+              options: ["fishing", "to fish", "fish"],
+              expectedAnswer: "fishing"
+            },
+            {
+              type: "select",
+              label: "Do you want to go ___ with me?",
+              options: ["shopping", "to shop", "shop"],
+              expectedAnswer: "shopping"
+            }
+          ]
+        },
+        {
+          id: "go-gerund-word-scramble",
+          title: "Build the Sentence",
+          instructions: "Put the words in the correct order.",
+          items: [
+            {
+              type: "word-scramble",
+              label: "A weekend activity:",
+              words: ["We", "went", "swimming", "at", "the", "beach"],
+              correctAnswer: "We went swimming at the beach",
+              hint: "go + gerund"
+            },
+            {
+              type: "word-scramble",
+              label: "Make a suggestion:",
+              words: ["Let's", "go", "dancing", "tonight"],
+              correctAnswer: "Let's go dancing tonight",
+              hint: "go + gerund"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "common-mistakes",
+      stepNumber: 11,
+      title: "Common Mistakes to Avoid",
+      icon: "🚫",
+      explanation: `
+        <p>Here are the <strong>most common errors</strong> students make with gerunds and infinitives – and how to fix them!</p>
+
+        <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(251, 191, 36, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+          <h3 style="margin-top: 0; color: #ef4444; font-size: 1.25rem;">🎯 Learning from Mistakes</h3>
+          <p style="margin-bottom: 0;">Recognizing these common errors will help you avoid them and sound more natural in English!</p>
+        </div>
+      `,
+      usageMeanings: [
+        {
+          title: "❌ Mistake #1: Infinitive After Prepositions",
+          description: "NEVER use infinitive after a preposition – always use gerund!",
+          examples: [
+            { sentence: "❌ I'm interested in <strong>to learn</strong> Spanish.", explanation: "WRONG – infinitive after preposition" },
+            { sentence: "✅ I'm interested in <strong>learning</strong> Spanish.", explanation: "CORRECT – gerund after preposition" },
+            { sentence: "❌ She's good at <strong>to solve</strong> problems.", explanation: "WRONG – infinitive after preposition" },
+            { sentence: "✅ She's good at <strong>solving</strong> problems.", explanation: "CORRECT – gerund after preposition" }
+          ]
+        },
+        {
+          title: "❌ Mistake #2: Wrong Verb + Form Combination",
+          description: "Some verbs ONLY take gerund, others ONLY take infinitive",
+          examples: [
+            { sentence: "❌ I <strong>enjoy to read</strong> books.", explanation: "WRONG – enjoy always takes gerund" },
+            { sentence: "✅ I <strong>enjoy reading</strong> books.", explanation: "CORRECT – enjoy + gerund" },
+            { sentence: "❌ I <strong>want reading</strong> a book.", explanation: "WRONG – want always takes infinitive" },
+            { sentence: "✅ I <strong>want to read</strong> a book.", explanation: "CORRECT – want + infinitive" }
+          ]
+        },
+        {
+          title: "❌ Mistake #3: 'TO' as Preposition Confusion",
+          description: "In some phrases, 'to' is a preposition (not infinitive) – use gerund!",
+          examples: [
+            { sentence: "❌ I look forward to <strong>see</strong> you.", explanation: "WRONG – 'to' is a preposition here" },
+            { sentence: "✅ I look forward to <strong>seeing</strong> you.", explanation: "CORRECT – preposition + gerund" },
+            { sentence: "❌ I'm used to <strong>wake</strong> up early.", explanation: "WRONG – 'to' is a preposition here" },
+            { sentence: "✅ I'm used to <strong>waking</strong> up early.", explanation: "CORRECT – preposition + gerund" }
+          ]
+        },
+        {
+          title: "❌ Mistake #4: GO + Infinitive",
+          description: "Use GO + GERUND for activities, not infinitive",
+          examples: [
+            { sentence: "❌ Let's go <strong>to swim</strong>.", explanation: "WRONG – go + infinitive" },
+            { sentence: "✅ Let's go <strong>swimming</strong>.", explanation: "CORRECT – go + gerund" },
+            { sentence: "❌ I want to go <strong>to shop</strong>.", explanation: "WRONG – go + infinitive" },
+            { sentence: "✅ I want to go <strong>shopping</strong>.", explanation: "CORRECT – go + gerund" }
+          ]
+        }
+      ],
+      tipBox: {
+        title: "💡 Quick Fix Strategy",
+        content: "When in doubt, ask: 1) Is there a preposition? → Use gerund. 2) Is it 'go' + activity? → Use gerund. 3) Is it a specific verb? → Check if it takes gerund or infinitive."
+      },
+      exercises: [
+        {
+          id: "common-mistakes-word-select",
+          title: "Find the Error",
+          instructions: "Click on the ERROR in each sentence.",
+          items: [
+            {
+              type: "word-select",
+              label: "Find the error:",
+              selectWhat: "the error",
+              tokens: [
+                { text: "I", after: " " },
+                { text: "enjoy", after: " " },
+                { text: "to read", isTarget: true, after: " " },
+                { text: "books", after: "." }
+              ]
+            },
+            {
+              type: "word-select",
+              label: "Find the error:",
+              selectWhat: "the error",
+              tokens: [
+                { text: "I'm", after: " " },
+                { text: "interested", after: " " },
+                { text: "in to learn", isTarget: true, after: " " },
+                { text: "Spanish", after: "." }
+              ]
+            },
+            {
+              type: "word-select",
+              label: "Find the error:",
+              selectWhat: "the error",
+              tokens: [
+                { text: "Let's", after: " " },
+                { text: "go", after: " " },
+                { text: "to swim", isTarget: true, after: " " },
+                { text: "today", after: "." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "memory-tricks",
+      stepNumber: 12,
+      title: "Memory Tricks & Quick Tips",
+      icon: "🧠",
+      explanation: `
+        <p>Use these <strong>memory tricks</strong> to remember gerund and infinitive rules!</p>
+
+        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.15) 0%, rgba(244, 211, 94, 0.15) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+          <h3 style="margin-top: 0; color: #7ba884; font-size: 1.25rem;">🎯 Make It Stick!</h3>
+          <p style="margin-bottom: 0;">These simple tricks will help you remember the rules without memorizing every verb!</p>
+        </div>
+      `,
+      usageMeanings: [
+        {
+          title: "🔤 PREP = ING",
+          description: "After a PREPosition, always use -ING (gerund)",
+          examples: [
+            { sentence: "interested <strong>in learning</strong>", explanation: "preposition 'in' → gerund" },
+            { sentence: "good <strong>at solving</strong>", explanation: "preposition 'at' → gerund" },
+            { sentence: "tired <strong>of waiting</strong>", explanation: "preposition 'of' → gerund" }
+          ]
+        },
+        {
+          title: "😊 Enjoy the -ING",
+          description: "Verbs about ENJOYING activities usually take gerund",
+          examples: [
+            { sentence: "enjoy <strong>reading</strong>", explanation: "enjoyment → gerund" },
+            { sentence: "love <strong>cooking</strong>", explanation: "enjoyment → gerund" },
+            { sentence: "miss <strong>traveling</strong>", explanation: "enjoyment → gerund" }
+          ]
+        },
+        {
+          title: "🎯 Want TO do it",
+          description: "Verbs about GOALS and PLANS usually take infinitive",
+          examples: [
+            { sentence: "want <strong>to learn</strong>", explanation: "goal → infinitive" },
+            { sentence: "plan <strong>to move</strong>", explanation: "plan → infinitive" },
+            { sentence: "hope <strong>to see</strong>", explanation: "hope/goal → infinitive" }
+          ]
+        },
+        {
+          title: "🏃 GO + Activity = GO -ING",
+          description: "Activities with 'go' always use gerund",
+          examples: [
+            { sentence: "go <strong>swimming</strong>", explanation: "go + activity → gerund" },
+            { sentence: "go <strong>shopping</strong>", explanation: "go + activity → gerund" },
+            { sentence: "go <strong>hiking</strong>", explanation: "go + activity → gerund" }
+          ]
+        },
+        {
+          title: "⏰ Past = -ING, Future = TO",
+          description: "For stop/remember/try: past events use gerund, future actions use infinitive",
+          examples: [
+            { sentence: "I remember <strong>meeting</strong> you (past)", explanation: "memory of past → gerund" },
+            { sentence: "Remember <strong>to call</strong> mom (future)", explanation: "future duty → infinitive" }
+          ]
+        },
+        {
+          title: "⚠️ Look Forward TO -ING",
+          description: "The 'to' in 'look forward to' is a PREPOSITION!",
+          examples: [
+            { sentence: "I look forward to <strong>seeing</strong> you", explanation: "'to' = preposition → gerund" },
+            { sentence: "I'm used to <strong>waking</strong> up early", explanation: "'to' = preposition → gerund" }
+          ]
+        }
+      ],
+      tipBox: {
+        title: "💡 The Golden Question",
+        content: "Always ask: 'What comes BEFORE the verb?' Preposition? → Gerund. Adjective? → Usually infinitive. Specific verb? → Check if it's a gerund or infinitive verb!"
+      }
+    },
+    {
       id: "summary",
       title: "Summary: Quick Reference Guide",
       icon: "✓",
       explanation: `
-        <h3>Pattern Summary</h3>
-        <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0;">
-          <thead>
-            <tr style="background: rgba(217, 119, 87, 0.15);">
-              <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Pattern</th>
-              <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Use</th>
-              <th style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Example</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; background: rgba(217, 119, 87, 0.05);">Subject = Gerund</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Gerund (-ing)</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Swimming is fun.</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; background: rgba(217, 119, 87, 0.05);">Verb + Gerund</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Gerund (-ing)</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I enjoy reading.</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; background: rgba(217, 119, 87, 0.05);">Preposition + Gerund</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">ALWAYS Gerund (-ing)</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I'm interested in learning.</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; background: rgba(3, 105, 161, 0.05);">Adjective + Infinitive</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Infinitive (to + verb)</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I'm happy to help.</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; background: rgba(3, 105, 161, 0.05);">Noun + Infinitive</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Infinitive (to + verb)</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I have the ability to swim.</td>
-            </tr>
-            <tr>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1); font-weight: bold; background: rgba(3, 105, 161, 0.05);">Verb + Infinitive</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">Infinitive (to + verb)</td>
-              <td style="padding: 0.75rem; border: 1px solid rgba(0,0,0,0.1);">I want to travel.</td>
-            </tr>
-          </tbody>
-        </table>
+        <div style="background: linear-gradient(135deg, rgba(123, 168, 132, 0.1) 0%, rgba(217, 119, 87, 0.1) 100%); padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+          <h3 style="margin-top: 0; color: #7ba884; font-size: 1.25rem;">🎉 You Made It!</h3>
+          <p style="margin-bottom: 0;">You've learned all the major patterns for gerunds and infinitives. Use this summary as your quick reference guide!</p>
+        </div>
 
         <h3 style="margin-top: 2rem;">Key Reminders</h3>
         <ul class="list-disc pl-6 space-y-2">
@@ -949,13 +1261,31 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           <li><strong>Look what comes BEFORE the verb</strong> to decide gerund or infinitive.</li>
           <li>Certain verbs always take gerunds: enjoy, finish, keep, stop, avoid, consider, suggest, recommend</li>
           <li>Certain verbs always take infinitives: want, hope, plan, decide, learn, need, offer, promise, agree</li>
+          <li>Some verbs take BOTH with same meaning: begin, start, continue, like, love, hate</li>
           <li>Special cases (stop, remember, try) change meaning depending on gerund or infinitive</li>
+          <li>GO + activities = always gerund (go swimming, go shopping)</li>
           <li>Subject of sentence = gerund (Swimming is fun)</li>
+          <li>Watch out for "to" as a preposition: look forward <strong>to</strong>, be used <strong>to</strong></li>
         </ul>
       `,
+      comparison: {
+        title: "📊 Master Reference Chart",
+        leftLabel: "Use GERUND (-ing)",
+        rightLabel: "Use INFINITIVE (to + verb)",
+        rows: [
+          { label: "After preposition", left: "✅ ALWAYS<br/>(interested in learning)", right: "❌ NEVER" },
+          { label: "As subject", left: "✅ Common<br/>(Swimming is fun)", right: "⚠️ Formal<br/>(To swim is fun)" },
+          { label: "After adjective", left: "⚠️ With preposition only<br/>(good at solving)", right: "✅ Common<br/>(happy to help)" },
+          { label: "After noun", left: "❌ Rare", right: "✅ Common<br/>(ability to speak)" },
+          { label: "After GO + activity", left: "✅ ALWAYS<br/>(go swimming)", right: "❌ NEVER" },
+          { label: "Specific verbs", left: "enjoy, finish, avoid, suggest, keep, quit", right: "want, hope, plan, decide, need, learn" },
+          { label: "Both OK (same meaning)", left: "begin, start, continue, like, love, hate", right: "begin, start, continue, like, love, hate" },
+          { label: "Special (meaning changes)", left: "stop doing (quit)<br/>remember doing (past)<br/>try doing (experiment)", right: "stop to do (pause)<br/>remember to do (future)<br/>try to do (effort)" }
+        ]
+      },
       tipBox: {
-        title: "💡 Final Tip",
-        content: "When in doubt, ask: 'What comes BEFORE the verb?' A preposition? Use gerund. An adjective or noun? Usually infinitive. A specific verb? Check the list!"
+        title: "💡 The Golden Question",
+        content: "When in doubt, ask: 'What comes BEFORE the verb?' A preposition? Use gerund. An adjective or noun? Usually infinitive. GO + activity? Always gerund. A specific verb? Check if it's a gerund verb or infinitive verb!"
       },
     },
   ],
@@ -1184,6 +1514,91 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
         "'Studying' is a gerund used as the subject of the sentence.",
       skillTag: "subject-gerund-identification",
       difficulty: "easy",
+    },
+    // HARD DIFFICULTY QUESTIONS
+    {
+      id: "quiz-17",
+      question: "Which sentence uses 'to' as a PREPOSITION (not as part of an infinitive)?",
+      options: [
+        { value: "a", label: "I want to learn Spanish." },
+        { value: "b", label: "I look forward to meeting you." },
+        { value: "c", label: "I need to practice more." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "In 'look forward to', the 'to' is a preposition, so it must be followed by a gerund: 'to meeting'. In options A and C, 'to' is part of the infinitive.",
+      skillTag: "to-as-preposition-advanced",
+      difficulty: "hard",
+    },
+    {
+      id: "quiz-18",
+      question: "Complete: 'I'm used to ___ up early for work.'",
+      options: [
+        { value: "a", label: "wake" },
+        { value: "b", label: "waking" },
+        { value: "c", label: "to wake" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Be used to' means 'be accustomed to'. The 'to' here is a preposition, so it must be followed by a gerund: 'I'm used to waking up early.'",
+      skillTag: "be-used-to-gerund",
+      difficulty: "hard",
+    },
+    {
+      id: "quiz-19",
+      question: "'I stopped buying coffee every day' vs 'I stopped to buy coffee' – which means QUIT?",
+      options: [
+        { value: "a", label: "'I stopped buying coffee' means I quit." },
+        { value: "b", label: "'I stopped to buy coffee' means I quit." },
+        { value: "c", label: "Both mean the same thing." },
+      ],
+      correctAnswer: "a",
+      explanation:
+        "'Stopped buying' = quit the habit. 'Stopped to buy' = paused (another activity) in order to buy coffee. The gerund indicates quitting, the infinitive indicates pausing.",
+      skillTag: "special-stop-advanced",
+      difficulty: "hard",
+    },
+    {
+      id: "quiz-20",
+      question: "After 'afraid of', you should use ___",
+      options: [
+        { value: "a", label: "infinitive (afraid of to fly)" },
+        { value: "b", label: "gerund (afraid of flying)" },
+        { value: "c", label: "base verb (afraid of fly)" },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "'Of' is a preposition, and after prepositions you ALWAYS use a gerund. Correct: 'I'm afraid of flying.'",
+      skillTag: "adj-prep-plus-gerund-advanced",
+      difficulty: "hard",
+    },
+    {
+      id: "quiz-21",
+      question: "Which is correct for recreational activities?",
+      options: [
+        { value: "a", label: "Let's go to swim at the pool." },
+        { value: "b", label: "Let's go swimming at the pool." },
+        { value: "c", label: "Let's go swim at the pool." },
+      ],
+      correctAnswer: "b",
+      explanation:
+        "For recreational activities with 'go', always use gerund: go swimming, go shopping, go hiking. Never 'go to swim' or 'go to shop'.",
+      skillTag: "go-plus-gerund",
+      difficulty: "hard",
+    },
+    {
+      id: "quiz-22",
+      question: "Which verb can take BOTH gerund AND infinitive with the SAME meaning?",
+      options: [
+        { value: "a", label: "enjoy (enjoy reading / enjoy to read)" },
+        { value: "b", label: "want (want reading / want to read)" },
+        { value: "c", label: "begin (begin reading / begin to read)" },
+      ],
+      correctAnswer: "c",
+      explanation:
+        "'Begin' (like start, continue, like, love, hate) can take either gerund or infinitive with the same meaning. 'Enjoy' only takes gerund. 'Want' only takes infinitive.",
+      skillTag: "verbs-both-forms",
+      difficulty: "hard",
     },
   ],
   /*
