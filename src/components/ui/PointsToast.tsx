@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface PointsToastProps {
     points: number;
@@ -10,6 +11,12 @@ interface PointsToastProps {
 export function PointsToast({ points, onComplete }: PointsToastProps) {
     const [isVisible, setIsVisible] = useState(false);
     const [isLeaving, setIsLeaving] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+        return () => setIsMounted(false);
+    }, []);
 
     useEffect(() => {
         // Trigger entrance animation
@@ -32,9 +39,13 @@ export function PointsToast({ points, onComplete }: PointsToastProps) {
         };
     }, [onComplete]);
 
-    return (
+    if (!isMounted) {
+        return null;
+    }
+
+    return createPortal(
         <div
-            className={`fixed top-20 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ease-out ${
+            className={`pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 z-[120] transition-all duration-300 ease-out ${
                 isVisible && !isLeaving
                     ? "opacity-100 translate-y-0 scale-100"
                     : isLeaving
@@ -48,6 +59,7 @@ export function PointsToast({ points, onComplete }: PointsToastProps) {
                 <span className="text-2xl">+{points}</span>
                 <span className="text-sm">points!</span>
             </div>
-        </div>
+        </div>,
+        document.body
     );
 }

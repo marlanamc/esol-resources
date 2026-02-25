@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { awardPoints, updateStreak, checkAndAwardAchievements, calculateQuizPoints } from '../src/lib/gamification';
+import { awardPoints, updateStreak, checkAndAwardAchievements, calculateQuizPoints } from '../../src/lib/gamification';
 
 const prisma = new PrismaClient();
 

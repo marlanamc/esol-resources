@@ -10,7 +10,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { getAllMinimalPairWords } from '../src/lib/minimal-pairs-data';
+import { getAllMinimalPairWords } from '../../src/lib/minimal-pairs-data';
 
 const API_KEY = process.env.ELEVENLABS_API_KEY;
 const DEFAULT_VOICE_ID = '21m00Tcm4TlvDq8ikWAM'; // Rachel - clear American English

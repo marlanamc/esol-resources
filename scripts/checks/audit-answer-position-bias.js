@@ -5,7 +5,7 @@ const path = require("path");
 
 const ROOT = process.cwd();
 const TARGET_DIR = path.join(ROOT, "src", "content", "grammar");
-const BASELINE_PATH = path.join(ROOT, "scripts", "answer-position-audit-baseline.json");
+const BASELINE_PATH = path.join(ROOT, "scripts", "checks", "answer-position-audit-baseline.json");
 
 const args = new Set(process.argv.slice(2));
 const shouldUpdateBaseline = args.has("--update-baseline");
