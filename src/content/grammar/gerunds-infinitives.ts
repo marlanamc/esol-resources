@@ -67,6 +67,41 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           }
         ]
       },
+      exercises: [
+        {
+          id: "intro-exercise",
+          title: "Quick Check: Gerund or Infinitive?",
+          instructions: "Use the decision tree above to choose the correct form.",
+          items: [
+            {
+              type: "select",
+              label: "I'm interested in ___ Spanish. (preposition before verb)",
+              options: ["learning", "to learn", "learn"],
+              expectedAnswer: "learning"
+            },
+            {
+              type: "select",
+              label: "___ is my favorite hobby. (verb is subject)",
+              options: ["Reading", "To read", "Read"],
+              expectedAnswer: "Reading"
+            },
+            {
+              type: "select",
+              label: "I'm happy ___ you. (adjective before verb)",
+              options: ["to help", "helping", "help"],
+              expectedAnswer: "to help"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: "real-world-contexts",
+      title: "Real-World Contexts: When You'll Use This",
+      icon: "🌍",
+      explanation: `
+        <p>Gerunds and infinitives are everywhere in daily English! Here are <strong>real situations</strong> where you'll use them:</p>
+      `,
       usageMeanings: [
         {
           title: "💼 Job Interviews & Career",
@@ -128,6 +163,39 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
             { sentence: "I look forward <strong>to graduating</strong> next year.", explanation: "look forward to + gerund (to = preposition!)" }
           ]
         }
+      ],
+      exercises: [
+        {
+          id: "real-world-exercise",
+          title: "Practice: Real-World Situations",
+          instructions: "Complete these sentences from real-life contexts.",
+          items: [
+            {
+              type: "select",
+              label: "Job interview: I'm good at ___ problems.",
+              options: ["solving", "to solve", "solve"],
+              expectedAnswer: "solving"
+            },
+            {
+              type: "select",
+              label: "Healthcare: Remember ___ your medication every day.",
+              options: ["to take", "taking", "take"],
+              expectedAnswer: "to take"
+            },
+            {
+              type: "select",
+              label: "Housing: Thank you for ___ the sink.",
+              options: ["fixing", "to fix", "fix"],
+              expectedAnswer: "fixing"
+            },
+            {
+              type: "select",
+              label: "Workplace: I finished ___ the report.",
+              options: ["writing", "to write", "write"],
+              expectedAnswer: "writing"
+            }
+          ]
+        }
       ]
     },
     {
@@ -179,7 +247,43 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
           { label: "After certain verbs", left: "enjoy, finish, avoid, suggest", right: "want, hope, plan, decide" },
           { label: "Example", left: "<strong>Swimming</strong> is fun.", right: "I want <strong>to swim</strong>." }
         ]
-      }
+      },
+      exercises: [
+        {
+          id: "definitions-exercise",
+          title: "Identify: Gerund or Infinitive?",
+          instructions: "Is the underlined word a gerund or infinitive?",
+          items: [
+            {
+              type: "radio",
+              label: "'Swimming is fun.' - What is 'swimming'?",
+              options: [
+                { value: "gerund", label: "Gerund (verb + -ing acting as noun)" },
+                { value: "infinitive", label: "Infinitive (to + verb)" }
+              ],
+              expectedAnswer: "gerund"
+            },
+            {
+              type: "radio",
+              label: "'I want to learn.' - What is 'to learn'?",
+              options: [
+                { value: "gerund", label: "Gerund (verb + -ing acting as noun)" },
+                { value: "infinitive", label: "Infinitive (to + verb)" }
+              ],
+              expectedAnswer: "infinitive"
+            },
+            {
+              type: "radio",
+              label: "'I enjoy reading.' - What is 'reading'?",
+              options: [
+                { value: "gerund", label: "Gerund (verb + -ing acting as noun)" },
+                { value: "infinitive", label: "Infinitive (to + verb)" }
+              ],
+              expectedAnswer: "gerund"
+            }
+          ]
+        }
+      ]
     },
     {
       id: "pattern-1",
@@ -971,6 +1075,40 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
               expectedAnswers: ["cooking", "to cook"]
             }
           ]
+        },
+        {
+          id: "verbs-both-contrast",
+          title: "Contrast: Flexible vs Fixed Verbs",
+          instructions: "Is this verb flexible (both forms OK) or fixed (only one form)?",
+          items: [
+            {
+              type: "radio",
+              label: "'begin' - Can it take both gerund AND infinitive?",
+              options: [
+                { value: "yes", label: "Yes - both forms work (began raining / began to rain)" },
+                { value: "no", label: "No - only one form works" }
+              ],
+              expectedAnswer: "yes"
+            },
+            {
+              type: "radio",
+              label: "'enjoy' - Can it take both gerund AND infinitive?",
+              options: [
+                { value: "yes", label: "Yes - both forms work" },
+                { value: "no", label: "No - only gerund works (enjoy reading, NOT enjoy to read)" }
+              ],
+              expectedAnswer: "no"
+            },
+            {
+              type: "radio",
+              label: "'want' - Can it take both gerund AND infinitive?",
+              options: [
+                { value: "yes", label: "Yes - both forms work" },
+                { value: "no", label: "No - only infinitive works (want to read, NOT want reading)" }
+              ],
+              expectedAnswer: "no"
+            }
+          ]
         }
       ]
     },
@@ -1243,7 +1381,52 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       tipBox: {
         title: "💡 The Golden Question",
         content: "Always ask: 'What comes BEFORE the verb?' Preposition? → Gerund. Adjective? → Usually infinitive. Specific verb? → Check if it's a gerund or infinitive verb!"
-      }
+      },
+      exercises: [
+        {
+          id: "memory-tricks-exercise",
+          title: "Apply the Memory Tricks",
+          instructions: "Use the memory tricks to choose the correct form.",
+          items: [
+            {
+              type: "select",
+              label: "PREP = ING: I'm tired ___ waiting.",
+              options: ["of", "to"],
+              expectedAnswer: "of"
+            },
+            {
+              type: "select",
+              label: "Enjoy the -ING: I enjoy ___.",
+              options: ["reading", "to read"],
+              expectedAnswer: "reading"
+            },
+            {
+              type: "select",
+              label: "Want TO do it: I want ___ Spanish.",
+              options: ["to learn", "learning"],
+              expectedAnswer: "to learn"
+            },
+            {
+              type: "select",
+              label: "GO + Activity: Let's go ___.",
+              options: ["swimming", "to swim"],
+              expectedAnswer: "swimming"
+            },
+            {
+              type: "select",
+              label: "Past = -ING: I remember ___ you at the party.",
+              options: ["meeting", "to meet"],
+              expectedAnswer: "meeting"
+            },
+            {
+              type: "select",
+              label: "Look Forward TO -ING: I look forward to ___ you.",
+              options: ["seeing", "see"],
+              expectedAnswer: "seeing"
+            }
+          ]
+        }
+      ]
     },
     {
       id: "summary",
