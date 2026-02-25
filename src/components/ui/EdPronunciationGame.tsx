@@ -446,32 +446,6 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               )}
             </AnimatePresence>
 
-            {/* Difficulty selector */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 px-2">
-                <Target className="w-4 h-4 text-violet-500" />
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">Difficulty</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-                {(['easy', 'medium', 'hard', 'mixed'] as Difficulty[]).map((level) => {
-                  const isSelected = state.difficulty === level;
-                  return (
-                    <button
-                      key={level}
-                      onClick={() => setState(prev => ({ ...prev, difficulty: level }))}
-                      className={`px-4 py-3 sm:py-2 rounded-xl font-bold capitalize transition-all border text-sm sm:text-base ${
-                        isSelected
-                          ? 'bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white border-fuchsia-700 shadow-lg ring-2 ring-fuchsia-200 -translate-y-0.5'
-                          : 'bg-white text-neutral-700 border-neutral-200 hover:border-fuchsia-300 hover:bg-fuchsia-50'
-                      }`}
-                    >
-                      {level}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
             {/* Game mode buttons */}
             <div className="space-y-4">
               <button

@@ -351,28 +351,6 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             </div>
 
             <div className="space-y-3">
-              <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest px-1">Difficulty</h3>
-              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-                {(['easy', 'medium', 'hard', 'mixed'] as const).map((level) => {
-                  const isSelected = state.difficulty === level;
-                  return (
-                    <button
-                      key={level}
-                      onClick={() => setState((prev) => ({ ...prev, difficulty: level }))}
-                      className={`px-4 py-3 sm:py-2 rounded-xl font-bold capitalize transition-all border text-sm sm:text-base ${
-                        isSelected
-                          ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white border-cyan-700 shadow-lg ring-2 ring-cyan-200 -translate-y-0.5'
-                          : 'bg-white text-neutral-700 border-neutral-200 hover:border-cyan-300 hover:bg-cyan-50'
-                      }`}
-                    >
-                      {level}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="space-y-3">
               <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest px-1">Round Size</h3>
               <div className="flex flex-wrap gap-2">
                 {ROUND_OPTIONS.map((size) => {
