@@ -182,7 +182,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
     const [showSettings, setShowSettings] = useState(false);
 
     return (
-        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4">
+        <div className="fixed inset-0 bg-gradient-to-b from-[#F6F3EE] to-[#ECE6DD] flex flex-col touch-manipulation md:static md:h-auto md:min-h-screen md:w-full md:max-w-4xl md:mx-auto md:px-4 md:py-4">
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
@@ -201,9 +201,9 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {studiedCards.size} / {total} studied
                         </div>
-                        <div className="h-2 w-24 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                        <div className="h-2 w-24 bg-[#E7E1D8] rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                                className="h-full bg-[#8DAA91] transition-[width] duration-300"
                                 style={{ width: `${(studiedCards.size / total) * 100}%` }}
                             />
                         </div>
@@ -224,9 +224,9 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                         <div className="text-sm font-bold text-[var(--color-text-muted)]">
                             {studiedCards.size} / {total} studied
                         </div>
-                        <div className="h-2 w-32 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                        <div className="h-2 w-32 bg-[#E7E1D8] rounded-full overflow-hidden">
                             <div
-                                className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                                className="h-full bg-[#8DAA91] transition-[width] duration-300"
                                 style={{ width: `${(studiedCards.size / total) * 100}%` }}
                             />
                         </div>
@@ -273,17 +273,17 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
 
             {/* Settings Panel - Collapsible */}
             {showSettings && (
-                <div className="flex-shrink-0 bg-[var(--color-bg-light)] border-b-2 border-[var(--color-border)] px-4 py-4 flex flex-col gap-3">
-                    <div className="flex items-center gap-0 bg-white rounded-lg p-1 border-2 border-[var(--color-border)]">
+                <div className="flex-shrink-0 bg-[#F4EDE2] border-b-2 border-[#E6DFD6] px-4 py-4 flex flex-col gap-3">
+                    <div className="flex items-center gap-0 bg-[#F4EDE2] rounded-lg p-1 border-2 border-[#E6DFD6]">
                         <button
                             onClick={() => { setMode("term-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 ${mode === "term-first" ? "bg-zinc-900 text-white shadow-md ring-1 ring-black/5" : "bg-transparent text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DAA91] focus-visible:ring-offset-2 ${mode === "term-first" ? "bg-[#8DAA91] text-white shadow-md ring-1 ring-black/5" : "bg-[#EAE5DC] text-[#4B5563] hover:bg-[#E3DDD3] hover:text-[#374151]"}`}
                         >
                             Term First
                         </button>
                         <button
                             onClick={() => { setMode("def-first"); setIsFlipped(false); }}
-                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2 ${mode === "def-first" ? "bg-zinc-900 text-white shadow-md ring-1 ring-black/5" : "bg-transparent text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100"}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-bold rounded-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DAA91] focus-visible:ring-offset-2 ${mode === "def-first" ? "bg-[#8DAA91] text-white shadow-md ring-1 ring-black/5" : "bg-[#EAE5DC] text-[#4B5563] hover:bg-[#E3DDD3] hover:text-[#374151]"}`}
                         >
                             Definition First
                         </button>
@@ -291,14 +291,14 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                     <div className="flex items-center gap-2">
                         <button
                             onClick={shuffleOrder}
-                            className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isShuffling ? "opacity-50" : ""}`}
+                            className={`flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-[#F8F4ED] text-[#6B7280] hover:bg-[#EEE7DC] hover:text-[#4B5563] transition-[background-color,color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DAA91] focus-visible:ring-offset-2 ${isShuffling ? "opacity-50" : ""}`}
                         >
                             <ShuffleIcon className="w-4 h-4" />
                             Shuffle
                         </button>
                         <button
                             onClick={resetOrder}
-                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-[#F8F4ED] text-[#6B7280] hover:bg-[#EEE7DC] hover:text-[#4B5563] transition-[background-color,color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8DAA91] focus-visible:ring-offset-2"
                         >
                             <RefreshCwIcon className="w-4 h-4" />
                             Reset
@@ -309,7 +309,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
                             type="checkbox"
                             checked={showExample}
                             onChange={(e) => setShowExample(e.target.checked)}
-                            className="w-5 h-5 rounded border-2 border-[var(--color-border)] text-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)] cursor-pointer"
+                            className="w-5 h-5 rounded border-2 border-[#E6DFD6] accent-[#8DAA91] focus:ring-2 focus:ring-[#8DAA91] cursor-pointer"
                         />
                         <span className="text-sm font-medium text-[var(--color-text)]">Show examples</span>
                     </label>
@@ -401,17 +401,15 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
     // Using globals: --color-bg (whiteish), --color-primary (terracotta), --color-secondary (sage)
 
     const containerClasses = theme === "colored"
-        // Back/Colored theme (Sage Green Background - lighter opacity)
-        ? "bg-[var(--color-secondary)]/90 text-white shadow-2xl border-2 border-[var(--color-secondary)]/90"
-        // Front/Light theme (White Background)
-        : "bg-white text-[var(--color-text)] shadow-2xl border-2 border-[var(--color-border)]";
+        ? "bg-[#7F9C8B] text-[#0F172A] shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#6E8C7C]"
+        : "bg-[#FBFAF7] text-[var(--color-text)] shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#E6DFD6]";
 
     const labelClasses = theme === "colored"
-        ? "bg-white/25 text-white backdrop-blur-sm border border-white/40"
-        : "bg-[var(--color-bg-light)] text-[var(--color-text-muted)] border border-[var(--color-border)]";
+        ? "bg-white/15 text-white border border-white/25 backdrop-blur-[4px]"
+        : "bg-white/60 text-[var(--color-text-muted)] border border-black/5 backdrop-blur-[4px]";
 
     const titleClasses = theme === "colored"
-        ? "text-white"
+        ? "text-[#0F172A]"
         : "text-[var(--color-text)]";
 
     return (
@@ -425,14 +423,14 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
 
             {/* Content */}
             <div className="text-center w-full max-w-3xl flex flex-col gap-4 sm:gap-6">
-                <h3 className={`text-2xl sm:text-4xl md:text-5xl font-bold leading-tight font-display ${titleClasses}`}>
+                <h3 className={`text-2xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-[0.5px] font-display ${titleClasses}`}>
                     {content.text}
                 </h3>
 
                 {/* Example Section */}
                 {content.example && (
                     <div className={`mt-2 sm:mt-4 pt-4 sm:pt-6 border-t-2 ${theme === "colored" ? "border-white/30" : "border-[var(--color-border)]"}`}>
-                        <p className={`text-base sm:text-lg md:text-xl italic leading-relaxed ${theme === "colored" ? "text-white/95" : "text-[var(--color-text-muted)]"}`}>
+                        <p className={`text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed ${theme === "colored" ? "text-[#0F172A]/80" : "text-[var(--color-text-muted)]/80"}`}>
                             "{content.example}"
                         </p>
                     </div>
