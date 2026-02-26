@@ -193,7 +193,7 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
             )}
 
             {/* Top Bar - Progress & Settings (+ Navigation on Desktop) */}
-            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3">
+            <div className="flex-shrink-0 bg-white border border-[#E6DFD6] rounded-2xl px-4 py-3 mx-2 mt-2 md:mx-0 md:mt-0">
                 {/* Mobile: Progress row */}
                 <div className="flex items-center justify-between md:hidden">
                     <div className="flex items-center gap-2">
@@ -397,23 +397,22 @@ export default function FlashcardCarousel({ cards, activityId, assignmentId, voc
 // Subcomponent for Card Face to reduce duplication
 function CardFace({ content, variant, theme }: { content: { type: string; text: string; example?: string | null }; variant: "front" | "back"; theme: "light" | "colored" }) {
 
-    // Theme classes based on user request for "oranges, greens, etc"
-    // Using globals: --color-bg (whiteish), --color-primary (terracotta), --color-secondary (sage)
+    const containerClasses = "bg-[#FBFAF7] text-[var(--color-text)] shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#E6DFD6]";
 
-    const containerClasses = theme === "colored"
-        ? "bg-[#7F9C8B] text-[#0F172A] shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#6E8C7C]"
-        : "bg-[#FBFAF7] text-[var(--color-text)] shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-[#E6DFD6]";
+    const containerStyle = theme === "colored"
+        ? {
+            backgroundImage: "linear-gradient(rgba(141, 170, 145, 0.04), rgba(141, 170, 145, 0.04))",
+            backgroundColor: "#FBFAF7"
+        }
+        : undefined;
 
-    const labelClasses = theme === "colored"
-        ? "bg-white/15 text-white border border-white/25 backdrop-blur-[4px]"
-        : "bg-white/60 text-[var(--color-text-muted)] border border-black/5 backdrop-blur-[4px]";
-
-    const titleClasses = theme === "colored"
-        ? "text-[#0F172A]"
-        : "text-[var(--color-text)]";
+    const labelClasses = "bg-[#8DAA91] text-white border border-[#6E8C7C] shadow-[0_2px_6px_rgba(0,0,0,0.05)]";
 
     return (
-        <div className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-[opacity,transform] ${containerClasses}`}>
+        <div
+            className={`h-full w-full rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 md:p-12 transition-[opacity,transform] ${containerClasses}`}
+            style={containerStyle}
+        >
             {/* Top Label */}
             <div className="absolute top-4 sm:top-6 left-4 sm:left-6">
                 <span className={`px-3 py-1.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider rounded-xl shadow-sm ${labelClasses}`}>
@@ -423,14 +422,14 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
 
             {/* Content */}
             <div className="text-center w-full max-w-3xl flex flex-col gap-4 sm:gap-6">
-                <h3 className={`text-2xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-[0.5px] font-display ${titleClasses}`}>
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-[0.5px] font-display text-[var(--color-text)]">
                     {content.text}
                 </h3>
 
                 {/* Example Section */}
                 {content.example && (
-                    <div className={`mt-2 sm:mt-4 pt-4 sm:pt-6 border-t-2 ${theme === "colored" ? "border-white/30" : "border-[var(--color-border)]"}`}>
-                        <p className={`text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed ${theme === "colored" ? "text-[#0F172A]/80" : "text-[var(--color-text-muted)]/80"}`}>
+                    <div className="mt-2 sm:mt-4 pt-4 sm:pt-6 border-t-2 border-[#DCD4C9]">
+                        <p className="text-[0.95rem] sm:text-base md:text-lg italic leading-relaxed text-[var(--color-text-muted)]/80">
                             "{content.example}"
                         </p>
                     </div>
