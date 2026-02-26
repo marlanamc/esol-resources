@@ -406,7 +406,9 @@ function CardFace({ content, variant, theme }: { content: { type: string; text: 
         }
         : undefined;
 
-    const labelClasses = "bg-[#8DAA91] text-white border border-[#6E8C7C] shadow-[0_2px_6px_rgba(0,0,0,0.05)]";
+    const labelClasses = content.type === "Term"
+        ? "bg-[#7D8FA3] text-white border border-[#66798F] shadow-[0_2px_6px_rgba(0,0,0,0.05)]"
+        : "bg-[#8DAA91] text-white border border-[#6E8C7C] shadow-[0_2px_6px_rgba(0,0,0,0.05)]";
 
     return (
         <div
