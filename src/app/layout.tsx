@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, DM_Sans, Caveat } from "next/font/google";
+import { Lora, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import { Analytics } from "@vercel/analytics/next";
 
-const fraunces = Fraunces({
+const lora = Lora({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
@@ -64,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${fraunces.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
+        className={`${lora.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
       >
         <Providers>{children}</Providers>
         <ServiceWorkerRegistration />

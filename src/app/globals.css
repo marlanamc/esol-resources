@@ -51,7 +51,7 @@
   /* Font Families - will be set by Next.js */
   /* Include emoji-capable fallbacks to avoid "?" tofu glyphs for emoji in titles/content. */
   --font-display:
-    var(--font-fraunces), ui-serif, Georgia, "Apple Color Emoji",
+    var(--font-lora), ui-serif, Georgia, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", serif;
   --font-body:
     var(--font-dm-sans), ui-sans-serif, system-ui, "Apple Color Emoji",
