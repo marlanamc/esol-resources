@@ -238,11 +238,12 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                         vocab-activity-card
                                         group relative overflow-hidden rounded-2xl
                                         bg-gradient-to-br ${config.gradient}
-                                        border border-border/60
+                                        border border-[#E6DFD6]
                                         p-4 md:p-6 text-left
                                         min-h-[140px] md:min-h-0
                                         transition-all duration-300 ease-out
-                                        hover:shadow-xl hover:shadow-black/5
+                                        shadow-[0_6px_18px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.75)]
+                                        hover:shadow-[0_14px_34px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,0.85)]
                                         ${config.borderHover}
                                         md:hover:-translate-y-1
                                         active:scale-[0.98]
@@ -269,7 +270,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                     {/* Content */}
                                     <div className="relative z-10 flex flex-col h-full">
                                         {/* Icon */}
-                                        <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                                        <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 shadow-[0_4px_10px_rgba(15,23,42,0.08)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
                                             <span className="text-2xl md:text-3xl">{config.icon}</span>
                                         </div>
 
