@@ -1035,7 +1035,7 @@ function VocabMatchingUI({
             ) : (
                 <div className="space-y-6">
                     {/* Mobile: Selected term display */}
-                    {selectedTermId && (
+                    {selectedTermId != null && (
                         <div className="md:hidden bg-blue-50 border-2 border-blue-400 rounded-xl p-4 shadow-sm">
                             <p className="text-sm text-blue-600 mb-2 font-medium">Selected Word:</p>
                             <p className="text-xl font-bold text-blue-900">
@@ -1106,9 +1106,9 @@ function VocabMatchingUI({
                         {/* Words to select */}
                         <div className="space-y-2">
                             <p className="text-sm font-medium text-gray-500">
-                                {selectedTermId ? "Selected word shown above" : "Tap a word to start:"}
+                                {selectedTermId != null ? "Selected word shown above" : "Tap a word to start:"}
                             </p>
-                            {!selectedTermId && shuffledTerms.map((p) => {
+                            {selectedTermId == null && shuffledTerms.map((p) => {
                                 const handlers = createTermClickHandler(p.id);
                                 return (
                                     <button
@@ -1134,7 +1134,7 @@ function VocabMatchingUI({
                         </div>
 
                         {/* Definitions to match (only show when word is selected) */}
-                        {selectedTermId && (
+                        {selectedTermId != null && (
                             <div className="space-y-2">
                                 <p className="text-sm font-medium text-gray-500">Tap the correct definition:</p>
                                 {shuffledDefs.map((p) => {
@@ -2479,7 +2479,7 @@ function parseVocabPairs(content: string): VocabPair[] {
             return parsed.pairs
                 .filter((p: any) => p && p.term && p.definition)
                 .map((p: any, index: number) => ({
-                    id: p.id ?? index + 1,
+                    id: index + 1,
                     term: String(p.term).trim(),
                     definition: String(p.definition).trim()
                 }));

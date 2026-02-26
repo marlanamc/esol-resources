@@ -48,7 +48,7 @@ function generateFlashcardContent(slug, data) {
 function generateMatchingContent(slug, data) {
   if (!data || !data.words) return {};
   const pairs = data.words.map((w, idx) => ({
-    id: idx,
+    id: idx + 1,
     term: w.term,
     definition: w.def,
   }));
