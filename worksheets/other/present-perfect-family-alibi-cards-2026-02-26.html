@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Present Perfect Family Guess-the-Why Cards</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --line: #374151;
+      --bg: #f9fafb;
+      --duration: #4338ca;
+      --result: #b45309;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Georgia", "Times New Roman", serif;
+      padding: 20px;
+      line-height: 1.35;
+    }
+    .sheet {
+      max-width: 8.5in;
+      margin: 0 auto;
+      background: #fff;
+      padding: 0.45in 0.5in;
+    }
+    .header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 22px;
+    }
+    .subtitle {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .teacher-note {
+      margin: 10px 0 12px;
+      font-size: 12px;
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      background: #f8fafc;
+    }
+    .rules {
+      font-size: 12px;
+      margin: 0 0 12px;
+      padding-left: 16px;
+    }
+    .rules li { margin-bottom: 4px; }
+    .model {
+      margin: 10px 0 14px;
+      border: 1px solid #d1d5db;
+      background: #fffbeb;
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    .model-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .dialogue-line { margin-bottom: 3px; }
+    .section-title {
+      margin: 0 0 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .card {
+      border: 1px dashed var(--line);
+      min-height: 96px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      break-inside: avoid;
+    }
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .prompt {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .example {
+      font-size: 12px;
+      margin-top: 6px;
+      color: var(--muted);
+    }
+    .duration-tag { color: var(--duration); }
+    .result-tag { color: var(--result); }
+    .page-break { page-break-before: always; }
+    .secret-box {
+      margin-top: 8px;
+      padding-top: 7px;
+      border-top: 1px dashed #9ca3af;
+    }
+    .clues {
+      margin: 5px 0 0 16px;
+      padding: 0;
+    }
+    .clues li {
+      margin: 2px 0;
+    }
+    .footer-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    @media print {
+      @page { size: letter; margin: 0.45in; }
+      body { background: #fff; padding: 0; }
+      .sheet { padding: 0; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet">
+    <header class="header">
+      <h1>Guess-the-Why Detective Cards</h1>
+    <div class="subtitle">Present Perfect Family (ESOL Level 3) • Hard Mode • Workplace-Safe</div>
+    </header>
+
+    <div class="teacher-note">
+      Student A draws one card. A reads only the <strong>READ THIS</strong> line.
+      A keeps the <strong>DON'T READ OUT LOUD</strong> line hidden until Student B guesses it.
+    </div>
+
+    <ul class="rules">
+      <li><strong>No reveal rule:</strong> A cannot read the secret why sentence until B guesses it or asks 4+ questions.</li>
+      <li><strong>Grammar rule:</strong> A answers with <span class="duration-tag"><strong>have/has been + -ing</strong></span>.</li>
+      <li><strong>Question rule:</strong> B asks at least one <strong>What have you been doing?</strong> and one <strong>How long...?</strong> question.</li>
+      <li><strong>Scoring:</strong> B gets 2 points if guessed in 3 questions, 1 point in 4-5 questions. A gets 1 point per accurate present perfect continuous answer.</li>
+    </ul>
+
+    <section class="model">
+      <div class="model-title">Model Round (Scaffold Example)</div>
+      <div class="dialogue-line"><strong>Condition card (visible):</strong> My voice is gone.</div>
+      <div class="dialogue-line"><strong>Secret why (hidden):</strong> I have been shouting over loud machines all shift at the factory.</div>
+      <div class="dialogue-line"><strong>A:</strong> My voice is gone.</div>
+      <div class="dialogue-line"><strong>B:</strong> What have you been doing?</div>
+      <div class="dialogue-line"><strong>A:</strong> I have been talking loudly all day at work.</div>
+      <div class="dialogue-line"><strong>B:</strong> How long have you been doing that?</div>
+      <div class="dialogue-line"><strong>A:</strong> I have been doing it since 8 AM.</div>
+      <div class="dialogue-line"><strong>B:</strong> Have you been working in a noisy place?</div>
+      <div class="dialogue-line"><strong>A:</strong> Yes, I have been working in a very noisy place.</div>
+      <div class="dialogue-line"><strong>B:</strong> Have you been shouting over loud machines all shift at the factory?</div>
+      <div class="dialogue-line"><strong>A:</strong> Yes! I have been shouting over loud machines all shift at the factory.</div>
+      <div class="dialogue-line"><strong>Optional result sentence:</strong> I have already finished my whole water bottle.</div>
+      <div class="dialogue-line"><strong>Sentence frames:</strong> I have been ___ing for ___. / I have been ___ing since ___. / Yes, I have been ___ing all day.</div>
+    </section>
+
+    <h2 class="section-title">One-Card Prompts (Read + Hidden)</h2>
+    <section class="cards">
+      <article class="card"><div class="label">Read this</div><div class="prompt">My voice is gone.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been shouting over loud machines all shift at the factory.</div><ul class="example clues"><li>Very noisy</li><li>Ear protection</li><li>Factory floor</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">I am exhausted.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been covering extra shifts because of the snowstorm.</div><ul class="example clues"><li>Fewer coworkers came in</li><li>Long day</li><li>Extra shift coverage</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">My clothes are wet.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been walking through snow and slush since the train was delayed.</div><ul class="example clues"><li>Commute issue</li><li>Wet shoes</li><li>Snowy walk</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">My hands are dirty.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been digging my car out of snow all morning.</div><ul class="example clues"><li>Outside in winter</li><li>Shovel workout</li><li>Car buried in snow</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">I am stressed.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been studying for a certification test after work every night.</div><ul class="example clues"><li>Career goal</li><li>Notes everywhere</li><li>Exam prep</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">I am out of breath.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been climbing apartment stairs because the elevator is out again.</div><ul class="example clues"><li>Building problem</li><li>Up and down all day</li><li>Broken elevator</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">I am sore.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been carrying groceries through two feet of snow.</div><ul class="example clues"><li>Heavy bags</li><li>Winter weather</li><li>Grocery marathon</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">My throat hurts.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been calling out orders nonstop in a busy restaurant kitchen.</div><ul class="example clues"><li>Fast pace</li><li>Lots of tickets</li><li>Kitchen rush</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">I am freezing.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been waiting for the bus in the cold for an hour.</div><ul class="example clues"><li>Outdoor commute</li><li>Very cold</li><li>Late bus</li></ul></div></article>
+      <article class="card"><div class="label">Read this</div><div class="prompt">My back hurts.</div><div class="secret-box"><div class="label">Don't read out loud</div><div class="example">I have been clearing snow and carrying materials at the construction site.</div><ul class="example clues"><li>Outdoor work</li><li>Heavy lifting</li><li>Jobsite in snow</li></ul></div></article>
+    </section>
+
+    <div class="page-break"></div>
+
+    <h2 class="section-title">Follow-Up Question Cards (Set C)</h2>
+    <section class="cards">
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">What have you been doing?</div><div class="example">Start broad.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">How long have you been doing that?</div><div class="example">Use for + duration.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Since when have you been doing that?</div><div class="example">Use since + start time.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Where have you been doing that?</div><div class="example">Ask for place clues.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Who have you been doing that with?</div><div class="example">Ask for people clues.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Have you been doing this all day?</div><div class="example">Yes/no check.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Have you been doing this at work?</div><div class="example">Context check.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Have you been doing this with children?</div><div class="example">Narrowing guess question.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Have you been doing this since this morning?</div><div class="example">Time narrowing.</div></article>
+      <article class="card"><div class="label">Follow-Up</div><div class="prompt">Have you been ______ing because ______?</div><div class="example">Final guess pattern.</div></article>
+    </section>
+
+    <h2 class="section-title">Sentence Frames</h2>
+    <section class="cards">
+      <article class="card"><div class="label">Frame</div><div class="prompt">I am ___.</div><div class="example">Condition only (no reason yet).</div></article>
+      <article class="card"><div class="label">Frame</div><div class="prompt">I have been ___ing for ___.</div><div class="example">Main clue answer.</div></article>
+      <article class="card"><div class="label">Frame</div><div class="prompt">I have been ___ing since ___.</div><div class="example">Add start point.</div></article>
+      <article class="card"><div class="label">Frame</div><div class="prompt">Yes, I have been ___ing all day.</div><div class="example">Confirm guess.</div></article>
+      <article class="card"><div class="label">Frame</div><div class="prompt">No, I have not been ___ing.</div><div class="example">Reject guess.</div></article>
+      <article class="card"><div class="label">Frame</div><div class="prompt">So far, I have ___.</div><div class="example"><span class="result-tag">Optional result follow-up.</span></div></article>
+    </section>
+
+    <div class="footer-note">
+      Extension: after reveal, Student A adds one result sentence in <span class="result-tag"><strong>Present Perfect</strong></span>
+      (example: "I have already taken throat medicine.").
+    </div>
+  </div>
+</body>
+</html>
