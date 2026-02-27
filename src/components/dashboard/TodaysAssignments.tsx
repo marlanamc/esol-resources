@@ -45,6 +45,7 @@ interface Props {
     ctaLabel?: string;
     variant?: 'cards' | 'checklist';
     actions?: React.ReactNode;
+    refreshOnMount?: boolean;
 }
 
 export const TodaysAssignments: React.FC<Props> = ({
@@ -53,6 +54,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     ctaLabel = "Start Activity",
     variant = 'cards',
     actions,
+    refreshOnMount = false,
 }) => {
     const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 text-amber-950 shadow-[0_2px_8px_rgba(245,158,11,0.25)]";
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
@@ -70,14 +72,19 @@ export const TodaysAssignments: React.FC<Props> = ({
     })();
 
     useEffect(() => {
+        // Optionally refresh from API even when server-provided data exists.
+        if (refreshOnMount) {
+            void fetchFeaturedAssignments();
+            return;
+        }
+
         // If we already have data from the server, skip the client fetch.
         if (initialAssignments && initialAssignments.length >= 0) {
             setLoading(false);
             return;
         }
-        fetchFeaturedAssignments();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        void fetchFeaturedAssignments();
+    }, [initialAssignments, refreshOnMount]);
 
     const fetchFeaturedAssignments = async () => {
         try {
