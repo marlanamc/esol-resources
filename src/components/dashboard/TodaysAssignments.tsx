@@ -29,6 +29,7 @@ interface FeaturedAssignment {
     activity: {
         title: string;
         description: string | null;
+        type?: string;
         category?: string | null;
     };
     submissions: Array<{
@@ -240,13 +241,21 @@ export const TodaysAssignments: React.FC<Props> = ({
             const progressValue = typeof assignment.progress === 'number' ? assignment.progress : 0;
             const isNew = isNewlyFeatured(assignment);
             const isGameRow = isGameCategory(assignment.activity.category);
+            const isGrammarGuide =
+                (assignment.activity.type || '').toLowerCase() === 'guide' &&
+                (assignment.activity.category || '').toLowerCase() === 'grammar';
 
             // For vocabulary activities, check if all 4 sub-activities are complete
             const vocabProgress = getVocabProgress(assignment);
             const isVocabComplete = vocabProgress ? vocabProgress.completed === vocabProgress.total : false;
+            const grammarPassed = assignment.submissions.some(
+                (s) => !!s.completedAt && typeof s.score === 'number' && s.score > 70
+            );
 
             const isCompleted = isGameRow
                 ? false
+                : isGrammarGuide
+                ? grammarPassed
                 : vocabProgress
                 ? isVocabComplete
                 : (progressValue >= 100 ||

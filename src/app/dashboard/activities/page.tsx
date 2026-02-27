@@ -256,9 +256,28 @@ export default async function ActivitiesPage({ searchParams }: Props) {
             status: { in: ["submitted", "graded"] },
             completedAt: { not: null }
         },
-        select: { activityId: true }
+        select: {
+            activityId: true,
+            score: true,
+            activity: {
+                select: {
+                    type: true,
+                    category: true,
+                },
+            },
+        }
     });
-    const completedActivityIds = new Set<string>(completedActivities.map((s: { activityId: string }) => s.activityId));
+    const completedActivityIds = new Set<string>(
+        completedActivities
+            .filter((s) => {
+                const isGrammarGuide =
+                    s.activity.type === "guide" &&
+                    (s.activity.category || "").toLowerCase() === "grammar";
+                if (!isGrammarGuide) return true;
+                return typeof s.score === "number" && s.score > 70;
+            })
+            .map((s) => s.activityId)
+    );
 
     return (
         <div className="min-h-screen bg-bg">
