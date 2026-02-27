@@ -643,7 +643,7 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Choose the correct negative form.",
+            question: "Which option has the correct negative form?",
             options: [
                 { value: "b", label: "She hasn't being sleeping well." },
                 { value: "a", label: "She hasn't been sleeping well." },
@@ -656,7 +656,7 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Present Perfect Continuous?",
             options: [
                 { value: "b", label: "Have you been wait long?" },
                 { value: "c", label: "Are you been waiting long?" },

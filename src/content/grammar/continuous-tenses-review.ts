@@ -1537,7 +1537,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-8",
-            question: "Which sentence is INCORRECT?",
+            question: "Which sentence is incorrect because it uses a stative verb in a continuous form?",
             options: [
                 { value: "a", label: "I am knowing the answer." },
                 { value: "b", label: "I am learning the answer." },

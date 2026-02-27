@@ -1256,7 +1256,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             id: "quiz-9",
             skillTag: "pattern-after-past-perfect",
             difficulty: "easy",
-            question: "Choose the correct sentence:",
+            question: "Which sentence correctly shows the earlier action in Past Perfect and the later action in Past Simple?",
             options: [
                 { value: "b", label: "After they leave, we had locked the door." },
                 { value: "c", label: "After they had leave, we locked the door." },
@@ -1310,7 +1310,7 @@ export const pastPerfectContent: InteractiveGuideContent = {
             id: "quiz-13",
             skillTag: "error-double-past-perfect",
             difficulty: "medium",
-            question: "Which sentence is correct?",
+            question: "Which sentence uses Past Perfect only where it is needed?",
             options: [
                 { value: "a", label: "After she had finished her homework, she had gone to bed." },
                 { value: "b", label: "After she had finished her homework, she went to bed." },

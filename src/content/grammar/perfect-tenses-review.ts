@@ -1027,7 +1027,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which sentence is correct?",
+            question: "Which sentence is correct for a finished past time expression (last year)?",
             options: [
                 { value: "b", label: "I visited Paris last year." },
                 { value: "a", label: "I have visited Paris last year." },
@@ -1142,7 +1142,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-10",
-            question: "Which sentence is correct?",
+            question: "Which sentence is correct with a specific past time expression ('in 2019')?",
             options: [
                 { value: "b", label: "She lived here in 2019." },
                 { value: "a", label: "She has lived here in 2019." },

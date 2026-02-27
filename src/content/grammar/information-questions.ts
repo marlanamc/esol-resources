@@ -1319,7 +1319,7 @@ export const informationQuestionsContent: InteractiveGuideContent = {
   miniQuiz: [
     {
       id: "quiz-1",
-      question: "Which question is correct?",
+      question: "Which question uses correct word order for an information question?",
       options: [
         { value: "c", label: "How many bedrooms does the apartment have?" },
         { value: "a", label: "How much bedrooms does the apartment have?" },

@@ -818,7 +818,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly uses a superlative adjective?",
             options: [
                 { value: "a", label: "This is the most cheap apartment in the building." },
                 { value: "c", label: "This is the cheapest apartment in the building." },
@@ -902,7 +902,7 @@ export const superlativesQuantifiersContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-7",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly uses a quantifier with an uncountable noun?",
             options: [
                 { value: "b", label: "This job requires fewer experience than that one." },
                 { value: "a", label: "This job requires less experience than that one." },

@@ -690,7 +690,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Which question is correct?",
+            question: "Which question correctly uses 'will' + base verb?",
             options: [
                 { value: "b", label: "Will you help me?" },
                 { value: "a", label: "Will you helps me?" },

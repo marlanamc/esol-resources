@@ -1067,7 +1067,7 @@ export const reportedSpeechContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-11",
-            question: "Which sentence is incorrect?",
+            question: "Which sentence uses 'say' and 'tell' incorrectly in reported speech?",
             options: [
                 { value: "a", label: "He said that he was sick." },
                 { value: "c", label: "He told me that he was sick." },

@@ -1288,7 +1288,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
             id: "ppq-8",
             skillTag: "error-already-placement",
             difficulty: "medium",
-            question: "Which is correct?",
+            question: "Which option correctly places 'already' in Present Perfect?",
             options: [
                 { value: "a", label: "I have already finished my homework." },
                 { value: "b", label: "I already have finished my homework." },
@@ -1316,7 +1316,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
             id: "ppq-10",
             skillTag: "error-yet-negative-question",
             difficulty: "easy",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Present Perfect with 'yet'?",
             options: [
                 { value: "b", label: "Did you finished your homework yet?" },
                 { value: "c", label: "Have you yet finished your homework?" },
@@ -1386,7 +1386,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
             id: "ppq-15",
             skillTag: "result-life-experience-ever-never",
             difficulty: "medium",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly places 'never' in Present Perfect?",
             options: [
                 { value: "b", label: "I never have tried Ethiopian food." },
                 { value: "a", label: "I have never tried Ethiopian food." },

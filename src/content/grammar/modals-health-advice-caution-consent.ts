@@ -773,7 +773,7 @@ export const modalsHealthAdviceCautionConsentContent: InteractiveGuideContent = 
       },
       {
         id: "quiz-5",
-        question: "Which sentence is grammatically correct?",
+        question: "Which sentence correctly uses a modal verb for health advice?",
         options: [
           { value: "a", label: "You shoulds take it with food." },
           { value: "b", label: "You should to take it with food." },

@@ -843,7 +843,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-4",
-            question: "Which sentence is INCORRECT?",
+            question: "Which sentence is incorrect for talking about a past habit or past state that changed?",
             options: [
                 { value: "a", label: "I used to be shy." },
                 { value: "c", label: "I used to work nights." },
@@ -973,7 +973,7 @@ export const usedToWouldRatherContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-14",
-            question: "Which sentence is INCORRECT?",
+            question: "Which sentence is incorrect for a repeated past action with 'would' or 'used to'?",
             options: [
                 { value: "c", label: "I would be tired all the time." },
                 { value: "a", label: "I used to live near Logan Airport." },

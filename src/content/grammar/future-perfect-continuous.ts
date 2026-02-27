@@ -510,7 +510,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Choose the correct negative form.",
+            question: "Which option has the correct negative form?",
             options: [
                 { value: "a", label: "I won't have been working long enough." },
                 { value: "b", label: "I won't have being working long enough." },
@@ -562,7 +562,7 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-7",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Future Perfect Continuous to ask about duration by a future time?",
             options: [
                 { value: "b", label: "How long you will have been working here by next year?" },
                 { value: "a", label: "How long will you have been working here by next year?" },

@@ -840,7 +840,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Choose the correct negative form.",
+            question: "Which option has the correct negative form?",
             options: [
                 { value: "b", label: "She will haven't arrived by 6 PM." },
                 { value: "c", label: "She won't has arrived by 6 PM." },
@@ -853,7 +853,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Future Perfect?",
             options: [
                 { value: "a", label: "Will you have finished by tomorrow?" },
                 { value: "b", label: "Will you has finished by tomorrow?" },
