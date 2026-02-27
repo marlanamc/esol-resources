@@ -422,7 +422,10 @@ export const TodaysAssignments: React.FC<Props> = ({
                             return (
                                 <div className="mt-1.5">
                                     <div className="h-1 w-24 max-w-full bg-border/20 rounded-full overflow-hidden">
-                                        <div className="h-full bg-emerald-400/80 rounded-full transition-all" style={{ width: `${progressValue}%` }} />
+                                        <div
+                                            className="h-full rounded-full transition-all"
+                                            style={{ width: `${progressValue}%`, backgroundColor: categoryStyle.accent }}
+                                        />
                                     </div>
                                 </div>
                             );
