@@ -1566,7 +1566,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Choose the sentence that focuses on a completed result.",
+            question: "Choose the sentence that focuses on a completed result NOW.",
             options: [
                 { value: "a", label: "I have been cleaning the kitchen all morning." },
                 { value: "c", label: "I cleaned the kitchen yesterday." },
