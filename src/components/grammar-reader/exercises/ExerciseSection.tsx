@@ -144,12 +144,19 @@ export function ExerciseSection({
     const correctCount = Object.values(results).filter((r) => r).length;
     const totalCount = exercise.items.length;
 
+    const displayTitle =
+        exercise.title === "Quick Check: Pick the Best Phrase" ? "Quick Check" : exercise.title;
+    const displayInstructions =
+        exercise.instructions === "Choose the best phrase for each situation."
+            ? "Choose the best answer."
+            : exercise.instructions;
+
     return (
-        <div className="exercise-section bg-white border border-border rounded-lg p-6 shadow-sm">
-            <div className="mb-4 space-y-1">
-                <h4 className="text-lg font-bold text-primary mb-2">{exercise.title}</h4>
+        <div className="exercise-section bg-white/90 border border-border/60 rounded-lg p-4 sm:p-5 shadow-sm">
+            <div className="mb-3 space-y-0.5">
+                <h4 className="text-base sm:text-lg font-semibold text-primary">{displayTitle}</h4>
                 {exercise.instructions && (
-                    <p className="text-sm text-text-muted italic">{exercise.instructions}</p>
+                    <p className="text-sm text-text-muted font-normal">{displayInstructions}</p>
                 )}
                 {answerExpectationMessage && (
                     <p className="text-sm font-medium text-text">
@@ -231,7 +238,7 @@ export function ExerciseSection({
                     variant="primary"
                     onClick={handleCheck}
                     disabled={!allAnswered || submitted}
-                    className="flex-1"
+                    className="flex-1 disabled:!bg-bg-light disabled:!text-text-muted disabled:!border disabled:!border-border/80 disabled:!shadow-none"
                 >
                     Check Answers
                 </Button>
@@ -241,12 +248,6 @@ export function ExerciseSection({
                     </Button>
                 )}
             </div>
-
-            {!allAnswered && !submitted && (
-                <p className="text-xs text-text-muted text-center mt-2">
-                    Complete all items before checking
-                </p>
-            )}
         </div>
     );
 }
