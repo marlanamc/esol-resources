@@ -46,13 +46,15 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className={`flex flex-col items-center justify-center gap-1 transition-[color,transform] duration-150 cursor-pointer touch-manipulation relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
+                className={`flex flex-col items-center justify-center gap-1 transition-[color,transform,background-color,box-shadow] duration-150 cursor-pointer touch-manipulation relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-xl mx-1 my-1 ${
                   isActive
                     ? ''
                     : 'active:scale-95'
                 }`}
                 style={{
-                  color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted)',
+                  color: isActive ? '#5f5142' : 'var(--color-text-muted)',
+                  backgroundColor: isActive ? '#f3ede3' : 'transparent',
+                  boxShadow: isActive ? 'inset 0 0 0 1px rgba(176,155,127,0.45)' : 'none',
                   touchAction: 'manipulation',
                   WebkitTapHighlightColor: 'transparent'
                 }}
@@ -62,7 +64,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                 </div>
                 <span className="text-xs font-medium pointer-events-none">{item.label}</span>
                 {isActive && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full pointer-events-none" style={{ background: 'var(--color-primary)' }} />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full pointer-events-none" style={{ background: '#9f8467' }} />
                 )}
               </Link>
             );

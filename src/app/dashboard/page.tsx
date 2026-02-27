@@ -272,10 +272,10 @@ export default async function DashboardPage() {
 
         return (
             <div className="min-h-screen bg-bg">
-                <main className="container mx-auto pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
+                <main className="container mx-auto pt-4 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                         {/* Main Content Area - Left Side */}
-                        <div className="md:col-span-8 lg:col-span-9 space-y-6">
+                        <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
                             {/* Welcome Header */}
                             <div className="animate-fade-in-up">
                                 {/* Desktop: Welcome + Stats horizontal */}
@@ -283,7 +283,7 @@ export default async function DashboardPage() {
                                     <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
                                         Welcome, <span className="handwritten text-primary relative inline-block">
                                             {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
-                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
                                         </span>!
                                     </h1>
 
@@ -330,7 +330,7 @@ export default async function DashboardPage() {
                                     <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
                                         Welcome, <span className="handwritten text-primary relative inline-block">
                                             {session.user?.name === "Teacher User" ? "Teacher" : session.user?.name}
-                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
                                         </span>!
                                     </h1>
 
@@ -362,7 +362,7 @@ export default async function DashboardPage() {
 
                             {/* Mobile Quick Actions - Only visible on mobile */}
                             <section className="md:hidden animate-fade-in-up delay-50">
-                                <h2 className="text-lg font-bold font-display text-text mb-3">Quick Actions</h2>
+                                <h2 className="text-lg font-bold font-display text-[#1f2633] mb-3">Quick Actions</h2>
                                 <div className="grid grid-cols-2 gap-3">
                                     <Link
                                         href="/dashboard/classes"
@@ -425,7 +425,7 @@ export default async function DashboardPage() {
                                                 <span className="w-6 h-[2px] bg-secondary rounded-full"></span>
                                                 Explore
                                             </p>
-                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
+                                            <h2 className="text-2xl font-bold font-display text-[#1f2633] mt-2">All Activities</h2>
                                             <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
                                                 Browse all activities organized by category. Feature assignments for your classes and create new content.
                                             </p>
@@ -692,9 +692,9 @@ export default async function DashboardPage() {
                                 {/* Desktop: Welcome + Stats horizontal */}
                                 <div className="hidden lg:flex items-center gap-6">
                                     <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
-                                        Welcome, <span className="handwritten text-primary relative inline-block">
+                                        Welcome,<span className="handwritten text-primary relative inline-block text-[0.92em] ml-1 align-baseline">
                                             {session.user?.name}
-                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
                                         </span>!
                                     </h1>
 
@@ -704,14 +704,14 @@ export default async function DashboardPage() {
                                             <Link
                                                 href="/dashboard/profile"
                                                 aria-label="Open your profile from streak stats"
-                                                className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+                                                className="flex items-center gap-2.5 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2.5 pr-4 py-2 shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
                                             >
-                                                <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
-                                                    <FlameIcon className="text-orange-500 streak-icon-pulse" size={16} />
+                                                <div className="w-8 h-8 bg-[#fff9f2] rounded-full flex items-center justify-center">
+                                                    <FlameIcon className="text-[#b97a45]" size={16} />
                                                 </div>
                                                 <div>
                                                     <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Streak</div>
-                                                    <div className="text-lg font-bold text-text leading-tight">{effectiveCurrentStreak} <span className="text-xs font-semibold text-text-muted">days</span></div>
+                                                    <div className="text-base font-semibold text-text leading-tight">{effectiveCurrentStreak} <span className="text-xs font-medium text-text-muted">days</span></div>
                                                 </div>
                                             </Link>
                                         )}
@@ -721,14 +721,14 @@ export default async function DashboardPage() {
                                             <Link
                                                 href="/dashboard/profile"
                                                 aria-label="Open your profile from weekly points stats"
-                                                className="flex items-center gap-2.5 bg-white/90 border border-amber-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                                                className="flex items-center gap-2.5 bg-white border border-[#ccb79c] rounded-full pl-2.5 pr-4 py-2.5 shadow-[0_2px_8px_rgba(64,46,28,0.08)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
                                             >
-                                                <div className="w-8 h-8 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-full flex items-center justify-center">
-                                                    <StarIcon className="text-amber-500" size={16} />
+                                                <div className="w-9 h-9 bg-[#f7f0e4] rounded-full flex items-center justify-center">
+                                                    <StarIcon className="text-[#9f6f3a]" size={17} />
                                                 </div>
                                                 <div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">This Week</div>
-                                                    <div className="text-lg font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">pts</span></div>
+                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#6a5947] leading-none">This Week</div>
+                                                    <div className="text-xl font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">pts</span></div>
                                                 </div>
                                             </Link>
                                         )}
@@ -738,14 +738,14 @@ export default async function DashboardPage() {
                                             <Link
                                                 href="/dashboard/profile"
                                                 aria-label="Open your profile from total points stats"
-                                                className="flex items-center gap-2.5 bg-white/90 border border-emerald-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                                                className="flex items-center gap-2.5 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2.5 pr-4 py-2 shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
                                             >
-                                                <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
-                                                    <TrophyIcon className="text-secondary" size={16} />
+                                                <div className="w-8 h-8 bg-[#f1f4ec] rounded-full flex items-center justify-center">
+                                                    <TrophyIcon className="text-[#6a8b61]" size={16} />
                                                 </div>
                                                 <div>
                                                     <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Total</div>
-                                                    <div className="text-lg font-bold text-text leading-tight">{currentUser.points} <span className="text-xs font-semibold text-text-muted">pts</span></div>
+                                                    <div className="text-base font-semibold text-text leading-tight">{currentUser.points} <span className="text-xs font-medium text-text-muted">pts</span></div>
                                                 </div>
                                             </Link>
                                         )}
@@ -754,26 +754,26 @@ export default async function DashboardPage() {
 
                                 {/* Mobile: Welcome stacked */}
                                 <div className="lg:hidden">
-                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-4 leading-[1.15] tracking-tight">
-                                        Welcome, <span className="handwritten text-primary relative inline-block">
+                                    <h1 className="text-3xl sm:text-4xl font-display font-bold text-text mb-2.5 leading-[1.15] tracking-tight">
+                                        Welcome,<span className="handwritten text-primary relative inline-block text-[0.92em] ml-1 align-baseline">
                                             {session.user?.name}
-                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-accent/40 -z-10 rounded-sm transform -rotate-1"></span>
+                                            <span className="absolute -bottom-0.5 left-0 right-0 h-1.5 sm:h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
                                         </span>!
                                     </h1>
 
-                                    <div className="flex items-center gap-3 flex-wrap">
+                                    <div className="flex items-center gap-2.5 flex-wrap">
                                         {currentUser && effectiveCurrentStreak > 0 && (
                                             <Link
                                                 href="/dashboard/profile"
                                                 aria-label="Open your profile from streak stats"
-                                                className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-300"
+                                                className="flex items-center gap-2 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
                                             >
-                                                <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center streak-glow">
-                                                    <FlameIcon className="text-orange-500 streak-icon-pulse" size={14} />
+                                                <div className="w-7 h-7 bg-[#fff9f2] rounded-full flex items-center justify-center">
+                                                    <FlameIcon className="text-[#b97a45]" size={14} />
                                                 </div>
-                                                <div className="flex items-baseline gap-1">
-                                                    <span className="text-base font-bold text-text">{effectiveCurrentStreak}</span>
-                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">day</span>
+                                                <div>
+                                                    <div className="text-[9px] font-bold uppercase tracking-wide text-text-muted leading-none">Streak</div>
+                                                    <div className="text-base font-semibold text-text leading-tight">{effectiveCurrentStreak} <span className="text-[10px] font-medium text-text-muted">days</span></div>
                                                 </div>
                                             </Link>
                                         )}
@@ -782,14 +782,14 @@ export default async function DashboardPage() {
                                             <Link
                                                 href="/dashboard/profile"
                                                 aria-label="Open your profile from weekly points stats"
-                                                className="flex items-center gap-2 bg-white/90 border border-amber-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+                                                className="flex items-center gap-2 bg-white border border-[#ccb79c] rounded-full pl-2 pr-3.5 py-2 shadow-[0_2px_8px_rgba(64,46,28,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
                                             >
-                                                <div className="w-7 h-7 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-full flex items-center justify-center">
-                                                    <StarIcon className="text-amber-500" size={14} />
+                                                <div className="w-8 h-8 bg-[#f7f0e4] rounded-full flex items-center justify-center">
+                                                    <StarIcon className="text-[#9f6f3a]" size={15} />
                                                 </div>
-                                                <div className="flex items-baseline gap-1">
-                                                    <span className="text-base font-bold text-text">{actualWeeklyPoints}</span>
-                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">wk</span>
+                                                <div>
+                                                    <div className="text-[9px] font-bold uppercase tracking-wide text-[#6a5947] leading-none">This Week</div>
+                                                    <div className="text-lg font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-[10px] font-semibold text-text-muted">pts</span></div>
                                                 </div>
                                             </Link>
                                         )}
@@ -798,14 +798,14 @@ export default async function DashboardPage() {
                                             <Link
                                                 href="/dashboard/profile"
                                                 aria-label="Open your profile from total points stats"
-                                                className="flex items-center gap-2 bg-white/90 border border-emerald-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+                                                className="flex items-center gap-2 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
                                             >
-                                                <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
-                                                    <TrophyIcon className="text-secondary" size={14} />
+                                                <div className="w-7 h-7 bg-[#f1f4ec] rounded-full flex items-center justify-center">
+                                                    <TrophyIcon className="text-[#6a8b61]" size={14} />
                                                 </div>
-                                                <div className="flex items-baseline gap-1">
-                                                    <span className="text-base font-bold text-text">{currentUser.points}</span>
-                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">pts</span>
+                                                <div>
+                                                    <div className="text-[9px] font-bold uppercase tracking-wide text-text-muted leading-none">Total</div>
+                                                    <div className="text-base font-semibold text-text leading-tight">{currentUser.points} <span className="text-[10px] font-medium text-text-muted">pts</span></div>
                                                 </div>
                                             </Link>
                                         )}
@@ -816,7 +816,7 @@ export default async function DashboardPage() {
                             <ClassAnnouncement announcements={classAnnouncements} />
 
                             {/* This Week's Activities */}
-                            <section className="animate-fade-in-up delay-100">
+                            <section className="animate-fade-in-up delay-100 mt-2 sm:mt-4">
                                 <TodaysAssignments
                                     initialAssignments={featuredAssignments}
                                     title="Weekly Checklist"
@@ -827,25 +827,22 @@ export default async function DashboardPage() {
                             </section>
 
                             {/* Browse All Activities CTA */}
-                            <section className="animate-fade-in-up delay-200 mt-2">
-                                <div className="glass-card rounded-2xl p-6 group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
-                                    {/* Decorative gradient blob */}
-                                    <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
-
+                            <section className="animate-fade-in-up delay-200 mt-6">
+                                <div className="rounded-2xl p-4 sm:p-6 bg-[#faf6f1] border border-[#e7dfd3] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.04)] group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
                                     <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div>
-                                            <p className="text-xs font-bold text-secondary tracking-widest uppercase flex items-center gap-2">
-                                                <span className="w-6 h-[2px] bg-secondary rounded-full"></span>
+                                            <p className="text-xs font-semibold text-text-muted tracking-widest uppercase flex items-center gap-2">
+                                                <span className="w-6 h-[2px] bg-[#8b7a67] rounded-full"></span>
                                                 Explore
                                             </p>
-                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
+                                            <h2 className="text-2xl font-bold font-display text-[#1f2633] mt-2">All Activities</h2>
                                             <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed line-clamp-2">
                                                 Browse everything in one place with categories and progress tracking.
                                             </p>
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="shrink-0 px-5 py-2.5 rounded-xl bg-primary text-white hover:brightness-110 transition-all font-bold text-sm shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2"
+                                            className="shrink-0 px-5 py-2.5 rounded-lg bg-primary text-white border border-primary hover:brightness-110 transition-all font-semibold text-sm active:scale-95 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80] focus-visible:ring-offset-2"
                                         >
                                             Browse
                                             <span className="arrow-animate">→</span>
@@ -857,9 +854,9 @@ export default async function DashboardPage() {
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
                         <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="card-elevated p-6 sticky top-24 rounded-2xl space-y-5">
+                            <div className="p-6 sticky top-24 rounded-2xl space-y-5 bg-[#faf6f1] border border-[#e7dfd3] shadow-[0_2px_8px_rgba(52,43,34,0.04)]">
                                 <div className="flex items-center justify-between">
-                                    <h2 className="text-xl font-bold text-text">
+                                    <h2 className="text-lg font-bold font-display text-[#1f2633]">
                                         Calendar
                                     </h2>
                                 </div>

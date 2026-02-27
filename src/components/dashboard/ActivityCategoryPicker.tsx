@@ -20,8 +20,9 @@ interface CategoryCardDef {
     name: string;
     subtitle: string;
     icon: React.ReactNode;
-    bgColor: string;       // top section background
-    iconColor: string;     // icon stroke color
+    accent: string;
+    iconColor: string;
+    tint: string;
 }
 
 const CATEGORY_CARDS: CategoryCardDef[] = [
@@ -30,56 +31,63 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
         name: 'Grammar',
         subtitle: 'Sentences · Rules',
         icon: <PenLine className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#c8e6c9',  // green (swapped with vocab)
+        accent: '#5d8f65',
         iconColor: '#2e7d32',
+        tint: '#edf5ee',
     },
     {
         key: 'games',
         name: 'Games',
         subtitle: 'Practice + fun',
         icon: <Gamepad2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#d1c4e9',
+        accent: '#7f67a8',
         iconColor: '#4527a0',
+        tint: '#f2eef7',
     },
     {
         key: 'vocabulary',
         name: 'Vocabulary',
         subtitle: 'Words · Meaning · Use',
         icon: <BookOpen className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#bbdefb',  // blue (swapped with grammar)
+        accent: '#5d8eb7',
         iconColor: '#1565c0',
+        tint: '#edf4f9',
     },
     {
         key: 'quizzes',
         name: 'Quizzes',
         subtitle: 'Points · Grades',
         icon: <ClipboardList className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#ffcdd2',
+        accent: '#c47467',
         iconColor: '#c62828',
+        tint: '#f9efec',
     },
     {
         key: 'speaking',
         name: 'Speaking',
         subtitle: 'Say it out loud',
         icon: <Mic className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#ffe0b2',
+        accent: '#b88a5a',
         iconColor: '#e65100',
+        tint: '#f8f1e9',
     },
     {
         key: 'pronunciation',
         name: 'Pronunciation',
         subtitle: 'Sounds · minimal pairs',
         icon: <Volume2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#fbcfe8',
+        accent: '#af5f8a',
         iconColor: '#be185d',
+        tint: '#f8edf4',
     },
     {
         key: 'writing',
         name: 'Writing',
         subtitle: 'Short answers',
         icon: <PenTool className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-        bgColor: '#d7ccc8',
+        accent: '#8f7b67',
         iconColor: '#5d4037',
+        tint: '#f3f0ec',
     },
 ];
 
@@ -177,28 +185,35 @@ export function ActivityCategoryPicker({
                         <button
                             key={card.key}
                             onClick={() => setSelectedCategory(card.key)}
-                            className="category-card group flex flex-col rounded-2xl overflow-hidden bg-white border border-gray-200/60 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
+                            className="category-card group flex flex-col rounded-2xl overflow-hidden border shadow-[0_2px_8px_rgba(52,43,34,0.06)] hover:shadow-[0_8px_18px_rgba(52,43,34,0.08)] transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
                             style={{
                                 animationDelay: `${idx * 80}ms`,
+                                borderColor: '#e7dfd3',
+                                backgroundColor: '#fcfaf6',
                             }}
                         >
-                            {/* Colored icon area */}
+                            {/* Neutral icon area with subtle accent */}
                             <div
-                                className="flex items-center justify-center py-6 sm:py-8 transition-transform duration-300 relative"
-                                style={{ backgroundColor: card.bgColor }}
+                                className="flex items-center justify-center py-6 sm:py-7 transition-transform duration-300 relative border-b"
+                                style={{
+                                    backgroundColor: '#fcfaf6',
+                                    borderColor: '#eee6db',
+                                    borderTop: `4px solid ${card.accent}`,
+                                }}
                             >
-                                {/* Subtle inner shadow for depth */}
-                                <div className="absolute inset-0 shadow-[inset_0_-8px_12px_-8px_rgba(0,0,0,0.08)]" />
                                 <span
-                                    className="select-none group-hover:scale-110 transition-transform duration-300 relative z-10"
-                                    style={{ color: card.iconColor }}
+                                    className="select-none group-hover:scale-105 transition-transform duration-300 relative z-10 rounded-xl p-3"
+                                    style={{
+                                        color: card.iconColor,
+                                        backgroundColor: card.tint,
+                                        boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.65)',
+                                    }}
                                 >
                                     {card.icon}
                                 </span>
                             </div>
 
-                            {/* Label area - white background */}
-                            <div className="flex flex-col items-center gap-1 py-3 sm:py-4 px-2 bg-white">
+                            <div className="flex flex-col items-center gap-1 py-3 sm:py-3.5 px-2 bg-[#fcfaf6]">
                                 <span className="text-base sm:text-lg font-bold font-display text-text">
                                     {card.name}
                                 </span>
@@ -252,7 +267,11 @@ export function ActivityCategoryPicker({
                 {selectedCardDef && (
                     <div
                         className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center"
-                        style={{ backgroundColor: selectedCardDef.bgColor, color: selectedCardDef.iconColor }}
+                        style={{
+                            backgroundColor: selectedCardDef.tint,
+                            color: selectedCardDef.iconColor,
+                            boxShadow: `inset 0 0 0 1px ${selectedCardDef.accent}55`,
+                        }}
                     >
                         {selectedCardDef.icon}
                     </div>
