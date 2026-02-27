@@ -13,14 +13,14 @@ export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
                 <div className="flex-1">
                     <Link
                         href="/dashboard"
-                        className="flex items-center gap-3 group"
+                        className="flex items-center gap-2.5 group"
                         aria-label="Go to dashboard home"
                     >
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                             <BookOpenIcon className="w-5 h-5 text-white" />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-[11px] sm:text-[12px] font-medium text-secondary tracking-[0.06em] uppercase">ESOL</span>
+                            <span className="text-[11px] sm:text-[12px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">ESOL</span>
                             <span className="text-base sm:text-lg font-bold text-primary leading-tight tracking-[-0.01em]" style={{ fontFamily: "Lora, serif" }}>Class Companion</span>
                         </div>
                     </Link>

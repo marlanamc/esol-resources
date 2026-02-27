@@ -281,15 +281,6 @@ export default async function ActivitiesPage({ searchParams }: Props) {
 
     return (
         <div className="min-h-screen bg-bg">
-            <header className="sticky top-0 backdrop-blur-md border-b z-40 bg-white/90 border-white/60 shadow-sm">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-                    <h1 className="text-2xl sm:text-3xl font-display font-bold text-text text-center">
-                        What do you want to{" "}
-                        <span className="text-primary italic">practice</span> today?
-                    </h1>
-                </div>
-            </header>
-
             <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12">
                 <ActivityCategoryPicker
                     activities={visibleActivities}
