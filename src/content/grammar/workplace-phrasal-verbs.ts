@@ -47,7 +47,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "You completed your onboarding paperwork. Now you should _____.",
+                            label: "You completed your new-hire paperwork. Now you should _____.",
                             options: ["turn it in", "call it out", "clock it in", "show it up"],
                             expectedAnswer: "turn it in",
                         },
@@ -157,7 +157,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "select",
-                            label: "Right now, I am _____ the onboarding paperwork.",
+                            label: "Right now, I am _____ the new-hire paperwork.",
                             options: ["filling out", "filled out", "fill out", "turned in"],
                             expectedAnswer: "filling out",
                         },
@@ -830,7 +830,7 @@ export const workplacePhrasalVerbsContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Complete: 'I have already ___ this onboarding form.'",
+            question: "Complete: 'I have already ___ this new-hire form.'",
             options: [
                 { value: "a", label: "fill out" },
                 { value: "c", label: "filling out" },

@@ -718,16 +718,16 @@ export const futurePerfectContent: InteractiveGuideContent = {
                         <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #06b6d4;">
                             <p style="margin: 0; font-weight: 700; color: #06b6d4;">Short-Term Goals (3-6 months)</p>
                             <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
-                                <li>"By June, I will have completed the onboarding training."</li>
-                                <li>"By the end of Q1, I will have mastered the new software system."</li>
+                                <li>"By June, I will have completed new-hire training."</li>
+                                <li>"By the end of the first quarter, I will have learned the new workplace system."</li>
                             </ul>
                         </div>
 
                         <div style="background: white; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #22c55e;">
                             <p style="margin: 0; font-weight: 700; color: #22c55e;">Medium-Term Goals (1-2 years)</p>
                             <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem;">
-                                <li>"By next year, I will have earned my project management certification."</li>
-                                <li>"By 2027, I will have led at least 3 successful team projects."</li>
+                                <li>"By next year, I will have earned a safety certification for work."</li>
+                                <li>"By 2027, I will have helped lead at least 3 successful team jobs."</li>
                             </ul>
                         </div>
 
@@ -757,7 +757,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                         <p style="margin: 0; font-weight: 600; color: #06b6d4;">In Your Interview:</p>
                         <ul style="margin: 0.5rem 0 0 0; padding-left: 1.25rem; list-style-type: disc;">
                             <li>"If hired, by the end of my first 90 days I <strong>will have learned</strong> all key systems and processes."</li>
-                            <li>"By my one-year anniversary, I <strong>will have built</strong> strong relationships with key stakeholders."</li>
+                                <li>"By my one-year anniversary, I <strong>will have built</strong> strong relationships with my supervisors and coworkers."</li>
                         </ul>
                     </div>
                 </div>

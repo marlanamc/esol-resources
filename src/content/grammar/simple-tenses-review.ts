@@ -1071,9 +1071,9 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             id: "quiz-3",
             question: "Pick the correct question form.",
             options: [
-                { value: "b", label: "Do your team has stand-up at 9?" },
-                { value: "c", label: "Do your team have stand-up at 9?" },
-                { value: "a", label: "Does your team have stand-up at 9?" },
+                { value: "b", label: "Do your team has a shift meeting at 9?" },
+                { value: "c", label: "Do your team have a shift meeting at 9?" },
+                { value: "a", label: "Does your team have a shift meeting at 9?" },
             ],
             correctAnswer: "a",
             explanation: "'Team' is singular, so Does + base verb: Does your team have…?",

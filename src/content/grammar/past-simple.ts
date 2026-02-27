@@ -323,7 +323,7 @@ export const pastSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "radio",
-                            label: "The issue was solved. ___, we closed the ticket.",
+                            label: "The problem was fixed. ___, we closed the work order.",
                             options: [
                                 { value: "a", label: "Finally" },
                                 { value: "b", label: "Usually" },
