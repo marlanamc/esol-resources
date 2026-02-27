@@ -33,7 +33,7 @@ export function SelectExercise({
                 value={userAnswer}
                 onChange={(e) => onChange(e.target.value)}
                 disabled={submitted}
-                className={`w-full px-4 py-3 border-2 rounded-lg transition-[border-color,background-color] ${submitted
+                className={`w-full px-4 py-3 border rounded-lg transition-[border-color,background-color] ${submitted
                         ? isCorrect
                             ? "border-success bg-success/5"
                             : "border-error bg-error/5"
