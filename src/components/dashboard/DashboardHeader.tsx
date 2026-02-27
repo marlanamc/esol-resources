@@ -8,21 +8,21 @@ interface DashboardHeaderProps {
 
 export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
     return (
-        <header className="sticky top-0 backdrop-blur-md border-b z-[260] bg-[#e5dccf]/95 sm:bg-[#e7dfd3]/95 border-[#cfc4b2] sm:border-[#d8cfbf] shadow-[0_2px_8px_rgba(38,30,20,0.08)] sm:shadow-sm transition-all">
-            <div className="max-w-[1800px] mx-auto py-3.5 sm:py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+        <header className="sticky top-0 backdrop-blur-md border-b z-[260] bg-[#fef9f3]/95 border-[rgba(0,0,0,0.08)] shadow-[0_2px_8px_rgba(38,30,20,0.08)] sm:shadow-sm transition-all">
+            <div className="max-w-[1800px] mx-auto py-4 sm:py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 <div className="flex-1">
                     <Link
                         href="/dashboard"
-                        className="flex items-center gap-2 group"
+                        className="flex items-center gap-3 group"
                         aria-label="Go to dashboard home"
                     >
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                            <BookOpenIcon className="w-4 h-4 text-white" />
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                            <BookOpenIcon className="w-5 h-5 text-white" />
                         </div>
-                        <p className="font-bold text-primary tracking-widest uppercase text-[11px] sm:text-xs leading-tight">
-                            ESOL CLASS
-                            <br className="sm:hidden" /> COMPANION
-                        </p>
+                        <div className="flex flex-col">
+                            <span className="text-[11px] sm:text-[12px] font-medium text-secondary tracking-[0.06em] uppercase">ESOL</span>
+                            <span className="text-base sm:text-lg font-bold text-primary leading-tight tracking-[-0.01em]" style={{ fontFamily: "Lora, serif" }}>Class Companion</span>
+                        </div>
                     </Link>
                 </div>
                 <div className="flex items-center gap-3 animate-fade-in-up delay-100">
