@@ -888,7 +888,7 @@ export const passiveVoiceContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-6",
-            question: "Which sentence is INCORRECT passive voice?",
+            question: "Which sentence uses passive voice incorrectly?",
             options: [
                 { value: "a", label: "My blood was drawn yesterday." },
                 { value: "c", label: "I was gave medication." },

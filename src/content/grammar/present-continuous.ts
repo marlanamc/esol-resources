@@ -969,7 +969,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-4",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Present Continuous?",
             options: [
                 { value: "b", label: "Do you working today?" },
                 { value: "c", label: "Are you work today?" },
@@ -1086,7 +1086,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-13",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly uses Present Continuous for an action happening now?",
             options: [
                 { value: "a", label: "She is cook dinner right now." },
                 { value: "c", label: "She cooking dinner right now." },

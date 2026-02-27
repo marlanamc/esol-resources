@@ -648,7 +648,7 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Choose the correct negative form.",
+            question: "Which option has the correct negative form?",
             options: [
                 { value: "b", label: "She hadn't being sleeping well." },
                 { value: "c", label: "She hasn't been sleeping well." },
@@ -661,7 +661,7 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Past Perfect Continuous?",
             options: [
                 { value: "a", label: "Had you been waiting long?" },
                 { value: "b", label: "Had you been wait long?" },
@@ -778,7 +778,7 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-12",
-            question: "Which sentence is correct and natural?",
+            question: "Which sentence correctly uses the stative verb 'know' in this past timeline?",
             options: [
                 { value: "b", label: "I had known him for years before we got married." },
                 { value: "a", label: "I had been knowing him for years before we got married." },

@@ -1427,7 +1427,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-9",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly uses a stative verb with Future Perfect?",
             options: [
                 { value: "a", label: "By next year, I will have been knowing him for 10 years." },
                 { value: "b", label: "By next year, I will have known him for 10 years." },
@@ -1501,7 +1501,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-14",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly uses present tense in the time clause with Future Perfect?",
             options: [
                 { value: "a", label: "When you will arrive, we will have eaten." },
                 { value: "c", label: "When you are arriving, we will have eaten." },

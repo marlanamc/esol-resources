@@ -1546,7 +1546,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-2",
-      question: "Which is correct?",
+      question: "Which option correctly uses a gerund after 'enjoy'?",
       options: [
         { value: "a", label: "I enjoy to read books." },
         { value: "c", label: "I enjoy read books." },
@@ -1560,7 +1560,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-3",
-      question: "Which is correct?",
+      question: "Which option correctly uses an infinitive after 'want'?",
       options: [
         { value: "b", label: "I want to visit Japan." },
         { value: "a", label: "I want visiting Japan." },
@@ -1602,7 +1602,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-6",
-      question: "Which sentence is correct?",
+      question: "Which sentence correctly uses a gerund after the preposition 'for'?",
       options: [
         { value: "c", label: "Thank you for helping me." },
         { value: "a", label: "Thank you for help me." },
@@ -1700,7 +1700,7 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
     },
     {
       id: "quiz-13",
-      question: "Which is correct?",
+      question: "Which option correctly uses an infinitive after 'plan'?",
       options: [
         { value: "a", label: "I plan studying nursing next year." },
         { value: "b", label: "I plan to study nursing next year." },

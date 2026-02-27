@@ -843,7 +843,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	        },
 	        {
 	            id: "quiz-2",
-	            question: "Which is correct?",
+	            question: "Which option uses apostrophes correctly?",
 	            options: [
 	                { value: "a", label: "That's my doctors office." },
 	                { value: "b", label: "Thats my doctor's office." },
@@ -885,7 +885,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	        },
 	        {
 	            id: "quiz-5",
-	            question: "Which is correct?",
+	            question: "Which option correctly uses 'it's' (it is)?",
 	            options: [
 	                { value: "a", label: "Its a beautiful day." },
 	                { value: "c", label: "Its' a beautiful day." },
@@ -943,7 +943,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	        },
 	        {
 	            id: "quiz-9",
-	            question: "Which is correct?",
+	            question: "Which option correctly uses capitalization and punctuation for a place name?",
 	            options: [
 	                { value: "b", label: "I live in Chelsea, Massachusetts." },
 	                { value: "a", label: "I live in Chelsea Massachusetts." },
@@ -985,7 +985,7 @@ export const punctuationCapitalizationContent: InteractiveGuideContent = {
 	        },
 	        {
 	            id: "quiz-12",
-	            question: "Which sentence is correct?",
+	            question: "Which sentence uses capitalization correctly for seasons?",
 	            options: [
 	                { value: "b", label: "I like Spring and Fall." },
 	                { value: "c", label: "I Like spring and fall." },

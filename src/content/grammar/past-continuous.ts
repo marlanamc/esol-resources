@@ -817,7 +817,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-6",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Past Continuous?",
             options: [
                 { value: "a", label: "Were you sleeping when I knocked?" },
                 { value: "b", label: "Was you sleeping when I knocked?" },
@@ -869,7 +869,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-10",
-            question: "Which sentence is correct?",
+            question: "Which sentence correctly describes an action in progress at a specific past time?",
             options: [
                 { value: "b", label: "At midnight, my neighbors played loud music." },
                 { value: "a", label: "At midnight, my neighbors were playing loud music." },
@@ -921,7 +921,7 @@ export const pastContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-14",
-            question: "Which sentence is correct?",
+            question: "Which sentence is the correct Past Continuous question form?",
             options: [
                 { value: "a", label: "Was they waiting outside?" },
                 { value: "c", label: "Did they waiting outside?" },

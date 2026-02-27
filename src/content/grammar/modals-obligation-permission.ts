@@ -747,7 +747,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
       },
       {
         id: "quiz-5",
-        question: "Which sentence is grammatically correct?",
+        question: "Which sentence correctly uses a modal verb with a base verb?",
         options: [
           { value: "c", label: "She can work overtime tomorrow." },
           { value: "a", label: "She cans work overtime tomorrow." },

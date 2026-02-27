@@ -906,7 +906,7 @@ export const futureContinuousContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Which question is correct?",
+            question: "Which question correctly uses Future Continuous?",
             options: [
                 { value: "b", label: "Will you sleeping at midnight?" },
                 { value: "a", label: "Will you be sleeping at midnight?" },

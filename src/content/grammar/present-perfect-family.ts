@@ -1566,7 +1566,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
     miniQuiz: [
         {
             id: "quiz-1",
-            question: "Choose the sentence that focuses on a completed result NOW.",
+            question: "Which sentence talks about a completed result now?",
             options: [
                 { value: "a", label: "I have been cleaning the kitchen all morning." },
                 { value: "c", label: "I cleaned the kitchen yesterday." },
@@ -1579,7 +1579,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-2",
-            question: "Which sentence correctly uses Present Perfect Continuous?",
+            question: "Which sentence describes an action that started in the past and continues now?",
             options: [
                 { value: "b", label: "She has been working here since 2020." },
                 { value: "a", label: "She has worked here since 2020." },
@@ -1592,7 +1592,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-3",
-            question: "Fill in the blank: \"I ___ three emails this morning.\"",
+            question: "Fill in the blank with Present Perfect for a completed result now: \"I ___ three emails this morning.\"",
             options: [
                 { value: "a", label: "have been writing" },
                 { value: "b", label: "have written" },
@@ -1605,7 +1605,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-4",
-            question: "Which sentence talks about life experience?",
+            question: "Which sentence describes life experience (no specific time)?",
             options: [
                 { value: "a", label: "I have been traveling for two weeks." },
                 { value: "c", label: "I traveled to Mexico last year." },
@@ -1618,7 +1618,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-5",
-            question: "Choose the correct sentence.",
+            question: "Which sentence uses the correct form of the verb 'know' for a situation that continues now?",
             options: [
                 { value: "b", label: "I have known her for years." },
                 { value: "a", label: "I have been knowing her for years." },
@@ -1631,7 +1631,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-6",
-            question: "Which sentence explains visible evidence?",
+            question: "Which sentence best explains a present situation using recent ongoing activity?",
             options: [
                 { value: "a", label: "I have cooked dinner." },
                 { value: "b", label: "I have been cooking all afternoon." },
@@ -1644,7 +1644,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-7",
-            question: "Fill in the blank: \"She ___ just finished her homework.\"",
+            question: "Fill in the blank with the correct Present Perfect form for a completed result now: \"She ___ just finished her homework.\"",
             options: [
                 { value: "a", label: "has been" },
                 { value: "c", label: "is" },
@@ -1657,7 +1657,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-8",
-            question: "Which sentence is incorrect?",
+            question: "Which sentence is grammatically incorrect for counting completed actions?",
             options: [
                 { value: "c", label: "I have been reading three books this month." },
                 { value: "a", label: "I have been reading for two hours." },
@@ -1670,7 +1670,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-9",
-            question: "Choose the sentence that emphasizes time, not result.",
+            question: "Which sentence focuses on duration (time spent), not a completed result?",
             options: [
                 { value: "a", label: "I have written the report." },
                 { value: "b", label: "I have been writing the report all day." },
@@ -1683,7 +1683,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-10",
-            question: "Which sentence is NOT correct?",
+            question: "Which sentence is NOT grammatically correct with a specific past time?",
             options: [
                 { value: "b", label: "I saw her yesterday." },
                 { value: "c", label: "I have seen her before." },
@@ -1696,7 +1696,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-11",
-            question: "Which question asks about duration?",
+            question: "Which question asks about duration from the past until now?",
             options: [
                 { value: "c", label: "How long have you been working?" },
                 { value: "a", label: "How many emails have you written?" },
@@ -1709,7 +1709,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-12",
-            question: "Choose the better answer: \"Why are you tired?\"",
+            question: "Choose the best answer that explains why someone is tired now using recent ongoing activity.",
             options: [
                 { value: "a", label: "I have finished my homework." },
                 { value: "b", label: "I have been doing homework all night." },
@@ -1722,7 +1722,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-13",
-            question: "Which sentence focuses on quantity?",
+            question: "Which sentence focuses on quantity (how many times), not duration?",
             options: [
                 { value: "a", label: "She has been calling all morning." },
                 { value: "c", label: "She called this morning." },
@@ -1735,7 +1735,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-14",
-            question: "Choose the sentence that sounds natural.",
+            question: "Which sentence uses the correct form of the verb 'own' for a situation that continues now?",
             options: [
                 { value: "b", label: "I have owned this car for years." },
                 { value: "a", label: "I have been owning this car for years." },
@@ -1748,7 +1748,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
         },
         {
             id: "quiz-15",
-            question: "Which sentence best explains the difference in meaning?",
+            question: "Which pair best shows the meaning difference between Present Perfect and Present Perfect Continuous?",
             options: [
                 { value: "b", label: "I wrote emails. / I have written emails." },
                 { value: "a", label: "I have written emails. / I have been writing emails." },
