@@ -185,10 +185,10 @@ export function ActivityCategoryPicker({
                         <button
                             key={card.key}
                             onClick={() => setSelectedCategory(card.key)}
-                            className="category-card group flex flex-col rounded-2xl overflow-hidden border shadow-[0_2px_8px_rgba(52,43,34,0.06)] hover:shadow-[0_8px_18px_rgba(52,43,34,0.08)] transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
+                            className="category-card group flex flex-col rounded-2xl overflow-hidden border shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_10px_24px_rgba(52,43,34,0.10),0_2px_6px_rgba(52,43,34,0.06)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_16px_34px_rgba(52,43,34,0.14),0_4px_10px_rgba(52,43,34,0.08)] transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
                             style={{
                                 animationDelay: `${idx * 80}ms`,
-                                borderColor: '#e7dfd3',
+                                borderColor: '#ddd3c5',
                                 backgroundColor: '#fcfaf6',
                             }}
                         >
@@ -206,7 +206,7 @@ export function ActivityCategoryPicker({
                                     style={{
                                         color: card.iconColor,
                                         backgroundColor: card.tint,
-                                        boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.65)',
+                                        boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.65), 0 2px 6px rgba(52,43,34,0.08)',
                                     }}
                                 >
                                     {card.icon}
