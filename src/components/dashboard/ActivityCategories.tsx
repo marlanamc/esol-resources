@@ -548,6 +548,13 @@ const isActivityCompleted = (
     progressMap?: Record<string, { progress: number; categoryData?: string }>
 ) => {
     if (isPronunciationPracticeActivity(activity)) return false;
+    const isGrammarGuide =
+        activity.type === "guide" &&
+        (activity.category || "").toLowerCase() === "grammar";
+    if (isGrammarGuide) {
+        // Grammar guides are only complete when a passing mini-quiz score is recorded.
+        return completedActivityIds.has(activity.id);
+    }
     const progressValue = getDisplayProgress(activity, progressMap);
     return completedActivityIds.has(activity.id) || progressValue >= 100;
 };
