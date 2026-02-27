@@ -85,7 +85,7 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-border/30 py-2 z-50 animate-fade-in-up">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-border/30 py-2 z-[280] animate-fade-in-up">
                     <div className="px-4 py-2 border-b border-border/30">
                         <p className="text-sm font-medium text-text truncate">{userName}</p>
                     </div>

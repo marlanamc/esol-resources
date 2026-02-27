@@ -8,7 +8,7 @@ interface DashboardHeaderProps {
 
 export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
     return (
-        <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-[#e5dccf]/95 sm:bg-[#e7dfd3]/95 border-[#cfc4b2] sm:border-[#d8cfbf] shadow-[0_2px_8px_rgba(38,30,20,0.08)] sm:shadow-sm transition-all">
+        <header className="sticky top-0 backdrop-blur-md border-b z-[260] bg-[#e5dccf]/95 sm:bg-[#e7dfd3]/95 border-[#cfc4b2] sm:border-[#d8cfbf] shadow-[0_2px_8px_rgba(38,30,20,0.08)] sm:shadow-sm transition-all">
             <div className="max-w-[1800px] mx-auto py-3.5 sm:py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 <div className="flex-1">
                     <Link
