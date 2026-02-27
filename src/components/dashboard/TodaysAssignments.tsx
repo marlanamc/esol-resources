@@ -340,29 +340,62 @@ export const TodaysAssignments: React.FC<Props> = ({
             isGameGroup = false,
             categoryStyle: { text: string; accent: string }
         ) => (
-            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex items-center gap-3 transition-all duration-200 hover:bg-white/70 border-b border-border/10 last:border-0">
+            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-all duration-200 hover:bg-white/70 border-b border-border/10 last:border-0">
+                {/* Title row: checkbox + title + button aligned on one line (mobile & desktop) */}
+                <div className="flex items-center gap-3 min-w-0">
+                    {/* Checkbox (or Game Icon placeholder) - centers with title text */}
+                    <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                        {isGameGroup ? (
+                            <div className="w-5 h-5 flex items-center justify-center text-[18px] leading-none">
+                                {getGameEmojiForActivity({ activityId: assignment.activityId, title: assignment.title || assignment.activity.title })}
+                            </div>
+                        ) : (
+                            <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                                isCompleted
+                                    ? 'bg-secondary/10 border-secondary/20 text-secondary'
+                                    : 'bg-white border-border/40 text-transparent'
+                            }`}>
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                        )}
+                    </div>
 
-                {/* Checkbox (or Game Icon placeholder) */}
-                <div className="shrink-0 pt-0.5 self-start sm:self-center">
-                    {isGameGroup ? (
-                        <div className="w-5 h-5 flex items-center justify-center text-[18px] leading-none">
-                            {getGameEmojiForActivity({ activityId: assignment.activityId, title: assignment.title || assignment.activity.title })}
-                        </div>
-                    ) : (
-                        <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
-                            isCompleted
-                                ? 'bg-secondary/10 border-secondary/20 text-secondary'
-                                : 'bg-white border-border/40 text-transparent'
-                        }`}>
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        </div>
-                    )}
+                    {/* Title - same line as checkbox for clean alignment */}
+                    <div className={`min-w-0 flex-1 text-sm sm:text-base font-semibold leading-tight break-words transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
+                        {displayTitle}
+                    </div>
+
+                    {/* Action Button - Category-colored outline style */}
+                    <div className="shrink-0 pl-1">
+                        <Link
+                            href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
+                            className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 min-h-11 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-2xl whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+                            style={{
+                                color: categoryStyle.text,
+                                borderWidth: '1px',
+                                borderStyle: 'solid',
+                                borderColor: `${categoryStyle.accent}80`,
+                                backgroundColor: 'transparent',
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = categoryStyle.accent;
+                                e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
+                                e.currentTarget.style.backgroundColor = 'transparent';
+                            }}
+                            aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
+                        >
+                            <span>{isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'}</span>
+                        </Link>
+                    </div>
                 </div>
 
-                {/* Content */}
-                <div className="min-w-0 flex-1 flex flex-col gap-0.5">
-                    <div className="flex items-center gap-2 mb-0.5">
-                        {/* Mobile-only badges row */}
+                {/* Badges & progress row - below title, aligned with content */}
+                <div className="min-w-0 flex flex-col gap-0.5 pl-8">
+                    <div className="flex flex-wrap items-center gap-2">
+                        {/* Vocab type / New / due date badges */}
                         {(() => {
                             const vocabType = getVocabActivityType(assignment.activityId);
                             if (vocabType) {
@@ -376,12 +409,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                             return null;
                         })()}
 
-                                        {isNew && (
-                                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
-                                                <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
-                                                New
-                                            </span>
-                                        )}
+                        {isNew && (
+                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
+                                <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
+                                New
+                            </span>
+                        )}
 
                         {/* Only show due date if overdue */}
                         {!isGameGroup && dueLabel && !isCompleted && new Date(assignment.dueDate as string) < new Date() && (
@@ -389,10 +422,6 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 {dueLabel}
                             </span>
                         )}
-                    </div>
-
-                    <div className={`text-sm sm:text-base font-semibold leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
-                        {displayTitle}
                     </div>
 
                     {/* Progress: Vocab 4-dots chip OR Generic Bar */}
@@ -432,32 +461,6 @@ export const TodaysAssignments: React.FC<Props> = ({
                         }
                         return null;
                     })()}
-                </div>
-
-                {/* Action Button - Category-colored outline style */}
-                <div className="shrink-0 self-center pl-1">
-                    <Link
-                        href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                        className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 min-h-11 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-2xl whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
-                        style={{
-                            color: categoryStyle.text,
-                            borderWidth: '1px',
-                            borderStyle: 'solid',
-                            borderColor: `${categoryStyle.accent}80`,
-                            backgroundColor: 'transparent',
-                        }}
-                        onMouseEnter={(e) => {
-                            e.currentTarget.style.borderColor = categoryStyle.accent;
-                            e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
-                        }}
-                        onMouseLeave={(e) => {
-                            e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
-                            e.currentTarget.style.backgroundColor = 'transparent';
-                        }}
-                        aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
-                    >
-                        <span>{isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'}</span>
-                    </Link>
                 </div>
             </div>
         );
