@@ -385,7 +385,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         )}
                     </div>
 
-                    <div className={`text-sm sm:text-base font-bold font-display leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/35 line-through decoration-text/15 decoration-1' : 'text-text'}`}>
+                    <div className={`text-sm sm:text-base font-bold font-display leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
                         {displayTitle}
                     </div>
 
@@ -430,29 +430,24 @@ export const TodaysAssignments: React.FC<Props> = ({
                     <Link
                         href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
                         className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-lg whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
-                        style={isCompleted ? {} : {
+                        style={{
                             color: categoryStyle.text,
                             borderWidth: '1px',
                             borderStyle: 'solid',
                             borderColor: `${categoryStyle.accent}80`,
+                            backgroundColor: isCompleted ? `${categoryStyle.accent}20` : 'transparent',
                         }}
                         onMouseEnter={(e) => {
-                            if (!isCompleted) {
-                                e.currentTarget.style.borderColor = categoryStyle.accent;
-                                e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
-                            }
+                            e.currentTarget.style.borderColor = categoryStyle.accent;
+                            e.currentTarget.style.backgroundColor = isCompleted ? `${categoryStyle.accent}2B` : `${categoryStyle.accent}15`;
                         }}
                         onMouseLeave={(e) => {
-                            if (!isCompleted) {
-                                e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
-                                e.currentTarget.style.backgroundColor = 'transparent';
-                            }
+                            e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
+                            e.currentTarget.style.backgroundColor = isCompleted ? `${categoryStyle.accent}20` : 'transparent';
                         }}
                         aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                     >
-                        <span className={isCompleted && !isGameGroup ? 'text-text-muted/60' : ''}>
-                            {isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'}
-                        </span>
+                        <span>{isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'}</span>
                     </Link>
                 </div>
             </div>
