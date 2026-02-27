@@ -71,9 +71,9 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
     });
 
     return (
-        <div className="bg-white p-5 rounded-xl shadow-sm border border-border/60 w-72 backdrop-blur-sm">
+        <div className="bg-[#fdfbf8] p-5 rounded-xl shadow-[0_5px_14px_rgba(52,43,34,0.06)] border border-[#e7dfd3] w-72">
             <div className="flex flex-col items-center gap-2 mb-3">
-                <h3 className="text-sm font-bold text-primary font-display text-center">
+                <h3 className="text-sm font-semibold text-text font-display text-center">
                     {monthNames[viewMonth]} {viewYear}
                 </h3>
                 <div className="flex items-center gap-3">
@@ -117,16 +117,16 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
 
                     const baseClasses = isToday
                         ? 'bg-primary text-white font-bold shadow-sm'
-                        : 'text-text hover:bg-bg-gray';
+                        : 'text-text hover:bg-[#f4efe8]';
 
                     const eventClasses = hasQuiz
-                        ? 'bg-[#2d7a46]/20 text-[#2d7a46] font-semibold'
+                        ? 'bg-[#dfece2] text-[#3f6a49] font-semibold'
                         : hasDue
-                            ? 'bg-accent/20 text-accent-dark font-semibold'
+                            ? 'bg-[#efe8db] text-[#7b6248] font-semibold'
                             : hasHoliday
-                                ? 'bg-[#1d6deb]/20 text-[#1d6deb] font-semibold'
+                                ? 'bg-[#dfe8f3] text-[#4d6680] font-semibold'
                                 : hasOther
-                                    ? 'bg-warning/20 text-warning font-semibold'
+                                    ? 'bg-[#ece7f4] text-[#685b7f] font-semibold'
                                     : '';
 
                     return (
@@ -145,11 +145,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
             </div>
 
             {/* Legend / Upcoming text */}
-            <div className="mt-3 pt-2 border-t border-border/40 flex items-center gap-2 text-[10px] text-text-muted flex-wrap">
+            <div className="mt-3 pt-2 border-t border-border/30 flex items-center gap-2 text-[10px] text-text-muted flex-wrap">
                 <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Today</span>
-                <span className="flex items-center gap-1 ml-1"><span className="w-1.5 h-1.5 rounded-full bg-[#2d7a46]" /> Quiz/Test</span>
-                <span className="flex items-center gap-1 ml-1"><span className="w-1.5 h-1.5 rounded-full bg-accent" /> Due</span>
-                <span className="flex items-center gap-1 ml-1"><span className="w-1.5 h-1.5 rounded-full bg-[#1d6deb]" /> Holiday</span>
+                <span className="flex items-center gap-1 ml-1"><span className="w-1.5 h-1.5 rounded-full bg-[#6b9173]" /> Quiz/Test</span>
+                <span className="flex items-center gap-1 ml-1"><span className="w-1.5 h-1.5 rounded-full bg-[#a98966]" /> Due</span>
+                <span className="flex items-center gap-1 ml-1"><span className="w-1.5 h-1.5 rounded-full bg-[#738fb0]" /> Holiday</span>
             </div>
         </div>
     );

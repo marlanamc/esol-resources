@@ -57,7 +57,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     actions,
     refreshOnMount = false,
 }) => {
-    const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-300 text-amber-950 shadow-[0_2px_8px_rgba(245,158,11,0.25)]";
+    const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300/70 bg-amber-50 text-amber-800";
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
     const [loading, setLoading] = useState(true);
 
@@ -168,7 +168,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                             <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center">
                                 <span className="text-3xl">🎯</span>
                             </div>
-                            <p className="text-lg font-display font-bold text-text mb-1">All caught up!</p>
+                            <p className="text-lg font-semibold text-text mb-1">All caught up!</p>
                             <p className="text-sm text-text-muted max-w-xs mx-auto">
                                 No assignments this week. Explore activities below to keep building your skills.
                             </p>
@@ -210,18 +210,20 @@ export const TodaysAssignments: React.FC<Props> = ({
     const getCategoryStyle = (category?: string | null) => {
         const categoryKey = (category || '').toLowerCase();
         const categoryStyles: Record<string, { label: string; bg: string; text: string; accent: string }> = {
-            vocab: { label: 'VOCAB', bg: '#e3f2fd', text: '#1565c0', accent: '#90caf9' },
-            vocabulary: { label: 'VOCAB', bg: '#e3f2fd', text: '#1565c0', accent: '#90caf9' },
-            grammar: { label: 'GRAMMAR', bg: '#e8f5e9', text: '#2e7d32', accent: '#a5d6a7' },
-            numbers: { label: 'NUMBERS', bg: '#e3f2fd', text: '#1e5aa8', accent: '#4a90e2' },
-            number: { label: 'NUMBERS', bg: '#e3f2fd', text: '#1e5aa8', accent: '#4a90e2' },
-            reading: { label: 'READING', bg: '#e8f6f3', text: '#217f72', accent: '#2a9d8f' },
-            writing: { label: 'WRITING', bg: '#eef6ee', text: '#4f7b55', accent: '#7ba884' },
-            pronunciation: { label: 'PRONUNCIATION', bg: '#f1e9f7', text: '#5b3c86', accent: '#6a4c93' },
-            speaking: { label: 'SPEAKING', bg: '#fff3e6', text: '#c4681a', accent: '#f5a524' },
-            listening: { label: 'LISTENING', bg: '#e8f7f6', text: '#1b7d73', accent: '#2a9d8f' },
-            quizzes: { label: 'QUIZ', bg: '#ffebee', text: '#c62828', accent: '#ef9a9a' },
-            default: { label: 'ACTIVITY', bg: '#ede7f6', text: '#4527a0', accent: '#b39ddb' },
+            vocab: { label: 'VOCAB', bg: '#edf4f9', text: '#264c72', accent: '#5d8eb7' },
+            vocabulary: { label: 'VOCAB', bg: '#edf4f9', text: '#264c72', accent: '#5d8eb7' },
+            grammar: { label: 'GRAMMAR', bg: '#edf5ee', text: '#274d31', accent: '#5d8f65' },
+            games: { label: 'GAMES', bg: '#f2eef7', text: '#564770', accent: '#8a76ad' },
+            activity: { label: 'GAMES', bg: '#f2eef7', text: '#564770', accent: '#8a76ad' },
+            numbers: { label: 'NUMBERS', bg: '#edf4f9', text: '#264c72', accent: '#5d8eb7' },
+            number: { label: 'NUMBERS', bg: '#edf4f9', text: '#264c72', accent: '#5d8eb7' },
+            reading: { label: 'READING', bg: '#eef4f3', text: '#2a5a56', accent: '#4d8b84' },
+            writing: { label: 'WRITING', bg: '#edf5ee', text: '#355841', accent: '#6d9674' },
+            pronunciation: { label: 'PRONUNCIATION', bg: '#f2eef7', text: '#4f426a', accent: '#7f67a8' },
+            speaking: { label: 'SPEAKING', bg: '#f8f1e9', text: '#765530', accent: '#b88a5a' },
+            listening: { label: 'LISTENING', bg: '#eef4f3', text: '#2a5a56', accent: '#4d8b84' },
+            quizzes: { label: 'QUIZ', bg: '#f9efec', text: '#7a3f37', accent: '#c47467' },
+            default: { label: 'ACTIVITY', bg: '#f3f0ec', text: '#54473b', accent: '#8f7b67' },
         };
         return categoryStyles[categoryKey] || categoryStyles.default;
     };
@@ -229,10 +231,6 @@ export const TodaysAssignments: React.FC<Props> = ({
     const isGameCategory = (category?: string | null): boolean => {
         const key = (category || '').toLowerCase();
         return !['quiz', 'quizzes', 'grammar', 'vocab', 'vocabulary'].includes(key);
-    };
-
-    const withHexAlpha = (hex: string, alphaHex: string): string => {
-        return /^#[0-9a-fA-F]{6}$/.test(hex) ? `${hex}${alphaHex}` : hex;
     };
 
     if (variant === 'checklist') {
@@ -342,7 +340,7 @@ export const TodaysAssignments: React.FC<Props> = ({
             isGameGroup = false,
             categoryStyle: { text: string; accent: string }
         ) => (
-            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-3 sm:px-4 flex items-center gap-3 transition-all duration-200 hover:bg-white/60 border-b border-border/10 last:border-0">
+            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex items-center gap-3 transition-all duration-200 hover:bg-white/70 border-b border-border/10 last:border-0">
 
                 {/* Checkbox (or Game Icon placeholder) */}
                 <div className="shrink-0 pt-0.5 self-start sm:self-center">
@@ -378,13 +376,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                             return null;
                         })()}
 
-                        {isNew && (
-                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[10px] font-black uppercase tracking-wide`}>
-                                <Sparkles className="h-2.5 w-2.5 text-amber-600 animate-pulse" aria-hidden />
-                                New!
-                                <Sparkles className="h-2.5 w-2.5 text-yellow-500 animate-pulse [animation-delay:180ms]" aria-hidden />
-                            </span>
-                        )}
+                                        {isNew && (
+                                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
+                                                <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
+                                                New
+                                            </span>
+                                        )}
 
                         {/* Only show due date if overdue */}
                         {!isGameGroup && dueLabel && !isCompleted && new Date(assignment.dueDate as string) < new Date() && (
@@ -394,7 +391,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         )}
                     </div>
 
-                    <div className={`text-sm sm:text-base font-bold font-display leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
+                    <div className={`text-sm sm:text-base font-semibold leading-tight break-words pr-1 transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
                         {displayTitle}
                     </div>
 
@@ -438,21 +435,21 @@ export const TodaysAssignments: React.FC<Props> = ({
                 <div className="shrink-0 self-center pl-1">
                     <Link
                         href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                        className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-lg whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+                        className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 min-h-11 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-2xl whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
                         style={{
                             color: categoryStyle.text,
                             borderWidth: '1px',
                             borderStyle: 'solid',
                             borderColor: `${categoryStyle.accent}80`,
-                            backgroundColor: isCompleted ? `${categoryStyle.accent}20` : 'transparent',
+                            backgroundColor: 'transparent',
                         }}
                         onMouseEnter={(e) => {
                             e.currentTarget.style.borderColor = categoryStyle.accent;
-                            e.currentTarget.style.backgroundColor = isCompleted ? `${categoryStyle.accent}2B` : `${categoryStyle.accent}15`;
+                            e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
                         }}
                         onMouseLeave={(e) => {
                             e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
-                            e.currentTarget.style.backgroundColor = isCompleted ? `${categoryStyle.accent}20` : 'transparent';
+                            e.currentTarget.style.backgroundColor = 'transparent';
                         }}
                         aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                     >
@@ -465,52 +462,58 @@ export const TodaysAssignments: React.FC<Props> = ({
         return (
             <div className="mb-8">
                 {/* Unified checklist container - header + category groups connected */}
-                <div className={`card-elevated rounded-2xl overflow-hidden ${isFullyComplete ? 'celebrate-complete ring-2 ring-accent/50' : ''}`}>
+                <div className={`rounded-2xl overflow-hidden border border-[#e7dfd3] bg-[#f8f1e8] sm:bg-[#faf6f1] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.045)] ${isFullyComplete ? 'celebrate-complete ring-2 ring-[#d7c09a]/50' : ''}`}>
                     {/* Progress header */}
-                    <div className="px-4 py-3 border-b border-border/20">
+                    <div className="px-4 py-3 border-b border-border/15">
                         <div className="flex items-center justify-between gap-3 mb-3">
                             <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-lg">
                                     {isFullyComplete ? '🎉' : '📋'}
                                 </div>
-                                {resolvedTitle && <h2 className="text-lg sm:text-xl font-display font-bold text-text leading-tight">{resolvedTitle}</h2>}
+                                {resolvedTitle && <h2 className="text-lg sm:text-xl font-display font-bold text-[#1f2633] leading-tight">{resolvedTitle}</h2>}
                             </div>
                             <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                                 {actions && <div className="mr-2">{actions}</div>}
                                 <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-bg-light border border-border/50">{completedCount}/{checklistRows.length} done</span>
-                                <span className={`px-2 py-1 rounded-md border ${isFullyComplete ? 'bg-accent/10 border-accent/30 text-amber-700' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
+                                <span className={`px-2 py-1 rounded-md border ${isFullyComplete ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
                             </div>
                         </div>
                         <div className="w-full bg-bg-light rounded-full h-2 overflow-hidden">
-                            <div className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-accent' : 'bg-primary'}`} style={{ width: `${percent}%` }} />
+                            <div
+                                className="h-full rounded-full transition-[width] duration-700 ease-out"
+                                style={{
+                                    width: `${percent}%`,
+                                    background: isFullyComplete
+                                        ? 'linear-gradient(90deg, #c47467 0%, #5d8f65 34%, #5d8eb7 68%, #8a76ad 100%)'
+                                        : 'linear-gradient(90deg, #d0877a 0%, #6f9c76 34%, #6f9bbf 68%, #9a88ba 100%)',
+                                }}
+                            />
                         </div>
                     </div>
 
                     {/* Category sections inside the same container */}
-                    <div className="p-3 sm:p-4 bg-bg-light/30">
+                    <div className="p-2.5 sm:p-4 bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {groups.map((group, groupIdx) => {
                                 const groupStyle = getCategoryStyle(group.key);
-                                const bannerStart = withHexAlpha(groupStyle.accent, '2B');
-                                const bannerEnd = withHexAlpha(groupStyle.accent, '14');
                                 return (
                                     <div
                                         key={group.key}
-                                        className="checklist-group bg-white rounded-xl border border-border/30 overflow-hidden shadow-sm"
+                                        className="checklist-group bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-xl border border-[#e8e1d6] overflow-hidden shadow-[0_6px_16px_rgba(43,36,29,0.085)] sm:shadow-[0_5px_14px_rgba(43,36,29,0.07)]"
                                         style={{ animationDelay: `${groupIdx * 100}ms` }}
                                     >
                                         <div
-                                            className="w-full px-3 py-2.5 border-b border-border/15 flex items-center justify-between"
+                                            className="w-full px-3 py-2 border-b border-border/10 flex items-center justify-between"
                                             style={{
-                                                borderLeft: `4px solid ${groupStyle.accent}`,
-                                                background: `linear-gradient(90deg, ${bannerStart} 0%, ${bannerEnd} 68%, #ffffff 100%)`,
+                                                borderTop: `3px solid ${groupStyle.accent}`,
+                                                backgroundColor: '#fdfbf7',
                                             }}
                                         >
                                             <div className="flex items-center gap-2">
                                                 <span style={{ color: groupStyle.text }}>{group.icon}</span>
                                                 <Link
                                                     href={`/dashboard/activities?category=${group.key === 'activity' ? 'games' : group.key}`}
-                                                    className="font-display font-bold text-base sm:text-lg hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
+                                                    className="font-semibold text-base hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
                                                     style={{ color: groupStyle.text }}
                                                 >
                                                     {group.label}
@@ -541,7 +544,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 <span className="w-1 h-6 rounded-full bg-primary"></span>
                 {title}
             </h2>
-            <div className="bg-gradient-to-br from-orange-50/40 via-amber-50/30 to-yellow-50/20 rounded-2xl p-5 border border-orange-100/50 shadow-sm">
+            <div className="bg-gradient-to-br from-orange-50/40 via-amber-50/30 to-yellow-50/20 rounded-2xl p-4 sm:p-5 border border-orange-100/50 shadow-sm">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                     {assignments.map((assignment, index) => {
                     const submission = assignment.submissions[0];
@@ -580,13 +583,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                                             {categoryStyle.label}
                                         </span>
 
-                                        {isNew && (
-                                            <span className={`${featuredNewBadgeClassName} px-2 py-0.5 text-[10px] font-black uppercase tracking-wide`}>
-                                                <Sparkles className="h-2.5 w-2.5 text-amber-600 animate-pulse" aria-hidden />
-                                                New!
-                                                <Sparkles className="h-2.5 w-2.5 text-yellow-500 animate-pulse [animation-delay:180ms]" aria-hidden />
-                                            </span>
-                                        )}
+                        {isNew && (
+                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
+                                <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
+                                New
+                            </span>
+                        )}
 
                                         {/* Vocab type chip - next to category, before % done */}
                                         {(() => {
@@ -621,7 +623,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         )}
                                     </div>
 
-                                    <h3 className="text-base sm:text-lg font-bold text-text group-hover:text-primary transition-colors font-display leading-snug">
+                                    <h3 className="text-base sm:text-lg font-semibold text-text group-hover:text-primary transition-colors leading-snug">
                                         {displayTitle}
                                     </h3>
                                 </div>
@@ -629,7 +631,20 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 {/* CTA Button */}
                                 <Link
                                     href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                                    className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold transition-[box-shadow,transform,filter] hover:shadow-md active:scale-95 rounded-lg bg-primary text-white hover:brightness-110 whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                    className="inline-flex items-center justify-center px-4 py-2 min-h-11 text-sm font-semibold rounded-2xl border transition-all duration-200 active:scale-95 whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                    style={{
+                                        color: categoryStyle.text,
+                                        borderColor: `${categoryStyle.accent}90`,
+                                        backgroundColor: 'transparent',
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.borderColor = categoryStyle.accent;
+                                        e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.borderColor = `${categoryStyle.accent}90`;
+                                        e.currentTarget.style.backgroundColor = 'transparent';
+                                    }}
                                 >
                                     {isCompleted ? 'Review' : ctaLabel}
                                 </Link>

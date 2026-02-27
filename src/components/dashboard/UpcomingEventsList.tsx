@@ -65,10 +65,10 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                 <div className="flex items-center gap-2 min-w-0">
                                     <span
                                         className={`w-2 h-2 rounded-full ${ev.type === "quiz"
-                                                ? "bg-[#2d7a46]"  // green for quiz/test
+                                                ? "bg-[#6b9173]"  // softened green for quiz/test
                                                 : ev.type === "holiday"
-                                                    ? "bg-[#1d6deb]"  // blue for holiday
-                                                    : "bg-accent"  // yellow/gold for due dates
+                                                    ? "bg-[#738fb0]"  // softened blue for holiday
+                                                    : "bg-[#a98966]"  // softened brown/gold for due dates
                                             }`}
                                     />
                                     <span className="font-medium text-text truncate">{ev.title}</span>
