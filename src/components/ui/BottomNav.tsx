@@ -39,14 +39,17 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
         >
           {items.map((item) => {
-            const isActive = pathname === item.href || pathname?.startsWith(item.href + '/');
+            // Dashboard root: only active on exact /dashboard. Others: active on path or sub-path
+            const isActive = item.href === '/dashboard'
+              ? pathname === '/dashboard'
+              : pathname === item.href || pathname?.startsWith(item.href + '/');
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className={`flex flex-col items-center justify-center gap-1 transition-[color,transform,background-color,box-shadow] duration-150 cursor-pointer touch-manipulation relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-xl mx-1 my-1 ${
+                className={`relative flex flex-col items-center justify-center gap-1 transition-[color,transform,background-color,box-shadow] duration-150 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-xl mx-1 my-1 overflow-visible ${
                   isActive
                     ? ''
                     : 'active:scale-95'
@@ -64,7 +67,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                 </div>
                 <span className="text-xs font-medium pointer-events-none">{item.label}</span>
                 {isActive && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full pointer-events-none" style={{ background: '#9f8467' }} />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full pointer-events-none bg-primary" />
                 )}
               </Link>
             );

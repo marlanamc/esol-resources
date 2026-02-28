@@ -25,7 +25,7 @@ const VOCAB_CONFIG = {
         icon: "📄",
         name: "Word List",
         description: "Review all vocabulary words",
-        gradient: "from-amber-50 to-orange-50",
+        gradient: "from-white to-amber-50/80",
         accentColor: "bg-amber-500",
         iconBg: "bg-amber-100",
         borderHover: "hover:border-amber-300",
@@ -35,7 +35,7 @@ const VOCAB_CONFIG = {
         icon: "🎴",
         name: "Flash Cards",
         description: "Practice with flashcards",
-        gradient: "from-rose-50 to-pink-50",
+        gradient: "from-white to-rose-50/80",
         accentColor: "bg-rose-500",
         iconBg: "bg-rose-100",
         borderHover: "hover:border-rose-300",
@@ -45,7 +45,7 @@ const VOCAB_CONFIG = {
         icon: "🧩",
         name: "Matching",
         description: "Match words to definitions",
-        gradient: "from-emerald-50 to-teal-50",
+        gradient: "from-white to-emerald-50/80",
         accentColor: "bg-emerald-500",
         iconBg: "bg-emerald-100",
         borderHover: "hover:border-emerald-300",
@@ -55,7 +55,7 @@ const VOCAB_CONFIG = {
         icon: "✍️",
         name: "Fill in the Blank",
         description: "Complete sentences",
-        gradient: "from-violet-50 to-purple-50",
+        gradient: "from-white to-violet-50/80",
         accentColor: "bg-violet-500",
         iconBg: "bg-violet-100",
         borderHover: "hover:border-violet-300",
@@ -190,28 +190,33 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-0 md:bg-transparent">
             {/* Mobile Header - Back + Progress */}
-            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 md:hidden">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <BackButton href="/dashboard" className="shrink-0" />
-                        <div className="text-sm font-bold text-[var(--color-text-muted)]">
-                            {completedCount}/4 complete
+            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3.5 md:hidden">
+                <div className="flex items-center gap-4">
+                    <BackButton href="/dashboard" className="shrink-0" />
+                    <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                        <div className="flex items-center justify-between gap-2">
+                            <span className="text-sm font-semibold text-[var(--color-text)]">
+                                {completedCount}/4 complete
+                            </span>
+                            <span className="text-xs font-medium text-[var(--color-text-muted)] tabular-nums">
+                                {overallProgress}%
+                            </span>
                         </div>
-                    </div>
-                    <div className="h-2 w-20 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
-                        <div
-                            className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
-                            style={{ width: `${overallProgress}%` }}
-                        />
+                        <div className="h-2 w-full bg-[var(--color-bg-light)] rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
+                                style={{ width: `${overallProgress}%` }}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Main Content Area - Scrollable */}
             <div className="flex-1 overflow-y-auto">
-                <div className="w-full max-w-2xl md:max-w-3xl mx-auto px-4 pt-4 pb-4 md:px-8 md:pt-4 md:pb-10">
-                    {/* Header Section - desktop only */}
-                    <div className="text-center mb-4 md:mb-8">
+                <div className="w-full max-w-2xl md:max-w-3xl mx-auto px-4 pt-5 pb-6 md:px-8 md:pt-4 md:pb-10">
+                    {/* Header Section */}
+                    <div className="text-center mb-5 md:mb-8">
                         <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -223,7 +228,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                         </h2>
                     </div>
 
-                    {/* Activity Cards Grid - 2x2 on mobile, fills space */}
+                    {/* Activity Cards Grid - 2x2 on mobile with touch-friendly sizing */}
                     <div className="grid grid-cols-2 gap-3 md:gap-5 max-w-xl sm:max-w-full mx-auto">
                         {types.map((type, index) => {
                             const config = VOCAB_CONFIG[type];
@@ -238,12 +243,13 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                         vocab-activity-card
                                         group relative overflow-hidden rounded-2xl
                                         bg-gradient-to-br ${config.gradient}
-                                        border border-[#E6DFD6]
+                                        border border-[#DDD5CC] md:border-[#E6DFD6]
                                         p-4 md:p-6 text-left
                                         min-h-[140px] md:min-h-0
                                         transition-all duration-300 ease-out
-                                        shadow-[0_6px_18px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.75)]
-                                        hover:shadow-[0_14px_34px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,0.85)]
+                                        shadow-[0_4px_6px_-1px_rgba(15,23,42,0.08),0_10px_24px_-4px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.9)]
+                                        hover:shadow-[0_12px_20px_-4px_rgba(15,23,42,0.12),0_20px_40px_-8px_rgba(15,23,42,0.14),inset_0_1px_0_rgba(255,255,255,0.95)]
+                                        active:shadow-[0_2px_4px_-1px_rgba(15,23,42,0.06),0_6px_12px_-4px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.9)]
                                         ${config.borderHover}
                                         md:hover:-translate-y-1
                                         active:scale-[0.98]
@@ -253,13 +259,13 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                         animationDelay: `${index * 80}ms`,
                                     }}
                                 >
-                                    {/* Decorative corner accent */}
-                                    <div className={`absolute -top-6 -right-6 md:-top-8 md:-right-8 w-16 md:w-24 h-16 md:h-24 rounded-full ${config.accentColor} opacity-[0.08] transition-transform duration-500 group-hover:scale-150`} />
+                                    {/* Decorative corner accent - adds depth */}
+                                    <div className={`absolute -top-6 -right-6 md:-top-8 md:-right-8 w-16 md:w-24 h-16 md:h-24 rounded-full ${config.accentColor} opacity-[0.12] transition-transform duration-500 group-hover:scale-150`} />
 
                                     {/* Completion checkmark badge */}
-                                    {isCompleted && (
+                                        {isCompleted && (
                                         <div className="absolute top-2 right-2 md:top-4 md:right-4">
-                                            <div className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-secondary text-white shadow-md">
+                                            <div className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-secondary text-white shadow-[0_2px_6px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.3)]">
                                                 <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                 </svg>
@@ -270,12 +276,12 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                     {/* Content */}
                                     <div className="relative z-10 flex flex-col h-full">
                                         {/* Icon */}
-                                        <div className={`inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 shadow-[0_4px_10px_rgba(15,23,42,0.08)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                                        <div className={`inline-flex items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 shadow-[0_2px_4px_rgba(15,23,42,0.06),0_6px_12px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0 border border-white/50`}>
                                             <span className="text-2xl md:text-3xl">{config.icon}</span>
                                         </div>
 
                                         {/* Title & Description */}
-                                        <h3 className="font-display text-base md:text-xl font-bold text-text mb-1 md:mb-1.5 tracking-tight leading-tight">
+                                        <h3 className="font-display text-[15px] md:text-xl font-bold text-text mb-0.5 md:mb-1.5 tracking-tight leading-tight">
                                             {config.name}
                                         </h3>
                                         <p className="text-xs md:text-sm text-text-muted mb-auto leading-snug line-clamp-2">
@@ -339,18 +345,29 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                 </div>
             </div>
 
-            {/* Mobile Bottom Bar - Progress Tip */}
-            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-3 md:hidden">
-                <div className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
-                        <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                        </svg>
+            {/* Mobile Bottom Bar - Progress Tip or Success State */}
+            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-3.5 md:hidden">
+                {completedCount === 4 ? (
+                    <div className="flex items-center justify-center gap-2 text-secondary">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/15">
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <p className="text-sm font-semibold">All done!</p>
                     </div>
-                    <p className="text-sm text-text flex-1">
-                        <span className="text-amber-700 font-semibold">Complete all 4</span> to finish!
-                    </p>
-                </div>
+                ) : (
+                    <div className="flex items-center gap-3">
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                            </svg>
+                        </div>
+                        <p className="text-sm text-text flex-1">
+                            <span className="text-amber-700 font-semibold">Complete all 4</span> to finish!
+                        </p>
+                    </div>
+                )}
             </div>
         </div>
     );

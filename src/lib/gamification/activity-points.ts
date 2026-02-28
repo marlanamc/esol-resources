@@ -1,6 +1,6 @@
 import { POINTS } from "./constants";
 
-export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "unknown";
+export type GameUi = "numbers" | "matching" | "fill-in-blank" | "flashcards" | "verb-forms" | "word-list" | "ed-pronunciation" | "minimal-pairs" | "irregular-verbs" | "unknown";
 
 export interface ActivityMeta {
   id?: string;
@@ -19,6 +19,7 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     if (ui === "verb-forms" || ui === "verbforms") return "verb-forms";
     if (ui === "ed-pronunciation" || ui === "ed-sounds" || ui === "pronunciation") return "ed-pronunciation";
     if (ui === "minimal-pairs" || ui === "minimalpairs" || ui === "minimal-pairs-listening") return "minimal-pairs";
+    if (ui === "irregular-verbs") return "irregular-verbs";
   }
 
   const content = activity?.content;
@@ -43,6 +44,10 @@ export function resolveActivityGameUi(activity?: ActivityMeta): GameUi {
     // Check for minimal-pairs content type
     if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "minimal-pairs") {
       return "minimal-pairs";
+    }
+    // Check for irregular-verbs content type
+    if (parsed && typeof parsed === "object" && "type" in parsed && (parsed as Record<string, unknown>).type === "irregular-verbs") {
+      return "irregular-verbs";
     }
   }
 
