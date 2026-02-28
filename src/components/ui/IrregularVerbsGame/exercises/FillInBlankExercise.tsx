@@ -66,91 +66,86 @@ export function FillInBlankExercise({
   const promptParts = conjugationSegment.split('→').map(p => p.trim());
 
   return (
-    <div className="space-y-5">
-      {/* Exercise Card - Mobile optimized */}
+    <div className="flex flex-col h-full min-h-[300px] sm:min-h-0 sm:block space-y-4">
+      {/* Verb Forms Display */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-4 sm:p-6 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border-2 border-primary/20"
+        className="p-4 sm:p-5 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border border-primary/20"
       >
-        {/* Verb Forms Display */}
-        <div className="text-center mb-6">
-          <p className="text-sm text-text-muted mb-3">Complete the verb forms:</p>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-xl mx-auto">
-            {/* V1 - Always shown */}
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-xs text-text-muted">V1</span>
-              <span className="w-full px-2 sm:px-3 py-2.5 bg-white rounded-xl border border-border font-display text-xl sm:text-2xl font-semibold text-text text-center">
-                {exercise.verb.base}
-              </span>
-            </div>
-
-            {/* V2 */}
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-xs text-text-muted">V2</span>
-              {promptParts[1]?.includes('____') ? (
-                <input
-                  type="text"
-                  value={answers[0] || ''}
-                  onChange={e => handleInputChange(0, e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  aria-label="Enter V2 form"
-                  disabled={submitted}
-                  autoFocus
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  enterKeyHint="done"
-                  className={`w-full px-2 sm:px-3 py-2.5 rounded-xl border-2 font-display text-xl sm:text-2xl font-semibold text-center transition-all ${
-                    submitted
-                      ? correct
-                        ? 'bg-secondary/20 border-secondary text-secondary-dark'
-                        : 'bg-error/20 border-error text-error'
-                      : 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
-                  }`}
-                />
-              ) : (
-                <span className="w-full px-2 sm:px-3 py-2.5 bg-white rounded-xl border border-border font-display text-xl sm:text-2xl font-semibold text-text text-center">
-                  {exercise.verb.past}
-                </span>
-              )}
-            </div>
-
-            {/* V3 */}
-            <div className="flex flex-col items-center gap-1">
-              <span className="text-xs text-text-muted">V3</span>
-              {promptParts[2]?.includes('____') ? (
-                <input
-                  type="text"
-                  value={blanksInPrompt === 2 ? answers[1] || '' : answers[0] || ''}
-                  onChange={e => handleInputChange(blanksInPrompt === 2 ? 1 : 0, e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  aria-label="Enter V3 form"
-                  disabled={submitted}
-                  autoFocus={!promptParts[1]?.includes('____')}
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  enterKeyHint="done"
-                  className={`w-full px-2 sm:px-3 py-2.5 rounded-xl border-2 font-display text-xl sm:text-2xl font-semibold text-center transition-all ${
-                    submitted
-                      ? correct
-                        ? 'bg-secondary/20 border-secondary text-secondary-dark'
-                        : 'bg-error/20 border-error text-error'
-                      : 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
-                  }`}
-                />
-              ) : (
-                <span className="w-full px-2 sm:px-3 py-2.5 bg-white rounded-xl border border-border font-display text-xl sm:text-2xl font-semibold text-text text-center">
-                  {exercise.verb.pastParticiple}
-                </span>
-              )}
-            </div>
+        <p className="text-xs sm:text-sm text-text-muted mb-3 text-center">Complete the verb forms:</p>
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-md mx-auto">
+          {/* V1 - Always shown */}
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-[10px] sm:text-xs text-text-muted font-medium">V1</span>
+            <span className="w-full px-2 py-2 sm:py-2.5 bg-white rounded-lg border border-border font-display text-lg sm:text-xl font-semibold text-text text-center">
+              {exercise.verb.base}
+            </span>
           </div>
 
-          <p className="text-xs text-text-muted mt-2">V1 → V2 → V3</p>
+          {/* V2 */}
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-[10px] sm:text-xs text-text-muted font-medium">V2</span>
+            {promptParts[1]?.includes('____') ? (
+              <input
+                type="text"
+                value={answers[0] || ''}
+                onChange={e => handleInputChange(0, e.target.value)}
+                onKeyDown={handleKeyDown}
+                aria-label="Enter V2 form"
+                disabled={submitted}
+                autoFocus
+                autoComplete="off"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                enterKeyHint="done"
+                className={`w-full px-2 py-2 sm:py-2.5 rounded-lg border-2 font-display text-lg sm:text-xl font-semibold text-center transition-all ${
+                  submitted
+                    ? correct
+                      ? 'bg-secondary/20 border-secondary text-secondary-dark'
+                      : 'bg-error/20 border-error text-error'
+                    : 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+                }`}
+              />
+            ) : (
+              <span className="w-full px-2 py-2 sm:py-2.5 bg-white rounded-lg border border-border font-display text-lg sm:text-xl font-semibold text-text text-center">
+                {exercise.verb.past}
+              </span>
+            )}
+          </div>
+
+          {/* V3 */}
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-[10px] sm:text-xs text-text-muted font-medium">V3</span>
+            {promptParts[2]?.includes('____') ? (
+              <input
+                type="text"
+                value={blanksInPrompt === 2 ? answers[1] || '' : answers[0] || ''}
+                onChange={e => handleInputChange(blanksInPrompt === 2 ? 1 : 0, e.target.value)}
+                onKeyDown={handleKeyDown}
+                aria-label="Enter V3 form"
+                disabled={submitted}
+                autoFocus={!promptParts[1]?.includes('____')}
+                autoComplete="off"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+                enterKeyHint="done"
+                className={`w-full px-2 py-2 sm:py-2.5 rounded-lg border-2 font-display text-lg sm:text-xl font-semibold text-center transition-all ${
+                  submitted
+                    ? correct
+                      ? 'bg-secondary/20 border-secondary text-secondary-dark'
+                      : 'bg-error/20 border-error text-error'
+                    : 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+                }`}
+              />
+            ) : (
+              <span className="w-full px-2 py-2 sm:py-2.5 bg-white rounded-lg border border-border font-display text-lg sm:text-xl font-semibold text-text text-center">
+                {exercise.verb.pastParticiple}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Correct Answer Display (when wrong) */}
@@ -158,45 +153,41 @@ export function FillInBlankExercise({
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 p-3 bg-white rounded-lg border border-border text-center"
+            className="mt-3 p-2.5 bg-white rounded-lg border border-border text-center"
           >
-            <p className="text-sm text-text-muted mb-1">Correct answer:</p>
-            <p className="font-display text-lg font-semibold text-text">
+            <p className="text-xs text-text-muted mb-0.5">Correct:</p>
+            <p className="font-display text-base font-semibold text-text">
               {exercise.verb.base} → {exercise.verb.past} → {exercise.verb.pastParticiple}
             </p>
           </motion.div>
         )}
       </motion.div>
 
-      {/* Feedback - Mobile optimized */}
+      {/* Feedback */}
       {submitted && showFeedback && (
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`p-4 rounded-xl text-center font-semibold ${
+          className={`p-3 rounded-xl text-center font-semibold text-sm ${
             correct
-              ? 'bg-secondary/20 border-2 border-secondary text-secondary-dark'
-              : 'bg-error/20 border-2 border-error text-error'
+              ? 'bg-secondary/20 border border-secondary text-secondary-dark'
+              : 'bg-error/20 border border-error text-error'
           }`}
         >
           {feedback}
         </motion.div>
       )}
 
-      {/* Submit Button - Large touch target for mobile */}
+      {/* Submit Button - Pushed to bottom on mobile */}
       {!submitted && (
-        <div
-          className="fixed bottom-0 left-0 right-0 z-40 sm:static bg-gradient-to-t from-bg via-bg/95 to-transparent sm:bg-none"
-          style={{ width: '100vw' }}
-        >
-          <div className="w-full px-3 sm:px-0 pt-3 pb-[calc(env(safe-area-inset-bottom,0px)+0.5rem)] sm:pt-0 sm:pb-0">
+        <div className="mt-auto pt-2 sm:pt-0 pb-[env(safe-area-inset-bottom)] sm:pb-0">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleSubmit}
             disabled={!isAnswered}
-            className={`block w-full py-4 rounded-xl font-semibold text-lg transition-all ${
-              isAnswered ? 'shadow-lg hover:shadow-xl' : 'cursor-not-allowed'
+            className={`block w-full py-3.5 sm:py-4 rounded-xl font-semibold text-base sm:text-lg transition-all ${
+              isAnswered ? 'shadow-md hover:shadow-lg' : 'cursor-not-allowed'
             }`}
             style={{
               backgroundColor: isAnswered ? 'var(--color-primary)' : 'var(--color-bg-gray)',
@@ -206,7 +197,6 @@ export function FillInBlankExercise({
           >
             Check Answer
           </motion.button>
-          </div>
         </div>
       )}
     </div>

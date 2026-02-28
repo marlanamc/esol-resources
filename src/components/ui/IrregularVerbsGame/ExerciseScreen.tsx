@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Target, Clock, Lightbulb } from 'lucide-react';
+import { Zap, Target, Clock, Lightbulb, ArrowLeft } from 'lucide-react';
 import { FillInBlankExercise } from './exercises/FillInBlankExercise';
 import { MultipleChoiceExercise } from './exercises/MultipleChoiceExercise';
 import { SentenceCompletionExercise } from './exercises/SentenceCompletionExercise';
@@ -16,6 +16,7 @@ interface ExerciseScreenProps {
   currentIndex: number;
   showPattern: boolean;
   onAnswer: (correct: boolean) => void;
+  onBack?: () => void;
 }
 
 export function ExerciseScreen({
@@ -23,7 +24,8 @@ export function ExerciseScreen({
   exercises,
   currentIndex,
   showPattern,
-  onAnswer
+  onAnswer,
+  onBack
 }: ExerciseScreenProps) {
   const [correctCount, setCorrectCount] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -79,7 +81,7 @@ export function ExerciseScreen({
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6 px-3 sm:px-0 pt-1 pb-32 sm:pb-0">
+    <div className="flex flex-col min-h-[calc(100dvh-4rem)] sm:min-h-0 sm:block">
       {/* Streak Animation Overlay */}
       <AnimatePresence>
         {showStreakAnimation && (
@@ -106,123 +108,174 @@ export function ExerciseScreen({
         )}
       </AnimatePresence>
 
-      {/* Header */}
+      {/* Sticky Header - Compact on mobile */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="-mx-3 sm:mx-0 px-3 sm:px-0 pt-2 pb-3 mb-1 bg-bg/95 backdrop-blur-sm border-b border-border/70"
+        className="sticky top-0 z-30 px-3 sm:px-0 py-2 sm:py-3 bg-bg/98 backdrop-blur-md border-b border-border/50 sm:relative sm:bg-transparent sm:backdrop-blur-0 sm:border-0"
       >
-        <div className="flex items-center justify-between gap-2 sm:gap-4">
-          {/* Title & Progress */}
-          <div className="flex-1">
-            <h2 className="font-display text-xl sm:text-2xl text-text truncate">
+        {/* Mobile: Compact single-row layout with back button */}
+        <div className="flex items-center gap-2 sm:hidden">
+          {/* Back button */}
+          {onBack && (
+            <button
+              onClick={onBack}
+              aria-label="Go back"
+              className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-border text-text-muted hover:text-text flex items-center justify-center"
+            >
+              <ArrowLeft size={16} />
+            </button>
+          )}
+
+          {/* Title - truncated */}
+          <div className="flex-1 min-w-0">
+            <h2 className="font-display text-sm font-semibold text-text truncate leading-tight">
               {group.title}
             </h2>
-            <p className="text-sm text-text-muted">
-              Question {currentIndex + 1} of {exercises.length}
-            </p>
+            <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+              <span>Q{currentIndex + 1}/{exercises.length}</span>
+              <span className="text-border">·</span>
+              <span>{remaining} left</span>
+            </div>
           </div>
 
-          {/* Stats Badges */}
-          <div className="flex items-center gap-2">
-            {/* Streak Badge */}
+          {/* Stats - compact */}
+          <div className="flex items-center gap-1 flex-shrink-0">
             {streak > 0 && (
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 border border-orange-200"
+                className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 border border-orange-200"
               >
-                <Zap size={14} className="text-orange-500" />
-                <span className="text-sm font-bold text-orange-700">{streak}</span>
+                <Zap size={10} className="text-orange-500" />
+                <span className="text-[10px] font-bold text-orange-700">{streak}</span>
               </motion.div>
             )}
-
-            {/* Correct Count */}
-            <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20">
-              <Target size={14} className="text-secondary" />
-              <span className="text-sm font-bold text-secondary-dark">{correctCount}</span>
+            <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-secondary/10 border border-secondary/20">
+              <Target size={10} className="text-secondary" />
+              <span className="text-[10px] font-bold text-secondary-dark">{correctCount}</span>
             </div>
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="space-y-3 mt-3"
-        >
-          {/* Progress Track */}
-          <div className="relative">
-            <div className="h-2 bg-bg-gray rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: `${((currentIndex) / exercises.length) * 100}%` }}
-                animate={{ width: `${((currentIndex + 1) / exercises.length) * 100}%` }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent"
-              />
+        {/* Mobile: Slim progress bar */}
+        <div className="mt-2 sm:hidden">
+          <div className="relative h-1.5 bg-bg-gray rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: `${((currentIndex) / exercises.length) * 100}%` }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent"
+            />
+          </div>
+        </div>
+
+        {/* Desktop: Full header layout */}
+        <div className="hidden sm:block">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1">
+              <h2 className="font-display text-2xl text-text truncate">
+                {group.title}
+              </h2>
+              <p className="text-sm text-text-muted">
+                Question {currentIndex + 1} of {exercises.length}
+              </p>
             </div>
 
-            {/* Progress Dots */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-0">
-              {exercises.map((_, idx) => (
+            <div className="flex items-center gap-2">
+              {streak > 0 && (
                 <motion.div
-                  key={idx}
-                  initial={false}
-                  animate={{
-                    scale: idx === currentIndex ? 1.3 : 1,
-                    backgroundColor: idx < currentIndex
-                      ? 'var(--color-secondary)'
-                      : idx === currentIndex
-                        ? 'var(--color-primary)'
-                        : 'var(--color-border)'
-                  }}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    idx <= currentIndex ? 'ring-2 ring-white' : ''
-                  }`}
-                />
-              ))}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 border border-orange-200"
+                >
+                  <Zap size={14} className="text-orange-500" />
+                  <span className="text-sm font-bold text-orange-700">{streak}</span>
+                </motion.div>
+              )}
+              <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20">
+                <Target size={14} className="text-secondary" />
+                <span className="text-sm font-bold text-secondary-dark">{correctCount}</span>
+              </div>
             </div>
           </div>
 
-          {/* Progress Info */}
-          <div className="flex items-center justify-between text-sm text-text-muted">
-            <span>{Math.round(progress)}% complete</span>
-            <span>{remaining} remaining</span>
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="space-y-3 mt-3"
+          >
+            <div className="relative">
+              <div className="h-2 bg-bg-gray rounded-full overflow-hidden">
+                <motion.div
+                  initial={{ width: `${((currentIndex) / exercises.length) * 100}%` }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                  className="h-full rounded-full bg-gradient-to-r from-primary via-secondary to-accent"
+                />
+              </div>
+
+              <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between px-0">
+                {exercises.map((_, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={false}
+                    animate={{
+                      scale: idx === currentIndex ? 1.3 : 1,
+                      backgroundColor: idx < currentIndex
+                        ? 'var(--color-secondary)'
+                        : idx === currentIndex
+                          ? 'var(--color-primary)'
+                          : 'var(--color-border)'
+                    }}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      idx <= currentIndex ? 'ring-2 ring-white' : ''
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between text-sm text-text-muted">
+              <span>{Math.round(progress)}% complete</span>
+              <span>{remaining} remaining</span>
+            </div>
+          </motion.div>
+        </div>
       </motion.header>
 
-      {/* Exercise Card */}
+      {/* Exercise Card - Flex grow to fill space on mobile */}
       <motion.div
         key={currentExercise.id}
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -30 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="-mx-3 sm:mx-0 bg-white border-y-2 sm:border-2 border-border sm:rounded-2xl rounded-none sm:shadow-lg overflow-hidden"
+        className="flex-1 sm:flex-none mx-3 sm:mx-0 mt-2 sm:mt-6 bg-white border sm:border-2 border-border/50 sm:border-border rounded-xl sm:rounded-2xl sm:shadow-lg overflow-hidden flex flex-col"
       >
-        {/* Exercise Type Badge */}
-        <div className="px-4 sm:px-6 py-3 border-b border-border bg-bg-light">
-          <div className="flex items-center gap-2 text-sm text-text-muted">
+        {/* Exercise Type Badge - Slim on mobile */}
+        <div className="px-3 sm:px-6 py-2 sm:py-3 border-b border-border/50 bg-bg-light/50">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-text-muted">
             <ExerciseTypeIcon type={currentExercise.type} />
             <span className="font-medium">{getExerciseTypeLabel(currentExercise.type)}</span>
           </div>
         </div>
 
-        {/* Exercise Content */}
-        <div className="p-4 sm:p-6">
+        {/* Exercise Content - Scrollable on mobile if needed */}
+        <div className="flex-1 p-3 sm:p-6 overflow-y-auto">
           <AnimatePresence mode="wait">
             {renderExercise()}
           </AnimatePresence>
         </div>
       </motion.div>
 
-      {/* Keyboard Shortcut Hint */}
+      {/* Keyboard Shortcut Hint - Desktop only */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className="hidden sm:flex items-center justify-center gap-2 text-sm text-text-light"
+        className="hidden sm:flex items-center justify-center gap-2 text-sm text-text-light mt-4"
       >
         <Lightbulb size={14} />
         <span>Press <kbd className="px-1.5 py-0.5 rounded bg-bg-gray border border-border text-xs font-mono">Enter</kbd> to submit quickly</span>

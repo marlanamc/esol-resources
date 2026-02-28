@@ -116,25 +116,30 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
             : 'max-w-5xl px-4 sm:px-6 py-6 sm:py-10'
         }`}
       >
-        <div className="px-3 sm:px-0 pb-2">
-          <button
-            onClick={() => {
-              if (state.phase === 'selection') {
-                router.back();
-                return;
-              }
-              if (state.phase === 'intro') {
-                quitGame();
-                return;
-              }
-              returnToGroupIntro();
-            }}
-            aria-label="Go back"
-            className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors"
-          >
-            <ArrowLeft size={20} />
-          </button>
-        </div>
+        {/* Back button - hidden during exercise/intro phase on mobile (integrated into header there) */}
+        {state.phase === 'selection' && (
+          <div className="px-3 sm:px-0 pb-2">
+            <button
+              onClick={() => router.back()}
+              aria-label="Go back"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors"
+            >
+              <ArrowLeft size={20} />
+            </button>
+          </div>
+        )}
+        {/* Desktop-only back button for intro phase */}
+        {state.phase === 'intro' && (
+          <div className="hidden sm:block px-3 sm:px-0 pb-2">
+            <button
+              onClick={quitGame}
+              aria-label="Go back"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors"
+            >
+              <ArrowLeft size={20} />
+            </button>
+          </div>
+        )}
 
         <AnimatePresence mode="wait">
           {state.phase === 'selection' && (
@@ -166,6 +171,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
                 currentIndex={state.currentExerciseIndex}
                 showPattern={!preferences?.hideVerbExplanations || preferences === undefined}
                 onAnswer={submitAnswer}
+                onBack={returnToGroupIntro}
               />
             </motion.div>
           )}
@@ -181,6 +187,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
               <IntroScreen
                 group={state.selectedGroup}
                 onStartChallenge={startGroupChallenge}
+                onBack={quitGame}
               />
             </motion.div>
           )}
