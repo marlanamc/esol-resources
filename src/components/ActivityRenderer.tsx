@@ -29,6 +29,7 @@ import NumbersGame from "./ui/NumbersGame";
 import VerbFormsGame from "./ui/VerbFormsGame";
 import EdPronunciationGame from "./ui/EdPronunciationGame";
 import MinimalPairsGame from "./ui/MinimalPairsGame";
+import { IrregularVerbsGame } from "./ui/IrregularVerbsGame/IrregularVerbsGame";
 import VerbQuizContainer from "./activities/VerbQuizContainer";
 import { VerbQuizContent } from "@/types/verb-quiz";
 import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
@@ -161,6 +162,8 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
                                  category={activity.category}
                              />
                          );
+                     case "irregular-verbs":
+                         return <IrregularVerbsGame activityId={activity.id} />;
                      default:
                         return <FlashcardRenderer contentStr={activity.content} activityId={activity.id} />;
                 }

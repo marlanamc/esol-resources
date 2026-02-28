@@ -97,19 +97,10 @@ export default async function CalendarPage() {
 
     return (
         <div className="min-h-screen bg-bg">
-            <header className="sticky top-0 backdrop-blur-md border-b z-50 bg-white/90 border-white/60 shadow-sm">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-                    <div>
-                        <p className="text-xs font-semibold text-primary tracking-widest uppercase">Schedule</p>
-                        <h1 className="text-2xl font-display font-bold text-text">Calendar</h1>
-                    </div>
-                </div>
-            </header>
-
-            <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6 pb-24 md:pb-12">
-                {/* Calendar - Centered */}
-                <div className="flex justify-center">
-                    <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-md">
+            <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
+                {/* Calendar - Full width on mobile, centered on larger screens */}
+                <div className="flex justify-center w-full">
+                    <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-4 sm:p-8 w-full max-w-md">
                         <MiniCalendar events={calendarEvents} />
                     </div>
                 </div>

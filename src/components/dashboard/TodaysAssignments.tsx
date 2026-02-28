@@ -360,6 +360,14 @@ export const TodaysAssignments: React.FC<Props> = ({
                         )}
                     </div>
 
+                    {/* NEW badge - right in front of title */}
+                    {isNew && (
+                        <span className={`${featuredNewBadgeClassName} shrink-0 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
+                            <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
+                            New
+                        </span>
+                    )}
+
                     {/* Title - same line as checkbox for clean alignment */}
                     <div className={`min-w-0 flex-1 text-sm sm:text-base font-semibold leading-tight break-words transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
                         {displayTitle}
@@ -408,13 +416,6 @@ export const TodaysAssignments: React.FC<Props> = ({
                             }
                             return null;
                         })()}
-
-                        {isNew && (
-                            <span className={`${featuredNewBadgeClassName} px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
-                                <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
-                                New
-                            </span>
-                        )}
 
                         {/* Only show due date if overdue */}
                         {!isGameGroup && dueLabel && !isCompleted && new Date(assignment.dueDate as string) < new Date() && (

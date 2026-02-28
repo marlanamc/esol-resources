@@ -12,6 +12,7 @@ import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { grammarTopics } from "@/data/grammar-map";
 import { numbersGameCategoryNames } from "@/data/numbersGameCategories";
+import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -231,6 +232,19 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         );
     }
 
+    // Irregular verbs game uses an immersive full-screen shell like the -ed sounds game.
+    if (activity.type === "game" && resolveActivityGameUi({ ...activity, ui: ui || activity.ui }) === "irregular-verbs") {
+        return (
+            <div className="min-h-screen bg-bg">
+                <ActivityRenderer
+                    activity={{ ...activity, ui: ui || activity.ui }}
+                    assignmentId={assignmentId}
+                    existingSubmission={submission}
+                />
+            </div>
+        );
+    }
+
     // Full screen layout for interactive guides
     if (isInteractiveGuide) {
         return (
@@ -240,7 +254,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0" hideOnMobile />
+                            <BackButton href="/dashboard" className="flex-shrink-0" />
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
                                 {activity.title}
                             </h1>
@@ -295,7 +309,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0" hideOnMobile />
+                            <BackButton href="/dashboard" className="flex-shrink-0" />
                             {shouldShowHeaderProgressBadge && (
                                 <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                             )}

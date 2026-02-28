@@ -445,12 +445,6 @@ export default async function DashboardPage() {
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
                         <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
-                                <div className="flex items-center justify-between">
-                                    <h2 className="text-xl font-bold text-text">
-                                        Calendar
-                                    </h2>
-                                </div>
-
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList
@@ -855,12 +849,6 @@ export default async function DashboardPage() {
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
                         <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
                             <div className="p-6 sticky top-24 rounded-2xl space-y-5 bg-[#faf6f1] border border-[#e7dfd3] shadow-[0_2px_8px_rgba(52,43,34,0.04)]">
-                                <div className="flex items-center justify-between">
-                                    <h2 className="text-lg font-bold font-display text-[#1f2633]">
-                                        Calendar
-                                    </h2>
-                                </div>
-
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList

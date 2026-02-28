@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-02-13T23:46:39.836Z",
+  "generatedAt": "2026-02-27T22:51:47.732Z",
   "scope": "src/content/grammar/**/*.ts",
   "settings": {
     "tolerance": 0.03,
@@ -8,14 +8,14 @@
     "maxNewFileFirstRate": 0.5
   },
   "global": {
-    "totalBlocks": 1500,
-    "analyzedBlocks": 1374,
-    "skippedNonChoiceBlocks": 126,
-    "first": 519,
-    "second": 502,
-    "thirdPlus": 353,
+    "totalBlocks": 1592,
+    "analyzedBlocks": 1446,
+    "skippedNonChoiceBlocks": 146,
+    "first": 581,
+    "second": 513,
+    "thirdPlus": 352,
     "missingMappings": 0,
-    "firstRate": 0.377729
+    "firstRate": 0.401798
   },
   "files": {
     "src/content/grammar/all-verb-tenses-overview.ts": {
@@ -59,14 +59,14 @@
       "firstRate": 0.37931
     },
     "src/content/grammar/continuous-tenses-review.ts": {
-      "totalBlocks": 54,
-      "analyzedBlocks": 54,
+      "totalBlocks": 63,
+      "analyzedBlocks": 63,
       "skippedNonChoiceBlocks": 0,
-      "first": 20,
+      "first": 29,
       "second": 18,
       "thirdPlus": 16,
       "missingMappings": 0,
-      "firstRate": 0.37037
+      "firstRate": 0.460317
     },
     "src/content/grammar/cycle-1-review.ts": {
       "totalBlocks": 65,
@@ -79,14 +79,14 @@
       "firstRate": 0.34
     },
     "src/content/grammar/future-continuous.ts": {
-      "totalBlocks": 43,
-      "analyzedBlocks": 43,
+      "totalBlocks": 50,
+      "analyzedBlocks": 50,
       "skippedNonChoiceBlocks": 0,
-      "first": 14,
-      "second": 15,
+      "first": 22,
+      "second": 14,
       "thirdPlus": 14,
       "missingMappings": 0,
-      "firstRate": 0.325581
+      "firstRate": 0.44
     },
     "src/content/grammar/future-perfect-continuous.ts": {
       "totalBlocks": 25,
@@ -99,14 +99,14 @@
       "firstRate": 0.333333
     },
     "src/content/grammar/future-perfect-family.ts": {
-      "totalBlocks": 34,
-      "analyzedBlocks": 34,
+      "totalBlocks": 37,
+      "analyzedBlocks": 37,
       "skippedNonChoiceBlocks": 0,
-      "first": 15,
+      "first": 18,
       "second": 14,
       "thirdPlus": 5,
       "missingMappings": 0,
-      "firstRate": 0.441176
+      "firstRate": 0.486486
     },
     "src/content/grammar/future-perfect.ts": {
       "totalBlocks": 21,
@@ -119,24 +119,24 @@
       "firstRate": 0.333333
     },
     "src/content/grammar/future-simple.ts": {
-      "totalBlocks": 21,
-      "analyzedBlocks": 21,
+      "totalBlocks": 28,
+      "analyzedBlocks": 28,
       "skippedNonChoiceBlocks": 0,
-      "first": 7,
-      "second": 8,
-      "thirdPlus": 6,
+      "first": 19,
+      "second": 7,
+      "thirdPlus": 2,
       "missingMappings": 0,
-      "firstRate": 0.333333
+      "firstRate": 0.678571
     },
     "src/content/grammar/gerunds-infinitives.ts": {
-      "totalBlocks": 37,
-      "analyzedBlocks": 19,
-      "skippedNonChoiceBlocks": 18,
-      "first": 7,
-      "second": 7,
-      "thirdPlus": 5,
+      "totalBlocks": 69,
+      "analyzedBlocks": 31,
+      "skippedNonChoiceBlocks": 38,
+      "first": 11,
+      "second": 14,
+      "thirdPlus": 6,
       "missingMappings": 0,
-      "firstRate": 0.368421
+      "firstRate": 0.354839
     },
     "src/content/grammar/imperatives-declaratives.ts": {
       "totalBlocks": 51,
@@ -239,14 +239,14 @@
       "firstRate": 0.333333
     },
     "src/content/grammar/past-perfect-family.ts": {
-      "totalBlocks": 37,
-      "analyzedBlocks": 37,
+      "totalBlocks": 40,
+      "analyzedBlocks": 40,
       "skippedNonChoiceBlocks": 0,
-      "first": 16,
+      "first": 19,
       "second": 16,
       "thirdPlus": 5,
       "missingMappings": 0,
-      "firstRate": 0.432432
+      "firstRate": 0.475
     },
     "src/content/grammar/past-perfect.ts": {
       "totalBlocks": 50,
@@ -259,14 +259,14 @@
       "firstRate": 0.46
     },
     "src/content/grammar/past-simple.ts": {
-      "totalBlocks": 28,
-      "analyzedBlocks": 26,
+      "totalBlocks": 43,
+      "analyzedBlocks": 41,
       "skippedNonChoiceBlocks": 2,
-      "first": 8,
-      "second": 9,
+      "first": 24,
+      "second": 8,
       "thirdPlus": 9,
       "missingMappings": 0,
-      "firstRate": 0.307692
+      "firstRate": 0.585366
     },
     "src/content/grammar/perfect-continuous-tenses-review.ts": {
       "totalBlocks": 28,
@@ -279,14 +279,14 @@
       "firstRate": 0.357143
     },
     "src/content/grammar/perfect-tenses-review.ts": {
-      "totalBlocks": 47,
-      "analyzedBlocks": 47,
+      "totalBlocks": 51,
+      "analyzedBlocks": 51,
       "skippedNonChoiceBlocks": 0,
-      "first": 18,
+      "first": 22,
       "second": 20,
       "thirdPlus": 9,
       "missingMappings": 0,
-      "firstRate": 0.382979
+      "firstRate": 0.431373
     },
     "src/content/grammar/prepositions-time-place.ts": {
       "totalBlocks": 29,
@@ -299,14 +299,14 @@
       "firstRate": 0.310345
     },
     "src/content/grammar/present-continuous.ts": {
-      "totalBlocks": 39,
-      "analyzedBlocks": 39,
+      "totalBlocks": 42,
+      "analyzedBlocks": 42,
       "skippedNonChoiceBlocks": 0,
-      "first": 15,
-      "second": 15,
+      "first": 17,
+      "second": 16,
       "thirdPlus": 9,
       "missingMappings": 0,
-      "firstRate": 0.384615
+      "firstRate": 0.404762
     },
     "src/content/grammar/present-perfect-continuous.ts": {
       "totalBlocks": 30,
@@ -319,14 +319,14 @@
       "firstRate": 0.344828
     },
     "src/content/grammar/present-perfect-family.ts": {
-      "totalBlocks": 50,
-      "analyzedBlocks": 46,
+      "totalBlocks": 53,
+      "analyzedBlocks": 49,
       "skippedNonChoiceBlocks": 4,
-      "first": 21,
-      "second": 20,
-      "thirdPlus": 5,
+      "first": 18,
+      "second": 25,
+      "thirdPlus": 6,
       "missingMappings": 0,
-      "firstRate": 0.456522
+      "firstRate": 0.367347
     },
     "src/content/grammar/present-perfect.ts": {
       "totalBlocks": 51,
@@ -339,14 +339,14 @@
       "firstRate": 0.342857
     },
     "src/content/grammar/present-simple.ts": {
-      "totalBlocks": 26,
-      "analyzedBlocks": 26,
+      "totalBlocks": 29,
+      "analyzedBlocks": 29,
       "skippedNonChoiceBlocks": 0,
-      "first": 9,
+      "first": 12,
       "second": 9,
       "thirdPlus": 8,
       "missingMappings": 0,
-      "firstRate": 0.346154
+      "firstRate": 0.413793
     },
     "src/content/grammar/punctuation-capitalization.ts": {
       "totalBlocks": 50,
@@ -369,12 +369,12 @@
       "firstRate": 0.333333
     },
     "src/content/grammar/simple-tenses-review.ts": {
-      "totalBlocks": 39,
-      "analyzedBlocks": 39,
+      "totalBlocks": 42,
+      "analyzedBlocks": 42,
       "skippedNonChoiceBlocks": 0,
-      "first": 13,
-      "second": 13,
-      "thirdPlus": 13,
+      "first": 14,
+      "second": 14,
+      "thirdPlus": 14,
       "missingMappings": 0,
       "firstRate": 0.333333
     },
