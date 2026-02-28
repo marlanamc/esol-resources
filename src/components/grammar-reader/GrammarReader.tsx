@@ -575,7 +575,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     <span className="text-text font-medium flex-shrink-0">{guideTitle}</span>
                                 </nav>
 
-                                <div className="flex items-center gap-2 flex-shrink-0">
+                                <div className="flex items-center gap-2 flex-shrink-0 pt-0.5 md:pt-0">
                                     {/* TOC Button */}
                                     {content.tableOfContents && (
                                         <button
