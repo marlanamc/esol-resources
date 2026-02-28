@@ -181,30 +181,32 @@ export function CertificateShowcase({
                 </div>
 
                 {/* Details Grid */}
-                <div className="grid grid-cols-3 gap-3">
+                <div className="space-y-3 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-3">
                     <div className="rounded-xl bg-white/80 border border-amber-200/50 px-4 py-3">
                         <p className="text-xs uppercase tracking-wide text-amber-700 mb-1">
                             Student
                         </p>
-                        <p className="font-semibold text-amber-900 truncate">
+                        <p className="font-semibold text-amber-900">
                             {certificate.studentName}
                         </p>
                     </div>
-                    <div className="rounded-xl bg-white/80 border border-amber-200/50 px-4 py-3">
-                        <p className="text-xs uppercase tracking-wide text-amber-700 mb-1">
-                            Score
-                        </p>
-                        <p className="font-semibold text-amber-900">
-                            {certificate.score}%
-                        </p>
-                    </div>
-                    <div className="rounded-xl bg-white/80 border border-amber-200/50 px-4 py-3">
-                        <p className="text-xs uppercase tracking-wide text-amber-700 mb-1">
-                            Issued
-                        </p>
-                        <p className="font-semibold text-amber-900">
-                            {certificate.issuedAt.toLocaleDateString()}
-                        </p>
+                    <div className="grid grid-cols-2 gap-3 sm:contents">
+                        <div className="rounded-xl bg-white/80 border border-amber-200/50 px-4 py-3">
+                            <p className="text-xs uppercase tracking-wide text-amber-700 mb-1">
+                                Score
+                            </p>
+                            <p className="font-semibold text-amber-900">
+                                {certificate.score}%
+                            </p>
+                        </div>
+                        <div className="rounded-xl bg-white/80 border border-amber-200/50 px-4 py-3">
+                            <p className="text-xs uppercase tracking-wide text-amber-700 mb-1">
+                                Issued
+                            </p>
+                            <p className="font-semibold text-amber-900">
+                                {certificate.issuedAt.toLocaleDateString()}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

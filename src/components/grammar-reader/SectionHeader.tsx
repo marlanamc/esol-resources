@@ -19,7 +19,7 @@ export function SectionHeader({
 
     return (
         <motion.div
-            className="section-header bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-border px-6 py-4"
+            className="section-header bg-gradient-to-r from-primary/5 to-secondary/5 border-b border-border px-4 sm:px-6 py-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}

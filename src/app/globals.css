@@ -933,6 +933,13 @@ textarea {
 
 /* Mobile readability for inline HTML diagrams in grammar guides */
 @media (max-width: 768px) {
+  .grammar-reader-container .grammar-reader-split-screen {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   .grammar-reader-container .explanation-content [style*="grid-template-columns: 1fr 1fr"],
   .grammar-reader-container .explanation-content [style*="grid-template-columns:1fr 1fr"],
   .grammar-reader-container .explanation-content [style*="grid-template-columns: 1fr 1fr 1fr"],
