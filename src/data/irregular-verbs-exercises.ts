@@ -214,7 +214,10 @@ function createSentenceCompletionExercise(
     shake: { past: 'I _____ hands with the principal.', participle: 'She has _____ that bottle already.' },
     shine: { past: 'The sun _____ all day.', participle: 'His work has _____ this semester.' },
     shoot: { past: 'The player _____ from long range.', participle: 'She has _____ many photos.' },
-    shut: { past: 'I _____ the window before leaving.', participle: 'He has _____ the store for today.' },
+    shut: {
+      past: 'She _____ the door hard when she was angry.',
+      participle: 'She has _____ the door hard before leaving.'
+    },
     sing: { past: 'They _____ at the school concert.', participle: 'She has _____ in that choir for years.' },
     sink: { past: 'The boat _____ in the storm.', participle: 'The sun has _____ below the horizon.' },
     sit: { past: 'We _____ near the front yesterday.', participle: 'I have _____ here since 8:00.' },

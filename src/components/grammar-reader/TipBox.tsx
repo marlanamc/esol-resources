@@ -36,12 +36,12 @@ function formatContent(content: string) {
     // If multiple sentences, return bulleted list
     if (sentences.length > 1) {
         return (
-            <ul className="space-y-2.5 mt-3">
+            <ul className="space-y-2 sm:space-y-2.5">
                 {sentences.map((sentence, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                        <span className="text-warning flex-shrink-0 text-lg leading-none mt-0.5">•</span>
-                        <div 
-                            className="text-sm text-text leading-relaxed"
+                    <li key={i} className="flex items-baseline gap-2 sm:gap-2.5">
+                        <span className="text-warning flex-shrink-0 text-base leading-none">•</span>
+                        <div
+                            className="text-sm sm:text-base text-text leading-relaxed flex-1"
                             dangerouslySetInnerHTML={{ __html: highlightKeywordsInString(sanitizeHtml(sentence, { allowStyles: true })) }}
                         />
                     </li>
@@ -52,8 +52,8 @@ function formatContent(content: string) {
 
     // Single sentence with highlighted keywords
     return (
-        <div 
-            className="text-sm text-text leading-relaxed mt-2"
+        <div
+            className="text-sm sm:text-base text-text leading-relaxed"
             dangerouslySetInnerHTML={{ __html: highlightKeywordsInString(sanitizeHtml(content, { allowStyles: true })) }}
         />
     );
@@ -62,7 +62,7 @@ function formatContent(content: string) {
 export function TipBox({ tip }: TipBoxProps) {
     return (
         <motion.div
-            className="tip-box relative bg-gradient-to-br from-warning/10 to-accent/5 border-2 border-warning/40 rounded-2xl p-5 my-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="tip-box relative bg-gradient-to-br from-warning/10 to-accent/5 border-2 border-warning/40 rounded-2xl p-4 sm:p-5 my-6 shadow-sm hover:shadow-md transition-shadow duration-300"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -71,9 +71,10 @@ export function TipBox({ tip }: TipBoxProps) {
             {/* Decorative background blob */}
             <div className="absolute top-0 left-0 w-24 h-24 bg-warning/10 rounded-full blur-2xl -z-10 transform -translate-x-12 -translate-y-12" />
 
-            <div className="flex items-start gap-3">
+            {/* Icon and title row */}
+            <div className="flex items-center gap-2.5 mb-3">
                 <motion.div
-                    className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-warning to-accent rounded-xl flex items-center justify-center shadow-md"
+                    className="flex-shrink-0 w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-warning to-accent rounded-xl flex items-center justify-center shadow-md"
                     initial={{ rotate: -20 }}
                     animate={{ rotate: 0 }}
                     transition={{
@@ -83,16 +84,18 @@ export function TipBox({ tip }: TipBoxProps) {
                         ease: "easeInOut"
                     }}
                 >
-                    <Lightbulb className="w-5 h-5 text-white" />
+                    <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                 </motion.div>
 
-                <div className="flex-1">
-                    <h4 
-                        className="text-base font-bold text-warning mb-1"
-                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(tip.title, { allowStyles: true }) }}
-                    />
-                    {formatContent(tip.content)}
-                </div>
+                <h4
+                    className="text-base sm:text-lg font-bold text-warning"
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(tip.title, { allowStyles: true }) }}
+                />
+            </div>
+
+            {/* Content takes full width */}
+            <div className="w-full">
+                {formatContent(tip.content)}
             </div>
         </motion.div>
     );

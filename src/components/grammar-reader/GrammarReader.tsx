@@ -543,11 +543,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             )}
 
             {/* Main Content Container - Everything in one card */}
-            <main className="container mx-auto px-4 py-4 pb-24 md:pb-4">
-                <div className="grammar-reader-split-screen bg-white rounded-xl shadow-lg border border-border overflow-hidden">
+            <main className="w-full px-0 py-0 pb-24 sm:px-4 sm:py-4 md:container md:mx-auto md:pb-4">
+                <div className="grammar-reader-split-screen bg-white border-y border-border rounded-none shadow-none sm:border sm:rounded-xl sm:shadow-lg overflow-hidden">
                     {/* Compact Header: Breadcrumb + Progress + TOC */}
                     <div className="border-b border-border bg-bg-light">
-                        <div className="px-6 py-3 group">
+                        <div className="px-4 sm:px-6 py-3 group">
                             {/* Top Row: Breadcrumb and TOC Button */}
                             <div className="flex items-center justify-between gap-4 mb-3">
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
@@ -608,7 +608,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
                         {/* Table of Contents - Expandable */}
                         {content.tableOfContents && showTOC && (
-                            <div className="px-6 pb-4 border-t border-border">
+                            <div className="px-4 sm:px-6 pb-4 border-t border-border">
                                 <div className="pt-4">
                                     <TableOfContents
                                         sections={content.sections}
@@ -699,7 +699,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
                     {/* Section Counter Footer - Just shows current section */}
                     {!showTOC && (
-                        <div className="px-6 py-3 border-t border-border bg-bg-light">
+                        <div className="px-4 sm:px-6 py-3 border-t border-border bg-bg-light">
                             <div className="text-center">
                                 <div className="text-sm text-text-muted">
                                     {showQuiz
