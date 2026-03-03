@@ -917,7 +917,12 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             ],
             tipBox: {
                 title: "💡 Quick Test",
-                content: "Is it specific (you both know which one)? → Use 'the'. Is it general and starts with a vowel SOUND? → Use 'an'. Is it general and starts with a consonant sound? → Use 'a'.",
+                content: `Quick article decision:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div>Specific (you both know)? <span style="color: #d97757; font-weight: 600;">→</span> Use <strong>the</strong></div>
+                    <div>General + vowel sound? <span style="color: #d97757; font-weight: 600;">→</span> Use <strong>an</strong></div>
+                    <div>General + consonant sound? <span style="color: #d97757; font-weight: 600;">→</span> Use <strong>a</strong></div>
+                </div>`,
             },
         },
 
@@ -1057,7 +1062,12 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             ],
 	            tipBox: {
 	                title: "💡 Common Patterns",
-	                content: "Time: at 6:00, on Tuesday, in January. Location: in East Boston, on Bennington Street, at the clinic. Direction: to work, from home, into the room.",
+	                content: `Preposition patterns by use:
+	                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+	                    <div><strong style="color: #c2410c;">Time</strong> <span style="color: #d97757; font-weight: 600;">→</span> at 6:00, on Tuesday, in January</div>
+	                    <div><strong style="color: #c2410c;">Location</strong> <span style="color: #d97757; font-weight: 600;">→</span> in East Boston, on Bennington Street, at the clinic</div>
+	                    <div><strong style="color: #c2410c;">Direction</strong> <span style="color: #d97757; font-weight: 600;">→</span> to work, from home, into the room</div>
+	                </div>`,
 	            },
         },
 
@@ -1206,7 +1216,11 @@ export const partsOfSpeechContent: InteractiveGuideContent = {
             ],
             tipBox: {
                 title: "💡 Remember FANBOYS",
-                content: "For, And, Nor, But, Or, Yet, So - these are the seven main conjunctions. The most common ones you'll use daily are: and, but, or, so.",
+                content: `The seven main conjunctions:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                    <div><strong>F</strong>or, <strong>A</strong>nd, <strong>N</strong>or, <strong>B</strong>ut, <strong>O</strong>r, <strong>Y</strong>et, <strong>S</strong>o</div>
+                    <div style="font-size: 0.9rem; color: #4b5563;">Most used daily: and, but, or, so</div>
+                </div>`,
             },
         },
 

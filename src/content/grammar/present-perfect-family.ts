@@ -903,7 +903,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             },
             tipBox: {
                 title: "💡 State Verbs Exception",
-                content: "Remember: Verbs like 'know', 'like', 'believe', 'have (possession)' usually stay SIMPLE, even for duration! <br><br>Correct: 'I have known him for 10 years.'<br>Incorrect: 'I have been knowing him...'"
+                content: `Verbs like know, like, believe, have (possession) stay SIMPLE—even for duration!
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="color: #15803d; font-weight: 600;">✅ Correct:</div>
+                    <div style="margin-left: 0.5rem;">"I have known him for 10 years."</div>
+                    <div style="color: #b91c1c; font-weight: 600; margin-top: 0.25rem;">❌ Incorrect:</div>
+                    <div style="margin-left: 0.5rem;">"I have been knowing him..."</div>
+                </div>`
             },
         },
 
@@ -1272,7 +1278,12 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "💡 State Verbs List",
-                content: "Common state verbs that DON'T use the duration form: <br><strong>Mental:</strong> know, believe, think, understand, remember <br><strong>Emotional:</strong> like, love, hate, want, need, prefer <br><strong>Possession:</strong> have, own, belong, possess"
+                content: `Common state verbs that DON'T use the duration form:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.625rem;">
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;"><strong style="color: #c2410c; min-width: 5.5rem;">Mental</strong> <span style="color: #d97757; font-weight: 600;">→</span> <span>know, believe, think, understand, remember</span></div>
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;"><strong style="color: #c2410c; min-width: 5.5rem;">Emotional</strong> <span style="color: #d97757; font-weight: 600;">→</span> <span>like, love, hate, want, need, prefer</span></div>
+                    <div style="display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap;"><strong style="color: #c2410c; min-width: 5.5rem;">Possession</strong> <span style="color: #d97757; font-weight: 600;">→</span> <span>have, own, belong, possess</span></div>
+                </div>`
             },
             exercises: [
                 {

@@ -530,7 +530,12 @@ export const pastContinuousContent: InteractiveGuideContent = {
             ],
             tipBox: {
                 title: "💡 Stative Reminder",
-                content: "Common stative verbs: know, believe, understand, love, hate, own, belong. In many cases, use Past Simple with these.",
+                content: `Common stative verbs that usually take Past Simple (not continuous):
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div><strong style="color: #c2410c;">Mental</strong> <span style="color: #d97757; font-weight: 600;">→</span> know, believe, understand</div>
+                    <div><strong style="color: #c2410c;">Emotional</strong> <span style="color: #d97757; font-weight: 600;">→</span> love, hate</div>
+                    <div><strong style="color: #c2410c;">Possession</strong> <span style="color: #d97757; font-weight: 600;">→</span> own, belong</div>
+                </div>`,
             },
             exercises: [
                 {

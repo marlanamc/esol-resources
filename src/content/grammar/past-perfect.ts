@@ -820,7 +820,12 @@ export const pastPerfectContent: InteractiveGuideContent = {
             },
             tipBox: {
                 title: "⚠️ Common Mistake Alert",
-                content: "Don't use Past Perfect if there's only ONE past action! ❌ 'I had eaten lunch yesterday.' → ✓ 'I ate lunch yesterday.' OR ✓ 'I had eaten lunch before the meeting started.' (TWO actions!)",
+                content: `Don't use Past Perfect with only ONE past action!
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div>❌ "I had eaten lunch yesterday." <span style="color: #d97757; font-weight: 600;">→</span> Only one action!</div>
+                    <div>✅ "I ate lunch yesterday." <span style="font-size: 0.875rem; color: #4b5563;">(one action = Past Simple)</span></div>
+                    <div>✅ "I had eaten lunch before the meeting started." <span style="font-size: 0.875rem; color: #4b5563;">(two actions = Past Perfect + Past Simple)</span></div>
+                </div>`,
             },
             exercises: [
                 {
