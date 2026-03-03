@@ -162,6 +162,34 @@
             border-top: 2px solid var(--ink);
         }
 
+        .vocab-section {
+            margin-top: 14px;
+            padding-top: 10px;
+            border-top: 2px solid var(--ink);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 8px;
+        }
+
+        .vocab-row {
+            border: 1px solid var(--ink);
+            padding: 6px 8px;
+        }
+
+        .vocab-term {
+            font-weight: 700;
+            margin-bottom: 3px;
+            font-size: 0.9rem;
+        }
+
+        .definition-line {
+            border-bottom: 1px solid var(--ink);
+            height: 14px;
+        }
+
         .quizzes-card {
             border: 2px solid var(--ink);
             padding: 12px;
@@ -285,35 +313,35 @@
     <div class="container">
         <div class="header">
             <h1>Your Week 23 Plan</h1>
-            <div class="week-info">March 3–5, 2026 • Past Perfect Family</div>
+            <div class="week-info">March 3–5, 2026 • Present Perfect Family</div>
         </div>
 
         <div class="content">
             <div class="why-box">
-                <p><strong>Why this matters for you:</strong> Past perfect helps you put events in order. You'll use it for work history and career stories. Also, perfect continuous tenses help you describe ongoing situations and progress over time. This is useful for explaining work experience and learning journeys.</p>
+                <p><strong>Why this matters for you:</strong> Present perfect helps you connect life experience to now. This week you'll keep building the Present Perfect Family, practice regular <code>-ed</code> endings and irregular verb endings, ask present perfect continuous questions about what you can see now, and build financial literacy with paystub and savings math.</p>
             </div>
 
             <div class="goals-section">
                 <h2>Your goals this week</h2>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-1">
-                    <label for="goal-1">Practice talking about career goals with future perfect</label>
+                    <label for="goal-1">Use present perfect (have/has + V3) to talk about life and work experiences</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-2">
-                    <label for="goal-2">Practice talking about future goals</label>
+                    <label for="goal-2">Improve regular <code>-ed</code> verb endings in speaking and listening</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-3">
-                    <label for="goal-3">Use past perfect (had + V3) to show what happened first</label>
+                    <label for="goal-3">Practice common irregular verb endings for V2 and V3 forms</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-4">
-                    <label for="goal-4">Combine past perfect and past simple to explain sequence</label>
+                    <label for="goal-4">Ask and answer present perfect continuous questions from visible clues</label>
                 </div>
                 <div class="goal-item">
                     <input type="checkbox" id="goal-5">
-                    <label for="goal-5">Describe a timeline clearly in speaking and writing</label>
+                    <label for="goal-5">Use paystub vocabulary and math (gross pay, deductions, emergency fund, retirement savings)</label>
                 </div>
 
             </div>
@@ -324,17 +352,16 @@
                 <div class="day-column">
                     <div class="day-header">Tuesday, March 3</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Career Goals: Future Perfect &amp;amp; Future Perfect Continuous</p>
-                        <p class="meta-line"><strong>Grammar:</strong> Past Perfect Family</p>
+                        <p class="meta-line"><strong>Warmup:</strong> Career Goals: Present Perfect &amp; Present Perfect Continuous</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Present Perfect Family + <code>-ed</code> Endings + Irregular Verbs</p>
                     </div>
                 </div>
 
                 <div class="day-column">
                     <div class="day-header">Thursday, March 5</div>
                     <div class="day-content">
-                        <p class="meta-line"><strong>Warmup:</strong> Future Goals: Future Perfect &amp;amp; Future Perfect Continuous</p>
-                        
-                        <p class="meta-line"><strong>Grammar:</strong> Past Perfect Family</p>
+                        <p class="meta-line"><strong>Warmup:</strong> Paychecks, Savings, and Retirement Goals (Present Perfect + Present Perfect Continuous)</p>
+                        <p class="meta-line"><strong>Grammar:</strong> Present Perfect Family + Financial Literacy (Paystub Reading, Gross vs Net Pay, Emergency Fund Math)</p>
                     </div>
                 </div>
             </div>
@@ -354,7 +381,17 @@
 
                 <div class="checklist-item">
                     <input type="checkbox" id="after-guide-23" class="checklist-cb">
-                    <label for="after-guide-23">Review Past Perfect Family Guide</label>
+                    <label for="after-guide-23">Review Present Perfect Family Guide</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-irregular-game-23" class="checklist-cb">
+                    <label for="after-irregular-game-23">Irregular Verbs Pattern Game</label>
+                </div>
+
+                <div class="checklist-item">
+                    <input type="checkbox" id="after-finlit-23" class="checklist-cb">
+                    <label for="after-finlit-23">Complete Paystub Math + Retirement Savings Reading</label>
                 </div>
 
                 <div class="checklist-item">
@@ -426,6 +463,25 @@
                     </div>
                 </div>
             </section>
+
+            <div class="vocab-section">
+                <h2 class="section-title">Weekly Vocabulary</h2>
+                <p class="meta-line"><strong>Write your own definitions:</strong></p>
+                <div class="vocab-grid">
+                    <div class="vocab-row"><div class="vocab-term">ambitious</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">promotion</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">priority</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">decade</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">achieve</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">retire</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">milestone</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">retire</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">gross pay</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">deductions</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">emergency fund</div><div class="definition-line"></div></div>
+                    <div class="vocab-row"><div class="vocab-term">long-term</div><div class="definition-line"></div></div>
+                </div>
+            </div>
 
         </div>
     </div>
