@@ -15,7 +15,8 @@ export type AuditAction =
   | 'assignment.delete'
   | 'points.manual_award'
   | 'weekly_reset.execute'
-  | 'admin.unauthorized_attempt';
+  | 'admin.unauthorized_attempt'
+  | 'admin.unauthorized_student_access';
 
 export interface AuditLogEntry {
   timestamp: Date;
