@@ -784,6 +784,16 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                     <p style="margin: 0; font-size: 0.9rem;"><strong>Result:</strong> Have/Has + subject + past participle...?</p>
                     <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Duration:</strong> Have/Has + subject + been + verb-ing...?</p>
                 </div>
+
+                <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #b45309;">⚠️ Exception: State Verbs with "How long"</h4>
+                    <p style="margin: 0; font-size: 0.9rem;">Even though "How long...?" usually signals the duration form, <strong>state verbs</strong> (know, believe, like, love, own, have) <strong>never</strong> use the continuous form—even for duration questions!</p>
+                    <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #fcd34d;">
+                        <p style="margin: 0; font-size: 0.9rem;"><span style="color: #b91c1c;">❌</span> "How long have you <strong>been knowing</strong> her?"</p>
+                        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><span style="color: #15803d;">✓</span> "How long have you <strong>known</strong> her?"</p>
+                    </div>
+                    <p style="margin: 0.75rem 0 0 0; font-size: 0.85rem; color: #92400e;">State verbs describe states (not activities), so they use the result form even when asking about duration.</p>
+                </div>
             `,
              exercises: [
                 {
