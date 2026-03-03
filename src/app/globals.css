@@ -1416,14 +1416,14 @@ kbd {
     rgba(245, 158, 11, 0.1) 0%,
     rgba(245, 158, 11, 0.05) 100%
   );
-  padding: var(--spacing-md);
+  padding: clamp(0.9rem, 2.5vw, 1.35rem);
   margin: var(--spacing-md) 0;
   border-radius: var(--radius-md);
   border: 1px solid rgba(245, 158, 11, 0.3);
   color: var(--color-text);
 }
 
-.tip-box strong {
+.tip-box > strong {
   color: #d97706; /* amber-600 */
   display: block;
   margin-bottom: var(--spacing-xs);

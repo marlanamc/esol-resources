@@ -170,7 +170,7 @@ export default async function GrammarPrintPage({ params }: Props) {
                 .tip-box {
                     background: #f0f9ff;
                     border-left: 4px solid #3b82f6;
-                    padding: 1rem 1.5rem;
+                    padding: 1.25rem 1.5rem;
                     margin: 1.5rem 0;
                 }
                 .tip-box h4 {

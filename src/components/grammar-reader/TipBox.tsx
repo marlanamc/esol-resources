@@ -11,6 +11,8 @@ interface TipBoxProps {
     };
 }
 
+const HTML_TAG_REGEX = /<\/?[a-z][\s\S]*>/i;
+
 // Highlight important keywords in bold (returning HTML string)
 function highlightKeywordsInString(text: string): string {
     const keywords = ['NOT', 'NO', 'NEVER', 'ALWAYS', 'ONLY', 'IMPORTANT', 'REMEMBER', "don't", "doesn't"];
@@ -27,6 +29,16 @@ function highlightKeywordsInString(text: string): string {
 
 // Parse content to make it ADHD-friendly with bullets and bold
 function formatContent(content: string) {
+    // Preserve authored HTML layouts used by many grammar guides.
+    if (HTML_TAG_REGEX.test(content)) {
+        return (
+            <div
+                className="tip-content text-sm sm:text-base text-text leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: highlightKeywordsInString(sanitizeHtml(content, { allowStyles: true })) }}
+            />
+        );
+    }
+
     // Split by periods or common separators
     const sentences = content
         .split(/\.\s+(?=[A-Z])/)
@@ -62,7 +74,7 @@ function formatContent(content: string) {
 export function TipBox({ tip }: TipBoxProps) {
     return (
         <motion.div
-            className="tip-box relative bg-gradient-to-br from-warning/10 to-accent/5 border-2 border-warning/40 rounded-2xl p-4 sm:p-5 my-6 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="tip-box relative overflow-hidden bg-gradient-to-br from-warning/10 to-accent/5 border-2 border-warning/40 rounded-2xl p-4 sm:p-5 md:p-6 my-6 shadow-sm hover:shadow-md transition-shadow duration-300"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
