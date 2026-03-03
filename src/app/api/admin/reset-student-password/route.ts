@@ -55,6 +55,24 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Only student passwords can be changed here" }, { status: 400 });
     }
 
+    // SECURITY: Verify teacher owns this student (enrolled in one of their classes)
+    const enrollment = await prisma.classEnrollment.findFirst({
+        where: {
+            studentId: userId,
+            class: { teacherId: session.user.id },
+        },
+    });
+
+    if (!enrollment) {
+        audit.failure(
+            'admin.unauthorized_student_access',
+            session.user.id,
+            session.user.role,
+            `Teacher attempted to reset password for student not in their classes: ${userId}`
+        );
+        return NextResponse.json({ error: "Access denied - student not in your classes" }, { status: 403 });
+    }
+
     // SECURITY: Use industry-standard bcrypt rounds (12 in 2025)
     const passwordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
 

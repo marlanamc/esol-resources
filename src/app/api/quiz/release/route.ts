@@ -28,11 +28,16 @@ export async function POST(request: Request) {
             id: activityId,
             deletedAt: null,
         },
-        select: { content: true, title: true }
+        select: { content: true, title: true, createdBy: true }
     });
 
     if (!activity) {
         return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+    }
+
+    // SECURITY: Verify teacher owns this activity (or it's a shared/system activity with null createdBy)
+    if (activity.createdBy && activity.createdBy !== userId) {
+        return NextResponse.json({ error: "You can only release quizzes you created" }, { status: 403 });
     }
 
     const content = JSON.parse(activity.content);
