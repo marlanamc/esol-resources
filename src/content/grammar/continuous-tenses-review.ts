@@ -1380,7 +1380,14 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "🚨 Common Continuous Mistakes to Avoid",
-                content: "❌ I am work → ✅ I am working (must add -ing). ❌ I was ran → ✅ I was running (verb-ing, not past form). ❌ I will working → ✅ I will be working (will be + verb-ing). ❌ She was study → ✅ She was studying (-ying for study). ❌ They are run → ✅ They are running (double consonant + -ing).",
+                content: `Common continuous tense mistakes and fixes:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div>❌ I am work <span style="color: #d97757; font-weight: 600;">→</span> ✅ I am working <span style="font-size: 0.875rem; color: #4b5563;">(must add -ing)</span></div>
+                    <div>❌ I was ran <span style="color: #d97757; font-weight: 600;">→</span> ✅ I was running <span style="font-size: 0.875rem; color: #4b5563;">(verb-ing, not past form)</span></div>
+                    <div>❌ I will working <span style="color: #d97757; font-weight: 600;">→</span> ✅ I will be working <span style="font-size: 0.875rem; color: #4b5563;">(will be + verb-ing)</span></div>
+                    <div>❌ She was study <span style="color: #d97757; font-weight: 600;">→</span> ✅ She was studying <span style="font-size: 0.875rem; color: #4b5563;">(-ying for study)</span></div>
+                    <div>❌ They are run <span style="color: #d97757; font-weight: 600;">→</span> ✅ They are running <span style="font-size: 0.875rem; color: #4b5563;">(double consonant + -ing)</span></div>
+                </div>`,
             },
             exercises: [
                 {

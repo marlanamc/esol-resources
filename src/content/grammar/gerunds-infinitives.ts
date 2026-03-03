@@ -597,7 +597,12 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       },
       tipBox: {
         title: "💡 Common Mistake Alert",
-        content: "'to' can be BOTH an infinitive marker AND a preposition! As infinitive marker: I want to learn. As preposition: I look forward to learning. Other examples with 'to' as preposition: be used to, be accustomed to, object to"
+        content: `"To" can be BOTH an infinitive marker AND a preposition!
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div><strong style="color: #c2410c;">Infinitive marker</strong> <span style="color: #d97757; font-weight: 600;">→</span> I want <em>to learn</em></div>
+                    <div><strong style="color: #c2410c;">Preposition</strong> <span style="color: #d97757; font-weight: 600;">→</span> I look forward to <em>learning</em></div>
+                    <div style="margin-top: 0.25rem; font-size: 0.9rem;">More "to" as preposition: be used to, be accustomed to, object to</div>
+                </div>`
       },
       exercises: [
         {
@@ -1322,7 +1327,12 @@ export const gerundsInfinitivesContent: InteractiveGuideContent = {
       ],
       tipBox: {
         title: "💡 Quick Fix Strategy",
-        content: "When in doubt, ask: 1) Is there a preposition? → Use gerund. 2) Is it 'go' + activity? → Use gerund. 3) Is it a specific verb? → Check if it takes gerund or infinitive."
+        content: `When in doubt, ask yourself:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div><strong>1)</strong> Is there a preposition? <span style="color: #d97757; font-weight: 600;">→</span> Use gerund</div>
+                    <div><strong>2)</strong> Is it "go" + activity? <span style="color: #d97757; font-weight: 600;">→</span> Use gerund</div>
+                    <div><strong>3)</strong> Is it a specific verb? <span style="color: #d97757; font-weight: 600;">→</span> Check if it takes gerund or infinitive</div>
+                </div>`
       },
       exercises: [
         {

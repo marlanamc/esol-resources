@@ -977,7 +977,14 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
             `,
             tipBox: {
                 title: "🚨 Common Mistakes to Avoid",
-                content: "❌ She work downtown → ✅ She works downtown (add -s for he/she/it). ❌ He don't like coffee → ✅ He doesn't like coffee (doesn't with he/she/it). ❌ Does she works? → ✅ Does she work? (base verb in questions). ❌ She didn't worked → ✅ She didn't work (base verb after didn't). ❌ I will going → ✅ I will go (no -ing with will).",
+                content: `Common simple tense mistakes and fixes:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div>❌ She work downtown <span style="color: #d97757; font-weight: 600;">→</span> ✅ She works downtown <span style="font-size: 0.875rem; color: #4b5563;">(add -s for he/she/it)</span></div>
+                    <div>❌ He don't like coffee <span style="color: #d97757; font-weight: 600;">→</span> ✅ He doesn't like coffee <span style="font-size: 0.875rem; color: #4b5563;">(doesn't with he/she/it)</span></div>
+                    <div>❌ Does she works? <span style="color: #d97757; font-weight: 600;">→</span> ✅ Does she work? <span style="font-size: 0.875rem; color: #4b5563;">(base verb in questions)</span></div>
+                    <div>❌ She didn't worked <span style="color: #d97757; font-weight: 600;">→</span> ✅ She didn't work <span style="font-size: 0.875rem; color: #4b5563;">(base verb after didn't)</span></div>
+                    <div>❌ I will going <span style="color: #d97757; font-weight: 600;">→</span> ✅ I will go <span style="font-size: 0.875rem; color: #4b5563;">(no -ing with will)</span></div>
+                </div>`,
             },
             exercises: [
                 {

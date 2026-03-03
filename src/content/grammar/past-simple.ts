@@ -410,8 +410,12 @@ export const pastSimpleContent: InteractiveGuideContent = {
             },
             tipBox: {
                 title: "📝 Spelling Rules for Regular Verbs",
-                content:
-                    "Most verbs: add -ed (work → worked). Verbs ending in -e: add -d (live → lived). Consonant + y: change y to i, add -ed (study → studied).",
+                content: `Three main rules for -ed endings:
+                <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div><strong style="color: #c2410c;">Most verbs</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -ed <span style="font-size: 0.9rem;">(work → worked)</span></div>
+                    <div><strong style="color: #c2410c;">Ends in -e</strong> <span style="color: #d97757; font-weight: 600;">→</span> add -d only <span style="font-size: 0.9rem;">(live → lived)</span></div>
+                    <div><strong style="color: #c2410c;">Consonant + y</strong> <span style="color: #d97757; font-weight: 600;">→</span> change y to i, add -ed <span style="font-size: 0.9rem;">(study → studied)</span></div>
+                </div>`,
             },
             exercises: [
                 {
