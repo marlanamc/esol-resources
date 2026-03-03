@@ -3,29 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Career Goals: Future Perfect &amp; Future Perfect Continuous (ESOL Level 3)</title>
+  <title>Career Goals: Present Perfect &amp; Present Perfect Continuous (ESOL Level 3)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --ink: #1a1a1a; --gray: #444; --light: #666; --line: #333; }
     body { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); background: #f5f5f5; padding: 20px; line-height: 1.45; font-size: 14px; }
     .sheet { max-width: 8in; margin: 0 auto; background: #fff; padding: 0.45in 0.55in; }
-    .header {
-      border-bottom: 2px solid var(--ink);
-      padding-bottom: 8px;
-      margin-bottom: 16px;
-    }
-    .header h1 {
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .header-fields {
-      display: flex;
-      gap: 32px;
-      justify-content: center;
-      font-size: 13px;
-    }
+    .header { border-bottom: 2px solid var(--ink); padding-bottom: 8px; margin-bottom: 16px; }
+    .header h1 { text-align: center; font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+    .header-fields { display: flex; gap: 32px; justify-content: center; font-size: 13px; }
     .field { display: flex; align-items: baseline; gap: 5px; }
     .field label { font-weight: bold; }
     .field-line { border-bottom: 1px solid var(--ink); width: 160px; height: 16px; }
@@ -45,51 +31,48 @@
     .phrase-starter { font-weight: bold; font-size: 14px; margin-bottom: 3px; }
     .examples { margin-left: 14px; font-size: 13px; color: var(--gray); margin-bottom: 4px; }
     .examples li { margin-bottom: 1px; list-style: none; }
-    .examples li::before { content: "• "; color: var(--ink); }
+    .examples li::before { content: "- "; color: var(--ink); }
     .your-turn { display: flex; align-items: baseline; gap: 6px; font-size: 13px; margin-left: 14px; }
     .your-turn-label { font-style: italic; color: var(--light); white-space: nowrap; }
     .writing-line { border-bottom: 1px solid var(--line); flex: 1; height: 20px; }
     .instruction { font-size: 12px; color: var(--light); font-style: italic; margin-bottom: 12px; }
     .level-up { font-size: 12px; font-style: italic; color: var(--light); margin-top: 6px; padding-left: 14px; }
-    .round { margin-bottom: 8px; font-size: 13px; }
-    .round-header { font-weight: bold; }
-    .round-content { margin-left: 8px; color: var(--gray); }
-    .help-note { font-size: 12px; font-style: italic; color: var(--light); margin-top: 8px; }
-    .reading-text { font-size: 14px; line-height: 1.55; margin-bottom: 14px; }
-    .section:has(.reading-text) { margin-bottom: 36px; }
-    .reading-text p { margin-bottom: 8px; text-align: justify; }
-    .question { margin-bottom: 12px; }
-    .question-text { font-size: 13px; margin-bottom: 4px; }
-    .question-text b { font-weight: bold; }
-    .answer-line { border-bottom: 1px solid var(--line); height: 20px; }
-    .writing-prompt { font-size: 13px; margin-bottom: 10px; }
-    .requirements { font-size: 12px; margin-bottom: 12px; padding-left: 16px; color: var(--gray); }
-    .requirements li { margin-bottom: 1px; }
-    .writing-lines { margin-top: 10px; }
-    .homework-line { border-bottom: 1px solid var(--line); height: 26px; }
+    .goal-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; table-layout: fixed; }
+    .goal-table th, .goal-table td { border: 1px solid var(--line); padding: 9px; vertical-align: top; }
+    .goal-table th { background: #f1f1f1; text-align: left; }
+    .goal-table .sample-row td { background: #f8f8f8; color: #333; font-style: italic; }
+    .goal-table th:nth-child(1), .goal-table td:nth-child(1) { width: 16%; }
+    .goal-table th:nth-child(2), .goal-table td:nth-child(2) { width: 31%; }
+    .goal-table th:nth-child(3), .goal-table td:nth-child(3) { width: 31%; }
+    .goal-table th:nth-child(4), .goal-table td:nth-child(4) { width: 22%; }
+    .line-space { min-height: 52px; border-bottom: none; }
+    .goal-table .blank-row .line-space { min-height: 104px; border-bottom: none; }
     .optional-note { font-size: 11px; font-style: italic; color: var(--light); margin-top: 10px; }
     .front-page { margin-bottom: 24px; }
-    @media print { @page { size: letter; margin: 0.45in; } body { background: #fff; padding: 0; } .sheet { padding: 0; max-width: none; }
-      .page-break { page-break-before: always; } }
-      .pron { font-size: 11px; color: var(--light); font-style: italic; margin-left: 4px; }
+    .pron { font-size: 11px; color: var(--light); font-style: italic; margin-left: 4px; }
+    @media print {
+      @page { size: letter; margin: 0.45in; }
+      body { background: #fff; padding: 0; }
+      .sheet { padding: 0; max-width: none; }
+    }
   </style>
 </head>
 <body>
   <div class="sheet">
     <div class="front-page">
       <header class="header">
-      <h1>Career Goals: Future Perfect &amp; Future Perfect Continuous</h1>
-      <div class="header-fields">
-        <div class="field">
-          <label>Name</label>
-          <div class="field-line" style="width: 160px;"></div>
+        <h1>Career Goals: Present Perfect &amp; Present Perfect Continuous</h1>
+        <div class="header-fields">
+          <div class="field">
+            <label>Name</label>
+            <div class="field-line"></div>
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <span class="date-value">March 3, 2026</span>
+          </div>
         </div>
-        <div class="field">
-          <label>Date</label>
-          <span class="date-value">March 3, 2026</span>
-        </div>
-      </div>
-    </header>
+      </header>
 
       <section class="section">
         <div class="section-header">
@@ -101,15 +84,15 @@
           <div class="vocab-words">
             <div class="vocab-word"><span class="num">1.</span> <span class="blank"></span> <span class="word">ambitious</span></div>
             <div class="vocab-word"><span class="num">2.</span> <span class="blank"></span> <span class="word">promotion</span> <span class="pron">(proh-MOH-shun)</span></div>
-            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">gross pay</span></div>
+            <div class="vocab-word"><span class="num">3.</span> <span class="blank"></span> <span class="word">priority</span></div>
             <div class="vocab-word"><span class="num">4.</span> <span class="blank"></span> <span class="word">decade</span></div>
-            <div class="vocab-word"><span class="num">5.</span> <span class="blank"></span> <span class="word">retire</span></div>
-            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">achieve</span></div>
+            <div class="vocab-word"><span class="num">5.</span> <span class="blank"></span> <span class="word">achieve</span> <span class="pron">(uh-CHEEV)</span></div>
+            <div class="vocab-word"><span class="num">6.</span> <span class="blank"></span> <span class="word">retire</span></div>
           </div>
           <div class="vocab-defs">
             <div class="vocab-def"><span class="letter">a.</span> wanting to be successful or achieve goals</div>
             <div class="vocab-def"><span class="letter">b.</span> moving to a higher position at work</div>
-            <div class="vocab-def"><span class="letter">c.</span> the total money you earn before taxes or deductions</div>
+            <div class="vocab-def"><span class="letter">c.</span> the most important thing</div>
             <div class="vocab-def"><span class="letter">d.</span> a period of ten years</div>
             <div class="vocab-def"><span class="letter">e.</span> to stop working, usually at an older age</div>
             <div class="vocab-def"><span class="letter">f.</span> to reach a goal, to succeed</div>
@@ -119,101 +102,119 @@
 
       <section class="section">
         <div class="section-header">
-          <h2 class="section-title">Part B: Phrases</h2>
+          <h2 class="section-title">Part B: Quick Talk Frames</h2>
           <span class="section-time">8 min</span>
         </div>
-        <p class="instruction">Future Perfect = will have + past participle (completed by a future time). Future Perfect Continuous = will have been + verb-ing (how long by that future time). Read the examples, then write your own. Use both tenses when you can.</p>
+        <p class="instruction">Present Perfect = have/has + V3 (life experience or result now). Present Perfect Continuous = have/has been + verb-ing (activity started in the past and continuing now).</p>
 
         <div class="phrase">
-          <div class="phrase-starter">1) By next year, I will have… (Future Perfect)</div>
+          <div class="phrase-starter">1) I have already ___ (V3) ... (Present Perfect)</div>
           <ul class="examples">
-            <li>By next year, I will have finished my training program.</li>
-            <li>By next year, I will have saved enough money for my goal.</li>
+            <li>I have already completed one certificate class.</li>
+            <li>I have already applied for two better jobs.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">2) By December, I will have been ___ (work/study) … for ___ (Future Perfect Continuous)</div>
+          <div class="phrase-starter">2) I have been ___ing ... for/since ... (Present Perfect Continuous)</div>
           <ul class="examples">
-            <li>By December, I will have been working at this company for five years.</li>
-            <li>By December, I will have been studying English for three years.</li>
+            <li>I have been studying English for two years.</li>
+            <li>I have been working on my resume since January.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">3) In two years, I will have… (Future Perfect)</div>
+          <div class="phrase-starter">3) Have you ever ___ (V3) ... ? (Present Perfect question)</div>
           <ul class="examples">
-            <li>In two years, I will have achieved my career goal.</li>
-            <li>In two years, I will have graduated from my program.</li>
+            <li>Have you ever asked for a promotion?</li>
+            <li>Have you ever changed careers?</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">4) By the time I [achieve goal], I will have… (Future Perfect)</div>
+          <div class="phrase-starter">4) How long have you been ___ing ... ? (Present Perfect Continuous question)</div>
           <ul class="examples">
-            <li>By the time I become a manager, I will have worked in retail for five years.</li>
-            <li>By the time I graduate, I will have completed all my classes.</li>
+            <li>How long have you been working at your current job?</li>
+            <li>How long have you been learning this skill?</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
         <div class="phrase">
-          <div class="phrase-starter">5) By 2030, I will have been ___ (work/live/study) … for ___ (Future Perfect Continuous)</div>
+          <div class="phrase-starter">5) Recently, I have ___ (V3) ..., and I have been ___ing ...</div>
           <ul class="examples">
-            <li>By 2030, I will have been working here for a decade.</li>
-            <li>By 2030, I will have been living in Boston for 10 years.</li>
+            <li>Recently, I have set a new goal, and I have been practicing interview answers.</li>
+            <li>Recently, I have achieved one milestone, and I have been building better work habits.</li>
           </ul>
           <div class="your-turn"><span class="your-turn-label">Your turn:</span><div class="writing-line"></div></div>
         </div>
 
-        <p class="level-up">Level up: Use <em>by</em> + time with both tenses. Future perfect = done by then. Future perfect continuous = how long by then.</p>
+        <p class="level-up">Level up: Try to use <em>already</em>, <em>yet</em>, <em>ever</em>, <em>since</em>, and <em>for</em>.</p>
       </section>
-
-      
     </div>
 
     <section class="section">
-      <div class="section-header"><h2 class="section-title">Reading</h2></div>
-      <div class="reading-text">
-        <p>Long-term goals help you plan your future. Future perfect shows what will be <em>completed</em> by a future point: "By 2030, I will have retired." Future perfect continuous shows <em>how long</em> something will have been happening by that point: "By 2030, I will have been working at this company for ten years."</p>
-        <p>Both tenses use <em>by</em> + a future time. Use future perfect for completed actions (will have + V3). Use future perfect continuous when you want to emphasize duration (will have been + verb-ing).</p>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>1)</b> By the end of this year, what will you have completed? (Future Perfect)</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>2)</b> What is the difference between "I will have worked" and "I will have been working"?</div>
-        <div class="answer-line"></div>
-      </div>
-      <div class="question">
-        <div class="question-text"><b>3)</b> By next year, how long will you have been studying English? (Future Perfect Continuous)</div>
-        <div class="answer-line"></div>
-      </div>
-    </section>
-
-    <section class="section">
       <div class="section-header">
-        <h2 class="section-title">Writing Homework</h2>
-        <span class="section-time">6–8 sentences</span>
+        <h2 class="section-title">Personal Career Check-In</h2>
+        <span class="section-time">10 min</span>
       </div>
-      <div class="writing-prompt">
-        <b>Prompt:</b> Describe your future career goals using both future perfect and future perfect continuous. By certain dates, what will you have completed? How long will you have been working or studying by then?
-      </div>
-      
-      <div class="writing-lines">
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-        <div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div><div class="homework-line"></div>
-      </div>
-      <p class="optional-note">Optional challenge: Use <em>by</em> and <em>by the time</em> with both tenses.</p>
+      <p class="instruction">Use the sample row as a guide, then fill in your own goals. Your goals can be about work, English learning, health, personal life, money, family, or another important area. Keep answers short.</p>
+      <table class="goal-table" aria-label="Personal career check-in table">
+        <thead>
+          <tr>
+            <th>My goal</th>
+            <th>What I have done (Present Perfect)</th>
+            <th>What I have been doing (Present Perfect Continuous)</th>
+            <th>Next step this week</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sample-row">
+            <td>Sample: become a bartender (now I am a server)</td>
+            <td>I have asked my manager about bartender training.</td>
+            <td>I have been learning drink names and bar steps since January.</td>
+            <td>Ask to shadow the bartender one shift this week.</td>
+          </tr>
+          <tr class="blank-row">
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+          </tr>
+          <tr class="blank-row">
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+          </tr>
+          <tr class="blank-row">
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+          </tr>
+          <tr class="blank-row">
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+          </tr>
+          <tr class="blank-row">
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+            <td><div class="line-space"></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="optional-note">Optional challenge: Use one irregular verb correctly (for example: done, written, spoken, grown).</p>
     </section>
   </div>
 
   <script>
-    // Shuffle vocab definitions on page load for randomized matching exercises
     (function() {
       const defsContainer = document.querySelector('.vocab-defs');
       if (!defsContainer) return;
@@ -221,13 +222,11 @@
       const defs = Array.from(defsContainer.querySelectorAll('.vocab-def'));
       if (defs.length === 0) return;
 
-      // Fisher-Yates shuffle
       for (let i = defs.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [defs[i], defs[j]] = [defs[j], defs[i]];
       }
 
-      // Re-assign letters after shuffling
       const letters = 'abcdefghijklmnopqrstuvwxyz';
       defs.forEach((def, idx) => {
         const letterSpan = def.querySelector('.letter');
@@ -236,7 +235,6 @@
         }
       });
 
-      // Clear and re-append in shuffled order
       defsContainer.innerHTML = '';
       defs.forEach(def => defsContainer.appendChild(def));
     })();
