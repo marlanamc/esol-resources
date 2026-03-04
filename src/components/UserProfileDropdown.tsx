@@ -53,7 +53,7 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
     }, []);
 
     const handleLogout = async () => {
-        await clearServiceWorkerCache();
+        void clearServiceWorkerCache();
         signOut({ callbackUrl: "/login" });
     };
 

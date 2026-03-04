@@ -1,4 +1,4 @@
-import Link from "next/link";
+import LoginCtaLink from "@/components/ui/LoginCtaLink";
 
 export default function Home() {
     return (
@@ -33,19 +33,10 @@ export default function Home() {
                     </h1>
 
                     <div className="flex flex-col items-center justify-center gap-3 pt-4">
-                        <Link
-                            href="/login"
-                            className="group inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary text-white font-semibold shadow-lg hover:shadow-xl hover:bg-primary-dark transition-all duration-300 transform hover:scale-105"
-                        >
-                            <span>Log In</span>
-                            <svg className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </Link>
+                        <LoginCtaLink />
                     </div>
                 </header>
             </div>
         </div>
     );
 }
-

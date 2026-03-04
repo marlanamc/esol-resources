@@ -615,6 +615,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     <TableOfContents
                                         sections={content.sections}
                                         onSelectSection={handleJumpToSection}
+                                        onClose={() => setShowTOC(false)}
                                         currentIndex={currentSectionIndex}
                                         completedSections={completedSections}
                                         hasMiniQuiz={!!content.miniQuiz}

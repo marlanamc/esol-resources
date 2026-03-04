@@ -39,12 +39,12 @@ export const ProgressBar = React.memo(function ProgressBar({ total, current, com
                     return (
                         <motion.div
                             key={index}
-                            className={`relative flex-1 min-w-0 h-2.5 rounded-full flex items-center justify-center ${
+                            className={`relative flex-1 min-w-0 h-2.5 rounded-full border flex items-center justify-center ${
                                 isCompleted
-                                    ? "bg-gradient-to-r from-success to-primary"
+                                    ? "bg-gradient-to-r from-success to-primary border-success/80"
                                     : isCurrent
-                                    ? "bg-primary"
-                                    : "bg-border"
+                                    ? "bg-primary border-primary/80"
+                                    : "bg-transparent border-text/35"
                             }`}
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
