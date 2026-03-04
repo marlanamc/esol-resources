@@ -337,7 +337,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>When "Done" Matters</h3>
-                <p>Use <strong>The Present Perfect (Result)</strong> (have + <strong>past participle</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
+                <p>Use <strong>The Present Perfect (Result)</strong> (have + <strong>V3</strong>) when the most important thing is that the action is <strong>FINISHED</strong> or when you can <strong>COUNT</strong> how many times it happened.</p>
 
                 <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                      <h4 style="text-align: center; margin-top: 0; color: #d97706;">Timeline: The Completed Action</h4>
@@ -401,7 +401,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
-                        <strong>have/has</strong> + <strong>past participle</strong> (eaten, written, gone, done)
+                        <strong>have/has</strong> + <strong>V3</strong> (eaten, written, gone, done)
                     </p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
                         I/You/We/They <strong>have</strong> + verb³ | He/She/It <strong>has</strong> + verb³
@@ -518,7 +518,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
-                        <strong>have/has</strong> + <strong>been</strong> + <strong>verb-ing</strong>
+                        <strong>have/has</strong> + <strong>been</strong> + <strong>V1-ing</strong>
                     </p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
                         I/You/We/They <strong>have been</strong> + -ing | He/She/It <strong>has been</strong> + -ing
@@ -781,8 +781,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Question Formation</h4>
-                    <p style="margin: 0; font-size: 0.9rem;"><strong>Result:</strong> Have/Has + subject + past participle...?</p>
-                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Duration:</strong> Have/Has + subject + been + verb-ing...?</p>
+                    <p style="margin: 0; font-size: 0.9rem;"><strong>Result:</strong> Have/Has + subject + V3...?</p>
+                    <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem;"><strong>Duration:</strong> Have/Has + subject + been + V1-ing...?</p>
                 </div>
 
                 <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b; margin-top: 1rem;">
@@ -927,9 +927,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
                         <h4 style="margin: 0; color: #c2410c; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Result form</h4>
-                        <div style="margin-bottom: 0.5rem;"><strong>+</strong> have + <span style="color: #c2410c;">past participle</span></div>
-                        <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't + <span style="color: #c2410c;">past participle</span></div>
-                        <div><strong>?</strong> Have you + <span style="color: #c2410c;">past participle</span>?</div>
+                        <div style="margin-bottom: 0.5rem;"><strong>+</strong> have + <span style="color: #c2410c;">V3</span></div>
+                        <div style="margin-bottom: 0.5rem;"><strong>-</strong> haven't + <span style="color: #c2410c;">V3</span></div>
+                        <div><strong>?</strong> Have you + <span style="color: #c2410c;">V3</span>?</div>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
                         <h4 style="margin: 0; color: #4338ca; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.5rem; margin-bottom: 0.5rem;">Duration form</h4>
@@ -1497,13 +1497,13 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fff7ed; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f97316;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #c2410c;">The Finisher (result form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has + past participle</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has + V3</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Result, completion, count</p>
                         <p style="margin: 0;"><strong>Key words:</strong> already, yet, just, ever, never, how many</p>
                     </div>
                     <div style="background: #eef2ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #6366f1;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #4338ca;">The Worker (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has been + verb-ing</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> have/has been + V1-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration, activity, evidence</p>
                         <p style="margin: 0;"><strong>Key words:</strong> for, since, all day, lately, how long</p>
                     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Brain, Award, ThumbsUp, BookMarked, CheckCircle2, Sparkles } from "lucide-react";
 import type { MiniQuizQuestion, QuestionResponse } from "@/types/activity";
@@ -18,6 +18,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
     const [answers, setAnswers] = useState<Record<string, string>>({});
     const [submitted, setSubmitted] = useState(false);
     const [score, setScore] = useState(0);
+    const scoreCardRef = useRef<HTMLDivElement | null>(null);
 
     const handleSubmit = () => {
         const responses: QuestionResponse[] = [];
@@ -56,6 +57,20 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
     const allAnswered = questions.every((q) => answers[q.id]);
     const answeredCount = Object.keys(answers).length;
     const percentage = (score / questions.length) * 100;
+
+    useEffect(() => {
+        if (!submitted) return;
+
+        const scrollToScore = () => {
+            scoreCardRef.current?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        };
+
+        const timeoutId = window.setTimeout(scrollToScore, 50);
+        return () => window.clearTimeout(timeoutId);
+    }, [submitted]);
 
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-0 md:bg-transparent">
@@ -126,6 +141,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                     <AnimatePresence>
                         {submitted && (
                             <motion.div
+                                ref={scoreCardRef}
                                 className={`relative overflow-hidden p-4 sm:p-6 rounded-xl mb-6 ${percentage >= 80
                                         ? "bg-success/10 border-2 border-success"
                                         : percentage >= 60
@@ -306,13 +322,17 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                                     <AnimatePresence>
                                         {showFeedback && question.explanation && (
                                             <motion.div
-                                                className="mt-4 ml-0 sm:ml-11 p-3 bg-primary/5 rounded-lg border-l-4 border-primary"
+                                                className={`mt-4 ml-0 sm:ml-11 p-3 rounded-lg border-l-4 ${
+                                                    isCorrect
+                                                        ? "bg-success/10 border-success"
+                                                        : "bg-error/10 border-error"
+                                                }`}
                                                 initial={{ opacity: 0, height: 0, y: -10 }}
                                                 animate={{ opacity: 1, height: "auto", y: 0 }}
                                                 exit={{ opacity: 0, height: 0 }}
                                                 transition={{ duration: 0.3 }}
                                             >
-                                                <p className="text-sm text-text">
+                                                <p className={`text-sm ${isCorrect ? "text-success" : "text-error"}`}>
                                                     <strong>Explanation:</strong> {question.explanation}
                                                 </p>
                                             </motion.div>
