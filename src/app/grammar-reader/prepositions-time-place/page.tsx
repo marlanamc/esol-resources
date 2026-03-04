@@ -23,7 +23,7 @@ export default async function PrepositionsTimePlacePage() {
         "grammar"
     );
 
-    if ((session.user as any).role === "student" && activityId) {
+    if (session.user.role === "student" && activityId) {
         const activity = await prisma.activity.findUnique({
             where: { id: activityId },
             select: { isReleased: true }

@@ -5,8 +5,11 @@ import { clearServiceWorkerCache } from "@/lib/clearCache";
 
 export default function LogoutButton() {
     const handleLogout = async () => {
-        void clearServiceWorkerCache();
-        signOut({ callbackUrl: "/login" });
+        await Promise.race([
+            clearServiceWorkerCache(),
+            new Promise((resolve) => setTimeout(resolve, 1200)),
+        ]);
+        await signOut({ callbackUrl: "/login" });
     };
 
     return (
@@ -18,7 +21,6 @@ export default function LogoutButton() {
         </button>
     );
 }
-
 
 
 

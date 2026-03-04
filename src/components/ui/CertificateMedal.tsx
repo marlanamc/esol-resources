@@ -1,7 +1,14 @@
 "use client";
 
 import React from "react";
-import { getMedalIcon, getMedalTier, qualifiesForMedal } from "./MedalIcons";
+import {
+    BookIcon,
+    BookPencilIcon,
+    GraduationCapIcon,
+    StarBurstIcon,
+    getMedalTier,
+    qualifiesForMedal,
+} from "./MedalIcons";
 
 export interface CertificateMedalProps {
     /** Quiz score percentage (0-100) */
@@ -25,6 +32,13 @@ const sizeMap = {
     xl: { outer: 280, inner: 248, icon: 100 },
 };
 
+const MEDAL_ICON_BY_TIER = {
+    bronze: BookIcon,
+    silver: BookPencilIcon,
+    gold: GraduationCapIcon,
+    platinum: StarBurstIcon,
+} as const;
+
 export function CertificateMedal({
     score,
     title,
@@ -34,14 +48,15 @@ export function CertificateMedal({
     className = "",
 }: CertificateMedalProps) {
     const tier = getMedalTier(score);
-    const IconComponent = getMedalIcon(score);
-    const dimensions = sizeMap[size];
-    const isPlatinum = tier === "platinum";
 
-    // Don't render medal for scores under 70%
-    if (!qualifiesForMedal(score) || tier === null || IconComponent === null) {
+    // Don't render medal for scores under 70%.
+    if (!qualifiesForMedal(score) || tier === null) {
         return null;
     }
+
+    const IconComponent = MEDAL_ICON_BY_TIER[tier];
+    const dimensions = sizeMap[size];
+    const isPlatinum = tier === "platinum";
 
     // Determine icon color based on tier for contrast
     const iconColorClass = {

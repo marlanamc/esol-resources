@@ -224,7 +224,6 @@ function parseWeekBlocks(markdown: string): TeachingScheduleWeek[] {
 
         const weekNum = parseInt(weekMatch[1]!, 10);
         const day = weekMatch[2]!.toLowerCase();
-        const dateStr = weekMatch[3]!;
 
         if (!weekMap.has(weekNum)) {
             weekMap.set(weekNum, {});
@@ -240,7 +239,7 @@ function parseWeekBlocks(markdown: string): TeachingScheduleWeek[] {
 
     const weeks: TeachingScheduleWeek[] = [];
 
-    for (const [weekNum, weekData] of weekMap.entries()) {
+    for (const [, weekData] of weekMap.entries()) {
         if (!weekData.tue || !weekData.thu) continue;
 
         // Extract week name from Tuesday header (format: "### Week 16: Tue 1/6 - Parts of Speech Part 1")

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import { submitWithOutbox } from "@/lib/submissionOutbox";
 
 interface Submission {
     id: string;
@@ -53,17 +54,24 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
         setIsLoading(true);
 
         try {
-            const response = await fetch("/api/submissions", {
+            const submitResult = await submitWithOutbox({
+                endpoint: "/api/submissions",
                 method: existingSubmission ? "PUT" : "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
+                payload: {
                     activityId,
                     assignmentId,
                     content: submissionContent,
                     submissionId: existingSubmission?.id,
-                }),
+                },
             });
 
+            if (submitResult.queued) {
+                setIsSubmitted(true);
+                setError("");
+                return;
+            }
+
+            const response = submitResult.response;
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.error || "Failed to submit");
@@ -126,7 +134,6 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
         </div>
     );
 }
-
 
 
 

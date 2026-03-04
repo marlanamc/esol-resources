@@ -3,10 +3,73 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { awardPoints, updateStreak, checkAndAwardAchievements, calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
+import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
+
+export function readIdempotencyKey(request: Request): string | null {
+    const key = request.headers.get("x-idempotency-key");
+    if (!key) return null;
+    const trimmed = key.trim();
+    return trimmed.length > 0 ? trimmed : null;
+}
+
+export function normalizeAssignmentId(assignmentId: unknown): string | null {
+    return typeof assignmentId === "string" && assignmentId.trim() !== "" && assignmentId !== "null"
+        ? assignmentId
+        : null;
+}
+
+export function extractCategoryDataObject(value: unknown): Record<string, unknown> {
+    if (typeof value === "string" && value.trim().length > 0) {
+        try {
+            const parsed = JSON.parse(value);
+            if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+                return parsed as Record<string, unknown>;
+            }
+        } catch {
+            return {};
+        }
+    }
+    return {};
+}
+
+export function hasDuplicateSubmissionIdempotencyKey(
+    categoryData: unknown,
+    idempotencyKey: string | null
+): boolean {
+    if (!idempotencyKey) return false;
+    const existingMeta = extractCategoryDataObject(categoryData);
+    return (
+        typeof existingMeta.pwaLastSubmissionIdempotencyKey === "string" &&
+        existingMeta.pwaLastSubmissionIdempotencyKey === idempotencyKey
+    );
+}
+
+export async function parseSubmitJsonBody(request: Request): Promise<{
+    ok: true;
+    body: { activityId?: string; content?: unknown; score?: number; assignmentId?: string | null };
+} | {
+    ok: false;
+    status: number;
+    error: string;
+}> {
+    try {
+        const body = await request.json();
+        return { ok: true, body };
+    } catch {
+        return { ok: false, status: 400, error: "Invalid JSON in request body" };
+    }
+}
 
 type SubmissionRecord = {
     id: string;
     score: number | null;
+};
+
+type SubmissionWritePayload = {
+    content: string;
+    score: number | null;
+    status: "submitted";
+    completedAt: Date;
 };
 
 type SubmissionDelegate = {
@@ -22,19 +85,13 @@ type SubmissionDelegate = {
             userId: string;
             activityId: string;
             assignmentId: string;
+            pointsAwarded: 0;
             content: string;
             score: number | null;
-            pointsAwarded: number;
             status: "submitted";
             completedAt: Date;
         };
-        update: {
-            content: string;
-            score: number | null;
-            pointsAwarded: number;
-            status: "submitted";
-            completedAt: Date;
-        };
+        update: SubmissionWritePayload;
     }): Promise<SubmissionRecord>;
     findFirst(args: {
         where: { userId: string; activityId: string; assignmentId: null };
@@ -42,13 +99,7 @@ type SubmissionDelegate = {
     }): Promise<{ id: string } | null>;
     update(args: {
         where: { id: string };
-        data: {
-            content: string;
-            score: number | null;
-            pointsAwarded: number;
-            status: "submitted";
-            completedAt: Date;
-        };
+        data: SubmissionWritePayload;
     }): Promise<SubmissionRecord>;
     create(args: {
         data: {
@@ -57,7 +108,7 @@ type SubmissionDelegate = {
             assignmentId: null;
             content: string;
             score: number | null;
-            pointsAwarded: number;
+            pointsAwarded: 0;
             status: "submitted";
             completedAt: Date;
         };
@@ -73,11 +124,10 @@ export async function saveActivitySubmission(params: {
     score: number | null;
     pointsAwarded: number;
 }): Promise<SubmissionRecord> {
-    const { submission, userId, activityId, assignmentId, content, score, pointsAwarded } = params;
-    const submissionPayload = {
+    const { submission, userId, activityId, assignmentId, content, score } = params;
+    const submissionPayload: SubmissionWritePayload = {
         content: JSON.stringify(content ?? null),
         score: typeof score === "number" ? score : null,
-        pointsAwarded,
         status: "submitted" as const,
         completedAt: new Date(),
     };
@@ -97,6 +147,7 @@ export async function saveActivitySubmission(params: {
                 userId,
                 activityId,
                 assignmentId,
+                pointsAwarded: 0,
                 ...submissionPayload,
             },
             update: submissionPayload,
@@ -120,6 +171,7 @@ export async function saveActivitySubmission(params: {
             userId,
             activityId,
             assignmentId: null,
+            pointsAwarded: 0,
             ...submissionPayload,
         },
     });
@@ -128,18 +180,18 @@ export async function saveActivitySubmission(params: {
 export async function POST(request: Request) {
     try {
         const session = await getServerSession(authOptions);
+        const idempotencyKey = readIdempotencyKey(request);
 
         if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
         // SECURITY: Never trust points from client - calculate server-side only
-        let body: { activityId?: string; content?: unknown; score?: number; assignmentId?: string | null };
-        try {
-            body = await request.json();
-        } catch {
-            return NextResponse.json({ error: "Invalid JSON in request body" }, { status: 400 });
+        const parsedBody = await parseSubmitJsonBody(request);
+        if (!parsedBody.ok) {
+            return NextResponse.json({ error: parsedBody.error }, { status: parsedBody.status });
         }
+        const body = parsedBody.body;
         const { activityId, content, score, assignmentId } = body;
 
         if (!activityId || typeof activityId !== "string") {
@@ -167,10 +219,41 @@ export async function POST(request: Request) {
             ? calculateQuizPoints(score ?? null)
             : getActivityPoints(activity.type, activity);
 
-        const assignmentKey =
-            typeof assignmentId === "string" && assignmentId.trim() !== "" && assignmentId !== "null"
-                ? assignmentId
-                : null;
+        const assignmentKey = normalizeAssignmentId(assignmentId);
+
+        const progressWhere = {
+            userId,
+            activityId,
+            assignmentId: assignmentKey,
+        };
+        const existingProgress = await prisma.activityProgress.findFirst({
+            where: progressWhere,
+            select: {
+                id: true,
+                categoryData: true,
+                progress: true,
+            },
+        });
+
+        if (hasDuplicateSubmissionIdempotencyKey(existingProgress?.categoryData, idempotencyKey)) {
+            const existingSubmission = await prisma.submission.findFirst({
+                where: {
+                    userId,
+                    activityId,
+                    assignmentId: assignmentKey,
+                },
+                select: { id: true, score: true },
+            });
+
+            return NextResponse.json({
+                ok: true,
+                duplicate: true,
+                submissionId: existingSubmission?.id ?? null,
+                score: existingSubmission?.score ?? null,
+                points: 0,
+            });
+        }
+
         const submission = await saveActivitySubmission({
             submission: prisma.submission,
             userId,
@@ -182,14 +265,11 @@ export async function POST(request: Request) {
         });
 
         // Update activity progress to completed
-        const progressWhere = {
-            userId,
-            activityId,
-            assignmentId: assignmentKey,
-        };
-        const existingProgress = await prisma.activityProgress.findFirst({
-            where: progressWhere,
-        });
+        const nextCategoryData = extractCategoryDataObject(existingProgress?.categoryData);
+        if (idempotencyKey) {
+            nextCategoryData.pwaLastSubmissionIdempotencyKey = idempotencyKey;
+            nextCategoryData.pwaLastSubmissionSyncedAt = new Date().toISOString();
+        }
 
         if (existingProgress) {
             await prisma.activityProgress.update({
@@ -197,6 +277,7 @@ export async function POST(request: Request) {
                 data: {
                     progress: 100,
                     status: 'completed',
+                    categoryData: JSON.stringify(nextCategoryData),
                 },
             });
         } else {
@@ -207,33 +288,63 @@ export async function POST(request: Request) {
                     assignmentId: assignmentKey,
                     progress: 100,
                     status: 'completed',
+                    categoryData: JSON.stringify(nextCategoryData),
                 },
             });
         }
 
-        // Award points (calculated server-side)
-        if (calculatedPoints > 0) {
-            // Include activity type in the reason for better display
-            const activityTypeLabel = activity.type.toLowerCase() === 'quiz' ? 'Quiz' : '';
-            const reason = activityTypeLabel
-                ? `${activity.title || activityId}|${activityTypeLabel}`
-                : `Completed: ${activity.title || activityId}`;
-            await awardPoints(
-                userId,
-                calculatedPoints,
-                reason
-            );
+        let duplicate = false;
 
-            // Update streak and check for achievements
-            await updateStreak(userId, calculatedPoints);
-            await checkAndAwardAchievements(userId);
+        // Award points exactly once per submission by atomically claiming pointsAwarded.
+        if (calculatedPoints > 0) {
+            const claimResult = await claimSubmissionPointsOnce({
+                submission: prisma.submission,
+                submissionId: submission.id,
+                userId,
+                pointsAwarded: calculatedPoints,
+            });
+
+            duplicate = !claimResult.claimed;
+
+            if (!duplicate) {
+                // Include activity type in the reason for better display.
+                const activityTypeLabel = activity.type.toLowerCase() === 'quiz' ? 'Quiz' : '';
+                const reason = activityTypeLabel
+                    ? `${activity.title || activityId}|${activityTypeLabel}`
+                    : `Completed: ${activity.title || activityId}`;
+
+                try {
+                    await awardPoints(
+                        userId,
+                        calculatedPoints,
+                        reason
+                    );
+
+                    // Update streak and check for achievements.
+                    await updateStreak(userId, calculatedPoints);
+                    await checkAndAwardAchievements(userId);
+                } catch (awardError) {
+                    await prisma.submission.updateMany({
+                        where: {
+                            id: submission.id,
+                            userId,
+                            pointsAwarded: calculatedPoints,
+                        },
+                        data: {
+                            pointsAwarded: 0,
+                        },
+                    });
+                    throw awardError;
+                }
+            }
         }
 
         return NextResponse.json({
             ok: true,
+            duplicate,
             submissionId: submission.id,
             score: submission.score,
-            points: calculatedPoints
+            points: duplicate ? 0 : calculatedPoints
         });
     } catch (error) {
         console.error("[api/activity/submit] Error:", error);

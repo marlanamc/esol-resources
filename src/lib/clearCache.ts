@@ -1,3 +1,5 @@
+import type { ServiceWorkerMessage } from "@/types/pwa";
+
 /**
  * Clears all service worker caches to ensure fresh content on user change.
  * This is important for shared computers where multiple users log in/out.
@@ -11,6 +13,7 @@ export async function clearServiceWorkerCache(): Promise<void> {
 
   // Also notify service worker to clear its caches
   if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({ type: 'CLEAR_USER_CACHE' });
+    const message: ServiceWorkerMessage = { type: 'CLEAR_USER_CACHE' };
+    navigator.serviceWorker.controller.postMessage(message);
   }
 }

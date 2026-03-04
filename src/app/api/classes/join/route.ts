@@ -3,37 +3,73 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
+export function validateJoinSession(session: { user?: { role?: string | null } } | null): {
+    allowed: boolean;
+    status?: number;
+    error?: string;
+} {
+    if (!session) {
+        return { allowed: false, status: 401, error: "Unauthorized" };
+    }
+
+    if (session.user?.role === "teacher") {
+        return { allowed: false, status: 403, error: "Teachers cannot join classes" };
+    }
+
+    return { allowed: true };
+}
+
+export function normalizeJoinClassCode(code: unknown): {
+    ok: true;
+    code: string;
+} | {
+    ok: false;
+    status: number;
+    error: string;
+} {
+    if (!code || typeof code !== "string") {
+        return { ok: false, status: 400, error: "Class code is required" };
+    }
+
+    const trimmedCode = code.trim().toUpperCase();
+    if (trimmedCode.length !== 6) {
+        return { ok: false, status: 400, error: "Invalid class code format" };
+    }
+
+    return { ok: true, code: trimmedCode };
+}
+
+export function buildAlreadyEnrolledResponse(classId: string) {
+    return {
+        status: 400,
+        body: { error: "You are already enrolled in this class", classId },
+    };
+}
+
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-
-        const userRole = session.user?.role;
-        if (userRole === "teacher") {
-            return NextResponse.json({ error: "Teachers cannot join classes" }, { status: 403 });
+        const sessionValidation = validateJoinSession(session);
+        if (!sessionValidation.allowed) {
+            return NextResponse.json({ error: sessionValidation.error }, { status: sessionValidation.status });
         }
 
         const body = await request.json();
         const { code } = body;
 
-        // SECURITY: Input validation
-        if (!code || typeof code !== 'string') {
-            return NextResponse.json({ error: "Class code is required" }, { status: 400 });
+        const normalizedCode = normalizeJoinClassCode(code);
+        if (!normalizedCode.ok) {
+            return NextResponse.json({ error: normalizedCode.error }, { status: normalizedCode.status });
         }
 
-        const trimmedCode = code.trim().toUpperCase();
-
-        if (trimmedCode.length !== 6) {
-            return NextResponse.json({ error: "Invalid class code format" }, { status: 400 });
+        const userId = session?.user?.id;
+        if (!userId) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userId = session.user?.id;
 
         // Find class by code
         const classItem = await prisma.class.findUnique({
-            where: { code: trimmedCode },
+            where: { code: normalizedCode.code },
         });
 
         if (!classItem) {
@@ -51,10 +87,8 @@ export async function POST(request: NextRequest) {
         });
 
         if (existingEnrollment) {
-            return NextResponse.json(
-                { error: "You are already enrolled in this class", classId: classItem.id },
-                { status: 400 }
-            );
+            const alreadyEnrolled = buildAlreadyEnrolledResponse(classItem.id);
+            return NextResponse.json(alreadyEnrolled.body, { status: alreadyEnrolled.status });
         }
 
         // Create enrollment
@@ -75,9 +109,6 @@ export async function POST(request: NextRequest) {
         );
     }
 }
-
-
-
 
 
 

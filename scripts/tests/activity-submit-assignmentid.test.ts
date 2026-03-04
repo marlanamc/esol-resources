@@ -54,12 +54,18 @@ async function main() {
       where: {
         userId_activityId_assignmentId: { assignmentId: string };
       };
+      create: { status: string; completedAt: Date };
+      update: { status: string; completedAt: Date };
     };
     assert.strictEqual(
       upsertArgs.where.userId_activityId_assignmentId.assignmentId,
       assignmentId,
       "upsert where key should use the provided assignmentId"
     );
+    assert.strictEqual(upsertArgs.create.status, "submitted", "create payload should persist submitted status");
+    assert.ok(upsertArgs.create.completedAt instanceof Date, "create payload should include completedAt timestamp");
+    assert.strictEqual(upsertArgs.update.status, "submitted", "update payload should persist submitted status");
+    assert.ok(upsertArgs.update.completedAt instanceof Date, "update payload should include completedAt timestamp");
   }
 
   // Case 2: assignmentId null + existing null-assignment row -> findFirst then update (no upsert).
@@ -80,6 +86,9 @@ async function main() {
       ["findFirst", "update"],
       "null assignment should update existing null-assignment record without upsert"
     );
+    const updateArgs = calls[1]?.args as { data: { status: string; completedAt: Date } };
+    assert.strictEqual(updateArgs.data.status, "submitted", "update path should set submitted status");
+    assert.ok(updateArgs.data.completedAt instanceof Date, "update path should include completedAt timestamp");
   }
 
   // Case 3: assignmentId null + no existing row -> findFirst then create (no upsert).
@@ -100,6 +109,9 @@ async function main() {
       ["findFirst", "create"],
       "null assignment should create when no existing null-assignment row is found"
     );
+    const createArgs = calls[1]?.args as { data: { status: string; completedAt: Date } };
+    assert.strictEqual(createArgs.data.status, "submitted", "create path should set submitted status");
+    assert.ok(createArgs.data.completedAt instanceof Date, "create path should include completedAt timestamp");
   }
 
   console.log("✅ Activity submit assignmentId checks passed.");

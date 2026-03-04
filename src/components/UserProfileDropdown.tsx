@@ -53,8 +53,11 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
     }, []);
 
     const handleLogout = async () => {
-        void clearServiceWorkerCache();
-        signOut({ callbackUrl: "/login" });
+        await Promise.race([
+            clearServiceWorkerCache(),
+            new Promise((resolve) => setTimeout(resolve, 1200)),
+        ]);
+        await signOut({ callbackUrl: "/login" });
     };
 
     const handleProfileClick = () => {

@@ -11,58 +11,60 @@ type EnvVar = {
   validate?: (value: string) => boolean;
 };
 
-const envVars: EnvVar[] = [
-  {
-    key: 'POSTGRES_URL',
-    required: true,
-    description: 'PostgreSQL database connection string',
-    validate: (value) => value.startsWith('postgresql://') || value.startsWith('postgres://'),
-  },
-  {
-    key: 'NEXTAUTH_SECRET',
-    required: true,
-    description: 'NextAuth secret for JWT signing (min 32 characters)',
-    validate: (value) => value.length >= 32,
-  },
-  {
-    key: 'AUTH_SECRET',
-    required: false, // Fallback for NEXTAUTH_SECRET
-    description: 'Alternative auth secret (fallback for NEXTAUTH_SECRET)',
-  },
-  {
-    key: 'NEXTAUTH_URL',
-    required: process.env.NODE_ENV === 'production',
-    description: 'NextAuth URL for production',
-    validate: (value) => value.startsWith('http://') || value.startsWith('https://'),
-  },
-  {
-    key: 'CRON_SECRET',
-    required: process.env.NODE_ENV === 'production',
-    description: 'Secret for cron endpoints (required in production)',
-    validate: (value) => value.length >= 32,
-  },
-  {
-    key: 'PERF_LOG_ENABLED',
-    required: false,
-    description: 'Enable performance timing logs (true/false)',
-    validate: (value) => ['true', 'false', '1', '0', 'yes', 'no', 'on', 'off'].includes(value.toLowerCase()),
-  },
-  {
-    key: 'PERF_LOG_THRESHOLD_MS',
-    required: false,
-    description: 'Performance slow-query threshold in milliseconds',
-    validate: (value) => Number.isFinite(Number(value)),
-  },
-  {
-    key: 'PERF_LOG_SAMPLE_RATE',
-    required: false,
-    description: 'Sampling rate for performance logs (0 to 1)',
-    validate: (value) => {
-      const n = Number(value);
-      return Number.isFinite(n) && n >= 0 && n <= 1;
+export function buildEnvVarConfig(nodeEnv = process.env.NODE_ENV): EnvVar[] {
+  return [
+    {
+      key: 'POSTGRES_URL',
+      required: true,
+      description: 'PostgreSQL database connection string',
+      validate: (value) => value.startsWith('postgresql://') || value.startsWith('postgres://'),
     },
-  },
-];
+    {
+      key: 'NEXTAUTH_SECRET',
+      required: false, // Either NEXTAUTH_SECRET or AUTH_SECRET is required (validated below)
+      description: 'NextAuth secret for JWT signing (min 32 characters)',
+      validate: (value) => value.length >= 32,
+    },
+    {
+      key: 'AUTH_SECRET',
+      required: false, // Fallback for NEXTAUTH_SECRET
+      description: 'Alternative auth secret (fallback for NEXTAUTH_SECRET)',
+    },
+    {
+      key: 'NEXTAUTH_URL',
+      required: nodeEnv === 'production',
+      description: 'NextAuth URL for production',
+      validate: (value) => value.startsWith('http://') || value.startsWith('https://'),
+    },
+    {
+      key: 'CRON_SECRET',
+      required: nodeEnv === 'production',
+      description: 'Secret for cron endpoints (required in production)',
+      validate: (value) => value.length >= 32,
+    },
+    {
+      key: 'PERF_LOG_ENABLED',
+      required: false,
+      description: 'Enable performance timing logs (true/false)',
+      validate: (value) => ['true', 'false', '1', '0', 'yes', 'no', 'on', 'off'].includes(value.toLowerCase()),
+    },
+    {
+      key: 'PERF_LOG_THRESHOLD_MS',
+      required: false,
+      description: 'Performance slow-query threshold in milliseconds',
+      validate: (value) => Number.isFinite(Number(value)),
+    },
+    {
+      key: 'PERF_LOG_SAMPLE_RATE',
+      required: false,
+      description: 'Sampling rate for performance logs (0 to 1)',
+      validate: (value) => {
+        const n = Number(value);
+        return Number.isFinite(n) && n >= 0 && n <= 1;
+      },
+    },
+  ];
+}
 
 /**
  * Validate all environment variables
@@ -72,7 +74,7 @@ export function validateEnv(): void {
   const errors: string[] = [];
   const warnings: string[] = [];
 
-  for (const envVar of envVars) {
+  for (const envVar of buildEnvVarConfig(process.env.NODE_ENV)) {
     const value = process.env[envVar.key];
 
     // Check if required variable is missing

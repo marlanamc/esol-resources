@@ -33,8 +33,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
       setKeyboardVisible(isKeyboardOpen);
     };
 
+    window.addEventListener('resize', handleResize);
     window.visualViewport?.addEventListener('resize', handleResize);
-    return () => window.visualViewport?.removeEventListener('resize', handleResize);
+    window.visualViewport?.addEventListener('scroll', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.visualViewport?.removeEventListener('resize', handleResize);
+      window.visualViewport?.removeEventListener('scroll', handleResize);
+    };
   }, []);
 
   const handleClick = (e: React.MouseEvent, href: string) => {

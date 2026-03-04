@@ -6,10 +6,76 @@ import { parseCategoryData } from "@/lib/categoryData";
 
 const NEW_RELEASE_WINDOW_MS = 24 * 60 * 60 * 1000;
 
-function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
+export function isWithinNewReleaseWindow(date: Date | null | undefined): boolean {
     if (!date) return false;
     const ageMs = Date.now() - date.getTime();
     return ageMs >= 0 && ageMs <= NEW_RELEASE_WINDOW_MS;
+}
+
+export function buildFeaturedAssignmentsWhere(classIds: string[]) {
+    return {
+        classId: { in: classIds },
+        isFeatured: true,
+        // Hide assignments tied to archived activities
+        activity: { deletedAt: null },
+    };
+}
+
+export function buildActivitySubmissionMap(submissions: Array<{
+    activityId: string;
+    score: number | null;
+    activity?: { title?: string | null } | null;
+}>): Map<string, number[]> {
+    const activitySubmissionMap = new Map<string, number[]>();
+
+    submissions.forEach((s) => {
+        if (typeof s.score !== "number") return;
+
+        const byId = activitySubmissionMap.get(s.activityId) || [];
+        byId.push(s.score);
+        activitySubmissionMap.set(s.activityId, byId);
+
+        const title = s.activity?.title;
+        if (title) {
+            const titleKey = `title:${title.toLowerCase().trim()}`;
+            const byTitle = activitySubmissionMap.get(titleKey) || [];
+            byTitle.push(s.score);
+            activitySubmissionMap.set(titleKey, byTitle);
+        }
+    });
+
+    return activitySubmissionMap;
+}
+
+export function deriveFeaturedAssignmentProgress(params: {
+    assignment: {
+        activityId: string;
+        createdAt: Date;
+        updatedAt: Date | null;
+        activity: { type: string | null; category: string | null; title: string | null };
+    };
+    progress: { progress: number; status: string; categoryData: Record<string, unknown> | null } | undefined;
+    activitySubmissionMap: Map<string, number[]>;
+}) {
+    const { assignment, progress, activitySubmissionMap } = params;
+    const isGrammarGuide =
+        (assignment.activity.type || "").toLowerCase() === "guide" &&
+        (assignment.activity.category || "").toLowerCase() === "grammar";
+
+    const scoresById = activitySubmissionMap.get(assignment.activityId) || [];
+    const titleKey = assignment.activity.title ? `title:${assignment.activity.title.toLowerCase().trim()}` : null;
+    const scoresByTitle = titleKey ? (activitySubmissionMap.get(titleKey) || []) : [];
+    const allRelevantScores = [...scoresById, ...scoresByTitle];
+    const hasPassedMiniQuiz = isGrammarGuide && allRelevantScores.some((score) => score > 70);
+    const featuredAt = assignment.updatedAt ?? assignment.createdAt;
+
+    return {
+        featuredAt,
+        isNewRelease: isWithinNewReleaseWindow(featuredAt),
+        progress: hasPassedMiniQuiz ? 100 : (progress?.progress ?? 0),
+        progressStatus: hasPassedMiniQuiz ? "completed" : (progress?.status ?? "in_progress"),
+        categoryData: progress?.categoryData ?? null,
+    };
 }
 
 export async function GET() {
@@ -31,12 +97,7 @@ export async function GET() {
 
         // Get featured assignments for those classes
         const featuredAssignments = classIds.length === 0 ? [] : await prisma.assignment.findMany({
-            where: {
-                classId: { in: classIds },
-                isFeatured: true,
-                // Hide assignments tied to archived activities
-                activity: { deletedAt: null }
-            },
+            where: buildFeaturedAssignmentsWhere(classIds),
             include: {
                 activity: true,
                 class: true,
@@ -80,24 +141,7 @@ export async function GET() {
             }
         });
 
-        // Map by both ID and Title (normalized)
-        const activitySubmissionMap = new Map<string, number[]>();
-        allActivitySubmissions.forEach(s => {
-            if (typeof s.score !== 'number') return;
-            
-            // Map by ID
-            const byId = activitySubmissionMap.get(s.activityId) || [];
-            byId.push(s.score);
-            activitySubmissionMap.set(s.activityId, byId);
-
-            // Map by Title if it's likely a grammar guide
-            if (s.activity?.title) {
-                const titleKey = `title:${s.activity.title.toLowerCase().trim()}`;
-                const byTitle = activitySubmissionMap.get(titleKey) || [];
-                byTitle.push(s.score);
-                activitySubmissionMap.set(titleKey, byTitle);
-            }
-        });
+        const activitySubmissionMap = buildActivitySubmissionMap(allActivitySubmissions);
 
         const progressRows =
             activityIds.length === 0
@@ -134,27 +178,24 @@ export async function GET() {
 
         const withProgress = featuredAssignments.map((a) => {
             const p = progressMap.get(a.activityId);
-            const isGrammarGuide =
-                (a.activity.type || "").toLowerCase() === "guide" &&
-                (a.activity.category || "").toLowerCase() === "grammar";
-            
-            // Check both assignment-specific submissions AND any other submissions for this activity/title
-            const scoresById = activitySubmissionMap.get(a.activityId) || [];
-            const titleKey = a.activity.title ? `title:${a.activity.title.toLowerCase().trim()}` : null;
-            const scoresByTitle = titleKey ? (activitySubmissionMap.get(titleKey) || []) : [];
-            
-            const allRelevantScores = [...scoresById, ...scoresByTitle];
-            const hasPassedMiniQuiz = isGrammarGuide && allRelevantScores.some(
-                (score) => score > 70
-            );
+            const derived = deriveFeaturedAssignmentProgress({
+                assignment: {
+                    activityId: a.activityId,
+                    createdAt: a.createdAt,
+                    updatedAt: a.updatedAt,
+                    activity: {
+                        type: a.activity.type,
+                        category: a.activity.category,
+                        title: a.activity.title,
+                    },
+                },
+                progress: p,
+                activitySubmissionMap,
+            });
 
             return {
                 ...a,
-                featuredAt: a.updatedAt ?? a.createdAt,
-                isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
-                progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
-                progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
-                categoryData: p?.categoryData ?? null,
+                ...derived,
             };
         });
 

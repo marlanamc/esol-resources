@@ -37,15 +37,13 @@ export interface AuditLogEntry {
  * In production, this should write to a database table or external logging service
  */
 export function auditLog(entry: Omit<AuditLogEntry, 'timestamp'>): void {
-  const fullEntry: AuditLogEntry = {
-    ...entry,
-    timestamp: new Date(),
-  };
+  const timestamp = new Date();
 
   const statusText = entry.success ? 'SUCCESS' : 'FAILED';
   const message = `[AUDIT] ${statusText} - ${entry.action}`;
 
   const context = {
+    timestamp: timestamp.toISOString(),
     action: entry.action,
     actorId: entry.actorId,
     actorRole: entry.actorRole,
@@ -67,7 +65,7 @@ export function auditLog(entry: Omit<AuditLogEntry, 'timestamp'>): void {
   }
 
   // TODO: In production, also persist to database
-  // await prisma.auditLog.create({ data: fullEntry });
+  // await prisma.auditLog.create({ data: { ...entry, timestamp } });
 }
 
 /**

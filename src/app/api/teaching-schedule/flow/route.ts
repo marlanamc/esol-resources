@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { readFile, writeFile } from "node:fs/promises";
-import path from "node:path";
 import { loadEsol3TeachingScheduleData } from "@/lib/teachingSchedule";
 
 export async function POST(request: NextRequest) {
@@ -12,7 +11,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const userRole = (session.user as unknown as { role?: string })?.role || "student";
+        const userRole = session.user?.role || "student";
         if (userRole !== "teacher") {
             return NextResponse.json({ error: "Only teachers can save the schedule" }, { status: 403 });
         }
@@ -101,4 +100,3 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: message }, { status: 500 });
     }
 }
-

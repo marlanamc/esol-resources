@@ -24,7 +24,7 @@ export default async function ParagraphFormatPage() {
     );
 
     // SECURITY: Block student access to unreleased guides
-    if ((session.user as any).role === "student" && activityId) {
+    if (session.user.role === "student" && activityId) {
         const activity = await prisma.activity.findUnique({
             where: { id: activityId },
             select: { isReleased: true }

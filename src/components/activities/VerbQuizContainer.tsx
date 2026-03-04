@@ -6,6 +6,7 @@ import { VerbQuizContent, VerbQuizAnswers, VerbQuizSubmission } from '@/types/ve
 import VerbQuiz from './VerbQuiz';
 import VerbQuizResults from './VerbQuizResults';
 import { PointsToast } from "@/components/ui/PointsToast";
+import { submitWithOutbox } from '@/lib/submissionOutbox';
 
 interface VerbQuizContainerProps {
   content: VerbQuizContent;
@@ -98,19 +99,24 @@ export default function VerbQuizContainer({
       };
 
       // Submit to API
-      const response = await fetch('/api/activity/submit', {
+      const submitResult = await submitWithOutbox({
+        endpoint: '/api/activity/submit',
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+        payload: {
           activityId,
           assignmentId: assignmentId || null,
           content: submissionData,
           score,
           points: totalPoints,
-        }),
+        },
       });
+
+      if (submitResult.queued) {
+        setSubmission(submissionData);
+        alert('Saved offline. Your quiz will submit automatically when you reconnect.');
+        return;
+      }
+      const { response } = submitResult;
 
       const text = await response.text();
       let responseData: { error?: string; points?: number } = {};

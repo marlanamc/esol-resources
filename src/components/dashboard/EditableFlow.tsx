@@ -5,11 +5,10 @@ import { TeachingScheduleFlowItem } from "@/lib/teachingSchedule";
 
 interface EditableFlowProps {
     flow: TeachingScheduleFlowItem[];
-    day: "Tuesday" | "Thursday";
     onSave: (flow: TeachingScheduleFlowItem[]) => Promise<void>;
 }
 
-export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
+export function EditableFlow({ flow, onSave }: EditableFlowProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedFlow, setEditedFlow] = useState(flow);
     const [isSaving, setIsSaving] = useState(false);
@@ -185,4 +184,3 @@ export function EditableFlow({ flow, day, onSave }: EditableFlowProps) {
         </div>
     );
 }
-

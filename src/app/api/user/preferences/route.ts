@@ -13,7 +13,7 @@ import { prisma } from '@/lib/prisma';
  * GET /api/user/preferences
  * Fetch user's preferences (currently: hideVerbExplanations)
  */
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
 
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = (session.user as any).id;
+    const userId = session.user.id;
 
     // Fetch or create default preferences
     let preferences = await prisma.userPreferences.findUnique({
@@ -63,7 +63,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = (session.user as any).id;
+    const userId = session.user.id;
     const body = await request.json();
     const { hideVerbExplanations } = body;
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, Zap, Unlock, RotateCcw, ChevronRight, Sparkles, BookOpen } from 'lucide-react';
 import type { VerbGroup, VerbGameRoundResults } from '@/types/irregular-verbs';
@@ -12,6 +12,8 @@ interface ResultsScreenProps {
   onRetry: () => void;
   onContinue: () => void;
 }
+
+const CONFETTI_COLORS = ['#b05740', '#6a8d73', '#e9c46a', '#4a8ca0', '#d64045'] as const;
 
 export function ResultsScreen({
   group,
@@ -394,21 +396,45 @@ function StatCard({
 
 // Confetti Effect Component
 function ConfettiEffect() {
-  const confettiColors = ['#b05740', '#6a8d73', '#e9c46a', '#4a8ca0', '#d64045'];
   const confettiCount = 50;
+
+  const pseudoRandom = (seed: number) => {
+    const value = Math.sin(seed * 9999) * 10000;
+    return value - Math.floor(value);
+  };
+
+  const confettiPieces = useMemo(() => {
+    return Array.from({ length: confettiCount }, (_, i) => {
+      const color = CONFETTI_COLORS[i % CONFETTI_COLORS.length];
+      const leftRand = pseudoRandom(i + 1);
+      const delayRand = pseudoRandom(i + 101);
+      const durationRand = pseudoRandom(i + 201);
+      const sizeRand = pseudoRandom(i + 301);
+      const driftARand = pseudoRandom(i + 401);
+      const driftBRand = pseudoRandom(i + 501);
+      const rotateRand = pseudoRandom(i + 601);
+      const roundedRand = pseudoRandom(i + 701);
+      return {
+        id: i,
+        color,
+        left: leftRand * 100,
+        delay: delayRand * 0.5,
+        duration: 2 + durationRand * 2,
+        size: 6 + sizeRand * 8,
+        driftA: (driftARand - 0.5) * 100,
+        driftB: (driftBRand - 0.5) * 100,
+        rotate: rotateRand * 720 - 360,
+        rounded: roundedRand > 0.5,
+      };
+    });
+  }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-      {Array.from({ length: confettiCount }).map((_, i) => {
-        const color = confettiColors[i % confettiColors.length];
-        const left = Math.random() * 100;
-        const delay = Math.random() * 0.5;
-        const duration = 2 + Math.random() * 2;
-        const size = 6 + Math.random() * 8;
-
+      {confettiPieces.map((piece) => {
         return (
           <motion.div
-            key={i}
+            key={piece.id}
             initial={{
               y: -20,
               x: 0,
@@ -417,23 +443,23 @@ function ConfettiEffect() {
             }}
             animate={{
               y: '100vh',
-              x: [0, (Math.random() - 0.5) * 100, (Math.random() - 0.5) * 100],
-              rotate: Math.random() * 720 - 360,
+              x: [0, piece.driftA, piece.driftB],
+              rotate: piece.rotate,
               opacity: [1, 1, 0]
             }}
             transition={{
-              duration,
-              delay,
+              duration: piece.duration,
+              delay: piece.delay,
               ease: 'easeOut'
             }}
             style={{
               position: 'absolute',
-              left: `${left}%`,
+              left: `${piece.left}%`,
               top: 0,
-              width: size,
-              height: size,
-              backgroundColor: color,
-              borderRadius: Math.random() > 0.5 ? '50%' : '2px'
+              width: piece.size,
+              height: piece.size,
+              backgroundColor: piece.color,
+              borderRadius: piece.rounded ? '50%' : '2px'
             }}
           />
         );

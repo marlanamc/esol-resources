@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { VocabularyContent, isVocabularyContent } from "@/types/activity";
 import FlashcardCarousel from "@/components/ui/FlashcardCarousel";
 import MatchingGame from "@/components/ui/MatchingGame";
@@ -19,6 +19,33 @@ interface VocabularyRendererProps {
 }
 
 type VocabType = "word-list" | "flashcards" | "matching" | "fill-blank";
+
+type RawContentShape = { raw?: unknown; cards?: unknown };
+type CardShape = { term?: string; definition?: string; example?: string };
+
+function extractRawString(content: Record<string, unknown> | undefined): string {
+    if (!content || typeof content !== "object") {
+        return JSON.stringify(content ?? {});
+    }
+    const maybeRaw = (content as RawContentShape).raw;
+    if (typeof maybeRaw === "string") {
+        return maybeRaw;
+    }
+    return JSON.stringify(content);
+}
+
+function extractCards(content: Record<string, unknown> | undefined): CardShape[] {
+    if (!content || typeof content !== "object") return [];
+    const maybeCards = (content as RawContentShape).cards;
+    if (!Array.isArray(maybeCards)) return [];
+    return maybeCards
+        .filter((card): card is CardShape => !!card && typeof card === "object")
+        .map((card) => ({
+            term: typeof card.term === "string" ? card.term : undefined,
+            definition: typeof card.definition === "string" ? card.definition : undefined,
+            example: typeof card.example === "string" ? card.example : undefined,
+        }));
+}
 
 const VOCAB_CONFIG = {
     "word-list": {
@@ -449,7 +476,9 @@ function RenderActivityContent({
             // Extract matching content and stringify it
             const matchingContent = content.matching;
             const matchingStr = typeof matchingContent === 'object' && 'raw' in matchingContent
-                ? (matchingContent as any).raw
+                ? (typeof (matchingContent as RawContentShape).raw === "string"
+                    ? (matchingContent as RawContentShape).raw as string
+                    : JSON.stringify(matchingContent || {}))
                 : JSON.stringify(matchingContent || {});
             return (
                 <MatchingGame
@@ -464,7 +493,9 @@ function RenderActivityContent({
             // Extract fill-in-blank content and stringify it
             const fillBlankContent = content.fillInBlank;
             const fillBlankStr = typeof fillBlankContent === 'object' && 'raw' in fillBlankContent
-                ? (fillBlankContent as any).raw
+                ? (typeof (fillBlankContent as RawContentShape).raw === "string"
+                    ? (fillBlankContent as RawContentShape).raw as string
+                    : JSON.stringify(fillBlankContent || {}))
                 : JSON.stringify(fillBlankContent || {});
             return (
                 <FillInBlankGame
@@ -491,34 +522,30 @@ function WordListRenderer({ content, activityId, assignmentId, vocabType }: Word
     // Support two formats:
     // 1) Plain text stored in a `raw` property
     // 2) Structured cards array from weekly vocab seed (`{ cards: [{ term, definition, example }] }`)
-    let entries: Array<{ term: string; pos?: string; definition: string; example?: string }> = [];
+    const entries = useMemo<Array<{ term: string; pos?: string; definition: string; example?: string }>>(() => {
+        const cards = extractCards(content);
+        if (cards.length > 0) {
+            return cards
+                .map((card) => ({
+                    term: card.term?.trim() ?? "",
+                    definition: card.definition?.trim() ?? "",
+                    example: card.example,
+                }))
+                .filter((e) => e.term && e.definition);
+        }
 
-    if (content && typeof content === "object" && "cards" in content && Array.isArray((content as any).cards)) {
-        const cards = (content as any).cards as Array<{ term?: string; definition?: string; example?: string }>;
-        entries = cards
-            .map((card) => ({
-                term: card.term?.trim() ?? "",
-                definition: card.definition?.trim() ?? "",
-                example: card.example,
-            }))
-            .filter((e) => e.term && e.definition);
-    } else {
         // Fallback: parse legacy plain-text vocabulary
-        const contentStr =
-            typeof content === "object" && content !== null && "raw" in content
-                ? (content as any).raw
-                : JSON.stringify(content || {});
-        entries = parsePlainVocabulary(contentStr);
-    }
+        return parsePlainVocabulary(extractRawString(content));
+    }, [content]);
 
     // Auto-save progress when word list is viewed (mark as complete)
     useEffect(() => {
-        if (entries && entries.length > 0) {
+        if (entries.length > 0) {
             saveActivityProgress(activityId, 100, "completed", undefined, undefined, assignmentId ?? null, undefined, vocabType);
         }
     }, [activityId, assignmentId, entries, vocabType]);
 
-    if (!entries || entries.length === 0) {
+    if (entries.length === 0) {
         return (
             <div className="p-6 text-center text-slate-500">
                 No vocabulary words available
@@ -585,28 +612,21 @@ interface FlashcardsRendererProps {
 }
 
 function FlashcardsRenderer({ content, activityId, assignmentId, vocabType }: FlashcardsRendererProps) {
-    let cards: Array<{ id: string; term: string; definition: string; example?: string }> = [];
-
     // Support two formats:
     // 1) Structured cards array from weekly vocab seed (`{ cards: [{ term, definition, example }] }`)
     // 2) Plain text stored in a `raw` property (legacy format)
-    if (content && typeof content === "object" && "cards" in content && Array.isArray((content as any).cards)) {
-        const rawCards = (content as any).cards as Array<{ term?: string; definition?: string; example?: string }>;
-        cards = rawCards
-            .map((card, idx) => ({
-                id: `card-${idx}`,
-                term: card.term?.trim() ?? "",
-                definition: card.definition?.trim() ?? "",
-                example: card.example,
-            }))
-            .filter((c) => c.term && c.definition);
-    } else {
-        // Fallback: parse legacy plain-text flashcards
-        const contentStr = typeof content === 'object' && 'raw' in content
-            ? (content as any).raw
-            : JSON.stringify(content || {});
-        cards = parseFlashcards(contentStr);
-    }
+    const cardsFromContent = extractCards(content);
+    const cards: Array<{ id: string; term: string; definition: string; example?: string }> =
+        cardsFromContent.length > 0
+            ? cardsFromContent
+                .map((card) => ({
+                    term: card.term?.trim() ?? "",
+                    definition: card.definition?.trim() ?? "",
+                    example: card.example,
+                }))
+                .filter((card) => card.term && card.definition)
+                .map((card, idx) => ({ ...card, id: `card-${idx}` }))
+            : parseFlashcards(extractRawString(content));
 
     if (!cards || cards.length === 0) {
         return (

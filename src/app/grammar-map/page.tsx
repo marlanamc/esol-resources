@@ -20,7 +20,7 @@ export default async function GrammarMapPage() {
     }
 
     const userId = session.user.id;
-    const userRole = (session.user as any).role;
+    const userRole = session.user.role;
 
     const activityTitles = Array.from(
         new Set(grammarTopics.flatMap((topic) => topic.activityTitles ?? []).filter(Boolean))
