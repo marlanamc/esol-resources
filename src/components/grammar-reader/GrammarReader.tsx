@@ -526,7 +526,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             }
         }
 
-        setShowQuiz(false);
         router.push(buildMiniQuizCertificateHref(score, total));
         if (onComplete) {
             onComplete();

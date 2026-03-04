@@ -326,7 +326,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>What Happened First?</h3>
-                <p>Use <strong>The Past Perfect (Order)</strong> (had + past participle) to show which action happened <strong>FIRST</strong> when telling a story about two past events.</p>
+                <p>Use <strong>The Past Perfect (Order)</strong> (had + V3) to show which action happened <strong>FIRST</strong> when telling a story about two past events.</p>
 
                 <div style="background: white; border: 2px solid #f59e0b; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #b45309;">The Two-Verb Rule</h4>
@@ -334,7 +334,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
                         <div style="flex: 1; min-width: 180px; background: #fef3c7; padding: 0.75rem; border-radius: 0.5rem; border-left: 4px solid #f59e0b;">
                             <p style="margin: 0; font-weight: 600; color: #b45309;">Past Perfect = FIRST action</p>
-                            <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">had + past participle</p>
+                            <p style="margin: 0.25rem 0 0 0; font-size: 0.875rem;">had + V3</p>
                         </div>
                         <div style="flex: 1; min-width: 180px; background: #ccfbf1; padding: 0.75rem; border-radius: 0.5rem; border-left: 4px solid #14b8a6;">
                             <p style="margin: 0; font-weight: 600; color: #0f766e;">Past Simple = SECOND action</p>
@@ -365,7 +365,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
-                        <strong>had</strong> + <strong>past participle</strong> (eaten, written, gone, done)
+                        <strong>had</strong> + <strong>V3</strong> (eaten, written, gone, done)
                     </p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
                         Same for ALL subjects: I/you/he/she/it/we/they <strong>had</strong> + verb³
@@ -450,7 +450,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>How Long Before That Moment?</h3>
-                <p>Use <strong>The Past Perfect (Duration)</strong> (had been + verb-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
+                <p>Use <strong>The Past Perfect (Duration)</strong> (had been + V1-ing) to show <strong>how long</strong> something was happening before another past event, or to paint background for your story.</p>
 
                 <div style="background: white; border: 2px solid #8b5cf6; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #6d28d9;">Duration Before a Past Moment</h4>
@@ -502,7 +502,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
-                        <strong>had been</strong> + <strong>verb-ing</strong>
+                        <strong>had been</strong> + <strong>V1-ing</strong>
                     </p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
                         Same for ALL subjects: I/you/he/she/it/we/they <strong>had been</strong> + -ing
@@ -588,7 +588,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fef3c7; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #f59e0b;">had</span>
                             <span>+</span>
-                            <span style="background: #fed7aa; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
+                            <span style="background: #fed7aa; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V3</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">She <strong>had finished</strong> her work.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>had left</strong> early.</p>
@@ -601,7 +601,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #ede9fe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #8b5cf6;">had been</span>
                             <span>+</span>
-                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">verb-ing</span>
+                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V1-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">She <strong>had been working</strong> all day.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>had been waiting</strong> for hours.</p>
@@ -687,7 +687,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fee2e2; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #ef4444;">hadn't</span>
                             <span>+</span>
-                            <span style="background: #fed7aa; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
+                            <span style="background: #fed7aa; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V3</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>hadn't finished</strong> when he called.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">She <strong>hadn't seen</strong> the movie before.</p>
@@ -700,7 +700,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fee2e2; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #ef4444;">hadn't been</span>
                             <span>+</span>
-                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">verb-ing</span>
+                            <span style="background: #c4b5fd; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V1-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>hadn't been sleeping</strong> well.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>hadn't been waiting</strong> long.</p>
@@ -781,7 +781,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">subject</span>
                             <span>+</span>
-                            <span style="background: #fed7aa; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
+                            <span style="background: #fed7aa; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V3</span>
                             <span>?</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem;"><strong style="color: #b45309;">What had happened?</strong></p>
@@ -1046,7 +1046,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     },
                     {
                         label: "Formula",
-                        left: "had + past participle",
+                        left: "had + V3",
                         right: "verb + -ed or irregular past",
                     },
                     {
@@ -1118,7 +1118,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
 
                 <h4>Decision Guide:</h4>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-                    <li><strong>What happened first?</strong> → result form (had + past participle)</li>
+                    <li><strong>What happened first?</strong> → result form (had + V3)</li>
                     <li><strong>How long before?</strong> → duration form (had been + -ing)</li>
                     <li><strong>Background/cause?</strong> → Usually duration form</li>
                     <li><strong>Result/completion?</strong> → Usually result form</li>
@@ -1231,13 +1231,13 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #fef3c7; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #f59e0b;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #b45309;">The Time Traveler (result form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> had + past participle</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> had + V3</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> What happened FIRST</p>
                         <p style="margin: 0;"><strong>Key words:</strong> already, just, before, after, by the time, when, never</p>
                     </div>
                     <div style="background: #ede9fe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #8b5cf6;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #6d28d9;">The Background Painter (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> had been + verb-ing</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> had been + V1-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> How LONG before</p>
                         <p style="margin: 0;"><strong>Key words:</strong> for, since, all day/morning, how long</p>
                     </div>
@@ -1433,7 +1433,7 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "She didn't finished" },
             ],
             correctAnswer: "a",
-            explanation: "Past Perfect negative: had not (hadn't) + past participle.",
+            explanation: "Past Perfect negative: had not (hadn't) + V3.",
         },
         {
             id: "ppf-q12",
@@ -1444,18 +1444,18 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "Were they had been working all day?" },
             ],
             correctAnswer: "a",
-            explanation: "Question form: Had + subject + been + verb-ing?",
+            explanation: "Question form: Had + subject + been + V1-ing?",
         },
         {
             id: "ppf-q13",
             question: "Choose the correct structure for Past Perfect Continuous:",
             options: [
-                { value: "a", label: "had + past participle" },
-                { value: "c", label: "have been + verb-ing" },
-                { value: "b", label: "had been + verb-ing" },
+                { value: "a", label: "had + V3" },
+                { value: "c", label: "have been + V1-ing" },
+                { value: "b", label: "had been + V1-ing" },
             ],
             correctAnswer: "b",
-            explanation: "Past Perfect Continuous: had been + verb-ing (e.g., had been working).",
+            explanation: "Past Perfect Continuous: had been + V1-ing (e.g., had been working).",
         },
 
         // Error Identification (14-15)

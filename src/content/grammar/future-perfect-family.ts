@@ -324,7 +324,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>What Will Be Done By Then?</h3>
-                <p>Use <strong>The Future Perfect (Goal)</strong> (will have + past participle) to talk about actions that will be <strong>completed before</strong> a future deadline or moment.</p>
+                <p>Use <strong>The Future Perfect (Goal)</strong> (will have + V3) to talk about actions that will be <strong>completed before</strong> a future deadline or moment.</p>
 
                 <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #0e7490;">The Goal Setter's Formula</h4>
@@ -335,7 +335,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <span>+</span>
                         <span style="background: #cffafe; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #06b6d4;">will have</span>
                         <span>+</span>
-                        <span style="background: #a5f3fc; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
+                        <span style="background: #a5f3fc; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">V3</span>
                     </div>
                     <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Example: <strong>By December</strong>, I <strong>will have finished</strong> my course.</p>
                 </div>
@@ -368,7 +368,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
-                        <strong>will have</strong> + <strong>past participle</strong> (finished, graduated, visited)
+                        <strong>will have</strong> + <strong>V3</strong> (finished, graduated, visited)
                     </p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
                         Same for ALL subjects: I/you/he/she/it/we/they <strong>will have</strong> + verb³
@@ -423,7 +423,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 {
                     id: "ex-fp-simple-goals",
                     title: "Goals and Deadlines",
-                    instructions: "Complete with Future Perfect Simple (will have + past participle).",
+                    instructions: "Complete with Future Perfect Simple (will have + V3).",
                     items: [
                         {
                             type: "text",
@@ -458,7 +458,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
             stepNumber: 2,
             explanation: `
                 <h3>How Long Will It Have Been Happening?</h3>
-                <p>Use <strong>The Future Perfect (Duration)</strong> (will have been + verb-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
+                <p>Use <strong>The Future Perfect (Duration)</strong> (will have been + V1-ing) to emphasize <strong>how long</strong> an activity will have been going on by a future point. This is perfect for anniversaries and milestones!</p>
 
                 <div style="background: white; border: 2px solid #a855f7; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="margin-top: 0; color: #7c3aed;">The Journey Tracker's Formula</h4>
@@ -469,7 +469,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                         <span>+</span>
                         <span style="background: #f3e8ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #a855f7;">will have been</span>
                         <span>+</span>
-                        <span style="background: #e9d5ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">verb-ing</span>
+                        <span style="background: #e9d5ff; padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-weight: 600;">V1-ing</span>
                     </div>
                     <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Example: <strong>By December</strong>, I <strong>will have been working</strong> here for 5 years.</p>
                 </div>
@@ -502,7 +502,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <div style="background: #ecfdf5; padding: 1rem; border-radius: 0.5rem; border: 2px solid #10b981; margin-top: 1rem;">
                     <h4 style="margin: 0 0 0.5rem 0; color: #059669;">✓ Remember the Formula</h4>
                     <p style="margin: 0; font-size: 1.1rem; font-family: monospace; text-align: center;">
-                        <strong>will have been</strong> + <strong>verb-ing</strong>
+                        <strong>will have been</strong> + <strong>V1-ing</strong>
                     </p>
                     <p style="margin: 0.5rem 0 0 0; font-size: 0.85rem; color: #6b7280; text-align: center;">
                         Same for ALL subjects: I/you/he/she/it/we/they <strong>will have been</strong> + -ing
@@ -602,7 +602,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #06b6d4;">will have</span>
                             <span>+</span>
-                            <span style="background: #a5f3fc; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
+                            <span style="background: #a5f3fc; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V3</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>will have finished</strong> by Friday.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">She <strong>will have graduated</strong> by June.</p>
@@ -615,7 +615,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #a855f7;">will have been</span>
                             <span>+</span>
-                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">verb-ing</span>
+                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V1-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>will have been working</strong> for 5 years.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">She <strong>will have been studying</strong> all day.</p>
@@ -696,7 +696,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fee2e2; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #ef4444;">won't have</span>
                             <span>+</span>
-                            <span style="background: #a5f3fc; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">past participle</span>
+                            <span style="background: #a5f3fc; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V3</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>won't have finished</strong> by then.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">She <strong>won't have graduated</strong> yet.</p>
@@ -709,7 +709,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #fee2e2; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600; border: 1px solid #ef4444;">won't have been</span>
                             <span>+</span>
-                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">verb-ing</span>
+                            <span style="background: #e9d5ff; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">V1-ing</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem; font-style: italic;">I <strong>won't have been working</strong> long.</p>
                         <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; font-style: italic;">They <strong>won't have been waiting</strong> very long.</p>
@@ -787,7 +787,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                             <span>+</span>
                             <span style="background: #dbeafe; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">subject</span>
                             <span>+</span>
-                            <span style="background: #a5f3fc; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">have + past participle</span>
+                            <span style="background: #a5f3fc; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: 600;">have + V3</span>
                             <span>?</span>
                         </div>
                         <p style="margin: 0; font-size: 0.9rem;"><strong style="color: #0e7490;">What will you have done by then?</strong></p>
@@ -1127,7 +1127,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
 
                 <h4>Decision Guide:</h4>
                 <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
-                    <li><strong>Completion/Goal achieved?</strong> → result form (will have + past participle)</li>
+                    <li><strong>Completion/Goal achieved?</strong> → result form (will have + V3)</li>
                     <li><strong>Duration/Anniversary?</strong> → duration form (will have been + -ing)</li>
                     <li><strong>Counting things?</strong> → result form (10 countries, 5 books)</li>
                     <li><strong>How long?</strong> → duration form (for 5 years, all day)</li>
@@ -1240,13 +1240,13 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
                     <div style="background: #cffafe; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #06b6d4;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #0e7490;">The Goal Setter (result form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have + past participle</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have + V3</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Completed BY deadline</p>
                         <p style="margin: 0;"><strong>Key words:</strong> by, before, by the time, already, how many</p>
                     </div>
                     <div style="background: #f3e8ff; padding: 1rem; border-radius: 0.5rem; border-top: 4px solid #a855f7;">
                         <h4 style="margin: 0 0 0.5rem 0; color: #7c3aed;">The Journey Tracker (duration form)</h4>
-                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have been + verb-ing</p>
+                        <p style="margin: 0 0 0.5rem 0;"><strong>Formula:</strong> will have been + V1-ing</p>
                         <p style="margin: 0 0 0.5rem 0;"><strong>Focus:</strong> Duration UP TO that point</p>
                         <p style="margin: 0;"><strong>Key words:</strong> for, how long, all day/week</p>
                     </div>
@@ -1330,7 +1330,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "b", label: "By Friday, I will have finished the report." },
             ],
             correctAnswer: "b",
-            explanation: "The result form (Future Perfect: will have + past participle) focuses on completion by a future deadline.",
+            explanation: "The result form (Future Perfect: will have + V3) focuses on completion by a future deadline.",
             skillTag: "result-future-completed-by-deadline",
             difficulty: "easy",
         },
@@ -1482,7 +1482,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                 { value: "c", label: "Will you finish" },
             ],
             correctAnswer: "a",
-            explanation: "Result form question: Will + subject + have + past participle.",
+            explanation: "Result form question: Will + subject + have + V3.",
             skillTag: "form-future-perfect-question",
             difficulty: "easy",
         },
@@ -1550,7 +1550,7 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
     - error-future-continuous-stative-verb (using continuous with state verbs like know, own)
 
     Reteaching suggestions:
-    - If goal/result tags are weak → review the idea of looking back from a future deadline and the formula will have + past participle.
+    - If goal/result tags are weak → review the idea of looking back from a future deadline and the formula will have + V3.
     - If duration tags are weak → revisit for/how long questions and practice milestones (work, study, living) with will have been + -ing.
     - If contrast tags are weak → use timelines to compare "completed by that time" vs "how long by that time" and ask: "Do I care about the goal or the duration?".
     - If error tags are weak → do quick drills on adding "by" to deadlines, using present forms in time clauses (when, before, after), and avoiding continuous with state verbs.
