@@ -536,9 +536,16 @@ const isPronunciationPracticeActivity = (activity: Activity) => {
 
 const getDisplayProgress = (
     activity: Activity,
-    progressMap?: Record<string, { progress: number; categoryData?: string }>
+    progressMap?: Record<string, { progress: number; categoryData?: string }>,
+    completedActivityIds?: Set<string>
 ) => {
     if (isPronunciationPracticeActivity(activity)) return 0;
+    const isGrammarGuide =
+        activity.type === "guide" &&
+        (activity.category || "").toLowerCase() === "grammar";
+    if (isGrammarGuide && completedActivityIds?.has(activity.id)) {
+        return 100;
+    }
     return getProgress(activity.id, progressMap);
 };
 
@@ -555,7 +562,7 @@ const isActivityCompleted = (
         // Grammar guides are only complete when a passing mini-quiz score is recorded.
         return completedActivityIds.has(activity.id);
     }
-    const progressValue = getDisplayProgress(activity, progressMap);
+    const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds);
     return completedActivityIds.has(activity.id) || progressValue >= 100;
 };
 
@@ -1845,7 +1852,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
     }, [categories, showEmpty, filterCategory]);
 
     const renderActivityCard = useCallback((activity: Activity, accentColor?: string, hideTypeChip?: boolean, sectionLabel?: string) => {
-        const progressValue = getDisplayProgress(activity, progressMap);
+        const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds);
         const isCompleted = isActivityCompleted(activity, completedActivityIds, progressMap);
 
         // Get texture for any activity type using the universal texture system
