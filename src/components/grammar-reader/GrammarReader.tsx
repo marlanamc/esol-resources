@@ -546,7 +546,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
             {/* Main Content Container - Everything in one card */}
             <main className="w-full px-0 py-0 pb-24 sm:px-4 sm:py-4 md:container md:mx-auto md:pb-4">
-                <div className="grammar-reader-split-screen bg-white border-y border-border rounded-none shadow-none sm:border sm:rounded-xl sm:shadow-lg overflow-hidden">
+                <div className="grammar-reader-split-screen bg-white border-y border-text/35 rounded-none shadow-none sm:border sm:rounded-xl sm:shadow-lg overflow-hidden">
                     {/* Compact Header: Breadcrumb + Progress + TOC */}
                     <div className="border-b border-border bg-bg-light">
                         <div className="px-4 sm:px-6 py-3 group">

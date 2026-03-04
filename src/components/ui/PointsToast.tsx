@@ -45,7 +45,7 @@ export function PointsToast({ points, onComplete }: PointsToastProps) {
 
     return createPortal(
         <div
-            className={`pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 z-[120] transition-all duration-300 ease-out ${
+            className={`pointer-events-none fixed top-20 left-1/2 -translate-x-1/2 z-[300] transition-all duration-300 ease-out ${
                 isVisible && !isLeaving
                     ? "opacity-100 translate-y-0 scale-100"
                     : isLeaving
