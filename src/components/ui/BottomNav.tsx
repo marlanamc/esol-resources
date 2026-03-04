@@ -45,7 +45,12 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   return (
     <>
       {/* Spacer for content above the fixed nav */}
-      <div className="h-[72px] md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }} />
+      <div
+        className="md:hidden"
+        style={{
+          height: 'calc(var(--bottom-nav-height) + env(safe-area-inset-bottom, 0px))'
+        }}
+      />
       
       <nav
         className={`fixed bottom-0 left-0 right-0 w-full border-t md:hidden bottom-nav touch-manipulation transition-all duration-300 ${
@@ -62,8 +67,11 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
         }}
       >
         <div
-          className="relative grid h-[64px] items-center px-2"
-          style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+          className="relative grid items-center px-2"
+          style={{
+            height: 'var(--bottom-nav-height)',
+            gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`
+          }}
         >
           {items.map((item) => {
             const isActive = item.href === '/dashboard'
@@ -117,4 +125,3 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
     </>
   );
 };
-
