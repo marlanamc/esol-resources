@@ -246,7 +246,7 @@ textarea {
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(8px);
   }
 
   to {
@@ -258,7 +258,7 @@ textarea {
 @keyframes slideInRight {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-8px);
   }
 
   to {
@@ -270,7 +270,7 @@ textarea {
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.97);
   }
 
   to {
@@ -329,7 +329,7 @@ textarea {
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-8px);
   }
   to {
     opacity: 1;
@@ -387,15 +387,15 @@ textarea {
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.2s ease-out forwards;
 }
 
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.25s ease-out forwards;
 }
 
 .animate-scale-in {
-  animation: scaleIn 0.5s ease-out forwards;
+  animation: scaleIn 0.2s ease-out forwards;
 }
 
 .bottom-nav-motion {
@@ -428,7 +428,7 @@ textarea {
 
 /* Staggered checklist row animations */
 .checklist-row {
-  animation: slideInFromLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideInFromLeft 0.2s ease-out forwards;
   opacity: 0;
 }
 
@@ -436,68 +436,68 @@ textarea {
 @keyframes vocabCardIn {
   from {
     opacity: 0;
-    transform: translateY(16px) scale(0.96);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
 .vocab-activity-card {
-  animation: vocabCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: vocabCardIn 0.2s ease-out backwards;
 }
 
 /* Category picker card animations */
 @keyframes categoryCardIn {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
 .category-card {
-  animation: categoryCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: categoryCardIn 0.2s ease-out backwards;
 }
 
 /* Checklist group card animations */
 .checklist-group {
-  animation: categoryCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: categoryCardIn 0.2s ease-out backwards;
 }
 
 .checklist-row:nth-child(1) {
   animation-delay: 0ms;
 }
 .checklist-row:nth-child(2) {
-  animation-delay: 60ms;
+  animation-delay: 30ms;
 }
 .checklist-row:nth-child(3) {
-  animation-delay: 120ms;
+  animation-delay: 60ms;
 }
 .checklist-row:nth-child(4) {
-  animation-delay: 180ms;
+  animation-delay: 90ms;
 }
 .checklist-row:nth-child(5) {
-  animation-delay: 240ms;
+  animation-delay: 120ms;
 }
 .checklist-row:nth-child(6) {
-  animation-delay: 300ms;
+  animation-delay: 150ms;
 }
 .checklist-row:nth-child(7) {
-  animation-delay: 360ms;
+  animation-delay: 180ms;
 }
 .checklist-row:nth-child(8) {
-  animation-delay: 420ms;
+  animation-delay: 210ms;
 }
 .checklist-row:nth-child(9) {
-  animation-delay: 480ms;
+  animation-delay: 240ms;
 }
 .checklist-row:nth-child(10) {
-  animation-delay: 540ms;
+  animation-delay: 270ms;
 }
 
 /* Progress bar shimmer animation */

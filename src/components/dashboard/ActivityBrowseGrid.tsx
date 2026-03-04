@@ -41,7 +41,7 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                     key={activity.id}
                     className="bg-white/95 backdrop-blur-sm border border-border/60 p-0 transition-[box-shadow,transform] duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col rounded-xl group relative overflow-hidden h-full shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                     style={{
-                        animationDelay: `${idx * 100}ms`
+                        animationDelay: `${idx * 40}ms`
                     }}
                 >
                     {/* Header Image / Badge Area */}

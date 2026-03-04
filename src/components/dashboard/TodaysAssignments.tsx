@@ -507,7 +507,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     <div
                                         key={group.key}
                                         className="checklist-group bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-xl border border-[#e8e1d6] overflow-hidden shadow-[0_6px_16px_rgba(43,36,29,0.085)] sm:shadow-[0_5px_14px_rgba(43,36,29,0.07)]"
-                                        style={{ animationDelay: `${groupIdx * 100}ms` }}
+                                        style={{ animationDelay: `${groupIdx * 50}ms` }}
                                     >
                                         <div
                                             className="w-full px-3 py-2 border-b border-border/10 flex items-center justify-between"
@@ -566,7 +566,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                             key={assignment.id}
                             className="relative bg-white rounded-xl border border-border/20 hover:border-border/40 shadow-sm hover:shadow-md transition-[border-color,box-shadow] duration-200 overflow-hidden group"
                             style={{
-                                animationDelay: `${index * 80}ms`
+                                animationDelay: `${index * 40}ms`
                             }}
                         >
                             {/* Accent bar */}

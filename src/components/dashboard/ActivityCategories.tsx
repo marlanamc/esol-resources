@@ -2044,7 +2044,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                         className="bg-white rounded-xl border-2 overflow-hidden shadow-sm hover:shadow-md transition-[box-shadow] duration-300"
                         style={{
                             borderColor: `${category.color}40`,
-                            animationDelay: `${idx * 50}ms`
+                            animationDelay: `${idx * 25}ms`
                         }}
                     >
                         {/* Main Category Header */}
