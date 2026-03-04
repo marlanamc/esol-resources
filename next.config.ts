@@ -14,12 +14,11 @@ const buildId =
 
 const nextConfig: NextConfig = {
   experimental: {
-    // Optimize package imports to reduce bundle size
-    // Tree-shake unused exports from these commonly used libraries
+    viewTransition: true,
     optimizePackageImports: [
-      'recharts',      // Chart library - large, only import what's needed
-      'framer-motion', // Animation library - tree-shake unused components
-      'lucide-react',  // Icon library - only bundle icons that are used
+      'recharts',
+      'framer-motion',
+      'lucide-react',
     ],
   },
   env: {
