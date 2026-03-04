@@ -54,7 +54,7 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                                 <div
                                     key={`${announcement.className}-${index}`}
                                     className="group relative animate-fade-in-up"
-                                    style={{ animationDelay: `${(index + 1) * 150}ms` }}
+                                    style={{ animationDelay: `${(index + 1) * 60}ms` }}
                                 >
                                     <div className="flex items-start gap-4 p-4 rounded-xl bg-white/60 border border-white/80 shadow-sm hover:shadow-md hover:bg-white/90 transition-all duration-300">
                                         <div className="flex-1">

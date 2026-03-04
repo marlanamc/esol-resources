@@ -35,7 +35,7 @@ export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, inde
         <div
             className={`relative bg-white/95 backdrop-blur-sm rounded-xl p-0 transition-[box-shadow,transform] duration-300 hover:shadow-xl hover:-translate-y-0.5 group border border-border/80 shadow-md flex flex-col sm:flex-row items-stretch overflow-hidden`}
             style={{
-                animationDelay: `${index * 100}ms`
+                animationDelay: `${index * 40}ms`
             }}
         >
             {/* Date Sidestrip (Left) - Structured Academic Style */}
