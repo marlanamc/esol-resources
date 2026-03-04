@@ -350,10 +350,10 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 {getGameEmojiForActivity({ activityId: assignment.activityId, title: assignment.title || assignment.activity.title })}
                             </div>
                         ) : (
-                            <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
                                 isCompleted
                                     ? 'bg-secondary/10 border-secondary/20 text-secondary'
-                                    : 'bg-white border-border/40 text-transparent'
+                                    : 'bg-white border-border-dark/60 text-transparent'
                             }`}>
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                             </div>
