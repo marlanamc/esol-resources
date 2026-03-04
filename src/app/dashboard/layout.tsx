@@ -6,7 +6,6 @@ import { DashboardHeader } from "@/components/dashboard";
 import { HomeIcon, BookOpenIcon, TrophyIcon, CalendarIcon } from "@/components/icons/Icons";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
-import PWAUpdateNotification from "@/components/PWAUpdateNotification";
 import NetworkStatusBanner from "@/components/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
 
@@ -27,7 +26,6 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 </>
             )}
             <PWAInstallPrompt />
-            <PWAUpdateNotification />
             <BottomNav
                 items={[
                     { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
