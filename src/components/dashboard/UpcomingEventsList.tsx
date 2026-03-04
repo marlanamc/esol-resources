@@ -71,20 +71,25 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                 : "Due";
 
                         return (
-                            <div key={`${ev.title}-${idx}`} className="relative flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 border border-border/45 rounded-xl bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)]">
+                            <div key={`${ev.title}-${idx}`} className="relative border border-border/45 rounded-xl bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)]">
                                 <span className={`absolute left-0 top-2 bottom-2 w-1 rounded-r ${colorClass}`} aria-hidden="true" />
 
-                                <div className="pl-1 min-w-0 flex-1 basis-full sm:basis-auto">
-                                    <div className="flex items-center gap-2 min-w-0">
-                                        <span className={`w-2 h-2 rounded-full shrink-0 ${colorClass}`} />
-                                        <span className="font-semibold text-text truncate">{ev.title}</span>
+                                <div className="pl-1 min-w-0">
+                                    <div className="flex items-start justify-between gap-3">
+                                        <div className="flex items-center gap-2 min-w-0">
+                                            <span className={`w-2 h-2 rounded-full shrink-0 mt-1 ${colorClass}`} />
+                                            <span className="font-semibold text-text leading-tight whitespace-normal break-words">
+                                                {ev.title}
+                                            </span>
+                                        </div>
+                                        <span className="text-xs text-text-muted font-medium leading-tight text-right shrink-0">
+                                            {dateLabel}
+                                        </span>
                                     </div>
                                     <p className="text-[11px] text-text-muted mt-1">{typeLabel}</p>
                                 </div>
-
-                                <div className="flex items-center gap-2 text-xs text-text-muted sm:ml-auto shrink-0 pl-1">
-                                    <span className="whitespace-nowrap font-medium">{dateLabel}</span>
-                                    {canDelete && (
+                                {canDelete && (
+                                    <div className="mt-2 pl-5">
                                         <button
                                             type="button"
                                             onClick={() => handleDelete(ev.id)}
@@ -93,8 +98,8 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         >
                                             {isDeleting === ev.id ? "Deleting…" : "Delete"}
                                         </button>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </div>
                         );
                     })}
