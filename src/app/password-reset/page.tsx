@@ -3,8 +3,9 @@
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Providers from "@/components/Providers";
 
-export default function PasswordResetPage() {
+function PasswordResetContent() {
     const { data: session, status } = useSession();
     const router = useRouter();
     const [password, setPassword] = useState("");
@@ -84,15 +85,13 @@ export default function PasswordResetPage() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="At least 8 characters"
-                                className="w-full px-4 py-3 border-2 rounded-xl transition-all outline-none"
+                                className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus:border-[#d97757]"
                                 style={{
                                     borderColor: '#d9cfc0',
                                     color: '#2b3a4a',
                                     backgroundColor: '#ffffff',
                                     fontSize: '16px'
                                 }}
-                                onFocus={(e) => e.target.style.borderColor = '#d97757'}
-                                onBlur={(e) => e.target.style.borderColor = '#d9cfc0'}
                                 required
                             />
                         </div>
@@ -105,15 +104,13 @@ export default function PasswordResetPage() {
                                 value={confirm}
                                 onChange={(e) => setConfirm(e.target.value)}
                                 placeholder="Repeat your password"
-                                className="w-full px-4 py-3 border-2 rounded-xl transition-all outline-none"
+                                className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus:border-[#d97757]"
                                 style={{
                                     borderColor: '#d9cfc0',
                                     color: '#2b3a4a',
                                     backgroundColor: '#ffffff',
                                     fontSize: '16px'
                                 }}
-                                onFocus={(e) => e.target.style.borderColor = '#d97757'}
-                                onBlur={(e) => e.target.style.borderColor = '#d9cfc0'}
                                 required
                             />
                         </div>
@@ -134,14 +131,10 @@ export default function PasswordResetPage() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full py-3 px-4 rounded-xl font-semibold text-white transition-all active:scale-95"
+                            className={`w-full py-3 px-4 rounded-xl font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 ${isSubmitting ? "bg-[#8996a6] cursor-not-allowed" : "bg-[#d97757] hover:bg-[#c4624a] cursor-pointer"}`}
                             style={{
-                                backgroundColor: isSubmitting ? '#8996a6' : '#d97757',
-                                boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08), 0 1px 2px rgba(43, 58, 74, 0.04)',
-                                cursor: isSubmitting ? 'not-allowed' : 'pointer'
+                                boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08), 0 1px 2px rgba(43, 58, 74, 0.04)'
                             }}
-                            onMouseOver={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#c4624a')}
-                            onMouseOut={(e) => !isSubmitting && (e.currentTarget.style.backgroundColor = '#d97757')}
                         >
                             {isSubmitting ? 'Updating...' : 'Update Password'}
                         </button>
@@ -152,7 +145,13 @@ export default function PasswordResetPage() {
     );
 }
 
-
+export default function PasswordResetPage() {
+    return (
+        <Providers>
+            <PasswordResetContent />
+        </Providers>
+    );
+}
 
 
 

@@ -35,10 +35,10 @@ export default function LoginForm() {
                 console.error('[Login] Error:', result.error);
                 setError(`Invalid credentials. Please check your username and password.`);
             } else if (result?.ok) {
-                // Clear PWA cache to ensure fresh content for this user (important for shared computers)
-                await clearServiceWorkerCache();
                 router.push("/dashboard");
                 router.refresh();
+                // Clear caches in the background to avoid delaying navigation feedback.
+                void clearServiceWorkerCache();
             } else {
                 setError("Login failed. Please try again.");
             }
@@ -69,15 +69,13 @@ export default function LoginForm() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="username…"
-                        className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                        className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-[#d97757]"
                         style={{
                             borderColor: '#d9cfc0',
                             color: '#2b3a4a',
                             backgroundColor: '#ffffff',
                             fontSize: '16px'
                         }}
-                        onFocus={(e) => e.target.style.borderColor = '#d97757'}
-                        onBlur={(e) => e.target.style.borderColor = '#d9cfc0'}
                         required
                     />
                 </div>
@@ -93,15 +91,13 @@ export default function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                        className="w-full px-4 py-3 border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-[#d97757]"
                         style={{
                             borderColor: '#d9cfc0',
                             color: '#2b3a4a',
                             backgroundColor: '#ffffff',
                             fontSize: '16px'
                         }}
-                        onFocus={(e) => e.target.style.borderColor = '#d97757'}
-                        onBlur={(e) => e.target.style.borderColor = '#d9cfc0'}
                         required
                     />
                 </div>
@@ -115,14 +111,10 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-3 px-4 rounded-xl font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                    className={`w-full py-3 px-4 rounded-xl font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isLoading ? "bg-[#8996a6] cursor-not-allowed" : "bg-[#d97757] hover:bg-[#c4624a] cursor-pointer"}`}
                     style={{
-                        backgroundColor: isLoading ? '#8996a6' : '#d97757',
-                        boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08), 0 1px 2px rgba(43, 58, 74, 0.04)',
-                        cursor: isLoading ? 'not-allowed' : 'pointer'
+                        boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08), 0 1px 2px rgba(43, 58, 74, 0.04)'
                     }}
-                    onMouseOver={(e) => !isLoading && (e.currentTarget.style.backgroundColor = '#c4624a')}
-                    onMouseOut={(e) => !isLoading && (e.currentTarget.style.backgroundColor = '#d97757')}
                 >
                     {isLoading ? 'Signing in…' : 'Sign In'}
                 </button>

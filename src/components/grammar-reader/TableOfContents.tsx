@@ -7,6 +7,7 @@ interface TableOfContentsProps {
     currentIndex: number;
     completedSections: Set<string>;
     onSelectSection: (index: number) => void;
+    onClose?: () => void;
     hasMiniQuiz?: boolean;
     showingQuiz?: boolean;
     onSelectQuiz?: () => void;
@@ -17,6 +18,7 @@ export const TableOfContents = React.memo(function TableOfContents({
     currentIndex,
     completedSections,
     onSelectSection,
+    onClose,
     hasMiniQuiz,
     showingQuiz,
     onSelectQuiz,
@@ -44,7 +46,10 @@ export const TableOfContents = React.memo(function TableOfContents({
                     return (
                         <li key={section.id || index}>
                             <button
-                                onClick={() => onSelectSection(index)}
+                                onClick={() => {
+                                    onSelectSection(index);
+                                    onClose?.();
+                                }}
                                 className={`w-full text-left px-4 py-3 rounded-lg border transition-[background-color,color,border-color,box-shadow] duration-200 flex items-center gap-3 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isCurrent
                                         ? "bg-primary text-white border-primary shadow-md"
                                         : isCompleted
@@ -117,7 +122,10 @@ export const TableOfContents = React.memo(function TableOfContents({
                 {hasMiniQuiz && onSelectQuiz && (
                     <li>
                         <button
-                            onClick={onSelectQuiz}
+                            onClick={() => {
+                                onSelectQuiz();
+                                onClose?.();
+                            }}
                             className={`w-full text-left px-4 py-3 rounded-lg border transition-[background-color,color,border-color,box-shadow] duration-200 flex items-center gap-3 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${showingQuiz
                                     ? "bg-primary text-white border-primary shadow-md"
                                     : "bg-white text-text border-border hover:bg-bg-light hover:border-primary/60"

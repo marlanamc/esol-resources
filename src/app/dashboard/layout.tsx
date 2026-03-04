@@ -4,6 +4,8 @@ import { authOptions } from "@/lib/auth";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
 import { HomeIcon, BookOpenIcon, TrophyIcon, CalendarIcon } from "@/components/icons/Icons";
+import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
     const session = await getServerSession(authOptions);
@@ -14,6 +16,8 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 <DashboardHeader userName={session.user?.name || ""} />
             )}
             {children}
+            <ServiceWorkerRegistration />
+            <PWAInstallPrompt />
             <BottomNav
                 items={[
                     { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
@@ -25,4 +29,3 @@ export default async function DashboardLayout({ children }: { children: ReactNod
         </div>
     );
 }
-

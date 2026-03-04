@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Lora, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
-import Providers from "@/components/Providers";
-import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
-import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import { Analytics } from "@vercel/analytics/next";
 
 const lora = Lora({
@@ -66,9 +63,7 @@ export default function RootLayout({
       <body
         className={`${lora.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
-        <ServiceWorkerRegistration />
-        <PWAInstallPrompt />
+        {children}
         <Analytics />
       </body>
     </html>
