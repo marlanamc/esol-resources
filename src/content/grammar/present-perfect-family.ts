@@ -1599,19 +1599,6 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             difficulty: "easy",
         },
         {
-            id: "quiz-2",
-            question: "Which sentence describes an action that started in the past and continues now?",
-            options: [
-                { value: "b", label: "She has been working here since 2020." },
-                { value: "a", label: "She has worked here since 2020." },
-                { value: "c", label: "She worked here since 2020." },
-            ],
-            correctAnswer: "b",
-            explanation: "The duration form (Present Perfect Continuous) emphasizes duration from the past to now.",
-            skillTag: "duration-for-since-how-long",
-            difficulty: "easy",
-        },
-        {
             id: "quiz-3",
             question: "Fill in the blank with Present Perfect for a completed result now: \"I ___ three emails this morning.\"",
             options: [

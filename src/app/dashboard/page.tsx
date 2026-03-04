@@ -617,12 +617,18 @@ export default async function DashboardPage() {
 
         const featuredAssignments = featuredAssignmentsRaw.map((a) => {
             const p = featuredProgressMap.get(a.activityId);
+            const isGrammarGuide =
+                (a.activity.type || "").toLowerCase() === "guide" &&
+                (a.activity.category || "").toLowerCase() === "grammar";
+            const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
+                (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
+            );
             return {
                 ...a,
                 featuredAt: a.updatedAt ?? a.createdAt,
                 isNewRelease: isWithinNewReleaseWindow(a.updatedAt ?? a.createdAt),
-                progress: p?.progress ?? 0,
-                progressStatus: p?.status ?? "in_progress",
+                progress: hasPassedMiniQuiz ? 100 : (p?.progress ?? 0),
+                progressStatus: hasPassedMiniQuiz ? "completed" : (p?.status ?? "in_progress"),
                 categoryData: p?.categoryData ?? null,
             };
         });
