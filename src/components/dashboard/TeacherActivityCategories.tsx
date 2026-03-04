@@ -267,6 +267,8 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
     const [assigningId, setAssigningId] = useState<string | null>(null);
     const [assignError, setAssignError] = useState<string | null>(null);
     const [grammarReleases, setGrammarReleases] = useState<Record<string, boolean>>({});
+    const [visibleActivityCounts, setVisibleActivityCounts] = useState<Record<string, number>>({});
+    const defaultVisibleCount = 24;
 
     // Stabilize handlers with useCallback
     const toggleCategory = useCallback((categoryName: string) => {
@@ -734,6 +736,35 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
         );
     }, [grammarReleases, featuredIds, handleReleaseLocal, handleAssignLocal, handleUnassignLocal, assigningId, assignError, defaultClassId]);
 
+    const renderChunkedActivities = useCallback(
+        (listKey: string, activitiesList: Activity[], className: string) => {
+            const visibleCount = visibleActivityCounts[listKey] ?? defaultVisibleCount;
+            const visibleItems = activitiesList.slice(0, visibleCount);
+            const hasMore = activitiesList.length > visibleCount;
+
+            return (
+                <div className={className}>
+                    {visibleItems.map(renderActivityCard)}
+                    {hasMore && (
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setVisibleActivityCounts((prev) => ({
+                                    ...prev,
+                                    [listKey]: (prev[listKey] ?? defaultVisibleCount) + defaultVisibleCount,
+                                }))
+                            }
+                            className="mt-2 px-4 py-2 text-sm font-semibold rounded-lg border border-border/50 bg-white hover:bg-bg-light transition-colors self-start"
+                        >
+                            Show more ({activitiesList.length - visibleCount} remaining)
+                        </button>
+                    )}
+                </div>
+            );
+        },
+        [renderActivityCard, visibleActivityCounts]
+    );
+
     return (
         <div className="space-y-4">
             {categories.map((category, idx) => {
@@ -846,9 +877,11 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                                                                             </button>
 
                                                                             {isSubSubExpanded && subSubCategory.activities.length > 0 && (
-                                                                                <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                    {subSubCategory.activities.map(renderActivityCard)}
-                                                                                </div>
+                                                                                renderChunkedActivities(
+                                                                                    subSubKey,
+                                                                                    subSubCategory.activities,
+                                                                                    "pl-20 pr-4 pb-3 space-y-2"
+                                                                                )
                                                                             )}
                                                                         </div>
                                                                     );
@@ -856,9 +889,11 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                                                             </div>
                                                         ) : subCategory.activities.length > 0 && (
                                                             // No sub-subcategories - show activities directly
-                                                            <div className="pl-12 pr-4 pb-4 space-y-2">
-                                                                {subCategory.activities.map(renderActivityCard)}
-                                                            </div>
+                                                            renderChunkedActivities(
+                                                                subKey,
+                                                                subCategory.activities,
+                                                                "pl-12 pr-4 pb-4 space-y-2"
+                                                            )
                                                         )
                                                     )}
                                                 </div>
@@ -868,7 +903,11 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
                                 ) : (
                                     <div className="p-4 space-y-2">
                                         {category.activities.length > 0 ? (
-                                            category.activities.map(renderActivityCard)
+                                            renderChunkedActivities(
+                                                `category-${category.name}`,
+                                                category.activities,
+                                                "space-y-2"
+                                            )
                                         ) : (
                                             <p className="text-text-muted text-center py-4 text-sm">No activities yet</p>
                                         )}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 
@@ -34,6 +34,16 @@ interface Props {
     classes?: ClassOption[];
     selectedClassId?: string | null;
     onClassChange?: (classId: string | null) => void;
+    searchQuery?: string;
+    onSearchChange?: (query: string) => void;
+    pagination?: {
+        page: number;
+        pageSize: number;
+        total: number;
+        totalPages: number;
+    };
+    onPageChange?: (page: number) => void;
+    onPageSizeChange?: (pageSize: number) => void;
 }
 
 export default function GrammarGradebook({
@@ -43,16 +53,13 @@ export default function GrammarGradebook({
     classes,
     selectedClassId,
     onClassChange,
+    searchQuery = "",
+    onSearchChange,
+    pagination,
+    onPageChange,
+    onPageSizeChange,
 }: Props) {
-    const [searchQuery, setSearchQuery] = useState("");
-
-    const filteredStudents = useMemo(() => {
-        return students.filter(
-            (s) =>
-                (s.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
-                s.username.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-    }, [students, searchQuery]);
+    const filteredStudents = useMemo(() => students, [students]);
 
     // Map submissions for easy lookup
     const scoreMap = useMemo(() => {
@@ -79,7 +86,7 @@ export default function GrammarGradebook({
                         type="text"
                         placeholder="Search students..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => onSearchChange?.(e.target.value)}
                         className="flex-1 max-w-md px-4 py-2 rounded-lg border border-border focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                     />
                     {classes && classes.length > 0 && onClassChange && (
@@ -96,6 +103,17 @@ export default function GrammarGradebook({
                                     {c.name}
                                 </option>
                             ))}
+                        </select>
+                    )}
+                    {pagination && onPageSizeChange && (
+                        <select
+                            value={pagination.pageSize}
+                            onChange={(e) => onPageSizeChange(Number(e.target.value))}
+                            className="px-4 py-2 rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none"
+                        >
+                            <option value={25}>25 / page</option>
+                            <option value={50}>50 / page</option>
+                            <option value={100}>100 / page</option>
                         </select>
                     )}
                 </div>
@@ -199,6 +217,32 @@ export default function GrammarGradebook({
                     <span>Not Attempted</span>
                 </div>
             </div>
+
+            {pagination && onPageChange && (
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-white p-4 rounded-xl border border-border/40">
+                    <p className="text-sm text-text-muted">
+                        Showing page {pagination.page} of {pagination.totalPages} ({pagination.total} students)
+                    </p>
+                    <div className="flex items-center gap-2">
+                        <button
+                            type="button"
+                            onClick={() => onPageChange(Math.max(1, pagination.page - 1))}
+                            disabled={pagination.page <= 1}
+                            className="px-3 py-2 rounded-lg border border-border text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Previous
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => onPageChange(Math.min(pagination.totalPages, pagination.page + 1))}
+                            disabled={pagination.page >= pagination.totalPages}
+                            className="px-3 py-2 rounded-lg border border-border text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

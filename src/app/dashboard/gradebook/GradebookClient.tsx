@@ -33,6 +33,13 @@ interface Props {
     submissions: Submission[];
     classes: ClassOption[];
     selectedClassId: string | null;
+    searchQuery: string;
+    pagination: {
+        page: number;
+        pageSize: number;
+        total: number;
+        totalPages: number;
+    };
 }
 
 export function GradebookClient({
@@ -41,21 +48,67 @@ export function GradebookClient({
     submissions,
     classes,
     selectedClassId,
+    searchQuery,
+    pagination,
 }: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const handleClassChange = useCallback(
-        (classId: string | null) => {
+    const pushWithParams = useCallback(
+        (mutate: (params: URLSearchParams) => void) => {
             const params = new URLSearchParams(searchParams.toString());
-            if (classId) {
-                params.set("classId", classId);
-            } else {
-                params.delete("classId");
-            }
+            mutate(params);
             router.push(`/dashboard/gradebook?${params.toString()}`);
         },
         [router, searchParams]
+    );
+
+    const handleClassChange = useCallback(
+        (classId: string | null) => {
+            pushWithParams((params) => {
+                if (classId) {
+                    params.set("classId", classId);
+                } else {
+                    params.delete("classId");
+                }
+                params.set("page", "1");
+            });
+        },
+        [pushWithParams]
+    );
+
+    const handleSearchChange = useCallback(
+        (query: string) => {
+            pushWithParams((params) => {
+                const next = query.trim();
+                if (next.length > 0) {
+                    params.set("q", next);
+                } else {
+                    params.delete("q");
+                }
+                params.set("page", "1");
+            });
+        },
+        [pushWithParams]
+    );
+
+    const handlePageChange = useCallback(
+        (page: number) => {
+            pushWithParams((params) => {
+                params.set("page", String(page));
+            });
+        },
+        [pushWithParams]
+    );
+
+    const handlePageSizeChange = useCallback(
+        (pageSize: number) => {
+            pushWithParams((params) => {
+                params.set("pageSize", String(pageSize));
+                params.set("page", "1");
+            });
+        },
+        [pushWithParams]
     );
 
     return (
@@ -66,6 +119,11 @@ export function GradebookClient({
             classes={classes}
             selectedClassId={selectedClassId}
             onClassChange={handleClassChange}
+            searchQuery={searchQuery}
+            onSearchChange={handleSearchChange}
+            pagination={pagination}
+            onPageChange={handlePageChange}
+            onPageSizeChange={handlePageSizeChange}
         />
     );
 }

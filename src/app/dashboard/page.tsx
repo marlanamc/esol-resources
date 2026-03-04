@@ -3,9 +3,9 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { timedQuery } from "@/lib/perf-log";
 import { trackLogin } from "@/lib/gamification";
 import { parseCategoryData } from "@/lib/categoryData";
-import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
@@ -19,7 +19,6 @@ import {
     BarChartIcon,
     CalendarIcon,
     StarIcon,
-    FlameIcon,
     MapIcon
 } from "@/components/icons/Icons";
 import {
@@ -30,6 +29,8 @@ import {
     ClearFeaturedButton,
     ClassAnnouncement
 } from "@/components/dashboard";
+import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
+import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 
 type TeacherAssignment = {
     id: string;
@@ -125,58 +126,69 @@ export default async function DashboardPage() {
 
     if (userRole === "teacher") {
         // Teacher Dashboard
-        const classes = await withPrismaReadRetry(() => prisma.class.findMany({
-            where: { teacherId: userId },
-            select: {
-                id: true,
-                name: true,
-                description: true,
-                enrollments: {
-                    select: {
-                        id: true,
-                        student: {
-                            select: {
-                                id: true,
-                                username: true,
-                                name: true,
-                                mustChangePassword: true,
-                            },
-                        },
-                    },
-                },
-                assignments: {
-                    select: {
-                        id: true,
-                        title: true,
-                        activityId: true,
-                        classId: true,
-                        isFeatured: true,
-                        dueDate: true,
-                        createdAt: true,
-                        updatedAt: true,
-                        activity: {
-                            select: {
-                                id: true,
-                                title: true,
-                                description: true,
-                                type: true,
-                                category: true,
-                            },
-                        },
-                    },
-                },
-                calendarEvents: {
-                    select: {
-                        id: true,
-                        title: true,
-                        date: true,
-                        endDate: true,
-                        type: true,
-                    },
-                },
+        const classes = await timedQuery(
+            {
+                route: "/dashboard",
+                queryLabel: "class.findMany.teacherDashboard",
+                userRole,
             },
-            orderBy: { createdAt: "desc" },
-        })) as TeacherClass[];
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.class.findMany({
+                        where: { teacherId: userId },
+                        select: {
+                            id: true,
+                            name: true,
+                            description: true,
+                            enrollments: {
+                                select: {
+                                    id: true,
+                                    student: {
+                                        select: {
+                                            id: true,
+                                            username: true,
+                                            name: true,
+                                            mustChangePassword: true,
+                                        },
+                                    },
+                                },
+                            },
+                            assignments: {
+                                select: {
+                                    id: true,
+                                    title: true,
+                                    activityId: true,
+                                    classId: true,
+                                    isFeatured: true,
+                                    dueDate: true,
+                                    createdAt: true,
+                                    updatedAt: true,
+                                    activity: {
+                                        select: {
+                                            id: true,
+                                            title: true,
+                                            description: true,
+                                            type: true,
+                                            category: true,
+                                        },
+                                    },
+                                },
+                            },
+                            calendarEvents: {
+                                select: {
+                                    id: true,
+                                    title: true,
+                                    date: true,
+                                    endDate: true,
+                                    type: true,
+                                },
+                            },
+                        },
+                        orderBy: { createdAt: "desc" },
+                    })
+                ),
+            (result) => result.length
+        ) as TeacherClass[];
 
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
@@ -216,16 +228,6 @@ export default async function DashboardPage() {
 
         const totalStudents = classes.reduce((acc, c) => acc + c.enrollments.length, 0);
         const totalClasses = classes.length;
-        const pendingReviews = await withPrismaReadRetry(() => prisma.submission.count({
-            where: {
-                status: "pending",
-                assignment: {
-                    class: {
-                        teacherId: userId
-                    }
-                }
-            }
-        }));
         const importantPageSections = [
             {
                 heading: "Student Insights",
@@ -339,18 +341,7 @@ export default async function DashboardPage() {
                                             </div>
                                         </div>
 
-                                        {/* Pending Reviews */}
-                                        {pendingReviews > 0 && (
-                                            <div className="flex items-center gap-2.5 bg-white/90 border border-orange-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-all">
-                                                <div className="w-8 h-8 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center">
-                                                    <ClipboardIcon className="text-primary" size={16} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">To Review</div>
-                                                    <div className="text-lg font-bold text-text leading-tight">{pendingReviews} <span className="text-xs font-semibold text-text-muted">new</span></div>
-                                                </div>
-                                            </div>
-                                        )}
+                                        <TeacherPendingReviewsStat />
                                     </div>
                                 </div>
 
@@ -374,17 +365,7 @@ export default async function DashboardPage() {
                                             </div>
                                         </div>
 
-                                        {pendingReviews > 0 && (
-                                            <div className="flex items-center gap-2 bg-white/90 border border-orange-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
-                                                <div className="w-7 h-7 bg-gradient-to-br from-orange-100 to-orange-50 rounded-full flex items-center justify-center">
-                                                    <ClipboardIcon className="text-primary" size={14} />
-                                                </div>
-                                                <div className="flex items-baseline gap-1">
-                                                    <span className="text-base font-bold text-text">{pendingReviews}</span>
-                                                    <span className="text-[10px] font-semibold text-text-muted uppercase">new</span>
-                                                </div>
-                                            </div>
-                                        )}
+                                        <TeacherPendingReviewsStat mobile />
                                     </div>
                                 </div>
                             </div>
@@ -541,22 +522,58 @@ export default async function DashboardPage() {
         );
     } else {
         // Student Dashboard
-        const enrollments = await withPrismaReadRetry(() => prisma.classEnrollment.findMany({
-            where: { studentId: userId },
-            include: {
-                class: {
-                    include: {
-                        assignments: {
-                            include: {
-                                activity: true,
-                            },
-                            orderBy: { createdAt: "desc" },
-                        },
-                        calendarEvents: true,
-                    },
-                },
+        const enrollments = await timedQuery(
+            {
+                route: "/dashboard",
+                queryLabel: "classEnrollment.findMany.studentDashboard",
+                userRole,
             },
-        })) as StudentEnrollment[];
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.classEnrollment.findMany({
+                        where: { studentId: userId },
+                        include: {
+                            class: {
+                                include: {
+                                    assignments: {
+                                        select: {
+                                            id: true,
+                                            title: true,
+                                            activityId: true,
+                                            classId: true,
+                                            isFeatured: true,
+                                            dueDate: true,
+                                            createdAt: true,
+                                            updatedAt: true,
+                                            activity: {
+                                                select: {
+                                                    id: true,
+                                                    title: true,
+                                                    description: true,
+                                                    type: true,
+                                                    category: true,
+                                                    content: true,
+                                                },
+                                            },
+                                        },
+                                        orderBy: { createdAt: "desc" },
+                                    },
+                                    calendarEvents: {
+                                        select: {
+                                            id: true,
+                                            title: true,
+                                            date: true,
+                                            endDate: true,
+                                            type: true,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    })
+                ),
+            (result) => result.length
+        ) as StudentEnrollment[];
 
         // Filter out unreleased speaking activities from assignments
         const filterReleasedActivities = (assignment: any) => {
@@ -589,14 +606,31 @@ export default async function DashboardPage() {
             .filter((announcement) => announcement.message.length > 0);
 
         const classIds = enrollments.map(e => e.classId);
-        const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await withPrismaReadRetry(() => prisma.assignment.findMany({
+        const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await timedQuery(
+            {
+                route: "/dashboard",
+                queryLabel: "assignment.findMany.featuredStudentDashboard",
+                userRole,
+            },
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.assignment.findMany({
             where: {
                 classId: { in: classIds },
                 isFeatured: true,
                 activity: { id: { not: "" } }
             },
             include: {
-                activity: true,
+                activity: {
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        type: true,
+                        category: true,
+                        content: true,
+                    },
+                },
                 submissions: {
                     where: { userId },
                     select: {
@@ -608,7 +642,10 @@ export default async function DashboardPage() {
                 }
             },
             orderBy: { createdAt: "desc" }
-        }));
+                    })
+                ),
+            (result) => result.length
+        );
 
         // Filter out unreleased speaking activities from featured assignments
         const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
@@ -617,11 +654,22 @@ export default async function DashboardPage() {
         const featuredProgressRows =
             featuredActivityIds.length === 0
                 ? []
-                : await withPrismaReadRetry(() => prisma.activityProgress.findMany({
+                : await timedQuery(
+                    {
+                        route: "/dashboard",
+                        queryLabel: "activityProgress.findMany.featuredActivities",
+                        userRole,
+                    },
+                    () =>
+                        withPrismaReadRetry(() =>
+                            prisma.activityProgress.findMany({
                       where: { userId, activityId: { in: featuredActivityIds } },
                       select: { activityId: true, progress: true, status: true, categoryData: true, updatedAt: true },
                       orderBy: { updatedAt: "desc" },
-                  }));
+                            })
+                        ),
+                    (result) => result.length
+                );
 
         const featuredProgressMap = (featuredProgressRows as Array<{
             activityId: string;
@@ -680,36 +728,6 @@ export default async function DashboardPage() {
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-        // Get user's streak data
-        const currentUser = await prisma.user.findUnique({
-            where: { id: userId },
-            select: {
-                currentStreak: true,
-                longestStreak: true,
-                points: true,
-                lastActivityDate: true,
-            }
-        });
-        const effectiveCurrentStreak = currentUser
-            ? getEffectiveStreak(currentUser.currentStreak, currentUser.lastActivityDate)
-            : 0;
-
-        // Calculate actual weekly points from PointsLedger (last 7 days)
-        const oneWeekAgo = new Date();
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-        
-        const weeklyPointsData = await prisma.pointsLedger.aggregate({
-            where: {
-                userId,
-                createdAt: { gte: oneWeekAgo },
-            },
-            _sum: {
-                points: true,
-            },
-        });
-        
-        const actualWeeklyPoints = weeklyPointsData._sum.points || 0;
-
         return (
             <div className="min-h-screen bg-bg">
                 <main className="container mx-auto pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
@@ -728,56 +746,7 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-3">
-                                        {/* Streak */}
-                                        {currentUser && effectiveCurrentStreak > 0 && (
-                                            <Link
-                                                href="/dashboard/profile"
-                                                aria-label="Open your profile from streak stats"
-                                                className="flex items-center gap-2.5 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2.5 pr-4 py-2 shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
-                                            >
-                                                <div className="w-8 h-8 bg-[#fff9f2] rounded-full flex items-center justify-center">
-                                                    <FlameIcon className="text-[#b97a45]" size={16} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Streak</div>
-                                                    <div className="text-base font-semibold text-text leading-tight">{effectiveCurrentStreak} <span className="text-xs font-medium text-text-muted">days</span></div>
-                                                </div>
-                                            </Link>
-                                        )}
-
-                                        {/* Weekly Points */}
-                                        {actualWeeklyPoints > 0 && (
-                                            <Link
-                                                href="/dashboard/profile"
-                                                aria-label="Open your profile from weekly points stats"
-                                                className="flex items-center gap-2.5 bg-white border border-[#ccb79c] rounded-full pl-2.5 pr-4 py-2.5 shadow-[0_2px_8px_rgba(64,46,28,0.08)] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
-                                            >
-                                                <div className="w-9 h-9 bg-[#f7f0e4] rounded-full flex items-center justify-center">
-                                                    <StarIcon className="text-[#9f6f3a]" size={17} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-[#6a5947] leading-none">This Week</div>
-                                                    <div className="text-xl font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-xs font-semibold text-text-muted">pts</span></div>
-                                                </div>
-                                            </Link>
-                                        )}
-
-                                        {/* Total Points */}
-                                        {currentUser && currentUser.points > 0 && (
-                                            <Link
-                                                href="/dashboard/profile"
-                                                aria-label="Open your profile from total points stats"
-                                                className="flex items-center gap-2.5 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2.5 pr-4 py-2 shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
-                                            >
-                                                <div className="w-8 h-8 bg-[#f1f4ec] rounded-full flex items-center justify-center">
-                                                    <TrophyIcon className="text-[#6a8b61]" size={16} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[10px] font-bold uppercase tracking-wider text-text-muted leading-none">Total</div>
-                                                    <div className="text-base font-semibold text-text leading-tight">{currentUser.points} <span className="text-xs font-medium text-text-muted">pts</span></div>
-                                                </div>
-                                            </Link>
-                                        )}
+                                        <StudentQuickStats />
                                     </div>
                                 </div>
 
@@ -791,53 +760,7 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-2.5 flex-wrap">
-                                        {currentUser && effectiveCurrentStreak > 0 && (
-                                            <Link
-                                                href="/dashboard/profile"
-                                                aria-label="Open your profile from streak stats"
-                                                className="flex items-center gap-2 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
-                                            >
-                                                <div className="w-7 h-7 bg-[#fff9f2] rounded-full flex items-center justify-center">
-                                                    <FlameIcon className="text-[#b97a45]" size={14} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[9px] font-bold uppercase tracking-wide text-text-muted leading-none">Streak</div>
-                                                    <div className="text-base font-semibold text-text leading-tight">{effectiveCurrentStreak} <span className="text-[10px] font-medium text-text-muted">days</span></div>
-                                                </div>
-                                            </Link>
-                                        )}
-
-                                        {actualWeeklyPoints > 0 && (
-                                            <Link
-                                                href="/dashboard/profile"
-                                                aria-label="Open your profile from weekly points stats"
-                                                className="flex items-center gap-2 bg-white border border-[#ccb79c] rounded-full pl-2 pr-3.5 py-2 shadow-[0_2px_8px_rgba(64,46,28,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
-                                            >
-                                                <div className="w-8 h-8 bg-[#f7f0e4] rounded-full flex items-center justify-center">
-                                                    <StarIcon className="text-[#9f6f3a]" size={15} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[9px] font-bold uppercase tracking-wide text-[#6a5947] leading-none">This Week</div>
-                                                    <div className="text-lg font-bold text-text leading-tight">{actualWeeklyPoints} <span className="text-[10px] font-semibold text-text-muted">pts</span></div>
-                                                </div>
-                                            </Link>
-                                        )}
-
-                                        {currentUser && currentUser.points > 0 && (
-                                            <Link
-                                                href="/dashboard/profile"
-                                                aria-label="Open your profile from total points stats"
-                                                className="flex items-center gap-2 bg-[#f7f3ec] border border-[#e2d9cc] rounded-full pl-2 pr-3 py-1.5 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80]"
-                                            >
-                                                <div className="w-7 h-7 bg-[#f1f4ec] rounded-full flex items-center justify-center">
-                                                    <TrophyIcon className="text-[#6a8b61]" size={14} />
-                                                </div>
-                                                <div>
-                                                    <div className="text-[9px] font-bold uppercase tracking-wide text-text-muted leading-none">Total</div>
-                                                    <div className="text-base font-semibold text-text leading-tight">{currentUser.points} <span className="text-[10px] font-medium text-text-muted">pts</span></div>
-                                                </div>
-                                            </Link>
-                                        )}
+                                        <StudentQuickStats mobile />
                                     </div>
                                 </div>
                             </div>

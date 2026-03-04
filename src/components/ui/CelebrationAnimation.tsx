@@ -5,18 +5,16 @@ import { useEffect, useState, useMemo } from "react";
 interface CelebrationAnimationProps {
     trigger: boolean;
     type?: "confetti" | "stars" | "sparkles" | "milestone";
+    message?: string;
+    durationMs?: number;
     onComplete?: () => void;
-}
-
-// Simple seeded random function
-function seededRandom(seed: number) {
-    const x = Math.sin(seed) * 10000;
-    return x - Math.floor(x);
 }
 
 export default function CelebrationAnimation({ 
     trigger, 
     type = "confetti", 
+    message,
+    durationMs = 3000,
     onComplete 
 }: CelebrationAnimationProps) {
     const [isVisible, setIsVisible] = useState(false);
@@ -58,10 +56,10 @@ export default function CelebrationAnimation({
             const timer = setTimeout(() => {
                 setIsVisible(false);
                 onComplete?.();
-            }, 3000);
+            }, durationMs);
             return () => clearTimeout(timer);
         }
-    }, [trigger, onComplete]);
+    }, [trigger, onComplete, durationMs]);
 
     if (!isVisible) return null;
 
@@ -83,6 +81,11 @@ export default function CelebrationAnimation({
     return (
         <div className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center">
             {renderAnimation()}
+            {message ? (
+                <div className="absolute top-20 sm:top-24 px-4 py-2 rounded-full bg-white/90 border border-amber-200 text-amber-800 text-sm sm:text-base font-bold shadow-md">
+                    {message}
+                </div>
+            ) : null}
         </div>
     );
 }

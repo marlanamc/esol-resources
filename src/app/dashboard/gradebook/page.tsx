@@ -5,13 +5,25 @@ import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { timedQuery } from "@/lib/perf-log";
 import { GradebookClient } from "./GradebookClient";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
+
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 25;
+const MAX_PAGE_SIZE = 100;
+
+function parsePositiveInt(value: string | undefined, fallback: number): number {
+    if (!value) return fallback;
+    const parsed = Number.parseInt(value, 10);
+    if (!Number.isFinite(parsed) || parsed <= 0) return fallback;
+    return parsed;
+}
 
 export default async function GradebookPage({
     searchParams,
 }: {
-    searchParams: Promise<{ classId?: string }>;
+    searchParams: Promise<{ classId?: string; page?: string; pageSize?: string; q?: string }>;
 }) {
     const session = await getServerSession(authOptions);
 
@@ -28,116 +40,188 @@ export default async function GradebookPage({
 
     const params = await searchParams;
     const selectedClassId = params.classId || null;
+    const searchQuery = (params.q || "").trim();
+    const requestedPage = parsePositiveInt(params.page, DEFAULT_PAGE);
+    const requestedPageSize = Math.min(MAX_PAGE_SIZE, parsePositiveInt(params.pageSize, DEFAULT_PAGE_SIZE));
 
-    // Get teacher's classes and students
-    const classes = await withPrismaReadRetry(() => prisma.class.findMany({
-        where: { teacherId: userId },
-        select: {
-            id: true,
-            name: true,
-            enrollments: {
-                select: {
-                    student: {
-                        select: {
-                            id: true,
-                            name: true,
-                            username: true,
-                        }
-                    }
-                }
-            }
-        }
-    }));
+    const classes = await timedQuery(
+        {
+            route: "/dashboard/gradebook",
+            queryLabel: "class.findMany.gradebookClasses",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.class.findMany({
+                    where: { teacherId: userId },
+                    select: {
+                        id: true,
+                        name: true,
+                        enrollments: {
+                            select: {
+                                student: {
+                                    select: {
+                                        id: true,
+                                    },
+                                },
+                            },
+                        },
+                    },
+                })
+            ),
+        (result) => result.length
+    );
 
-    // Filter students by selected class if one is selected
     const filteredClasses = selectedClassId
         ? classes.filter((c) => c.id === selectedClassId)
         : classes;
 
-    // Get all grammar guide activities
-    const activities = await withPrismaReadRetry(() => prisma.activity.findMany({
-        where: {
-            category: "grammar",
-            type: "guide",
-            isReleased: true
-        },
-        select: {
-            id: true,
-            title: true,
-            content: true
-        },
-        orderBy: {
-            title: "asc"
-        }
-    }));
-
-    // Filter activities that actually have a mini-quiz
-    const activitiesWithQuizzes = activities.filter(activity => {
-        try {
-            const content = JSON.parse(activity.content);
-            return !!content.miniQuiz;
-        } catch {
-            return false;
-        }
-    }).map(a => ({
-        id: a.id,
-        title: a.title.replace(" Guide", "").replace(" Guide", "") // Clean up titles
-    }));
-
-    const studentIds = Array.from(
-        new Set(filteredClasses.flatMap(c => c.enrollments.map(e => e.student.id)))
-    );
-
-    // Create class options for the dropdown
     const classOptions = classes.map((c) => ({
         id: c.id,
         name: c.name,
     }));
 
-    const students = await withPrismaReadRetry(() => prisma.user.findMany({
-        where: {
-            id: { in: studentIds }
-        },
-        select: {
-            id: true,
-            name: true,
-            username: true,
-        },
-        orderBy: {
-            name: "asc"
-        }
-    }));
+    const studentIds = Array.from(
+        new Set(filteredClasses.flatMap((c) => c.enrollments.map((e) => e.student.id)))
+    );
 
-    // Fetch grammar guide submissions broadly, then remap legacy duplicate activity IDs
-    // to the canonical gradebook activity ID by normalized title.
-    const rawSubmissions = await withPrismaReadRetry(() => prisma.submission.findMany({
-        where: {
-            userId: { in: studentIds },
-            score: { not: null },
-            activity: {
-                category: "grammar",
-                type: "guide",
+    const studentWhere = {
+        id: { in: studentIds },
+        ...(searchQuery
+            ? {
+                OR: [
+                    { name: { contains: searchQuery, mode: "insensitive" as const } },
+                    { username: { contains: searchQuery, mode: "insensitive" as const } },
+                ],
             }
+            : {}),
+    };
+
+    const totalStudents = studentIds.length === 0
+        ? 0
+        : await timedQuery(
+            {
+                route: "/dashboard/gradebook",
+                queryLabel: "user.count.gradebookStudents",
+                userRole,
+            },
+            () => withPrismaReadRetry(() => prisma.user.count({ where: studentWhere }))
+        );
+
+    const totalPages = Math.max(1, Math.ceil(totalStudents / requestedPageSize));
+    const currentPage = Math.min(requestedPage, totalPages);
+    const skip = (currentPage - 1) * requestedPageSize;
+
+    const students = studentIds.length === 0
+        ? []
+        : await timedQuery(
+            {
+                route: "/dashboard/gradebook",
+                queryLabel: "user.findMany.gradebookStudentsPage",
+                userRole,
+            },
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.user.findMany({
+                        where: studentWhere,
+                        select: {
+                            id: true,
+                            name: true,
+                            username: true,
+                        },
+                        orderBy: {
+                            name: "asc",
+                        },
+                        skip,
+                        take: requestedPageSize,
+                    })
+                ),
+            (result) => result.length
+        );
+
+    const pagedStudentIds = students.map((student) => student.id);
+
+    const activities = await timedQuery(
+        {
+            route: "/dashboard/gradebook",
+            queryLabel: "activity.findMany.gradebookGrammarActivities",
+            userRole,
         },
-        select: {
-            userId: true,
-            activityId: true,
-            score: true,
-            updatedAt: true,
-            activity: {
-                select: {
-                    title: true,
-                }
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.activity.findMany({
+                    where: {
+                        category: "grammar",
+                        type: "guide",
+                        isReleased: true,
+                    },
+                    select: {
+                        id: true,
+                        title: true,
+                        content: true,
+                    },
+                    orderBy: {
+                        title: "asc",
+                    },
+                })
+            ),
+        (result) => result.length
+    );
+
+    const activitiesWithQuizzes = activities
+        .filter((activity) => {
+            try {
+                const content = JSON.parse(activity.content);
+                return !!content.miniQuiz;
+            } catch {
+                return false;
             }
-        }
-    }));
+        })
+        .map((a) => ({
+            id: a.id,
+            title: a.title.replace(" Guide", "").replace(" Guide", ""),
+        }));
+
+    const rawSubmissions = pagedStudentIds.length === 0
+        ? []
+        : await timedQuery(
+            {
+                route: "/dashboard/gradebook",
+                queryLabel: "submission.findMany.gradebookSubmissions",
+                userRole,
+            },
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.submission.findMany({
+                        where: {
+                            userId: { in: pagedStudentIds },
+                            score: { not: null },
+                            activity: {
+                                category: "grammar",
+                                type: "guide",
+                            },
+                        },
+                        select: {
+                            userId: true,
+                            activityId: true,
+                            score: true,
+                            updatedAt: true,
+                            activity: {
+                                select: {
+                                    title: true,
+                                },
+                            },
+                        },
+                    })
+                ),
+            (result) => result.length
+        );
 
     const displayActivityIds = new Set(activitiesWithQuizzes.map((a) => a.id));
     const displayIdByNormalizedTitle = new Map(
         activitiesWithQuizzes.map((a) => [normalizeGuideTitle(a.title), a.id] as const)
     );
 
-    // Keep only the newest score per (student + canonical activity).
     const submissionByKey = new Map<string, { userId: string; activityId: string; score: number; updatedAt: Date }>();
     for (const submission of rawSubmissions) {
         if (submission.score === null) continue;
@@ -188,6 +272,13 @@ export default async function GradebookPage({
                     submissions={submissions}
                     classes={classOptions}
                     selectedClassId={selectedClassId}
+                    searchQuery={searchQuery}
+                    pagination={{
+                        page: currentPage,
+                        pageSize: requestedPageSize,
+                        total: totalStudents,
+                        totalPages,
+                    }}
                 />
             </main>
         </div>

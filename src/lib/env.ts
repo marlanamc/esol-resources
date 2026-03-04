@@ -41,6 +41,27 @@ const envVars: EnvVar[] = [
     description: 'Secret for cron endpoints (required in production)',
     validate: (value) => value.length >= 32,
   },
+  {
+    key: 'PERF_LOG_ENABLED',
+    required: false,
+    description: 'Enable performance timing logs (true/false)',
+    validate: (value) => ['true', 'false', '1', '0', 'yes', 'no', 'on', 'off'].includes(value.toLowerCase()),
+  },
+  {
+    key: 'PERF_LOG_THRESHOLD_MS',
+    required: false,
+    description: 'Performance slow-query threshold in milliseconds',
+    validate: (value) => Number.isFinite(Number(value)),
+  },
+  {
+    key: 'PERF_LOG_SAMPLE_RATE',
+    required: false,
+    description: 'Sampling rate for performance logs (0 to 1)',
+    validate: (value) => {
+      const n = Number(value);
+      return Number.isFinite(n) && n >= 0 && n <= 1;
+    },
+  },
 ];
 
 /**
