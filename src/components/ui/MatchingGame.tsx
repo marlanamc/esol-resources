@@ -130,48 +130,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     const gameMode = useMemo(() => detectMatchingGameMode(contentStr), [contentStr]);
     const vocabPairs = useMemo(() => (gameMode === "vocab" ? parseVocabPairs(contentStr) : []), [contentStr, gameMode]);
 
-    // Time Indicators sorting game
-    if (gameMode === "time-indicators") {
-        return (
-            <TimeIndicatorSortingUI
-                contentStr={contentStr}
-                activityId={activityId}
-                assignmentId={assignmentId}
-                vocabType={vocabType}
-            />
-        );
-    }
-
-    // Verb Sounds Right sorting game
-    if (gameMode === "verb-sounds-right") {
-        return (
-            <VerbSoundsRightSortingUI
-                contentStr={contentStr}
-                activityId={activityId}
-                assignmentId={assignmentId}
-                vocabType={vocabType}
-            />
-        );
-    }
-
-    if (gameMode === "vocab") {
-        if (vocabPairs.length > 0) {
-            return (
-                <VocabMatchingUI
-                    pairs={vocabPairs}
-                    activityId={activityId}
-                    assignmentId={assignmentId}
-                    vocabType={vocabType}
-                />
-            );
-        }
-        return (
-            <div className="max-w-4xl mx-auto p-8 text-center">
-                <p className="text-gray-500">No vocabulary pairs to match.</p>
-            </div>
-        );
-    }
-
     const rounds = useMemo(() => parseRounds(contentStr), [contentStr]);
     const [currentRoundIndex, setCurrentRoundIndex] = useState(0);
     const currentRound = rounds[currentRoundIndex];
@@ -345,7 +303,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                 explanationAutoDismissTimeoutRef.current = null;
             }
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [gameState.showExplanation]);
 
     // Save progress after each correct answer
@@ -381,7 +338,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         };
 
         void saveRoundProgress();
-    }, [activityId, currentRound, isRoundComplete, assignmentId, overallProgressPercent]);
+    }, [activityId, currentRound, isRoundComplete, assignmentId, overallProgressPercent, vocabType]);
 
     // Resume from saved round progress (categoryData keys like "round-1", "round-2", ...)
     useEffect(() => {
@@ -457,7 +414,6 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         return () => {
             cancelled = true;
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activityId, assignmentId, rounds.length]);
 
     const handleWordDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -618,6 +574,47 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
         setIsRoundComplete(false);
         setIsGameComplete(false);
     };
+
+    // Route non-countable game modes after hooks to preserve hook call order.
+    if (gameMode === "time-indicators") {
+        return (
+            <TimeIndicatorSortingUI
+                contentStr={contentStr}
+                activityId={activityId}
+                assignmentId={assignmentId}
+                vocabType={vocabType}
+            />
+        );
+    }
+
+    if (gameMode === "verb-sounds-right") {
+        return (
+            <VerbSoundsRightSortingUI
+                contentStr={contentStr}
+                activityId={activityId}
+                assignmentId={assignmentId}
+                vocabType={vocabType}
+            />
+        );
+    }
+
+    if (gameMode === "vocab") {
+        if (vocabPairs.length > 0) {
+            return (
+                <VocabMatchingUI
+                    pairs={vocabPairs}
+                    activityId={activityId}
+                    assignmentId={assignmentId}
+                    vocabType={vocabType}
+                />
+            );
+        }
+        return (
+            <div className="max-w-4xl mx-auto p-8 text-center">
+                <p className="text-gray-500">No vocabulary pairs to match.</p>
+            </div>
+        );
+    }
 
     if (rounds.length === 0 || !currentRound) {
         return (
@@ -1010,6 +1007,13 @@ function VocabMatchingUI({
 
     return (
         <div className="max-w-4xl mx-auto p-4 md:p-6">
+            {pointsToast && (
+                <PointsToast
+                    key={pointsToast.key}
+                    points={pointsToast.points}
+                    onComplete={() => setPointsToast(null)}
+                />
+            )}
             <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 mb-4">
                 <h2 className="text-lg font-bold text-gray-900 mb-1">Vocabulary Matching</h2>
                 <p className="text-sm text-gray-500 mb-2">Match each word to its definition.</p>
@@ -2477,11 +2481,16 @@ function parseVocabPairs(content: string): VocabPair[] {
         const parsed = JSON.parse(content);
         if (parsed && typeof parsed === 'object' && 'pairs' in parsed && Array.isArray(parsed.pairs)) {
             return parsed.pairs
-                .filter((p: any) => p && p.term && p.definition)
-                .map((p: any, index: number) => ({
+                .filter((pair: unknown): pair is { term: unknown; definition: unknown } =>
+                    !!pair &&
+                    typeof pair === "object" &&
+                    "term" in pair &&
+                    "definition" in pair
+                )
+                .map((pair: { term: unknown; definition: unknown }, index: number) => ({
                     id: index + 1,
-                    term: String(p.term).trim(),
-                    definition: String(p.definition).trim()
+                    term: String(pair.term).trim(),
+                    definition: String(pair.definition).trim()
                 }));
         }
     } catch {

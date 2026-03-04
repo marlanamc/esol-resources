@@ -2,14 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { SpeakingActivityContent, SpeakingSubmission } from "@/types/activity";
+import type { SpeakingActivityContent } from "@/types/activity";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { PointsToast } from "@/components/ui/PointsToast";
 import {
   getSpeakingSubmission,
   saveDraft,
   loadDraft,
-  clearDraft,
   submitSpeakingWarmup,
   type SpeakingSubmissionPayload,
 } from "@/lib/speakingSubmissions";
@@ -264,12 +263,15 @@ interface SpeakingFormData {
 }
 
 export default function SpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
-  const router = useRouter();
-
-  // WARMUP MODE: Simple participation tracking
   if (content.warmupMode) {
     return <WarmupModeRenderer content={content} activityId={activityId} assignmentId={assignmentId} />;
   }
+
+  return <LegacySpeakingActivityRenderer content={content} activityId={activityId} assignmentId={assignmentId} />;
+}
+
+function LegacySpeakingActivityRenderer({ content, activityId, assignmentId }: Props) {
+  const router = useRouter();
 
   // LEGACY MODE: Complex two-phase submission system
   const soloMode = content.soloMode;
@@ -435,7 +437,11 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   const handlePromptToggle = (promptId: string) => {
     setSelectedPrompts((prev) => {
       const next = new Set(prev);
-      next.has(promptId) ? next.delete(promptId) : next.add(promptId);
+      if (next.has(promptId)) {
+        next.delete(promptId);
+      } else {
+        next.add(promptId);
+      }
       return next;
     });
   };
@@ -443,7 +449,11 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   const handleSoloStepToggle = (stepId: string) => {
     setCompletedSoloSteps((prev) => {
       const next = new Set(prev);
-      next.has(stepId) ? next.delete(stepId) : next.add(stepId);
+      if (next.has(stepId)) {
+        next.delete(stepId);
+      } else {
+        next.add(stepId);
+      }
       return next;
     });
   };
@@ -451,7 +461,11 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   const handleSpeakingStepToggle = (stepId: string) => {
     setCompletedSpeakingSteps((prev) => {
       const next = new Set(prev);
-      next.has(stepId) ? next.delete(stepId) : next.add(stepId);
+      if (next.has(stepId)) {
+        next.delete(stepId);
+      } else {
+        next.add(stepId);
+      }
       return next;
     });
   };
@@ -459,7 +473,11 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
   const togglePromptTips = (promptId: string) => {
     setExpandedPromptTips((prev) => {
       const next = new Set(prev);
-      next.has(promptId) ? next.delete(promptId) : next.add(promptId);
+      if (next.has(promptId)) {
+        next.delete(promptId);
+      } else {
+        next.add(promptId);
+      }
       return next;
     });
   };
@@ -508,6 +526,14 @@ export default function SpeakingActivityRenderer({ content, activityId, assignme
       const result = await submitSpeakingWarmup(payload);
       if (!result.success) {
         setSubmissionError(result.error || "Unable to submit warm-up.");
+        return;
+      }
+
+      if (result.queued) {
+        setSubmissionStatus("submitted");
+        setSubmittedAt(new Date().toISOString());
+        setLastSnapshot(currentSnapshot);
+        alert("Saved offline. Your speaking warm-up will submit automatically when you reconnect.");
         return;
       }
 

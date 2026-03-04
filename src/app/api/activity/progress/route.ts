@@ -15,7 +15,7 @@ type ProgressRecord = {
     updatedAt: Date;
 };
 
-function parseCategoryData(value: string | null): Record<string, unknown> | null {
+export function parseCategoryData(value: string | null): Record<string, unknown> | null {
     if (!value) return null;
     try {
         const parsed = JSON.parse(value) as unknown;
@@ -43,7 +43,7 @@ function asNumber(value: unknown): number | null {
     return typeof value === "number" && Number.isFinite(value) ? value : null;
 }
 
-function sanitizeGuideCompletedSectionIds(value: unknown): string[] | undefined {
+export function sanitizeGuideCompletedSectionIds(value: unknown): string[] | undefined {
     if (!Array.isArray(value)) return undefined;
 
     const cleaned = value
@@ -61,7 +61,7 @@ function isVocabCategoryData(data: Record<string, unknown> | null): boolean {
     return VOCAB_TYPES.some((type) => Object.prototype.hasOwnProperty.call(data, type));
 }
 
-function mergeVocabProgressRecords(assignmentRecord: ProgressRecord, globalRecord: ProgressRecord): ProgressRecord | null {
+export function mergeVocabProgressRecords(assignmentRecord: ProgressRecord, globalRecord: ProgressRecord): ProgressRecord | null {
     const assignmentData = parseCategoryData(assignmentRecord.categoryData);
     const globalData = parseCategoryData(globalRecord.categoryData);
 
@@ -123,7 +123,7 @@ function mergeVocabProgressRecords(assignmentRecord: ProgressRecord, globalRecor
     };
 }
 
-function chooseBestProgressRecord(records: ProgressRecord[]): ProgressRecord | null {
+export function chooseBestProgressRecord(records: ProgressRecord[]): ProgressRecord | null {
     if (records.length === 0) return null;
 
     let best = records[0]!;
@@ -255,16 +255,86 @@ export async function GET(request: Request) {
         }
     }
 
-    return NextResponse.json({
+    return buildProgressGetResponse({
         progress: record?.progress ?? 0,
         status: record?.status ?? "in_progress",
         categoryData: record?.categoryData ?? null,
         updatedAt: record?.updatedAt ?? null,
-    }, {
+    });
+}
+
+export function buildProgressGetResponse(payload: {
+    progress: number;
+    status: string;
+    categoryData: string | null;
+    updatedAt: Date | null;
+}) {
+    return NextResponse.json(payload, {
         headers: {
             "Cache-Control": "no-store",
         },
     });
+}
+
+export function resolveFinalProgressState(params: {
+    rawProgress: number;
+    statusInput?: ActivityProgressStatus;
+    aggregatedProgress?: number;
+    isPronunciationPracticeActivity: boolean;
+}): { progressValue: number; finalStatus: ActivityProgressStatus } {
+    const { rawProgress, statusInput, aggregatedProgress, isPronunciationPracticeActivity } = params;
+
+    let progressValue = rawProgress;
+    let statusValue: ActivityProgressStatus | undefined = statusInput;
+
+    if (aggregatedProgress !== undefined) {
+        progressValue = aggregatedProgress;
+        statusValue = aggregatedProgress >= 100 ? "completed" : "in_progress";
+    }
+
+    if (isPronunciationPracticeActivity) {
+        progressValue = 0;
+        statusValue = "in_progress";
+    }
+
+    const finalStatus: ActivityProgressStatus = statusValue ?? (progressValue >= 100 ? "completed" : "in_progress");
+    return { progressValue, finalStatus };
+}
+
+export function shouldAwardProgressPoints(params: {
+    rawProgress: number;
+    progressValue: number;
+    category?: string;
+    vocabType?: string;
+    sanitizedAccuracy?: number;
+    updatedCategoryData?: string;
+    existingProgress?: number;
+    existingCategoryData: Record<string, unknown>;
+}): boolean {
+    const {
+        rawProgress,
+        progressValue,
+        category,
+        vocabType,
+        sanitizedAccuracy,
+        updatedCategoryData,
+        existingProgress,
+        existingCategoryData,
+    } = params;
+
+    const isAccuracyCategoryUpdate = !!category && sanitizedAccuracy !== undefined;
+    const isRoundCategoryUpdate = !!category && /^round-\d+$/.test(category);
+    const isVocabularyTypeUpdate = !!vocabType && ['word-list', 'flashcards', 'matching', 'fill-blank'].includes(vocabType);
+    const wasVocabTypeCompleted = isVocabularyTypeUpdate && !!(existingCategoryData[vocabType!] as { completed?: boolean } | undefined)?.completed;
+    const wasRoundCompleted = isRoundCategoryUpdate && !!(existingCategoryData[category!] as { completed?: boolean } | undefined)?.completed;
+
+    return isVocabularyTypeUpdate
+        ? (rawProgress >= 100 && !wasVocabTypeCompleted)
+        : (isAccuracyCategoryUpdate
+            ? (rawProgress >= 100 && !!updatedCategoryData && !((existingCategoryData[category!] as { completed?: boolean } | undefined)?.completed))
+            : (isRoundCategoryUpdate
+                ? (!!updatedCategoryData && !wasRoundCompleted)
+                : (((existingProgress ?? 0) < 100) && progressValue >= 100)));
 }
 
 export async function POST(request: Request) {
@@ -295,11 +365,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Invalid category format" }, { status: 400 });
     }
 
-    let progressValue = rawProgress;
-    let statusValue: ActivityProgressStatus | undefined;
-    if (typeof statusInput === "string") {
-        statusValue = statusInput as ActivityProgressStatus;
-    }
+    const statusValue = typeof statusInput === "string" ? statusInput as ActivityProgressStatus : undefined;
 
     const userId = session.user.id;
 
@@ -394,18 +460,12 @@ export async function POST(request: Request) {
         console.log('[VOCAB DEBUG] Setting categoryData:', { vocabType, currentData, updatedCategoryData: updatedCategoryData.substring(0, 100) });
     }
 
-    if (aggregatedNumbersProgress !== undefined) {
-        progressValue = aggregatedNumbersProgress;
-        statusValue = aggregatedNumbersProgress >= 100 ? "completed" : "in_progress";
-    }
-
-    // Pronunciation games are intentionally open-ended practice and should never show as completed.
-    if (isPronunciationPracticeActivity) {
-        progressValue = 0;
-        statusValue = "in_progress";
-    }
-
-    const finalStatus: ActivityProgressStatus = statusValue ?? (progressValue >= 100 ? "completed" : "in_progress");
+    const { progressValue, finalStatus } = resolveFinalProgressState({
+        rawProgress,
+        statusInput: statusValue,
+        aggregatedProgress: aggregatedNumbersProgress,
+        isPronunciationPracticeActivity,
+    });
 
     const progressData = {
         progress: progressValue,
@@ -492,20 +552,18 @@ export async function POST(request: Request) {
     // - For vocabulary types, award per type completion (once per type)
     // - For round-based games (Matching/Sorting games), award per round completion
     // - For other activities, award once when overall progress hits 100%
-    const isAccuracyCategoryUpdate = category && sanitizedAccuracy !== undefined;
-    const isRoundCategoryUpdate = category && /^round-\d+$/.test(category);
     const isVocabularyTypeUpdate = vocabType && ['word-list', 'flashcards', 'matching', 'fill-blank'].includes(vocabType);
     const existingCategoryData = existing?.categoryData ? JSON.parse(existing.categoryData) : {};
-    const wasVocabTypeCompleted = isVocabularyTypeUpdate && existingCategoryData[vocabType]?.completed;
-    const wasRoundCompleted = isRoundCategoryUpdate && existingCategoryData[category]?.completed;
-
-    const shouldAwardPoints = isVocabularyTypeUpdate
-        ? (rawProgress >= 100 && !wasVocabTypeCompleted)
-        : (isAccuracyCategoryUpdate
-            ? (rawProgress >= 100 && updatedCategoryData && !(existingCategoryData[category]?.completed))
-            : (isRoundCategoryUpdate
-                ? (updatedCategoryData && !wasRoundCompleted)
-                : ((existing?.progress ?? 0) < 100 && progressValue >= 100)));
+    const shouldAwardPoints = shouldAwardProgressPoints({
+        rawProgress,
+        progressValue,
+        category,
+        vocabType: typeof vocabType === "string" ? vocabType : undefined,
+        sanitizedAccuracy,
+        updatedCategoryData,
+        existingProgress: existing?.progress,
+        existingCategoryData,
+    });
 
     let pointsAwarded = 0;
 

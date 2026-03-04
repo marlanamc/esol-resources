@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import type { SwUpdateAvailableDetail } from '@/types/pwa';
 
 export default function ServiceWorkerRegistration() {
   useEffect(() => {
@@ -11,8 +12,10 @@ export default function ServiceWorkerRegistration() {
       'serviceWorker' in navigator &&
       process.env.NODE_ENV === 'production'
     ) {
+      const buildId = process.env.NEXT_PUBLIC_BUILD_ID || 'local-dev';
       let registration: ServiceWorkerRegistration | null = null;
       let updateInterval: NodeJS.Timeout | null = null;
+      let hasReloaded = false;
 
       const checkForUpdates = () => {
         if (registration) {
@@ -23,8 +26,25 @@ export default function ServiceWorkerRegistration() {
         }
       };
 
+      const dispatchUpdateEvent = (worker: ServiceWorker) => {
+        const detail: SwUpdateAvailableDetail = { waitingWorker: worker };
+        window.dispatchEvent(new CustomEvent<SwUpdateAvailableDetail>('swUpdateAvailable', { detail }));
+      };
+
+      const handleVisibilityChange = () => {
+        if (document.visibilityState === 'visible') {
+          checkForUpdates();
+        }
+      };
+
+      const handleControllerChange = () => {
+        if (hasReloaded) return;
+        hasReloaded = true;
+        window.location.reload();
+      };
+
       navigator.serviceWorker
-        .register('/sw.js', { updateViaCache: 'none' })
+        .register(`/sw.js?build=${encodeURIComponent(buildId)}`, { updateViaCache: 'none' })
         .then((reg) => {
           registration = reg;
           console.log('[SW] Registered successfully:', reg.scope);
@@ -32,11 +52,7 @@ export default function ServiceWorkerRegistration() {
           // Check if there's already a waiting service worker
           if (reg.waiting && navigator.serviceWorker.controller) {
             console.log('[SW] Update waiting on page load');
-            window.dispatchEvent(
-              new CustomEvent('swUpdateAvailable', {
-                detail: { waitingWorker: reg.waiting }
-              })
-            );
+            dispatchUpdateEvent(reg.waiting);
           }
 
           // Listen for updates
@@ -50,11 +66,7 @@ export default function ServiceWorkerRegistration() {
                   navigator.serviceWorker.controller
                 ) {
                   console.log('[SW] New version available!');
-                  window.dispatchEvent(
-                    new CustomEvent('swUpdateAvailable', {
-                      detail: { waitingWorker: newWorker }
-                    })
-                  );
+                  dispatchUpdateEvent(newWorker);
                 }
               });
             }
@@ -76,10 +88,9 @@ export default function ServiceWorkerRegistration() {
           }, 5 * 60 * 1000);
 
           // Also check on visibility change (when tab becomes visible)
-          document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'visible') {
-              checkForUpdates();
-            }
+          document.addEventListener('visibilitychange', handleVisibilityChange);
+          navigator.serviceWorker.addEventListener('controllerchange', handleControllerChange, {
+            once: true,
           });
         })
         .catch((error) => {
@@ -92,11 +103,11 @@ export default function ServiceWorkerRegistration() {
         }
         window.removeEventListener('focus', checkForUpdates);
         window.removeEventListener('online', checkForUpdates);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        navigator.serviceWorker.removeEventListener('controllerchange', handleControllerChange);
       };
     }
   }, []);
 
   return null;
 }
-
-

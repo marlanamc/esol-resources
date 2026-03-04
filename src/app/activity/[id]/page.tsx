@@ -13,6 +13,8 @@ import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { grammarTopics } from "@/data/grammar-map";
 import { numbersGameCategoryNames } from "@/data/numbersGameCategories";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
+import NetworkStatusBanner from "@/components/NetworkStatusBanner";
+import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -30,6 +32,12 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
     const userId = session.user.id;
     const userRole = session.user.role;
+    const studentReliabilityOverlays = userRole === "student" ? (
+        <>
+            <NetworkStatusBanner />
+            <SubmissionOutboxManager />
+        </>
+    ) : null;
 
     const activity = await (async () => {
         try {
@@ -209,6 +217,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
         return (
             <div className="min-h-screen bg-bg">
+                {studentReliabilityOverlays}
                 <GrammarReader
                     content={parsedContent}
                     completionKey={completionKeyFromActivityTitle(activity.title)}
@@ -223,6 +232,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     if (activity.type === "vocabulary" && parsedContent && isVocabularyContent(parsedContent) && ui) {
         return (
             <div className="min-h-screen bg-bg">
+                {studentReliabilityOverlays}
                 <ActivityRenderer
                     activity={{ ...activity, ui: ui || activity.ui }}
                     assignmentId={assignmentId}
@@ -236,6 +246,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     if (activity.type === "game" && resolveActivityGameUi({ ...activity, ui: ui || activity.ui }) === "irregular-verbs") {
         return (
             <div className="min-h-screen bg-bg">
+                {studentReliabilityOverlays}
                 <ActivityRenderer
                     activity={{ ...activity, ui: ui || activity.ui }}
                     assignmentId={assignmentId}
@@ -249,6 +260,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     if (isInteractiveGuide) {
         return (
             <div className="fixed inset-0 bg-gray-50 flex flex-col overflow-hidden">
+                {studentReliabilityOverlays}
                 {/* Minimal Header */}
                 <header className="bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 z-10 flex-shrink-0">
                     {/* Mobile Layout: Stacked */}
@@ -304,6 +316,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     // Standard layout for other activities
     return (
         <div className="min-h-screen bg-gray-50">
+            {studentReliabilityOverlays}
             <header className="bg-white shadow-sm border-b border-gray-200">
                 <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                     {/* Mobile Layout: Stacked */}

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { awardPoints, updateStreak, calculateQuizPoints, getActivityPoints, checkAndAwardAchievements } from '@/lib/gamification';
 import { prisma } from '@/lib/prisma';
+import { claimSubmissionPointsOnce } from '@/lib/submission-points-award';
 
 /**
  * POST /api/gamification/award-points
@@ -16,16 +17,24 @@ export async function POST(req: NextRequest) {
     }
 
     const userId = session.user.id;
-    const { submissionId, activityType, score } = await req.json();
+    const { submissionId, activityType, score } = await req.json() as {
+      submissionId?: string;
+      activityType?: string;
+      score?: number | null;
+    };
 
-    if (!submissionId) {
+    if (!submissionId || typeof submissionId !== 'string') {
       return NextResponse.json({ error: 'Missing submissionId' }, { status: 400 });
     }
 
-    // Check if points already awarded for this submission
+    // Load submission and enforce ownership.
     const submission = await prisma.submission.findUnique({
       where: { id: submissionId },
-      include: {
+      select: {
+        id: true,
+        userId: true,
+        pointsAwarded: true,
+        activityId: true,
         activity: {
           select: {
             id: true,
@@ -41,11 +50,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Submission not found' }, { status: 404 });
     }
 
-    if (submission.pointsAwarded > 0) {
-      return NextResponse.json({
-        message: 'Points already awarded for this submission',
-        pointsAwarded: submission.pointsAwarded,
-      });
+    if (submission.userId !== userId) {
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
     // Calculate points based on activity type and score
@@ -53,23 +59,48 @@ export async function POST(req: NextRequest) {
     const activityTypeFromDb = submission.activity?.type ?? activityType ?? 'activity';
     const isQuiz = activityTypeFromDb?.toLowerCase() === 'quiz';
     const points = isQuiz
-      ? calculateQuizPoints(score)
+      ? calculateQuizPoints(typeof score === 'number' ? score : null)
       : getActivityPoints(activityTypeFromDb, submission.activity ?? undefined);
 
-    // Award points
-    await awardPoints(userId, points, `Completed activity ${submission.activityId}`);
-
-    // Update submission with points awarded
-    await prisma.submission.update({
-      where: { id: submissionId },
-      data: { pointsAwarded: points },
+    const claimResult = await claimSubmissionPointsOnce({
+      submission: prisma.submission,
+      submissionId,
+      userId,
+      pointsAwarded: points,
     });
 
-    // Update streak
-    const streakResult = await updateStreak(userId, points);
+    if (!claimResult.claimed) {
+      return NextResponse.json({
+        success: true,
+        duplicate: true,
+        pointsAwarded: 0,
+        existingPointsAwarded: claimResult.existingPointsAwarded,
+      });
+    }
 
-    // Check for new achievements
-    const newAchievements = await checkAndAwardAchievements(userId);
+    let streakResult = { streakUpdated: false, newStreak: 0, pointsAwarded: 0 };
+    let newAchievements: string[] = [];
+
+    if (points > 0) {
+      try {
+        await awardPoints(userId, points, `Completed activity ${submission.activityId}`);
+        streakResult = await updateStreak(userId, points);
+        newAchievements = await checkAndAwardAchievements(userId);
+      } catch (awardError) {
+        // Roll back claim so a retried request can safely award.
+        await prisma.submission.updateMany({
+          where: {
+            id: submissionId,
+            userId,
+            pointsAwarded: points,
+          },
+          data: {
+            pointsAwarded: 0,
+          },
+        });
+        throw awardError;
+      }
+    }
 
     // Get updated user stats
     const user = await prisma.user.findUnique({
@@ -84,6 +115,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
+      duplicate: false,
       pointsAwarded: points,
       streak: {
         updated: streakResult.streakUpdated,

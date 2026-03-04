@@ -35,10 +35,12 @@ export default function LoginForm() {
                 console.error('[Login] Error:', result.error);
                 setError(`Invalid credentials. Please check your username and password.`);
             } else if (result?.ok) {
+                await Promise.race([
+                    clearServiceWorkerCache(),
+                    new Promise((resolve) => setTimeout(resolve, 1200)),
+                ]);
                 router.push("/dashboard");
                 router.refresh();
-                // Clear caches in the background to avoid delaying navigation feedback.
-                void clearServiceWorkerCache();
             } else {
                 setError("Login failed. Please try again.");
             }

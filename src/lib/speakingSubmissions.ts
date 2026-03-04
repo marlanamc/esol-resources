@@ -1,4 +1,5 @@
 import type { SpeakingSubmission } from "@/types/activity";
+import { submitWithOutbox } from "@/lib/submissionOutbox";
 
 const STORAGE_KEY = "speaking-warmup-draft";
 
@@ -58,18 +59,24 @@ export interface SubmitSpeakingWarmupResult {
     success: boolean;
     submission?: SpeakingSubmission | null;
     error?: string;
+    queued?: boolean;
 }
 
 export async function submitSpeakingWarmup(submission: SpeakingSubmissionPayload): Promise<SubmitSpeakingWarmupResult> {
     try {
-        const response = await fetch("/api/speaking/submissions", {
+        const submitResult = await submitWithOutbox({
+            endpoint: "/api/speaking/submissions",
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(submission),
+            payload: submission,
         });
-        
+
+        if (submitResult.queued) {
+            return { success: true, queued: true, submission: null };
+        }
+
+        const response = submitResult.response;
         const data = await response.json().catch(() => ({}));
-        
+
         if (!response.ok) {
             return { 
                 success: false, 

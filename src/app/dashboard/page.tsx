@@ -575,10 +575,20 @@ export default async function DashboardPage() {
             (result) => result.length
         ) as StudentEnrollment[];
 
+        type ReleasableAssignment = {
+            activity: {
+                type: string;
+                content?: string | null;
+            };
+        };
+
         // Filter out unreleased speaking activities from assignments
-        const filterReleasedActivities = (assignment: any) => {
+        const filterReleasedActivities = (assignment: ReleasableAssignment) => {
             if (assignment.activity.type !== "speaking") {
                 return true; // Show all non-speaking activities
+            }
+            if (!assignment.activity.content) {
+                return false;
             }
             // For speaking activities, check if released
             try {

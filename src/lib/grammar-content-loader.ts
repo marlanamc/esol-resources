@@ -52,25 +52,25 @@ export async function getGrammarContent(
     }
 
     try {
-        const module = await loader();
+        const loadedModule = await loader();
         // Try different export patterns
-        if (module.default && typeof module.default === "object" && "type" in module.default) {
-            return module.default as InteractiveGuideContent;
+        if (loadedModule.default && typeof loadedModule.default === "object" && "type" in loadedModule.default) {
+            return loadedModule.default as InteractiveGuideContent;
         }
         // Look for Content export (e.g., reportedSpeechContent, presentSimpleContent)
-        const contentKeys = Object.keys(module).filter(
+        const contentKeys = Object.keys(loadedModule).filter(
             (key) =>
                 key.toLowerCase().includes("content") &&
-                typeof module[key] === "object" &&
-                module[key] !== null &&
-                module[key] !== undefined &&
-                typeof module[key] === "object" &&
-                "type" in (module[key] as Record<string, unknown>)
+                typeof loadedModule[key] === "object" &&
+                loadedModule[key] !== null &&
+                loadedModule[key] !== undefined &&
+                typeof loadedModule[key] === "object" &&
+                "type" in (loadedModule[key] as Record<string, unknown>)
         );
         if (contentKeys.length > 0) {
             // Prefer the one that ends with "Content"
             const preferred = contentKeys.find((k) => k.toLowerCase().endsWith("content")) || contentKeys[0];
-            return module[preferred] as InteractiveGuideContent;
+            return loadedModule[preferred] as InteractiveGuideContent;
         }
         return null;
     } catch (error) {

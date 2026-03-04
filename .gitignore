@@ -67,6 +67,8 @@ __pycache__/
 
 # playwright MCP artifacts
 .playwright-mcp/
+playwright-report/
+test-results/
 
 # utility scripts and one-offs
 check-*.js

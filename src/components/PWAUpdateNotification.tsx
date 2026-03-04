@@ -2,19 +2,54 @@
 
 import { useEffect, useState } from 'react';
 import { RefreshCw, Sparkles } from 'lucide-react';
+import type { ServiceWorkerMessage, SwUpdateAvailableDetail } from '@/types/pwa';
+
+const UPDATE_DISMISS_KEY = 'pwa-update-dismiss-state-v1';
+const MAX_DISMISS_COUNT = 5;
+
+type DismissState = {
+  count: number;
+  lastDismissedAt: number;
+};
+
+function readDismissState(): DismissState {
+  if (typeof window === 'undefined') return { count: 0, lastDismissedAt: 0 };
+  try {
+    const raw = localStorage.getItem(UPDATE_DISMISS_KEY);
+    if (!raw) return { count: 0, lastDismissedAt: 0 };
+    const parsed = JSON.parse(raw) as Partial<DismissState>;
+    return {
+      count: typeof parsed.count === 'number' ? parsed.count : 0,
+      lastDismissedAt: typeof parsed.lastDismissedAt === 'number' ? parsed.lastDismissedAt : 0,
+    };
+  } catch {
+    return { count: 0, lastDismissedAt: 0 };
+  }
+}
+
+function writeDismissState(state: DismissState): void {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem(UPDATE_DISMISS_KEY, JSON.stringify(state));
+}
 
 export default function PWAUpdateNotification() {
   const [showUpdate, setShowUpdate] = useState(false);
   const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [dismissCount, setDismissCount] = useState(0);
+  const [dismissCount, setDismissCount] = useState(() => readDismissState().count);
+  const [remindTimerId, setRemindTimerId] = useState<number | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       const handleUpdateAvailable = (event: Event) => {
-        const customEvent = event as CustomEvent;
+        const customEvent = event as CustomEvent<SwUpdateAvailableDetail>;
+        const state = readDismissState();
+        const elapsed = Date.now() - state.lastDismissedAt;
+        const cooldownMs = state.count <= 1 ? 10 * 60 * 1000 : 30 * 60 * 1000;
+
         setWaitingWorker(customEvent.detail.waitingWorker);
-        setShowUpdate(true);
+        setDismissCount(state.count);
+        setShowUpdate(elapsed > cooldownMs || state.count === 0);
       };
 
       window.addEventListener('swUpdateAvailable', handleUpdateAvailable);
@@ -28,78 +63,38 @@ export default function PWAUpdateNotification() {
   const handleUpdate = () => {
     if (waitingWorker) {
       setIsUpdating(true);
-      waitingWorker.postMessage({ type: 'SKIP_WAITING' });
-
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        window.location.reload();
-      });
-
-      // Fallback reload after 3 seconds if controllerchange doesn't fire
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+      const message: ServiceWorkerMessage = { type: 'SKIP_WAITING' };
+      waitingWorker.postMessage(message);
     }
   };
 
   const handleDismiss = () => {
-    const newCount = dismissCount + 1;
+    const newCount = Math.min(dismissCount + 1, MAX_DISMISS_COUNT);
     setDismissCount(newCount);
     setShowUpdate(false);
+    writeDismissState({ count: newCount, lastDismissedAt: Date.now() });
 
-    // Progressively shorter delays - students WILL update eventually
-    // 1st dismiss: 2 minutes, 2nd: 1 minute, 3rd+: 30 seconds
-    const delay = newCount === 1 ? 2 * 60 * 1000 : newCount === 2 ? 60 * 1000 : 30 * 1000;
-    
-    setTimeout(() => {
+    const delay = newCount <= 1 ? 10 * 60 * 1000 : 30 * 60 * 1000;
+    if (remindTimerId) {
+      window.clearTimeout(remindTimerId);
+    }
+    const timerId = window.setTimeout(() => {
       setShowUpdate(true);
     }, delay);
+    setRemindTimerId(timerId);
   };
+
+  useEffect(() => {
+    return () => {
+      if (remindTimerId) {
+        window.clearTimeout(remindTimerId);
+      }
+    };
+  }, [remindTimerId]);
 
   if (!showUpdate) return null;
 
-  // After 2 dismisses, show a more urgent full-screen modal
-  if (dismissCount >= 2) {
-    return (
-      <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center animate-in zoom-in-95 duration-300">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-            <Sparkles className="w-8 h-8 text-white" />
-          </div>
-          <h2 className="text-xl font-bold text-text mb-2">
-            New Content Available! 🎉
-          </h2>
-          <p className="text-text-muted mb-6">
-            Your teacher added new activities. Update now to see them!
-          </p>
-          <button
-            onClick={handleUpdate}
-            disabled={isUpdating}
-            className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 px-6 rounded-xl transition-[background-color,transform] active:scale-95 disabled:opacity-70 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
-          >
-            {isUpdating ? (
-              <>
-                <RefreshCw className="w-5 h-5 animate-spin" />
-                Updating…
-              </>
-            ) : (
-              <>
-                <RefreshCw className="w-5 h-5" />
-                Update Now
-              </>
-            )}
-          </button>
-          <button
-            onClick={handleDismiss}
-            className="mt-3 text-sm text-text-muted hover:text-text"
-          >
-            Remind me later
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  // Standard bottom banner for first dismisses
+  // Standard bottom banner
   return (
     <div className="fixed bottom-20 md:bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm z-[9999]">
       <div className="bg-white rounded-2xl shadow-2xl border-2 border-primary/20 p-4 animate-in slide-in-from-bottom duration-300">

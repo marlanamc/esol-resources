@@ -3,6 +3,33 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
+function readIdempotencyKey(request: NextRequest): string | null {
+    const key = request.headers.get("x-idempotency-key");
+    if (!key) return null;
+    const trimmed = key.trim();
+    return trimmed.length > 0 ? trimmed : null;
+}
+
+function buildSubmissionContent(content: string, idempotencyKey: string | null): string {
+    return JSON.stringify({
+        text: content,
+        _meta: idempotencyKey ? { idempotencyKey } : undefined,
+    });
+}
+
+function extractSubmissionMeta(content: string | null | undefined): { idempotencyKey?: string } | null {
+    if (!content) return null;
+    try {
+        const parsed = JSON.parse(content);
+        if (parsed && typeof parsed === "object" && parsed._meta && typeof parsed._meta === "object") {
+            return parsed._meta as { idempotencyKey?: string };
+        }
+        return null;
+    } catch {
+        return null;
+    }
+}
+
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
@@ -17,6 +44,7 @@ export async function POST(request: NextRequest) {
 
         const body = await request.json();
         const { activityId, assignmentId, content } = body;
+        const idempotencyKey = readIdempotencyKey(request);
 
         if (!activityId || !assignmentId || !content) {
             return NextResponse.json(
@@ -51,6 +79,17 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "You are not enrolled in this class" }, { status: 403 });
         }
 
+        if (idempotencyKey) {
+            const existingSubmission = await prisma.submission.findFirst({
+                where: { userId, activityId, assignmentId },
+            });
+
+            const existingMeta = extractSubmissionMeta(existingSubmission?.content);
+            if (existingSubmission && existingMeta?.idempotencyKey === idempotencyKey) {
+                return NextResponse.json(existingSubmission);
+            }
+        }
+
         // Create or update submission
         const submission = await prisma.submission.upsert({
             where: {
@@ -61,14 +100,14 @@ export async function POST(request: NextRequest) {
                 },
             },
             update: {
-                content: JSON.stringify({ text: content }),
+                content: buildSubmissionContent(content, idempotencyKey),
                 status: "submitted",
             },
             create: {
                 userId,
                 activityId,
                 assignmentId,
-                content: JSON.stringify({ text: content }),
+                content: buildSubmissionContent(content, idempotencyKey),
                 status: "submitted",
             },
         });
@@ -98,6 +137,7 @@ export async function PUT(request: NextRequest) {
 
         const body = await request.json();
         const { submissionId, content } = body;
+        const idempotencyKey = readIdempotencyKey(request);
 
         if (!submissionId || !content) {
             return NextResponse.json(
@@ -128,11 +168,16 @@ export async function PUT(request: NextRequest) {
             );
         }
 
+        const existingMeta = extractSubmissionMeta(submission.content);
+        if (idempotencyKey && existingMeta?.idempotencyKey === idempotencyKey) {
+            return NextResponse.json(submission);
+        }
+
         // Update submission
         const updated = await prisma.submission.update({
             where: { id: submissionId },
             data: {
-                content: JSON.stringify({ text: content }),
+                content: buildSubmissionContent(content, idempotencyKey),
                 status: "submitted",
             },
         });
@@ -147,7 +192,6 @@ export async function PUT(request: NextRequest) {
         );
     }
 }
-
 
 
 

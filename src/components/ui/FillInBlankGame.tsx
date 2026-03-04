@@ -305,13 +305,19 @@ function parseQuestions(content: string): FillInBlankQuestion[] {
         const parsed = JSON.parse(content);
         if (parsed && typeof parsed === 'object' && 'sentences' in parsed && Array.isArray(parsed.sentences)) {
             return parsed.sentences
-                .filter((s: any) => s && s.text && s.correctAnswers && s.options)
-                .map((s: any, index: number) => ({
-                    id: s.id ?? index + 1,
-                    sentence: String(s.text).trim(),
-                    correctAnswer: Array.isArray(s.correctAnswers) ? s.correctAnswers[0] : String(s.correctAnswers),
-                    options: Array.isArray(s.options) ? s.options.map((o: any) => String(o).trim()) : [],
-                    explanation: s.explanation ? String(s.explanation).trim() : ''
+                .filter((sentence: unknown): sentence is { id?: unknown; text: unknown; correctAnswers: unknown; options: unknown; explanation?: unknown } =>
+                    !!sentence &&
+                    typeof sentence === "object" &&
+                    "text" in sentence &&
+                    "correctAnswers" in sentence &&
+                    "options" in sentence
+                )
+                .map((sentence: { id?: unknown; text: unknown; correctAnswers: unknown; options: unknown; explanation?: unknown }, index: number) => ({
+                    id: sentence.id ?? index + 1,
+                    sentence: String(sentence.text).trim(),
+                    correctAnswer: Array.isArray(sentence.correctAnswers) ? sentence.correctAnswers[0] : String(sentence.correctAnswers),
+                    options: Array.isArray(sentence.options) ? sentence.options.map((option: unknown) => String(option).trim()) : [],
+                    explanation: sentence.explanation ? String(sentence.explanation).trim() : ''
                 }));
         }
     } catch {

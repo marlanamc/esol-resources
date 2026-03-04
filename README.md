@@ -107,16 +107,9 @@ After seeding, you can log in with:
 
 ### Updating Content for Students
 
-When you add new activities or content, students using the PWA need to receive the update. The app checks for updates every 5 minutes, but you must increment the cache version:
+When you add new activities or content, students using the PWA receive updates automatically after deploy. The app checks for updates every 5 minutes and registers `sw.js` with a build-derived version query string (`NEXT_PUBLIC_BUILD_ID`), so no manual cache version bump is required.
 
-1. Open `public/sw.js`
-2. Update the `CACHE_VERSION` constant:
-```javascript
-const CACHE_VERSION = '2024-12-18-v1'; // Change date or increment version
-```
-3. Commit and deploy
-
-Students will see an "Update Available" notification within 5 minutes of opening the app. After 2 dismissals, a full-screen modal ensures they update.
+Students will see an "Update Available" notification within 5 minutes of opening the app, with reminder cooldowns to avoid repeated interruption.
 
 ### Environment Variables
 
@@ -124,6 +117,17 @@ Copy `.env.example` to `.env` and configure:
 - `POSTGRES_URL` - Database connection string
 - `NEXTAUTH_SECRET` - Auth secret (generate with `openssl rand -base64 32`)
 - `CRON_SECRET` - Secret for weekly points reset cron job
+- `NEXT_PUBLIC_ENABLE_SUBMISSION_OUTBOX` - `true` to enable offline submission queue + outbox banner
+
+### E2E Mobile Smoke Tests (Playwright)
+
+```bash
+# Install browsers (first run)
+npm run test:e2e:install
+
+# Run mobile PWA smoke suite
+npm run test:e2e:mobile
+```
 
 ## Development
 
@@ -142,11 +146,20 @@ npm run db:seed
 npx prisma studio
 ```
 
+### Quality Gate (Before PR)
+Run these locally and ensure they all pass:
+
+```bash
+npm run typecheck
+npm run lint
+npm run test:critical
+```
+
 ## Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
-- **Database**: SQLite (via Prisma)
+- **Database**: PostgreSQL (via Prisma)
 - **Authentication**: NextAuth.js
 - **Styling**: Tailwind CSS 4 + Custom Design System
 - **ORM**: Prisma
