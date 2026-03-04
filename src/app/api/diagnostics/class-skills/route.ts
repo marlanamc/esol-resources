@@ -3,6 +3,43 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
+type MiniQuizQuestionMeta = {
+    question: string;
+    skillTag?: string;
+    difficulty?: string;
+};
+
+type StudentIdentity = {
+    id: string;
+    name: string | null;
+    username: string;
+};
+
+function parseMiniQuizLookup(content: string): Map<string, MiniQuizQuestionMeta> {
+    try {
+        const parsed = JSON.parse(content) as { miniQuiz?: unknown };
+        if (!Array.isArray(parsed?.miniQuiz)) return new Map();
+        const entries = (parsed.miniQuiz as Array<Record<string, unknown>>)
+            .map((q) => {
+                const id = typeof q.id === "string" ? q.id : null;
+                const question = typeof q.question === "string" ? q.question : null;
+                if (!id || !question) return null;
+                return [
+                    id,
+                    {
+                        question,
+                        skillTag: typeof q.skillTag === "string" ? q.skillTag : undefined,
+                        difficulty: typeof q.difficulty === "string" ? q.difficulty : undefined,
+                    },
+                ] as const;
+            })
+            .filter(Boolean) as Array<readonly [string, MiniQuizQuestionMeta]>;
+        return new Map(entries);
+    } catch {
+        return new Map();
+    }
+}
+
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
     if (!session?.user) {
@@ -47,6 +84,13 @@ export async function GET(request: Request) {
         select: { studentId: true },
     });
     const studentIds = enrollments.map((e) => e.studentId);
+    const students = await prisma.user.findMany({
+        where: { id: { in: studentIds } },
+        select: { id: true, name: true, username: true },
+    });
+    const studentById = new Map<string, StudentIdentity>(
+        students.map((student) => [student.id, student])
+    );
 
     if (studentIds.length === 0) {
         return NextResponse.json({
@@ -73,24 +117,45 @@ export async function GET(request: Request) {
         whereClause.difficulty = difficulty;
     }
 
-    // Aggregate responses by skillTag
-    const responses = await prisma.quizResponse.groupBy({
-        by: ["skillTag"],
-        where: whereClause,
-        _count: { id: true },
+    const activity = await prisma.activity.findUnique({
+        where: { id: activityId },
+        select: { content: true },
     });
+    const miniQuizLookup = parseMiniQuizLookup(activity?.content || "");
 
-    // Get individual responses to calculate correct counts and struggling students
+    // Get individual responses to calculate skill/question diagnostics and trend.
     const allResponses = await prisma.quizResponse.findMany({
         where: whereClause,
         select: {
             userId: true,
             skillTag: true,
             isCorrect: true,
+            questionId: true,
+            difficulty: true,
+            createdAt: true,
         },
     });
 
-    // Process skill data
+    const attemptedStudentsSet = new Set(allResponses.map((r) => r.userId));
+    const totalResponses = allResponses.length;
+    const totalCorrect = allResponses.filter((r) => r.isCorrect).length;
+
+    const now = Date.now();
+    const last7dStart = new Date(now - 7 * 24 * 60 * 60 * 1000);
+    const prev7dStart = new Date(now - 14 * 24 * 60 * 60 * 1000);
+
+    const recentResponses = allResponses.filter((r) => r.createdAt >= last7dStart);
+    const previousResponses = allResponses.filter(
+        (r) => r.createdAt >= prev7dStart && r.createdAt < last7dStart
+    );
+
+    const recentAccuracy = recentResponses.length
+        ? Math.round((recentResponses.filter((r) => r.isCorrect).length / recentResponses.length) * 100)
+        : null;
+    const previousAccuracy = previousResponses.length
+        ? Math.round((previousResponses.filter((r) => r.isCorrect).length / previousResponses.length) * 100)
+        : null;
+
     const skillMap = new Map<
         string,
         {
@@ -100,58 +165,91 @@ export async function GET(request: Request) {
         }
     >();
 
-    // Initialize from grouped data
-    responses.forEach((r) => {
-        if (r.skillTag) {
-            skillMap.set(r.skillTag, {
-                totalAttempts: r._count.id,
-                correctAttempts: 0,
-                studentScores: new Map(),
-            });
+    const questionMap = new Map<
+        string,
+        {
+            questionId: string;
+            question: string;
+            skillTag: string;
+            difficulty: string;
+            totalAttempts: number;
+            correctAttempts: number;
+            studentScores: Map<string, { correct: number; total: number }>;
         }
-    });
+    >();
 
-    // Populate with actual data
     allResponses.forEach((r) => {
-        if (!r.skillTag) return;
+        const skillTag = r.skillTag || miniQuizLookup.get(r.questionId)?.skillTag;
+        if (!skillTag) return;
 
-        const skill = skillMap.get(r.skillTag);
-        if (!skill) return;
-
-        if (r.isCorrect) {
-            skill.correctAttempts++;
-        }
-
-        // Track per-student performance
-        const studentScore = skill.studentScores.get(r.userId) || {
-            correct: 0,
-            total: 0,
+        const skill = skillMap.get(skillTag) || {
+            totalAttempts: 0,
+            correctAttempts: 0,
+            studentScores: new Map<string, { correct: number; total: number }>(),
         };
-        studentScore.total++;
-        if (r.isCorrect) {
-            studentScore.correct++;
-        }
-        skill.studentScores.set(r.userId, studentScore);
+        skill.totalAttempts++;
+        if (r.isCorrect) skill.correctAttempts++;
+
+        const studentSkill = skill.studentScores.get(r.userId) || { correct: 0, total: 0 };
+        studentSkill.total++;
+        if (r.isCorrect) studentSkill.correct++;
+        skill.studentScores.set(r.userId, studentSkill);
+        skillMap.set(skillTag, skill);
+
+        const questionMeta = miniQuizLookup.get(r.questionId);
+        const questionLabel = questionMeta?.question || r.questionId;
+        const questionDifficulty = r.difficulty || questionMeta?.difficulty || "unknown";
+        const question = questionMap.get(r.questionId) || {
+            questionId: r.questionId,
+            question: questionLabel,
+            skillTag,
+            difficulty: questionDifficulty,
+            totalAttempts: 0,
+            correctAttempts: 0,
+            studentScores: new Map<string, { correct: number; total: number }>(),
+        };
+        question.totalAttempts++;
+        if (r.isCorrect) question.correctAttempts++;
+
+        const studentQuestion = question.studentScores.get(r.userId) || { correct: 0, total: 0 };
+        studentQuestion.total++;
+        if (r.isCorrect) studentQuestion.correct++;
+        question.studentScores.set(r.userId, studentQuestion);
+        questionMap.set(r.questionId, question);
     });
 
-    // Format results
     const skills = Array.from(skillMap.entries()).map(([skillTag, data]) => {
         const percentCorrect =
             data.totalAttempts > 0
                 ? Math.round((data.correctAttempts / data.totalAttempts) * 100)
                 : 0;
 
-        // Count students with <60% on this skill
         let studentsStruggling = 0;
-        data.studentScores.forEach((studentScore) => {
+        const strugglingStudents: Array<{
+            id: string;
+            name: string;
+            username: string;
+            percentCorrect: number;
+        }> = [];
+        data.studentScores.forEach((studentScore, studentId) => {
             const studentPercent =
                 studentScore.total > 0
                     ? (studentScore.correct / studentScore.total) * 100
                     : 0;
             if (studentPercent < 60) {
                 studentsStruggling++;
+                const student = studentById.get(studentId);
+                if (student) {
+                    strugglingStudents.push({
+                        id: student.id,
+                        name: student.name || student.username,
+                        username: student.username,
+                        percentCorrect: Math.round(studentPercent),
+                    });
+                }
             }
         });
+        strugglingStudents.sort((a, b) => a.percentCorrect - b.percentCorrect);
 
         return {
             skillTag,
@@ -159,16 +257,88 @@ export async function GET(request: Request) {
             correctAttempts: data.correctAttempts,
             percentCorrect,
             studentsStruggling,
+            studentsSeen: data.studentScores.size,
+            strugglingStudents,
         };
     });
 
-    // Sort by percentCorrect ascending (worst performing skills first)
     skills.sort((a, b) => a.percentCorrect - b.percentCorrect);
+
+    const questions = Array.from(questionMap.values())
+        .map((q) => {
+            const percentCorrect = q.totalAttempts
+                ? Math.round((q.correctAttempts / q.totalAttempts) * 100)
+                : 0;
+            let studentsStruggling = 0;
+            const strugglingStudents: Array<{
+                id: string;
+                name: string;
+                username: string;
+                percentCorrect: number;
+            }> = [];
+            q.studentScores.forEach((studentScore, studentId) => {
+                const studentPercent =
+                    studentScore.total > 0 ? (studentScore.correct / studentScore.total) * 100 : 0;
+                if (studentPercent < 60) {
+                    studentsStruggling++;
+                    const student = studentById.get(studentId);
+                    if (student) {
+                        strugglingStudents.push({
+                            id: student.id,
+                            name: student.name || student.username,
+                            username: student.username,
+                            percentCorrect: Math.round(studentPercent),
+                        });
+                    }
+                }
+            });
+            strugglingStudents.sort((a, b) => a.percentCorrect - b.percentCorrect);
+            return {
+                questionId: q.questionId,
+                question: q.question,
+                skillTag: q.skillTag,
+                difficulty: q.difficulty,
+                totalAttempts: q.totalAttempts,
+                correctAttempts: q.correctAttempts,
+                percentCorrect,
+                studentsStruggling,
+                strugglingStudents,
+            };
+        })
+        .sort((a, b) => {
+            if (a.percentCorrect !== b.percentCorrect) return a.percentCorrect - b.percentCorrect;
+            return b.totalAttempts - a.totalAttempts;
+        });
+
+    const latestAttemptAt = allResponses.length
+        ? allResponses.reduce(
+              (latest, row) => (row.createdAt > latest ? row.createdAt : latest),
+              allResponses[0]!.createdAt
+          )
+        : null;
 
     return NextResponse.json({
         classId,
         activityId,
         totalStudents: studentIds.length,
+        studentsAttempted: attemptedStudentsSet.size,
+        attemptRate: studentIds.length
+            ? Math.round((attemptedStudentsSet.size / studentIds.length) * 100)
+            : 0,
+        totalResponses,
+        overallAccuracy: totalResponses ? Math.round((totalCorrect / totalResponses) * 100) : 0,
+        latestAttemptAt,
+        trend: {
+            recentAccuracy,
+            previousAccuracy,
+            delta:
+                recentAccuracy !== null && previousAccuracy !== null
+                    ? recentAccuracy - previousAccuracy
+                    : null,
+            recentResponses: recentResponses.length,
+            previousResponses: previousResponses.length,
+        },
         skills,
+        questions,
     });
 }
