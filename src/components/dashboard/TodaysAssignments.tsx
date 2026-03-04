@@ -58,8 +58,9 @@ export const TodaysAssignments: React.FC<Props> = ({
     refreshOnMount = false,
 }) => {
     const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300/70 bg-amber-50 text-amber-800";
+    const hasInitialAssignments = initialAssignments !== undefined;
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(() => !hasInitialAssignments || refreshOnMount);
 
 
     const resolvedTitle = (() => {
@@ -80,12 +81,12 @@ export const TodaysAssignments: React.FC<Props> = ({
         }
 
         // If we already have data from the server, skip the client fetch.
-        if (initialAssignments && initialAssignments.length >= 0) {
+        if (hasInitialAssignments) {
             setLoading(false);
             return;
         }
         void fetchFeaturedAssignments();
-    }, [initialAssignments, refreshOnMount]);
+    }, [hasInitialAssignments, refreshOnMount]);
 
     const fetchFeaturedAssignments = async () => {
         try {

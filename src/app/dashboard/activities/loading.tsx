@@ -1,13 +1,10 @@
-import { BookOpenIcon } from "@/components/icons/Icons";
-
 export default function ActivitiesLoading() {
     return (
         <div className="min-h-screen bg-bg">
             <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12">
                 <div className="space-y-6">
                     <div className="flex flex-col items-center gap-2 mb-2">
-                        <BookOpenIcon className="w-10 h-10 text-primary/40" />
-                        <p className="text-sm font-medium text-text-muted">Loading activities...</p>
+                        <div className="h-4 w-36 skeleton rounded" />
                     </div>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
                         {Array.from({ length: 6 }).map((_, idx) => (

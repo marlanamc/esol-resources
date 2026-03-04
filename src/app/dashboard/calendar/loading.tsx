@@ -1,15 +1,10 @@
-import { CalendarIcon } from "@/components/icons/Icons";
-
 export default function CalendarLoading() {
     return (
         <div className="min-h-screen bg-bg">
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
                 <div className="flex justify-center w-full">
                     <div className="w-full max-w-md rounded-2xl border border-[#e4ddd1] bg-gradient-to-b from-[#fffdf9] to-white p-4 sm:p-6 shadow-[0_10px_30px_rgba(33,41,52,0.08)]">
-                        <div className="flex items-center gap-2 mb-4">
-                            <CalendarIcon className="w-6 h-6 text-primary/40" />
-                            <p className="text-sm font-medium text-text-muted">Loading calendar...</p>
-                        </div>
+                        <div className="h-4 w-32 skeleton rounded mb-4" />
                         <div className="h-64 skeleton rounded-xl" />
                     </div>
                 </div>

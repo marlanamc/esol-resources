@@ -29,31 +29,81 @@ interface LeaderboardEntry {
   avatarColor: string | null;
 }
 
+type LeaderboardPayload = {
+  leaderboard: LeaderboardEntry[];
+  userRank: number | null;
+};
+
+type LeaderboardCache = {
+  data: LeaderboardPayload;
+  cachedAt: number;
+};
+
+const LEADERBOARD_CACHE_TTL_MS = 60_000;
+let leaderboardCache: LeaderboardCache | null = null;
+let leaderboardInFlight: Promise<LeaderboardPayload> | null = null;
+
+function getFreshLeaderboardCache(): LeaderboardPayload | null {
+  if (!leaderboardCache) return null;
+  if (Date.now() - leaderboardCache.cachedAt > LEADERBOARD_CACHE_TTL_MS) return null;
+  return leaderboardCache.data;
+}
+
+async function loadLeaderboardPayload(): Promise<LeaderboardPayload> {
+  const cached = getFreshLeaderboardCache();
+  if (cached) return cached;
+
+  if (leaderboardInFlight) return leaderboardInFlight;
+
+  leaderboardInFlight = (async () => {
+    const [leaderboardResponse, statsResponse] = await Promise.all([
+      fetch('/api/gamification/leaderboard'),
+      fetch('/api/gamification/stats'),
+    ]);
+
+    if (!leaderboardResponse.ok || !statsResponse.ok) {
+      throw new Error('Failed to fetch leaderboard payload');
+    }
+
+    const leaderboardData = await leaderboardResponse.json();
+    const statsData = await statsResponse.json();
+    const payload: LeaderboardPayload = {
+      leaderboard: leaderboardData.leaderboard || [],
+      userRank: statsData.stats?.rank || null,
+    };
+    leaderboardCache = { data: payload, cachedAt: Date.now() };
+    return payload;
+  })().finally(() => {
+    leaderboardInFlight = null;
+  });
+
+  return leaderboardInFlight;
+}
+
 export default function LeaderboardPage() {
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [userRank, setUserRank] = useState<number | null>(null);
+  const cached = getFreshLeaderboardCache();
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(cached?.leaderboard || []);
+  const [loading, setLoading] = useState(!cached);
+  const [userRank, setUserRank] = useState<number | null>(cached?.userRank ?? null);
 
   useEffect(() => {
-    fetchLeaderboard();
+    let cancelled = false;
+    (async () => {
+      try {
+        const payload = await loadLeaderboardPayload();
+        if (cancelled) return;
+        setLeaderboard(payload.leaderboard);
+        setUserRank(payload.userRank);
+      } catch (error) {
+        console.error('Failed to fetch leaderboard:', error);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
-
-  const fetchLeaderboard = async () => {
-    try {
-      const response = await fetch(`/api/gamification/leaderboard`);
-      const data = await response.json();
-      setLeaderboard(data.leaderboard || []);
-
-      // Get user's stats to find their rank
-      const statsResponse = await fetch('/api/gamification/stats');
-      const statsData = await statsResponse.json();
-      setUserRank(statsData.stats?.rank || null);
-    } catch (error) {
-      console.error('Failed to fetch leaderboard:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const getRankColor = (rank: number) => {
     if (rank === 1) return { bg: 'rgba(255, 215, 0, 0.1)', border: '#FFD700', text: '#B8860B' }; // Gold

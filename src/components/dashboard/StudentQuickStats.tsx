@@ -11,24 +11,56 @@ type StudentSummaryResponse = {
     actualWeeklyPoints: number;
 };
 
+type StudentSummaryCache = {
+    data: StudentSummaryResponse;
+    cachedAt: number;
+};
+
+const STUDENT_SUMMARY_CACHE_TTL_MS = 60_000;
+let studentSummaryCache: StudentSummaryCache | null = null;
+let studentSummaryInFlight: Promise<StudentSummaryResponse | null> | null = null;
+
+function getFreshStudentSummaryCache(): StudentSummaryResponse | null {
+    if (!studentSummaryCache) return null;
+    if (Date.now() - studentSummaryCache.cachedAt > STUDENT_SUMMARY_CACHE_TTL_MS) return null;
+    return studentSummaryCache.data;
+}
+
+async function loadStudentSummary(): Promise<StudentSummaryResponse | null> {
+    const cached = getFreshStudentSummaryCache();
+    if (cached) return cached;
+
+    if (studentSummaryInFlight) return studentSummaryInFlight;
+
+    studentSummaryInFlight = (async () => {
+        try {
+            const res = await fetch("/api/dashboard/student-summary", { cache: "no-store" });
+            if (!res.ok) return null;
+            const data = (await res.json()) as StudentSummaryResponse;
+            studentSummaryCache = { data, cachedAt: Date.now() };
+            return data;
+        } catch {
+            return null;
+        } finally {
+            studentSummaryInFlight = null;
+        }
+    })();
+
+    return studentSummaryInFlight;
+}
+
 interface StudentQuickStatsProps {
     mobile?: boolean;
 }
 
 export function StudentQuickStats({ mobile = false }: StudentQuickStatsProps) {
-    const [summary, setSummary] = useState<StudentSummaryResponse | null>(null);
+    const [summary, setSummary] = useState<StudentSummaryResponse | null>(() => getFreshStudentSummaryCache());
 
     useEffect(() => {
         let cancelled = false;
         (async () => {
-            try {
-                const res = await fetch("/api/dashboard/student-summary", { cache: "no-store" });
-                if (!res.ok) return;
-                const data = (await res.json()) as StudentSummaryResponse;
-                if (!cancelled) setSummary(data);
-            } catch {
-                // Fail-soft: keep cards hidden.
-            }
+            const data = await loadStudentSummary();
+            if (!cancelled && data) setSummary(data);
         })();
         return () => {
             cancelled = true;

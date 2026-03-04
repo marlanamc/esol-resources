@@ -773,7 +773,6 @@ export default async function DashboardPage() {
                                     title="Weekly Checklist"
                                     ctaLabel="Start"
                                     variant="checklist"
-                                    refreshOnMount
                                 />
                             </section>
 

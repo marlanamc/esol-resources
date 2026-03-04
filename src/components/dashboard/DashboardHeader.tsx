@@ -9,7 +9,7 @@ interface DashboardHeaderProps {
 export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
     return (
         <header 
-            className="sticky top-0 backdrop-blur-md border-b z-[260] bg-[#fef9f3]/95 border-[rgba(0,0,0,0.08)] shadow-[0_2px_8px_rgba(38,30,20,0.08)] sm:shadow-sm transition-all"
+            className="sticky top-0 border-b z-[260] bg-[#fef9f3] border-[rgba(0,0,0,0.08)] shadow-[0_1px_4px_rgba(38,30,20,0.06)] sm:shadow-sm"
             style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
         >
             <div className="max-w-[1800px] mx-auto py-4 sm:py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">

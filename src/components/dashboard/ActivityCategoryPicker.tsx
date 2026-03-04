@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Mic, PenTool, Volume2 } from 'lucide-react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 // Re-use the Activity type shape from ActivityCategories
 interface Activity {
@@ -112,6 +113,11 @@ export function ActivityCategoryPicker({
     progressMap,
     initialCategory = null,
 }: ActivityCategoryPickerProps) {
+    const ACTIVITIES_CATEGORY_STORAGE_KEY = 'dashboard-activities-selected-category-v1';
+    const ACTIVITIES_LAST_HREF_STORAGE_KEY = 'dashboard-activities-last-href-v1';
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
     // Determine which categories actually have activities so we can hide empty ones
     const categoryHasActivities = useMemo(() => {
         const map: Record<string, boolean> = {};
@@ -178,6 +184,37 @@ export function ActivityCategoryPicker({
 
     const [selectedCategory, setSelectedCategory] = useState<string | null>(() => validInitialCategory);
 
+    const updateCategoryQuery = (category: string | null) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (category) params.set('category', category);
+        else params.delete('category');
+        const qs = params.toString();
+        const nextHref = qs ? `${pathname}?${qs}` : pathname;
+        window.sessionStorage.setItem(ACTIVITIES_LAST_HREF_STORAGE_KEY, nextHref);
+        router.replace(nextHref, { scroll: false });
+    };
+
+    React.useEffect(() => {
+        if (selectedCategory) {
+            window.sessionStorage.setItem(ACTIVITIES_CATEGORY_STORAGE_KEY, selectedCategory);
+            return;
+        }
+        window.sessionStorage.removeItem(ACTIVITIES_CATEGORY_STORAGE_KEY);
+    }, [selectedCategory]);
+
+    React.useEffect(() => {
+        if (selectedCategory || validInitialCategory) return;
+        const stored = window.sessionStorage.getItem(ACTIVITIES_CATEGORY_STORAGE_KEY);
+        if (!stored) return;
+        if (!categoryHasActivities[stored]) return;
+        setSelectedCategory(stored);
+    }, [categoryHasActivities, selectedCategory, validInitialCategory]);
+
+    React.useEffect(() => {
+        const currentHref = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
+        window.sessionStorage.setItem(ACTIVITIES_LAST_HREF_STORAGE_KEY, currentHref);
+    }, [pathname, searchParams]);
+
     // Category picker view
     if (!selectedCategory) {
         return (
@@ -186,7 +223,10 @@ export function ActivityCategoryPicker({
                     {visibleCards.map((card, idx) => (
                         <button
                             key={card.key}
-                            onClick={() => setSelectedCategory(card.key)}
+                            onClick={() => {
+                                setSelectedCategory(card.key);
+                                updateCategoryQuery(card.key);
+                            }}
                             className="category-card group flex flex-col rounded-2xl overflow-hidden border shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_10px_24px_rgba(52,43,34,0.10),0_2px_6px_rgba(52,43,34,0.06)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_16px_34px_rgba(52,43,34,0.14),0_4px_10px_rgba(52,43,34,0.08)] transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
                             style={{
                                 animationDelay: `${idx * 40}ms`,
@@ -240,7 +280,10 @@ export function ActivityCategoryPicker({
                 <ol className="flex items-center gap-2 text-sm font-medium text-text-muted">
                     <li>
                         <button
-                            onClick={() => setSelectedCategory(null)}
+                            onClick={() => {
+                                setSelectedCategory(null);
+                                updateCategoryQuery(null);
+                            }}
                             className="inline-flex items-center gap-1 hover:text-primary transition-colors cursor-pointer active:scale-95"
                         >
                             <svg
