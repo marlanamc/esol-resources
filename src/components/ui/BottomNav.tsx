@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface NavItem {
   href: string;
@@ -25,55 +26,86 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
 
   return (
     <>
-      <div className="bottom-nav-spacer md:hidden" />
-      <nav 
-        className="fixed bottom-0 left-0 right-0 bg-white border-t-2 shadow-lg md:hidden bottom-nav touch-manipulation" 
-        style={{ 
-          borderColor: 'var(--color-border)', 
+      {/* Spacer for content above the fixed nav */}
+      <div className="h-[60px] md:hidden" />
+      
+      <nav
+        className="fixed bottom-1.5 left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] max-w-[480px] rounded-[2rem] border md:hidden bottom-nav touch-manipulation overflow-hidden"
+        style={{
+          borderColor: 'rgba(214, 202, 190, 0.4)',
           zIndex: 'var(--z-fixed)',
-          touchAction: 'manipulation'
+          background: 'rgba(255, 252, 248, 0.85)',
+          boxShadow: '0 8px 24px rgba(49, 62, 84, 0.1), inset 0 1px 1px rgba(255,255,255,0.9)',
+          backdropFilter: 'blur(16px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(16px) saturate(180%)'
         }}
       >
         <div
-          className="grid h-16"
+          className="relative grid h-[52px] items-center px-1"
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
         >
-          {items.map((item) => {
-            // Dashboard root: only active on exact /dashboard. Others: active on path or sub-path
-            const isActive = item.href === '/dashboard'
-              ? pathname === '/dashboard'
-              : pathname === item.href || pathname?.startsWith(item.href + '/');
+          <AnimatePresence>
+            {items.map((item) => {
+              const isActive = item.href === '/dashboard'
+                ? pathname === '/dashboard'
+                : pathname === item.href || pathname?.startsWith(item.href + '/');
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                className={`relative flex flex-col items-center justify-center gap-1 transition-[color,transform,background-color,box-shadow] duration-150 cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-xl mx-1 my-1 overflow-visible ${
-                  isActive
-                    ? ''
-                    : 'active:scale-95'
-                }`}
-                style={{
-                  color: isActive ? '#5f5142' : 'var(--color-text-muted)',
-                  backgroundColor: isActive ? '#f3ede3' : 'transparent',
-                  boxShadow: isActive ? 'inset 0 0 0 1px rgba(176,155,127,0.45)' : 'none',
-                  touchAction: 'manipulation',
-                  WebkitTapHighlightColor: 'transparent'
-                }}
-              >
-                <div className={`w-6 h-6 transition-transform duration-150 pointer-events-none ${isActive ? 'scale-110' : ''}`}>
-                  {item.icon}
-                </div>
-                <span className="text-xs font-medium pointer-events-none">{item.label}</span>
-                {isActive && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 rounded-b-full pointer-events-none bg-primary" />
-                )}
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e: React.MouseEvent) => handleClick(e, item.href)}
+                  aria-label={item.label}
+                  className="relative flex h-full w-full items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c88470]/40 rounded-full"
+                  style={{
+                    WebkitTapHighlightColor: 'transparent'
+                  }}
+                >
+                  {/* Sliding Indicator (Pill) */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="active-pill"
+                      className="absolute inset-y-1 inset-x-1 z-0 rounded-[1.5rem]"
+                      transition={{
+                        type: 'spring',
+                        stiffness: 300,
+                        damping: 30,
+                        mass: 0.8
+                      }}
+                      style={{
+                        backgroundColor: 'rgba(244, 237, 235, 0.95)',
+                        boxShadow: '0 4px 10px rgba(211,145,127,0.12), inset 0 1px 0 rgba(255,255,255,0.8)',
+                        border: '1px solid rgba(211, 145, 127, 0.15)'
+                      }}
+                    />
+                  )}
+
+                  <motion.div
+                    className="relative z-10 flex flex-col items-center justify-center gap-0 -translate-y-0.5"
+                    animate={{
+                      scale: isActive ? 1.02 : 1,
+                      color: isActive ? '#c88470' : '#7d8aa1'
+                    }}
+                    whileTap={{ scale: 0.94 }}
+                  >
+                    <div className="flex h-8 w-8 items-center justify-center transition-colors">
+                      <div className="h-5.5 w-5.5 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
+                        {item.icon}
+                      </div>
+                    </div>
+                    {/* Optional small label for better UX if space permits, or stick to sr-only */}
+                    <span className={`text-[8.5px] font-bold tracking-tight leading-none -mt-1.5 transition-opacity duration-200 ${isActive ? 'opacity-100' : 'opacity-0 h-0 hidden'}`}>
+                      {item.label}
+                    </span>
+                    {!isActive && <span className="sr-only">{item.label}</span>}
+                  </motion.div>
+                </Link>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </nav>
     </>
   );
 };
+
