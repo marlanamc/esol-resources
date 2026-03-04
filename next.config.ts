@@ -14,7 +14,6 @@ const buildId =
 
 const nextConfig: NextConfig = {
   experimental: {
-    viewTransition: true,
     optimizePackageImports: [
       'recharts',
       'framer-motion',

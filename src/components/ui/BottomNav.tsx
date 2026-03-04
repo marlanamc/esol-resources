@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface BottomNavRenderItem {
   href: string;
@@ -15,7 +15,9 @@ interface BottomNavProps {
 }
 
 export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
+  const ACTIVITIES_LAST_HREF_STORAGE_KEY = 'dashboard-activities-last-href-v1';
   const pathname = usePathname();
+  const router = useRouter();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const navTapAtRef = useRef<number | null>(null);
   const previousPathnameRef = useRef<string | null>(null);
@@ -87,6 +89,13 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
     previousPathnameRef.current = pathname;
   }, [pathname]);
 
+  useEffect(() => {
+    // Proactively warm tab routes to reduce perceived tab-switch latency.
+    items.forEach((item) => {
+      router.prefetch(item.href);
+    });
+  }, [items, router]);
+
   return (
     <>
       {/* Spacer for content above the fixed nav */}
@@ -104,11 +113,9 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
         style={{
           borderColor: 'rgba(214, 202, 190, 0.4)',
           zIndex: 'var(--z-fixed)',
-          background: 'rgba(255, 252, 248, 0.94)',
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          background: 'rgba(255, 252, 248, 0.98)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          boxShadow: '0 -8px 30px rgba(49, 62, 84, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+          boxShadow: '0 -4px 16px rgba(49, 62, 84, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
         }}
       >
         <div
@@ -127,8 +134,19 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => {
+                prefetch
+                onClick={(event) => {
                   navTapAtRef.current = performance.now();
+                  if (item.href === '/dashboard/activities') {
+                    const lastActivitiesHref = window.sessionStorage.getItem(ACTIVITIES_LAST_HREF_STORAGE_KEY);
+                    if (lastActivitiesHref && lastActivitiesHref !== '/dashboard/activities') {
+                      event.preventDefault();
+                      router.push(lastActivitiesHref, { scroll: false });
+                    }
+                  }
+                }}
+                onTouchStart={() => {
+                  router.prefetch(item.href);
                 }}
                 aria-label={item.label}
                 className="relative flex h-full w-full items-center justify-center focus-visible:outline-none rounded-xl"

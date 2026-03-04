@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export type CalendarEvent = {
     id?: string;
@@ -16,14 +16,29 @@ interface MiniCalendarProps {
 }
 
 export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
+    const VIEW_DATE_STORAGE_KEY = 'dashboard-mini-calendar-view-date-v1';
     // Calculate today fresh on every render to avoid caching issues
     const today = new Date();
 
     const [viewDate, setViewDate] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const raw = window.sessionStorage.getItem(VIEW_DATE_STORAGE_KEY);
+            if (raw) {
+                const saved = new Date(raw);
+                if (!Number.isNaN(saved.getTime())) {
+                    saved.setDate(1);
+                    return saved;
+                }
+            }
+        }
         const d = new Date();
         d.setDate(1);
         return d;
     });
+
+    useEffect(() => {
+        window.sessionStorage.setItem(VIEW_DATE_STORAGE_KEY, viewDate.toISOString());
+    }, [viewDate]);
 
     const viewMonth = viewDate.getMonth();
     const viewYear = viewDate.getFullYear();

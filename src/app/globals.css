@@ -1038,17 +1038,6 @@ kbd {
   }
 }
 
-/* ========== View Transition ========== */
-/* Quick cross-fade for Next.js page navigations */
-::view-transition-old(root) {
-  animation: none;
-  opacity: 0;
-}
-
-::view-transition-new(root) {
-  animation: fadeIn 0.15s ease-out;
-}
-
 /* ========== Reduced Motion ========== */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1065,10 +1054,6 @@ kbd {
     animation: none !important;
   }
 
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none !important;
-  }
 }
 
 /* ========== Print Styles ========== */
