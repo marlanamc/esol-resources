@@ -176,8 +176,8 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <!-- Timeline line -->
                             <div style="position: absolute; top: 50%; left: 5%; right: 5%; height: 3px; background: #e5e7eb; transform: translateY(-50%);"></div>
                             <!-- Duration bar -->
-                            <div style="position: absolute; top: 50%; left: 15%; width: 40%; height: 24px; background: linear-gradient(to right, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.8)); border-radius: 12px; transform: translateY(-50%); border: 2px solid #8b5cf6;">
-                                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.7rem; color: #4c1d95; font-weight: 600;">had been working</span>
+                            <div style="position: absolute; top: 50%; left: 15%; width: 42%; min-width: 150px; height: 28px; background: linear-gradient(to right, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.8)); border-radius: 14px; transform: translateY(-50%); border: 2px solid #8b5cf6; display: flex; align-items: center; justify-content: flex-start; padding: 0 0.75rem;">
+                                <span style="font-size: 0.72rem; color: #4c1d95; font-weight: 600; line-height: 1; white-space: nowrap;">had been working</span>
                             </div>
                             <!-- Past event marker -->
                             <div style="position: absolute; left: 60%; top: 15%; transform: translateX(-50%);">
