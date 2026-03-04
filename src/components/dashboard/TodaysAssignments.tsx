@@ -476,7 +476,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                     durationMs={1800}
                 />
                 {/* Unified checklist container - header + category groups connected */}
-                <div className={`rounded-2xl overflow-hidden border border-[#e7dfd3] bg-[#f8f1e8] sm:bg-[#faf6f1] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.045)] ${isFullyComplete ? 'celebrate-complete ring-2 ring-[#d7c09a]/50' : ''}`}>
+                <div className={`rounded-2xl overflow-hidden border border-[#e7dfd3] bg-[#f8f1e8] sm:bg-[#faf6f1] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.045)] ${isFullyComplete ? 'ring-2 ring-[#d7c09a]/50' : ''}`}>
                     {/* Progress header */}
                     <div className="px-4 py-3 border-b border-border/15">
                         <div className="flex items-center justify-between gap-3 mb-3">
