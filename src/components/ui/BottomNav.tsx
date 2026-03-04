@@ -3,9 +3,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { BottomNavItem } from '@/types/navigation';
 
-interface BottomNavRenderItem extends BottomNavItem {
+interface BottomNavRenderItem {
+  href: string;
+  label: string;
   icon: React.ReactNode;
 }
 
@@ -112,8 +113,8 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                     isActive ? 'text-[#c88470]' : 'text-[#7d8aa1]'
                   }`}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center transition-colors">
-                    <div className="h-9 w-9 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
+                  <div className="flex h-8 w-8 items-center justify-center transition-colors">
+                    <div className="h-7 w-7 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
                       {item.icon}
                     </div>
                   </div>
