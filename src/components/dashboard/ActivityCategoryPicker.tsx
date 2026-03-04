@@ -94,6 +94,7 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
 interface ActivityCategoryPickerProps {
     activities: Activity[];
     completedActivityIds?: Set<string>;
+    completedActivityTitles?: Set<string>;
     progressMap?: Record<string, { progress: number; categoryData?: string }>;
     /** Initial category to open (e.g. from ?category=grammar). Must match a CATEGORY_CARDS key. */
     initialCategory?: string | null;
@@ -107,6 +108,7 @@ const ActivityCategories = React.lazy(() =>
 export function ActivityCategoryPicker({
     activities,
     completedActivityIds,
+    completedActivityTitles,
     progressMap,
     initialCategory = null,
 }: ActivityCategoryPickerProps) {
@@ -292,6 +294,7 @@ export function ActivityCategoryPicker({
                 <ActivityCategories
                     activities={activities}
                     completedActivityIds={completedActivityIds}
+                    completedActivityTitles={completedActivityTitles}
                     progressMap={progressMap}
                     filterCategory={selectedCategory}
                 />

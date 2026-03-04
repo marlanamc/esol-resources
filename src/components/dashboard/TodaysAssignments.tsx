@@ -253,7 +253,7 @@ export const TodaysAssignments: React.FC<Props> = ({
             const isCompleted = isGameRow
                 ? false
                 : isGrammarGuide
-                ? grammarPassed
+                ? (grammarPassed || assignment.progressStatus === 'completed')
                 : vocabProgress
                 ? isVocabComplete
                 : (progressValue >= 100 ||
@@ -352,8 +352,8 @@ export const TodaysAssignments: React.FC<Props> = ({
                         ) : (
                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
                                 isCompleted
-                                    ? 'bg-secondary/10 border-secondary/20 text-secondary'
-                                    : 'bg-white border-border-dark/60 text-transparent'
+                                    ? 'bg-secondary/15 border-secondary/45 text-secondary'
+                                    : 'bg-white border-slate-400/90 text-transparent shadow-sm'
                             }`}>
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                             </div>
@@ -451,7 +451,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         if (!isCompleted && progressValue > 0) {
                             return (
                                 <div className="mt-1.5">
-                                    <div className="h-1 w-24 max-w-full bg-border/20 rounded-full overflow-hidden">
+                                    <div className="h-1.5 w-24 max-w-full bg-[#e8e1d6]/50 rounded-full overflow-hidden border border-[#e8e1d6]/30">
                                         <div
                                             className="h-full rounded-full transition-all"
                                             style={{ width: `${progressValue}%`, backgroundColor: categoryStyle.accent }}
@@ -555,7 +555,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                     {assignments.map((assignment, index) => {
                     const submission = assignment.submissions[0];
-                    const isCompleted = submission?.completedAt;
+                    const isCompleted = submission?.completedAt || assignment.progressStatus === 'completed';
                     const isNew = isNewlyFeatured(assignment);
                     const categoryStyle = getCategoryStyle(assignment.activity.category);
                     const rawTitle = assignment.title || assignment.activity.title;

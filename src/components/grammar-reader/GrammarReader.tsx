@@ -205,6 +205,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         if (awardSent && quizScore === undefined) return;
 
         try {
+            const assignmentId = readAssignmentId();
             const completionResponse = await fetch("/api/grammar/complete", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -213,7 +214,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                     score: quizScore,
                     total: quizTotal,
                     activityId,
-                    responses
+                    responses,
+                    assignmentId,
                 }),
             });
             if (!completionResponse.ok) {
