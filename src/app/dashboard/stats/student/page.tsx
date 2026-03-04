@@ -5,8 +5,6 @@ import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { StudentStatsView } from "@/components/dashboard/StudentStatsView";
-import { BottomNav } from "@/components/ui";
-import { HomeIcon, BookOpenIcon, TrophyIcon, UserIcon } from "@/components/icons/Icons";
 
 export default async function StudentStatsPage() {
     const session = await getServerSession(authOptions);
@@ -71,19 +69,9 @@ export default async function StudentStatsPage() {
             <main className="container mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-6">
                 <StudentStatsView activities={statsActivities} />
             </main>
-
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                    { href: "/dashboard/leaderboard", label: "Leaderboard", icon: <TrophyIcon /> },
-                    { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
-                ]}
-            />
         </div>
     );
 }
-
 
 
 

@@ -3,9 +3,8 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
-import { BackButton, BottomNav } from "@/components/ui";
+import { BackButton } from "@/components/ui";
 import { CertificateShowcase } from "@/components/ui/CertificateShowcase";
-import { HomeIcon, BookOpenIcon as BookIcon, TrophyIcon, UserIcon } from "@/components/icons/Icons";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -116,15 +115,6 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
                     studentName,
                 }}
                 showSparkles={displayScore >= 60}
-            />
-
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookIcon /> },
-                    { href: "/dashboard/leaderboard", label: "Leaderboard", icon: <TrophyIcon /> },
-                    { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
-                ]}
             />
         </div>
     );

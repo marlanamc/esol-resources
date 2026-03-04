@@ -2,20 +2,19 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, updateStreak, checkAndAwardAchievements, calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
+import { calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
+import { applyAwardChain } from "@/lib/gamification-award-chain";
+import { acquireUserActivityScopeLock } from "@/lib/db-locks";
+import { normalizeAssignmentId } from "@/lib/assignment-scope";
+
+export { normalizeAssignmentId };
 
 export function readIdempotencyKey(request: Request): string | null {
     const key = request.headers.get("x-idempotency-key");
     if (!key) return null;
     const trimmed = key.trim();
     return trimmed.length > 0 ? trimmed : null;
-}
-
-export function normalizeAssignmentId(assignmentId: unknown): string | null {
-    return typeof assignmentId === "string" && assignmentId.trim() !== "" && assignmentId !== "null"
-        ? assignmentId
-        : null;
 }
 
 export function extractCategoryDataObject(value: unknown): Record<string, unknown> {
@@ -122,9 +121,10 @@ export async function saveActivitySubmission(params: {
     assignmentId: string | null;
     content: unknown;
     score: number | null;
-    pointsAwarded: number;
+    pointsAwarded?: number;
 }): Promise<SubmissionRecord> {
-    const { submission, userId, activityId, assignmentId, content, score } = params;
+    const { submission, userId, activityId, assignmentId, content, score, pointsAwarded } = params;
+    void pointsAwarded;
     const submissionPayload: SubmissionWritePayload = {
         content: JSON.stringify(content ?? null),
         score: typeof score === "number" ? score : null,
@@ -221,129 +221,145 @@ export async function POST(request: Request) {
 
         const assignmentKey = normalizeAssignmentId(assignmentId);
 
-        const progressWhere = {
-            userId,
-            activityId,
-            assignmentId: assignmentKey,
-        };
-        const existingProgress = await prisma.activityProgress.findFirst({
-            where: progressWhere,
-            select: {
-                id: true,
-                categoryData: true,
-                progress: true,
-            },
-        });
-
-        if (hasDuplicateSubmissionIdempotencyKey(existingProgress?.categoryData, idempotencyKey)) {
-            const existingSubmission = await prisma.submission.findFirst({
-                where: {
-                    userId,
-                    activityId,
-                    assignmentId: assignmentKey,
-                },
-                select: { id: true, score: true },
+        const submissionResult = await prisma.$transaction(async (tx) => {
+            await acquireUserActivityScopeLock(tx, {
+                userId,
+                activityId,
+                assignmentId: assignmentKey,
             });
 
+            const progressWhere = {
+                userId,
+                activityId,
+                assignmentId: assignmentKey,
+            };
+            const existingProgress = await tx.activityProgress.findFirst({
+                where: progressWhere,
+                select: {
+                    id: true,
+                    categoryData: true,
+                },
+            });
+
+            if (hasDuplicateSubmissionIdempotencyKey(existingProgress?.categoryData, idempotencyKey)) {
+                const existingSubmission = await tx.submission.findFirst({
+                    where: {
+                        userId,
+                        activityId,
+                        assignmentId: assignmentKey,
+                    },
+                    select: { id: true, score: true },
+                });
+
+                return {
+                    duplicateFromIdempotency: true,
+                    duplicateFromClaim: false,
+                    submissionId: existingSubmission?.id ?? null,
+                    score: existingSubmission?.score ?? null,
+                };
+            }
+
+            const submission = await saveActivitySubmission({
+                submission: tx.submission,
+                userId,
+                activityId,
+                assignmentId: assignmentKey,
+                content,
+                score: typeof score === "number" ? score : null,
+            });
+
+            // Update activity progress to completed.
+            const nextCategoryData = extractCategoryDataObject(existingProgress?.categoryData);
+            if (idempotencyKey) {
+                nextCategoryData.pwaLastSubmissionIdempotencyKey = idempotencyKey;
+                nextCategoryData.pwaLastSubmissionSyncedAt = new Date().toISOString();
+            }
+
+            if (existingProgress) {
+                await tx.activityProgress.update({
+                    where: { id: existingProgress.id },
+                    data: {
+                        progress: 100,
+                        status: "completed",
+                        categoryData: JSON.stringify(nextCategoryData),
+                    },
+                });
+            } else {
+                await tx.activityProgress.create({
+                    data: {
+                        userId,
+                        activityId,
+                        assignmentId: assignmentKey,
+                        progress: 100,
+                        status: "completed",
+                        categoryData: JSON.stringify(nextCategoryData),
+                    },
+                });
+            }
+
+            let duplicateFromClaim = false;
+
+            // Award points exactly once per submission by atomically claiming pointsAwarded.
+            if (calculatedPoints > 0) {
+                const claimResult = await claimSubmissionPointsOnce({
+                    submission: tx.submission,
+                    submissionId: submission.id,
+                    userId,
+                    pointsAwarded: calculatedPoints,
+                });
+                duplicateFromClaim = !claimResult.claimed;
+            }
+
+            return {
+                duplicateFromIdempotency: false,
+                duplicateFromClaim,
+                submissionId: submission.id,
+                score: submission.score,
+            };
+        });
+
+        if (submissionResult.duplicateFromIdempotency) {
             return NextResponse.json({
                 ok: true,
                 duplicate: true,
-                submissionId: existingSubmission?.id ?? null,
-                score: existingSubmission?.score ?? null,
+                submissionId: submissionResult.submissionId,
+                score: submissionResult.score,
                 points: 0,
             });
         }
 
-        const submission = await saveActivitySubmission({
-            submission: prisma.submission,
-            userId,
-            activityId,
-            assignmentId: assignmentKey,
-            content,
-            score: typeof score === "number" ? score : null,
-            pointsAwarded: calculatedPoints,
-        });
-
-        // Update activity progress to completed
-        const nextCategoryData = extractCategoryDataObject(existingProgress?.categoryData);
-        if (idempotencyKey) {
-            nextCategoryData.pwaLastSubmissionIdempotencyKey = idempotencyKey;
-            nextCategoryData.pwaLastSubmissionSyncedAt = new Date().toISOString();
-        }
-
-        if (existingProgress) {
-            await prisma.activityProgress.update({
-                where: { id: existingProgress.id },
-                data: {
-                    progress: 100,
-                    status: 'completed',
-                    categoryData: JSON.stringify(nextCategoryData),
-                },
-            });
-        } else {
-            await prisma.activityProgress.create({
-                data: {
+        const duplicate = submissionResult.duplicateFromClaim;
+        if (!duplicate && calculatedPoints > 0) {
+            const activityTypeLabel = activity.type.toLowerCase() === "quiz" ? "Quiz" : "";
+            const reason = activityTypeLabel
+                ? `${activity.title || activityId}|${activityTypeLabel}`
+                : `Completed: ${activity.title || activityId}`;
+            try {
+                await applyAwardChain({
                     userId,
-                    activityId,
-                    assignmentId: assignmentKey,
-                    progress: 100,
-                    status: 'completed',
-                    categoryData: JSON.stringify(nextCategoryData),
-                },
-            });
-        }
-
-        let duplicate = false;
-
-        // Award points exactly once per submission by atomically claiming pointsAwarded.
-        if (calculatedPoints > 0) {
-            const claimResult = await claimSubmissionPointsOnce({
-                submission: prisma.submission,
-                submissionId: submission.id,
-                userId,
-                pointsAwarded: calculatedPoints,
-            });
-
-            duplicate = !claimResult.claimed;
-
-            if (!duplicate) {
-                // Include activity type in the reason for better display.
-                const activityTypeLabel = activity.type.toLowerCase() === 'quiz' ? 'Quiz' : '';
-                const reason = activityTypeLabel
-                    ? `${activity.title || activityId}|${activityTypeLabel}`
-                    : `Completed: ${activity.title || activityId}`;
-
-                try {
-                    await awardPoints(
+                    points: calculatedPoints,
+                    reason,
+                });
+            } catch (awardError) {
+                await prisma.submission.updateMany({
+                    where: {
+                        id: submissionResult.submissionId ?? "",
                         userId,
-                        calculatedPoints,
-                        reason
-                    );
-
-                    // Update streak and check for achievements.
-                    await updateStreak(userId, calculatedPoints);
-                    await checkAndAwardAchievements(userId);
-                } catch (awardError) {
-                    await prisma.submission.updateMany({
-                        where: {
-                            id: submission.id,
-                            userId,
-                            pointsAwarded: calculatedPoints,
-                        },
-                        data: {
-                            pointsAwarded: 0,
-                        },
-                    });
-                    throw awardError;
-                }
+                        pointsAwarded: calculatedPoints,
+                    },
+                    data: {
+                        pointsAwarded: 0,
+                    },
+                });
+                throw awardError;
             }
         }
 
         return NextResponse.json({
             ok: true,
             duplicate,
-            submissionId: submission.id,
-            score: submission.score,
+            submissionId: submissionResult.submissionId,
+            score: submissionResult.score,
             points: duplicate ? 0 : calculatedPoints
         });
     } catch (error) {

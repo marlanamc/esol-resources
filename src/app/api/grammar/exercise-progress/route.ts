@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, updateStreak, checkAndAwardAchievements, POINTS } from "@/lib/gamification";
+import { POINTS } from "@/lib/gamification";
+import { applyAwardChain } from "@/lib/gamification-award-chain";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -87,7 +88,11 @@ export async function POST(request: Request) {
     const points = POINTS.GRAMMAR_EXERCISE;
     const reason = `grammar-exercise:${slug}:${exerciseKey}`;
 
-    await awardPoints(userId, points, reason);
+    await applyAwardChain({
+        userId,
+        points,
+        reason,
+    });
 
     // Update category data
     categoryData.exercises[exerciseKey] = {
@@ -120,10 +125,6 @@ export async function POST(request: Request) {
             },
         });
     }
-
-    // Update streak and check achievements
-    await updateStreak(userId, points);
-    await checkAndAwardAchievements(userId);
 
     return NextResponse.json({
         ok: true,
