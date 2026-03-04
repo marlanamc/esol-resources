@@ -31,8 +31,16 @@ export default function SubmissionOutboxManager() {
     const handleReplay = () => {
       void replayQueuedSubmissions();
     };
+
+    const VISIBILITY_DELAY_MS = 300;
+    let visibilityTimeoutId: ReturnType<typeof setTimeout> | null = null;
     const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") handleReplay();
+      if (document.visibilityState !== "visible") return;
+      if (visibilityTimeoutId) clearTimeout(visibilityTimeoutId);
+      visibilityTimeoutId = setTimeout(() => {
+        visibilityTimeoutId = null;
+        handleReplay();
+      }, VISIBILITY_DELAY_MS);
     };
 
     window.addEventListener(submissionOutboxEventName, handleOutboxUpdate);
@@ -43,6 +51,7 @@ export default function SubmissionOutboxManager() {
     void replayQueuedSubmissions();
 
     return () => {
+      if (visibilityTimeoutId) clearTimeout(visibilityTimeoutId);
       window.removeEventListener(submissionOutboxEventName, handleOutboxUpdate);
       window.removeEventListener("online", handleReplay);
       window.removeEventListener("focus", handleReplay);

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
-import CelebrationAnimation from '@/components/ui/CelebrationAnimation';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Sparkles } from 'lucide-react';
 
 interface VocabCategoryData {
@@ -469,12 +468,6 @@ export const TodaysAssignments: React.FC<Props> = ({
 
         return (
             <div className="mb-8">
-                <CelebrationAnimation
-                    trigger={isFullyComplete}
-                    type="confetti"
-                    message="Congrats!"
-                    durationMs={1800}
-                />
                 {/* Unified checklist container - header + category groups connected */}
                 <div className={`rounded-2xl overflow-hidden border border-[#e7dfd3] bg-[#f8f1e8] sm:bg-[#faf6f1] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.045)] ${isFullyComplete ? 'ring-2 ring-[#d7c09a]/50' : ''}`}>
                     {/* Progress header */}
