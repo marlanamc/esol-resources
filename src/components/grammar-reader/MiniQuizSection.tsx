@@ -235,7 +235,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                             return (
                                 <motion.div
                                     key={question.id}
-                                    className={`quiz-question p-4 sm:p-6 rounded-xl border-2 bg-white ${showFeedback && isCorrect
+                                    className={`quiz-question p-4 sm:p-6 rounded-xl border bg-white ${showFeedback && isCorrect
                                             ? "border-success bg-success/5"
                                             : showFeedback && !isCorrect
                                                 ? "border-error bg-error/5"
