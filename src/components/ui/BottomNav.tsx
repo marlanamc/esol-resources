@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface NavItem {
   href: string;
@@ -45,85 +45,73 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   return (
     <>
       {/* Spacer for content above the fixed nav */}
-      <div className="h-[60px] md:hidden" />
+      <div className="h-[72px] md:hidden" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }} />
       
       <nav
-        className={`fixed left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] max-w-[480px] rounded-[2rem] border md:hidden bottom-nav touch-manipulation overflow-hidden transition-all duration-300 ${
-          isKeyboardVisible ? 'translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        className={`fixed bottom-0 left-0 right-0 w-full border-t md:hidden bottom-nav touch-manipulation transition-all duration-300 ${
+          isKeyboardVisible ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
         }`}
         style={{
-          bottom: 'env(safe-area-inset-bottom, 0.5rem)',
-          borderColor: 'rgba(214, 202, 190, 0.4)',
+          borderColor: 'rgba(214, 202, 190, 0.3)',
           zIndex: 'var(--z-fixed)',
-          background: 'rgba(255, 252, 248, 0.85)',
-          boxShadow: '0 8px 24px rgba(49, 62, 84, 0.1), inset 0 1px 1px rgba(255,255,255,0.9)',
-          backdropFilter: 'blur(16px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(16px) saturate(180%)'
+          background: 'rgba(255, 252, 248, 0.96)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          boxShadow: '0 -4px 16px rgba(49, 62, 84, 0.04)'
         }}
       >
         <div
-          className="relative grid h-[52px] items-center px-1"
+          className="relative grid h-[64px] items-center px-2"
           style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
         >
-          <AnimatePresence>
-            {items.map((item) => {
-              const isActive = item.href === '/dashboard'
-                ? pathname === '/dashboard'
-                : pathname === item.href || pathname?.startsWith(item.href + '/');
+          {items.map((item) => {
+            const isActive = item.href === '/dashboard'
+              ? pathname === '/dashboard'
+              : pathname === item.href || pathname?.startsWith(item.href + '/');
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e: React.MouseEvent) => handleClick(e, item.href)}
-                  aria-label={item.label}
-                  className="relative flex h-full w-full items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c88470]/40 rounded-full"
-                  style={{
-                    WebkitTapHighlightColor: 'transparent'
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={(e: React.MouseEvent) => handleClick(e, item.href)}
+                aria-label={item.label}
+                className="relative flex h-full w-full items-center justify-center focus-visible:outline-none rounded-xl"
+                style={{
+                  WebkitTapHighlightColor: 'transparent'
+                }}
+              >
+                <motion.div
+                  className="relative z-10 flex flex-col items-center justify-center gap-1"
+                  animate={{
+                    color: isActive ? '#c88470' : '#7d8aa1'
                   }}
+                  whileTap={{ scale: 0.92 }}
                 >
-                  {/* Sliding Indicator (Pill) */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-pill"
-                      className="absolute inset-y-1 inset-x-1 z-0 rounded-[1.5rem]"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 300,
-                        damping: 30,
-                        mass: 0.8
-                      }}
-                      style={{
-                        backgroundColor: 'rgba(244, 237, 235, 0.95)',
-                        boxShadow: '0 4px 10px rgba(211,145,127,0.12), inset 0 1px 0 rgba(255,255,255,0.8)',
-                        border: '1px solid rgba(211, 145, 127, 0.15)'
-                      }}
-                    />
-                  )}
-
-                  <motion.div
-                    className="relative z-10 flex flex-col items-center justify-center gap-0 -translate-y-0.5"
-                    animate={{
-                      scale: isActive ? 1.02 : 1,
-                      color: isActive ? '#c88470' : '#7d8aa1'
-                    }}
-                    whileTap={{ scale: 0.94 }}
-                  >
-                    <div className="flex h-8 w-8 items-center justify-center transition-colors">
-                      <div className="h-5.5 w-5.5 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
-                        {item.icon}
-                      </div>
+                  <div className="flex h-7 w-7 items-center justify-center transition-colors">
+                    <div className="h-6 w-6 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
+                      {item.icon}
                     </div>
-                    {/* Optional small label for better UX if space permits, or stick to sr-only */}
-                    <span className={`text-[8.5px] font-bold tracking-tight leading-none -mt-1.5 transition-opacity duration-200 ${isActive ? 'opacity-100' : 'opacity-0 h-0 hidden'}`}>
-                      {item.label}
-                    </span>
-                    {!isActive && <span className="sr-only">{item.label}</span>}
-                  </motion.div>
-                </Link>
-              );
-            })}
-          </AnimatePresence>
+                  </div>
+                  <span className={`text-[10px] font-bold tracking-tight leading-none transition-all duration-200 ${isActive ? 'opacity-100' : 'opacity-70'}`}>
+                    {item.label}
+                  </span>
+                </motion.div>
+                
+                {isActive && (
+                  <motion.div
+                    layoutId="active-nav-indicator"
+                    className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#c88470] rounded-b-full"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 300,
+                      damping: 30
+                    }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </div>
       </nav>
     </>
