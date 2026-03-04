@@ -21,25 +21,53 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const previousPathnameRef = useRef<string | null>(null);
 
   useEffect(() => {
-    const handleResize = () => {
-      // On mobile, if the height decreases significantly, it's usually the keyboard
+    const DEBOUNCE_MS = 150;
+    const MIN_VALID_HEIGHT = 100;
+    let debounceId: ReturnType<typeof setTimeout> | null = null;
+
+    const runCheck = () => {
+      // Skip when tab is hidden - dimensions are unreliable during tab transitions
+      if (document.visibilityState === 'hidden') return;
+
       const isMobile = window.innerWidth <= 768;
       if (!isMobile) return;
 
-      const isKeyboardOpen = window.visualViewport 
-        ? window.visualViewport.height < window.innerHeight * 0.8
-        : false;
-      
+      // Guard against invalid dimensions (e.g. during tab switch, browser may report 0)
+      const innerH = window.innerHeight;
+      const viewportH = window.visualViewport?.height ?? innerH;
+      if (innerH < MIN_VALID_HEIGHT || viewportH < MIN_VALID_HEIGHT) {
+        setKeyboardVisible(false);
+        return;
+      }
+
+      const isKeyboardOpen = viewportH < innerH * 0.8;
       setKeyboardVisible(isKeyboardOpen);
+    };
+
+    const handleResize = () => {
+      if (debounceId) clearTimeout(debounceId);
+      debounceId = setTimeout(runCheck, DEBOUNCE_MS);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Short delay when tab becomes visible to let browser settle
+        if (debounceId) clearTimeout(debounceId);
+        debounceId = setTimeout(runCheck, 100);
+      }
     };
 
     window.addEventListener('resize', handleResize);
     window.visualViewport?.addEventListener('resize', handleResize);
     window.visualViewport?.addEventListener('scroll', handleResize);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
+      if (debounceId) clearTimeout(debounceId);
       window.removeEventListener('resize', handleResize);
       window.visualViewport?.removeEventListener('resize', handleResize);
       window.visualViewport?.removeEventListener('scroll', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
 

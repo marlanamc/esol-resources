@@ -31,10 +31,30 @@ export default function ServiceWorkerRegistration() {
         window.dispatchEvent(new CustomEvent<SwUpdateAvailableDetail>('swUpdateAvailable', { detail }));
       };
 
+      const VISIBILITY_CHECK_DELAY_MS = 300;
+      const VISIBILITY_CHECK_THROTTLE_MS = 30 * 1000;
+      let lastVisibilityCheckAt = 0;
+      let visibilityCheckTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
       const handleVisibilityChange = () => {
-        if (document.visibilityState === 'visible') {
-          checkForUpdates();
+        if (document.visibilityState !== 'visible') return;
+
+        if (visibilityCheckTimeoutId) {
+          clearTimeout(visibilityCheckTimeoutId);
+          visibilityCheckTimeoutId = null;
         }
+
+        const now = Date.now();
+        const timeSinceLastCheck = now - lastVisibilityCheckAt;
+        if (timeSinceLastCheck < VISIBILITY_CHECK_THROTTLE_MS) {
+          return;
+        }
+
+        visibilityCheckTimeoutId = setTimeout(() => {
+          visibilityCheckTimeoutId = null;
+          lastVisibilityCheckAt = Date.now();
+          checkForUpdates();
+        }, VISIBILITY_CHECK_DELAY_MS);
       };
 
       const handleControllerChange = () => {
@@ -100,6 +120,9 @@ export default function ServiceWorkerRegistration() {
       return () => {
         if (updateInterval) {
           clearInterval(updateInterval);
+        }
+        if (visibilityCheckTimeoutId) {
+          clearTimeout(visibilityCheckTimeoutId);
         }
         window.removeEventListener('focus', checkForUpdates);
         window.removeEventListener('online', checkForUpdates);
