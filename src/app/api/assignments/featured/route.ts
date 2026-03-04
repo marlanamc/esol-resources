@@ -56,6 +56,49 @@ export async function GET() {
         });
 
         const activityIds = Array.from(new Set(featuredAssignments.map((a) => a.activityId)));
+        const activityTitles = Array.from(new Set(featuredAssignments.map((a) => a.activity.title).filter(Boolean))) as string[];
+
+        // Fetch all submissions for these activities to ensure we catch completion
+        // even if it wasn't recorded under the exact assigned ID (e.g. canonical resolution shifted it).
+        // For grammar guides, we check by both ID and Title for maximum robustness.
+        const allActivitySubmissions = activityIds.length === 0 ? [] : await prisma.submission.findMany({
+            where: {
+                userId,
+                status: { in: ["submitted", "graded"] },
+                completedAt: { not: null },
+                OR: [
+                    { activityId: { in: activityIds } },
+                    { activity: { title: { in: activityTitles } } }
+                ]
+            },
+            select: {
+                activityId: true,
+                score: true,
+                activity: {
+                    select: { title: true }
+                }
+            }
+        });
+
+        // Map by both ID and Title (normalized)
+        const activitySubmissionMap = new Map<string, number[]>();
+        allActivitySubmissions.forEach(s => {
+            if (typeof s.score !== 'number') return;
+            
+            // Map by ID
+            const byId = activitySubmissionMap.get(s.activityId) || [];
+            byId.push(s.score);
+            activitySubmissionMap.set(s.activityId, byId);
+
+            // Map by Title if it's likely a grammar guide
+            if (s.activity?.title) {
+                const titleKey = `title:${s.activity.title.toLowerCase().trim()}`;
+                const byTitle = activitySubmissionMap.get(titleKey) || [];
+                byTitle.push(s.score);
+                activitySubmissionMap.set(titleKey, byTitle);
+            }
+        });
+
         const progressRows =
             activityIds.length === 0
                 ? []
@@ -94,9 +137,17 @@ export async function GET() {
             const isGrammarGuide =
                 (a.activity.type || "").toLowerCase() === "guide" &&
                 (a.activity.category || "").toLowerCase() === "grammar";
-            const hasPassedMiniQuiz = isGrammarGuide && a.submissions.some(
-                (s) => !!s.completedAt && typeof s.score === "number" && s.score > 70
+            
+            // Check both assignment-specific submissions AND any other submissions for this activity/title
+            const scoresById = activitySubmissionMap.get(a.activityId) || [];
+            const titleKey = a.activity.title ? `title:${a.activity.title.toLowerCase().trim()}` : null;
+            const scoresByTitle = titleKey ? (activitySubmissionMap.get(titleKey) || []) : [];
+            
+            const allRelevantScores = [...scoresById, ...scoresByTitle];
+            const hasPassedMiniQuiz = isGrammarGuide && allRelevantScores.some(
+                (score) => score > 70
             );
+
             return {
                 ...a,
                 featuredAt: a.updatedAt ?? a.createdAt,

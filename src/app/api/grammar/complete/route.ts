@@ -29,17 +29,17 @@ async function saveMiniQuizSubmission(params: {
     score: number;
     total: number;
     slug: string;
+    assignmentId?: string | null;
 }) {
-    const { userId, activityId, score, total, slug } = params;
+    const { userId, activityId, score, total, slug, assignmentId = null } = params;
     const payload = JSON.stringify({ type: "mini-quiz", score, total, slug });
     const now = new Date();
-    // For NULL-assignment records, avoid composite-key upsert and use deterministic
-    // find/update-or-create so this works across Prisma/Postgres behaviors.
+
     const existing = await prisma.submission.findFirst({
         where: {
             userId,
             activityId,
-            assignmentId: null,
+            assignmentId,
         },
         select: { id: true },
         orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
@@ -62,7 +62,7 @@ async function saveMiniQuizSubmission(params: {
         data: {
             userId,
             activityId,
-            assignmentId: null,
+            assignmentId,
             score,
             content: payload,
             status: "submitted",
@@ -77,7 +77,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { slug, score, total, activityId, responses } = await request.json();
+    const { slug, score, total, activityId, responses, assignmentId } = await request.json();
     if (!slug || typeof slug !== "string") {
         return NextResponse.json({ error: "slug is required" }, { status: 400 });
     }
@@ -106,14 +106,14 @@ export async function POST(request: Request) {
 
         const percentage = Math.round((score / total) * 100);
 
-        // Persist mini-quiz submission for this grammar activity, with a fallback path
-        // for legacy duplicate NULL-assignment rows.
+        // Persist mini-quiz submission
         await saveMiniQuizSubmission({
             userId,
             activityId: canonicalActivityId,
             score: percentage,
             total,
             slug,
+            assignmentId: assignmentId || null,
         });
 
         // 1b. Store individual question responses for diagnostic reporting
@@ -121,7 +121,7 @@ export async function POST(request: Request) {
             const quizResponses = responses.map((r: QuizResponseData) => ({
                 userId,
                 activityId: canonicalActivityId,
-                assignmentId: null,
+                assignmentId: assignmentId || null,
                 questionId: r.questionId,
                 userAnswer: r.userAnswer,
                 isCorrect: r.isCorrect,

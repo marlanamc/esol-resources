@@ -39,6 +39,7 @@ interface Category {
 interface ActivityCategoriesProps {
     activities: Activity[];
     completedActivityIds?: Set<string>;
+    completedActivityTitles?: Set<string>;
     progressMap?: Record<string, { progress: number; categoryData?: string }>;
     showEmpty?: boolean;
     filterCategory?: string;
@@ -536,33 +537,43 @@ const isPronunciationPracticeActivity = (activity: Activity) => {
 
 const getDisplayProgress = (
     activity: Activity,
-    progressMap?: Record<string, { progress: number; categoryData?: string }>,
-    completedActivityIds?: Set<string>
+    progressMap: Record<string, { progress: number; categoryData?: string }> | undefined,
+    completedActivityIds: Set<string>,
+    completedActivityTitles?: Set<string>
 ) => {
     if (isPronunciationPracticeActivity(activity)) return 0;
+    
+    // Check if truly completed first (by ID or Title)
     const isGrammarGuide =
         activity.type === "guide" &&
         (activity.category || "").toLowerCase() === "grammar";
-    if (isGrammarGuide && completedActivityIds?.has(activity.id)) {
-        return 100;
-    }
+    
+    const isCompleted = completedActivityIds.has(activity.id) || 
+        (isGrammarGuide && activity.title && completedActivityTitles?.has(activity.title.toLowerCase().trim()));
+
+    if (isCompleted) return 100;
+
     return getProgress(activity.id, progressMap);
 };
 
 const isActivityCompleted = (
     activity: Activity,
     completedActivityIds: Set<string>,
-    progressMap?: Record<string, { progress: number; categoryData?: string }>
+    progressMap?: Record<string, { progress: number; categoryData?: string }>,
+    completedActivityTitles?: Set<string>
 ) => {
     if (isPronunciationPracticeActivity(activity)) return false;
     const isGrammarGuide =
         activity.type === "guide" &&
         (activity.category || "").toLowerCase() === "grammar";
+    
     if (isGrammarGuide) {
-        // Grammar guides are only complete when a passing mini-quiz score is recorded.
-        return completedActivityIds.has(activity.id);
+        // Grammar guides are complete if their ID or Title matches a passing submission
+        const byId = completedActivityIds.has(activity.id);
+        const byTitle = activity.title ? completedActivityTitles?.has(activity.title.toLowerCase().trim()) : false;
+        return byId || byTitle;
     }
-    const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds);
+    const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds, completedActivityTitles);
     return completedActivityIds.has(activity.id) || progressValue >= 100;
 };
 
@@ -1477,9 +1488,9 @@ const ActivityCard = React.memo(function ActivityCard({
 
             {/* Progress bar - now more subtle and integrated */}
             {hasProgress && (
-                <div className="mt-3 h-1 bg-gray-100 rounded-full overflow-hidden relative z-10">
+                <div className="mt-3 h-1.5 bg-gray-200/50 rounded-full overflow-hidden relative z-10 border border-gray-200/30">
                     <div
-                        className="h-full bg-primary/70 rounded-full transition-all duration-500"
+                        className="h-full bg-primary/80 rounded-full transition-all duration-500 shadow-[0_0_8px_rgba(var(--primary-rgb),0.2)]"
                         style={{ width: `${Math.min(progressValue, 100)}%` }}
                     />
                 </div>
@@ -1491,6 +1502,7 @@ const ActivityCard = React.memo(function ActivityCard({
 export const ActivityCategories = React.memo(function ActivityCategories({
     activities,
     completedActivityIds = new Set(),
+    completedActivityTitles = new Set(),
     progressMap,
     showEmpty = false,
     filterCategory
@@ -1852,8 +1864,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
     }, [categories, showEmpty, filterCategory]);
 
     const renderActivityCard = useCallback((activity: Activity, accentColor?: string, hideTypeChip?: boolean, sectionLabel?: string) => {
-        const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds);
-        const isCompleted = isActivityCompleted(activity, completedActivityIds, progressMap);
+        const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds, completedActivityTitles);
+        const isCompleted = !!isActivityCompleted(activity, completedActivityIds, progressMap, completedActivityTitles);
 
         // Get texture for any activity type using the universal texture system
         const texture = getActivityTexture(activity, sectionLabel);
@@ -1873,7 +1885,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 tenseTexture={texture}
             />
         );
-    }, [completedActivityIds, progressMap]);
+    }, [completedActivityIds, completedActivityTitles, progressMap]);
 
     // Soft palette for section accents
     const SECTION_COLORS = ['#A3D9A5', '#A5C9E1', '#C5B3E6', '#F4B0B7', '#89CFF0', '#F0E68C'];
@@ -1922,7 +1934,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         const allActivities = sections.flatMap(s => s.activities);
         const totalCount = allActivities.length;
         const completedCount = allActivities.filter(a =>
-            isActivityCompleted(a, completedActivityIds, progressMap)
+            isActivityCompleted(a, completedActivityIds, progressMap, completedActivityTitles)
         ).length;
 
         return (
@@ -1957,8 +1969,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
                         // Sort: Incomplete first, then completed at the bottom
                         const sortedActivities = [...section.activities].sort((a, b) => {
-                            const aDone = isActivityCompleted(a, completedActivityIds, progressMap);
-                            const bDone = isActivityCompleted(b, completedActivityIds, progressMap);
+                            const aDone = isActivityCompleted(a, completedActivityIds, progressMap, completedActivityTitles);
+                            const bDone = isActivityCompleted(b, completedActivityIds, progressMap, completedActivityTitles);
                             if (aDone && !bDone) return 1;
                             if (!aDone && bDone) return -1;
                             return 0;
@@ -1966,7 +1978,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
                         // Count completed in this section
                         const sectionCompleted = sortedActivities.filter(a =>
-                            isActivityCompleted(a, completedActivityIds, progressMap)
+                            isActivityCompleted(a, completedActivityIds, progressMap, completedActivityTitles)
                         ).length;
                         const sectionTotal = sortedActivities.length;
 

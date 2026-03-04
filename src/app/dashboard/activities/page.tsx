@@ -263,21 +263,29 @@ export default async function ActivitiesPage({ searchParams }: Props) {
                 select: {
                     type: true,
                     category: true,
+                    title: true,
                 },
             },
         }
     });
-    const completedActivityIds = new Set<string>(
-        completedActivities
-            .filter((s) => {
-                const isGrammarGuide =
-                    s.activity.type === "guide" &&
-                    (s.activity.category || "").toLowerCase() === "grammar";
-                if (!isGrammarGuide) return true;
-                return typeof s.score === "number" && s.score > 70;
-            })
-            .map((s) => s.activityId)
-    );
+
+    const completedActivityIds = new Set<string>();
+    const completedActivityTitles = new Set<string>();
+
+    completedActivities.forEach((s) => {
+        const isGrammarGuide =
+            s.activity.type === "guide" &&
+            (s.activity.category || "").toLowerCase() === "grammar";
+        
+        const isPassed = !isGrammarGuide || (typeof s.score === "number" && s.score > 70);
+        
+        if (isPassed) {
+            completedActivityIds.add(s.activityId);
+            if (isGrammarGuide && s.activity.title) {
+                completedActivityTitles.add(s.activity.title.toLowerCase().trim());
+            }
+        }
+    });
 
     return (
         <div className="min-h-screen bg-bg">
@@ -285,6 +293,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
                 <ActivityCategoryPicker
                     activities={visibleActivities}
                     completedActivityIds={completedActivityIds}
+                    completedActivityTitles={completedActivityTitles}
                     progressMap={progressMap}
                     initialCategory={(await searchParams).category ?? null}
                 />
