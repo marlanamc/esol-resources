@@ -52,13 +52,13 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
           isKeyboardVisible ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
         }`}
         style={{
-          borderColor: 'rgba(214, 202, 190, 0.3)',
+          borderColor: 'rgba(214, 202, 190, 0.4)',
           zIndex: 'var(--z-fixed)',
-          background: 'rgba(255, 252, 248, 0.96)',
+          background: 'rgba(255, 252, 248, 0.94)',
           backdropFilter: 'blur(20px) saturate(180%)',
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          boxShadow: '0 -4px 16px rgba(49, 62, 84, 0.04)'
+          boxShadow: '0 -8px 30px rgba(49, 62, 84, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
         }}
       >
         <div
