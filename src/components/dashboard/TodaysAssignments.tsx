@@ -191,14 +191,14 @@ export const TodaysAssignments: React.FC<Props> = ({
     };
 
     const getVocabProgress = (assignment: FeaturedAssignment) => {
-        if (!assignment.activityId.startsWith('vocab-') || !assignment.categoryData) {
+        const categoryKey = (assignment.activity.category || '').toLowerCase();
+        const isVocabAssignment =
+            assignment.activityId.startsWith('vocab-') || categoryKey === 'vocab' || categoryKey === 'vocabulary';
+        if (!isVocabAssignment) {
             return null;
         }
 
-        const parsedCategoryData = parseCategoryData<VocabCategoryData>(assignment.categoryData);
-        if (!parsedCategoryData) {
-            return null;
-        }
+        const parsedCategoryData = parseCategoryData<VocabCategoryData>(assignment.categoryData) ?? {};
 
         const types: Array<keyof VocabCategoryData> = ['word-list', 'flashcards', 'matching', 'fill-blank'];
         const completed = types.filter(type => parsedCategoryData[type]?.completed).length;

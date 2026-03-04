@@ -107,8 +107,9 @@
     }
     .vocab-matching {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 32px;
+      grid-template-columns: minmax(0, max-content) 1fr;
+      row-gap: 6px;
+      column-gap: 12px;
       font-size: 12px;
     }
     .vocab-word {
