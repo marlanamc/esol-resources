@@ -4,6 +4,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { GradebookClient } from "./GradebookClient";
 import { normalizeGuideTitle } from "@/lib/grammar-activity-resolution";
 
@@ -29,11 +30,13 @@ export default async function GradebookPage({
     const selectedClassId = params.classId || null;
 
     // Get teacher's classes and students
-    const classes = await prisma.class.findMany({
+    const classes = await withPrismaReadRetry(() => prisma.class.findMany({
         where: { teacherId: userId },
-        include: {
+        select: {
+            id: true,
+            name: true,
             enrollments: {
-                include: {
+                select: {
                     student: {
                         select: {
                             id: true,
@@ -44,7 +47,7 @@ export default async function GradebookPage({
                 }
             }
         }
-    });
+    }));
 
     // Filter students by selected class if one is selected
     const filteredClasses = selectedClassId
@@ -52,7 +55,7 @@ export default async function GradebookPage({
         : classes;
 
     // Get all grammar guide activities
-    const activities = await prisma.activity.findMany({
+    const activities = await withPrismaReadRetry(() => prisma.activity.findMany({
         where: {
             category: "grammar",
             type: "guide",
@@ -66,7 +69,7 @@ export default async function GradebookPage({
         orderBy: {
             title: "asc"
         }
-    });
+    }));
 
     // Filter activities that actually have a mini-quiz
     const activitiesWithQuizzes = activities.filter(activity => {
@@ -91,7 +94,7 @@ export default async function GradebookPage({
         name: c.name,
     }));
 
-    const students = await prisma.user.findMany({
+    const students = await withPrismaReadRetry(() => prisma.user.findMany({
         where: {
             id: { in: studentIds }
         },
@@ -103,11 +106,11 @@ export default async function GradebookPage({
         orderBy: {
             name: "asc"
         }
-    });
+    }));
 
     // Fetch grammar guide submissions broadly, then remap legacy duplicate activity IDs
     // to the canonical gradebook activity ID by normalized title.
-    const rawSubmissions = await prisma.submission.findMany({
+    const rawSubmissions = await withPrismaReadRetry(() => prisma.submission.findMany({
         where: {
             userId: { in: studentIds },
             score: { not: null },
@@ -127,7 +130,7 @@ export default async function GradebookPage({
                 }
             }
         }
-    });
+    }));
 
     const displayActivityIds = new Set(activitiesWithQuizzes.map((a) => a.id));
     const displayIdByNormalizedTitle = new Map(
