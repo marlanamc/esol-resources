@@ -144,8 +144,9 @@ Units: housing, banking, workplace, health, other, grammar
     /* Vocabulary Matching */
     .vocab-matching {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px 40px;
+      grid-template-columns: minmax(0, max-content) 1fr;
+      row-gap: 8px;
+      column-gap: 12px;
       font-size: 14px;
     }
 
