@@ -55,6 +55,7 @@ model Class {
   enrollments    ClassEnrollment[]
 
   @@index([teacherId])
+  @@index([teacherId, createdAt])
 }
 
 model ClassEnrollment {
@@ -111,6 +112,7 @@ model ActivityProgress {
 
   @@unique([userId, activityId, assignmentId])
   @@index([userId])
+  @@index([userId, activityId, updatedAt])
 }
 
 model SpeakingSubmission {
@@ -169,6 +171,8 @@ model Assignment {
   @@index([classId])
   @@index([isFeatured])
   @@index([dueDate])
+  @@index([classId, createdAt])
+  @@index([classId, isFeatured, createdAt])
 }
 
 model Submission {
@@ -192,6 +196,8 @@ model Submission {
   @@index([userId])
   @@index([status])
   @@index([assignmentId])
+  @@index([userId, activityId, updatedAt])
+  @@index([userId, status, completedAt])
 }
 
 model Achievement {

@@ -2,6 +2,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { timedQuery } from "@/lib/perf-log";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
@@ -183,34 +185,73 @@ export default async function ActivitiesPage({ searchParams }: Props) {
     const userRole = session.user?.role;
 
     // Filter activities by release status for students
-    const activities = await prisma.activity.findMany({
-        where: userRole === "student"
-            ? {
-                deletedAt: null,
-                OR: [
-                    // Released grammar guides only
-                    { type: "guide", category: "grammar", isReleased: true },
-                    // Non-grammar activities (speaking/quiz filtered client-side)
-                    { NOT: { AND: [{ type: "guide" }, { category: "grammar" }] } }
-                ]
-            }
-            : { deletedAt: null },
-        orderBy: { createdAt: "desc" },
-    });
+    const activities = await timedQuery(
+        {
+            route: "/dashboard/activities",
+            queryLabel: "activity.findMany.activitiesPage",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.activity.findMany({
+                    where: userRole === "student"
+                        ? {
+                            deletedAt: null,
+                            OR: [
+                                { type: "guide", category: "grammar", isReleased: true },
+                                { NOT: { AND: [{ type: "guide" }, { category: "grammar" }] } }
+                            ]
+                        }
+                        : { deletedAt: null },
+                    select: {
+                        id: true,
+                        title: true,
+                        description: true,
+                        type: true,
+                        category: true,
+                        level: true,
+                        ui: true,
+                        content: true,
+                        isReleased: true,
+                    },
+                    orderBy: { createdAt: "desc" },
+                })
+            ),
+        (result) => result.length
+    );
     const visibleActivities = collapseEdPronunciationActivities(activities);
 
     if (userRole === "teacher") {
         // Teacher View - Get featured assignments and class info
-        const classes = await prisma.class.findMany({
-            where: { teacherId: userId },
-            include: {
-                assignments: {
-                    include: {
-                        activity: true,
-                    },
-                },
+        const classes = await timedQuery(
+            {
+                route: "/dashboard/activities",
+                queryLabel: "class.findMany.teacherActivities",
+                userRole,
             },
-        });
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.class.findMany({
+                        where: { teacherId: userId },
+                        select: {
+                            id: true,
+                            assignments: {
+                                select: {
+                                    id: true,
+                                    isFeatured: true,
+                                    activityId: true,
+                                    activity: {
+                                        select: {
+                                            id: true,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    })
+                ),
+            (result) => result.length
+        );
 
         const allAssignments = classes.flatMap((c) => c.assignments);
         const featuredAssignments = allAssignments.filter((a) => a.isFeatured);
@@ -244,30 +285,52 @@ export default async function ActivitiesPage({ searchParams }: Props) {
     }
 
     // Student View
-    const progressEntries = await prisma.activityProgress.findMany({
-        where: { userId },
-        select: { activityId: true, progress: true, categoryData: true, updatedAt: true },
-    });
+    const progressEntries = await timedQuery(
+        {
+            route: "/dashboard/activities",
+            queryLabel: "activityProgress.findMany.activitiesProgress",
+            userRole,
+        },
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.activityProgress.findMany({
+                    where: { userId },
+                    select: { activityId: true, progress: true, categoryData: true, updatedAt: true },
+                })
+            ),
+        (result) => result.length
+    );
     const progressMap = buildProgressMap(progressEntries as ProgressEntry[]);
 
-    const completedActivities = await prisma.submission.findMany({
-        where: {
-            userId,
-            status: { in: ["submitted", "graded"] },
-            completedAt: { not: null }
+    const completedActivities = await timedQuery(
+        {
+            route: "/dashboard/activities",
+            queryLabel: "submission.findMany.completedActivities",
+            userRole,
         },
-        select: {
-            activityId: true,
-            score: true,
-            activity: {
-                select: {
-                    type: true,
-                    category: true,
-                    title: true,
-                },
-            },
-        }
-    });
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.submission.findMany({
+                    where: {
+                        userId,
+                        status: { in: ["submitted", "graded"] },
+                        completedAt: { not: null }
+                    },
+                    select: {
+                        activityId: true,
+                        score: true,
+                        activity: {
+                            select: {
+                                type: true,
+                                category: true,
+                                title: true,
+                            },
+                        },
+                    }
+                })
+            ),
+        (result) => result.length
+    );
 
     const completedActivityIds = new Set<string>();
     const completedActivityTitles = new Set<string>();

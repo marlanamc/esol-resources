@@ -5,6 +5,8 @@ import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { withPrismaReadRetry } from "@/lib/prisma-retry";
+import { timedQuery } from "@/lib/perf-log";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
 import { StatCard, BottomNav } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon, BarChartIcon } from "@/components/icons/Icons";
@@ -25,71 +27,120 @@ export default async function StatsPage() {
         redirect("/dashboard");
     }
 
-    const classes = await prisma.class.findMany({
-        where: { teacherId: userId },
-        include: {
-            enrollments: {
-                include: {
-                    student: {
-                        select: {
-                            id: true,
-                            name: true,
-                            username: true,
-                        }
-                    }
-                }
-            },
-            assignments: true,
+    const classes = await timedQuery(
+        {
+            route: "/dashboard/stats",
+            queryLabel: "class.findMany.teacherStats",
+            userRole,
         },
-        orderBy: { createdAt: "desc" },
-    });
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.class.findMany({
+                    where: { teacherId: userId },
+                    select: {
+                        id: true,
+                        enrollments: {
+                            select: {
+                                student: {
+                                    select: {
+                                        id: true,
+                                        name: true,
+                                        username: true,
+                                    },
+                                },
+                            },
+                        },
+                        assignments: {
+                            select: {
+                                id: true,
+                            },
+                        },
+                    },
+                    orderBy: { createdAt: "desc" },
+                })
+            ),
+        (result) => result.length
+    );
 
     const allAssignments = classes.flatMap((c) => c.assignments);
-    const allActivities = await prisma.activity.findMany({
-        orderBy: { createdAt: "desc" },
-        select: {
-            id: true,
-            title: true,
-            category: true,
-            type: true,
+    const allActivities = await timedQuery(
+        {
+            route: "/dashboard/stats",
+            queryLabel: "activity.findMany.teacherStats",
+            userRole,
         },
-    });
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.activity.findMany({
+                    orderBy: { createdAt: "desc" },
+                    select: {
+                        id: true,
+                        title: true,
+                        category: true,
+                        type: true,
+                    },
+                })
+            ),
+        (result) => result.length
+    );
 
     // Get unique students with full gamification data
-    const students = await prisma.user.findMany({
-        where: {
-            id: {
-                in: Array.from(
-                    new Set(
-                        classes.flatMap((c) =>
-                            c.enrollments.map((e) => e.student.id)
-                        )
-                    )
-                )
-            }
+    const students = await timedQuery(
+        {
+            route: "/dashboard/stats",
+            queryLabel: "user.findMany.teacherStats",
+            userRole,
         },
-        select: {
-            id: true,
-            name: true,
-            username: true,
-            points: true,
-            weeklyPoints: true,
-            currentStreak: true,
-            longestStreak: true,
-            lastActivityDate: true,
-        },
-        orderBy: { name: 'asc' }
-    });
+        () =>
+            withPrismaReadRetry(() =>
+                prisma.user.findMany({
+                    where: {
+                        id: {
+                            in: Array.from(
+                                new Set(
+                                    classes.flatMap((c) =>
+                                        c.enrollments.map((e) => e.student.id)
+                                    )
+                                )
+                            )
+                        }
+                    },
+                    select: {
+                        id: true,
+                        name: true,
+                        username: true,
+                        points: true,
+                        weeklyPoints: true,
+                        currentStreak: true,
+                        longestStreak: true,
+                        lastActivityDate: true,
+                    },
+                    orderBy: { name: 'asc' }
+                })
+            ),
+        (result) => result.length
+    );
 
     const studentIds = students.map((s) => s.id);
 
     // Get last activity for each student from points ledger
     const recentActivity = studentIds.length
-        ? await prisma.pointsLedger.groupBy({
-            by: ['userId'],
-            where: { userId: { in: studentIds } },
-            _max: { createdAt: true }
-        })
+        ? await timedQuery(
+            {
+                route: "/dashboard/stats",
+                queryLabel: "pointsLedger.groupBy.recentActivity",
+                userRole,
+            },
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.pointsLedger.groupBy({
+                        by: ['userId'],
+                        where: { userId: { in: studentIds } },
+                        _max: { createdAt: true }
+                    })
+                ),
+            (result) => result.length
+        )
         : [];
 
     const lastActiveMap = recentActivity.reduce((acc, entry) => {
@@ -102,14 +153,25 @@ export default async function StatsPage() {
     today.setHours(0, 0, 0, 0);
 
     const activitiesToday = studentIds.length
-        ? await prisma.pointsLedger.groupBy({
-            by: ['userId'],
-            where: {
-                userId: { in: studentIds },
-                createdAt: { gte: today }
+        ? await timedQuery(
+            {
+                route: "/dashboard/stats",
+                queryLabel: "pointsLedger.groupBy.activitiesToday",
+                userRole,
             },
-            _count: true
-        })
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.pointsLedger.groupBy({
+                        by: ['userId'],
+                        where: {
+                            userId: { in: studentIds },
+                            createdAt: { gte: today }
+                        },
+                        _count: true
+                    })
+                ),
+            (result) => result.length
+        )
         : [];
 
     const activitiesTodayMap = activitiesToday.reduce((acc, entry) => {
