@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,6 +18,24 @@ interface BottomNavProps {
 export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const pathname = usePathname();
   const router = useRouter();
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // On mobile, if the height decreases significantly, it's usually the keyboard
+      const isMobile = window.innerWidth <= 768;
+      if (!isMobile) return;
+
+      const isKeyboardOpen = window.visualViewport 
+        ? window.visualViewport.height < window.innerHeight * 0.8
+        : false;
+      
+      setKeyboardVisible(isKeyboardOpen);
+    };
+
+    window.visualViewport?.addEventListener('resize', handleResize);
+    return () => window.visualViewport?.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -30,8 +48,11 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
       <div className="h-[60px] md:hidden" />
       
       <nav
-        className="fixed bottom-1.5 left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] max-w-[480px] rounded-[2rem] border md:hidden bottom-nav touch-manipulation overflow-hidden"
+        className={`fixed left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] max-w-[480px] rounded-[2rem] border md:hidden bottom-nav touch-manipulation overflow-hidden transition-all duration-300 ${
+          isKeyboardVisible ? 'translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        }`}
         style={{
+          bottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))',
           borderColor: 'rgba(214, 202, 190, 0.4)',
           zIndex: 'var(--z-fixed)',
           background: 'rgba(255, 252, 248, 0.85)',

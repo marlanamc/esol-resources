@@ -112,6 +112,30 @@ body::after {
   opacity: 1;
 }
 
+/* ========== Global Mobile Polish ========== */
+html {
+  background-color: var(--color-bg);
+  /* Prevent white flashes during rubber-banding */
+  overscroll-behavior-y: none;
+  /* Prevent pull-to-refresh on mobile */
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  /* Smooth inertial scrolling on iOS */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Disable double-tap zoom on buttons to remove 300ms delay */
+button, 
+a, 
+input, 
+select, 
+textarea {
+  touch-action: manipulation;
+}
+
 /* ========== Typography ========== */
 h1,
 h2,
@@ -1449,7 +1473,7 @@ kbd {
   }
 
   .bottom-nav {
-    padding-bottom: max(2px, env(safe-area-inset-bottom));
+    /* Padding removed to prevent "big" look on iOS safe areas */
   }
 }
 /* ========== Interactive Guide Rich Content ========== */
