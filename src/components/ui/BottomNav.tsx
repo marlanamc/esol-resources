@@ -52,7 +52,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
           isKeyboardVisible ? 'translate-y-32 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
         }`}
         style={{
-          bottom: 'calc(0.5rem + env(safe-area-inset-bottom, 0px))',
+          bottom: 'env(safe-area-inset-bottom, 0.5rem)',
           borderColor: 'rgba(214, 202, 190, 0.4)',
           zIndex: 'var(--z-fixed)',
           background: 'rgba(255, 252, 248, 0.85)',
