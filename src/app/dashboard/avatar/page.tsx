@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { BackButton, BottomNav } from "@/components/ui";
+import { BackButton } from "@/components/ui";
 import AvatarSelector from "@/components/ui/AvatarSelector";
-import { HomeIcon, BookOpenIcon, TrophyIcon, UserIcon } from "@/components/icons/Icons";
 import { DEFAULT_AVATAR, DEFAULT_COLOR } from "@/lib/avatar-constants";
 
 export default function AvatarPage() {
@@ -177,17 +176,6 @@ export default function AvatarPage() {
                 )}
             </div>
 
-            {/* Bottom Navigation */}
-            <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-border/30 md:hidden">
-                <BottomNav
-                    items={[
-                        { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                        { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                        { href: "/dashboard/leaderboard", label: "Leaderboard", icon: <TrophyIcon /> },
-                        { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
-                    ]}
-                />
-            </div>
         </div>
     );
 }

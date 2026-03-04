@@ -3,8 +3,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import type { ActivityProgressStatus } from "@/lib/activityProgress";
-import { awardPoints, getActivityPoints, POINTS, resolveActivityGameUi, updateStreak, checkAndAwardAchievements } from "@/lib/gamification";
+import { getActivityPoints, POINTS, resolveActivityGameUi } from "@/lib/gamification";
 import { calculateNumbersGameCompletionPercentage, isNumbersGameCategoryName } from "@/data/numbersGameCategories";
+import { applyAwardChain } from "@/lib/gamification-award-chain";
 
 const VOCAB_TYPES = ['word-list', 'flashcards', 'matching', 'fill-blank'] as const;
 
@@ -684,17 +685,21 @@ export async function POST(request: Request) {
             const reason = activityTypeLabel
                 ? `${activity.title}|${activityTypeLabel}`
                 : `Completed: ${activity.title}`;
-            await awardPoints(userId, points, reason);
+            await applyAwardChain({
+                userId,
+                points,
+                reason,
+            });
             pointsAwarded = points;
         } else {
             // Fallback if activity not found (shouldn't happen)
-            await awardPoints(userId, 5, `Completed activity ${activityId}`);
+            await applyAwardChain({
+                userId,
+                points: 5,
+                reason: `Completed activity ${activityId}`,
+            });
             pointsAwarded = 5;
         }
-
-        // Update streak and check for achievements after awarding points
-        await updateStreak(userId, pointsAwarded);
-        await checkAndAwardAchievements(userId);
     }
 
     return NextResponse.json({ ok: true, progress: record.progress, status: record.status, pointsAwarded });

@@ -5,8 +5,6 @@ import { BackButton } from "@/components/ui/BackButton";
 import CreateCalendarEventForm from "@/components/dashboard/CreateCalendarEventForm";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { BottomNav } from "@/components/ui";
-import { HomeIcon, BookOpenIcon, UsersIcon, UserIcon } from "@/components/icons/Icons";
 
 export default async function CalendarAddPage() {
     const session = await getServerSession(authOptions);
@@ -58,19 +56,9 @@ export default async function CalendarAddPage() {
                     <CreateCalendarEventForm classes={classes.map(c => ({ id: c.id, name: c.name }))} />
                 </div>
             </main>
-
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                    { href: "/dashboard/classes", label: "Classes", icon: <UsersIcon /> },
-                    { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
-                ]}
-            />
         </div>
     );
 }
-
 
 
 

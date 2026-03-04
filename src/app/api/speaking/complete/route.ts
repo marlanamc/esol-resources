@@ -2,23 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { awardPoints, updateStreak, checkAndAwardAchievements } from '@/lib/gamification';
+import { applyAwardChain } from '@/lib/gamification-award-chain';
+import { normalizeAssignmentId } from '@/lib/assignment-scope';
+import { acquireUserActivityScopeLock } from '@/lib/db-locks';
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user?.username) {
+        if (!session?.user?.id) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        // Get user
-        const user = await prisma.user.findUnique({
-            where: { username: session.user.username || '' },
-        });
-
-        if (!user) {
-            return NextResponse.json({ error: 'User not found' }, { status: 404 });
-        }
+        const userId = session.user.id;
 
         const body = await request.json();
         const { activityId, assignmentId } = body;
@@ -54,43 +49,55 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Activity is not a warmup activity' }, { status: 400 });
         }
 
-        const assignmentKey = typeof assignmentId === "string" ? assignmentId : null;
-
-        // Check if already completed to prevent duplicate awards
-        const existingProgress = await prisma.activityProgress.findFirst({
-            where: {
-                userId: user.id,
+        const assignmentKey = normalizeAssignmentId(assignmentId);
+        const completionResult = await prisma.$transaction(async (tx) => {
+            await acquireUserActivityScopeLock(tx, {
+                userId,
                 activityId,
                 assignmentId: assignmentKey,
-            },
+            });
+
+            const existingProgress = await tx.activityProgress.findFirst({
+                where: {
+                    userId,
+                    activityId,
+                    assignmentId: assignmentKey,
+                },
+                select: { id: true, status: true },
+            });
+
+            if (existingProgress?.status === 'completed') {
+                return { alreadyCompleted: true };
+            }
+
+            const progressData = {
+                userId,
+                activityId,
+                assignmentId: assignmentKey,
+                progress: 100,
+                status: 'completed' as const,
+                updatedAt: new Date(),
+            };
+
+            if (existingProgress) {
+                await tx.activityProgress.update({
+                    where: { id: existingProgress.id },
+                    data: progressData,
+                });
+            } else {
+                await tx.activityProgress.create({
+                    data: progressData,
+                });
+            }
+
+            return { alreadyCompleted: false };
         });
 
-        if (existingProgress?.status === 'completed') {
+        if (completionResult.alreadyCompleted) {
             return NextResponse.json({
                 success: true,
                 alreadyCompleted: true,
                 message: 'Activity already completed'
-            });
-        }
-
-        // Update ActivityProgress to completed
-        const progressData = {
-            userId: user.id,
-            activityId,
-            assignmentId: assignmentKey,
-            progress: 100,
-            status: 'completed' as const,
-            updatedAt: new Date(),
-        };
-
-        if (existingProgress) {
-            await prisma.activityProgress.update({
-                where: { id: existingProgress.id },
-                data: progressData,
-            });
-        } else {
-            await prisma.activityProgress.create({
-                data: progressData,
             });
         }
 
@@ -100,26 +107,20 @@ export async function POST(request: NextRequest) {
             select: { title: true },
         });
         const activityTitle = activityWithTitle?.title || activityId;
-        const updatedUser = await awardPoints(
-            user.id,
-            participationPoints,
-            `${activityTitle}|Warmup`
-        );
-
-        // Update streak (awards streak bonuses automatically)
-        const streakResult = await updateStreak(user.id, participationPoints);
-
-        // Check for new achievements
-        const newAchievements = await checkAndAwardAchievements(user.id);
+        const awardResult = await applyAwardChain({
+            userId,
+            points: participationPoints,
+            reason: `${activityTitle}|Warmup`,
+        });
 
         return NextResponse.json({
             success: true,
             pointsAwarded: participationPoints,
-            streakUpdated: streakResult.streakUpdated,
-            streakBonus: streakResult.pointsAwarded,
-            newAchievements: newAchievements.length,
-            totalPoints: updatedUser.points,
-            currentStreak: updatedUser.currentStreak,
+            streakUpdated: awardResult.streakUpdated,
+            streakBonus: awardResult.streakPointsAwarded,
+            newAchievements: awardResult.newAchievementsCount,
+            totalPoints: awardResult.totalPoints,
+            currentStreak: awardResult.currentStreak,
         });
     } catch (error) {
         console.error('Error completing warmup activity:', error);

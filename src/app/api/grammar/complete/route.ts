@@ -2,8 +2,10 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { awardPoints, updateStreak, checkAndAwardAchievements, POINTS } from "@/lib/gamification";
+import { POINTS } from "@/lib/gamification";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
+import { applyAwardChain } from "@/lib/gamification-award-chain";
+import { normalizeAssignmentId } from "@/lib/assignment-scope";
 
 interface GrammarExerciseCategoryData {
     exercises: Record<string, {
@@ -82,6 +84,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "slug is required" }, { status: 400 });
     }
 
+    const assignmentKey = normalizeAssignmentId(assignmentId);
     const userId = session.user.id;
     // Resolve to one canonical grammar guide ID so mini-quiz scores and question-level
     // diagnostics are always saved under the same activity the gradebook displays.
@@ -113,7 +116,7 @@ export async function POST(request: Request) {
             score: percentage,
             total,
             slug,
-            assignmentId: assignmentId || null,
+            assignmentId: assignmentKey,
         });
 
         // 1b. Store individual question responses for diagnostic reporting
@@ -121,7 +124,7 @@ export async function POST(request: Request) {
             const quizResponses = responses.map((r: QuizResponseData) => ({
                 userId,
                 activityId: canonicalActivityId,
-                assignmentId: assignmentId || null,
+                assignmentId: assignmentKey,
                 questionId: r.questionId,
                 userAnswer: r.userAnswer,
                 isCorrect: r.isCorrect,
@@ -196,11 +199,11 @@ export async function POST(request: Request) {
     const displayReason = grammarActivity?.title
         ? `${grammarActivity.title}|Grammar Guide`
         : reason;
-    await awardPoints(userId, basePoints, displayReason);
-
-    // Update streak and check for achievements
-    await updateStreak(userId, basePoints);
-    await checkAndAwardAchievements(userId);
+    await applyAwardChain({
+        userId,
+        points: basePoints,
+        reason: displayReason,
+    });
 
     return NextResponse.json({
         ok: true,

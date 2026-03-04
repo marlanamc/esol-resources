@@ -3,8 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { BottomNav, Card } from "@/components/ui";
-import { HomeIcon, BookOpenIcon, UsersIcon, BarChartIcon } from "@/components/icons/Icons";
+import { Card } from "@/components/ui";
 
 export default async function ClassesIndexPage() {
     const session = await getServerSession(authOptions);
@@ -97,17 +96,6 @@ export default async function ClassesIndexPage() {
                     </div>
                 )}
             </main>
-
-            {/* Mobile Bottom Nav - Teacher */}
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                    { href: "/dashboard/classes", label: "Classes", icon: <UsersIcon /> },
-                    { href: "/dashboard/stats", label: "Stats", icon: <BarChartIcon /> },
-                ]}
-            />
         </div>
     );
 }
-

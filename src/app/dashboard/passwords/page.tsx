@@ -4,8 +4,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { StudentPasswordManager } from "@/components/StudentPasswordManager";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { BackButton, BottomNav } from "@/components/ui";
-import { HomeIcon, BookOpenIcon, UsersIcon, UserIcon } from "@/components/icons/Icons";
+import { BackButton } from "@/components/ui";
 
 type StudentSummary = {
     id: string;
@@ -105,18 +104,8 @@ export default async function PasswordsPage() {
                     </div>
                 </div>
             </main>
-
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                    { href: "/dashboard/classes", label: "Classes", icon: <UsersIcon /> },
-                    { href: "/dashboard/profile", label: "Profile", icon: <UserIcon /> },
-                ]}
-            />
         </div>
     );
 }
-
 
 

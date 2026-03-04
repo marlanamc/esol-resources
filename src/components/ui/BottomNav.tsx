@@ -1,24 +1,23 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import type { BottomNavItem } from '@/types/navigation';
 
-interface NavItem {
-  href: string;
-  label: string;
+interface BottomNavRenderItem extends BottomNavItem {
   icon: React.ReactNode;
 }
 
 interface BottomNavProps {
-  items: NavItem[];
+  items: BottomNavRenderItem[];
 }
 
 export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const pathname = usePathname();
-  const router = useRouter();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const navTapAtRef = useRef<number | null>(null);
+  const previousPathnameRef = useRef<string | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,10 +42,21 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
     };
   }, []);
 
-  const handleClick = (e: React.MouseEvent, href: string) => {
-    e.preventDefault();
-    router.push(href);
-  };
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') {
+      previousPathnameRef.current = pathname;
+      return;
+    }
+
+    const previousPathname = previousPathnameRef.current;
+    if (previousPathname && previousPathname !== pathname) {
+      const navDurationMs = navTapAtRef.current ? Math.round(performance.now() - navTapAtRef.current) : null;
+      const durationText = navDurationMs !== null ? ` in ${navDurationMs}ms` : '';
+      console.debug(`[BottomNav] route changed: ${previousPathname} -> ${pathname}${durationText}`);
+      navTapAtRef.current = null;
+    }
+    previousPathnameRef.current = pathname;
+  }, [pathname]);
 
   return (
     <>
@@ -59,7 +69,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
       />
       
       <nav
-        className={`fixed bottom-0 left-0 right-0 w-full border-t md:hidden bottom-nav touch-manipulation transition-all duration-300 ${
+        className={`fixed bottom-0 left-0 right-0 w-full border-t md:hidden bottom-nav bottom-nav-motion touch-manipulation ${
           isKeyboardVisible ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
         }`}
         style={{
@@ -88,41 +98,35 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={(e: React.MouseEvent) => handleClick(e, item.href)}
+                onClick={() => {
+                  navTapAtRef.current = performance.now();
+                }}
                 aria-label={item.label}
                 className="relative flex h-full w-full items-center justify-center focus-visible:outline-none rounded-xl"
                 style={{
                   WebkitTapHighlightColor: 'transparent'
                 }}
               >
-                <motion.div
-                  className="relative z-10 flex flex-col items-center justify-center gap-0.5"
-                  animate={{
-                    color: isActive ? '#c88470' : '#7d8aa1'
-                  }}
-                  whileTap={{ scale: 0.92 }}
+                <div
+                  className={`relative z-10 flex flex-col items-center justify-center gap-0.5 transition-[color,opacity] duration-150 ${
+                    isActive ? 'text-[#c88470]' : 'text-[#7d8aa1]'
+                  }`}
                 >
-                  <div className="flex h-8 w-8 items-center justify-center transition-colors">
-                    <div className="h-7 w-7 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
+                  <div className="flex h-10 w-10 items-center justify-center transition-colors">
+                    <div className="h-9 w-9 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
                       {item.icon}
                     </div>
                   </div>
                   <span className={`text-[10px] font-bold tracking-tight leading-none transition-all duration-200 ${isActive ? 'opacity-100' : 'opacity-70'}`}>
                     {item.label}
                   </span>
-                </motion.div>
+                </div>
                 
-                {isActive && (
-                  <motion.div
-                    layoutId="active-nav-indicator"
-                    className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#c88470] rounded-b-full"
-                    transition={{
-                      type: 'spring',
-                      stiffness: 300,
-                      damping: 30
-                    }}
-                  />
-                )}
+                <div
+                  className={`bottom-nav-indicator absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#c88470] rounded-b-full ${
+                    isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                  }`}
+                />
               </Link>
             );
           })}

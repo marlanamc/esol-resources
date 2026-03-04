@@ -8,8 +8,8 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
-import { StatCard, BottomNav } from "@/components/ui";
-import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon, HomeIcon, BarChartIcon } from "@/components/icons/Icons";
+import { StatCard } from "@/components/ui";
+import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon } from "@/components/icons/Icons";
 import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
 import VerbQuizWeekSelector from "@/components/dashboard/VerbQuizWeekSelector";
 
@@ -274,15 +274,6 @@ export default async function StatsPage() {
                     )}
                 </section>
             </main>
-
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                    { href: "/dashboard/classes", label: "Classes", icon: <UsersIcon /> },
-                    { href: "/dashboard/stats", label: "Stats", icon: <BarChartIcon /> },
-                ]}
-            />
         </div>
     );
 }

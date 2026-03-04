@@ -9,9 +9,7 @@ import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton";
-import { BottomNav } from "@/components/ui";
 import {
-    HomeIcon,
     BookOpenIcon,
     TrophyIcon,
     UsersIcon,
@@ -509,15 +507,6 @@ export default async function DashboardPage() {
                     </div>
                 </main>
 
-                {/* Mobile Bottom Nav - Teacher */}
-                <BottomNav
-                    items={[
-                        { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
-                        { href: '/dashboard/classes', label: 'Classes', icon: <UsersIcon /> },
-                        { href: '/grammar-map', label: 'Map', icon: <MapIcon /> },
-                        { href: '/dashboard/stats', label: 'Stats', icon: <BarChartIcon /> },
-                    ]}
-                />
             </div>
         );
     } else {
@@ -864,15 +853,6 @@ export default async function DashboardPage() {
 
                 </main>
 
-                {/* Mobile Bottom Nav - Student */}
-                <BottomNav
-                    items={[
-                        { href: '/dashboard', label: 'Home', icon: <HomeIcon /> },
-                        { href: '/dashboard/activities', label: 'Activities', icon: <BookOpenIcon /> },
-                        { href: '/grammar-map', label: 'Map', icon: <MapIcon /> },
-                        { href: '/dashboard/leaderboard', label: 'Board', icon: <TrophyIcon /> },
-                    ]}
-                />
             </div>
         );
     }

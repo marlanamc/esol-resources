@@ -398,6 +398,14 @@ textarea {
   animation: scaleIn 0.5s ease-out forwards;
 }
 
+.bottom-nav-motion {
+  transition: transform 140ms ease-out, opacity 140ms ease-out;
+}
+
+.bottom-nav-indicator {
+  transition: opacity 120ms ease-out, transform 120ms ease-out;
+}
+
 .delay-100 {
   animation-delay: 100ms;
 }
@@ -1038,6 +1046,12 @@ kbd {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .bottom-nav-motion,
+  .bottom-nav-indicator {
+    transition: none !important;
+    animation: none !important;
   }
 }
 
