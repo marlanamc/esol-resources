@@ -187,16 +187,22 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
             void fetchProgress();
         };
 
+        const VISIBILITY_DELAY_MS = 300;
+        let visibilityTimeoutId: ReturnType<typeof setTimeout> | null = null;
         const handleVisibilityChange = () => {
-            if (document.visibilityState === "visible") {
+            if (document.visibilityState !== "visible") return;
+            if (visibilityTimeoutId) clearTimeout(visibilityTimeoutId);
+            visibilityTimeoutId = setTimeout(() => {
+                visibilityTimeoutId = null;
                 void fetchProgress();
-            }
+            }, VISIBILITY_DELAY_MS);
         };
 
         window.addEventListener("focus", handleFocus);
         document.addEventListener("visibilitychange", handleVisibilityChange);
 
         return () => {
+            if (visibilityTimeoutId) clearTimeout(visibilityTimeoutId);
             window.removeEventListener("focus", handleFocus);
             document.removeEventListener("visibilitychange", handleVisibilityChange);
         };
