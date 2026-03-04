@@ -566,27 +566,6 @@ textarea {
     inset 0 0 0 1px rgba(255, 255, 255, 0.6);
 }
 
-/* Celebration shimmer for 100% completion */
-.celebrate-complete {
-  position: relative;
-  overflow: hidden;
-}
-
-.celebrate-complete::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(233, 196, 106, 0.3) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: celebrateShimmer 2s ease-in-out infinite;
-  pointer-events: none;
-}
-
 /* Custom checkbox styling */
 .custom-checkbox {
   appearance: none;
