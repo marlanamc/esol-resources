@@ -90,14 +90,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                 }}
               >
                 <motion.div
-                  className="relative z-10 flex flex-col items-center justify-center gap-1"
+                  className="relative z-10 flex flex-col items-center justify-center gap-0.5"
                   animate={{
                     color: isActive ? '#c88470' : '#7d8aa1'
                   }}
                   whileTap={{ scale: 0.92 }}
                 >
-                  <div className="flex h-7 w-7 items-center justify-center transition-colors">
-                    <div className="h-6 w-6 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
+                  <div className="flex h-8 w-8 items-center justify-center transition-colors">
+                    <div className="h-7 w-7 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
                       {item.icon}
                     </div>
                   </div>
