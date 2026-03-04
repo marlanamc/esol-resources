@@ -100,16 +100,16 @@ export default async function CalendarPage() {
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-4 sm:space-y-6 pb-24 md:pb-12">
                 {/* Calendar - Full width on mobile, centered on larger screens */}
                 <div className="flex justify-center w-full">
-                    <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-4 sm:p-8 w-full max-w-md">
+                    <div className="w-full max-w-md rounded-2xl border border-[#e4ddd1] bg-gradient-to-b from-[#fffdf9] to-white p-4 sm:p-6 shadow-[0_10px_30px_rgba(33,41,52,0.08)]">
                         <MiniCalendar events={calendarEvents} />
                     </div>
                 </div>
 
                 {/* Upcoming Events - Full Width */}
-                <div className="bg-white border border-white/60 shadow-lg rounded-2xl p-4 sm:p-6">
+                <div className="rounded-2xl border border-[#e4ddd1] bg-gradient-to-b from-[#fffdf9] to-white p-4 sm:p-6 shadow-[0_10px_30px_rgba(33,41,52,0.08)]">
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-xl font-bold font-display text-text flex items-center gap-3">
-                            <span className="w-1.5 h-6 rounded-full bg-primary"></span>
+                        <h2 className="text-xl font-display font-bold text-text flex items-center gap-3">
+                            <span className="w-1.5 h-6 rounded-full bg-[#7a6955]"></span>
                             Upcoming
                         </h2>
                     </div>

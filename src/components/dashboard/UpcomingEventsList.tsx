@@ -41,7 +41,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
         <div>
             {(showSyncedLabel || error) && (
                 <div className="flex items-center justify-between mb-2">
-                    {showSyncedLabel && <span className="text-[10px] text-text-muted/70">Synced to students</span>}
+                    {showSyncedLabel && <span className="text-[11px] font-medium text-text-muted/70">Synced to students</span>}
                     {error && <p className="text-xs text-red-600">{error}</p>}
                 </div>
             )}
@@ -58,28 +58,38 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                             : `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
 
                         const canDelete = allowDelete && Boolean(ev.id);
+                        const colorClass = ev.type === "quiz"
+                            ? "bg-[#5f8267]"
+                            : ev.type === "holiday"
+                                ? "bg-[#6d89ac]"
+                                : "bg-[#a98966]";
+
+                        const typeLabel = ev.type === "quiz"
+                            ? "Quiz/Test"
+                            : ev.type === "holiday"
+                                ? "Holiday"
+                                : "Due";
 
                         return (
-                            <div key={`${ev.title}-${idx}`} className="flex flex-wrap sm:flex-nowrap items-center text-sm border border-border/40 rounded-lg px-3 py-2.5 sm:py-2 bg-white/60 gap-2 sm:gap-3">
-                                <div className="flex items-center gap-2 min-w-0 flex-1 basis-full sm:basis-auto">
-                                    <span
-                                        className={`w-2 h-2 rounded-full shrink-0 ${ev.type === "quiz"
-                                                ? "bg-[#6b9173]"
-                                                : ev.type === "holiday"
-                                                    ? "bg-[#738fb0]"
-                                                    : "bg-[#a98966]"
-                                            }`}
-                                    />
-                                    <span className="font-medium text-text truncate">{ev.title}</span>
+                            <div key={`${ev.title}-${idx}`} className="relative flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3 border border-border/45 rounded-xl bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)]">
+                                <span className={`absolute left-0 top-2 bottom-2 w-1 rounded-r ${colorClass}`} aria-hidden="true" />
+
+                                <div className="pl-1 min-w-0 flex-1 basis-full sm:basis-auto">
+                                    <div className="flex items-center gap-2 min-w-0">
+                                        <span className={`w-2 h-2 rounded-full shrink-0 ${colorClass}`} />
+                                        <span className="font-semibold text-text truncate">{ev.title}</span>
+                                    </div>
+                                    <p className="text-[11px] text-text-muted mt-1">{typeLabel}</p>
                                 </div>
-                                <div className="flex items-center gap-2 text-xs text-text-muted sm:ml-auto shrink-0">
-                                    <span className="whitespace-nowrap">{dateLabel}</span>
+
+                                <div className="flex items-center gap-2 text-xs text-text-muted sm:ml-auto shrink-0 pl-1">
+                                    <span className="whitespace-nowrap font-medium">{dateLabel}</span>
                                     {canDelete && (
                                         <button
                                             type="button"
                                             onClick={() => handleDelete(ev.id)}
                                             disabled={isDeleting === ev.id}
-                                            className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2.5 py-1.5 rounded-md bg-red-50 disabled:opacity-50 min-h-[36px] touch-manipulation"
+                                            className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2.5 py-1.5 rounded-md bg-red-50 disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
                                         >
                                             {isDeleting === ev.id ? "Deleting…" : "Delete"}
                                         </button>
