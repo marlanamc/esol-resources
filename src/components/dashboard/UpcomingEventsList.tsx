@@ -75,18 +75,35 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                 <span className={`absolute left-0 top-2 bottom-2 w-1 rounded-r ${colorClass}`} aria-hidden="true" />
 
                                 <div className="pl-1 min-w-0">
-                                    <div className="flex items-start justify-between gap-3">
+                                    <div className="flex items-start gap-3">
                                         <div className="flex items-center gap-2 min-w-0">
                                             <span className={`w-2 h-2 rounded-full shrink-0 mt-1 ${colorClass}`} />
                                             <span className="font-semibold text-text leading-tight whitespace-normal break-words">
                                                 {ev.title}
                                             </span>
                                         </div>
-                                        <span className="text-xs text-text-muted font-medium leading-tight text-right shrink-0">
-                                            {dateLabel}
-                                        </span>
                                     </div>
-                                    <p className="text-[11px] text-text-muted mt-1">{typeLabel}</p>
+                                    <div className="mt-2 ml-4 flex flex-wrap items-center gap-2">
+                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#d9cfca] bg-[#f6f2ef] px-3 py-1 text-[12px] font-medium text-[#6b7388]">
+                                            <svg
+                                                aria-hidden="true"
+                                                viewBox="0 0 24 24"
+                                                className="h-3.5 w-3.5"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            >
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                            </svg>
+                                            <span>{dateLabel}</span>
+                                        </span>
+                                        <span className="text-[11px] text-text-muted">{typeLabel}</span>
+                                    </div>
                                 </div>
                                 {canDelete && (
                                     <div className="mt-2 pl-5">
