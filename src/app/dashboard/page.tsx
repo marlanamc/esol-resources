@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { trackLogin } from "@/lib/gamification";
 import { parseCategoryData } from "@/lib/categoryData";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
@@ -124,11 +125,15 @@ export default async function DashboardPage() {
 
     if (userRole === "teacher") {
         // Teacher Dashboard
-        const classes = await prisma.class.findMany({
+        const classes = await withPrismaReadRetry(() => prisma.class.findMany({
             where: { teacherId: userId },
-            include: {
+            select: {
+                id: true,
+                name: true,
+                description: true,
                 enrollments: {
-                    include: {
+                    select: {
+                        id: true,
                         student: {
                             select: {
                                 id: true,
@@ -140,14 +145,38 @@ export default async function DashboardPage() {
                     },
                 },
                 assignments: {
-                    include: {
-                        activity: true,
+                    select: {
+                        id: true,
+                        title: true,
+                        activityId: true,
+                        classId: true,
+                        isFeatured: true,
+                        dueDate: true,
+                        createdAt: true,
+                        updatedAt: true,
+                        activity: {
+                            select: {
+                                id: true,
+                                title: true,
+                                description: true,
+                                type: true,
+                                category: true,
+                            },
+                        },
                     },
                 },
-                calendarEvents: true,
+                calendarEvents: {
+                    select: {
+                        id: true,
+                        title: true,
+                        date: true,
+                        endDate: true,
+                        type: true,
+                    },
+                },
             },
             orderBy: { createdAt: "desc" },
-        }) as TeacherClass[];
+        })) as TeacherClass[];
 
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
@@ -187,7 +216,7 @@ export default async function DashboardPage() {
 
         const totalStudents = classes.reduce((acc, c) => acc + c.enrollments.length, 0);
         const totalClasses = classes.length;
-        const pendingReviews = await prisma.submission.count({
+        const pendingReviews = await withPrismaReadRetry(() => prisma.submission.count({
             where: {
                 status: "pending",
                 assignment: {
@@ -196,7 +225,7 @@ export default async function DashboardPage() {
                     }
                 }
             }
-        });
+        }));
         const importantPageSections = [
             {
                 heading: "Student Insights",
@@ -512,7 +541,7 @@ export default async function DashboardPage() {
         );
     } else {
         // Student Dashboard
-        const enrollments = await prisma.classEnrollment.findMany({
+        const enrollments = await withPrismaReadRetry(() => prisma.classEnrollment.findMany({
             where: { studentId: userId },
             include: {
                 class: {
@@ -527,7 +556,7 @@ export default async function DashboardPage() {
                     },
                 },
             },
-        }) as StudentEnrollment[];
+        })) as StudentEnrollment[];
 
         // Filter out unreleased speaking activities from assignments
         const filterReleasedActivities = (assignment: any) => {
@@ -560,7 +589,7 @@ export default async function DashboardPage() {
             .filter((announcement) => announcement.message.length > 0);
 
         const classIds = enrollments.map(e => e.classId);
-        const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await prisma.assignment.findMany({
+        const featuredAssignmentsRawUnfiltered = classIds.length === 0 ? [] : await withPrismaReadRetry(() => prisma.assignment.findMany({
             where: {
                 classId: { in: classIds },
                 isFeatured: true,
@@ -579,7 +608,7 @@ export default async function DashboardPage() {
                 }
             },
             orderBy: { createdAt: "desc" }
-        });
+        }));
 
         // Filter out unreleased speaking activities from featured assignments
         const featuredAssignmentsRaw = featuredAssignmentsRawUnfiltered.filter(filterReleasedActivities);
@@ -588,11 +617,11 @@ export default async function DashboardPage() {
         const featuredProgressRows =
             featuredActivityIds.length === 0
                 ? []
-                : await prisma.activityProgress.findMany({
+                : await withPrismaReadRetry(() => prisma.activityProgress.findMany({
                       where: { userId, activityId: { in: featuredActivityIds } },
                       select: { activityId: true, progress: true, status: true, categoryData: true, updatedAt: true },
                       orderBy: { updatedAt: "desc" },
-                  });
+                  }));
 
         const featuredProgressMap = (featuredProgressRows as Array<{
             activityId: string;
