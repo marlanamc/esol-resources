@@ -269,6 +269,7 @@ export default async function DashboardPage() {
 
         const totalStudents = classes.reduce((acc, c) => acc + c.enrollments.length, 0);
         const totalClasses = classes.length;
+        const isTeacherUser = session.user.username === "teacher_user";
         const importantPageSections = [
             {
                 heading: "Student Insights",
@@ -347,6 +348,15 @@ export default async function DashboardPage() {
             },
         ];
 
+        if (isTeacherUser) {
+            importantPageSections[2].links.push({
+                href: "/dashboard/backend",
+                title: "Backend Users",
+                subtitle: "View account roles and permission flags.",
+                icon: UsersIcon,
+            });
+        }
+
 
         return (
             <div className="min-h-screen bg-bg">
@@ -389,6 +399,16 @@ export default async function DashboardPage() {
                                         </div>
 
                                         <TeacherPendingReviewsStat />
+
+                                        {isTeacherUser && (
+                                            <Link
+                                                href="/dashboard/backend"
+                                                className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white/90 px-4 py-2 text-sm font-semibold text-primary shadow-sm hover:shadow-md hover:border-primary/50 transition-all"
+                                            >
+                                                <UsersIcon size={14} />
+                                                Backend Users
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
 
@@ -413,6 +433,16 @@ export default async function DashboardPage() {
                                         </div>
 
                                         <TeacherPendingReviewsStat mobile />
+
+                                        {isTeacherUser && (
+                                            <Link
+                                                href="/dashboard/backend"
+                                                className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-white/90 px-3 py-1.5 text-xs font-semibold text-primary shadow-sm"
+                                            >
+                                                <UsersIcon size={12} />
+                                                Backend Users
+                                            </Link>
+                                        )}
                                     </div>
                                 </div>
                             </div>
