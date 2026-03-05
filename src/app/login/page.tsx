@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import LoginForm from "@/components/LoginForm";
 
 export default function LoginPage() {
@@ -31,7 +32,9 @@ export default function LoginPage() {
                         Espanol: Entra con tu clave temporal. Luego crea una clave nueva. Despues vuelve a entrar.
                     </p>
                 </div>
-                <LoginForm />
+                <Suspense fallback={<div className="text-center text-sm" style={{ color: "#5e6f80" }}>Loading login form...</div>}>
+                    <LoginForm />
+                </Suspense>
             </div>
         </div>
     );
