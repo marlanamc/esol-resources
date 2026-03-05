@@ -49,6 +49,40 @@ Copy/paste this block for each change:
 
 ## Entries
 
+## 2026-03-05 - Calendar Section Sync Option
+
+### Summary
+- Added optional calendar event sync across section siblings in the same `sectionGroupId`.
+- Added teacher UI toggle in Add to Calendar to choose one section or all sections.
+
+### Risk Level
+- Medium
+
+### Areas Impacted
+- API routes: calendar-events.
+- UI pages/components: calendar/new, CreateCalendarEventForm.
+- DB models/migrations: none.
+
+### Backward Compatibility
+- Compatible: Yes
+- Notable behavior changes:
+  - Default remains single-class event creation.
+  - Teachers can now opt in to multi-section creation.
+
+### Rollback Plan
+1. Revert calendar sync UI/API commits.
+2. Keep existing event data; no migration rollback needed.
+3. Verify Add to Calendar reverts to single-class behavior.
+
+### Verification Performed
+- [ ] Typecheck
+- [ ] Relevant route access checks (teacher/student/admin)
+- [ ] Data integrity checks
+- [ ] UI smoke check
+
+### Notes
+- Response now includes `createdCount` when creating calendar events.
+
 ## 2026-03-05 - Section Sync + Policy Centralization
 
 ### Summary
@@ -86,4 +120,3 @@ Copy/paste this block for each change:
 ### Notes
 - Teacher checklist now shows `N sections` badge on deduped synced items.
 - Leaderboard selector moved to subtle subtitle inline dropdown.
-

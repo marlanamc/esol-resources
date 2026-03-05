@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 interface ClassOption {
     id: string;
     name: string;
+    sectionGroupId: string | null;
 }
 
 interface Props {
@@ -15,6 +16,7 @@ interface Props {
 export default function CreateCalendarEventForm({ classes }: Props) {
     const router = useRouter();
     const [classId, setClassId] = useState(classes[0]?.id || "");
+    const [syncToSectionGroup, setSyncToSectionGroup] = useState(false);
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [type, setType] = useState<"holiday" | "event" | "due" | "quiz">("holiday");
@@ -23,6 +25,8 @@ export default function CreateCalendarEventForm({ classes }: Props) {
     const [error, setError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState("");
+    const selectedClass = classes.find((cls) => cls.id === classId);
+    const supportsSectionSync = Boolean(selectedClass?.sectionGroupId);
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -46,6 +50,7 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                     endDate: endDate || undefined,
                     type,
                     description: description || undefined,
+                    syncToSectionGroup: supportsSectionSync ? syncToSectionGroup : false,
                 }),
             });
 
@@ -54,7 +59,12 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                 throw new Error(data.error || "Unable to add calendar item");
             }
 
-            setSuccess("Saved and shared with students.");
+            const data = await res.json();
+            if (typeof data.createdCount === "number" && data.createdCount > 1) {
+                setSuccess(`Saved across ${data.createdCount} sections.`);
+            } else {
+                setSuccess("Saved and shared with students.");
+            }
             setTitle("");
             setDate("");
             setDescription("");
@@ -78,7 +88,14 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                     <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Class</label>
                     <select
                         value={classId}
-                        onChange={(e) => setClassId(e.target.value)}
+                        onChange={(e) => {
+                            const nextClassId = e.target.value;
+                            const nextClass = classes.find((cls) => cls.id === nextClassId);
+                            setClassId(nextClassId);
+                            if (!nextClass?.sectionGroupId) {
+                                setSyncToSectionGroup(false);
+                            }
+                        }}
                         className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:bg-bg-gray/40"
                         disabled={classes.length === 0}
                     >
@@ -91,6 +108,20 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                         )}
                     </select>
                 </div>
+
+                {supportsSectionSync && (
+                    <div className="rounded-md bg-blue-50 border border-blue-200 p-3">
+                        <label className="flex items-start gap-2 text-sm text-blue-900">
+                            <input
+                                type="checkbox"
+                                className="mt-0.5"
+                                checked={syncToSectionGroup}
+                                onChange={(e) => setSyncToSectionGroup(e.target.checked)}
+                            />
+                            Add this event to all sections in this section group.
+                        </label>
+                    </div>
+                )}
 
                 <div className="space-y-1">
                     <label className="text-xs font-semibold text-text-muted uppercase tracking-wide">Title</label>

@@ -17,10 +17,13 @@ export async function POST(request: NextRequest) {
         const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { classId, title, date, endDate, type = "holiday", description } = body;
+        const { classId, title, date, endDate, type = "holiday", description, syncToSectionGroup = false } = body;
 
         if (!classId || !title || !date) {
             return NextResponse.json({ error: "classId, title, and date are required" }, { status: 400 });
+        }
+        if (typeof syncToSectionGroup !== "boolean") {
+            return NextResponse.json({ error: "syncToSectionGroup must be a boolean" }, { status: 400 });
         }
 
         const allowedTypes = ["holiday", "event", "due", "reminder", "quiz"];
@@ -52,19 +55,52 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
-        const event = await prisma.calendarEvent.create({
-            data: {
-                classId,
+        const created = await prisma.$transaction(async (tx) => {
+            const eventData = {
                 title,
                 description: description || null,
                 date: start,
                 endDate: end,
                 type,
                 createdById: session.user.id,
-            },
+            };
+
+            const primaryEvent = await tx.calendarEvent.create({
+                data: {
+                    classId,
+                    ...eventData,
+                },
+            });
+
+            let createdCount = 1;
+            if (syncToSectionGroup && classItem.sectionGroupId) {
+                const siblingSections = await tx.class.findMany({
+                    where: {
+                        sectionGroupId: classItem.sectionGroupId,
+                        teacherId: classItem.teacherId,
+                        id: { not: classItem.id },
+                    },
+                    select: { id: true },
+                });
+
+                if (siblingSections.length > 0) {
+                    await tx.calendarEvent.createMany({
+                        data: siblingSections.map((section) => ({
+                            classId: section.id,
+                            ...eventData,
+                        })),
+                    });
+                    createdCount += siblingSections.length;
+                }
+            }
+
+            return { primaryEvent, createdCount };
         });
 
-        return NextResponse.json(event);
+        return NextResponse.json({
+            ...created.primaryEvent,
+            createdCount: created.createdCount,
+        });
     } catch (error: unknown) {
         console.error("Error creating calendar event:", error);
         const message = error instanceof Error ? error.message : undefined;

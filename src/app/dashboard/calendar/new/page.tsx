@@ -27,6 +27,7 @@ export default async function CalendarAddPage() {
         select: {
             id: true,
             name: true,
+            sectionGroupId: true,
         },
         orderBy: { createdAt: "desc" },
     });
@@ -55,11 +56,16 @@ export default async function CalendarAddPage() {
 
             <main className="container mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-6">
                 <div className="bg-white border border-border/40 rounded-2xl shadow-sm p-6">
-                    <CreateCalendarEventForm classes={classes.map(c => ({ id: c.id, name: c.name }))} />
+                    <CreateCalendarEventForm
+                        classes={classes.map((c) => ({
+                            id: c.id,
+                            name: c.name,
+                            sectionGroupId: c.sectionGroupId,
+                        }))}
+                    />
                 </div>
             </main>
         </div>
     );
 }
-
 
