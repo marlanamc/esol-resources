@@ -382,22 +382,23 @@ export const TodaysAssignments: React.FC<Props> = ({
                         </span>
                     )}
 
-                    {/* Title - same line as checkbox for clean alignment */}
-                    <div className={`min-w-0 flex-1 text-[13px] sm:text-sm font-semibold leading-tight break-words transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
-                        {displayTitle}
-                    </div>
-
-                    {/* Category chip - shown in flat list mode (mobile) */}
-                    {showCategoryChip && (
-                        <div className="shrink-0 w-[124px] flex justify-start">
-                            <span
-                                className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
-                                style={{ backgroundColor: showCategoryChip.bg, color: showCategoryChip.text }}
-                            >
-                                {showCategoryChip.label}
-                            </span>
+                    <div className="min-w-0 flex-1">
+                        {/* Title */}
+                        <div className={`text-[13px] sm:text-sm font-semibold leading-tight break-words transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
+                            {displayTitle}
                         </div>
-                    )}
+                        {/* Category chip - shown in flat list mode (mobile), below title */}
+                        {showCategoryChip && (
+                            <div className="mt-1">
+                                <span
+                                    className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
+                                    style={{ backgroundColor: showCategoryChip.bg, color: showCategoryChip.text }}
+                                >
+                                    {showCategoryChip.label}
+                                </span>
+                            </div>
+                        )}
+                    </div>
 
                     {/* Action Button - Category-colored outline style */}
                     <div className="shrink-0 pl-1">
