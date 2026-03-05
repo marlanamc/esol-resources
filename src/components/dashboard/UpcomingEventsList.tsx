@@ -51,10 +51,79 @@ const EVENT_TYPE_STYLES: Record<NonNullable<CalendarEvent["type"]>, {
 export default function UpcomingEventsList({ events, allowDelete = true, showSyncedLabel = true }: Props) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState<string | null>(null);
+    const [editingId, setEditingId] = useState<string | null>(null);
+    const [editTitle, setEditTitle] = useState("");
+    const [editDate, setEditDate] = useState("");
+    const [editEndDate, setEditEndDate] = useState("");
+    const [editType, setEditType] = useState<"holiday" | "event" | "due" | "reminder" | "quiz">("holiday");
+    const [editDescription, setEditDescription] = useState("");
     const [error, setError] = useState("");
+
+    const toDateInputValue = (value: Date | string | null | undefined) => {
+        if (!value) return "";
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "";
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    };
+
+    const startEditing = (event: CalendarEvent) => {
+        if (!event.id) return;
+        setError("");
+        setEditingId(event.id);
+        setEditTitle(event.title || "");
+        setEditDate(toDateInputValue(event.date));
+        setEditEndDate(toDateInputValue(event.endDate));
+        const eventType = event.type || "holiday";
+        if (eventType === "holiday" || eventType === "event" || eventType === "due" || eventType === "reminder" || eventType === "quiz") {
+            setEditType(eventType);
+        } else {
+            setEditType("holiday");
+        }
+        setEditDescription(event.description || "");
+    };
+
+    const handleSave = async (id?: string) => {
+        if (!id) return;
+        if (!editTitle.trim() || !editDate) {
+            setError("Title and start date are required.");
+            return;
+        }
+        setError("");
+        setIsSaving(id);
+        try {
+            const res = await fetch("/api/calendar-events", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id,
+                    title: editTitle.trim(),
+                    date: editDate,
+                    endDate: editEndDate || undefined,
+                    type: editType,
+                    description: editDescription.trim() || undefined,
+                }),
+            });
+            if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                throw new Error(data.error || "Failed to update event");
+            }
+            setEditingId(null);
+            router.refresh();
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : "Failed to update event");
+        } finally {
+            setIsSaving(null);
+        }
+    };
 
     const handleDelete = async (id?: string) => {
         if (!id) return;
+        const confirmed = window.confirm("Delete this event? This cannot be undone.");
+        if (!confirmed) return;
         setError("");
         setIsDeleting(id);
         try {
@@ -95,7 +164,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                             ? startDate.toLocaleDateString()
                             : `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
 
-                        const canDelete = allowDelete && Boolean(ev.id);
+                        const canManage = allowDelete && Boolean(ev.id);
                         const eventType = ev.type || "due";
                         const colors = EVENT_TYPE_STYLES[eventType];
 
@@ -160,16 +229,103 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         </span>
                                     </div>
                                 </div>
-                                {canDelete && (
+                                {canManage && (
                                     <div className="mt-2 pl-5">
                                         <button
                                             type="button"
-                                            onClick={() => handleDelete(ev.id)}
-                                            disabled={isDeleting === ev.id}
-                                            className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2.5 py-1.5 rounded-md bg-red-50 disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
+                                            onClick={() => startEditing(ev)}
+                                            className="text-[11px] text-sky-700 hover:text-sky-800 border border-sky-100 px-2.5 py-1.5 rounded-md bg-sky-50 min-h-[36px] touch-manipulation font-medium"
                                         >
-                                            {isDeleting === ev.id ? "Deleting…" : "Delete"}
+                                            Edit
                                         </button>
+                                    </div>
+                                )}
+                                {canManage && editingId === ev.id && (
+                                    <div className="mt-3 ml-5 rounded-lg border border-border/50 bg-bg-light/40 p-3 space-y-2">
+                                        <div className="space-y-1">
+                                            <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Title</label>
+                                            <input
+                                                type="text"
+                                                value={editTitle}
+                                                onChange={(e) => setEditTitle(e.target.value)}
+                                                className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            />
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                            <div className="space-y-1">
+                                                <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Start Date</label>
+                                                <input
+                                                    type="date"
+                                                    value={editDate}
+                                                    onChange={(e) => setEditDate(e.target.value)}
+                                                    className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                                />
+                                            </div>
+                                            <div className="space-y-1">
+                                                <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">End Date</label>
+                                                <input
+                                                    type="date"
+                                                    value={editEndDate}
+                                                    onChange={(e) => setEditEndDate(e.target.value)}
+                                                    className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Type</label>
+                                            <select
+                                                value={editType}
+                                                onChange={(e) => {
+                                                    const value = e.target.value;
+                                                    if (value === "holiday" || value === "event" || value === "due" || value === "reminder" || value === "quiz") {
+                                                        setEditType(value);
+                                                    }
+                                                }}
+                                                className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            >
+                                                <option value="holiday">Holiday</option>
+                                                <option value="event">Event</option>
+                                                <option value="due">Reminder</option>
+                                                <option value="quiz">Quiz/Test</option>
+                                            </select>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Description</label>
+                                            <textarea
+                                                rows={2}
+                                                value={editDescription}
+                                                onChange={(e) => setEditDescription(e.target.value)}
+                                                className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            />
+                                        </div>
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSave(ev.id)}
+                                                disabled={isSaving === ev.id}
+                                                className="text-[11px] text-white border border-primary px-2.5 py-1.5 rounded-md bg-primary disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
+                                            >
+                                                {isSaving === ev.id ? "Saving..." : "Save"}
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    setEditingId(null);
+                                                    setError("");
+                                                }}
+                                                className="text-[11px] text-text border border-border px-2.5 py-1.5 rounded-md bg-white min-h-[36px] touch-manipulation font-medium"
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleDelete(ev.id)}
+                                                disabled={isDeleting === ev.id}
+                                                className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2.5 py-1.5 rounded-md bg-red-50 disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
+                                            >
+                                                {isDeleting === ev.id ? "Deleting..." : "Delete"}
+                                            </button>
+                                        </div>
                                     </div>
                                 )}
                             </div>

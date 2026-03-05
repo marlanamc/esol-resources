@@ -65,6 +65,7 @@ type TeacherClass = {
     calendarEvents: {
         id: string;
         title: string;
+        description: string | null;
         date: Date;
         endDate: Date | null;
         type: string;
@@ -95,6 +96,7 @@ type StudentEnrollment = {
         calendarEvents: {
             id: string;
             title: string;
+            description: string | null;
             date: Date;
             endDate: Date | null;
             type: string;
@@ -260,6 +262,7 @@ export default async function DashboardPage() {
                     endDate: ev.endDate || null,
                     type: (ev.type as CalendarEvent["type"]) || "holiday",
                     title: `${ev.title}`,
+                    description: ev.description,
                 }))
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -597,6 +600,7 @@ export default async function DashboardPage() {
                                         select: {
                                             id: true,
                                             title: true,
+                                            description: true,
                                             date: true,
                                             endDate: true,
                                             type: true,
@@ -764,11 +768,12 @@ export default async function DashboardPage() {
                     title: `${a.title || a.activity.title || "Assignment"}`,
                 })),
             ...enrollments.flatMap((enrollment: StudentEnrollment) =>
-                enrollment.class.calendarEvents.map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string }) => ({
+                enrollment.class.calendarEvents.map((ev: { id: string; date: Date; endDate: Date | null; type: string; title: string; description: string | null }) => ({
                     date: ev.date,
                     endDate: ev.endDate || null,
                     type: (ev.type as CalendarEvent["type"]) || "holiday",
                     title: `${ev.title}`,
+                    description: ev.description,
                 }))
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());

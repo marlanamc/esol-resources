@@ -48,6 +48,7 @@ export default async function CalendarPage() {
                     endDate: ev.endDate || null,
                     type: (ev.type as CalendarEvent["type"]) || "holiday",
                     title: `${ev.title}`,
+                    description: ev.description,
                 }))
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -92,6 +93,7 @@ export default async function CalendarPage() {
                     endDate: ev.endDate || null,
                     type: (ev.type as CalendarEvent["type"]) || "holiday",
                     title: `${ev.title}`,
+                    description: ev.description,
                 }))
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());

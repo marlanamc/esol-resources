@@ -154,3 +154,74 @@ export async function DELETE(request: NextRequest) {
         );
     }
 }
+
+export async function PATCH(request: NextRequest) {
+    try {
+        const session = await getServerSession(authOptions);
+        if (!session?.user) {
+            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+        }
+        const admin = teacherCheck.admin;
+
+        const body = await request.json();
+        const { id, title, date, endDate, type = "holiday", description } = body || {};
+        if (!id || !title || !date) {
+            return NextResponse.json({ error: "id, title, and date are required" }, { status: 400 });
+        }
+
+        const allowedTypes = ["holiday", "event", "due", "reminder", "quiz"];
+        if (!allowedTypes.includes(type)) {
+            return NextResponse.json({ error: "Invalid event type" }, { status: 400 });
+        }
+
+        const parseDateOnly = (value: string) => {
+            const [y, m, d] = value.split("-").map(Number);
+            return new Date(y, (m || 1) - 1, d || 1, 12, 0, 0, 0);
+        };
+
+        const start = parseDateOnly(date);
+        const end = endDate ? parseDateOnly(endDate) : start;
+        if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) {
+            return NextResponse.json({ error: "Invalid date values" }, { status: 400 });
+        }
+        if (end.getTime() < start.getTime()) {
+            return NextResponse.json({ error: "End date cannot be before start date" }, { status: 400 });
+        }
+
+        const event = await prisma.calendarEvent.findUnique({
+            where: { id },
+            include: { class: true },
+        });
+        if (!event) {
+            return NextResponse.json({ error: "Event not found" }, { status: 404 });
+        }
+
+        if (!canManageClass(session.user, admin, event.class.teacherId)) {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        }
+
+        const updated = await prisma.calendarEvent.update({
+            where: { id },
+            data: {
+                title,
+                description: description || null,
+                date: start,
+                endDate: end,
+                type,
+            },
+        });
+
+        return NextResponse.json(updated);
+    } catch (error: unknown) {
+        console.error("Error updating calendar event:", error);
+        const message = error instanceof Error ? error.message : undefined;
+        return NextResponse.json(
+            { error: message || "Failed to update calendar event" },
+            { status: 500 }
+        );
+    }
+}
