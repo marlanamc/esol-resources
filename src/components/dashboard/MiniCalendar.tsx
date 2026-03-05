@@ -88,7 +88,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
     return (
         <section className="w-full" aria-label="Calendar">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[1.45rem] font-display font-bold tracking-tight text-text">
+                <h3 className="text-[1.45rem] font-display font-bold tracking-tight text-[#1f2633]">
                     {monthNames[viewMonth]} {viewYear}
                 </h3>
                 <div className="flex items-center gap-2">
@@ -111,7 +111,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                 </div>
             </div>
 
-            <div className="rounded-xl border border-border/50 bg-white/80 p-3 sm:p-4 shadow-[0_1px_3px_rgba(28,35,44,0.06)]">
+            <div className="rounded-xl border border-[#d9cec0] bg-gradient-to-b from-white to-[#fcf8f2] p-3 sm:p-4 shadow-[0_3px_10px_rgba(43,33,24,0.08)]">
                 <div className="grid grid-cols-7 gap-1 text-center mb-2">
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
                         <div key={`${day}-${idx}`} className="text-[10px] font-semibold text-text-muted/80 uppercase tracking-[0.16em]">
@@ -137,7 +137,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                                 className={`h-10 sm:h-11 rounded-lg border transition-colors cursor-default ${
                                     isToday
                                         ? 'bg-primary text-white border-primary shadow-sm'
-                                        : 'bg-white border-transparent text-text hover:bg-bg-light/70'
+                                        : 'bg-white border-transparent text-text hover:bg-[#f4ede3]'
                                 }`}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
@@ -159,17 +159,17 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                 </div>
             </div>
 
-            <div className="mt-3 flex flex-wrap items-center gap-2 text-[11px] text-text-muted">
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-white border border-border/40">
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]">
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#f9f3eb] border border-[#dfcdb7] text-[#8a5b3f]">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Today
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-white border border-border/40">
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#eef4ef] border border-[#c7d8cc] text-[#3f5e47]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#5f8267] shrink-0" /> Quiz/Test
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-white border border-border/40">
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#f8f3ec] border border-[#e1d3c3] text-[#7b6248]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#a98966] shrink-0" /> Due
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-white border border-border/40">
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#eef3f9] border border-[#c8d4e4] text-[#4c6788]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#6d89ac] shrink-0" /> Holiday
                 </span>
             </div>
