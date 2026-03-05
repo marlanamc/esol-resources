@@ -14,6 +14,12 @@ type StudentSummary = {
     mustChangePassword: boolean;
 };
 
+type SectionSummary = {
+    id: string;
+    name: string;
+    students: StudentSummary[];
+};
+
 export default async function PasswordsPage() {
     const session = await getServerSession(authOptions);
 
@@ -53,12 +59,20 @@ export default async function PasswordsPage() {
     });
 
     const studentMap = new Map<string, StudentSummary>();
-    classes.forEach((cls) => {
+    const sectionSummaries: SectionSummary[] = classes.map((cls) => {
+        const sectionStudentMap = new Map<string, StudentSummary>();
         cls.enrollments.forEach((enrollment) => {
             if (enrollment.student) {
-                studentMap.set(enrollment.student.id, enrollment.student as StudentSummary);
+                const student = enrollment.student as StudentSummary;
+                sectionStudentMap.set(student.id, student);
+                studentMap.set(student.id, student);
             }
         });
+        return {
+            id: cls.id,
+            name: cls.name,
+            students: Array.from(sectionStudentMap.values()),
+        };
     });
 
     const students = Array.from(studentMap.values());
@@ -106,7 +120,7 @@ export default async function PasswordsPage() {
                                 No students yet. Add students to your classes to manage their passwords.
                             </div>
                         ) : (
-                            <StudentPasswordManager students={students} />
+                            <StudentPasswordManager students={students} sections={sectionSummaries} />
                         )}
                     </div>
                 </div>
