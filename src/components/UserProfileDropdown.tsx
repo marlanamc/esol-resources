@@ -17,22 +17,27 @@ type AvatarResponse = {
     avatarColor?: string | null;
 };
 
+type NormalizedAvatar = {
+    avatar: string;
+    avatarColor: string;
+};
+
 type AvatarCache = {
-    data: Required<Pick<AvatarResponse, "avatar" | "avatarColor">>;
+    data: NormalizedAvatar;
     cachedAt: number;
 };
 
 const AVATAR_CACHE_TTL_MS = 60_000;
 let avatarCache: AvatarCache | null = null;
-let avatarInFlight: Promise<Required<Pick<AvatarResponse, "avatar" | "avatarColor">> | null> | null = null;
+let avatarInFlight: Promise<NormalizedAvatar | null> | null = null;
 
-function getFreshAvatarCache(): Required<Pick<AvatarResponse, "avatar" | "avatarColor">> | null {
+function getFreshAvatarCache(): NormalizedAvatar | null {
     if (!avatarCache) return null;
     if (Date.now() - avatarCache.cachedAt > AVATAR_CACHE_TTL_MS) return null;
     return avatarCache.data;
 }
 
-async function loadAvatar(): Promise<Required<Pick<AvatarResponse, "avatar" | "avatarColor">> | null> {
+async function loadAvatar(): Promise<NormalizedAvatar | null> {
     const cached = getFreshAvatarCache();
     if (cached) return cached;
     if (avatarInFlight) return avatarInFlight;

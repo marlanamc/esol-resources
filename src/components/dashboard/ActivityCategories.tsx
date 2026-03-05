@@ -1153,6 +1153,7 @@ interface ActivityCardProps {
     activityCardTitle: string;
     grammarChipCopy: { friendlyTitle: string; useThisFor: string } | null;
     gameEmoji: string | null;
+    showDecorativeTexture: boolean;
 }
 
 const getCategoryProgressText = (activityId: string, progressMap?: Record<string, { progress: number; categoryData?: string }>) => {
@@ -1191,6 +1192,7 @@ const ActivityCard = React.memo(function ActivityCard({
     activityCardTitle,
     grammarChipCopy,
     gameEmoji,
+    showDecorativeTexture,
 }: ActivityCardProps) {
     const progressChipLabel = activity.id === 'numbers-game' && progressText
         ? progressText
@@ -1213,6 +1215,8 @@ const ActivityCard = React.memo(function ActivityCard({
                 }`}
             style={{
                 borderColor: isCompleted ? undefined : (accentBorderColor ? `${accentBorderColor}40` : undefined),
+                contentVisibility: 'auto',
+                containIntrinsicSize: '160px',
             }}
         >
             {/* Tense texture background pattern */}
@@ -1224,7 +1228,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Wave pattern overlay for continuous tenses */}
-            {tenseTexture?.pattern === 'wave' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'wave' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.07]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`wave-${activity.id}`} x="0" y="0" width="40" height="20" patternUnits="userSpaceOnUse">
@@ -1241,7 +1245,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Dots pattern for perfect tenses */}
-            {tenseTexture?.pattern === 'dots' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'dots' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`dots-${activity.id}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
@@ -1253,7 +1257,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Diagonal lines for perfect continuous */}
-            {tenseTexture?.pattern === 'diagonal' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'diagonal' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`diagonal-${activity.id}`} x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
@@ -1265,7 +1269,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Mixed pattern for reviews */}
-            {tenseTexture?.pattern === 'mixed' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'mixed' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`mixed-${activity.id}`} x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -1279,7 +1283,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Grid pattern for vocab flashcards */}
-            {tenseTexture?.pattern === 'grid' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'grid' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`grid-${activity.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -1291,7 +1295,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Bubbles pattern for speaking/conversation */}
-            {tenseTexture?.pattern === 'bubbles' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'bubbles' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`bubbles-${activity.id}`} x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -1305,7 +1309,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Lines pattern for writing */}
-            {tenseTexture?.pattern === 'lines' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'lines' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.05]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`lines-${activity.id}`} x="0" y="0" width="100" height="12" patternUnits="userSpaceOnUse">
@@ -1317,7 +1321,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Pulse pattern for games (concentric circles) */}
-            {tenseTexture?.pattern === 'pulse' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'pulse' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`pulse-${activity.id}`} x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -1331,7 +1335,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Scatter pattern for word scramble */}
-            {tenseTexture?.pattern === 'scatter' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'scatter' && !isCompleted && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.07]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`scatter-${activity.id}`} x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
@@ -1374,7 +1378,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             <div className="flex items-start gap-3 relative z-10">
-                {gameUi ? (
+                {gameEmoji ? (
                     <span className="mt-0.5 text-xl flex-shrink-0">
                         {gameEmoji}
                     </span>
@@ -1518,7 +1522,6 @@ interface ActivityCardMeta {
     verbQuizWordsChip: string | null;
     activityCardTitle: string;
     grammarChipCopy: { friendlyTitle: string; useThisFor: string } | null;
-    gameUi?: GameUi;
     points?: number;
     gameEmoji: string | null;
 }
@@ -1537,20 +1540,25 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
     useEffect(() => {
         let cancelled = false;
-        const id = typeof window !== 'undefined' && 'requestIdleCallback' in window
-            ? window.requestIdleCallback(() => {
+        let idleId: number | undefined;
+        let timeoutId: ReturnType<typeof setTimeout> | undefined;
+        if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+            idleId = window.requestIdleCallback(() => {
                 if (!cancelled) setShowDetailChips(true);
-            }, { timeout: 300 })
-            : window.setTimeout(() => {
+            }, { timeout: 300 });
+        } else {
+            timeoutId = setTimeout(() => {
                 if (!cancelled) setShowDetailChips(true);
             }, 120);
+        }
 
         return () => {
             cancelled = true;
-            if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && typeof id === 'number') {
-                window.cancelIdleCallback(id);
-            } else {
-                clearTimeout(id as ReturnType<typeof setTimeout>);
+            if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && idleId !== undefined) {
+                window.cancelIdleCallback(idleId);
+            }
+            if (timeoutId !== undefined) {
+                clearTimeout(timeoutId);
             }
         };
     }, []);
@@ -1961,7 +1969,6 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 verbQuizWordsChip: showDetailChips ? getVerbQuizWordsChip(activity) : null,
                 activityCardTitle,
                 grammarChipCopy,
-                gameUi,
                 points,
                 gameEmoji: gameUi
                     ? getGameEmojiForActivity({ activityId: activity.id, title: activity.title, gameUi })
@@ -2001,9 +2008,10 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 activityCardTitle={cardMeta.activityCardTitle}
                 grammarChipCopy={cardMeta.grammarChipCopy}
                 gameEmoji={cardMeta.gameEmoji}
+                showDecorativeTexture={showDetailChips}
             />
         );
-    }, [activityCardMetaById]);
+    }, [activityCardMetaById, showDetailChips]);
 
     // Soft palette for section accents
     const SECTION_COLORS = ['#A3D9A5', '#A5C9E1', '#C5B3E6', '#F4B0B7', '#89CFF0', '#F0E68C'];
