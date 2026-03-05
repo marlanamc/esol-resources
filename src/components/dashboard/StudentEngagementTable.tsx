@@ -14,6 +14,10 @@ interface Student {
     lastActive: Date | null;
     favoriteActivity?: string;
     activitiesToday: number;
+    sections?: {
+        id: string;
+        name: string;
+    }[];
 }
 
 interface StudentEngagementTableProps {
@@ -55,12 +59,32 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
     const [searchQuery, setSearchQuery] = useState('');
     const [sortField, setSortField] = useState<SortField>('name');
     const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
+    const [selectedSectionId, setSelectedSectionId] = useState('all');
+
+    const sectionOptions = useMemo(() => {
+        const sectionMap = new Map<string, { id: string; name: string; count: number }>();
+
+        students.forEach((student) => {
+            student.sections?.forEach((section) => {
+                if (!sectionMap.has(section.id)) {
+                    sectionMap.set(section.id, { id: section.id, name: section.name, count: 0 });
+                }
+                const item = sectionMap.get(section.id);
+                if (item) item.count += 1;
+            });
+        });
+
+        return Array.from(sectionMap.values()).sort((a, b) =>
+            a.name.localeCompare(b.name, undefined, { sensitivity: 'base' })
+        );
+    }, [students]);
 
     // Filter and sort students
     const filteredAndSortedStudents = useMemo(() => {
         const filtered = students.filter(student =>
-            (student.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
-            student.username.toLowerCase().includes(searchQuery.toLowerCase())
+            ((student.name?.toLowerCase() || '').includes(searchQuery.toLowerCase()) ||
+                student.username.toLowerCase().includes(searchQuery.toLowerCase())) &&
+            (selectedSectionId === 'all' || (student.sections || []).some((section) => section.id === selectedSectionId))
         );
 
         filtered.sort((a, b) => {
@@ -90,7 +114,7 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
         });
 
         return filtered;
-    }, [students, searchQuery, sortField, sortDirection]);
+    }, [students, searchQuery, selectedSectionId, sortField, sortDirection]);
 
     const handleSort = (field: SortField) => {
         if (sortField === field) {
@@ -127,14 +151,31 @@ export default function StudentEngagementTable({ students }: StudentEngagementTa
     return (
         <div className="bg-white rounded-lg border border-border overflow-hidden">
             {/* Search Bar */}
-            <div className="p-4 border-b border-border bg-bg-light">
-                <input
-                    type="text"
-                    placeholder="Search students by name or username…"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-2 min-h-[44px] border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                />
+            <div className="p-4 border-b border-border bg-bg-light space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3">
+                    <input
+                        type="text"
+                        placeholder="Search students by name or username…"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full px-4 py-2 min-h-[44px] border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                    {sectionOptions.length > 0 && (
+                        <select
+                            value={selectedSectionId}
+                            onChange={(e) => setSelectedSectionId(e.target.value)}
+                            className="w-full md:w-[280px] px-3 py-2 min-h-[44px] border border-border rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                            aria-label="Filter by section"
+                        >
+                            <option value="all">All sections ({students.length})</option>
+                            {sectionOptions.map((section) => (
+                                <option key={section.id} value={section.id}>
+                                    {section.name} ({section.count})
+                                </option>
+                            ))}
+                        </select>
+                    )}
+                </div>
                 <div className="text-xs text-text-muted mt-2">
                     Showing {filteredAndSortedStudents.length} of {students.length} students
                 </div>
