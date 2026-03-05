@@ -11,6 +11,11 @@ type Student = {
 
 type Props = {
     students: Student[];
+    sections?: {
+        id: string;
+        name: string;
+        students: Student[];
+    }[];
 };
 
 type StatusState = Record<
@@ -18,16 +23,25 @@ type StatusState = Record<
     { state: "idle" | "saving" | "success" | "error"; message?: string }
 >;
 
-export function StudentPasswordManager({ students }: Props) {
+export function StudentPasswordManager({ students, sections = [] }: Props) {
     const [passwords, setPasswords] = useState<Record<string, string>>({});
     const [status, setStatus] = useState<StatusState>({});
+    const [selectedSectionId, setSelectedSectionId] = useState("all");
+
+    const visibleStudents = useMemo(() => {
+        if (selectedSectionId === "all") {
+            return students;
+        }
+        const section = sections.find((item) => item.id === selectedSectionId);
+        return section?.students || [];
+    }, [selectedSectionId, sections, students]);
 
     const sorted = useMemo(
         () =>
-            [...students].sort((a, b) =>
+            [...visibleStudents].sort((a, b) =>
                 a.username.localeCompare(b.username, undefined, { sensitivity: "base" })
             ),
-        [students]
+        [visibleStudents]
     );
 
     const updateStatus = (id: string, next: StatusState[string]) =>
@@ -66,6 +80,39 @@ export function StudentPasswordManager({ students }: Props) {
                     Changes apply immediately. Students will not be prompted to reset.
                 </p>
             </div>
+
+            {sections.length > 0 && (
+                <div className="space-y-2">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">Section</p>
+                    <div className="flex flex-wrap gap-2">
+                        <button
+                            type="button"
+                            onClick={() => setSelectedSectionId("all")}
+                            className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${
+                                selectedSectionId === "all"
+                                    ? "bg-primary text-white border-primary"
+                                    : "bg-white text-text border-border hover:bg-bg-light/60"
+                            }`}
+                        >
+                            All sections ({students.length})
+                        </button>
+                        {sections.map((section) => (
+                            <button
+                                key={section.id}
+                                type="button"
+                                onClick={() => setSelectedSectionId(section.id)}
+                                className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${
+                                    selectedSectionId === section.id
+                                        ? "bg-primary text-white border-primary"
+                                        : "bg-white text-text border-border hover:bg-bg-light/60"
+                                }`}
+                            >
+                                {section.name} ({section.students.length})
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             <div className="divide-y border rounded-xl overflow-hidden">
                 {sorted.map((s) => {
@@ -124,8 +171,12 @@ export function StudentPasswordManager({ students }: Props) {
                         </div>
                     );
                 })}
+                {sorted.length === 0 && (
+                    <div className="p-4 text-sm text-text-muted bg-white">
+                        No students in this section yet.
+                    </div>
+                )}
             </div>
         </div>
     );
 }
-
