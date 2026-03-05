@@ -12,6 +12,7 @@ import { StatCard } from "@/components/ui";
 import { UsersIcon, UserIcon, ClipboardIcon, BookOpenIcon } from "@/components/icons/Icons";
 import StudentEngagementTable from "@/components/dashboard/StudentEngagementTable";
 import VerbQuizWeekSelector from "@/components/dashboard/VerbQuizWeekSelector";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export default async function StatsPage() {
     const session = await getServerSession(authOptions);
@@ -22,6 +23,7 @@ export default async function StatsPage() {
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
+    const admin = isTeacherAdmin(session.user);
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
@@ -36,7 +38,7 @@ export default async function StatsPage() {
         () =>
             withPrismaReadRetry(() =>
                 prisma.class.findMany({
-                    where: { teacherId: userId },
+                    where: admin ? {} : { teacherId: userId },
                     select: {
                         id: true,
                         enrollments: {

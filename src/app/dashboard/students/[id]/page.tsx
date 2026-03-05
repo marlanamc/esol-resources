@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import StudentDetailView from "@/components/dashboard/StudentDetailView";
 import { BackButton } from "@/components/ui/BackButton";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export default async function StudentDetailPage({
     params
@@ -19,6 +20,7 @@ export default async function StudentDetailPage({
     const { id: studentId } = await params;
     const userRole = session.user.role;
     const teacherId = session.user.id;
+    const admin = isTeacherAdmin(session.user);
 
     // Only teachers can access this page
     if (userRole !== "teacher") {
@@ -29,9 +31,7 @@ export default async function StudentDetailPage({
     const enrollment = await prisma.classEnrollment.findFirst({
         where: {
             studentId: studentId,
-            class: {
-                teacherId
-            }
+            ...(admin ? {} : { class: { teacherId } }),
         },
         include: {
             class: {

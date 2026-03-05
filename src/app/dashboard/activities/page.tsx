@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
+import { isTeacherAdmin } from "@/lib/roles";
 import { TeacherActivityCategories } from "@/components/dashboard";
 import { ActivityCategoryPicker } from "@/components/dashboard/ActivityCategoryPicker";
 
@@ -183,6 +184,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
 
     const userId = session.user?.id;
     const userRole = session.user?.role;
+    const admin = isTeacherAdmin(session.user);
 
     // Filter activities by release status for students
     const activities = await timedQuery(
@@ -202,7 +204,9 @@ export default async function ActivitiesPage({ searchParams }: Props) {
                                 { NOT: { AND: [{ type: "guide" }, { category: "grammar" }] } }
                             ]
                         }
-                        : { deletedAt: null },
+                        : admin
+                            ? { deletedAt: null }
+                            : { deletedAt: null, createdBy: userId },
                     select: {
                         id: true,
                         title: true,
@@ -232,7 +236,7 @@ export default async function ActivitiesPage({ searchParams }: Props) {
             () =>
                 withPrismaReadRetry(() =>
                     prisma.class.findMany({
-                        where: { teacherId: userId },
+                        where: admin ? {} : { teacherId: userId },
                         select: {
                             id: true,
                             assignments: {

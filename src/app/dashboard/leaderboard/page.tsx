@@ -32,68 +32,55 @@ interface LeaderboardEntry {
 type LeaderboardPayload = {
   leaderboard: LeaderboardEntry[];
   userRank: number | null;
+  classId: string | null;
 };
 
-type LeaderboardCache = {
-  data: LeaderboardPayload;
-  cachedAt: number;
-};
-
-const LEADERBOARD_CACHE_TTL_MS = 60_000;
-let leaderboardCache: LeaderboardCache | null = null;
-let leaderboardInFlight: Promise<LeaderboardPayload> | null = null;
-
-function getFreshLeaderboardCache(): LeaderboardPayload | null {
-  if (!leaderboardCache) return null;
-  if (Date.now() - leaderboardCache.cachedAt > LEADERBOARD_CACHE_TTL_MS) return null;
-  return leaderboardCache.data;
+interface ClassOption {
+  id: string;
+  name: string;
 }
 
-async function loadLeaderboardPayload(): Promise<LeaderboardPayload> {
-  const cached = getFreshLeaderboardCache();
-  if (cached) return cached;
-
-  if (leaderboardInFlight) return leaderboardInFlight;
-
-  leaderboardInFlight = (async () => {
-    const [leaderboardResponse, statsResponse] = await Promise.all([
-      fetch('/api/gamification/leaderboard'),
-      fetch('/api/gamification/stats'),
-    ]);
-
-    if (!leaderboardResponse.ok || !statsResponse.ok) {
-      throw new Error('Failed to fetch leaderboard payload');
-    }
-
-    const leaderboardData = await leaderboardResponse.json();
-    const statsData = await statsResponse.json();
-    const payload: LeaderboardPayload = {
-      leaderboard: leaderboardData.leaderboard || [],
-      userRank: statsData.stats?.rank || null,
-    };
-    leaderboardCache = { data: payload, cachedAt: Date.now() };
-    return payload;
-  })().finally(() => {
-    leaderboardInFlight = null;
-  });
-
-  return leaderboardInFlight;
+async function fetchLeaderboard(classId?: string | null): Promise<LeaderboardPayload> {
+  const params = new URLSearchParams();
+  if (classId) {
+    params.set('classId', classId);
+  }
+  const response = await fetch(`/api/gamification/leaderboard${params.toString() ? `?${params.toString()}` : ''}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch leaderboard payload');
+  }
+  const data = await response.json();
+  return {
+    leaderboard: data.leaderboard || [],
+    userRank: data.userRank || null,
+    classId: data.classId || null,
+  };
 }
 
 export default function LeaderboardPage() {
-  const cached = getFreshLeaderboardCache();
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(cached?.leaderboard || []);
-  const [loading, setLoading] = useState(!cached);
-  const [userRank, setUserRank] = useState<number | null>(cached?.userRank ?? null);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [userRank, setUserRank] = useState<number | null>(null);
+  const [selectedClassId, setSelectedClassId] = useState<string | null>(null);
+  const [classOptions, setClassOptions] = useState<ClassOption[]>([]);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
-        const payload = await loadLeaderboardPayload();
+        const [payload, contextResponse] = await Promise.all([
+          fetchLeaderboard(),
+          fetch('/api/gamification/leaderboard/context'),
+        ]);
+        if (!contextResponse.ok) {
+          throw new Error('Failed to fetch leaderboard context');
+        }
+        const contextData = await contextResponse.json();
         if (cancelled) return;
         setLeaderboard(payload.leaderboard);
         setUserRank(payload.userRank);
+        setClassOptions(contextData.classes || []);
+        setSelectedClassId(payload.classId || contextData.defaultClassId || null);
       } catch (error) {
         console.error('Failed to fetch leaderboard:', error);
       } finally {
@@ -104,6 +91,21 @@ export default function LeaderboardPage() {
       cancelled = true;
     };
   }, []);
+
+  const onClassChange = async (classId: string) => {
+    const normalizedClassId = classId || null;
+    setSelectedClassId(normalizedClassId);
+    setLoading(true);
+    try {
+      const payload = await fetchLeaderboard(normalizedClassId);
+      setLeaderboard(payload.leaderboard);
+      setUserRank(payload.userRank);
+    } catch (error) {
+      console.error('Failed to fetch leaderboard:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getRankColor = (rank: number) => {
     if (rank === 1) return { bg: 'rgba(255, 215, 0, 0.1)', border: '#FFD700', text: '#B8860B' }; // Gold
@@ -153,7 +155,7 @@ export default function LeaderboardPage() {
                 Weekly Leaderboard
               </h1>
               <p className="text-sm" style={{ color: '#7ba884' }}>
-                Top performers this week
+                Top performers this week by section
               </p>
             </div>
           </div>
@@ -161,6 +163,27 @@ export default function LeaderboardPage() {
       </header>
 
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
+        {classOptions.length > 0 && (
+          <div className="border rounded-2xl p-4" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0' }}>
+            <label htmlFor="leaderboard-class" className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
+              Section
+            </label>
+            <select
+              id="leaderboard-class"
+              value={selectedClassId || ''}
+              onChange={(e) => void onClassChange(e.target.value)}
+              className="w-full max-w-md rounded-lg border px-3 py-2 text-sm"
+              style={{ borderColor: '#d9cfc0', color: '#2b3a4a' }}
+            >
+              {classOptions.map((cls) => (
+                <option key={cls.id} value={cls.id}>
+                  {cls.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         {/* User's Rank Card - Only show if user has points and appears in leaderboard */}
         {userRank && leaderboard.some((entry) => entry.rank === userRank) && (
           <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: '#ffffff', borderColor: '#d97757', boxShadow: '0 4px 12px rgba(217, 119, 87, 0.15)' }}>

@@ -1,25 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
+import { randomUUID } from "crypto";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
+import { canManageClass, classOwnershipWhere, ensureTeacher } from "@/lib/policies";
 
 export async function GET() {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
 
-        const userId = session.user?.id;
+        const admin = teacherCheck.admin;
 
         const classes = await prisma.class.findMany({
-            where: { teacherId: userId },
+            where: classOwnershipWhere(session.user, admin),
             include: {
                 assignments: {
                     include: {
@@ -43,17 +44,17 @@ export async function GET() {
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { name, description, code } = body;
+        const { name, description, code, sourceClassId, copyAssignments = true } = body;
 
         if (!name || typeof name !== 'string') {
             return NextResponse.json({ error: "Class name is required" }, { status: 400 });
@@ -63,7 +64,13 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Class name too long" }, { status: 400 });
         }
 
-        const userId = session.user?.id;
+        if (sourceClassId && typeof sourceClassId !== "string") {
+            return NextResponse.json({ error: "sourceClassId must be a string" }, { status: 400 });
+        }
+
+        if (typeof copyAssignments !== "boolean") {
+            return NextResponse.json({ error: "copyAssignments must be a boolean" }, { status: 400 });
+        }
 
         // SECURITY: Generate cryptographically secure code or validate provided code
         let classCode: string;
@@ -91,16 +98,88 @@ export async function POST(request: NextRequest) {
             classCode = await generateUniqueClassCode();
         }
 
-        const newClass = await prisma.class.create({
-            data: {
-                name,
-                description: description || null,
-                code: classCode,
-                teacherId: userId,
+        // Normal class creation: starts a new section group.
+        if (!sourceClassId) {
+            const newClass = await prisma.class.create({
+                data: {
+                    name,
+                    description: description || null,
+                    code: classCode,
+                    teacherId: session.user.id,
+                    sectionGroupId: randomUUID(),
+                },
+            });
+
+            return NextResponse.json(newClass);
+        }
+
+        // Section creation from an existing class.
+        const sourceClass = await prisma.class.findUnique({
+            where: { id: sourceClassId },
+            include: {
+                assignments: {
+                    select: {
+                        activityId: true,
+                        title: true,
+                        instructions: true,
+                        dueDate: true,
+                        isFeatured: true,
+                    },
+                    orderBy: { createdAt: "asc" },
+                },
             },
         });
 
-        return NextResponse.json(newClass);
+        if (!sourceClass) {
+            return NextResponse.json({ error: "Source class not found" }, { status: 404 });
+        }
+
+        if (!canManageClass(session.user, admin, sourceClass.teacherId)) {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        }
+
+        const sectionGroupId = sourceClass.sectionGroupId || randomUUID();
+
+        const result = await prisma.$transaction(async (tx) => {
+            if (!sourceClass.sectionGroupId) {
+                await tx.class.update({
+                    where: { id: sourceClass.id },
+                    data: { sectionGroupId },
+                });
+            }
+
+            const newClass = await tx.class.create({
+                data: {
+                    name,
+                    description: description || null,
+                    code: classCode,
+                    teacherId: sourceClass.teacherId,
+                    sectionGroupId,
+                },
+            });
+
+            let copiedAssignments = 0;
+            if (copyAssignments && sourceClass.assignments.length > 0) {
+                await tx.assignment.createMany({
+                    data: sourceClass.assignments.map((assignment) => ({
+                        classId: newClass.id,
+                        activityId: assignment.activityId,
+                        title: assignment.title,
+                        instructions: assignment.instructions,
+                        dueDate: assignment.dueDate,
+                        isFeatured: assignment.isFeatured,
+                    })),
+                });
+                copiedAssignments = sourceClass.assignments.length;
+            }
+
+            return {
+                ...newClass,
+                copiedAssignments,
+            };
+        });
+
+        return NextResponse.json(result);
     } catch (error: unknown) {
         console.error("Error creating class:", error);
         // SECURITY: Don't expose internal error details to user
@@ -110,9 +189,6 @@ export async function POST(request: NextRequest) {
         );
     }
 }
-
-
-
 
 
 

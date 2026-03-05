@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { MiniCalendar, UpcomingEventsList, CalendarEvent } from "@/components/dashboard";
 import { redirect } from "next/navigation";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export default async function CalendarPage() {
     const session = await getServerSession(authOptions);
@@ -13,12 +14,13 @@ export default async function CalendarPage() {
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
+    const admin = isTeacherAdmin(session.user);
 
     let calendarEvents: CalendarEvent[] = [];
 
     if (userRole === "teacher") {
         const classes = await prisma.class.findMany({
-            where: { teacherId: userId },
+            where: admin ? {} : { teacherId: userId },
             include: {
                 assignments: {
                     include: { activity: true },

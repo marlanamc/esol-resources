@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "@/lib/auth-config";
 import { createAuditLogger } from "@/lib/audit-log";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -24,6 +25,7 @@ export async function POST(request: Request) {
     }
 
     const { userId, newPassword } = await request.json();
+    const admin = isTeacherAdmin(session.user);
 
     if (!userId || typeof userId !== "string") {
         return NextResponse.json({ error: "userId is required" }, { status: 400 });
@@ -56,12 +58,14 @@ export async function POST(request: Request) {
     }
 
     // SECURITY: Verify teacher owns this student (enrolled in one of their classes)
-    const enrollment = await prisma.classEnrollment.findFirst({
-        where: {
-            studentId: userId,
-            class: { teacherId: session.user.id },
-        },
-    });
+    const enrollment = admin
+        ? { id: "admin-access" }
+        : await prisma.classEnrollment.findFirst({
+            where: {
+                studentId: userId,
+                class: { teacherId: session.user.id },
+            },
+        });
 
     if (!enrollment) {
         audit.failure(
@@ -98,7 +102,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
 }
-
 
 
 

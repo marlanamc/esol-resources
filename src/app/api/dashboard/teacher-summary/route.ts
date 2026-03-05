@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export async function GET() {
     const requestId = crypto.randomUUID();
@@ -15,6 +16,7 @@ export async function GET() {
         if (session.user.role !== "teacher") {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
+        const admin = isTeacherAdmin(session.user);
 
         const pendingReviews = await timedQuery(
             {
@@ -28,11 +30,15 @@ export async function GET() {
                     prisma.submission.count({
                         where: {
                             status: "pending",
-                            assignment: {
-                                class: {
-                                    teacherId: session.user.id,
-                                },
-                            },
+                            ...(admin
+                                ? {}
+                                : {
+                                    assignment: {
+                                        class: {
+                                            teacherId: session.user.id,
+                                        },
+                                    },
+                                }),
                         },
                     })
                 )

@@ -15,14 +15,20 @@ interface Activity {
 interface Props {
     classId: string;
     activities: Activity[];
+    supportsSectionSync?: boolean;
 }
 
-export default function CreateAssignmentForm({ classId, activities }: Props) {
+export default function CreateAssignmentForm({
+    classId,
+    activities,
+    supportsSectionSync = false,
+}: Props) {
     const router = useRouter();
     const [activityId, setActivityId] = useState("");
     const [title, setTitle] = useState("");
     const [instructions, setInstructions] = useState("");
     const [dueDate, setDueDate] = useState("");
+    const [syncToSectionGroup, setSyncToSectionGroup] = useState(true);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -47,6 +53,7 @@ export default function CreateAssignmentForm({ classId, activities }: Props) {
                     title: title || undefined,
                     instructions: instructions || undefined,
                     dueDate: dueDate || undefined,
+                    syncToSectionGroup: supportsSectionSync ? syncToSectionGroup : false,
                 }),
             });
 
@@ -141,6 +148,20 @@ export default function CreateAssignmentForm({ classId, activities }: Props) {
                         />
                     </div>
 
+                    {supportsSectionSync && (
+                        <div className="rounded-md bg-indigo-50 border border-indigo-200 p-3">
+                            <label className="flex items-start gap-2 text-sm text-indigo-900">
+                                <input
+                                    type="checkbox"
+                                    className="mt-0.5"
+                                    checked={syncToSectionGroup}
+                                    onChange={(e) => setSyncToSectionGroup(e.target.checked)}
+                                />
+                                Sync this assignment to all sections in this course.
+                            </label>
+                        </div>
+                    )}
+
                     {error && (
                         <div className="rounded-md bg-red-50 p-4">
                             <p className="text-sm text-red-800">{error}</p>
@@ -168,7 +189,6 @@ export default function CreateAssignmentForm({ classId, activities }: Props) {
         </div>
     );
 }
-
 
 
 

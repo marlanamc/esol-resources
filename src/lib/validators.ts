@@ -386,7 +386,7 @@ export function validateActivityType(value: unknown): ActivityType {
 /**
  * Validate user role
  */
-export const USER_ROLES = ['student', 'teacher'] as const;
+export const USER_ROLES = ['student', 'teacher', 'teacher_admin'] as const;
 export type UserRole = (typeof USER_ROLES)[number];
 
 export function validateUserRole(value: unknown): UserRole {

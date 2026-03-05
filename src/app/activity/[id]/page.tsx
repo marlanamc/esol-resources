@@ -15,6 +15,7 @@ import { numbersGameCategoryNames } from "@/data/numbersGameCategories";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
 import NetworkStatusBanner from "@/components/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
+import { isTeacherAdmin } from "@/lib/roles";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -32,6 +33,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
     const userId = session.user.id;
     const userRole = session.user.role;
+    const admin = isTeacherAdmin(session.user);
     const studentReliabilityOverlays = userRole === "student" ? (
         <>
             <NetworkStatusBanner />
@@ -129,7 +131,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     redirect("/dashboard");
                 }
             } else if (userRole === "teacher") {
-                if (assignment.class.teacherId !== userId) {
+                if (!admin && assignment.class.teacherId !== userId) {
                     redirect("/dashboard");
                 }
             }

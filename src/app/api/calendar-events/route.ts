@@ -2,20 +2,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { canManageClass, ensureTeacher } from "@/lib/policies";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        const userId = session.user?.id;
-
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const body = await request.json();
         const { classId, title, date, endDate, type = "holiday", description } = body;
@@ -49,7 +48,7 @@ export async function POST(request: NextRequest) {
         if (!classItem) {
             return NextResponse.json({ error: "Class not found" }, { status: 404 });
         }
-        if (classItem.teacherId !== userId) {
+        if (!canManageClass(session.user, admin, classItem.teacherId)) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
@@ -61,7 +60,7 @@ export async function POST(request: NextRequest) {
                 date: start,
                 endDate: end,
                 type,
-                createdById: userId,
+                createdById: session.user.id,
             },
         });
 
@@ -79,16 +78,14 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        const userId = session.user?.id;
-
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const body = await request.json();
         const { id } = body || {};
@@ -105,7 +102,7 @@ export async function DELETE(request: NextRequest) {
             return NextResponse.json({ error: "Event not found" }, { status: 404 });
         }
 
-        if (event.class.teacherId !== userId) {
+        if (!canManageClass(session.user, admin, event.class.teacherId)) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
