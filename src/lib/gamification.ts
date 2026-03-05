@@ -227,6 +227,7 @@ export async function getTimeframedLeaderboard(
   // First, get all students (excluding test accounts and admin accounts)
   const studentWhere: Prisma.UserWhereInput = {
     role: "student",
+    isSystemAccount: false,
     username: { notIn: ["marlie", "leah"] }, // Exclude test and admin accounts from leaderboard
     ...(classId ? { classes: { some: { classId } } } : {}),
   };
@@ -249,6 +250,7 @@ export async function getTimeframedLeaderboard(
     createdAt: { gte: since },
     user: {
       role: "student",
+      isSystemAccount: false,
       username: { notIn: ["marlie", "leah"] }, // Exclude test and admin accounts from leaderboard
       ...(classId ? { classes: { some: { classId } } } : {}),
     },

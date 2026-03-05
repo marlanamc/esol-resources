@@ -1,10 +1,59 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
+import bcrypt from "bcryptjs";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { BCRYPT_ROUNDS } from "@/lib/auth-config";
 import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
 import { canManageClass, classOwnershipWhere, ensureTeacher } from "@/lib/policies";
+import type { Prisma } from "@prisma/client";
+
+const DEFAULT_TEST_STUDENT_PASSWORD = "password123";
+
+async function createSystemTestStudentForClass(tx: Prisma.TransactionClient, classItem: { id: string; code: string }) {
+    const username = `student_${classItem.code}`;
+    const passwordHash = await bcrypt.hash(DEFAULT_TEST_STUDENT_PASSWORD, BCRYPT_ROUNDS);
+
+    const student = await tx.user.upsert({
+        where: { username },
+        update: {
+            role: "student",
+            name: `Test Student (${classItem.code})`,
+            password: passwordHash,
+            mustChangePassword: false,
+            isSystemAccount: true,
+        },
+        create: {
+            username,
+            role: "student",
+            name: `Test Student (${classItem.code})`,
+            password: passwordHash,
+            mustChangePassword: false,
+            isSystemAccount: true,
+        },
+        select: { id: true, username: true },
+    });
+
+    await tx.classEnrollment.upsert({
+        where: {
+            classId_studentId: {
+                classId: classItem.id,
+                studentId: student.id,
+            },
+        },
+        create: {
+            classId: classItem.id,
+            studentId: student.id,
+        },
+        update: {},
+    });
+
+    return {
+        username: student.username,
+        password: DEFAULT_TEST_STUDENT_PASSWORD,
+    };
+}
 
 export async function GET() {
     try {
@@ -100,17 +149,24 @@ export async function POST(request: NextRequest) {
 
         // Normal class creation: starts a new section group.
         if (!sourceClassId) {
-            const newClass = await prisma.class.create({
-                data: {
-                    name,
-                    description: description || null,
-                    code: classCode,
-                    teacherId: session.user.id,
-                    sectionGroupId: randomUUID(),
-                },
+            const result = await prisma.$transaction(async (tx) => {
+                const newClass = await tx.class.create({
+                    data: {
+                        name,
+                        description: description || null,
+                        code: classCode,
+                        teacherId: session.user.id,
+                        sectionGroupId: randomUUID(),
+                    },
+                });
+                const testStudent = await createSystemTestStudentForClass(tx, newClass);
+                return {
+                    ...newClass,
+                    testStudent,
+                };
             });
 
-            return NextResponse.json(newClass);
+            return NextResponse.json(result);
         }
 
         // Section creation from an existing class.
@@ -157,6 +213,7 @@ export async function POST(request: NextRequest) {
                     sectionGroupId,
                 },
             });
+            const testStudent = await createSystemTestStudentForClass(tx, newClass);
 
             let copiedAssignments = 0;
             if (copyAssignments && sourceClass.assignments.length > 0) {
@@ -176,6 +233,7 @@ export async function POST(request: NextRequest) {
             return {
                 ...newClass,
                 copiedAssignments,
+                testStudent,
             };
         });
 
@@ -189,7 +247,6 @@ export async function POST(request: NextRequest) {
         );
     }
 }
-
 
 
 

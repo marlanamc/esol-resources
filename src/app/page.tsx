@@ -34,6 +34,13 @@ export default function Home() {
 
                     <div className="flex flex-col items-center justify-center gap-3 pt-4">
                         <LoginCtaLink />
+                        <p className="max-w-xl text-center text-sm sm:text-base text-text/80">
+                            MyESOLClass is currently in an invite-only phase. Please contact{" "}
+                            <a className="text-primary-dark underline underline-offset-4 hover:text-primary" href="mailto:mcreed@ebhcs.org">
+                                Marlie (mcreed@ebhcs.org)
+                            </a>{" "}
+                            for more info.
+                        </p>
                     </div>
                 </header>
             </div>
