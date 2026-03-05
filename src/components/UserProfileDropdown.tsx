@@ -12,10 +12,57 @@ interface UserProfileDropdownProps {
     userName: string;
 }
 
+type AvatarResponse = {
+    avatar?: string | null;
+    avatarColor?: string | null;
+};
+
+type AvatarCache = {
+    data: Required<Pick<AvatarResponse, "avatar" | "avatarColor">>;
+    cachedAt: number;
+};
+
+const AVATAR_CACHE_TTL_MS = 60_000;
+let avatarCache: AvatarCache | null = null;
+let avatarInFlight: Promise<Required<Pick<AvatarResponse, "avatar" | "avatarColor">> | null> | null = null;
+
+function getFreshAvatarCache(): Required<Pick<AvatarResponse, "avatar" | "avatarColor">> | null {
+    if (!avatarCache) return null;
+    if (Date.now() - avatarCache.cachedAt > AVATAR_CACHE_TTL_MS) return null;
+    return avatarCache.data;
+}
+
+async function loadAvatar(): Promise<Required<Pick<AvatarResponse, "avatar" | "avatarColor">> | null> {
+    const cached = getFreshAvatarCache();
+    if (cached) return cached;
+    if (avatarInFlight) return avatarInFlight;
+
+    avatarInFlight = (async () => {
+        try {
+            const res = await fetch("/api/user/avatar");
+            if (!res.ok) return null;
+            const data = (await res.json()) as AvatarResponse;
+            const normalized = {
+                avatar: data.avatar || DEFAULT_AVATAR,
+                avatarColor: data.avatarColor || DEFAULT_COLOR,
+            };
+            avatarCache = { data: normalized, cachedAt: Date.now() };
+            return normalized;
+        } catch {
+            return null;
+        } finally {
+            avatarInFlight = null;
+        }
+    })();
+
+    return avatarInFlight;
+}
+
 export default function UserProfileDropdown({ userName }: UserProfileDropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const [avatarId, setAvatarId] = useState<string>(DEFAULT_AVATAR);
-    const [colorId, setColorId] = useState<string>(DEFAULT_COLOR);
+    const cachedAvatar = getFreshAvatarCache();
+    const [avatarId, setAvatarId] = useState<string>(cachedAvatar?.avatar || DEFAULT_AVATAR);
+    const [colorId, setColorId] = useState<string>(cachedAvatar?.avatarColor || DEFAULT_COLOR);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
@@ -37,19 +84,16 @@ export default function UserProfileDropdown({ userName }: UserProfileDropdownPro
 
     // Fetch avatar data
     useEffect(() => {
-        async function fetchAvatar() {
-            try {
-                const res = await fetch("/api/user/avatar");
-                if (res.ok) {
-                    const data = await res.json();
-                    setAvatarId(data.avatar || DEFAULT_AVATAR);
-                    setColorId(data.avatarColor || DEFAULT_COLOR);
-                }
-            } catch (error) {
-                console.error("Failed to fetch avatar:", error);
-            }
-        }
-        fetchAvatar();
+        let cancelled = false;
+        (async () => {
+            const avatar = await loadAvatar();
+            if (!avatar || cancelled) return;
+            setAvatarId(avatar.avatar);
+            setColorId(avatar.avatarColor);
+        })();
+        return () => {
+            cancelled = true;
+        };
     }, []);
 
     const handleLogout = async () => {

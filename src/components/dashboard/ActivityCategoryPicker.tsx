@@ -218,18 +218,17 @@ export function ActivityCategoryPicker({
     // Category picker view
     if (!selectedCategory) {
         return (
-            <div className="animate-fade-in">
+            <div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto">
-                    {visibleCards.map((card, idx) => (
+                    {visibleCards.map((card) => (
                         <button
                             key={card.key}
                             onClick={() => {
                                 setSelectedCategory(card.key);
                                 updateCategoryQuery(card.key);
                             }}
-                            className="category-card group flex flex-col rounded-2xl overflow-hidden border shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_10px_24px_rgba(52,43,34,0.10),0_2px_6px_rgba(52,43,34,0.06)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_16px_34px_rgba(52,43,34,0.14),0_4px_10px_rgba(52,43,34,0.08)] transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
+                            className="group flex flex-col rounded-2xl overflow-hidden border shadow-[inset_0_1px_0_rgba(255,255,255,0.78),0_10px_24px_rgba(52,43,34,0.10),0_2px_6px_rgba(52,43,34,0.06)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.82),0_16px_34px_rgba(52,43,34,0.14),0_4px_10px_rgba(52,43,34,0.08)] transition-all duration-300 hover:-translate-y-1 active:scale-[0.97] focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 cursor-pointer"
                             style={{
-                                animationDelay: `${idx * 40}ms`,
                                 borderColor: '#ddd3c5',
                                 backgroundColor: '#fcfaf6',
                             }}
@@ -274,7 +273,7 @@ export function ActivityCategoryPicker({
     const selectedCardDef = CATEGORY_CARDS.find((c) => c.key === selectedCategory);
 
     return (
-        <div className="animate-fade-in">
+        <div>
             {/* Breadcrumb */}
             <nav aria-label="Breadcrumb" className="mb-6">
                 <ol className="flex items-center gap-2 text-sm font-medium text-text-muted">
