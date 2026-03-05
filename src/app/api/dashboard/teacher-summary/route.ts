@@ -30,6 +30,9 @@ export async function GET() {
                     prisma.submission.count({
                         where: {
                             status: "pending",
+                            user: {
+                                isSystemAccount: false,
+                            },
                             ...(admin
                                 ? {}
                                 : {

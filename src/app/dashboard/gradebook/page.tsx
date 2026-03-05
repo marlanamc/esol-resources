@@ -60,6 +60,11 @@ export default async function GradebookPage({
                         id: true,
                         name: true,
                         enrollments: {
+                            where: {
+                                student: {
+                                    isSystemAccount: false,
+                                },
+                            },
                             select: {
                                 student: {
                                     select: {
@@ -89,6 +94,7 @@ export default async function GradebookPage({
 
     const studentWhere = {
         id: { in: studentIds },
+        isSystemAccount: false,
         ...(searchQuery
             ? {
                 OR: [

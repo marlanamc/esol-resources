@@ -24,7 +24,13 @@ export default async function ClassesIndexPage() {
     const classes = await prisma.class.findMany({
         where: admin ? {} : { teacherId: userId },
         include: {
-            enrollments: true,
+            enrollments: {
+                where: {
+                    student: {
+                        isSystemAccount: false,
+                    },
+                },
+            },
             assignments: true,
         },
         orderBy: { createdAt: "desc" },

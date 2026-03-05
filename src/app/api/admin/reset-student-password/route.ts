@@ -46,7 +46,7 @@ export async function POST(request: Request) {
 
     const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { id: true, role: true },
+        select: { id: true, role: true, isSystemAccount: true },
     });
 
     if (!user) {
@@ -56,6 +56,9 @@ export async function POST(request: Request) {
     if (user.role !== "student") {
         return NextResponse.json({ error: "Only student passwords can be changed here" }, { status: 400 });
     }
+    if (user.isSystemAccount) {
+        return NextResponse.json({ error: "System accounts cannot be updated here" }, { status: 400 });
+    }
 
     // SECURITY: Verify teacher owns this student (enrolled in one of their classes)
     const enrollment = admin
@@ -64,6 +67,9 @@ export async function POST(request: Request) {
             where: {
                 studentId: userId,
                 class: { teacherId: session.user.id },
+                student: {
+                    isSystemAccount: false,
+                },
             },
         });
 
@@ -102,7 +108,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
 }
-
 
 
 

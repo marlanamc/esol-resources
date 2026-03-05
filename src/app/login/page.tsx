@@ -16,6 +16,9 @@ export default function LoginPage() {
                         Sign in to your account
                     </h2>
                 </div>
+                <Suspense fallback={<div className="text-center text-sm" style={{ color: "#5e6f80" }}>Loading login form...</div>}>
+                    <LoginForm />
+                </Suspense>
                 <div className="border rounded-2xl p-4 sm:p-5 space-y-3" style={{ backgroundColor: '#fffdf9', borderColor: '#e8dece' }}>
                     <p className="text-sm font-semibold" style={{ color: '#2b3a4a' }}>
                         First-time login steps
@@ -32,9 +35,6 @@ export default function LoginPage() {
                         Espanol: Entra con tu clave temporal. Luego crea una clave nueva. Despues vuelve a entrar.
                     </p>
                 </div>
-                <Suspense fallback={<div className="text-center text-sm" style={{ color: "#5e6f80" }}>Loading login form...</div>}>
-                    <LoginForm />
-                </Suspense>
             </div>
         </div>
     );

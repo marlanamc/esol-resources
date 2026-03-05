@@ -400,6 +400,7 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
 
   const whereClause: Prisma.UserWhereInput = {
     role: 'student',
+    isSystemAccount: false,
     username: { notIn: ['marlie', 'leah'] }, // Exclude test and admin accounts from leaderboard
   };
 
@@ -507,6 +508,7 @@ export async function getUserGamificationStats(userId: string) {
   const allStudents = await prisma.user.findMany({
     where: { 
       role: 'student',
+      isSystemAccount: false,
       username: { notIn: ['marlie', 'leah'] }, // Exclude test and admin accounts from leaderboard
     },
     orderBy: { weeklyPoints: 'desc' },
