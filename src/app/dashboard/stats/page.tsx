@@ -41,6 +41,7 @@ export default async function StatsPage() {
                     where: admin ? {} : { teacherId: userId },
                     select: {
                         id: true,
+                        name: true,
                         enrollments: {
                             where: {
                                 student: {
@@ -68,6 +69,17 @@ export default async function StatsPage() {
             ),
         (result) => result.length
     );
+
+    const studentSectionsMap = new Map<string, Map<string, string>>();
+    classes.forEach((cls) => {
+        cls.enrollments.forEach((enrollment) => {
+            const studentId = enrollment.student.id;
+            if (!studentSectionsMap.has(studentId)) {
+                studentSectionsMap.set(studentId, new Map<string, string>());
+            }
+            studentSectionsMap.get(studentId)?.set(cls.id, cls.name);
+        });
+    });
 
     const allAssignments = classes.flatMap((c) => c.assignments);
     const allActivities = await timedQuery(
@@ -192,7 +204,11 @@ export default async function StatsPage() {
         ...student,
         currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
         lastActive: lastActiveMap[student.id] || null,
-        activitiesToday: activitiesTodayMap[student.id] || 0
+        activitiesToday: activitiesTodayMap[student.id] || 0,
+        sections: Array.from(studentSectionsMap.get(student.id)?.entries() || []).map(([id, name]) => ({
+            id,
+            name,
+        })),
     }));
 
     return (
