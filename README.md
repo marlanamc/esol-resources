@@ -131,6 +131,10 @@ npm run test:e2e:mobile
 
 ## Development
 
+### Architecture & Safety Docs
+- [`docs/SECTIONS_AND_AUTH_GUARDRAILS.md`](docs/SECTIONS_AND_AUTH_GUARDRAILS.md) - Section sync, leaderboard scoping, and authorization guardrails
+- [`docs/CHANGELOG_SAFETY.md`](docs/CHANGELOG_SAFETY.md) - Risk log template and rollback notes for high-impact changes
+
 ### Database Migrations
 ```bash
 npx prisma migrate dev --name migration_name
