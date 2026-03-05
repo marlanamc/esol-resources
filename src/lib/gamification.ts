@@ -185,7 +185,7 @@ export function calculateQuizPoints(score: number | null): number {
 }
 
 export type LeaderboardRange = 'day' | 'week' | 'month';
-const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah"];
+export const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah"];
 
 function getRangeStart(range: LeaderboardRange) {
   const now = new Date();
