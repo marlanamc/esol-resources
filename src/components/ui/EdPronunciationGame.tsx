@@ -610,6 +610,8 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   // Playing screen
   const currentVerb = state.verbs[state.currentIndex];
   const progress = ((state.currentIndex + 1) / state.verbs.length) * 100;
+  const minimalPairTargetWord = state.minimalPairTarget === 'base' ? currentVerb.base : currentVerb.past;
+  const minimalPairOtherWord = state.minimalPairTarget === 'base' ? currentVerb.past : currentVerb.base;
 
   return (
     <div className="fixed inset-0 z-50 bg-white md:relative md:inset-auto md:z-auto md:bg-transparent max-w-2xl mx-auto md:p-6 min-h-[100dvh] md:min-h-[calc(100dvh-14rem)] flex flex-col">
@@ -757,7 +759,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             >
               <div className="text-lg sm:text-xl text-neutral-500 mb-3">What did you hear?</div>
               <button
-                onClick={() => playAudio(state.minimalPairTarget === 'base' ? currentVerb.base : currentVerb.past)}
+                onClick={() => playAudio(minimalPairTargetWord)}
                 disabled={!isAudioSupported}
                 className={`flex items-center gap-3 mx-auto px-6 py-3 rounded-full font-bold text-lg sm:text-xl transition-all ${
                   isAudioSupported
@@ -832,13 +834,31 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                       ? getFeedbackMessage(currentVerb, state.answers[state.answers.length - 1]?.correct)
                       : state.answers[state.answers.length - 1]?.correct
                         ? "Correct!"
-                        : `It was "${state.minimalPairTarget === 'base' ? currentVerb.base : currentVerb.past}"`
+                        : `It was "${minimalPairTargetWord}"`
                     }
                   </p>
                   {state.mode === 'sorting' && (
                     <p className="text-sm text-neutral-600 mt-1">
                       &quot;{currentVerb.example}&quot;
                     </p>
+                  )}
+                  {state.mode === 'minimal-pairs' && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      <button
+                        onClick={() => playAudio(minimalPairTargetWord)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                      >
+                        <Volume2 className="w-4 h-4" />
+                        Hear correct: {minimalPairTargetWord}
+                      </button>
+                      <button
+                        onClick={() => playAudio(minimalPairOtherWord)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                      >
+                        <Volume2 className="w-4 h-4" />
+                        Hear other: {minimalPairOtherWord}
+                      </button>
+                    </div>
                   )}
                 </div>
               </div>
