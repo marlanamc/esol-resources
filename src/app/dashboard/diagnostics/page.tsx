@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { DiagnosticReport } from "@/components/dashboard/DiagnosticReport";
+import { TabNavTelemetryCard } from "@/components/dashboard/TabNavTelemetryCard";
 import { BackButton } from "@/components/ui/BackButton";
 import { BarChart3 } from "lucide-react";
 
@@ -22,25 +23,27 @@ export default async function DiagnosticsPage({
     const classId = params.classId;
     const activityId = params.activityId;
 
-    if (!classId || !activityId) {
-        redirect("/dashboard/gradebook");
-    }
+    let classData: { id: string; name: string } | null = null;
+    let activityData: { id: string; title: string } | null = null;
+    let enrollmentCount = 0;
 
-    // Fetch class and activity data in parallel
-    const [classData, activityData, enrollmentCount] = await Promise.all([
-        prisma.class.findFirst({
-            where: { id: classId, teacherId: user.id },
-        }),
-        prisma.activity.findUnique({
-            where: { id: activityId },
-        }),
-        prisma.classEnrollment.count({
-            where: { classId },
-        }),
-    ]);
-
-    if (!classData || !activityData) {
-        redirect("/dashboard/gradebook");
+    if (classId && activityId) {
+        const [foundClass, foundActivity, foundEnrollmentCount] = await Promise.all([
+            prisma.class.findFirst({
+                where: { id: classId, teacherId: user.id },
+                select: { id: true, name: true },
+            }),
+            prisma.activity.findUnique({
+                where: { id: activityId },
+                select: { id: true, title: true },
+            }),
+            prisma.classEnrollment.count({
+                where: { classId },
+            }),
+        ]);
+        classData = foundClass;
+        activityData = foundActivity;
+        enrollmentCount = foundEnrollmentCount;
     }
 
     return (
@@ -55,10 +58,10 @@ export default async function DiagnosticsPage({
                         </div>
                         <div>
                             <h1 className="text-2xl font-display font-bold text-text">
-                                {activityData.title}
+                                {activityData?.title || "Diagnostics"}
                             </h1>
                             <p className="text-sm text-text-muted">
-                                {classData.name} &bull; Diagnostic Report
+                                {classData?.name ? `${classData.name} • Diagnostic Report` : "Performance and diagnostic insights"}
                             </p>
                         </div>
                     </div>
@@ -67,11 +70,19 @@ export default async function DiagnosticsPage({
 
             {/* Main Content */}
             <main className="container mx-auto px-6 py-8">
-                <DiagnosticReport
-                    classId={classId}
-                    activityId={activityId}
-                    totalStudents={enrollmentCount}
-                />
+                <TabNavTelemetryCard />
+
+                {classId && activityId && classData && activityData ? (
+                    <DiagnosticReport
+                        classId={classId}
+                        activityId={activityId}
+                        totalStudents={enrollmentCount}
+                    />
+                ) : (
+                    <div className="p-6 bg-white rounded-xl border border-border text-sm text-text-muted">
+                        Select a class mini-quiz from Gradebook to open detailed skill diagnostics.
+                    </div>
+                )}
 
                 {/* Help Text */}
                 <div className="mt-8 p-6 bg-white rounded-xl border border-border">
