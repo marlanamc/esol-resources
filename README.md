@@ -134,6 +134,8 @@ npm run test:e2e:mobile
 ### Architecture & Safety Docs
 - [`docs/SECTIONS_AND_AUTH_GUARDRAILS.md`](docs/SECTIONS_AND_AUTH_GUARDRAILS.md) - Section sync, leaderboard scoping, and authorization guardrails
 - [`docs/CHANGELOG_SAFETY.md`](docs/CHANGELOG_SAFETY.md) - Risk log template and rollback notes for high-impact changes
+- [`docs/student/STUDENT_SETUP_AND_APP_GUIDE.md`](docs/student/STUDENT_SETUP_AND_APP_GUIDE.md) - Student-friendly login, class join, and home-screen app setup guide
+- [`docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md`](docs/student/GUIA_ESTUDIANTE_CONFIGURACION_Y_APP.md) - Guía en español para inicio de sesión, unirse a clase y guardar como app
 
 ### Database Migrations
 ```bash
