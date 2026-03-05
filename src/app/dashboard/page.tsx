@@ -195,10 +195,41 @@ export default async function DashboardPage() {
         const allAssignments = classes.flatMap((c: TeacherClass) => c.assignments);
         const featuredAssignments = allAssignments.filter((a: TeacherAssignment) => a.isFeatured);
 
-        const featuredAssignmentsForDisplay = featuredAssignments.map((assignment) => ({
+        // When sections sync assignments, teacher dashboard can receive repeated entries.
+        // Collapse same activity/title into a single checklist row and keep the newest.
+        const dedupedFeaturedAssignments = Array.from(
+            featuredAssignments.reduce<
+                Map<string, { assignment: TeacherAssignment; sectionCount: number }>
+            >((map, assignment) => {
+                const dedupeKey = `${assignment.activityId}::${(assignment.title || assignment.activity.title || "").trim().toLowerCase()}`;
+                const existing = map.get(dedupeKey);
+                const assignmentFeaturedAt = (assignment.updatedAt ?? assignment.createdAt).getTime();
+                const existingFeaturedAt = existing
+                    ? (existing.assignment.updatedAt ?? existing.assignment.createdAt).getTime()
+                    : -1;
+
+                if (!existing) {
+                    map.set(dedupeKey, { assignment, sectionCount: 1 });
+                    return map;
+                }
+
+                const nextAssignment = assignmentFeaturedAt > existingFeaturedAt
+                    ? assignment
+                    : existing.assignment;
+                map.set(dedupeKey, {
+                    assignment: nextAssignment,
+                    sectionCount: existing.sectionCount + 1,
+                });
+                return map;
+            }, new Map<string, { assignment: TeacherAssignment; sectionCount: number }>())
+                .values()
+        );
+
+        const featuredAssignmentsForDisplay = dedupedFeaturedAssignments.map(({ assignment, sectionCount }) => ({
             id: assignment.id,
             title: assignment.title,
             activityId: assignment.activityId,
+            sectionCount,
             featuredAt: assignment.updatedAt ?? assignment.createdAt,
             isNewRelease: isWithinNewReleaseWindow(assignment.updatedAt ?? assignment.createdAt),
             activity: {

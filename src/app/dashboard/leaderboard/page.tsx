@@ -148,42 +148,44 @@ export default function LeaderboardPage() {
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
         <div className="container mx-auto py-4 px-4 sm:px-6">
-          <div className="flex items-center gap-4">
-            <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
-                Weekly Leaderboard
-              </h1>
-              <p className="text-sm" style={{ color: '#7ba884' }}>
-                Top performers this week by section
-              </p>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-4">
+              <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                  Weekly Leaderboard
+                </h1>
+                <p className="text-sm" style={{ color: '#7ba884' }}>
+                  Top performers this week by section
+                </p>
+              </div>
             </div>
+
+            {classOptions.length > 1 && (
+              <div className="flex items-center gap-2 rounded-full border px-2.5 py-1.5" style={{ borderColor: '#d9cfc0', backgroundColor: '#fcfaf5' }}>
+                <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#5a6b7f' }}>
+                  Section
+                </span>
+                <select
+                  id="leaderboard-class"
+                  value={selectedClassId || ''}
+                  onChange={(e) => void onClassChange(e.target.value)}
+                  className="rounded-md border-none bg-transparent px-1 py-0.5 text-sm font-semibold focus:outline-none"
+                  style={{ color: '#2b3a4a' }}
+                >
+                  {classOptions.map((cls) => (
+                    <option key={cls.id} value={cls.id}>
+                      {cls.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
         </div>
       </header>
 
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
-        {classOptions.length > 0 && (
-          <div className="border rounded-2xl p-4" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0' }}>
-            <label htmlFor="leaderboard-class" className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
-              Section
-            </label>
-            <select
-              id="leaderboard-class"
-              value={selectedClassId || ''}
-              onChange={(e) => void onClassChange(e.target.value)}
-              className="w-full max-w-md rounded-lg border px-3 py-2 text-sm"
-              style={{ borderColor: '#d9cfc0', color: '#2b3a4a' }}
-            >
-              {classOptions.map((cls) => (
-                <option key={cls.id} value={cls.id}>
-                  {cls.name}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
         {/* User's Rank Card - Only show if user has points and appears in leaderboard */}
         {userRank && leaderboard.some((entry) => entry.rank === userRank) && (
           <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: '#ffffff', borderColor: '#d97757', boxShadow: '0 4px 12px rgba(217, 119, 87, 0.15)' }}>

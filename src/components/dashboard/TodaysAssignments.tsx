@@ -18,6 +18,7 @@ interface FeaturedAssignment {
     id: string;
     title?: string | null;
     activityId: string;
+    sectionCount?: number;
     dueDate?: string | Date | null;
     featuredAt?: string | Date | null;
     updatedAt?: string | Date | null;
@@ -366,6 +367,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                         <span className={`${featuredNewBadgeClassName} shrink-0 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
                             <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
                             New
+                        </span>
+                    )}
+
+                    {assignment.sectionCount && assignment.sectionCount > 1 && (
+                        <span className="shrink-0 inline-flex items-center rounded-full border border-slate-300/70 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
+                            {assignment.sectionCount} sections
                         </span>
                     )}
 
