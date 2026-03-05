@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    const { userId, newPassword } = await request.json();
+    const { userId, newPassword, allowDefaultPassword } = await request.json();
     const admin = isTeacherAdmin(session.user);
 
     if (!userId || typeof userId !== "string") {
@@ -43,7 +43,10 @@ export async function POST(request: Request) {
     if (newPassword.length > MAX_PASSWORD_LENGTH) {
         return NextResponse.json({ error: `Password must not exceed ${MAX_PASSWORD_LENGTH} characters.` }, { status: 400 });
     }
-    if (isDisallowedPassword(newPassword)) {
+    const canUseDefaultPassword =
+        allowDefaultPassword === true && newPassword.trim().toLowerCase() === "password123";
+
+    if (isDisallowedPassword(newPassword) && !canUseDefaultPassword) {
         return NextResponse.json({ error: DEFAULT_PASSWORD_BLOCKED_MESSAGE }, { status: 400 });
     }
 
@@ -105,10 +108,9 @@ export async function POST(request: Request) {
         {
             targetId: userId,
             targetType: 'user',
-            metadata: { resetBy: 'teacher' }
+            metadata: { resetBy: 'teacher', allowDefaultPassword: canUseDefaultPassword }
         }
     );
 
     return NextResponse.json({ ok: true });
 }
-
