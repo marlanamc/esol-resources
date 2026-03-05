@@ -52,9 +52,11 @@ async function loadStudentSummary(): Promise<StudentSummaryResponse | null> {
 interface StudentQuickStatsProps {
     mobile?: boolean;
     maxVisible?: number;
+    chipKeys?: Array<"streak" | "weekly" | "total">;
+    compact?: boolean;
 }
 
-export function StudentQuickStats({ mobile = false, maxVisible = 3 }: StudentQuickStatsProps) {
+export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, compact = false }: StudentQuickStatsProps) {
     const [summary, setSummary] = useState<StudentSummaryResponse | null>(() => getFreshStudentSummaryCache());
 
     useEffect(() => {
@@ -85,17 +87,27 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3 }: StudentQui
             <Link
                 key="streak"
                 href="/dashboard/profile"
-                className={`flex items-center gap-2 ${mobile ? "pl-2 pr-3 py-1.5" : "pl-2.5 pr-4 py-2"} bg-[#f7f3ec] border border-[#e2d9cc] rounded-full shadow-sm`}
+                className={`flex items-center gap-2 ${
+                    compact
+                        ? "px-1.5 py-1 gap-1 bg-[#fff8ef] border-[#e6d4bc]"
+                        : mobile
+                        ? "pl-2 pr-3 py-1.5"
+                        : "pl-2.5 pr-4 py-2"
+                } bg-[#f7f3ec] border rounded-full shadow-sm`}
             >
-                <div className={`${mobile ? "w-7 h-7" : "w-8 h-8"} bg-[#fff9f2] rounded-full flex items-center justify-center`}>
-                    <FlameIcon className="text-[#b97a45]" size={mobile ? 14 : 16} />
+                <div className={`${compact ? "w-3.5 h-3.5" : mobile ? "w-7 h-7" : "w-8 h-8"} bg-[#fff9f2] rounded-full flex items-center justify-center`}>
+                    <FlameIcon className="text-[#b97a45]" size={compact ? 10 : mobile ? 14 : 16} />
                 </div>
+                {compact ? (
+                    <span className="text-[11px] font-bold text-text leading-none">{summary.effectiveCurrentStreak}</span>
+                ) : (
                 <div>
                     <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide text-text-muted leading-none`}>Streak</div>
                     <div className={`${mobile ? "text-base" : "text-base"} font-semibold text-text leading-tight`}>
                         {summary.effectiveCurrentStreak} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-medium text-text-muted`}>days</span>
                     </div>
                 </div>
+                )}
             </Link>
         );
     }
@@ -105,17 +117,27 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3 }: StudentQui
             <Link
                 key="weekly"
                 href="/dashboard/profile"
-                className={`flex items-center gap-2 ${mobile ? "pl-2 pr-3.5 py-2" : "pl-2.5 pr-4 py-2.5"} bg-white border border-[#ccb79c] rounded-full shadow-[0_2px_8px_rgba(64,46,28,0.08)]`}
+                className={`flex items-center gap-2 ${
+                    compact
+                        ? "px-1.5 py-1 gap-1"
+                        : mobile
+                        ? "pl-2 pr-3.5 py-2"
+                        : "pl-2.5 pr-4 py-2.5"
+                } bg-white border border-[#ccb79c] rounded-full shadow-[0_2px_8px_rgba(64,46,28,0.08)]`}
             >
-                <div className={`${mobile ? "w-8 h-8" : "w-9 h-9"} bg-[#f7f0e4] rounded-full flex items-center justify-center`}>
-                    <StarIcon className="text-[#9f6f3a]" size={mobile ? 15 : 17} />
+                <div className={`${compact ? "w-3.5 h-3.5" : mobile ? "w-8 h-8" : "w-9 h-9"} bg-[#f7f0e4] rounded-full flex items-center justify-center`}>
+                    <StarIcon className="text-[#9f6f3a]" size={compact ? 10 : mobile ? 15 : 17} />
                 </div>
+                {compact ? (
+                    <span className="text-[11px] font-bold text-text leading-none">{summary.actualWeeklyPoints}</span>
+                ) : (
                 <div>
                     <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide text-[#6a5947] leading-none`}>This Week</div>
                     <div className={`${mobile ? "text-lg" : "text-xl"} font-bold text-text leading-tight`}>
                         {summary.actualWeeklyPoints} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-semibold text-text-muted`}>pts</span>
                     </div>
                 </div>
+                )}
             </Link>
         );
     }
@@ -140,7 +162,13 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3 }: StudentQui
         );
     }
 
-    const visibleChips = maxVisible > 0 ? chips.slice(0, maxVisible) : [];
+    const filteredChips = chipKeys?.length
+        ? chips.filter((chip) => {
+              const key = (chip as { key?: string }).key;
+              return key ? chipKeys.includes(key as "streak" | "weekly" | "total") : false;
+          })
+        : chips;
+    const visibleChips = maxVisible > 0 ? filteredChips.slice(0, maxVisible) : [];
 
     return <>{visibleChips}</>;
 }

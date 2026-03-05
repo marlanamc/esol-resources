@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { BookOpenIcon, TrophyIcon } from "@/components/icons/Icons";
 import UserProfileDropdown from "@/components/UserProfileDropdown";
+import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 
 interface DashboardHeaderProps {
     userName?: string;
 }
 
 export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
+    const mobileName = userName.trim().split(/\s+/)[0] || "Student";
+
     return (
         <header 
             className="sticky top-0 border-b z-[260] bg-[#fef9f3] border-[rgba(0,0,0,0.08)] shadow-[0_1px_4px_rgba(38,30,20,0.06)] sm:shadow-sm"
@@ -22,13 +25,21 @@ export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                             <BookOpenIcon className="w-5 h-5 text-white" />
                         </div>
-                        <div className="flex flex-col">
+                        <div className="sm:hidden min-w-0">
+                            <span className="block text-base font-semibold text-primary leading-tight truncate max-w-[130px]" style={{ fontFamily: "Lora, serif" }}>
+                                {mobileName}
+                            </span>
+                        </div>
+                        <div className="hidden sm:flex flex-col">
                             <span className="text-[11px] sm:text-[12px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">ESOL</span>
                             <span className="text-base sm:text-lg font-bold text-primary leading-tight tracking-[-0.01em]" style={{ fontFamily: "Lora, serif" }}>Class Companion</span>
                         </div>
                     </Link>
                 </div>
                 <div className="flex items-center gap-3">
+                    <div className="sm:hidden flex items-center gap-1.5">
+                        <StudentQuickStats mobile maxVisible={2} chipKeys={["streak", "weekly"]} compact />
+                    </div>
                     <Link
                         href="/dashboard/leaderboard"
                         className="hidden md:inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
