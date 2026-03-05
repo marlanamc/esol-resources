@@ -493,7 +493,7 @@ export default async function DashboardPage() {
 
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
                         <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
+                            <div className="sticky top-24 space-y-6 rounded-2xl border border-[#ddcfbe] bg-gradient-to-b from-[#fffdfa] to-[#f6efe4] p-6 shadow-[0_10px_28px_rgba(52,43,34,0.1)]">
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList
@@ -508,7 +508,7 @@ export default async function DashboardPage() {
                                 />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-4">
-                                    <h3 className="text-sm font-semibold text-text">Important Pages</h3>
+                                    <h3 className="text-sm font-semibold text-[#1f2633]">Important Pages</h3>
                                     <p className="text-xs text-text-muted">
                                         Organized by task so you can find tools faster.
                                     </p>
@@ -845,7 +845,7 @@ export default async function DashboardPage() {
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
                         <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="p-6 sticky top-24 rounded-2xl space-y-5 bg-[#faf6f1] border border-[#e7dfd3] shadow-[0_2px_8px_rgba(52,43,34,0.04)]">
+                            <div className="sticky top-24 space-y-6 rounded-2xl border border-[#ddcfbe] bg-gradient-to-b from-[#fffdfa] to-[#f6efe4] p-6 shadow-[0_10px_28px_rgba(52,43,34,0.1)]">
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList
@@ -861,7 +861,7 @@ export default async function DashboardPage() {
                                 />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-2">
-                                    <h3 className="text-sm font-semibold text-text">Quick Links</h3>
+                                    <h3 className="text-sm font-semibold text-[#1f2633]">Quick Links</h3>
                                     <div className="flex flex-col gap-1.5">
                                         <Link
                                             href="/grammar-map"

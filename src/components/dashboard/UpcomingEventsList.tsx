@@ -110,7 +110,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         : "Due";
 
                         return (
-                            <div key={`${ev.title}-${idx}`} className="relative border border-border/45 rounded-xl bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)]">
+                            <div key={`${ev.title}-${idx}`} className="relative rounded-xl border border-border/45 bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)] transition-transform transition-shadow duration-200 hover:-translate-y-[1px] hover:shadow-[0_6px_14px_rgba(28,35,44,0.08)]">
                                 <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r" style={{ backgroundColor: colors.accent }} aria-hidden="true" />
 
                                 <div className="pl-1 min-w-0">
