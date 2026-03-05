@@ -256,6 +256,12 @@ export default async function DashboardPage() {
                 heading: "Planning",
                 links: [
                     {
+                        href: "/dashboard/classes",
+                        title: "Your Classes",
+                        subtitle: "Manage classes, codes, and rosters.",
+                        icon: UsersIcon,
+                    },
+                    {
                         href: "/dashboard/calendar/new",
                         title: "Add Event",
                         subtitle: "Post class dates, due dates, or reminders.",
@@ -483,7 +489,7 @@ export default async function DashboardPage() {
                                                     const Icon = link.icon;
                                                     return (
                                                         <Link
-                                                            key={link.href}
+                                                            key={`${section.heading}-${link.title}`}
                                                             href={link.href}
                                                             className="quick-link w-full px-3 py-2 text-text border border-border/50 rounded-lg flex items-start gap-2.5"
                                                         >
