@@ -452,6 +452,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   const question = state.questions[state.currentIndex];
   const progress = state.questions.length === 0 ? 0 : ((state.currentIndex + 1) / state.questions.length) * 100;
   const targetWord = question?.targetSide === 'left' ? question.pair.leftWord : question?.pair.rightWord;
+  const contrastWord = question?.targetSide === 'left' ? question.pair.rightWord : question?.pair.leftWord;
 
   if (!question) {
     return (
@@ -618,6 +619,22 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                       : `Not quite. The correct answer was "${targetWord}".`
                     }
                   </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    <button
+                      onClick={() => targetWord && playAudio(targetWord)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                      Hear correct: {targetWord}
+                    </button>
+                    <button
+                      onClick={() => contrastWord && playAudio(contrastWord)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                    >
+                      <Volume2 className="w-4 h-4" />
+                      Hear other: {contrastWord}
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>
