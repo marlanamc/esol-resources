@@ -796,7 +796,7 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-3">
-                                        <StudentQuickStats />
+                                        <StudentQuickStats maxVisible={2} />
                                     </div>
                                 </div>
 
@@ -810,7 +810,7 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-2.5 flex-wrap">
-                                        <StudentQuickStats mobile />
+                                        <StudentQuickStats mobile maxVisible={2} />
                                     </div>
                                 </div>
                             </div>

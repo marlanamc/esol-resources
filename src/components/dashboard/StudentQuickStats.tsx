@@ -51,9 +51,10 @@ async function loadStudentSummary(): Promise<StudentSummaryResponse | null> {
 
 interface StudentQuickStatsProps {
     mobile?: boolean;
+    maxVisible?: number;
 }
 
-export function StudentQuickStats({ mobile = false }: StudentQuickStatsProps) {
+export function StudentQuickStats({ mobile = false, maxVisible = 3 }: StudentQuickStatsProps) {
     const [summary, setSummary] = useState<StudentSummaryResponse | null>(() => getFreshStudentSummaryCache());
 
     useEffect(() => {
@@ -139,5 +140,7 @@ export function StudentQuickStats({ mobile = false }: StudentQuickStatsProps) {
         );
     }
 
-    return <>{chips}</>;
+    const visibleChips = maxVisible > 0 ? chips.slice(0, maxVisible) : [];
+
+    return <>{visibleChips}</>;
 }
