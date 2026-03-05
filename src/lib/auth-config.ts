@@ -28,3 +28,17 @@ export const MIN_PASSWORD_LENGTH = 8;
  * Bcrypt has a 72-byte limit, but we set a reasonable max
  */
 export const MAX_PASSWORD_LENGTH = 128;
+export const DEFAULT_PASSWORD_BLOCKED_MESSAGE =
+    "English: You cannot use the default password (password123). Espanol: No puedes usar la clave temporal (password123).";
+
+const DISALLOWED_PASSWORDS = new Set([
+    "password123",
+    "12345678",
+    "123456789",
+    "qwerty123",
+    "password1",
+]);
+
+export function isDisallowedPassword(value: string): boolean {
+    return DISALLOWED_PASSWORDS.has(value.trim().toLowerCase());
+}
