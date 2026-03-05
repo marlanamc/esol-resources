@@ -30,6 +30,7 @@ export async function GET() {
 
             const classes = enrollments.map((entry) => entry.class);
             return NextResponse.json({
+                viewerRole: user.role,
                 classes,
                 defaultClassId: classes[0]?.id || null,
             });
@@ -50,6 +51,7 @@ export async function GET() {
         });
 
         return NextResponse.json({
+            viewerRole: user.role,
             classes,
             defaultClassId: classes[0]?.id || null,
         });
@@ -58,4 +60,3 @@ export async function GET() {
         return NextResponse.json({ error: "Failed to fetch leaderboard context" }, { status: 500 });
     }
 }
-

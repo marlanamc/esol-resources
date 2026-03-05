@@ -40,20 +40,39 @@ interface ClassOption {
   name: string;
 }
 
-async function fetchLeaderboard(classId?: string | null): Promise<LeaderboardPayload> {
+type LeaderboardScope = 'section' | 'all';
+type ViewerRole = 'student' | 'teacher' | 'admin' | null;
+
+async function fetchLeaderboard({
+  classId,
+  scope = 'section',
+}: {
+  classId?: string | null;
+  scope?: LeaderboardScope;
+} = {}): Promise<LeaderboardPayload & { scope: LeaderboardScope }> {
   const params = new URLSearchParams();
   if (classId) {
     params.set('classId', classId);
   }
+  params.set('scope', scope);
   const response = await fetch(`/api/gamification/leaderboard${params.toString() ? `?${params.toString()}` : ''}`);
   if (!response.ok) {
-    throw new Error('Failed to fetch leaderboard payload');
+    const raw = await response.text();
+    let details = raw;
+    try {
+      const parsed = JSON.parse(raw) as { error?: string; details?: string };
+      details = parsed.details || parsed.error || raw;
+    } catch {
+      // keep raw body
+    }
+    throw new Error(`Failed to fetch leaderboard payload (${response.status}): ${details}`);
   }
   const data = await response.json();
   return {
     leaderboard: data.leaderboard || [],
     userRank: data.userRank || null,
     classId: data.classId || null,
+    scope: data.scope === 'all' ? 'all' : 'section',
   };
 }
 
@@ -63,13 +82,15 @@ export default function LeaderboardPage() {
   const [userRank, setUserRank] = useState<number | null>(null);
   const [selectedClassId, setSelectedClassId] = useState<string | null>(null);
   const [classOptions, setClassOptions] = useState<ClassOption[]>([]);
+  const [scope, setScope] = useState<LeaderboardScope>('section');
+  const [viewerRole, setViewerRole] = useState<ViewerRole>(null);
 
   useEffect(() => {
     let cancelled = false;
     (async () => {
       try {
         const [payload, contextResponse] = await Promise.all([
-          fetchLeaderboard(),
+          fetchLeaderboard({ scope: 'section' }),
           fetch('/api/gamification/leaderboard/context'),
         ]);
         if (!contextResponse.ok) {
@@ -80,7 +101,9 @@ export default function LeaderboardPage() {
         setLeaderboard(payload.leaderboard);
         setUserRank(payload.userRank);
         setClassOptions(contextData.classes || []);
+        setViewerRole(contextData.viewerRole || null);
         setSelectedClassId(payload.classId || contextData.defaultClassId || null);
+        setScope(payload.scope || 'section');
       } catch (error) {
         console.error('Failed to fetch leaderboard:', error);
       } finally {
@@ -97,7 +120,22 @@ export default function LeaderboardPage() {
     setSelectedClassId(normalizedClassId);
     setLoading(true);
     try {
-      const payload = await fetchLeaderboard(normalizedClassId);
+      const payload = await fetchLeaderboard({ classId: normalizedClassId, scope });
+      setLeaderboard(payload.leaderboard);
+      setUserRank(payload.userRank);
+    } catch (error) {
+      console.error('Failed to fetch leaderboard:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onScopeChange = async (nextScope: LeaderboardScope) => {
+    if (scope === nextScope) return;
+    setScope(nextScope);
+    setLoading(true);
+    try {
+      const payload = await fetchLeaderboard({ classId: selectedClassId, scope: nextScope });
       setLeaderboard(payload.leaderboard);
       setUserRank(payload.userRank);
     } catch (error) {
@@ -156,7 +194,54 @@ export default function LeaderboardPage() {
               </h1>
               <p className="text-sm flex flex-wrap items-center gap-1.5" style={{ color: '#7ba884' }}>
                 <span>Top performers this week by</span>
-                {classOptions.length > 1 ? (
+                {viewerRole === 'student' ? (
+                  <span className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-[#f5f1e8] p-1 shadow-sm">
+                    <button
+                      type="button"
+                      onClick={() => void onScopeChange('section')}
+                      aria-pressed={scope === 'section'}
+                      className="px-2.5 py-1 text-xs font-semibold rounded-md transition"
+                      style={
+                        scope === 'section'
+                          ? {
+                              backgroundColor: '#d97757',
+                              color: '#ffffff',
+                              border: '1px solid #d97757',
+                              boxShadow: '0 1px 2px rgba(43, 58, 74, 0.18)',
+                            }
+                          : {
+                              backgroundColor: 'transparent',
+                              color: '#5a6b7f',
+                              border: '1px solid transparent',
+                            }
+                      }
+                    >
+                      My Class
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void onScopeChange('all')}
+                      aria-pressed={scope === 'all'}
+                      className="px-2.5 py-1 text-xs font-semibold rounded-md transition"
+                      style={
+                        scope === 'all'
+                          ? {
+                              backgroundColor: '#d97757',
+                              color: '#ffffff',
+                              border: '1px solid #d97757',
+                              boxShadow: '0 1px 2px rgba(43, 58, 74, 0.18)',
+                            }
+                          : {
+                              backgroundColor: 'transparent',
+                              color: '#5a6b7f',
+                              border: '1px solid transparent',
+                            }
+                      }
+                    >
+                      All Classes
+                    </button>
+                  </span>
+                ) : classOptions.length > 1 ? (
                   <span className="inline-flex items-center rounded-md border border-[#d9cfc0] bg-[#fcfaf5] px-1.5 py-0.5">
                     <select
                       id="leaderboard-class"

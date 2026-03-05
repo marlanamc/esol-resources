@@ -212,11 +212,18 @@ function getRangeStart(range: LeaderboardRange) {
 export async function getTimeframedLeaderboard(
   range: LeaderboardRange = 'week',
   limit: number = 10,
-  classId?: string
+  classId?: string,
+  classIds?: string[]
 ) {
   // SECURITY: Input validation
   if (classId !== undefined && typeof classId !== 'string') {
     throw new Error('Invalid classId: must be a string');
+  }
+  if (classIds !== undefined && !Array.isArray(classIds)) {
+    throw new Error('Invalid classIds: must be an array of strings');
+  }
+  if (classIds?.some((id) => typeof id !== 'string')) {
+    throw new Error('Invalid classIds: all entries must be strings');
   }
 
   // Sanitize limit to prevent excessive queries (1-100)
@@ -224,12 +231,15 @@ export async function getTimeframedLeaderboard(
 
   const since = getRangeStart(range);
 
+  const classFilter = classIds && classIds.length > 0
+    ? { classes: { some: { classId: { in: classIds } } } }
+    : (classId ? { classes: { some: { classId } } } : undefined);
+
   // First, get all students (excluding test accounts and admin accounts)
   const studentWhere: Prisma.UserWhereInput = {
     role: "student",
-    isSystemAccount: false,
     username: { notIn: ["marlie", "leah"] }, // Exclude test and admin accounts from leaderboard
-    ...(classId ? { classes: { some: { classId } } } : {}),
+    ...(classFilter || {}),
   };
 
   const allStudents = await prisma.user.findMany({
@@ -250,9 +260,8 @@ export async function getTimeframedLeaderboard(
     createdAt: { gte: since },
     user: {
       role: "student",
-      isSystemAccount: false,
       username: { notIn: ["marlie", "leah"] }, // Exclude test and admin accounts from leaderboard
-      ...(classId ? { classes: { some: { classId } } } : {}),
+      ...(classFilter || {}),
     },
   };
 
@@ -400,7 +409,6 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
 
   const whereClause: Prisma.UserWhereInput = {
     role: 'student',
-    isSystemAccount: false,
     username: { notIn: ['marlie', 'leah'] }, // Exclude test and admin accounts from leaderboard
   };
 
@@ -508,7 +516,6 @@ export async function getUserGamificationStats(userId: string) {
   const allStudents = await prisma.user.findMany({
     where: { 
       role: 'student',
-      isSystemAccount: false,
       username: { notIn: ['marlie', 'leah'] }, // Exclude test and admin accounts from leaderboard
     },
     orderBy: { weeklyPoints: 'desc' },
