@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
-import { PenLine, Gamepad2, BookOpen, ClipboardList, Sparkles } from 'lucide-react';
+import { PenLine, Gamepad2, BookOpen, ClipboardList, Sparkles, LayoutGrid, Rows3 } from 'lucide-react';
 
 interface VocabCategoryData {
     'word-list'?: { completed: boolean; progress: number; completedAt?: string };
@@ -61,6 +61,8 @@ export const TodaysAssignments: React.FC<Props> = ({
     const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300/70 bg-amber-50 text-amber-800";
     const hasInitialAssignments = initialAssignments !== undefined;
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
+    const [activeFilter, setActiveFilter] = useState<string>('all');
+    const [mobileViewMode, setMobileViewMode] = useState<'grouped' | 'condensed'>('grouped');
     const [loading, setLoading] = useState(() => !hasInitialAssignments || refreshOnMount);
 
 
@@ -340,9 +342,13 @@ export const TodaysAssignments: React.FC<Props> = ({
         const renderChecklistRow = (
             { assignment, isCompleted, isNew, displayTitle, dueLabel, progressValue }: typeof sortedRows[0],
             isGameGroup = false,
-            categoryStyle: { text: string; accent: string }
+            categoryStyle: { text: string; accent: string; bg: string },
+            showCategoryChip?: { label: string; bg: string; text: string; accent: string }
         ) => (
-            <div key={assignment.id} className="relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-all duration-200 hover:bg-white/70 border-b border-border/10 last:border-0">
+            <div
+                key={assignment.id}
+                className="relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-all duration-200 hover:bg-white/40 border-b border-border/10 last:border-0"
+            >
                 {/* Title row: checkbox + title + button aligned on one line (mobile & desktop) */}
                 <div className="flex items-center gap-3 min-w-0">
                     {/* Checkbox (or Game Icon placeholder) - centers with title text */}
@@ -364,42 +370,54 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* NEW badge - right in front of title */}
                     {isNew && (
-                        <span className={`${featuredNewBadgeClassName} shrink-0 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide`}>
+                        <span className={`${featuredNewBadgeClassName} shrink-0 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide`}>
                             <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
                             New
                         </span>
                     )}
 
                     {assignment.sectionCount && assignment.sectionCount > 1 && (
-                        <span className="shrink-0 inline-flex items-center rounded-full border border-slate-300/70 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
+                        <span className="shrink-0 inline-flex items-center rounded-full border border-slate-300/70 bg-slate-50 px-2 py-0.5 text-[9px] font-semibold text-slate-600">
                             {assignment.sectionCount} sections
                         </span>
                     )}
 
                     {/* Title - same line as checkbox for clean alignment */}
-                    <div className={`min-w-0 flex-1 text-sm sm:text-base font-semibold leading-tight break-words transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
+                    <div className={`min-w-0 flex-1 text-[13px] sm:text-sm font-semibold leading-tight break-words transition-colors ${isCompleted ? 'text-text/85' : 'text-text'}`}>
                         {displayTitle}
                     </div>
+
+                    {/* Category chip - shown in flat list mode (mobile) */}
+                    {showCategoryChip && (
+                        <div className="shrink-0 w-[124px] flex justify-start">
+                            <span
+                                className="inline-flex px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wide"
+                                style={{ backgroundColor: showCategoryChip.bg, color: showCategoryChip.text }}
+                            >
+                                {showCategoryChip.label}
+                            </span>
+                        </div>
+                    )}
 
                     {/* Action Button - Category-colored outline style */}
                     <div className="shrink-0 pl-1">
                         <Link
                             href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
-                            className="inline-flex items-center justify-center px-3 py-1.5 sm:px-4 sm:py-2 min-h-11 text-xs sm:text-sm font-semibold transition-all duration-200 rounded-2xl whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
+                            className="inline-flex items-center justify-center !min-h-0 min-w-[82px] sm:min-w-[92px] h-9 sm:h-10 px-3 sm:px-4 text-[13px] sm:text-sm font-semibold tracking-tight transition-all duration-200 rounded-full whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
                             style={{
                                 color: categoryStyle.text,
                                 borderWidth: '1px',
                                 borderStyle: 'solid',
-                                borderColor: `${categoryStyle.accent}80`,
-                                backgroundColor: 'transparent',
+                                borderColor: `${categoryStyle.accent}70`,
+                                backgroundColor: `${categoryStyle.accent}12`,
                             }}
                             onMouseEnter={(e) => {
                                 e.currentTarget.style.borderColor = categoryStyle.accent;
-                                e.currentTarget.style.backgroundColor = `${categoryStyle.accent}15`;
+                                e.currentTarget.style.backgroundColor = `${categoryStyle.accent}20`;
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
-                                e.currentTarget.style.backgroundColor = 'transparent';
+                                e.currentTarget.style.borderColor = `${categoryStyle.accent}70`;
+                                e.currentTarget.style.backgroundColor = `${categoryStyle.accent}12`;
                             }}
                             aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                         >
@@ -427,7 +445,7 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                         {/* Only show due date if overdue */}
                         {!isGameGroup && dueLabel && !isCompleted && new Date(assignment.dueDate as string) < new Date() && (
-                            <span className="text-[10px] font-semibold text-red-500">
+                            <span className="text-[9px] font-semibold text-red-500">
                                 {dueLabel}
                             </span>
                         )}
@@ -442,7 +460,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         if (vocabProgress && vocabProgress.completed < vocabProgress.total) {
                             return (
                                 <div className="flex items-center gap-2 mt-1.5">
-                                     <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60 shadow-sm">
+                                     <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60 shadow-sm">
                                         <span className="tracking-tight">{vocabProgress.completed} / {vocabProgress.total}</span>
                                         <div className="flex items-center gap-1">
                                             {vocabProgress.types.map(type => {
@@ -490,6 +508,32 @@ export const TodaysAssignments: React.FC<Props> = ({
                             <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                                 {actions && <div className="mr-2">{actions}</div>}
                                 <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-bg-light border border-border/50">{completedCount}/{checklistRows.length} done</span>
+                                <div className="lg:hidden inline-flex items-center rounded-full border border-border/25 bg-white/70 p-0.5">
+                                    <button
+                                        onClick={() => setMobileViewMode('grouped')}
+                                        className={`!min-h-0 !min-w-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none transition-colors ${
+                                            mobileViewMode === 'grouped'
+                                                ? 'bg-white text-text shadow-sm border border-border/25'
+                                                : 'text-text/65'
+                                        }`}
+                                        aria-label="Grouped view"
+                                        title="Grouped view"
+                                    >
+                                        <LayoutGrid className="w-3.5 h-3.5" />
+                                    </button>
+                                    <button
+                                        onClick={() => setMobileViewMode('condensed')}
+                                        className={`!min-h-0 !min-w-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none transition-colors ${
+                                            mobileViewMode === 'condensed'
+                                                ? 'bg-white text-text shadow-sm border border-border/25'
+                                                : 'text-text/65'
+                                        }`}
+                                        aria-label="Condensed view"
+                                        title="Condensed view"
+                                    >
+                                        <Rows3 className="w-3.5 h-3.5" />
+                                    </button>
+                                </div>
                                 <span className={`px-2 py-1 rounded-md border ${isFullyComplete ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
                             </div>
                         </div>
@@ -506,8 +550,99 @@ export const TodaysAssignments: React.FC<Props> = ({
                         </div>
                     </div>
 
-                    {/* Category sections inside the same container */}
-                    <div className="p-2.5 sm:p-4 bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45">
+                    {/* === MOBILE: Category Filters (Condensed mode) === */}
+                    {mobileViewMode === 'condensed' && (
+                    <div className="lg:hidden bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45 border-b border-border/5">
+                        <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
+                            <button
+                                onClick={() => setActiveFilter('all')}
+                                className={`shrink-0 !min-h-0 !min-w-0 px-2.5 py-0.5 rounded-full text-[7.5px] font-bold uppercase leading-none transition-all duration-200 flex items-center gap-1 ${
+                                    activeFilter === 'all'
+                                        ? 'bg-white text-[#2d2a26] border border-[#b86a56]/70 shadow-sm'
+                                        : 'bg-white/60 text-text/70 hover:bg-white border border-border/30 hover:shadow-sm'
+                                }`}
+                                style={{ fontSize: '10px', WebkitTextSizeAdjust: '100%' }}
+                            >
+                                ALL
+                                <span className={`px-1 py-0.5 rounded text-[7.5px] font-bold leading-none ${activeFilter === 'all' ? 'bg-white/20' : 'bg-black/5'}`}>
+                                    {sortedRows.length}
+                                </span>
+                            </button>
+
+                            {groups.map(group => {
+                                const groupStyle = getCategoryStyle(group.key);
+                                const isActive = activeFilter === group.key;
+
+                                return (
+                                    <button
+                                        key={group.key}
+                                        onClick={() => setActiveFilter(group.key)}
+                                        className={`shrink-0 !min-h-0 !min-w-0 px-2.5 py-0.5 rounded-full text-[7.5px] font-bold uppercase leading-none transition-all duration-200 border flex items-center gap-1.5`}
+                                        style={{
+                                            fontSize: '10px',
+                                            WebkitTextSizeAdjust: '100%',
+                                            backgroundColor: isActive ? groupStyle.text : 'rgba(255, 255, 255, 0.6)',
+                                            color: isActive ? '#fff' : groupStyle.text,
+                                            borderColor: isActive ? groupStyle.text : `${groupStyle.text}30`,
+                                        }}
+                                    >
+                                        <span className={`[&>svg]:w-3 [&>svg]:h-3 [&>svg]:stroke-[2.5px] ${isActive ? 'text-white/90' : 'opacity-70'}`}>
+                                            {group.icon}
+                                        </span>
+                                        {group.label}
+                                        <span className={`ml-0.5 px-1 py-0.5 rounded text-[7.5px] font-bold leading-none ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
+                                            {group.items.length}
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    )}
+
+                    {/* === MOBILE: Unified flat list (Condensed mode) === */}
+                    {mobileViewMode === 'condensed' && (
+                    <div className="lg:hidden bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45">
+                        <div className="bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-b-2xl overflow-hidden shadow-inner-sm">
+                            <div className="divide-y divide-border/10">
+                                {sortedRows
+                                    .filter(row => {
+                                        if (activeFilter === 'all') return true;
+                                        const group = groups.find(g => g.key === activeFilter);
+                                        return group?.match((row.assignment.activity.category || '').toLowerCase());
+                                    })
+                                    .map((row) => {
+                                        const catStyle = getCategoryStyle(row.assignment.activity.category);
+                                        return renderChecklistRow(row, row.isGameRow, catStyle, catStyle);
+                                    })}
+                                
+                                {/* Empty state for filter */}
+                                {sortedRows.filter(row => {
+                                    if (activeFilter === 'all') return true;
+                                    const group = groups.find(g => g.key === activeFilter);
+                                    return group?.match((row.assignment.activity.category || '').toLowerCase());
+                                }).length === 0 && (
+                                    <div className="py-8 text-center px-4">
+                                        <div className="w-12 h-12 rounded-full bg-border/20 flex items-center justify-center mx-auto mb-3 text-2xl opacity-80">
+                                            🔍
+                                        </div>
+                                        <p className="text-sm font-semibold text-text/80">No activities found</p>
+                                        <p className="text-xs text-text-muted mt-1">Try selecting a different category</p>
+                                        <button 
+                                            onClick={() => setActiveFilter('all')}
+                                            className="mt-3 text-primary text-xs font-bold uppercase tracking-wider hover:underline"
+                                        >
+                                            Show All
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                    )}
+
+                    {/* === GROUPED VIEW: default on mobile + desktop === */}
+                    <div className={`${mobileViewMode === 'grouped' ? 'block' : 'hidden'} lg:block p-2.5 sm:p-4 bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45`}>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {groups.map((group) => {
                                 const groupStyle = getCategoryStyle(group.key);
