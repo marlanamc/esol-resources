@@ -185,6 +185,7 @@ export function calculateQuizPoints(score: number | null): number {
 }
 
 export type LeaderboardRange = 'day' | 'week' | 'month';
+const EXCLUDED_LEADERBOARD_USERNAMES = ["marlie", "daniel", "leah"];
 
 function getRangeStart(range: LeaderboardRange) {
   const now = new Date();
@@ -238,7 +239,7 @@ export async function getTimeframedLeaderboard(
   // First, get all students (excluding test accounts and admin accounts)
   const studentWhere: Prisma.UserWhereInput = {
     role: "student",
-    username: { notIn: ["marlie", "leah"] }, // Exclude test and admin accounts from leaderboard
+    username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
     ...(classFilter || {}),
   };
 
@@ -260,7 +261,7 @@ export async function getTimeframedLeaderboard(
     createdAt: { gte: since },
     user: {
       role: "student",
-      username: { notIn: ["marlie", "leah"] }, // Exclude test and admin accounts from leaderboard
+      username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
       ...(classFilter || {}),
     },
   };
@@ -285,7 +286,7 @@ export async function getTimeframedLeaderboard(
     avatarColor: student.avatarColor,
   }));
 
-  // Filter out students with 0 points - only rank students who have earned points
+  // Keep leaderboard competitive: only include students who earned points this timeframe.
   const studentsWithPoints = rankings.filter((r) => r.points > 0);
 
   // Sort by points descending, then by name alphabetically for display order

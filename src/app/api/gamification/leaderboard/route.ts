@@ -77,16 +77,23 @@ export async function GET(req: NextRequest) {
       });
 
       if (scope === "all") {
-        const activeEnrollment =
-          (resolvedClassId ? enrollments.find((item) => item.classId === resolvedClassId) : null) ||
-          enrollments[0];
+        const activeClassId = resolvedClassId || enrollments[0]?.classId;
 
-        if (activeEnrollment?.class?.teacherId) {
-          const teacherClasses = await prisma.class.findMany({
-            where: { teacherId: activeEnrollment.class.teacherId },
-            select: { id: true },
+        if (activeClassId) {
+          const activeClass = await prisma.class.findUnique({
+            where: { id: activeClassId },
+            select: { sectionGroupId: true },
           });
-          resolvedClassIds = teacherClasses.map((item) => item.id);
+
+          if (activeClass?.sectionGroupId) {
+            const siblingSections = await prisma.class.findMany({
+              where: { sectionGroupId: activeClass.sectionGroupId },
+              select: { id: true },
+            });
+            resolvedClassIds = siblingSections.map((item) => item.id);
+          } else {
+            resolvedClassIds = Array.from(new Set(enrollments.map((item) => item.classId)));
+          }
         } else {
           resolvedClassIds = [];
         }
