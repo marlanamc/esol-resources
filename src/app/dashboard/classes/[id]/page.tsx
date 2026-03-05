@@ -30,6 +30,11 @@ export default async function ClassDetailPage({ params }: Props) {
         include: {
             teacher: true,
             enrollments: {
+                where: {
+                    student: {
+                        isSystemAccount: false,
+                    },
+                },
                 include: {
                     student: true,
                 },
@@ -50,9 +55,17 @@ export default async function ClassDetailPage({ params }: Props) {
 
     // Check if user has access (teacher or enrolled student)
     const isTeacher = userRole === "teacher" && (admin || classItem.teacherId === userId);
-    const isEnrolled = classItem.enrollments.some(
-        (enrollment: { studentId: string }) => enrollment.studentId === userId
-    );
+    const isEnrolled = userRole === "student" && userId
+        ? !!(await prisma.classEnrollment.findUnique({
+            where: {
+                classId_studentId: {
+                    classId: classItem.id,
+                    studentId: userId,
+                },
+            },
+            select: { id: true },
+        }))
+        : false;
 
     if (!isTeacher && !isEnrolled) {
         redirect("/dashboard");

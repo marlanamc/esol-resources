@@ -33,6 +33,11 @@ export default async function PasswordsPage() {
         where: admin ? {} : { teacherId: userId },
         include: {
             enrollments: {
+                where: {
+                    student: {
+                        isSystemAccount: false,
+                    },
+                },
                 include: {
                     student: {
                         select: {
@@ -109,4 +114,3 @@ export default async function PasswordsPage() {
         </div>
     );
 }
-

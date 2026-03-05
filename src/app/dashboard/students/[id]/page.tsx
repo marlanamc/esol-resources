@@ -31,6 +31,9 @@ export default async function StudentDetailPage({
     const enrollment = await prisma.classEnrollment.findFirst({
         where: {
             studentId: studentId,
+            student: {
+                isSystemAccount: false,
+            },
             ...(admin ? {} : { class: { teacherId } }),
         },
         include: {

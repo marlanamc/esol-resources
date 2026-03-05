@@ -29,6 +29,9 @@ export async function GET(request: Request) {
             where: {
                 studentId,
                 class: { teacherId: user.id },
+                student: {
+                    isSystemAccount: false,
+                },
             },
         });
         if (!enrollment) {

@@ -42,6 +42,11 @@ export default async function StatsPage() {
                     select: {
                         id: true,
                         enrollments: {
+                            where: {
+                                student: {
+                                    isSystemAccount: false,
+                                },
+                            },
                             select: {
                                 student: {
                                     select: {
@@ -105,7 +110,8 @@ export default async function StatsPage() {
                                     )
                                 )
                             )
-                        }
+                        },
+                        isSystemAccount: false,
                     },
                     select: {
                         id: true,

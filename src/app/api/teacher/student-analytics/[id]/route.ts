@@ -26,7 +26,10 @@ export async function GET(
                 studentId,
                 class: {
                     teacherId
-                }
+                },
+                student: {
+                    isSystemAccount: false,
+                },
             }
         });
 
@@ -47,11 +50,12 @@ export async function GET(
             currentStreak: true,
             longestStreak: true,
             lastActivityDate: true,
-            createdAt: true
+            createdAt: true,
+            isSystemAccount: true,
         }
     });
 
-    if (!student) {
+    if (!student || student.isSystemAccount) {
         return NextResponse.json({ error: "Student not found" }, { status: 404 });
     }
     const effectiveCurrentStreak = getEffectiveStreak(student.currentStreak, student.lastActivityDate);

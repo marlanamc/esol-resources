@@ -80,12 +80,20 @@ export async function GET(request: Request) {
 
     // Get student IDs in class
     const enrollments = await prisma.classEnrollment.findMany({
-        where: { classId },
+        where: {
+            classId,
+            student: {
+                isSystemAccount: false,
+            },
+        },
         select: { studentId: true },
     });
     const studentIds = enrollments.map((e) => e.studentId);
     const students = await prisma.user.findMany({
-        where: { id: { in: studentIds } },
+        where: {
+            id: { in: studentIds },
+            isSystemAccount: false,
+        },
         select: { id: true, name: true, username: true },
     });
     const studentById = new Map<string, StudentIdentity>(

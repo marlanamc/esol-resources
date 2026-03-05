@@ -38,7 +38,12 @@ export default async function DiagnosticsPage({
                 select: { id: true, title: true },
             }),
             prisma.classEnrollment.count({
-                where: { classId },
+                where: {
+                    classId,
+                    student: {
+                        isSystemAccount: false,
+                    },
+                },
             }),
         ]);
         classData = foundClass;

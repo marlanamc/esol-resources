@@ -45,6 +45,11 @@ export default async function SubmissionsPage({ params }: Props) {
             class: {
                 include: {
                     enrollments: {
+                        where: {
+                            student: {
+                                isSystemAccount: false,
+                            },
+                        },
                         include: {
                             student: true,
                         },
@@ -52,6 +57,11 @@ export default async function SubmissionsPage({ params }: Props) {
                 },
             },
             submissions: {
+                where: {
+                    user: {
+                        isSystemAccount: false,
+                    },
+                },
                 include: {
                     user: true,
                 },
@@ -91,7 +101,6 @@ export default async function SubmissionsPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

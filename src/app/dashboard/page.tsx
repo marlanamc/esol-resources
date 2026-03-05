@@ -143,6 +143,11 @@ export default async function DashboardPage() {
                             name: true,
                             description: true,
                             enrollments: {
+                                where: {
+                                    student: {
+                                        isSystemAccount: false,
+                                    },
+                                },
                                 select: {
                                     id: true,
                                     student: {
