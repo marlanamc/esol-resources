@@ -49,6 +49,40 @@ Copy/paste this block for each change:
 
 ## Entries
 
+## 2026-03-05 - Calendar Event Edit Flow on Teacher Dashboard
+
+### Summary
+- Replaced direct delete action in upcoming events with an edit-first flow.
+- Added calendar event update endpoint (`PATCH /api/calendar-events`) with teacher authorization checks.
+- Delete now happens from inside the edit panel with explicit confirmation.
+
+### Risk Level
+- Medium
+
+### Areas Impacted
+- API routes: calendar-events.
+- UI pages/components: UpcomingEventsList, teacher dashboard/calendar pages.
+- DB models/migrations: none.
+
+### Backward Compatibility
+- Compatible: Yes
+- Notable behavior changes:
+  - Teachers now click `Edit` first; delete is no longer a one-click action.
+
+### Rollback Plan
+1. Revert edit-flow UI/API commits.
+2. Restore direct delete button in upcoming events list.
+3. Smoke-check teacher calendar create/delete.
+
+### Verification Performed
+- [x] Typecheck
+- [ ] Relevant route access checks (teacher/student/admin)
+- [ ] Data integrity checks
+- [ ] UI smoke check
+
+### Notes
+- Upcoming list now reads and preserves calendar event descriptions during edit.
+
 ## 2026-03-05 - Calendar Section Sync Option
 
 ### Summary

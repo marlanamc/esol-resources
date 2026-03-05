@@ -9,6 +9,7 @@ export type CalendarEvent = {
     endDate?: Date | string | null;
     type?: 'due' | 'holiday' | 'event' | 'reminder' | 'quiz';
     title?: string | null;
+    description?: string | null;
 };
 
 interface MiniCalendarProps {
