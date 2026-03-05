@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "@/lib/auth-config";
+import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
 import { createAuditLogger } from "@/lib/audit-log";
 import { isTeacherAdmin } from "@/lib/roles";
 
@@ -42,6 +42,9 @@ export async function POST(request: Request) {
 
     if (newPassword.length > MAX_PASSWORD_LENGTH) {
         return NextResponse.json({ error: `Password must not exceed ${MAX_PASSWORD_LENGTH} characters.` }, { status: 400 });
+    }
+    if (isDisallowedPassword(newPassword)) {
+        return NextResponse.json({ error: DEFAULT_PASSWORD_BLOCKED_MESSAGE }, { status: 400 });
     }
 
     const user = await prisma.user.findUnique({
@@ -108,6 +111,4 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ ok: true });
 }
-
-
 

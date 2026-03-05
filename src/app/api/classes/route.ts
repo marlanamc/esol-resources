@@ -12,7 +12,7 @@ import type { Prisma } from "@prisma/client";
 const DEFAULT_TEST_STUDENT_PASSWORD = "password123";
 
 async function createSystemTestStudentForClass(tx: Prisma.TransactionClient, classItem: { id: string; code: string }) {
-    const username = `student_${classItem.code}`;
+    const username = `student_${classItem.code}`.toLowerCase();
     const passwordHash = await bcrypt.hash(DEFAULT_TEST_STUDENT_PASSWORD, BCRYPT_ROUNDS);
 
     const student = await tx.user.upsert({
@@ -247,7 +247,6 @@ export async function POST(request: NextRequest) {
         );
     }
 }
-
 
 
 

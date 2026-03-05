@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Providers from "@/components/Providers";
+import { DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
 
 function PasswordResetContent() {
     const { data: session, status } = useSession();
@@ -30,6 +31,10 @@ function PasswordResetContent() {
 
         if (!password || password.length < 8) {
             setError("Password must be at least 8 characters.");
+            return;
+        }
+        if (isDisallowedPassword(password)) {
+            setError(DEFAULT_PASSWORD_BLOCKED_MESSAGE);
             return;
         }
         if (password !== confirm) {
@@ -179,4 +184,3 @@ export default function PasswordResetPage() {
         </Providers>
     );
 }
-
