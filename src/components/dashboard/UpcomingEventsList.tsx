@@ -10,6 +10,44 @@ interface Props {
     showSyncedLabel?: boolean;
 }
 
+const EVENT_TYPE_STYLES: Record<NonNullable<CalendarEvent["type"]>, {
+    accent: string;
+    chipBg: string;
+    chipBorder: string;
+    chipText: string;
+}> = {
+    quiz: {
+        accent: "#5f8267",
+        chipBg: "#eef4ef",
+        chipBorder: "#c7d8cc",
+        chipText: "#3f5e47",
+    },
+    holiday: {
+        accent: "#6d89ac",
+        chipBg: "#eef3f9",
+        chipBorder: "#c8d4e4",
+        chipText: "#4c6788",
+    },
+    due: {
+        accent: "#a98966",
+        chipBg: "#f8f3ec",
+        chipBorder: "#e1d3c3",
+        chipText: "#7b6248",
+    },
+    event: {
+        accent: "#7c6c98",
+        chipBg: "#f3f0f8",
+        chipBorder: "#d7cfe4",
+        chipText: "#5f5178",
+    },
+    reminder: {
+        accent: "#a98966",
+        chipBg: "#f8f3ec",
+        chipBorder: "#e1d3c3",
+        chipText: "#7b6248",
+    },
+};
+
 export default function UpcomingEventsList({ events, allowDelete = true, showSyncedLabel = true }: Props) {
     const router = useRouter();
     const [isDeleting, setIsDeleting] = useState<string | null>(null);
@@ -58,33 +96,41 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                             : `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
 
                         const canDelete = allowDelete && Boolean(ev.id);
-                        const colorClass = ev.type === "quiz"
-                            ? "bg-[#5f8267]"
-                            : ev.type === "holiday"
-                                ? "bg-[#6d89ac]"
-                                : "bg-[#a98966]";
+                        const eventType = ev.type || "due";
+                        const colors = EVENT_TYPE_STYLES[eventType];
 
-                        const typeLabel = ev.type === "quiz"
+                        const typeLabel = eventType === "quiz"
                             ? "Quiz/Test"
-                            : ev.type === "holiday"
+                            : eventType === "holiday"
                                 ? "Holiday"
-                                : "Due";
+                                : eventType === "event"
+                                    ? "Event"
+                                    : eventType === "reminder"
+                                        ? "Reminder"
+                                        : "Due";
 
                         return (
                             <div key={`${ev.title}-${idx}`} className="relative border border-border/45 rounded-xl bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)]">
-                                <span className={`absolute left-0 top-2 bottom-2 w-1 rounded-r ${colorClass}`} aria-hidden="true" />
+                                <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r" style={{ backgroundColor: colors.accent }} aria-hidden="true" />
 
                                 <div className="pl-1 min-w-0">
                                     <div className="flex items-start gap-3">
                                         <div className="flex items-center gap-2 min-w-0">
-                                            <span className={`w-2 h-2 rounded-full shrink-0 mt-1 ${colorClass}`} />
+                                            <span className="w-2 h-2 rounded-full shrink-0 mt-1" style={{ backgroundColor: colors.accent }} />
                                             <span className="font-semibold text-text leading-tight whitespace-normal break-words">
                                                 {ev.title}
                                             </span>
                                         </div>
                                     </div>
                                     <div className="mt-2 ml-4 flex flex-wrap items-center gap-2">
-                                        <span className="inline-flex items-center gap-1.5 rounded-full border border-[#d9cfca] bg-[#f6f2ef] px-3 py-1 text-[12px] font-medium text-[#6b7388]">
+                                        <span
+                                            className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12px] font-medium"
+                                            style={{
+                                                backgroundColor: colors.chipBg,
+                                                borderColor: colors.chipBorder,
+                                                color: colors.chipText,
+                                            }}
+                                        >
                                             <svg
                                                 aria-hidden="true"
                                                 viewBox="0 0 24 24"
@@ -102,7 +148,16 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                             </svg>
                                             <span>{dateLabel}</span>
                                         </span>
-                                        <span className="text-[11px] text-text-muted">{typeLabel}</span>
+                                        <span
+                                            className="inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold"
+                                            style={{
+                                                backgroundColor: colors.chipBg,
+                                                borderColor: colors.chipBorder,
+                                                color: colors.chipText,
+                                            }}
+                                        >
+                                            {typeLabel}
+                                        </span>
                                     </div>
                                 </div>
                                 {canDelete && (
