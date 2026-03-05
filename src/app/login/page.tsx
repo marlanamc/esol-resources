@@ -9,11 +9,11 @@ export default function LoginPage() {
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: '#d97757' }}>
                         Class Companion
                     </h1>
-                    <p className="text-sm mb-4 sm:mb-6" style={{ color: '#7ba884', fontWeight: '600' }}>
-                        ESOL Level 3
+                    <p className="text-base sm:text-lg mb-3 sm:mb-4" style={{ color: '#7ba884', fontWeight: '700' }}>
+                        ESOL Students
                     </p>
-                    <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
-                        Sign in to your account
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                        Sign in to continue
                     </h2>
                 </div>
                 <Suspense fallback={<div className="text-center text-sm" style={{ color: "#5e6f80" }}>Loading login form...</div>}>
