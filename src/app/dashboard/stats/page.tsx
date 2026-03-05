@@ -168,6 +168,31 @@ export default async function StatsPage() {
         return acc;
     }, {} as Record<string, Date | null>);
 
+    // Also track latest progress update timestamp (captures work that doesn't award new points)
+    const recentProgressUpdate = studentIds.length
+        ? await timedQuery(
+            {
+                route: "/dashboard/stats",
+                queryLabel: "activityProgress.groupBy.recentUpdate",
+                userRole,
+            },
+            () =>
+                withPrismaReadRetry(() =>
+                    prisma.activityProgress.groupBy({
+                        by: ['userId'],
+                        where: { userId: { in: studentIds } },
+                        _max: { updatedAt: true }
+                    })
+                ),
+            (result) => result.length
+        )
+        : [];
+
+    const lastProgressMap = recentProgressUpdate.reduce((acc, entry) => {
+        acc[entry.userId] = entry._max.updatedAt;
+        return acc;
+    }, {} as Record<string, Date | null>);
+
     // Get activity counts for "today"
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -203,7 +228,9 @@ export default async function StatsPage() {
     const enrichedStudents = students.map(student => ({
         ...student,
         currentStreak: getEffectiveStreak(student.currentStreak, student.lastActivityDate),
-        lastActive: lastActiveMap[student.id] || null,
+        lastActive: [lastActiveMap[student.id], lastProgressMap[student.id], student.lastActivityDate]
+            .filter((d): d is Date => d instanceof Date)
+            .sort((a, b) => b.getTime() - a.getTime())[0] || null,
         activitiesToday: activitiesTodayMap[student.id] || 0,
         sections: Array.from(studentSectionsMap.get(student.id)?.entries() || []).map(([id, name]) => ({
             id,

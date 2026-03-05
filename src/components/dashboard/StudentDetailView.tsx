@@ -56,6 +56,8 @@ interface StudentAnalytics {
         id: string;
         points: number;
         activity: string;
+        activityType?: string;
+        source?: "points" | "progress";
         timestamp: string;
     }>;
     verbQuizResults: Array<{
@@ -450,17 +452,17 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                 data.timeline.map(entry => {
                                     // Parse the new format: "Title|Type" or legacy formats
                                     let activityName = entry.activity;
-                                    let activityType: string | undefined;
+                                    let activityType: string | undefined = entry.activityType;
 
-                                    if (entry.activity.includes('|')) {
+                                    if (!activityType && entry.activity.includes('|')) {
                                         // New format: "Title|Type"
                                         const [title, type] = entry.activity.split('|');
                                         activityName = title.trim();
                                         activityType = type?.trim();
-                                    } else if (entry.activity.startsWith('Completed: ')) {
+                                    } else if (!activityType && entry.activity.startsWith('Completed: ')) {
                                         // Legacy format
                                         activityName = entry.activity.replace('Completed: ', '');
-                                    } else if (entry.activity.includes(':')) {
+                                    } else if (!activityType && entry.activity.includes(':')) {
                                         // Legacy grammar format: "grammar:slug"
                                         const formatted = entry.activity.split(':')[1]
                                             ?.replace(/-/g, ' ')
@@ -479,6 +481,8 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                     } else if (entry.activity.startsWith('Achievement:')) {
                                         activityType = 'Achievement';
                                         activityName = entry.activity.replace('Achievement: ', '');
+                                    } else if (entry.source === 'progress') {
+                                        activityType = 'In progress';
                                     }
 
                                     return (
@@ -486,11 +490,17 @@ export default function StudentDetailView({ studentId }: { studentId: string }) 
                                             key={entry.id}
                                             className="flex items-start gap-3 p-3 bg-bg rounded-lg"
                                         >
-                                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                                                <span className="text-sm font-bold text-primary">
-                                                    +{entry.points}
-                                                </span>
-                                            </div>
+                                            {entry.points > 0 ? (
+                                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                                                    <span className="text-sm font-bold text-primary">
+                                                        +{entry.points}
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+                                                    <span className="text-sm font-bold text-secondary">↻</span>
+                                                </div>
+                                            )}
                                             <div className="flex-1 min-w-0">
                                                 <div className="text-sm font-medium text-text">
                                                     {activityName}

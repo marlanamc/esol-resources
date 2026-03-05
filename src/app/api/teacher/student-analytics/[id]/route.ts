@@ -147,8 +147,12 @@ export async function GET(
     );
     const daysActiveThisMonth = uniqueDays.size;
 
-    // Get last active timestamp
-    const lastActive = pointsHistory.length > 0 ? pointsHistory[0].createdAt : null;
+    // Get last active timestamp from either points awards or progress updates.
+    const latestPointsAt = pointsHistory[0]?.createdAt ?? null;
+    const latestProgressAt = activityProgress[0]?.updatedAt ?? null;
+    const lastActive = [latestPointsAt, latestProgressAt, student.lastActivityDate]
+        .filter((d): d is Date => d instanceof Date)
+        .sort((a, b) => b.getTime() - a.getTime())[0] ?? null;
 
     // Group activities by category for progress overview
     // Vocabulary activities are identified by ID pattern (vocab-*) or category
@@ -270,6 +274,27 @@ export async function GET(
         };
     }).filter(r => r.completed); // Only show guides where the quiz was actually taken
 
+    const progressTimeline = activityProgress.slice(0, 50).map((entry) => ({
+        id: `progress-${entry.id}`,
+        points: 0,
+        activity: entry.activity.title,
+        activityType: entry.activity.type || "activity",
+        source: "progress" as const,
+        timestamp: entry.updatedAt
+    }));
+
+    const pointsTimeline = pointsHistory.map((entry) => ({
+        id: `points-${entry.id}`,
+        points: entry.points,
+        activity: entry.reason,
+        source: "points" as const,
+        timestamp: entry.createdAt
+    }));
+
+    const timeline = [...pointsTimeline, ...progressTimeline]
+        .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+        .slice(0, 50);
+
     return NextResponse.json({
         student: {
             ...student,
@@ -310,12 +335,7 @@ export async function GET(
             },
             all: activityProgress
         },
-        timeline: pointsHistory.map(entry => ({
-            id: entry.id,
-            points: entry.points,
-            activity: entry.reason,
-            timestamp: entry.createdAt
-        })),
+        timeline,
         verbQuizResults,
         grammarQuizResults
     });
