@@ -47,17 +47,23 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
     const updateStatus = (id: string, next: StatusState[string]) =>
         setStatus((prev) => ({ ...prev, [id]: next }));
 
-    const handleSubmit = async (id: string, pwd: string) => {
+    const handleSubmit = async (id: string, pwd: string, allowDefaultPassword?: boolean) => {
         if (!pwd || pwd.length < 6) {
             updateStatus(id, { state: "error", message: "Min 6 characters" });
             return;
         }
+        const shouldAllowDefaultPassword =
+            allowDefaultPassword ?? pwd.trim().toLowerCase() === "password123";
         updateStatus(id, { state: "saving" });
         try {
             const res = await fetch("/api/admin/reset-student-password", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ userId: id, newPassword: pwd }),
+                body: JSON.stringify({
+                    userId: id,
+                    newPassword: pwd,
+                    allowDefaultPassword: shouldAllowDefaultPassword,
+                }),
             });
             if (!res.ok) {
                 const data = await res.json().catch(() => ({}));
@@ -154,7 +160,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                         {entry.state === "saving" ? "Saving…" : "Save"}
                                     </button>
                                     <button
-                                        onClick={() => handleSubmit(s.id, "password123")}
+                                        onClick={() => handleSubmit(s.id, "password123", true)}
                                         disabled={entry.state === "saving"}
                                         className="px-3 py-2 rounded-lg text-sm font-semibold border border-border text-text hover:bg-gray-50 active:scale-95 disabled:opacity-60"
                                     >
