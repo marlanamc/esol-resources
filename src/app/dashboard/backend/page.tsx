@@ -5,6 +5,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { isTeacherAdmin } from "@/lib/roles";
+import { EXCLUDED_LEADERBOARD_USERNAMES } from "@/lib/gamification";
 
 type UserRow = {
     id: string;
@@ -14,6 +15,16 @@ type UserRow = {
     isSystemAccount: boolean;
     mustChangePassword: boolean;
     createdAt: Date;
+    classes: {
+        class: {
+            id: string;
+            name: string;
+        };
+    }[];
+    createdClasses: {
+        id: string;
+        name: string;
+    }[];
     _count: {
         classes: number;
         createdClasses: number;
@@ -46,6 +57,30 @@ export default async function BackendUsersPage() {
             isSystemAccount: true,
             mustChangePassword: true,
             createdAt: true,
+            classes: {
+                select: {
+                    class: {
+                        select: {
+                            id: true,
+                            name: true,
+                        },
+                    },
+                },
+                orderBy: {
+                    class: {
+                        name: "asc",
+                    },
+                },
+            },
+            createdClasses: {
+                select: {
+                    id: true,
+                    name: true,
+                },
+                orderBy: {
+                    name: "asc",
+                },
+            },
             _count: {
                 select: {
                     classes: true,
@@ -86,19 +121,25 @@ export default async function BackendUsersPage() {
                     </div>
 
                     <div className="overflow-x-auto">
-                        <table className="w-full min-w-[900px]">
+                        <table className="w-full min-w-[1200px]">
                             <thead>
                                 <tr className="border-b border-border/60">
                                     <th className="text-left py-3 px-3 text-sm font-semibold text-text">Username</th>
                                     <th className="text-left py-3 px-3 text-sm font-semibold text-text">Name</th>
                                     <th className="text-left py-3 px-3 text-sm font-semibold text-text">Role</th>
+                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Excluded</th>
                                     <th className="text-left py-3 px-3 text-sm font-semibold text-text">Permissions</th>
                                     <th className="text-left py-3 px-3 text-sm font-semibold text-text">Classes</th>
+                                    <th className="text-left py-3 px-3 text-sm font-semibold text-text">Sections</th>
                                     <th className="text-left py-3 px-3 text-sm font-semibold text-text">Created</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {users.map((user) => {
+                                    const isExcluded = EXCLUDED_LEADERBOARD_USERNAMES.includes(user.username);
+                                    const sectionNames = user.role === "student"
+                                        ? user.classes.map((entry) => entry.class.name)
+                                        : user.createdClasses.map((entry) => entry.name);
                                     const permissions = [
                                         user.role === "teacher_admin" ? "Global teacher access" : null,
                                         user.role === "teacher" ? "Teacher tools" : "Student tools",
@@ -115,10 +156,24 @@ export default async function BackendUsersPage() {
                                                     {user.role}
                                                 </span>
                                             </td>
+                                            <td className="py-3 px-3 text-sm">
+                                                <span
+                                                    className={`inline-flex px-2 py-1 rounded-full border text-xs font-semibold ${
+                                                        isExcluded
+                                                            ? "bg-amber-100 text-amber-800 border-amber-200"
+                                                            : "bg-emerald-100 text-emerald-800 border-emerald-200"
+                                                    }`}
+                                                >
+                                                    {isExcluded ? "Yes" : "No"}
+                                                </span>
+                                            </td>
                                             <td className="py-3 px-3 text-xs text-text-muted">{permissions.join(" • ")}</td>
                                             <td className="py-3 px-3 text-sm text-text">
                                                 {user._count.classes}
                                                 {user.role !== "student" ? ` enrolled / ${user._count.createdClasses} teaching` : ""}
+                                            </td>
+                                            <td className="py-3 px-3 text-xs text-text-muted">
+                                                {sectionNames.length > 0 ? sectionNames.join(", ") : "—"}
                                             </td>
                                             <td className="py-3 px-3 text-sm text-text-muted">
                                                 {new Date(user.createdAt).toLocaleDateString()}
