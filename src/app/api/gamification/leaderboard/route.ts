@@ -18,11 +18,17 @@ export async function GET(req: NextRequest) {
 
     const { searchParams } = new URL(req.url);
     const classId = searchParams.get('classId');
+    const scopeParam = (searchParams.get('scope') || 'section').toLowerCase();
+    const scope = scopeParam === 'all' ? 'all' : 'section';
     const limit = parseInt(searchParams.get('limit') || '20');
     const timeframeParam = (searchParams.get('timeframe') || 'week').toLowerCase() as LeaderboardRange;
     const timeframe: LeaderboardRange = ['day', 'week', 'month'].includes(timeframeParam) ? timeframeParam : 'week';
     const user = session.user;
+    if (!user.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
     let resolvedClassId: string | undefined = classId || undefined;
+    let resolvedClassIds: string[] | undefined;
 
     if (resolvedClassId) {
       if (user.role === "student") {
@@ -54,36 +60,72 @@ export async function GET(req: NextRequest) {
           return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
         }
       }
-    } else if (user.role === "student") {
-      const enrollment = await prisma.classEnrollment.findFirst({
+    }
+
+    if (user.role === "student") {
+      const enrollments = await prisma.classEnrollment.findMany({
         where: { studentId: user.id },
         orderBy: { joinedAt: "desc" },
-        select: { classId: true },
+        select: {
+          classId: true,
+          class: {
+            select: {
+              teacherId: true,
+            },
+          },
+        },
       });
-      resolvedClassId = enrollment?.classId;
+
+      if (scope === "all") {
+        const activeEnrollment =
+          (resolvedClassId ? enrollments.find((item) => item.classId === resolvedClassId) : null) ||
+          enrollments[0];
+
+        if (activeEnrollment?.class?.teacherId) {
+          const teacherClasses = await prisma.class.findMany({
+            where: { teacherId: activeEnrollment.class.teacherId },
+            select: { id: true },
+          });
+          resolvedClassIds = teacherClasses.map((item) => item.id);
+        } else {
+          resolvedClassIds = [];
+        }
+      } else {
+        resolvedClassId = resolvedClassId || enrollments[0]?.classId;
+      }
     } else {
       const teacherCheck = ensureTeacher(user);
       if (!teacherCheck.ok) {
         return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
       }
-      const firstClass = await prisma.class.findFirst({
-        where: classOwnershipWhere(user, teacherCheck.admin),
-        orderBy: { createdAt: "desc" },
-        select: { id: true },
-      });
-      resolvedClassId = firstClass?.id;
+      if (!resolvedClassId) {
+        const firstClass = await prisma.class.findFirst({
+          where: classOwnershipWhere(user, teacherCheck.admin),
+          orderBy: { createdAt: "desc" },
+          select: { id: true },
+        });
+        resolvedClassId = firstClass?.id;
+      }
     }
 
-    const leaderboard = await getTimeframedLeaderboard(timeframe, limit, resolvedClassId);
+    const leaderboard = await getTimeframedLeaderboard(timeframe, limit, resolvedClassId, resolvedClassIds);
     const userRank = leaderboard.findIndex((entry) => entry.id === user.id) + 1;
 
     return NextResponse.json({
       leaderboard,
       userRank: userRank > 0 ? userRank : null,
       classId: resolvedClassId || null,
+      scope,
     });
   } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown error';
     console.error('[Leaderboard] Error:', error);
-    return NextResponse.json({ error: 'Failed to fetch leaderboard' }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: 'Failed to fetch leaderboard',
+        ...(process.env.NODE_ENV === 'development' ? { details: message } : {}),
+      },
+      { status: 500 }
+    );
   }
 }
