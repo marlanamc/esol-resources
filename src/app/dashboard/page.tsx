@@ -269,7 +269,7 @@ export default async function DashboardPage() {
 
         const totalStudents = classes.reduce((acc, c) => acc + c.enrollments.length, 0);
         const totalClasses = classes.length;
-        const isTeacherUser = session.user.username === "teacher_user";
+        const isTeacherUser = admin;
         const importantPageSections = [
             {
                 heading: "Student Insights",

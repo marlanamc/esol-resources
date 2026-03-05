@@ -4,6 +4,7 @@ import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { isTeacherAdmin } from "@/lib/roles";
 
 type UserRow = {
     id: string;
@@ -31,7 +32,7 @@ export default async function BackendUsersPage() {
         redirect("/login");
     }
 
-    const canAccess = session.user.role === "teacher" && session.user.username === "teacher_user";
+    const canAccess = session.user.role === "teacher" && isTeacherAdmin(session.user);
     if (!canAccess) {
         redirect("/dashboard");
     }
@@ -81,7 +82,7 @@ export default async function BackendUsersPage() {
                 <div className="border rounded-2xl bg-white p-4 sm:p-6 shadow-sm">
                     <div className="flex items-center justify-between gap-3 flex-wrap mb-4">
                         <h2 className="text-xl font-bold text-text">Accounts ({users.length})</h2>
-                        <p className="text-sm text-text-muted">Access: `teacher_user` only</p>
+                        <p className="text-sm text-text-muted">Access: `teacher_admin` only</p>
                     </div>
 
                     <div className="overflow-x-auto">
