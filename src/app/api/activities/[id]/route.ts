@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { canManageActivity, ensureTeacher } from "@/lib/policies";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -10,14 +11,14 @@ interface Props {
 export async function PUT(request: NextRequest, { params }: Props) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Only teachers can edit activities" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const { id } = await params;
         const body = await request.json();
@@ -40,6 +41,10 @@ export async function PUT(request: NextRequest, { params }: Props) {
 
         if (!existingActivity) {
             return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+        }
+
+        if (!canManageActivity(session.user, admin, existingActivity.createdBy)) {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
         // Update activity
@@ -69,14 +74,14 @@ export async function PUT(request: NextRequest, { params }: Props) {
 export async function DELETE(request: NextRequest, { params }: Props) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Only teachers can delete activities" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const { id } = await params;
 
@@ -90,6 +95,10 @@ export async function DELETE(request: NextRequest, { params }: Props) {
 
         if (!activity) {
             return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+        }
+
+        if (!canManageActivity(session.user, admin, activity.createdBy)) {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
         // Soft-delete activity to preserve historical submissions and recoverability.
@@ -111,9 +120,6 @@ export async function DELETE(request: NextRequest, { params }: Props) {
         );
     }
 }
-
-
-
 
 
 

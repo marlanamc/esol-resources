@@ -45,6 +45,7 @@ model Class {
   name           String
   description    String?
   code           String            @unique
+  sectionGroupId String?
   teacherId      String
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
@@ -56,6 +57,8 @@ model Class {
 
   @@index([teacherId])
   @@index([teacherId, createdAt])
+  @@index([sectionGroupId])
+  @@index([teacherId, sectionGroupId])
 }
 
 model ClassEnrollment {

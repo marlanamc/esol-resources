@@ -75,7 +75,8 @@ export const authOptions: NextAuthOptions = {
                         });
                     });
 
-                    const role = user.role === "teacher" ? "teacher" : "student";
+                    const isTeacherAdmin = user.role === "teacher_admin";
+                    const role = user.role === "student" ? "student" : "teacher";
 
                     // Detect if login is from mobile device
                     const headersList = await headers();
@@ -88,6 +89,7 @@ export const authOptions: NextAuthOptions = {
                         name: user.name ?? user.username,
                         username: user.username,
                         role,
+                        isTeacherAdmin,
                         mustChangePassword: user.mustChangePassword,
                         isMobile,
                     };
@@ -114,6 +116,7 @@ export const authOptions: NextAuthOptions = {
                 token.id = user.id;
                 token.role = user.role;
                 token.username = user.username;
+                token.isTeacherAdmin = user.isTeacherAdmin;
                 token.mustChangePassword = user.mustChangePassword;
                 token.isMobile = user.isMobile;
 
@@ -131,6 +134,7 @@ export const authOptions: NextAuthOptions = {
                 session.user.id = token.id ?? session.user.id;
                 session.user.role = token.role ?? session.user.role;
                 session.user.username = token.username ?? session.user.username;
+                session.user.isTeacherAdmin = token.isTeacherAdmin ?? false;
                 session.user.mustChangePassword =
                     token.mustChangePassword ?? session.user.mustChangePassword;
             }

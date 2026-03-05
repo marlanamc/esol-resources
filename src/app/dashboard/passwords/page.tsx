@@ -5,6 +5,7 @@ import { StudentPasswordManager } from "@/components/StudentPasswordManager";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { BackButton } from "@/components/ui";
+import { isTeacherAdmin } from "@/lib/roles";
 
 type StudentSummary = {
     id: string;
@@ -22,13 +23,14 @@ export default async function PasswordsPage() {
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
+    const admin = isTeacherAdmin(session.user);
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
     }
 
     const classes = await prisma.class.findMany({
-        where: { teacherId: userId },
+        where: admin ? {} : { teacherId: userId },
         include: {
             enrollments: {
                 include: {
@@ -107,5 +109,4 @@ export default async function PasswordsPage() {
         </div>
     );
 }
-
 

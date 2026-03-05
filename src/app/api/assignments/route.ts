@@ -2,21 +2,22 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { canManageActivity, canManageClass, ensureTeacher } from "@/lib/policies";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { classId, activityId, title, instructions, dueDate } = body;
+        const { classId, activityId, title, instructions, dueDate, syncToSectionGroup = true } = body;
 
         if (!classId || !activityId) {
             return NextResponse.json(
@@ -25,7 +26,14 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userId = session.user?.id;
+        if (typeof syncToSectionGroup !== "boolean") {
+            return NextResponse.json(
+                { error: "syncToSectionGroup must be a boolean" },
+                { status: 400 }
+            );
+        }
+
+        const userId = session.user.id;
 
         // Verify teacher owns the class
         const classItem = await prisma.class.findUnique({
@@ -36,7 +44,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Class not found" }, { status: 404 });
         }
 
-        if (classItem.teacherId !== userId) {
+        if (!canManageClass(session.user, admin, classItem.teacherId)) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
@@ -52,15 +60,47 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Activity not found" }, { status: 404 });
         }
 
-        const assignment = await prisma.assignment.create({
-            data: {
-                classId,
-                activityId,
-                title: title || null,
-                instructions: instructions || null,
-                dueDate: dueDate ? new Date(dueDate) : null,
-                isFeatured: true, // Auto-feature new assignments
-            },
+        if (!canManageActivity(session.user, admin, activity.createdBy)) {
+            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        }
+
+        const assignmentData = {
+            activityId,
+            title: title || null,
+            instructions: instructions || null,
+            dueDate: dueDate ? new Date(dueDate) : null,
+            isFeatured: true,
+        };
+
+        const assignment = await prisma.$transaction(async (tx) => {
+            const created = await tx.assignment.create({
+                data: {
+                    classId,
+                    ...assignmentData,
+                },
+            });
+
+            if (syncToSectionGroup && classItem.sectionGroupId) {
+                const siblingSections = await tx.class.findMany({
+                    where: {
+                        sectionGroupId: classItem.sectionGroupId,
+                        teacherId: classItem.teacherId,
+                        id: { not: classItem.id },
+                    },
+                    select: { id: true },
+                });
+
+                if (siblingSections.length > 0) {
+                    await tx.assignment.createMany({
+                        data: siblingSections.map((section) => ({
+                            classId: section.id,
+                            ...assignmentData,
+                        })),
+                    });
+                }
+            }
+
+            return created;
         });
 
         return NextResponse.json(assignment);
@@ -77,14 +117,14 @@ export async function POST(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
+        const admin = teacherCheck.admin;
 
         const body = await request.json();
         const { assignmentId, isFeatured } = body;
@@ -96,8 +136,6 @@ export async function PATCH(request: NextRequest) {
             );
         }
 
-        const userId = session.user?.id;
-
         // Verify teacher owns the class that the assignment belongs to
         const assignment = await prisma.assignment.findUnique({
             where: { id: assignmentId },
@@ -108,7 +146,7 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ error: "Assignment not found" }, { status: 404 });
         }
 
-        if (assignment.class.teacherId !== userId) {
+        if (!canManageClass(session.user, admin, assignment.class.teacherId)) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
@@ -127,7 +165,3 @@ export async function PATCH(request: NextRequest) {
         );
     }
 }
-
-
-
-

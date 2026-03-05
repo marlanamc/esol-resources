@@ -4,6 +4,7 @@ import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import EditActivityForm from "@/components/EditActivityForm";
 import { BackButton } from "@/components/ui/BackButton";
+import { isTeacherAdmin } from "@/lib/roles";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -18,6 +19,8 @@ export default async function EditActivityPage({ params }: Props) {
     }
 
     const userRole = session.user?.role;
+    const userId = session.user?.id;
+    const admin = isTeacherAdmin(session.user);
     if (userRole !== "teacher") {
         redirect("/dashboard");
     }
@@ -31,6 +34,10 @@ export default async function EditActivityPage({ params }: Props) {
 
     if (!activity) {
         notFound();
+    }
+
+    if (!admin && activity.createdBy !== userId) {
+        redirect("/dashboard/activities");
     }
 
     return (
@@ -49,7 +56,6 @@ export default async function EditActivityPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

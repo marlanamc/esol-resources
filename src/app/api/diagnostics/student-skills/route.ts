@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export async function GET(request: Request) {
     const session = await getServerSession(authOptions);
@@ -10,6 +11,7 @@ export async function GET(request: Request) {
     }
 
     const user = session.user as { id: string; role: string };
+    const admin = isTeacherAdmin(session.user);
     const { searchParams } = new URL(request.url);
     const studentId = searchParams.get("studentId");
     const activityId = searchParams.get("activityId");
@@ -22,7 +24,7 @@ export async function GET(request: Request) {
     }
 
     // Verify access: teacher must have student in their class, or user is viewing their own data
-    if (user.role === "teacher") {
+    if (user.role === "teacher" && !admin) {
         const enrollment = await prisma.classEnrollment.findFirst({
             where: {
                 studentId,

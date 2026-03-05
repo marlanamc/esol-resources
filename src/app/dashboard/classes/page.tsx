@@ -4,6 +4,7 @@ import Link from "next/link";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export default async function ClassesIndexPage() {
     const session = await getServerSession(authOptions);
@@ -13,6 +14,7 @@ export default async function ClassesIndexPage() {
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
+    const admin = isTeacherAdmin(session.user);
 
     // Only teachers should view their class list here
     if (userRole !== "teacher") {
@@ -20,7 +22,7 @@ export default async function ClassesIndexPage() {
     }
 
     const classes = await prisma.class.findMany({
-        where: { teacherId: userId },
+        where: admin ? {} : { teacherId: userId },
         include: {
             enrollments: true,
             assignments: true,

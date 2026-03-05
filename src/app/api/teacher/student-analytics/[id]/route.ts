@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getEffectiveStreak } from "@/lib/gamification/streak-utils";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export async function GET(
     request: Request,
@@ -15,10 +16,11 @@ export async function GET(
 
     const teacherId = session.user.id;
     const userRole = session.user.role;
+    const admin = isTeacherAdmin(session.user);
     const { id: studentId } = await params;
 
     // Verify teacher has access to this student (student is in one of their classes)
-    if (userRole === "teacher") {
+    if (userRole === "teacher" && !admin) {
         const enrollment = await prisma.classEnrollment.findFirst({
             where: {
                 studentId,

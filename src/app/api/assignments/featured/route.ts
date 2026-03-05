@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { parseCategoryData } from "@/lib/categoryData";
+import { isTeacherAdmin } from "@/lib/roles";
 
 const NEW_RELEASE_WINDOW_MS = 24 * 60 * 60 * 1000;
 
@@ -223,10 +224,11 @@ export async function DELETE() {
         }
 
         const userId = session.user?.id;
+        const admin = isTeacherAdmin(session.user);
 
-        // Get all classes owned by the teacher
+        // Get all classes owned by the teacher (or all classes for admin).
         const teacherClasses = await prisma.class.findMany({
-            where: { teacherId: userId },
+            where: admin ? {} : { teacherId: userId },
             select: { id: true }
         });
 

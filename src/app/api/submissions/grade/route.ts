@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export async function POST(request: NextRequest) {
     try {
@@ -23,6 +24,7 @@ export async function POST(request: NextRequest) {
         }
 
         const userId = session.user?.id;
+        const admin = isTeacherAdmin(session.user);
 
         // Get submission with assignment and class
         const submission = await prisma.submission.findUnique({
@@ -41,7 +43,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Verify teacher owns the class
-        if (submission.assignment?.class.teacherId !== userId) {
+        if (!admin && submission.assignment?.class.teacherId !== userId) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
@@ -70,7 +72,6 @@ export async function POST(request: NextRequest) {
         );
     }
 }
-
 
 
 

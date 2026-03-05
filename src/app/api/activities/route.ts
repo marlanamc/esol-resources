@@ -3,17 +3,17 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
+import { ensureTeacher } from "@/lib/policies";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
+        if (!session?.user) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
-
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Only teachers can create activities" }, { status: 403 });
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
         }
 
         const body = await request.json();
@@ -26,8 +26,6 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userId = session.user?.id;
-
         const activity = await prisma.activity.create({
             data: {
                 title,
@@ -36,7 +34,7 @@ export async function POST(request: NextRequest) {
                 category: category || null,
                 level: level || null,
                 content,
-                createdBy: userId,
+                createdBy: session.user.id,
             },
         });
 
@@ -104,9 +102,17 @@ export async function GET() {
             return NextResponse.json(collapseEdPronunciationActivities(filteredActivities));
         }
 
-        // Teachers see all activities
+        const teacherCheck = ensureTeacher(session.user);
+        if (!teacherCheck.ok) {
+            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
+        }
+        const admin = teacherCheck.admin;
+
+        // Teachers see their own activities. Admin sees all activities.
         const activities = await prisma.activity.findMany({
-            where: { deletedAt: null },
+            where: admin
+                ? { deletedAt: null }
+                : { deletedAt: null, createdBy: session.user.id },
             orderBy: { createdAt: "desc" },
         });
 
@@ -120,7 +126,3 @@ export async function GET() {
         );
     }
 }
-
-
-
-

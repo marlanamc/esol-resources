@@ -5,6 +5,7 @@ import { BackButton } from "@/components/ui/BackButton";
 import CreateCalendarEventForm from "@/components/dashboard/CreateCalendarEventForm";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export default async function CalendarAddPage() {
     const session = await getServerSession(authOptions);
@@ -15,13 +16,14 @@ export default async function CalendarAddPage() {
 
     const userRole = session.user?.role || "student";
     const userId = session.user?.id;
+    const admin = isTeacherAdmin(session.user);
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
     }
 
     const classes = await prisma.class.findMany({
-        where: { teacherId: userId },
+        where: admin ? {} : { teacherId: userId },
         select: {
             id: true,
             name: true,
@@ -59,6 +61,5 @@ export default async function CalendarAddPage() {
         </div>
     );
 }
-
 
 

@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { collapseEdPronunciationActivities } from "@/lib/activity-list-dedupe";
 import CreateAssignmentForm from "@/components/CreateAssignmentForm";
 import { BackButton } from "@/components/ui/BackButton";
+import { isTeacherAdmin } from "@/lib/roles";
 
 interface Props {
     params: Promise<{ id: string }>;
@@ -20,6 +21,7 @@ export default async function NewAssignmentPage({ params }: Props) {
 
     const userId = session.user?.id;
     const userRole = session.user?.role;
+    const admin = isTeacherAdmin(session.user);
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
@@ -36,12 +38,12 @@ export default async function NewAssignmentPage({ params }: Props) {
         notFound();
     }
 
-    if (classItem.teacherId !== userId) {
+    if (!admin && classItem.teacherId !== userId) {
         redirect("/dashboard");
     }
 
     const activities = await prisma.activity.findMany({
-        where: { deletedAt: null },
+        where: admin ? { deletedAt: null } : { deletedAt: null, createdBy: userId },
         orderBy: { createdAt: "desc" },
     });
     const visibleActivities = collapseEdPronunciationActivities(activities);
@@ -57,14 +59,16 @@ export default async function NewAssignmentPage({ params }: Props) {
             </header>
             <main className="max-w-3xl mx-auto py-6 sm:px-6 lg:px-8">
                 <div className="px-4 py-6 sm:px-0">
-                    <CreateAssignmentForm classId={id} activities={visibleActivities} />
+                    <CreateAssignmentForm
+                        classId={id}
+                        activities={visibleActivities}
+                        supportsSectionSync={Boolean(classItem.sectionGroupId)}
+                    />
                 </div>
             </main>
         </div>
     );
 }
-
-
 
 
 

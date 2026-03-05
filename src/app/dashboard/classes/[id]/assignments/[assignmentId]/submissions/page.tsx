@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import SubmissionsList from "@/components/SubmissionsList";
+import { isTeacherAdmin } from "@/lib/roles";
 
 interface Props {
     params: Promise<{ id: string; assignmentId: string }>;
@@ -20,6 +21,7 @@ export default async function SubmissionsPage({ params }: Props) {
 
     const userId = session.user?.id;
     const userRole = session.user?.role;
+    const admin = isTeacherAdmin(session.user);
 
     if (userRole !== "teacher") {
         redirect("/dashboard");
@@ -32,7 +34,7 @@ export default async function SubmissionsPage({ params }: Props) {
         },
     });
 
-    if (!classItem || classItem.teacherId !== userId) {
+    if (!classItem || (!admin && classItem.teacherId !== userId)) {
         redirect("/dashboard");
     }
 
@@ -89,7 +91,6 @@ export default async function SubmissionsPage({ params }: Props) {
         </div>
     );
 }
-
 
 
 

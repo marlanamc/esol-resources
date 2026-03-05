@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { isTeacherAdmin } from "@/lib/roles";
 
 export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
@@ -17,6 +18,7 @@ export async function POST(request: Request) {
 
     const { activityId, released } = await request.json();
     const userId = session.user.id;
+    const admin = isTeacherAdmin(session.user);
 
     if (!activityId || typeof activityId !== "string") {
         return NextResponse.json({ error: "activityId is required" }, { status: 400 });
@@ -36,7 +38,7 @@ export async function POST(request: Request) {
     }
 
     // SECURITY: Verify teacher owns this activity (or it's a shared/system activity with null createdBy)
-    if (activity.createdBy && activity.createdBy !== userId) {
+    if (!admin && activity.createdBy && activity.createdBy !== userId) {
         return NextResponse.json({ error: "You can only release quizzes you created" }, { status: 403 });
     }
 
@@ -55,7 +57,7 @@ export async function POST(request: Request) {
         try {
             // Get all classes for this teacher
             const classes = await prisma.class.findMany({
-                where: { teacherId: userId },
+                where: admin ? {} : { teacherId: userId },
                 select: { id: true }
             });
 

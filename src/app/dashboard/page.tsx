@@ -29,6 +29,7 @@ import {
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
+import { isTeacherAdmin } from "@/lib/roles";
 
 type TeacherAssignment = {
     id: string;
@@ -118,6 +119,7 @@ export default async function DashboardPage() {
 
     const userRole = session.user.role;
     const userId = session.user.id;
+    const admin = isTeacherAdmin(session.user);
 
     // Count daily app opens toward streak without blocking dashboard render.
     void trackLogin(userId).catch(() => {
@@ -135,7 +137,7 @@ export default async function DashboardPage() {
             () =>
                 withPrismaReadRetry(() =>
                     prisma.class.findMany({
-                        where: { teacherId: userId },
+                        where: admin ? {} : { teacherId: userId },
                         select: {
                             id: true,
                             name: true,

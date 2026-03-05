@@ -3,11 +3,23 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function CreateClassForm() {
+interface ExistingClassOption {
+    id: string;
+    name: string;
+}
+
+interface Props {
+    existingClasses: ExistingClassOption[];
+    initialSourceClassId?: string;
+}
+
+export default function CreateClassForm({ existingClasses, initialSourceClassId = "" }: Props) {
     const router = useRouter();
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [code, setCode] = useState("");
+    const [sourceClassId, setSourceClassId] = useState(initialSourceClassId);
+    const [copyAssignments, setCopyAssignments] = useState(true);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +41,13 @@ export default function CreateClassForm() {
             const response = await fetch("/api/classes", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, description, code: code || undefined }),
+                body: JSON.stringify({
+                    name,
+                    description,
+                    code: code || undefined,
+                    sourceClassId: sourceClassId || undefined,
+                    copyAssignments: sourceClassId ? copyAssignments : undefined,
+                }),
             });
 
             if (!response.ok) {
@@ -66,6 +84,42 @@ export default function CreateClassForm() {
                             required
                         />
                     </div>
+
+                    <div>
+                        <label htmlFor="sourceClassId" className="block text-sm font-medium text-gray-700">
+                            Create As Section Of
+                        </label>
+                        <select
+                            id="sourceClassId"
+                            value={sourceClassId}
+                            onChange={(e) => setSourceClassId(e.target.value)}
+                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                        >
+                            <option value="">Standalone class (no section sync)</option>
+                            {existingClasses.map((cls) => (
+                                <option key={cls.id} value={cls.id}>
+                                    {cls.name}
+                                </option>
+                            ))}
+                        </select>
+                        <p className="mt-2 text-sm text-gray-500">
+                            Pick a class to create another section that syncs future activities.
+                        </p>
+                    </div>
+
+                    {sourceClassId && (
+                        <div className="rounded-md bg-blue-50 border border-blue-200 p-3">
+                            <label className="flex items-start gap-2 text-sm text-blue-900">
+                                <input
+                                    type="checkbox"
+                                    className="mt-0.5"
+                                    checked={copyAssignments}
+                                    onChange={(e) => setCopyAssignments(e.target.checked)}
+                                />
+                                Copy existing assignments from the source class now.
+                            </label>
+                        </div>
+                    )}
 
                     <div>
                         <label htmlFor="description" className="block text-sm font-medium text-gray-700">
@@ -136,8 +190,6 @@ export default function CreateClassForm() {
         </div>
     );
 }
-
-
 
 
 
