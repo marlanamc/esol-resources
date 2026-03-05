@@ -28,7 +28,7 @@ export function DashboardHeader({ userName = "" }: DashboardHeaderProps) {
                         </div>
                     </Link>
                 </div>
-                <div className="flex items-center gap-3 animate-fade-in-up delay-100">
+                <div className="flex items-center gap-3">
                     <Link
                         href="/dashboard/leaderboard"
                         className="hidden md:inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"

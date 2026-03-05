@@ -17,7 +17,7 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
     if (!announcements || announcements.length === 0) return null;
 
     return (
-        <section className="animate-fade-in-up delay-75">
+        <section>
             <div className="relative overflow-hidden glass-card rounded-2xl p-4 sm:p-5 border border-amber-200/40 bg-gradient-to-br from-amber-50/80 to-yellow-50/80 shadow-md transition-all duration-300 max-w-4xl">
                 {/* Decorative Elements */}
                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-200/20 rounded-full blur-2xl pointer-events-none"></div>
@@ -49,12 +49,11 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                     </div>
 
                     {!isCollapsed && (
-                        <div className="mt-4 space-y-4 animate-fade-in">
+                        <div className="mt-4 space-y-4">
                             {announcements.map((announcement, index) => (
                                 <div
                                     key={`${announcement.className}-${index}`}
-                                    className="group relative animate-fade-in-up"
-                                    style={{ animationDelay: `${(index + 1) * 60}ms` }}
+                                    className="group relative"
                                 >
                                     <div className="flex items-start gap-4 p-4 rounded-xl bg-white/60 border border-white/80 shadow-sm hover:shadow-md hover:bg-white/90 transition-all duration-300">
                                         <div className="flex-1">

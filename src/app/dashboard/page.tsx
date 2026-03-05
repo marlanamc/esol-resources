@@ -119,8 +119,10 @@ export default async function DashboardPage() {
     const userRole = session.user.role;
     const userId = session.user.id;
 
-    // Count daily app opens toward streak even when session is still active.
-    await trackLogin(userId);
+    // Count daily app opens toward streak without blocking dashboard render.
+    void trackLogin(userId).catch(() => {
+        // Fail-soft: dashboard rendering should not depend on streak write success.
+    });
 
     if (userRole === "teacher") {
         // Teacher Dashboard
@@ -306,7 +308,7 @@ export default async function DashboardPage() {
                         {/* Main Content Area - Left Side */}
                         <div className="md:col-span-8 lg:col-span-9 space-y-6 sm:space-y-8">
                             {/* Welcome Header */}
-                            <div className="animate-fade-in-up">
+                            <div>
                                 {/* Desktop: Welcome + Stats horizontal */}
                                 <div className="hidden lg:flex items-center gap-6">
                                     <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
@@ -369,7 +371,7 @@ export default async function DashboardPage() {
                             </div>
 
                             {/* Mobile Quick Actions - Only visible on mobile */}
-                            <section className="md:hidden animate-fade-in-up delay-50">
+                            <section className="md:hidden">
                                 <h2 className="text-lg font-bold font-display text-[#1f2633] mb-3">Quick Actions</h2>
                                 <div className="grid grid-cols-2 gap-3">
                                     <Link
@@ -411,7 +413,7 @@ export default async function DashboardPage() {
                             </section>
 
                             {/* Featured Assignments (styled like student view) */}
-                            <section className="animate-fade-in-up delay-100">
+                            <section>
                                 <TodaysAssignments
                                     title="Weekly Checklist"
                                     ctaLabel="Open"
@@ -422,7 +424,7 @@ export default async function DashboardPage() {
                             </section>
 
                             {/* Browse All Activities CTA */}
-                            <section className="animate-fade-in-up delay-200">
+                            <section>
                                 <div className="glass-card rounded-2xl p-6 group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
                                     {/* Decorative gradient blob */}
                                     <div className="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
@@ -451,7 +453,7 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
-                        <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
+                        <aside className="hidden md:block md:col-span-4 lg:col-span-3">
                             <div className="bg-white border p-6 sticky top-24 border-white/60 shadow-lg rounded-2xl bg-gradient-to-b from-white to-bg-light space-y-5">
                                 <MiniCalendar events={calendarEvents} />
 
@@ -734,7 +736,7 @@ export default async function DashboardPage() {
                         {/* Main Content Area - Left Side */}
                         <div className="md:col-span-8 lg:col-span-9 space-y-6">
                             {/* Welcome Header */}
-                            <div className="animate-fade-in-up">
+                            <div>
                                 {/* Desktop: Welcome + Stats horizontal */}
                                 <div className="hidden lg:flex items-center gap-6">
                                     <h1 className="text-4xl font-display font-bold text-text leading-tight flex-shrink-0 tracking-tight">
@@ -767,7 +769,7 @@ export default async function DashboardPage() {
                             <ClassAnnouncement announcements={classAnnouncements} />
 
                             {/* This Week's Activities */}
-                            <section className="animate-fade-in-up delay-100 mt-2 sm:mt-4">
+                            <section className="mt-2 sm:mt-4">
                                 <TodaysAssignments
                                     initialAssignments={featuredAssignments}
                                     title="Weekly Checklist"
@@ -777,7 +779,7 @@ export default async function DashboardPage() {
                             </section>
 
                             {/* Browse All Activities CTA */}
-                            <section className="animate-fade-in-up delay-200 mt-6">
+                            <section className="mt-6">
                                 <div className="rounded-2xl p-4 sm:p-6 bg-[#faf6f1] border border-[#e7dfd3] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.04)] group cursor-pointer transition-all duration-300 hover:scale-[1.01] relative overflow-hidden">
                                     <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div>
@@ -803,7 +805,7 @@ export default async function DashboardPage() {
                         </div>
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
-                        <aside className="animate-fade-in-up delay-100 hidden md:block md:col-span-4 lg:col-span-3">
+                        <aside className="hidden md:block md:col-span-4 lg:col-span-3">
                             <div className="p-6 sticky top-24 rounded-2xl space-y-5 bg-[#faf6f1] border border-[#e7dfd3] shadow-[0_2px_8px_rgba(52,43,34,0.04)]">
                                 <MiniCalendar events={calendarEvents} />
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
@@ -43,6 +43,15 @@ interface ActivityCategoriesProps {
     progressMap?: Record<string, { progress: number; categoryData?: string }>;
     showEmpty?: boolean;
     filterCategory?: string;
+}
+
+function isReleasedActivityContent(content?: string): boolean {
+    try {
+        const parsed = JSON.parse(content || '{}') as { released?: unknown };
+        return parsed.released === true;
+    } catch {
+        return false;
+    }
 }
 
 const vocabCycle1 = [
@@ -1132,12 +1141,18 @@ interface ActivityCardProps {
     activity: Activity;
     isCompleted: boolean;
     progressValue: number;
-    progressMap?: Record<string, { progress: number; categoryData?: string }>;
+    progressText: string | null;
     accentColor?: string;
     hideTypeChip?: boolean;
-    gameUi?: GameUi;
     points?: number;
     tenseTexture?: TenseTexture;
+    vocabType: ReturnType<typeof getVocabActivityType>;
+    vocabThemeChip: string | null;
+    vocabWordsChip: string | null;
+    verbQuizWordsChip: string | null;
+    activityCardTitle: string;
+    grammarChipCopy: { friendlyTitle: string; useThisFor: string } | null;
+    gameEmoji: string | null;
 }
 
 const getCategoryProgressText = (activityId: string, progressMap?: Record<string, { progress: number; categoryData?: string }>) => {
@@ -1164,28 +1179,22 @@ const ActivityCard = React.memo(function ActivityCard({
     activity,
     isCompleted,
     progressValue,
-    progressMap,
+    progressText,
     accentColor,
     hideTypeChip,
-    gameUi,
     points,
-    tenseTexture
+    tenseTexture,
+    vocabType,
+    vocabThemeChip,
+    vocabWordsChip,
+    verbQuizWordsChip,
+    activityCardTitle,
+    grammarChipCopy,
+    gameEmoji,
 }: ActivityCardProps) {
-    const progressText = getCategoryProgressText(activity.id, progressMap);
-    const vocabType = getVocabActivityType(activity.id);
-    const vocabThemeChip = getVocabThemeChip(activity);
-    const vocabWordsChip = getVocabWordsChip(activity);
-    const verbQuizWordsChip = getVerbQuizWordsChip(activity);
-    const activityCardTitle = getActivityCardTitle(activity);
-    const grammarChipCopy = activity.category === 'grammar'
-        ? getGrammarChipCopy(activity.title)
-        : null;
     const progressChipLabel = activity.id === 'numbers-game' && progressText
         ? progressText
         : `${progressValue}% done`;
-    const gameEmoji = gameUi
-        ? getGameEmojiForActivity({ activityId: activity.id, title: activity.title, gameUi })
-        : null;
 
     // Determine card state for styling
     const hasProgress = progressValue > 0 && progressValue < 100;
@@ -1499,6 +1508,21 @@ const ActivityCard = React.memo(function ActivityCard({
     );
 });
 
+interface ActivityCardMeta {
+    isCompleted: boolean;
+    progressValue: number;
+    progressText: string | null;
+    vocabType: ReturnType<typeof getVocabActivityType>;
+    vocabThemeChip: string | null;
+    vocabWordsChip: string | null;
+    verbQuizWordsChip: string | null;
+    activityCardTitle: string;
+    grammarChipCopy: { friendlyTitle: string; useThisFor: string } | null;
+    gameUi?: GameUi;
+    points?: number;
+    gameEmoji: string | null;
+}
+
 export const ActivityCategories = React.memo(function ActivityCategories({
     activities,
     completedActivityIds = new Set(),
@@ -1509,6 +1533,27 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 }: ActivityCategoriesProps) {
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set());
     const [expandedSubCategories, setExpandedSubCategories] = useState<Set<string>>(new Set());
+    const [showDetailChips, setShowDetailChips] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+        const id = typeof window !== 'undefined' && 'requestIdleCallback' in window
+            ? window.requestIdleCallback(() => {
+                if (!cancelled) setShowDetailChips(true);
+            }, { timeout: 300 })
+            : window.setTimeout(() => {
+                if (!cancelled) setShowDetailChips(true);
+            }, 120);
+
+        return () => {
+            cancelled = true;
+            if (typeof window !== 'undefined' && 'cancelIdleCallback' in window && typeof id === 'number') {
+                window.cancelIdleCallback(id);
+            } else {
+                clearTimeout(id as ReturnType<typeof setTimeout>);
+            }
+        };
+    }, []);
 
     const toggleCategory = useCallback((categoryName: string) => {
         setExpandedCategories(prev => {
@@ -1723,6 +1768,79 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         ];
     }, [activities]);
 
+    const activityIndex = useMemo(() => {
+        const vocabById = new Map<string, Activity>();
+        const games: Activity[] = [];
+        const reading: Activity[] = [];
+        const writing: Activity[] = [];
+        const pronunciation: Activity[] = [];
+        const speaking: Activity[] = [];
+        const quizzes: Activity[] = [];
+
+        for (const activity of activities) {
+            const category = (activity.category || '').toLowerCase();
+            const isVocab = activity.id?.startsWith('vocab-');
+
+            if (isVocab) {
+                vocabById.set(activity.id, activity);
+            }
+
+            if (
+                activity.type === 'game' &&
+                !isVocab &&
+                (
+                    activity.id === 'numbers-game' ||
+                    activity.id === 'countable-uncountable-nouns' ||
+                    activity.ui === 'verb-forms' ||
+                    activity.ui === 'verbforms' ||
+                    category === 'games'
+                )
+            ) {
+                games.push(activity);
+            }
+
+            if (category === 'reading' || category === 'writing-reading') {
+                reading.push(activity);
+            }
+
+            if (category === 'writing' || category === 'writing-reading') {
+                writing.push(activity);
+            }
+
+            if (category === 'pronunciation' || activity.ui === 'ed-pronunciation' || activity.ui === 'minimal-pairs') {
+                pronunciation.push(activity);
+            }
+
+            if (category === 'speaking' && isReleasedActivityContent(activity.content)) {
+                speaking.push(activity);
+            }
+
+            if (category === 'quizzes' && isReleasedActivityContent(activity.content)) {
+                quizzes.push(activity);
+            }
+        }
+
+        const sortedGames = [...games].sort((a, b) => (a.title || '').localeCompare(b.title || ''));
+        const sortedSpeaking = [...speaking].sort(compareByTitleDateDesc);
+        const sortedQuizzes = [...quizzes].sort((a, b) => {
+            const getWeekNum = (title: string) => {
+                const match = title.match(/Week (\d+)/);
+                return match ? parseInt(match[1]) : 999;
+            };
+            return getWeekNum(a.title || '') - getWeekNum(b.title || '');
+        });
+
+        return {
+            vocabById,
+            games: sortedGames,
+            reading,
+            writing,
+            pronunciation,
+            speaking: sortedSpeaking,
+            quizzes: sortedQuizzes,
+        };
+    }, [activities]);
+
     const categories = useMemo<Category[]>(() => [
             {
                 name: 'Vocabulary',
@@ -1730,15 +1848,15 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 subCategories: [
                     {
                         name: 'Cycle 1',
-                        activities: vocabCycle1.flatMap(month =>
-                            activities.filter((a: Activity) => a.id === `vocab-${month.id}`)
-                        )
+                        activities: vocabCycle1
+                            .map((month) => activityIndex.vocabById.get(`vocab-${month.id}`))
+                            .filter((activity): activity is Activity => Boolean(activity))
                     },
                     ...vocabUnits.map(unit => {
                         // Create a sub-category for each unit (6-10) with all week activities flattened
-                        const allUnitActivities = unit.weeks.flatMap(week =>
-                            activities.filter((a: Activity) => a.id === `vocab-${week.id}`)
-                        );
+                        const allUnitActivities = unit.weeks
+                            .map((week) => activityIndex.vocabById.get(`vocab-${week.id}`))
+                            .filter((activity): activity is Activity => Boolean(activity));
                         return {
                             name: unit.label,
                             activities: allUnitActivities
@@ -1756,79 +1874,34 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             {
                 name: 'Games',
                 color: '#f97316', // orange
-                activities: activities.filter((a: Activity) => {
-                    if (a.type !== 'game') return false;
-                    if (a.id?.startsWith('vocab-')) return false;
-                    
-                    // Show specific established games or anything explicitly tagged as a game UI
-                    return a.id === 'numbers-game' || 
-                           a.id === 'countable-uncountable-nouns' || 
-                           a.ui === 'verb-forms' || 
-                           a.ui === 'verbforms' ||
-                           a.category === 'games';
-                }).sort((a, b) => {
-                    // Sort by title for better organization
-                    return (a.title || '').localeCompare(b.title || '');
-                })
+                activities: activityIndex.games
             },
             {
                 name: 'Reading',
                 color: '#2a9d8f', // teal
-                activities: activities.filter((a: Activity) => a.category === 'reading' || a.category === 'writing-reading')
+                activities: activityIndex.reading
             },
             {
                 name: 'Writing',
                 color: '#7ba884', // sage green
-                activities: activities.filter((a: Activity) => a.category === 'writing' || a.category === 'writing-reading')
+                activities: activityIndex.writing
             },
             {
                 name: 'Pronunciation',
                 color: '#ec4899', // pink
-                activities: activities.filter((a: Activity) =>
-                    a.category === 'pronunciation' ||
-                    a.ui === 'ed-pronunciation' ||
-                    a.ui === 'minimal-pairs'
-                )
+                activities: activityIndex.pronunciation
             },
             {
                 name: 'Speaking',
                 color: '#e09f3e', // gold/amber
-                activities: activities.filter((a: Activity) => {
-                    if (a.category !== 'speaking') return false;
-
-                    // Only show released speaking activities to students
-                    try {
-                        const content = JSON.parse(a.content || '{}');
-                        return content.released === true;
-                    } catch {
-                        return false;
-                    }
-                }).sort(compareByTitleDateDesc)
+                activities: activityIndex.speaking
             },
             {
                 name: 'Quizzes',
                 color: '#c86b51', // terracotta
-                activities: activities.filter((a: Activity) => {
-                    if (a.category !== 'quizzes') return false;
-
-                    // Only show released quizzes to students
-                    try {
-                        const content = JSON.parse(a.content || '{}');
-                        return content.released === true;
-                    } catch {
-                        return false;
-                    }
-                })
-                    .sort((a, b) => {
-                        // Sort by week number (Week 1, Week 2, etc.)
-                        const getWeekNum = (title: string) => {
-                            const match = title.match(/Week (\d+)/);
-                            return match ? parseInt(match[1]) : 999;
-                        };
-                        return getWeekNum(a.title || '') - getWeekNum(b.title || '');
-                    })
+                activities: activityIndex.quizzes
             }
-        ], [activities, buildGrammarSubCategories]);
+        ], [activityIndex, buildGrammarSubCategories]);
 
     const filteredCategories = useMemo(() => {
         let result = categories;
@@ -1863,29 +1936,74 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         return result;
     }, [categories, showEmpty, filterCategory]);
 
+    const activityCardMetaById = useMemo(() => {
+        const metaById = new Map<string, ActivityCardMeta>();
+
+        for (const activity of activities) {
+            const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds, completedActivityTitles);
+            const isCompleted = !!isActivityCompleted(activity, completedActivityIds, progressMap, completedActivityTitles);
+            const progressText = getCategoryProgressText(activity.id, progressMap);
+            const vocabType = getVocabActivityType(activity.id);
+            const activityCardTitle = getActivityCardTitle(activity);
+            const grammarChipCopy = activity.category === 'grammar'
+                ? getGrammarChipCopy(activity.title)
+                : null;
+            const gameUi = activity.type === 'game' ? resolveActivityGameUi(activity) : undefined;
+            const points = activity.type === 'game' ? getActivityPoints(activity.type, activity) : undefined;
+
+            metaById.set(activity.id, {
+                isCompleted,
+                progressValue,
+                progressText,
+                vocabType,
+                vocabThemeChip: showDetailChips ? getVocabThemeChip(activity) : null,
+                vocabWordsChip: showDetailChips ? getVocabWordsChip(activity) : null,
+                verbQuizWordsChip: showDetailChips ? getVerbQuizWordsChip(activity) : null,
+                activityCardTitle,
+                grammarChipCopy,
+                gameUi,
+                points,
+                gameEmoji: gameUi
+                    ? getGameEmojiForActivity({ activityId: activity.id, title: activity.title, gameUi })
+                    : null,
+            });
+        }
+
+        return metaById;
+    }, [activities, progressMap, completedActivityIds, completedActivityTitles, showDetailChips]);
+
+    const isCompletedForActivity = useCallback((activity: Activity) => {
+        return activityCardMetaById.get(activity.id)?.isCompleted ?? false;
+    }, [activityCardMetaById]);
+
     const renderActivityCard = useCallback((activity: Activity, accentColor?: string, hideTypeChip?: boolean, sectionLabel?: string) => {
-        const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds, completedActivityTitles);
-        const isCompleted = !!isActivityCompleted(activity, completedActivityIds, progressMap, completedActivityTitles);
+        const cardMeta = activityCardMetaById.get(activity.id);
+        if (!cardMeta) return null;
 
         // Get texture for any activity type using the universal texture system
         const texture = getActivityTexture(activity, sectionLabel);
-        const gameUi = activity.type === 'game' ? resolveActivityGameUi(activity) : undefined;
 
         return (
             <ActivityCard
                 key={activity.id}
                 activity={activity}
-                isCompleted={isCompleted}
-                progressValue={progressValue}
-                progressMap={progressMap}
+                isCompleted={cardMeta.isCompleted}
+                progressValue={cardMeta.progressValue}
+                progressText={cardMeta.progressText}
                 accentColor={accentColor}
                 hideTypeChip={hideTypeChip}
-                gameUi={gameUi}
-                points={activity.type === 'game' ? getActivityPoints(activity.type, activity) : undefined}
+                points={cardMeta.points}
                 tenseTexture={texture}
+                vocabType={cardMeta.vocabType}
+                vocabThemeChip={cardMeta.vocabThemeChip}
+                vocabWordsChip={cardMeta.vocabWordsChip}
+                verbQuizWordsChip={cardMeta.verbQuizWordsChip}
+                activityCardTitle={cardMeta.activityCardTitle}
+                grammarChipCopy={cardMeta.grammarChipCopy}
+                gameEmoji={cardMeta.gameEmoji}
             />
         );
-    }, [completedActivityIds, completedActivityTitles, progressMap]);
+    }, [activityCardMetaById]);
 
     // Soft palette for section accents
     const SECTION_COLORS = ['#A3D9A5', '#A5C9E1', '#C5B3E6', '#F4B0B7', '#89CFF0', '#F0E68C'];
@@ -1934,11 +2052,11 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         const allActivities = sections.flatMap(s => s.activities);
         const totalCount = allActivities.length;
         const completedCount = allActivities.filter(a =>
-            isActivityCompleted(a, completedActivityIds, progressMap, completedActivityTitles)
+            isCompletedForActivity(a)
         ).length;
 
         return (
-            <div className="animate-fade-in">
+            <div>
                 {/* Visual grouping header summary - hidden for games and pronunciation (counted as play, not complete) */}
                 {filterCategory !== 'games' && filterCategory !== 'pronunciation' && (
                     <div className="mb-6 pb-2 border-b border-border/20 flex items-center justify-between">
@@ -1969,8 +2087,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
                         // Sort: Incomplete first, then completed at the bottom
                         const sortedActivities = [...section.activities].sort((a, b) => {
-                            const aDone = isActivityCompleted(a, completedActivityIds, progressMap, completedActivityTitles);
-                            const bDone = isActivityCompleted(b, completedActivityIds, progressMap, completedActivityTitles);
+                            const aDone = isCompletedForActivity(a);
+                            const bDone = isCompletedForActivity(b);
                             if (aDone && !bDone) return 1;
                             if (!aDone && bDone) return -1;
                             return 0;
@@ -1978,7 +2096,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
 
                         // Count completed in this section
                         const sectionCompleted = sortedActivities.filter(a =>
-                            isActivityCompleted(a, completedActivityIds, progressMap, completedActivityTitles)
+                            isCompletedForActivity(a)
                         ).length;
                         const sectionTotal = sortedActivities.length;
 

@@ -502,13 +502,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                     {/* Category sections inside the same container */}
                     <div className="p-2.5 sm:p-4 bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                            {groups.map((group, groupIdx) => {
+                            {groups.map((group) => {
                                 const groupStyle = getCategoryStyle(group.key);
                                 return (
                                     <div
                                         key={group.key}
-                                        className="checklist-group bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-xl border border-[#e8e1d6] overflow-hidden shadow-[0_6px_16px_rgba(43,36,29,0.085)] sm:shadow-[0_5px_14px_rgba(43,36,29,0.07)]"
-                                        style={{ animationDelay: `${groupIdx * 50}ms` }}
+                                        className="bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-xl border border-[#e8e1d6] overflow-hidden shadow-[0_6px_16px_rgba(43,36,29,0.085)] sm:shadow-[0_5px_14px_rgba(43,36,29,0.07)]"
                                     >
                                         <div
                                             className="w-full px-3 py-2 border-b border-border/10 flex items-center justify-between"
