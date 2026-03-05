@@ -148,39 +148,35 @@ export default function LeaderboardPage() {
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
         <div className="container mx-auto py-4 px-4 sm:px-6">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-4">
-              <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
-              <div>
-                <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
-                  Weekly Leaderboard
-                </h1>
-                <p className="text-sm" style={{ color: '#7ba884' }}>
-                  Top performers this week by section
-                </p>
-              </div>
+          <div className="flex items-center gap-4">
+            <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                Weekly Leaderboard
+              </h1>
+              <p className="text-sm flex flex-wrap items-center gap-1.5" style={{ color: '#7ba884' }}>
+                <span>Top performers this week by</span>
+                {classOptions.length > 1 ? (
+                  <span className="inline-flex items-center rounded-md border border-[#d9cfc0] bg-[#fcfaf5] px-1.5 py-0.5">
+                    <select
+                      id="leaderboard-class"
+                      value={selectedClassId || ''}
+                      onChange={(e) => void onClassChange(e.target.value)}
+                      className="border-none bg-transparent text-xs font-semibold focus:outline-none"
+                      style={{ color: '#5a6b7f' }}
+                    >
+                      {classOptions.map((cls) => (
+                        <option key={cls.id} value={cls.id}>
+                          {cls.name}
+                        </option>
+                      ))}
+                    </select>
+                  </span>
+                ) : (
+                  <span className="font-semibold">section</span>
+                )}
+              </p>
             </div>
-
-            {classOptions.length > 1 && (
-              <div className="flex items-center gap-2 rounded-full border px-2.5 py-1.5" style={{ borderColor: '#d9cfc0', backgroundColor: '#fcfaf5' }}>
-                <span className="text-xs font-semibold uppercase tracking-wide" style={{ color: '#5a6b7f' }}>
-                  Section
-                </span>
-                <select
-                  id="leaderboard-class"
-                  value={selectedClassId || ''}
-                  onChange={(e) => void onClassChange(e.target.value)}
-                  className="rounded-md border-none bg-transparent px-1 py-0.5 text-sm font-semibold focus:outline-none"
-                  style={{ color: '#2b3a4a' }}
-                >
-                  {classOptions.map((cls) => (
-                    <option key={cls.id} value={cls.id}>
-                      {cls.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
           </div>
         </div>
       </header>
