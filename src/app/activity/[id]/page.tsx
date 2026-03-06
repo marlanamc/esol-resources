@@ -327,7 +327,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         <div className="min-h-screen bg-gray-50">
             {studentReliabilityOverlays}
             <header className="bg-white shadow-sm border-b border-gray-200">
-                <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                <div className="relative py-4 px-4 sm:px-6 lg:px-8">
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
