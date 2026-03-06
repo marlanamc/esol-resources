@@ -186,81 +186,82 @@ export default function LeaderboardPage() {
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
         <div className="container mx-auto py-4 px-4 sm:px-6">
-          <div className="flex items-center gap-4">
-            <TrophyIcon className="w-8 h-8" style={{ color: '#f4d35e' }} />
-            <div>
-              <h1 className="text-2xl md:text-3xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
-                Weekly Leaderboard
-              </h1>
-              <p className="text-sm flex flex-wrap items-center gap-1.5" style={{ color: '#7ba884' }}>
-                <span>Top performers this week by</span>
-                {viewerRole === 'student' ? (
-                  <span className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-[#f5f1e8] p-1 shadow-sm">
-                    <button
-                      type="button"
-                      onClick={() => void onScopeChange('section')}
-                      aria-pressed={scope === 'section'}
-                      className="px-2.5 py-1 text-xs font-semibold rounded-md transition"
-                      style={
-                        scope === 'section'
-                          ? {
-                              backgroundColor: '#d97757',
-                              color: '#ffffff',
-                              border: '1px solid #d97757',
-                              boxShadow: '0 1px 2px rgba(43, 58, 74, 0.18)',
-                            }
-                          : {
-                              backgroundColor: 'transparent',
-                              color: '#5a6b7f',
-                              border: '1px solid transparent',
-                            }
-                      }
-                    >
-                      My Class
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => void onScopeChange('all')}
-                      aria-pressed={scope === 'all'}
-                      className="px-2.5 py-1 text-xs font-semibold rounded-md transition"
-                      style={
-                        scope === 'all'
-                          ? {
-                              backgroundColor: '#d97757',
-                              color: '#ffffff',
-                              border: '1px solid #d97757',
-                              boxShadow: '0 1px 2px rgba(43, 58, 74, 0.18)',
-                            }
-                          : {
-                              backgroundColor: 'transparent',
-                              color: '#5a6b7f',
-                              border: '1px solid transparent',
-                            }
-                      }
-                    >
-                      All Classes
-                    </button>
-                  </span>
-                ) : classOptions.length > 1 ? (
-                  <span className="inline-flex items-center rounded-md border border-[#d9cfc0] bg-[#fcfaf5] px-1.5 py-0.5">
-                    <select
-                      id="leaderboard-class"
-                      value={selectedClassId || ''}
-                      onChange={(e) => void onClassChange(e.target.value)}
-                      className="border-none bg-transparent text-xs font-semibold focus:outline-none"
-                      style={{ color: '#5a6b7f' }}
-                    >
-                      {classOptions.map((cls) => (
-                        <option key={cls.id} value={cls.id}>
-                          {cls.name}
-                        </option>
-                      ))}
-                    </select>
-                  </span>
-                ) : (
-                  <span className="font-semibold">section</span>
-                )}
-              </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-sm">
+                <TrophyIcon className="w-6 h-6" style={{ color: '#d97757' }} />
+              </div>
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                  Weekly Leaderboard
+                </h1>
+                <p className="text-sm font-medium" style={{ color: '#7ba884' }}>
+                  Top performers this week
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              {viewerRole === 'student' ? (
+                <div className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-[#f5f1e8] p-1 shadow-sm">
+                  <button
+                    type="button"
+                    onClick={() => void onScopeChange('section')}
+                    aria-pressed={scope === 'section'}
+                    className="px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
+                    style={
+                      scope === 'section'
+                        ? {
+                            backgroundColor: '#d97757',
+                            color: '#ffffff',
+                            boxShadow: '0 2px 4px rgba(217, 119, 87, 0.25)',
+                          }
+                        : {
+                            backgroundColor: 'transparent',
+                            color: '#5a6b7f',
+                          }
+                    }
+                  >
+                    My Class
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => void onScopeChange('all')}
+                    aria-pressed={scope === 'all'}
+                    className="px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
+                    style={
+                      scope === 'all'
+                        ? {
+                            backgroundColor: '#d97757',
+                            color: '#ffffff',
+                            boxShadow: '0 2px 4px rgba(217, 119, 87, 0.25)',
+                          }
+                        : {
+                            backgroundColor: 'transparent',
+                            color: '#5a6b7f',
+                          }
+                    }
+                  >
+                    All Classes
+                  </button>
+                </div>
+              ) : classOptions.length > 1 ? (
+                <div className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-white px-3 py-1.5 shadow-sm">
+                  <select
+                    id="leaderboard-class"
+                    value={selectedClassId || ''}
+                    onChange={(e) => void onClassChange(e.target.value)}
+                    className="border-none bg-transparent text-sm font-bold focus:outline-none cursor-pointer"
+                    style={{ color: '#5a6b7f' }}
+                  >
+                    {classOptions.map((cls) => (
+                      <option key={cls.id} value={cls.id}>
+                        {cls.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
