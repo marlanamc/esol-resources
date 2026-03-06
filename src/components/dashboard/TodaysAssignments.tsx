@@ -67,6 +67,32 @@ export const TodaysAssignments: React.FC<Props> = ({
     const [mobileViewMode, setMobileViewMode] = useState<'grouped' | 'condensed'>('grouped');
     const [loading, setLoading] = useState(() => !hasInitialAssignments || refreshOnMount);
 
+    const formatWeekRangeLabel = (referenceDate: Date): string => {
+        const weekStart = new Date(referenceDate);
+        const day = weekStart.getDay();
+        const offsetToMonday = day === 0 ? -6 : 1 - day;
+        weekStart.setDate(weekStart.getDate() + offsetToMonday);
+        weekStart.setHours(0, 0, 0, 0);
+
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekStart.getDate() + 6);
+
+        const startMonth = weekStart.toLocaleDateString('en-US', { month: 'short' });
+        const endMonth = weekEnd.toLocaleDateString('en-US', { month: 'short' });
+        const startDay = weekStart.getDate();
+        const endDay = weekEnd.getDate();
+
+        if (weekStart.getFullYear() !== weekEnd.getFullYear()) {
+            return `Week of ${startMonth} ${startDay}, ${weekStart.getFullYear()}-${endMonth} ${endDay}, ${weekEnd.getFullYear()}`;
+        }
+
+        if (startMonth === endMonth) {
+            return `Week of ${startMonth} ${startDay}-${endDay}`;
+        }
+
+        return `Week of ${startMonth} ${startDay}-${endMonth} ${endDay}`;
+    };
+
 
     const resolvedTitle = (() => {
         // If title is omitted, provide a sensible default by variant
@@ -77,6 +103,10 @@ export const TodaysAssignments: React.FC<Props> = ({
         if (title.trim() === "") return null;
         return title;
     })();
+
+    const weeklyRangeLabel = variant === 'checklist'
+        ? formatWeekRangeLabel(new Date())
+        : null;
 
     useEffect(() => {
         // Optionally refresh from API even when server-provided data exists.
@@ -157,11 +187,18 @@ export const TodaysAssignments: React.FC<Props> = ({
                         <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-lg">
                             📋
                         </div>
-                        {resolvedTitle && (
-                            <h2 className="text-lg sm:text-xl font-display font-bold text-text leading-tight">
-                                {resolvedTitle}
-                            </h2>
-                        )}
+                        {resolvedTitle ? (
+                            <div className="min-w-0">
+                                <h2 className="text-lg sm:text-xl font-display font-bold text-text leading-tight">
+                                    {resolvedTitle}
+                                </h2>
+                                {weeklyRangeLabel ? (
+                                    <p className="mt-0.5 text-[11px] sm:text-xs font-medium text-text-muted">
+                                        {weeklyRangeLabel}
+                                    </p>
+                                ) : null}
+                            </div>
+                        ) : null}
                     </div>
 
                     {/* Empty state content */}
@@ -541,7 +578,18 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${isFullyComplete ? 'bg-[#f8f3ec] border border-[#d7c09a]/30 shadow-sm' : 'bg-primary/10 text-primary'}`}>
                                     {isFullyComplete ? '🏆' : '📋'}
                                 </div>
-                                {resolvedTitle && <h2 className="text-lg sm:text-xl font-display font-bold text-[#1f2633] leading-tight">{resolvedTitle}</h2>}
+                                {resolvedTitle ? (
+                                    <div className="min-w-0">
+                                        <h2 className="text-lg sm:text-xl font-display font-bold text-[#1f2633] leading-tight">
+                                            {resolvedTitle}
+                                        </h2>
+                                        {weeklyRangeLabel ? (
+                                            <p className="mt-0.5 text-[11px] sm:text-xs font-medium text-text-muted">
+                                                {weeklyRangeLabel}
+                                            </p>
+                                        ) : null}
+                                    </div>
+                                ) : null}
                             </div>
                             <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                                 {actions && <div className="mr-2">{actions}</div>}
