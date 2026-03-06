@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { createPortal } from "react-dom";
 import { BookOpen, ClipboardList, Gamepad2, Menu, Mic, PenLine, PenTool, Volume2, X } from "lucide-react";
 import { BookOpenIcon, HomeIcon, MapIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 
@@ -19,7 +20,13 @@ export function LearnerMenu({
 }: LearnerMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [availableSubjects, setAvailableSubjects] = useState<Record<string, boolean>>({});
+    const [isMounted, setIsMounted] = useState(false);
     const mobileName = userName.trim().split(/\s+/)[0] || "Student";
+
+    useEffect(() => {
+        setIsMounted(true);
+        return () => setIsMounted(false);
+    }, []);
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
@@ -144,97 +151,105 @@ export function LearnerMenu({
         </button>
     );
 
+    const menuLayer = isMounted
+        ? createPortal(
+              <>
+                  {isOpen ? (
+                      <div
+                          className="fixed inset-0 z-[300] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
+                          onClick={closeMenu}
+                          aria-hidden="true"
+                      />
+                  ) : null}
+
+                  <div
+                      className={`fixed top-0 left-0 bottom-0 z-[310] w-[280px] sm:w-[320px] bg-[#fef9f3] shadow-2xl border-r border-[#e7dfd3] flex flex-col transform transition-transform duration-300 ease-in-out ${
+                          isOpen ? "translate-x-0" : "-translate-x-full"
+                      }`}
+                      role="dialog"
+                      aria-modal="true"
+                      aria-label="Navigation Menu"
+                  >
+                      <div className="p-5 border-b border-[#e7dfd3] flex items-center justify-between mt-[env(safe-area-inset-top,0px)]">
+                          <Link
+                              href="/dashboard"
+                              onClick={closeMenu}
+                              className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-lg"
+                          >
+                              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
+                                  <BookOpenIcon className="w-5 h-5 text-white" />
+                              </div>
+                              <div className="flex flex-col text-left">
+                                  <span className="text-[11px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">
+                                      ESOL
+                                  </span>
+                                  <span
+                                      className="text-lg font-bold text-primary leading-tight tracking-[-0.01em]"
+                                      style={{ fontFamily: "Lora, serif" }}
+                                  >
+                                      Class Companion
+                                  </span>
+                              </div>
+                          </Link>
+                          <button
+                              type="button"
+                              onClick={closeMenu}
+                              className="p-2 -mr-2 text-text-muted hover:text-text rounded-full hover:bg-black/5 active:scale-95 transition-[color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                              aria-label="Close menu"
+                          >
+                              <X className="w-5 h-5" aria-hidden />
+                          </button>
+                      </div>
+
+                      <div className="flex-1 overflow-y-auto px-4 py-6 scrollbar-hide" style={{ overscrollBehavior: "contain" }}>
+                          <nav className="flex flex-col gap-1.5" aria-label="Main navigation">
+                              <MenuLink href="/dashboard" label="Dashboard Home" icon={<HomeIcon className="w-5 h-5 text-secondary" />} onNavigate={closeMenu} />
+                              <MenuLink href="/dashboard/activities" label="All Activities" icon={<BookOpenIcon className="w-5 h-5 text-[#b86a56]" />} onNavigate={closeMenu} />
+                              <MenuLink href="/grammar-map" label="Grammar Map" icon={<MapIcon className="w-5 h-5 text-[#6f9c76]" />} onNavigate={closeMenu} />
+                              <MenuLink href="/dashboard/leaderboard" label="Leaderboard" icon={<TrophyIcon className="w-5 h-5 text-[#cda46f]" />} onNavigate={closeMenu} />
+                              <MenuLink href="/dashboard/profile" label="My Profile" icon={<StarIcon className="w-5 h-5 text-[#88A392]" />} onNavigate={closeMenu} />
+
+                              <div className="h-px bg-border/20 my-3 mx-2" />
+
+                              {Object.values(availableSubjects).some(Boolean) ? (
+                                  <p className="px-4 text-[13px] font-bold text-text-muted uppercase tracking-wider mb-2" style={{ letterSpacing: "0.1em" }}>
+                                      Subjects
+                                  </p>
+                              ) : null}
+
+                              {availableSubjects.grammar ? (
+                                  <MenuLink href="/dashboard/activities?category=grammar" label="Grammar" icon={<PenLine className="w-5 h-5 text-[#2e7d32]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                              {availableSubjects.vocabulary ? (
+                                  <MenuLink href="/dashboard/activities?category=vocabulary" label="Vocabulary" icon={<BookOpen className="w-5 h-5 text-[#1565c0]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                              {availableSubjects.games ? (
+                                  <MenuLink href="/dashboard/activities?category=games" label="Games" icon={<Gamepad2 className="w-5 h-5 text-[#7d3fa6]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                              {availableSubjects.quizzes ? (
+                                  <MenuLink href="/dashboard/activities?category=quizzes" label="Quizzes" icon={<ClipboardList className="w-5 h-5 text-[#c44a28]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                              {availableSubjects.speaking ? (
+                                  <MenuLink href="/dashboard/activities?category=speaking" label="Speaking" icon={<Mic className="w-5 h-5 text-[#b56e1a]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                              {availableSubjects.writing ? (
+                                  <MenuLink href="/dashboard/activities?category=writing" label="Writing" icon={<PenTool className="w-5 h-5 text-[#3d8e42]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                              {availableSubjects.pronunciation ? (
+                                  <MenuLink href="/dashboard/activities?category=pronunciation" label="Pronunciation" icon={<Volume2 className="w-5 h-5 text-[#8a5cf6]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                              ) : null}
+                          </nav>
+                      </div>
+                  </div>
+              </>,
+              document.body
+          )
+        : null;
+
     return (
         <>
             {trigger}
-
-            {isOpen ? (
-                <div
-                    className="fixed inset-0 z-[300] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
-                    onClick={closeMenu}
-                    aria-hidden="true"
-                />
-            ) : null}
-
-            <div
-                className={`fixed top-0 left-0 bottom-0 z-[310] w-[280px] sm:w-[320px] bg-[#fef9f3] shadow-2xl border-r border-[#e7dfd3] flex flex-col transform transition-transform duration-300 ease-in-out ${
-                    isOpen ? "translate-x-0" : "-translate-x-full"
-                }`}
-                role="dialog"
-                aria-modal="true"
-                aria-label="Navigation Menu"
-            >
-                <div className="p-5 border-b border-[#e7dfd3] flex items-center justify-between mt-[env(safe-area-inset-top,0px)]">
-                    <Link
-                        href="/dashboard"
-                        onClick={closeMenu}
-                        className="flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-lg"
-                    >
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
-                            <BookOpenIcon className="w-5 h-5 text-white" />
-                        </div>
-                        <div className="flex flex-col text-left">
-                            <span className="text-[11px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">
-                                ESOL
-                            </span>
-                            <span
-                                className="text-lg font-bold text-primary leading-tight tracking-[-0.01em]"
-                                style={{ fontFamily: "Lora, serif" }}
-                            >
-                                Class Companion
-                            </span>
-                        </div>
-                    </Link>
-                    <button
-                        type="button"
-                        onClick={closeMenu}
-                        className="p-2 -mr-2 text-text-muted hover:text-text rounded-full hover:bg-black/5 active:scale-95 transition-[color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                        aria-label="Close menu"
-                    >
-                        <X className="w-5 h-5" aria-hidden />
-                    </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto px-4 py-6 scrollbar-hide" style={{ overscrollBehavior: "contain" }}>
-                    <nav className="flex flex-col gap-1.5" aria-label="Main navigation">
-                        <MenuLink href="/dashboard" label="Dashboard Home" icon={<HomeIcon className="w-5 h-5 text-secondary" />} onNavigate={closeMenu} />
-                        <MenuLink href="/dashboard/activities" label="All Activities" icon={<BookOpenIcon className="w-5 h-5 text-[#b86a56]" />} onNavigate={closeMenu} />
-                        <MenuLink href="/grammar-map" label="Grammar Map" icon={<MapIcon className="w-5 h-5 text-[#6f9c76]" />} onNavigate={closeMenu} />
-                        <MenuLink href="/dashboard/leaderboard" label="Leaderboard" icon={<TrophyIcon className="w-5 h-5 text-[#cda46f]" />} onNavigate={closeMenu} />
-                        <MenuLink href="/dashboard/profile" label="My Profile" icon={<StarIcon className="w-5 h-5 text-[#88A392]" />} onNavigate={closeMenu} />
-
-                        <div className="h-px bg-border/20 my-3 mx-2" />
-
-                        {Object.values(availableSubjects).some(Boolean) ? (
-                            <p className="px-4 text-[13px] font-bold text-text-muted uppercase tracking-wider mb-2" style={{ letterSpacing: "0.1em" }}>
-                                Subjects
-                            </p>
-                        ) : null}
-
-                        {availableSubjects.grammar ? (
-                            <MenuLink href="/dashboard/activities?category=grammar" label="Grammar" icon={<PenLine className="w-5 h-5 text-[#2e7d32]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                        {availableSubjects.vocabulary ? (
-                            <MenuLink href="/dashboard/activities?category=vocabulary" label="Vocabulary" icon={<BookOpen className="w-5 h-5 text-[#1565c0]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                        {availableSubjects.games ? (
-                            <MenuLink href="/dashboard/activities?category=games" label="Games" icon={<Gamepad2 className="w-5 h-5 text-[#7d3fa6]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                        {availableSubjects.quizzes ? (
-                            <MenuLink href="/dashboard/activities?category=quizzes" label="Quizzes" icon={<ClipboardList className="w-5 h-5 text-[#c44a28]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                        {availableSubjects.speaking ? (
-                            <MenuLink href="/dashboard/activities?category=speaking" label="Speaking" icon={<Mic className="w-5 h-5 text-[#b56e1a]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                        {availableSubjects.writing ? (
-                            <MenuLink href="/dashboard/activities?category=writing" label="Writing" icon={<PenTool className="w-5 h-5 text-[#3d8e42]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                        {availableSubjects.pronunciation ? (
-                            <MenuLink href="/dashboard/activities?category=pronunciation" label="Pronunciation" icon={<Volume2 className="w-5 h-5 text-[#8a5cf6]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
-                        ) : null}
-                    </nav>
-                </div>
-            </div>
+            {menuLayer}
         </>
     );
 }

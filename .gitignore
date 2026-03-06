@@ -91,3 +91,11 @@ ESOL_LMS/
 
 # temporary documentation
 vocab-comparison.md
+
+# dashboard experiments (temporary)
+/src/app/dashboardv2/
+/src/app/dashboardv3/
+/src/components/dashboard-v2/
+/src/components/dashboard-v3/
+/src/lib/dashboard-v2.ts
+/src/lib/dashboard-v3.ts
