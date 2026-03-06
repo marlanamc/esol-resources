@@ -180,22 +180,68 @@ export default function LeaderboardPage() {
   }
 
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
+  const studentScopeToggle = viewerRole === 'student' ? (
+    <div className="inline-flex items-center rounded-full border border-[#d8cfbf] bg-[#fbf7f0] p-0.5 sm:rounded-lg sm:bg-[#f5f1e8] sm:p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(43,58,74,0.06)]">
+      <button
+        type="button"
+        onClick={() => void onScopeChange('section')}
+        aria-pressed={scope === 'section'}
+        className="!min-h-0 !min-w-0 px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
+        style={
+          scope === 'section'
+            ? {
+                backgroundColor: '#dc7d59',
+                color: '#ffffff',
+                boxShadow: '0 1px 2px rgba(217, 119, 87, 0.22), inset 0 1px 0 rgba(255,255,255,0.18)',
+              }
+            : {
+                backgroundColor: 'transparent',
+                color: '#5f6f84',
+              }
+        }
+      >
+        <span className="sm:hidden">My Class</span>
+        <span className="hidden sm:inline">My Class</span>
+      </button>
+      <button
+        type="button"
+        onClick={() => void onScopeChange('all')}
+        aria-pressed={scope === 'all'}
+        className="!min-h-0 !min-w-0 px-3 py-1 text-[10px] leading-none sm:px-4 sm:py-1.5 sm:text-xs font-semibold sm:font-bold rounded-full sm:rounded-md transition-all duration-200"
+        style={
+          scope === 'all'
+            ? {
+                backgroundColor: '#dc7d59',
+                color: '#ffffff',
+                boxShadow: '0 1px 2px rgba(217, 119, 87, 0.22), inset 0 1px 0 rgba(255,255,255,0.18)',
+              }
+            : {
+                backgroundColor: 'transparent',
+                color: '#5f6f84',
+              }
+        }
+      >
+        <span className="sm:hidden">All</span>
+        <span className="hidden sm:inline">All Classes</span>
+      </button>
+    </div>
+  ) : null;
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#fef9f3' }}>
       {/* Header */}
       <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
-        <div className="container mx-auto py-4 px-4 sm:px-6">
+        <div className="container mx-auto pt-2.5 pb-0.5 px-4 sm:py-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-sm">
-                <TrophyIcon className="w-6 h-6" style={{ color: '#d97757' }} />
+            <div className="flex items-center gap-2.5 sm:gap-4">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-sm">
+                <TrophyIcon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#d97757' }} />
               </div>
-              <div>
-                <h1 className="text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+              <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
+                <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
                   Weekly Leaderboard
                 </h1>
-                <p className="text-sm font-medium" style={{ color: '#7ba884' }}>
+                <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: '#7ba884' }}>
                   Top performers this week
                 </p>
               </div>
@@ -203,47 +249,8 @@ export default function LeaderboardPage() {
 
             <div className="flex items-center">
               {viewerRole === 'student' ? (
-                <div className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-[#f5f1e8] p-1 shadow-sm">
-                  <button
-                    type="button"
-                    onClick={() => void onScopeChange('section')}
-                    aria-pressed={scope === 'section'}
-                    className="px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
-                    style={
-                      scope === 'section'
-                        ? {
-                            backgroundColor: '#d97757',
-                            color: '#ffffff',
-                            boxShadow: '0 2px 4px rgba(217, 119, 87, 0.25)',
-                          }
-                        : {
-                            backgroundColor: 'transparent',
-                            color: '#5a6b7f',
-                          }
-                    }
-                  >
-                    My Class
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => void onScopeChange('all')}
-                    aria-pressed={scope === 'all'}
-                    className="px-4 py-1.5 text-xs font-bold rounded-md transition-all duration-200"
-                    style={
-                      scope === 'all'
-                        ? {
-                            backgroundColor: '#d97757',
-                            color: '#ffffff',
-                            boxShadow: '0 2px 4px rgba(217, 119, 87, 0.25)',
-                          }
-                        : {
-                            backgroundColor: 'transparent',
-                            color: '#5a6b7f',
-                          }
-                    }
-                  >
-                    All Classes
-                  </button>
+                <div className="hidden sm:inline-flex">
+                  {studentScopeToggle}
                 </div>
               ) : classOptions.length > 1 ? (
                 <div className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-white px-3 py-1.5 shadow-sm">
@@ -357,6 +364,11 @@ export default function LeaderboardPage() {
                 <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
                   All Rankings
                 </h2>
+                {viewerRole === 'student' ? (
+                  <div className="sm:hidden">
+                    {studentScopeToggle}
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="divide-y" style={{ borderColor: '#ede7db' }}>
