@@ -26,6 +26,7 @@ export function ResultsScreen({
   const unlocked = !!results.unlocked && !!nextGroup;
   const isPassing = results.accuracy >= 80;
   const isPerfect = results.accuracy === 100;
+  const canContinue = isPerfect;
 
   useEffect(() => {
     if (isPassing) {
@@ -304,18 +305,18 @@ export function ResultsScreen({
         </motion.button>
 
         <motion.button
-          whileHover={isPassing ? { scale: 1.02 } : undefined}
-          whileTap={isPassing ? { scale: 0.98 } : undefined}
+          whileHover={canContinue ? { scale: 1.02 } : undefined}
+          whileTap={canContinue ? { scale: 0.98 } : undefined}
           onClick={onContinue}
-          disabled={!isPassing}
+          disabled={!canContinue}
           className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-semibold transition-all ${
-            isPassing
+            canContinue
               ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg hover:shadow-xl'
               : 'bg-bg-gray text-text-muted cursor-not-allowed'
           }`}
         >
-          <span>{isPassing ? 'Continue Journey' : `Need 80% (${results.accuracy}%)`}</span>
-          {isPassing && <ChevronRight size={18} />}
+          <span>{canContinue ? 'Continue Journey' : `Need 100% (${results.accuracy}%)`}</span>
+          {canContinue && <ChevronRight size={18} />}
         </motion.button>
       </motion.div>
 

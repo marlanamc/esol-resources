@@ -20,6 +20,22 @@ interface VerbGameState {
   answers: boolean[]; // Track correct/incorrect for each exercise
 }
 
+const ALL_PATTERNS_GROUP_ID = 'all-patterns-quiz';
+const ALL_PATTERNS_GROUP: VerbGroup = {
+  id: ALL_PATTERNS_GROUP_ID,
+  title: 'All Patterns Quiz',
+  pattern: 'Mixed patterns from everything you mastered',
+  patternExample: 'Random V1 → V2 → V3',
+  colorClass: 'from-indigo-100 to-blue-100 border-indigo-200',
+  difficulty: 3,
+  prerequisite: null,
+  verbs: Array.from(
+    new Map(
+      VERB_GROUPS.flatMap((g) => g.verbs).map((v) => [v.base, v])
+    ).values()
+  )
+};
+
 function calculateBestStreak(answers: boolean[]): number {
   let best = 0;
   let current = 0;
@@ -85,12 +101,14 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
 
   // Handle group selection (go to intro screen first)
   const selectGroup = useCallback((group: VerbGroup) => {
-    const unlocked = isGroupUnlocked(group.id, state.categoryData);
+    const unlocked = group.id === ALL_PATTERNS_GROUP_ID
+      ? true
+      : isGroupUnlocked(group.id, state.categoryData);
 
     if (!unlocked) {
       setState(prev => ({
         ...prev,
-        error: `Complete the prerequisite group first`
+        error: 'Complete the prerequisite group first'
       }));
       return;
     }
@@ -111,7 +129,13 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
   const startGroupChallenge = useCallback(() => {
     if (!state.selectedGroup) return;
 
-    const exercises = generateExercises(state.selectedGroup, 10, hideExplanations);
+    const exercises = generateExercises(
+      state.selectedGroup,
+      10,
+      hideExplanations,
+      state.selectedGroup.id !== ALL_PATTERNS_GROUP_ID
+    );
+
     setState(prev => ({
       ...prev,
       exercises,
@@ -124,7 +148,7 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
   }, [state.selectedGroup, hideExplanations]);
 
   // Handle exercise answer
-  const submitAnswer = useCallback((correct: boolean) => {
+  const submitAnswer = useCallback((correct: boolean, _exercise: VerbExercise) => {
     setState(prev => {
       const newAnswers = [...prev.answers, correct];
       const newIndex = prev.currentExerciseIndex + 1;
@@ -209,7 +233,13 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
   const retryGroup = useCallback(() => {
     if (!state.selectedGroup) return;
 
-    const exercises = generateExercises(state.selectedGroup, 10, hideExplanations);
+    const exercises = generateExercises(
+      state.selectedGroup,
+      10,
+      hideExplanations,
+      state.selectedGroup.id !== ALL_PATTERNS_GROUP_ID
+    );
+
     setState(prev => ({
       ...prev,
       exercises,
@@ -239,12 +269,9 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
   // Continue to next group
   const continueToNext = useCallback(() => {
     if (!state.selectedGroup) return;
+    const selectedGroup = state.selectedGroup;
 
-    // Find next group
-    const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
-    const nextGroup = VERB_GROUPS[currentIndex + 1];
-
-    if (!nextGroup) {
+    if (selectedGroup.id === ALL_PATTERNS_GROUP_ID) {
       setState(prev => ({
         ...prev,
         phase: 'selection',
@@ -257,8 +284,33 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
       return;
     }
 
+    // Find next group
+    const currentIndex = VERB_GROUPS.findIndex(g => g.id === selectedGroup.id);
+    const nextGroup = VERB_GROUPS[currentIndex + 1];
+
+    if (!nextGroup) {
+      const allMastered = VERB_GROUPS.every(
+        (group) => (state.categoryData[group.id]?.accuracy ?? 0) === 100
+      );
+
+      if (allMastered) {
+        selectGroup(ALL_PATTERNS_GROUP);
+      } else {
+        setState(prev => ({
+          ...prev,
+          phase: 'selection',
+          selectedGroup: null,
+          exercises: [],
+          currentExerciseIndex: 0,
+          roundResults: null,
+          answers: []
+        }));
+      }
+      return;
+    }
+
     selectGroup(nextGroup);
-  }, [state.selectedGroup, selectGroup]);
+  }, [state.selectedGroup, state.categoryData, selectGroup]);
 
   // Quit to selection screen
   const quitGame = useCallback(() => {
