@@ -573,10 +573,11 @@ export const TodaysAssignments: React.FC<Props> = ({
                         </div>
                         <div className={`w-full rounded-full h-2.5 overflow-hidden ${isFullyComplete ? 'bg-slate-100 shadow-inner' : 'bg-bg-light'}`}>
                             <div
-                                className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-emerald-600 via-emerald-400 to-emerald-600 shadow-[0_0_12px_rgba(16,185,129,0.4)]' : 'bg-emerald-500/80'}`}
+                                className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-[#b86a56] via-[#d49a7e] to-[#b86a56] shadow-[0_0_12px_rgba(184,106,86,0.4)]' : ''}`}
                                 style={{
                                     width: `${percent}%`,
-                                    boxShadow: isFullyComplete ? '0 0 15px rgba(16,185,129,0.45), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none'
+                                    ...(!isFullyComplete ? { backgroundColor: '#d0877a' } : {}),
+                                    boxShadow: isFullyComplete ? '0 0 15px rgba(184,106,86,0.45), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none'
                                 }}
                             ></div>
                         </div>
