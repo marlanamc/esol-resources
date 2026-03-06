@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 interface StreakCalendarProps {
   activityDates: Array<Date | string>; // Array of dates when user was active
@@ -11,9 +11,22 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
   activityDates,
   className = '',
 }) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
   const today = new Date();
   const appLaunchDate = new Date(2025, 11, 1); // December 1, 2025
   const MAX_WEEKS_VISIBLE = 18;
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      // Small timeout to ensure layout is complete before scrolling
+      const timer = setTimeout(() => {
+        if (scrollRef.current) {
+          scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+        }
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const getLocalDateKey = (date: Date) => {
     const year = date.getFullYear();
@@ -86,74 +99,74 @@ export const StreakCalendar: React.FC<StreakCalendarProps> = ({
   const dayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className={`${className} max-w-full overflow-x-hidden`}>
-      <div className="max-w-full">
-        <div>
-          <div className="flex flex-col gap-3">
+    <div className={`${className} w-full`}>
+      <div className="flex gap-2 sm:gap-4">
+        {/* Fixed Day labels */}
+        <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 text-[10px] md:text-sm text-text-muted justify-start pt-[20px] md:pt-[24px]">
+          {dayLabels.map((day, i) => (
+            <div key={i} className="h-3.5 md:h-4 lg:h-5 xl:h-6 flex items-center pr-1 sm:pr-2">
+              {day.slice(0, 3)}
+            </div>
+          ))}
+        </div>
+
+        {/* Scrollable Month labels + Grid */}
+        <div 
+          ref={scrollRef} 
+          className="flex-1 overflow-x-auto scrollbar-hide pb-2"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
+          <div className="flex flex-col gap-1.5 md:gap-3 min-w-max">
             {/* Month labels row */}
-            <div className="flex gap-1.5 md:gap-2 lg:gap-3 xl:gap-4 ml-8 md:ml-12 lg:ml-14">
+            <div className="flex gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
               {visibleWeeks.map((week, weekIndex) => {
                 const firstDayOfWeek = week[0];
                 const showMonth = firstDayOfWeek.getDate() <= 7 || weekIndex === 0;
                 return (
-                  <div key={weekIndex} className="w-3.5 md:w-4 lg:w-5 xl:w-6 text-xs md:text-sm text-text-muted font-medium">
-                    {showMonth && monthLabels[firstDayOfWeek.getMonth()].slice(0, 3)}
+                  <div key={weekIndex} className="w-3.5 md:w-4 lg:w-5 xl:w-6 text-[10px] md:text-sm text-text-muted font-medium shrink-0">
+                    {showMonth ? monthLabels[firstDayOfWeek.getMonth()].slice(0, 3) : ''}
                   </div>
                 );
               })}
             </div>
 
-            {/* Calendar grid with day labels */}
-            <div className="flex gap-3 md:gap-4">
-              {/* Day labels */}
-              <div className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 text-xs md:text-sm text-text-muted justify-start pt-0.5">
-                {dayLabels.map((day, i) => (
-                  <div key={i} className="h-3.5 md:h-4 lg:h-5 xl:h-6 flex items-center w-8 md:w-10 lg:w-12">
-                    {day.slice(0, 3)}
-                  </div>
-                ))}
-              </div>
+            {/* Calendar grid */}
+            <div className="flex gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
+              {visibleWeeks.map((week, weekIndex) => (
+                <div key={weekIndex} className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 shrink-0">
+                  {/* Days in week */}
+                  {week.map((date, dayIndex) => {
+                    const dateKey = getLocalDateKey(date);
+                    const isToday = dateKey === todayKey;
+                    const isFuture = dateKey > todayKey;
+                    const level = getActivityLevel(date);
+                    const activityCount = activityMap.get(dateKey) || 0;
 
-              {/* Calendar weeks */}
-              <div>
-                <div className="flex gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
-                  {visibleWeeks.map((week, weekIndex) => (
-                    <div key={weekIndex} className="flex flex-col gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3">
-                      {/* Days in week */}
-                      {week.map((date, dayIndex) => {
-                        const dateKey = getLocalDateKey(date);
-                        const isToday = dateKey === todayKey;
-                        const isFuture = dateKey > todayKey;
-                        const level = getActivityLevel(date);
-                        const activityCount = activityMap.get(dateKey) || 0;
+                    if (isFuture) {
+                      return (
+                        <div
+                          key={dayIndex}
+                          className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 opacity-0"
+                        />
+                      );
+                    }
 
-                        if (isFuture) {
-                          return (
-                            <div
-                              key={dayIndex}
-                              className="w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 opacity-0"
-                            />
-                          );
-                        }
-
-                        return (
-                          <div
-                            key={dayIndex}
-                            className={`
-                              w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-[background-color,opacity] duration-200
-                              ${getColorClass(level)}
-                              ${isToday ? 'ring-2 ring-primary ring-offset-1' : ''}
-                              hover:ring-2 hover:ring-gray-400 hover:ring-offset-1
-                              cursor-pointer
-                            `}
-                            title={`${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}: ${activityCount} ${activityCount === 1 ? 'activity' : 'activities'}`}
-                          />
-                        );
-                      })}
-                    </div>
-                  ))}
+                    return (
+                      <div
+                        key={dayIndex}
+                        className={`
+                          w-3.5 h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-[background-color,opacity] duration-200
+                          ${getColorClass(level)}
+                          ${isToday ? 'ring-2 ring-primary ring-offset-1 z-10' : ''}
+                          hover:ring-2 hover:ring-gray-400 hover:ring-offset-1
+                          cursor-pointer shrink-0
+                        `}
+                        title={`${date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}: ${activityCount} ${activityCount === 1 ? 'activity' : 'activities'}`}
+                      />
+                    );
+                  })}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
