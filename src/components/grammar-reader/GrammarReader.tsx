@@ -44,6 +44,7 @@ function formatGuideTitle(raw: string | null | undefined): string {
 export function GrammarReader({ content, onComplete, completionKey, activityId }: GrammarReaderProps) {
     const router = useRouter();
     const storageKey = `grammarReader:${completionKey || "guide"}:unlocked`;
+    const readerContainerRef = useRef<HTMLDivElement | null>(null);
     const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
     const [completedSections, setCompletedSections] = useState<Set<string>>(
         new Set()
@@ -325,12 +326,37 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         });
     }, [currentSectionKey]);
 
+    const scrollReaderToTop = useCallback((behavior: ScrollBehavior = "smooth") => {
+        if (typeof window === "undefined") return;
+
+        window.scrollTo({ top: 0, behavior });
+        document.scrollingElement?.scrollTo({ top: 0, behavior });
+
+        const container = readerContainerRef.current;
+        if (!container) return;
+
+        container.scrollIntoView({ block: "start", behavior });
+
+        let ancestor: HTMLElement | null = container.parentElement;
+        while (ancestor) {
+            const style = window.getComputedStyle(ancestor);
+            const isScrollable =
+                (style.overflowY === "auto" || style.overflowY === "scroll" || style.overflowY === "overlay") &&
+                ancestor.scrollHeight > ancestor.clientHeight;
+
+            if (isScrollable) {
+                ancestor.scrollTo({ top: 0, behavior });
+            }
+
+            ancestor = ancestor.parentElement;
+        }
+    }, []);
+
     const handleNext = useCallback(() => {
         if (!isLastSection) {
             // Mark current section as completed
             markCurrentSectionComplete();
             setCurrentSectionIndex((prev) => prev + 1);
-            window.scrollTo({ top: 0, behavior: "smooth" });
         } else if (content.miniQuiz && !showQuiz) {
             // Show quiz after last section
             markCurrentSectionComplete();
@@ -350,9 +376,16 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
             setShowQuiz(false);
         } else if (!isFirstSection) {
             setCurrentSectionIndex((prev) => prev - 1);
-            window.scrollTo({ top: 0, behavior: "smooth" });
         }
     }, [isFirstSection, showQuiz]);
+
+    useEffect(() => {
+        const rafId = window.requestAnimationFrame(() => {
+            scrollReaderToTop(currentSectionIndex === 0 && !showQuiz ? "auto" : "smooth");
+        });
+
+        return () => window.cancelAnimationFrame(rafId);
+    }, [currentSectionIndex, showQuiz, scrollReaderToTop]);
 
     // Keyboard navigation
     useEffect(() => {
@@ -450,7 +483,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         setCurrentSectionIndex(index);
         setShowTOC(false);
         setShowQuiz(false);
-        window.scrollTo({ top: 0, behavior: "smooth" });
     }, []);
 
     const buildMiniQuizCertificateHref = useCallback((score: number, total: number) => {
@@ -509,7 +541,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     }, [awardCompletion, buildMiniQuizCertificateHref, onComplete, router]);
 
     return (
-        <div className="grammar-reader-container min-h-screen bg-bg">
+        <div ref={readerContainerRef} className="grammar-reader-container min-h-screen bg-bg">
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
