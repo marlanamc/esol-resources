@@ -623,21 +623,71 @@ export const TodaysAssignments: React.FC<Props> = ({
                             </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <div className={`flex-1 rounded-full h-2.5 overflow-hidden ${isFullyComplete ? 'bg-slate-100 shadow-inner' : 'bg-bg-light'}`}>
-                                <div
-                                    className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-[#b86a56] via-[#d49a7e] to-[#b86a56] shadow-[0_0_12px_rgba(184,106,86,0.4)]' : ''}`}
-                                    style={{
-                                        width: `${percent}%`,
-                                        ...(!isFullyComplete ? { backgroundColor: '#d0877a' } : {}),
-                                        boxShadow: isFullyComplete ? '0 0 15px rgba(184,106,86,0.45), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none'
-                                    }}
-                                ></div>
+                            <div className="flex-1">
+                                <div className="mb-1.5 flex items-center justify-between text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-text/55">
+                                    <span>Week Progress</span>
+                                    <span>{completedCount} of {checklistRows.length} finished</span>
+                                </div>
+
+                                <div className={`relative overflow-hidden rounded-[999px] border h-4 ${
+                                    isFullyComplete
+                                        ? 'border-[#d7c09a]/70 bg-[#f7efe4] shadow-[inset_0_1px_2px_rgba(138,91,61,0.08)]'
+                                        : 'border-[#e5d8c8] bg-[linear-gradient(90deg,#f6f0e8_0%,#fbf8f3_50%,#f3ede5_100%)] shadow-[inset_0_1px_2px_rgba(78,57,39,0.05)]'
+                                }`}>
+                                    <div
+                                        className="absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out"
+                                        style={{
+                                            width: `${percent}%`,
+                                            background: isFullyComplete
+                                                ? 'linear-gradient(90deg, #b86a56 0%, #d49a7e 45%, #f0c987 100%)'
+                                                : 'linear-gradient(90deg, #b86a56 0%, #d0877a 45%, #e3b45f 100%)',
+                                            boxShadow: isFullyComplete
+                                                ? '0 0 18px rgba(184,106,86,0.34), inset 0 1px 1px rgba(255,255,255,0.32)'
+                                                : '0 0 12px rgba(208,135,122,0.2), inset 0 1px 1px rgba(255,255,255,0.24)'
+                                        }}
+                                    />
+
+                                    <div
+                                        className="absolute inset-y-[2px] left-2 rounded-full opacity-50"
+                                        style={{
+                                            width: `max(12%, min(${percent}%, calc(100% - 16px)))`,
+                                            background: 'linear-gradient(90deg, rgba(255,255,255,0.45), rgba(255,255,255,0.06))'
+                                        }}
+                                    />
+
+                                    <div className="absolute inset-0 flex items-center justify-between px-3 pointer-events-none">
+                                        {[25, 50, 75].map((marker) => (
+                                            <div
+                                                key={marker}
+                                                className="h-2.5 w-px rounded-full bg-white/70 shadow-[0_0_0_1px_rgba(138,91,61,0.08)]"
+                                            />
+                                        ))}
+                                    </div>
+
+                                    {percent > 0 && (
+                                        <div
+                                            className="absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border border-white/80 bg-white/95 text-[13px] shadow-[0_6px_14px_rgba(93,67,46,0.16)]"
+                                            style={{
+                                                left: `clamp(14px, ${percent}%, calc(100% - 14px))`
+                                            }}
+                                        >
+                                            {isFullyComplete ? '🏆' : percent >= 75 ? '🔥' : percent >= 40 ? '✨' : '🌱'}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="mt-1.5 flex items-center justify-between text-[10px] sm:text-[11px] font-medium text-text-muted">
+                                    <span>Start</span>
+                                    <span>Momentum</span>
+                                    <span>Finish line</span>
+                                </div>
                             </div>
+
                             <span
-                                className={`shrink-0 px-2 py-0.5 rounded-full border text-[11px] font-semibold leading-none tabular-nums shadow-sm ${
+                                className={`shrink-0 px-3 py-1.5 rounded-full border text-[13px] font-bold leading-none tabular-nums shadow-sm ${
                                     isFullyComplete
                                         ? 'bg-[#f8f3ec] border-[#d7c09a]/60 text-[#8a5b3d]'
-                                        : 'bg-bg-light border-border/50 text-text/75'
+                                        : 'bg-[linear-gradient(180deg,#fffdfa_0%,#f6efe6_100%)] border-[#dcccbc] text-[#8f5d4e]'
                                 }`}
                             >
                                 {percent}%
