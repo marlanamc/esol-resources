@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Target, Zap, Unlock, RotateCcw, ChevronRight, Sparkles, BookOpen } from 'lucide-react';
+import { UNLOCK_THRESHOLD } from '@/lib/irregular-verbs-progress';
 import type { VerbGroup, VerbGameRoundResults } from '@/types/irregular-verbs';
 
 interface ResultsScreenProps {
@@ -24,9 +25,9 @@ export function ResultsScreen({
 }: ResultsScreenProps) {
   const [showConfetti, setShowConfetti] = useState(false);
   const unlocked = !!results.unlocked && !!nextGroup;
-  const isPassing = results.accuracy >= 80;
+  const isPassing = results.accuracy >= UNLOCK_THRESHOLD;
   const isPerfect = results.accuracy === 100;
-  const canContinue = isPerfect;
+  const canContinue = isPassing;
 
   useEffect(() => {
     if (isPassing) {
@@ -315,7 +316,7 @@ export function ResultsScreen({
               : 'bg-bg-gray text-text-muted cursor-not-allowed'
           }`}
         >
-          <span>{canContinue ? 'Continue Journey' : `Need 100% (${results.accuracy}%)`}</span>
+          <span>{canContinue ? 'Continue Journey' : `Need ${UNLOCK_THRESHOLD}% (${results.accuracy}%)`}</span>
           {canContinue && <ChevronRight size={18} />}
         </motion.button>
       </motion.div>
