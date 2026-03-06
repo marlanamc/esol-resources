@@ -620,18 +620,28 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         <Rows3 className="w-3.5 h-3.5" />
                                     </button>
                                 </div>
-                                <span className={`px-2 py-1 rounded-md border tabular-nums ${isFullyComplete ? 'bg-slate-50 border-border/50 text-slate-700 shadow-sm' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
                             </div>
                         </div>
-                        <div className={`w-full rounded-full h-2.5 overflow-hidden ${isFullyComplete ? 'bg-slate-100 shadow-inner' : 'bg-bg-light'}`}>
-                            <div
-                                className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-[#b86a56] via-[#d49a7e] to-[#b86a56] shadow-[0_0_12px_rgba(184,106,86,0.4)]' : ''}`}
-                                style={{
-                                    width: `${percent}%`,
-                                    ...(!isFullyComplete ? { backgroundColor: '#d0877a' } : {}),
-                                    boxShadow: isFullyComplete ? '0 0 15px rgba(184,106,86,0.45), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none'
-                                }}
-                            ></div>
+                        <div className="flex items-center gap-3">
+                            <div className={`flex-1 rounded-full h-2.5 overflow-hidden ${isFullyComplete ? 'bg-slate-100 shadow-inner' : 'bg-bg-light'}`}>
+                                <div
+                                    className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-[#b86a56] via-[#d49a7e] to-[#b86a56] shadow-[0_0_12px_rgba(184,106,86,0.4)]' : ''}`}
+                                    style={{
+                                        width: `${percent}%`,
+                                        ...(!isFullyComplete ? { backgroundColor: '#d0877a' } : {}),
+                                        boxShadow: isFullyComplete ? '0 0 15px rgba(184,106,86,0.45), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none'
+                                    }}
+                                ></div>
+                            </div>
+                            <span
+                                className={`shrink-0 px-2 py-0.5 rounded-full border text-[11px] font-semibold leading-none tabular-nums shadow-sm ${
+                                    isFullyComplete
+                                        ? 'bg-[#f8f3ec] border-[#d7c09a]/60 text-[#8a5b3d]'
+                                        : 'bg-bg-light border-border/50 text-text/75'
+                                }`}
+                            >
+                                {percent}%
+                            </span>
                         </div>
                     </div>
 
