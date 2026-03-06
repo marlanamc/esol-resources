@@ -13,7 +13,8 @@ import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 export function generateExercises(
   group: VerbGroup,
   count: number = 10,
-  hideExplanations: boolean = false
+  hideExplanations: boolean = false,
+  includePatternSorting: boolean = true
 ): VerbExercise[] {
   const exercises: VerbExercise[] = [];
   const nonPatternTypes: ExerciseType[] = [
@@ -24,7 +25,7 @@ export function generateExercises(
   ];
   const plannedTypes: ExerciseType[] = [];
 
-  if (count > 0) {
+  if (count > 0 && includePatternSorting) {
     // Keep pattern-recognition to one question per round.
     plannedTypes.push('pattern-sorting');
   }

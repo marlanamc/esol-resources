@@ -15,7 +15,7 @@ interface ExerciseScreenProps {
   exercises: VerbExercise[];
   currentIndex: number;
   showPattern: boolean;
-  onAnswer: (correct: boolean) => void;
+  onAnswer: (correct: boolean, exercise: VerbExercise) => void;
   onBack?: () => void;
 }
 
@@ -53,7 +53,7 @@ export function ExerciseScreen({
     } else {
       setStreak(0);
     }
-    onAnswer(correct);
+    onAnswer(correct, currentExercise);
   };
 
   const renderExercise = () => {

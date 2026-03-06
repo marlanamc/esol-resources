@@ -203,11 +203,12 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
               <ResultsScreen
                 group={state.selectedGroup}
                 results={state.roundResults}
-                nextGroup={
-                  state.roundResults.unlocked && state.selectedGroup
-                    ? VERB_GROUPS[VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id) + 1] ?? null
-                    : null
-                }
+                nextGroup={(() => {
+                  if (!state.roundResults.unlocked || !state.selectedGroup) return null;
+                  const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
+                  if (currentIndex < 0) return null;
+                  return VERB_GROUPS[currentIndex + 1] ?? null;
+                })()}
                 onRetry={retryGroup}
                 onContinue={continueToNext}
               />
