@@ -13,6 +13,10 @@ import { PointsToast } from "@/components/ui/PointsToast";
 import Link from "next/link";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
+import { LearnerMenu } from "@/components/navigation/LearnerMenu";
+import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
+import { RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
 
 interface GrammarReaderProps {
     content: InteractiveGuideContent;
@@ -53,7 +57,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const [unlockedPractice, setUnlockedPractice] = useState<Set<string>>(new Set());
     const practicePanelRef = useRef<HTMLDivElement | null>(null);
     const [awardSent, setAwardSent] = useState(false);
-    const [activitiesHref, setActivitiesHref] = useState<string>("/dashboard/activities");
     const [guideTitle, setGuideTitle] = useState<string>(() => formatGuideTitle(completionKey));
     const [showPractice, setShowPractice] = useState(true);
     const [pointsToast, setPointsToast] = useState<{ points: number; key: number } | null>(null);
@@ -62,6 +65,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     const persistedProgressRef = useRef(0);
     const hasSkippedInitialProgressSaveRef = useRef(false);
     const grammarActivitiesHref = "/dashboard/activities?category=grammar";
+    const returnHref = useResolvedLearnerReturnHref({ fallbackHref: grammarActivitiesHref });
+    const sourceLabel = returnHref.startsWith("/grammar-map") ? "Grammar Map" : "Activities";
     const sectionKeys = useMemo(
         () => content.sections.map((section, index) => section.id || `section-${index}`),
         [content.sections]
@@ -153,37 +158,6 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         })();
         return () => { cancelled = true; };
     }, [activityId, content.sections.length, readAssignmentId, sectionKeys]);
-
-    // Choose where the "Activities" breadcrumb should take the user based on entry point.
-    useEffect(() => {
-        let fromParam: string | null = null;
-        try {
-            fromParam = new URLSearchParams(window.location.search).get("from");
-        } catch {
-            // ignore
-        }
-
-        if (fromParam === "grammar-map") {
-            setActivitiesHref("/grammar-map");
-            return;
-        }
-
-        // Backward-compat: if the user navigated here directly from /grammar-map.
-        try {
-            const ref = document.referrer;
-            if (ref) {
-                const url = new URL(ref);
-                if (url.pathname === "/grammar-map") {
-                    setActivitiesHref("/grammar-map");
-                    return;
-                }
-            }
-        } catch {
-            // ignore
-        }
-
-        setActivitiesHref("/dashboard/activities");
-    }, []);
 
     // Fallback title if a page didn't provide completionKey.
     useEffect(() => {
@@ -495,8 +469,11 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
         if (assignmentId) {
             params.set("assignment", assignmentId);
         }
+        if (returnHref) {
+            params.set(RETURN_TO_QUERY_PARAM, returnHref);
+        }
         return `/dashboard/certificates/mini-quiz?${params.toString()}`;
-    }, [activityId, completionKey, guideTitle, readAssignmentId]);
+    }, [activityId, completionKey, guideTitle, readAssignmentId, returnHref]);
 
     // Save quiz score and responses immediately when student submits (before they click "Finish")
     const handleQuizScoreSubmit = useCallback((score: number, total: number, responses?: QuestionResponse[]) => {
@@ -551,6 +528,12 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         <div className="px-4 sm:px-6 py-3 group">
                             {/* Top Row: Breadcrumb and TOC Button */}
                             <div className="flex items-center justify-between gap-4 mb-3">
+                                <div className="flex items-center gap-2 flex-shrink-0">
+                                    <LearnerMenu mode="quiet" className="h-9 w-9" />
+                                    <ContextualBackButton className="px-2.5 py-1.5 text-xs" aria-label="Return to previous page">
+                                        Back
+                                    </ContextualBackButton>
+                                </div>
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
                                     <Link
                                         href="/dashboard"
@@ -560,10 +543,10 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     </Link>
                                     <span className="text-text-muted flex-shrink-0">/</span>
                                     <Link
-                                        href={activitiesHref}
+                                        href={returnHref}
                                         className="text-primary hover:underline flex-shrink-0"
                                     >
-                                        Activities
+                                        {sourceLabel}
                                     </Link>
                                     <span className="text-text-muted flex-shrink-0">/</span>
                                     <Link

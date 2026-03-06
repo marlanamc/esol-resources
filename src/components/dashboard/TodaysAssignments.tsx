@@ -6,6 +6,7 @@ import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@
 import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Sparkles, LayoutGrid, Rows3 } from 'lucide-react';
+import { ActivityLink } from '@/components/navigation/ActivityLink';
 
 interface VocabCategoryData {
     'word-list'?: { completed: boolean; progress: number; completedAt?: string };
@@ -18,6 +19,7 @@ interface FeaturedAssignment {
     id: string;
     title?: string | null;
     activityId: string;
+    href?: string;
     sectionCount?: number;
     dueDate?: string | Date | null;
     featuredAt?: string | Date | null;
@@ -403,8 +405,10 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* Action Button - Differentiated by state */}
                     <div className="shrink-0 pl-1">
-                        <Link
-                            href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
+                        <ActivityLink
+                            activityId={assignment.activityId}
+                            assignmentId={assignment.id}
+                            href={assignment.href}
                             className="inline-flex items-center justify-center !min-h-0 min-w-[82px] sm:min-w-[92px] h-9 sm:h-10 px-3 sm:px-4 text-[13px] sm:text-sm font-semibold tracking-tight transition-[color,background-color,border-color,transform,box-shadow] duration-200 rounded-full whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
                             style={isGameGroup ? {
                                 /* Play: distinct tinted style */
@@ -456,7 +460,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                             aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                         >
                             <span>{isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'}</span>
-                        </Link>
+                        </ActivityLink>
                     </div>
                 </div>
 
@@ -783,15 +787,15 @@ export const TodaysAssignments: React.FC<Props> = ({
                                             const vocabType = getVocabActivityType(assignment.activityId);
                                             if (!vocabType) return null;
                                             const chip = VOCAB_CHIP_CONFIG[vocabType];
-                                            const qs = assignment.id ? `?assignment=${assignment.id}` : '';
                                             return (
-                                                <Link
-                                                    href={`/activity/${assignment.activityId}${qs}`}
+                                                <ActivityLink
+                                                    activityId={assignment.activityId}
+                                                    assignmentId={assignment.id}
                                                     className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide rounded-md border transition-colors z-20 ${chip.className}`}
                                                     onClick={(e) => e.stopPropagation()}
                                                 >
                                                     {chip.icon} {chip.label}
-                                                </Link>
+                                                </ActivityLink>
                                             );
                                         })()}
 
@@ -817,8 +821,9 @@ export const TodaysAssignments: React.FC<Props> = ({
                                 </div>
 
                                 {/* CTA Button */}
-                                <Link
-                                    href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
+                                <ActivityLink
+                                    activityId={assignment.activityId}
+                                    assignmentId={assignment.id}
                                     className="inline-flex items-center justify-center px-4 py-2 min-h-11 text-sm font-semibold rounded-2xl border transition-[color,background-color,border-color,transform] duration-200 active:scale-95 whitespace-nowrap sm:shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                     aria-label={`${isCompleted ? 'Review' : ctaLabel} ${displayTitle}`}
                                     style={{
@@ -836,7 +841,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     }}
                                 >
                                     {isCompleted ? 'Review' : ctaLabel}
-                                </Link>
+                                </ActivityLink>
                             </div>
                         </div>
                     );

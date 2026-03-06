@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 import { Badge } from '@/components/ui';
 import type { BadgeVariant } from '@/components/ui/Badge';
+import { ActivityLink } from '@/components/navigation/ActivityLink';
 
 interface ActivityBrowseGridProps {
     activities: {
@@ -75,12 +75,12 @@ export const ActivityBrowseGrid: React.FC<ActivityBrowseGridProps> = ({ activiti
                         </p>
 
                         {/* Action */}
-                        <Link
-                            href={`/activity/${activity.id}`}
+                        <ActivityLink
+                            activityId={activity.id}
                             className="w-full inline-flex items-center justify-center px-4 py-3 text-sm font-bold transition-[background-color,color,border-color,box-shadow] rounded-lg bg-bg-gray/50 text-text border border-transparent hover:bg-primary hover:text-white hover:shadow-lg group-hover:border-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             Start Activity
-                        </Link>
+                        </ActivityLink>
                     </div>
                 </div>
             ))}

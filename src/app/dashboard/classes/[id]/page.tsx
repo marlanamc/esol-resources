@@ -3,6 +3,7 @@ import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+import { ActivityLink } from "@/components/navigation/ActivityLink";
 import LogoutButton from "@/components/LogoutButton";
 import { BackButton } from "@/components/ui/BackButton";
 import { FeatureToggleButton } from "@/components/dashboard";
@@ -253,12 +254,13 @@ export default async function ClassDetailPage({ params }: Props) {
                                                 </div>
                                             </div>
                                             <div className="flex gap-2 flex-wrap">
-                                                <Link
-                                                    href={`/activity/${assignment.activity.id}?assignment=${assignment.id}`}
+                                                <ActivityLink
+                                                    activityId={assignment.activity.id}
+                                                    assignmentId={assignment.id}
                                                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700"
                                                 >
                                                     {isTeacher ? "View" : "Start"}
-                                                </Link>
+                                                </ActivityLink>
                                                 {isTeacher && (
                                                     <>
                                                         <FeatureToggleButton

@@ -3,7 +3,6 @@ import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Script from "next/script";
-import { BackButton } from "@/components/ui/BackButton";
 import { type ActivityContent, isInteractiveGuideContent, isLegacyGuideContent, isVocabularyContent, parseActivityContent } from "@/types/activity";
 import ActivityRenderer from "@/components/ActivityRenderer";
 import { ActivityProgressBadge } from "@/components/ActivityProgressBadge";
@@ -16,16 +15,19 @@ import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
 import NetworkStatusBanner from "@/components/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
 import { isTeacherAdmin } from "@/lib/roles";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
+import { LearnerMenu } from "@/components/navigation/LearnerMenu";
+import { RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
 
 interface Props {
     params: Promise<{ id: string }>;
-    searchParams: Promise<{ assignment?: string; ui?: string }>;
+    searchParams: Promise<{ assignment?: string; ui?: string; returnTo?: string }>;
 }
 
 export default async function ActivityPage({ params, searchParams }: Props) {
     const session = await getServerSession(authOptions);
     const { id } = await params;
-    const { assignment: assignmentId, ui } = await searchParams;
+    const { assignment: assignmentId, ui, returnTo } = await searchParams;
 
     if (!session?.user) {
         redirect("/login");
@@ -86,6 +88,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         if (known.has(slug)) {
             const qs = new URLSearchParams();
             if (assignmentId) qs.set("assignment", assignmentId);
+            if (returnTo) qs.set(RETURN_TO_QUERY_PARAM, returnTo);
             redirect(`/grammar-reader/${slug}${qs.toString() ? `?${qs.toString()}` : ""}`);
         }
     }
@@ -268,7 +271,10 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0" />
+                            <div className="flex items-center gap-2">
+                                <LearnerMenu mode="quiet" />
+                                <ContextualBackButton className="flex-shrink-0" aria-label="Return to previous page" />
+                            </div>
                             <h1 className="text-lg font-bold text-gray-900 truncate flex-1 min-w-0 text-center px-2">
                                 {activity.title}
                             </h1>
@@ -285,7 +291,8 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     <div className="hidden sm:flex items-center justify-between">
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-4 mb-1">
-                                <BackButton href="/dashboard" variant="home" />
+                                <LearnerMenu mode="quiet" />
+                                <ContextualBackButton aria-label="Return to previous page" />
                                 <h1 className="text-xl font-bold text-gray-900 truncate">{activity.title}</h1>
                             </div>
                             {activity.description && (
@@ -324,7 +331,10 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
                         <div className="flex items-center justify-between gap-2">
-                            <BackButton href="/dashboard" className="flex-shrink-0" />
+                            <div className="flex items-center gap-2">
+                                <LearnerMenu mode="quiet" />
+                                <ContextualBackButton className="flex-shrink-0" aria-label="Return to previous page" />
+                            </div>
                             {shouldShowHeaderProgressBadge && (
                                 <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                             )}
@@ -336,7 +346,10 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
                     {/* Desktop Layout: Horizontal */}
                     <div className="hidden sm:flex items-center justify-between">
-                        <BackButton href="/dashboard" variant="home" />
+                        <div className="flex items-center gap-3">
+                            <LearnerMenu mode="quiet" />
+                            <ContextualBackButton aria-label="Return to previous page" />
+                        </div>
 
                         {/* Centered Title */}
                         <h1 className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold text-gray-900">
