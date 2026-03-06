@@ -325,8 +325,8 @@ export const TodaysAssignments: React.FC<Props> = ({
             match: (c: string) => boolean;
         }> = [
             { key: 'grammar', label: 'Grammar', icon: <PenLine className="w-5 h-5" />, match: (c: string) => c === 'grammar' },
-            { key: 'activity', label: 'Games', icon: <Gamepad2 className="w-5 h-5" />, match: (c: string) => !['quiz','quizzes','grammar','vocab','vocabulary'].includes(c) },
             { key: 'vocabulary', label: 'Vocabulary', icon: <BookOpen className="w-5 h-5" />, match: (c: string) => c === 'vocab' || c === 'vocabulary' },
+            { key: 'activity', label: 'Games', icon: <Gamepad2 className="w-5 h-5" />, match: (c: string) => !['quiz','quizzes','grammar','vocab','vocabulary'].includes(c) },
             { key: 'quizzes', label: 'Quizzes', icon: <ClipboardList className="w-5 h-5" />, match: (c: string) => c === 'quiz' || c === 'quizzes' },
         ];
 
