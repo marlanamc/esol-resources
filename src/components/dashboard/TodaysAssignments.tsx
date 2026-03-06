@@ -529,19 +529,19 @@ export const TodaysAssignments: React.FC<Props> = ({
         return (
             <div className="mb-8">
                 {/* Unified checklist container - header + category groups connected */}
-                <div className={`rounded-2xl overflow-hidden border bg-[#f8f1e8] sm:bg-[#faf6f1] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.045)] ${isFullyComplete ? 'border-[#d7c09a]/70 ring-1 ring-[#d7c09a]/30' : 'border-[#e7dfd3]'}`}>
+                <div className={`rounded-2xl overflow-hidden border bg-white shadow-[0_4px_12px_rgba(52,43,34,0.06)] ${isFullyComplete ? 'border-[#d7c09a]/70 ring-1 ring-[#d7c09a]/30' : 'border-[#e7dfd3]'}`}>
                     {/* Progress header - enhanced celebration when 100% */}
-                    <div className={`px-4 py-3 border-b border-border/15 ${isFullyComplete ? 'bg-gradient-to-r from-amber-50/80 via-yellow-50/50 to-amber-50/80' : ''}`}>
+                    <div className={`px-4 py-3 border-b border-border/15 ${isFullyComplete ? 'bg-white shadow-[inset_0_1px_0_0_rgba(255,255,255,1)]' : 'bg-white'}`}>
                         <div className="flex items-center justify-between gap-3 mb-3">
                             <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${isFullyComplete ? 'bg-gradient-to-br from-amber-100 to-amber-200/80 shadow-sm' : 'bg-primary/10 text-primary'}`}>
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${isFullyComplete ? 'bg-[#f8f3ec] border border-[#d7c09a]/30 shadow-sm' : 'bg-primary/10 text-primary'}`}>
                                     {isFullyComplete ? '🏆' : '📋'}
                                 </div>
                                 {resolvedTitle && <h2 className="text-lg sm:text-xl font-display font-bold text-[#1f2633] leading-tight">{resolvedTitle}</h2>}
                             </div>
                             <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                                 {actions && <div className="mr-2">{actions}</div>}
-                                <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-bg-light border border-border/50 tabular-nums">{completedCount}/{checklistRows.length} done</span>
+                                <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-white border border-border/50 tabular-nums">{completedCount}/{checklistRows.length} done</span>
                                 <div className="lg:hidden inline-flex items-center rounded-full border border-border/25 bg-white/70 p-0.5">
                                     <button
                                         onClick={() => setMobileViewMode('grouped')}
@@ -568,23 +568,23 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         <Rows3 className="w-3.5 h-3.5" />
                                     </button>
                                 </div>
-                                <span className={`px-2 py-1 rounded-md border tabular-nums ${isFullyComplete ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border-amber-300/70 text-amber-800 shadow-sm' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
+                                <span className={`px-2 py-1 rounded-md border tabular-nums ${isFullyComplete ? 'bg-slate-50 border-border/50 text-slate-700 shadow-sm' : 'bg-bg-light border-border/50'}`}>{percent}%</span>
                             </div>
                         </div>
-                        <div className={`w-full rounded-full h-2.5 overflow-hidden ${isFullyComplete ? 'bg-amber-100/60 shadow-inner' : 'bg-bg-light'}`}>
+                        <div className={`w-full rounded-full h-2.5 overflow-hidden ${isFullyComplete ? 'bg-slate-100 shadow-inner' : 'bg-bg-light'}`}>
                             <div
-                                className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-[#b86a56] via-[#d49a7e] to-[#b86a56] shadow-[0_0_8px_rgba(184,106,86,0.3)]' : ''}`}
+                                className={`h-full rounded-full transition-[width] duration-700 ease-out ${isFullyComplete ? 'bg-gradient-to-r from-emerald-600 via-emerald-400 to-emerald-600 shadow-[0_0_12px_rgba(16,185,129,0.4)]' : 'bg-emerald-500/80'}`}
                                 style={{
                                     width: `${percent}%`,
-                                    ...(!isFullyComplete ? { backgroundColor: '#d0877a' } : {}),
+                                    boxShadow: isFullyComplete ? '0 0 15px rgba(16,185,129,0.45), inset 0 1px 1px rgba(255,255,255,0.3)' : 'none'
                                 }}
-                            />
+                            ></div>
                         </div>
                     </div>
 
                     {/* === MOBILE: Category Filters (Condensed mode) === */}
                     {mobileViewMode === 'condensed' && (
-                    <div className="lg:hidden bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45 border-b border-border/5">
+                    <div className="lg:hidden bg-white/80 border-b border-border/5">
                         <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
                             <button
                                 onClick={() => setActiveFilter('all')}
@@ -634,7 +634,7 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* === MOBILE: Unified flat list (Condensed mode) === */}
                     {mobileViewMode === 'condensed' && (
-                    <div className="lg:hidden bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45">
+                    <div className="lg:hidden bg-white/80">
                         <div className="bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-b-2xl overflow-hidden shadow-inner-sm">
                             <div className="divide-y divide-border/10">
                                 {sortedRows
@@ -674,15 +674,15 @@ export const TodaysAssignments: React.FC<Props> = ({
                     )}
 
                     {/* === GROUPED VIEW: default on mobile + desktop === */}
-                    <div className={`${mobileViewMode === 'grouped' ? 'block' : 'hidden'} lg:block p-2.5 sm:p-4 bg-[#f8f3ec]/55 sm:bg-[#fbf8f2]/45`}>
+                    <div className={`${mobileViewMode === 'grouped' ? 'block' : 'hidden'} lg:block p-2.5 sm:p-4 bg-white`}>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:auto-rows-fr">
                             {groups.map((group) => {
                                 const groupStyle = getCategoryStyle(group.key);
                                 return (
                                     <div
                                         key={group.key}
-                                        className={`rounded-xl overflow-hidden border shadow-sm flex flex-col ${group.allDone ? 'border-[#d7c09a]/40' : 'border-border/15'}`}
-                                        style={{ backgroundColor: groupStyle.cardBg || '#fdfbf7' }}
+                                        className="rounded-xl overflow-hidden border border-[#d7c09a]/45 shadow-[0_2px_8px_rgba(52,43,34,0.06)] hover:shadow-[0_4px_12px_rgba(52,43,34,0.1)] transition-all duration-300 flex flex-col group/card"
+                                        style={{ backgroundColor: groupStyle.cardBg || 'white' }}
                                     >
                                         {/* Category header with tinted background */}
                                         {/* Category header */}
