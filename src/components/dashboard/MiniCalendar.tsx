@@ -57,9 +57,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
         days.push(i);
     }
 
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
+    const monthLabel = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(viewDate);
 
     const eventsByDay = new Map<number, { due: boolean; holiday: boolean; other: boolean; quiz: boolean }>();
 
@@ -89,15 +87,15 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
     return (
         <section className="w-full" aria-label="Calendar">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[1.45rem] font-display font-bold tracking-tight text-[#1f2633]">
-                    {monthNames[viewMonth]} {viewYear}
+                <h3 className="text-[1.45rem] font-display font-bold tracking-tight text-[#1f2633]" style={{ textWrap: 'balance' }}>
+                    {monthLabel} {viewYear}
                 </h3>
                 <div className="flex items-center gap-2">
                     <button
                         type="button"
                         aria-label="Previous month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth - 1, 1))}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-white text-text-muted transition-colors hover:text-text hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-white text-text-muted transition-colors hover:text-text hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                     >
                         <span aria-hidden="true">←</span>
                     </button>
@@ -105,7 +103,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Next month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth + 1, 1))}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-white text-text-muted transition-colors hover:text-text hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-white text-text-muted transition-colors hover:text-text hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
                     >
                         <span aria-hidden="true">→</span>
                     </button>
@@ -130,15 +128,15 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         const hasOther = flags?.other;
                         const hasQuiz = flags?.quiz;
 
-                        if (!day) return <div key={idx} className="h-10 sm:h-11" />;
+                        if (!day) return <div key={idx} className="min-h-[44px] sm:min-h-[48px]" />;
 
                         return (
                             <div
                                 key={idx}
-                                className={`h-10 sm:h-11 rounded-lg border transition-colors cursor-default ${
+                                className={`min-h-[44px] sm:min-h-[48px] rounded-lg border transition-colors cursor-default ${
                                     isToday
                                         ? 'bg-primary text-white border-primary shadow-sm'
-                                        : 'bg-white border-transparent text-text hover:bg-[#f4ede3]'
+                                        : 'bg-white border-transparent text-text'
                                 }`}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
@@ -146,7 +144,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                                         {day}
                                     </span>
                                     {!isToday && (hasQuiz || hasDue || hasHoliday || hasOther) && (
-                                        <span className="mt-1 flex items-center gap-1">
+                                        <span className="mt-1 flex items-center gap-1" aria-hidden="true">
                                             {hasQuiz && <span className="w-1.5 h-1.5 rounded-full bg-[#5f8267]" />}
                                             {hasDue && <span className="w-1.5 h-1.5 rounded-full bg-[#a98966]" />}
                                             {hasHoliday && <span className="w-1.5 h-1.5 rounded-full bg-[#6d89ac]" />}
@@ -160,7 +158,7 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                 </div>
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]">
+            <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]" aria-hidden="true">
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#f9f3eb] border border-[#dfcdb7] text-[#8a5b3f]">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Today
                 </span>

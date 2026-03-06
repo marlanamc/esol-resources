@@ -8,43 +8,43 @@
 /* Tailwind v4 Theme - Define all design tokens */
 @theme {
   /* Colors - Primary (Academic Terracotta - deeper, richer) */
-  --color-primary: #b05740;
-  --color-primary-dark: #8e4432;
-  --color-primary-light: #d08b78;
+  --color-primary: var(--primary-color);
+  --color-primary-dark: var(--primary-color-dark);
+  --color-primary-light: var(--primary-color-light);
 
   /* Colors - Secondary (Library Sage - lighter and more vibrant) */
-  --color-secondary: #6a8d73;
-  --color-secondary-dark: #4d6b53;
-  --color-secondary-light: #8da693;
+  --color-secondary: var(--secondary-color);
+  --color-secondary-dark: var(--secondary-color-dark);
+  --color-secondary-light: var(--secondary-color-light);
 
   /* Colors - Accent (Parchment Gold) */
-  --color-accent: #e9c46a;
-  --color-accent-dark: #cba342;
-  --color-accent-light: #f4e4a8;
+  --color-accent: var(--accent-color);
+  --color-accent-dark: var(--accent-color-dark);
+  --color-accent-light: var(--accent-color-light);
 
   /* Semantic Colors */
-  --color-success: #4d6b53;
-  --color-warning: #ca5c43;
-  --color-error: #d64045;
-  --color-info: #4a8ca0;
+  --color-success: var(--success-color);
+  --color-warning: var(--warning-color);
+  --color-error: var(--error-color);
+  --color-info: var(--info-color);
 
   /* Text Colors - High Contrast Academic */
-  --color-text: #1a202c;
+  --color-text: var(--text-color);
   /* Slate-900 */
-  --color-text-muted: #5e6b7d;
+  --color-text-muted: var(--text-color-muted);
   /* Slate-500 mixed with blue */
-  --color-text-light: #94a3b8;
+  --color-text-light: var(--text-color-light);
 
   /* Background Colors - Premium Paper (Soft Sunrise Gradient Base) */
-  --color-bg: #fdf9f0;
+  --color-bg: var(--bg-color);
   /* Starting point for gradient */
-  --color-bg-light: #f7f2e8;
+  --color-bg-light: var(--bg-color-light);
   /* Warm Parchment */
-  --color-bg-gray: #f2ead3;
+  --color-bg-gray: var(--bg-color-gray);
   /* Soft Sand */
 
   /* Off-White for buttons and cards - Cozier than pure white */
-  --color-white: #fffdfa;
+  --color-white: var(--white-color);
 
   /* Font Families - will be set by Next.js */
   /* Include emoji-capable fallbacks to avoid "?" tofu glyphs for emoji in titles/content. */
@@ -87,7 +87,76 @@
 }
 
 :root {
-  /* No changes needed here, using @theme */
+  --primary-color: #b05740;
+  --primary-color-dark: #8e4432;
+  --primary-color-light: #d08b78;
+  --secondary-color: #6a8d73;
+  --secondary-color-dark: #4d6b53;
+  --secondary-color-light: #8da693;
+  --accent-color: #e9c46a;
+  --accent-color-dark: #cba342;
+  --accent-color-light: #f4e4a8;
+  --success-color: #4d6b53;
+  --warning-color: #ca5c43;
+  --error-color: #d64045;
+  --info-color: #4a8ca0;
+  --text-color: #1a202c;
+  --text-color-muted: #5e6b7d;
+  --text-color-light: #94a3b8;
+  --bg-color: #fdf9f0;
+  --bg-color-light: #f7f2e8;
+  --bg-color-gray: #f2ead3;
+  --white-color: #fffdfa;
+
+  --color-bg-gradient-start: #fdf9f0;
+  --color-bg-gradient-end: #fdfbf7;
+  --color-glass-bg: rgba(255, 255, 255, 0.9);
+  --color-glass-bg-end: rgba(255, 255, 255, 0.7);
+  --color-glass-bg-hover: rgba(255, 255, 255, 0.95);
+  --color-glass-bg-hover-end: rgba(255, 255, 255, 0.8);
+  --color-glass-border: rgba(255, 255, 255, 0.5);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.6);
+  --color-card-elevated-start: #ffffff;
+  --color-card-elevated-end: rgba(253, 251, 247, 0.7);
+  --color-card-elevated-shadow: rgba(255, 255, 255, 0.6);
+  --color-card-recessed: rgba(253, 251, 247, 0.4);
+  --color-card-recessed-shadow: rgba(255, 255, 255, 0.4);
+  --color-card-border: rgba(226, 221, 213, 0.45);
+  --color-card-recessed-border: rgba(226, 221, 213, 0.3);
+  --color-checkbox-bg: #ffffff;
+  --color-checklist-hover: rgba(253, 251, 247, 0.8);
+}
+
+.dark, [data-theme="dark"] {
+  --text-color: #fdf9f0;
+  --text-color-muted: #a19a96;
+  --text-color-light: #7b716b;
+  --bg-color: #1e1915;
+  --bg-color-light: #2c2520;
+  --bg-color-gray: #3a322b;
+  --white-color: #27211b;
+
+  --color-bg-gradient-start: #1e1915;
+  --color-bg-gradient-end: #171310;
+  
+  --color-glass-bg: rgba(44, 37, 32, 0.85);
+  --color-glass-bg-end: rgba(39, 33, 27, 0.7);
+  --color-glass-bg-hover: rgba(58, 50, 43, 0.9);
+  --color-glass-bg-hover-end: rgba(44, 37, 32, 0.8);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.12);
+
+  --color-card-elevated-start: #2c2520;
+  --color-card-elevated-end: rgba(39, 33, 27, 0.7);
+  --color-card-elevated-shadow: rgba(255, 255, 255, 0.05);
+  --color-card-recessed: rgba(23, 19, 16, 0.4);
+  --color-card-recessed-shadow: rgba(255, 255, 255, 0.02);
+  --color-card-border: rgba(255, 255, 255, 0.08);
+  --color-card-recessed-border: rgba(255, 255, 255, 0.05);
+  --color-checkbox-bg: #1e1915;
+  --color-checklist-hover: rgba(44, 37, 32, 0.8);
+  
+  color-scheme: dark;
 }
 
 /* Soft Sunrise Gradient with paper texture overlay */
@@ -95,7 +164,11 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #fdf9f0 0%, #fdfbf7 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-gradient-start) 0%,
+    var(--color-bg-gradient-end) 100%
+  );
   pointer-events: none;
   z-index: -1;
   opacity: 1;
@@ -130,10 +203,10 @@ body {
 }
 
 /* Disable double-tap zoom on buttons to remove 300ms delay */
-button, 
-a, 
-input, 
-select, 
+button,
+a,
+input,
+select,
 textarea {
   touch-action: manipulation;
 }
@@ -401,11 +474,15 @@ textarea {
 }
 
 .bottom-nav-motion {
-  transition: transform 140ms ease-out, opacity 140ms ease-out;
+  transition:
+    transform 140ms ease-out,
+    opacity 140ms ease-out;
 }
 
 .bottom-nav-indicator {
-  transition: opacity 120ms ease-out, transform 120ms ease-out;
+  transition:
+    opacity 120ms ease-out,
+    transform 120ms ease-out;
 }
 
 .delay-100 {
@@ -554,26 +631,26 @@ textarea {
 .glass-card {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.7) 100%
+    var(--color-glass-bg) 0%,
+    var(--color-glass-bg-end) 100%
   );
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--color-glass-border);
   box-shadow:
     0 8px 32px rgba(176, 87, 64, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    inset 0 0 0 1px var(--color-glass-border);
 }
 
 .glass-card:hover {
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 255, 255, 0.8) 100%
+    var(--color-glass-bg-hover) 0%,
+    var(--color-glass-bg-hover-end) 100%
   );
   box-shadow:
     0 12px 40px rgba(176, 87, 64, 0.15),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    inset 0 0 0 1px var(--color-glass-border-hover);
 }
 
 /* Custom checkbox styling */
@@ -582,9 +659,9 @@ textarea {
   -webkit-appearance: none;
   width: 22px;
   height: 22px;
-  border: 2px solid var(--color-border-dark);
+  border: 2px solid var(--color-primary-light);
   border-radius: 6px;
-  background: white;
+  background: var(--color-checkbox-bg);
   cursor: pointer;
   position: relative;
   transition: all 0.2s ease;
@@ -613,7 +690,7 @@ textarea {
 }
 
 .checklist-row-hover:hover {
-  background-color: rgba(253, 251, 247, 0.8);
+  background-color: var(--color-checklist-hover);
   padding-left: calc(1rem + 4px);
 }
 
@@ -629,7 +706,7 @@ textarea {
 /* Quick link hover effect */
 .quick-link {
   position: relative;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
   overflow: hidden;
 }
 
@@ -670,21 +747,21 @@ textarea {
 .card-elevated {
   background: linear-gradient(
     180deg,
-    #ffffff 0%,
-    rgba(253, 251, 247, 0.7) 100%
+    var(--color-card-elevated-start) 0%,
+    var(--color-card-elevated-end) 100%
   );
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 1px 0 var(--color-card-elevated-shadow) inset,
     0 2px 8px rgba(26, 32, 44, 0.03),
     0 1px 2px rgba(26, 32, 44, 0.04);
-  border: 1px solid rgba(226, 221, 213, 0.45);
+  border: 1px solid var(--color-card-border);
 }
 
 /* Recessed card - for nested category groups */
 .card-recessed {
-  background: rgba(253, 251, 247, 0.4);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4) inset;
-  border: 1px solid rgba(226, 221, 213, 0.3);
+  background: var(--color-card-recessed);
+  box-shadow: 0 1px 0 var(--color-card-recessed-shadow) inset;
+  border: 1px solid var(--color-card-recessed-border);
 }
 
 /* ========== Utility Classes ========== */
@@ -1055,7 +1132,6 @@ kbd {
     transition: none !important;
     animation: none !important;
   }
-
 }
 
 /* ========== Print Styles ========== */
