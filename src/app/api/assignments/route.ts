@@ -33,8 +33,6 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const userId = session.user.id;
-
         // Verify teacher owns the class
         const classItem = await prisma.class.findUnique({
             where: { id: classId },
@@ -127,11 +125,18 @@ export async function PATCH(request: NextRequest) {
         const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { assignmentId, isFeatured } = body;
+        const { assignmentId, isFeatured, syncToSectionGroup = true } = body;
 
         if (!assignmentId || typeof isFeatured !== 'boolean') {
             return NextResponse.json(
                 { error: "Assignment ID and isFeatured boolean are required" },
+                { status: 400 }
+            );
+        }
+
+        if (typeof syncToSectionGroup !== "boolean") {
+            return NextResponse.json(
+                { error: "syncToSectionGroup must be a boolean" },
                 { status: 400 }
             );
         }
@@ -150,12 +155,45 @@ export async function PATCH(request: NextRequest) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
-        const updatedAssignment = await prisma.assignment.update({
-            where: { id: assignmentId },
-            data: { isFeatured },
+        let updatedCount = 1;
+        const updatedAssignment = await prisma.$transaction(async (tx) => {
+            if (syncToSectionGroup && assignment.class.sectionGroupId) {
+                const sectionIds = await tx.class.findMany({
+                    where: {
+                        sectionGroupId: assignment.class.sectionGroupId,
+                        teacherId: assignment.class.teacherId,
+                    },
+                    select: { id: true },
+                });
+
+                const syncResult = await tx.assignment.updateMany({
+                    where: {
+                        classId: { in: sectionIds.map((section) => section.id) },
+                        activityId: assignment.activityId,
+                    },
+                    data: { isFeatured },
+                });
+                updatedCount = syncResult.count;
+
+                return tx.assignment.findUnique({
+                    where: { id: assignmentId },
+                });
+            }
+
+            return tx.assignment.update({
+                where: { id: assignmentId },
+                data: { isFeatured },
+            });
         });
 
-        return NextResponse.json(updatedAssignment);
+        if (!updatedAssignment) {
+            return NextResponse.json({ error: "Assignment not found after update" }, { status: 404 });
+        }
+
+        return NextResponse.json({
+            ...updatedAssignment,
+            updatedCount,
+        });
     } catch (error: unknown) {
         console.error("Error updating assignment:", error);
         const message = error instanceof Error ? error.message : undefined;
