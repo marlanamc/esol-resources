@@ -2093,14 +2093,17 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                             : null;
                         const accentColor = sectionTexture?.color || SECTION_COLORS[sIdx % SECTION_COLORS.length];
 
-                        // Sort: Incomplete first, then completed at the bottom
-                        const sortedActivities = [...section.activities].sort((a, b) => {
-                            const aDone = isCompletedForActivity(a);
-                            const bDone = isCompletedForActivity(b);
-                            if (aDone && !bDone) return 1;
-                            if (!aDone && bDone) return -1;
-                            return 0;
-                        });
+                        // Keep vocabulary units in their authored time order.
+                        // Other sections can still bubble incomplete items first.
+                        const sortedActivities = filterCategory === 'vocabulary'
+                            ? [...section.activities]
+                            : [...section.activities].sort((a, b) => {
+                                const aDone = isCompletedForActivity(a);
+                                const bDone = isCompletedForActivity(b);
+                                if (aDone && !bDone) return 1;
+                                if (!aDone && bDone) return -1;
+                                return 0;
+                            });
 
                         // Count completed in this section
                         const sectionCompleted = sortedActivities.filter(a =>
