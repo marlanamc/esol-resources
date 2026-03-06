@@ -31,10 +31,10 @@ export const ClassAnnouncement: React.FC<ClassAnnouncementProps> = ({ announceme
                             </div>
                             <div>
                                 <p className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-amber-700/80 leading-none">
-                                    Student Notice
+                                    Notice
                                 </p>
                                 <h2 className="text-base sm:text-lg font-bold font-display text-text mt-0.5">
-                                    Teacher Announcements
+                                    From teacher
                                 </h2>
                             </div>
                         </div>

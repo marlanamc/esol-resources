@@ -13,7 +13,6 @@ import { PointsToast } from "@/components/ui/PointsToast";
 import Link from "next/link";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import type { ExerciseCompletionInfo } from "./exercises/ExerciseSection";
-import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { useResolvedLearnerReturnHref } from "@/hooks/useResolvedLearnerReturnHref";
 import { RETURN_TO_QUERY_PARAM } from "@/lib/learner-navigation";
@@ -528,11 +527,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         <div className="px-4 sm:px-6 py-3 group">
                             {/* Top Row: Breadcrumb and TOC Button */}
                             <div className="flex items-center justify-between gap-4 mb-3">
-                                <div className="flex items-center gap-2 flex-shrink-0">
+                                <div className="flex items-center flex-shrink-0">
                                     <LearnerMenu mode="quiet" className="h-9 w-9" />
-                                    <ContextualBackButton className="px-2.5 py-1.5 text-xs" aria-label="Return to previous page">
-                                        Back
-                                    </ContextualBackButton>
                                 </div>
                                 <nav className="flex items-center gap-1.5 text-xs overflow-x-auto flex-1 min-w-0">
                                     <Link
