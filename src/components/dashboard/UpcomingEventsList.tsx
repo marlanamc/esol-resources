@@ -149,7 +149,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
             {(showSyncedLabel || error) && (
                 <div className="flex items-center justify-between mb-2">
                     {showSyncedLabel && <span className="text-[11px] font-medium text-text-muted/70">Synced to students</span>}
-                    {error && <p className="text-xs text-red-600">{error}</p>}
+                    {error && <p className="text-xs text-red-600" role="alert">{error}</p>}
                 </div>
             )}
             {events.length === 0 ? (
@@ -160,9 +160,10 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                         const startDate = new Date(ev.date);
                         const endDate = ev.endDate ? new Date(ev.endDate) : startDate;
                         const sameDay = startDate.toDateString() === endDate.toDateString();
+                        const dateFmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                         const dateLabel = sameDay
-                            ? startDate.toLocaleDateString()
-                            : `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+                            ? dateFmt.format(startDate)
+                            : `${dateFmt.format(startDate)} – ${dateFmt.format(endDate)}`;
 
                         const canManage = allowDelete && Boolean(ev.id);
                         const eventType = ev.type || "due";
@@ -235,6 +236,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                             type="button"
                                             onClick={() => startEditing(ev)}
                                             className="text-[11px] text-sky-700 hover:text-sky-800 border border-sky-100 px-2.5 py-1.5 rounded-md bg-sky-50 min-h-[36px] touch-manipulation font-medium"
+                                            aria-label={`Edit ${ev.title}`}
                                         >
                                             Edit
                                         </button>
@@ -243,37 +245,41 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                 {canManage && editingId === ev.id && (
                                     <div className="mt-3 ml-5 rounded-lg border border-border/50 bg-bg-light/40 p-3 space-y-2">
                                         <div className="space-y-1">
-                                            <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Title</label>
+                                            <label htmlFor={`event-title-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Title</label>
                                             <input
                                                 type="text"
                                                 value={editTitle}
+                                                id={`event-title-${ev.id}`}
                                                 onChange={(e) => setEditTitle(e.target.value)}
                                                 className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                                             />
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                             <div className="space-y-1">
-                                                <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Start Date</label>
+                                                <label htmlFor={`event-start-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Start Date</label>
                                                 <input
                                                     type="date"
                                                     value={editDate}
+                                                    id={`event-start-${ev.id}`}
                                                     onChange={(e) => setEditDate(e.target.value)}
                                                     className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                                                 />
                                             </div>
                                             <div className="space-y-1">
-                                                <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">End Date</label>
+                                                <label htmlFor={`event-end-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">End Date</label>
                                                 <input
                                                     type="date"
                                                     value={editEndDate}
+                                                    id={`event-end-${ev.id}`}
                                                     onChange={(e) => setEditEndDate(e.target.value)}
                                                     className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                                                 />
                                             </div>
                                         </div>
                                         <div className="space-y-1">
-                                            <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Type</label>
+                                            <label htmlFor={`event-type-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Type</label>
                                             <select
+                                                id={`event-type-${ev.id}`}
                                                 value={editType}
                                                 onChange={(e) => {
                                                     const value = e.target.value;
@@ -290,10 +296,11 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                             </select>
                                         </div>
                                         <div className="space-y-1">
-                                            <label className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Description</label>
+                                            <label htmlFor={`event-desc-${ev.id}`} className="text-[11px] font-semibold text-text-muted uppercase tracking-wide">Description</label>
                                             <textarea
                                                 rows={2}
                                                 value={editDescription}
+                                                id={`event-desc-${ev.id}`}
                                                 onChange={(e) => setEditDescription(e.target.value)}
                                                 className="w-full rounded-lg border border-border/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                                             />
@@ -305,7 +312,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                                 disabled={isSaving === ev.id}
                                                 className="text-[11px] text-white border border-primary px-2.5 py-1.5 rounded-md bg-primary disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
                                             >
-                                                {isSaving === ev.id ? "Saving..." : "Save"}
+                                                {isSaving === ev.id ? "Saving\u2026" : "Save"}
                                             </button>
                                             <button
                                                 type="button"
@@ -323,7 +330,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                                 disabled={isDeleting === ev.id}
                                                 className="text-[11px] text-red-600 hover:text-red-700 border border-red-100 px-2.5 py-1.5 rounded-md bg-red-50 disabled:opacity-50 min-h-[36px] touch-manipulation font-medium"
                                             >
-                                                {isDeleting === ev.id ? "Deleting..." : "Delete"}
+                                                {isDeleting === ev.id ? "Deleting\u2026" : "Delete"}
                                             </button>
                                         </div>
                                     </div>

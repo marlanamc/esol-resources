@@ -82,6 +82,8 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
 
     const chips: ReactNode[] = [];
 
+    const isHotStreak = summary.effectiveCurrentStreak >= 7;
+
     if (summary.effectiveCurrentStreak > 0) {
         chips.push(
             <Link
@@ -89,20 +91,28 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                 href="/dashboard/profile"
                 className={`flex items-center gap-2 ${
                     compact
-                        ? "px-1.5 py-1 gap-1 bg-[#fff8ef] border-[#e6d4bc]"
+                        ? "px-1.5 py-1 gap-1 border-[#e6d4bc]"
                         : mobile
                         ? "pl-2 pr-3 py-1.5"
                         : "pl-2.5 pr-4 py-2"
-                } bg-[#f7f3ec] border rounded-full shadow-sm`}
+                } border rounded-full shadow-sm transition-shadow duration-300 ${
+                    isHotStreak
+                        ? 'bg-gradient-to-r from-[#fff4e6] to-[#ffecd2] border-[#e8a855]/50 shadow-[0_0_12px_rgba(232,168,85,0.15)]'
+                        : 'bg-[#f7f3ec]'
+                }`}
             >
-                <div className={`${compact ? "w-3.5 h-3.5" : mobile ? "w-7 h-7" : "w-8 h-8"} bg-[#fff9f2] rounded-full flex items-center justify-center`}>
-                    <FlameIcon className="text-[#b97a45]" size={compact ? 10 : mobile ? 14 : 16} />
+                <div className={`${compact ? "w-3.5 h-3.5" : mobile ? "w-7 h-7" : "w-8 h-8"} rounded-full flex items-center justify-center ${
+                    isHotStreak ? 'bg-gradient-to-br from-[#fff0d4] to-[#ffe0b2]' : 'bg-[#fff9f2]'
+                }`}>
+                    <FlameIcon className={isHotStreak ? "text-[#d4781f]" : "text-[#b97a45]"} size={compact ? 10 : mobile ? 14 : 16} />
                 </div>
                 {compact ? (
                     <span className="text-[11px] font-bold text-text leading-none">{summary.effectiveCurrentStreak}</span>
                 ) : (
                 <div>
-                    <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide text-text-muted leading-none`}>Streak</div>
+                    <div className={`${mobile ? "text-[9px]" : "text-[10px]"} font-bold uppercase tracking-wide leading-none ${
+                        isHotStreak ? 'text-[#b5711a]' : 'text-text-muted'
+                    }`}>Streak</div>
                     <div className={`${mobile ? "text-base" : "text-base"} font-semibold text-text leading-tight`}>
                         {summary.effectiveCurrentStreak} <span className={`${mobile ? "text-[10px]" : "text-xs"} font-medium text-text-muted`}>days</span>
                     </div>
@@ -123,9 +133,9 @@ export function StudentQuickStats({ mobile = false, maxVisible = 3, chipKeys, co
                         : mobile
                         ? "pl-2 pr-3.5 py-2"
                         : "pl-2.5 pr-4 py-2.5"
-                } bg-white border border-[#ccb79c] rounded-full shadow-[0_2px_8px_rgba(64,46,28,0.08)]`}
+                } bg-gradient-to-r from-white to-[#fdfaf5] border border-[#ccb79c] rounded-full shadow-[0_2px_8px_rgba(64,46,28,0.08)]`}
             >
-                <div className={`${compact ? "w-3.5 h-3.5" : mobile ? "w-8 h-8" : "w-9 h-9"} bg-[#f7f0e4] rounded-full flex items-center justify-center`}>
+                <div className={`${compact ? "w-3.5 h-3.5" : mobile ? "w-8 h-8" : "w-9 h-9"} bg-gradient-to-br from-[#f7f0e4] to-[#f0e6d4] rounded-full flex items-center justify-center`}>
                     <StarIcon className="text-[#9f6f3a]" size={compact ? 10 : mobile ? 15 : 17} />
                 </div>
                 {compact ? (
