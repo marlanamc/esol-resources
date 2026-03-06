@@ -251,6 +251,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
             const isActive = item.href === '/dashboard'
               ? pathname === '/dashboard'
               : pathname === item.href || pathname?.startsWith(item.href + '/');
+            const isActivitiesTab = item.href === '/dashboard/activities';
 
             return (
               <Link
@@ -288,23 +289,74 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
               >
                 <div
                   className={`relative z-10 flex flex-col items-center justify-center gap-0.5 transition-[color,opacity] duration-150 ${
-                    isActive ? 'text-[#c88470]' : 'text-[#7d8aa1]'
+                    isActivitiesTab
+                      ? isActive
+                        ? 'text-[#9f523d]'
+                        : 'text-[#b86a56]'
+                      : isActive
+                        ? 'text-[#c88470]'
+                        : 'text-[#7d8aa1]'
                   }`}
                 >
-                  <div className="flex h-8 w-8 items-center justify-center transition-colors">
-                    <div className="h-7 w-7 [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto">
+                  <div
+                    className={`relative flex items-center justify-center transition-all ${
+                      isActivitiesTab ? 'h-10 w-10' : 'h-8 w-8'
+                    }`}
+                  >
+                    {isActivitiesTab && (
+                      <div
+                        className="absolute inset-0 rounded-2xl"
+                        style={{
+                          background: isActive
+                            ? 'linear-gradient(135deg, rgba(152, 185, 162, 0.28) 0%, rgba(122, 157, 132, 0.16) 48%, rgba(92, 126, 103, 0.22) 100%)'
+                            : 'linear-gradient(135deg, rgba(152, 185, 162, 0.16) 0%, rgba(122, 157, 132, 0.08) 48%, rgba(92, 126, 103, 0.14) 100%)',
+                          boxShadow: isActive
+                            ? '0 0 16px rgba(122, 157, 132, 0.24), 0 6px 14px rgba(92, 126, 103, 0.12), inset 0 1px 0 rgba(255,255,255,0.55)'
+                            : '0 0 10px rgba(122, 157, 132, 0.14), 0 3px 8px rgba(92, 126, 103, 0.08), inset 0 1px 0 rgba(255,255,255,0.45)'
+                        }}
+                      />
+                    )}
+
+                    <div
+                      className={`relative [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:mx-auto ${
+                        isActivitiesTab ? 'h-8 w-8' : 'h-7 w-7'
+                      }`}
+                      style={isActivitiesTab
+                        ? {
+                            color: isActive ? '#5c7e67' : '#6f9279',
+                            filter: isActive
+                              ? 'drop-shadow(0 2px 6px rgba(122,157,132,0.22))'
+                              : 'drop-shadow(0 1px 3px rgba(122,157,132,0.16))'
+                          }
+                        : undefined}
+                    >
                       {item.icon}
                     </div>
                   </div>
-                  <span className={`text-[10px] font-bold tracking-tight leading-none transition-all duration-200 ${isActive ? 'opacity-100' : 'opacity-70'}`}>
+                  <span className={`font-bold tracking-tight leading-none transition-all duration-200 ${
+                    isActivitiesTab
+                      ? isActive
+                        ? 'text-[10px] opacity-100 text-[#5c7e67]'
+                        : 'text-[11px] opacity-95 text-[#6f9279]'
+                      : isActive
+                        ? 'text-[10px] opacity-100'
+                        : 'text-[10px] opacity-70'
+                  }`}>
                     {item.label}
                   </span>
                 </div>
                 
                 <div
-                  className={`bottom-nav-indicator absolute top-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#c88470] rounded-b-full ${
+                  className={`bottom-nav-indicator absolute top-0 left-1/2 -translate-x-1/2 rounded-b-full ${
+                    isActivitiesTab ? 'w-16 h-1.5' : 'w-12 h-1'
+                  } ${
                     isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                   }`}
+                  style={{
+                    background: isActivitiesTab
+                      ? 'linear-gradient(90deg, #e9c46a 0%, #c88470 45%, #b86a56 100%)'
+                      : '#c88470'
+                  }}
                 />
               </Link>
             );
