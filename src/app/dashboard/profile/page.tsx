@@ -13,6 +13,7 @@ import { StreakCalendar } from "@/components/ui/StreakCalendar";
 import { ActivityTimeline } from "@/components/ui/ActivityTimeline";
 import ClickableAvatarDisplay from "@/components/ui/ClickableAvatarDisplay";
 import { MiniCertificateCard, EmptyCertificateCard, NeedsImprovementCard } from "@/components/ui/MiniCertificateCard";
+import { ActivityLink } from "@/components/navigation/ActivityLink";
 import { qualifiesForMedal } from "@/lib/medal-utils";
 import { Trophy, Flame, BookOpen, Target, Calendar, Award, ChevronRight } from "lucide-react";
 
@@ -798,9 +799,9 @@ export default async function ProfilePage() {
                                         ) : (
                                             <div className="space-y-2">
                                                 {verbQuizGrades.map((quiz) => (
-                                                    <Link
+                                                    <ActivityLink
                                                         key={quiz.id}
-                                                        href={`/activity/${quiz.id}`}
+                                                        activityId={quiz.id}
                                                         className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3 hover:bg-primary/5 hover:border-primary/30 transition-colors group"
                                                     >
                                                         <div className="min-w-0 flex-1">
@@ -821,7 +822,7 @@ export default async function ProfilePage() {
                                                             </span>
                                                         )}
                                                         <ChevronRight className="w-4 h-4 text-text-muted shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                    </Link>
+                                                    </ActivityLink>
                                                 ))}
                                             </div>
                                         )}
@@ -836,9 +837,9 @@ export default async function ProfilePage() {
                                         ) : (
                                             <div className="space-y-2">
                                                 {miniQuizGrades.map((quiz) => (
-                                                    <Link
+                                                    <ActivityLink
                                                         key={quiz.id}
-                                                        href={`/activity/${quiz.id}`}
+                                                        activityId={quiz.id}
                                                         className="flex items-center justify-between gap-3 rounded-lg border border-border/40 bg-bg/60 p-3 hover:bg-primary/5 hover:border-primary/30 transition-colors group"
                                                     >
                                                         <div className="min-w-0 flex-1">
@@ -859,7 +860,7 @@ export default async function ProfilePage() {
                                                             </span>
                                                         )}
                                                         <ChevronRight className="w-4 h-4 text-text-muted shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                                    </Link>
+                                                    </ActivityLink>
                                                 ))}
                                             </div>
                                         )}

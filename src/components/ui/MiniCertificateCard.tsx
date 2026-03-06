@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CertificateMedal } from "./CertificateMedal";
 import { getMedalTier, getMedalTierLabel, qualifiesForMedal } from "./MedalIcons";
 import { RefreshCw, HelpCircle } from "lucide-react";
+import { ActivityLink } from "@/components/navigation/ActivityLink";
 
 export interface MiniCertificateCardProps {
     /** Certificate data */
@@ -159,11 +160,9 @@ export function NeedsImprovementCard({
     certificate,
     className = ""
 }: MiniCertificateCardProps) {
-    const href = `/activity/${encodeURIComponent(certificate.activityId)}`;
-
     return (
-        <Link
-            href={href}
+        <ActivityLink
+            activityId={certificate.activityId}
             className={`
                 group relative flex flex-col items-center
                 min-w-[180px] max-w-[220px] flex-1
@@ -210,7 +209,7 @@ export function NeedsImprovementCard({
             <div className="mt-2 text-[10px] text-text-muted opacity-0 group-hover:opacity-100 transition-opacity">
                 Click to retry
             </div>
-        </Link>
+        </ActivityLink>
     );
 }
 

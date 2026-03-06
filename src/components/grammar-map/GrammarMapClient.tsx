@@ -2,8 +2,10 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { categoryColors, categoryLabels, type GrammarTopic } from '@/data/grammar-map';
 import { Check, Loader2, ArrowRight, ZoomIn, ZoomOut, Maximize2, List } from 'lucide-react';
+import { withReturnTo } from '@/lib/learner-navigation';
 
 interface ProgressData {
     completionPercentage: number;
@@ -50,6 +52,7 @@ const tenseSubcategoryLabels: Record<NonNullable<GrammarTopic['subcategory']>, s
 };
 
 export default function GrammarMapClient({ progressMap, topics }: GrammarMapClientProps) {
+    const router = useRouter();
     const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
     const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
     const [nodePositions, setNodePositions] = useState<Record<string, NodePosition>>({});
@@ -292,7 +295,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
 
     const handleTopicClick = (topicId: string) => {
         // Navigate to the grammar guide (using topic ID as the route slug)
-        window.location.assign(`/grammar-reader/${topicId}?from=grammar-map`);
+        router.push(withReturnTo(`/grammar-reader/${topicId}?from=grammar-map`, "/grammar-map"));
     };
 
     const getTenseCardOrder = (topic: GrammarTopic): number => {

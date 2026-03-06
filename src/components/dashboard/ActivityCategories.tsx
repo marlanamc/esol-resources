@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import Link from 'next/link';
 import { VOCAB_WEEKLY_UNITS } from "@/data/weekly-vocab-units";
 import { stripVocabTypeSuffix, getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
-import { resolveActivityGameUi, getActivityPoints, type GameUi } from '@/lib/gamification/activity-points';
+import { resolveActivityGameUi, getActivityPoints } from '@/lib/gamification/activity-points';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
+import { ActivityLink } from '@/components/navigation/ActivityLink';
 
 interface Activity {
     id: string;
@@ -1402,14 +1402,14 @@ const ActivityCard = React.memo(function ActivityCard({
                     />
                 )}
                 <div className="flex-1 min-w-0">
-                    <Link
-                        href={`/activity/${activity.id}`}
+                    <ActivityLink
+                        activityId={activity.id}
                         className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:rounded ${
                             isCompleted ? 'text-secondary' : 'text-text'
                         }`}
                     >
                         {activityCardTitle}
-                    </Link>
+                    </ActivityLink>
                     <div className="mt-2 flex items-start gap-2 text-xs text-text-muted">
                         <div className="flex flex-1 min-w-0 flex-wrap items-center gap-2">
                             {vocabThemeChip && (

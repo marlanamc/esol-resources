@@ -10,6 +10,8 @@ import { BackButton } from "@/components/ui/BackButton";
 import { parseFlashcards, parsePlainVocabulary } from "@/lib/vocab-parser";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { parseCategoryData } from "@/lib/categoryData";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
+import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 
 interface VocabularyRendererProps {
     content: VocabularyContent;
@@ -225,7 +227,10 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
             {/* Mobile Header - Back + Progress */}
             <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3.5 md:hidden">
                 <div className="flex items-center gap-4">
-                    <BackButton href="/dashboard" className="shrink-0" />
+                    <div className="flex items-center gap-2">
+                        <LearnerMenu mode="quiet" className="h-10 w-10" />
+                        <ContextualBackButton className="shrink-0" aria-label="Return to previous page" />
+                    </div>
                     <div className="flex-1 min-w-0 flex flex-col gap-1.5">
                         <div className="flex items-center justify-between gap-2">
                             <span className="text-sm font-semibold text-[var(--color-text)]">
@@ -427,6 +432,7 @@ function ActivityMode({
         <div className="w-full">
             {/* Minimal back bar */}
             <div className="px-3 py-2 md:px-4 md:py-3 flex items-center gap-2 border-b border-border/50">
+                <LearnerMenu mode="quiet" className="h-10 w-10" />
                 <BackButton onClick={onBack}>
                     <span className="hidden sm:inline">Back to activities</span>
                     <span className="sm:hidden">Back</span>

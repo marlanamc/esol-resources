@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { ActivityLink } from '@/components/navigation/ActivityLink';
 
 interface AssignmentCardProps {
     assignment: {
@@ -80,12 +80,13 @@ export const AssignmentCard: React.FC<AssignmentCardProps> = ({ assignment, inde
 
             {/* Action Area (Right) */}
             <div className="p-4 sm:p-6 sm:pl-0 flex flex-col justify-center gap-2 z-10 sm:border-l border-border/40 shrink-0 bg-white/30">
-                <Link
-                    href={`/activity/${assignment.activityId}?assignment=${assignment.id}`}
+                <ActivityLink
+                    activityId={assignment.activityId}
+                    assignmentId={assignment.id}
                     className="inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold transition-[background-color,box-shadow,transform] hover:shadow-lg active:scale-95 rounded-lg bg-text text-white hover:bg-primary whitespace-nowrap min-w-[120px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                 >
                     Resume
-                </Link>
+                </ActivityLink>
                 {assignment.dueDate && (
                     <span className="text-[10px] text-center text-text-muted font-medium">
                         {dueInfo?.time}

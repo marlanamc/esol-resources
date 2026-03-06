@@ -18,6 +18,9 @@ export interface CertificateShowcaseProps {
     showSparkles?: boolean;
     /** Additional CSS classes */
     className?: string;
+    /** Optional learner continuation target */
+    continueHref?: string;
+    continueLabel?: string;
 }
 
 interface Sparkle {
@@ -73,6 +76,8 @@ export function CertificateShowcase({
     certificate,
     showSparkles = true,
     className = "",
+    continueHref = "/dashboard",
+    continueLabel = "Continue Learning",
 }: CertificateShowcaseProps) {
     const tier = getMedalTier(certificate.score);
     const tierLabel = getMedalTierLabel(tier);
@@ -88,10 +93,10 @@ export function CertificateShowcase({
                         You need to score 70% or higher to earn a certificate.
                     </p>
                     <Link
-                        href="/dashboard"
+                        href={continueHref}
                         className="rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-primary-dark transition-colors"
                     >
-                        Back to Dashboard
+                        {continueLabel}
                     </Link>
                 </div>
             </div>
@@ -220,10 +225,10 @@ export function CertificateShowcase({
                     View All Certificates
                 </Link>
                 <Link
-                    href="/dashboard"
+                    href={continueHref}
                     className="rounded-xl border border-white/30 bg-white/10 backdrop-blur px-6 py-3 text-center text-sm font-semibold text-white hover:bg-white/20 transition-colors"
                 >
-                    Go to Dashboard
+                    {continueLabel}
                 </Link>
             </div>
         </div>

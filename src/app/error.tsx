@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { BackButton } from "@/components/ui/BackButton";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
+import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 
 export default function GlobalError({
     error,
@@ -37,7 +38,8 @@ export default function GlobalError({
                     >
                         Try again
                     </button>
-                    <BackButton href="/dashboard">Back to Dashboard</BackButton>
+                    <LearnerMenu mode="quiet" />
+                    <ContextualBackButton aria-label="Return to previous page">Back</ContextualBackButton>
                 </div>
 
                 {process.env.NODE_ENV !== "production" ? (
@@ -50,4 +52,3 @@ export default function GlobalError({
         </div>
     );
 }
-

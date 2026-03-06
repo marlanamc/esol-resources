@@ -3,8 +3,10 @@ import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { resolveCanonicalGrammarActivityId } from "@/lib/grammar-activity-resolution";
-import { BackButton } from "@/components/ui";
+import { ContextualBackButton } from "@/components/navigation/ContextualBackButton";
+import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 import { CertificateShowcase } from "@/components/ui/CertificateShowcase";
+import { withReturnTo } from "@/lib/learner-navigation";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -17,6 +19,7 @@ interface CertificatePageProps {
         score?: string;
         total?: string;
         assignment?: string;
+        returnTo?: string;
     }>;
 }
 
@@ -51,6 +54,7 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
     const slug = typeof params.slug === "string" ? params.slug : null;
     const activityId = typeof params.activityId === "string" ? params.activityId : null;
     const assignmentId = typeof params.assignment === "string" ? params.assignment : null;
+    const returnTo = typeof params.returnTo === "string" ? params.returnTo : null;
     const queryTitle = typeof params.title === "string" ? params.title : null;
     const rawScore = parseInteger(params.score);
     const rawTotal = parseInteger(params.total);
@@ -91,9 +95,15 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
     const certificateScore = latestSubmission?.score ?? percentageFromQuery;
     const issuedAt = latestSubmission?.updatedAt ?? new Date();
     const guideHref = slug
-        ? `/grammar-reader/${slug}${assignmentId ? `?assignment=${encodeURIComponent(assignmentId)}` : ""}`
+        ? withReturnTo(
+              `/grammar-reader/${slug}${assignmentId ? `?assignment=${encodeURIComponent(assignmentId)}` : ""}`,
+              returnTo
+          )
         : activityId
-            ? `/activity/${activityId}${assignmentId ? `?assignment=${encodeURIComponent(assignmentId)}` : ""}`
+            ? withReturnTo(
+                  `/activity/${activityId}${assignmentId ? `?assignment=${encodeURIComponent(assignmentId)}` : ""}`,
+                  returnTo
+              )
             : "/dashboard/activities";
 
     const studentName = session.user.name || session.user.username || "Student";
@@ -102,8 +112,9 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
     return (
         <div className="min-h-screen pb-24">
             {/* Back button positioned over the showcase */}
-            <div className="absolute top-4 left-4 z-20">
-                <BackButton href={guideHref} variant="home" className="bg-white/90 backdrop-blur shadow-lg" />
+            <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+                <LearnerMenu mode="quiet" className="bg-white/90 backdrop-blur shadow-lg" />
+                <ContextualBackButton fallbackHref={guideHref} className="bg-white/90 backdrop-blur shadow-lg" aria-label="Return to previous page" />
             </div>
 
             {/* Certificate Showcase */}
@@ -115,6 +126,8 @@ export default async function MiniQuizCertificatePage({ searchParams }: Certific
                     studentName,
                 }}
                 showSparkles={displayScore >= 60}
+                continueHref={guideHref}
+                continueLabel={displayScore >= 70 ? "Return to Activity" : "Keep Practicing"}
             />
         </div>
     );
