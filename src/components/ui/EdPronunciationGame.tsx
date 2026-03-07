@@ -317,7 +317,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="min-h-full border-border/20 bg-[var(--surface-elevated)] text-text md:min-h-0 md:overflow-hidden md:rounded-3xl md:border md:shadow-xl"
+          className="min-h-full border-border/20 dark:border-white/10 bg-[var(--surface-elevated)] text-text md:min-h-0 md:overflow-hidden md:rounded-3xl md:border md:shadow-xl"
         >
           <div className="bg-gradient-to-br from-violet-300 to-fuchsia-400 p-6 sm:p-8 text-white text-center pb-12 rounded-b-[2.5rem] md:rounded-b-none shadow-lg md:shadow-none relative">
             <button 
@@ -340,18 +340,18 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
           <div className="px-4 pb-8 -mt-6 md:mt-0 md:p-8 space-y-6 md:space-y-8 max-w-lg mx-auto md:max-w-none">
             {/* The three sounds explanation (Quick View) */}
-            <div className="relative z-10 grid grid-cols-3 gap-3 rounded-2xl border border-border/20 bg-[var(--surface-elevated)] p-4 text-center shadow-lg md:border-0 md:shadow-none">
-              <div className="p-3 md:p-4 rounded-2xl bg-emerald-50 border border-emerald-100">
-                <div className="text-xl md:text-2xl font-black text-emerald-600">/d/</div>
-                <div className="text-[10px] md:text-xs text-emerald-600/70 mt-1 font-bold">played</div>
+            <div className="relative z-10 grid grid-cols-3 gap-3 rounded-2xl border border-border/20 dark:border-white/10 bg-[var(--surface-elevated)] p-4 text-center shadow-lg md:border-0 md:shadow-none">
+              <div className="p-3 md:p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-700/60">
+                <div className="text-xl md:text-2xl font-black text-emerald-600 dark:text-emerald-300">/d/</div>
+                <div className="text-[10px] md:text-xs text-emerald-600/70 dark:text-emerald-400/90 mt-1 font-bold">played</div>
               </div>
-              <div className="p-3 md:p-4 rounded-2xl bg-sky-50 border border-sky-100">
-                <div className="text-xl md:text-2xl font-black text-sky-600">/t/</div>
-                <div className="text-[10px] md:text-xs text-sky-600/70 mt-1 font-bold">walked</div>
+              <div className="p-3 md:p-4 rounded-2xl bg-sky-50 dark:bg-sky-900/30 border border-sky-100 dark:border-sky-700/60">
+                <div className="text-xl md:text-2xl font-black text-sky-600 dark:text-sky-300">/t/</div>
+                <div className="text-[10px] md:text-xs text-sky-600/70 dark:text-sky-400/90 mt-1 font-bold">walked</div>
               </div>
-              <div className="p-3 md:p-4 rounded-2xl bg-amber-50 border border-amber-100">
-                <div className="text-xl md:text-2xl font-black text-amber-600">/ɪd/</div>
-                <div className="text-[10px] md:text-xs text-amber-600/70 mt-1 font-bold">decided</div>
+              <div className="p-3 md:p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-700/60">
+                <div className="text-xl md:text-2xl font-black text-amber-600 dark:text-amber-300">/ɪd/</div>
+                <div className="text-[10px] md:text-xs text-amber-600/70 dark:text-amber-400/90 mt-1 font-bold">decided</div>
               </div>
             </div>
 
@@ -365,19 +365,16 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     exit={{ opacity: 0, scale: 0.95 }}
                     className="w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden rounded-3xl bg-[var(--surface-elevated)] text-text shadow-2xl border border-white/10"
                   >
-                    <div
-                      className="flex items-center justify-between shrink-0 border-b border-violet-200 bg-violet-50 p-6"
-                      style={{ color: '#4c1d95' }}
-                    >
+                    <div className="flex items-center justify-between shrink-0 border-b border-violet-200 dark:border-violet-800 bg-violet-50 dark:bg-violet-900/30 p-6">
                       <div className="flex items-center gap-3">
-                        <div className="p-2 bg-white rounded-full shadow-sm">
-                          <Lightbulb className="w-5 h-5 text-violet-600 fill-violet-100" />
+                        <div className="p-2 bg-white dark:bg-white/10 rounded-full shadow-sm">
+                          <Lightbulb className="w-5 h-5 text-violet-600 dark:text-violet-400 fill-violet-100 dark:fill-violet-900/50" />
                         </div>
-                        <h2 className="text-xl font-bold" style={{ color: '#3b0764' }}>How to Pronounce -ed</h2>
+                        <h2 className="text-xl font-bold text-violet-900 dark:text-violet-200">How to Pronounce -ed</h2>
                       </div>
                       <button 
                         onClick={() => setState(prev => ({ ...prev, showInfo: false }))}
-                        className="p-2 hover:bg-violet-100 rounded-full transition-colors text-violet-400 hover:text-violet-700"
+                        className="p-2 hover:bg-violet-100 dark:hover:bg-violet-800/50 rounded-full transition-colors text-violet-400 dark:text-violet-300 hover:text-violet-700 dark:hover:text-violet-100"
                       >
                         <X className="w-5 h-5" />
                       </button>
@@ -387,16 +384,16 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                       {/* Rule 1: /ɪd/ */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                            <span className="text-lg font-black text-amber-700">/ɪd/</span>
+                          <div className="w-10 h-10 rounded-full bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center shrink-0">
+                            <span className="text-lg font-black text-amber-700 dark:text-amber-300">/ɪd/</span>
                           </div>
-                          <h3 className="text-lg font-bold" style={{ color: '#e5eef7' }}>The "Extra Syllable" Rule</h3>
+                          <h3 className="text-lg font-bold text-text">The "Extra Syllable" Rule</h3>
                         </div>
-                        <div className="bg-amber-50 p-4 rounded-2xl border border-amber-100 text-sm md:text-base">
-                          <p className="mb-2" style={{ color: '#1f2937' }}>Use this when the verb ends in <strong style={{ color: '#111827' }}>T</strong> or <strong style={{ color: '#111827' }}>D</strong>.</p>
+                        <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-2xl border border-amber-100 dark:border-amber-800/60 text-sm md:text-base">
+                          <p className="mb-2 text-text">Use this when the verb ends in <strong className="font-bold">T</strong> or <strong className="font-bold">D</strong>.</p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-2 py-1 rounded border border-amber-200 bg-[var(--surface-strong)] text-amber-800 font-medium">want ➝ wanted</span>
-                            <span className="px-2 py-1 rounded border border-amber-200 bg-[var(--surface-strong)] text-amber-800 font-medium">need ➝ needed</span>
+                            <span className="px-2 py-1 rounded border border-amber-200 dark:border-amber-700/60 bg-[var(--surface-strong)] text-amber-800 dark:text-amber-200 font-medium">want ➝ wanted</span>
+                            <span className="px-2 py-1 rounded border border-amber-200 dark:border-amber-700/60 bg-[var(--surface-strong)] text-amber-800 dark:text-amber-200 font-medium">need ➝ needed</span>
                           </div>
                         </div>
                       </div>
@@ -404,16 +401,16 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                       {/* Rule 2: /t/ */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center shrink-0">
-                            <span className="text-lg font-black text-sky-700">/t/</span>
+                          <div className="w-10 h-10 rounded-full bg-sky-100 dark:bg-sky-900/50 flex items-center justify-center shrink-0">
+                            <span className="text-lg font-black text-sky-700 dark:text-sky-300">/t/</span>
                           </div>
-                          <h3 className="text-lg font-bold" style={{ color: '#e5eef7' }}>The "Soft" Rule</h3>
+                          <h3 className="text-lg font-bold text-text">The "Soft" Rule</h3>
                         </div>
-                        <div className="bg-sky-50 p-4 rounded-2xl border border-sky-100 text-sm md:text-base">
-                          <p className="mb-2" style={{ color: '#1f2937' }}>Use this after "voiceless" sounds like <strong style={{ color: '#111827' }}>P, K, F, S, SH, CH</strong>.</p>
+                        <div className="bg-sky-50 dark:bg-sky-900/20 p-4 rounded-2xl border border-sky-100 dark:border-sky-800/60 text-sm md:text-base">
+                          <p className="mb-2 text-text">Use this after "voiceless" sounds like <strong className="font-bold">P, K, F, S, SH, CH</strong>.</p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-2 py-1 rounded border border-sky-200 bg-[var(--surface-strong)] text-sky-800 font-medium">help ➝ helped</span>
-                            <span className="px-2 py-1 rounded border border-sky-200 bg-[var(--surface-strong)] text-sky-800 font-medium">wash ➝ washed</span>
+                            <span className="px-2 py-1 rounded border border-sky-200 dark:border-sky-700/60 bg-[var(--surface-strong)] text-sky-800 dark:text-sky-200 font-medium">help ➝ helped</span>
+                            <span className="px-2 py-1 rounded border border-sky-200 dark:border-sky-700/60 bg-[var(--surface-strong)] text-sky-800 dark:text-sky-200 font-medium">wash ➝ washed</span>
                           </div>
                         </div>
                       </div>
@@ -421,16 +418,16 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                       {/* Rule 3: /d/ */}
                       <div className="space-y-2">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                            <span className="text-lg font-black text-emerald-700">/d/</span>
+                          <div className="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center shrink-0">
+                            <span className="text-lg font-black text-emerald-700 dark:text-emerald-300">/d/</span>
                           </div>
-                          <h3 className="text-lg font-bold" style={{ color: '#e5eef7' }}>The "Vibration" Rule</h3>
+                          <h3 className="text-lg font-bold text-text">The "Vibration" Rule</h3>
                         </div>
-                        <div className="bg-emerald-50 p-4 rounded-2xl border border-emerald-100 text-sm md:text-base">
-                          <p className="mb-2" style={{ color: '#1f2937' }}>Use this for all other sounds (vowels, n, m, v, z, etc.).</p>
+                        <div className="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-2xl border border-emerald-100 dark:border-emerald-800/60 text-sm md:text-base">
+                          <p className="mb-2 text-text">Use this for all other sounds (vowels, n, m, v, z, etc.).</p>
                           <div className="flex flex-wrap gap-2">
-                            <span className="px-2 py-1 rounded border border-emerald-200 bg-[var(--surface-strong)] text-emerald-800 font-medium">play ➝ played</span>
-                            <span className="px-2 py-1 rounded border border-emerald-200 bg-[var(--surface-strong)] text-emerald-800 font-medium">love ➝ loved</span>
+                            <span className="px-2 py-1 rounded border border-emerald-200 dark:border-emerald-700/60 bg-[var(--surface-strong)] text-emerald-800 dark:text-emerald-200 font-medium">play ➝ played</span>
+                            <span className="px-2 py-1 rounded border border-emerald-200 dark:border-emerald-700/60 bg-[var(--surface-strong)] text-emerald-800 dark:text-emerald-200 font-medium">love ➝ loved</span>
                           </div>
                         </div>
                       </div>
@@ -480,20 +477,20 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
 
             {/* Mode descriptions */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div className="p-4 bg-violet-50 rounded-xl border border-violet-100">
-                <div className="mb-1 font-bold" style={{ color: '#6d28d9' }}>Sound Sorting</div>
-                <p style={{ color: '#5b6472' }}>See a verb, categorize into /t/, /d/, or /ɪd/.</p>
+              <div className="p-4 bg-violet-50 dark:bg-violet-900/20 rounded-xl border border-violet-100 dark:border-violet-800/60">
+                <div className="mb-1 font-bold text-violet-700 dark:text-violet-300">Sound Sorting</div>
+                <p className="text-muted">See a verb, categorize into /t/, /d/, or /ɪd/.</p>
               </div>
-              <div className="p-4 bg-indigo-50 rounded-xl border border-indigo-100">
-                <div className="mb-1 font-bold" style={{ color: '#4338ca' }}>Minimal Pairs</div>
-                <p style={{ color: '#5b6472' }}>Hear a word - is it "walk" or "walked"?</p>
+              <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800/60">
+                <div className="mb-1 font-bold text-indigo-700 dark:text-indigo-300">Minimal Pairs</div>
+                <p className="text-muted">Hear a word - is it "walk" or "walked"?</p>
               </div>
             </div>
 
             {!isAudioSupported && (
-              <div className="p-4 bg-amber-50 rounded-xl border border-amber-200 flex items-center gap-3">
-                <VolumeX className="w-5 h-5 text-amber-600 flex-shrink-0" />
-                <p className="text-sm text-amber-700">
+              <div className="p-4 bg-amber-50 dark:bg-amber-900/30 rounded-xl border border-amber-200 dark:border-amber-700/60 flex items-center gap-3">
+                <VolumeX className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                <p className="text-sm text-amber-700 dark:text-amber-200">
                   Audio not supported in this browser. The game will still work, but without sound.
                 </p>
               </div>
@@ -545,20 +542,20 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
           <div className="p-6 md:p-10 max-w-lg mx-auto md:max-w-none">
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
+              <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Target className="w-6 h-6 mx-auto mb-2 text-rose-500" />
-                <div className="text-2xl font-black text-neutral-800 tracking-tight">{accuracy}%</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Accuracy</div>
+                <div className="text-2xl font-black tracking-tight text-text">{accuracy}%</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-muted">Accuracy</div>
               </div>
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
+              <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Zap className="w-6 h-6 mx-auto mb-2 text-amber-500" />
-                <div className="text-2xl font-black text-neutral-800 tracking-tight">{state.maxStreak}</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Best Streak</div>
+                <div className="text-2xl font-black tracking-tight text-text">{state.maxStreak}</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-muted">Best Streak</div>
               </div>
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
+              <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-emerald-500" />
-                <div className="text-2xl font-black text-neutral-800 tracking-tight">{state.score}/{state.verbs.length}</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Correct</div>
+                <div className="text-2xl font-black tracking-tight text-text">{state.score}/{state.verbs.length}</div>
+                <div className="text-[10px] font-black uppercase tracking-widest text-muted">Correct</div>
               </div>
               <div className="p-4 bg-violet-50 rounded-2xl border border-violet-100 shadow-sm text-center">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-violet-600" />
@@ -570,7 +567,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             {/* Sound breakdown (for sorting mode) */}
             {state.mode === 'sorting' && (
               <div className="mb-8">
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest mb-4">By Sound</h3>
+                <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-muted">By Sound</h3>
                 <div className="grid grid-cols-3 gap-3">
                   {(['d', 't', 'id'] as EdSound[]).map(sound => (
                     <div key={sound} className={`p-3 rounded-xl ${SOUND_COLORS[sound].bg} text-center`}>
@@ -587,10 +584,10 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             )}
 
             {/* Rules summary */}
-            <div className="bg-neutral-50 rounded-2xl p-4 mb-8 text-left">
+            <div className="mb-8 rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-left">
               <div className="flex items-center gap-2 mb-3">
                 <Lightbulb className="w-5 h-5 text-amber-500" />
-                <h3 className="font-bold text-neutral-700">Remember the Rules</h3>
+                <h3 className="font-bold text-text">Remember the Rules</h3>
               </div>
               <div className="space-y-2 text-sm">
                 <p className="text-emerald-700"><strong>/d/</strong> — After voiced sounds (b, g, v, z, m, n, l, r, vowels)</p>
@@ -603,7 +600,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={resetGame}
-                className="flex-1 border-2 border-sage/20 text-neutral-600 py-4 rounded-2xl font-bold hover:bg-sage/5 transition-all flex items-center justify-center gap-2"
+                className="flex flex-1 items-center justify-center gap-2 rounded-2xl border-2 border-border/40 py-4 font-bold text-text transition-all hover:bg-white/5"
               >
                 Change Mode
               </button>
@@ -630,72 +627,72 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   return (
     <div className="fixed inset-0 z-50 mx-auto flex min-h-[100dvh] max-w-2xl flex-col bg-bg md:relative md:inset-auto md:z-auto md:min-h-[calc(100dvh-14rem)] md:bg-transparent md:p-6">
       {/* Header */}
-      <div className="px-4 py-3 border-b border-neutral-100 flex items-center justify-between bg-white md:hidden">
+      <div className="flex items-center justify-between border-b border-border/40 bg-[var(--surface-elevated)] px-4 py-3 text-text md:hidden">
         <button
           onClick={resetGame}
-          className="p-2 -ml-2 rounded-full hover:bg-neutral-100 text-neutral-500 transition-colors"
+          className="ml-[-0.5rem] rounded-full p-2 text-muted transition-colors hover:bg-white/10 hover:text-text"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
         
         <div className="flex items-center gap-3">
-           <div className="flex items-center gap-1.5 px-3 py-1 bg-neutral-100 rounded-full">
-             <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+           <div className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1">
+             <span className="text-xs font-bold uppercase tracking-wider text-muted">
                {state.currentIndex + 1}/{state.verbs.length}
              </span>
            </div>
            
-           <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full">
+           <div className="flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-amber-800">
             <Zap className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
             <span className="text-xs font-bold">{state.streak}</span>
            </div>
            
-           <div className="min-w-[40px] text-right font-black text-violet-600">
+           <div className="min-w-[40px] text-right font-black text-violet-300">
              {state.score}
            </div>
         </div>
       </div>
       
       {/* Mobile progress bar added to top */}
-      <div className="h-1 bg-neutral-100 md:hidden">
+      <div className="h-1 bg-white/10 md:hidden">
         <motion.div
             animate={{ width: `${progress}%` }}
             className="h-full bg-gradient-to-r from-violet-500 to-purple-600"
           />
       </div>
 
-      <div className="hidden sm:flex items-center justify-between gap-2 mb-6">
+      <div className="mb-6 hidden items-center justify-between gap-2 text-text sm:flex">
         <button
           onClick={resetGame}
-          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
+          className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-[var(--surface-elevated)] px-3 py-2 text-sm font-semibold text-text transition-all hover:bg-white/10 active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
           Settings
         </button>
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Question</span>
-            <span className="text-xl font-bold text-neutral-800">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Question</span>
+            <span className="text-xl font-bold text-text">
               {state.currentIndex + 1} / {state.verbs.length}
             </span>
           </div>
-          <div className="h-8 w-px bg-neutral-200" />
+          <div className="h-8 w-px bg-border/40" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Streak</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Streak</span>
             <div className="flex items-center gap-1">
-              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
-              <span className="text-xl font-bold text-neutral-800">{state.streak}</span>
+              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'fill-amber-500 text-amber-500' : 'text-white/20'}`} />
+              <span className="text-xl font-bold text-text">{state.streak}</span>
             </div>
           </div>
         </div>
         <div className="text-right">
-          <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Score</span>
-          <div className="text-xl font-bold text-violet-600">{state.score}</div>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Score</span>
+          <div className="text-xl font-bold text-violet-300">{state.score}</div>
         </div>
       </div>
 
       {/* Progress bar */}
-      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden mb-5 sm:mb-8">
+      <div className="mb-5 h-2 overflow-hidden rounded-full bg-white/10 sm:mb-8">
         <motion.div
           animate={{ width: `${progress}%` }}
           className="h-full bg-gradient-to-r from-violet-500 to-purple-600"
@@ -714,7 +711,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               animate={{ opacity: 1, scale: 1 }}
               className="text-center mb-2"
             >
-              <div className="text-4xl sm:text-5xl md:text-6xl font-black text-neutral-800 mb-3">
+              <div className="mb-3 text-4xl font-black text-text sm:text-5xl md:text-6xl">
                 {currentVerb.past}
               </div>
               <button
@@ -722,8 +719,8 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                 disabled={!isAudioSupported}
                 className={`flex items-center gap-2 mx-auto px-5 py-2.5 rounded-full font-bold transition-all ${
                   isAudioSupported
-                    ? 'bg-violet-100 text-violet-700 hover:bg-violet-200 active:scale-95'
-                    : 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
+                    ? 'bg-violet-500/20 text-violet-100 hover:bg-violet-500/30 active:scale-95'
+                    : 'bg-white/10 text-muted cursor-not-allowed'
                 }`}
               >
                 <Volume2 className="w-5 h-5" />
@@ -750,7 +747,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                           ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
                           : isWrong
                             ? 'bg-rose-500 text-white border-rose-600'
-                            : 'bg-neutral-100 text-neutral-400 border-neutral-200'
+                            : 'bg-white/10 text-white/40 border-white/10'
                         : `${SOUND_COLORS[sound].bg} ${SOUND_COLORS[sound].text} ${SOUND_COLORS[sound].hover} border-transparent hover:border-neutral-200 active:scale-95`
                       }
                     `}
@@ -771,14 +768,14 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               animate={{ opacity: 1, scale: 1 }}
               className="text-center mb-2"
             >
-              <div className="text-lg sm:text-xl text-neutral-500 mb-3">What did you hear?</div>
+              <div className="mb-3 text-lg text-muted sm:text-xl">What did you hear?</div>
               <button
                 onClick={() => playAudio(minimalPairTargetWord)}
                 disabled={!isAudioSupported}
                 className={`flex items-center gap-3 mx-auto px-6 py-3 rounded-full font-bold text-lg sm:text-xl transition-all ${
                   isAudioSupported
                     ? 'bg-indigo-500 text-white hover:bg-indigo-600 active:scale-95 shadow-lg'
-                    : 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
+                    : 'bg-white/10 text-muted cursor-not-allowed'
                 }`}
               >
                 <Volume2 className="w-6 h-6" />
@@ -806,8 +803,8 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                           ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
                           : isWrong
                             ? 'bg-rose-500 text-white border-rose-600'
-                            : 'bg-neutral-100 text-neutral-400 border-neutral-200'
-                        : 'bg-white text-neutral-800 border-neutral-200 hover:border-indigo-300 hover:bg-indigo-50 active:scale-95'
+                            : 'bg-white/10 text-white/40 border-white/10'
+                        : 'bg-[var(--surface-elevated)] text-text border-border/50 hover:border-indigo-300/70 hover:bg-indigo-500/10 active:scale-95'
                       }
                     `}
                   >
@@ -826,23 +823,23 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className={`w-full max-w-md p-4 rounded-2xl mb-6 ${
+              className={`mb-6 w-full max-w-md rounded-2xl p-4 ${
                 state.answers[state.answers.length - 1]?.correct
-                  ? 'bg-emerald-50 border border-emerald-200'
-                  : 'bg-rose-50 border border-rose-200'
+                  ? 'border border-emerald-300/40 dark:border-emerald-700/60 bg-emerald-100 dark:bg-emerald-900/30'
+                  : 'border border-rose-300/40 dark:border-rose-700/60 bg-rose-100 dark:bg-rose-900/30'
               }`}
             >
               <div className="flex items-start gap-3">
                 {state.answers[state.answers.length - 1]?.correct ? (
-                  <CheckCircle2 className="w-6 h-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <XCircle className="w-6 h-6 text-rose-600 flex-shrink-0 mt-0.5" />
+                  <XCircle className="w-6 h-6 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />
                 )}
                 <div>
                   <p className={`font-bold ${
                     state.answers[state.answers.length - 1]?.correct
-                      ? 'text-emerald-700'
-                      : 'text-rose-700'
+                      ? 'text-emerald-900 dark:text-emerald-100'
+                      : 'text-rose-900 dark:text-rose-100'
                   }`}>
                     {state.mode === 'sorting'
                       ? getFeedbackMessage(currentVerb, state.answers[state.answers.length - 1]?.correct)
@@ -852,7 +849,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     }
                   </p>
                   {state.mode === 'sorting' && (
-                    <p className="text-sm text-neutral-600 mt-1">
+                    <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
                       &quot;{currentVerb.example}&quot;
                     </p>
                   )}
@@ -860,14 +857,14 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
                     <div className="flex flex-wrap gap-2 mt-3">
                       <button
                         onClick={() => playAudio(minimalPairTargetWord)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-white/10 px-3 py-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors hover:bg-slate-50 dark:hover:bg-white/20"
                       >
                         <Volume2 className="w-4 h-4" />
                         Hear correct: {minimalPairTargetWord}
                       </button>
                       <button
                         onClick={() => playAudio(minimalPairOtherWord)}
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-white/10 px-3 py-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors hover:bg-slate-50 dark:hover:bg-white/20"
                       >
                         <Volume2 className="w-4 h-4" />
                         Hear other: {minimalPairOtherWord}
@@ -886,7 +883,7 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={nextQuestion}
-            className="w-full max-w-xs bg-neutral-800 text-white px-8 sm:px-12 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 active:scale-95"
+            className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-8 py-3.5 text-base font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl active:scale-95 sm:px-12 sm:py-4 sm:text-lg"
           >
             {state.currentIndex < state.verbs.length - 1 ? 'Next' : 'See Results'}
             <ChevronRight className="w-5 h-5" />

@@ -384,7 +384,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
     const accuracy = total === 0 ? 0 : Math.round((state.score / total) * 100);
 
     return (
-      <div className="fixed inset-0 z-50 bg-white overflow-y-auto md:relative md:inset-auto md:z-auto md:bg-transparent md:max-w-2xl md:mx-auto md:p-6">
+      <div className="fixed inset-0 z-50 overflow-y-auto bg-bg md:relative md:inset-auto md:z-auto md:bg-transparent md:max-w-2xl md:mx-auto md:p-6">
         {state.pointsToast && (
           <PointsToast
             key={state.pointsToast.key}
@@ -396,7 +396,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="min-h-full md:min-h-0 bg-white md:rounded-3xl md:shadow-2xl md:overflow-hidden md:border border-sage/20"
+          className="min-h-full border-border/20 bg-[var(--surface-elevated)] text-text md:min-h-0 md:overflow-hidden md:rounded-3xl md:border md:shadow-2xl"
         >
           <div className="bg-gradient-to-br from-cyan-600 to-blue-600 p-10 text-white text-center">
             <Trophy className="w-20 h-20 mx-auto mb-4" />
@@ -406,22 +406,22 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
           <div className="p-6 md:p-10 max-w-lg mx-auto md:max-w-none">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
+              <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Target className="w-6 h-6 mx-auto mb-2 text-cyan-600" />
-                <div className="text-2xl font-black text-neutral-800">{accuracy}%</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Accuracy</div>
+                <div className="text-2xl font-black text-text">{accuracy}%</div>
+                <div className="text-[10px] uppercase font-black tracking-widest text-muted">Accuracy</div>
               </div>
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
+              <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <Zap className="w-6 h-6 mx-auto mb-2 text-amber-500" />
-                <div className="text-2xl font-black text-neutral-800">{state.maxStreak}</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Best Streak</div>
+                <div className="text-2xl font-black text-text">{state.maxStreak}</div>
+                <div className="text-[10px] uppercase font-black tracking-widest text-muted">Best Streak</div>
               </div>
-              <div className="p-4 bg-neutral-50 rounded-2xl border border-neutral-100 text-center">
+              <div className="rounded-2xl border border-border/40 bg-[var(--surface-overlay)] p-4 text-center">
                 <CheckCircle2 className="w-6 h-6 mx-auto mb-2 text-emerald-500" />
-                <div className="text-2xl font-black text-neutral-800">{state.score}/{total}</div>
-                <div className="text-[10px] text-neutral-400 uppercase font-black tracking-widest">Correct</div>
+                <div className="text-2xl font-black text-text">{state.score}/{total}</div>
+                <div className="text-[10px] uppercase font-black tracking-widest text-muted">Correct</div>
               </div>
-              <div className="p-4 bg-cyan-50 rounded-2xl border border-cyan-100 shadow-sm text-center">
+              <div className="rounded-2xl border border-cyan-300/40 bg-cyan-100 p-4 text-center shadow-sm">
                 <Coins className="w-6 h-6 mx-auto mb-2 text-cyan-700" />
                 <div className="text-2xl font-black text-cyan-700">6</div>
                 <div className="text-[10px] text-cyan-700 uppercase font-black tracking-widest">Points</div>
@@ -431,7 +431,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={resetToMenu}
-                className="flex-1 border-2 border-sage/20 text-neutral-700 py-4 rounded-2xl font-bold hover:bg-sage/5 transition-all"
+                className="flex-1 rounded-2xl border-2 border-border/40 py-4 font-bold text-text transition-all hover:bg-white/5"
               >
                 Change Settings
               </button>
@@ -457,8 +457,8 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   if (!question) {
     return (
       <div className="max-w-2xl mx-auto p-6">
-        <div className="bg-white rounded-2xl p-6 border border-neutral-200 text-center">
-          <p className="text-neutral-700">No pairs found for this setting. Try mixed difficulty.</p>
+        <div className="rounded-2xl border border-border/40 bg-[var(--surface-elevated)] p-6 text-center text-text">
+          <p className="text-text">No pairs found for this setting. Try mixed difficulty.</p>
           <button
             onClick={resetToMenu}
             className="mt-4 px-4 py-2 rounded-xl bg-cyan-600 text-white font-semibold"
@@ -471,45 +471,45 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-white md:relative md:inset-auto md:z-auto md:bg-transparent max-w-2xl mx-auto md:p-6 min-h-[100dvh] md:min-h-[calc(100dvh-14rem)] flex flex-col">
-      <div className="px-4 py-3 border-b border-neutral-100 flex items-center justify-between bg-white md:hidden">
+    <div className="fixed inset-0 z-50 mx-auto flex min-h-[100dvh] max-w-2xl flex-col bg-bg md:relative md:inset-auto md:z-auto md:min-h-[calc(100dvh-14rem)] md:bg-transparent md:p-6">
+      <div className="flex items-center justify-between border-b border-border/40 bg-[var(--surface-elevated)] px-4 py-3 text-text md:hidden">
         <button
           onClick={resetToMenu}
-          className="p-2 -ml-2 rounded-full hover:bg-neutral-100 text-neutral-500 transition-colors"
+          className="ml-[-0.5rem] rounded-full p-2 text-muted transition-colors hover:bg-white/10 hover:text-text"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
         
         <div className="flex items-center gap-3">
-           <div className="flex items-center gap-1.5 px-3 py-1 bg-neutral-100 rounded-full">
-             <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+           <div className="flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1">
+             <span className="text-xs font-bold uppercase tracking-wider text-muted">
                {state.currentIndex + 1}/{state.questions.length}
              </span>
            </div>
            
-           <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-full">
+           <div className="flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-amber-800">
             <Zap className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
             <span className="text-xs font-bold">{state.streak}</span>
            </div>
            
-           <div className="min-w-[40px] text-right font-black text-cyan-700">
+           <div className="min-w-[40px] text-right font-black text-cyan-300">
              {state.score}
            </div>
         </div>
       </div>
 
        {/* Mobile progress bar added to top */}
-      <div className="h-1 bg-neutral-100 md:hidden">
+      <div className="h-1 bg-white/10 md:hidden">
         <motion.div
             animate={{ width: `${progress}%` }}
             className="h-full bg-gradient-to-r from-cyan-600 to-blue-600"
           />
       </div>
 
-      <div className="hidden sm:flex items-center justify-between gap-2 mb-6">
+      <div className="mb-6 hidden items-center justify-between gap-2 text-text sm:flex">
         <button
           onClick={resetToMenu}
-          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-neutral-200 bg-white text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-all active:scale-95"
+          className="inline-flex items-center gap-1.5 rounded-full border border-border/40 bg-[var(--surface-elevated)] px-3 py-2 text-sm font-semibold text-text transition-all hover:bg-white/10 active:scale-95"
         >
           <ArrowLeft className="w-4 h-4" />
           Settings
@@ -517,26 +517,26 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
         <div className="flex items-center gap-4">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Question</span>
-            <span className="text-xl font-bold text-neutral-800">{state.currentIndex + 1} / {state.questions.length}</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Question</span>
+            <span className="text-xl font-bold text-text">{state.currentIndex + 1} / {state.questions.length}</span>
           </div>
-          <div className="h-8 w-px bg-neutral-200" />
+          <div className="h-8 w-px bg-border/40" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Streak</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Streak</span>
             <div className="flex items-center gap-1">
-              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'text-amber-500 fill-amber-500' : 'text-neutral-300'}`} />
-              <span className="text-xl font-bold text-neutral-800">{state.streak}</span>
+              <Zap className={`w-4 h-4 ${state.streak > 0 ? 'fill-amber-500 text-amber-500' : 'text-white/20'}`} />
+              <span className="text-xl font-bold text-text">{state.streak}</span>
             </div>
           </div>
         </div>
 
         <div className="text-right">
-          <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest">Score</span>
-          <div className="text-xl font-bold text-cyan-700">{state.score}</div>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-muted">Score</span>
+          <div className="text-xl font-bold text-cyan-300">{state.score}</div>
         </div>
       </div>
 
-      <div className="h-2 bg-neutral-100 rounded-full overflow-hidden mb-5 sm:mb-8">
+      <div className="mb-5 h-2 overflow-hidden rounded-full bg-white/10 sm:mb-8">
         <motion.div
           animate={{ width: `${progress}%` }}
           className="h-full bg-gradient-to-r from-cyan-600 to-blue-600"
@@ -545,10 +545,10 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
       <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-6 pb-2 sm:pb-4">
         <div className="text-center mb-2">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-cyan-100 text-cyan-800 text-xs font-bold mb-4">
+          <div className="mb-4 inline-flex items-center rounded-full bg-cyan-100 px-3 py-1 text-xs font-bold text-cyan-800">
             {question.contrastLabel}
           </div>
-          <div className="text-lg sm:text-xl text-neutral-600 mb-3">What word did you hear?</div>
+          <div className="mb-3 text-lg text-muted sm:text-xl">What word did you hear?</div>
           <button
             onClick={() => targetWord && playAudio(targetWord)}
             className="flex items-center gap-3 mx-auto px-6 py-3 rounded-full font-bold text-lg sm:text-xl transition-all bg-cyan-600 text-white hover:bg-cyan-700 active:scale-95 shadow-lg"
@@ -578,13 +578,13 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                       ? 'bg-emerald-500 text-white border-emerald-600 scale-105'
                       : isWrong
                         ? 'bg-rose-500 text-white border-rose-600'
-                        : 'bg-neutral-100 text-neutral-500 border-neutral-200'
-                    : 'bg-white text-neutral-800 border-neutral-200 hover:border-cyan-400 hover:bg-cyan-50 active:scale-95'
+                        : 'bg-white/10 text-white/40 border-white/10'
+                    : 'bg-[var(--surface-elevated)] text-text border-border/50 hover:border-cyan-400 hover:bg-cyan-500/10 active:scale-95'
                   }
                 `}
               >
                 <div className="text-2xl">{word}</div>
-                <div className={`text-sm mt-1 ${state.showFeedback && (isCorrect || isWrong) ? 'text-white/90' : 'text-neutral-500'}`}>
+                <div className={`mt-1 text-sm ${state.showFeedback && (isCorrect || isWrong) ? 'text-white/90' : 'text-muted'}`}>
                   {ipa}
                 </div>
               </button>
@@ -598,21 +598,21 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className={`w-full max-w-md p-4 rounded-2xl mb-6 ${
+              className={`mb-6 w-full max-w-md rounded-2xl p-4 ${
                 state.answers[state.answers.length - 1]?.correct
-                  ? 'bg-emerald-50 border border-emerald-200'
-                  : 'bg-rose-50 border border-rose-200'
+                  ? 'border border-emerald-300/40 dark:border-emerald-700/60 bg-emerald-100 dark:bg-emerald-900/30'
+                  : 'border border-rose-300/40 dark:border-rose-700/60 bg-rose-100 dark:bg-rose-900/30'
               }`}
             >
               <div className="flex items-start gap-3">
                 {state.answers[state.answers.length - 1]?.correct ? (
-                  <CheckCircle2 className="w-6 h-6 text-emerald-600 flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-6 h-6 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                 ) : (
-                  <XCircle className="w-6 h-6 text-rose-600 flex-shrink-0 mt-0.5" />
+                  <XCircle className="w-6 h-6 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5" />
                 )}
                 <div>
                   <p className={`font-bold ${
-                    state.answers[state.answers.length - 1]?.correct ? 'text-emerald-700' : 'text-rose-700'
+                    state.answers[state.answers.length - 1]?.correct ? 'text-emerald-900 dark:text-emerald-100' : 'text-rose-900 dark:text-rose-100'
                   }`}>
                     {state.answers[state.answers.length - 1]?.correct
                       ? `Correct! You heard "${targetWord}".`
@@ -622,14 +622,14 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                   <div className="flex flex-wrap gap-2 mt-3">
                     <button
                       onClick={() => targetWord && playAudio(targetWord)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-white/10 px-3 py-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors hover:bg-slate-50 dark:hover:bg-white/20"
                     >
                       <Volume2 className="w-4 h-4" />
                       Hear correct: {targetWord}
                     </button>
                     <button
                       onClick={() => contrastWord && playAudio(contrastWord)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-neutral-200 text-neutral-700 text-sm font-semibold hover:bg-neutral-50 transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-white/10 px-3 py-1.5 text-sm font-semibold text-slate-800 dark:text-slate-200 transition-colors hover:bg-slate-50 dark:hover:bg-white/20"
                     >
                       <Volume2 className="w-4 h-4" />
                       Hear other: {contrastWord}
@@ -646,7 +646,7 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={nextQuestion}
-            className="w-full max-w-xs bg-neutral-800 text-white px-8 sm:px-12 py-3.5 sm:py-4 rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2 active:scale-95"
+            className="flex w-full max-w-xs items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-8 py-3.5 text-base font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl active:scale-95 sm:px-12 sm:py-4 sm:text-lg"
           >
             {state.currentIndex < state.questions.length - 1 ? 'Next' : 'See Results'}
             <ChevronRight className="w-5 h-5" />
