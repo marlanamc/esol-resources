@@ -284,11 +284,11 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
 
   if (state.phase === 'menu') {
     return (
-      <div className="fixed inset-0 z-50 bg-white overflow-y-auto md:relative md:inset-auto md:z-auto md:bg-transparent md:max-w-4xl md:mx-auto md:p-6">
+      <div className="fixed inset-0 z-50 bg-[var(--color-bg)] overflow-y-auto md:relative md:inset-auto md:z-auto md:bg-transparent md:max-w-4xl md:mx-auto md:p-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="min-h-full md:min-h-0 bg-white md:rounded-3xl md:shadow-xl md:overflow-hidden md:border border-sage/20"
+          className="min-h-full md:min-h-0 bg-[var(--color-surface-elevated)] md:rounded-3xl md:shadow-xl md:overflow-hidden md:border border-white/10"
         >
           <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-6 sm:p-8 text-white text-center pb-12 rounded-b-[2.5rem] md:rounded-b-none shadow-lg md:shadow-none relative">
             <button 
@@ -306,9 +306,9 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             <div className="space-y-3 relative z-10">
               <div className="flex items-center gap-2 px-1">
                 <Target className="w-4 h-4 text-cyan-600" />
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">Contrast Focus</h3>
+                <h3 className="text-sm font-bold text-[var(--color-text-muted)] uppercase tracking-widest">Contrast Focus</h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-white rounded-2xl md:bg-transparent shadow-sm md:shadow-none border border-neutral-100 md:border-0 p-2 md:p-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 bg-[var(--color-surface-elevated)] rounded-2xl md:bg-transparent shadow-sm md:shadow-none border border-[var(--color-border-subtle)] md:border-0 p-2 md:p-0">
                 {(() => {
                   const isSelected = state.contrast === 'mixed';
                   return (
@@ -317,11 +317,11 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                       className={`text-left p-4 rounded-xl md:rounded-2xl border transition-all ${
                         isSelected
                           ? 'border-cyan-600 bg-cyan-100 shadow-md ring-2 ring-cyan-200'
-                          : 'border-neutral-200 bg-white hover:border-cyan-300 hover:bg-cyan-50/40'
+                          : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-cyan-300 hover:bg-cyan-50/10'
                       }`}
                     >
-                      <div className={`font-bold ${isSelected ? 'text-cyan-900' : 'text-neutral-800'}`}>Mixed Practice</div>
-                      <p className={`text-sm mt-1 ${isSelected ? 'text-cyan-800' : 'text-neutral-600'}`}>
+                      <div className={`font-bold ${isSelected ? 'text-cyan-900' : 'text-[var(--color-text)]'}`}>Mixed Practice</div>
+                      <p className={`text-sm mt-1 ${isSelected ? 'text-cyan-800' : 'text-[var(--color-text-muted)]'}`}>
                         Rotate through all contrast types in one round.
                       </p>
                     </button>
@@ -338,11 +338,11 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
                         className={`text-left p-4 rounded-xl md:rounded-2xl border transition-all ${
                           isSelected
                             ? 'border-cyan-600 bg-cyan-100 shadow-md ring-2 ring-cyan-200'
-                            : 'border-neutral-200 bg-white hover:border-cyan-300 hover:bg-cyan-50/40'
+                            : 'border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-cyan-300 hover:bg-cyan-50/10'
                         }`}
                       >
-                        <div className={`font-bold ${isSelected ? 'text-cyan-900' : 'text-neutral-800'}`}>{contrast.label}</div>
-                        <p className={`text-sm mt-1 ${isSelected ? 'text-cyan-800' : 'text-neutral-600'}`}>{contrast.description}</p>
+                        <div className={`font-bold ${isSelected ? 'text-cyan-900' : 'text-[var(--color-text)]'}`}>{contrast.label}</div>
+                        <p className={`text-sm mt-1 ${isSelected ? 'text-cyan-800' : 'text-[var(--color-text-muted)]'}`}>{contrast.description}</p>
                       </button>
                     );
                   })()
@@ -351,8 +351,8 @@ export default function MinimalPairsGame({ contentStr, activityId, assignmentId 
             </div>
 
             {state.contrast !== 'mixed' && (
-              <div className="p-4 rounded-2xl border border-amber-200 bg-amber-50">
-                <p className="text-sm text-amber-800">
+              <div className="p-4 rounded-2xl border border-amber-300 bg-amber-50" style={{ color: '#4a3422' }}>
+                <p className="text-sm" style={{ color: '#4a3422' }}>
                   {MINIMAL_PAIR_CONTRASTS.find((contrast) => contrast.id === state.contrast)?.spanishTip}
                 </p>
               </div>

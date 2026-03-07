@@ -61,13 +61,13 @@ export function MultipleChoiceExercise({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-3 sm:p-5 bg-gradient-to-br from-violet-50 to-purple-50 rounded-xl border border-violet-200"
+        className="p-3 sm:p-5 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl border border-violet-200 dark:border-violet-700/50"
       >
         <p className="text-sm sm:text-base text-text leading-relaxed">
           {exercise.prompt}
         </p>
         <div className="mt-2 flex items-center gap-1.5 flex-wrap">
-          <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-violet-100 text-violet-700 font-medium">
+          <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-200 font-medium">
             V1: {exercise.verb.base}
           </span>
           {isAskingV2 ? (
@@ -109,7 +109,7 @@ export function MultipleChoiceExercise({
                         : 'bg-bg-light border-border text-text-muted'
                     : isSelected
                       ? 'bg-primary/10 border-primary text-primary-dark shadow-sm'
-                      : 'bg-white border-border text-text hover:border-primary/50 active:scale-[0.98]'
+                      : 'bg-white dark:bg-[#162b3d] border-border dark:border-white/10 text-text hover:border-primary/50 dark:hover:border-white/20 active:scale-[0.98]'
                 }`}
               >
                 <div className="flex items-center gap-2.5 sm:gap-3">

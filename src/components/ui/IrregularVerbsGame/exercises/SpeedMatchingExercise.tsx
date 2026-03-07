@@ -76,7 +76,7 @@ export function SpeedMatchingExercise({
 
   const options = exercise.options || [];
   const timerColor =
-    timeLeft > 10 ? 'text-green-600' : timeLeft > 5 ? 'text-yellow-600' : 'text-red-600';
+    timeLeft > 10 ? 'text-green-600 dark:text-green-400' : timeLeft > 5 ? 'text-yellow-600 dark:text-yellow-400' : 'text-red-600 dark:text-red-400';
 
   return (
     <div className="flex flex-col h-full min-h-[300px] sm:min-h-0 sm:block space-y-3 sm:space-y-4">
@@ -84,10 +84,10 @@ export function SpeedMatchingExercise({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-3 sm:p-4 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-200"
+        className="p-3 sm:p-4 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950/50 dark:to-purple-950/50 rounded-xl border border-indigo-200 dark:border-indigo-700/50"
       >
         <div className="flex items-center justify-between mb-2">
-          <p className="text-xs sm:text-sm text-gray-600">Find the correct forms for:</p>
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-indigo-200">Find the correct forms for:</p>
           <motion.div
             animate={{
               scale: timeLeft <= 5 ? [1, 1.1, 1] : 1
@@ -101,7 +101,7 @@ export function SpeedMatchingExercise({
             {timeLeft}s
           </motion.div>
         </div>
-        <p className="text-2xl sm:text-3xl font-bold text-indigo-900">{exercise.verb.base}</p>
+        <p className="text-2xl sm:text-3xl font-bold text-indigo-900 dark:text-indigo-100">{exercise.verb.base}</p>
       </motion.div>
 
       {/* Options - Compact */}
@@ -122,11 +122,11 @@ export function SpeedMatchingExercise({
                       ? 'bg-secondary/20 border-secondary text-secondary-dark'
                       : 'bg-error/20 border-error text-error'
                     : 'bg-bg-light border-border text-text-muted'
-                  : 'bg-white border-indigo-200 text-indigo-900 hover:border-indigo-400 active:scale-[0.98]'
+                  : 'bg-white dark:bg-[#162b3d] border-indigo-200 dark:border-indigo-600/50 text-indigo-900 dark:text-indigo-100 hover:border-indigo-400 dark:hover:border-indigo-500 active:scale-[0.98]'
               }`}
             >
               <div className="flex items-center gap-2.5">
-                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-indigo-200 to-purple-200 flex items-center justify-center font-bold text-xs sm:text-sm text-indigo-900 flex-shrink-0">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gradient-to-br from-indigo-200 to-purple-200 dark:from-indigo-700 dark:to-purple-700 flex items-center justify-center font-bold text-xs sm:text-sm text-indigo-900 dark:text-indigo-100 flex-shrink-0">
                   {String.fromCharCode(65 + index)}
                 </div>
                 <span className="text-sm sm:text-base">{option}</span>

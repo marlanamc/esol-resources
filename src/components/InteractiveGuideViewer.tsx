@@ -41,7 +41,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
     return (
         <div className="relative lg:fixed lg:inset-0 bg-bg z-fixed flex flex-col min-h-screen lg:h-screen lg:w-screen text-text font-body selection:bg-primary/20 lg:overflow-hidden">
             {/* Header */}
-            <header className="sticky lg:relative top-0 flex-none h-14 sm:h-16 px-4 sm:px-6 border-b border-border/60 bg-white/80 backdrop-blur-md flex items-center justify-between z-10">
+            <header className="sticky lg:relative top-0 flex-none h-14 sm:h-16 px-4 sm:px-6 border-b backdrop-blur-md flex items-center justify-between z-10" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-overlay)' }}>
                 <div className="flex items-center gap-4">
                     {/* Back button - only on mobile when no onClose */}
                     {!onClose && (
@@ -62,7 +62,8 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                     {onClose && (
                         <button
                             onClick={onClose}
-                            className="p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-error transition-colors rounded-full hover:bg-red-50"
+                            className="p-2 -mr-2 min-w-[44px] min-h-[44px] flex items-center justify-center text-text-muted hover:text-error transition-colors rounded-full"
+                            style={{ backgroundColor: 'transparent' }}
                             aria-label="Close"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
@@ -82,7 +83,8 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <button
                     onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
                     disabled={!canGoPrev}
-                    className={`hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-[transform,color] hover:scale-110 active:scale-95 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!canGoPrev ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    className={`hidden lg:flex absolute left-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full shadow-lg border transition-[transform,color] hover:scale-110 active:scale-95 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!canGoPrev ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}
                     aria-label="Previous section"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
@@ -91,14 +93,15 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <button
                     onClick={() => setCurrentStep(prev => Math.min(totalSteps - 1, prev + 1))}
                     disabled={!canGoNext}
-                    className={`hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full bg-white shadow-lg border border-border transition-[transform,color] hover:scale-110 active:scale-95 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!canGoNext ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    className={`hidden lg:flex absolute right-6 top-1/2 -translate-y-1/2 z-20 w-14 h-14 items-center justify-center rounded-full shadow-lg border transition-[transform,color] hover:scale-110 active:scale-95 text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${!canGoNext ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:text-primary-dark'}`}
+                    style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}
                     aria-label="Next section"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
                 </button>
 
                 {/* Left Panel: Theory/Content */}
-                <div className="flex-1 w-full lg:w-1/2 lg:overflow-y-auto p-5 sm:p-7 lg:pl-24 lg:pr-12 flex flex-col justify-center bg-white/70">
+                <div className="flex-1 w-full lg:w-1/2 lg:overflow-y-auto p-5 sm:p-7 lg:pl-24 lg:pr-12 flex flex-col justify-center" style={{ backgroundColor: 'var(--surface-subtle)' }}>
                     <div className="w-full lg:max-w-2xl lg:mx-auto animate-fade-in-up space-y-4 sm:space-y-6">
                         {currentSection.stepNumber && (
                             <span className="inline-block text-xs font-bold tracking-widest text-primary uppercase mb-4 border-b-2 border-primary/20 pb-1">
@@ -123,7 +126,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                                 </h3>
                                 <div className="space-y-3">
                                     {currentSection.examples.map((example, idx) => (
-                                        <div key={idx} className="bg-white px-4 py-3 rounded-xl border border-border/40 text-text font-medium text-lg leading-relaxed shadow-sm">
+                                    <div key={idx} className="px-4 py-3 rounded-xl border text-text font-medium text-lg leading-relaxed shadow-sm" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}>
                                             {/* Attempt to highlight grammar parts if we can detect them easily, otherwise just text */}
                                             {/* Simple heuristic: text in [ ] or similar could be highlighted, or just render plain for now as per design */}
                                             {example}
@@ -147,7 +150,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
                 <div className="flex-1 w-full lg:w-1/2 lg:overflow-y-auto bg-bg-light/40 border-t lg:border-t-0 lg:border-l border-border/60 p-5 sm:p-7 lg:pr-24 lg:pl-12 flex flex-col justify-center">
                     <div className="w-full lg:max-w-2xl lg:mx-auto animate-fade-in-up delay-100 space-y-4 sm:space-y-6">
                         {currentSection.exercises && currentSection.exercises.length > 0 ? (
-                            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-white/60 relative overflow-hidden">
+                            <div className="rounded-3xl p-6 sm:p-8 shadow-xl border relative overflow-hidden" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)' }}>
                                 {/* Decorative blob */}
                                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -175,7 +178,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
             </div>
 
             {/* Mobile Controls */}
-            <div className="lg:hidden border-t border-border/60 bg-white/95 backdrop-blur px-4 py-3 flex items-center justify-between gap-3 fixed bottom-0 left-0 right-0 z-20 safe-area-bottom">
+            <div className="lg:hidden border-t backdrop-blur px-4 py-3 flex items-center justify-between gap-3 fixed bottom-0 left-0 right-0 z-20 safe-area-bottom" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-overlay)' }}>
                 <button
                     onClick={() => setCurrentStep(prev => Math.max(0, prev - 1))}
                     disabled={!canGoPrev}
@@ -283,4 +286,3 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
         </div>
     );
 }
-

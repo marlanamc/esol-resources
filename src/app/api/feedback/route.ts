@@ -1,55 +1,47 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { requireAuth } from "@/lib/api-auth";
+import { FeedbackPostBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { ApiErrors, apiSuccess } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user?.id) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
+        const authError = requireAuth(session);
+        if (authError) return authError;
 
         const body = await request.json();
-        const { activityId, activityTitle, difficulty, type, message } = body;
+        const validated = parseApiBody(FeedbackPostBodySchema, body);
+        if (!validated.ok) return validated.response;
 
-        // Validate required fields
-        if (!type || !message?.trim()) {
-            return NextResponse.json(
-                { error: "Feedback type and message are required" },
-                { status: 400 }
-            );
-        }
-
-        // Store feedback in database (you could create a Feedback model)
-        // For now, let's log it and you can implement storage later
-        console.log("Feedback received:", {
-            userId: session.user.id,
-            activityId,
-            activityTitle,
-            difficulty,
-            type,
-            message: message.trim(),
-            timestamp: new Date().toISOString(),
+        const feedback = await prisma.feedback.create({
+            data: {
+                userId: session!.user!.id,
+                activityId: validated.data.activityId ?? null,
+                activityTitle: validated.data.activityTitle ?? null,
+                difficulty: validated.data.difficulty ?? null,
+                type: validated.data.type,
+                message: validated.data.message,
+            },
+            select: {
+                id: true,
+                createdAt: true,
+            },
         });
 
-        // TODO: Create Feedback model and store in database
-        // const feedback = await prisma.feedback.create({
-        //     data: {
-        //         userId: session.user.id,
-        //         activityId,
-        //         activityTitle,
-        //         difficulty,
-        //         type,
-        //         message: message.trim(),
-        //     },
-        // });
+        logger.info("Feedback recorded", {
+            userId: session!.user!.id,
+            feedbackId: feedback.id,
+            activityId: validated.data.activityId ?? undefined,
+            type: validated.data.type,
+        });
 
-        return NextResponse.json({ success: true });
+        return apiSuccess(feedback, 201, "Feedback submitted");
     } catch (error) {
-        console.error("Error saving feedback:", error);
-        return NextResponse.json(
-            { error: "Failed to save feedback" },
-            { status: 500 }
-        );
+        logger.error("Error saving feedback", error);
+        return ApiErrors.internal("Failed to save feedback");
     }
 }

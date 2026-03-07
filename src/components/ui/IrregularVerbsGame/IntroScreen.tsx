@@ -19,7 +19,7 @@ export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProp
           <button
             onClick={onBack}
             aria-label="Go back"
-            className="flex-shrink-0 w-9 h-9 rounded-full bg-white border border-border text-text-muted hover:text-text flex items-center justify-center"
+            className="flex-shrink-0 w-9 h-9 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text flex items-center justify-center"
           >
             <ArrowLeft size={18} />
           </button>
@@ -33,7 +33,7 @@ export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProp
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-2xl border border-border sm:border-2 p-4 sm:p-7"
+        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 sm:border-2 p-4 sm:p-7"
       >
         <p className="text-sm sm:text-lg text-text-muted mb-4">{group.pattern}</p>
 
@@ -47,14 +47,14 @@ export function IntroScreen({ group, onStartChallenge, onBack }: IntroScreenProp
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.05 }}
-        className="bg-white rounded-2xl border border-border p-5 sm:p-6"
+        className="bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 p-5 sm:p-6"
       >
         <h3 className="font-semibold text-text mb-3">Verbs in this group</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {group.verbs.map((verb) => (
             <div
               key={verb.base}
-              className="px-3 py-2 rounded-lg bg-bg-light border border-border/60 text-sm sm:text-base"
+              className="px-3 py-2 rounded-lg bg-bg-light dark:bg-white/5 border border-border/60 dark:border-white/10 text-sm sm:text-base"
             >
               {verb.base} {'\u2192'} {verb.past} {'\u2192'} {verb.pastParticiple}
             </div>

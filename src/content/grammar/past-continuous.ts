@@ -364,13 +364,13 @@ export const pastContinuousContent: InteractiveGuideContent = {
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0;">
                     <div style="background: #fef9f3; border: 2px solid #f0b45a; border-radius: 0.5rem; padding: 1rem;">
                         <h4 style="margin-top: 0; color: #f0b45a;">WHILE + Past Continuous</h4>
-                        <p style="margin: 0.5rem 0;">Shows the longer background action.</p>
-                        <p style="margin: 0; font-size: 0.92rem;">While I <strong>was cooking</strong>, my daughter was setting the table.</p>
+                        <p style="margin: 0.5rem 0; color: #1f2937;">Shows the longer background action.</p>
+                        <p style="margin: 0; font-size: 0.92rem; color: #1f2937;">While I <strong style="color: #1f2937;">was cooking</strong>, my daughter was setting the table.</p>
                     </div>
                     <div style="background: #fff5f0; border: 2px solid #d97757; border-radius: 0.5rem; padding: 1rem;">
                         <h4 style="margin-top: 0; color: #d97757;">WHEN + Past Simple</h4>
-                        <p style="margin: 0.5rem 0;">Introduces the short interrupting event.</p>
-                        <p style="margin: 0; font-size: 0.92rem;">I was cooking <strong>when</strong> the smoke alarm rang.</p>
+                        <p style="margin: 0.5rem 0; color: #1f2937;">Introduces the short interrupting event.</p>
+                        <p style="margin: 0; font-size: 0.92rem; color: #1f2937;">I was cooking <strong style="color: #1f2937;">when</strong> the smoke alarm rang.</p>
                     </div>
                 </div>
 

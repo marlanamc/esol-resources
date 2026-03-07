@@ -1,6 +1,6 @@
 /**
  * Audit logging for administrative actions
- * Tracks security-sensitive operations for compliance and security monitoring
+ * Tracks security-sensitive operations through the shared structured logger.
  */
 
 import { logger } from './logger';
@@ -33,8 +33,8 @@ export interface AuditLogEntry {
 }
 
 /**
- * Log an administrative action
- * In production, this should write to a database table or external logging service
+ * Log an administrative action.
+ * Persistence can be layered in later without changing callers.
  */
 export function auditLog(entry: Omit<AuditLogEntry, 'timestamp'>): void {
   const timestamp = new Date();
@@ -64,8 +64,6 @@ export function auditLog(entry: Omit<AuditLogEntry, 'timestamp'>): void {
     });
   }
 
-  // TODO: In production, also persist to database
-  // await prisma.auditLog.create({ data: { ...entry, timestamp } });
 }
 
 /**

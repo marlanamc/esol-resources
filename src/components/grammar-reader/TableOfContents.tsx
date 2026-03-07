@@ -54,7 +54,7 @@ export const TableOfContents = React.memo(function TableOfContents({
                                         ? "bg-primary text-white border-primary shadow-md"
                                         : isCompleted
                                             ? "bg-success/10 text-success border-success/40 hover:bg-success/20"
-                                            : "bg-white text-text border-border hover:bg-bg-light hover:border-primary/60"
+                                            : "bg-[var(--color-surface-elevated)] text-text border-border hover:bg-bg-light hover:border-primary/60"
                                     }`}
                                 aria-current={isCurrent ? "page" : undefined}
                                 aria-label={`${displayNumber}. ${section.title}${isCompleted ? " (completed)" : ""}${isCurrent ? " (current section)" : ""}`}
@@ -128,7 +128,7 @@ export const TableOfContents = React.memo(function TableOfContents({
                             }}
                             className={`w-full text-left px-4 py-3 rounded-lg border transition-[background-color,color,border-color,box-shadow] duration-200 flex items-center gap-3 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${showingQuiz
                                     ? "bg-primary text-white border-primary shadow-md"
-                                    : "bg-white text-text border-border hover:bg-bg-light hover:border-primary/60"
+                                    : "bg-[var(--color-surface-elevated)] text-text border-border hover:bg-bg-light hover:border-primary/60"
                                 }`}
                             aria-current={showingQuiz ? "page" : undefined}
                             aria-label={`Mini Quiz${showingQuiz ? " (current)" : ""}`}

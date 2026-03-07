@@ -75,7 +75,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-0 md:bg-transparent">
             {/* Mobile Header - Back + Progress */}
-            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3 md:hidden">
+            <div className="flex-shrink-0 border-b-2 border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-3 md:hidden">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         {onBack && (
@@ -111,7 +111,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
             {/* Main Scrollable Content */}
             <div className="flex-1 overflow-y-auto">
                 <motion.div
-                    className="mini-quiz-section relative w-full max-w-4xl mx-auto md:bg-white md:rounded-xl md:shadow-lg md:border md:border-border px-4 py-6 sm:px-8 sm:py-8 overflow-hidden"
+                    className="mini-quiz-section relative w-full max-w-4xl mx-auto px-4 py-6 overflow-hidden sm:px-8 sm:py-8 md:rounded-xl md:border md:border-border md:bg-[var(--color-surface-elevated)] md:shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
@@ -251,7 +251,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
                             return (
                                 <motion.div
                                     key={question.id}
-                                    className={`quiz-question p-4 sm:p-6 rounded-xl border bg-white ${showFeedback && isCorrect
+                                    className={`quiz-question rounded-xl border bg-[var(--color-surface-elevated)] p-4 sm:p-6 ${showFeedback && isCorrect
                                             ? "border-success bg-success/5"
                                             : showFeedback && !isCorrect
                                                 ? "border-error bg-error/5"
@@ -387,7 +387,7 @@ export function MiniQuizSection({ questions, onComplete, onScoreSubmit, topicTit
             </div>
 
             {/* Mobile Fixed Bottom Bar */}
-            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-4 sm:hidden">
+            <div className="flex-shrink-0 border-t-2 border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-4 sm:hidden">
                 {!submitted ? (
                     <div className="flex flex-col gap-2">
                         {!allAnswered && (

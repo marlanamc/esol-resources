@@ -8,6 +8,35 @@ import type { GroupProgress, VerbGroup, VerbGameRoundResults } from '@/types/irr
 
 // Unlock threshold: must achieve this accuracy to unlock next group
 export const UNLOCK_THRESHOLD = 80;
+const ALL_PATTERNS_GROUP_ID = 'all-patterns-quiz';
+const ALL_PATTERNS_GROUP: VerbGroup = {
+  id: ALL_PATTERNS_GROUP_ID,
+  title: 'All Patterns Quiz',
+  pattern: 'Mixed patterns from everything you mastered',
+  patternExample: 'Random V1 -> V2 -> V3',
+  colorClass: 'from-indigo-100 to-blue-100 border-indigo-200',
+  difficulty: 3,
+  prerequisite: null,
+  verbs: Array.from(
+    new Map(
+      VERB_GROUPS.flatMap((g) => g.verbs).map((v) => [v.base, v])
+    ).values()
+  )
+};
+
+function getProgressGroupById(groupId: string): VerbGroup | undefined {
+  if (groupId === ALL_PATTERNS_GROUP_ID) {
+    return ALL_PATTERNS_GROUP;
+  }
+
+  return getVerbGroupById(groupId);
+}
+
+function getRegularGroupProgress(categoryData: Record<string, GroupProgress>): GroupProgress[] {
+  return VERB_GROUPS.map((group) => categoryData[group.id]).filter(
+    (progress): progress is GroupProgress => Boolean(progress)
+  );
+}
 
 /**
  * Check if a group is unlocked based on prerequisite completion
@@ -18,7 +47,7 @@ export function isGroupUnlocked(
   groupId: string,
   categoryData: Record<string, GroupProgress>
 ): boolean {
-  const group = getVerbGroupById(groupId);
+  const group = getProgressGroupById(groupId);
   if (!group) return false;
 
   // First group always unlocked
@@ -60,7 +89,7 @@ export function getNextUnlockedGroup(
 export function calculateOverallProgress(categoryData: Record<string, GroupProgress>): number {
   if (VERB_GROUPS.length === 0) return 0;
 
-  const completedCount = Object.values(categoryData).filter(p => p.completed).length;
+  const completedCount = getRegularGroupProgress(categoryData).filter((p) => p.completed).length;
   return Math.round((completedCount / VERB_GROUPS.length) * 100);
 }
 
@@ -94,7 +123,7 @@ export function processRoundResults(
   correctAnswers: number,
   currentCategoryData: Record<string, GroupProgress>
 ): VerbGameRoundResults {
-  const group = getVerbGroupById(groupId);
+  const group = getProgressGroupById(groupId);
   if (!group) throw new Error(`Group ${groupId} not found`);
 
   // Calculate accuracy
@@ -223,8 +252,9 @@ export function initializeProgressData(): Record<string, GroupProgress> {
  * Get user's progress summary
  */
 export function getProgressSummary(categoryData: Record<string, GroupProgress>) {
-  const completedGroups = Object.values(categoryData).filter(p => p.completed).length;
-  const attemptedGroups = Object.values(categoryData).filter(p => p.attempts > 0).length;
+  const regularProgress = getRegularGroupProgress(categoryData);
+  const completedGroups = regularProgress.filter((p) => p.completed).length;
+  const attemptedGroups = regularProgress.filter((p) => p.attempts > 0).length;
   const totalAccuracy = calculateAverageAccuracy(categoryData);
   const totalExercises = Object.values(categoryData).reduce((sum, p) => sum + (p.exercisesCompleted ?? 0), 0);
 

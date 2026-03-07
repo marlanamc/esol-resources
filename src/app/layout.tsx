@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Lora, DM_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { cookies } from "next/headers";
 
 const lora = Lora({
   variable: "--font-display",
@@ -53,17 +55,53 @@ export const viewport: Viewport = {
   themeColor: "#d97757",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const savedTheme = cookieStore.get("class-companion-theme")?.value;
+  const htmlClassName = savedTheme === "dark" ? "dark" : undefined;
+  const htmlTheme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : undefined;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={htmlClassName}
+      data-theme={htmlTheme}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('class-companion-theme');
+                  if (!theme) {
+                    var cookieMatch = document.cookie.match(/(?:^|; )class-companion-theme=([^;]+)/);
+                    theme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+                  }
+                  if (theme === 'dark' || (theme !== 'light' && theme !== 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                    document.documentElement.setAttribute('data-theme', 'light');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${lora.variable} ${dmSans.variable} ${caveat.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

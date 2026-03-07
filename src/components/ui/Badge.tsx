@@ -21,7 +21,7 @@ interface BadgeProps {
   className?: string;
 }
 
-export const Badge: React.FC<BadgeProps & { size?: 'sm' | 'md' | 'lg' }> = ({
+export const Badge: React.FC<BadgeProps & { size?: 'sm' | 'md' | 'lg' | 'pill' }> = ({
   children,
   variant = 'default',
   size = 'md',
@@ -47,13 +47,15 @@ export const Badge: React.FC<BadgeProps & { size?: 'sm' | 'md' | 'lg' }> = ({
     sm: 'px-2 py-0.5 text-[0.65rem] uppercase tracking-wide',
     md: 'px-3 py-1.5 text-xs',
     lg: 'px-4 py-2 text-sm',
+    pill: 'px-3.5 py-1.5 text-xs',
   };
 
+  const radiusClass = size === 'pill' ? 'rounded-full' : 'rounded-lg';
   const styles = variantClasses[variant] ?? variantClasses.default;
 
   return (
     <span
-      className={`inline-flex items-center font-semibold rounded-lg border transition-[colors,box-shadow] duration-200 shadow-sm ${styles} ${sizeStyles[size]} ${className}`}
+      className={`inline-flex items-center font-semibold ${radiusClass} border transition-[colors,box-shadow] duration-200 shadow-sm ${styles} ${sizeStyles[size]} ${className}`}
     >
       {children}
     </span>

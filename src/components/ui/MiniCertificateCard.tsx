@@ -88,17 +88,17 @@ export function MiniCertificateCard({ certificate, className = "" }: MiniCertifi
             </div>
 
             {/* Title */}
-            <p className="text-center text-sm font-bold text-text leading-tight line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+            <p className="mb-2 line-clamp-2 text-center text-sm font-bold leading-tight transition-colors group-hover:text-[#8e4432]" style={{ color: '#243447' }}>
                 {certificate.title}
             </p>
 
             {/* Score */}
             <div className="flex items-center gap-1.5">
-                <span className="text-lg font-bold text-text">{certificate.score}%</span>
+                <span className="text-lg font-bold" style={{ color: '#243447' }}>{certificate.score}%</span>
             </div>
 
             {/* Date */}
-            <p className="mt-1 text-xs text-text-muted">
+            <p className="mt-1 text-xs" style={{ color: '#5f6f84' }}>
                 {certificate.issuedAt
                     ? certificate.issuedAt.toLocaleDateString()
                     : "Recently earned"}
@@ -146,7 +146,7 @@ export function EmptyCertificateCard({ className = "" }: { className?: string })
             </div>
 
             {/* Message */}
-            <p className="text-center text-sm text-text-muted">
+            <p className="text-center text-sm" style={{ color: '#6b7280' }}>
                 Complete a mini quiz to unlock!
             </p>
         </div>
@@ -185,7 +185,7 @@ export function NeedsImprovementCard({
             </div>
 
             {/* Title */}
-            <p className="text-center text-sm font-bold text-text leading-tight line-clamp-2 mb-2 group-hover:text-rose-600 transition-colors">
+            <p className="mb-2 line-clamp-2 text-center text-sm font-bold leading-tight text-[#243447] transition-colors group-hover:text-rose-600">
                 {certificate.title}
             </p>
 
@@ -196,7 +196,7 @@ export function NeedsImprovementCard({
 
             {/* Encouragement Message */}
             <div className="text-center space-y-1">
-                <p className="text-xs text-text-muted leading-snug">
+                <p className="text-xs leading-snug" style={{ color: '#6b7280' }}>
                     Keep practicing! You need 70% to earn a medal.
                 </p>
                 <p className="text-[10px] text-rose-500/80 flex items-center justify-center gap-1">
@@ -206,7 +206,7 @@ export function NeedsImprovementCard({
             </div>
 
             {/* Click hint */}
-            <div className="mt-2 text-[10px] text-text-muted opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="mt-2 text-[10px] opacity-0 transition-opacity group-hover:opacity-100" style={{ color: '#6b7280' }}>
                 Click to retry
             </div>
         </ActivityLink>

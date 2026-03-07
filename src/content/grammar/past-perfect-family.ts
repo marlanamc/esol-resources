@@ -179,10 +179,9 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                             <div style="position: absolute; top: 50%; left: 15%; width: 42%; min-width: 150px; height: 28px; background: linear-gradient(to right, rgba(139, 92, 246, 0.3), rgba(139, 92, 246, 0.8)); border-radius: 14px; transform: translateY(-50%); border: 2px solid #8b5cf6; display: flex; align-items: center; justify-content: flex-start; padding: 0 0.75rem;">
                                 <span style="font-size: 0.72rem; color: #4c1d95; font-weight: 600; line-height: 1; white-space: nowrap;">had been working</span>
                             </div>
-                            <!-- Past event marker -->
+                            <!-- Past event marker (vertical line only) -->
                             <div style="position: absolute; left: 60%; top: 15%; transform: translateX(-50%);">
                                 <div style="width: 3px; height: 55px; background: #14b8a6;"></div>
-                                <div style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; color: #14b8a6; font-weight: 600; background: white; padding: 0 0.25rem;">arrived</div>
                             </div>
                             <!-- NOW -->
                             <div style="position: absolute; right: 5%; top: 50%; transform: translate(0, -50%);">

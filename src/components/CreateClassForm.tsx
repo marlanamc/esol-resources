@@ -24,7 +24,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
     const [isLoading, setIsLoading] = useState(false);
 
     const generateCode = () => {
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        const chars = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
         let result = "";
         for (let i = 0; i < 6; i++) {
             result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -147,7 +147,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                                 value={code}
                                 onChange={(e) => setCode(e.target.value.toUpperCase())}
                                 placeholder="Leave empty to auto-generate"
-                                maxLength={10}
+                                maxLength={6}
                                 className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
                             />
                             <button
@@ -159,7 +159,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             </button>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">
-                            Students will use this code to join your class
+                            Students will use this 6-character code to join your class.
                         </p>
                     </div>
 
@@ -190,7 +190,6 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
         </div>
     );
 }
-
 
 
 

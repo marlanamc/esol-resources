@@ -164,6 +164,11 @@ Always use `@/` imports for internal modules.
 4. All activities should update streaks and check achievements on completion
 5. Points are calculated based on activity type - see `getActivityPoints()` in `src/lib/gamification.ts`
 
+### Grammar Guide Styling (Future Refactor Note)
+Grammar guides in `src/content/grammar/*.ts` use **inline styles** for callouts, tables, and diagrams. Dark mode is handled via attribute selectors in `globals.css` (e.g. `[style*="background: #fef9c3"]`). This approach works but is fragile: each new color requires a new CSS override.
+
+**Future improvement:** Introduce semantic class names (e.g. `grammar-callout-warning`, `grammar-table-accent`) and move styling to CSS. New guides would use these classes instead of inline styles, and dark mode would be defined once per class. This would make new content automatically dark-mode compatible.
+
 ### When Working with Gamification
 1. **Always** log points to `PointsLedger` via `awardPoints()` or `logPointsLedger()`
 2. Check for existing ledger entries to prevent duplicate awards

@@ -2,6 +2,8 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { useTheme } from '@/components/ThemeProvider';
+import { getLearnerEventTone } from '@/lib/learner-theme';
 
 export type CalendarEvent = {
     id?: string;
@@ -17,6 +19,7 @@ interface MiniCalendarProps {
 }
 
 export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
+    const { resolvedTheme } = useTheme();
     const VIEW_DATE_STORAGE_KEY = 'dashboard-mini-calendar-view-date-v1';
     // Calculate today fresh on every render to avoid caching issues
     const today = new Date();
@@ -87,7 +90,9 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
     return (
         <section className="w-full" aria-label="Calendar">
             <div className="flex items-center justify-between mb-4">
-                <h3 className="text-[1.45rem] font-display font-bold tracking-tight text-[#1f2633]" style={{ textWrap: 'balance' }}>
+                <h3 className={`text-[1.45rem] font-display font-bold tracking-tight ${
+                    resolvedTheme === 'dark' ? 'text-white' : 'text-[#1f2633]'
+                }`} style={{ textWrap: 'balance' }}>
                     {monthLabel} {viewYear}
                 </h3>
                 <div className="flex items-center gap-2">
@@ -95,7 +100,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Previous month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth - 1, 1))}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-white text-text-muted transition-colors hover:text-text hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 ${
+                            resolvedTheme === 'dark'
+                                ? 'border-white/10 bg-[#1e3a4d] text-gray-400 hover:text-white focus-visible:ring-primary-light/40'
+                                : 'border-border/70 bg-white text-text-muted hover:text-text focus-visible:ring-primary/40'
+                        }`}
                     >
                         <span aria-hidden="true">←</span>
                     </button>
@@ -103,17 +112,27 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                         type="button"
                         aria-label="Next month"
                         onClick={() => setViewDate(new Date(viewYear, viewMonth + 1, 1))}
-                        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/70 bg-white text-text-muted transition-colors hover:text-text hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+                        className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors hover:border-border touch-manipulation focus-visible:outline-none focus-visible:ring-2 ${
+                            resolvedTheme === 'dark'
+                                ? 'border-white/10 bg-[#1e3a4d] text-gray-400 hover:text-white focus-visible:ring-primary-light/40'
+                                : 'border-border/70 bg-white text-text-muted hover:text-text focus-visible:ring-primary/40'
+                        }`}
                     >
                         <span aria-hidden="true">→</span>
                     </button>
                 </div>
             </div>
 
-            <div className="rounded-xl border border-[#d9cec0] bg-gradient-to-b from-white to-[#fcf8f2] p-3 sm:p-4 shadow-[0_3px_10px_rgba(43,33,24,0.08)]">
+            <div className={`rounded-xl border p-3 sm:p-4 ${
+                resolvedTheme === 'dark'
+                    ? 'border-white/10 bg-gradient-to-b from-[#162b3d] to-[#0d1620] shadow-[0_3px_10px_rgba(13,22,32,0.3)]'
+                    : 'border-[#d9cec0] bg-gradient-to-b from-white to-[#fcf8f2] shadow-[0_3px_10px_rgba(43,33,24,0.08)]'
+            }`}>
                 <div className="grid grid-cols-7 gap-1 text-center mb-2">
                     {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
-                        <div key={`${day}-${idx}`} className="text-[10px] font-semibold text-text-muted/80 uppercase tracking-[0.16em]">
+                        <div key={`${day}-${idx}`} className={`text-[10px] font-semibold uppercase tracking-[0.16em] ${
+                            resolvedTheme === 'dark' ? 'text-gray-500' : 'text-text-muted/80'
+                        }`}>
                             {day}
                         </div>
                     ))}
@@ -135,9 +154,13 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                                 key={idx}
                                 className={`min-h-[44px] sm:min-h-[48px] rounded-lg border transition-colors cursor-default ${
                                     isToday
-                                        ? 'bg-primary text-white border-primary shadow-sm'
-                                        : 'bg-white border-transparent text-text'
+                                        ? 'text-[color:var(--text-on-accent)] border-primary shadow-sm'
+                                        : 'text-text'
                                 }`}
+                                style={{
+                                    backgroundColor: isToday ? 'var(--color-primary)' : 'var(--surface-elevated)',
+                                    borderColor: isToday ? 'var(--color-primary)' : 'var(--border-subtle)',
+                                }}
                             >
                                 <div className="h-full flex flex-col items-center justify-center">
                                     <span className={`text-xs leading-none ${isToday ? 'font-bold' : 'font-medium'}`}>
@@ -145,10 +168,10 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                                     </span>
                                     {!isToday && (hasQuiz || hasDue || hasHoliday || hasOther) && (
                                         <span className="mt-1 flex items-center gap-1" aria-hidden="true">
-                                            {hasQuiz && <span className="w-1.5 h-1.5 rounded-full bg-[#5f8267]" />}
-                                            {hasDue && <span className="w-1.5 h-1.5 rounded-full bg-[#a98966]" />}
-                                            {hasHoliday && <span className="w-1.5 h-1.5 rounded-full bg-[#6d89ac]" />}
-                                            {hasOther && <span className="w-1.5 h-1.5 rounded-full bg-[#7c6c98]" />}
+                                            {hasQuiz && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
+                                            {hasDue && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('due').accent }} />}
+                                            {hasHoliday && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} />}
+                                            {hasOther && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('event').accent }} />}
                                         </span>
                                     )}
                                 </div>
@@ -159,17 +182,17 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]" aria-hidden="true">
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#f9f3eb] border border-[#dfcdb7] text-[#8a5b3f]">
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--border-subtle)', color: 'var(--text-color-muted)' }}>
                     <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Today
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#eef4ef] border border-[#c7d8cc] text-[#3f5e47]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#5f8267] shrink-0" /> Quiz/Test
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('quiz').bg, borderColor: getLearnerEventTone('quiz').border, color: getLearnerEventTone('quiz').text }}>
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} /> Quiz/Test
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#f8f3ec] border border-[#e1d3c3] text-[#7b6248]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#a98966] shrink-0" /> Due
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('due').bg, borderColor: getLearnerEventTone('due').border, color: getLearnerEventTone('due').text }}>
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: getLearnerEventTone('due').accent }} /> Due
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-[#eef3f9] border border-[#c8d4e4] text-[#4c6788]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6d89ac] shrink-0" /> Holiday
+                <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('holiday').bg, borderColor: getLearnerEventTone('holiday').border, color: getLearnerEventTone('holiday').text }}>
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} /> Holiday
                 </span>
             </div>
         </section>

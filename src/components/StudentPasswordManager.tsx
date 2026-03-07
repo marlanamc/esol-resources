@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { MIN_PASSWORD_LENGTH } from "@/lib/auth-config";
 
 type Student = {
     id: string;
@@ -47,13 +48,11 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
     const updateStatus = (id: string, next: StatusState[string]) =>
         setStatus((prev) => ({ ...prev, [id]: next }));
 
-    const handleSubmit = async (id: string, pwd: string, allowDefaultPassword?: boolean) => {
-        if (!pwd || pwd.length < 6) {
-            updateStatus(id, { state: "error", message: "Min 6 characters" });
+    const handleSubmit = async (id: string, pwd: string) => {
+        if (!pwd || pwd.length < MIN_PASSWORD_LENGTH) {
+            updateStatus(id, { state: "error", message: `Min ${MIN_PASSWORD_LENGTH} characters` });
             return;
         }
-        const shouldAllowDefaultPassword =
-            allowDefaultPassword ?? pwd.trim().toLowerCase() === "password123";
         updateStatus(id, { state: "saving" });
         try {
             const res = await fetch("/api/admin/reset-student-password", {
@@ -62,7 +61,6 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                 body: JSON.stringify({
                     userId: id,
                     newPassword: pwd,
-                    allowDefaultPassword: shouldAllowDefaultPassword,
                 }),
             });
             if (!res.ok) {
@@ -86,7 +84,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                     <h3 className="text-xl font-bold text-text">Reset passwords quickly</h3>
                 </div>
                 <p className="text-xs text-text-muted">
-                    Changes apply immediately. Students will not be prompted to reset.
+                    Changes apply immediately. Use a unique temporary password and share it securely.
                 </p>
             </div>
 
@@ -154,20 +152,11 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                 />
                                 <div className="flex gap-2">
                                     <button
-                                        onClick={() =>
-                                            handleSubmit(s.id, passwords[s.id] || "password123")
-                                        }
+                                        onClick={() => handleSubmit(s.id, passwords[s.id] || "")}
                                         disabled={entry.state === "saving"}
                                         className="px-3 py-2 rounded-lg text-sm font-semibold text-white bg-primary hover:brightness-110 active:scale-95 disabled:opacity-60"
                                     >
                                         {entry.state === "saving" ? "Saving…" : "Save"}
-                                    </button>
-                                    <button
-                                        onClick={() => handleSubmit(s.id, "password123", true)}
-                                        disabled={entry.state === "saving"}
-                                        className="px-3 py-2 rounded-lg text-sm font-semibold border border-border text-text hover:bg-gray-50 active:scale-95 disabled:opacity-60"
-                                    >
-                                        Set to password123
                                     </button>
                                 </div>
                             </div>

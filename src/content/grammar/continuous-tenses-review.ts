@@ -348,7 +348,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
             icon: "⏰",
             explanation: `
                 <div style="max-width: 700px; margin: 2rem auto; padding: 2rem; background: linear-gradient(135deg, rgba(240, 180, 90, 0.05) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(6, 182, 212, 0.05) 100%); border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.2);">
-                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #2b3a4a; font-weight: 600;">
+                    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: #e8f1f8; font-weight: 600;">
                         Continuous tenses emphasize DURATION—actions happening over time
                     </p>
 
@@ -370,7 +370,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                                 <div style="font-weight: 700; color: #f0b45a; margin-bottom: 0.25rem; font-size: 0.875rem;">
                                     PAST CONTINUOUS
                                 </div>
-                                <div style="color: #2b3a4a; font-size: 0.85rem;">
+                                <div style="color: #e8f1f8; font-size: 0.85rem;">
                                     I <span style="color: #f0b45a; font-weight: 700;">was walking</span> home
                                 </div>
                             </div>
@@ -391,7 +391,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                                 <div style="font-weight: 700; color: #8b5cf6; margin-bottom: 0.25rem; font-size: 0.875rem;">
                                     PRESENT CONTINUOUS
                                 </div>
-                                <div style="color: #2b3a4a; font-size: 0.85rem;">
+                                <div style="color: #e8f1f8; font-size: 0.85rem;">
                                     I <span style="color: #8b5cf6; font-weight: 700;">am walking</span> home
                                 </div>
                             </div>
@@ -412,7 +412,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                                 <div style="font-weight: 700; color: #06b6d4; margin-bottom: 0.25rem; font-size: 0.875rem;">
                                     FUTURE CONTINUOUS
                                 </div>
-                                <div style="color: #2b3a4a; font-size: 0.85rem;">
+                                <div style="color: #e8f1f8; font-size: 0.85rem;">
                                     I <span style="color: #06b6d4; font-weight: 700;">will be walking</span> home
                                 </div>
                             </div>
@@ -438,7 +438,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     </div>
 
                     <div style="margin-top: 1rem; background: #eef2ff; border-left: 4px solid #6366f1; border-radius: 0.5rem; padding: 0.9rem;">
-                        <p style="margin: 0;"><strong>Duration vs Point-in-Time:</strong> Continuous answers "What was happening during this period?" Simple often answers "What happened at this point?"</p>
+                        <p style="margin: 0; color: #1f2937;"><strong style="color: #1f2937;">Duration vs Point-in-Time:</strong> Continuous answers "What was happening during this period?" Simple often answers "What happened at this point?"</p>
                     </div>
                 </div>
             `,

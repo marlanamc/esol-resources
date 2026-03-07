@@ -538,7 +538,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
     }
 
     return (
-        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
@@ -549,7 +549,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
             )}
 
             {/* Header */}
-            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
+            <div className="flex-shrink-0 bg-[var(--color-surface-elevated)] border-b md:border md:rounded-xl shadow-sm border-[var(--color-border-subtle)] p-3 md:p-4">
                 <div className="flex items-start gap-3">
                     <BackButton
                         onClick={() => window.history.back()}
@@ -558,26 +558,26 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                     <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                             <div>
-                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 leading-tight">
+                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--color-text)] leading-tight">
                                     Countable vs Uncountable Nouns
                                 </h2>
-                                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+                                <p className="text-xs sm:text-sm text-[var(--color-text-muted)] mt-0.5">
                                     Round {currentRound.roundNumber} of {rounds.length}
                                 </p>
                             </div>
-                            <div className="text-sm font-medium text-gray-600 whitespace-nowrap">
+                            <div className="text-sm font-medium text-[var(--color-text-muted)] whitespace-nowrap">
                                 <span className="text-green-600 font-bold">
                                     {gameState.correctCount}
                                 </span>{" "}
                                 / {shuffledWords.length} correct
                             </div>
                         </div>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3">
+                        <p className="text-xs sm:text-sm text-[var(--color-text)] mb-3">
                             {interactionMode === InteractionMode.WordSelected
                                 ? "Tap a group to put the word there"
                                 : "Pick a word and move it to the right group"}
                         </p>
-                        <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-2.5 w-full bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                             <div
                                 className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                                 style={{ width: `${progress}%` }}
@@ -589,7 +589,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
 
             {/* Main Game Area */}
             <div
-                className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:px-0 md:py-6 flex flex-col items-center justify-start gap-8"
+                className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:overflow-visible md:overscroll-auto md:px-0 md:py-6 flex flex-col items-center justify-start gap-8"
                 style={{ WebkitOverflowScrolling: "touch" }}
             >
                 {/* Current Word Card */}
@@ -601,7 +601,7 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                             onDragEnd={handleWordDragEnd}
                             onClick={handleWordTap}
                             className={`
-                                p-6 md:p-8 bg-white rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
+                                p-6 md:p-8 bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
                                 text-center transition-[transform,box-shadow] duration-200 min-h-[120px] flex items-center justify-center
                                 touch-manipulation select-none
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
@@ -612,15 +612,15 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                         : interactionMode ===
                                           InteractionMode.Dragging
                                         ? "border-blue-400 opacity-75"
-                                        : "border-gray-300 hover:border-blue-300"
+                                        : "border-[var(--color-border-subtle)] hover:border-blue-300"
                                 }
                             `}
                         >
-                            <h3 className="text-4xl md:text-5xl font-bold text-gray-900 break-words">
+                            <h3 className="text-4xl md:text-5xl font-bold text-[var(--color-text)] break-words">
                                 {currentWord.word}
                             </h3>
                         </div>
-                        <p className="text-center text-xs sm:text-sm text-gray-500 mt-3">
+                        <p className="text-center text-xs sm:text-sm text-[var(--color-text-muted)] mt-3">
                             {interactionMode === InteractionMode.WordSelected
                                 ? "Now tap a group below"
                                 : "Tap a group to sort the word"}
@@ -661,17 +661,17 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                             : interactionMode ===
                                               InteractionMode.Dragging
                                             ? "border-green-500 bg-green-50"
-                                            : "border-gray-300 bg-gray-50 hover:border-gray-400"
+                                            : "border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
                                     }
                                 `}
                             >
                                 <div className="text-4xl md:text-5xl mb-2">
                                     📦
                                 </div>
-                                <div className="font-bold text-gray-900 text-base md:text-lg">
+                                <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                                     Countable
                                 </div>
-                                <p className="text-xs text-gray-600 mt-2 text-center">
+                                <p className="text-xs text-[var(--color-text-muted)] mt-2 text-center">
                                     You can count these
                                 </p>
                             </div>
@@ -703,17 +703,17 @@ export default function MatchingGame({ contentStr, activityId, assignmentId, voc
                                             : interactionMode ===
                                               InteractionMode.Dragging
                                             ? "border-green-500 bg-green-50"
-                                            : "border-gray-300 bg-gray-50 hover:border-gray-400"
+                                            : "border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
                                     }
                                 `}
                             >
                                 <div className="text-4xl md:text-5xl mb-2">
                                     ∞
                                 </div>
-                                <div className="font-bold text-gray-900 text-base md:text-lg">
+                                <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                                     Uncountable
                                 </div>
-                                <p className="text-xs text-gray-600 mt-2 text-center">
+                                <p className="text-xs text-[var(--color-text-muted)] mt-2 text-center">
                                     You can't count this
                                 </p>
                             </div>
@@ -925,17 +925,17 @@ function VocabMatchingUI({
                     onComplete={() => setPointsToast(null)}
                 />
             )}
-            <div className="bg-white border border-gray-200 rounded-xl shadow-sm p-4 mb-4">
-                <h2 className="text-lg font-bold text-gray-900 mb-1">Vocabulary Matching</h2>
-                <p className="text-sm text-gray-500 mb-2">Match each word to its definition.</p>
+            <div className="bg-[var(--color-surface-elevated)] border border-[var(--color-border-subtle)] rounded-xl shadow-sm p-4 mb-4">
+                <h2 className="text-lg font-bold text-[var(--color-text)] mb-1">Vocabulary Matching</h2>
+                <p className="text-sm text-[var(--color-text-muted)] mb-2">Match each word to its definition.</p>
                 <div className="flex items-center gap-2">
-                    <div className="h-2 flex-1 bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-2 flex-1 bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                         <div
                             className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                             style={{ width: `${progressPercent}%` }}
                         />
                     </div>
-                    <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
+                    <span className="text-sm font-medium text-[var(--color-text-muted)] whitespace-nowrap">
                         {matchedTermIds.size}/{pairs.length}
                     </span>
                 </div>
@@ -963,7 +963,7 @@ function VocabMatchingUI({
                     {/* Desktop: Two-column layout */}
                     <div className="hidden md:grid md:grid-cols-2 md:gap-6">
                         <div className="space-y-2">
-                            <p className="text-sm font-medium text-gray-500">Words</p>
+                            <p className="text-sm font-medium text-[var(--color-text-muted)]">Words</p>
                             {shuffledTerms.map((p) => {
                                 const handlers = createTermClickHandler(p.id);
                                 return (
@@ -973,23 +973,23 @@ function VocabMatchingUI({
                                         {...handlers}
                                         className={`
                                             w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer
-                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
-                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10" : "border-gray-200 hover:border-gray-300"}
+                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
+                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
                                         `}
                                         style={{
                                             borderStyle: 'solid',
-                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : '#ffffff'),
-                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : '#e5e7eb'),
+                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : 'var(--color-surface-elevated)'),
+                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : 'var(--color-border-subtle)'),
                                             borderWidth: '2px'
                                         }}
                                     >
-                                        <span className="font-medium">{p.term}</span>
+                                        <span className={`font-medium ${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.term}</span>
                                     </button>
                                 );
                             })}
                         </div>
                         <div className="space-y-2">
-                            <p className="text-sm font-medium text-gray-500">Definitions</p>
+                            <p className="text-sm font-medium text-[var(--color-text-muted)]">Definitions</p>
                             {shuffledDefs.map((p) => {
                                 const handlers = createDefClickHandler(p.id);
                                 return (
@@ -999,17 +999,17 @@ function VocabMatchingUI({
                                         {...handlers}
                                         className={`
                                             w-full text-left px-4 py-3 min-h-[48px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-sm
-                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
-                                            ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse" : "border-gray-200 hover:border-gray-300"}
+                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
+                                            ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
                                         `}
                                         style={{
                                             borderStyle: 'solid',
-                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : '#ffffff'),
-                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : '#e5e7eb'),
+                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : 'var(--color-surface-elevated)'),
+                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : 'var(--color-border-subtle)'),
                                             borderWidth: '2px'
                                         }}
                                     >
-                                        <span>{p.definition}</span>
+                                        <span className={`${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.definition}</span>
                                     </button>
                                 );
                             })}
@@ -1020,7 +1020,7 @@ function VocabMatchingUI({
                     <div className="md:hidden space-y-4">
                         {/* Words to select */}
                         <div className="space-y-2">
-                            <p className="text-sm font-medium text-gray-500">
+                            <p className="text-sm font-medium text-[var(--color-text-muted)]">
                                 {selectedTermId != null ? "Selected word shown above" : "Tap a word to start:"}
                             </p>
                             {selectedTermId == null && shuffledTerms.map((p) => {
@@ -1032,17 +1032,17 @@ function VocabMatchingUI({
                                         {...handlers}
                                         className={`
                                             w-full text-left px-4 py-4 min-h-[60px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-base
-                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
-                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10" : "border-gray-300 hover:border-gray-400"}
+                                            ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
+                                            ${selectedTermId === p.id ? "border-[var(--color-primary)] bg-[var(--color-primary)]/10 text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
                                         `}
                                         style={{
                                             borderStyle: 'solid',
-                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : '#ffffff'),
-                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : '#d1d5db'),
+                                            backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (selectedTermId === p.id ? 'rgba(176, 87, 64, 0.1)' : 'var(--color-surface-elevated)'),
+                                            borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (selectedTermId === p.id ? 'var(--color-primary)' : 'var(--color-border-subtle)'),
                                             borderWidth: '2px'
                                         }}
                                     >
-                                        <span className="font-medium text-lg">{p.term}</span>
+                                        <span className={`font-medium text-lg ${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.term}</span>
                                     </button>
                                 );
                             })}
@@ -1051,7 +1051,7 @@ function VocabMatchingUI({
                         {/* Definitions to match (only show when word is selected) */}
                         {selectedTermId != null && (
                             <div className="space-y-2">
-                                <p className="text-sm font-medium text-gray-500">Tap the correct definition:</p>
+                                <p className="text-sm font-medium text-[var(--color-text-muted)]">Tap the correct definition:</p>
                                 {shuffledDefs.map((p) => {
                                     const handlers = createDefClickHandler(p.id);
                                     return (
@@ -1061,17 +1061,17 @@ function VocabMatchingUI({
                                             {...handlers}
                                             className={`
                                                 w-full text-left px-4 py-4 min-h-[60px] rounded-lg border-2 transition-all touch-manipulation cursor-pointer text-base
-                                                ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-green-900" : ""}
-                                                ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse" : "border-gray-300 hover:border-gray-400"}
+                                                ${matchedTermIds.has(p.id) ? "bg-green-50 border-green-400 text-[#14532d]" : ""}
+                                                ${wrongFlash === p.id ? "border-red-400 bg-red-50 animate-pulse text-[var(--color-text)]" : "border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] text-[var(--color-text)]"}
                                             `}
                                             style={{
                                                 borderStyle: 'solid',
-                                                backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : '#ffffff'),
-                                                borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : '#d1d5db'),
+                                                backgroundColor: matchedTermIds.has(p.id) ? '#f0fdf4' : (wrongFlash === p.id ? '#fef2f2' : 'var(--color-surface-elevated)'),
+                                                borderColor: matchedTermIds.has(p.id) ? '#4ade80' : (wrongFlash === p.id ? '#f87171' : 'var(--color-border-subtle)'),
                                                 borderWidth: '2px'
                                             }}
                                         >
-                                            <span className="text-base">{p.definition}</span>
+                                            <span className={`text-base ${matchedTermIds.has(p.id) ? 'text-[#14532d]' : 'text-[var(--color-text)]'}`}>{p.definition}</span>
                                         </button>
                                     );
                                 })}
@@ -1547,7 +1547,7 @@ function TimeIndicatorSortingUI({
     const difficultyStyle = difficultyColors[currentRound.difficulty];
 
     return (
-        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
@@ -1558,7 +1558,7 @@ function TimeIndicatorSortingUI({
             )}
 
             {/* Header */}
-            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
+            <div className="flex-shrink-0 bg-[var(--color-surface-elevated)] border-b md:border md:rounded-xl shadow-sm border-[var(--color-border-subtle)] p-3 md:p-4">
                 <div className="flex items-start gap-3">
                     <BackButton
                         onClick={() => window.history.back()}
@@ -1581,15 +1581,15 @@ function TimeIndicatorSortingUI({
                                 / {shuffledWords.length} correct
                             </div>
                         </div>
-                        <p className="text-xs text-gray-500 mb-1">
+                        <p className="text-xs text-[var(--color-text-muted)] mb-1">
                             Round {currentRound.roundNumber} of {rounds.length}
                         </p>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3">
+                        <p className="text-xs sm:text-sm text-[var(--color-text)] mb-3">
                             {interactionMode === InteractionMode.WordSelected
                                 ? "Tap a category to sort"
                                 : "Which tense does this time expression use?"}
                         </p>
-                        <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-2.5 w-full bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                             <div
                                 className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                                 style={{ width: `${progress}%` }}
@@ -1601,7 +1601,7 @@ function TimeIndicatorSortingUI({
 
             {/* Main Game Area */}
             <div
-                className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:px-0 md:py-6 flex flex-col items-center justify-start gap-8"
+                className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:overflow-visible md:overscroll-auto md:px-0 md:py-6 flex flex-col items-center justify-start gap-8"
                 style={{ WebkitOverflowScrolling: "touch" }}
             >
                 {/* Current Word Card */}
@@ -1613,7 +1613,7 @@ function TimeIndicatorSortingUI({
                             onDragEnd={handleWordDragEnd}
                             onClick={handleWordTap}
                             className={`
-                                p-6 md:p-8 bg-white rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
+                                p-6 md:p-8 bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border-4 cursor-grab active:cursor-grabbing
                                 text-center transition-[transform,box-shadow] duration-200 min-h-[120px] flex items-center justify-center
                                 touch-manipulation select-none
                                 ${gameState.bounceWord ? "animate-bounce-back" : ""}
@@ -1624,15 +1624,15 @@ function TimeIndicatorSortingUI({
                                         : interactionMode ===
                                           InteractionMode.Dragging
                                         ? "border-blue-400 opacity-75"
-                                        : "border-gray-300 hover:border-blue-300"
+                                        : "border-[var(--color-border-subtle)] hover:border-blue-300"
                                 }
                             `}
                         >
-                            <h3 className="text-3xl md:text-4xl font-bold text-gray-900 break-words">
+                            <h3 className="text-3xl md:text-4xl font-bold text-[var(--color-text)] break-words">
                                 {currentWord.word}
                             </h3>
                         </div>
-                        <p className="text-center text-xs sm:text-sm text-gray-500 mt-3">
+                        <p className="text-center text-xs sm:text-sm text-[var(--color-text-muted)] mt-3">
                             {interactionMode === InteractionMode.WordSelected
                                 ? "Now tap a category below"
                                 : "Tap a category to sort"}
@@ -1667,14 +1667,14 @@ function TimeIndicatorSortingUI({
                                             : interactionMode ===
                                               InteractionMode.Dragging
                                             ? "border-green-500 bg-green-50"
-                                            : "border-gray-300 bg-gray-50 hover:border-gray-400"
+                                            : "border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
                                     }
                                 `}
                             >
                                 <div className="text-4xl md:text-5xl mb-2">
                                     📅
                                 </div>
-                                <div className="font-bold text-gray-900 text-base md:text-lg">
+                                <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                                     Specified Time
                                 </div>
                                 <p className="text-xs font-semibold text-blue-600 mt-1">
@@ -1705,14 +1705,14 @@ function TimeIndicatorSortingUI({
                                             : interactionMode ===
                                               InteractionMode.Dragging
                                             ? "border-green-500 bg-green-50"
-                                            : "border-gray-300 bg-gray-50 hover:border-gray-400"
+                                            : "border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] hover:border-[var(--color-border-strong)]"
                                     }
                                 `}
                             >
                                 <div className="text-4xl md:text-5xl mb-2">
                                     ⏳
                                 </div>
-                                <div className="font-bold text-gray-900 text-base md:text-lg">
+                                <div className="font-bold text-[var(--color-text)] text-base md:text-lg">
                                     Unspecified Time
                                 </div>
                                 <p className="text-xs font-semibold text-purple-600 mt-1">
@@ -1853,6 +1853,7 @@ function VerbSoundsRightSortingUI({
         showExplanation: false,
         explanationText: "",
         wrongWordText: "",
+        selectedCorrectWordText: "",
         bounceCard: false,
         selectedCorrect: false,
     });
@@ -1920,6 +1921,7 @@ function VerbSoundsRightSortingUI({
                                     currentBlankIndex: 0,
                                     filledBlanks: [],
                                     selectedCorrect: false,
+                                    selectedCorrectWordText: "",
                                     bounceCard: false,
                                     showExplanation: false,
                                     explanationText: "",
@@ -2020,6 +2022,7 @@ function VerbSoundsRightSortingUI({
                     correctCount: prev.correctCount + 1,
                     completedItems: new Set([...prev.completedItems, currentItem.id]),
                     selectedCorrect: true,
+                    selectedCorrectWordText: word,
                     filledBlanks: [...prev.filledBlanks, word],
                 }));
                 if (advanceTimeoutRef.current !== null) {
@@ -2036,13 +2039,14 @@ function VerbSoundsRightSortingUI({
                     currentBlankIndex: prev.currentBlankIndex + 1,
                     filledBlanks: [...prev.filledBlanks, word],
                     selectedCorrect: true,
+                    selectedCorrectWordText: word,
                 }));
                 // Brief delay then reset selectedCorrect for next blank
                 if (selectedCorrectTimeoutRef.current !== null) {
                     window.clearTimeout(selectedCorrectTimeoutRef.current);
                 }
                 selectedCorrectTimeoutRef.current = window.setTimeout(() => {
-                    setGameState((p) => ({ ...p, selectedCorrect: false }));
+                    setGameState((p) => ({ ...p, selectedCorrect: false, selectedCorrectWordText: "" }));
                     selectedCorrectTimeoutRef.current = null;
                 }, 800);
             }
@@ -2072,7 +2076,7 @@ function VerbSoundsRightSortingUI({
                 setIsRoundComplete(true);
                 return prev;
             }
-            return { ...prev, currentIndex: nextIndex, currentBlankIndex: 0, filledBlanks: [], selectedCorrect: false };
+            return { ...prev, currentIndex: nextIndex, currentBlankIndex: 0, filledBlanks: [], selectedCorrect: false, selectedCorrectWordText: "" };
         });
     };
 
@@ -2103,6 +2107,7 @@ function VerbSoundsRightSortingUI({
                 showExplanation: false,
                 explanationText: "",
                 wrongWordText: "",
+                selectedCorrectWordText: "",
                 bounceCard: false,
                 selectedCorrect: false,
             });
@@ -2138,6 +2143,7 @@ function VerbSoundsRightSortingUI({
             showExplanation: false,
             explanationText: "",
             wrongWordText: "",
+            selectedCorrectWordText: "",
             bounceCard: false,
             selectedCorrect: false,
         });
@@ -2167,39 +2173,39 @@ function VerbSoundsRightSortingUI({
     const wordOptions = currentBlank ? buildVerbOptions(currentBlank, shouldSwap) : [];
 
     return (
-        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
+        <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
             {pointsToast && <PointsToast key={pointsToast.key} points={pointsToast.points} onComplete={() => setPointsToast(null)} />}
             <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
                 <div className="flex items-start gap-3">
                     <BackButton onClick={() => window.history.back()} className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center touch-manipulation" />
                     <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Pick the word that sounds right</h2>
-                            <div className="text-sm font-medium text-gray-600">
+                            <h2 className="text-base sm:text-lg md:text-xl font-bold text-[var(--color-text)]">Pick the word that sounds right</h2>
+                            <div className="text-sm font-medium text-[var(--color-text-muted)]">
                                 <span className="text-green-600 font-bold">{gameState.correctCount}</span> / {shuffledItems.length} correct
                             </div>
                         </div>
-                        <p className="text-xs text-gray-500 mb-1">Round {currentRound.roundNumber} of {rounds.length}</p>
-                        <p className="text-xs sm:text-sm text-gray-600 mb-3">Tap the word that fits in the sentence</p>
-                        <div className="h-2.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                        <p className="text-xs text-[var(--color-text-muted)] mb-1">Round {currentRound.roundNumber} of {rounds.length}</p>
+                        <p className="text-xs sm:text-sm text-[var(--color-text)] mb-3">Tap the word that fits in the sentence</p>
+                        <div className="h-2.5 w-full bg-[var(--color-bg-light)] rounded-full overflow-hidden">
                             <div className="h-full bg-[var(--color-primary)] transition-[width] duration-300" style={{ width: `${progress}%` }} />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:px-0 md:py-6 flex flex-col items-center justify-start gap-8" style={{ WebkitOverflowScrolling: "touch" }}>
+            <div className="flex-1 overflow-y-auto overscroll-contain px-3 py-6 md:overflow-visible md:overscroll-auto md:px-0 md:py-6 flex flex-col items-center justify-start gap-8" style={{ WebkitOverflowScrolling: "touch" }}>
                 {/* Sentence Card */}
                 {!isRoundComplete && currentItem && (
                     <div className="w-full max-w-2xl">
                         <div
                             className={`
-                                p-8 md:p-10 bg-white rounded-2xl shadow-lg border-4 text-center
+                                p-8 md:p-10 bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border-4 text-center
                                 min-h-[140px] flex items-center justify-center
-                                ${gameState.bounceCard ? "animate-bounce-back border-gray-300" : "border-gray-300"}
+                                ${gameState.bounceCard ? "animate-bounce-back border-[var(--color-border-strong)]" : "border-[var(--color-border-subtle)]"}
                             `}
                         >
-                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-relaxed">
+                            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--color-text)] leading-relaxed">
                                 {currentItem.sentence.split("_____").map((part, blankIdx, arr) => (
                                     <span key={blankIdx}>
                                         {part}
@@ -2218,14 +2224,14 @@ function VerbSoundsRightSortingUI({
                                                 <span className="inline-block min-w-[80px] md:min-w-[100px] border-b-4 border-dashed border-[var(--color-primary)] mx-1 drop-zone-ready" />
                                             ) : (
                                                 // Future blank - dimmed
-                                                <span className="inline-block min-w-[80px] md:min-w-[100px] border-b-4 border-dashed border-gray-300 mx-1" />
+                                                <span className="inline-block min-w-[80px] md:min-w-[100px] border-b-4 border-dashed border-[var(--color-border-strong)] mx-1" />
                                             )
                                         )}
                                     </span>
                                 ))}
                             </h3>
                         </div>
-                        <p className="text-center text-sm text-gray-500 mt-3">
+                        <p className="text-center text-sm text-[var(--color-text-muted)] mt-3">
                             {currentItem.blanks.length > 1
                                 ? `Blank ${gameState.currentBlankIndex + 1} of ${currentItem.blanks.length} — Tap the word that sounds right`
                                 : "Tap the word that sounds right"
@@ -2240,7 +2246,9 @@ function VerbSoundsRightSortingUI({
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full">
                             {wordOptions.map((word, idx) => {
                                 const isCorrect = normalizeVerbOption(word) === normalizeVerbOption(currentBlank.correctWord);
-                                const isSelectedCorrect = gameState.selectedCorrect && isCorrect;
+                                const isSelectedCorrect =
+                                    gameState.selectedCorrect &&
+                                    normalizeVerbOption(word) === normalizeVerbOption(gameState.selectedCorrectWordText);
                                 const showWrong = gameState.showExplanation
                                     && normalizeVerbOption(word) === normalizeVerbOption(gameState.wrongWordText);
                                 const tenseHint = currentBlank.tense ? VERB_TENSE_HINTS[currentBlank.tense] : null;
@@ -2262,7 +2270,7 @@ function VerbSoundsRightSortingUI({
                                             ${showWrong ? "drop-zone-wrong" : ""}
                                             ${isSelectedCorrect ? "drop-zone-correct" : ""}
                                             ${!gameState.selectedCorrect && !gameState.showExplanation
-                                                ? `${colors.border} ${colors.bg} ${colors.hoverBorder} ${colors.hoverBg}`
+                                                ? `bg-[var(--color-surface-elevated)] border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] hover:bg-[var(--color-bg-light)]`
                                                 : ""}
                                             ${gameState.selectedCorrect || gameState.showExplanation ? "cursor-not-allowed opacity-75" : ""}
                                         `}
@@ -2270,7 +2278,7 @@ function VerbSoundsRightSortingUI({
                                         <div className="text-4xl md:text-5xl mb-2">
                                             {isSelectedCorrect ? "✅" : showWrong ? "❌" : colors.emoji}
                                         </div>
-                                        <div className="font-bold text-gray-900 text-2xl md:text-3xl">
+                                        <div className="font-bold text-[var(--color-text)] text-2xl md:text-3xl">
                                             {word}
                                         </div>
                                         {isSelectedCorrect && tenseHint && (
@@ -2313,12 +2321,12 @@ function VerbSoundsRightSortingUI({
 
                 {gameState.showExplanation && currentBlank && (
                     <div className="w-full max-w-md">
-                        <div className="bg-red-50 border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg">
+                        <div className="bg-[var(--color-surface-elevated)] border-2 border-red-300 rounded-xl p-4 md:p-6 shadow-lg">
                             <div className="flex items-start gap-3 mb-3">
                                 <span className="text-2xl">❌</span>
                                 <div className="flex-1">
-                                    <h3 className="font-bold text-red-900 text-base md:text-lg">Not quite!</h3>
-                                    <p className="text-sm text-red-800 mt-1">The correct answer is: <strong>{currentBlank.correctWord}</strong></p>
+                                    <h3 className="font-bold text-red-300 text-base md:text-lg">Not quite!</h3>
+                                    <p className="text-sm text-[var(--color-text)] mt-1">The correct answer is: <strong>{currentBlank.correctWord}</strong></p>
                                     {currentBlank.tense && VERB_TENSE_HINTS[currentBlank.tense] && (
                                         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium mt-2 ${VERB_TENSE_HINTS[currentBlank.tense].bgClass} ${VERB_TENSE_HINTS[currentBlank.tense].textClass}`}>
                                             <span>{VERB_TENSE_HINTS[currentBlank.tense].emoji}</span>
@@ -2328,7 +2336,7 @@ function VerbSoundsRightSortingUI({
                                 </div>
                             </div>
                             {gameState.explanationText && (
-                                <p className="text-sm text-red-800 mb-4 leading-relaxed">{gameState.explanationText}</p>
+                                <p className="text-sm text-[var(--color-text-muted)] mb-4 leading-relaxed">{gameState.explanationText}</p>
                             )}
                             <button
                                 onClick={handleDismissExplanation}
@@ -2351,4 +2359,3 @@ function VerbSoundsRightSortingUI({
         </div>
     );
 }
-

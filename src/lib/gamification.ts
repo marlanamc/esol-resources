@@ -80,7 +80,7 @@ export async function trackLogin(userId: string) {
       }
     }
   } catch (err) {
-    console.error('[Gamification] Failed to track login', err);
+    logger.error('[Gamification] Failed to track login', err);
   }
 }
 
@@ -95,7 +95,7 @@ export async function awardPoints(userId: string, points: number, reason: string
 
   await logPointsLedger(userId, points, reason || 'Points awarded', 'award');
 
-  console.log(`[Gamification] Awarded ${points} points to user ${userId} for: ${reason}`);
+  logger.info("[Gamification] Awarded points", { userId, points, reason });
 
   return user;
 }

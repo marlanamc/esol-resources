@@ -541,7 +541,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
     }, [awardCompletion, buildMiniQuizCertificateHref, onComplete, router]);
 
     return (
-        <div ref={readerContainerRef} className="grammar-reader-container min-h-screen bg-bg">
+        <div ref={readerContainerRef} className="grammar-reader-container min-h-screen bg-bg" data-testid="grammar-reader-shell">
             {/* Points Toast */}
             {pointsToast && (
                 <PointsToast
@@ -553,7 +553,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
 
             {/* Main Content Container - Everything in one card */}
             <main className="w-full px-0 py-0 pb-24 sm:px-4 sm:py-4 md:container md:mx-auto md:pb-4">
-                <div className="grammar-reader-split-screen bg-white border-y border-text/35 rounded-none shadow-none sm:border sm:rounded-xl sm:shadow-lg overflow-hidden">
+                <div className="grammar-reader-split-screen rounded-none border-y border-text/35 shadow-none overflow-hidden sm:rounded-xl sm:border sm:shadow-lg">
                     {/* Compact Header: Breadcrumb + Progress + TOC */}
                     <div className="border-b border-border bg-bg-light">
                         <div className="px-4 sm:px-6 py-3 group">
@@ -592,7 +592,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                     {content.tableOfContents && (
                                         <button
                                             onClick={() => setShowTOC(!showTOC)}
-                                            className="flex-shrink-0 text-xs text-primary hover:text-primary-dark flex items-center gap-1 px-2 py-1 rounded hover:bg-white transition-colors"
+                                            className="grammar-reader-toc-toggle flex-shrink-0 text-xs text-primary hover:text-primary-dark flex items-center gap-1 px-2 py-1 rounded transition-colors"
                                         >
                                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path
@@ -722,8 +722,8 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                                 {/* Keyboard Shortcuts Hint */}
                                 <div className="text-xs text-text-muted mt-2">
                                     <p>
-                                        Use <kbd className="px-2 py-1 bg-white rounded border border-border">←</kbd>{" "}
-                                        and <kbd className="px-2 py-1 bg-white rounded border border-border">→</kbd>{" "}
+                                        Use <kbd className="px-2 py-1 rounded border border-border">←</kbd>{" "}
+                                        and <kbd className="px-2 py-1 rounded border border-border">→</kbd>{" "}
                                         to navigate
                                     </p>
                                 </div>
@@ -740,7 +740,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                             <button
                                 onClick={handlePrevious}
                                 disabled={!showQuiz && isFirstSection}
-                                className="fixed left-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-white shadow-lg border-2 border-border hover:border-primary hover:bg-primary hover:text-white transition-[border-color,background-color,color] duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:border-border disabled:hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                                className="grammar-reader-nav-button grammar-reader-nav-button-secondary fixed left-4 top-1/2 -translate-y-1/2 z-40 flex h-14 w-14 items-center justify-center rounded-full border-2 border-border shadow-lg transition-[border-color,background-color,color] duration-200 group disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                                 aria-label="Previous section"
                             >
                                 <svg
@@ -766,7 +766,7 @@ export function GrammarReader({ content, onComplete, completionKey, activityId }
                         <button
                             onClick={handleNext}
                             disabled={showQuiz && !content.miniQuiz}
-                            className="fixed right-4 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark hover:scale-110 transition-[background-color,transform] duration-200 flex items-center justify-center group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            className="grammar-reader-nav-button grammar-reader-nav-button-primary fixed right-4 top-1/2 -translate-y-1/2 z-40 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-[background-color,transform] duration-200 group disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                             aria-label="Next section"
                         >
                             <svg

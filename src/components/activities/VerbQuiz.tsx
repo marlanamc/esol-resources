@@ -75,15 +75,15 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-2xl shadow-lg border border-sage/20 p-6"
+        className="bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] p-6"
       >
-        <h2 className="text-2xl font-display font-bold text-terracotta mb-2">
+        <h2 className="text-2xl font-display font-bold text-[var(--color-text)] mb-2">
           {headerTitle}
         </h2>
-        <p className="text-neutral-600">
+        <p className="text-[var(--color-text)]">
           Complete the verb forms for each irregular verb. The base form (V1) is provided.
         </p>
-        <p className="text-sm text-neutral-500 mt-2">
+        <p className="text-sm text-[var(--color-text-muted)] mt-2">
           Due: {parseLocalDate(content.due_date).toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',
@@ -98,31 +98,31 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="hidden md:block bg-white rounded-2xl shadow-lg border border-sage/20 overflow-hidden"
+        className="hidden md:block bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] overflow-hidden"
       >
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-terracotta/10 border-b-2 border-terracotta/20">
+            <thead className="bg-[var(--color-bg-light)] border-b border-[var(--color-border-subtle)]">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-terracotta">Verb</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-terracotta">V1<br /><span className="text-xs font-normal text-neutral-600">(Base)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-terracotta">V1 (3rd)<br /><span className="text-xs font-normal text-neutral-600">(he/she/it)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-terracotta">V1-ing<br /><span className="text-xs font-normal text-neutral-600">(present)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-terracotta">V2<br /><span className="text-xs font-normal text-neutral-600">(past)</span></th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-terracotta">V3<br /><span className="text-xs font-normal text-neutral-600">(participle)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">Verb</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(Base)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1 (3rd)<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(he/she/it)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V1-ing<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(present)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V2<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(past)</span></th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-[var(--color-text)]">V3<br /><span className="text-xs font-normal text-[var(--color-text-muted)]">(participle)</span></th>
               </tr>
             </thead>
             <tbody>
               {Object.entries(content.verbs).map(([verb, verbData], idx) => (
                 <tr
                   key={verb}
-                  className={`border-b border-neutral-100 hover:bg-sage/5 transition-colors ${
-                    idx % 2 === 0 ? 'bg-white' : 'bg-neutral-50/50'
+                  className={`border-b border-[var(--color-border-subtle)] transition-colors ${
+                    idx % 2 === 0 ? 'bg-[var(--color-surface-elevated)]' : 'bg-[var(--color-bg-light)]/45'
                   }`}
                 >
-                  <td className="px-6 py-4 font-medium text-neutral-800 capitalize">To {verb}</td>
+                  <td className="px-6 py-4 font-medium text-[var(--color-text)] capitalize">To {verb}</td>
                   <td className="px-6 py-4">
-                    <div className="px-3 py-2 bg-neutral-100 rounded-lg text-neutral-600 font-mono text-sm">
+                    <div className="px-3 py-2 bg-[var(--color-bg-light)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
                       {verbData.v1}
                     </div>
                   </td>
@@ -131,7 +131,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v1_3rd}
                       onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -140,7 +140,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v1_ing}
                       onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -149,7 +149,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v2}
                       onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -158,7 +158,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v3}
                       onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
-                      className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                      className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
                   </td>
@@ -177,68 +177,68 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + idx * 0.05 }}
-            className="bg-white rounded-2xl shadow-lg border border-sage/20 p-4"
+            className="bg-[var(--color-surface-elevated)] rounded-2xl shadow-lg border border-[var(--color-border-subtle)] p-4"
           >
-            <h3 className="text-lg font-bold text-terracotta mb-3 capitalize">To {verb}</h3>
+            <h3 className="text-lg font-bold text-[var(--color-text)] mb-3 capitalize">To {verb}</h3>
 
             <div className="space-y-3">
-              <div className="bg-neutral-50 rounded-lg p-3">
-                <label className="text-xs font-semibold text-neutral-600 mb-1 block">
+              <div className="bg-[var(--color-bg-light)] rounded-lg p-3 border border-[var(--color-border-subtle)]">
+                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                   V1 (Base Form)
                 </label>
-                <div className="px-3 py-2 bg-neutral-100 rounded-lg text-neutral-600 font-mono text-sm">
+                <div className="px-3 py-2 bg-[var(--color-surface-elevated)] rounded-lg text-[var(--color-text)] font-mono text-sm border border-[var(--color-border-subtle)]">
                   {verbData.v1}
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-neutral-600 mb-1 block">
+                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                   V1 (3rd person) - he/she/it
                 </label>
                 <input
                   type="text"
                   value={answers[verb].v1_3rd}
                   onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-neutral-600 mb-1 block">
+                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                   V1-ing (Present Participle)
                 </label>
                 <input
                   type="text"
                   value={answers[verb].v1_ing}
                   onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-neutral-600 mb-1 block">
+                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                   V2 (Simple Past)
                 </label>
                 <input
                   type="text"
                   value={answers[verb].v2}
                   onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-neutral-600 mb-1 block">
+                <label className="text-xs font-semibold text-[var(--color-text-muted)] mb-1 block">
                   V3 (Past Participle)
                 </label>
                 <input
                   type="text"
                   value={answers[verb].v3}
                   onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
-                  className="w-full px-3 py-2 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-terracotta/50 focus:border-terracotta transition-[border-color] font-mono text-sm"
+                  className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
               </div>

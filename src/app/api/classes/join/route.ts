@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { requireStudent } from "@/lib/api-auth";
+import { ApiErrors } from "@/lib/api-response";
+import { JoinClassBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { logger } from "@/lib/logger";
 
 export function validateJoinSession(session: { user?: { role?: string | null } } | null): {
     allowed: boolean;
@@ -49,23 +53,19 @@ export function buildAlreadyEnrolledResponse(classId: string) {
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        const sessionValidation = validateJoinSession(session);
-        if (!sessionValidation.allowed) {
-            return NextResponse.json({ error: sessionValidation.error }, { status: sessionValidation.status });
-        }
+        const studentCheck = requireStudent(session);
+        if (!studentCheck.ok) return studentCheck.response;
 
         const body = await request.json();
-        const { code } = body;
+        const validated = parseApiBody(JoinClassBodySchema, body);
+        if (!validated.ok) return validated.response;
 
-        const normalizedCode = normalizeJoinClassCode(code);
+        const normalizedCode = normalizeJoinClassCode(validated.data.code);
         if (!normalizedCode.ok) {
             return NextResponse.json({ error: normalizedCode.error }, { status: normalizedCode.status });
         }
 
-        const userId = session?.user?.id;
-        if (!userId) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
+        const userId = studentCheck.user.id;
 
         // Find class by code
         const classItem = await prisma.class.findUnique({
@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
         });
 
         if (!classItem) {
-            return NextResponse.json({ error: "Class not found. Please check the code." }, { status: 404 });
+            return ApiErrors.notFound("Class");
         }
 
         // Check if already enrolled
@@ -101,16 +101,10 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json({ classId: classItem.id, message: "Successfully joined class" });
     } catch (error: unknown) {
-        console.error("Error joining class:", error);
-        // SECURITY: Don't expose internal error details to user
-        return NextResponse.json(
-            { error: "Failed to join class. Please try again." },
-            { status: 500 }
-        );
+        logger.error("Error joining class", error);
+        return ApiErrors.internal("Failed to join class. Please try again.");
     }
 }
-
-
 
 
 

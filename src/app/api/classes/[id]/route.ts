@@ -3,7 +3,10 @@ import { randomUUID } from "crypto";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageClass, ensureTeacher } from "@/lib/policies";
+import { canManageClass } from "@/lib/policies";
+import { requireTeacher } from "@/lib/api-auth";
+import { ApiErrors } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
 
 const MAX_ANNOUNCEMENT_LENGTH = 1000;
 const MAX_CLASS_NAME_LENGTH = 200;
@@ -15,13 +18,8 @@ interface RouteParams {
 export async function PATCH(request: NextRequest, { params }: RouteParams) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-        const teacherCheck = ensureTeacher(session.user);
-        if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
         const admin = teacherCheck.admin;
 
         const { id } = await params;
@@ -85,10 +83,10 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         });
 
         if (!existingClass) {
-            return NextResponse.json({ error: "Class not found" }, { status: 404 });
+            return ApiErrors.notFound("Class", id);
         }
-        if (!canManageClass(session.user, admin, existingClass.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        if (!canManageClass(teacherCheck.user, admin, existingClass.teacherId)) {
+            return ApiErrors.forbidden();
         }
 
         const updatedClass = await prisma.$transaction(async (tx) => {
@@ -104,7 +102,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
                     if (!sourceClass) {
                         throw new Error("SOURCE_CLASS_NOT_FOUND");
                     }
-                    if (!canManageClass(session.user, admin, sourceClass.teacherId)) {
+                    if (!canManageClass(teacherCheck.user, admin, sourceClass.teacherId)) {
                         throw new Error("FORBIDDEN_SOURCE_CLASS");
                     }
 
@@ -156,15 +154,12 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
         return NextResponse.json(updatedClass);
     } catch (error: unknown) {
         if (error instanceof Error && error.message === "SOURCE_CLASS_NOT_FOUND") {
-            return NextResponse.json({ error: "Section source class not found" }, { status: 404 });
+            return ApiErrors.notFound("Section source class");
         }
         if (error instanceof Error && error.message === "FORBIDDEN_SOURCE_CLASS") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+            return ApiErrors.forbidden();
         }
-        console.error("Error updating class:", error);
-        return NextResponse.json(
-            { error: "Failed to update class" },
-            { status: 500 }
-        );
+        logger.error("Error updating class", error);
+        return ApiErrors.internal("Failed to update class");
     }
 }

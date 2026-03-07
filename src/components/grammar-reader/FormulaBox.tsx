@@ -13,7 +13,7 @@ const colorMap = {
     ing: "bg-orange-50 text-orange-900 border-orange-200",
     helper: "bg-purple-50 text-purple-900 border-purple-200",
     object: "bg-emerald-50 text-emerald-900 border-emerald-200",
-    other: "bg-slate-50 text-slate-800 border-slate-200",
+    other: "bg-[var(--color-surface-subtle)] text-text border-border",
 };
 
 const isHelperVerb = (text: string, type?: FormulaPart["type"]) => {
@@ -31,7 +31,7 @@ const isSeparator = (text: string) => {
 export function FormulaBox({ parts }: FormulaBoxProps) {
     return (
         <motion.div
-            className="formula-box bg-white/90 border-2 border-primary/25 rounded-2xl px-4 py-5 sm:px-8 sm:py-7 my-6 text-center shadow-lg backdrop-blur min-w-0 overflow-hidden"
+            className="formula-box my-6 min-w-0 overflow-hidden rounded-2xl border-2 border-primary/25 bg-[var(--color-surface-elevated)] px-4 py-5 text-center shadow-lg backdrop-blur sm:px-8 sm:py-7"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -46,7 +46,7 @@ export function FormulaBox({ parts }: FormulaBoxProps) {
                     return (
                         <div key={index} className="flex items-center gap-2 sm:gap-4 min-w-0 max-w-full">
                             {currentIsSeparator ? (
-                                <span className={`text-xl sm:text-2xl font-bold shrink-0 ${part.text === '+' ? 'text-slate-300' : 'text-slate-500'} drop-shadow-sm`}>
+                                <span className={`text-xl sm:text-2xl font-bold shrink-0 ${part.text === '+' ? 'text-text-light' : 'text-text-muted'} drop-shadow-sm`}>
                                     {part.text}
                                 </span>
                             ) : (
@@ -81,7 +81,7 @@ export function FormulaBox({ parts }: FormulaBoxProps) {
                             
                             {/* Only add automatic separator if current and next are both non-separators */}
                             {nextPart && !currentIsSeparator && !nextIsSeparator && (
-                                <span className="text-xl sm:text-2xl font-bold text-slate-300 drop-shadow-sm">+</span>
+                                <span className="text-xl sm:text-2xl font-bold text-text-light drop-shadow-sm">+</span>
                             )}
                         </div>
                     );

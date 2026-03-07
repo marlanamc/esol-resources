@@ -54,15 +54,13 @@ npm run dev
 
 ### Default Accounts
 
-After seeding, you can log in with:
+After seeding, you can log in with the usernames below and the password you set in `DEV_SEED_ACCOUNT_PASSWORD`:
 
 **Teacher Account:**
 - Username: `teacher`
-- Password: `password123`
 
 **Student Account** (any seeded student, e.g.):
 - Username: `ricardo`
-- Password: `password123`
 
 ## Project Structure
 
@@ -117,6 +115,8 @@ Copy `.env.example` to `.env` and configure:
 - `POSTGRES_URL` - Database connection string
 - `NEXTAUTH_SECRET` - Auth secret (generate with `openssl rand -base64 32`)
 - `CRON_SECRET` - Secret for weekly points reset cron job
+- `DEV_SEED_ACCOUNT_PASSWORD` - Required local password for seeded accounts
+- `TEST_STUDENT_DEFAULT_PASSWORD` - Required password for auto-created system test students
 - `NEXT_PUBLIC_ENABLE_SUBMISSION_OUTBOX` - `true` to enable offline submission queue + outbox banner
 
 ### E2E Mobile Smoke Tests (Playwright)
@@ -159,6 +159,7 @@ Run these locally and ensure they all pass:
 npm run typecheck
 npm run lint
 npm run test:critical
+npm run check:repo-hygiene
 ```
 
 ## Tech Stack

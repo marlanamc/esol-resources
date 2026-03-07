@@ -1,5 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { resetWeeklyPoints } from "@/lib/gamification";
+import { ApiErrors, apiSuccess } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
 
 /**
  * Cron job to reset weekly leaderboard points
@@ -14,39 +16,30 @@ export async function GET(request: NextRequest) {
 
     // Fail closed - deny if secret not configured
     if (!cronSecret) {
-        console.error('[Cron] CRITICAL: CRON_SECRET not configured in environment variables');
-        return NextResponse.json(
-            { error: 'Service unavailable' },
-            { status: 503 }
-        );
+        logger.error("[Cron] CRITICAL: CRON_SECRET not configured in environment variables");
+        return ApiErrors.unavailable();
     }
 
     // Verify this request is from Vercel Cron
     const authHeader = request.headers.get('authorization');
 
     if (authHeader !== `Bearer ${cronSecret}`) {
-        console.warn('[Cron] Unauthorized cron attempt - invalid authorization header');
-        return NextResponse.json(
-            { error: 'Unauthorized' },
-            { status: 401 }
-        );
+        logger.warn("[Cron] Unauthorized cron attempt - invalid authorization header");
+        return ApiErrors.unauthorized();
     }
 
     try {
         await resetWeeklyPoints();
 
-        console.log('[Cron] Weekly points reset completed successfully');
+        logger.info("[Cron] Weekly points reset completed successfully");
 
-        return NextResponse.json({
+        return apiSuccess({
             success: true,
             message: "Weekly points reset successfully. New week started!",
             resetDate: new Date().toISOString()
         });
     } catch (error) {
-        console.error('[Cron] Error resetting weekly points:', error);
-        return NextResponse.json(
-            { error: "Failed to reset weekly points" },
-            { status: 500 }
-        );
+        logger.error("[Cron] Error resetting weekly points", error);
+        return ApiErrors.internal("Failed to reset weekly points");
     }
 }

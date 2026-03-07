@@ -297,7 +297,7 @@ export default function AvatarSelector({
                                             `}
                                             style={{
                                                 boxShadow: selectedColor === color.id 
-                                                    ? "inset 0 -2px 8px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3)"
+                                                    ? "inset 0 -2px 8px rgba(13,22,32,0.15), inset 0 2px 4px rgba(255,255,255,0.3)"
                                                     : "inset 0 -2px 4px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.2)"
                                             }}
                                         />

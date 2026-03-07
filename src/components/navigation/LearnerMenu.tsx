@@ -6,6 +6,8 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { BookOpen, ClipboardList, Gamepad2, Menu, Mic, PenLine, PenTool, Volume2, X } from "lucide-react";
 import { BookOpenIcon, HomeIcon, MapIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { getLearnerCategoryTone } from "@/lib/learner-theme";
 
 interface LearnerMenuProps {
     mode?: "brand" | "quiet";
@@ -141,7 +143,8 @@ export function LearnerMenu({
         <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className={`inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-white/90 text-[var(--color-text)] shadow-sm transition-colors hover:bg-[var(--color-bg-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${className || "h-10 w-10"}`}
+            className={`inline-flex items-center justify-center rounded-lg border text-[var(--color-text)] shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${className || "h-10 w-10"}`}
+            style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-elevated)' }}
             aria-label="Open navigation menu"
             aria-expanded={isOpen}
             aria-haspopup="dialog"
@@ -163,14 +166,15 @@ export function LearnerMenu({
                   ) : null}
 
                   <div
-                      className={`fixed top-0 left-0 bottom-0 z-[310] w-[280px] sm:w-[320px] bg-[#fef9f3] shadow-2xl border-r border-[#e7dfd3] flex flex-col transform transition-transform duration-300 ease-in-out ${
+                      className={`fixed top-0 left-0 bottom-0 z-[310] w-[280px] sm:w-[320px] shadow-2xl border-r flex flex-col transform transition-transform duration-300 ease-in-out ${
                           isOpen ? "translate-x-0" : "-translate-x-full"
                       }`}
+                      style={{ background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-overlay) 100%)', borderColor: 'var(--border-subtle)' }}
                       role="dialog"
                       aria-modal="true"
                       aria-label="Navigation Menu"
                   >
-                      <div className="p-5 border-b border-[#e7dfd3] flex items-center justify-between mt-[env(safe-area-inset-top,0px)]">
+                      <div className="p-5 border-b flex items-center justify-between mt-[env(safe-area-inset-top,0px)]" style={{ borderColor: 'var(--border-subtle)' }}>
                           <Link
                               href="/dashboard"
                               onClick={closeMenu}
@@ -194,7 +198,8 @@ export function LearnerMenu({
                           <button
                               type="button"
                               onClick={closeMenu}
-                              className="p-2 -mr-2 text-text-muted hover:text-text rounded-full hover:bg-black/5 active:scale-95 transition-[color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                              className="p-2 -mr-2 text-text-muted hover:text-text rounded-full active:scale-95 transition-[color,background-color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                              style={{ backgroundColor: 'transparent' }}
                               aria-label="Close menu"
                           >
                               <X className="w-5 h-5" aria-hidden />
@@ -209,7 +214,7 @@ export function LearnerMenu({
                               <MenuLink href="/dashboard/leaderboard" label="Leaderboard" icon={<TrophyIcon className="w-5 h-5 text-[#cda46f]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/profile" label="My Profile" icon={<StarIcon className="w-5 h-5 text-[#88A392]" />} onNavigate={closeMenu} />
 
-                              <div className="h-px bg-border/20 my-3 mx-2" />
+                              <div className="h-px my-3 mx-2" style={{ backgroundColor: 'var(--border-subtle)' }} />
 
                               {Object.values(availableSubjects).some(Boolean) ? (
                                   <p className="px-4 text-[13px] font-bold text-text-muted uppercase tracking-wider mb-2" style={{ letterSpacing: "0.1em" }}>
@@ -218,27 +223,34 @@ export function LearnerMenu({
                               ) : null}
 
                               {availableSubjects.grammar ? (
-                                  <MenuLink href="/dashboard/activities?category=grammar" label="Grammar" icon={<PenLine className="w-5 h-5 text-[#2e7d32]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=grammar" label="Grammar" icon={<PenLine className="w-5 h-5" style={{ color: getLearnerCategoryTone('grammar').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="grammar" />
                               ) : null}
                               {availableSubjects.vocabulary ? (
-                                  <MenuLink href="/dashboard/activities?category=vocabulary" label="Vocabulary" icon={<BookOpen className="w-5 h-5 text-[#1565c0]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=vocabulary" label="Vocabulary" icon={<BookOpen className="w-5 h-5" style={{ color: getLearnerCategoryTone('vocabulary').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="vocabulary" />
                               ) : null}
                               {availableSubjects.games ? (
-                                  <MenuLink href="/dashboard/activities?category=games" label="Games" icon={<Gamepad2 className="w-5 h-5 text-[#7d3fa6]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=games" label="Games" icon={<Gamepad2 className="w-5 h-5" style={{ color: getLearnerCategoryTone('games').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="games" />
                               ) : null}
                               {availableSubjects.quizzes ? (
-                                  <MenuLink href="/dashboard/activities?category=quizzes" label="Quizzes" icon={<ClipboardList className="w-5 h-5 text-[#c44a28]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=quizzes" label="Quizzes" icon={<ClipboardList className="w-5 h-5" style={{ color: getLearnerCategoryTone('quizzes').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="quizzes" />
                               ) : null}
                               {availableSubjects.speaking ? (
-                                  <MenuLink href="/dashboard/activities?category=speaking" label="Speaking" icon={<Mic className="w-5 h-5 text-[#b56e1a]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=speaking" label="Speaking" icon={<Mic className="w-5 h-5" style={{ color: getLearnerCategoryTone('speaking').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="speaking" />
                               ) : null}
                               {availableSubjects.writing ? (
-                                  <MenuLink href="/dashboard/activities?category=writing" label="Writing" icon={<PenTool className="w-5 h-5 text-[#3d8e42]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=writing" label="Writing" icon={<PenTool className="w-5 h-5" style={{ color: getLearnerCategoryTone('writing').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="writing" />
                               ) : null}
                               {availableSubjects.pronunciation ? (
-                                  <MenuLink href="/dashboard/activities?category=pronunciation" label="Pronunciation" icon={<Volume2 className="w-5 h-5 text-[#8a5cf6]" strokeWidth={1.5} />} onNavigate={closeMenu} light />
+                                  <MenuLink href="/dashboard/activities?category=pronunciation" label="Pronunciation" icon={<Volume2 className="w-5 h-5" style={{ color: getLearnerCategoryTone('games').accent }} strokeWidth={1.5} />} onNavigate={closeMenu} light toneKey="games" />
                               ) : null}
                           </nav>
+                      </div>
+
+                      <div
+                          className="border-t px-4 py-4"
+                          style={{ borderColor: "var(--border-subtle)", backgroundColor: "color-mix(in srgb, var(--surface-subtle) 84%, transparent)" }}
+                      >
+                          <ThemeToggle />
                       </div>
                   </div>
               </>,
@@ -260,15 +272,18 @@ interface MenuLinkProps {
     icon: ReactNode;
     onNavigate: () => void;
     light?: boolean;
+    toneKey?: "grammar" | "vocabulary" | "games" | "quizzes" | "speaking" | "writing";
 }
 
-function MenuLink({ href, label, icon, onNavigate, light = false }: MenuLinkProps) {
+function MenuLink({ href, label, icon, onNavigate, light = false, toneKey }: MenuLinkProps) {
+    const tone = toneKey ? getLearnerCategoryTone(toneKey) : null;
     return (
         <Link
             href={href}
             className={`flex items-center gap-3 rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
-                light ? "px-4 py-2.5 font-medium text-text hover:bg-black/5 active:bg-black/10" : "px-4 py-3 font-semibold text-text hover:bg-black/5 active:bg-black/10"
+                light ? "px-4 py-2.5 font-medium text-text active:bg-black/10" : "px-4 py-3 font-semibold text-text active:bg-black/10"
             }`}
+            style={tone ? { backgroundColor: tone.surfaceMuted, border: `1px solid ${tone.border}` } : undefined}
             onClick={onNavigate}
         >
             {icon}

@@ -41,6 +41,14 @@
   --color-bg-light: var(--bg-color-light);
   /* Warm Parchment */
   --color-bg-gray: var(--bg-color-gray);
+  --color-surface-base: var(--surface-base);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-overlay: var(--surface-overlay);
+  --color-surface-contrast: var(--surface-contrast);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-text-on-accent: var(--text-on-accent);
   /* Soft Sand */
 
   /* Off-White for buttons and cards - Cozier than pure white */
@@ -64,18 +72,24 @@
   --radius-lg: 12px;
   --radius-xl: 16px;
   --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-4xl: 32px;
   --radius-full: 9999px;
 
-  /* Shadows - Premium Elevation */
-  --shadow-sm: 0 1px 2px rgba(26, 32, 44, 0.05);
+  /* Shadows - Premium Elevation (Softer, more diffused) */
+  --shadow-sm: 0 2px 4px rgba(26, 32, 44, 0.04), 0 1px 2px rgba(26, 32, 44, 0.02);
   --shadow-md:
-    0 4px 6px -1px rgba(26, 32, 44, 0.05), 0 2px 4px -1px rgba(26, 32, 44, 0.03);
+    0 4px 12px rgba(26, 32, 44, 0.05), 0 2px 4px rgba(26, 32, 44, 0.03);
   --shadow-lg:
-    0 10px 15px -3px rgba(26, 32, 44, 0.05),
-    0 4px 6px -2px rgba(26, 32, 44, 0.025);
+    0 8px 20px rgba(26, 32, 44, 0.06),
+    0 4px 8px rgba(26, 32, 44, 0.03);
   --shadow-xl:
-    0 20px 25px -5px rgba(26, 32, 44, 0.05),
-    0 10px 10px -5px rgba(26, 32, 44, 0.02);
+    0 16px 32px rgba(26, 32, 44, 0.07),
+    0 8px 16px rgba(26, 32, 44, 0.04);
+
+  /* Card-specific shadows */
+  --shadow-card: 0 2px 12px rgba(52, 43, 34, 0.05), 0 1px 3px rgba(52, 43, 34, 0.03);
+  --shadow-card-hover: 0 8px 24px rgba(52, 43, 34, 0.08), 0 2px 6px rgba(52, 43, 34, 0.04);
 
   /* Z-Index Layers */
   --z-fixed: 100;
@@ -108,6 +122,14 @@
   --bg-color-gray: #f2ead3;
   --white-color: #fffdfa;
 
+  /* Pastel category tints - for card backgrounds */
+  --pastel-grammar: #eef4ec;
+  --pastel-vocab: #edf5f4;
+  --pastel-quiz: #fff7ed;
+  --pastel-games: #f5f0fa;
+  --pastel-success: #ecfdf5;
+  --pastel-warning: #fffbeb;
+
   --color-bg-gradient-start: #fdf9f0;
   --color-bg-gradient-end: #fdfbf7;
   --color-glass-bg: rgba(255, 255, 255, 0.9);
@@ -125,37 +147,259 @@
   --color-card-recessed-border: rgba(226, 221, 213, 0.3);
   --color-checkbox-bg: #ffffff;
   --color-checklist-hover: rgba(253, 251, 247, 0.8);
+  --checklist-track-bg: linear-gradient(90deg, #f8f4ee 0%, #fcfaf7 100%);
+  --checklist-track-bg-complete: linear-gradient(90deg, #faf6f0 0%, #f7f2ea 100%);
+  --surface-base: #fffdfa;
+  --surface-elevated: rgba(255, 253, 250, 0.95);
+  --surface-subtle: rgba(247, 242, 232, 0.78);
+  --surface-overlay: rgba(255, 253, 250, 0.88);
+  --surface-contrast: #f3ebdf;
+  --border-subtle: rgba(226, 221, 213, 0.5);
+  --border-strong: rgba(207, 191, 171, 0.75);
+  --text-on-accent: #fffdfa;
+
+  --tone-grammar-surface: #eef4ec;
+  --tone-grammar-surface-muted: rgba(238, 244, 236, 0.58);
+  --tone-grammar-border: rgba(111, 155, 102, 0.32);
+  --tone-grammar-accent: #3d8e42;
+  --tone-grammar-accent-strong: #2d6930;
+  --tone-grammar-chip-bg: rgba(238, 244, 236, 0.95);
+  --tone-grammar-chip-text: #2d6930;
+
+  --tone-vocabulary-surface: #edf5f4;
+  --tone-vocabulary-surface-muted: rgba(237, 245, 244, 0.58);
+  --tone-vocabulary-border: rgba(74, 140, 154, 0.28);
+  --tone-vocabulary-accent: #268a82;
+  --tone-vocabulary-accent-strong: #1a6560;
+  --tone-vocabulary-chip-bg: rgba(237, 245, 244, 0.95);
+  --tone-vocabulary-chip-text: #1a6560;
+
+  --tone-quizzes-surface: #fff7ed;
+  --tone-quizzes-surface-muted: rgba(255, 247, 237, 0.62);
+  --tone-quizzes-border: rgba(196, 74, 40, 0.24);
+  --tone-quizzes-accent: #c44a28;
+  --tone-quizzes-accent-strong: #923a25;
+  --tone-quizzes-chip-bg: rgba(255, 247, 237, 0.96);
+  --tone-quizzes-chip-text: #923a25;
+
+  --tone-games-surface: #f5f0fa;
+  --tone-games-surface-muted: rgba(245, 240, 250, 0.58);
+  --tone-games-border: rgba(125, 63, 166, 0.24);
+  --tone-games-accent: #7d3fa6;
+  --tone-games-accent-strong: #5c2d7a;
+  --tone-games-chip-bg: rgba(245, 240, 250, 0.95);
+  --tone-games-chip-text: #5c2d7a;
+
+  --tone-pronunciation-surface: #fdf0f7;
+  --tone-pronunciation-surface-muted: rgba(253, 240, 247, 0.62);
+  --tone-pronunciation-border: rgba(219, 39, 119, 0.24);
+  --tone-pronunciation-accent: #db2777;
+  --tone-pronunciation-accent-strong: #9d174d;
+  --tone-pronunciation-chip-bg: rgba(253, 240, 247, 0.96);
+  --tone-pronunciation-chip-text: #9d174d;
+
+  --tone-reading-surface: #edf5f4;
+  --tone-reading-surface-muted: rgba(237, 245, 244, 0.58);
+  --tone-reading-border: rgba(74, 140, 154, 0.28);
+  --tone-reading-accent: #268a82;
+  --tone-reading-accent-strong: #1a6560;
+  --tone-reading-chip-bg: rgba(237, 245, 244, 0.95);
+  --tone-reading-chip-text: #1a6560;
+
+  --tone-writing-surface: #eef4ec;
+  --tone-writing-surface-muted: rgba(238, 244, 236, 0.58);
+  --tone-writing-border: rgba(111, 155, 102, 0.32);
+  --tone-writing-accent: #3d8e42;
+  --tone-writing-accent-strong: #2d6930;
+  --tone-writing-chip-bg: rgba(238, 244, 236, 0.95);
+  --tone-writing-chip-text: #2d6930;
+
+  --tone-speaking-surface: #f5f0e8;
+  --tone-speaking-surface-muted: rgba(245, 240, 232, 0.62);
+  --tone-speaking-border: rgba(181, 110, 26, 0.22);
+  --tone-speaking-accent: #b56e1a;
+  --tone-speaking-accent-strong: #7a5020;
+  --tone-speaking-chip-bg: rgba(245, 240, 232, 0.95);
+  --tone-speaking-chip-text: #7a5020;
+
+  --tone-default-surface: #f2efea;
+  --tone-default-surface-muted: rgba(242, 239, 234, 0.7);
+  --tone-default-border: rgba(138, 115, 88, 0.2);
+  --tone-default-accent: #8a7358;
+  --tone-default-accent-strong: #5a4530;
+  --tone-default-chip-bg: rgba(242, 239, 234, 0.95);
+  --tone-default-chip-text: #5a4530;
+
+  --tone-event-quiz-accent: #5f8267;
+  --tone-event-quiz-bg: #eef4ef;
+  --tone-event-quiz-border: #c7d8cc;
+  --tone-event-quiz-text: #3f5e47;
+  --tone-event-due-accent: #a98966;
+  --tone-event-due-bg: #f8f3ec;
+  --tone-event-due-border: #e1d3c3;
+  --tone-event-due-text: #7b6248;
+  --tone-event-holiday-accent: #6d89ac;
+  --tone-event-holiday-bg: #eef3f9;
+  --tone-event-holiday-border: #c8d4e4;
+  --tone-event-holiday-text: #4c6788;
+  --tone-event-other-accent: #7c6c98;
+  --tone-event-other-bg: #f3f0f8;
+  --tone-event-other-border: #d7cfe4;
+  --tone-event-other-text: #5f5178;
 }
 
 .dark, [data-theme="dark"] {
-  --text-color: #fdf9f0;
-  --text-color-muted: #a19a96;
-  --text-color-light: #7b716b;
-  --bg-color: #1e1915;
-  --bg-color-light: #2c2520;
-  --bg-color-gray: #3a322b;
-  --white-color: #27211b;
+  /* Glacial dark blue mode - cool, sophisticated, fresh */
+  --primary-color: #7fb3d5;
+  --primary-color-dark: #5a92b8;
+  --primary-color-light: #a8d5f7;
+  --secondary-color: #6fbf9f;
+  --secondary-color-dark: #4fa07f;
+  --secondary-color-light: #8ed4b8;
+  --accent-color: #f5d98a;
+  --accent-color-dark: #e5c670;
+  --accent-color-light: #fae8b0;
 
-  --color-bg-gradient-start: #1e1915;
-  --color-bg-gradient-end: #171310;
-  
-  --color-glass-bg: rgba(44, 37, 32, 0.85);
-  --color-glass-bg-end: rgba(39, 33, 27, 0.7);
-  --color-glass-bg-hover: rgba(58, 50, 43, 0.9);
-  --color-glass-bg-hover-end: rgba(44, 37, 32, 0.8);
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-  --color-glass-border-hover: rgba(255, 255, 255, 0.12);
+  --success-color: #6fbf9f;
+  --warning-color: #f0a080;
+  --error-color: #e57373;
+  --info-color: #7fb3d5;
 
-  --color-card-elevated-start: #2c2520;
-  --color-card-elevated-end: rgba(39, 33, 27, 0.7);
-  --color-card-elevated-shadow: rgba(255, 255, 255, 0.05);
-  --color-card-recessed: rgba(23, 19, 16, 0.4);
-  --color-card-recessed-shadow: rgba(255, 255, 255, 0.02);
-  --color-card-border: rgba(255, 255, 255, 0.08);
-  --color-card-recessed-border: rgba(255, 255, 255, 0.05);
-  --color-checkbox-bg: #1e1915;
-  --color-checklist-hover: rgba(44, 37, 32, 0.8);
-  
+  --text-color: #e8f1f8;
+  --text-color-muted: #a0afc0;
+  --text-color-light: #6b8199;
+  --bg-color: #0d1620;
+  --bg-color-light: #162b3d;
+  --bg-color-gray: #1e3a4d;
+  --white-color: #162b3d;
+
+  /* Pastel category tints - dark mode (subtle glows on glacial blue) */
+  --pastel-grammar: rgba(111, 191, 159, 0.15);
+  --pastel-vocab: rgba(127, 179, 213, 0.12);
+  --pastel-quiz: rgba(240, 160, 128, 0.10);
+  --pastel-games: rgba(159, 144, 200, 0.12);
+  --pastel-success: rgba(111, 191, 159, 0.15);
+  --pastel-warning: rgba(245, 217, 138, 0.12);
+
+  --color-bg-gradient-start: #0d1620;
+  --color-bg-gradient-end: #091218;
+
+  --color-glass-bg: rgba(22, 43, 61, 0.92);
+  --color-glass-bg-end: rgba(13, 22, 32, 0.85);
+  --color-glass-bg-hover: rgba(30, 58, 77, 0.95);
+  --color-glass-bg-hover-end: rgba(20, 35, 50, 0.9);
+  --color-glass-border: rgba(127, 179, 213, 0.10);
+  --color-glass-border-hover: rgba(127, 179, 213, 0.15);
+
+  --color-card-elevated-start: #162b3d;
+  --color-card-elevated-end: rgba(22, 43, 61, 0.85);
+  --color-card-elevated-shadow: rgba(127, 179, 213, 0.05);
+  --color-card-recessed: rgba(13, 22, 32, 0.6);
+  --color-card-recessed-shadow: rgba(127, 179, 213, 0.02);
+  --color-card-border: rgba(127, 179, 213, 0.12);
+  --color-card-recessed-border: rgba(127, 179, 213, 0.08);
+  --color-checkbox-bg: #162b3d;
+  --color-checklist-hover: rgba(30, 58, 77, 0.7);
+  --checklist-track-bg: linear-gradient(90deg, rgba(226, 232, 240, 0.9) 0%, rgba(203, 213, 225, 0.82) 100%);
+  --checklist-track-bg-complete: linear-gradient(90deg, rgba(229, 231, 235, 0.92) 0%, rgba(226, 232, 240, 0.86) 100%);
+  --surface-base: #162b3d;
+  --surface-elevated: rgba(22, 43, 61, 0.92);
+  --surface-subtle: rgba(18, 36, 50, 0.72);
+  --surface-overlay: rgba(13, 22, 32, 0.88);
+  --surface-contrast: #1e3a4d;
+  --border-subtle: rgba(127, 179, 213, 0.14);
+  --border-strong: rgba(127, 179, 213, 0.28);
+  --text-on-accent: #081018;
+
+  --tone-grammar-surface: rgba(111, 191, 159, 0.13);
+  --tone-grammar-surface-muted: rgba(111, 191, 159, 0.08);
+  --tone-grammar-border: rgba(111, 191, 159, 0.24);
+  --tone-grammar-accent: #6fbf9f;
+  --tone-grammar-accent-strong: #8ed4b8;
+  --tone-grammar-chip-bg: rgba(111, 191, 159, 0.16);
+  --tone-grammar-chip-text: #b6ead5;
+
+  --tone-vocabulary-surface: rgba(127, 179, 213, 0.14);
+  --tone-vocabulary-surface-muted: rgba(127, 179, 213, 0.09);
+  --tone-vocabulary-border: rgba(127, 179, 213, 0.24);
+  --tone-vocabulary-accent: #7fb3d5;
+  --tone-vocabulary-accent-strong: #a8d5f7;
+  --tone-vocabulary-chip-bg: rgba(127, 179, 213, 0.16);
+  --tone-vocabulary-chip-text: #cce8fb;
+
+  --tone-quizzes-surface: rgba(240, 160, 128, 0.12);
+  --tone-quizzes-surface-muted: rgba(240, 160, 128, 0.08);
+  --tone-quizzes-border: rgba(240, 160, 128, 0.22);
+  --tone-quizzes-accent: #f0a080;
+  --tone-quizzes-accent-strong: #ffd0be;
+  --tone-quizzes-chip-bg: rgba(240, 160, 128, 0.14);
+  --tone-quizzes-chip-text: #ffe1d6;
+
+  --tone-games-surface: rgba(159, 144, 200, 0.14);
+  --tone-games-surface-muted: rgba(159, 144, 200, 0.09);
+  --tone-games-border: rgba(159, 144, 200, 0.24);
+  --tone-games-accent: #b39ad7;
+  --tone-games-accent-strong: #ddcef4;
+  --tone-games-chip-bg: rgba(159, 144, 200, 0.16);
+  --tone-games-chip-text: #eadfff;
+
+  --tone-pronunciation-surface: rgba(244, 114, 182, 0.14);
+  --tone-pronunciation-surface-muted: rgba(244, 114, 182, 0.09);
+  --tone-pronunciation-border: rgba(244, 114, 182, 0.24);
+  --tone-pronunciation-accent: #f472b6;
+  --tone-pronunciation-accent-strong: #f9a8d4;
+  --tone-pronunciation-chip-bg: rgba(244, 114, 182, 0.16);
+  --tone-pronunciation-chip-text: #ffd3e8;
+
+  --tone-reading-surface: rgba(127, 179, 213, 0.14);
+  --tone-reading-surface-muted: rgba(127, 179, 213, 0.09);
+  --tone-reading-border: rgba(127, 179, 213, 0.24);
+  --tone-reading-accent: #7fb3d5;
+  --tone-reading-accent-strong: #a8d5f7;
+  --tone-reading-chip-bg: rgba(127, 179, 213, 0.16);
+  --tone-reading-chip-text: #cce8fb;
+
+  --tone-writing-surface: rgba(111, 191, 159, 0.13);
+  --tone-writing-surface-muted: rgba(111, 191, 159, 0.08);
+  --tone-writing-border: rgba(111, 191, 159, 0.24);
+  --tone-writing-accent: #6fbf9f;
+  --tone-writing-accent-strong: #8ed4b8;
+  --tone-writing-chip-bg: rgba(111, 191, 159, 0.16);
+  --tone-writing-chip-text: #b6ead5;
+
+  --tone-speaking-surface: rgba(245, 217, 138, 0.12);
+  --tone-speaking-surface-muted: rgba(245, 217, 138, 0.08);
+  --tone-speaking-border: rgba(245, 217, 138, 0.22);
+  --tone-speaking-accent: #f5d98a;
+  --tone-speaking-accent-strong: #fae8b0;
+  --tone-speaking-chip-bg: rgba(245, 217, 138, 0.14);
+  --tone-speaking-chip-text: #fff1ca;
+
+  --tone-default-surface: rgba(160, 175, 192, 0.12);
+  --tone-default-surface-muted: rgba(160, 175, 192, 0.08);
+  --tone-default-border: rgba(160, 175, 192, 0.18);
+  --tone-default-accent: #a0afc0;
+  --tone-default-accent-strong: #d5e0eb;
+  --tone-default-chip-bg: rgba(160, 175, 192, 0.14);
+  --tone-default-chip-text: #e0e9f2;
+
+  --tone-event-quiz-accent: #8ed4b8;
+  --tone-event-quiz-bg: rgba(111, 191, 159, 0.16);
+  --tone-event-quiz-border: rgba(111, 191, 159, 0.24);
+  --tone-event-quiz-text: #c8efde;
+  --tone-event-due-accent: #f5d98a;
+  --tone-event-due-bg: rgba(245, 217, 138, 0.14);
+  --tone-event-due-border: rgba(245, 217, 138, 0.2);
+  --tone-event-due-text: #fff0c6;
+  --tone-event-holiday-accent: #a8d5f7;
+  --tone-event-holiday-bg: rgba(127, 179, 213, 0.16);
+  --tone-event-holiday-border: rgba(127, 179, 213, 0.24);
+  --tone-event-holiday-text: #d8efff;
+  --tone-event-other-accent: #ddcef4;
+  --tone-event-other-bg: rgba(159, 144, 200, 0.16);
+  --tone-event-other-border: rgba(159, 144, 200, 0.24);
+  --tone-event-other-text: #f0e9ff;
+
   color-scheme: dark;
 }
 
@@ -200,6 +444,66 @@ body {
   /* Smooth inertial scrolling on iOS */
   overflow-x: hidden;
   width: 100%;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.surface-base {
+  background-color: var(--surface-base);
+  border-color: var(--border-subtle);
+}
+
+.surface-elevated {
+  background-color: var(--surface-elevated);
+  border-color: var(--border-subtle);
+}
+
+.surface-subtle {
+  background-color: var(--surface-subtle);
+  border-color: var(--border-subtle);
+}
+
+.surface-overlay {
+  background-color: var(--surface-overlay);
+  border-color: var(--border-subtle);
+}
+
+.surface-contrast {
+  background-color: var(--surface-contrast);
+  border-color: var(--border-strong);
+}
+
+.surface-card-shadow {
+  box-shadow:
+    0 12px 28px rgba(52, 43, 34, 0.08),
+    0 2px 8px rgba(52, 43, 34, 0.05);
+}
+
+.dark .surface-card-shadow,
+[data-theme="dark"] .surface-card-shadow {
+  box-shadow:
+    0 12px 28px rgba(6, 12, 18, 0.28),
+    0 2px 8px rgba(6, 12, 18, 0.2);
+}
+
+.learner-tone-card {
+  background-color: var(--learner-tone-surface);
+  border-color: var(--learner-tone-border);
+  color: var(--color-text);
+}
+
+.learner-tone-chip {
+  background-color: var(--learner-tone-chip-bg);
+  border-color: var(--learner-tone-border);
+  color: var(--learner-tone-chip-text);
+}
+
+.learner-tone-accent {
+  color: var(--learner-tone-accent);
+}
+
+.learner-tone-progress {
+  background-color: var(--learner-tone-accent);
 }
 
 /* Disable double-tap zoom on buttons to remove 300ms delay */
@@ -212,12 +516,7 @@ textarea {
 }
 
 /* ========== Typography ========== */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
   font-family: var(--font-display);
   font-weight: 700;
   color: var(--color-text);
@@ -227,7 +526,7 @@ h6 {
 /* Removed fixed font-size declarations to allow Tailwind classes to work */
 /* Use Tailwind utility classes (text-xl, text-2xl, etc.) for sizing */
 
-p {
+:where(p) {
   margin-bottom: var(--spacing-md);
   color: var(--color-text);
   line-height: var(--line-height-base);
@@ -249,8 +548,7 @@ a:focus-visible {
   border-radius: var(--radius-sm);
 }
 
-strong,
-b {
+:where(strong, b) {
   font-weight: 600;
   color: var(--color-text);
 }
@@ -904,6 +1202,30 @@ textarea {
   border: 1px solid var(--color-card-recessed-border);
 }
 
+/* Soft card - modern rounded style with subtle shadows */
+.card-soft {
+  background: var(--white-color);
+  border-radius: 20px;
+  border: 1px solid rgba(226, 221, 213, 0.4);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card-soft:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+/* Interactive card lift animation */
+.card-lift {
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
+
 /* ========== Utility Classes ========== */
 .handwritten {
   font-family: var(--font-handwritten);
@@ -1077,6 +1399,59 @@ textarea {
   background: transparent;
 }
 
+.grammar-reader-container .grammar-reader-split-screen {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 14px 38px rgba(217, 119, 87, 0.12);
+}
+
+.grammar-reader-container .explanation-panel {
+  background: var(--surface-base);
+}
+
+.grammar-reader-container .practice-panel {
+  background: var(--surface-subtle);
+}
+
+.grammar-reader-container .grammar-reader-toc-toggle {
+  background: transparent;
+}
+
+.grammar-reader-container .grammar-reader-toc-toggle:hover {
+  background: var(--surface-base);
+}
+
+.grammar-reader-container .grammar-reader-nav-button {
+  color: var(--color-text);
+}
+
+.grammar-reader-container .grammar-reader-nav-button-primary {
+  background: var(--color-primary);
+  color: var(--text-on-accent);
+}
+
+.grammar-reader-container .grammar-reader-nav-button-primary:hover {
+  background: var(--color-primary-dark);
+  transform: scale(1.1);
+}
+
+.grammar-reader-container .grammar-reader-nav-button-secondary {
+  background: var(--surface-elevated);
+  border-color: var(--border-strong);
+}
+
+.grammar-reader-container .grammar-reader-nav-button-secondary:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-on-accent);
+}
+
+.grammar-reader-container .grammar-reader-nav-button-secondary:disabled:hover {
+  background: var(--surface-elevated);
+  border-color: var(--border-strong);
+  color: var(--color-text);
+}
+
 .grammar-reader-container .explanation-content h1,
 .grammar-reader-container .explanation-content h2,
 .grammar-reader-container .explanation-content h3,
@@ -1116,8 +1491,8 @@ textarea {
 .grammar-reader-container .explanation-content table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  border: 1px solid var(--color-border);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-strong);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 14px rgba(217, 119, 87, 0.08);
@@ -1125,10 +1500,12 @@ textarea {
 
 .grammar-reader-container .explanation-content th,
 .grammar-reader-container .explanation-content td {
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--border-subtle);
   padding: 0.85rem 0.9rem;
   font-size: 0.95rem;
   color: var(--color-text);
+  vertical-align: top;
+  line-height: 1.55;
 }
 
 .grammar-reader-container .explanation-content th {
@@ -1139,7 +1516,7 @@ textarea {
 
 .grammar-reader-container .explanation-content hr {
   border: 0;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border-subtle);
   margin: 1.25rem 0;
 }
 
@@ -1151,19 +1528,6 @@ textarea {
 }
 
 /* Pull in a bit of the old “book” feel */
-.grammar-reader-container .grammar-reader-split-screen {
-  border: 1px solid rgba(26, 32, 44, 0.35);
-  box-shadow: 0 14px 38px rgba(217, 119, 87, 0.12);
-}
-
-.grammar-reader-container .explanation-panel {
-  background: #ffffff;
-}
-
-.grammar-reader-container .practice-panel {
-  background: var(--color-bg-light);
-}
-
 .grammar-reader-container .explanation-content h1,
 .grammar-reader-container .explanation-content h2 {
   color: var(--color-primary);
@@ -1172,6 +1536,843 @@ textarea {
 .grammar-reader-container .explanation-content h3,
 .grammar-reader-container .explanation-content h4 {
   color: var(--color-text);
+}
+
+[data-theme="dark"] .grammar-reader-container .grammar-reader-split-screen {
+  box-shadow: 0 18px 42px rgba(5, 12, 18, 0.45);
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color:white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color: #fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color:#fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #ffffff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#ffffff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color: #ffffff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color:#ffffff"] {
+  background: #d7dce2 !important;
+  color: #1f2937 !important;
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.45);
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff5"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff5"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff9"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff9"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fffaf"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fffaf"] {
+  background: #d7dce2 !important;
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f8fafc"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f8fafc"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fdfbf7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fdfbf7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f4f1ea"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f4f1ea"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fef9c3"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fef9c3"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f0fdf4"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f0fdf4"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f5f3ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f5f3ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #ecfeff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#ecfeff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fef9f3"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fef9f3"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #ede9fe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#ede9fe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"] {
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:white"] {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="box-shadow: inset"] {
+  box-shadow: inset 0 0 0 1px rgba(127, 179, 213, 0.12) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 1px solid rgba(0,0,0,0.1)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:1px solid rgba(0,0,0,0.1)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 2px solid rgba(0,0,0,0.1)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:2px solid rgba(0,0,0,0.1)"] {
+  border-color: var(--border-subtle) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff"] {
+  background: #e4e9ee !important;
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background"] :is(p, span, div, strong, em, li) {
+  color: inherit;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content :is(
+  [style*="background: #f8fafc"],
+  [style*="background:#f8fafc"],
+  [style*="background: #fdfbf7"],
+  [style*="background:#fdfbf7"],
+  [style*="background: #f4f1ea"],
+  [style*="background:#f4f1ea"],
+  [style*="background: #fef9c3"],
+  [style*="background:#fef9c3"],
+  [style*="background: #fef3c7"],
+  [style*="background:#fef3c7"],
+  [style*="background: #f0fdf4"],
+  [style*="background:#f0fdf4"],
+  [style*="background: #f5f3ff"],
+  [style*="background:#f5f3ff"],
+  [style*="background: #ecfeff"],
+  [style*="background:#ecfeff"],
+  [style*="background: #fef9f3"],
+  [style*="background:#fef9f3"],
+  [style*="background: #ede9fe"],
+  [style*="background:#ede9fe"],
+  [style*="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
+  [style*="background:linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
+  [style*="background: white"],
+  [style*="background:white"],
+  [style*="background: #fff"],
+  [style*="background:#fff"],
+  [style*="background: #ffffff"],
+  [style*="background:#ffffff"]
+) :is(
+  [style*="color: white"],
+  [style*="color:white"],
+  [style*="color: #fff"],
+  [style*="color:#fff"],
+  [style*="color: #ffffff"],
+  [style*="color:#ffffff"],
+  [style*="color: #f8fafc"],
+  [style*="color:#f8fafc"],
+  [style*="color: #e2e8f0"],
+  [style*="color:#e2e8f0"],
+  [style*="color: #e5e7eb"],
+  [style*="color:#e5e7eb"],
+  [style*="color: #cbd5e1"],
+  [style*="color:#cbd5e1"]
+) {
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content :is(
+  [style*="background: #f8fafc"],
+  [style*="background:#f8fafc"],
+  [style*="background: #fdfbf7"],
+  [style*="background:#fdfbf7"],
+  [style*="background: #f4f1ea"],
+  [style*="background:#f4f1ea"],
+  [style*="background: #fef9c3"],
+  [style*="background:#fef9c3"],
+  [style*="background: #fef3c7"],
+  [style*="background:#fef3c7"],
+  [style*="background: #f0fdf4"],
+  [style*="background:#f0fdf4"],
+  [style*="background: #f5f3ff"],
+  [style*="background:#f5f3ff"],
+  [style*="background: #ecfeff"],
+  [style*="background:#ecfeff"],
+  [style*="background: #fef9f3"],
+  [style*="background:#fef9f3"],
+  [style*="background: #ede9fe"],
+  [style*="background:#ede9fe"],
+  [style*="background: #ecfdf5"],
+  [style*="background:#ecfdf5"],
+  [style*="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
+  [style*="background:linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
+  [style*="background: white"],
+  [style*="background:white"],
+  [style*="background: #fff"],
+  [style*="background:#fff"],
+  [style*="background: #ffffff"],
+  [style*="background:#ffffff"]
+) :is(p, li, strong, em, span, div, h4, td, th) {
+  color: #1f2937 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content :is(
+  [style*="background: linear-gradient(135deg, rgba(245, 158, 11, 0.05)"],
+  [style*="background:linear-gradient(135deg, rgba(245, 158, 11, 0.05)"],
+  [style*="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1)"],
+  [style*="background:linear-gradient(135deg, rgba(245, 158, 11, 0.1)"],
+  [style*="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05)"],
+  [style*="background:linear-gradient(135deg, rgba(139, 92, 246, 0.05)"],
+  [style*="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1)"],
+  [style*="background:linear-gradient(135deg, rgba(99, 102, 241, 0.1)"],
+  [style*="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1)"],
+  [style*="background:linear-gradient(135deg, rgba(6, 182, 212, 0.1)"],
+  [style*="background: rgba(6, 182, 212, 0.1)"],
+  [style*="background:rgba(6, 182, 212, 0.1)"],
+  [style*="background: rgba(139, 92, 246, 0.1)"],
+  [style*="background:rgba(139, 92, 246, 0.1)"],
+  [style*="background: rgba(249, 115, 22, 0.1)"],
+  [style*="background:rgba(249, 115, 22, 0.1)"]
+) :is(
+  [style*="color: #2b3a4a"],
+  [style*="color:#2b3a4a"],
+  [style*="color: #374151"],
+  [style*="color:#374151"],
+  [style*="color: #1e293b"],
+  [style*="color:#1e293b"],
+  [style*="color: #111827"],
+  [style*="color:#111827"]
+) {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content :is(
+  tr[style*="background: #f8fafc"],
+  tr[style*="background:#f8fafc"],
+  tr[style*="background-color: #f8fafc"],
+  tr[style*="background-color:#f8fafc"],
+  tr[style*="background: #fdfbf7"],
+  tr[style*="background:#fdfbf7"],
+  tr[style*="background-color: #fdfbf7"],
+  tr[style*="background-color:#fdfbf7"],
+  tr[style*="background: #f4f1ea"],
+  tr[style*="background:#f4f1ea"],
+  tr[style*="background-color: #f4f1ea"],
+  tr[style*="background-color:#f4f1ea"],
+  tr[style*="background: white"],
+  tr[style*="background:white"],
+  tr[style*="background-color: white"],
+  tr[style*="background-color:white"],
+  tr[style*="background: #fff"],
+  tr[style*="background:#fff"],
+  tr[style*="background-color: #fff"],
+  tr[style*="background-color:#fff"],
+  tr[style*="background: #ffffff"],
+  tr[style*="background:#ffffff"],
+  tr[style*="background-color: #ffffff"],
+  tr[style*="background-color:#ffffff"],
+  tr[style*="background: #fff7ed"],
+  tr[style*="background:#fff7ed"],
+  tr[style*="background-color: #fff7ed"],
+  tr[style*="background-color:#fff7ed"]
+) > :is(td, th) {
+  background: rgba(30, 58, 77, 0.6) !important;
+  color: var(--color-text) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content table,
+[data-theme="dark"] .grammar-reader-container .comparison-table table,
+[data-theme="dark"] .grammar-reader-container .verb-table-display table {
+  background: var(--surface-elevated) !important;
+  border-color: rgba(148, 163, 184, 0.38) !important;
+  box-shadow: 0 8px 18px rgba(6, 12, 18, 0.2);
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content table[style*="border"],
+[data-theme="dark"] .grammar-reader-container .explanation-content td[style*="border"],
+[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="border"] {
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content th {
+  background: rgba(127, 179, 213, 0.15) !important;
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content td,
+[data-theme="dark"] .grammar-reader-container .explanation-content th {
+  border-color: rgba(148, 163, 184, 0.32) !important;
+  color: var(--color-text);
+}
+
+/* Frequency Ladder, info boxes, and similar divs with light backgrounds */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc;"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] {
+  background: rgba(22, 43, 61, 0.8) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Title - brighter for dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] h4,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] h4,
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #8b5cf6"],
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color:#8b5cf6"] {
+  color: #c4b5fd !important;
+}
+
+/* All text inside Frequency Ladder / f8fafc boxes - must override dark-text rule */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"] span,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"] span,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] span,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] span,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"] p,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"] p,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] p,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] p,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"] strong,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"] strong,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] strong,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] strong {
+  color: #e2e8f0 !important;
+}
+
+/* White/light boxes - override to dark with readable text */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background:white"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background: white"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background:white"] * {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"] span[style*="color: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"] span[style*="color: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #d97757"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #0369a1"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #94a3b8"] {
+  color: #fff !important;
+}
+
+/* Bullet list items with light backgrounds */
+[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background: #f8fafc"],
+[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background:#f8fafc"] {
+  background: rgba(22, 43, 61, 0.6) !important;
+  border-left-color: inherit !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background: #f8fafc"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background:#f8fafc"] * {
+  color: #e2e8f0 !important;
+}
+
+/* Muted gray text - invisible on dark, use lighter shade */
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="color: #6b7280"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="color:#6b7280"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #475569"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#475569"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="color: #94a3b8"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="color:#94a3b8"] {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #475569"],
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color:#475569"] {
+  color: #cbd5e1 !important;
+  border-bottom-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+/* Info boxes with accent borders (cyan, amber, terracotta, sage) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #06b6d4"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #06b6d4"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(6, 182, 212, 0.5) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f0b45a"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #f0b45a"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #d97757"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #d97757"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(217, 119, 87, 0.5) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #7ba884"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #7ba884"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(123, 168, 132, 0.5) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f59e0b"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #f59e0b"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #06b6d4"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f0b45a"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #d97757"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #7ba884"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f59e0b"] * {
+  color: #e2e8f0 !important;
+}
+
+/* Boxes with border-left accent (usage bullets) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 3px solid"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:3px solid"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid"] {
+  background: rgba(22, 43, 61, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 3px solid"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid"] * {
+  color: #e2e8f0 !important;
+}
+
+/* #fff7ed (warm cream) - e.g. Short/Long Adjectives cards, present perfect boxes */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff7ed"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff7ed"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff7ed"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff7ed"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(249, 115, 22, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff7ed"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff7ed"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff7ed"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff7ed"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff7ed"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff7ed"] * {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #f97316"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #f97316"] {
+  border-left-color: rgba(249, 115, 22, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid #f97316"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top:4px solid #f97316"] {
+  border-top-color: rgba(249, 115, 22, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #ffedd5"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #fed7aa"] {
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f97316"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #f97316"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(249, 115, 22, 0.5) !important;
+}
+
+/* border-bottom: e2e8f0 for table-like structures */
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border-bottom: 2px solid #e2e8f0"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border-bottom: 1px solid #e2e8f0"] {
+  border-bottom-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+/* #ddd table borders - light gray invisible in dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 1px solid #ddd"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:1px solid #ddd"],
+[data-theme="dark"] .grammar-reader-container .explanation-content td[style*="#ddd"],
+[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="#ddd"] {
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+/* #dbeafe table borders (future-simple, etc.) */
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 1px solid #dbeafe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:1px solid #dbeafe"] {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+
+/* tr striping rgba(0,0,0,0.02) - use light tint in dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0, 0, 0, 0.02)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0, 0, 0, 0.02)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0,0,0,0.02)"],
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0,0,0,0.02)"] {
+  background: rgba(148, 163, 184, 0.06) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0, 0, 0, 0.02)"] td,
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0, 0, 0, 0.02)"] td,
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0,0,0,0.02)"] td,
+[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0,0,0,0.02)"] td {
+  color: #e2e8f0 !important;
+}
+
+/* #fef2f2 (red error / Common Mistake boxes) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef2f2"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef2f2"] {
+  background: rgba(40, 25, 25, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef2f2"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef2f2"] * {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef2f2"] p[style*="color: #dc2626"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef2f2"] p[style*="color: #dc2626"] {
+  color: #fca5a5 !important;
+}
+
+/* Muted text #64748b, #334155 - lighten for dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #64748b"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#64748b"] {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #334155"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#334155"] {
+  color: #cbd5e1 !important;
+}
+
+/* #cbd5e1 backgrounds (timeline circles, etc.) - darken for dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #cbd5e1"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#cbd5e1"] {
+  background: rgba(148, 163, 184, 0.3) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #cbd5e1"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#cbd5e1"] * {
+  color: #e2e8f0 !important;
+}
+
+/* #d4a843 headings - lighten for dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #d4a843"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #d4a843"] {
+  color: #fbbf24 !important;
+}
+
+/* border-left callouts: #dc2626, #ef4444, #22c55e, #a855f7 */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #dc2626"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #dc2626"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #ef4444"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #ef4444"] {
+  background: rgba(40, 25, 25, 0.85) !important;
+  border-left-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #22c55e"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #22c55e"] {
+  background: rgba(22, 45, 35, 0.85) !important;
+  border-left-color: rgba(34, 197, 94, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #a855f7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #a855f7"] {
+  background: rgba(35, 25, 50, 0.85) !important;
+  border-left-color: rgba(168, 85, 247, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #3b82f6"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #3b82f6"] {
+  background: rgba(25, 35, 55, 0.85) !important;
+  border-left-color: rgba(59, 130, 246, 0.6) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #10b981"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #10b981"] {
+  background: rgba(22, 45, 40, 0.85) !important;
+  border-left-color: rgba(16, 185, 129, 0.6) !important;
+}
+
+/* Linear gradients - hero/callout boxes in grammar guides (preserve gradient in dark mode) */
+/* Amber to purple (past-perfect-family, past-perfect-continuous, etc.) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(245, 158, 11"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(240, 180, 90"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(139, 92, 246"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(99, 102, 241"] {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%) !important;
+}
+
+/* Terracotta to sage (medical-instructions, imperatives, etc.) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(200, 107, 81"] {
+  background: linear-gradient(135deg, rgba(200, 107, 81, 0.22) 0%, rgba(110, 145, 118, 0.22) 100%) !important;
+}
+
+/* Red to blue (modals-health, articles) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(248, 113, 113"] {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.18) 0%, rgba(59, 130, 246, 0.18) 100%) !important;
+}
+
+/* Cyan/teal (future-simple, future-continuous, etc.) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(133, 196, 255"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(6, 182, 212"] {
+  background: linear-gradient(135deg, rgba(133, 196, 255, 0.2) 0%, rgba(6, 182, 212, 0.22) 100%) !important;
+}
+
+/* Green/emerald (perfect-tenses-review, cycle-1, articles) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(16, 185, 129"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(34, 197, 94"] {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.18) 100%) !important;
+}
+
+/* Purple to blue (conditionals-second-third) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(168, 85, 247"] {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba("] * {
+  color: #e2e8f0 !important;
+}
+
+/* White borders on diagram circles - subtle in dark */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 3px solid white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 4px solid white"] {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Small white-background labels in timelines */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"][style*="padding: 0.25rem"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"][style*="padding: 0.25rem"] {
+  background: rgba(30, 58, 77, 0.9) !important;
+  color: var(--color-text) !important;
+}
+
+/* div with border 1px solid #e2e8f0 (boxes, not tables) */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"][style*="border: 1px solid #e2e8f0"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"][style*="border: 1px solid #e2e8f0"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #e2e8f0"] {
+  background: rgba(22, 43, 61, 0.6) !important;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #e2e8f0"] * {
+  color: #e2e8f0 !important;
+}
+
+/* #fef3c7 (amber cream) - Irregular forms, tip boxes */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fef3c7"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef3c7"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fef3c7"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fef3c7"] * {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #f59e0b"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #f59e0b"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid #f59e0b"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top:4px solid #f59e0b"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-left-color: rgba(245, 158, 11, 0.6) !important;
+  border-top-color: rgba(245, 158, 11, 0.6) !important;
+}
+
+/* #fef9c3 (yellow warning) + #eab308 border - Important/caution callouts */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef9c3"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef9c3"] {
+  background: rgba(30, 35, 25, 0.85) !important;
+  border-color: rgba(234, 179, 8, 0.55) !important;
+  color: #e8eac8 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef9c3"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef9c3"] * {
+  color: #e8eac8 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #eab308"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #eab308"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid #eab308"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top:4px solid #eab308"] {
+  background: rgba(30, 35, 25, 0.85) !important;
+  border-left-color: rgba(234, 179, 8, 0.65) !important;
+  border-top-color: rgba(234, 179, 8, 0.65) !important;
+}
+
+/* #fff9e6, #fffbeb - pale yellow boxes */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff9e6"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff9e6"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fffbeb"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fffbeb"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff9e6"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff9e6"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fffbeb"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fffbeb"] * {
+  color: #e2e8f0 !important;
+}
+
+/* Parts of Speech cards - pastel pink, green, blue, purple */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fdf2f8"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fdf2f8"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f0fdf4"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f0fdf4"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #eff6ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#eff6ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #faf5ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#faf5ff"] {
+  background: rgba(22, 43, 61, 0.6) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fdf2f8"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fdf2f8"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f0fdf4"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f0fdf4"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #eff6ff"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#eff6ff"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #faf5ff"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#faf5ff"] * {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fdf2f8"] h4,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f0fdf4"] h4,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #eff6ff"] h4,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #faf5ff"] h4 {
+  color: inherit !important;
+}
+
+/* linear-gradient with #fef3c7 */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="#fef3c7"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="fef3c7"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="#fef3c7"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="fef3c7"] * {
+  color: #e2e8f0 !important;
+}
+
+/* Italic tip text #3a3a3a - too dark in dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #3a3a3a"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#3a3a3a"] {
+  color: #94a3b8 !important;
+}
+
+/* th with color #b45309 - dark orange, needs lightening */
+[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="color: #b45309"],
+[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="color:#b45309"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #b45309"] {
+  color: #fbbf24 !important;
+}
+
+/* #ede9fe purple boxes with border-left #8b5cf6 */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #ede9fe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #ede9fe"][style*="border-left"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"][style*="border-left"] {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-left-color: rgba(139, 92, 246, 0.6) !important;
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #ede9fe"] *,
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"] * {
+  color: #e2e8f0 !important;
+}
+
+/* White chips inside #ede9fe / #fef3c7 boxes - dark tint for contrast */
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"] span[style*="background: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"] span[style*="background:white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"] span[style*="background: white"],
+[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"] span[style*="background:white"] {
+  background: rgba(148, 163, 184, 0.25) !important;
+  color: #e2e8f0 !important;
+}
+
+/* h4 with dark purple #6d28d9 - too dark in dark mode */
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #6d28d9"],
+[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color:#6d28d9"],
+[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #6d28d9"] {
+  color: #c4b5fd !important;
+}
+
+/* Grammar badge spans - Subject, V3, hadn't, etc. */
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #dbeafe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#dbeafe"] {
+  background: rgba(59, 130, 246, 0.35) !important;
+  color: #93c5fd !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fed7aa"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fed7aa"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background-color: #fed7aa"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background-color:#fed7aa"] {
+  background: rgba(251, 146, 60, 0.35) !important;
+  background-color: rgba(251, 146, 60, 0.35) !important;
+  color: #fdba74 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fee2e2"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fee2e2"] {
+  background: rgba(239, 68, 68, 0.35) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  color: #fca5a5 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #cffafe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#cffafe"] {
+  background: rgba(6, 182, 212, 0.35) !important;
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  color: #67e8f9 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #a5f3fc"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#a5f3fc"] {
+  background: rgba(6, 182, 212, 0.3) !important;
+  color: #67e8f9 !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #f3e8ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#f3e8ff"] {
+  background: rgba(168, 85, 247, 0.35) !important;
+  border-color: rgba(168, 85, 247, 0.6) !important;
+  color: #c4b5fd !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #e9d5ff"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#e9d5ff"] {
+  background: rgba(168, 85, 247, 0.3) !important;
+  color: #c4b5fd !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #ede9fe"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#ede9fe"] {
+  background: rgba(139, 92, 246, 0.35) !important;
+  border-color: rgba(139, 92, 246, 0.6) !important;
+  color: #c4b5fd !important;
+}
+
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #c4b5fd"],
+[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#c4b5fd"] {
+  background: rgba(139, 92, 246, 0.3) !important;
+  color: #ddd6fe !important;
 }
 
 /* Mobile readability for inline HTML diagrams in grammar guides */

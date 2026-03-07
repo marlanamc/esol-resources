@@ -5,7 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
-import { useVerbGameState } from '@/hooks/useVerbGameState';
+import {
+  ALL_PATTERNS_GROUP,
+  hasCompletedAllRegularVerbGroups,
+  useVerbGameState
+} from '@/hooks/useVerbGameState';
 import { useVerbPreferences } from '@/hooks/useVerbPreferences';
 import { GroupSelectionScreen } from './GroupSelectionScreen';
 import { IntroScreen } from './IntroScreen';
@@ -74,7 +78,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
         animate={{ opacity: 1, y: 0 }}
         className="min-h-screen bg-bg flex items-center justify-center p-4"
       >
-        <div className="max-w-md w-full p-8 bg-white rounded-2xl border border-border shadow-lg text-center">
+        <div className="max-w-md w-full p-8 bg-white dark:bg-[#162b3d] rounded-2xl border border-border dark:border-white/10 shadow-lg text-center">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -122,7 +126,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
             <button
               onClick={() => router.back()}
               aria-label="Go back"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text hover:border-border-dark dark:hover:border-white/20 transition-colors"
             >
               <ArrowLeft size={20} />
             </button>
@@ -134,7 +138,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
             <button
               onClick={quitGame}
               aria-label="Go back"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white border border-border text-text-muted hover:text-text hover:border-border-dark transition-colors"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text hover:border-border-dark dark:hover:border-white/20 transition-colors"
             >
               <ArrowLeft size={20} />
             </button>
@@ -207,7 +211,15 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
                   if (!state.roundResults.unlocked || !state.selectedGroup) return null;
                   const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
                   if (currentIndex < 0) return null;
-                  return VERB_GROUPS[currentIndex + 1] ?? null;
+
+                  const nextRegularGroup = VERB_GROUPS[currentIndex + 1] ?? null;
+                  if (nextRegularGroup) {
+                    return nextRegularGroup;
+                  }
+
+                  return hasCompletedAllRegularVerbGroups(state.categoryData)
+                    ? ALL_PATTERNS_GROUP
+                    : null;
                 })()}
                 onRetry={retryGroup}
                 onContinue={continueToNext}

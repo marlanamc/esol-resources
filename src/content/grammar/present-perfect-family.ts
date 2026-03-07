@@ -59,8 +59,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
             icon: "🧠",
             explanation: `
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 mb-6">
-                    <p class="font-medium text-base text-slate-800 mb-2"><strong>Core idea:</strong> Perfect tenses connect <strong>two times</strong>. Here, the connection is <strong>past → now</strong>.</p>
-                    <p class="text-sm text-slate-700 mb-0"><strong>Ask yourself:</strong> Do I want to emphasize the <strong>result now</strong>, or the <strong>activity/duration up to now</strong>?</p>
+                    <p class="font-medium text-base mb-2" style="color: #1f2937;"><strong style="color: #1f2937;">Core idea:</strong> Perfect tenses connect <strong style="color: #1f2937;">two times</strong>. Here, the connection is <strong style="color: #1f2937;">past → now</strong>.</p>
+                    <p class="text-sm mb-0" style="color: #334155;"><strong style="color: #334155;">Ask yourself:</strong> Do I want to emphasize the <strong style="color: #334155;">result now</strong>, or the <strong style="color: #334155;">activity/duration up to now</strong>?</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
@@ -710,9 +710,9 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
 
                 <table style="width: 100%; text-align: left; border-collapse: collapse; margin: 1rem 0;">
                     <tr style="border-bottom: 2px solid #e5e7eb;">
-                        <th style="padding: 0.5rem; color: #4b5563;">If you want to know...</th>
-                        <th style="padding: 0.5rem; color: #4b5563;">Use...</th>
-                        <th style="padding: 0.5rem; color: #4b5563;">Question Word</th>
+                        <th style="padding: 0.5rem; color: #cbd5e1;">If you want to know...</th>
+                        <th style="padding: 0.5rem; color: #cbd5e1;">Use...</th>
+                        <th style="padding: 0.5rem; color: #cbd5e1;">Question Word</th>
                     </tr>
                     <tr style="background-color: #fff7ed;">
                         <td style="padding: 0.75rem; font-weight: 500;">If it is DONE</td>
@@ -720,8 +720,8 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         <td style="padding: 0.75rem; color: #c2410c; font-weight: bold;">Have you finished...?</td>
                     </tr>
                     <tr style="background-color: #eef2ff;">
-                        <td style="padding: 0.75rem; font-weight: 500;">The DURATION</td>
-                        <td style="padding: 0.75rem;">Duration</td>
+                        <td style="padding: 0.75rem; font-weight: 500; color: #1f2937;">The DURATION</td>
+                        <td style="padding: 0.75rem; color: #1f2937;">Duration</td>
                         <td style="padding: 0.75rem; color: #4338ca; font-weight: bold;">How long...?</td>
                     </tr>
                     <tr style="background-color: #fff7ed;">

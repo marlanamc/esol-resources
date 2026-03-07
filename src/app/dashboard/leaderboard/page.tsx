@@ -146,10 +146,28 @@ export default function LeaderboardPage() {
   };
 
   const getRankColor = (rank: number) => {
-    if (rank === 1) return { bg: 'rgba(255, 215, 0, 0.1)', border: '#FFD700', text: '#B8860B' }; // Gold
-    if (rank === 2) return { bg: 'rgba(192, 192, 192, 0.1)', border: '#C0C0C0', text: '#808080' }; // Silver
-    if (rank === 3) return { bg: 'rgba(205, 127, 50, 0.1)', border: '#CD7F32', text: '#8B4513' }; // Bronze
-    return { bg: '#ffffff', border: '#d9cfc0', text: '#2b3a4a' };
+    if (rank === 1) {
+      return {
+        bg: 'color-mix(in srgb, #FFD700 12%, var(--surface-elevated))',
+        border: 'color-mix(in srgb, #FFD700 58%, var(--border-strong))',
+        text: 'color-mix(in srgb, #FFD700 72%, var(--color-text))',
+      };
+    }
+    if (rank === 2) {
+      return {
+        bg: 'color-mix(in srgb, #C0C0C0 10%, var(--surface-elevated))',
+        border: 'color-mix(in srgb, #C0C0C0 54%, var(--border-strong))',
+        text: 'color-mix(in srgb, #C0C0C0 78%, var(--color-text))',
+      };
+    }
+    if (rank === 3) {
+      return {
+        bg: 'color-mix(in srgb, #CD7F32 10%, var(--surface-elevated))',
+        border: 'color-mix(in srgb, #CD7F32 56%, var(--border-strong))',
+        text: 'color-mix(in srgb, #CD7F32 78%, var(--color-text))',
+      };
+    }
+    return { bg: 'var(--surface-elevated)', border: 'var(--border-subtle)', text: 'var(--color-text)' };
   };
 
   const getRankIcon = (rank: number, hasScores: boolean = true) => {
@@ -163,17 +181,17 @@ export default function LeaderboardPage() {
 
   const getRankChangeIndicator = (rankChange: number | null) => {
     if (!rankChange) return null;
-    if (rankChange > 0) return { icon: '↑', color: '#7ba884', text: `+${rankChange}` };
-    if (rankChange < 0) return { icon: '↓', color: '#e76f51', text: `${rankChange}` };
-    return { icon: '−', color: '#5a6b7f', text: '0' };
+    if (rankChange > 0) return { icon: '↑', color: 'var(--success-color)', text: `+${rankChange}` };
+    if (rankChange < 0) return { icon: '↓', color: 'var(--error-color)', text: `${rankChange}` };
+    return { icon: '−', color: 'var(--color-text-muted)', text: '0' };
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#fef9f3' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--color-bg)' }}>
         <div className="text-center px-6">
-          <TrophyIcon className="w-16 h-16 mx-auto mb-4 animate-bounce" style={{ color: '#d97757' }} />
-          <p className="text-base sm:text-lg" style={{ color: '#5a6b7f' }}>Loading leaderboard...</p>
+          <TrophyIcon className="w-16 h-16 mx-auto mb-4 animate-bounce" style={{ color: 'var(--color-primary)' }} />
+          <p className="text-base sm:text-lg" style={{ color: 'var(--color-text-muted)' }}>Loading leaderboard...</p>
         </div>
       </div>
     );
@@ -181,7 +199,14 @@ export default function LeaderboardPage() {
 
   const hasNonZeroScores = leaderboard.some((entry) => entry.weeklyPoints > 0);
   const studentScopeToggle = viewerRole === 'student' ? (
-    <div className="inline-flex items-center rounded-full border border-[#d8cfbf] bg-[#fbf7f0] p-0.5 sm:rounded-lg sm:bg-[#f5f1e8] sm:p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(43,58,74,0.06)]">
+    <div
+      className="inline-flex items-center rounded-full p-0.5 sm:rounded-lg sm:p-1"
+      style={{
+        border: '1px solid var(--border-subtle)',
+        backgroundColor: 'var(--surface-contrast)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.12), 0 1px 2px rgba(13,22,32,0.10)',
+      }}
+    >
       <button
         type="button"
         onClick={() => void onScopeChange('section')}
@@ -190,13 +215,13 @@ export default function LeaderboardPage() {
         style={
           scope === 'section'
             ? {
-                backgroundColor: '#dc7d59',
-                color: '#ffffff',
-                boxShadow: '0 1px 2px rgba(217, 119, 87, 0.22), inset 0 1px 0 rgba(255,255,255,0.18)',
+                backgroundColor: 'var(--color-primary)',
+                color: 'var(--text-on-accent)',
+                boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
               }
             : {
                 backgroundColor: 'transparent',
-                color: '#5f6f84',
+                color: 'var(--color-text-muted)',
               }
         }
       >
@@ -211,13 +236,13 @@ export default function LeaderboardPage() {
         style={
           scope === 'all'
             ? {
-                backgroundColor: '#dc7d59',
-                color: '#ffffff',
-                boxShadow: '0 1px 2px rgba(217, 119, 87, 0.22), inset 0 1px 0 rgba(255,255,255,0.18)',
+                backgroundColor: 'var(--color-primary)',
+                color: 'var(--text-on-accent)',
+                boxShadow: '0 1px 2px color-mix(in srgb, var(--color-primary) 28%, transparent), inset 0 1px 0 rgba(255,255,255,0.18)',
               }
             : {
                 backgroundColor: 'transparent',
-                color: '#5f6f84',
+                color: 'var(--color-text-muted)',
               }
         }
       >
@@ -228,20 +253,20 @@ export default function LeaderboardPage() {
   ) : null;
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fef9f3' }}>
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-bg)' }}>
       {/* Header */}
-      <header className="sticky top-0 backdrop-blur-lg border-b-2" style={{ zIndex: 200, backgroundColor: 'rgba(255, 255, 255, 0.9)', borderColor: '#d9cfc0', boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08)' }}>
+      <header className="sticky top-0 backdrop-blur-lg border-b" style={{ zIndex: 200, backgroundColor: 'color-mix(in srgb, var(--surface-overlay) 96%, transparent)', borderColor: 'var(--border-subtle)', boxShadow: '0 1px 6px rgba(13,22,32,0.10)' }}>
         <div className="container mx-auto pt-2.5 pb-0.5 px-4 sm:py-4 sm:px-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-2.5 sm:gap-4">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center shadow-sm">
-                <TrophyIcon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: '#d97757' }} />
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-sm" style={{ background: 'linear-gradient(135deg, color-mix(in srgb, var(--accent-color-light) 76%, var(--surface-elevated)) 0%, color-mix(in srgb, var(--accent-color) 38%, var(--surface-elevated)) 100%)' }}>
+                <TrophyIcon className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: 'var(--color-primary)' }} />
               </div>
               <div className="flex flex-col justify-center py-0.5 pt-1 sm:pt-0.5">
-                <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                <h1 className="text-[1.75rem] leading-[0.95] sm:text-2xl md:text-3xl font-bold tracking-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
                   Weekly Leaderboard
                 </h1>
-                <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: '#7ba884' }}>
+                <p className="text-[13px] sm:text-sm font-medium leading-tight mt-1 sm:mt-0.5" style={{ color: 'var(--success-color)' }}>
                   Top performers this week
                 </p>
               </div>
@@ -253,13 +278,13 @@ export default function LeaderboardPage() {
                   {studentScopeToggle}
                 </div>
               ) : classOptions.length > 1 ? (
-                <div className="inline-flex items-center rounded-lg border border-[#d9cfc0] bg-white px-3 py-1.5 shadow-sm">
+                <div className="inline-flex items-center rounded-lg border px-3 py-1.5 shadow-sm" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-elevated)' }}>
                   <select
                     id="leaderboard-class"
                     value={selectedClassId || ''}
                     onChange={(e) => void onClassChange(e.target.value)}
                     className="border-none bg-transparent text-sm font-bold focus:outline-none cursor-pointer"
-                    style={{ color: '#5a6b7f' }}
+                    style={{ color: 'var(--color-text-muted)' }}
                   >
                     {classOptions.map((cls) => (
                       <option key={cls.id} value={cls.id}>
@@ -277,19 +302,19 @@ export default function LeaderboardPage() {
       <main className="container mx-auto py-6 px-4 sm:px-6 space-y-6 pb-28 md:pb-10">
         {/* User's Rank Card - Only show if user has points and appears in leaderboard */}
         {userRank && leaderboard.some((entry) => entry.rank === userRank) && (
-          <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: '#ffffff', borderColor: '#d97757', boxShadow: '0 4px 12px rgba(217, 119, 87, 0.15)' }}>
+          <div className="border-2 rounded-2xl p-5 sm:p-6" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--color-primary)', boxShadow: '0 4px 14px color-mix(in srgb, var(--color-primary) 22%, transparent)' }}>
             <div className="flex flex-col items-center text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
               <div>
-                <p className="text-sm font-semibold mb-1" style={{ color: '#7ba884' }}>
+                <p className="text-sm font-semibold mb-1" style={{ color: 'var(--success-color)' }}>
                   Your Rank
                 </p>
-                <p className="text-4xl font-bold" style={{ fontFamily: 'var(--font-display)', color: '#d97757' }}>
+                <p className="text-4xl font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-primary)' }}>
                   {getRankIcon(userRank, hasNonZeroScores)}
                 </p>
               </div>
               {leaderboard.find((entry) => entry.rank === userRank)?.rankChange && (
                 <div className="mt-4 sm:mt-0 sm:text-right">
-                  <p className="text-sm" style={{ color: '#5a6b7f' }}>
+                  <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
                     From last week
                   </p>
                   {(() => {
@@ -325,7 +350,7 @@ export default function LeaderboardPage() {
                     style={{
                       backgroundColor: getRankColor(student.rank).bg,
                       borderColor: getRankColor(student.rank).border,
-                      boxShadow: student.rank === 1 ? '0 8px 24px rgba(255, 215, 0, 0.3)' : undefined
+                      boxShadow: student.rank === 1 ? '0 10px 28px color-mix(in srgb, #FFD700 26%, transparent)' : '0 8px 20px rgba(13,22,32,0.10)'
                     }}
                   >
                     <div className={student.rank === 1 ? "text-5xl mb-2" : "text-4xl mb-2"}>
@@ -336,11 +361,11 @@ export default function LeaderboardPage() {
                         <LeaderboardAvatar avatar={student.avatar} avatarColor={student.avatarColor} size="md" />
                       </div>
                     )}
-                    <p className="font-bold text-lg truncate" style={{ color: '#2b3a4a' }}>
+                    <p className="font-bold text-lg truncate" style={{ color: 'var(--color-text)' }}>
                       {student.name}
                     </p>
                     {student.rank === 1 && (
-                      <p className="text-sm mt-1" style={{ color: '#7ba884' }}>
+                      <p className="text-sm mt-1" style={{ color: 'var(--success-color)' }}>
                         Champion
                       </p>
                     )}
@@ -358,10 +383,10 @@ export default function LeaderboardPage() {
 
         {/* Full Leaderboard */}
         {leaderboard.length > 0 ? (
-          <div className="border rounded-2xl overflow-hidden" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1)' }}>
-            <div className="border-b-2 p-4" style={{ backgroundColor: '#f5f1e8', borderColor: '#d9cfc0' }}>
+          <div className="border rounded-2xl overflow-hidden" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
+            <div className="border-b p-4" style={{ backgroundColor: 'var(--surface-contrast)', borderColor: 'var(--border-subtle)' }}>
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: '#2b3a4a' }}>
+                <h2 className="text-lg font-bold" style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text)' }}>
                   All Rankings
                 </h2>
                 {viewerRole === 'student' ? (
@@ -371,7 +396,7 @@ export default function LeaderboardPage() {
                 ) : null}
               </div>
             </div>
-            <div className="divide-y" style={{ borderColor: '#ede7db' }}>
+            <div className="divide-y" style={{ borderColor: 'var(--border-subtle)' }}>
               {leaderboard.map((entry) => {
               const rankColors = getRankColor(entry.rank);
               const rankChange = getRankChangeIndicator(entry.rankChange);
@@ -381,9 +406,9 @@ export default function LeaderboardPage() {
                 <div
                   key={entry.id}
                   className={`p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0 transition-all ${isUserRow ? 'border-l-4' : ''}`}
-                  style={{
-                    backgroundColor: isUserRow ? 'rgba(217, 119, 87, 0.05)' : 'transparent',
-                    borderLeftColor: isUserRow ? '#d97757' : 'transparent',
+                    style={{
+                    backgroundColor: isUserRow ? 'color-mix(in srgb, var(--color-primary) 12%, transparent)' : 'transparent',
+                    borderLeftColor: isUserRow ? 'var(--color-primary)' : 'transparent',
                   }}
                 >
                   <div className="flex items-center gap-3 flex-1">
@@ -402,21 +427,21 @@ export default function LeaderboardPage() {
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold truncate" style={{ color: '#2b3a4a' }}>
+                      <p className="font-semibold truncate" style={{ color: 'var(--color-text)' }}>
                         {entry.name}
                         {isUserRow && (
-                          <span className="ml-2 text-xs font-bold" style={{ color: '#d97757' }}>
+                          <span className="ml-2 text-xs font-bold" style={{ color: 'var(--color-primary)' }}>
                             (You)
                           </span>
                         )}
                       </p>
                       <div className="flex items-center flex-wrap gap-3 mt-1">
-                        <div className="flex items-center gap-1 text-sm" style={{ color: '#5a6b7f' }}>
+                        <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--color-text-muted)' }}>
                           <SparklesIcon size={16} />
                           <span>{entry.weeklyPoints} pts</span>
                         </div>
                         {entry.currentStreak > 0 && (
-                          <div className="flex items-center gap-1 text-sm" style={{ color: '#f4a261' }}>
+                          <div className="flex items-center gap-1 text-sm" style={{ color: 'var(--accent-color)' }}>
                             <FlameIcon size={16} />
                             <span>{entry.currentStreak} day streak</span>
                           </div>
@@ -430,7 +455,7 @@ export default function LeaderboardPage() {
                         <span>{rankChange.icon}</span>
                         <span className="text-sm">{Math.abs(entry.rankChange || 0)}</span>
                       </div>
-                      <p className="text-xs" style={{ color: '#8996a6' }}>
+                      <p className="text-xs" style={{ color: 'var(--color-text-light)' }}>
                         vs last week
                       </p>
                     </div>
@@ -441,12 +466,12 @@ export default function LeaderboardPage() {
             </div>
           </div>
         ) : (
-          <div className="border rounded-2xl overflow-hidden text-center py-12" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1)' }}>
-            <TrophyIcon className="w-16 h-16 mx-auto mb-4" style={{ color: '#d9cfc0' }} />
-            <p className="text-lg font-medium mb-2" style={{ color: '#5a6b7f' }}>
+          <div className="border rounded-2xl overflow-hidden text-center py-12" style={{ backgroundColor: 'var(--surface-elevated)', borderColor: 'var(--border-subtle)', boxShadow: '0 4px 12px rgba(13,22,32,0.12)' }}>
+            <TrophyIcon className="w-16 h-16 mx-auto mb-4" style={{ color: 'var(--border-strong)' }} />
+            <p className="text-lg font-medium mb-2" style={{ color: 'var(--color-text-muted)' }}>
               No rankings yet
             </p>
-            <p className="text-sm" style={{ color: '#8996a6' }}>
+            <p className="text-sm" style={{ color: 'var(--color-text-light)' }}>
               Students will appear here once they earn points. Complete activities to climb the ranks!
             </p>
           </div>

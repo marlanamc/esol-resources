@@ -433,13 +433,13 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
         return (
             <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:max-w-4xl md:mx-auto md:px-3 md:py-4">
                 {/* Header */}
-                <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4">
+                <div className="flex-shrink-0 bg-white dark:bg-[#162b3d] border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 dark:border-white/10 p-4">
                     <div className="flex items-center gap-3">
                         <BackButton
                             onClick={() => window.history.back()}
                             className="shrink-0 md:hidden"
                         />
-                        <h1 className="text-xl md:text-2xl font-bold text-gray-900 flex-1">
+                        <h1 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white flex-1">
                             Numbers to English Words
                         </h1>
                     </div>
@@ -448,7 +448,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                 {/* Instructions Toggle */}
                 <div className="px-4 py-4 md:px-0">
                     <button 
-                        className="w-full md:w-auto px-6 py-3 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium text-gray-700"
+                        className="w-full md:w-auto px-6 py-3 bg-white dark:bg-[#162b3d] border-2 border-gray-300 dark:border-white/20 rounded-lg hover:bg-gray-50 dark:hover:bg-white/10 transition-colors font-medium text-gray-700 dark:text-gray-200"
                         onClick={() => setShowInstructions(!showInstructions)}
                     >
                         {showInstructions ? 'Hide Instructions' : 'Show Instructions'}
@@ -458,9 +458,9 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                 {/* Instructions */}
                 {showInstructions && (
                     <div className="px-4 pb-4 md:px-0">
-                        <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                            <h3 className="text-lg font-bold text-gray-900 mb-4">Number Categories Explained</h3>
-                            <ul className="space-y-2 text-sm text-gray-700">
+                        <div className="bg-white dark:bg-[#162b3d] border border-gray-200 dark:border-white/10 rounded-xl p-6 shadow-sm">
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Number Categories Explained</h3>
+                            <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                                 <li><strong>Round Numbers:</strong> Common benchmark numbers (e.g., one thousand, five million, one billion)</li>
                                 <li><strong>All Cardinal Numbers:</strong> Any number from 0 to trillions</li>
                                 <li><strong>Basic Numbers:</strong> 0 to 99 (e.g., twenty-five)</li>
@@ -472,8 +472,8 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                                 <li><strong>Years:</strong> 1100-2099 (e.g., nineteen oh five, two thousand and one)</li>
                             </ul>
                             
-                            <h4 className="text-base font-bold text-gray-900 mt-6 mb-2">Keyboard Shortcuts</h4>
-                            <ul className="space-y-1 text-sm text-gray-700">
+                            <h4 className="text-base font-bold text-gray-900 dark:text-white mt-6 mb-2">Keyboard Shortcuts</h4>
+                            <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-300">
                                 <li><strong>Enter:</strong> Check your answer</li>
                                 <li><strong>Right Arrow →:</strong> Get next number</li>
                             </ul>
@@ -483,16 +483,16 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
 
                 {/* Settings */}
                 <div className="flex-1 overflow-y-auto px-4 py-4 md:px-0 md:py-0">
-                    <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-                        <h2 className="text-xl font-bold text-gray-900 mb-2">Game Settings</h2>
-                        <p className="text-sm text-gray-600 mb-6">Customize your practice session</p>
+                    <div className="bg-white dark:bg-[#162b3d] border border-gray-200 dark:border-white/10 rounded-xl p-6 shadow-sm">
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Game Settings</h2>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">Customize your practice session</p>
                         
                         <div className="mb-6">
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                                 Number Category
                             </label>
                             <select 
-                                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                                className="w-full px-4 py-3 border-2 border-gray-300 dark:border-white/20 rounded-lg bg-white dark:bg-[#0d1620] text-gray-900 dark:text-white focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                                 value={settings.category}
                                 onChange={(e) => setSettings(prev => ({ ...prev, category: e.target.value }))}
                             >
@@ -528,7 +528,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
             )}
 
             {/* Header */}
-            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-[var(--color-border)] p-4">
+            <div className="flex-shrink-0 bg-white dark:bg-[#162b3d] border-b-2 md:border md:rounded-xl shadow-sm border-[var(--color-border)] p-4">
                 <div className="flex items-center gap-3 mb-4">
                     <BackButton
                         onClick={() => window.history.back()}
@@ -553,23 +553,23 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-bold text-green-700">{gameState.score}</div>
-                        <div className="text-xs text-green-600">Correct</div>
+                    <div className="bg-green-50 dark:bg-green-900/30 border border-green-300 dark:border-green-700/60 rounded-lg p-3 text-center">
+                        <div className="text-2xl font-bold text-green-800 dark:text-green-200">{gameState.score}</div>
+                        <div className="text-xs font-medium text-green-800 dark:text-green-300">Correct</div>
                     </div>
-                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-bold text-red-700">{gameState.incorrect}</div>
-                        <div className="text-xs text-red-600">Incorrect</div>
+                    <div className="bg-red-50 dark:bg-red-900/30 border border-red-300 dark:border-red-700/60 rounded-lg p-3 text-center">
+                        <div className="text-2xl font-bold text-red-800 dark:text-red-200">{gameState.incorrect}</div>
+                        <div className="text-xs font-medium text-red-800 dark:text-red-300">Incorrect</div>
                     </div>
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-bold text-blue-700">
+                    <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-300 dark:border-blue-700/60 rounded-lg p-3 text-center">
+                        <div className="text-2xl font-bold text-blue-800 dark:text-blue-200">
                             {Math.round((gameState.score / Math.max(gameState.questionCount, 1)) * 100)}%
                         </div>
-                        <div className="text-xs text-blue-600">Success</div>
+                        <div className="text-xs font-medium text-blue-800 dark:text-blue-300">Success</div>
                     </div>
-                    <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-center">
-                        <div className="text-2xl font-bold text-yellow-700">{gameState.streak}</div>
-                        <div className="text-xs text-yellow-600">Streak</div>
+                    <div className="bg-yellow-50 dark:bg-amber-900/30 border border-yellow-300 dark:border-amber-700/60 rounded-lg p-3 text-center">
+                        <div className="text-2xl font-bold text-yellow-800 dark:text-amber-200">{gameState.streak}</div>
+                        <div className="text-xs font-medium text-yellow-800 dark:text-amber-300">Streak</div>
                     </div>
                 </div>
 
@@ -590,7 +590,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                             Number Category
                         </label>
                         <select 
-                            className="w-full px-4 py-3 border-2 border-[var(--color-border)] rounded-lg bg-white text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                            className="w-full px-4 py-3 border-2 border-[var(--color-border)] rounded-lg bg-white dark:bg-[#0d1620] text-[var(--color-text)] focus:outline-none focus:border-[var(--color-primary)] transition-colors"
                             value={settings.category}
                             onChange={(e) => {
                                 setSettings(prev => ({ ...prev, category: e.target.value }));
@@ -608,7 +608,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                     <div className="flex items-center gap-2">
                         <button
                             onClick={resetGame}
-                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white text-[var(--color-text)] hover:bg-[var(--color-border)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
+                            className="flex-1 py-2.5 px-4 text-sm font-medium rounded-lg bg-white dark:bg-[#0d1620] text-[var(--color-text)] border border-[var(--color-border)] hover:bg-[var(--color-bg-light)] transition-[background-color] flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2"
                         >
                             <RotateCcw className="w-4 h-4" />
                             Reset Game
@@ -629,7 +629,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
             {/* Instructions */}
             {showInstructions && (
                 <div className="px-4 pb-4 md:px-0">
-                    <div className="bg-white border border-[var(--color-border)] rounded-xl p-4 shadow-sm text-sm text-[var(--color-text)]">
+                    <div className="bg-white dark:bg-[#162b3d] border border-[var(--color-border)] rounded-xl p-4 shadow-sm text-sm text-[var(--color-text)]">
                         <h4 className="font-bold mb-3 text-[var(--color-text)]">Number Categories Explained</h4>
                         <ul className="space-y-2 mb-4 text-[var(--color-text-muted)]">
                             <li><strong className="text-[var(--color-text)]">Round Numbers:</strong> Common benchmark numbers (e.g., one thousand, five million)</li>
@@ -650,7 +650,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
 
             {/* Main Content */}
             <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
-                <div className="bg-white md:rounded-2xl shadow-lg border-0 md:border border-[var(--color-border)] p-6 sm:p-8 mb-6">
+                <div className="bg-white dark:bg-[#162b3d] md:rounded-2xl shadow-lg border-0 md:border border-[var(--color-border)] p-6 sm:p-8 mb-6">
                     {/* Question */}
                     <div className="mb-8 text-center">
                         <h3 className="text-4xl md:text-6xl font-bold text-[var(--color-text)] mb-6 font-display">
@@ -669,7 +669,7 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
                                 onChange={(e) => setUserAnswer(e.target.value)}
                                 onKeyDown={handleKeyPress}
                                 placeholder="Type your answer…"
-                                className="w-full px-6 py-4 text-xl border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:border-[var(--color-primary)] transition-colors text-center text-[var(--color-text)] bg-white"
+                                className="w-full px-6 py-4 text-xl border-2 border-[var(--color-border)] rounded-xl focus:outline-none focus:border-[var(--color-primary)] transition-colors text-center text-[var(--color-text)] bg-white dark:bg-[#0d1620]"
                                 disabled={showFeedback}
                             />
                         </div>
@@ -697,17 +697,19 @@ export default function NumbersGame({ contentStr, activityId }: Props) {
 
                     {/* Feedback */}
                     {showFeedback && !isRoundComplete && (
-                        <div className={`p-4 rounded-xl mb-4 ${
+                        <div className={`p-5 rounded-xl mb-4 text-base ${
                             feedback.startsWith('Correct') 
-                                ? 'bg-green-50 border-2 border-green-300' 
-                                : 'bg-red-50 border-2 border-red-300'
+                                ? 'bg-green-50 dark:bg-green-900/30 border-2 border-green-400 dark:border-green-600/60' 
+                                : 'bg-red-50 dark:bg-red-900/30 border-2 border-red-400 dark:border-red-600/60'
                         }`}>
                             <p className={`font-bold text-lg mb-2 ${
-                                feedback.startsWith('Correct') ? 'text-green-900' : 'text-red-900'
+                                feedback.startsWith('Correct') ? 'text-green-900 dark:text-green-100' : 'text-red-900 dark:text-red-100'
                             }`}>
                                 {feedback.startsWith('Correct') ? '🎉 Correct!' : '❌ Incorrect'}
                             </p>
-                            <p className={feedback.startsWith('Correct') ? 'text-green-800' : 'text-red-800'}>
+                            <p className={`font-medium ${
+                                feedback.startsWith('Correct') ? 'text-green-900 dark:text-green-200' : 'text-red-900 dark:text-red-200'
+                            }`}>
                                 {feedback.startsWith('Correct') 
                                     ? feedback.replace('Correct! Well done! ', '')
                                     : feedback.replace('Incorrect. ', '')}
