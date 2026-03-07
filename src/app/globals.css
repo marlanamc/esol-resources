@@ -476,6 +476,41 @@ body {
     0 2px 8px rgba(6, 12, 18, 0.2);
 }
 
+/* Card hover lift effect */
+.card-hover-lift {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 32px rgba(52, 43, 34, 0.12),
+    0 4px 12px rgba(52, 43, 34, 0.08);
+}
+
+.dark .card-hover-lift:hover,
+[data-theme="dark"] .card-hover-lift:hover {
+  box-shadow:
+    0 12px 32px rgba(6, 12, 18, 0.35),
+    0 4px 12px rgba(6, 12, 18, 0.25);
+}
+
+/* Decorative accent blob */
+.accent-blob {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0.1;
+  filter: blur(24px);
+  border-radius: 9999px;
+}
+
+.dark .accent-blob,
+[data-theme="dark"] .accent-blob {
+  opacity: 0.08;
+}
+
 .learner-tone-card {
   background-color: var(--learner-tone-surface);
   border-color: var(--learner-tone-border);
@@ -729,6 +764,36 @@ textarea {
   50% {
     opacity: 1;
   }
+}
+
+@keyframes pulse-subtle {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(232, 128, 74, 0.28), inset 0 1px 1px rgba(255, 255, 255, 0.28);
+  }
+  50% {
+    opacity: 0.92;
+    box-shadow: 0 0 22px rgba(232, 128, 74, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.28);
+  }
+}
+
+@keyframes bounce-subtle {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.08;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 1.5s ease-in-out infinite;
 }
 
 @keyframes checkDraw {

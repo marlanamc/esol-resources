@@ -462,7 +462,18 @@ function ChecklistAssignments({
     ) => (
         <div
             key={row.assignment.id}
-            className={`relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-colors duration-200 border-b border-border/10 last:border-0 ${row.isCompleted ? 'opacity-75' : ''}`}
+            className={`relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-all duration-200 border-b border-border/10 last:border-0 hover:bg-[var(--color-checklist-hover)] ${row.isCompleted ? 'opacity-75' : ''}`}
+            style={{
+                borderLeft: '3px solid transparent',
+            }}
+            onMouseEnter={(e) => {
+                if (!row.isCompleted) {
+                    e.currentTarget.style.borderLeftColor = categoryStyle.accent;
+                }
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.borderLeftColor = 'transparent';
+            }}
         >
             <div className="flex items-center gap-3 min-w-0">
                 <div className="shrink-0 flex items-center justify-center w-5 h-5">
@@ -574,10 +585,20 @@ function ChecklistAssignments({
                     </div>
                 ) : !row.isCompleted && row.progressValue > 0 ? (
                     <div className="mt-1.5">
-                        <div className="h-1.5 w-24 max-w-full rounded-full overflow-hidden border" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--border-subtle)' }}>
+                        <div
+                            className="h-1.5 w-24 max-w-full rounded-full overflow-hidden"
+                            style={{
+                                backgroundColor: `color-mix(in srgb, ${categoryStyle.accent} 15%, var(--surface-subtle))`,
+                                boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.06)',
+                            }}
+                        >
                             <div
                                 className="h-full rounded-full transition-[width] duration-300"
-                                style={{ width: `${row.progressValue}%`, backgroundColor: categoryStyle.accent }}
+                                style={{
+                                    width: `${row.progressValue}%`,
+                                    background: `linear-gradient(90deg, ${categoryStyle.accent} 0%, color-mix(in srgb, ${categoryStyle.accent} 75%, var(--accent)) 100%)`,
+                                    boxShadow: `0 0 4px color-mix(in srgb, ${categoryStyle.accent} 40%, transparent)`,
+                                }}
                             />
                         </div>
                     </div>
@@ -595,17 +616,17 @@ function ChecklistAssignments({
         return (
             <div
                 key={row.assignment.id}
-                className={`relative overflow-hidden rounded-2xl border px-3.5 py-2.5 ${row.isCompleted ? 'opacity-70' : ''}`}
+                className={`relative overflow-hidden rounded-xl border px-3.5 py-2.5 transition-transform duration-150 active:scale-[0.98] ${row.isCompleted ? 'opacity-70' : ''}`}
                 style={{
                     borderColor: row.isCompleted
-                        ? 'rgba(127, 179, 213, 0.08)'
-                        : `color-mix(in srgb, ${row.categoryStyle.accent} 22%, var(--border-subtle))`,
-                    background: 'linear-gradient(135deg, color-mix(in srgb, var(--surface-elevated) 94%, transparent) 0%, color-mix(in srgb, var(--surface-overlay) 92%, transparent) 100%)',
+                        ? 'rgba(127, 179, 213, 0.12)'
+                        : `color-mix(in srgb, ${row.categoryStyle.accent} 25%, var(--border-subtle))`,
+                    background: row.isCompleted
+                        ? 'var(--surface-subtle)'
+                        : 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-overlay) 100%)',
                     boxShadow: row.isCompleted
-                        ? '0 4px 12px rgba(4, 10, 18, 0.08)'
-                        : '0 6px 16px rgba(4, 10, 18, 0.12)',
-                    backdropFilter: 'blur(10px)',
-                    WebkitBackdropFilter: 'blur(10px)',
+                        ? 'none'
+                        : '0 2px 6px rgba(4, 10, 18, 0.06), 0 1px 2px rgba(4, 10, 18, 0.04)',
                 }}
             >
                 <div className="pointer-events-none absolute inset-y-1 right-4 w-12 opacity-15 blur-2xl" style={{ background: row.categoryStyle.accent }} />
@@ -776,19 +797,19 @@ function ChecklistAssignments({
     return (
         <div className="mb-8">
             <div className={`rounded-3xl overflow-hidden border surface-elevated surface-card-shadow ${isFullyComplete ? 'ring-2 ring-[var(--tone-speaking-border)]' : ''}`} style={{ borderColor: isFullyComplete ? 'var(--tone-speaking-border)' : 'var(--border-subtle)' }}>
-                <div className="px-4 py-3 border-b border-border/15 surface-elevated">
-                    <div className="flex items-center justify-between gap-3 mb-3">
-                        <div className="flex items-center gap-3">
-                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${isFullyComplete ? 'border shadow-sm' : 'bg-primary/10 text-primary'}`} style={isFullyComplete ? { backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)' } : undefined}>
+                <div className="px-4 py-2.5 border-b border-border/15 surface-elevated">
+                    <div className="flex items-center justify-between gap-3 mb-2">
+                        <div className="flex items-center gap-2.5">
+                            <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-base ${isFullyComplete ? 'border shadow-sm' : 'bg-primary/10 text-primary'}`} style={isFullyComplete ? { backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)' } : undefined}>
                                 {isFullyComplete ? '🏆' : '📋'}
                             </div>
                             {resolvedTitle ? (
                                 <div className="min-w-0">
-                                    <h2 className="text-lg sm:text-xl font-display font-bold text-text leading-tight">
+                                    <h2 className="text-base sm:text-lg font-display font-bold text-text leading-tight">
                                         {resolvedTitle}
                                     </h2>
                                     {weeklyRangeLabel ? (
-                                        <p className="mt-0.5 text-[11px] sm:text-xs font-medium text-text-muted">
+                                        <p className="text-[11px] sm:text-xs font-medium text-text-muted">
                                             {weeklyRangeLabel}
                                         </p>
                                     ) : null}
@@ -797,17 +818,11 @@ function ChecklistAssignments({
                         </div>
                         <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                             {actions && <div className="mr-2">{actions}</div>}
-                            <span className="hidden sm:inline-block px-2 py-1 rounded-md border tabular-nums" style={{ backgroundColor: 'var(--surface-base)', borderColor: 'var(--border-subtle)' }}>{completedCount}/{checklistRows.length} done</span>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2.5">
                         <div className="flex-1">
-                            <div className="mb-1.5 flex items-center justify-between text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-text/55">
-                                <span>Week Progress</span>
-                                <span>{completedCount} of {checklistRows.length} finished</span>
-                            </div>
-
-                            <div className={`relative overflow-hidden rounded-full border h-5 ${
+                            <div className={`relative overflow-hidden rounded-full border h-4 ${
                                 isFullyComplete
                                     ? 'border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]'
                                     : 'border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]'
@@ -818,7 +833,7 @@ function ChecklistAssignments({
                                     : 'var(--checklist-track-bg)',
                             }}>
                                 <div
-                                    className="absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out"
+                                    className={`absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out ${percent >= 90 && !isFullyComplete ? 'animate-pulse-subtle' : ''}`}
                                     style={{
                                         width: `${percent}%`,
                                         background: isFullyComplete
@@ -826,7 +841,9 @@ function ChecklistAssignments({
                                             : 'linear-gradient(90deg, #d05a3e 0%, #e87c4a 35%, #f0a030 70%, #f4c245 100%)',
                                         boxShadow: isFullyComplete
                                             ? '0 0 20px rgba(232,128,74,0.4), inset 0 1px 1px rgba(255,255,255,0.35)'
-                                            : '0 0 14px rgba(232,128,74,0.28), inset 0 1px 1px rgba(255,255,255,0.28)',
+                                            : percent >= 90
+                                                ? '0 0 18px rgba(232,128,74,0.38), inset 0 1px 1px rgba(255,255,255,0.28)'
+                                                : '0 0 14px rgba(232,128,74,0.28), inset 0 1px 1px rgba(255,255,255,0.28)',
                                     }}
                                 />
 
@@ -838,34 +855,23 @@ function ChecklistAssignments({
                                     }}
                                 />
 
-                                <div className="absolute inset-0 flex items-center justify-between px-3 pointer-events-none">
-                                    {[25, 50, 75].map((marker) => (
-                                        <div
-                                            key={marker}
-                                            className="h-2.5 w-px rounded-full bg-white/70 shadow-[0_0_0_1px_rgba(138,91,61,0.08)]"
-                                        />
-                                    ))}
-                                </div>
-
                                 {percent > 0 && (
                                     <div
-                                        className="absolute top-1/2 z-10 flex h-7 w-7 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border border-white/80 bg-white/95 text-[13px] shadow-[0_6px_14px_rgba(93,67,46,0.16)]"
-                                        style={{ left: `clamp(14px, ${percent}%, calc(100% - 14px))` }}
+                                        className={`absolute top-1/2 z-10 flex h-6 w-6 -translate-y-1/2 -translate-x-1/2 items-center justify-center rounded-full border text-[11px] transition-all duration-300 ${
+                                            isFullyComplete
+                                                ? 'border-amber-300/90 bg-gradient-to-b from-amber-50 to-amber-100 shadow-[0_0_12px_rgba(245,158,11,0.35),0_4px_10px_rgba(93,67,46,0.18)] animate-bounce-subtle'
+                                                : 'border-white/80 bg-white/95 shadow-[0_4px_10px_rgba(93,67,46,0.14)]'
+                                        }`}
+                                        style={{ left: `clamp(12px, ${percent}%, calc(100% - 12px))` }}
                                     >
                                         {isFullyComplete ? '🏆' : percent >= 75 ? '🔥' : percent >= 40 ? '✨' : '🌱'}
                                     </div>
                                 )}
                             </div>
-
-                            <div className="mt-1.5 flex items-center justify-between text-[10px] sm:text-[11px] font-medium text-text-muted">
-                                <span>Start</span>
-                                <span>Momentum</span>
-                                <span>Finish line</span>
-                            </div>
                         </div>
 
                         <span
-                            className={`shrink-0 px-3 py-1.5 rounded-full border text-[13px] font-bold leading-none tabular-nums shadow-sm ${
+                            className={`shrink-0 px-2.5 py-1 rounded-full border text-[12px] font-bold leading-none tabular-nums shadow-sm ${
                                 isFullyComplete
                                     ? 'bg-[#f8f3ec] border-[#d7c09a]/60 text-[#8a5b3d]'
                                     : 'bg-[linear-gradient(180deg,#fffdfa_0%,#f6efe6_100%)] border-[#dcccbc] text-[#8f5d4e]'
@@ -880,11 +886,11 @@ function ChecklistAssignments({
                     <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
                         <button
                             onClick={() => setActiveFilter('all')}
-                            className={`shrink-0 !min-h-0 !min-w-0 px-2.5 py-0.5 rounded-full text-[7.5px] font-bold uppercase leading-none transition-all duration-200 flex items-center gap-1 ${activeFilter === 'all' ? 'shadow-sm' : 'text-text/70 hover:shadow-sm'}`}
-                            style={{ fontSize: '10px', WebkitTextSizeAdjust: '100%', backgroundColor: activeFilter === 'all' ? 'var(--surface-base)' : 'var(--surface-overlay)', color: activeFilter === 'all' ? 'var(--text-color)' : undefined, borderColor: activeFilter === 'all' ? 'var(--color-primary)' : 'var(--border-subtle)' }}
+                            className={`shrink-0 !min-h-0 !min-w-0 px-3 py-1 rounded-full font-bold uppercase leading-none transition-all duration-200 flex items-center gap-1.5 ${activeFilter === 'all' ? 'shadow-sm' : 'text-text/70 hover:shadow-sm'}`}
+                            style={{ fontSize: '11px', WebkitTextSizeAdjust: '100%', backgroundColor: activeFilter === 'all' ? 'var(--surface-base)' : 'var(--surface-overlay)', color: activeFilter === 'all' ? 'var(--text-color)' : undefined, borderColor: activeFilter === 'all' ? 'var(--color-primary)' : 'var(--border-subtle)' }}
                         >
                             ALL
-                            <span className={`px-1 py-0.5 rounded text-[7.5px] font-bold leading-none ${activeFilter === 'all' ? 'bg-white/20' : 'bg-black/5'}`}>
+                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold leading-none ${activeFilter === 'all' ? 'bg-white/20' : 'bg-black/5'}`}>
                                 {taskRows.length}
                             </span>
                         </button>
@@ -897,20 +903,20 @@ function ChecklistAssignments({
                                 <button
                                     key={group.key}
                                     onClick={() => setActiveFilter(group.key)}
-                                    className="shrink-0 !min-h-0 !min-w-0 px-2.5 py-0.5 rounded-full text-[7.5px] font-bold uppercase leading-none transition-all duration-200 border flex items-center gap-1.5"
+                                    className="shrink-0 !min-h-0 !min-w-0 px-3 py-1 rounded-full font-bold uppercase leading-none transition-all duration-200 border flex items-center gap-1.5"
                                     style={{
-                                        fontSize: '10px',
+                                        fontSize: '11px',
                                         WebkitTextSizeAdjust: '100%',
                                         backgroundColor: isActive ? groupStyle.accent : 'var(--surface-overlay)',
                                         color: isActive ? 'var(--text-on-accent)' : groupStyle.text,
                                         borderColor: isActive ? groupStyle.accent : 'var(--border-subtle)',
                                     }}
                                 >
-                                    <span className={`[&>svg]:w-3 [&>svg]:h-3 [&>svg]:stroke-[2.5px] ${isActive ? 'text-white/90' : 'opacity-70'}`}>
-                                        {group.renderIcon('w-3 h-3')}
+                                    <span className={`[&>svg]:w-3.5 [&>svg]:h-3.5 [&>svg]:stroke-[2.5px] ${isActive ? 'text-white/90' : 'opacity-70'}`}>
+                                        {group.renderIcon('w-3.5 h-3.5')}
                                     </span>
                                     {group.label}
-                                    <span className={`ml-0.5 px-1 py-0.5 rounded text-[7.5px] font-bold leading-none ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
+                                    <span className={`ml-0.5 px-1.5 py-0.5 rounded text-[9px] font-bold leading-none ${isActive ? 'bg-white/20' : 'bg-black/5'}`}>
                                         {group.items.length}
                                     </span>
                                 </button>
@@ -922,31 +928,29 @@ function ChecklistAssignments({
                 <div className="lg:hidden px-3 py-3 space-y-2.5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
                         {resumeRow ? renderResumeCard(resumeRow) : null}
 
-                <section className="space-y-2">
-                            <div className="px-1">
-                                <h3 className="text-[15px] font-semibold text-text">Your tasks</h3>
-                            </div>
+                        <div className="px-0.5 pt-1">
+                            <h3 className="text-[17px] font-bold text-text tracking-tight">Your tasks</h3>
+                        </div>
 
-                            {filteredTaskRows.length > 0 ? (
-                                <div className="space-y-2">
-                                    {filteredTaskRows.map(renderCondensedRow)}
+                        {filteredTaskRows.length > 0 ? (
+                            <div className="space-y-2">
+                                {filteredTaskRows.map(renderCondensedRow)}
+                            </div>
+                        ) : (
+                            <div className="rounded-xl border px-4 py-8 text-center" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-base)' }}>
+                                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-black/5 text-2xl">
+                                    🔍
                                 </div>
-                            ) : (
-                                <div className="rounded-[28px] border px-4 py-8 text-center" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'rgba(10, 20, 30, 0.88)' }}>
-                                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-white/5 text-2xl">
-                                        🔍
-                                    </div>
-                                    <p className="text-sm font-semibold text-text">No tasks in this filter</p>
-                                    <p className="mt-1 text-xs text-text-muted">Try a different filter or show all activities.</p>
-                                    <button
-                                        onClick={() => setActiveFilter('all')}
-                                        className="mt-3 text-xs font-bold uppercase tracking-wider text-[var(--tone-vocabulary-chip-text)] hover:underline"
-                                    >
-                                        Show all
-                                    </button>
-                                </div>
-                            )}
-                        </section>
+                                <p className="text-sm font-semibold text-text">No tasks in this filter</p>
+                                <p className="mt-1 text-xs text-text-muted">Try a different filter or show all activities.</p>
+                                <button
+                                    onClick={() => setActiveFilter('all')}
+                                    className="mt-3 text-xs font-bold uppercase tracking-wider text-[var(--tone-vocabulary-chip-text)] hover:underline"
+                                >
+                                    Show all
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                 <div className="hidden lg:block p-2.5 sm:p-4" style={{ backgroundColor: 'var(--surface-base)' }}>
@@ -956,18 +960,34 @@ function ChecklistAssignments({
                             return (
                                 <div
                                     key={group.key}
-                                    className="rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col group/card surface-card-shadow"
-                                    style={{ backgroundColor: groupStyle.pastelBg || 'rgba(255,255,255,0.95)', borderColor: groupStyle.accent }}
+                                    className="relative rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col group/card surface-card-shadow hover:shadow-lg hover:-translate-y-0.5"
+                                    style={{
+                                        background: `linear-gradient(145deg, ${groupStyle.pastelBg || 'rgba(255,255,255,0.95)'} 0%, color-mix(in srgb, ${groupStyle.pastelBg || 'rgba(255,255,255,0.95)'} 92%, white) 100%)`,
+                                        borderColor: `color-mix(in srgb, ${groupStyle.accent} 35%, var(--border-subtle))`,
+                                    }}
                                 >
+                                    {/* Decorative accent blob */}
                                     <div
-                                        className="w-full px-3.5 py-2.5 flex items-center justify-between"
+                                        className="pointer-events-none absolute -top-4 -right-4 w-24 h-24 opacity-[0.08] blur-2xl rounded-full"
+                                        style={{ background: groupStyle.accent }}
+                                    />
+                                    <div
+                                        className="relative w-full px-3.5 py-2.5 flex items-center justify-between"
                                         style={{
                                             borderLeft: `5px solid ${groupStyle.accent}`,
-                                            backgroundColor: groupStyle.bg,
+                                            background: `linear-gradient(90deg, ${groupStyle.bg} 0%, color-mix(in srgb, ${groupStyle.bg} 85%, transparent) 100%)`,
                                         }}
                                     >
                                         <div className="flex items-center gap-2.5">
-                                            <span className="opacity-80" style={{ color: groupStyle.accent }}>{group.renderIcon('w-5 h-5')}</span>
+                                            <span
+                                                className="flex items-center justify-center w-7 h-7 rounded-full"
+                                                style={{
+                                                    backgroundColor: `color-mix(in srgb, ${groupStyle.accent} 15%, transparent)`,
+                                                    color: groupStyle.accent,
+                                                }}
+                                            >
+                                                {group.renderIcon('w-4 h-4')}
+                                            </span>
                                             <Link
                                                 href={`/dashboard/activities?category=${group.key === 'activity' ? 'games' : group.key}`}
                                                 className="font-bold text-[15px] tracking-tight hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
@@ -984,7 +1004,7 @@ function ChecklistAssignments({
                                         </div>
                                     </div>
 
-                                    <div className="divide-y divide-border/10 flex-1">
+                                    <div className="relative divide-y divide-border/10 flex-1">
                                         {group.items.map((row) => renderChecklistRow(row, group.isGameGroup, groupStyle))}
                                     </div>
                                 </div>
