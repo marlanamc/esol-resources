@@ -533,7 +533,7 @@ export default async function DashboardPage() {
 
                         {/* Calendar & Important Pages Sidebar (hidden on mobile) */}
                         <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="sticky top-24 space-y-8 rounded-2xl border border-[#ddcfbe] bg-gradient-to-b from-[#fffdfa] to-[#f6efe4] p-6 shadow-[0_10px_28px_rgba(52,43,34,0.1)]">
+                            <div className="sticky top-24 space-y-8 rounded-2xl border p-6 surface-card-shadow" style={{ borderColor: 'var(--border-subtle)', background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)' }}>
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList
@@ -548,7 +548,7 @@ export default async function DashboardPage() {
                                 />
 
                                 <div className="pt-4 mt-4 border-t border-border/40 space-y-4">
-                                    <h3 className="text-sm font-semibold text-[#1f2633]">Important Pages</h3>
+                                    <h3 className="text-sm font-semibold text-text">Important Pages</h3>
                                     <p className="text-xs text-text-muted">
                                         Organized by task so you can find tools faster.
                                     </p>
