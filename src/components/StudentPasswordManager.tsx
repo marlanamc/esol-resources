@@ -77,7 +77,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
     };
 
     return (
-        <div className="border rounded-2xl p-6 bg-white shadow-sm space-y-4">
+        <div className="border dark:border-white/10 rounded-2xl p-6 bg-white dark:bg-[var(--surface-elevated)] shadow-sm space-y-4">
             <div className="flex items-center justify-between gap-2 flex-wrap">
                 <div>
                     <p className="text-sm font-semibold text-text-muted">Student passwords</p>
@@ -98,7 +98,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                             className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${
                                 selectedSectionId === "all"
                                     ? "bg-primary text-white border-primary"
-                                    : "bg-white text-text border-border hover:bg-bg-light/60"
+                                    : "bg-white dark:bg-white/5 text-text border-border dark:border-white/20 hover:bg-bg-light/60 dark:hover:bg-white/10"
                             }`}
                         >
                             All sections ({students.length})
@@ -111,7 +111,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                 className={`px-3 py-1.5 rounded-full text-xs font-semibold border ${
                                     selectedSectionId === section.id
                                         ? "bg-primary text-white border-primary"
-                                        : "bg-white text-text border-border hover:bg-bg-light/60"
+                                        : "bg-white dark:bg-white/5 text-text border-border dark:border-white/20 hover:bg-bg-light/60 dark:hover:bg-white/10"
                                 }`}
                             >
                                 {section.name} ({section.students.length})
@@ -127,7 +127,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                     return (
                         <div
                             key={s.id}
-                            className="flex flex-col md:flex-row md:items-center gap-3 p-4 bg-white"
+                            className="flex flex-col md:flex-row md:items-center gap-3 p-4 bg-white dark:bg-white/5"
                         >
                             <div className="flex-1 min-w-[200px]">
                                 <p className="font-semibold text-text">
@@ -144,7 +144,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                                 <input
                                     type="password"
                                     placeholder="New password"
-                                    className="w-full md:w-auto flex-1 px-3 py-2 border rounded-lg text-sm"
+                                    className="w-full md:w-auto flex-1 px-3 py-2 border border-gray-300 dark:border-white/20 rounded-lg text-sm bg-white dark:bg-white/5 text-text"
                                     value={passwords[s.id] || ""}
                                     onChange={(e) =>
                                         setPasswords((prev) => ({ ...prev, [s.id]: e.target.value }))
@@ -170,7 +170,7 @@ export function StudentPasswordManager({ students, sections = [] }: Props) {
                     );
                 })}
                 {sorted.length === 0 && (
-                    <div className="p-4 text-sm text-text-muted bg-white">
+                    <div className="p-4 text-sm text-text-muted bg-white dark:bg-white/5">
                         No students in this section yet.
                     </div>
                 )}

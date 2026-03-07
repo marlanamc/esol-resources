@@ -105,15 +105,15 @@ export default function StudyReminders({ className = "" }: StudyRemindersProps) 
     return (
         <div className={`space-y-6 ${className}`}>
             <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Study Reminders</h3>
-                <p className="text-sm text-gray-600">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Study Reminders</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                     Set up study reminders to stay on track with your learning goals
                 </p>
             </div>
 
             {!isSupported && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <p className="text-sm text-yellow-800">
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-700/60 rounded-lg p-4">
+                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
                         ⚠️ Your browser doesn't support notifications. Reminders will only work when you have the app open.
                     </p>
                 </div>
@@ -121,7 +121,7 @@ export default function StudyReminders({ className = "" }: StudyRemindersProps) 
 
             <div className="space-y-4">
                 {reminders.map((reminder) => (
-                    <div key={reminder.id} className="bg-white border border-gray-200 rounded-lg p-4">
+                    <div key={reminder.id} className="bg-white dark:bg-[var(--surface-elevated)] border border-gray-200 dark:border-white/10 rounded-lg p-4">
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-3">
                                 <button
@@ -137,8 +137,8 @@ export default function StudyReminders({ className = "" }: StudyRemindersProps) 
                                     />
                                 </button>
                                 <div>
-                                    <p className="font-medium text-gray-900">{reminder.label}</p>
-                                    <p className="text-sm text-gray-500">{formatTime(reminder.time)}</p>
+                                    <p className="font-medium text-gray-900 dark:text-white">{reminder.label}</p>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">{formatTime(reminder.time)}</p>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ export default function StudyReminders({ className = "" }: StudyRemindersProps) 
                                         className={`px-2 py-1 text-xs rounded border transition-colors ${
                                             reminder.days.includes(key)
                                                 ? "border-primary bg-primary/10 text-primary"
-                                                : "border-gray-200 text-gray-500 hover:border-gray-300"
+                                                : "border-gray-200 dark:border-white/20 text-gray-500 dark:text-gray-400 hover:border-gray-300 dark:hover:border-white/40"
                                         }`}
                                     >
                                         {label}

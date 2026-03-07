@@ -49,12 +49,12 @@ export default async function NewAssignmentPage({ params }: Props) {
     const visibleActivities = collapseEdPronunciationActivities(activities);
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <header className="bg-white shadow">
+        <div className="min-h-screen bg-gray-50 dark:bg-bg">
+            <header className="bg-white dark:bg-[var(--surface-elevated)] shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <BackButton href={`/dashboard/classes/${id}`} className="mb-4">Back to Class</BackButton>
-                    <h1 className="text-3xl font-bold text-gray-900">Create Assignment</h1>
-                    <p className="text-gray-600 mt-1">Class: {classItem.name}</p>
+                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Create Assignment</h1>
+                    <p className="text-gray-600 dark:text-gray-400 mt-1">Class: {classItem.name}</p>
                 </div>
             </header>
             <main className="max-w-3xl mx-auto py-6 sm:px-6 lg:px-8">

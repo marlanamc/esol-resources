@@ -74,11 +74,11 @@ export default function CreateAssignmentForm({
     const selectedActivity = activities.find((a) => a.id === activityId);
 
     return (
-        <div className="bg-white shadow sm:rounded-lg">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="activityId" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="activityId" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Select Activity *
                         </label>
                         <select
@@ -91,7 +91,7 @@ export default function CreateAssignmentForm({
                                     setTitle(activity.title);
                                 }
                             }}
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                             required
                         >
                             <option value="">Choose an activity…</option>
@@ -103,12 +103,12 @@ export default function CreateAssignmentForm({
                             ))}
                         </select>
                         {selectedActivity && (
-                            <p className="mt-2 text-sm text-gray-500">{selectedActivity.description}</p>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">{selectedActivity.description}</p>
                         )}
                     </div>
 
                     <div>
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Assignment Title
                         </label>
                         <input
@@ -117,12 +117,12 @@ export default function CreateAssignmentForm({
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             placeholder="Leave empty to use activity title"
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="instructions" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="instructions" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Instructions
                         </label>
                         <textarea
@@ -131,12 +131,12 @@ export default function CreateAssignmentForm({
                             onChange={(e) => setInstructions(e.target.value)}
                             rows={4}
                             placeholder="Additional instructions for students…"
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Due Date (Optional)
                         </label>
                         <input
@@ -144,13 +144,13 @@ export default function CreateAssignmentForm({
                             id="dueDate"
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                         />
                     </div>
 
                     {supportsSectionSync && (
-                        <div className="rounded-md bg-indigo-50 border border-indigo-200 p-3">
-                            <label className="flex items-start gap-2 text-sm text-indigo-900">
+                        <div className="rounded-md bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-700/60 p-3">
+                            <label className="flex items-start gap-2 text-sm text-indigo-900 dark:text-indigo-200">
                                 <input
                                     type="checkbox"
                                     className="mt-0.5"
@@ -163,8 +163,8 @@ export default function CreateAssignmentForm({
                     )}
 
                     {error && (
-                        <div className="rounded-md bg-red-50 p-4">
-                            <p className="text-sm text-red-800">{error}</p>
+                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
                         </div>
                     )}
 
@@ -172,7 +172,7 @@ export default function CreateAssignmentForm({
                         <button
                             type="button"
                             onClick={() => router.back()}
-                            className="px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                            className="px-4 py-2 border border-gray-300 dark:border-white/20 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20"
                         >
                             Cancel
                         </button>

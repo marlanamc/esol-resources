@@ -160,7 +160,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                     {/* Skeleton rows */}
                     <div className="divide-y divide-border/20">
                         {[1, 2, 3].map((i) => (
-                            <div key={i} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4" style={{ borderLeft: '6px solid #e2ddd5' }}>
+                            <div key={i} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4" style={{ borderLeft: '6px solid var(--color-border-subtle)' }}>
                                 <div className="flex items-start gap-3 flex-1">
                                     <div className="w-[22px] h-[22px] skeleton rounded-md mt-0.5"></div>
                                     <div className="flex-1">

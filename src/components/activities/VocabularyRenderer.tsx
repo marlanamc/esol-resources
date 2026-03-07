@@ -54,40 +54,40 @@ const VOCAB_CONFIG = {
         icon: "📄",
         name: "Word List",
         description: "Review all vocabulary words",
-        gradient: "from-white to-amber-50/80",
+        gradient: "from-white to-amber-50/80 dark:from-[var(--surface-elevated)] dark:to-amber-900/30",
         accentColor: "bg-amber-500",
-        iconBg: "bg-amber-100",
-        borderHover: "hover:border-amber-300",
+        iconBg: "bg-amber-100 dark:bg-amber-900/50",
+        borderHover: "hover:border-amber-300 dark:hover:border-amber-600",
         ringColor: "focus-visible:ring-amber-400",
     },
     flashcards: {
         icon: "🎴",
         name: "Flash Cards",
         description: "Practice with flashcards",
-        gradient: "from-white to-rose-50/80",
+        gradient: "from-white to-rose-50/80 dark:from-[var(--surface-elevated)] dark:to-rose-900/30",
         accentColor: "bg-rose-500",
-        iconBg: "bg-rose-100",
-        borderHover: "hover:border-rose-300",
+        iconBg: "bg-rose-100 dark:bg-rose-900/50",
+        borderHover: "hover:border-rose-300 dark:hover:border-rose-600",
         ringColor: "focus-visible:ring-rose-400",
     },
     matching: {
         icon: "🧩",
         name: "Matching",
         description: "Match words to definitions",
-        gradient: "from-white to-emerald-50/80",
+        gradient: "from-white to-emerald-50/80 dark:from-[var(--surface-elevated)] dark:to-emerald-900/30",
         accentColor: "bg-emerald-500",
-        iconBg: "bg-emerald-100",
-        borderHover: "hover:border-emerald-300",
+        iconBg: "bg-emerald-100 dark:bg-emerald-900/50",
+        borderHover: "hover:border-emerald-300 dark:hover:border-emerald-600",
         ringColor: "focus-visible:ring-emerald-400",
     },
     "fill-blank": {
         icon: "✍️",
         name: "Fill in the Blank",
         description: "Complete sentences",
-        gradient: "from-white to-violet-50/80",
+        gradient: "from-white to-violet-50/80 dark:from-[var(--surface-elevated)] dark:to-violet-900/30",
         accentColor: "bg-violet-500",
-        iconBg: "bg-violet-100",
-        borderHover: "hover:border-violet-300",
+        iconBg: "bg-violet-100 dark:bg-violet-900/50",
+        borderHover: "hover:border-violet-300 dark:hover:border-violet-600",
         ringColor: "focus-visible:ring-violet-400",
     },
 };
@@ -225,7 +225,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col touch-manipulation md:static md:h-auto md:min-h-0 md:bg-transparent">
             {/* Mobile Header - Back + Progress */}
-            <div className="flex-shrink-0 bg-white border-b-2 border-[var(--color-border)] px-4 py-3.5 md:hidden">
+            <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-b-2 border-[var(--color-border)] dark:border-white/10 px-4 py-3.5 md:hidden">
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
                         <LearnerMenu mode="quiet" className="h-10 w-10" />
@@ -255,7 +255,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                 <div className="w-full max-w-2xl md:max-w-3xl mx-auto px-4 pt-5 pb-6 md:px-8 md:pt-4 md:pb-10">
                     {/* Header Section */}
                     <div className="text-center mb-5 md:mb-8">
-                        <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                        <div className="hidden md:inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 dark:bg-primary/25 dark:border dark:border-primary/30 text-primary text-sm font-medium mb-4">
                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                             </svg>
@@ -281,12 +281,12 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                         vocab-activity-card
                                         group relative overflow-hidden rounded-2xl
                                         bg-gradient-to-br ${config.gradient}
-                                        border border-[#DDD5CC] md:border-[#E6DFD6]
+                                        border border-[#DDD5CC] md:border-[#E6DFD6] dark:border-white/15
                                         p-4 md:p-6 text-left
                                         min-h-[140px] md:min-h-0
                                         transition-all duration-300 ease-out
-                                        shadow-[0_4px_6px_-1px_rgba(15,23,42,0.08),0_10px_24px_-4px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.9)]
-                                        hover:shadow-[0_12px_20px_-4px_rgba(15,23,42,0.12),0_20px_40px_-8px_rgba(15,23,42,0.14),inset_0_1px_0_rgba(255,255,255,0.95)]
+                                        shadow-[0_4px_6px_-1px_rgba(15,23,42,0.08),0_10px_24px_-4px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.9)] dark:shadow-[0_4px_12px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.05)]
+                                        hover:shadow-[0_12px_20px_-4px_rgba(15,23,42,0.12),0_20px_40px_-8px_rgba(15,23,42,0.14),inset_0_1px_0_rgba(255,255,255,0.95)] dark:hover:shadow-[0_8px_20px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.08)]
                                         active:shadow-[0_2px_4px_-1px_rgba(15,23,42,0.06),0_6px_12px_-4px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.9)]
                                         ${config.borderHover}
                                         md:hover:-translate-y-1
@@ -314,7 +314,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                     {/* Content */}
                                     <div className="relative z-10 flex flex-col h-full">
                                         {/* Icon */}
-                                        <div className={`inline-flex items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 shadow-[0_2px_4px_rgba(15,23,42,0.06),0_6px_12px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0 border border-white/50`}>
+                                        <div className={`inline-flex items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-xl ${config.iconBg} mb-2 md:mb-4 shadow-[0_2px_4px_rgba(15,23,42,0.06),0_6px_12px_rgba(15,23,42,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-none dark:border dark:border-white/10 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 shrink-0 border border-white/50`}>
                                             <span className="text-2xl md:text-3xl">{config.icon}</span>
                                         </div>
 
@@ -329,7 +329,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                         {/* Progress Section - show checkmark when complete */}
                                         {!isCompleted && (
                                             <div className="mt-3 md:mt-4 space-y-1 md:space-y-2">
-                                                <div className="relative w-full h-1.5 md:h-2 bg-white/60 rounded-full overflow-hidden">
+                                                <div className="relative w-full h-1.5 md:h-2 bg-white/60 dark:bg-white/20 rounded-full overflow-hidden">
                                                     <div
                                                         className={`absolute inset-y-0 left-0 rounded-full transition-all duration-500 ease-out ${config.accentColor}`}
                                                         style={{ width: `${Math.max(progress, 2)}%` }}
@@ -353,26 +353,26 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
 
                     {/* Tip Section - desktop only */}
                     <div className="hidden md:block mt-10">
-                        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-accent-light/30 to-accent/20 border border-accent/30 p-5">
+                        <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-accent-light/30 to-accent/20 dark:from-amber-900/30 dark:to-amber-800/20 border border-accent/30 dark:border-amber-700/50 p-5">
                             <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full bg-accent/20 blur-xl" />
                             <div className="relative flex flex-row items-center gap-3">
-                                <div className="flex flex-shrink-0 w-8 h-8 rounded-lg bg-accent/30 items-center justify-center">
-                                    <svg className="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <div className="flex flex-shrink-0 w-8 h-8 rounded-lg bg-accent/30 dark:bg-amber-800/50 items-center justify-center">
+                                    <svg className="w-4 h-4 text-amber-700 dark:text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
                                 </div>
                                 <div className="flex-1 min-w-0">
                                     <p className="text-sm text-text font-medium">
-                                        <span className="text-amber-700 font-semibold">Complete all 4</span> activities to finish this vocabulary unit.
+                                        <span className="text-amber-700 dark:text-amber-300 font-semibold">Complete all 4</span> activities to finish this vocabulary unit.
                                     </p>
                                     <div className="mt-2 flex items-center gap-2">
-                                        <div className="flex-1 h-1.5 bg-white/50 rounded-full overflow-hidden">
+                                        <div className="flex-1 h-1.5 bg-white/50 dark:bg-white/20 rounded-full overflow-hidden">
                                             <div
                                                 className="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full transition-all duration-500"
                                                 style={{ width: `${overallProgress}%` }}
                                             />
                                         </div>
-                                        <span className="text-xs font-semibold text-amber-700 tabular-nums flex-shrink-0">
+                                        <span className="text-xs font-semibold text-amber-700 dark:text-amber-300 tabular-nums flex-shrink-0">
                                             {completedCount}/4
                                         </span>
                                     </div>
@@ -384,7 +384,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
             </div>
 
             {/* Mobile Bottom Bar - Progress Tip or Success State */}
-            <div className="flex-shrink-0 bg-white border-t-2 border-[var(--color-border)] px-4 py-3.5 md:hidden">
+            <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-t-2 border-[var(--color-border)] dark:border-white/10 px-4 py-3.5 md:hidden">
                 {completedCount === 4 ? (
                     <div className="flex items-center justify-center gap-2 text-secondary">
                         <div className="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/15">
@@ -396,13 +396,13 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                     </div>
                 ) : (
                     <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-100 flex items-center justify-center">
-                            <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/50 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-amber-600 dark:text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
                         </div>
                         <p className="text-sm text-text flex-1">
-                            <span className="text-amber-700 font-semibold">Complete all 4</span> to finish!
+                            <span className="text-amber-700 dark:text-amber-300 font-semibold">Complete all 4</span> to finish!
                         </p>
                     </div>
                 )}

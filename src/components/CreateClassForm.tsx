@@ -66,11 +66,11 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
     };
 
     return (
-        <div className="bg-white shadow sm:rounded-lg">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Class Name *
                         </label>
                         <input
@@ -80,20 +80,20 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             autoComplete="off"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                             required
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="sourceClassId" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="sourceClassId" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Create As Section Of
                         </label>
                         <select
                             id="sourceClassId"
                             value={sourceClassId}
                             onChange={(e) => setSourceClassId(e.target.value)}
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                         >
                             <option value="">Standalone class (no section sync)</option>
                             {existingClasses.map((cls) => (
@@ -102,14 +102,14 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                                 </option>
                             ))}
                         </select>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             Pick a class to create another section that syncs future activities.
                         </p>
                     </div>
 
                     {sourceClassId && (
-                        <div className="rounded-md bg-blue-50 border border-blue-200 p-3">
-                            <label className="flex items-start gap-2 text-sm text-blue-900">
+                        <div className="rounded-md bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700/60 p-3">
+                            <label className="flex items-start gap-2 text-sm text-blue-900 dark:text-blue-200">
                                 <input
                                     type="checkbox"
                                     className="mt-0.5"
@@ -122,7 +122,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                     )}
 
                     <div>
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Description
                         </label>
                         <textarea
@@ -132,12 +132,12 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                             rows={3}
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                         />
                     </div>
 
                     <div>
-                        <label htmlFor="code" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Class Code
                         </label>
                         <div className="mt-1 flex gap-2">
@@ -148,24 +148,24 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                                 onChange={(e) => setCode(e.target.value.toUpperCase())}
                                 placeholder="Leave empty to auto-generate"
                                 maxLength={6}
-                                className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900"
+                                className="block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white"
                             />
                             <button
                                 type="button"
                                 onClick={generateCode}
-                                className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                                className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-white/20 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20"
                             >
                                 Generate
                             </button>
                         </div>
-                        <p className="mt-2 text-sm text-gray-500">
+                        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
                             Students will use this 6-character code to join your class.
                         </p>
                     </div>
 
                     {error && (
-                        <div className="rounded-md bg-red-50 p-4">
-                            <p className="text-sm text-red-800">{error}</p>
+                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
                         </div>
                     )}
 
@@ -173,7 +173,7 @@ export default function CreateClassForm({ existingClasses, initialSourceClassId 
                         <button
                             type="button"
                             onClick={() => router.back()}
-                            className="px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                            className="px-4 py-2 border border-gray-300 dark:border-white/20 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20"
                         >
                             Cancel
                         </button>

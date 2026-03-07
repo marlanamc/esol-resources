@@ -379,7 +379,7 @@ export default async function DashboardPage() {
 
                                     <div className="flex items-center gap-3">
                                         {/* Total Students */}
-                                        <div className="flex items-center gap-2.5 bg-white/90 border border-emerald-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-[box-shadow]">
+                                        <div className="flex items-center gap-2.5 bg-white/90 dark:bg-[var(--surface-elevated)] border border-emerald-200/50 dark:border-emerald-800/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-[box-shadow]">
                                             <div className="w-8 h-8 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
                                                 <UsersIcon className="text-secondary" size={16} />
                                             </div>
@@ -390,7 +390,7 @@ export default async function DashboardPage() {
                                         </div>
 
                                         {/* Total Classes */}
-                                        <div className="flex items-center gap-2.5 bg-white/90 border border-blue-200/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-[box-shadow]">
+                                        <div className="flex items-center gap-2.5 bg-white/90 dark:bg-[var(--surface-elevated)] border border-blue-200/50 dark:border-blue-800/50 rounded-full pl-2.5 pr-4 py-2 shadow-sm hover:shadow-md transition-[box-shadow]">
                                             <div className="w-8 h-8 bg-gradient-to-br from-blue-100 to-blue-50 rounded-full flex items-center justify-center">
                                                 <StarIcon className="text-info" size={16} />
                                             </div>
@@ -405,7 +405,7 @@ export default async function DashboardPage() {
                                         {isTeacherUser && (
                                             <Link
                                                 href="/dashboard/backend"
-                                                className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-white/90 px-4 py-2 text-sm font-semibold text-primary shadow-sm hover:shadow-md hover:border-primary/50 transition-[box-shadow,border-color]"
+                                                className="inline-flex items-center gap-2 rounded-full border border-primary/30 dark:border-primary/50 bg-white/90 dark:bg-[var(--surface-elevated)] px-4 py-2 text-sm font-semibold text-primary shadow-sm hover:shadow-md hover:border-primary/50 transition-[box-shadow,border-color]"
                                             >
                                                 <UsersIcon size={14} />
                                                 Backend Users
@@ -424,7 +424,7 @@ export default async function DashboardPage() {
                                     </h1>
 
                                     <div className="flex items-center gap-3">
-                                        <div className="flex items-center gap-2 bg-white/90 border border-emerald-200/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
+                                        <div className="flex items-center gap-2 bg-white/90 dark:bg-[var(--surface-elevated)] border border-emerald-200/50 dark:border-emerald-800/50 rounded-full pl-2 pr-3 py-1.5 shadow-sm">
                                             <div className="w-7 h-7 bg-gradient-to-br from-emerald-100 to-green-50 rounded-full flex items-center justify-center">
                                                 <UsersIcon className="text-secondary" size={14} />
                                             </div>
@@ -439,7 +439,7 @@ export default async function DashboardPage() {
                                         {isTeacherUser && (
                                             <Link
                                                 href="/dashboard/backend"
-                                                className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-white/90 px-3 py-1.5 text-xs font-semibold text-primary shadow-sm"
+                                                className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 dark:border-primary/50 bg-white/90 dark:bg-[var(--surface-elevated)] px-3 py-1.5 text-xs font-semibold text-primary shadow-sm"
                                             >
                                                 <UsersIcon size={12} />
                                                 Backend Users
@@ -451,39 +451,39 @@ export default async function DashboardPage() {
 
                             {/* Mobile Quick Actions - Only visible on mobile */}
                             <section className="md:hidden">
-                                <h2 className="text-lg font-bold font-display text-[#1f2633] mb-3">Quick Actions</h2>
+                                <h2 className="text-lg font-bold font-display text-text mb-3">Quick Actions</h2>
                                 <div className="grid grid-cols-2 gap-3">
                                     <Link
                                         href="/dashboard/classes"
-                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-primary/20 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
+                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-primary/20 dark:border-primary/40 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
                                     >
                                         <UsersIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Classes</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/activities/new"
-                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-secondary/20 rounded-xl shadow-sm hover:shadow-md hover:border-secondary/40 transition-[box-shadow,border-color]"
+                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-secondary/20 dark:border-secondary/40 rounded-xl shadow-sm hover:shadow-md hover:border-secondary/40 transition-[box-shadow,border-color]"
                                     >
                                         <BookOpenIcon className="w-6 h-6 text-secondary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Create Activity</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/stats"
-                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-accent/20 rounded-xl shadow-sm hover:shadow-md hover:border-accent/40 transition-[box-shadow,border-color]"
+                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-accent/20 dark:border-accent/40 rounded-xl shadow-sm hover:shadow-md hover:border-accent/40 transition-[box-shadow,border-color]"
                                     >
                                         <BarChartIcon className="w-6 h-6 text-accent mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Student Stats</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/calendar/new"
-                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-primary/20 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
+                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-primary/20 dark:border-primary/40 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
                                     >
                                         <CalendarIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Add Event</span>
                                     </Link>
                                     <Link
                                         href="/dashboard/teaching-schedule"
-                                        className="flex flex-col items-center justify-center p-4 bg-white border-2 border-primary/20 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
+                                        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-[var(--surface-elevated)] border-2 border-primary/20 dark:border-primary/40 rounded-xl shadow-sm hover:shadow-md hover:border-primary/40 transition-[box-shadow,border-color]"
                                     >
                                         <CalendarIcon className="w-6 h-6 text-primary mb-2" />
                                         <span className="text-sm font-semibold text-text text-center">Teaching Schedule</span>

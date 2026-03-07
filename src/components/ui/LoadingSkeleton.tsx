@@ -1,6 +1,6 @@
 export function ActivityCardSkeleton() {
     return (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-pulse">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] rounded-xl shadow-sm border border-gray-200 dark:border-white/10 p-6 animate-pulse">
             {/* Header */}
             <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
@@ -30,7 +30,7 @@ export function DashboardSkeleton() {
     return (
         <div className="min-h-screen bg-bg">
             {/* Header */}
-            <div className="bg-white border-b border-gray-200 p-6 animate-pulse">
+            <div className="bg-white dark:bg-[var(--surface-elevated)] border-b border-gray-200 dark:border-white/10 p-6 animate-pulse">
                 <div className="h-8 bg-gray-200 rounded w-1/3 mb-2"></div>
                 <div className="h-4 bg-gray-200 rounded w-1/2"></div>
             </div>
@@ -39,7 +39,7 @@ export function DashboardSkeleton() {
             <div className="p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     {[1, 2, 3].map((i) => (
-                        <div key={i} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 animate-pulse">
+                        <div key={i} className="bg-white dark:bg-[var(--surface-elevated)] rounded-xl shadow-sm border border-gray-200 dark:border-white/10 p-6 animate-pulse">
                             <div className="h-12 bg-gray-200 rounded w-12 mb-4"></div>
                             <div className="h-8 bg-gray-200 rounded w-16 mb-2"></div>
                             <div className="h-4 bg-gray-200 rounded w-20"></div>

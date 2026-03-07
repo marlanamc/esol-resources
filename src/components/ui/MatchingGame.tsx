@@ -1567,7 +1567,7 @@ function TimeIndicatorSortingUI({
                     <div className="flex-1 min-w-0">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                             <div className="flex items-center gap-2 flex-wrap">
-                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 leading-tight">
+                                <h2 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 dark:text-white leading-tight">
                                     Time Indicators
                                 </h2>
                                 <span className={`px-2 py-0.5 text-xs font-bold rounded-full ${difficultyStyle.bg} ${difficultyStyle.text}`}>
@@ -2175,7 +2175,7 @@ function VerbSoundsRightSortingUI({
     return (
         <div className="fixed inset-0 bg-[var(--color-bg)] flex flex-col md:static md:w-full md:max-w-5xl md:mx-auto md:bg-[var(--color-bg)] md:px-3 md:py-4">
             {pointsToast && <PointsToast key={pointsToast.key} points={pointsToast.points} onComplete={() => setPointsToast(null)} />}
-            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-3 md:p-4">
+            <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 dark:border-white/10 p-3 md:p-4">
                 <div className="flex items-start gap-3">
                     <BackButton onClick={() => window.history.back()} className="shrink-0 md:hidden min-w-[44px] min-h-[44px] justify-center touch-manipulation" />
                     <div className="flex-1 min-w-0">

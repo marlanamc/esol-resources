@@ -38,18 +38,18 @@ export default function JoinClassForm() {
     };
 
     return (
-        <div className="bg-white shadow sm:rounded-lg">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] shadow sm:rounded-lg">
             <div className="px-4 py-5 sm:p-6">
                 <div className="mb-6">
-                    <h2 className="text-lg font-medium text-gray-900 mb-2">Enter Class Code</h2>
-                    <p className="text-sm text-gray-500">
+                    <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-2">Enter Class Code</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
                         Ask your teacher for the class code to join their class.
                     </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <label htmlFor="code" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Class Code *
                         </label>
                         <input
@@ -58,22 +58,22 @@ export default function JoinClassForm() {
                             value={code}
                             onChange={(e) => setCode(e.target.value.toUpperCase())}
                             placeholder="ABC123"
-                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 text-center text-2xl font-mono tracking-wider"
+                            className="mt-1 block w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white text-center text-2xl font-mono tracking-wider"
                             required
                             maxLength={6}
                         />
                     </div>
 
                     {error && (
-                        <div className="rounded-md bg-red-50 p-4">
-                            <p className="text-sm text-red-800">{error}</p>
+                        <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                            <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
                         </div>
                     )}
 
                     <div className="flex justify-end gap-3">
                         <Link
                             href="/dashboard"
-                            className="px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                            className="px-4 py-2 border border-gray-300 dark:border-white/20 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20"
                         >
                             Cancel
                         </Link>

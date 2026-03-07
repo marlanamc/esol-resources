@@ -133,7 +133,7 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
     })();
 
     return (
-        <div className="bg-white rounded-xl border border-border shadow-lg overflow-hidden">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] rounded-xl border border-border dark:border-white/10 shadow-lg overflow-hidden">
             <div className="p-6 border-b border-border bg-bg-light">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                     <div>
@@ -156,7 +156,7 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
                         <select
                             value={difficulty}
                             onChange={(e) => setDifficulty(e.target.value)}
-                            className="px-4 py-2 rounded-lg border border-border bg-white focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
+                            className="px-4 py-2 rounded-lg border border-border dark:border-white/20 bg-white dark:bg-white/5 text-text focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                         >
                             <option value="all">All Difficulties</option>
                             <option value="easy">Easy Only</option>
@@ -168,27 +168,27 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
 
                 {!loading && report && report.totalResponses > 0 && (
                     <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                        <div className="bg-white rounded-lg p-3 border border-border">
+                        <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-border dark:border-white/10">
                             <div className="text-xl font-bold text-text">{report.studentsAttempted}</div>
                             <div className="text-xs text-text-muted">Students Attempted</div>
                         </div>
-                        <div className="bg-white rounded-lg p-3 border border-border">
+                        <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-border dark:border-white/10">
                             <div className="text-xl font-bold text-text">{report.attemptRate}%</div>
                             <div className="text-xs text-text-muted">Class Coverage</div>
                         </div>
-                        <div className="bg-white rounded-lg p-3 border border-border">
+                        <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-border dark:border-white/10">
                             <div className="text-xl font-bold text-text">{report.overallAccuracy}%</div>
                             <div className="text-xs text-text-muted">Overall Accuracy</div>
                         </div>
-                        <div className="bg-white rounded-lg p-3 border border-border">
+                        <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-border dark:border-white/10">
                             <div className="text-xl font-bold text-rose-600">{skillsNeedingReview.length}</div>
                             <div className="text-xs text-text-muted">Skills &lt;60%</div>
                         </div>
-                        <div className="bg-white rounded-lg p-3 border border-border">
+                        <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-border dark:border-white/10">
                             <div className="text-xl font-bold text-amber-600">{report.totalResponses}</div>
                             <div className="text-xs text-text-muted">Tagged Responses</div>
                         </div>
-                        <div className="bg-white rounded-lg p-3 border border-border">
+                        <div className="bg-white dark:bg-white/5 rounded-lg p-3 border border-border dark:border-white/10">
                             <div className={`text-xl font-bold ${trend && trend.delta !== null && trend.delta < 0 ? "text-rose-600" : "text-emerald-600"}`}>
                                 {trend && trend.delta !== null ? `${trend.delta > 0 ? "+" : ""}${trend.delta}` : "—"}
                             </div>
@@ -205,7 +205,7 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
                         Loading diagnostics...
                     </div>
                 ) : error ? (
-                    <div className="text-center py-12 text-rose-600 bg-rose-50 rounded-lg">
+                    <div className="text-center py-12 text-rose-600 dark:text-rose-300 bg-rose-50 dark:bg-rose-900/30 rounded-lg">
                         <AlertTriangle className="w-12 h-12 mx-auto mb-4" />
                         <p className="font-semibold mb-2">Error loading diagnostics</p>
                         <p className="text-sm">{error}</p>
@@ -218,29 +218,29 @@ export function DiagnosticReport({ classId, activityId, totalStudents }: Diagnos
                     </div>
                 ) : (
                     <div className="space-y-6">
-                        <div className="bg-slate-50 border border-slate-200 rounded-lg p-4">
-                            <h3 className="font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                        <div className="bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-2">
                                 <BarChart3 className="w-4 h-4" />
                                 Actionable Insights
                             </h3>
-                            <p className="text-sm text-slate-700">
+                            <p className="text-sm text-slate-700 dark:text-slate-300">
                                 Coverage: {report.studentsAttempted}/{report.totalStudents} students have attempted this quiz ({report.attemptRate}%).
                             </p>
-                            <p className="text-sm text-slate-700">
+                            <p className="text-sm text-slate-700 dark:text-slate-300">
                                 Trend: {trendLabel}.
                             </p>
                             {toughestSkill && (
-                                <p className="text-sm text-slate-700">
+                                <p className="text-sm text-slate-700 dark:text-slate-300">
                                     Biggest skill gap: <strong>{formatSkillTag(toughestSkill.skillTag)}</strong> at {toughestSkill.percentCorrect}% ({toughestSkill.studentsStruggling} students below 60%).
                                 </p>
                             )}
                             {toughestQuestion && (
-                                <p className="text-sm text-slate-700">
+                                <p className="text-sm text-slate-700 dark:text-slate-300">
                                     Hardest question: <strong>{toughestQuestion.percentCorrect}% correct</strong> on "{toughestQuestion.question}".
                                 </p>
                             )}
                             {report.latestAttemptAt && (
-                                <p className="text-xs text-slate-500 flex items-center gap-1 mt-2">
+                                <p className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-2">
                                     <Clock3 className="w-3 h-3" />
                                     Last attempt: {new Date(report.latestAttemptAt).toLocaleString()}
                                 </p>

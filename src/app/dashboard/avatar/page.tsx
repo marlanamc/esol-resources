@@ -91,7 +91,7 @@ export default function AvatarPage() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-bg to-bg-light">
             {/* Premium Header */}
-            <div className="sticky top-0 z-10 backdrop-blur-md bg-white/80 border-b border-border/50">
+            <div className="sticky top-0 z-10 backdrop-blur-md bg-white/80 dark:bg-[var(--surface-elevated)]/95 border-b border-border/50 dark:border-white/10">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                     <div className="flex items-center justify-between">
                         <BackButton onClick={() => router.back()}>

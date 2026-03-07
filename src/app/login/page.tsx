@@ -5,7 +5,7 @@ import AuthLightMode from "@/components/AuthLightMode";
 export default function LoginPage() {
     return (
         <AuthLightMode>
-            <div className="min-h-screen flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8" style={{ backgroundColor: '#fef9f3' }}>
+            <div className="auth-page-light min-h-screen flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 text-[#2b3a4a]" style={{ backgroundColor: '#fef9f3' }}>
                 <a href="#login-form" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#d97757] focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg">
                     Skip to login form
                 </a>
@@ -21,14 +21,14 @@ export default function LoginPage() {
                             Sign in to continue
                         </h2>
                     </div>
-                    <Suspense fallback={<div className="text-center text-sm" style={{ color: "#5e6f80" }}>Loading login form...</div>}>
+                    <Suspense fallback={<div className="text-center text-sm" style={{ color: "#4a5a6b" }}>Loading login form...</div>}>
                         <LoginForm />
                     </Suspense>
-                    <div className="border rounded-2xl p-4 sm:p-5 space-y-3" style={{ backgroundColor: '#fffdf9', borderColor: '#e8dece' }}>
+                    <div className="border rounded-2xl p-4 sm:p-5 space-y-3" style={{ backgroundColor: '#fffdf9', borderColor: '#e8dece', color: '#2b3a4a' }}>
                         <p className="text-sm font-semibold" style={{ color: '#2b3a4a' }}>
                             First-time login steps
                         </p>
-                        <div className="grid grid-cols-[1.5rem_1fr] items-start gap-x-2 gap-y-2 text-[15px] leading-6" style={{ color: '#405061' }}>
+                        <div className="grid grid-cols-[1.5rem_1fr] items-start gap-x-2 gap-y-2 text-[15px] leading-6" style={{ color: '#3d4f5e' }}>
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold" style={{ backgroundColor: '#f2e6d6', color: '#8f5b45' }}>1</span>
                             <p>Sign in with your temporary password.</p>
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold" style={{ backgroundColor: '#f2e6d6', color: '#8f5b45' }}>2</span>
@@ -36,7 +36,7 @@ export default function LoginPage() {
                             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold" style={{ backgroundColor: '#f2e6d6', color: '#8f5b45' }}>3</span>
                             <p>Sign in again with your new password.</p>
                         </div>
-                        <p className="text-xs leading-5" style={{ color: '#5e6f80' }}>
+                        <p className="text-xs leading-5" style={{ color: '#4a5a6b' }}>
                             Espanol: Entra con tu clave temporal. Luego crea una clave nueva. Despues vuelve a entrar.
                         </p>
                     </div>

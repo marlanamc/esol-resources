@@ -129,7 +129,7 @@ export default function LoginForm() {
                 >
                     {isLoading ? 'Signing in…' : 'Sign In'}
                 </button>
-                <p className="text-xs sm:text-sm text-center leading-5" style={{ color: '#5e6f80' }}>
+                <p className="text-xs sm:text-sm text-center leading-5" style={{ color: '#4a5a6b' }}>
                     First time today? Use your temporary password first.
                 </p>
             </div>

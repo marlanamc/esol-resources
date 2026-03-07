@@ -34,7 +34,7 @@ export default async function CalendarAddPage() {
 
     return (
         <div className="min-h-screen bg-bg">
-            <header className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm z-50">
+            <header className="sticky top-0 bg-white/80 dark:bg-[var(--surface-elevated)]/95 backdrop-blur-md border-b border-border/40 dark:border-white/10 shadow-sm z-50">
                 <div className="container mx-auto max-w-[1200px] py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                     <div>
                         <BackButton href="/dashboard" className="mb-1">Back to Dashboard</BackButton>
@@ -55,7 +55,7 @@ export default async function CalendarAddPage() {
             </header>
 
             <main className="container mx-auto max-w-[1200px] px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-6">
-                <div className="bg-white border border-border/40 rounded-2xl shadow-sm p-6">
+                <div className="bg-white dark:bg-[var(--surface-elevated)] border border-border/40 dark:border-white/10 rounded-2xl shadow-sm p-6">
                     <CreateCalendarEventForm
                         classes={classes.map((c) => ({
                             id: c.id,

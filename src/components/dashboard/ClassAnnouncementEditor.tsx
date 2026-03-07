@@ -82,17 +82,17 @@ export function ClassAnnouncementEditor({
     };
 
     return (
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] shadow rounded-lg p-6">
             <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
-                    <h2 className="text-xl font-semibold">Class Announcement</h2>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <h2 className="text-xl font-semibold text-text">Class Announcement</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                         This appears on the student dashboard above the weekly checklist.
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                         Markdown supported: <code>**bold**</code>, <code>*italic*</code>, <code>`code`</code>, and bullet lines starting with <code>- </code>.
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                         Links: <code>[Quiz Review](https://example.com)</code>
                     </p>
                 </div>
@@ -104,18 +104,18 @@ export function ClassAnnouncementEditor({
                 rows={4}
                 maxLength={MAX_ANNOUNCEMENT_LENGTH}
                 placeholder="Example: Quiz on Friday. Complete all speaking activities by Thursday."
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 text-gray-900 dark:text-white shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
             />
 
-            <div className="mt-2 text-xs text-gray-500">
+            <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
                 {remaining} characters left
             </div>
 
             {error && (
-                <p className="mt-3 text-sm text-red-700">{error}</p>
+                <p className="mt-3 text-sm text-red-700 dark:text-red-300">{error}</p>
             )}
             {isSaved && !error && (
-                <p className="mt-3 text-sm text-green-700">Announcement saved.</p>
+                <p className="mt-3 text-sm text-green-700 dark:text-green-300">Announcement saved.</p>
             )}
 
             <div className="mt-4 flex items-center gap-2">
@@ -131,7 +131,7 @@ export function ClassAnnouncementEditor({
                     type="button"
                     onClick={clearAnnouncement}
                     disabled={isSaving || announcement.trim().length === 0}
-                    className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-60"
+                    className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-white/20 text-sm font-medium rounded-md shadow-sm text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20 disabled:opacity-60"
                 >
                     Clear
                 </button>

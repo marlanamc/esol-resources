@@ -135,17 +135,17 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                 />
             )}
             {/* Header with Progress */}
-            <div className="flex-shrink-0 bg-white border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 p-4 flex items-center gap-3">
+            <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 dark:border-white/10 p-4 flex items-center gap-3">
                 <BackButton
                     onClick={() => window.history.back()}
                     className="shrink-0 md:hidden"
                 />
                 <div className="flex-1">
                     <div className="flex items-center justify-between mb-3">
-                        <div className="text-sm font-medium text-gray-600">
+                        <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
                             Question <span className="text-[var(--color-primary)] font-bold">{currentIndex + 1}</span> of {questions.length}
                         </div>
-                        <div className="text-sm font-medium text-gray-600">
+                        <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
                             Score: <span className="text-green-600 font-bold">{score}</span> / {questions.length}
                         </div>
                     </div>
@@ -161,10 +161,10 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
             {/* Question Card - Scrollable on mobile */}
             <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
-                <div className="bg-white md:rounded-2xl shadow-lg border-0 md:border border-gray-200 p-6 sm:p-8 mb-6">
+                <div className="bg-white dark:bg-[var(--surface-elevated)] md:rounded-2xl shadow-lg border-0 md:border border-gray-200 dark:border-white/10 p-6 sm:p-8 mb-6">
                 {/* Question Text */}
                 <div className="mb-8">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 leading-relaxed">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-relaxed">
                         {currentQuestion.sentence.split("_____").map((part, idx, arr) => (
                             <span key={idx}>
                                 {part}
@@ -182,23 +182,23 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                         const isSelected = selectedAnswer === option;
                         const isCorrectOption = option === currentQuestion.correctAnswer;
 
-                        let bgColor = "bg-white hover:bg-gray-50";
-                        let borderColor = "border-gray-300";
-                        let textColor = "text-gray-900";
+                        let bgColor = "bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10";
+                        let borderColor = "border-gray-300 dark:border-white/20";
+                        let textColor = "text-gray-900 dark:text-white";
 
                         if (selectedAnswer) {
                             if (isSelected && isCorrect) {
-                                bgColor = "bg-green-50";
+                                bgColor = "bg-green-50 dark:bg-green-900/30";
                                 borderColor = "border-green-500";
                                 textColor = "text-green-900";
                             } else if (isSelected && !isCorrect) {
-                                bgColor = "bg-red-50";
-                                borderColor = "border-red-500";
-                                textColor = "text-red-900";
+                                bgColor = "bg-red-50 dark:bg-red-900/30";
+                                borderColor = "border-red-500 dark:border-red-700";
+                                textColor = "text-red-900 dark:text-red-200";
                             } else if (isCorrectOption) {
-                                bgColor = "bg-green-50";
-                                borderColor = "border-green-400";
-                                textColor = "text-green-900";
+                                bgColor = "bg-green-50 dark:bg-green-900/30";
+                                borderColor = "border-green-400 dark:border-green-600";
+                                textColor = "text-green-900 dark:text-green-200";
                             }
                         }
 
@@ -211,7 +211,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                                     } disabled:cursor-not-allowed`}
                             >
                                 <div className="flex items-center gap-3">
-                                    <span className="text-lg font-bold text-gray-400">
+                                    <span className="text-lg font-bold text-gray-400 dark:text-gray-500">
                                         {String.fromCharCode(65 + idx)}
                                     </span>
                                     <span className="text-lg">{option}</span>

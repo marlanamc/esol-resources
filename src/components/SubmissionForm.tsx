@@ -99,21 +99,21 @@ export default function SubmissionForm({ activityId, assignmentId, existingSubmi
                         value={submissionContent}
                         onChange={(e) => setSubmissionContent(e.target.value)}
                         onFocus={handleTextareaFocus}
-                        className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
+                        className="w-full rounded-md border border-gray-300 dark:border-white/20 dark:bg-white/5 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 dark:text-white resize-y min-h-[120px] max-h-[40vh] md:min-h-[240px] md:max-h-[400px]"
                         placeholder="Type your answers, responses, or work here…"
                         disabled={isSubmitted && existingSubmission?.status === "graded"}
                     />
                 </div>
 
                 {error && (
-                    <div className="rounded-md bg-red-50 p-4">
-                        <p className="text-sm text-red-800">{error}</p>
+                    <div className="rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+                        <p className="text-sm text-red-800 dark:text-red-200">{error}</p>
                     </div>
                 )}
 
                 {isSubmitted && existingSubmission?.status === "submitted" && (
-                    <div className="rounded-md bg-blue-50 p-4">
-                        <p className="text-sm text-blue-800">
+                    <div className="rounded-md bg-blue-50 dark:bg-blue-900/30 p-4">
+                        <p className="text-sm text-blue-800 dark:text-blue-200">
                             ✓ Your submission has been submitted. Waiting for teacher review.
                         </p>
                     </div>

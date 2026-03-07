@@ -49,7 +49,7 @@ export const FeatureToggleButton: React.FC<FeatureToggleButtonProps> = ({
             className={`inline-flex items-center px-4 py-2 border text-sm font-medium rounded-md shadow-sm transition-[border-color,background-color,color] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${
                 isFeatured
                     ? 'border-accent bg-accent text-text hover:bg-accent/90'
-                    : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
+                    : 'border-gray-300 dark:border-white/20 text-gray-700 dark:text-gray-200 bg-white dark:bg-white/10 hover:bg-gray-50 dark:hover:bg-white/20'
             } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
             {isLoading ? (

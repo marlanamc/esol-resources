@@ -75,8 +75,8 @@ export default async function SubmissionsPage({ params }: Props) {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <header className="bg-white shadow">
+        <div className="min-h-screen bg-gray-50 dark:bg-bg">
+            <header className="bg-white dark:bg-[var(--surface-elevated)] shadow">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     <div>
                         <BackButton href={`/dashboard/classes/${id}`} className="mb-2">Back to Class</BackButton>

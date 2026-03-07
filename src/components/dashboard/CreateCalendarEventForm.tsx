@@ -78,7 +78,7 @@ export default function CreateCalendarEventForm({ classes }: Props) {
     };
 
     return (
-        <div className="bg-white border border-border/50 rounded-xl shadow-sm p-4">
+        <div className="bg-white dark:bg-[var(--surface-elevated)] border border-border/50 dark:border-white/10 rounded-xl shadow-sm p-4">
             <h3 className="text-sm font-bold text-text mb-3">Add to Calendar</h3>
             {classes.length === 0 && (
                 <p className="text-xs text-text-muted mb-3">Create a class first to share dates.</p>
@@ -110,8 +110,8 @@ export default function CreateCalendarEventForm({ classes }: Props) {
                 </div>
 
                 {supportsSectionSync && (
-                    <div className="rounded-md bg-blue-50 border border-blue-200 p-3">
-                        <label className="flex items-start gap-2 text-sm text-blue-900">
+                    <div className="rounded-md bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700/60 p-3">
+                        <label className="flex items-start gap-2 text-sm text-blue-900 dark:text-blue-200">
                             <input
                                 type="checkbox"
                                 className="mt-0.5"

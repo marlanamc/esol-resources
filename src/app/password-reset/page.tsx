@@ -75,7 +75,7 @@ function PasswordResetContent() {
 
     return (
         <AuthLightMode>
-            <div className="min-h-screen flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8" style={{ backgroundColor: '#fef9f3' }}>
+            <div className="auth-page-light min-h-screen flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8 text-[#2b3a4a]" style={{ backgroundColor: '#fef9f3' }}>
                 <div className="max-w-md w-full space-y-6 sm:space-y-8">
                     <div className="text-center">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: '#d97757' }}>
@@ -84,10 +84,10 @@ function PasswordResetContent() {
                         <p className="text-sm mb-2" style={{ color: '#7ba884', fontWeight: '600' }}>
                             Step 2 of 3
                         </p>
-                        <p className="text-base sm:text-sm" style={{ color: '#405061' }}>
+                        <p className="text-base sm:text-sm" style={{ color: '#3d4f5e' }}>
                             Create your new password.
                         </p>
-                        <p className="text-xs mt-1 leading-5" style={{ color: '#5e6f80' }}>
+                        <p className="text-xs mt-1 leading-5" style={{ color: '#4a5a6b' }}>
                             Espanol: Paso 2 de 3. Crea una clave nueva.
                         </p>
                     </div>
@@ -157,7 +157,7 @@ function PasswordResetContent() {
                                 <p className="text-sm font-semibold" style={{ color: '#2b3a4a' }}>
                                     Password updated.
                                 </p>
-                                <p className="text-sm leading-6" style={{ color: '#405061' }}>
+                                <p className="text-sm leading-6" style={{ color: '#3d4f5e' }}>
                                     Step 3 of 3: Return to Sign In and use your new password.
                                 </p>
                             </div>
@@ -169,7 +169,7 @@ function PasswordResetContent() {
                             >
                                 {isReturningToLogin ? "Returning..." : "Back to Sign In"}
                             </button>
-                            <p className="text-xs text-center leading-5" style={{ color: '#5e6f80' }}>
+                            <p className="text-xs text-center leading-5" style={{ color: '#4a5a6b' }}>
                                 Espanol: Vuelve a entrar con tu clave nueva.
                             </p>
                         </div>

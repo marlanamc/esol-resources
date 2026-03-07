@@ -210,7 +210,7 @@ function FormulaBadge({ part }: { part: FormulaPart }) {
         ing: "bg-orange-50 text-orange-900 border-orange-200",
         helper: "bg-purple-50 text-purple-900 border-purple-200",
         object: "bg-emerald-50 text-emerald-900 border-emerald-200",
-        other: "bg-slate-50 text-slate-800 border-slate-200"
+        other: "bg-slate-50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-600"
     };
 
     const isHelperVerb =
@@ -247,7 +247,7 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
                         </p>
 
                         {item.type === 'select' && (
-                            <select className="w-full p-3 rounded-lg border border-border bg-white text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2">
+                            <select className="w-full p-3 rounded-lg border border-border dark:border-white/20 bg-white dark:bg-white/5 text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2">
                                 <option value="">Choose…</option>
                                 {item.options.map((opt, i) => (
                                     <option key={i} value={opt}>{opt}</option>
@@ -259,7 +259,7 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
                             <input
                                 type="text"
                                 placeholder={item.placeholder || "Type your answer…"}
-                                className="w-full p-3 rounded-lg border border-border bg-white text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2"
+                                className="w-full p-3 rounded-lg border border-border dark:border-white/20 bg-white dark:bg-white/5 text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2"
                             />
                         )}
 
