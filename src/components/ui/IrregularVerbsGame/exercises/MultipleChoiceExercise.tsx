@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { useTheme } from '@/components/ThemeProvider';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 
@@ -24,6 +25,7 @@ export function MultipleChoiceExercise({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
+  const { theme, resolvedTheme } = useTheme();
 
   const handleSelectOption = (option: string) => {
     if (!submitted) {
@@ -54,6 +56,16 @@ export function MultipleChoiceExercise({
 
   // Determine if asking for V2 or V3
   const isAskingV2 = exercise.prompt.includes('V2');
+  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const questionCardClassName = isLightMode
+    ? 'bg-gradient-to-br from-violet-50 to-purple-50 border-violet-200'
+    : 'bg-gradient-to-br from-violet-950/50 to-purple-950/50 border-violet-700/50';
+  const baseVerbChipClassName = isLightMode
+    ? 'bg-violet-100 text-violet-700'
+    : 'bg-violet-900/40 text-violet-200';
+  const idleOptionClassName = isLightMode
+    ? 'bg-white border-border text-text hover:border-primary/50'
+    : 'bg-[#162b3d] border-white/10 text-text hover:border-white/20';
 
   return (
     <div className="flex flex-col h-full min-h-[300px] sm:min-h-0 sm:block space-y-3 sm:space-y-4">
@@ -61,13 +73,13 @@ export function MultipleChoiceExercise({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-3 sm:p-5 bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-950/50 dark:to-purple-950/50 rounded-xl border border-violet-200 dark:border-violet-700/50"
+        className={`rounded-xl border p-3 sm:p-5 ${questionCardClassName}`}
       >
         <p className="text-sm sm:text-base text-text leading-relaxed">
           {exercise.prompt}
         </p>
         <div className="mt-2 flex items-center gap-1.5 flex-wrap">
-          <span className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-200 font-medium">
+          <span className={`rounded-full px-1.5 py-0.5 text-[10px] font-medium sm:px-2 sm:py-1 sm:text-xs ${baseVerbChipClassName}`}>
             V1: {exercise.verb.base}
           </span>
           {isAskingV2 ? (
@@ -104,12 +116,12 @@ export function MultipleChoiceExercise({
                       ? correct
                         ? 'bg-secondary/20 border-secondary text-secondary-dark'
                         : 'bg-error/20 border-error text-error'
-                      : isCorrectAnswer
-                        ? 'bg-secondary/10 border-secondary/50 text-secondary-dark'
-                        : 'bg-bg-light border-border text-text-muted'
-                    : isSelected
+                    : isCorrectAnswer
+                      ? 'bg-secondary/10 border-secondary/50 text-secondary-dark'
+                      : 'bg-bg-light border-border text-text-muted'
+                  : isSelected
                       ? 'bg-primary/10 border-primary text-primary-dark shadow-sm'
-                      : 'bg-white dark:bg-[#162b3d] border-border dark:border-white/10 text-text hover:border-primary/50 dark:hover:border-white/20 active:scale-[0.98]'
+                      : `${idleOptionClassName} active:scale-[0.98]`
                 }`}
               >
                 <div className="flex items-center gap-2.5 sm:gap-3">

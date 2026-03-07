@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/components/ThemeProvider';
 import type { VerbExercise } from '@/types/irregular-verbs';
 import { validateAnswer, getExerciseFeedback } from '@/data/irregular-verbs-exercises';
 
@@ -23,6 +24,7 @@ export function SentenceCompletionExercise({
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(false);
   const [feedback, setFeedback] = useState('');
+  const { theme, resolvedTheme } = useTheme();
 
   const handleSubmit = () => {
     const isCorrect = validateAnswer(exercise, answer);
@@ -48,6 +50,19 @@ export function SentenceCompletionExercise({
     : ['', promptWithoutBaseHint];
   const sentence = rawSentence || promptWithoutBaseHint;
   const parts = sentence.split('_____');
+  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const promptCardClassName = isLightMode
+    ? 'bg-gradient-to-br from-emerald-50 to-teal-50 border-emerald-200'
+    : 'bg-gradient-to-br from-emerald-950/50 to-teal-950/50 border-emerald-700/50';
+  const sentenceSurfaceClassName = isLightMode
+    ? 'border-emerald-200 bg-white/80'
+    : 'border-emerald-600/50 bg-white/10';
+  const inputIdleClassName = isLightMode
+    ? 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+    : 'bg-[#0d1620] border-white/20 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20';
+  const referenceCardClassName = isLightMode
+    ? 'bg-white border-border'
+    : 'bg-[#0d1620] border-white/10';
 
   return (
     <div className="flex flex-col h-full min-h-[300px] sm:min-h-0 sm:block space-y-3 sm:space-y-4">
@@ -55,14 +70,14 @@ export function SentenceCompletionExercise({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-3 sm:p-5 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/50 dark:to-teal-950/50 rounded-xl border border-emerald-200 dark:border-emerald-700/50"
+        className={`rounded-xl border p-3 sm:p-5 ${promptCardClassName}`}
       >
         <div className="space-y-2 sm:space-y-3">
           {rawInstruction && (
             <p className="text-sm sm:text-base font-medium text-text">{rawInstruction}</p>
           )}
 
-          <div className="rounded-lg border border-emerald-200 dark:border-emerald-600/50 bg-white/80 dark:bg-white/10 px-2.5 py-2.5 sm:px-4 sm:py-3">
+          <div className={`rounded-lg border px-2.5 py-2.5 sm:px-4 sm:py-3 ${sentenceSurfaceClassName}`}>
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-base sm:text-xl text-text leading-relaxed">
               <span>{parts[0].trim()}</span>
               <input
@@ -83,7 +98,7 @@ export function SentenceCompletionExercise({
                     ? correct
                       ? 'bg-secondary/20 border-secondary text-secondary-dark'
                       : 'bg-error/20 border-error text-error'
-                    : 'bg-white dark:bg-[#0d1620] border-primary/40 dark:border-white/20 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+                    : inputIdleClassName
                 }`}
               />
               <span>{parts[1]?.trim()}</span>
@@ -101,7 +116,7 @@ export function SentenceCompletionExercise({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="p-3 bg-white dark:bg-[#0d1620] rounded-lg border border-border dark:border-white/10"
+          className={`rounded-lg border p-3 ${referenceCardClassName}`}
         >
           <p className="text-xs font-semibold text-text mb-2">
             Forms of "{exercise.verb.base}":

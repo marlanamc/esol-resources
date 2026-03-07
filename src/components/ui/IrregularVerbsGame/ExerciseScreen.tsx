@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Zap, Target, Clock, Lightbulb, ArrowLeft } from 'lucide-react';
+import { useTheme } from '@/components/ThemeProvider';
 import { FillInBlankExercise } from './exercises/FillInBlankExercise';
 import { MultipleChoiceExercise } from './exercises/MultipleChoiceExercise';
 import { SentenceCompletionExercise } from './exercises/SentenceCompletionExercise';
@@ -30,6 +31,7 @@ export function ExerciseScreen({
   const [correctCount, setCorrectCount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [showStreakAnimation, setShowStreakAnimation] = useState(false);
+  const { theme, resolvedTheme } = useTheme();
 
   if (exercises.length === 0 || currentIndex >= exercises.length) {
     return null;
@@ -38,6 +40,19 @@ export function ExerciseScreen({
   const currentExercise = exercises[currentIndex];
   const progress = ((currentIndex + 1) / exercises.length) * 100;
   const remaining = exercises.length - currentIndex - 1;
+  const isLightMode = theme === 'light' || (theme === 'system' && resolvedTheme === 'light');
+  const backButtonClassName = isLightMode
+    ? 'bg-white border-border text-text-muted hover:text-text'
+    : 'bg-[#162b3d] border-white/10 text-text-muted hover:text-text';
+  const exerciseShellClassName = isLightMode
+    ? 'bg-white border-border shadow-lg'
+    : 'bg-[#162b3d] border-white/10 shadow-lg';
+  const exerciseShellHeaderClassName = isLightMode
+    ? 'border-border/50 bg-bg-light/50'
+    : 'border-white/10 bg-white/5';
+  const keyboardHintKbdClassName = isLightMode
+    ? 'bg-bg-gray border-border'
+    : 'bg-white/10 border-white/20';
 
   const handleAnswer = (correct: boolean) => {
     if (correct) {
@@ -121,7 +136,7 @@ export function ExerciseScreen({
             <button
               onClick={onBack}
               aria-label="Go back"
-              className="flex-shrink-0 w-8 h-8 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text flex items-center justify-center"
+              className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border ${backButtonClassName}`}
             >
               <ArrowLeft size={16} />
             </button>
@@ -252,10 +267,10 @@ export function ExerciseScreen({
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -30 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="flex-1 sm:flex-none mx-3 sm:mx-0 mt-2 sm:mt-6 bg-white dark:bg-[#162b3d] border sm:border-2 border-border/50 sm:border-border dark:border-white/10 rounded-xl sm:rounded-2xl sm:shadow-lg overflow-hidden flex flex-col"
+        className={`mx-3 mt-2 flex flex-1 flex-col overflow-hidden rounded-xl border sm:mx-0 sm:mt-6 sm:flex-none sm:rounded-2xl sm:border-2 ${exerciseShellClassName}`}
       >
         {/* Exercise Type Badge - Slim on mobile */}
-        <div className="px-3 sm:px-6 py-2 sm:py-3 border-b border-border/50 dark:border-white/10 bg-bg-light/50 dark:bg-white/5">
+        <div className={`border-b px-3 py-2 sm:px-6 sm:py-3 ${exerciseShellHeaderClassName}`}>
           <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-text-muted">
             <ExerciseTypeIcon type={currentExercise.type} />
             <span className="font-medium">{getExerciseTypeLabel(currentExercise.type)}</span>
@@ -278,7 +293,7 @@ export function ExerciseScreen({
         className="hidden sm:flex items-center justify-center gap-2 text-sm text-text-light mt-4"
       >
         <Lightbulb size={14} />
-        <span>Press <kbd className="px-1.5 py-0.5 rounded bg-bg-gray dark:bg-white/10 border border-border dark:border-white/20 text-xs font-mono">Enter</kbd> to submit quickly</span>
+        <span>Press <kbd className={`rounded border px-1.5 py-0.5 text-xs font-mono ${keyboardHintKbdClassName}`}>Enter</kbd> to submit quickly</span>
       </motion.div>
     </div>
   );
