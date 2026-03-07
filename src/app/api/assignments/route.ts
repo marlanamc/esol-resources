@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageActivity, canManageClass, ensureTeacher } from "@/lib/policies";
+import { AssignmentPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 
 export async function POST(request: NextRequest) {
     try {
@@ -17,21 +18,9 @@ export async function POST(request: NextRequest) {
         const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { classId, activityId, title, instructions, dueDate, syncToSectionGroup = true } = body;
-
-        if (!classId || !activityId) {
-            return NextResponse.json(
-                { error: "Class ID and Activity ID are required" },
-                { status: 400 }
-            );
-        }
-
-        if (typeof syncToSectionGroup !== "boolean") {
-            return NextResponse.json(
-                { error: "syncToSectionGroup must be a boolean" },
-                { status: 400 }
-            );
-        }
+        const validated = parseApiBody(AssignmentPostBodySchema, body);
+        if (!validated.ok) return validated.response;
+        const { classId, activityId, title, instructions, dueDate, syncToSectionGroup } = validated.data;
 
         // Verify teacher owns the class
         const classItem = await prisma.class.findUnique({

@@ -123,7 +123,10 @@ export async function replayQueuedSubmissions(): Promise<SubmissionOutboxSnapsho
         continue;
       }
 
-      const body = await response.json().catch(() => ({}));
+      const body = await response.json().catch((err) => {
+        console.warn("Failed to parse outbox response", err);
+        return {};
+      });
       const errorMessage = typeof body?.error === "string" ? body.error : `HTTP ${response.status}`;
       nextQueue.push({
         ...item,

@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import withBundleAnalyzer from "@next/bundle-analyzer";
+import { withSentryConfig } from "@sentry/nextjs";
 
 // Conditionally enable bundle analyzer
 const bundleAnalyzer = withBundleAnalyzer({
@@ -42,4 +43,10 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default bundleAnalyzer(nextConfig);
+const configWithAnalyzer = bundleAnalyzer(nextConfig);
+
+export default withSentryConfig(configWithAnalyzer, {
+  org: process.env.SENTRY_ORG || "",
+  project: process.env.SENTRY_PROJECT || "",
+  silent: !process.env.CI,
+});

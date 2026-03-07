@@ -8,6 +8,7 @@ import {
   DEFAULT_AVATAR,
   DEFAULT_COLOR,
 } from '@/lib/avatar-constants';
+import { logger } from '@/lib/logger';
 
 /**
  * GET /api/user/avatar
@@ -20,7 +21,7 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = (session.user as { id: string }).id;
+    const userId = session.user.id;
 
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -39,7 +40,7 @@ export async function GET() {
       avatarColor: user.avatarColor || DEFAULT_COLOR,
     });
   } catch (error) {
-    console.error('[Avatar] Error fetching avatar:', error);
+    logger.error('[Avatar] Error fetching avatar', error);
     return NextResponse.json({ error: 'Failed to fetch avatar' }, { status: 500 });
   }
 }
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = (session.user as { id: string }).id;
+    const userId = session.user.id;
     const body = await req.json();
     const { avatar, avatarColor } = body;
 
@@ -97,7 +98,7 @@ export async function POST(req: NextRequest) {
       avatarColor: user.avatarColor || DEFAULT_COLOR,
     });
   } catch (error) {
-    console.error('[Avatar] Error updating avatar:', error);
+    logger.error('[Avatar] Error updating avatar', error);
     return NextResponse.json({ error: 'Failed to update avatar' }, { status: 500 });
   }
 }

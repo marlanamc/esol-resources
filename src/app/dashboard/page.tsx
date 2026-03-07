@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
 import { trackLogin } from "@/lib/gamification";
+import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
 import Link from "next/link";
@@ -124,8 +125,8 @@ export default async function DashboardPage() {
     const admin = isTeacherAdmin(session.user);
 
     // Count daily app opens toward streak without blocking dashboard render.
-    void trackLogin(userId).catch(() => {
-        // Fail-soft: dashboard rendering should not depend on streak write success.
+    void trackLogin(userId).catch((err) => {
+        logger.warn("Failed to track login for streak", { userId, error: String(err) });
     });
 
     if (userRole === "teacher") {

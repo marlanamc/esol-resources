@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { SubmissionsPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 
 function readIdempotencyKey(request: NextRequest): string | null {
     const key = request.headers.get("x-idempotency-key");
@@ -43,15 +44,11 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await request.json();
-        const { activityId, assignmentId, content } = body;
+        const validated = parseApiBody(SubmissionsPostBodySchema, body);
+        if (!validated.ok) return validated.response;
+        const { activityId, assignmentId, content } = validated.data;
+        const contentStr = typeof content === "string" ? content : JSON.stringify(content);
         const idempotencyKey = readIdempotencyKey(request);
-
-        if (!activityId || !assignmentId || !content) {
-            return NextResponse.json(
-                { error: "Activity ID, Assignment ID, and content are required" },
-                { status: 400 }
-            );
-        }
 
         const userId = session.user?.id;
 
@@ -100,14 +97,14 @@ export async function POST(request: NextRequest) {
                 },
             },
             update: {
-                content: buildSubmissionContent(content, idempotencyKey),
+                content: buildSubmissionContent(contentStr, idempotencyKey),
                 status: "submitted",
             },
             create: {
                 userId,
                 activityId,
                 assignmentId,
-                content: buildSubmissionContent(content, idempotencyKey),
+                content: buildSubmissionContent(contentStr, idempotencyKey),
                 status: "submitted",
             },
         });
@@ -146,6 +143,7 @@ export async function PUT(request: NextRequest) {
             );
         }
 
+        const contentStr = typeof content === "string" ? content : JSON.stringify(content);
         const userId = session.user?.id;
 
         // Verify submission belongs to user
@@ -177,7 +175,7 @@ export async function PUT(request: NextRequest) {
         const updated = await prisma.submission.update({
             where: { id: submissionId },
             data: {
-                content: buildSubmissionContent(content, idempotencyKey),
+                content: buildSubmissionContent(contentStr, idempotencyKey),
                 status: "submitted",
             },
         });

@@ -46,7 +46,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const user = session.user as { id: string; role: string };
+    const user = session.user;
     if (user.role !== "teacher") {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }

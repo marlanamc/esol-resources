@@ -9,6 +9,20 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,5 +42,67 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Dependency audit
+        run: npm audit --audit-level=high
+
       - name: Critical tests
         run: npm run test:critical
+
+      - name: Vitest coverage
+        run: npm run test:coverage
+
+      - name: Build
+        env:
+          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+          NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+          AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+          NEXTAUTH_URL: http://localhost:3000
+        run: npx prisma migrate deploy && npm run build
+
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Setup database
+        env:
+          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+          NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+          AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+          NEXTAUTH_URL: http://localhost:3000
+        run: npx prisma migrate deploy && npm run db:seed && npx tsx scripts/e2e-seed.ts
+
+      - name: Run E2E tests
+        env:
+          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+          NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+          AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+          NEXTAUTH_URL: http://localhost:3000
+        run: npm run test:e2e:smoke

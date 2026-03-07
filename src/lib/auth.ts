@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 import { trackLogin } from "./gamification";
 import { logger } from "./logger";
 import { headers } from "next/headers";
+import { checkRateLimit, getClientIp } from "./rate-limit";
 
 // Session durations
 const MOBILE_SESSION_DAYS = 30;
@@ -38,6 +39,14 @@ export const authOptions: NextAuthOptions = {
                 try {
                     if (!credentials?.username || !credentials?.password) {
                         logger.warn('Authentication attempt with missing credentials');
+                        return null;
+                    }
+
+                    const reqHeaders = await headers();
+                    const ip = getClientIp(reqHeaders);
+                    const key = `auth:login:${ip}`;
+                    if (!checkRateLimit(key)) {
+                        logger.warn('Login rate limit exceeded', { ip });
                         return null;
                     }
 
@@ -79,8 +88,7 @@ export const authOptions: NextAuthOptions = {
                     const role = user.role === "student" ? "student" : "teacher";
 
                     // Detect if login is from mobile device
-                    const headersList = await headers();
-                    const userAgent = headersList.get('user-agent');
+                    const userAgent = reqHeaders.get('user-agent');
                     const isMobile = isMobileUserAgent(userAgent);
 
                     return {

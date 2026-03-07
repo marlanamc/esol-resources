@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageClass, ensureTeacher } from "@/lib/policies";
+import { CalendarEventPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 
 export async function POST(request: NextRequest) {
     try {
@@ -17,19 +18,9 @@ export async function POST(request: NextRequest) {
         const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { classId, title, date, endDate, type = "holiday", description, syncToSectionGroup = false } = body;
-
-        if (!classId || !title || !date) {
-            return NextResponse.json({ error: "classId, title, and date are required" }, { status: 400 });
-        }
-        if (typeof syncToSectionGroup !== "boolean") {
-            return NextResponse.json({ error: "syncToSectionGroup must be a boolean" }, { status: 400 });
-        }
-
-        const allowedTypes = ["holiday", "event", "due", "reminder", "quiz"];
-        if (!allowedTypes.includes(type)) {
-            return NextResponse.json({ error: "Invalid event type" }, { status: 400 });
-        }
+        const validated = parseApiBody(CalendarEventPostBodySchema, body);
+        if (!validated.ok) return validated.response;
+        const { classId, title, date, endDate, type, description, syncToSectionGroup } = validated.data;
 
         // Parse YYYY-MM-DD strings into local dates to avoid TZ shifting back a day.
         const parseDateOnly = (value: string) => {

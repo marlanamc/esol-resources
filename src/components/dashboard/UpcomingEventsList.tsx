@@ -108,7 +108,10 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                 }),
             });
             if (!res.ok) {
-                const data = await res.json().catch(() => ({}));
+                const data = await res.json().catch((err) => {
+                    console.warn("Failed to parse API error response", err);
+                    return {};
+                });
                 throw new Error(data.error || "Failed to update event");
             }
             setEditingId(null);
@@ -133,7 +136,10 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                 body: JSON.stringify({ id }),
             });
             if (!res.ok) {
-                const data = await res.json().catch(() => ({}));
+                const data = await res.json().catch((err) => {
+                    console.warn("Failed to parse API error response", err);
+                    return {};
+                });
                 throw new Error(data.error || "Failed to delete event");
             }
             router.refresh();

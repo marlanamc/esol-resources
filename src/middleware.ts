@@ -63,10 +63,6 @@ export default withAuth(
                   }
                 | undefined;
             
-            if (req.nextUrl.pathname.startsWith("/activity/")) {
-                console.log(`Middleware running for activity: ${req.nextUrl.pathname}`);
-            }
-
             // Force password change flow
             const isResetPage = req.nextUrl.pathname.startsWith("/password-reset");
             if (token?.mustChangePassword && !isResetPage) {

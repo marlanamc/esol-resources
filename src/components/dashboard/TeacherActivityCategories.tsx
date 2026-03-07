@@ -357,7 +357,10 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             });
 
             if (!res.ok) {
-                const data = await res.json().catch(() => ({}));
+                const data = await res.json().catch((err) => {
+                    console.warn("Failed to parse API error response", err);
+                    return {};
+                });
                 throw new Error(data.error || 'Failed to assign activity');
             }
 
@@ -393,7 +396,10 @@ export const TeacherActivityCategories = React.memo(function TeacherActivityCate
             });
 
             if (!res.ok) {
-                const data = await res.json().catch(() => ({}));
+                const data = await res.json().catch((err) => {
+                    console.warn("Failed to parse API error response", err);
+                    return {};
+                });
                 throw new Error(data.error || 'Failed to unassign activity');
             }
 

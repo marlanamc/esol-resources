@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default async function Cycle1ReviewPage() {
     const session = await getServerSession(authOptions);
     if (!session) redirect("/login");
-    const userRole = (session.user as { role?: string }).role;
+    const userRole = session.user.role;
 
     const activityId = await getActivityIdSafely(
         "Cycle 1 Review",

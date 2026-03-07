@@ -2,9 +2,12 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { promises as fs } from "fs";
 import { parse } from "node-html-parser";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { logger } from "@/lib/logger";
 import type { LegacyGuideResponse } from "@/types/activity";
 
-const LEGACY_BASE = path.join(process.cwd(), "_legacy", "activities");
+const LEGACY_BASE = path.resolve(process.cwd(), "_legacy", "activities");
 
 async function fileExists(filePath: string) {
     try {
@@ -13,6 +16,16 @@ async function fileExists(filePath: string) {
     } catch {
         return false;
     }
+}
+
+/**
+ * Ensures the resolved path is contained under LEGACY_BASE to prevent path traversal.
+ * Uses path.resolve + path.relative to enforce containment.
+ */
+function isPathUnderBase(filePath: string, base: string): boolean {
+    const resolved = path.resolve(filePath);
+    const relative = path.relative(base, resolved);
+    return !relative.startsWith("..") && !path.isAbsolute(relative);
 }
 
 async function findFileByName(fileName: string) {
@@ -33,6 +46,11 @@ async function findFileByName(fileName: string) {
 }
 
 export async function GET(req: Request) {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { searchParams } = new URL(req.url);
     const fileParam = searchParams.get("file");
 
@@ -40,19 +58,23 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: "Missing file parameter" }, { status: 400 });
     }
 
-    const sanitized = fileParam.replace(/^\/+/, "");
-    const requestedPath = path.join(LEGACY_BASE, sanitized);
+    // Sanitize: remove leading slashes and path separators that could escape base
+    const sanitized = fileParam.replace(/^[/\\]+/, "").replace(/\.\./g, "");
+    const requestedPath = path.resolve(LEGACY_BASE, sanitized);
 
     let resolvedPath: string | null = null;
 
-    // If the user provided a relative path, use it when it stays inside LEGACY_BASE and exists
-    if (requestedPath.startsWith(LEGACY_BASE) && await fileExists(requestedPath)) {
+    // Only use requested path if it stays inside LEGACY_BASE and exists
+    if (isPathUnderBase(requestedPath, LEGACY_BASE) && (await fileExists(requestedPath))) {
         resolvedPath = requestedPath;
     } else {
-        // Fallback: search by filename anywhere inside legacy activities
-        const found = await findFileByName(path.basename(sanitized));
-        if (found) {
-            resolvedPath = found;
+        // Fallback: search by filename (basename only, no path) anywhere inside legacy activities
+        const basename = path.basename(sanitized);
+        if (basename && !basename.includes("..")) {
+            const found = await findFileByName(basename);
+            if (found && isPathUnderBase(found, LEGACY_BASE)) {
+                resolvedPath = found;
+            }
         }
     }
 
@@ -94,7 +116,8 @@ export async function GET(req: Request) {
         };
 
         return NextResponse.json(payload);
-    } catch {
+    } catch (err) {
+        logger.error("Failed to read legacy guide", err, { resolvedPath });
         return NextResponse.json({ error: "Failed to read legacy guide" }, { status: 500 });
     }
 }

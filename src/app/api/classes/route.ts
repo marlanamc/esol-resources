@@ -7,13 +7,25 @@ import { prisma } from "@/lib/prisma";
 import { BCRYPT_ROUNDS } from "@/lib/auth-config";
 import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
 import { canManageClass, classOwnershipWhere, ensureTeacher } from "@/lib/policies";
+import { logger } from "@/lib/logger";
+import { ClassesPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 import type { Prisma } from "@prisma/client";
 
-const DEFAULT_TEST_STUDENT_PASSWORD = "password123";
+function getTestStudentPassword(): string {
+    const fromEnv = process.env.TEST_STUDENT_DEFAULT_PASSWORD;
+    if (fromEnv) return fromEnv;
+    if (process.env.NODE_ENV === "production") {
+        throw new Error(
+            "TEST_STUDENT_DEFAULT_PASSWORD must be set when creating classes with test students in production"
+        );
+    }
+    return "password123";
+}
 
 async function createSystemTestStudentForClass(tx: Prisma.TransactionClient, classItem: { id: string; code: string }) {
+    const password = getTestStudentPassword();
     const username = `student_${classItem.code}`.toLowerCase();
-    const passwordHash = await bcrypt.hash(DEFAULT_TEST_STUDENT_PASSWORD, BCRYPT_ROUNDS);
+    const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
 
     const student = await tx.user.upsert({
         where: { username },
@@ -51,7 +63,7 @@ async function createSystemTestStudentForClass(tx: Prisma.TransactionClient, cla
 
     return {
         username: student.username,
-        password: DEFAULT_TEST_STUDENT_PASSWORD,
+        password,
     };
 }
 
@@ -82,7 +94,7 @@ export async function GET() {
 
         return NextResponse.json(classes);
     } catch (error: unknown) {
-        console.error("Error fetching classes:", error);
+        logger.error("Error fetching classes", error);
         return NextResponse.json(
             { error: "Failed to fetch classes" },
             { status: 500 }
@@ -103,23 +115,9 @@ export async function POST(request: NextRequest) {
         const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { name, description, code, sourceClassId, copyAssignments = true } = body;
-
-        if (!name || typeof name !== 'string') {
-            return NextResponse.json({ error: "Class name is required" }, { status: 400 });
-        }
-
-        if (name.length > 200) {
-            return NextResponse.json({ error: "Class name too long" }, { status: 400 });
-        }
-
-        if (sourceClassId && typeof sourceClassId !== "string") {
-            return NextResponse.json({ error: "sourceClassId must be a string" }, { status: 400 });
-        }
-
-        if (typeof copyAssignments !== "boolean") {
-            return NextResponse.json({ error: "copyAssignments must be a boolean" }, { status: 400 });
-        }
+        const validated = parseApiBody(ClassesPostBodySchema, body);
+        if (!validated.ok) return validated.response;
+        const { name, description, code, sourceClassId, copyAssignments } = validated.data;
 
         // SECURITY: Generate cryptographically secure code or validate provided code
         let classCode: string;
@@ -239,7 +237,7 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json(result);
     } catch (error: unknown) {
-        console.error("Error creating class:", error);
+        logger.error("Error creating class", error);
         // SECURITY: Don't expose internal error details to user
         return NextResponse.json(
             { error: "Failed to create class. Please try again." },

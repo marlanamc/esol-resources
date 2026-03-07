@@ -75,7 +75,10 @@ export async function submitSpeakingWarmup(submission: SpeakingSubmissionPayload
         }
 
         const response = submitResult.response;
-        const data = await response.json().catch(() => ({}));
+        const data = await response.json().catch((err) => {
+            console.warn("Failed to parse API response", err);
+            return {};
+        });
 
         if (!response.ok) {
             return { 

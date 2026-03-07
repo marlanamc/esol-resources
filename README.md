@@ -41,7 +41,7 @@ npm install
 3. Set up the database:
 ```bash
 npx prisma migrate dev
-npx prisma db seed
+npm run db:seed
 npx tsx prisma/seed-achievements.ts  # Seed gamification achievements
 ```
 
@@ -57,12 +57,12 @@ npm run dev
 After seeding, you can log in with:
 
 **Teacher Account:**
-- Email: `teacher@example.com`
-- Password: `teacher123`
+- Username: `teacher`
+- Password: `password123`
 
-**Student Account:**
-- Email: `student@example.com`
-- Password: `student123`
+**Student Account** (any seeded student, e.g.):
+- Username: `ricardo`
+- Password: `password123`
 
 ## Project Structure
 
@@ -188,10 +188,9 @@ The app includes a comprehensive gamification system to motivate students:
 
 ### Points
 Students earn points for:
-- Completing activities: **5-10 points**
-- Quiz completion: **10 points**
-- Perfect quiz score (100%): **+20 bonus points**
-- Daily streak: **5 points**
+- Completing activities: **3-10 points** (varies by type: grammar guide 10, flashcards 4, matching 5, etc.)
+- Quiz completion: **2-15 points** (based on score; perfect score 15)
+- Daily streak: **3 points**
 - Weekly streak (7 days): **25 bonus points**
 
 ### Streaks
