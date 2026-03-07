@@ -55,13 +55,9 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         parsedContent && (isInteractiveGuideContent(parsedContent) || isLegacyGuideContent(parsedContent));
     const shouldShowHeaderProgressBadge = activity.type !== "vocabulary";
     const activityForRender = { ...activity, ui: ui || activity.ui };
-    const standardPageClassName = isVerbQuiz ? "min-h-screen bg-[#fef9f3]" : "min-h-screen bg-bg";
-    const standardHeaderClassName = isVerbQuiz
-        ? "bg-[#fffdf9] shadow-sm border-b border-[#e8dece]"
-        : "bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10";
-    const standardTitleClassName = isVerbQuiz
-        ? "text-[#2b3a4a]"
-        : "text-gray-900 dark:text-white";
+    const standardPageClassName = "min-h-screen bg-bg";
+    const standardHeaderClassName = "bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10";
+    const standardTitleClassName = "text-gray-900 dark:text-white";
     const standardContentCardClassName = isVerbQuiz
         ? "p-0 bg-transparent shadow-none border-0"
         : "bg-white dark:bg-[#162b3d] shadow sm:rounded-lg p-6 dark:border dark:border-white/10";
