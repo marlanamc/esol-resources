@@ -131,6 +131,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v1_3rd}
                       onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      spellCheck={false}
                       className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
@@ -140,6 +143,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v1_ing}
                       onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      spellCheck={false}
                       className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
@@ -149,6 +155,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v2}
                       onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      spellCheck={false}
                       className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
@@ -158,6 +167,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                       type="text"
                       value={answers[verb].v3}
                       onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
+                      autoCapitalize="none"
+                      autoCorrect="off"
+                      spellCheck={false}
                       className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                       disabled={isSubmitting}
                     />
@@ -199,6 +211,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v1_3rd}
                   onChange={(e) => handleInputChange(verb, 'v1_3rd', e.target.value)}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
                   className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
@@ -212,6 +227,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v1_ing}
                   onChange={(e) => handleInputChange(verb, 'v1_ing', e.target.value)}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
                   className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
@@ -225,6 +243,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v2}
                   onChange={(e) => handleInputChange(verb, 'v2', e.target.value)}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
                   className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
@@ -238,6 +259,9 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
                   type="text"
                   value={answers[verb].v3}
                   onChange={(e) => handleInputChange(verb, 'v3', e.target.value)}
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
                   className="w-full px-3 py-2 border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] text-[var(--color-text)] rounded-lg focus:ring-2 focus:ring-primary/50 focus:border-[var(--color-primary)] transition-[border-color] font-mono text-sm"
                   disabled={isSubmitting}
                 />
@@ -252,41 +276,43 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="flex justify-center"
+        className="rounded-2xl border border-[#d9cfc0] bg-[#fffdf9] p-5 shadow-lg"
       >
-        <button
-          onClick={handleSubmit}
-          disabled={!isComplete || isSubmitting}
-          className={`
-            px-8 py-4 rounded-xl font-semibold text-white text-lg
-            transition-[transform,box-shadow] duration-300 transform hover:scale-105
-            shadow-lg hover:shadow-xl
-            flex items-center gap-3
-            ${isComplete && !isSubmitting
-              ? 'bg-terracotta hover:bg-terracotta/90'
-              : 'bg-neutral-300 cursor-not-allowed'
-            }
-          `}
-        >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="w-5 h-5 animate-spin" />
-              Submitting…
-            </>
-          ) : (
-            <>
-              <CheckCircle2 className="w-5 h-5" />
-              Submit Quiz
-            </>
-          )}
-        </button>
-      </motion.div>
+        <div className="flex flex-col items-center gap-3">
+          <button
+            onClick={handleSubmit}
+            disabled={!isComplete || isSubmitting}
+            className={`
+              px-8 py-4 rounded-xl font-semibold text-white text-lg
+              transition-[transform,box-shadow] duration-300 transform hover:scale-105
+              shadow-lg hover:shadow-xl
+              flex items-center gap-3
+              ${isComplete && !isSubmitting
+                ? 'bg-terracotta hover:bg-terracotta/90'
+                : 'bg-neutral-300 cursor-not-allowed'
+              }
+            `}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Submitting…
+              </>
+            ) : (
+              <>
+                <CheckCircle2 className="w-5 h-5" />
+                Submit Quiz
+              </>
+            )}
+          </button>
 
-      {!isComplete && (
-        <p className="text-center text-sm text-neutral-500">
-          Complete all fields to submit your quiz
-        </p>
-      )}
+          {!isComplete && (
+            <p className="text-center text-sm text-[#5e6f80]">
+              Complete all fields to submit your quiz
+            </p>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 }

@@ -29,6 +29,11 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         assignmentId,
         returnTo,
     });
+    const isVerbQuiz =
+        !!parsedContent &&
+        typeof parsedContent === "object" &&
+        "type" in parsedContent &&
+        parsedContent.type === "verb-quiz";
     const userRole = viewer.userRole;
     const studentReliabilityOverlays = userRole === "student" ? (
         <>
@@ -50,6 +55,16 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         parsedContent && (isInteractiveGuideContent(parsedContent) || isLegacyGuideContent(parsedContent));
     const shouldShowHeaderProgressBadge = activity.type !== "vocabulary";
     const activityForRender = { ...activity, ui: ui || activity.ui };
+    const standardPageClassName = isVerbQuiz ? "min-h-screen bg-[#fef9f3]" : "min-h-screen bg-bg";
+    const standardHeaderClassName = isVerbQuiz
+        ? "bg-[#fffdf9] shadow-sm border-b border-[#e8dece]"
+        : "bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10";
+    const standardTitleClassName = isVerbQuiz
+        ? "text-[#2b3a4a]"
+        : "text-gray-900 dark:text-white";
+    const standardContentCardClassName = isVerbQuiz
+        ? "p-0 bg-transparent shadow-none border-0"
+        : "bg-white dark:bg-[#162b3d] shadow sm:rounded-lg p-6 dark:border dark:border-white/10";
 
     // Grammar interactive guides should use the dedicated GrammarReader (newer UI + correct HTML rendering).
     if (activity.category === "grammar" && parsedContent && isInteractiveGuideContent(parsedContent)) {
@@ -66,7 +81,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
     }
 
     // Vocabulary activities use the immersive shell for both the picker and the sub-activities.
-    if (activity.type === "vocabulary" && parsedContent && isVocabularyContent(parsedContent)) {
+    if (!isVerbQuiz && activity.type === "vocabulary" && parsedContent && isVocabularyContent(parsedContent)) {
         return renderImmersiveActivity(
             studentReliabilityOverlays,
             activityForRender,
@@ -84,10 +99,13 @@ export default async function ActivityPage({ params, searchParams }: Props) {
         ? resolveActivityGameUi({ ...activity, ui: ui || activity.ui })
         : null;
     if (
-        gameUi === "irregular-verbs" ||
-        gameUi === "matching" ||
-        gameUi === "ed-pronunciation" ||
-        gameUi === "minimal-pairs"
+        !isVerbQuiz &&
+        (
+            gameUi === "irregular-verbs" ||
+            gameUi === "matching" ||
+            gameUi === "ed-pronunciation" ||
+            gameUi === "minimal-pairs"
+        )
     ) {
         return renderImmersiveActivity(
             studentReliabilityOverlays,
@@ -164,9 +182,9 @@ export default async function ActivityPage({ params, searchParams }: Props) {
 
     // Standard layout for other activities
     return (
-        <div className="min-h-screen bg-bg">
+        <div className={standardPageClassName}>
             {studentReliabilityOverlays}
-            <header className="bg-white dark:bg-[#162b3d] shadow-sm border-b border-gray-200 dark:border-white/10">
+            <header className={standardHeaderClassName}>
                 <div className="relative py-4 px-4 sm:px-6 lg:px-8">
                     {/* Mobile Layout: Stacked */}
                     <div className="flex flex-col gap-2 sm:hidden">
@@ -179,7 +197,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                                 <ActivityProgressBadge activityId={id} initialProgress={progressValue} userRole={userRole} />
                             )}
                         </div>
-                        <h1 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white line-clamp-2 leading-snug">
+                        <h1 className={`text-base sm:text-lg font-bold line-clamp-2 leading-snug ${standardTitleClassName}`}>
                             {activity.title}
                         </h1>
                     </div>
@@ -192,7 +210,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                         </div>
 
                         {/* Centered Title */}
-                        <h1 className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold text-gray-900 dark:text-white">
+                        <h1 className={`absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold ${standardTitleClassName}`}>
                             {activity.title}
                         </h1>
 
@@ -207,7 +225,7 @@ export default async function ActivityPage({ params, searchParams }: Props) {
                     <div className="px-4 py-6 sm:px-0 space-y-6">
 
                     {/* Activity Content */}
-                    <div className="bg-white dark:bg-[#162b3d] shadow sm:rounded-lg p-6 dark:border dark:border-white/10">
+                    <div className={standardContentCardClassName}>
                         <ActivityRenderer
                             activity={activityForRender}
                             assignmentId={assignmentId}
@@ -275,7 +293,7 @@ function renderImmersiveActivity(
                                     <ActivityProgressBadge activityId={activityId} initialProgress={progressValue} userRole={userRole} />
                                 )}
                             </div>
-                            <h1 className="text-base font-bold text-white line-clamp-2 leading-snug">
+                            <h1 className="text-base font-bold text-white line-clamp-2 leading-snug" style={{ color: "#ffffff" }}>
                                 {activity.title}
                             </h1>
                         </div>
@@ -286,7 +304,7 @@ function renderImmersiveActivity(
                                 <ContextualBackButton aria-label="Return to previous page" />
                             </div>
 
-                            <h1 className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold text-white">
+                            <h1 className="absolute left-1/2 -translate-x-1/2 text-2xl font-bold text-white" style={{ color: "#ffffff" }}>
                                 {activity.title}
                             </h1>
 
