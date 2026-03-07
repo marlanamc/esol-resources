@@ -42,7 +42,7 @@ async function main() {
   console.log(`✅ Deleted ${submissionsResult.count} related submissions\n`);
 
   // Delete related activity progress
-  const progressResult = await (prisma.activityProgress as any).deleteMany({
+  const progressResult = await prisma.activityProgress.deleteMany({
     where: {
       activityId: { in: quizIds }
     }

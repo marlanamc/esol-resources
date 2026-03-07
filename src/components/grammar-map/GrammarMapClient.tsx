@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { categoryColors, categoryLabels, type GrammarTopic } from '@/data/grammar-map';
+import { NODE_WIDTH, NODE_HEIGHT } from './constants';
 import { Check, Loader2, ArrowRight, ZoomIn, ZoomOut, Maximize2, List } from 'lucide-react';
 import { withReturnTo } from '@/lib/learner-navigation';
 
@@ -77,7 +78,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
             topicsByWeek[week].push(topic);
         });
 
-        const nodeHeight = 90;
+        const nodeHeight = NODE_HEIGHT;
         const stackGap = 14;
         const laneGap = 34;
         const topPad = 90;
@@ -128,8 +129,8 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
             topicsByWeek[week].push(topic);
         });
 
-        const nodeWidth = 220;
-        const nodeHeight = 90;
+        const nodeWidth = NODE_WIDTH;
+        const nodeHeight = NODE_HEIGHT;
         const stackGap = 14;
         const laneGap = 34;
         const leftPad = 80;
@@ -350,8 +351,8 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
         );
     };
 
-    const nodeWidth = 220;
-    const nodeHeight = 90;
+    const nodeWidth = NODE_WIDTH;
+    const nodeHeight = NODE_HEIGHT;
     const weekGap = 140;
     const leftPad = 80;
     const rightPad = 160;
@@ -366,7 +367,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
         const height = (ys.length ? Math.max(...ys) + nodeHeight : topPad) + bottomPad;
 
         return { width, height };
-    }, [nodePositions, weekRange.maxWeek, weekRange.minWeek]);
+    }, [nodePositions, weekRange.maxWeek, weekRange.minWeek, nodeWidth, nodeHeight]);
 
     const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.2, 2));
     const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.2, 0.5));

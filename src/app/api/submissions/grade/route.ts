@@ -1,20 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { requireTeacher } from "@/lib/api-auth";
 import { prisma } from "@/lib/prisma";
-import { isTeacherAdmin } from "@/lib/roles";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
 
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Only teachers can grade submissions" }, { status: 403 });
-        }
+        const { user, admin } = teacherCheck;
+        const userId = user.id;
 
         const body = await request.json();
         const { submissionId, score, feedback } = body;
@@ -22,9 +19,6 @@ export async function POST(request: NextRequest) {
         if (!submissionId) {
             return NextResponse.json({ error: "Submission ID is required" }, { status: 400 });
         }
-
-        const userId = session.user?.id;
-        const admin = isTeacherAdmin(session.user);
 
         // Get submission with assignment and class
         const submission = await prisma.submission.findUnique({
