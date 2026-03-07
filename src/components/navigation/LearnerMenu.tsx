@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { createPortal } from "react-dom";
-import { BookOpen, ClipboardList, Gamepad2, Menu, Mic, PenLine, PenTool, Volume2, X } from "lucide-react";
-import { BookOpenIcon, HomeIcon, MapIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
+import { BookOpen, ClipboardList, Gamepad2, Map, Menu, Mic, PenLine, PenTool, Volume2, X } from "lucide-react";
+import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 
@@ -243,7 +243,7 @@ export function LearnerMenu({
                           <nav className="flex flex-col gap-1.5" aria-label="Main navigation">
                               <MenuLink href="/dashboard" label="Home" icon={<HomeIcon className="w-5 h-5 text-secondary" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/activities" label="All Activities" icon={<BookOpenIcon className="w-5 h-5 text-[#b86a56]" />} onNavigate={closeMenu} />
-                              <MenuLink href="/grammar-map" label="Grammar Map" icon={<MapIcon className="w-5 h-5 text-[#6f9c76]" />} onNavigate={closeMenu} />
+                              <MenuLink href="/grammar-map" label="Grammar Map" icon={<Map className="w-5 h-5 text-[#6f9c76]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/leaderboard" label="Leaderboard" icon={<TrophyIcon className="w-5 h-5 text-[#cda46f]" />} onNavigate={closeMenu} />
                               <MenuLink href="/dashboard/profile" label="My Profile" icon={<StarIcon className="w-5 h-5 text-[#88A392]" />} onNavigate={closeMenu} />
 

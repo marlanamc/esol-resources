@@ -3,9 +3,8 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import GrammarMapClient from '@/components/grammar-map/GrammarMapClient';
-import { MapIcon } from '@/components/icons/Icons';
+import { Map } from 'lucide-react';
 import { grammarTopics } from '@/data/grammar-map';
-import { ContextualBackButton } from '@/components/navigation/ContextualBackButton';
 import { LearnerMenu } from '@/components/navigation/LearnerMenu';
 
 export const metadata = {
@@ -96,12 +95,11 @@ export default async function GrammarMapPage() {
     }, {} as Record<string, { completionPercentage: number; status: string }>);
 
     return (
-        <div className="min-h-screen bg-[var(--background)]">
-            <header className="sticky top-0 backdrop-blur-lg border-b z-40 bg-white/90 border-border/60 shadow-sm">
+        <div className="min-h-screen bg-[var(--bg-color)]">
+            <header className="sticky top-0 backdrop-blur-lg border-b z-40 bg-[var(--surface-elevated)]/95 dark:bg-[var(--color-glass-bg)] border-[var(--border-subtle)] shadow-sm">
                 <div className="container mx-auto py-4 px-4 sm:px-6 flex items-center gap-4">
                     <LearnerMenu mode="quiet" />
-                    <ContextualBackButton aria-label="Return to previous page">Back</ContextualBackButton>
-                    <MapIcon className="w-7 h-7 text-primary" />
+                    <Map className="w-7 h-7 shrink-0 text-[var(--primary-color)]" />
                     <div>
                         <h1 className="text-2xl md:text-3xl font-bold font-display text-[var(--text)]">
                             Level 3 Grammar Map

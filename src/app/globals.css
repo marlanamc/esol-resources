@@ -247,6 +247,18 @@
   --tone-event-other-bg: #f3f0f8;
   --tone-event-other-border: #d7cfe4;
   --tone-event-other-text: #5f5178;
+
+  /* Grammar map graph - light mode */
+  --grammar-map-bg-start: #f8fafc;
+  --grammar-map-bg-mid: #ffffff;
+  --grammar-map-bg-end: #f1f5f9;
+  --grammar-map-grid: #e2e8f0;
+  --grammar-map-shadow: #0f172a;
+  --grammar-map-edge-prereq: #2563eb;
+  --grammar-map-edge-related: #cbd5e1;
+  --grammar-map-node-stroke: rgba(255, 255, 255, 0.55);
+  --grammar-map-node-stroke-hover: #334155;
+  --grammar-map-node-stroke-selected: #0f172a;
 }
 
 .dark, [data-theme="dark"] {
@@ -400,6 +412,18 @@
   --tone-event-other-bg: rgba(159, 144, 200, 0.16);
   --tone-event-other-border: rgba(159, 144, 200, 0.24);
   --tone-event-other-text: #f0e9ff;
+
+  /* Grammar map graph - dark mode */
+  --grammar-map-bg-start: #0d1620;
+  --grammar-map-bg-mid: #0f1a26;
+  --grammar-map-bg-end: #091218;
+  --grammar-map-grid: rgba(127, 179, 213, 0.12);
+  --grammar-map-shadow: #000000;
+  --grammar-map-edge-prereq: #5a92b8;
+  --grammar-map-edge-related: rgba(127, 179, 213, 0.3);
+  --grammar-map-node-stroke: rgba(255, 255, 255, 0.2);
+  --grammar-map-node-stroke-hover: rgba(127, 179, 213, 0.6);
+  --grammar-map-node-stroke-selected: #a8d5f7;
 
   color-scheme: dark;
 }

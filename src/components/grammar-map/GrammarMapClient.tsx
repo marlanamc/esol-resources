@@ -133,7 +133,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
         const nodeHeight = NODE_HEIGHT;
         const stackGap = 14;
         const laneGap = 34;
-        const leftPad = 80;
+        const leftPad = 200; // Lane labels extend to ~178; nodes must start to the right
         const topPad = 90;
         const weekGap = 140;
 
@@ -333,10 +333,10 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                 </div>
                 {progress && (
                     <div className="mt-2">
-                        <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
+                        <div className="flex items-center justify-between text-xs text-[var(--text-color-muted)] mb-1">
                             <span>{progress.completionPercentage}% complete</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="w-full bg-[var(--surface-overlay)] rounded-full h-2">
                             <div
                                 className="h-2 rounded-full transition-[width]"
                                 style={{
@@ -354,7 +354,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
     const nodeWidth = NODE_WIDTH;
     const nodeHeight = NODE_HEIGHT;
     const weekGap = 140;
-    const leftPad = 80;
+    const leftPad = 200; // Lane labels extend to ~178; nodes must start to the right
     const rightPad = 160;
     const topPad = 90;
     const bottomPad = 140;
@@ -381,52 +381,52 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
     return (
         <div className="w-full">
             {/* Controls Bar */}
-            <div className="mb-4 flex items-center justify-between gap-4 p-4 bg-white dark:bg-[var(--surface-elevated)] rounded-lg shadow-sm border border-gray-200 dark:border-white/10">
-                <div className="flex items-center gap-2">
+            <div className="mb-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--surface-elevated)] rounded-lg shadow-sm border border-[var(--border-subtle)]">
+                <div className="flex items-center gap-2 flex-wrap">
                     <button
                         onClick={() => setViewMode('graph')}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                        className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm font-medium ${
                             viewMode === 'graph'
-                                ? 'bg-[var(--primary)] text-white'
-                                : 'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20'
+                                ? 'bg-[var(--primary-color)] text-white'
+                                : 'bg-[var(--surface-subtle)] text-[var(--text-color)] hover:bg-[var(--surface-overlay)]'
                         }`}
                     >
-                        <Maximize2 className="w-4 h-4" />
-                        <span className="text-sm font-medium">Map View</span>
+                        <Maximize2 className="w-4 h-4 shrink-0" />
+                        <span>Map</span>
                     </button>
                     <button
                         onClick={() => setViewMode('list')}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                        className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-lg transition-colors text-sm font-medium ${
                             viewMode === 'list'
-                                ? 'bg-[var(--primary)] text-white'
-                                : 'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-white/20'
+                                ? 'bg-[var(--primary-color)] text-white'
+                                : 'bg-[var(--surface-subtle)] text-[var(--text-color)] hover:bg-[var(--surface-overlay)]'
                         }`}
                     >
-                        <List className="w-4 h-4" />
-                        <span className="text-sm font-medium">List View</span>
+                        <List className="w-4 h-4 shrink-0" />
+                        <span>List</span>
                     </button>
                 </div>
 
                 {viewMode === 'graph' && (
-                    <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">Zoom: {Math.round(zoom * 100)}%</span>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                        <span className="text-xs sm:text-sm text-[var(--text-color-muted)] mr-1 sm:mr-2">Zoom: {Math.round(zoom * 100)}%</span>
                         <button
                             onClick={handleZoomOut}
-                            className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
+                            className="p-2 rounded-lg bg-[var(--surface-subtle)] hover:bg-[var(--surface-overlay)] transition-colors"
                             title="Zoom Out"
                         >
                             <ZoomOut className="w-4 h-4" />
                         </button>
                         <button
                             onClick={handleZoomReset}
-                            className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
+                            className="p-2 rounded-lg bg-[var(--surface-subtle)] hover:bg-[var(--surface-overlay)] transition-colors"
                             title="Reset Zoom"
                         >
                             <Maximize2 className="w-4 h-4" />
                         </button>
                         <button
                             onClick={handleZoomIn}
-                            className="p-2 rounded-lg bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors"
+                            className="p-2 rounded-lg bg-[var(--surface-subtle)] hover:bg-[var(--surface-overlay)] transition-colors"
                             title="Zoom In"
                         >
                             <ZoomIn className="w-4 h-4" />
@@ -437,23 +437,23 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
 
             {/* Legend - Only show in graph view */}
             {viewMode === 'graph' && (
-                <div className="mb-4 p-4 bg-white dark:bg-[var(--surface-elevated)] rounded-lg shadow-sm border border-gray-200 dark:border-white/10">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="mb-4 p-3 sm:p-4 bg-[var(--surface-elevated)] rounded-lg shadow-sm border border-[var(--border-subtle)]">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                         <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                            <span className="text-sm text-text">Completed</span>
+                            <div className="w-3 h-3 rounded-full bg-green-500 shrink-0" />
+                            <span className="text-xs sm:text-sm text-[var(--text-color)]">Completed</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-amber-500"></div>
-                            <span className="text-sm">In Progress</span>
+                            <div className="w-3 h-3 rounded-full bg-amber-500 shrink-0" />
+                            <span className="text-xs sm:text-sm text-[var(--text-color)]">In Progress</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 rounded-full bg-slate-400"></div>
-                            <span className="text-sm">Not Started</span>
+                            <div className="w-3 h-3 rounded-full bg-slate-400 dark:bg-slate-500 shrink-0" />
+                            <span className="text-xs sm:text-sm text-[var(--text-color)]">Not Started</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <ArrowRight className="w-3 h-3 text-blue-500" />
-                            <span className="text-sm">Suggested Next</span>
+                        <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
+                            <ArrowRight className="w-3 h-3 text-blue-500 dark:text-[var(--primary-color)] shrink-0" />
+                            <span className="text-xs sm:text-sm text-[var(--text-color)]">Suggested Next</span>
                         </div>
                     </div>
                 </div>
@@ -461,7 +461,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
 
             {/* List View */}
             {viewMode === 'list' && (
-                <div className="bg-white dark:bg-[var(--surface-elevated)] rounded-lg shadow-lg border border-gray-200 dark:border-white/10 p-6">
+                <div className="bg-[var(--surface-elevated)] rounded-lg shadow-lg border border-[var(--border-subtle)] p-4 sm:p-6">
                     {CATEGORY_ORDER.map(category => {
                         const topicsInCategory = topics.filter(t => t.category === category);
                         if (topicsInCategory.length === 0) return null;
@@ -489,7 +489,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                                             return (
                                                 <div key={subcategory}>
                                                     <div className="flex items-baseline gap-3 mb-2">
-                                                        <h4 className="text-sm font-bold text-gray-700 tracking-wide uppercase">
+                                                        <h4 className="text-sm font-bold text-[var(--text-color-muted)] tracking-wide uppercase">
                                                             {tenseSubcategoryLabels[subcategory]}
                                                         </h4>
                                                     </div>
@@ -511,7 +511,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                                         {topicsInCategory.some((t) => t.id === 'all-verb-tenses-overview') && (
                                             <div className="pt-2">
                                                 <div className="flex items-baseline justify-between gap-3 mb-2">
-                                                    <h4 className="text-sm font-bold text-gray-700 tracking-wide uppercase">
+                                                    <h4 className="text-sm font-bold text-[var(--text-color-muted)] tracking-wide uppercase">
                                                         Big Picture
                                                     </h4>
                                                 </div>
@@ -521,7 +521,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                                                         .map((topic) =>
                                                             renderTopicCard(
                                                                 topic,
-                                                                "md:col-span-2 lg:col-span-4 bg-gradient-to-r from-white to-white/60"
+                                                                "md:col-span-2 lg:col-span-4 bg-gradient-to-r from-[var(--surface-base)] to-[var(--surface-subtle)]"
                                                             )
                                                         )}
                                                 </div>
@@ -546,12 +546,12 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
             {viewMode === 'graph' && (
                 <div
                     ref={containerRef}
-                    className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-auto relative"
-                    style={{ height: 'calc(100vh - 400px)', minHeight: '500px' }}
+                    className="rounded-lg shadow-lg border overflow-auto relative bg-[var(--surface-base)] border-[var(--border-subtle)] dark:bg-[var(--surface-elevated)] dark:border-[var(--border-subtle)] min-h-[280px] sm:min-h-[400px] md:min-h-[500px]"
+                    style={{ height: 'calc(100vh - 320px)' }}
                 >
                     {/* Scroll hint */}
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md text-sm text-gray-600 pointer-events-none">
-                        💡 Scroll to explore • Click topics to learn
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[var(--surface-elevated)]/95 dark:bg-[var(--surface-overlay)]/95 backdrop-blur-sm px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg shadow-md text-xs sm:text-sm text-[var(--text-color-muted)] pointer-events-none border border-[var(--border-subtle)]">
+                        💡 Scroll to explore • Tap topics to learn
                     </div>
 
                     <svg
@@ -563,15 +563,15 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                     >
                     <defs>
                         <linearGradient id="mapBg" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stopColor="#f8fafc" />
-                            <stop offset="45%" stopColor="#ffffff" />
-                            <stop offset="100%" stopColor="#f1f5f9" />
+                            <stop offset="0%" stopColor="var(--grammar-map-bg-start)" />
+                            <stop offset="45%" stopColor="var(--grammar-map-bg-mid)" />
+                            <stop offset="100%" stopColor="var(--grammar-map-bg-end)" />
                         </linearGradient>
                         <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-                            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#e2e8f0" strokeWidth="1" />
+                            <path d="M 48 0 L 0 0 0 48" fill="none" stroke="var(--grammar-map-grid)" strokeWidth="1" />
                         </pattern>
                         <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="#0f172a" floodOpacity="0.14" />
+                            <feDropShadow dx="0" dy="6" stdDeviation="6" floodColor="var(--grammar-map-shadow)" floodOpacity="0.2" />
                         </filter>
                     </defs>
 
@@ -639,7 +639,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                                     key={`${edge.from}-${edge.to}-${index}`}
                                     d={`M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`}
                                     fill="none"
-                                    stroke={edge.type === 'prerequisite' ? '#2563eb' : '#cbd5e1'}
+                                    stroke={edge.type === 'prerequisite' ? 'var(--grammar-map-edge-prereq)' : 'var(--grammar-map-edge-related)'}
                                     strokeWidth={isHighlighted ? 3 : edge.type === 'prerequisite' ? 2 : 1.25}
                                     strokeDasharray={edge.type === 'related' ? '6,6' : '0'}
                                     opacity={isHighlighted ? 1 : 0.35}
@@ -674,7 +674,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                                             cy={pos.y + nodeHeight / 2}
                                             r="65"
                                             fill="none"
-                                            stroke="#3b82f6"
+                                            stroke="var(--grammar-map-edge-prereq)"
                                             strokeWidth="3"
                                             strokeDasharray="5,5"
                                             initial={{ scale: 0 }}
@@ -708,7 +708,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                                             rx="14"
                                             fill={color}
                                             opacity={isDimmed ? 0.55 : 1}
-                                            stroke={isSelected ? '#0f172a' : isHovered ? '#334155' : 'rgba(255,255,255,0.55)'}
+                                            stroke={isSelected ? 'var(--grammar-map-node-stroke-selected)' : isHovered ? 'var(--grammar-map-node-stroke-hover)' : 'var(--grammar-map-node-stroke)'}
                                             strokeWidth={isSelected ? 3 : isHovered ? 2 : 1}
                                             filter="url(#shadow)"
                                         />
@@ -751,7 +751,7 @@ export default function GrammarMapClient({ progressMap, topics }: GrammarMapClie
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mt-6 p-6 bg-white rounded-lg shadow-lg border border-gray-200"
+                    className="mt-6 p-4 sm:p-6 bg-[var(--surface-elevated)] rounded-lg shadow-lg border border-[var(--border-subtle)]"
                 >
                     {(() => {
                         const topic = topics.find(t => t.id === selectedTopic);
