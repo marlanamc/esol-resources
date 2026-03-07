@@ -78,18 +78,29 @@ export default async function RootLayout({
             __html: `
               (function() {
                 try {
+                  var d = document.documentElement;
+                  // Suppress transitions during hydration
+                  d.classList.add('theme-hydrating');
+
                   var theme = localStorage.getItem('class-companion-theme');
                   if (!theme) {
                     var cookieMatch = document.cookie.match(/(?:^|; )class-companion-theme=([^;]+)/);
                     theme = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
                   }
                   if (theme === 'dark' || (theme !== 'light' && theme !== 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                    document.documentElement.setAttribute('data-theme', 'dark');
+                    d.classList.add('dark');
+                    d.setAttribute('data-theme', 'dark');
                   } else {
-                    document.documentElement.classList.remove('dark');
-                    document.documentElement.setAttribute('data-theme', 'light');
+                    d.classList.remove('dark');
+                    d.setAttribute('data-theme', 'light');
                   }
+
+                  // Remove hydration class after first paint
+                  requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                      d.classList.remove('theme-hydrating');
+                    });
+                  });
                 } catch (e) {}
               })();
             `,

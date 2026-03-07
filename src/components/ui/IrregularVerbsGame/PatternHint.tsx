@@ -19,19 +19,19 @@ export function PatternHint({ group, showHint }: PatternHintProps) {
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-xl border border-border shadow-sm overflow-hidden"
+      className="overflow-hidden rounded-xl border border-border/60 bg-[var(--color-surface-elevated)] shadow-sm"
     >
       {/* Compact Header - Always visible */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-3 flex items-center justify-between hover:bg-bg-light transition-colors"
+        className="flex w-full items-center justify-between px-4 py-3 transition-colors hover:bg-[var(--color-surface-overlay)]"
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-accent/30 flex items-center justify-center">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/30">
             <Lightbulb size={16} className="text-primary-dark" />
           </div>
           <div className="text-left">
-            <p className="font-semibold text-text text-sm">{group.title}</p>
+            <p className="text-sm font-semibold text-text">{group.title}</p>
             <p className="text-xs text-text-muted">
               {group.patternExample.split('→').map((part, i) => (
                 <span key={i}>
@@ -60,7 +60,7 @@ export function PatternHint({ group, showHint }: PatternHintProps) {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="px-4 pb-4 pt-2 border-t border-border">
+            <div className="border-t border-border/60 px-4 pb-4 pt-2">
               {/* Pattern Description */}
               <p className="text-sm text-text-muted mb-3">{group.pattern}</p>
 
@@ -69,7 +69,7 @@ export function PatternHint({ group, showHint }: PatternHintProps) {
                 {group.verbs.map(verb => (
                   <div
                     key={verb.base}
-                    className="px-3 py-2 bg-bg-light rounded-lg text-center"
+                    className="rounded-lg bg-[var(--color-surface-overlay)] px-3 py-2 text-center"
                   >
                     <div className="text-xs text-text-muted mb-0.5">
                       V1 → V2 → V3

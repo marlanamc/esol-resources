@@ -403,10 +403,70 @@
   color-scheme: dark;
 }
 
-/* Auth pages: force dark text on light backgrounds (fixes flash before AuthLightMode runs) */
-.dark .auth-page-light,
-[data-theme="dark"] .auth-page-light {
-  color: #2b3a4a;
+/* ========== Theme Transition Suppression ========== */
+/* Suppress all transitions during initial hydration to prevent flash */
+html.theme-hydrating,
+html.theme-hydrating * {
+  transition-property: none !important;
+}
+
+/* ========== Auth Pages (Always Light Appearance) ========== */
+/* These pages use hardcoded colors to avoid theme flash */
+.auth-page {
+  --auth-bg: #fef9f3;
+  --auth-bg-light: #f7f2e8;
+  --auth-text: #2b3a4a;
+  --auth-text-muted: #5e6b7d;
+  --auth-primary: #b05740;
+  --auth-primary-dark: #8e4432;
+  --auth-secondary: #6a8d73;
+  --auth-accent: #e9c46a;
+  --auth-card-bg: #fffdfa;
+  --auth-card-border: rgba(226, 221, 213, 0.45);
+  --auth-input-bg: #ffffff;
+  --auth-input-border: rgba(226, 221, 213, 0.6);
+  --auth-shadow: rgba(26, 32, 44, 0.08);
+
+  background: linear-gradient(135deg, var(--auth-bg) 0%, #fdfbf7 100%) !important;
+  color: var(--auth-text) !important;
+}
+
+/* Override dark mode on auth pages - keep light appearance */
+.dark .auth-page,
+[data-theme="dark"] .auth-page {
+  background: linear-gradient(135deg, var(--auth-bg) 0%, #fdfbf7 100%) !important;
+  color: var(--auth-text) !important;
+}
+
+/* Auth page cards and inputs */
+.auth-page .auth-card {
+  background: var(--auth-card-bg) !important;
+  border-color: var(--auth-card-border) !important;
+  box-shadow: 0 4px 12px var(--auth-shadow) !important;
+}
+
+.auth-page input,
+.auth-page select,
+.auth-page textarea {
+  background: var(--auth-input-bg) !important;
+  border-color: var(--auth-input-border) !important;
+  color: var(--auth-text) !important;
+}
+
+.auth-page input::placeholder {
+  color: var(--auth-text-muted) !important;
+}
+
+.auth-page label {
+  color: var(--auth-text) !important;
+}
+
+.auth-page a {
+  color: var(--auth-primary) !important;
+}
+
+.auth-page a:hover {
+  color: var(--auth-primary-dark) !important;
 }
 
 /* Soft Sunrise Gradient with paper texture overlay */

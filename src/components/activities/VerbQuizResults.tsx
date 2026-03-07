@@ -20,7 +20,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
     if (isPerfect) return { text: 'Perfect!', color: 'text-terracotta', icon: Trophy };
     if (isExcellent) return { text: 'Excellent!', color: 'text-sage', icon: Star };
     if (isGood) return { text: 'Good Job!', color: 'text-gold', icon: CheckCircle2 };
-    return { text: 'Keep Practicing', color: 'text-neutral-600', icon: RotateCcw };
+    return { text: 'Keep Practicing', color: 'text-[var(--color-text-muted)]', icon: RotateCcw };
   };
 
   const grade = getGrade();
@@ -32,7 +32,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-white rounded-2xl shadow-lg border border-sage/20 p-8 text-center"
+        className="rounded-2xl border border-border/40 bg-[var(--color-surface-elevated)] p-8 text-center shadow-lg"
       >
         <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full ${
           isPerfect ? 'bg-terracotta/10' : isExcellent ? 'bg-sage/10' : 'bg-gold/10'
@@ -43,17 +43,17 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
         <h2 className={`text-4xl font-display font-bold mb-2 ${grade.color}`}>
           {percentage}%
         </h2>
-        <p className="text-2xl font-semibold text-neutral-800 mb-4">{grade.text}</p>
+        <p className="mb-4 text-2xl font-semibold text-[var(--color-text)]">{grade.text}</p>
 
-        <div className="flex items-center justify-center gap-6 text-sm text-neutral-600">
+        <div className="flex items-center justify-center gap-6 text-sm text-[var(--color-text-muted)]">
           <div>
             <span className="font-semibold text-sage">{submission.correctCount}</span> correct
           </div>
-          <div className="w-1 h-1 bg-neutral-300 rounded-full"></div>
+          <div className="h-1 w-1 rounded-full bg-border"></div>
           <div>
-            <span className="font-semibold text-neutral-800">{submission.totalForms}</span> total
+            <span className="font-semibold text-[var(--color-text)]">{submission.totalForms}</span> total
           </div>
-          <div className="w-1 h-1 bg-neutral-300 rounded-full"></div>
+          <div className="h-1 w-1 rounded-full bg-border"></div>
           <div>
             <span className="font-semibold text-terracotta">+{submission.totalPoints}</span> points
           </div>
@@ -65,7 +65,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white rounded-2xl shadow-lg border border-sage/20 p-6"
+        className="rounded-2xl border border-border/40 bg-[var(--color-surface-elevated)] p-6 shadow-lg"
       >
         <h3 className="text-xl font-display font-bold text-terracotta mb-4">
           Detailed Results
@@ -88,13 +88,13 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                 className={`rounded-xl border-2 p-4 ${
                   isVerbPerfect
                     ? 'border-green-300 bg-green-50'
-                    : 'border-neutral-200 bg-neutral-50/50'
+                    : 'border-border/40 bg-[var(--color-surface-overlay)]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-lg font-bold text-neutral-800 capitalize">To {verb}</h4>
+                  <h4 className="text-lg font-bold capitalize text-[var(--color-text)]">To {verb}</h4>
                   <div className="text-sm font-semibold">
-                    <span className={verbCorrect === verbTotal ? 'text-green-700' : 'text-neutral-600'}>
+                    <span className={verbCorrect === verbTotal ? 'text-green-700' : 'text-[var(--color-text-muted)]'}>
                       {verbCorrect}/{verbTotal}
                     </span>
                   </div>
@@ -123,7 +123,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                           ) : (
                             <XCircle className="w-4 h-4 text-red-500" />
                           )}
-                          <span className="text-xs font-semibold text-neutral-600 uppercase">
+                            <span className="text-xs font-semibold uppercase text-[var(--color-text-muted)]">
                             {form.replace('_', ' ')}
                           </span>
                         </div>
@@ -153,11 +153,11 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                     return (
                       <div
                         key={form}
-                        className={`p-3 rounded-lg border flex items-center justify-between ${
-                          isCorrect
-                            ? 'border-green-300 bg-green-50'
-                            : 'border-red-300 bg-red-50'
-                        }`}
+                          className={`flex items-center justify-between rounded-lg border p-3 ${
+                            isCorrect
+                              ? 'border-green-300 bg-green-50'
+                              : 'border-red-300 bg-red-50'
+                          }`}
                       >
                         <div className="flex items-center gap-2">
                           {isCorrect ? (
@@ -165,7 +165,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                           ) : (
                             <XCircle className="w-4 h-4 text-red-500" />
                           )}
-                          <span className="text-xs font-semibold text-neutral-600 uppercase">
+                            <span className="text-xs font-semibold uppercase text-[var(--color-text-muted)]">
                             {form.replace('_', ' ')}
                           </span>
                         </div>

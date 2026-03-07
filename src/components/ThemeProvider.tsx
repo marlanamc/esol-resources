@@ -1,12 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { createContext, useContext, useEffect, useState, useCallback, useMemo } from "react";
 
 type Theme = "light" | "dark" | "system";
+type ResolvedTheme = "light" | "dark";
 
 interface ThemeContextValue {
     theme: Theme;
-    resolvedTheme: "light" | "dark";
+    resolvedTheme: ResolvedTheme;
     setTheme: (theme: Theme) => void;
     toggleTheme: () => void;
 }
@@ -14,75 +15,92 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const THEME_STORAGE_KEY = "class-companion-theme";
-const THEME_COOKIE_KEY = "class-companion-theme";
 const THEME_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
-function getSystemTheme(): "light" | "dark" {
+function getSystemTheme(): ResolvedTheme {
     if (typeof window === "undefined") return "light";
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
+// Read the resolved theme from DOM (what the inline script already set)
+function getInitialResolvedTheme(): ResolvedTheme {
+    if (typeof document === "undefined") return "light";
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+// Read stored theme preference
+function getStoredTheme(): Theme {
+    if (typeof window === "undefined") return "system";
+    try {
+        const stored = localStorage.getItem(THEME_STORAGE_KEY);
+        if (stored === "light" || stored === "dark" || stored === "system") return stored;
+    } catch {
+        // localStorage may be unavailable in private browsing
+    }
+    return "system";
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    const [theme, setThemeState] = useState<Theme>("system");
-    const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
-    const [mounted, setMounted] = useState(false);
+    // Initialize theme preference from storage
+    // Initialize resolvedTheme from DOM (what inline script set) to avoid mismatch
+    const [theme, setThemeState] = useState<Theme>(getStoredTheme);
+    const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(getInitialResolvedTheme);
 
-    // Initialize theme from localStorage on mount
-    useEffect(() => {
-        const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
-        const cookieMatch = document.cookie.match(new RegExp(`(?:^|; )${THEME_COOKIE_KEY}=([^;]+)`));
-        const cookieTheme = cookieMatch ? decodeURIComponent(cookieMatch[1]) as Theme : null;
-        const initialTheme = stored || cookieTheme || "system";
-        setThemeState(initialTheme);
-        setResolvedTheme(initialTheme === "system" ? getSystemTheme() : initialTheme);
-        setMounted(true);
-    }, []);
-
-    // Resolve theme and apply to document
-    useEffect(() => {
-        if (!mounted) return;
-
-        const resolved = theme === "system" ? getSystemTheme() : theme;
-        setResolvedTheme(resolved);
-
-        // Apply to document
+    // Apply theme to DOM - only called when user changes theme, not on mount
+    const applyTheme = useCallback((newResolved: ResolvedTheme) => {
         const root = document.documentElement;
-        if (resolved === "dark") {
+
+        if (newResolved === "dark") {
             root.classList.add("dark");
             root.setAttribute("data-theme", "dark");
         } else {
             root.classList.remove("dark");
             root.setAttribute("data-theme", "light");
         }
-    }, [theme, mounted]);
 
-    // Listen for system theme changes when using "system" preference
-    useEffect(() => {
-        if (!mounted || theme !== "system") return;
+        setResolvedTheme(newResolved);
+    }, []);
 
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-        const handleChange = () => {
-            setResolvedTheme(getSystemTheme());
-        };
-
-        mediaQuery.addEventListener("change", handleChange);
-        return () => mediaQuery.removeEventListener("change", handleChange);
-    }, [theme, mounted]);
-
+    // Set theme and persist to storage
     const setTheme = useCallback((newTheme: Theme) => {
         setThemeState(newTheme);
-        localStorage.setItem(THEME_STORAGE_KEY, newTheme);
-        document.cookie = `${THEME_COOKIE_KEY}=${encodeURIComponent(newTheme)}; path=/; max-age=${THEME_COOKIE_MAX_AGE}; samesite=lax`;
-    }, []);
+
+        // Persist to storage
+        try {
+            localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+        } catch {
+            // localStorage may be unavailable
+        }
+        document.cookie = `${THEME_STORAGE_KEY}=${encodeURIComponent(newTheme)}; path=/; max-age=${THEME_COOKIE_MAX_AGE}; samesite=lax`;
+
+        // Apply to DOM
+        const newResolved = newTheme === "system" ? getSystemTheme() : newTheme;
+        applyTheme(newResolved);
+    }, [applyTheme]);
 
     const toggleTheme = useCallback(() => {
         setTheme(resolvedTheme === "light" ? "dark" : "light");
     }, [resolvedTheme, setTheme]);
 
-    // Always provide context (useTheme requires it). Before mount, use safe defaults.
-    const value = mounted
-        ? { theme, resolvedTheme, setTheme, toggleTheme }
-        : { theme: "system" as Theme, resolvedTheme: "light" as const, setTheme, toggleTheme };
+    // Listen for system theme changes when using "system" preference
+    useEffect(() => {
+        if (theme !== "system") return;
+
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const handleChange = () => {
+            applyTheme(getSystemTheme());
+        };
+
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+    }, [theme, applyTheme]);
+
+    const value = useMemo(() => ({
+        theme,
+        resolvedTheme,
+        setTheme,
+        toggleTheme
+    }), [theme, resolvedTheme, setTheme, toggleTheme]);
 
     return (
         <ThemeContext.Provider value={value}>

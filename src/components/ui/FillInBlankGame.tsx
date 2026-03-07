@@ -135,22 +135,22 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                 />
             )}
             {/* Header with Progress */}
-            <div className="flex-shrink-0 bg-white dark:bg-[var(--surface-elevated)] border-b-2 md:border md:rounded-xl shadow-sm border-gray-200 dark:border-white/10 p-4 flex items-center gap-3">
+            <div className="flex flex-shrink-0 items-center gap-3 border-b-2 border-border/40 bg-[var(--color-surface-elevated)] p-4 shadow-sm md:rounded-xl md:border">
                 <BackButton
                     onClick={() => window.history.back()}
                     className="shrink-0 md:hidden"
                 />
                 <div className="flex-1">
                     <div className="flex items-center justify-between mb-3">
-                        <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        <div className="text-sm font-medium text-[var(--color-text-muted)]">
                             Question <span className="text-[var(--color-primary)] font-bold">{currentIndex + 1}</span> of {questions.length}
                         </div>
-                        <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        <div className="text-sm font-medium text-[var(--color-text-muted)]">
                             Score: <span className="text-green-600 font-bold">{score}</span> / {questions.length}
                         </div>
                     </div>
                     {/* Progress Bar */}
-                    <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
+                    <div className="h-2 w-full overflow-hidden rounded-full bg-[var(--color-bg-light)]">
                         <div
                             className="h-full bg-[var(--color-primary)] transition-[width] duration-300"
                             style={{ width: `${progress}%` }}
@@ -161,10 +161,10 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
 
             {/* Question Card - Scrollable on mobile */}
             <div className="flex-1 overflow-y-auto px-4 py-4 md:overflow-visible md:px-0 md:py-0">
-                <div className="bg-white dark:bg-[var(--surface-elevated)] md:rounded-2xl shadow-lg border-0 md:border border-gray-200 dark:border-white/10 p-6 sm:p-8 mb-6">
+                <div className="mb-6 border-0 border-border/40 bg-[var(--color-surface-elevated)] p-6 shadow-lg md:rounded-2xl md:border sm:p-8">
                 {/* Question Text */}
                 <div className="mb-8">
-                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-relaxed">
+                    <h3 className="text-2xl md:text-3xl font-bold leading-relaxed text-[var(--color-text)]">
                         {currentQuestion.sentence.split("_____").map((part, idx, arr) => (
                             <span key={idx}>
                                 {part}
@@ -182,9 +182,9 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                         const isSelected = selectedAnswer === option;
                         const isCorrectOption = option === currentQuestion.correctAnswer;
 
-                        let bgColor = "bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10";
-                        let borderColor = "border-gray-300 dark:border-white/20";
-                        let textColor = "text-gray-900 dark:text-white";
+                        let bgColor = "bg-[var(--color-surface-elevated)] hover:bg-[var(--color-surface-overlay)]";
+                        let borderColor = "border-border/50";
+                        let textColor = "text-[var(--color-text)]";
 
                         if (selectedAnswer) {
                             if (isSelected && isCorrect) {
@@ -211,7 +211,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                                     } disabled:cursor-not-allowed`}
                             >
                                 <div className="flex items-center gap-3">
-                                    <span className="text-lg font-bold text-gray-400 dark:text-gray-500">
+                                    <span className="text-lg font-bold text-[var(--color-text-muted)]">
                                         {String.fromCharCode(65 + idx)}
                                     </span>
                                     <span className="text-lg">{option}</span>
@@ -234,7 +234,7 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                             {isCorrect ? "🎉 Correct!" : "❌ Not quite right"}
                         </p>
                         {!isCorrect && (
-                            <p className="text-gray-700">
+                            <p className="text-[var(--color-text)]">
                                 The correct answer is: <strong>{currentQuestion.correctAnswer}</strong>
                             </p>
                         )}
@@ -242,12 +242,12 @@ export default function FillInBlankGame({ contentStr, activityId, assignmentId, 
                             <div className="mt-3">
                                 <button
                                     onClick={() => setShowExplanation(!showExplanation)}
-                                    className="text-sm text-gray-600 hover:text-gray-900 underline"
+                                    className="text-sm underline text-[var(--color-text-muted)] hover:text-[var(--color-text)]"
                                 >
                                     {showExplanation ? "Hide explanation" : "Why?"}
                                 </button>
                                 {showExplanation && (
-                                    <p className="mt-2 text-gray-700 text-sm italic">
+                                    <p className="mt-2 text-sm italic text-[var(--color-text)]">
                                         {currentQuestion.explanation}
                                     </p>
                                 )}
