@@ -298,7 +298,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                         ? resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
                         : resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
                       : isActive
-                        ? resolvedTheme === 'dark' ? 'text-[#e8a090]' : 'text-[#c88470]'
+                        ? resolvedTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#c88470]'
                         : resolvedTheme === 'dark' ? 'text-[#6b7280]' : 'text-[#7d8aa1]'
                   }`}
                 >
@@ -357,7 +357,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                         ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#5c7e67]'}`
                         : `text-[11px] opacity-95 ${resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#6f9279]'}`
                       : isActive
-                        ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#e8a090]' : 'text-[#c88470]'}`
+                        ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#c88470]'}`
                         : `text-[10px] opacity-70 ${resolvedTheme === 'dark' ? 'text-[#6b7280]' : 'text-[#7d8aa1]'}`
                   }`}>
                     {item.label}
@@ -374,12 +374,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                     background: resolvedTheme === 'dark'
                       ? isActivitiesTab
                         ? 'linear-gradient(90deg, #f5d98a 0%, #e8a090 50%, #d08878 100%)'
-                        : '#e8a090'
+                        : 'linear-gradient(90deg, #5a92b8 0%, #7fb3d5 50%, #a8d5f7 100%)'
                       : isActivitiesTab
                       ? 'linear-gradient(90deg, #e9c46a 0%, #c88470 50%, #b86a56 100%)'
                       : '#c88470',
                     boxShadow: resolvedTheme === 'dark'
-                      ? isActive ? '0 2px 6px rgba(232, 160, 144, 0.2)' : 'none'
+                      ? isActive
+                        ? isActivitiesTab ? '0 2px 6px rgba(232, 160, 144, 0.2)' : '0 2px 6px rgba(127, 179, 213, 0.3)'
+                        : 'none'
                       : isActive ? '0 2px 6px rgba(200, 132, 112, 0.3)' : 'none'
                   }}
                 />
