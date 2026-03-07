@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { saveActivityProgress } from '@/lib/activityProgress';
 import { PointsToast } from '@/components/ui/PointsToast';
+import { useTheme } from '@/components/ThemeProvider';
 import {
   EdVerb,
   EdSound,
@@ -68,6 +69,7 @@ const SOUND_COLORS: Record<EdSound, { bg: string; hover: string; active: string;
 };
 
 export default function EdPronunciationGame({ contentStr, activityId, assignmentId }: Props) {
+  const { resolvedTheme } = useTheme();
   const [state, setState] = useState<GameState>({
     mode: 'sorting',
     phase: 'menu',
@@ -88,6 +90,22 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
   });
 
   const [isAudioSupported, setIsAudioSupported] = useState(true);
+  const isDark = resolvedTheme === 'dark';
+
+  const quickViewColors = {
+    d: {
+      label: isDark ? '#86efac' : '#065f46',
+      example: isDark ? '#6ee7b7' : '#047857',
+    },
+    t: {
+      label: isDark ? '#7dd3fc' : '#075985',
+      example: isDark ? '#38bdf8' : '#0369a1',
+    },
+    id: {
+      label: isDark ? '#fcd34d' : '#92400e',
+      example: isDark ? '#fbbf24' : '#b45309',
+    },
+  } satisfies Record<EdSound, { label: string; example: string }>;
 
   // Check for Web Speech API support
   useEffect(() => {
@@ -344,16 +362,16 @@ export default function EdPronunciationGame({ contentStr, activityId, assignment
             {/* The three sounds explanation (Quick View) */}
             <div className="relative z-10 grid grid-cols-3 gap-3 rounded-2xl border border-border/20 dark:border-white/10 bg-[var(--surface-elevated)] p-4 text-center shadow-lg md:border-0 md:shadow-none">
               <div className="p-3 md:p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-100 dark:border-emerald-700/60">
-                <div className="text-xl md:text-2xl font-black text-emerald-800 dark:text-emerald-300">/d/</div>
-                <div className="text-[10px] md:text-xs text-emerald-800 dark:text-emerald-400/90 mt-1 font-bold">played</div>
+                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.d.label }}>/d/</div>
+                <div className="text-[10px] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.d.example }}>played</div>
               </div>
               <div className="p-3 md:p-4 rounded-2xl bg-sky-50 dark:bg-sky-900/30 border border-sky-100 dark:border-sky-700/60">
-                <div className="text-xl md:text-2xl font-black text-sky-800 dark:text-sky-300">/t/</div>
-                <div className="text-[10px] md:text-xs text-sky-800 dark:text-sky-400/90 mt-1 font-bold">walked</div>
+                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.t.label }}>/t/</div>
+                <div className="text-[10px] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.t.example }}>walked</div>
               </div>
               <div className="p-3 md:p-4 rounded-2xl bg-amber-50 dark:bg-amber-900/30 border border-amber-100 dark:border-amber-700/60">
-                <div className="text-xl md:text-2xl font-black text-amber-800 dark:text-amber-300">/ɪd/</div>
-                <div className="text-[10px] md:text-xs text-amber-800 dark:text-amber-400/90 mt-1 font-bold">decided</div>
+                <div className="text-xl md:text-2xl font-black" style={{ color: quickViewColors.id.label }}>/ɪd/</div>
+                <div className="text-[10px] md:text-xs mt-1 font-bold" style={{ color: quickViewColors.id.example }}>decided</div>
               </div>
             </div>
 
