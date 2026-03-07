@@ -167,11 +167,11 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
                                         {day}
                                     </span>
                                     {!isToday && (hasQuiz || hasDue || hasHoliday || hasOther) && (
-                                        <span className="mt-1 flex items-center gap-1" aria-hidden="true">
-                                            {hasQuiz && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
-                                            {hasDue && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('due').accent }} />}
-                                            {hasHoliday && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} />}
-                                            {hasOther && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: getLearnerEventTone('event').accent }} />}
+                                        <span className="mt-1 flex items-center gap-0.5" aria-hidden="true">
+                                            {hasQuiz && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} />}
+                                            {hasDue && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('due').accent }} />}
+                                            {hasHoliday && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} />}
+                                            {hasOther && <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm" style={{ backgroundColor: getLearnerEventTone('event').accent }} />}
                                         </span>
                                     )}
                                 </div>
@@ -183,16 +183,16 @@ export const MiniCalendar: React.FC<MiniCalendarProps> = ({ events = [] }) => {
 
             <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]" aria-hidden="true">
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--border-subtle)', color: 'var(--text-color-muted)' }}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Today
+                    <span className="w-2 h-2 rounded-full bg-primary ring-1 ring-white/50 shadow-sm shrink-0" /> Today
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('quiz').bg, borderColor: getLearnerEventTone('quiz').border, color: getLearnerEventTone('quiz').text }}>
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} /> Quiz/Test
+                    <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm shrink-0" style={{ backgroundColor: getLearnerEventTone('quiz').accent }} /> Quiz/Test
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('due').bg, borderColor: getLearnerEventTone('due').border, color: getLearnerEventTone('due').text }}>
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: getLearnerEventTone('due').accent }} /> Due
+                    <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm shrink-0" style={{ backgroundColor: getLearnerEventTone('due').accent }} /> Due
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full border" style={{ backgroundColor: getLearnerEventTone('holiday').bg, borderColor: getLearnerEventTone('holiday').border, color: getLearnerEventTone('holiday').text }}>
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} /> Holiday
+                    <span className="w-2 h-2 rounded-full ring-1 ring-white/50 shadow-sm shrink-0" style={{ backgroundColor: getLearnerEventTone('holiday').accent }} /> Holiday
                 </span>
             </div>
         </section>
