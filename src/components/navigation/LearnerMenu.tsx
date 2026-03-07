@@ -9,16 +9,81 @@ import { BookOpenIcon, HomeIcon, MapIcon, StarIcon, TrophyIcon } from "@/compone
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 
+const MEDAL_EMOJI: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
+
+// Module-level cache avoids refetching /api/activities on every mount.
+const CACHE_TTL_MS = 5 * 60 * 1000;
+let cachedSubjects: Record<string, boolean> | null = null;
+let cacheTimestamp = 0;
+let inflight: Promise<Record<string, boolean>> | null = null;
+
+function parseSubjects(activities: Array<Record<string, unknown>>): Record<string, boolean> {
+    return {
+        vocabulary: activities.some((a) => typeof a.id === "string" && a.id.startsWith("vocab-")),
+        grammar: activities.some((a) => a.category === "grammar"),
+        games: activities.some((a) => {
+            if (a.type !== "game") return false;
+            if (typeof a.id === "string" && a.id.startsWith("vocab-")) return false;
+            return (
+                ["numbers-game", "countable-uncountable-nouns"].includes(a.id as string) ||
+                ["verb-forms", "verbforms"].includes(a.ui as string) ||
+                a.category === "games"
+            );
+        }),
+        quizzes: activities.some((a) => {
+            if (a.category !== "quizzes") return false;
+            try { return JSON.parse((a.content as string) || "{}").released === true; } catch { return false; }
+        }),
+        speaking: activities.some((a) => {
+            if (a.category !== "speaking") return false;
+            try { return JSON.parse((a.content as string) || "{}").released === true; } catch { return false; }
+        }),
+        writing: activities.some((a) => a.category === "writing" || a.category === "writing-reading"),
+        pronunciation: activities.some(
+            (a) => a.category === "pronunciation" || a.ui === "ed-pronunciation" || a.ui === "minimal-pairs"
+        ),
+    };
+}
+
+function fetchSubjectsCached(): Promise<Record<string, boolean>> {
+    if (cachedSubjects && Date.now() - cacheTimestamp < CACHE_TTL_MS) {
+        return Promise.resolve(cachedSubjects);
+    }
+    if (inflight) return inflight;
+    inflight = fetch("/api/activities")
+        .then((res) => res.json())
+        .then((activities) => {
+            if (!Array.isArray(activities)) return {};
+            const subjects = parseSubjects(activities);
+            cachedSubjects = subjects;
+            cacheTimestamp = Date.now();
+            inflight = null;
+            return subjects;
+        })
+        .catch((err) => {
+            console.error("Error fetching activities for sidebar:", err);
+            inflight = null;
+            return cachedSubjects ?? {};
+        });
+    return inflight;
+}
+
 interface LearnerMenuProps {
     mode?: "brand" | "quiet";
     userName?: string;
     className?: string;
+    /** Student's weekly leaderboard rank (1–3) to show medal next to name */
+    leaderboardRank?: number | null;
+    /** Show 🙋🏻‍♀️ next to name (Marlie test account) to indicate medal placement */
+    showMarlieEmoji?: boolean;
 }
 
 export function LearnerMenu({
     mode = "quiet",
     userName = "",
     className = "",
+    leaderboardRank = null,
+    showMarlieEmoji = false,
 }: LearnerMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [availableSubjects, setAvailableSubjects] = useState<Record<string, boolean>>({});
@@ -58,51 +123,11 @@ export function LearnerMenu({
     }, [isOpen]);
 
     useEffect(() => {
-        fetch("/api/activities")
-            .then((res) => res.json())
-            .then((activities) => {
-                if (!Array.isArray(activities)) return;
-
-                setAvailableSubjects({
-                    vocabulary: activities.some((activity) => activity.id?.startsWith("vocab-")),
-                    grammar: activities.some((activity) => activity.category === "grammar"),
-                    games: activities.some((activity) => {
-                        if (activity.type !== "game") return false;
-                        if (activity.id?.startsWith("vocab-")) return false;
-                        return (
-                            ["numbers-game", "countable-uncountable-nouns"].includes(activity.id) ||
-                            ["verb-forms", "verbforms"].includes(activity.ui) ||
-                            activity.category === "games"
-                        );
-                    }),
-                    quizzes: activities.some((activity) => {
-                        if (activity.category !== "quizzes") return false;
-                        try {
-                            return JSON.parse(activity.content || "{}").released === true;
-                        } catch {
-                            return false;
-                        }
-                    }),
-                    speaking: activities.some((activity) => {
-                        if (activity.category !== "speaking") return false;
-                        try {
-                            return JSON.parse(activity.content || "{}").released === true;
-                        } catch {
-                            return false;
-                        }
-                    }),
-                    writing: activities.some(
-                        (activity) => activity.category === "writing" || activity.category === "writing-reading"
-                    ),
-                    pronunciation: activities.some(
-                        (activity) =>
-                            activity.category === "pronunciation" ||
-                            activity.ui === "ed-pronunciation" ||
-                            activity.ui === "minimal-pairs"
-                    ),
-                });
-            })
-            .catch((error) => console.error("Error fetching activities for sidebar:", error));
+        let cancelled = false;
+        fetchSubjectsCached().then((subjects) => {
+            if (!cancelled) setAvailableSubjects(subjects);
+        });
+        return () => { cancelled = true; };
     }, []);
 
     const closeMenu = () => setIsOpen(false);
@@ -119,13 +144,21 @@ export function LearnerMenu({
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-md group-hover:shadow-lg transition-[box-shadow,transform] duration-300 group-hover:scale-105">
                 <BookOpenIcon className="w-5 h-5 text-white" />
             </div>
-            <div className="sm:hidden min-w-0">
+            <div className="sm:hidden min-w-0 flex items-center gap-1.5">
                 <span
                     className="block text-base font-semibold text-primary leading-tight truncate max-w-[130px]"
                     style={{ fontFamily: "Lora, serif" }}
                 >
                     {mobileName}
                 </span>
+                {showMarlieEmoji && (
+                    <span className="shrink-0 text-lg leading-none" aria-hidden>🙋🏻‍♀️</span>
+                )}
+                {!showMarlieEmoji && leaderboardRank && leaderboardRank <= 3 && (
+                    <span className="shrink-0 text-lg leading-none" aria-label={`Rank ${leaderboardRank}`}>
+                        {MEDAL_EMOJI[leaderboardRank]}
+                    </span>
+                )}
             </div>
             <div className="hidden sm:flex flex-col text-left">
                 <span className="text-[11px] sm:text-[12px] font-medium text-secondary tracking-[0.06em] uppercase pl-[2px]">

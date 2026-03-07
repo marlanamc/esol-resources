@@ -102,12 +102,12 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
 
   return (
     <div className="min-h-screen bg-bg">
-      {/* Very subtle grain texture overlay - kept light for readability */}
+      {/* Subtle grain texture overlay using CSS noise (GPU-friendly) */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-[0.08] z-0"
+        className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'overlay'
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23888' fill-opacity='0.4'%3E%3Ccircle cx='5' cy='5' r='1'/%3E%3Ccircle cx='25' cy='10' r='0.8'/%3E%3Ccircle cx='45' cy='3' r='1'/%3E%3Ccircle cx='15' cy='25' r='0.6'/%3E%3Ccircle cx='35' cy='20' r='1'/%3E%3Ccircle cx='55' cy='28' r='0.7'/%3E%3Ccircle cx='10' cy='40' r='0.8'/%3E%3Ccircle cx='30' cy='45' r='1'/%3E%3Ccircle cx='50' cy='38' r='0.6'/%3E%3Ccircle cx='20' cy='55' r='1'/%3E%3Ccircle cx='40' cy='52' r='0.8'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '60px 60px'
         }}
       />
 

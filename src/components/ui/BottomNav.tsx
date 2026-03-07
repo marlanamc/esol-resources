@@ -1,20 +1,33 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from '@/components/ThemeProvider';
+import { HomeIcon, BookOpenIcon, CalendarIcon, TrophyIcon } from '@/components/icons/Icons';
 
-interface BottomNavRenderItem {
+// ─── Stable nav config (never changes, never creates new references) ───
+type NavItemConfig = {
   href: string;
   label: string;
-  icon: React.ReactNode;
-}
+  iconKey: 'home' | 'activities' | 'calendar' | 'leaderboard';
+};
 
-interface BottomNavProps {
-  items: BottomNavRenderItem[];
-}
+const NAV_ITEMS: NavItemConfig[] = [
+  { href: '/dashboard', label: 'Home', iconKey: 'home' },
+  { href: '/dashboard/activities', label: 'Activities', iconKey: 'activities' },
+  { href: '/dashboard/calendar', label: 'Calendar', iconKey: 'calendar' },
+  { href: '/dashboard/leaderboard', label: 'Leaderboard', iconKey: 'leaderboard' },
+];
 
+const ICON_MAP: Record<NavItemConfig['iconKey'], React.FC<{ className?: string }>> = {
+  home: HomeIcon,
+  activities: BookOpenIcon,
+  calendar: CalendarIcon,
+  leaderboard: TrophyIcon,
+};
+
+// ─── Telemetry (tab-nav metrics) ───
 type TrackedTabPath = '/dashboard' | '/dashboard/calendar' | '/dashboard/activities';
 
 interface TabNavMetric {
@@ -30,6 +43,7 @@ const TAB_NAV_METRIC_ENDPOINT = '/api/diagnostics/tab-nav';
 const TAB_NAV_QUEUE_STORAGE_KEY = 'tab-nav-metrics-queue-v1';
 const TAB_NAV_SAMPLE_RATE = 0.35;
 const TAB_NAV_BATCH_SIZE = 5;
+const ACTIVITIES_LAST_HREF_STORAGE_KEY = 'dashboard-activities-last-href-v1';
 
 function toTrackedTabPath(pathname: string | null | undefined): TrackedTabPath | null {
   if (!pathname) return null;
@@ -67,8 +81,28 @@ function beaconBatch(batch: TabNavMetric[]): boolean {
   return navigator.sendBeacon(TAB_NAV_METRIC_ENDPOINT, blob);
 }
 
-export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
-  const ACTIVITIES_LAST_HREF_STORAGE_KEY = 'dashboard-activities-last-href-v1';
+function flushQueue(force = false) {
+  const queue = readQueue();
+  if (!queue.length) return;
+  if (!force && queue.length < TAB_NAV_BATCH_SIZE) return;
+  const toSend = queue.slice(0, TAB_NAV_BATCH_SIZE);
+  const didSend = beaconBatch(toSend);
+  if (didSend) {
+    writeQueue(queue.slice(toSend.length));
+    return;
+  }
+  writeQueue(queue.slice(toSend.length));
+  void fetch(TAB_NAV_METRIC_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ events: toSend }),
+    credentials: 'same-origin',
+    keepalive: true,
+  });
+}
+
+// ─── Component ───
+export const BottomNav = React.memo(function BottomNav() {
   const pathname = usePathname();
   const router = useRouter();
   const { resolvedTheme } = useTheme();
@@ -78,50 +112,23 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const shouldTrackRef = useRef(false);
   const previousPathnameRef = useRef<string | null>(null);
 
-  const flushQueue = (force = false) => {
-    const queue = readQueue();
-    if (!queue.length) return;
-    if (!force && queue.length < TAB_NAV_BATCH_SIZE) return;
-    const toSend = queue.slice(0, TAB_NAV_BATCH_SIZE);
-    const didSend = beaconBatch(toSend);
-    if (didSend) {
-      writeQueue(queue.slice(toSend.length));
-      return;
-    }
-
-    // Fallback for environments where sendBeacon is unavailable.
-    writeQueue(queue.slice(toSend.length));
-    void fetch(TAB_NAV_METRIC_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ events: toSend }),
-      credentials: 'same-origin',
-      keepalive: true,
-    });
-  };
-
+  // Keyboard visibility detection (mobile only)
   useEffect(() => {
     const DEBOUNCE_MS = 150;
     const MIN_VALID_HEIGHT = 100;
     let debounceId: ReturnType<typeof setTimeout> | null = null;
 
     const runCheck = () => {
-      // Skip when tab is hidden - dimensions are unreliable during tab transitions
       if (document.visibilityState === 'hidden') return;
-
       const isMobile = window.innerWidth <= 768;
       if (!isMobile) return;
-
-      // Guard against invalid dimensions (e.g. during tab switch, browser may report 0)
       const innerH = window.innerHeight;
       const viewportH = window.visualViewport?.height ?? innerH;
       if (innerH < MIN_VALID_HEIGHT || viewportH < MIN_VALID_HEIGHT) {
         setKeyboardVisible(false);
         return;
       }
-
-      const isKeyboardOpen = viewportH < innerH * 0.8;
-      setKeyboardVisible(isKeyboardOpen);
+      setKeyboardVisible(viewportH < innerH * 0.8);
     };
 
     const handleResize = () => {
@@ -131,7 +138,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
-        // Short delay when tab becomes visible to let browser settle
         if (debounceId) clearTimeout(debounceId);
         debounceId = setTimeout(runCheck, 100);
       }
@@ -151,17 +157,18 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
     };
   }, []);
 
+  // Flush telemetry on visibility change / page hide
   useEffect(() => {
     const onVisibilityOrHide = () => flushQueue(true);
     document.addEventListener('visibilitychange', onVisibilityOrHide);
     window.addEventListener('pagehide', onVisibilityOrHide);
-
     return () => {
       document.removeEventListener('visibilitychange', onVisibilityOrHide);
       window.removeEventListener('pagehide', onVisibilityOrHide);
     };
   }, []);
 
+  // Track route changes for telemetry
   useEffect(() => {
     if (process.env.NODE_ENV !== 'development') {
       previousPathnameRef.current = pathname;
@@ -213,12 +220,41 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
     previousPathnameRef.current = pathname;
   }, [pathname]);
 
+  // Prefetch all tab routes once on mount (stable dependency)
   useEffect(() => {
-    // Proactively warm tab routes to reduce perceived tab-switch latency.
-    items.forEach((item) => {
-      router.prefetch(item.href);
-    });
-  }, [items, router]);
+    NAV_ITEMS.forEach((item) => router.prefetch(item.href));
+  }, [router]);
+
+  const handleClick = useCallback(
+    (item: NavItemConfig, event: React.MouseEvent<HTMLAnchorElement>) => {
+      const fromPath = toTrackedTabPath(pathname);
+      const toPath = toTrackedTabPath(item.href);
+      const shouldTrack = Boolean(
+        fromPath &&
+        toPath &&
+        fromPath !== toPath &&
+        (process.env.NODE_ENV === 'development' || Math.random() < TAB_NAV_SAMPLE_RATE)
+      );
+      navTapAtRef.current = performance.now();
+      navFromPathRef.current = fromPath;
+      shouldTrackRef.current = shouldTrack;
+      if (item.href === '/dashboard/activities') {
+        const lastActivitiesHref = window.sessionStorage.getItem(ACTIVITIES_LAST_HREF_STORAGE_KEY);
+        if (lastActivitiesHref && lastActivitiesHref !== '/dashboard/activities') {
+          event.preventDefault();
+          router.push(lastActivitiesHref, { scroll: false });
+        }
+      }
+    },
+    [pathname, router],
+  );
+
+  const handleTouchStart = useCallback(
+    (href: string) => {
+      router.prefetch(href);
+    },
+    [router],
+  );
 
   return (
     <>
@@ -237,9 +273,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
         style={{
           borderColor: 'var(--border-subtle)',
           zIndex: 'var(--z-fixed)',
-          background: 'var(--surface-overlay)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
+          background: 'color-mix(in srgb, var(--color-bg) 94%, transparent)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
           boxShadow: '0 -2px 16px rgba(13, 22, 32, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.04)'
         }}
@@ -248,43 +282,23 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
           className="relative grid items-center px-2"
           style={{
             height: 'var(--bottom-nav-height)',
-            gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))`
+            gridTemplateColumns: `repeat(${NAV_ITEMS.length}, minmax(0, 1fr))`
           }}
         >
-          {items.map((item) => {
+          {NAV_ITEMS.map((item) => {
             const isActive = item.href === '/dashboard'
               ? pathname === '/dashboard'
               : pathname === item.href || pathname?.startsWith(item.href + '/');
             const isActivitiesTab = item.href === '/dashboard/activities';
+            const IconComponent = ICON_MAP[item.iconKey];
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 prefetch
-                onClick={(event) => {
-                  const fromPath = toTrackedTabPath(pathname);
-                  const toPath = toTrackedTabPath(item.href);
-                  const shouldTrack = Boolean(
-                    fromPath &&
-                    toPath &&
-                    fromPath !== toPath &&
-                    (process.env.NODE_ENV === 'development' || Math.random() < TAB_NAV_SAMPLE_RATE)
-                  );
-                  navTapAtRef.current = performance.now();
-                  navFromPathRef.current = fromPath;
-                  shouldTrackRef.current = shouldTrack;
-                  if (item.href === '/dashboard/activities') {
-                    const lastActivitiesHref = window.sessionStorage.getItem(ACTIVITIES_LAST_HREF_STORAGE_KEY);
-                    if (lastActivitiesHref && lastActivitiesHref !== '/dashboard/activities') {
-                      event.preventDefault();
-                      router.push(lastActivitiesHref, { scroll: false });
-                    }
-                  }
-                }}
-                onTouchStart={() => {
-                  router.prefetch(item.href);
-                }}
+                onClick={(event) => handleClick(item, event)}
+                onTouchStart={() => handleTouchStart(item.href)}
                 aria-label={item.label}
                 className="relative flex h-full w-full items-center justify-center focus-visible:outline-none rounded-xl"
                 style={{
@@ -298,8 +312,8 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                         ? resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
                         : resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
                       : isActive
-                        ? resolvedTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#c88470]'
-                        : resolvedTheme === 'dark' ? 'text-[#6b7280]' : 'text-[#7d8aa1]'
+                        ? resolvedTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#9f523d]'
+                        : resolvedTheme === 'dark' ? 'text-[#8a9bb0]' : 'text-[#5a6a7a]'
                   }`}
                 >
                   <div
@@ -337,7 +351,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                         ? {
                             color: resolvedTheme === 'dark'
                               ? isActive ? '#8bc4a8' : '#6da88a'
-                              : isActive ? '#5c7e67' : '#6f9279',
+                              : isActive ? '#5c7e67' : '#4a6e53',
                             filter: resolvedTheme === 'dark'
                               ? isActive
                                 ? 'drop-shadow(0 2px 6px rgba(139,196,168,0.15))'
@@ -348,17 +362,17 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                           }
                         : undefined}
                     >
-                      {item.icon}
+                      <IconComponent />
                     </div>
                   </div>
-                  <span className={`font-bold tracking-tight leading-none transition-all duration-200 ${
+                  <span className={`font-bold tracking-tight leading-none transition-all duration-200 opacity-100 ${
                     isActivitiesTab
                       ? isActive
-                        ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#5c7e67]'}`
-                        : `text-[11px] opacity-95 ${resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#6f9279]'}`
+                        ? 'text-[10px] text-[#3d5c47] dark:text-[#8bc4a8]'
+                        : 'text-[11px] text-[#3d5c47] dark:text-[#6da88a]'
                       : isActive
-                        ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#7fb3d5]' : 'text-[#c88470]'}`
-                        : `text-[10px] opacity-70 ${resolvedTheme === 'dark' ? 'text-[#6b7280]' : 'text-[#7d8aa1]'}`
+                        ? 'text-[10px] text-[#9f523d] dark:text-[#7fb3d5]'
+                        : 'text-[10px] text-[#4a5c6a] dark:text-[#9aacbe]'
                   }`}>
                     {item.label}
                   </span>
@@ -392,4 +406,4 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
       </nav>
     </>
   );
-};
+});

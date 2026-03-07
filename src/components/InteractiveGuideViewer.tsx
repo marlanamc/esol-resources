@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import type { InteractiveGuideContent, FormulaPart, Exercise } from "@/types/activity";
 import { BackButton } from "@/components/ui/BackButton";
+import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
 
 interface Props {
     content: InteractiveGuideContent;
@@ -34,14 +35,19 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, [currentStep, totalSteps, onClose]);
 
+    const explanationRef = useRef<HTMLDivElement>(null);
+    useLayoutEffect(() => {
+        if (explanationRef.current) applyGrammarDarkClasses(explanationRef.current);
+    }, [currentStep]);
+
     if (totalSteps === 0) return <div>No content available.</div>;
 
     const progressPercent = totalSteps > 0 ? Math.round(((currentStep + 1) / totalSteps) * 100) : 0;
 
     return (
-        <div className="relative lg:fixed lg:inset-0 bg-bg z-fixed flex flex-col min-h-screen lg:h-screen lg:w-screen text-text font-body selection:bg-primary/20 lg:overflow-hidden">
+        <div ref={explanationRef} className="relative lg:fixed lg:inset-0 bg-bg z-fixed flex flex-col min-h-screen lg:h-screen lg:w-screen text-text font-body selection:bg-primary/20 lg:overflow-hidden">
             {/* Header */}
-            <header className="sticky lg:relative top-0 flex-none h-14 sm:h-16 px-4 sm:px-6 border-b backdrop-blur-md flex items-center justify-between z-10" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-overlay)' }}>
+            <header className="sticky lg:relative top-0 flex-none h-14 sm:h-16 px-4 sm:px-6 border-b flex items-center justify-between z-10" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'color-mix(in srgb, var(--color-bg) 97%, transparent)' }}>
                 <div className="flex items-center gap-4">
                     {/* Back button - only on mobile when no onClose */}
                     {!onClose && (
@@ -114,7 +120,7 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
                         {currentSection.explanation && (
                             <div
-                                className="prose prose-lg prose-slate text-text-muted leading-relaxed mb-8 max-w-none"
+                                className="prose prose-lg prose-slate text-text-muted leading-relaxed mb-8 max-w-none explanation-content"
                                 dangerouslySetInnerHTML={{ __html: currentSection.explanation }}
                             />
                         )}

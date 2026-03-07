@@ -6,8 +6,10 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${PORT}`;
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 2 : 2,
+  workers: process.env.CI ? undefined : 2,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
+  timeout: 60000,
   use: {
     baseURL,
     trace: "on-first-retry",

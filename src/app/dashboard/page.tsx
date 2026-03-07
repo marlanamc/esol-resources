@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { withPrismaReadRetry } from "@/lib/prisma-retry";
 import { timedQuery } from "@/lib/perf-log";
-import { trackLogin } from "@/lib/gamification";
+import { trackLogin, getTimeframedLeaderboard } from "@/lib/gamification";
 import { logger } from "@/lib/logger";
 import { parseCategoryData } from "@/lib/categoryData";
 import { renderAnnouncementMarkdown } from "@/utils/announcementMarkdown";
@@ -810,6 +810,14 @@ export default async function DashboardPage() {
             ),
         ].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
+        const firstClassId = enrollments[0]?.classId;
+        const studentLeaderboard = firstClassId ? await getTimeframedLeaderboard("week", 20, firstClassId) : [];
+        const studentEntry = studentLeaderboard.find((e) => e.id === userId);
+        const studentLeaderboardRank = studentEntry && studentEntry.rank <= 3 ? studentEntry.rank : null;
+        const studentLeaderboardMedal = studentLeaderboardRank === 1 ? "🥇" : studentLeaderboardRank === 2 ? "🥈" : studentLeaderboardRank === 3 ? "🥉" : null;
+        const isMarlie = (session.user as { username?: string })?.username?.toLowerCase() === "marlie";
+        const desktopNameEmoji = isMarlie ? "🙋🏻‍♀️" : studentLeaderboardMedal;
+
         return (
             <div className="min-h-screen bg-bg">
                 <main id="main-content" className="container mx-auto pt-2 sm:pt-6 pb-24 md:pb-12 px-3 sm:px-6 lg:px-8 max-w-full lg:max-w-[1600px]">
@@ -822,7 +830,9 @@ export default async function DashboardPage() {
                                     Welcome, <span className="font-display tracking-tight text-primary/90 relative inline-block">
                                         {session.user?.name}
                                         <span className="absolute -bottom-1 left-0 right-0 h-2 bg-[#88A392]/45 -z-10 rounded-sm transform -rotate-1"></span>
-                                    </span>!
+                                    </span>
+                                    {desktopNameEmoji && <span className="ml-1.5 inline-block text-3xl leading-none" {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}>{desktopNameEmoji}</span>}
+                                    !
                                 </h1>
 
                                 <div className="flex items-center gap-3">
@@ -865,6 +875,7 @@ export default async function DashboardPage() {
                                                     { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary') },
                                                     { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes') },
                                                     { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games') },
+                                                    { label: 'Pronunciation', href: '/dashboard/activities?category=pronunciation', tone: getLearnerCategoryTone('pronunciation') },
                                                 ].map(chip => (
                                                     <Link
                                                         key={chip.label}

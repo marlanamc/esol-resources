@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import type { InteractiveGuideSection } from "@/types/activity";
 import { Button } from "@/components/ui/Button";
 import { sanitizeHtml } from "@/utils/sanitize";
+import { useGrammarDarkClasses } from "@/hooks/useGrammarDarkClasses";
 import { FormulaBox } from "./FormulaBox";
 import { ExampleBox } from "./ExampleBox";
 import { UsageMeaningsList } from "./UsageMeaningsList";
@@ -41,6 +42,11 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
         return sanitizeHtml(section.explanation, { allowStyles: true });
     }, [section.explanation]);
 
+    const explanationRef = useRef<HTMLDivElement>(null);
+    const postExplanationRef = useRef<HTMLDivElement>(null);
+    useGrammarDarkClasses(explanationRef, sanitizedExplanation);
+    useGrammarDarkClasses(postExplanationRef, section.postExplanation);
+
     return (
         <div
             className={`explanation-panel ${
@@ -61,6 +67,7 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                 {/* Main Explanation */}
                 {section.explanation && (
                     <div
+                        ref={explanationRef}
                         className="explanation-content mb-6"
                         dangerouslySetInnerHTML={{ __html: sanitizedExplanation }}
                     />
@@ -89,6 +96,7 @@ export const ExplanationPanel = React.memo(function ExplanationPanel({
                 {/* Post-Flow Explanation */}
                 {section.postExplanation && (
                     <div
+                        ref={postExplanationRef}
                         className="explanation-content mb-6 mt-6"
                         dangerouslySetInnerHTML={{ __html: section.postExplanation }}
                     />

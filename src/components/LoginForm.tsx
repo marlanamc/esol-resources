@@ -20,7 +20,6 @@ export default function LoginForm() {
         setIsLoading(true);
 
         try {
-            // Add timeout to prevent hanging
             const timeoutPromise: Promise<SignInResponse | undefined> = new Promise((_, reject) =>
                 setTimeout(() => reject(new Error('Login timeout')), 10000)
             );
@@ -60,9 +59,9 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6 w-full">
-            <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6" style={{ backgroundColor: '#ffffff', borderColor: '#d9cfc0', boxShadow: '0 4px 12px rgba(43, 58, 74, 0.1), 0 2px 4px rgba(43, 58, 74, 0.06)' }}>
+            <div className="border rounded-2xl p-5 sm:p-6 space-y-5 sm:space-y-6 bg-[var(--color-white)] dark:bg-[var(--color-surface-elevated)] border-[var(--color-border-strong)] shadow-md">
                 <div>
-                    <label htmlFor="username" className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
+                    <label htmlFor="username" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                         Username
                     </label>
                     <input
@@ -73,18 +72,12 @@ export default function LoginForm() {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder="username…"
-                        className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-[#d97757]"
-                        style={{
-                            borderColor: '#d9cfc0',
-                            color: '#2b3a4a',
-                            backgroundColor: '#ffffff',
-                            fontSize: '16px'
-                        }}
+                        className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]"
                         required
                     />
                 </div>
                 <div>
-                    <label htmlFor="password" className="block text-sm font-semibold mb-2" style={{ color: '#2b3a4a' }}>
+                    <label htmlFor="password" className="block text-sm font-semibold mb-2 text-[var(--color-text)]">
                         Password
                     </label>
                     <input
@@ -95,26 +88,20 @@ export default function LoginForm() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-[#d97757]"
-                        style={{
-                            borderColor: '#d9cfc0',
-                            color: '#2b3a4a',
-                            backgroundColor: '#ffffff',
-                            fontSize: '16px'
-                        }}
+                        className="w-full px-4 py-3.5 min-h-[52px] border-2 rounded-xl transition-[border-color] duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus:border-primary text-[16px] bg-[var(--color-white)] dark:bg-[var(--color-surface-base)] text-[var(--color-text)] border-[var(--color-border-strong)] placeholder:text-[var(--color-text-muted)]"
                         required
                     />
                 </div>
                 {error && (
-                    <div role="alert" className="border-2 rounded-lg p-3" style={{ backgroundColor: 'rgba(231, 111, 81, 0.1)', borderColor: '#e76f51' }}>
-                        <p className="text-sm font-medium" style={{ color: '#e76f51' }}>
+                    <div role="alert" className="border-2 rounded-lg p-3 bg-error/10 border-error">
+                        <p className="text-sm font-medium text-error">
                             {error}
                         </p>
                     </div>
                 )}
                 {passwordUpdated && !error && (
-                    <div className="border-2 rounded-lg p-3" style={{ backgroundColor: 'rgba(123, 168, 132, 0.12)', borderColor: '#7ba884' }}>
-                        <p className="text-sm font-medium" style={{ color: '#2b3a4a' }}>
+                    <div className="border-2 rounded-lg p-3 bg-secondary/10 border-secondary">
+                        <p className="text-sm font-medium text-[var(--color-text)]">
                             Password updated. Sign in with your new password.
                         </p>
                     </div>
@@ -122,14 +109,11 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${isLoading ? "bg-[#8996a6] cursor-not-allowed" : "bg-[#d97757] hover:bg-[#c4624a] cursor-pointer"}`}
-                    style={{
-                        boxShadow: '0 1px 3px rgba(43, 58, 74, 0.08), 0 1px 2px rgba(43, 58, 74, 0.04)'
-                    }}
+                    className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-[background-color,transform] duration-200 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${isLoading ? "bg-[var(--color-text-muted)] cursor-not-allowed" : "bg-primary hover:bg-primary-dark cursor-pointer"}`}
                 >
                     {isLoading ? 'Signing in…' : 'Sign In'}
                 </button>
-                <p className="text-xs sm:text-sm text-center leading-5" style={{ color: '#4a5a6b' }}>
+                <p className="text-xs sm:text-sm text-center leading-5 text-[var(--color-text-muted)]">
                     First time today? Use your temporary password first.
                 </p>
             </div>

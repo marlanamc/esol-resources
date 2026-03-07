@@ -215,7 +215,7 @@ function StatsCard({
 }) {
   const colorClasses = {
     primary: 'bg-primary/10 text-primary border-primary/20',
-    secondary: 'bg-secondary/10 text-secondary border-secondary/20',
+    secondary: 'bg-secondary/10 text-[#3d6b47] dark:text-secondary border-secondary/20',
     accent: 'bg-accent/30 text-primary-dark border-accent/40'
   };
 

@@ -11,9 +11,13 @@ import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 interface DashboardHeaderProps {
     userName?: string;
     variant?: "default" | "dashboardv2";
+    /** Student's weekly leaderboard rank (1–3) to show medal in header. Only for students. */
+    leaderboardRank?: number | null;
+    /** Show 🙋🏻‍♀️ next to name (Marlie test account) to indicate medal placement */
+    showMarlieEmoji?: boolean;
 }
 
-export function DashboardHeader({ userName = "", variant = "default" }: DashboardHeaderProps) {
+export function DashboardHeader({ userName = "", variant = "default", leaderboardRank = null, showMarlieEmoji = false }: DashboardHeaderProps) {
     const handleCalendarOpen = () => {
         if (typeof window !== "undefined") {
             window.dispatchEvent(new CustomEvent("dashboardv2:open-calendar"));
@@ -26,17 +30,17 @@ export function DashboardHeader({ userName = "", variant = "default" }: Dashboar
 
     return (
         <header
-            className="sticky top-0 border-b z-[260] backdrop-blur-sm"
+            className="sticky top-0 border-b z-[260]"
             style={{
                 paddingTop: "env(safe-area-inset-top, 0px)",
-                backgroundColor: "color-mix(in srgb, var(--surface-overlay) 98%, transparent)",
+                backgroundColor: "color-mix(in srgb, var(--color-bg) 97%, transparent)",
                 borderColor: "var(--border-subtle)",
                 boxShadow: "0 1px 6px rgba(13,22,32,0.10)",
             }}
         >
             <div className="max-w-[1800px] mx-auto py-4 sm:py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 <div className="flex-1">
-                    <LearnerMenu mode="brand" userName={userName} />
+                    <LearnerMenu mode="brand" userName={userName} leaderboardRank={leaderboardRank} showMarlieEmoji={showMarlieEmoji} />
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="sm:hidden flex items-center gap-1.5">

@@ -87,14 +87,20 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                 transition={{ delay: 0.2 + idx * 0.05 }}
                 className={`rounded-xl border-2 p-4 ${
                   isVerbPerfect
-                    ? 'border-green-300 bg-green-50'
+                    ? 'border-green-300 bg-green-50 dark:border-green-700 dark:bg-green-900/30'
                     : 'border-border/40 bg-[var(--color-surface-overlay)]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-lg font-bold capitalize text-[var(--color-text)]">To {verb}</h4>
+                  <h4
+                    className={`text-lg font-bold capitalize ${
+                      isVerbPerfect ? 'text-green-950 dark:text-[var(--color-text)]' : 'text-[var(--color-text)]'
+                    }`}
+                  >
+                    To {verb}
+                  </h4>
                   <div className="text-sm font-semibold">
-                    <span className={verbCorrect === verbTotal ? 'text-green-700' : 'text-[var(--color-text-muted)]'}>
+                    <span className={verbCorrect === verbTotal ? 'text-green-800 dark:text-green-400' : 'text-[var(--color-text-muted)]'}>
                       {verbCorrect}/{verbTotal}
                     </span>
                   </div>
@@ -113,26 +119,26 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                         key={form}
                         className={`p-3 rounded-lg border ${
                           isCorrect
-                            ? 'border-green-300 bg-green-50'
-                            : 'border-red-300 bg-red-50'
+                            ? 'border-green-300 bg-green-50 dark:border-green-700 dark:bg-green-900/30'
+                            : 'border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/30'
                         }`}
                       >
                         <div className="flex items-center gap-2 mb-2">
                           {isCorrect ? (
-                            <CheckCircle2 className="w-4 h-4 text-green-600" />
+                            <CheckCircle2 className="w-4 h-4 text-green-700 dark:text-green-400" />
                           ) : (
-                            <XCircle className="w-4 h-4 text-red-500" />
+                            <XCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
                           )}
-                            <span className="text-xs font-semibold uppercase text-[var(--color-text-muted)]">
+                            <span className={`text-xs font-semibold uppercase ${isCorrect ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
                             {form.replace('_', ' ')}
                           </span>
                         </div>
                         <div className="font-mono text-sm">
-                          <div className={isCorrect ? 'text-green-700 font-semibold' : 'text-red-600 line-through'}>
+                          <div className={isCorrect ? 'text-green-900 dark:text-green-400 font-semibold' : 'text-red-700 dark:text-red-400 line-through'}>
                             {userAnswer}
                           </div>
                           {!isCorrect && (
-                            <div className="text-green-700 font-semibold mt-1">
+                            <div className="text-green-900 dark:text-green-400 font-semibold mt-1">
                               ✓ {correctAnswer}
                             </div>
                           )}
@@ -155,26 +161,26 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
                         key={form}
                           className={`flex items-center justify-between rounded-lg border p-3 ${
                             isCorrect
-                              ? 'border-green-300 bg-green-50'
-                              : 'border-red-300 bg-red-50'
+                              ? 'border-green-300 bg-green-50 dark:border-green-700 dark:bg-green-900/30'
+                              : 'border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/30'
                           }`}
                       >
                         <div className="flex items-center gap-2">
                           {isCorrect ? (
-                            <CheckCircle2 className="w-4 h-4 text-green-600" />
+                            <CheckCircle2 className="w-4 h-4 text-green-700 dark:text-green-400" />
                           ) : (
-                            <XCircle className="w-4 h-4 text-red-500" />
+                            <XCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
                           )}
-                            <span className="text-xs font-semibold uppercase text-[var(--color-text-muted)]">
+                            <span className={`text-xs font-semibold uppercase ${isCorrect ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
                             {form.replace('_', ' ')}
                           </span>
                         </div>
                         <div className="font-mono text-sm text-right">
-                          <div className={isCorrect ? 'text-green-700 font-semibold' : 'text-red-600 line-through'}>
+                          <div className={isCorrect ? 'text-green-900 dark:text-green-400 font-semibold' : 'text-red-700 dark:text-red-400 line-through'}>
                             {userAnswer}
                           </div>
                           {!isCorrect && (
-                            <div className="text-green-700 font-semibold">
+                            <div className="text-green-900 dark:text-green-400 font-semibold">
                               ✓ {correctAnswer}
                             </div>
                           )}
@@ -219,7 +225,7 @@ export default function VerbQuizResults({ content, submission, onRetake }: VerbQ
             <Star className="w-5 h-5" />
             Study Tips
           </h3>
-          <ul className="space-y-2 text-sm text-neutral-700">
+          <ul className="space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
             <li className="flex items-start gap-2">
               <span className="text-terracotta font-bold">•</span>
               <span>Review the verbs you missed and practice writing them out</span>

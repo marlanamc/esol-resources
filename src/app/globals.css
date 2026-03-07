@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================
    ESOL Class Companion - Design System
@@ -410,90 +411,10 @@ html.theme-hydrating * {
   transition-property: none !important;
 }
 
-/* ========== Auth Pages (Always Light Appearance) ========== */
-/* These pages use hardcoded colors to avoid theme flash */
-.auth-page {
-  --auth-bg: #fef9f3;
-  --auth-bg-light: #f7f2e8;
-  --auth-text: #2b3a4a;
-  --auth-text-muted: #5e6b7d;
-  --auth-primary: #b05740;
-  --auth-primary-dark: #8e4432;
-  --auth-secondary: #6a8d73;
-  --auth-accent: #e9c46a;
-  --auth-card-bg: #fffdfa;
-  --auth-card-border: rgba(226, 221, 213, 0.45);
-  --auth-input-bg: #ffffff;
-  --auth-input-border: rgba(226, 221, 213, 0.6);
-  --auth-shadow: rgba(26, 32, 44, 0.08);
+/* Auth pages use the standard theme system (light/dark via .dark class) */
 
-  background: linear-gradient(135deg, var(--auth-bg) 0%, #fdfbf7 100%) !important;
-  color: var(--auth-text) !important;
-}
-
-/* Override dark mode on auth pages - keep light appearance */
-.dark .auth-page,
-[data-theme="dark"] .auth-page {
-  background: linear-gradient(135deg, var(--auth-bg) 0%, #fdfbf7 100%) !important;
-  color: var(--auth-text) !important;
-}
-
-/* Auth page cards and inputs */
-.auth-page .auth-card {
-  background: var(--auth-card-bg) !important;
-  border-color: var(--auth-card-border) !important;
-  box-shadow: 0 4px 12px var(--auth-shadow) !important;
-}
-
-.auth-page input,
-.auth-page select,
-.auth-page textarea {
-  background: var(--auth-input-bg) !important;
-  border-color: var(--auth-input-border) !important;
-  color: var(--auth-text) !important;
-}
-
-.auth-page input::placeholder {
-  color: var(--auth-text-muted) !important;
-}
-
-.auth-page label {
-  color: var(--auth-text) !important;
-}
-
-.auth-page a {
-  color: var(--auth-primary) !important;
-}
-
-.auth-page a:hover {
-  color: var(--auth-primary-dark) !important;
-}
-
-/* Soft Sunrise Gradient with paper texture overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(
-    135deg,
-    var(--color-bg-gradient-start) 0%,
-    var(--color-bg-gradient-end) 100%
-  );
-  pointer-events: none;
-  z-index: -1;
-  opacity: 1;
-}
-
-/* Add the texture overlay as a separate layer on body */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: -1;
-  opacity: 1;
-}
+/* Soft Sunrise Gradient + paper texture as layered body backgrounds.
+   Eliminates two position:fixed pseudo-element compositor layers. */
 
 /* ========== Global Mobile Polish ========== */
 html {
@@ -507,11 +428,14 @@ html {
 
 body {
   -webkit-overflow-scrolling: touch;
-  /* Smooth inertial scrolling on iOS */
   overflow-x: hidden;
   width: 100%;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background:
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg, var(--color-bg-gradient-start) 0%, var(--color-bg-gradient-end) 100%),
+    var(--color-bg);
+  background-attachment: fixed;
 }
 
 .surface-base {
@@ -800,10 +724,10 @@ textarea {
 @keyframes glowPulse {
   0%,
   100% {
-    box-shadow: 0 0 8px rgba(255, 150, 50, 0.3);
+    opacity: 0.6;
   }
   50% {
-    box-shadow: 0 0 16px rgba(255, 150, 50, 0.5);
+    opacity: 1;
   }
 }
 
@@ -1099,6 +1023,7 @@ textarea {
 
 /* Streak fire glow effect */
 .streak-glow {
+  box-shadow: 0 0 12px rgba(255, 150, 50, 0.4);
   animation: glowPulse 2s ease-in-out infinite;
 }
 
@@ -1168,7 +1093,7 @@ textarea {
   background: var(--color-checkbox-bg);
   cursor: pointer;
   position: relative;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .custom-checkbox:checked {
@@ -1190,7 +1115,7 @@ textarea {
 
 /* Hover effect for checklist rows */
 .checklist-row-hover {
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
 }
 
 .checklist-row-hover:hover {
@@ -1608,837 +1533,382 @@ textarea {
   box-shadow: 0 18px 42px rgba(5, 12, 18, 0.45);
 }
 
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color:white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color: #fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color:#fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #ffffff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#ffffff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color: #ffffff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background-color:#ffffff"] {
+/* ═══════════════════════════════════════════════════════════
+   Grammar Dark-Mode Overrides (class-based)
+   Classes are injected at runtime by applyGrammarDarkClasses()
+   instead of using expensive [style*="…"] attribute selectors.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Background: white / near-white ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-white {
   background: #d7dce2 !important;
   color: #1f2937 !important;
   box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.45);
 }
 
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff5"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff5"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fff9"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fff9"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fffaf"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fffaf"] {
-  background: #d7dce2 !important;
-  color: #1f2937 !important;
-}
 
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f8fafc"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f8fafc"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fdfbf7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fdfbf7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f4f1ea"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f4f1ea"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fef9c3"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fef9c3"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f0fdf4"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f0fdf4"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #f5f3ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#f5f3ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #ecfeff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#ecfeff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #fef9f3"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#fef9f3"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: #ede9fe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:#ede9fe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background:linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"] {
-  color: #1f2937 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:white"] {
-  color: var(--color-text) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="box-shadow: inset"] {
-  box-shadow: inset 0 0 0 1px rgba(127, 179, 213, 0.12) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 1px solid rgba(0,0,0,0.1)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:1px solid rgba(0,0,0,0.1)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 2px solid rgba(0,0,0,0.1)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:2px solid rgba(0,0,0,0.1)"] {
-  border-color: var(--border-subtle) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff"] {
-  background: #e4e9ee !important;
-  color: #1f2937 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="background"] :is(p, span, div, strong, em, li) {
-  color: inherit;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content :is(
-  [style*="background: #f8fafc"],
-  [style*="background:#f8fafc"],
-  [style*="background: #fdfbf7"],
-  [style*="background:#fdfbf7"],
-  [style*="background: #f4f1ea"],
-  [style*="background:#f4f1ea"],
-  [style*="background: #fef9c3"],
-  [style*="background:#fef9c3"],
-  [style*="background: #fef3c7"],
-  [style*="background:#fef3c7"],
-  [style*="background: #f0fdf4"],
-  [style*="background:#f0fdf4"],
-  [style*="background: #f5f3ff"],
-  [style*="background:#f5f3ff"],
-  [style*="background: #ecfeff"],
-  [style*="background:#ecfeff"],
-  [style*="background: #fef9f3"],
-  [style*="background:#fef9f3"],
-  [style*="background: #ede9fe"],
-  [style*="background:#ede9fe"],
-  [style*="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
-  [style*="background:linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
-  [style*="background: white"],
-  [style*="background:white"],
-  [style*="background: #fff"],
-  [style*="background:#fff"],
-  [style*="background: #ffffff"],
-  [style*="background:#ffffff"]
-) :is(
-  [style*="color: white"],
-  [style*="color:white"],
-  [style*="color: #fff"],
-  [style*="color:#fff"],
-  [style*="color: #ffffff"],
-  [style*="color:#ffffff"],
-  [style*="color: #f8fafc"],
-  [style*="color:#f8fafc"],
-  [style*="color: #e2e8f0"],
-  [style*="color:#e2e8f0"],
-  [style*="color: #e5e7eb"],
-  [style*="color:#e5e7eb"],
-  [style*="color: #cbd5e1"],
-  [style*="color:#cbd5e1"]
-) {
-  color: #1f2937 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content :is(
-  [style*="background: #f8fafc"],
-  [style*="background:#f8fafc"],
-  [style*="background: #fdfbf7"],
-  [style*="background:#fdfbf7"],
-  [style*="background: #f4f1ea"],
-  [style*="background:#f4f1ea"],
-  [style*="background: #fef9c3"],
-  [style*="background:#fef9c3"],
-  [style*="background: #fef3c7"],
-  [style*="background:#fef3c7"],
-  [style*="background: #f0fdf4"],
-  [style*="background:#f0fdf4"],
-  [style*="background: #f5f3ff"],
-  [style*="background:#f5f3ff"],
-  [style*="background: #ecfeff"],
-  [style*="background:#ecfeff"],
-  [style*="background: #fef9f3"],
-  [style*="background:#fef9f3"],
-  [style*="background: #ede9fe"],
-  [style*="background:#ede9fe"],
-  [style*="background: #ecfdf5"],
-  [style*="background:#ecfdf5"],
-  [style*="background: linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
-  [style*="background:linear-gradient(135deg, #fef3c7 0%, #ede9fe 100%)"],
-  [style*="background: white"],
-  [style*="background:white"],
-  [style*="background: #fff"],
-  [style*="background:#fff"],
-  [style*="background: #ffffff"],
-  [style*="background:#ffffff"]
-) :is(p, li, strong, em, span, div, h4, td, th) {
-  color: #1f2937 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content :is(
-  [style*="background: linear-gradient(135deg, rgba(245, 158, 11, 0.05)"],
-  [style*="background:linear-gradient(135deg, rgba(245, 158, 11, 0.05)"],
-  [style*="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1)"],
-  [style*="background:linear-gradient(135deg, rgba(245, 158, 11, 0.1)"],
-  [style*="background: linear-gradient(135deg, rgba(139, 92, 246, 0.05)"],
-  [style*="background:linear-gradient(135deg, rgba(139, 92, 246, 0.05)"],
-  [style*="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1)"],
-  [style*="background:linear-gradient(135deg, rgba(99, 102, 241, 0.1)"],
-  [style*="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1)"],
-  [style*="background:linear-gradient(135deg, rgba(6, 182, 212, 0.1)"],
-  [style*="background: rgba(6, 182, 212, 0.1)"],
-  [style*="background:rgba(6, 182, 212, 0.1)"],
-  [style*="background: rgba(139, 92, 246, 0.1)"],
-  [style*="background:rgba(139, 92, 246, 0.1)"],
-  [style*="background: rgba(249, 115, 22, 0.1)"],
-  [style*="background:rgba(249, 115, 22, 0.1)"]
-) :is(
-  [style*="color: #2b3a4a"],
-  [style*="color:#2b3a4a"],
-  [style*="color: #374151"],
-  [style*="color:#374151"],
-  [style*="color: #1e293b"],
-  [style*="color:#1e293b"],
-  [style*="color: #111827"],
-  [style*="color:#111827"]
-) {
-  color: var(--color-text) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content :is(
-  tr[style*="background: #f8fafc"],
-  tr[style*="background:#f8fafc"],
-  tr[style*="background-color: #f8fafc"],
-  tr[style*="background-color:#f8fafc"],
-  tr[style*="background: #fdfbf7"],
-  tr[style*="background:#fdfbf7"],
-  tr[style*="background-color: #fdfbf7"],
-  tr[style*="background-color:#fdfbf7"],
-  tr[style*="background: #f4f1ea"],
-  tr[style*="background:#f4f1ea"],
-  tr[style*="background-color: #f4f1ea"],
-  tr[style*="background-color:#f4f1ea"],
-  tr[style*="background: white"],
-  tr[style*="background:white"],
-  tr[style*="background-color: white"],
-  tr[style*="background-color:white"],
-  tr[style*="background: #fff"],
-  tr[style*="background:#fff"],
-  tr[style*="background-color: #fff"],
-  tr[style*="background-color:#fff"],
-  tr[style*="background: #ffffff"],
-  tr[style*="background:#ffffff"],
-  tr[style*="background-color: #ffffff"],
-  tr[style*="background-color:#ffffff"],
-  tr[style*="background: #fff7ed"],
-  tr[style*="background:#fff7ed"],
-  tr[style*="background-color: #fff7ed"],
-  tr[style*="background-color:#fff7ed"]
-) > :is(td, th) {
-  background: rgba(30, 58, 77, 0.6) !important;
-  color: var(--color-text) !important;
-  border-color: rgba(148, 163, 184, 0.35) !important;
-  box-shadow: none;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content table,
-[data-theme="dark"] .grammar-reader-container .comparison-table table,
-[data-theme="dark"] .grammar-reader-container .verb-table-display table {
-  background: var(--surface-elevated) !important;
-  border-color: rgba(148, 163, 184, 0.38) !important;
-  box-shadow: 0 8px 18px rgba(6, 12, 18, 0.2);
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content table[style*="border"],
-[data-theme="dark"] .grammar-reader-container .explanation-content td[style*="border"],
-[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="border"] {
-  border-color: rgba(148, 163, 184, 0.4) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content th {
-  background: rgba(127, 179, 213, 0.15) !important;
-  color: var(--color-text);
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content td,
-[data-theme="dark"] .grammar-reader-container .explanation-content th {
-  border-color: rgba(148, 163, 184, 0.32) !important;
-  color: var(--color-text);
-}
-
-/* Frequency Ladder, info boxes, and similar divs with light backgrounds */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc;"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] {
+/* ── Background: light neutrals (slate, warm cream) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-slate {
   background: rgba(22, 43, 61, 0.8) !important;
   border-color: rgba(139, 92, 246, 0.5) !important;
-}
-
-/* Title - brighter for dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] h4,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] h4,
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #8b5cf6"],
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color:#8b5cf6"] {
-  color: #c4b5fd !important;
-}
-
-/* All text inside Frequency Ladder / f8fafc boxes - must override dark-text rule */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"] span,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"] span,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] span,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] span,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"] p,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"] p,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] p,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] p,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"] strong,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"] strong,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid rgba(139, 92, 246"] strong,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid rgba(139, 92, 246"] strong {
   color: #e2e8f0 !important;
 }
-
-/* White/light boxes - override to dark with readable text */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background:white"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(148, 163, 184, 0.35) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background: white"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content ol[style*="background:white"] * {
+.dark .grammar-reader-container .explanation-content .gc-bg-slate *,
+.dark .grammar-reader-container .explanation-content .gc-bg-white * {
   color: #e2e8f0 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"] span[style*="color: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"] span[style*="color: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #d97757"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #0369a1"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #94a3b8"] {
+.dark .grammar-reader-container .explanation-content .gc-bg-white span.gc-badge-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-bg-white span.gc-badge-sky,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate span.gc-badge-terracotta,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate span.gc-badge-sky {
   color: #fff !important;
 }
 
-/* Bullet list items with light backgrounds */
-[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background: #f8fafc"],
-[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background:#f8fafc"] {
-  background: rgba(22, 43, 61, 0.6) !important;
-  border-left-color: inherit !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background: #f8fafc"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content li[style*="background:#f8fafc"] * {
-  color: #e2e8f0 !important;
-}
-
-/* Muted gray text - invisible on dark, use lighter shade */
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="color: #6b7280"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="color:#6b7280"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #475569"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#475569"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="color: #94a3b8"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="color:#94a3b8"] {
-  color: #94a3b8 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #475569"],
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color:#475569"] {
-  color: #cbd5e1 !important;
-  border-bottom-color: rgba(148, 163, 184, 0.4) !important;
-}
-
-/* Info boxes with accent borders (cyan, amber, terracotta, sage) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #06b6d4"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #06b6d4"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(6, 182, 212, 0.5) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f0b45a"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #f0b45a"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(245, 158, 11, 0.5) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #d97757"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #d97757"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(217, 119, 87, 0.5) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #7ba884"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #7ba884"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(123, 168, 132, 0.5) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f59e0b"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #f59e0b"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(245, 158, 11, 0.5) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #06b6d4"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f0b45a"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #d97757"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #7ba884"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f59e0b"] * {
-  color: #e2e8f0 !important;
-}
-
-/* Boxes with border-left accent (usage bullets) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 3px solid"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:3px solid"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid"] {
-  background: rgba(22, 43, 61, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 3px solid"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid"] * {
-  color: #e2e8f0 !important;
-}
-
-/* #fff7ed (warm cream) - e.g. Short/Long Adjectives cards, present perfect boxes */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff7ed"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff7ed"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff7ed"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff7ed"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(249, 115, 22, 0.5) !important;
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff7ed"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff7ed"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff7ed"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff7ed"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fff7ed"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fff7ed"] * {
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #f97316"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #f97316"] {
-  border-left-color: rgba(249, 115, 22, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid #f97316"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top:4px solid #f97316"] {
-  border-top-color: rgba(249, 115, 22, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #ffedd5"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #fed7aa"] {
-  border-color: rgba(249, 115, 22, 0.4) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid #f97316"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border:2px solid #f97316"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(249, 115, 22, 0.5) !important;
-}
-
-/* border-bottom: e2e8f0 for table-like structures */
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border-bottom: 2px solid #e2e8f0"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border-bottom: 1px solid #e2e8f0"] {
-  border-bottom-color: rgba(148, 163, 184, 0.4) !important;
-}
-
-/* #ddd table borders - light gray invisible in dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 1px solid #ddd"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:1px solid #ddd"],
-[data-theme="dark"] .grammar-reader-container .explanation-content td[style*="#ddd"],
-[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="#ddd"] {
-  border-color: rgba(148, 163, 184, 0.4) !important;
-}
-
-/* #dbeafe table borders (future-simple, etc.) */
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border: 1px solid #dbeafe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="border:1px solid #dbeafe"] {
-  border-color: rgba(59, 130, 246, 0.4) !important;
-}
-
-/* tr striping rgba(0,0,0,0.02) - use light tint in dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0, 0, 0, 0.02)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0, 0, 0, 0.02)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0,0,0,0.02)"],
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0,0,0,0.02)"] {
-  background: rgba(148, 163, 184, 0.06) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0, 0, 0, 0.02)"] td,
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0, 0, 0, 0.02)"] td,
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background: rgba(0,0,0,0.02)"] td,
-[data-theme="dark"] .grammar-reader-container .explanation-content tr[style*="background:rgba(0,0,0,0.02)"] td {
-  color: #e2e8f0 !important;
-}
-
-/* #fef2f2 (red error / Common Mistake boxes) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef2f2"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef2f2"] {
-  background: rgba(40, 25, 25, 0.9) !important;
-  border-color: rgba(239, 68, 68, 0.5) !important;
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef2f2"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef2f2"] * {
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef2f2"] p[style*="color: #dc2626"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef2f2"] p[style*="color: #dc2626"] {
-  color: #fca5a5 !important;
-}
-
-/* Muted text #64748b, #334155 - lighten for dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #64748b"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#64748b"] {
-  color: #94a3b8 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #334155"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#334155"] {
-  color: #cbd5e1 !important;
-}
-
-/* #cbd5e1 backgrounds (timeline circles, etc.) - darken for dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #cbd5e1"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#cbd5e1"] {
-  background: rgba(148, 163, 184, 0.3) !important;
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #cbd5e1"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#cbd5e1"] * {
-  color: #e2e8f0 !important;
-}
-
-/* #d4a843 headings - lighten for dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #d4a843"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #d4a843"] {
-  color: #fbbf24 !important;
-}
-
-/* border-left callouts: #dc2626, #ef4444, #22c55e, #a855f7 */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #dc2626"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #dc2626"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #ef4444"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #ef4444"] {
-  background: rgba(40, 25, 25, 0.85) !important;
-  border-left-color: rgba(239, 68, 68, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #22c55e"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #22c55e"] {
-  background: rgba(22, 45, 35, 0.85) !important;
-  border-left-color: rgba(34, 197, 94, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #a855f7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #a855f7"] {
-  background: rgba(35, 25, 50, 0.85) !important;
-  border-left-color: rgba(168, 85, 247, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #3b82f6"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #3b82f6"] {
-  background: rgba(25, 35, 55, 0.85) !important;
-  border-left-color: rgba(59, 130, 246, 0.6) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #10b981"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #10b981"] {
-  background: rgba(22, 45, 40, 0.85) !important;
-  border-left-color: rgba(16, 185, 129, 0.6) !important;
-}
-
-/* Linear gradients - hero/callout boxes in grammar guides (preserve gradient in dark mode) */
-/* Amber to purple (past-perfect-family, past-perfect-continuous, etc.) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(245, 158, 11"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(240, 180, 90"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(139, 92, 246"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(99, 102, 241"] {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%) !important;
-}
-
-/* Terracotta to sage (medical-instructions, imperatives, etc.) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(200, 107, 81"] {
-  background: linear-gradient(135deg, rgba(200, 107, 81, 0.22) 0%, rgba(110, 145, 118, 0.22) 100%) !important;
-}
-
-/* Red to blue (modals-health, articles) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(248, 113, 113"] {
-  background: linear-gradient(135deg, rgba(248, 113, 113, 0.18) 0%, rgba(59, 130, 246, 0.18) 100%) !important;
-}
-
-/* Cyan/teal (future-simple, future-continuous, etc.) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(133, 196, 255"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(6, 182, 212"] {
-  background: linear-gradient(135deg, rgba(133, 196, 255, 0.2) 0%, rgba(6, 182, 212, 0.22) 100%) !important;
-}
-
-/* Green/emerald (perfect-tenses-review, cycle-1, articles) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(16, 185, 129"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(34, 197, 94"] {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.18) 100%) !important;
-}
-
-/* Purple to blue (conditionals-second-third) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba(168, 85, 247"] {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient(135deg, rgba("] * {
-  color: #e2e8f0 !important;
-}
-
-/* White borders on diagram circles - subtle in dark */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 2px solid white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 3px solid white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 4px solid white"] {
-  border-color: rgba(255, 255, 255, 0.25) !important;
-}
-
-/* Small white-background labels in timelines */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: white"][style*="padding: 0.25rem"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:white"][style*="padding: 0.25rem"] {
-  background: rgba(30, 58, 77, 0.9) !important;
-  color: var(--color-text) !important;
-}
-
-/* div with border 1px solid #e2e8f0 (boxes, not tables) */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f8fafc"][style*="border: 1px solid #e2e8f0"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f8fafc"][style*="border: 1px solid #e2e8f0"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #e2e8f0"] {
-  background: rgba(22, 43, 61, 0.6) !important;
-  border-color: rgba(148, 163, 184, 0.4) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border: 1px solid #e2e8f0"] * {
-  color: #e2e8f0 !important;
-}
-
-/* #fef3c7 (amber cream) - Irregular forms, tip boxes */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fef3c7"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-color: rgba(245, 158, 11, 0.5) !important;
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef3c7"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fef3c7"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fef3c7"] * {
-  color: #e2e8f0 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #f59e0b"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #f59e0b"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid #f59e0b"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top:4px solid #f59e0b"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-  border-left-color: rgba(245, 158, 11, 0.6) !important;
-  border-top-color: rgba(245, 158, 11, 0.6) !important;
-}
-
-/* #fef9c3 (yellow warning) + #eab308 border - Important/caution callouts */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef9c3"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef9c3"] {
+/* ── Background: yellow warning (#fef9c3) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-yellow {
   background: rgba(30, 35, 25, 0.85) !important;
   border-color: rgba(234, 179, 8, 0.55) !important;
   color: #e8eac8 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fef9c3"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef9c3"] * {
+.dark .grammar-reader-container .explanation-content .gc-bg-yellow * {
   color: #e8eac8 !important;
 }
 
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left: 4px solid #eab308"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-left:4px solid #eab308"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top: 4px solid #eab308"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="border-top:4px solid #eab308"] {
-  background: rgba(30, 35, 25, 0.85) !important;
-  border-left-color: rgba(234, 179, 8, 0.65) !important;
-  border-top-color: rgba(234, 179, 8, 0.65) !important;
-}
-
-/* #fff9e6, #fffbeb - pale yellow boxes */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff9e6"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff9e6"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fffbeb"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fffbeb"] {
+/* ── Background: amber (#fef3c7, #fff9e6, #fffbeb) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-amber {
   background: rgba(22, 43, 61, 0.7) !important;
   border-color: rgba(245, 158, 11, 0.5) !important;
+  color: #e2e8f0 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fff9e6"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fff9e6"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fffbeb"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fffbeb"] * {
+.dark .grammar-reader-container .explanation-content .gc-bg-amber * {
   color: #e2e8f0 !important;
 }
 
-/* Parts of Speech cards - pastel pink, green, blue, purple */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fdf2f8"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fdf2f8"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f0fdf4"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f0fdf4"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #eff6ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#eff6ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #faf5ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#faf5ff"] {
+/* ── Background: orange (#fff7ed) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-orange {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(249, 115, 22, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-orange * {
+  color: #e2e8f0 !important;
+}
+
+/* ── Background: red (#fef2f2) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-red {
+  background: rgba(40, 25, 25, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-red * {
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-red .gc-text-red {
+  color: #fca5a5 !important;
+}
+
+/* ── Background: pink, green, blue, purple pastels ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-pink,
+.dark .grammar-reader-container .explanation-content .gc-bg-green,
+.dark .grammar-reader-container .explanation-content .gc-bg-blue,
+.dark .grammar-reader-container .explanation-content .gc-bg-purple,
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan {
   background: rgba(22, 43, 61, 0.6) !important;
   border-color: rgba(148, 163, 184, 0.35) !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fdf2f8"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fdf2f8"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f0fdf4"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#f0fdf4"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #eff6ff"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#eff6ff"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #faf5ff"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#faf5ff"] * {
+.dark .grammar-reader-container .explanation-content .gc-bg-pink *,
+.dark .grammar-reader-container .explanation-content .gc-bg-green *,
+.dark .grammar-reader-container .explanation-content .gc-bg-blue *,
+.dark .grammar-reader-container .explanation-content .gc-bg-purple *,
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan * {
   color: #e2e8f0 !important;
 }
 
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #fdf2f8"] h4,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #f0fdf4"] h4,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #eff6ff"] h4,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #faf5ff"] h4 {
-  color: inherit !important;
-}
-
-/* linear-gradient with #fef3c7 */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="#fef3c7"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="fef3c7"] {
-  background: rgba(22, 43, 61, 0.7) !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="#fef3c7"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="linear-gradient"][style*="fef3c7"] * {
-  color: #e2e8f0 !important;
-}
-
-/* Italic tip text #3a3a3a - too dark in dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #3a3a3a"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color:#3a3a3a"] {
-  color: #94a3b8 !important;
-}
-
-/* th with color #b45309 - dark orange, needs lightening */
-[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="color: #b45309"],
-[data-theme="dark"] .grammar-reader-container .explanation-content th[style*="color:#b45309"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #b45309"] {
-  color: #fbbf24 !important;
-}
-
-/* #ede9fe purple boxes with border-left #8b5cf6 */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #ede9fe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #ede9fe"][style*="border-left"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"][style*="border-left"] {
+/* ── Background: violet (#ede9fe) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-violet {
   background: rgba(22, 43, 61, 0.7) !important;
   border-left-color: rgba(139, 92, 246, 0.6) !important;
   color: #e2e8f0 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background: #ede9fe"] *,
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"] * {
+.dark .grammar-reader-container .explanation-content .gc-bg-violet * {
   color: #e2e8f0 !important;
 }
-
-/* White chips inside #ede9fe / #fef3c7 boxes - dark tint for contrast */
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"] span[style*="background: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#ede9fe"] span[style*="background:white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"] span[style*="background: white"],
-[data-theme="dark"] .grammar-reader-container .explanation-content div[style*="background:#fef3c7"] span[style*="background:white"] {
+.dark .grammar-reader-container .explanation-content .gc-bg-violet span.gc-bg-white,
+.dark .grammar-reader-container .explanation-content .gc-bg-amber span.gc-bg-white {
   background: rgba(148, 163, 184, 0.25) !important;
   color: #e2e8f0 !important;
 }
 
-/* h4 with dark purple #6d28d9 - too dark in dark mode */
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color: #6d28d9"],
-[data-theme="dark"] .grammar-reader-container .explanation-content h4[style*="color:#6d28d9"],
-[data-theme="dark"] .grammar-reader-container .explanation-content [style*="color: #6d28d9"] {
-  color: #c4b5fd !important;
+/* ── Background: slate-300 (#cbd5e1 circles) ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-slate-300 {
+  background: rgba(148, 163, 184, 0.3) !important;
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-slate-300 * {
+  color: #e2e8f0 !important;
 }
 
-/* Grammar badge spans - Subject, V3, hadn't, etc. */
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #dbeafe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#dbeafe"] {
+/* ── Background: alpha tints ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan-alpha,
+.dark .grammar-reader-container .explanation-content .gc-bg-purple-alpha,
+.dark .grammar-reader-container .explanation-content .gc-bg-orange-alpha,
+.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha {
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-cyan-alpha .gc-text-dark,
+.dark .grammar-reader-container .explanation-content .gc-bg-purple-alpha .gc-text-dark,
+.dark .grammar-reader-container .explanation-content .gc-bg-orange-alpha .gc-text-dark,
+.dark .grammar-reader-container .explanation-content .gc-bg-amber-alpha .gc-text-dark {
+  color: var(--color-text) !important;
+}
+
+/* ── Gradients ── */
+.dark .grammar-reader-container .explanation-content .gc-grad-amber {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-purple {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-terracotta {
+  background: linear-gradient(135deg, rgba(200, 107, 81, 0.22) 0%, rgba(110, 145, 118, 0.22) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-red {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.18) 0%, rgba(59, 130, 246, 0.18) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-cyan {
+  background: linear-gradient(135deg, rgba(133, 196, 255, 0.2) 0%, rgba(6, 182, 212, 0.22) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-green {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(59, 130, 246, 0.18) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-violet {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-grad-amber-solid {
+  background: rgba(22, 43, 61, 0.7) !important;
+}
+.dark .grammar-reader-container .explanation-content [class*='gc-grad-'] * {
+  color: #e2e8f0 !important;
+}
+
+/* ── 2px solid colored boxes ── */
+.dark .grammar-reader-container .explanation-content .gc-box-cyan {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(6, 182, 212, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-amber {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-terracotta {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(217, 119, 87, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-sage {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(123, 168, 132, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-amber-500 {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-orange-500 {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-color: rgba(249, 115, 22, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-violet {
+  background: rgba(22, 43, 61, 0.8) !important;
+  border-color: rgba(139, 92, 246, 0.5) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-box-violet h4 {
+  color: #c4b5fd !important;
+}
+.dark .grammar-reader-container .explanation-content [class*='gc-box-'] * {
+  color: #e2e8f0 !important;
+}
+
+/* ── Callout borders (left / top accents) ── */
+.dark .grammar-reader-container .explanation-content .gc-callout-left {
+  background: rgba(22, 43, 61, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-top {
+  background: rgba(22, 43, 61, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-left *,
+.dark .grammar-reader-container .explanation-content .gc-callout-top * {
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-red {
+  background: rgba(40, 25, 25, 0.85) !important;
+  border-left-color: rgba(239, 68, 68, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-green {
+  background: rgba(22, 45, 35, 0.85) !important;
+  border-left-color: rgba(34, 197, 94, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-purple {
+  background: rgba(35, 25, 50, 0.85) !important;
+  border-left-color: rgba(168, 85, 247, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-blue {
+  background: rgba(25, 35, 55, 0.85) !important;
+  border-left-color: rgba(59, 130, 246, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-emerald {
+  background: rgba(22, 45, 40, 0.85) !important;
+  border-left-color: rgba(16, 185, 129, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-amber {
+  background: rgba(22, 43, 61, 0.7) !important;
+  border-left-color: rgba(245, 158, 11, 0.6) !important;
+  border-top-color: rgba(245, 158, 11, 0.6) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-callout-orange {
+  border-left-color: rgba(249, 115, 22, 0.6) !important;
+  border-top-color: rgba(249, 115, 22, 0.6) !important;
+}
+
+/* ── White borders (diagram circles) ── */
+.dark .grammar-reader-container .explanation-content .gc-border-white {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* ── Small white-background labels ── */
+.dark .grammar-reader-container .explanation-content .gc-bg-white[style*="padding: 0.25rem"] {
+  background: rgba(30, 58, 77, 0.9) !important;
+  color: var(--color-text) !important;
+}
+
+/* ── Text colors ── */
+.dark .grammar-reader-container .explanation-content .gc-text-white {
+  color: var(--color-text) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-muted {
+  color: #94a3b8 !important;
+}
+.dark .grammar-reader-container .explanation-content h4.gc-text-muted {
+  color: #cbd5e1 !important;
+  border-bottom-color: rgba(148, 163, 184, 0.4) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-dark {
+  color: #cbd5e1 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-light {
+  color: #1f2937 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-amber {
+  color: #fbbf24 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-purple {
+  color: #c4b5fd !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-text-red {
+  color: #fca5a5 !important;
+}
+
+/* ── Shadow ── */
+.dark .grammar-reader-container .explanation-content .gc-shadow-inset {
+  box-shadow: inset 0 0 0 1px rgba(127, 179, 213, 0.12) !important;
+}
+
+/* ── Border overrides ── */
+.dark .grammar-reader-container .explanation-content .gc-table-border {
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-table-border-blue {
+  border-color: rgba(59, 130, 246, 0.4) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-table-divider {
+  border-bottom-color: rgba(148, 163, 184, 0.4) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-border-orange-light {
+  border-color: rgba(249, 115, 22, 0.4) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-border-slate {
+  background: rgba(22, 43, 61, 0.6) !important;
+  border-color: rgba(148, 163, 184, 0.4) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-border-slate * {
+  color: #e2e8f0 !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-border-black-alpha {
+  border-color: var(--border-subtle) !important;
+}
+
+/* ── Row striping ── */
+.dark .grammar-reader-container .explanation-content .gc-row-stripe {
+  background: rgba(148, 163, 184, 0.06) !important;
+}
+.dark .grammar-reader-container .explanation-content .gc-row-stripe td {
+  color: #e2e8f0 !important;
+}
+
+/* ── Badge spans ── */
+.dark .grammar-reader-container .explanation-content .gc-badge-blue {
   background: rgba(59, 130, 246, 0.35) !important;
   color: #93c5fd !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fed7aa"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fed7aa"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background-color: #fed7aa"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background-color:#fed7aa"] {
+.dark .grammar-reader-container .explanation-content .gc-badge-orange {
   background: rgba(251, 146, 60, 0.35) !important;
   background-color: rgba(251, 146, 60, 0.35) !important;
   color: #fdba74 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #fee2e2"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#fee2e2"] {
+.dark .grammar-reader-container .explanation-content .gc-badge-red {
   background: rgba(239, 68, 68, 0.35) !important;
   border-color: rgba(239, 68, 68, 0.6) !important;
   color: #fca5a5 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #cffafe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#cffafe"] {
+.dark .grammar-reader-container .explanation-content .gc-badge-cyan {
   background: rgba(6, 182, 212, 0.35) !important;
   border-color: rgba(6, 182, 212, 0.6) !important;
   color: #67e8f9 !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #a5f3fc"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#a5f3fc"] {
-  background: rgba(6, 182, 212, 0.3) !important;
-  color: #67e8f9 !important;
-}
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #f3e8ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#f3e8ff"] {
+.dark .grammar-reader-container .explanation-content .gc-badge-purple-light {
   background: rgba(168, 85, 247, 0.35) !important;
   border-color: rgba(168, 85, 247, 0.6) !important;
   color: #c4b5fd !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #e9d5ff"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#e9d5ff"] {
-  background: rgba(168, 85, 247, 0.3) !important;
-  color: #c4b5fd !important;
+.dark .grammar-reader-container .explanation-content .gc-badge-purple-med {
+  background: rgba(139, 92, 246, 0.3) !important;
+  color: #ddd6fe !important;
 }
-
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #ede9fe"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#ede9fe"] {
+.dark .grammar-reader-container .explanation-content span.gc-bg-violet {
   background: rgba(139, 92, 246, 0.35) !important;
   border-color: rgba(139, 92, 246, 0.6) !important;
   color: #c4b5fd !important;
 }
+.dark .grammar-reader-container .explanation-content span.gc-badge-terracotta,
+.dark .grammar-reader-container .explanation-content span.gc-badge-sky {
+  color: #fff !important;
+}
 
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background: #c4b5fd"],
-[data-theme="dark"] .grammar-reader-container .explanation-content span[style*="background:#c4b5fd"] {
-  background: rgba(139, 92, 246, 0.3) !important;
-  color: #ddd6fe !important;
+/* ── Tables (non-attribute-selector rules preserved) ── */
+.dark .grammar-reader-container .explanation-content table,
+.dark .grammar-reader-container .comparison-table table,
+.dark .grammar-reader-container .verb-table-display table {
+  background: var(--surface-elevated) !important;
+  border-color: rgba(148, 163, 184, 0.38) !important;
+  box-shadow: 0 8px 18px rgba(6, 12, 18, 0.2);
+}
+.dark .grammar-reader-container .explanation-content th {
+  background: rgba(127, 179, 213, 0.15) !important;
+  color: var(--color-text);
+}
+.dark .grammar-reader-container .explanation-content td,
+.dark .grammar-reader-container .explanation-content th {
+  border-color: rgba(148, 163, 184, 0.32) !important;
+  color: var(--color-text);
+}
+.dark .grammar-reader-container .explanation-content .gc-bg-slate > td,
+.dark .grammar-reader-container .explanation-content .gc-bg-slate > th,
+.dark .grammar-reader-container .explanation-content .gc-bg-white > td,
+.dark .grammar-reader-container .explanation-content .gc-bg-white > th,
+.dark .grammar-reader-container .explanation-content .gc-bg-orange > td,
+.dark .grammar-reader-container .explanation-content .gc-bg-orange > th {
+  background: rgba(30, 58, 77, 0.6) !important;
+  color: var(--color-text) !important;
+  border-color: rgba(148, 163, 184, 0.35) !important;
+  box-shadow: none;
 }
 
 /* Mobile readability for inline HTML diagrams in grammar guides */
@@ -2539,12 +2009,17 @@ kbd {
     transition: none !important;
     animation: none !important;
   }
+
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
 }
 
 /* ========== Print Styles ========== */
 @media print {
-  body::before {
-    display: none;
+  body {
+    background: white !important;
   }
 
   @page {
@@ -2674,19 +2149,19 @@ kbd {
 @keyframes medalGlow {
   0%,
   100% {
-    box-shadow: 0 0 20px var(--medal-glow-color, rgba(233, 196, 106, 0.4));
+    opacity: 0.7;
   }
   50% {
-    box-shadow: 0 0 40px var(--medal-glow-color, rgba(233, 196, 106, 0.6));
+    opacity: 1;
   }
 }
 
 @keyframes rainbowShimmer {
   0% {
-    filter: hue-rotate(0deg);
+    background-position: 0% 50%;
   }
   100% {
-    filter: hue-rotate(360deg);
+    background-position: 200% 50%;
   }
 }
 
@@ -2715,10 +2190,15 @@ kbd {
 }
 
 .animate-medal-glow {
+  box-shadow: 0 0 30px var(--medal-glow-color, rgba(233, 196, 106, 0.5));
   animation: medalGlow 2s ease-in-out infinite;
 }
 
 .animate-rainbow-shimmer {
+  background: linear-gradient(90deg, #f87171, #fbbf24, #34d399, #60a5fa, #a78bfa, #f87171);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
   animation: rainbowShimmer 3s linear infinite;
 }
 

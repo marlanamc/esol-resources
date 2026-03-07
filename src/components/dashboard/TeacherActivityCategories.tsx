@@ -184,7 +184,7 @@ const ActivityCard = React.memo(function ActivityCard({
                         </div>
                     ) : (
                         <div className="flex items-center gap-2 mb-3">
-                            <span className="px-3 py-1 bg-secondary/10 text-secondary text-xs font-bold rounded-full uppercase">
+                            <span className="px-3 py-1 bg-secondary/10 text-[#3d6b47] dark:text-secondary text-xs font-bold rounded-full uppercase">
                                 {activity.type}
                             </span>
                         </div>

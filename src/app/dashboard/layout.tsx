@@ -1,16 +1,34 @@
 import type { ReactNode } from "react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { getTimeframedLeaderboard } from "@/lib/gamification";
 import { BottomNav } from "@/components/ui";
 import { DashboardHeader } from "@/components/dashboard";
-import { HomeIcon, BookOpenIcon, TrophyIcon, CalendarIcon } from "@/components/icons/Icons";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import NetworkStatusBanner from "@/components/NetworkStatusBanner";
 import SubmissionOutboxManager from "@/components/SubmissionOutboxManager";
 
+async function getStudentLeaderboardRank(userId: string): Promise<number | null> {
+    const enrollment = await prisma.classEnrollment.findFirst({
+        where: { studentId: userId },
+        orderBy: { joinedAt: "desc" },
+        select: { classId: true },
+    });
+    if (!enrollment) return null;
+    const leaderboard = await getTimeframedLeaderboard("week", 20, enrollment.classId);
+    const entry = leaderboard.find((e) => e.id === userId);
+    return entry && entry.rank <= 3 ? entry.rank : null;
+}
+
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
     const session = await getServerSession(authOptions);
+
+    let leaderboardRank: number | null = null;
+    if (session?.user?.role === "student" && session.user?.id) {
+        leaderboardRank = await getStudentLeaderboardRank(session.user.id);
+    }
 
     return (
         <div className="min-h-screen bg-bg relative">
@@ -21,7 +39,11 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 Skip to main content
             </a>
             {session && (
-                <DashboardHeader userName={session.user?.name || ""} />
+                <DashboardHeader
+                    userName={session.user?.name || ""}
+                    leaderboardRank={leaderboardRank}
+                    showMarlieEmoji={session.user?.username?.toLowerCase() === "marlie"}
+                />
             )}
             {children}
             <ServiceWorkerRegistration />
@@ -32,14 +54,7 @@ export default async function DashboardLayout({ children }: { children: ReactNod
                 </>
             )}
             <PWAInstallPrompt />
-            <BottomNav
-                items={[
-                    { href: "/dashboard", label: "Home", icon: <HomeIcon /> },
-                    { href: "/dashboard/activities", label: "Activities", icon: <BookOpenIcon /> },
-                    { href: "/dashboard/calendar", label: "Calendar", icon: <CalendarIcon /> },
-                    { href: "/dashboard/leaderboard", label: "Leaderboard", icon: <TrophyIcon /> },
-                ]}
-            />
+            <BottomNav />
         </div>
     );
 }

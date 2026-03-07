@@ -147,7 +147,7 @@ export default async function VerbQuizResultsPage({
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <span className="px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold">
+                                        <span className="px-3 py-1 rounded-full bg-secondary/10 text-[#3d6b47] dark:text-secondary text-xs font-semibold">
                                             {submission.score ?? 0}%
                                         </span>
                                     </div>

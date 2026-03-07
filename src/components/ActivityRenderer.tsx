@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useLayoutEffect } from "react";
 import type {
     ActivityContent,
     InteractiveGuideContent,
@@ -17,26 +17,35 @@ import {
     isVocabularyContent,
     type VocabularyContent
 } from "@/types/activity";
-import InteractiveGuideViewer from "./InteractiveGuideViewer";
-import { GrammarReader } from "@/components/grammar-reader/GrammarReader";
+import dynamic from "next/dynamic";
 import { sanitizeCss, sanitizeHtml } from "@/utils/sanitize";
-import FlashcardCarousel from "./ui/FlashcardCarousel";
-import FillInBlankGame from "./ui/FillInBlankGame";
-import MatchingGame from "./ui/MatchingGame";
-import NumbersGame from "./ui/NumbersGame";
-import VerbFormsGame from "./ui/VerbFormsGame";
-import EdPronunciationGame from "./ui/EdPronunciationGame";
-import MinimalPairsGame from "./ui/MinimalPairsGame";
-import { IrregularVerbsGame } from "./ui/IrregularVerbsGame/IrregularVerbsGame";
-import VerbQuizContainer from "./activities/VerbQuizContainer";
+import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
 import { VerbQuizContent } from "@/types/verb-quiz";
-import SpeakingActivityRenderer from "./activities/SpeakingActivityRenderer";
 import { isSpeakingActivityContent } from "@/types/activity";
 import type { SpeakingActivityContent } from "@/types/activity";
-import VocabularyRenderer from "./activities/VocabularyRenderer";
 import { completionKeyFromActivityTitle } from "@/utils/completionKey";
 import { saveActivityProgress } from "@/lib/activityProgress";
 import { resolveActivityGameUi } from "@/lib/gamification/activity-points";
+
+const ActivityLoadingFallback = () => (
+    <div className="flex items-center justify-center min-h-[300px]">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary" />
+    </div>
+);
+
+const InteractiveGuideViewer = dynamic(() => import("./InteractiveGuideViewer"), { loading: ActivityLoadingFallback });
+const GrammarReader = dynamic(() => import("@/components/grammar-reader/GrammarReader").then(m => ({ default: m.GrammarReader })), { loading: ActivityLoadingFallback });
+const FlashcardCarousel = dynamic(() => import("./ui/FlashcardCarousel"), { loading: ActivityLoadingFallback });
+const FillInBlankGame = dynamic(() => import("./ui/FillInBlankGame"), { loading: ActivityLoadingFallback });
+const MatchingGame = dynamic(() => import("./ui/MatchingGame"), { loading: ActivityLoadingFallback });
+const NumbersGame = dynamic(() => import("./ui/NumbersGame"), { loading: ActivityLoadingFallback });
+const VerbFormsGame = dynamic(() => import("./ui/VerbFormsGame"), { loading: ActivityLoadingFallback });
+const EdPronunciationGame = dynamic(() => import("./ui/EdPronunciationGame"), { loading: ActivityLoadingFallback });
+const MinimalPairsGame = dynamic(() => import("./ui/MinimalPairsGame"), { loading: ActivityLoadingFallback });
+const IrregularVerbsGame = dynamic(() => import("./ui/IrregularVerbsGame/IrregularVerbsGame").then(m => ({ default: m.IrregularVerbsGame })), { loading: ActivityLoadingFallback });
+const VerbQuizContainer = dynamic(() => import("./activities/VerbQuizContainer"), { loading: ActivityLoadingFallback });
+const SpeakingActivityRenderer = dynamic(() => import("./activities/SpeakingActivityRenderer"), { loading: ActivityLoadingFallback });
+const VocabularyRenderer = dynamic(() => import("./activities/VocabularyRenderer"), { loading: ActivityLoadingFallback });
 
 interface Props {
     activity: {
@@ -353,6 +362,12 @@ function LegacyGuideRenderer({ originalFile }: { originalFile: string }) {
             return { id, title };
         });
         setSections(mapped);
+    }, [html]);
+
+    useLayoutEffect(() => {
+        if (html && containerRef.current) {
+            applyGrammarDarkClasses(containerRef.current);
+        }
     }, [html]);
 
     const handleJump = (id: string) => {
