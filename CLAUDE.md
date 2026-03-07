@@ -208,8 +208,8 @@ Located in `scripts/import/`:
 - Icons in `public/icons/`
 
 ## Testing Accounts (After Seeding)
-- Teacher: `teacher@example.com` / `teacher123`
-- Student: `student@example.com` / `student123`
+- Teacher: `teacher` / `password123`
+- Student: `ricardo` / `password123` (or any seeded student username)
 - Test account username: `marlie` (excluded from leaderboards)
 
 ## Environment Variables

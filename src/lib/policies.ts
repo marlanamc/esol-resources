@@ -26,8 +26,8 @@ export function ensureTeacher(user: SessionUser | null | undefined): {
     return { ok: true, admin: isTeacherAdmin(user) };
 }
 
-export function classOwnershipWhere(user: SessionUser, admin: boolean): {} | { teacherId: string } {
-    return admin ? {} : { teacherId: user.id };
+export function classOwnershipWhere(user: SessionUser, admin: boolean): Record<string, never> | { teacherId: string } {
+    return admin ? ({} as Record<string, never>) : { teacherId: user.id };
 }
 
 export function canManageClass(user: SessionUser, admin: boolean, teacherId: string | null | undefined): boolean {

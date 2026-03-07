@@ -14,7 +14,7 @@ export default async function TeachingSchedulePage() {
         redirect("/login");
     }
 
-    const user = session.user as unknown as { role?: string };
+    const user = session.user;
     const userRole = user?.role || "student";
 
     if (userRole !== "teacher") {

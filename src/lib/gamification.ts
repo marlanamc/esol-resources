@@ -1,5 +1,6 @@
 import { prisma } from './prisma';
 import type { Prisma } from "@prisma/client";
+import { logger } from './logger';
 import { POINTS } from "./gamification/constants";
 import { shouldAwardStreak, getEffectiveStreak, getNextStreakState } from "./gamification/streak-utils";
 export { POINTS } from "./gamification/constants";
@@ -19,7 +20,7 @@ async function logPointsLedger(userId: string, points: number, reason: string, s
       },
     });
   } catch (err) {
-    console.error('[Gamification] Failed to log points ledger entry', err);
+    logger.error('[Gamification] Failed to log points ledger entry', err);
   }
 }
 
@@ -490,7 +491,7 @@ export async function resetWeeklyPoints() {
     }),
   ]);
 
-  console.log(`[Gamification] Weekly points reset complete (${currentRankings.length} rankings saved)`);
+  logger.info(`Weekly points reset complete (${currentRankings.length} rankings saved)`);
 }
 
 /**
@@ -513,17 +514,18 @@ export async function getUserGamificationStats(userId: string) {
 
   if (!user) return null;
 
-  // Get user's rank in weekly leaderboard (excluding test accounts and admin accounts)
-  const allStudents = await prisma.user.findMany({
-    where: { 
+  // Get user's rank in weekly leaderboard (single count query instead of loading all students)
+  const usersAheadOfMe = await prisma.user.count({
+    where: {
       role: 'student',
-      username: { notIn: ['marlie', 'leah'] }, // Exclude test and admin accounts from leaderboard
+      username: { notIn: ['marlie', 'leah'] },
+      OR: [
+        { weeklyPoints: { gt: user.weeklyPoints } },
+        { weeklyPoints: user.weeklyPoints, id: { lt: userId } },
+      ],
     },
-    orderBy: { weeklyPoints: 'desc' },
-    select: { id: true },
   });
-
-  const rank = allStudents.findIndex((s: { id: string }) => s.id === userId) + 1;
+  const rank = usersAheadOfMe + 1;
 
   return {
     points: user.points,

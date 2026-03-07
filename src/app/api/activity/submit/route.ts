@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { ActivitySubmitBodySchema, parseApiBody } from "@/lib/api-schemas";
 import { calculateQuizPoints, getActivityPoints } from "@/lib/gamification";
 import { claimSubmissionPointsOnce } from "@/lib/submission-points-award";
 import { applyAwardChain } from "@/lib/gamification-award-chain";
@@ -191,12 +192,9 @@ export async function POST(request: Request) {
         if (!parsedBody.ok) {
             return NextResponse.json({ error: parsedBody.error }, { status: parsedBody.status });
         }
-        const body = parsedBody.body;
-        const { activityId, content, score, assignmentId } = body;
-
-        if (!activityId || typeof activityId !== "string") {
-            return NextResponse.json({ error: "activityId is required" }, { status: 400 });
-        }
+        const validated = parseApiBody(ActivitySubmitBodySchema, parsedBody.body);
+        if (!validated.ok) return validated.response;
+        const { activityId, content, score, assignmentId } = validated.data;
 
         const userId = session.user.id;
 

@@ -81,7 +81,7 @@ export async function POST(request: Request) {
         trimOldEvents(now);
 
         logger.info("Tab nav telemetry batch", {
-            userId: (session.user as { id?: string }).id,
+            userId: session.user.id,
             count: events.length,
             sample: events.slice(0, 2),
         });

@@ -10,7 +10,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const user = session.user as { id: string; role: string };
+    const user = session.user;
     const admin = isTeacherAdmin(session.user);
     const { searchParams } = new URL(request.url);
     const studentId = searchParams.get("studentId");

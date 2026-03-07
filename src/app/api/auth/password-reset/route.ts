@@ -4,8 +4,15 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWORD_BLOCKED_MESSAGE, isDisallowedPassword } from "@/lib/auth-config";
+import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
+import { ApiErrors } from "@/lib/api-response";
 
 export async function POST(request: Request) {
+    const key = authRateLimitKey(request, "password-reset");
+    if (!checkRateLimit(key)) {
+        return ApiErrors.rateLimited("Too many password reset attempts. Please try again later.");
+    }
+
     const session = await getServerSession(authOptions);
     if (!session?.user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

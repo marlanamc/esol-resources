@@ -24,8 +24,11 @@
     "test:sanitize": "node --import tsx --test scripts/tests/sanitize-security.test.ts",
     "test:validators-env": "node --import tsx --test scripts/tests/validators-env-boundary.test.ts",
     "test:critical": "npm run test:gamification && npm run test:activity-submit && npm run test:exercise-answer-normalization && npm run test:activity-submit:contract && npm run test:activity-progress:merge && npm run test:activity-progress:points && npm run test:assignments-featured && npm run test:classes-join && npm run test:submission-points-claim && npm run test:sanitize && npm run test:validators-env",
+    "test:vitest": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts",
+    "test:e2e:smoke": "playwright test tests/e2e/mobile-pwa-smoke.spec.ts tests/e2e/auth-flow.spec.ts",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:install": "playwright install --with-deps",
     "lint": "eslint",
@@ -53,6 +56,7 @@
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
+    "@sentry/nextjs": "^10.42.0",
     "@vercel/analytics": "^1.6.1",
     "bcryptjs": "^3.0.3",
     "framer-motion": "^12.23.25",
@@ -63,7 +67,8 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "recharts": "^2.15.0",
-    "sanitize-html": "^2.14.0"
+    "sanitize-html": "^2.14.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.1.4",
@@ -74,11 +79,13 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/sanitize-html": "^2.16.0",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "prisma": "^6.19.0",
     "tailwindcss": "^4",
     "tsx": "^4.19.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.0.18"
   }
 }
