@@ -106,7 +106,7 @@ export default function LoginForm() {
                     />
                 </div>
                 {error && (
-                    <div className="border-2 rounded-lg p-3" style={{ backgroundColor: 'rgba(231, 111, 81, 0.1)', borderColor: '#e76f51' }}>
+                    <div role="alert" className="border-2 rounded-lg p-3" style={{ backgroundColor: 'rgba(231, 111, 81, 0.1)', borderColor: '#e76f51' }}>
                         <p className="text-sm font-medium" style={{ color: '#e76f51' }}>
                             {error}
                         </p>

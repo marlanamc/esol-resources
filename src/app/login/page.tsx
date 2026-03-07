@@ -4,7 +4,10 @@ import LoginForm from "@/components/LoginForm";
 export default function LoginPage() {
     return (
         <div className="min-h-screen flex items-center justify-center py-8 px-4 sm:py-12 sm:px-6 lg:px-8" style={{ backgroundColor: '#fef9f3' }}>
-            <div className="max-w-md w-full space-y-5 sm:space-y-6">
+            <a href="#login-form" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[999] focus:px-4 focus:py-2 focus:bg-[#d97757] focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold focus:shadow-lg">
+                Skip to login form
+            </a>
+            <div id="login-form" className="max-w-md w-full space-y-5 sm:space-y-6" tabIndex={-1}>
                 <div className="text-center">
                     <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2" style={{ fontFamily: 'var(--font-display)', color: '#d97757' }}>
                         Class Companion

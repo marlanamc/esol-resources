@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import { requireTeacher } from "@/lib/api-auth";
 import { resetWeeklyPoints } from "@/lib/gamification";
 
 /**
@@ -11,11 +12,8 @@ import { resetWeeklyPoints } from "@/lib/gamification";
  */
 export async function POST() {
     const session = await getServerSession(authOptions);
-
-    // Only teachers can reset weekly points
-    if (!session?.user || session.user.role !== "teacher") {
-        return NextResponse.json({ error: "Unauthorized - Teachers only" }, { status: 401 });
-    }
+    const teacherCheck = requireTeacher(session);
+    if (!teacherCheck.ok) return teacherCheck.response;
 
     try {
         await resetWeeklyPoints();

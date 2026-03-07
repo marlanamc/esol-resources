@@ -354,8 +354,9 @@ export async function checkAndAwardAchievements(userId: string) {
   );
   const newlyEarned: string[] = [];
 
+  const toAward: typeof allAchievements = [];
+
   for (const achievement of allAchievements) {
-    // Skip if already earned
     if (earnedAchievementIds.has(achievement.id)) continue;
 
     let shouldAward = false;
@@ -367,31 +368,32 @@ export async function checkAndAwardAchievements(userId: string) {
       case 'points':
         shouldAward = user.points >= achievement.requirement;
         break;
-      case 'quiz':
+      case 'quiz': {
         const perfectQuizzes = user.submissions.filter((s: { score: number | null }) => s.score === 100).length;
         shouldAward = perfectQuizzes >= achievement.requirement;
         break;
+      }
       case 'activity':
         shouldAward = user.submissions.length >= achievement.requirement;
         break;
     }
 
     if (shouldAward) {
-      // Award the achievement
-      await prisma.userAchievement.create({
-        data: {
-          userId: user.id,
-          achievementId: achievement.id,
-        },
-      });
-
-      // Award bonus points
-      if (achievement.points > 0) {
-        await awardPoints(userId, achievement.points, `Achievement: ${achievement.name}`);
-      }
-
+      toAward.push(achievement);
       newlyEarned.push(achievement.id);
     }
+  }
+
+  if (toAward.length === 0) return newlyEarned;
+
+  // Batch create all UserAchievement records in one query
+  await prisma.userAchievement.createMany({
+    data: toAward.map((a) => ({ userId: user.id, achievementId: a.id })),
+  });
+
+  const totalPoints = toAward.reduce((sum, a) => sum + a.points, 0);
+  if (totalPoints > 0) {
+    await awardPoints(userId, totalPoints, `Achievements: ${toAward.map((a) => a.name).join(', ')}`);
   }
 
   return newlyEarned;
@@ -411,7 +413,7 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
 
   const whereClause: Prisma.UserWhereInput = {
     role: 'student',
-    username: { notIn: ['marlie', 'leah'] }, // Exclude test and admin accounts from leaderboard
+    username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
   };
 
   // If classId provided, filter by students in that class
@@ -469,27 +471,37 @@ export async function getWeeklyLeaderboard(limit: number = 10, classId?: string)
 
 /**
  * Reset weekly points for all users (to be run weekly via cron)
- * PERFORMANCE: Uses transaction with batch updates instead of N+1 queries
+ * PERFORMANCE: Uses single raw SQL batch update for lastWeekRank instead of N individual updates
  */
 export async function resetWeeklyPoints() {
-  // Get current rankings before reset
   const currentRankings = await getWeeklyLeaderboard(100);
 
-  // PERFORMANCE: Use transaction to batch all updates together
-  await prisma.$transaction([
-    // Update each user's lastWeekRank in a batch transaction
-    ...currentRankings.map(ranking =>
-      prisma.user.update({
-        where: { id: ranking.id },
-        data: { lastWeekRank: ranking.rank },
-      })
-    ),
-    // Reset weekly points for all students
-    prisma.user.updateMany({
+  if (currentRankings.length === 0) {
+    await prisma.user.updateMany({
       where: { role: 'student' },
       data: { weeklyPoints: 0 },
-    }),
-  ]);
+    });
+    logger.info('Weekly points reset complete (no rankings to save)');
+    return;
+  }
+
+  const params = currentRankings.flatMap((r) => [r.id, r.rank]);
+  const valuesClause = currentRankings
+    .map((_, i) => `($${i * 2 + 1}::text, $${i * 2 + 2}::int)`)
+    .join(', ');
+
+  await prisma.$transaction(async (tx) => {
+    await (tx as typeof prisma).$executeRawUnsafe(
+      `UPDATE "User" AS u SET "lastWeekRank" = v.rank
+       FROM (VALUES ${valuesClause}) AS v(id, rank)
+       WHERE u.id = v.id`,
+      ...params
+    );
+    await tx.user.updateMany({
+      where: { role: 'student' },
+      data: { weeklyPoints: 0 },
+    });
+  });
 
   logger.info(`Weekly points reset complete (${currentRankings.length} rankings saved)`);
 }
@@ -518,7 +530,7 @@ export async function getUserGamificationStats(userId: string) {
   const usersAheadOfMe = await prisma.user.count({
     where: {
       role: 'student',
-      username: { notIn: ['marlie', 'leah'] },
+      username: { notIn: EXCLUDED_LEADERBOARD_USERNAMES },
       OR: [
         { weeklyPoints: { gt: user.weeklyPoints } },
         { weeklyPoints: user.weeklyPoints, id: { lt: userId } },
