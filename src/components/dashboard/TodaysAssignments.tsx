@@ -426,8 +426,9 @@ function ChecklistAssignments({
         sortedRows.find((row) => row.isResumable) ??
         null;
 
-    const taskRows = resumeRow
-        ? sortedRows.filter((row) => row.assignment.id !== resumeRow.assignment.id)
+    const showResumeCard = Boolean(resumeRow && !isFullyComplete);
+    const taskRows = showResumeCard
+        ? sortedRows.filter((row) => row.assignment.id !== resumeRow!.assignment.id)
         : sortedRows;
 
     const groups = CHECKLIST_GROUPS.map((group) => {
@@ -926,7 +927,7 @@ function ChecklistAssignments({
                 </div>
 
                 <div className="lg:hidden px-3 py-3 space-y-2.5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
-                        {resumeRow ? renderResumeCard(resumeRow) : null}
+                        {showResumeCard ? renderResumeCard(resumeRow!) : null}
 
                         <div className="px-0.5 pt-1">
                             <h3 className="text-[17px] font-bold text-text tracking-tight">Your tasks</h3>
