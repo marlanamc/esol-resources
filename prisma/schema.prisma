@@ -34,6 +34,7 @@ model User {
   speakingSubmissions   SpeakingSubmission[]
   submissions           Submission[]
   achievements          UserAchievement[]
+  feedbackEntries       Feedback[]
   preferences           UserPreferences?
 
   @@index([role])
@@ -203,6 +204,22 @@ model Submission {
   @@index([assignmentId])
   @@index([userId, activityId, updatedAt])
   @@index([userId, status, completedAt])
+}
+
+model Feedback {
+  id            String   @id @default(cuid())
+  userId        String
+  activityId    String?
+  activityTitle String?
+  difficulty    String?
+  type          String
+  message       String
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([activityId, createdAt])
+  @@index([type, createdAt])
 }
 
 model Achievement {

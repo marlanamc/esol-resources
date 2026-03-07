@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTheme } from '@/components/ThemeProvider';
 
 interface BottomNavRenderItem {
   href: string;
@@ -70,6 +71,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
   const ACTIVITIES_LAST_HREF_STORAGE_KEY = 'dashboard-activities-last-href-v1';
   const pathname = usePathname();
   const router = useRouter();
+  const { resolvedTheme } = useTheme();
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const navTapAtRef = useRef<number | null>(null);
   const navFromPathRef = useRef<TrackedTabPath | null>(null);
@@ -233,11 +235,13 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
           isKeyboardVisible ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
         }`}
         style={{
-          borderColor: 'rgba(214, 202, 190, 0.4)',
+          borderColor: 'var(--border-subtle)',
           zIndex: 'var(--z-fixed)',
-          background: 'rgba(255, 252, 248, 0.98)',
+          background: 'var(--surface-overlay)',
+          backdropFilter: 'blur(10px)',
+          WebkitBackdropFilter: 'blur(10px)',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          boxShadow: '0 -4px 16px rgba(49, 62, 84, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8)'
+          boxShadow: '0 -2px 16px rgba(13, 22, 32, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.04)'
         }}
       >
         <div
@@ -291,11 +295,11 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                   className={`relative z-10 flex flex-col items-center justify-center gap-0.5 transition-[color,opacity] duration-150 ${
                     isActivitiesTab
                       ? isActive
-                        ? 'text-[#9f523d]'
-                        : 'text-[#b86a56]'
+                        ? resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#9f523d]'
+                        : resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#b86a56]'
                       : isActive
-                        ? 'text-[#c88470]'
-                        : 'text-[#7d8aa1]'
+                        ? resolvedTheme === 'dark' ? 'text-[#e8a090]' : 'text-[#c88470]'
+                        : resolvedTheme === 'dark' ? 'text-[#6b7280]' : 'text-[#7d8aa1]'
                   }`}
                 >
                   <div
@@ -307,10 +311,18 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                       <div
                         className="absolute inset-0 rounded-2xl"
                         style={{
-                          background: isActive
+                          background: resolvedTheme === 'dark'
+                            ? isActive
+                              ? 'linear-gradient(135deg, rgba(139, 196, 168, 0.2) 0%, rgba(109, 168, 138, 0.12) 48%, rgba(89, 140, 110, 0.16) 100%)'
+                              : 'linear-gradient(135deg, rgba(139, 196, 168, 0.1) 0%, rgba(109, 168, 138, 0.05) 48%, rgba(89, 140, 110, 0.08) 100%)'
+                            : isActive
                             ? 'linear-gradient(135deg, rgba(152, 185, 162, 0.28) 0%, rgba(122, 157, 132, 0.16) 48%, rgba(92, 126, 103, 0.22) 100%)'
                             : 'linear-gradient(135deg, rgba(152, 185, 162, 0.16) 0%, rgba(122, 157, 132, 0.08) 48%, rgba(92, 126, 103, 0.14) 100%)',
-                          boxShadow: isActive
+                          boxShadow: resolvedTheme === 'dark'
+                            ? isActive
+                              ? '0 0 16px rgba(139, 196, 168, 0.15), 0 6px 14px rgba(89, 140, 110, 0.08), inset 0 1px 0 rgba(255,255,255,0.1)'
+                              : '0 0 10px rgba(139, 196, 168, 0.08), 0 3px 8px rgba(89, 140, 110, 0.04), inset 0 1px 0 rgba(255,255,255,0.05)'
+                            : isActive
                             ? '0 0 16px rgba(122, 157, 132, 0.24), 0 6px 14px rgba(92, 126, 103, 0.12), inset 0 1px 0 rgba(255,255,255,0.55)'
                             : '0 0 10px rgba(122, 157, 132, 0.14), 0 3px 8px rgba(92, 126, 103, 0.08), inset 0 1px 0 rgba(255,255,255,0.45)'
                         }}
@@ -323,8 +335,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                       }`}
                       style={isActivitiesTab
                         ? {
-                            color: isActive ? '#5c7e67' : '#6f9279',
-                            filter: isActive
+                            color: resolvedTheme === 'dark'
+                              ? isActive ? '#8bc4a8' : '#6da88a'
+                              : isActive ? '#5c7e67' : '#6f9279',
+                            filter: resolvedTheme === 'dark'
+                              ? isActive
+                                ? 'drop-shadow(0 2px 6px rgba(139,196,168,0.15))'
+                                : 'drop-shadow(0 1px 3px rgba(139,196,168,0.1))'
+                              : isActive
                               ? 'drop-shadow(0 2px 6px rgba(122,157,132,0.22))'
                               : 'drop-shadow(0 1px 3px rgba(122,157,132,0.16))'
                           }
@@ -336,11 +354,11 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                   <span className={`font-bold tracking-tight leading-none transition-all duration-200 ${
                     isActivitiesTab
                       ? isActive
-                        ? 'text-[10px] opacity-100 text-[#5c7e67]'
-                        : 'text-[11px] opacity-95 text-[#6f9279]'
+                        ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#8bc4a8]' : 'text-[#5c7e67]'}`
+                        : `text-[11px] opacity-95 ${resolvedTheme === 'dark' ? 'text-[#6da88a]' : 'text-[#6f9279]'}`
                       : isActive
-                        ? 'text-[10px] opacity-100'
-                        : 'text-[10px] opacity-70'
+                        ? `text-[10px] opacity-100 ${resolvedTheme === 'dark' ? 'text-[#e8a090]' : 'text-[#c88470]'}`
+                        : `text-[10px] opacity-70 ${resolvedTheme === 'dark' ? 'text-[#6b7280]' : 'text-[#7d8aa1]'}`
                   }`}>
                     {item.label}
                   </span>
@@ -348,14 +366,21 @@ export const BottomNav: React.FC<BottomNavProps> = ({ items }) => {
                 
                 <div
                   className={`bottom-nav-indicator absolute top-0 left-1/2 -translate-x-1/2 rounded-b-full ${
-                    isActivitiesTab ? 'w-16 h-1.5' : 'w-12 h-1'
+                    isActivitiesTab ? 'w-14 h-1.5' : 'w-10 h-1'
                   } ${
                     isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                   }`}
                   style={{
-                    background: isActivitiesTab
-                      ? 'linear-gradient(90deg, #e9c46a 0%, #c88470 45%, #b86a56 100%)'
-                      : '#c88470'
+                    background: resolvedTheme === 'dark'
+                      ? isActivitiesTab
+                        ? 'linear-gradient(90deg, #f5d98a 0%, #e8a090 50%, #d08878 100%)'
+                        : '#e8a090'
+                      : isActivitiesTab
+                      ? 'linear-gradient(90deg, #e9c46a 0%, #c88470 50%, #b86a56 100%)'
+                      : '#c88470',
+                    boxShadow: resolvedTheme === 'dark'
+                      ? isActive ? '0 2px 6px rgba(232, 160, 144, 0.2)' : 'none'
+                      : isActive ? '0 2px 6px rgba(200, 132, 112, 0.3)' : 'none'
                   }}
                 />
               </Link>

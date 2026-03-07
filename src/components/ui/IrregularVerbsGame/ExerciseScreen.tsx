@@ -121,7 +121,7 @@ export function ExerciseScreen({
             <button
               onClick={onBack}
               aria-label="Go back"
-              className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-border text-text-muted hover:text-text flex items-center justify-center"
+              className="flex-shrink-0 w-8 h-8 rounded-full bg-white dark:bg-[#162b3d] border border-border dark:border-white/10 text-text-muted hover:text-text flex items-center justify-center"
             >
               <ArrowLeft size={16} />
             </button>
@@ -142,14 +142,14 @@ export function ExerciseScreen({
           {/* Stats - compact */}
           <div className="flex items-center gap-1 flex-shrink-0">
             {streak > 0 && (
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 border border-orange-200"
-              >
-                <Zap size={10} className="text-orange-500" />
-                <span className="text-[10px] font-bold text-orange-700">{streak}</span>
-              </motion.div>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 border border-orange-200 dark:border-orange-600/50"
+            >
+              <Zap size={10} className="text-orange-500 dark:text-orange-400" />
+              <span className="text-[10px] font-bold text-orange-700 dark:text-orange-200">{streak}</span>
+            </motion.div>
             )}
             <div className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-full bg-secondary/10 border border-secondary/20">
               <Target size={10} className="text-secondary" />
@@ -185,12 +185,12 @@ export function ExerciseScreen({
             <div className="flex items-center gap-2">
               {streak > 0 && (
                 <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 border border-orange-200"
-                >
-                  <Zap size={14} className="text-orange-500" />
-                  <span className="text-sm font-bold text-orange-700">{streak}</span>
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-r from-orange-100 to-amber-100 dark:from-orange-900/40 dark:to-amber-900/40 border border-orange-200 dark:border-orange-600/50"
+              >
+                <Zap size={14} className="text-orange-500 dark:text-orange-400" />
+                <span className="text-sm font-bold text-orange-700 dark:text-orange-200">{streak}</span>
                 </motion.div>
               )}
               <div className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-secondary/10 border border-secondary/20">
@@ -252,10 +252,10 @@ export function ExerciseScreen({
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -30 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="flex-1 sm:flex-none mx-3 sm:mx-0 mt-2 sm:mt-6 bg-white border sm:border-2 border-border/50 sm:border-border rounded-xl sm:rounded-2xl sm:shadow-lg overflow-hidden flex flex-col"
+        className="flex-1 sm:flex-none mx-3 sm:mx-0 mt-2 sm:mt-6 bg-white dark:bg-[#162b3d] border sm:border-2 border-border/50 sm:border-border dark:border-white/10 rounded-xl sm:rounded-2xl sm:shadow-lg overflow-hidden flex flex-col"
       >
         {/* Exercise Type Badge - Slim on mobile */}
-        <div className="px-3 sm:px-6 py-2 sm:py-3 border-b border-border/50 bg-bg-light/50">
+        <div className="px-3 sm:px-6 py-2 sm:py-3 border-b border-border/50 dark:border-white/10 bg-bg-light/50 dark:bg-white/5">
           <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-text-muted">
             <ExerciseTypeIcon type={currentExercise.type} />
             <span className="font-medium">{getExerciseTypeLabel(currentExercise.type)}</span>
@@ -278,7 +278,7 @@ export function ExerciseScreen({
         className="hidden sm:flex items-center justify-center gap-2 text-sm text-text-light mt-4"
       >
         <Lightbulb size={14} />
-        <span>Press <kbd className="px-1.5 py-0.5 rounded bg-bg-gray border border-border text-xs font-mono">Enter</kbd> to submit quickly</span>
+        <span>Press <kbd className="px-1.5 py-0.5 rounded bg-bg-gray dark:bg-white/10 border border-border dark:border-white/20 text-xs font-mono">Enter</kbd> to submit quickly</span>
       </motion.div>
     </div>
   );

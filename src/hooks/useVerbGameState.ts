@@ -20,8 +20,8 @@ interface VerbGameState {
   answers: boolean[]; // Track correct/incorrect for each exercise
 }
 
-const ALL_PATTERNS_GROUP_ID = 'all-patterns-quiz';
-const ALL_PATTERNS_GROUP: VerbGroup = {
+export const ALL_PATTERNS_GROUP_ID = 'all-patterns-quiz';
+export const ALL_PATTERNS_GROUP: VerbGroup = {
   id: ALL_PATTERNS_GROUP_ID,
   title: 'All Patterns Quiz',
   pattern: 'Mixed patterns from everything you mastered',
@@ -35,6 +35,12 @@ const ALL_PATTERNS_GROUP: VerbGroup = {
     ).values()
   )
 };
+
+export function hasCompletedAllRegularVerbGroups(
+  categoryData: Record<string, GroupProgress>
+): boolean {
+  return VERB_GROUPS.every((group) => categoryData[group.id]?.completed);
+}
 
 function calculateBestStreak(answers: boolean[]): number {
   let best = 0;
@@ -289,9 +295,7 @@ export function useVerbGameState(activityId: string, hideExplanations: boolean) 
     const nextGroup = VERB_GROUPS[currentIndex + 1];
 
     if (!nextGroup) {
-      const allMastered = VERB_GROUPS.every(
-        (group) => (state.categoryData[group.id]?.accuracy ?? 0) === 100
-      );
+      const allMastered = hasCompletedAllRegularVerbGroups(state.categoryData);
 
       if (allMastered) {
         selectGroup(ALL_PATTERNS_GROUP);

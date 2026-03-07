@@ -58,10 +58,10 @@ export function PatternSortingExercise({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-3 sm:p-5 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200"
+        className="p-3 sm:p-5 bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-950/50 dark:to-red-950/50 rounded-xl border border-orange-200 dark:border-orange-700/50"
       >
-        <p className="text-xs sm:text-sm text-gray-600 mb-2">Classify this verb:</p>
-        <p className="text-lg sm:text-xl font-bold text-gray-800">
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-orange-200 mb-2">Classify this verb:</p>
+        <p className="text-lg sm:text-xl font-bold text-gray-800 dark:text-orange-100">
           {exercise.verb.base} → {exercise.verb.past} → {exercise.verb.pastParticiple}
         </p>
       </motion.div>
@@ -92,8 +92,8 @@ export function PatternSortingExercise({
                       ? 'bg-secondary/10 border-secondary/50 text-secondary-dark'
                       : 'bg-bg-light border-border text-text-muted'
                   : selectedOption === option
-                    ? 'bg-orange-100 border-orange-400 text-orange-900 shadow-sm'
-                    : 'bg-white border-border text-text hover:border-orange-300 active:scale-[0.98]'
+                    ? 'bg-orange-100 dark:bg-orange-900/40 border-orange-400 dark:border-orange-500 text-orange-900 dark:text-orange-100 shadow-sm'
+                    : 'bg-white dark:bg-[#162b3d] border-border dark:border-white/10 text-text hover:border-orange-300 dark:hover:border-orange-500/50 active:scale-[0.98]'
               }`}
             >
               <div className="flex items-center gap-2.5">
@@ -101,7 +101,7 @@ export function PatternSortingExercise({
                   className={`w-4 h-4 sm:w-5 sm:h-5 rounded border-2 flex items-center justify-center flex-shrink-0 ${
                     selectedOption === option
                       ? 'bg-orange-400 border-orange-400'
-                      : 'border-gray-400'
+                      : 'border-gray-400 dark:border-gray-500'
                   }`}
                 >
                   {selectedOption === option && (

@@ -303,7 +303,7 @@ function SelectionMode({ activityId, assignmentId, refreshToken, onSelectType }:
                                     {/* Completion checkmark badge */}
                                         {isCompleted && (
                                         <div className="absolute top-2 right-2 md:top-4 md:right-4">
-                                            <div className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-secondary text-white shadow-[0_2px_6px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.3)]">
+                                            <div className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-secondary text-white shadow-[0_2px_6px_rgba(13,22,32,0.15),inset_0_1px_0_rgba(255,255,255,0.3)]">
                                                 <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                                 </svg>

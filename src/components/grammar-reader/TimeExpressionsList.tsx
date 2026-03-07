@@ -22,7 +22,7 @@ export function TimeExpressionsList({ expressions }: TimeExpressionsListProps) {
                 {expressions.map((expr, index) => (
                     <div
                         key={index}
-                        className="time-expression bg-white border border-border rounded-lg p-4"
+                        className="time-expression rounded-lg border border-border bg-[var(--color-surface-elevated)] p-4"
                     >
                         <div className="flex items-start gap-3">
                             <div className="flex-shrink-0 w-20">

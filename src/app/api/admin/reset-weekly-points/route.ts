@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { requireTeacher } from "@/lib/api-auth";
 import { resetWeeklyPoints } from "@/lib/gamification";
+import { ApiErrors } from "@/lib/api-response";
+import { logger } from "@/lib/logger";
 
 /**
  * Reset weekly points for all students
@@ -18,16 +19,13 @@ export async function POST() {
     try {
         await resetWeeklyPoints();
 
-        return NextResponse.json({
+        return Response.json({
             success: true,
             message: "Weekly points reset successfully. New week started!",
             resetDate: new Date().toISOString()
         });
     } catch (error) {
-        console.error('[Reset Weekly Points] Error:', error);
-        return NextResponse.json(
-            { error: "Failed to reset weekly points" },
-            { status: 500 }
-        );
+        logger.error("[Reset Weekly Points] Error", error);
+        return ApiErrors.internal("Failed to reset weekly points");
     }
 }

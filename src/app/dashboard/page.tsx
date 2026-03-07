@@ -31,6 +31,7 @@ import {
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
 import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 import { isTeacherAdmin } from "@/lib/roles";
+import { getLearnerCategoryTone } from "@/lib/learner-theme";
 
 type TeacherAssignment = {
     id: string;
@@ -843,33 +844,33 @@ export default async function DashboardPage() {
 
                             {/* Browse All Activities CTA */}
                             <section className="hidden md:block mt-6">
-                                <div className="rounded-2xl p-4 sm:p-6 bg-gradient-to-br from-[#faf6f1] to-[#f5f0ea] border border-[#e7dfd3] shadow-[0_1px_4px_rgba(52,43,34,0.035)] sm:shadow-[0_2px_8px_rgba(52,43,34,0.04)] group transition-[transform] duration-300 hover:scale-[1.005] relative overflow-hidden">
+                                <div className="rounded-2xl p-4 sm:p-6 border surface-card-shadow group transition-[transform] duration-300 hover:scale-[1.005] relative overflow-hidden" style={{ background: 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)', borderColor: 'var(--border-subtle)' }}>
                                     {/* Decorative gradient blob */}
                                     <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-primary/10 via-accent/15 to-secondary/10 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity"></div>
 
                                     <div className="flex items-start justify-between gap-4 relative z-10">
                                         <div className="min-w-0 pr-2">
                                             <p className="text-xs font-semibold text-text-muted tracking-widest uppercase flex items-center gap-2">
-                                                <span className="w-6 h-[2px] bg-[#8b7a67] rounded-full"></span>
+                                                <span className="w-6 h-[2px] rounded-full" style={{ backgroundColor: 'var(--tone-default-accent)' }}></span>
                                                 Explore
                                             </p>
-                                            <h2 className="text-2xl font-bold font-display text-[#1f2633] mt-2">All Activities</h2>
+                                            <h2 className="text-2xl font-bold font-display text-text mt-2">All Activities</h2>
                                             <p className="text-sm text-text/70 mt-2 max-w-2xl leading-relaxed">
                                                 Keep building your skills — browse by category and track your progress.
                                             </p>
                                             {/* Category quick-jump chips */}
                                             <div className="flex flex-wrap gap-2.5 mt-4">
                                                 {[
-                                                    { label: 'Grammar', href: '/dashboard/activities?category=grammar', color: '#2d6930', bg: '#eef4ec', accent: '#3d8e42' },
-                                                    { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', color: '#1a6560', bg: '#edf5f4', accent: '#268a82' },
-                                                    { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', color: '#923a25', bg: '#f5edea', accent: '#c44a28' },
-                                                    { label: 'Games', href: '/dashboard/activities?category=games', color: '#5c2d7a', bg: '#f2edf6', accent: '#7d3fa6' },
+                                                    { label: 'Grammar', href: '/dashboard/activities?category=grammar', tone: getLearnerCategoryTone('grammar') },
+                                                    { label: 'Vocabulary', href: '/dashboard/activities?category=vocabulary', tone: getLearnerCategoryTone('vocabulary') },
+                                                    { label: 'Quizzes', href: '/dashboard/activities?category=quizzes', tone: getLearnerCategoryTone('quizzes') },
+                                                    { label: 'Games', href: '/dashboard/activities?category=games', tone: getLearnerCategoryTone('games') },
                                                 ].map(chip => (
                                                     <Link
                                                         key={chip.label}
                                                         href={chip.href}
                                                         className="inline-flex items-center gap-1 px-3.5 py-2 rounded-lg text-xs font-bold border transition-[transform,box-shadow,background-color] duration-200 hover:shadow-md hover:scale-[1.02] active:scale-95"
-                                                        style={{ color: chip.color, backgroundColor: chip.bg, borderColor: `${chip.accent}40` }}
+                                                        style={{ color: chip.tone.chipText, backgroundColor: chip.tone.chipBg, borderColor: chip.tone.border }}
                                                     >
                                                         {chip.label}
                                                         <span className="text-[10px] opacity-50 ml-0.5">›</span>
@@ -879,7 +880,7 @@ export default async function DashboardPage() {
                                         </div>
                                         <Link
                                             href="/dashboard/activities"
-                                            className="shrink-0 px-5 py-2.5 rounded-lg bg-primary text-white border border-primary hover:brightness-110 transition-[filter,transform] font-semibold text-sm active:scale-95 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b79e80] focus-visible:ring-offset-2"
+                                            className="shrink-0 px-5 py-2.5 rounded-lg bg-primary text-[color:var(--text-on-accent)] border border-primary hover:brightness-110 transition-[filter,transform] font-semibold text-sm active:scale-95 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2"
                                         >
                                             Browse
                                             <span className="arrow-animate">→</span>
@@ -891,7 +892,7 @@ export default async function DashboardPage() {
 
                         {/* Calendar Sidebar - Right Side (hidden on mobile) */}
                         <aside className="hidden md:block md:col-span-4 lg:col-span-3">
-                            <div className="sticky top-24 space-y-8 rounded-2xl border border-[#ddcfbe] bg-gradient-to-b from-[#fffdfa] to-[#f6efe4] p-6 shadow-[0_10px_28px_rgba(52,43,34,0.1)]">
+                            <div className="sticky top-24 space-y-8 rounded-2xl border p-6 surface-card-shadow" style={{ borderColor: 'var(--border-subtle)', background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)' }}>
                                 <MiniCalendar events={calendarEvents} />
 
                                 <UpcomingEventsList

@@ -51,6 +51,8 @@ jobs:
         run: npm run test:critical
 
       - name: Vitest coverage
+        env:
+          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
         run: npm run test:coverage
 
       - name: Build

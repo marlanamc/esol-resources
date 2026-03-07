@@ -4,6 +4,11 @@ import { motion } from 'framer-motion';
 import { BookOpen, Trophy, Target, Sparkles } from 'lucide-react';
 import { VERB_GROUPS } from '@/data/irregular-verbs-groups';
 import { isGroupUnlocked, getProgressSummary } from '@/lib/irregular-verbs-progress';
+import {
+  ALL_PATTERNS_GROUP,
+  ALL_PATTERNS_GROUP_ID,
+  hasCompletedAllRegularVerbGroups
+} from '@/hooks/useVerbGameState';
 import { GroupCard } from './GroupCard';
 import type { VerbGroup, GroupProgress } from '@/types/irregular-verbs';
 
@@ -18,6 +23,8 @@ export function GroupSelectionScreen({
 }: GroupSelectionScreenProps) {
   const summary = getProgressSummary(categoryData);
   const progressPercent = summary.overallProgress;
+  const finalQuizUnlocked = hasCompletedAllRegularVerbGroups(categoryData);
+  const finalQuizProgress = categoryData[ALL_PATTERNS_GROUP_ID];
 
   return (
     <div className="space-y-8">
@@ -158,12 +165,35 @@ export function GroupSelectionScreen({
           delay={0.7}
           accentColor="accent"
         />
+
+        {finalQuizUnlocked && (
+          <GroupSection
+            title="Final Challenge"
+            subtitle="A mixed quiz across every irregular verb pattern"
+            groups={[ALL_PATTERNS_GROUP]}
+            categoryData={{
+              ...categoryData,
+              [ALL_PATTERNS_GROUP_ID]: {
+                ...finalQuizProgress,
+                completed: false,
+                accuracy: 0,
+                attempts: 0,
+              }
+            }}
+            onSelectGroup={onSelectGroup}
+            delay={0.8}
+            accentColor="primary"
+            forceUnlockedGroupIds={[ALL_PATTERNS_GROUP_ID]}
+          />
+        )}
       </div>
 
       {/* Motivational Footer */}
       <MotivationalMessage
         completedGroups={summary.completedGroups}
         totalGroups={summary.totalGroups}
+        finalQuizCompleted={finalQuizProgress?.completed ?? false}
+        finalQuizUnlocked={finalQuizUnlocked}
       />
     </div>
   );
@@ -218,7 +248,8 @@ function GroupSection({
   categoryData,
   onSelectGroup,
   delay,
-  accentColor
+  accentColor,
+  forceUnlockedGroupIds = []
 }: {
   title: string;
   subtitle: string;
@@ -227,6 +258,7 @@ function GroupSection({
   onSelectGroup: (group: VerbGroup) => void;
   delay: number;
   accentColor: 'primary' | 'secondary' | 'accent';
+  forceUnlockedGroupIds?: string[];
 }) {
   const completedCount = groups.filter(g => categoryData[g.id]?.completed).length;
   const allCompleted = completedCount === groups.length;
@@ -269,7 +301,9 @@ function GroupSection({
       {/* Group Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         {groups.map((group, index) => {
-          const unlocked = isGroupUnlocked(group.id, categoryData);
+          const unlocked = forceUnlockedGroupIds.includes(group.id)
+            ? true
+            : isGroupUnlocked(group.id, categoryData);
           const progress = categoryData[group.id];
           const completed = progress?.completed ?? false;
 
@@ -298,10 +332,14 @@ function GroupSection({
 // Motivational Message Component
 function MotivationalMessage({
   completedGroups,
-  totalGroups
+  totalGroups,
+  finalQuizCompleted,
+  finalQuizUnlocked
 }: {
   completedGroups: number;
   totalGroups: number;
+  finalQuizCompleted: boolean;
+  finalQuizUnlocked: boolean;
 }) {
   if (completedGroups === 0) {
     return (
@@ -321,7 +359,7 @@ function MotivationalMessage({
     );
   }
 
-  if (completedGroups === totalGroups) {
+  if (completedGroups === totalGroups && finalQuizCompleted) {
     return (
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -349,6 +387,24 @@ function MotivationalMessage({
             You've conquered all patterns! Continue practicing to maintain fluency.
           </p>
         </div>
+      </motion.div>
+    );
+  }
+
+  if (completedGroups === totalGroups && finalQuizUnlocked) {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.9 }}
+        className="text-center p-6 bg-white rounded-2xl border border-border shadow-sm"
+      >
+        <p className="font-display text-lg text-text">
+          All chapters cleared. The final mixed quiz is ready.
+        </p>
+        <p className="text-text-muted mt-1">
+          Take the All Patterns Quiz to review every irregular verb pattern together.
+        </p>
       </motion.div>
     );
   }

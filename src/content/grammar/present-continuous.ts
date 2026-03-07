@@ -422,7 +422,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                         <div style="height: 40px; background: linear-gradient(90deg, rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.9)); border-radius: 20px; margin: 1rem 0; display: flex; align-items: center; justify-content: center;">
                             <span style="color: white; font-weight: 600; font-size: 0.75rem;">━━━━━━━━━</span>
                         </div>
-                        <p style="margin: 0; text-align: center; font-size: 0.875rem;">"I'm <strong>working</strong> from home <em>this week</em>."</p>
+                        <p style="margin: 0; text-align: center; font-size: 0.875rem; color: #1f2937;">"I'm <strong style="color: #1f2937;">working</strong> from home <em style="color: #475569;">this week</em>."</p>
                     </div>
                     <div style="background: #fef9f3; padding: 1rem; border-radius: 0.5rem; border: 2px solid #f59e0b;">
                         <h4 style="margin-top: 0; color: #f59e0b; text-align: center;">Present Simple</h4>
@@ -434,7 +434,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                             <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
                             <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%;"></div>
                         </div>
-                        <p style="margin: 0; text-align: center; font-size: 0.875rem;">"I <strong>work</strong> from home <em>every Friday</em>."</p>
+                        <p style="margin: 0; text-align: center; font-size: 0.875rem; color: #1f2937;">"I <strong style="color: #1f2937;">work</strong> from home <em style="color: #475569;">every Friday</em>."</p>
                     </div>
                 </div>
             `,

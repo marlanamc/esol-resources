@@ -19,15 +19,11 @@ export default function AvatarSection() {
     const handleAvatarChange = (avatarId: string) => {
         setCurrentAvatar(avatarId);
         localStorage.setItem("selectedAvatar", avatarId);
-        // TODO: Save avatar to user profile
-        console.log("Avatar changed to:", avatarId);
     };
 
     const handleColorChange = (colorId: string) => {
         setCurrentColor(colorId);
         localStorage.setItem("selectedColor", colorId);
-        // TODO: Save color to user profile
-        console.log("Color changed to:", colorId);
     };
 
     return (

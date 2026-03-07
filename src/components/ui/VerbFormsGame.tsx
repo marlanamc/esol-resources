@@ -323,20 +323,20 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-white rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 min-h-screen md:min-h-0"
+          className="bg-white dark:bg-[#162b3d] rounded-none md:rounded-3xl shadow-xl overflow-hidden border-x-0 md:border border-sage/20 dark:border-white/10 min-h-screen md:min-h-0"
         >
-          <div className="bg-terracotta p-8 text-white text-center pb-12">
+          <div className="bg-terracotta dark:bg-terracotta/90 p-8 text-white text-center pb-12">
             <Brain className="w-16 h-16 mx-auto mb-4 opacity-90" />
             <h1 className="text-4xl font-display font-bold mb-2">Verb Forms Challenge</h1>
             <p className="text-white/80">Master your verbs forms through practice!</p>
           </div>
           
-          <div className="p-6 md:p-8 space-y-10 -mt-6 bg-white rounded-t-3xl md:rounded-t-none">
+          <div className="p-6 md:p-8 space-y-10 -mt-6 bg-white dark:bg-[#162b3d] rounded-t-3xl md:rounded-t-none">
             {/* Challenge Level Section */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-2">
                 <Target className="w-4 h-4 text-terracotta" />
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">1. Choose Challenge Level</h3>
+                <h3 className="text-sm font-bold text-neutral-400 dark:text-neutral-300 uppercase tracking-widest">1. Choose Challenge Level</h3>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {(['easy', 'medium', 'hard'] as const).map((level) => (
@@ -350,17 +350,17 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     }))}
                     className={`relative p-5 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 overflow-hidden ${
                       state.difficulty === level 
-                        ? 'border-terracotta bg-terracotta/5 shadow-md ring-1 ring-terracotta/20 scale-[1.02]' 
-                        : 'border-sage/10 hover:border-terracotta/30 bg-white'
+                        ? 'border-terracotta bg-terracotta/5 dark:bg-terracotta/20 shadow-md ring-1 ring-terracotta/20 scale-[1.02]' 
+                        : 'border-sage/10 hover:border-terracotta/30 bg-white dark:bg-[#0d1620] dark:border-white/10 dark:hover:border-terracotta/40'
                     }`}
                   >
                     <span className={`capitalize font-black text-xl ${
-                      state.difficulty === level ? 'text-terracotta' : 'text-neutral-700'
+                      state.difficulty === level ? 'text-terracotta' : 'text-neutral-700 dark:text-gray-200'
                     }`}>
                       {level}
                     </span>
                     <span className={`text-[10px] font-bold uppercase tracking-tight ${
-                      state.difficulty === level ? 'text-terracotta/60' : 'text-neutral-400'
+                      state.difficulty === level ? 'text-terracotta/60' : 'text-neutral-400 dark:text-neutral-400'
                     }`}>
                       {level === 'easy' ? '1 form missing' : level === 'medium' ? '3 forms missing' : 'Only 1 form given'}
                     </span>
@@ -373,9 +373,9 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-2">
                 <Settings2 className="w-4 h-4 text-terracotta" />
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">2. Select Missing Forms to Test</h3>
+                <h3 className="text-sm font-bold text-neutral-400 dark:text-neutral-300 uppercase tracking-widest">2. Select Missing Forms to Test</h3>
               </div>
-              <div className="bg-neutral-50 p-4 rounded-2xl border border-neutral-100">
+              <div className="bg-neutral-50 dark:bg-[#0d1620] p-4 rounded-2xl border border-neutral-100 dark:border-white/10">
                 <div className="flex flex-wrap justify-center gap-2">
                   {(['v1', 'v1_3rd', 'v1_ing', 'v2', 'v3'] as (keyof VerbData)[]).map((form) => {
                     const isSelected = state.selectedForms.includes(form) && state.difficulty === 'custom';
@@ -416,8 +416,8 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                         style={style}
                         className={`px-5 py-3 rounded-xl border-2 font-bold transition-all min-w-[80px] ${
                           isSelected 
-                            ? 'text-neutral-900 shadow-md scale-105' 
-                            : 'bg-white text-neutral-400 border-neutral-200/50 hover:border-neutral-300'
+                            ? 'text-neutral-900 dark:text-gray-100 shadow-md scale-105' 
+                            : 'bg-white dark:bg-[#162b3d] text-neutral-400 dark:text-neutral-400 border-neutral-200/50 dark:border-white/20 hover:border-neutral-300 dark:hover:border-white/30'
                         }`}
                       >
                         {labels[form]}
@@ -425,7 +425,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
                     );
                   })}
                 </div>
-                <p className="text-[10px] text-center text-neutral-400 mt-3 font-medium">
+                <p className="text-[10px] text-center text-neutral-400 dark:text-neutral-300 mt-3 font-medium">
                   {state.difficulty === 'custom' 
                     ? 'Custom mode active: Selected forms will be hidden for the quiz.' 
                     : 'Select any form above to switch to Custom Mode and choose what to hide.'}
@@ -437,32 +437,32 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
             <div className="space-y-4">
               <div className="flex items-center gap-2 px-2">
                 <RotateCcw className="w-4 h-4 text-amber-500" />
-                <h3 className="text-sm font-bold text-neutral-400 uppercase tracking-widest">3. Extra Challenge</h3>
+                <h3 className="text-sm font-bold text-neutral-400 dark:text-neutral-300 uppercase tracking-widest">3. Extra Challenge</h3>
               </div>
               <div className={`
                 flex items-center justify-between p-5 rounded-2xl border-2 transition-all cursor-pointer group
                 ${state.irregularOnly 
-                  ? 'bg-amber-50 border-amber-200 shadow-sm' 
-                  : 'bg-white border-neutral-100 hover:border-neutral-200'}
+                  ? 'bg-amber-50 dark:bg-amber-900/30 border-amber-200 dark:border-amber-600/60 shadow-sm' 
+                  : 'bg-white dark:bg-[#0d1620] border-neutral-100 dark:border-white/10 hover:border-neutral-200 dark:hover:border-white/20'}
               `}
               onClick={() => setState(prev => ({ ...prev, irregularOnly: !prev.irregularOnly }))}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center transition-all bg-white ${
+                  <div className={`w-10 h-10 rounded-xl border-2 flex items-center justify-center transition-all bg-white dark:bg-[#162b3d] ${
                     state.irregularOnly 
-                      ? 'border-amber-500 text-amber-600 shadow-inner' 
-                      : 'border-neutral-200 group-hover:border-neutral-300 text-transparent'
+                      ? 'border-amber-500 dark:border-amber-400 text-amber-600 dark:text-amber-400 shadow-inner' 
+                      : 'border-neutral-200 dark:border-white/20 group-hover:border-neutral-300 dark:group-hover:border-white/30 text-transparent'
                   }`}>
                     <CheckCircle2 className={`w-6 h-6 transition-transform ${state.irregularOnly ? 'scale-100' : 'scale-50'}`} />
                   </div>
                   <div className="flex flex-col text-left">
                     <span className={`font-black text-lg select-none tracking-tight transition-colors ${
-                      state.irregularOnly ? 'text-amber-900' : 'text-neutral-700'
+                      state.irregularOnly ? 'text-amber-900 dark:text-amber-100' : 'text-neutral-700 dark:text-gray-200'
                     }`}>
                       Irregular Verbs only
                     </span>
                     <span className={`text-[10px] uppercase font-bold tracking-widest ${
-                      state.irregularOnly ? 'text-amber-600/70' : 'text-neutral-400'
+                      state.irregularOnly ? 'text-amber-600/70 dark:text-amber-300/90' : 'text-neutral-400 dark:text-neutral-400'
                     }`}>
                       {state.irregularOnly ? 'Focusing on irregulars' : 'Practicing all verbs'}
                     </span>
@@ -475,7 +475,7 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
               <button
                 onClick={startGame}
                 disabled={state.difficulty === 'custom' && state.selectedForms.length === 0}
-                className="w-full bg-neutral-900 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:bg-neutral-800 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-neutral-900 dark:bg-neutral-700 text-white py-5 rounded-2xl font-black text-xl shadow-xl hover:shadow-2xl hover:bg-neutral-800 dark:hover:bg-neutral-600 hover:-translate-y-1 transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 <Zap className="w-6 h-6 fill-amber-400 text-amber-400" />
                 Start Training Session
@@ -587,37 +587,37 @@ export default function VerbFormsGame({ contentStr, activityId }: Props) {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-6">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest mb-1">Round</span>
-            <span className="text-2xl font-display font-bold text-neutral-800">
+            <span className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Round</span>
+            <span className="text-2xl font-display font-bold text-neutral-800 dark:text-gray-100">
               {state.round}
             </span>
           </div>
-          <div className="h-10 w-px bg-neutral-200" />
+          <div className="h-10 w-px bg-neutral-200 dark:bg-white/20" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest mb-1">Verb</span>
-            <span className="text-2xl font-display font-bold text-neutral-800">
-              {state.currentIndex + 1} <span className="text-neutral-300 font-light mx-1">/</span> {state.verbs.length}
+            <span className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Verb</span>
+            <span className="text-2xl font-display font-bold text-neutral-800 dark:text-gray-100">
+              {state.currentIndex + 1} <span className="text-neutral-300 dark:text-gray-500 font-light mx-1">/</span> {state.verbs.length}
             </span>
           </div>
-          <div className="h-10 w-px bg-neutral-200" />
+          <div className="h-10 w-px bg-neutral-200 dark:bg-white/20" />
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase font-bold text-neutral-400 tracking-widest mb-1">Streak</span>
+            <span className="text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-1">Streak</span>
             <div className="flex items-center gap-1.5">
-              <Zap className={`w-5 h-5 ${state.streak > 0 ? 'text-amber-500 fill-amber-500 animate-pulse' : 'text-neutral-300'}`} />
-              <span className="text-2xl font-bold text-neutral-800">{state.streak}</span>
+              <Zap className={`w-5 h-5 ${state.streak > 0 ? 'text-amber-500 fill-amber-500 dark:text-amber-400 dark:fill-amber-400 animate-pulse' : 'text-neutral-300 dark:text-gray-500'}`} />
+              <span className="text-2xl font-bold text-neutral-800 dark:text-gray-100">{state.streak}</span>
             </div>
           </div>
         </div>
 
         <div className="flex-1 max-w-xs min-w-[200px]">
-          <div className="flex justify-between text-[10px] uppercase font-bold text-neutral-400 tracking-widest mb-2">
+          <div className="flex justify-between text-[10px] uppercase font-bold text-neutral-400 dark:text-neutral-300 tracking-widest mb-2">
             <span>Session Progress</span>
             <span>{Math.round(progress)}%</span>
           </div>
-          <div className="h-2 bg-neutral-100 rounded-full overflow-hidden">
+          <div className="h-2 bg-neutral-100 dark:bg-white/10 rounded-full overflow-hidden">
             <motion.div 
               animate={{ width: `${progress}%` }}
-              className="h-full bg-neutral-800"
+              className="h-full bg-neutral-800 dark:bg-amber-500"
             />
           </div>
         </div>
@@ -788,7 +788,7 @@ function InputCard({
           <motion.div 
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-4 bg-white/90 px-4 py-2 rounded-lg text-xs font-black text-rose-700 border border-rose-100 shadow-sm"
+            className="mt-4 bg-white/90 dark:bg-rose-950/95 px-4 py-2 rounded-lg text-xs font-black text-rose-700 dark:text-rose-200 border border-rose-100 dark:border-rose-700/60 shadow-sm"
           >
             {correctValue}
           </motion.div>

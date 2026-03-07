@@ -29,10 +29,11 @@ export const MIN_PASSWORD_LENGTH = 8;
  */
 export const MAX_PASSWORD_LENGTH = 128;
 export const DEFAULT_PASSWORD_BLOCKED_MESSAGE =
-    "English: You cannot use the default password (password123). Espanol: No puedes usar la clave temporal (password123).";
+    "English: You cannot use a known temporary password. Espanol: No puedes usar una clave temporal conocida.";
 
 const DISALLOWED_PASSWORDS = new Set([
     "password123",
+    "changeme123",
     "12345678",
     "123456789",
     "qwerty123",

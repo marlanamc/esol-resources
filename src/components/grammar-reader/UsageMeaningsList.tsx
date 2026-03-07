@@ -111,7 +111,7 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                         <Icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
                                     </motion.div>
                                     {/* Number badge */}
-                                    <div className={`absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full border-2 ${colorScheme.accent} flex items-center justify-center`}>
+                                    <div className={`absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full border-2 bg-[var(--color-surface-base)] ${colorScheme.accent}`}>
                                         <span className={`text-xs font-bold ${colorScheme.text}`}>{index + 1}</span>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@ export function UsageMeaningsList({ meanings }: UsageMeaningsListProps) {
                                         }}
                                     >
                                         {/* Example card with hover effect */}
-                                        <div className={`relative bg-white rounded-lg p-2.5 md:p-3 border-l-3 ${colorScheme.accent} shadow-sm hover:shadow-md transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5`}>
+                                        <div className={`relative rounded-lg bg-[var(--color-surface-elevated)] p-2.5 md:p-3 border-l-3 ${colorScheme.accent} shadow-sm hover:shadow-md transition-[box-shadow,transform] duration-200 hover:-translate-y-0.5`}>
                                             <div className="pl-1.5 md:pl-3.5">
                                                 <p
                                                     className="text-sm md:text-base text-text font-medium leading-relaxed"

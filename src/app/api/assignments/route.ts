@@ -2,19 +2,17 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageActivity, canManageClass, ensureTeacher } from "@/lib/policies";
-import { AssignmentPostBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { canManageActivity, canManageClass } from "@/lib/policies";
+import { AssignmentPatchBodySchema, AssignmentPostBodySchema, parseApiBody } from "@/lib/api-schemas";
+import { ApiErrors } from "@/lib/api-response";
+import { requireTeacher } from "@/lib/api-auth";
+import { logger } from "@/lib/logger";
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-        const teacherCheck = ensureTeacher(session.user);
-        if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
         const admin = teacherCheck.admin;
 
         const body = await request.json();
@@ -28,11 +26,11 @@ export async function POST(request: NextRequest) {
         });
 
         if (!classItem) {
-            return NextResponse.json({ error: "Class not found" }, { status: 404 });
+            return ApiErrors.notFound("Class", classId);
         }
 
-        if (!canManageClass(session.user, admin, classItem.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        if (!canManageClass(teacherCheck.user, admin, classItem.teacherId)) {
+            return ApiErrors.forbidden();
         }
 
         // Verify activity exists
@@ -44,11 +42,11 @@ export async function POST(request: NextRequest) {
         });
 
         if (!activity) {
-            return NextResponse.json({ error: "Activity not found" }, { status: 404 });
+            return ApiErrors.notFound("Activity", activityId);
         }
 
-        if (!canManageActivity(session.user, admin, activity.createdBy)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        if (!canManageActivity(teacherCheck.user, admin, activity.createdBy)) {
+            return ApiErrors.forbidden();
         }
 
         const assignmentData = {
@@ -92,43 +90,22 @@ export async function POST(request: NextRequest) {
 
         return NextResponse.json(assignment);
     } catch (error: unknown) {
-        console.error("Error creating assignment:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to create assignment" },
-            { status: 500 }
-        );
+        logger.error("Error creating assignment", error);
+        return ApiErrors.internal("Failed to create assignment");
     }
 }
 
 export async function PATCH(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-        const teacherCheck = ensureTeacher(session.user);
-        if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
         const admin = teacherCheck.admin;
 
         const body = await request.json();
-        const { assignmentId, isFeatured, syncToSectionGroup = true } = body;
-
-        if (!assignmentId || typeof isFeatured !== 'boolean') {
-            return NextResponse.json(
-                { error: "Assignment ID and isFeatured boolean are required" },
-                { status: 400 }
-            );
-        }
-
-        if (typeof syncToSectionGroup !== "boolean") {
-            return NextResponse.json(
-                { error: "syncToSectionGroup must be a boolean" },
-                { status: 400 }
-            );
-        }
+        const validated = parseApiBody(AssignmentPatchBodySchema, body);
+        if (!validated.ok) return validated.response;
+        const { assignmentId, isFeatured, syncToSectionGroup } = validated.data;
 
         // Verify teacher owns the class that the assignment belongs to
         const assignment = await prisma.assignment.findUnique({
@@ -137,11 +114,11 @@ export async function PATCH(request: NextRequest) {
         });
 
         if (!assignment) {
-            return NextResponse.json({ error: "Assignment not found" }, { status: 404 });
+            return ApiErrors.notFound("Assignment", assignmentId);
         }
 
-        if (!canManageClass(session.user, admin, assignment.class.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        if (!canManageClass(teacherCheck.user, admin, assignment.class.teacherId)) {
+            return ApiErrors.forbidden();
         }
 
         let updatedCount = 1;
@@ -176,7 +153,7 @@ export async function PATCH(request: NextRequest) {
         });
 
         if (!updatedAssignment) {
-            return NextResponse.json({ error: "Assignment not found after update" }, { status: 404 });
+            return ApiErrors.notFound("Assignment", assignmentId);
         }
 
         return NextResponse.json({
@@ -184,11 +161,7 @@ export async function PATCH(request: NextRequest) {
             updatedCount,
         });
     } catch (error: unknown) {
-        console.error("Error updating assignment:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to update assignment" },
-            { status: 500 }
-        );
+        logger.error("Error updating assignment", error);
+        return ApiErrors.internal("Failed to update assignment");
     }
 }

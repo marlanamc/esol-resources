@@ -7,6 +7,7 @@ import { parseCategoryData } from '@/lib/categoryData';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
 import { PenLine, Gamepad2, BookOpen, ClipboardList, Sparkles, LayoutGrid, Rows3 } from 'lucide-react';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
+import { getLearnerCategoryTone } from '@/lib/learner-theme';
 
 interface VocabCategoryData {
     'word-list'?: { completed: boolean; progress: number; completedAt?: string };
@@ -60,7 +61,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     actions,
     refreshOnMount = false,
 }) => {
-    const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border border-amber-300/70 bg-amber-50 text-amber-800";
+    const featuredNewBadgeClassName = "inline-flex items-center gap-1 rounded-full border";
     const hasInitialAssignments = initialAssignments !== undefined;
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
     const [activeFilter, setActiveFilter] = useState<string>('all');
@@ -140,9 +141,9 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (loading) {
         return (
             <div className="mb-8">
-                <div className="bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden">
+                <div className="surface-elevated rounded-3xl border surface-card-shadow overflow-hidden" style={{ borderColor: 'var(--border-subtle)' }}>
                     {/* Skeleton header */}
-                    <div className="p-4 border-b border-border/30 bg-gradient-to-br from-white via-white to-bg-light/30">
+                    <div className="p-4 border-b border-border/30" style={{ background: 'linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-subtle) 100%)' }}>
                         <div className="flex items-center justify-between gap-3">
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-xl skeleton"></div>
@@ -181,9 +182,9 @@ export const TodaysAssignments: React.FC<Props> = ({
     if (assignments.length === 0) {
         return (
             <div className="mb-8">
-                <div className="bg-white rounded-2xl border border-border/40 shadow-lg overflow-hidden">
+                <div className="surface-elevated rounded-3xl border surface-card-shadow overflow-hidden" style={{ borderColor: 'var(--border-subtle)' }}>
                     {/* Header matching the normal checklist */}
-                    <div className="px-4 py-3 border-b border-border/10 bg-white flex items-center gap-3">
+                    <div className="px-4 py-3 border-b border-border/10 surface-elevated flex items-center gap-3">
                         <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-lg">
                             📋
                         </div>
@@ -251,25 +252,15 @@ export const TodaysAssignments: React.FC<Props> = ({
     };
 
     const getCategoryStyle = (category?: string | null) => {
-        const categoryKey = (category || '').toLowerCase();
-        // Bold accent palette — confident color hits, clean white card bodies
-        const categoryStyles: Record<string, { label: string; bg: string; text: string; accent: string; cardBg: string }> = {
-            vocab: { label: 'VOCAB', bg: '#edf5f4', text: '#1a6560', accent: '#268a82', cardBg: '#ffffff' },
-            vocabulary: { label: 'VOCAB', bg: '#edf5f4', text: '#1a6560', accent: '#268a82', cardBg: '#ffffff' },
-            grammar: { label: 'GRAMMAR', bg: '#eef4ec', text: '#2d6930', accent: '#3d8e42', cardBg: '#ffffff' },
-            games: { label: 'GAMES', bg: '#f2edf6', text: '#5c2d7a', accent: '#7d3fa6', cardBg: '#ffffff' },
-            activity: { label: 'GAMES', bg: '#f2edf6', text: '#5c2d7a', accent: '#7d3fa6', cardBg: '#ffffff' },
-            numbers: { label: 'NUMBERS', bg: '#edf5f4', text: '#1a6560', accent: '#268a82', cardBg: '#ffffff' },
-            number: { label: 'NUMBERS', bg: '#edf5f4', text: '#1a6560', accent: '#268a82', cardBg: '#ffffff' },
-            reading: { label: 'READING', bg: '#edf5f4', text: '#1a6560', accent: '#268a82', cardBg: '#ffffff' },
-            writing: { label: 'WRITING', bg: '#eef4ec', text: '#2d6930', accent: '#3d8e42', cardBg: '#ffffff' },
-            pronunciation: { label: 'PRONUNCIATION', bg: '#f2edf6', text: '#5c2d7a', accent: '#7d3fa6', cardBg: '#ffffff' },
-            speaking: { label: 'SPEAKING', bg: '#f5f0e8', text: '#7a5020', accent: '#b56e1a', cardBg: '#ffffff' },
-            listening: { label: 'LISTENING', bg: '#edf5f4', text: '#1a6560', accent: '#268a82', cardBg: '#ffffff' },
-            quizzes: { label: 'QUIZ', bg: '#f5edea', text: '#923a25', accent: '#c44a28', cardBg: '#ffffff' },
-            default: { label: 'ACTIVITY', bg: '#f2efea', text: '#5a4530', accent: '#8a7358', cardBg: '#ffffff' },
+        const tone = getLearnerCategoryTone(category);
+        return {
+            label: tone.label.toUpperCase(),
+            bg: tone.chipBg,
+            pastelBg: tone.surfaceMuted,
+            text: tone.chipText,
+            accent: tone.accent,
+            cardBg: 'var(--surface-elevated)',
         };
-        return categoryStyles[categoryKey] || categoryStyles.default;
     };
 
     const isGameCategory = (category?: string | null): boolean => {
@@ -387,7 +378,7 @@ export const TodaysAssignments: React.FC<Props> = ({
         ) => (
             <div
                 key={assignment.id}
-                className={`relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-colors duration-200 hover:bg-white/40 border-b border-border/10 last:border-0 ${isCompleted ? 'opacity-75' : ''}`}
+                className={`relative group/row pl-3 pr-2 py-2.5 sm:px-4 flex flex-col gap-1 sm:gap-0 transition-colors duration-200 border-b border-border/10 last:border-0 ${isCompleted ? 'opacity-75' : ''}`}
             >
                 {/* Title row: checkbox + title + button aligned on one line (mobile & desktop) */}
                 <div className="flex items-center gap-3 min-w-0">
@@ -401,8 +392,8 @@ export const TodaysAssignments: React.FC<Props> = ({
                         <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
                                 isCompleted
                                     ? 'bg-secondary/15 border-secondary/45 text-secondary'
-                                    : 'bg-white border-slate-400/90 text-transparent shadow-sm'
-                            }`}>
+                                    : 'text-transparent shadow-sm'
+                            }`} style={isCompleted ? undefined : { backgroundColor: 'var(--surface-base)', borderColor: 'var(--border-strong)' }}>
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3} aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                             </div>
                         )}
@@ -410,14 +401,14 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* NEW badge - right in front of title */}
                     {isNew && (
-                        <span className={`${featuredNewBadgeClassName} shrink-0 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide`}>
+                        <span className={`${featuredNewBadgeClassName} shrink-0 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide`} style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)', color: 'var(--tone-speaking-chip-text)' }}>
                             <Sparkles className="h-2.5 w-2.5 text-amber-700" aria-hidden />
                             New
                         </span>
                     )}
 
                     {assignment.sectionCount && assignment.sectionCount > 1 && (
-                        <span className="shrink-0 inline-flex items-center rounded-full border border-slate-300/70 bg-slate-50 px-2 py-0.5 text-[9px] font-semibold text-slate-600">
+                        <span className="shrink-0 inline-flex items-center rounded-full border px-2 py-0.5 text-[9px] font-semibold" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-subtle)', color: 'var(--text-color-muted)' }}>
                             {assignment.sectionCount} sections
                         </span>
                     )}
@@ -448,51 +439,24 @@ export const TodaysAssignments: React.FC<Props> = ({
                             href={assignment.href}
                             className="inline-flex items-center justify-center !min-h-0 min-w-[82px] sm:min-w-[92px] h-9 sm:h-10 px-3 sm:px-4 text-[13px] sm:text-sm font-semibold tracking-tight transition-[color,background-color,border-color,transform,box-shadow] duration-200 rounded-full whitespace-nowrap active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1"
                             style={isGameGroup ? {
-                                /* Play: distinct tinted style */
                                 color: categoryStyle.text,
                                 borderWidth: '1.5px',
                                 borderStyle: 'solid',
-                                borderColor: `${categoryStyle.accent}50`,
-                                backgroundColor: `${categoryStyle.accent}18`,
+                                borderColor: categoryStyle.accent,
+                                backgroundColor: categoryStyle.bg,
                             } : isCompleted ? {
-                                /* Review: visible but secondary */
                                 color: categoryStyle.text,
                                 borderWidth: '1.5px',
                                 borderStyle: 'solid',
-                                borderColor: `${categoryStyle.accent}45`,
-                                backgroundColor: `${categoryStyle.accent}12`,
+                                borderColor: categoryStyle.accent,
+                                backgroundColor: categoryStyle.bg,
                             } : {
-                                /* Start: solid fill - most prominent */
-                                color: '#fff',
+                                color: 'var(--text-on-accent)',
                                 borderWidth: '1.5px',
                                 borderStyle: 'solid',
                                 borderColor: categoryStyle.accent,
                                 backgroundColor: categoryStyle.accent,
-                                boxShadow: `0 1px 3px ${categoryStyle.accent}40`,
-                            }}
-                            onMouseEnter={(e) => {
-                                if (isGameGroup) {
-                                    e.currentTarget.style.borderColor = `${categoryStyle.accent}80`;
-                                    e.currentTarget.style.backgroundColor = `${categoryStyle.accent}28`;
-                                } else if (isCompleted) {
-                                    e.currentTarget.style.borderColor = `${categoryStyle.accent}70`;
-                                    e.currentTarget.style.backgroundColor = `${categoryStyle.accent}22`;
-                                } else {
-                                    e.currentTarget.style.backgroundColor = categoryStyle.text;
-                                    e.currentTarget.style.borderColor = categoryStyle.text;
-                                }
-                            }}
-                            onMouseLeave={(e) => {
-                                if (isGameGroup) {
-                                    e.currentTarget.style.borderColor = `${categoryStyle.accent}50`;
-                                    e.currentTarget.style.backgroundColor = `${categoryStyle.accent}18`;
-                                } else if (isCompleted) {
-                                    e.currentTarget.style.borderColor = `${categoryStyle.accent}45`;
-                                    e.currentTarget.style.backgroundColor = `${categoryStyle.accent}12`;
-                                } else {
-                                    e.currentTarget.style.backgroundColor = categoryStyle.accent;
-                                    e.currentTarget.style.borderColor = categoryStyle.accent;
-                                }
+                                boxShadow: '0 1px 3px rgba(13, 22, 32, 0.18)',
                             }}
                             aria-label={`${isGameGroup ? 'Play' : isCompleted ? 'Review' : 'Start'} ${displayTitle}`}
                         >
@@ -535,12 +499,12 @@ export const TodaysAssignments: React.FC<Props> = ({
                         if (vocabProgress && vocabProgress.completed < vocabProgress.total) {
                             return (
                                 <div className="flex items-center gap-2 mt-1.5">
-                                     <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[9px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60 shadow-sm">
+                                     <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[9px] font-bold border shadow-sm" style={{ backgroundColor: 'var(--tone-speaking-chip-bg)', color: 'var(--tone-speaking-chip-text)', borderColor: 'var(--tone-speaking-border)' }}>
                                         <span className="tracking-tight">{vocabProgress.completed} / {vocabProgress.total}</span>
                                         <div className="flex items-center gap-1">
                                             {vocabProgress.types.map(type => {
                                                 const isComplete = vocabProgress.categoryData[type]?.completed;
-                                                return <div key={type} className={`w-1.5 h-1.5 rounded-full ${isComplete ? 'bg-amber-600' : 'bg-amber-200'}`} />;
+                                                return <div key={type} className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: isComplete ? 'var(--tone-speaking-accent)' : 'var(--tone-speaking-border)' }} />;
                                             })}
                                         </div>
                                     </div>
@@ -552,7 +516,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                         if (!isCompleted && progressValue > 0) {
                             return (
                                 <div className="mt-1.5">
-                                    <div className="h-1.5 w-24 max-w-full bg-[#e8e1d6]/50 rounded-full overflow-hidden border border-[#e8e1d6]/30">
+                                    <div className="h-1.5 w-24 max-w-full rounded-full overflow-hidden border" style={{ backgroundColor: 'var(--surface-subtle)', borderColor: 'var(--border-subtle)' }}>
                                         <div
                                             className="h-full rounded-full transition-[width] duration-300"
                                             style={{ width: `${progressValue}%`, backgroundColor: categoryStyle.accent }}
@@ -570,17 +534,17 @@ export const TodaysAssignments: React.FC<Props> = ({
         return (
             <div className="mb-8">
                 {/* Unified checklist container - header + category groups connected */}
-                <div className={`rounded-2xl overflow-hidden border bg-white shadow-[0_4px_12px_rgba(52,43,34,0.06)] ${isFullyComplete ? 'border-[#d7c09a]/70 ring-1 ring-[#d7c09a]/30' : 'border-[#e7dfd3]'}`}>
+                <div className={`rounded-3xl overflow-hidden border surface-elevated surface-card-shadow ${isFullyComplete ? 'ring-2 ring-[var(--tone-speaking-border)]' : ''}`} style={{ borderColor: isFullyComplete ? 'var(--tone-speaking-border)' : 'var(--border-subtle)' }}>
                     {/* Progress header - enhanced celebration when 100% */}
-                    <div className={`px-4 py-3 border-b border-border/15 ${isFullyComplete ? 'bg-white shadow-[inset_0_1px_0_0_rgba(255,255,255,1)]' : 'bg-white'}`}>
+                    <div className="px-4 py-3 border-b border-border/15 surface-elevated">
                         <div className="flex items-center justify-between gap-3 mb-3">
                             <div className="flex items-center gap-3">
-                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${isFullyComplete ? 'bg-[#f8f3ec] border border-[#d7c09a]/30 shadow-sm' : 'bg-primary/10 text-primary'}`}>
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-lg ${isFullyComplete ? 'border shadow-sm' : 'bg-primary/10 text-primary'}`} style={isFullyComplete ? { backgroundColor: 'var(--tone-speaking-chip-bg)', borderColor: 'var(--tone-speaking-border)' } : undefined}>
                                     {isFullyComplete ? '🏆' : '📋'}
                                 </div>
                                 {resolvedTitle ? (
                                     <div className="min-w-0">
-                                        <h2 className="text-lg sm:text-xl font-display font-bold text-[#1f2633] leading-tight">
+                                        <h2 className="text-lg sm:text-xl font-display font-bold text-text leading-tight">
                                             {resolvedTitle}
                                         </h2>
                                         {weeklyRangeLabel ? (
@@ -593,13 +557,13 @@ export const TodaysAssignments: React.FC<Props> = ({
                             </div>
                             <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                                 {actions && <div className="mr-2">{actions}</div>}
-                                <span className="hidden sm:inline-block px-2 py-1 rounded-md bg-white border border-border/50 tabular-nums">{completedCount}/{checklistRows.length} done</span>
-                                <div className="lg:hidden inline-flex items-center rounded-full border border-border/25 bg-white/70 p-0.5">
+                                <span className="hidden sm:inline-block px-2 py-1 rounded-md border tabular-nums" style={{ backgroundColor: 'var(--surface-base)', borderColor: 'var(--border-subtle)' }}>{completedCount}/{checklistRows.length} done</span>
+                                <div className="lg:hidden inline-flex items-center rounded-full border p-0.5" style={{ borderColor: 'var(--border-subtle)', backgroundColor: 'var(--surface-subtle)' }}>
                                     <button
                                         onClick={() => setMobileViewMode('grouped')}
                                         className={`!min-h-0 !min-w-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none transition-colors touch-manipulation ${
                                             mobileViewMode === 'grouped'
-                                                ? 'bg-white text-text shadow-sm border border-border/25'
+                                                ? 'bg-[var(--surface-base)] text-text shadow-sm border border-border/25'
                                                 : 'text-text/65'
                                         }`}
                                         aria-label="Grouped view"
@@ -611,7 +575,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         onClick={() => setMobileViewMode('condensed')}
                                         className={`!min-h-0 !min-w-0 px-2.5 py-1 rounded-full text-[11px] font-semibold leading-none transition-colors touch-manipulation ${
                                             mobileViewMode === 'condensed'
-                                                ? 'bg-white text-text shadow-sm border border-border/25'
+                                                ? 'bg-[var(--surface-base)] text-text shadow-sm border border-border/25'
                                                 : 'text-text/65'
                                         }`}
                                         aria-label="Condensed view"
@@ -629,11 +593,16 @@ export const TodaysAssignments: React.FC<Props> = ({
                                     <span>{completedCount} of {checklistRows.length} finished</span>
                                 </div>
 
-                                <div className={`relative overflow-hidden rounded-[999px] border h-4 ${
+                                <div className={`relative overflow-hidden rounded-full border h-5 ${
                                     isFullyComplete
-                                        ? 'border-[#d7c09a]/70 bg-[#f7efe4] shadow-[inset_0_1px_2px_rgba(138,91,61,0.08)]'
-                                        : 'border-[#e5d8c8] bg-[linear-gradient(90deg,#f6f0e8_0%,#fbf8f3_50%,#f3ede5_100%)] shadow-[inset_0_1px_2px_rgba(78,57,39,0.05)]'
-                                }`}>
+                                        ? 'border-[#d7c09a]/50 shadow-[inset_0_1px_2px_rgba(138,91,61,0.06)] dark:border-[rgba(245,217,138,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.3)]'
+                                        : 'border-[#e8e0d4]/50 shadow-[inset_0_1px_2px_rgba(78,57,39,0.04)] dark:border-[rgba(226,232,240,0.24)] dark:shadow-[inset_0_1px_2px_rgba(8,16,24,0.32)]'
+                                }`}
+                                style={{
+                                    background: isFullyComplete
+                                        ? 'var(--checklist-track-bg-complete)'
+                                        : 'var(--checklist-track-bg)',
+                                }}>
                                     <div
                                         className="absolute inset-y-0 left-0 rounded-[999px] transition-[width] duration-700 ease-out"
                                         style={{
@@ -697,16 +666,12 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* === MOBILE: Category Filters (Condensed mode) === */}
                     {mobileViewMode === 'condensed' && (
-                    <div className="lg:hidden bg-white/80 border-b border-border/5">
+                    <div className="lg:hidden border-b border-border/5" style={{ backgroundColor: 'var(--surface-subtle)' }}>
                         <div className="flex items-center gap-2 px-3 py-2.5 overflow-x-auto no-scrollbar mask-edges">
                             <button
                                 onClick={() => setActiveFilter('all')}
-                                className={`shrink-0 !min-h-0 !min-w-0 px-2.5 py-0.5 rounded-full text-[7.5px] font-bold uppercase leading-none transition-all duration-200 flex items-center gap-1 ${
-                                    activeFilter === 'all'
-                                        ? 'bg-white text-[#2d2a26] border border-[#b86a56]/70 shadow-sm'
-                                        : 'bg-white/60 text-text/70 hover:bg-white border border-border/30 hover:shadow-sm'
-                                }`}
-                                style={{ fontSize: '10px', WebkitTextSizeAdjust: '100%' }}
+                                className={`shrink-0 !min-h-0 !min-w-0 px-2.5 py-0.5 rounded-full text-[7.5px] font-bold uppercase leading-none transition-all duration-200 flex items-center gap-1 ${activeFilter === 'all' ? 'shadow-sm' : 'text-text/70 hover:shadow-sm'}`}
+                                style={{ fontSize: '10px', WebkitTextSizeAdjust: '100%', backgroundColor: activeFilter === 'all' ? 'var(--surface-base)' : 'var(--surface-overlay)', color: activeFilter === 'all' ? 'var(--text-color)' : undefined, borderColor: activeFilter === 'all' ? 'var(--color-primary)' : 'var(--border-subtle)' }}
                             >
                                 ALL
                                 <span className={`px-1 py-0.5 rounded text-[7.5px] font-bold leading-none ${activeFilter === 'all' ? 'bg-white/20' : 'bg-black/5'}`}>
@@ -726,9 +691,9 @@ export const TodaysAssignments: React.FC<Props> = ({
                                         style={{
                                             fontSize: '10px',
                                             WebkitTextSizeAdjust: '100%',
-                                            backgroundColor: isActive ? groupStyle.text : 'rgba(255, 255, 255, 0.6)',
-                                            color: isActive ? '#fff' : groupStyle.text,
-                                            borderColor: isActive ? groupStyle.text : `${groupStyle.text}30`,
+                                            backgroundColor: isActive ? groupStyle.accent : 'var(--surface-overlay)',
+                                            color: isActive ? 'var(--text-on-accent)' : groupStyle.text,
+                                            borderColor: isActive ? groupStyle.accent : 'var(--border-subtle)',
                                         }}
                                     >
                                         <span className={`[&>svg]:w-3 [&>svg]:h-3 [&>svg]:stroke-[2.5px] ${isActive ? 'text-white/90' : 'opacity-70'}`}>
@@ -747,8 +712,8 @@ export const TodaysAssignments: React.FC<Props> = ({
 
                     {/* === MOBILE: Unified flat list (Condensed mode) === */}
                     {mobileViewMode === 'condensed' && (
-                    <div className="lg:hidden bg-white/80">
-                        <div className="bg-[#fdfbf7] sm:bg-[#fdfbf8] rounded-b-2xl overflow-hidden shadow-inner-sm">
+                    <div className="lg:hidden" style={{ backgroundColor: 'var(--surface-subtle)' }}>
+                        <div className="rounded-b-2xl overflow-hidden shadow-inner-sm" style={{ backgroundColor: 'var(--surface-base)' }}>
                             <div className="divide-y divide-border/10">
                                 {sortedRows
                                     .filter(row => {
@@ -787,15 +752,15 @@ export const TodaysAssignments: React.FC<Props> = ({
                     )}
 
                     {/* === GROUPED VIEW: default on mobile + desktop === */}
-                    <div className={`${mobileViewMode === 'grouped' ? 'block' : 'hidden'} lg:block p-2.5 sm:p-4 bg-white`}>
+                    <div className={`${mobileViewMode === 'grouped' ? 'block' : 'hidden'} lg:block p-2.5 sm:p-4`} style={{ backgroundColor: 'var(--surface-base)' }}>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:auto-rows-fr">
                             {groups.map((group) => {
                                 const groupStyle = getCategoryStyle(group.key);
                                 return (
                                     <div
                                         key={group.key}
-                                        className="rounded-xl overflow-hidden border border-[#d7c09a]/45 shadow-[0_2px_8px_rgba(52,43,34,0.06)] hover:shadow-[0_4px_12px_rgba(52,43,34,0.1)] transition-all duration-300 flex flex-col group/card"
-                                        style={{ backgroundColor: groupStyle.cardBg || 'white' }}
+                                        className="rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col group/card surface-card-shadow"
+                                        style={{ backgroundColor: groupStyle.pastelBg || 'rgba(255,255,255,0.95)', borderColor: groupStyle.accent }}
                                     >
                                         {/* Category header with tinted background */}
                                         {/* Category header */}
@@ -810,9 +775,9 @@ export const TodaysAssignments: React.FC<Props> = ({
                                                 <span className="opacity-80" style={{ color: groupStyle.accent }}>{group.icon}</span>
                                                 <Link
                                                     href={`/dashboard/activities?category=${group.key === 'activity' ? 'games' : group.key}`}
-                                                    className="font-bold text-[15px] tracking-tight hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
-                                                    style={{ color: groupStyle.text }}
-                                                >
+                                                className="font-bold text-[15px] tracking-tight hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-1 rounded"
+                                                style={{ color: groupStyle.text }}
+                                            >
                                                     {group.label}
                                                 </Link>
                                                 <span

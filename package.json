@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-env.mjs && npm run check:nullable-upserts && npm run audit:answer-position",
+    "prebuild": "node scripts/check-env.mjs && npm run check:repo-hygiene && npm run check:nullable-upserts && npm run audit:answer-position",
     "build": "prisma generate && next build",
     "deploy": "prisma migrate deploy && next build",
     "postinstall": "prisma generate",
@@ -35,6 +35,7 @@
     "audit:answer-position": "node scripts/checks/audit-answer-position-bias.js",
     "audit:answer-position:update-baseline": "node scripts/checks/audit-answer-position-bias.js --update-baseline",
     "check:nullable-upserts": "node scripts/checks/check-null-assignment-upserts.mjs",
+    "check:repo-hygiene": "node scripts/check-repo-hygiene.mjs",
     "typecheck": "tsc --noEmit",
     "db:seed": "npm run db:seed:grammar",
     "db:seed:grammar": "npx tsx prisma/seed-grammar-only.ts && node prisma/seed.js",

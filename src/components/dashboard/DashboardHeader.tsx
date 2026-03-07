@@ -26,8 +26,13 @@ export function DashboardHeader({ userName = "", variant = "default" }: Dashboar
 
     return (
         <header
-            className="sticky top-0 border-b z-[260] bg-[#fef9f3] border-[rgba(0,0,0,0.08)] shadow-[0_1px_4px_rgba(38,30,20,0.06)] sm:shadow-sm"
-            style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
+            className="sticky top-0 border-b z-[260] backdrop-blur-sm"
+            style={{
+                paddingTop: "env(safe-area-inset-top, 0px)",
+                backgroundColor: "color-mix(in srgb, var(--surface-overlay) 98%, transparent)",
+                borderColor: "var(--border-subtle)",
+                boxShadow: "0 1px 6px rgba(13,22,32,0.10)",
+            }}
         >
             <div className="max-w-[1800px] mx-auto py-4 sm:py-5 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
                 <div className="flex-1">
@@ -58,7 +63,7 @@ export function DashboardHeader({ userName = "", variant = "default" }: Dashboar
                     ) : null}
                     <Link
                         href="/dashboard/leaderboard"
-                        className="hidden md:inline-flex shrink-0 items-center gap-2 px-3 py-2 text-sm font-semibold rounded-lg border shadow-md transition-colors text-white hover:bg-[#7a9384] hover:border-[#6d8577] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
+                        className="hidden md:inline-flex shrink-0 items-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-full border shadow-[0_2px_8px_rgba(136,163,146,0.12)] transition-all duration-200 text-white hover:shadow-[0_4px_12px_rgba(136,163,146,0.2)] hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-[#88A392] focus:ring-offset-1 min-w-[132px] justify-center"
                         style={{
                             backgroundColor: "#88A392",
                             borderColor: "#7a9384",

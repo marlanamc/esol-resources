@@ -7,7 +7,8 @@ import { BCRYPT_ROUNDS, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, DEFAULT_PASSWO
 import { createAuditLogger } from "@/lib/audit-log";
 import { isTeacherAdmin } from "@/lib/roles";
 import { checkRateLimit, authRateLimitKey } from "@/lib/rate-limit";
-import { ApiErrors } from "@/lib/api-response";
+import { ApiErrors, apiSuccess } from "@/lib/api-response";
+import { requireTeacher } from "@/lib/api-auth";
 
 export async function POST(request: Request) {
     const key = authRateLimitKey(request, "admin-reset-password");
@@ -16,10 +17,10 @@ export async function POST(request: Request) {
     }
 
     const session = await getServerSession(authOptions);
+    const teacherCheck = requireTeacher(session);
     const audit = createAuditLogger(request);
 
-    if (!session?.user || session.user.role !== "teacher") {
-        // Log unauthorized attempt
+    if (!teacherCheck.ok) {
         if (session?.user) {
             audit.failure(
                 'admin.unauthorized_attempt',
@@ -28,11 +29,11 @@ export async function POST(request: Request) {
                 'Non-teacher attempted to reset student password'
             );
         }
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        return teacherCheck.response;
     }
 
-    const { userId, newPassword, allowDefaultPassword } = await request.json();
-    const admin = isTeacherAdmin(session.user);
+    const { userId, newPassword } = await request.json();
+    const admin = isTeacherAdmin(teacherCheck.user);
 
     if (!userId || typeof userId !== "string") {
         return NextResponse.json({ error: "userId is required" }, { status: 400 });
@@ -50,10 +51,7 @@ export async function POST(request: Request) {
     if (newPassword.length > MAX_PASSWORD_LENGTH) {
         return NextResponse.json({ error: `Password must not exceed ${MAX_PASSWORD_LENGTH} characters.` }, { status: 400 });
     }
-    const canUseDefaultPassword =
-        allowDefaultPassword === true && newPassword.trim().toLowerCase() === "password123";
-
-    if (isDisallowedPassword(newPassword) && !canUseDefaultPassword) {
+    if (isDisallowedPassword(newPassword)) {
         return NextResponse.json({ error: DEFAULT_PASSWORD_BLOCKED_MESSAGE }, { status: 400 });
     }
 
@@ -79,7 +77,7 @@ export async function POST(request: Request) {
         : await prisma.classEnrollment.findFirst({
             where: {
                 studentId: userId,
-                class: { teacherId: session.user.id },
+                class: { teacherId: teacherCheck.user.id },
                 student: {
                     isSystemAccount: false,
                 },
@@ -89,8 +87,8 @@ export async function POST(request: Request) {
     if (!enrollment) {
         audit.failure(
             'admin.unauthorized_student_access',
-            session.user.id,
-            session.user.role,
+            teacherCheck.user.id,
+            teacherCheck.user.role || "teacher",
             `Teacher attempted to reset password for student not in their classes: ${userId}`
         );
         return NextResponse.json({ error: "Access denied - student not in your classes" }, { status: 403 });
@@ -110,14 +108,14 @@ export async function POST(request: Request) {
     // AUDIT: Log password reset action
     audit.success(
         'user.password_reset',
-        session.user.id,
-        session.user.role,
+        teacherCheck.user.id,
+        teacherCheck.user.role || "teacher",
         {
             targetId: userId,
             targetType: 'user',
-            metadata: { resetBy: 'teacher', allowDefaultPassword: canUseDefaultPassword }
+            metadata: { resetBy: 'teacher' }
         }
     );
 
-    return NextResponse.json({ ok: true });
+    return apiSuccess(undefined, 200, "Password updated");
 }

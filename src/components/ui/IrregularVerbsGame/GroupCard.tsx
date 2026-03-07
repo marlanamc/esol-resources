@@ -73,6 +73,12 @@ const PATTERN_COLORS: Record<string, { bg: string; border: string; accent: strin
     border: 'border-lime-200',
     accent: 'bg-lime-600',
     glow: 'hover:shadow-lime-100'
+  },
+  'all-patterns-quiz': {
+    bg: 'from-indigo-50 via-sky-50 to-amber-50',
+    border: 'border-indigo-200',
+    accent: 'bg-indigo-500',
+    glow: 'hover:shadow-indigo-100'
   }
 };
 
@@ -96,8 +102,8 @@ export function GroupCard({
         relative w-full text-left rounded-2xl p-5
         transition-all duration-300 overflow-hidden
         ${unlocked
-          ? `bg-gradient-to-br ${colors.bg} ${colors.border} border-2 cursor-pointer shadow-sm ${colors.glow} hover:shadow-lg`
-          : 'bg-bg-gray border-2 border-border cursor-not-allowed'
+          ? `bg-gradient-to-br ${colors.bg} ${colors.border} dark:from-[#0d1620] dark:to-[#162b3d] dark:border-white/10 border-2 cursor-pointer shadow-sm ${colors.glow} hover:shadow-lg dark:hover:border-white/20`
+          : 'bg-bg-gray border-2 border-border dark:border-white/10 cursor-not-allowed'
         }
       `}
     >
@@ -146,7 +152,7 @@ export function GroupCard({
         </div>
 
         {/* Pattern Example */}
-        <div className="px-3 py-2 bg-white/60 rounded-lg border border-white/80">
+        <div className="px-3 py-2 bg-white/60 dark:bg-white/10 rounded-lg border border-white/80 dark:border-white/10">
           <code className="text-sm font-mono text-text-muted">
             {group.patternExample}
           </code>

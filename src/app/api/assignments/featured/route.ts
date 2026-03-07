@@ -4,6 +4,9 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { parseCategoryData } from "@/lib/categoryData";
 import { isTeacherAdmin } from "@/lib/roles";
+import { ApiErrors } from "@/lib/api-response";
+import { requireTeacher } from "@/lib/api-auth";
+import { logger } from "@/lib/logger";
 import {
     buildActivitySubmissionMap,
     buildFeaturedAssignmentsWhere,
@@ -21,8 +24,8 @@ export {
 export async function GET() {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        if (!session?.user?.id) {
+            return ApiErrors.unauthorized();
         }
 
         const userId = session.user?.id;
@@ -141,29 +144,19 @@ export async function GET() {
 
         return NextResponse.json(withProgress);
     } catch (error: unknown) {
-        console.error("Error fetching featured assignments:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to fetch featured assignments" },
-            { status: 500 }
-        );
+        logger.error("Error fetching featured assignments", error);
+        return ApiErrors.internal("Failed to fetch featured assignments");
     }
 }
 
 export async function DELETE() {
     try {
         const session = await getServerSession(authOptions);
-        if (!session) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
 
-        const userRole = session.user?.role;
-        if (userRole !== "teacher") {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-        }
-
-        const userId = session.user?.id;
-        const admin = isTeacherAdmin(session.user);
+        const userId = teacherCheck.user.id;
+        const admin = isTeacherAdmin(teacherCheck.user);
 
         // Get all classes owned by the teacher (or all classes for admin).
         const teacherClasses = await prisma.class.findMany({
@@ -190,11 +183,7 @@ export async function DELETE() {
             message: `Cleared ${result.count} featured assignment${result.count === 1 ? '' : 's'}`
         });
     } catch (error: unknown) {
-        console.error("Error clearing featured assignments:", error);
-        const message = error instanceof Error ? error.message : undefined;
-        return NextResponse.json(
-            { error: message || "Failed to clear featured assignments" },
-            { status: 500 }
-        );
+        logger.error("Error clearing featured assignments", error);
+        return ApiErrors.internal("Failed to clear featured assignments");
     }
 }

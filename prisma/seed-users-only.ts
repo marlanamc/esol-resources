@@ -1,9 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
+import { resolveSeedAccountPassword } from '../src/lib/account-passwords.js';
 
 const prisma = new PrismaClient();
 
-const DEFAULT_PASSWORD = 'password123';
 const BCRYPT_ROUNDS = 12;
 
 const studentNames = [
@@ -34,7 +34,7 @@ const studentNames = [
 const toUsername = (name: string) => name.trim().toLowerCase().replace(/\s+/g, '');
 
 async function upsertUser(username: string, name: string, role = 'student', mustChangePassword = true) {
-  const passwordHash = await bcrypt.hash(DEFAULT_PASSWORD, BCRYPT_ROUNDS);
+  const passwordHash = await bcrypt.hash(resolveSeedAccountPassword(), BCRYPT_ROUNDS);
   return prisma.user.upsert({
     where: { username },
     update: {

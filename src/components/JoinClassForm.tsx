@@ -57,10 +57,10 @@ export default function JoinClassForm() {
                             id="code"
                             value={code}
                             onChange={(e) => setCode(e.target.value.toUpperCase())}
-                            placeholder="ESOL101"
+                            placeholder="ABC123"
                             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-gray-900 text-center text-2xl font-mono tracking-wider"
                             required
-                            maxLength={10}
+                            maxLength={6}
                         />
                     </div>
 
@@ -90,7 +90,6 @@ export default function JoinClassForm() {
         </div>
     );
 }
-
 
 
 

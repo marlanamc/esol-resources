@@ -12,7 +12,8 @@ export const Card: React.FC<CardProps> & {
   Body: typeof CardBody;
   Footer: typeof CardFooter;
 } = ({ children, className = '', hover = false, onClick }) => {
-  const hoverClass = hover ? 'hover:shadow-lg hover:-translate-y-1 cursor-pointer' : '';
+  const baseClass = 'bg-white dark:bg-[#162b3d] border border-border/40 dark:border-white/10 shadow-[0_2px_12px_rgba(52,43,34,0.05)] dark:shadow-[0_2px_12px_rgba(13,22,32,0.3)] rounded-2xl';
+  const hoverClass = hover ? 'hover:shadow-[0_8px_24px_rgba(52,43,34,0.08)] dark:hover:shadow-[0_8px_24px_rgba(13,22,32,0.4)] hover:-translate-y-0.5 transition-all duration-250 cursor-pointer' : '';
 
   if (onClick) {
     return (
@@ -25,7 +26,7 @@ export const Card: React.FC<CardProps> & {
             onClick();
           }
         }}
-        className={`bg-white border border-border shadow-sm rounded-lg transition-[box-shadow,transform] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${hoverClass} ${className}`}
+        className={`${baseClass} transition-all duration-250 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${hoverClass} ${className}`}
       >
         {children}
       </button>
@@ -34,7 +35,7 @@ export const Card: React.FC<CardProps> & {
 
   return (
     <div
-      className={`bg-white border border-border shadow-sm rounded-lg ${className}`}
+      className={`${baseClass} ${className}`}
     >
       {children}
     </div>
@@ -42,7 +43,7 @@ export const Card: React.FC<CardProps> & {
 };
 
 const CardHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-  <div className={`p-6 border-b border-border ${className}`}>
+  <div className={`p-6 border-b border-border dark:border-white/10 ${className}`}>
     {children}
   </div>
 );
@@ -54,7 +55,7 @@ const CardBody: React.FC<{ children: React.ReactNode; className?: string }> = ({
 );
 
 const CardFooter: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
-  <div className={`p-6 border-t border-border ${className}`}>
+  <div className={`p-6 border-t border-border dark:border-white/10 ${className}`}>
     {children}
   </div>
 );

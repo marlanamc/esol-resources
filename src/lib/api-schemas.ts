@@ -40,6 +40,28 @@ export const ClassesPostBodySchema = z.object({
   copyAssignments: z.boolean().default(true),
 });
 
+export const JoinClassBodySchema = z.object({
+  code: z.string().min(1, "Class code is required"),
+});
+
+export const AssignmentPatchBodySchema = z.object({
+  assignmentId: z.string().min(1, "Assignment ID is required"),
+  isFeatured: z.boolean(),
+  syncToSectionGroup: z.boolean().default(true),
+});
+
+export const FeedbackPostBodySchema = z.object({
+  activityId: z.string().min(1).optional().nullable(),
+  activityTitle: z.string().min(1).max(200).optional().nullable(),
+  difficulty: z.enum(["easy", "just-right", "hard"]).optional().nullable(),
+  type: z.enum(["issue", "suggestion"]),
+  message: z
+    .string()
+    .trim()
+    .min(1, "Feedback message is required")
+    .max(500, "Feedback message must be 500 characters or fewer"),
+});
+
 export const CalendarEventPostBodySchema = z.object({
   classId: z.string().min(1, "classId is required"),
   title: z.string().min(1, "Title is required").max(200),
@@ -71,6 +93,9 @@ export const AssignmentPostBodySchema = z.object({
 export type ActivitySubmitBody = z.infer<typeof ActivitySubmitBodySchema>;
 export type SubmissionsPostBody = z.infer<typeof SubmissionsPostBodySchema>;
 export type ClassesPostBody = z.infer<typeof ClassesPostBodySchema>;
+export type JoinClassBody = z.infer<typeof JoinClassBodySchema>;
+export type AssignmentPatchBody = z.infer<typeof AssignmentPatchBodySchema>;
+export type FeedbackPostBody = z.infer<typeof FeedbackPostBodySchema>;
 export type CalendarEventPostBody = z.infer<typeof CalendarEventPostBodySchema>;
 export type CalendarEventPatchBody = z.infer<typeof CalendarEventPatchBodySchema>;
 export type AssignmentPostBody = z.infer<typeof AssignmentPostBodySchema>;

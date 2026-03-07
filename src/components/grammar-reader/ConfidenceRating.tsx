@@ -54,7 +54,7 @@ export function ConfidenceRating({ sectionTitle, onRate }: ConfidenceRatingProps
                                 transition-[border-color,background-color,box-shadow] duration-200
                                 ${selectedRating === 'low'
                                     ? 'border-error bg-error/20 shadow-md'
-                                    : 'border-border bg-white hover:border-error/50 hover:bg-error/5'
+                                    : 'border-border bg-[var(--color-surface-elevated)] hover:border-error/50 hover:bg-error/5'
                                 }
                             `}
                             whileHover={{ scale: selectedRating ? 1 : 1.05 }}
@@ -83,7 +83,7 @@ export function ConfidenceRating({ sectionTitle, onRate }: ConfidenceRatingProps
                                 transition-[border-color,background-color,box-shadow] duration-200
                                 ${selectedRating === 'medium'
                                     ? 'border-warning bg-warning/20 shadow-md'
-                                    : 'border-border bg-white hover:border-warning/50 hover:bg-warning/5'
+                                    : 'border-border bg-[var(--color-surface-elevated)] hover:border-warning/50 hover:bg-warning/5'
                                 }
                             `}
                             whileHover={{ scale: selectedRating ? 1 : 1.05 }}
@@ -112,7 +112,7 @@ export function ConfidenceRating({ sectionTitle, onRate }: ConfidenceRatingProps
                                 transition-[border-color,background-color,box-shadow] duration-200
                                 ${selectedRating === 'high'
                                     ? 'border-success bg-success/20 shadow-md'
-                                    : 'border-border bg-white hover:border-success/50 hover:bg-success/5'
+                                    : 'border-border bg-[var(--color-surface-elevated)] hover:border-success/50 hover:bg-success/5'
                                 }
                             `}
                             whileHover={{ scale: selectedRating ? 1 : 1.05 }}

@@ -3,50 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CalendarEvent } from "./MiniCalendar";
+import { getLearnerEventTone } from "@/lib/learner-theme";
 
 interface Props {
     events: CalendarEvent[];
     allowDelete?: boolean;
     showSyncedLabel?: boolean;
 }
-
-const EVENT_TYPE_STYLES: Record<NonNullable<CalendarEvent["type"]>, {
-    accent: string;
-    chipBg: string;
-    chipBorder: string;
-    chipText: string;
-}> = {
-    quiz: {
-        accent: "#5f8267",
-        chipBg: "#eef4ef",
-        chipBorder: "#c7d8cc",
-        chipText: "#3f5e47",
-    },
-    holiday: {
-        accent: "#6d89ac",
-        chipBg: "#eef3f9",
-        chipBorder: "#c8d4e4",
-        chipText: "#4c6788",
-    },
-    due: {
-        accent: "#a98966",
-        chipBg: "#f8f3ec",
-        chipBorder: "#e1d3c3",
-        chipText: "#7b6248",
-    },
-    event: {
-        accent: "#7c6c98",
-        chipBg: "#f3f0f8",
-        chipBorder: "#d7cfe4",
-        chipText: "#5f5178",
-    },
-    reminder: {
-        accent: "#a98966",
-        chipBg: "#f8f3ec",
-        chipBorder: "#e1d3c3",
-        chipText: "#7b6248",
-    },
-};
 
 export default function UpcomingEventsList({ events, allowDelete = true, showSyncedLabel = true }: Props) {
     const router = useRouter();
@@ -173,7 +136,7 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
 
                         const canManage = allowDelete && Boolean(ev.id);
                         const eventType = ev.type || "due";
-                        const colors = EVENT_TYPE_STYLES[eventType];
+                        const colors = getLearnerEventTone(eventType);
 
                         const typeLabel = eventType === "quiz"
                             ? "Quiz/Test"
@@ -186,7 +149,14 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         : "Due";
 
                         return (
-                            <div key={`${ev.title}-${idx}`} className="relative rounded-xl border border-border/45 bg-white px-3 py-2.5 shadow-[0_1px_2px_rgba(28,35,44,0.05)] transition-transform transition-shadow duration-200 hover:-translate-y-[1px] hover:shadow-[0_6px_14px_rgba(28,35,44,0.08)]">
+                            <div
+                                key={`${ev.title}-${idx}`}
+                                className="relative rounded-xl border px-3 py-2.5 surface-card-shadow transition-transform transition-shadow duration-200 hover:-translate-y-[1px]"
+                                style={{
+                                    borderColor: "var(--border-subtle)",
+                                    backgroundColor: "var(--surface-elevated)",
+                                }}
+                            >
                                 <span className="absolute left-0 top-2 bottom-2 w-1 rounded-r" style={{ backgroundColor: colors.accent }} aria-hidden="true" />
 
                                 <div className="pl-1 min-w-0">
@@ -202,9 +172,9 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         <span
                                             className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12px] font-medium"
                                             style={{
-                                                backgroundColor: colors.chipBg,
-                                                borderColor: colors.chipBorder,
-                                                color: colors.chipText,
+                                                backgroundColor: colors.bg,
+                                                borderColor: colors.border,
+                                                color: colors.text,
                                             }}
                                         >
                                             <svg
@@ -227,9 +197,9 @@ export default function UpcomingEventsList({ events, allowDelete = true, showSyn
                                         <span
                                             className="inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold"
                                             style={{
-                                                backgroundColor: colors.chipBg,
-                                                borderColor: colors.chipBorder,
-                                                color: colors.chipText,
+                                                backgroundColor: colors.bg,
+                                                borderColor: colors.border,
+                                                color: colors.text,
                                             }}
                                         >
                                             {typeLabel}

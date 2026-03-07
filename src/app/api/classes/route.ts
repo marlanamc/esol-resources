@@ -6,20 +6,16 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { BCRYPT_ROUNDS } from "@/lib/auth-config";
 import { generateUniqueClassCode, isValidClassCodeFormat } from "@/lib/generateClassCode";
-import { canManageClass, classOwnershipWhere, ensureTeacher } from "@/lib/policies";
+import { canManageClass, classOwnershipWhere } from "@/lib/policies";
 import { logger } from "@/lib/logger";
 import { ClassesPostBodySchema, parseApiBody } from "@/lib/api-schemas";
 import type { Prisma } from "@prisma/client";
+import { resolveSystemTestStudentPassword } from "@/lib/account-passwords.js";
+import { ApiErrors } from "@/lib/api-response";
+import { requireTeacher } from "@/lib/api-auth";
 
 function getTestStudentPassword(): string {
-    const fromEnv = process.env.TEST_STUDENT_DEFAULT_PASSWORD;
-    if (fromEnv) return fromEnv;
-    if (process.env.NODE_ENV === "production") {
-        throw new Error(
-            "TEST_STUDENT_DEFAULT_PASSWORD must be set when creating classes with test students in production"
-        );
-    }
-    return "password123";
+    return resolveSystemTestStudentPassword();
 }
 
 async function createSystemTestStudentForClass(tx: Prisma.TransactionClient, classItem: { id: string; code: string }) {
@@ -70,18 +66,13 @@ async function createSystemTestStudentForClass(tx: Prisma.TransactionClient, cla
 export async function GET() {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-        const teacherCheck = ensureTeacher(session.user);
-        if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
 
         const admin = teacherCheck.admin;
 
         const classes = await prisma.class.findMany({
-            where: classOwnershipWhere(session.user, admin),
+            where: classOwnershipWhere(teacherCheck.user, admin),
             include: {
                 assignments: {
                     include: {
@@ -95,23 +86,15 @@ export async function GET() {
         return NextResponse.json(classes);
     } catch (error: unknown) {
         logger.error("Error fetching classes", error);
-        return NextResponse.json(
-            { error: "Failed to fetch classes" },
-            { status: 500 }
-        );
+        return ApiErrors.internal("Failed to fetch classes");
     }
 }
 
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions);
-        if (!session?.user) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-        const teacherCheck = ensureTeacher(session.user);
-        if (!teacherCheck.ok) {
-            return NextResponse.json({ error: teacherCheck.error }, { status: teacherCheck.status });
-        }
+        const teacherCheck = requireTeacher(session);
+        if (!teacherCheck.ok) return teacherCheck.response;
         const admin = teacherCheck.admin;
 
         const body = await request.json();
@@ -153,7 +136,7 @@ export async function POST(request: NextRequest) {
                         name,
                         description: description || null,
                         code: classCode,
-                        teacherId: session.user.id,
+                        teacherId: teacherCheck.user.id,
                         sectionGroupId: randomUUID(),
                     },
                 });
@@ -188,8 +171,8 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "Source class not found" }, { status: 404 });
         }
 
-        if (!canManageClass(session.user, admin, sourceClass.teacherId)) {
-            return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        if (!canManageClass(teacherCheck.user, admin, sourceClass.teacherId)) {
+            return ApiErrors.forbidden();
         }
 
         const sectionGroupId = sourceClass.sectionGroupId || randomUUID();
@@ -238,14 +221,11 @@ export async function POST(request: NextRequest) {
         return NextResponse.json(result);
     } catch (error: unknown) {
         logger.error("Error creating class", error);
-        // SECURITY: Don't expose internal error details to user
-        return NextResponse.json(
-            { error: "Failed to create class. Please try again." },
-            { status: 500 }
-        );
+        const message =
+            error instanceof Error && error.message.includes("TEST_STUDENT_DEFAULT_PASSWORD")
+                ? error.message
+                : "Failed to create class. Please try again.";
+        return ApiErrors.internal(message);
     }
 }
-
-
-
 

@@ -24,6 +24,7 @@ export function ResultsScreen({
   onContinue
 }: ResultsScreenProps) {
   const [showConfetti, setShowConfetti] = useState(false);
+  const isFinalQuiz = group.id === 'all-patterns-quiz';
   const unlocked = !!results.unlocked && !!nextGroup;
   const isPassing = results.accuracy >= UNLOCK_THRESHOLD;
   const isPerfect = results.accuracy === 100;
@@ -131,7 +132,7 @@ export function ResultsScreen({
           transition={{ delay: 0.4 }}
           className="text-lg text-text-muted"
         >
-          {group.title}
+          {isFinalQuiz ? 'You finished the final mixed challenge.' : group.title}
         </motion.p>
       </motion.div>
 
@@ -269,22 +270,24 @@ export function ResultsScreen({
         transition={{ delay: 1 }}
         className={`p-5 rounded-2xl text-center ${
           isPerfect
-            ? 'bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-200'
+            ? 'bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-950/40 dark:to-yellow-950/40 border-2 border-amber-200 dark:border-amber-600/50'
             : isPassing
-              ? 'bg-gradient-to-r from-emerald-50 to-teal-50 border-2 border-emerald-200'
-              : 'bg-bg-light border-2 border-border'
+              ? 'bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/40 dark:to-teal-950/40 border-2 border-emerald-200 dark:border-emerald-600/50'
+              : 'bg-bg-light dark:bg-white/5 border-2 border-border dark:border-white/10'
         }`}
       >
         <p className={`font-medium ${
           isPerfect
-            ? 'text-amber-800'
+            ? 'text-amber-800 dark:text-amber-200'
             : isPassing
-              ? 'text-emerald-800'
+              ? 'text-emerald-800 dark:text-emerald-200'
               : 'text-text'
         }`}>
-          {isPerfect && "Flawless performance! You've completely mastered this pattern."}
-          {!isPerfect && isPassing && "Great work! You've demonstrated solid understanding of this pattern."}
-          {!isPassing && "Keep practicing! Focus on the pattern hints to improve your accuracy."}
+          {isFinalQuiz && isPassing && "Congrats! You finished the all patterns quiz. Keep practicing to stay sharp."}
+          {isFinalQuiz && !isPassing && "Nice effort. Keep practicing and try the final mixed quiz again when you're ready."}
+          {!isFinalQuiz && isPerfect && "Flawless performance! You've completely mastered this pattern."}
+          {!isFinalQuiz && !isPerfect && isPassing && "Great work! You've demonstrated solid understanding of this pattern."}
+          {!isFinalQuiz && !isPassing && "Keep practicing! Focus on the pattern hints to improve your accuracy."}
         </p>
       </motion.div>
 
@@ -299,10 +302,10 @@ export function ResultsScreen({
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={onRetry}
-          className="flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl border-2 border-border bg-white text-text font-semibold hover:border-primary hover:text-primary transition-all"
+          className="flex-1 flex items-center justify-center gap-2 py-4 px-6 rounded-xl border-2 border-border dark:border-white/10 bg-white dark:bg-[#162b3d] text-text font-semibold hover:border-primary hover:text-primary transition-all"
         >
           <RotateCcw size={18} />
-          <span>Practice Again</span>
+          <span>{isFinalQuiz ? 'Keep Practicing' : 'Practice Again'}</span>
         </motion.button>
 
         <motion.button
@@ -316,7 +319,11 @@ export function ResultsScreen({
               : 'bg-bg-gray text-text-muted cursor-not-allowed'
           }`}
         >
-          <span>{canContinue ? 'Continue Journey' : `Need ${UNLOCK_THRESHOLD}% (${results.accuracy}%)`}</span>
+          <span>
+            {canContinue
+              ? (isFinalQuiz ? 'End Your Journey' : 'Continue Journey')
+              : `Need ${UNLOCK_THRESHOLD}% (${results.accuracy}%)`}
+          </span>
           {canContinue && <ChevronRight size={18} />}
         </motion.button>
       </motion.div>
@@ -327,7 +334,7 @@ export function ResultsScreen({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="p-4 bg-white rounded-xl border border-border"
+          className="p-4 bg-white dark:bg-[#162b3d] rounded-xl border border-border dark:border-white/10"
         >
           <p className="font-semibold text-text mb-2 flex items-center gap-2">
             <Sparkles size={16} className="text-accent" />

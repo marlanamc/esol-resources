@@ -1,6 +1,5 @@
 /**
- * Structured logging system for production-grade logging
- * Replaces console.log with proper log levels, timestamps, and context
+ * Structured application logging with consistent levels, timestamps, and context.
  *
  * Usage:
  * import { logger } from '@/lib/logger';
@@ -83,7 +82,7 @@ function shouldLog(level: LogLevel): boolean {
 
 /**
  * Write log entry to output
- * In production, this should be replaced with external logging service
+ * External log sinks can be attached here without changing call sites.
  */
 function writeLog(entry: LogEntry): void {
     if (!shouldLog(entry.level)) {
@@ -108,9 +107,7 @@ function writeLog(entry: LogEntry): void {
             break;
     }
 
-    // TODO: In production, also send to external logging service
-    // Example: await sendToDatadog(entry);
-    // Example: await sendToSentry(entry);
+    // Optional integration point for external sinks such as Sentry or Datadog.
 }
 
 /**

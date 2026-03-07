@@ -71,14 +71,14 @@ export function FillInBlankExercise({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="p-4 sm:p-5 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl border border-primary/20"
+        className="p-4 sm:p-5 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/20 dark:to-secondary/20 rounded-xl border border-primary/20 dark:border-primary/30"
       >
         <p className="text-xs sm:text-sm text-text-muted mb-3 text-center">Complete the verb forms:</p>
         <div className="grid grid-cols-3 gap-2 sm:gap-3 max-w-md mx-auto">
           {/* V1 - Always shown */}
           <div className="flex flex-col items-center gap-1">
             <span className="text-[10px] sm:text-xs text-text-muted font-medium">V1</span>
-            <span className="w-full px-2 py-2 sm:py-2.5 bg-white rounded-lg border border-border font-display text-lg sm:text-xl font-semibold text-text text-center">
+            <span className="w-full px-2 py-2 sm:py-2.5 bg-white dark:bg-[#0d1620] rounded-lg border border-border dark:border-white/10 font-display text-lg sm:text-xl font-semibold text-text text-center">
               {exercise.verb.base}
             </span>
           </div>
@@ -105,11 +105,11 @@ export function FillInBlankExercise({
                     ? correct
                       ? 'bg-secondary/20 border-secondary text-secondary-dark'
                       : 'bg-error/20 border-error text-error'
-                    : 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+                    : 'bg-white dark:bg-[#0d1620] border-primary/40 dark:border-white/20 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
                 }`}
               />
             ) : (
-              <span className="w-full px-2 py-2 sm:py-2.5 bg-white rounded-lg border border-border font-display text-lg sm:text-xl font-semibold text-text text-center">
+              <span className="w-full px-2 py-2 sm:py-2.5 bg-white dark:bg-[#0d1620] rounded-lg border border-border dark:border-white/10 font-display text-lg sm:text-xl font-semibold text-text text-center">
                 {exercise.verb.past}
               </span>
             )}
@@ -137,11 +137,11 @@ export function FillInBlankExercise({
                     ? correct
                       ? 'bg-secondary/20 border-secondary text-secondary-dark'
                       : 'bg-error/20 border-error text-error'
-                    : 'bg-white border-primary/40 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+                    : 'bg-white dark:bg-[#0d1620] border-primary/40 dark:border-white/20 text-text focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
                 }`}
               />
             ) : (
-              <span className="w-full px-2 py-2 sm:py-2.5 bg-white rounded-lg border border-border font-display text-lg sm:text-xl font-semibold text-text text-center">
+              <span className="w-full px-2 py-2 sm:py-2.5 bg-white dark:bg-[#0d1620] rounded-lg border border-border dark:border-white/10 font-display text-lg sm:text-xl font-semibold text-text text-center">
                 {exercise.verb.pastParticiple}
               </span>
             )}
@@ -153,7 +153,7 @@ export function FillInBlankExercise({
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-3 p-2.5 bg-white rounded-lg border border-border text-center"
+            className="mt-3 p-2.5 bg-white dark:bg-[#0d1620] rounded-lg border border-border dark:border-white/10 text-center"
           >
             <p className="text-xs text-text-muted mb-0.5">Correct:</p>
             <p className="font-display text-base font-semibold text-text">
