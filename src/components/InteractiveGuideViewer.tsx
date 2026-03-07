@@ -211,11 +211,11 @@ export default function InteractiveGuideViewer({ content, title, onClose }: Prop
 
 function FormulaBadge({ part }: { part: FormulaPart }) {
     const colors = {
-        subject: "bg-blue-50 text-blue-900 border-blue-200",
-        verb: "bg-amber-50 text-amber-900 border-amber-200",
-        ing: "bg-orange-50 text-orange-900 border-orange-200",
-        helper: "bg-purple-50 text-purple-900 border-purple-200",
-        object: "bg-emerald-50 text-emerald-900 border-emerald-200",
+        subject: "bg-blue-50 text-blue-900 border-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:border-blue-800",
+        verb: "bg-amber-50 text-amber-900 border-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-800",
+        ing: "bg-orange-50 text-orange-900 border-orange-200 dark:bg-orange-950 dark:text-orange-200 dark:border-orange-800",
+        helper: "bg-purple-50 text-purple-900 border-purple-200 dark:bg-purple-950 dark:text-purple-200 dark:border-purple-800",
+        object: "bg-emerald-50 text-emerald-900 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-200 dark:border-emerald-800",
         other: "bg-slate-50 dark:bg-slate-800/50 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-600"
     };
 

@@ -18,31 +18,31 @@ export function FutureChoiceFlow({ data }: FutureChoiceFlowProps) {
         switch (colorName) {
             case 'cyan': // Will
                 return {
-                    border: 'border-cyan-500',
-                    bg: 'bg-cyan-50 text-cyan-900',
-                    icon: 'text-cyan-600',
-                    badge: 'bg-cyan-100 text-cyan-800 border-cyan-200'
+                    border: 'border-cyan-500 dark:border-cyan-400',
+                    bg: 'bg-cyan-50 text-cyan-900 dark:bg-cyan-950 dark:text-cyan-100',
+                    icon: 'text-cyan-600 dark:text-cyan-400',
+                    badge: 'bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900 dark:text-cyan-200 dark:border-cyan-700'
                 };
             case 'green': // Going to
                 return {
-                    border: 'border-emerald-500',
-                    bg: 'bg-emerald-50 text-emerald-900',
-                    icon: 'text-emerald-600',
-                    badge: 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                    border: 'border-emerald-500 dark:border-emerald-400',
+                    bg: 'bg-emerald-50 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100',
+                    icon: 'text-emerald-600 dark:text-emerald-400',
+                    badge: 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:bg-emerald-900 dark:text-emerald-200 dark:border-emerald-700'
                 };
             case 'violet': // Present Continuous
                 return {
-                    border: 'border-violet-500',
-                    bg: 'bg-violet-50 text-violet-900',
-                    icon: 'text-violet-600',
-                    badge: 'bg-violet-100 text-violet-800 border-violet-200'
+                    border: 'border-violet-500 dark:border-violet-400',
+                    bg: 'bg-violet-50 text-violet-900 dark:bg-violet-950 dark:text-violet-100',
+                    icon: 'text-violet-600 dark:text-violet-400',
+                    badge: 'bg-violet-100 text-violet-800 border-violet-200 dark:bg-violet-900 dark:text-violet-200 dark:border-violet-700'
                 };
             case 'amber': // Future Continuous
                 return {
-                    border: 'border-amber-500',
-                    bg: 'bg-amber-50 text-amber-900',
-                    icon: 'text-amber-600',
-                    badge: 'bg-amber-100 text-amber-800 border-amber-200'
+                    border: 'border-amber-500 dark:border-amber-400',
+                    bg: 'bg-amber-50 text-amber-900 dark:bg-amber-950 dark:text-amber-100',
+                    icon: 'text-amber-600 dark:text-amber-400',
+                    badge: 'bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900 dark:text-amber-200 dark:border-amber-700'
                 };
             default:
                 return {

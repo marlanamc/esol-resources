@@ -12,7 +12,9 @@ export function ActivityProgressBadge({ activityId: _activityId, initialProgress
     void _userRole;
 
     const color =
-        progress >= 100 ? "bg-green-100 text-green-800 border-green-200" : "bg-amber-100 text-amber-800 border-amber-200";
+        progress >= 100
+            ? "bg-green-100 text-green-800 border-green-200 dark:bg-green-900/40 dark:text-green-200 dark:border-green-700"
+            : "bg-amber-100 text-amber-800 border-amber-200 dark:bg-amber-900/40 dark:text-amber-200 dark:border-amber-700";
 
     return (
         <div

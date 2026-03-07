@@ -2635,6 +2635,10 @@ kbd {
   box-shadow: var(--shadow-sm);
 }
 
+.dark .formula-box {
+  background: var(--surface-elevated);
+}
+
 .formula-part {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-md);
