@@ -29,7 +29,6 @@ import {
     ClassAnnouncement
 } from "@/components/dashboard";
 import { TeacherPendingReviewsStat } from "@/components/dashboard/TeacherPendingReviewsStat";
-import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 import { isTeacherAdmin } from "@/lib/roles";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 
@@ -834,10 +833,6 @@ export default async function DashboardPage() {
                                     {desktopNameEmoji && <span className="ml-1.5 inline-block text-3xl leading-none" {...(isMarlie ? { "aria-hidden": true } : { "aria-label": `Rank ${studentLeaderboardRank}` })}>{desktopNameEmoji}</span>}
                                     !
                                 </h1>
-
-                                <div className="flex items-center gap-3">
-                                    <StudentQuickStats maxVisible={2} />
-                                </div>
                             </div>
 
                             <ClassAnnouncement announcements={classAnnouncements} />
@@ -849,6 +844,7 @@ export default async function DashboardPage() {
                                     title="Weekly Checklist"
                                     ctaLabel="Start"
                                     variant="checklist"
+                                    showStudentStats
                                 />
                             </section>
 

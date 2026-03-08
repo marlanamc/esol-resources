@@ -16,6 +16,7 @@ import {
     Volume2,
 } from 'lucide-react';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
+import { StudentQuickStats } from '@/components/dashboard/StudentQuickStats';
 import { getLearnerCategoryTone } from '@/lib/learner-theme';
 
 const FEATURED_NEW_BADGE_CLASS_NAME = 'inline-flex items-center gap-1 rounded-full border';
@@ -65,6 +66,8 @@ interface Props {
     variant?: 'cards' | 'checklist';
     actions?: React.ReactNode;
     refreshOnMount?: boolean;
+    /** Show streak and points badges in checklist header (student dashboard) */
+    showStudentStats?: boolean;
 }
 
 interface CategoryStyle {
@@ -331,11 +334,13 @@ function ChecklistAssignments({
     actions,
     resolvedTitle,
     weeklyRangeLabel,
+    showStudentStats = false,
 }: {
     assignments: FeaturedAssignment[];
     actions?: React.ReactNode;
     resolvedTitle: string | null;
     weeklyRangeLabel: string | null;
+    showStudentStats?: boolean;
 }) {
     const [activeFilter, setActiveFilter] = useState<string>('all');
 
@@ -819,6 +824,11 @@ function ChecklistAssignments({
                         </div>
                         <div className="flex items-center gap-2 text-xs font-bold text-text/70">
                             {actions && <div className="mr-2">{actions}</div>}
+                            {showStudentStats && (
+                                <div className="flex items-center gap-1">
+                                    <StudentQuickStats mobile maxVisible={2} chipKeys={['streak', 'weekly']} compact tight />
+                                </div>
+                            )}
                         </div>
                     </div>
                     <div className="flex items-center gap-2.5">
@@ -1025,6 +1035,7 @@ export const TodaysAssignments: React.FC<Props> = ({
     variant = 'cards',
     actions,
     refreshOnMount = false,
+    showStudentStats = false,
 }) => {
     const hasInitialAssignments = initialAssignments !== undefined;
     const [assignments, setAssignments] = useState<FeaturedAssignment[]>(initialAssignments || []);
@@ -1156,6 +1167,7 @@ export const TodaysAssignments: React.FC<Props> = ({
                 actions={actions}
                 resolvedTitle={resolvedTitle}
                 weeklyRangeLabel={weeklyRangeLabel}
+                showStudentStats={showStudentStats}
             />
         );
     }

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { Calendar } from "lucide-react";
 import { TrophyIcon } from "@/components/icons/Icons";
 import UserProfileDropdown from "@/components/UserProfileDropdown";
-import { StudentQuickStats } from "@/components/dashboard/StudentQuickStats";
 import { LearnerMenu } from "@/components/navigation/LearnerMenu";
 
 interface DashboardHeaderProps {
@@ -43,9 +42,6 @@ export function DashboardHeader({ userName = "", variant = "default", leaderboar
                     <LearnerMenu mode="brand" userName={userName} leaderboardRank={leaderboardRank} showMarlieEmoji={showMarlieEmoji} />
                 </div>
                 <div className="flex items-center gap-3">
-                    <div className="sm:hidden flex items-center gap-1.5">
-                        <StudentQuickStats mobile maxVisible={2} chipKeys={["streak", "weekly"]} compact />
-                    </div>
                     {variant === "dashboardv2" ? (
                         <button
                             type="button"
