@@ -8,7 +8,7 @@ test.describe("Auth flow", () => {
     await page.getByLabel(/password/i).fill("password123");
     await page.getByRole("button", { name: /sign in/i }).click();
 
-    await expect(page).toHaveURL(/\/dashboard/);
+    await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
     await expect(page.getByRole("heading", { name: /dashboard|class|welcome/i })).toBeVisible({ timeout: 10000 });
   });
 

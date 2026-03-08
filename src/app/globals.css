@@ -1757,6 +1757,87 @@ textarea {
   color: var(--color-text) !important;
 }
 
+/* Light mode: text in gc-grad-* and gc-box-* uses #e8f1f8 (invisible on light bg) — override to readable dark */
+.grammar-reader-container .explanation-content [class*='gc-grad-'] [style*='e8f1f8'],
+.grammar-reader-container .explanation-content [class*='gc-box-'] [style*='e8f1f8'] {
+  color: #1e293b !important;
+}
+
+/* Mobile: tense timeline formula bars — stack vertically and increase readability */
+@media (max-width: 640px) {
+  /* Stack bar + label vertically so the bar gets full width */
+  .grammar-reader-container .explanation-content .gc-box-violet > div:nth-child(2) > div {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+  /* Ensure bars have room and formula text is readable */
+  .grammar-reader-container .explanation-content .gc-box-violet .gc-grad-amber,
+  .grammar-reader-container .explanation-content .gc-box-violet .gc-grad-purple,
+  .grammar-reader-container .explanation-content .gc-box-violet .gc-grad-cyan {
+    min-height: 56px !important;
+    min-width: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  /* Larger formula text on mobile */
+  .grammar-reader-container .explanation-content .gc-box-violet .gc-grad-amber .gc-text-white,
+  .grammar-reader-container .explanation-content .gc-box-violet .gc-grad-purple .gc-text-white,
+  .grammar-reader-container .explanation-content .gc-box-violet .gc-grad-cyan {
+    font-size: 1rem !important;
+    line-height: 1.4 !important;
+  }
+  /* Label column full width on mobile (second child of each row) */
+  .grammar-reader-container .explanation-content .gc-box-violet > div:nth-child(2) > div > div:last-child {
+    min-width: 0 !important;
+  }
+
+  /* Future Continuous timeline snapshot — stack bar and circle vertically to prevent overlap */
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot .gc-timeline-line {
+    display: none !important;
+  }
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot {
+    height: 260px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+  }
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot .gc-timeline-bar {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 0 0 1rem 0 !important;
+    padding-right: 0.9rem !important;
+    flex-shrink: 0 !important;
+  }
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot .gc-timeline-circle {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    margin: 0 0 1rem 0 !important;
+    flex-shrink: 0 !important;
+  }
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot .gc-timeline-label-left,
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot .gc-timeline-label-right {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+  .grammar-reader-container .explanation-content .gc-timeline-future-snapshot .gc-timeline-label-right {
+    margin-top: 0.25rem !important;
+  }
+}
+
 /* ── Gradients ── */
 .dark .grammar-reader-container .explanation-content .gc-grad-amber {
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(139, 92, 246, 0.22) 100%) !important;
@@ -2781,4 +2862,79 @@ kbd {
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 600;
+}
+
+/* ============================================
+   Activity Carousel - Horizontal Scroll
+   ============================================ */
+
+/* Horizontal scroll container with snap behavior */
+.activity-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  margin: 0 -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Hide scrollbar but keep functionality */
+.activity-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.activity-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Snap alignment for cards */
+.activity-carousel-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Show partial next card to hint at scrollability */
+@media (max-width: 640px) {
+  .activity-carousel-card {
+    width: calc(78vw - 1.5rem);
+    max-width: 260px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+  .activity-carousel-card {
+    width: calc(45% - 0.5rem);
+    max-width: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .activity-carousel-card {
+    width: calc(33.333% - 0.5rem);
+    max-width: 360px;
+  }
+}
+
+/* Scroll snap for better touch experience */
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* Smooth momentum scrolling on iOS */
+.scroll-smooth {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
   vocabCycle1,
   vocabUnits,
@@ -17,6 +17,11 @@ import { getVocabActivityType, VOCAB_CHIP_CONFIG } from '@/lib/vocab-display';
 import { resolveActivityGameUi, getActivityPoints } from '@/lib/gamification/activity-points';
 import { getGameEmojiForActivity } from '@/lib/game-emoji';
 import { ActivityLink } from '@/components/navigation/ActivityLink';
+import { GrammarGuideVisual, hasGrammarGuideVisual } from './GrammarGuideVisual';
+import { VocabActivityVisual } from './VocabActivityVisual';
+import { GameActivityVisual, getGameCardCopy } from './GameActivityVisual';
+import { PronunciationActivityVisual, getPronunciationCardCopy } from './PronunciationActivityVisual';
+import { getSubcategorySubtitle } from '@/lib/subcategory-labels';
 
 interface Activity {
     id: string;
@@ -281,6 +286,12 @@ const getGrammarChipCopy = (title: string): { friendlyTitle: string; useThisFor:
     };
 };
 
+/** Get grammar chip copy for an activity (wrapper for carousel usage) */
+const getGrammarChipCopyForActivity = (activity: Activity): { friendlyTitle: string; useThisFor: string } | null => {
+    if (activity.category !== 'grammar') return null;
+    return getGrammarChipCopy(activity.title);
+};
+
 const capitalizeFirstLetter = (value: string): string =>
     value ? `${value.charAt(0).toUpperCase()}${value.slice(1)}` : value;
 
@@ -364,12 +375,14 @@ const isActivityCompleted = (
     const isGrammarGuide =
         activity.type === "guide" &&
         (activity.category || "").toLowerCase() === "grammar";
-    
+
     if (isGrammarGuide) {
         // Grammar guides are complete if their ID or Title matches a passing submission
+        // OR if ActivityProgress shows 100% complete
         const byId = completedActivityIds.has(activity.id);
         const byTitle = activity.title ? completedActivityTitles?.has(activity.title.toLowerCase().trim()) : false;
-        return byId || byTitle;
+        const byProgress = (progressMap?.[activity.id]?.progress ?? 0) >= 100;
+        return byId || byTitle || byProgress;
     }
     const progressValue = getDisplayProgress(activity, progressMap, completedActivityIds, completedActivityTitles);
     return completedActivityIds.has(activity.id) || progressValue >= 100;
@@ -625,30 +638,70 @@ const getVocabTextureBySection = (sectionLabel: string): ActivityTexture | undef
 // GAMES TEXTURES
 // Visual metaphors for play, challenge, and fun
 // -----------------------------------------------------------------------------
-type GameFamily = 'numbers' | 'verb-forms' | 'matching-game' | 'game-other';
+type GameFamily =
+    | 'numbers'
+    | 'verb-forms'
+    | 'irregular-patterns'
+    | 'time-indicators'
+    | 'sound-choice'
+    | 'countable-sort'
+    | 'matching-game'
+    | 'game-other';
 
 const GAME_TEXTURES: Record<GameFamily, ActivityTexture> = {
     numbers: {
         id: 'numbers',
-        color: '#dc2626',           // Red - excitement, challenge
-        bgColor: 'rgba(220, 38, 38, 0.04)',
-        gradient: 'linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(251, 146, 60, 0.03) 100%)',
+        color: '#b692e6',           // Lavender - number system / category color
+        bgColor: 'rgba(182, 146, 230, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(182, 146, 230, 0.08) 0%, rgba(182, 146, 230, 0.02) 100%)',
         pattern: 'pulse',
         icon: '🔢',
     },
     'verb-forms': {
         id: 'verb-forms',
-        color: '#7c3aed',           // Purple - transformation
-        bgColor: 'rgba(124, 58, 237, 0.04)',
-        gradient: 'linear-gradient(90deg, rgba(124, 58, 237, 0.04) 0%, rgba(124, 58, 237, 0.07) 50%, rgba(124, 58, 237, 0.04) 100%)',
+        color: '#7ba884',           // Sage - verb tense games section color
+        bgColor: 'rgba(123, 168, 132, 0.05)',
+        gradient: 'linear-gradient(90deg, rgba(123, 168, 132, 0.04) 0%, rgba(123, 168, 132, 0.1) 50%, rgba(123, 168, 132, 0.04) 100%)',
         pattern: 'wave',
         icon: '🔄',
     },
+    'irregular-patterns': {
+        id: 'irregular-patterns',
+        color: '#7ba884',
+        bgColor: 'rgba(123, 168, 132, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(123, 168, 132, 0.07) 0%, transparent 100%)',
+        pattern: 'diagonal',
+        icon: '🧩',
+    },
+    'time-indicators': {
+        id: 'time-indicators',
+        color: '#7ba884',
+        bgColor: 'rgba(123, 168, 132, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(123, 168, 132, 0.04) 0%, rgba(123, 168, 132, 0.09) 100%)',
+        pattern: 'lines',
+        icon: '⏰',
+    },
+    'sound-choice': {
+        id: 'sound-choice',
+        color: '#7ba884',
+        bgColor: 'rgba(123, 168, 132, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(123, 168, 132, 0.04) 0%, rgba(123, 168, 132, 0.08) 100%)',
+        pattern: 'bubbles',
+        icon: '🔊',
+    },
+    'countable-sort': {
+        id: 'countable-sort',
+        color: '#9ec3e2',           // Powder blue - parts of speech section color
+        bgColor: 'rgba(158, 195, 226, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(158, 195, 226, 0.08) 0%, rgba(158, 195, 226, 0.02) 100%)',
+        pattern: 'grid',
+        icon: '🧺',
+    },
     'matching-game': {
         id: 'matching-game',
-        color: '#059669',           // Emerald - success, pairs
-        bgColor: 'rgba(5, 150, 105, 0.04)',
-        gradient: 'linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, transparent 100%)',
+        color: '#9ec3e2',
+        bgColor: 'rgba(158, 195, 226, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(158, 195, 226, 0.08) 0%, transparent 100%)',
         pattern: 'dots',
         icon: '🎯',
     },
@@ -700,13 +753,14 @@ const QUIZ_TEXTURES: Record<QuizFamily, ActivityTexture> = {
 // Visual metaphors for voice and communication
 // -----------------------------------------------------------------------------
 type SpeakingFamily = 'pronunciation' | 'conversation' | 'speaking-other';
+type PronunciationFamily = 'minimal-pairs' | 'ed-sounds' | 'pronunciation-other';
 
 const SPEAKING_TEXTURES: Record<SpeakingFamily, ActivityTexture> = {
     pronunciation: {
         id: 'pronunciation',
-        color: '#ea580c',           // Orange - warmth, voice
-        bgColor: 'rgba(234, 88, 12, 0.04)',
-        gradient: 'linear-gradient(90deg, rgba(234, 88, 12, 0.02) 0%, rgba(234, 88, 12, 0.06) 30%, rgba(234, 88, 12, 0.06) 70%, rgba(234, 88, 12, 0.02) 100%)',
+        color: '#db2777',           // Pink - distinct sound category
+        bgColor: 'rgba(219, 39, 119, 0.05)',
+        gradient: 'linear-gradient(90deg, rgba(219, 39, 119, 0.02) 0%, rgba(236, 72, 153, 0.07) 35%, rgba(236, 72, 153, 0.07) 65%, rgba(219, 39, 119, 0.02) 100%)',
         pattern: 'wave',
         icon: '🔊',
     },
@@ -725,6 +779,33 @@ const SPEAKING_TEXTURES: Record<SpeakingFamily, ActivityTexture> = {
         gradient: 'linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, transparent 100%)',
         pattern: 'solid',
         icon: '🎤',
+    },
+};
+
+const PRONUNCIATION_TEXTURES: Record<PronunciationFamily, ActivityTexture> = {
+    'minimal-pairs': {
+        id: 'minimal-pairs',
+        color: '#4f46e5',
+        bgColor: 'rgba(79, 70, 229, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(79, 70, 229, 0.02) 100%)',
+        pattern: 'pulse',
+        icon: '◉',
+    },
+    'ed-sounds': {
+        id: 'ed-sounds',
+        color: '#db2777',
+        bgColor: 'rgba(219, 39, 119, 0.05)',
+        gradient: 'linear-gradient(90deg, rgba(219, 39, 119, 0.03) 0%, rgba(236, 72, 153, 0.08) 50%, rgba(219, 39, 119, 0.03) 100%)',
+        pattern: 'dots',
+        icon: '〰',
+    },
+    'pronunciation-other': {
+        id: 'pronunciation-other',
+        color: '#f472b6',
+        bgColor: 'rgba(244, 114, 182, 0.05)',
+        gradient: 'linear-gradient(135deg, rgba(244, 114, 182, 0.06) 0%, transparent 100%)',
+        pattern: 'bubbles',
+        icon: '🔊',
     },
 };
 
@@ -769,9 +850,8 @@ const WRITING_TEXTURES: Record<WritingFamily, ActivityTexture> = {
 const detectTenseFamily = (title: string): TenseFamily => {
     const t = title.toLowerCase();
 
-    if (t.includes('review') || t.includes(' vs ') || t.includes('mixed')) {
-        return 'review';
-    }
+    // Check specific tense families FIRST (before "review" check)
+    // This ensures "Continuous Tenses Review" gets continuous color, not review color
     if (t.includes('perfect continuous') || t.includes('perfect progressive')) {
         return 'perfect-continuous';
     }
@@ -783,6 +863,10 @@ const detectTenseFamily = (title: string): TenseFamily => {
     }
     if (t.includes('simple')) {
         return 'simple';
+    }
+    // Only use "review" style for generic reviews that don't specify a tense family
+    if (t.includes('review') || t.includes(' vs ') || t.includes('mixed')) {
+        return 'review';
     }
     return 'grammar-other';
 };
@@ -806,6 +890,10 @@ const detectGameType = (activityId: string, ui: string | null): GameFamily => {
 
     if (id === 'numbers-game') return 'numbers';
     if (ui === 'verb-forms' || ui === 'verbforms') return 'verb-forms';
+    if (id.includes('irregular')) return 'irregular-patterns';
+    if (id.includes('time-indicator')) return 'time-indicators';
+    if (id.includes('sounds-right') || id.includes('sound') || id.includes('pronunciation')) return 'sound-choice';
+    if (id.includes('countable') || id.includes('uncountable')) return 'countable-sort';
     if (id.includes('matching') || id.includes('match')) return 'matching-game';
     return 'game-other';
 };
@@ -826,6 +914,14 @@ const detectSpeakingType = (title: string): SpeakingFamily => {
     if (t.includes('pronuncia') || t.includes('sound')) return 'pronunciation';
     if (t.includes('conversation') || t.includes('dialogue') || t.includes('talk')) return 'conversation';
     return 'speaking-other';
+};
+
+const detectPronunciationType = (activityId: string, title: string, ui: string | null): PronunciationFamily => {
+    const haystack = `${activityId} ${title} ${ui ?? ''}`.toLowerCase();
+
+    if (haystack.includes('minimal-pairs') || haystack.includes('minimal pairs')) return 'minimal-pairs';
+    if (haystack.includes('ed-pronunciation') || haystack.includes('ed sounds') || haystack.includes('-ed')) return 'ed-sounds';
+    return 'pronunciation-other';
 };
 
 // Detect writing type
@@ -862,6 +958,12 @@ const getActivityTexture = (activity: Activity, sectionLabel?: string): Activity
     if (category === 'vocabulary' || activity.id?.startsWith('vocab-')) {
         // Use per-activity unit texture so cards can vary within a section (e.g., Cycle 1).
         return getVocabTextureByActivity(activity);
+    }
+
+    // Pronunciation activities
+    if (category === 'pronunciation' || activity.ui === 'ed-pronunciation' || activity.ui === 'minimal-pairs') {
+        const pronunciationType = detectPronunciationType(activity.id, activity.title, activity.ui);
+        return PRONUNCIATION_TEXTURES[pronunciationType];
     }
 
     // Game activities
@@ -920,7 +1022,24 @@ const getSectionTexture = (sectionLabel: string, filterCategory?: string): Activ
         return QUIZ_TEXTURES['quiz-other'];
     }
 
+    // Game section textures
+    if (filterCategory === 'games') {
+        if (label.includes('verb tense')) return GAME_TEXTURES['verb-forms'];
+        if (label.includes('parts of speech')) return GAME_TEXTURES['countable-sort'];
+        if (label.includes('numbers')) return GAME_TEXTURES['numbers'];
+        return GAME_TEXTURES['game-other'];
+    }
+
     return undefined;
+};
+
+/** Wrapper for carousel card texture - uses sectionLabel for tense detection */
+const getActivityTextureForCard = (
+    activity: Activity,
+    sectionLabel: string,
+    _filterCategory?: string
+): ActivityTexture | undefined => {
+    return getActivityTexture(activity, sectionLabel);
 };
 
 // Legacy type alias for backward compatibility
@@ -936,6 +1055,7 @@ interface ActivityCardProps {
     points?: number;
     tenseTexture?: TenseTexture;
     vocabType: ReturnType<typeof getVocabActivityType>;
+    vocabUnitNumber: number | null;
     vocabThemeChip: string | null;
     vocabWordsChip: string | null;
     verbQuizWordsChip: string | null;
@@ -975,6 +1095,7 @@ const ActivityCard = React.memo(function ActivityCard({
     points,
     tenseTexture,
     vocabType,
+    vocabUnitNumber,
     vocabThemeChip,
     vocabWordsChip,
     verbQuizWordsChip,
@@ -986,30 +1107,34 @@ const ActivityCard = React.memo(function ActivityCard({
     const progressChipLabel = activity.id === 'numbers-game' && progressText
         ? progressText
         : `${progressValue}% done`;
+    const isVocabularyCard = activity.id.startsWith('vocab-') || activity.category?.toLowerCase() === 'vocabulary';
+    const isGameCard = activity.type === 'game' || activity.category?.toLowerCase() === 'games';
 
     // Determine card state for styling
     const hasProgress = progressValue > 0 && progressValue < 100;
+    const showCompletedState = isCompleted && !isGameCard;
+    const showProgressState = hasProgress && !isGameCard;
 
     // Use tense texture color if provided, otherwise fall back to defaults
-    const accentBorderColor = tenseTexture?.color || (isCompleted ? undefined : accentColor);
+    const accentBorderColor = tenseTexture?.color || (showCompletedState ? undefined : accentColor);
 
     return (
         <div
             className={`group relative block rounded-xl border bg-white p-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/50 focus-within:ring-offset-2 overflow-hidden
-                ${isCompleted
+                ${showCompletedState
                     ? 'border-secondary/30 shadow-sm'
-                    : hasProgress
+                    : showProgressState
                         ? 'shadow-sm hover:shadow-md hover:-translate-y-0.5'
                         : 'shadow-sm hover:shadow-md hover:-translate-y-0.5'
                 }`}
             style={{
-                borderColor: isCompleted ? undefined : (accentBorderColor ? `${accentBorderColor}40` : undefined),
+                borderColor: showCompletedState ? undefined : (accentBorderColor ? `${accentBorderColor}40` : undefined),
                 contentVisibility: 'auto',
                 containIntrinsicSize: '160px',
             }}
         >
             {/* Tense texture background pattern */}
-            {tenseTexture && !isCompleted && (
+            {tenseTexture && !showCompletedState && (
                 <div
                     className="absolute inset-0 pointer-events-none opacity-60"
                     style={{ background: tenseTexture.gradient }}
@@ -1017,7 +1142,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Wave pattern overlay for continuous tenses */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'wave' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'wave' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.07]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`wave-${activity.id}`} x="0" y="0" width="40" height="20" patternUnits="userSpaceOnUse">
@@ -1034,7 +1159,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Dots pattern for perfect tenses */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'dots' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'dots' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.12]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`dots-${activity.id}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
@@ -1046,7 +1171,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Diagonal lines for perfect continuous */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'diagonal' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'diagonal' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`diagonal-${activity.id}`} x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
@@ -1058,7 +1183,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Mixed pattern for reviews */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'mixed' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'mixed' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`mixed-${activity.id}`} x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -1072,7 +1197,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Grid pattern for vocab flashcards */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'grid' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'grid' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`grid-${activity.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -1084,7 +1209,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Bubbles pattern for speaking/conversation */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'bubbles' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'bubbles' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`bubbles-${activity.id}`} x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -1098,7 +1223,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Lines pattern for writing */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'lines' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'lines' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.05]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`lines-${activity.id}`} x="0" y="0" width="100" height="12" patternUnits="userSpaceOnUse">
@@ -1110,7 +1235,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Pulse pattern for games (concentric circles) */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'pulse' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'pulse' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.06]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`pulse-${activity.id}`} x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -1124,7 +1249,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Scatter pattern for word scramble */}
-            {showDecorativeTexture && tenseTexture?.pattern === 'scatter' && !isCompleted && (
+            {showDecorativeTexture && tenseTexture?.pattern === 'scatter' && !showCompletedState && (
                 <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.07]" preserveAspectRatio="none">
                     <defs>
                         <pattern id={`scatter-${activity.id}`} x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
@@ -1139,7 +1264,7 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Progress background fill */}
-            {hasProgress && (
+            {showProgressState && (
                 <div
                     className="absolute inset-0 rounded-xl pointer-events-none"
                     style={{
@@ -1152,11 +1277,11 @@ const ActivityCard = React.memo(function ActivityCard({
             )}
 
             {/* Completed state background */}
-            {isCompleted && (
+            {showCompletedState && (
                 <div className="absolute inset-0 rounded-xl bg-secondary/[0.04] pointer-events-none" />
             )}
 
-            {isCompleted && (
+            {showCompletedState && (
                 <div className="absolute top-3 right-3 z-20">
                     <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center shadow-sm">
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1174,7 +1299,7 @@ const ActivityCard = React.memo(function ActivityCard({
                 ) : tenseTexture ? (
                     <span
                         className="mt-1 text-sm flex-shrink-0 font-medium select-none"
-                        style={{ color: isCompleted ? 'var(--secondary)' : tenseTexture.color }}
+                        style={{ color: showCompletedState ? 'var(--secondary)' : tenseTexture.color }}
                         title={tenseTexture.id}
                     >
                         {tenseTexture.icon}
@@ -1194,11 +1319,20 @@ const ActivityCard = React.memo(function ActivityCard({
                     <ActivityLink
                         activityId={activity.id}
                         className={`text-sm font-semibold leading-snug group-hover:text-primary transition-colors block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:rounded ${
-                            isCompleted ? 'text-secondary' : 'text-text'
+                            showCompletedState ? 'text-secondary' : 'text-text'
                         }`}
                     >
                         {activityCardTitle}
                     </ActivityLink>
+                    {isVocabularyCard && (
+                        <div className="mt-2 -mx-1">
+                            <VocabActivityVisual
+                                activityId={activity.id}
+                                title={activity.title}
+                                unitNumber={vocabUnitNumber}
+                            />
+                        </div>
+                    )}
                     <div className="mt-2 flex items-start gap-2 text-xs text-text-muted">
                         <div className="flex flex-1 min-w-0 flex-wrap items-center gap-2">
                             {vocabThemeChip && (
@@ -1248,18 +1382,6 @@ const ActivityCard = React.memo(function ActivityCard({
                                     {grammarChipCopy.friendlyTitle}
                                 </span>
                             )}
-                            {grammarChipCopy && (
-                                <span
-                                    className="px-2 py-0.5 rounded-full border font-medium text-[11px]"
-                                    style={{
-                                        backgroundColor: `${tenseTexture?.color ?? '#64748b'}08`,
-                                        borderColor: `${tenseTexture?.color ?? '#64748b'}2A`,
-                                        color: tenseTexture?.color ?? '#475569',
-                                    }}
-                                >
-                                    {capitalizeFirstLetter(grammarChipCopy.useThisFor)}
-                                </span>
-                            )}
                             {!hideTypeChip && (
                                 vocabType ? (
                                     <span
@@ -1273,13 +1395,13 @@ const ActivityCard = React.memo(function ActivityCard({
                                     </span>
                                 )
                             )}
-                            {points !== undefined && points > 0 && !isCompleted && (
+                            {points !== undefined && points > 0 && !showCompletedState && (
                                 <span className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 font-semibold text-[11px]">
                                     +{points} pts
                                 </span>
                             )}
                         </div>
-                        {progressValue > 0 && !isCompleted && (
+                        {showProgressState && (
                             <span className="ml-auto shrink-0 px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold text-[11px]">
                                 {progressChipLabel}
                             </span>
@@ -1289,7 +1411,7 @@ const ActivityCard = React.memo(function ActivityCard({
             </div>
 
             {/* Progress bar - now more subtle and integrated */}
-            {hasProgress && (
+            {showProgressState && (
                 <div className="mt-3 h-1.5 bg-gray-200/50 rounded-full overflow-hidden relative z-10 border border-gray-200/30">
                     <div
                         className="h-full bg-primary/80 rounded-full transition-all duration-500 shadow-[0_0_8px_rgba(var(--primary-rgb),0.2)]"
@@ -1301,16 +1423,97 @@ const ActivityCard = React.memo(function ActivityCard({
     );
 });
 
+const DesktopCarousel = React.memo(function DesktopCarousel({
+    children,
+    ariaLabel,
+}: {
+    children: React.ReactNode;
+    ariaLabel: string;
+}) {
+    const scrollRef = useRef<HTMLDivElement | null>(null);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(false);
+
+    const updateScrollState = useCallback(() => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        const maxScrollLeft = el.scrollWidth - el.clientWidth;
+        setCanScrollLeft(el.scrollLeft > 8);
+        setCanScrollRight(maxScrollLeft > 8 && el.scrollLeft < maxScrollLeft - 8);
+    }, []);
+
+    useEffect(() => {
+        updateScrollState();
+        const el = scrollRef.current;
+        if (!el) return;
+
+        el.addEventListener('scroll', updateScrollState, { passive: true });
+        window.addEventListener('resize', updateScrollState);
+
+        return () => {
+            el.removeEventListener('scroll', updateScrollState);
+            window.removeEventListener('resize', updateScrollState);
+        };
+    }, [children, updateScrollState]);
+
+    const scrollByPage = useCallback((direction: -1 | 1) => {
+        const el = scrollRef.current;
+        if (!el) return;
+
+        el.scrollBy({
+            left: el.clientWidth * 0.82 * direction,
+            behavior: 'smooth',
+        });
+    }, []);
+
+    return (
+        <div className="relative">
+            <div ref={scrollRef} className="activity-carousel">
+                {children}
+            </div>
+
+            <div className="pointer-events-none absolute inset-y-0 left-0 right-0 hidden lg:block">
+                <button
+                    type="button"
+                    aria-label={`Scroll ${ariaLabel} left`}
+                    onClick={() => scrollByPage(-1)}
+                    className={`pointer-events-auto absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 h-10 w-10 rounded-full border bg-white/95 shadow-md transition-all ${
+                        canScrollLeft ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{ borderColor: 'rgba(15, 23, 42, 0.08)', color: 'var(--text-color)' }}
+                >
+                    <span aria-hidden="true" className="text-lg leading-none">‹</span>
+                </button>
+
+                <button
+                    type="button"
+                    aria-label={`Scroll ${ariaLabel} right`}
+                    onClick={() => scrollByPage(1)}
+                    className={`pointer-events-auto absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 h-10 w-10 rounded-full border bg-white/95 shadow-md transition-all ${
+                        canScrollRight ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{ borderColor: 'rgba(15, 23, 42, 0.08)', color: 'var(--text-color)' }}
+                >
+                    <span aria-hidden="true" className="text-lg leading-none">›</span>
+                </button>
+            </div>
+        </div>
+    );
+});
+
 interface ActivityCardMeta {
     isCompleted: boolean;
     progressValue: number;
     progressText: string | null;
     vocabType: ReturnType<typeof getVocabActivityType>;
+    vocabUnitNumber: number | null;
     vocabThemeChip: string | null;
     vocabWordsChip: string | null;
     verbQuizWordsChip: string | null;
     activityCardTitle: string;
     grammarChipCopy: { friendlyTitle: string; useThisFor: string } | null;
+    gameCardCopy: { friendlyTitle: string; useThisFor: string } | null;
     points?: number;
     gameEmoji: string | null;
 }
@@ -1638,6 +1841,59 @@ export const ActivityCategories = React.memo(function ActivityCategories({
         };
     }, [activities]);
 
+    const buildGameSubCategories = useCallback((): SubCategory[] => {
+        const gameActivities = activityIndex.games;
+        const normalizeTitle = (title?: string | null) => displayTitle(title || "").toLowerCase();
+        const remaining = [...gameActivities];
+
+        const take = (predicate: (a: Activity) => boolean) => {
+            const matched: Activity[] = [];
+            for (let i = remaining.length - 1; i >= 0; i--) {
+                const item = remaining[i];
+                if (predicate(item)) {
+                    matched.push(item);
+                    remaining.splice(i, 1);
+                }
+            }
+            return matched.reverse();
+        };
+
+        const sortAlpha = (list: Activity[]) =>
+            list.sort((a, b) => displayTitle(a.title || "").localeCompare(displayTitle(b.title || "")));
+
+        const verbTenseGames = sortAlpha(
+            take((a: Activity) => {
+                const t = normalizeTitle(a.title);
+                return (
+                    t.includes('verb forms') ||
+                    t.includes('irregular') ||
+                    t.includes('time indicators') ||
+                    t.includes('sounds right')
+                );
+            })
+        );
+
+        const partsOfSpeechGames = sortAlpha(
+            take((a: Activity) => {
+                const t = normalizeTitle(a.title);
+                return t.includes('countable') || t.includes('uncountable');
+            })
+        );
+
+        const numberGames = sortAlpha(
+            take((a: Activity) => a.id === 'numbers-game' || normalizeTitle(a.title).includes('numbers'))
+        );
+
+        const otherGames = sortAlpha(remaining);
+
+        return [
+            { name: 'Verb Tense Games', activities: verbTenseGames },
+            { name: 'Parts of Speech Games', activities: partsOfSpeechGames },
+            { name: 'Numbers', activities: numberGames },
+            { name: 'Other Games', activities: otherGames },
+        ].filter((group) => group.activities.length > 0);
+    }, [activityIndex.games]);
+
     const categories = useMemo<Category[]>(() => [
             {
                 name: 'Vocabulary',
@@ -1671,7 +1927,8 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             {
                 name: 'Games',
                 color: '#f97316', // orange
-                activities: activityIndex.games
+                subCategories: buildGameSubCategories(),
+                activities: []
             },
             {
                 name: 'Reading',
@@ -1698,7 +1955,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 color: '#c86b51', // terracotta
                 activities: activityIndex.quizzes
             }
-        ], [activityIndex, buildGrammarSubCategories]);
+        ], [activityIndex, buildGrammarSubCategories, buildGameSubCategories]);
 
     const filteredCategories = useMemo(() => {
         let result = categories;
@@ -1741,23 +1998,29 @@ export const ActivityCategories = React.memo(function ActivityCategories({
             const isCompleted = !!isActivityCompleted(activity, completedActivityIds, progressMap, completedActivityTitles);
             const progressText = getCategoryProgressText(activity.id, progressMap);
             const vocabType = getVocabActivityType(activity.id);
+            const vocabUnitNumber = activity.id.startsWith('vocab-') || activity.category?.toLowerCase() === 'vocabulary'
+                ? getVocabUnitNumberFromActivity(activity)
+                : null;
             const activityCardTitle = getActivityCardTitle(activity);
             const grammarChipCopy = activity.category === 'grammar'
                 ? getGrammarChipCopy(activity.title)
                 : null;
             const gameUi = activity.type === 'game' ? resolveActivityGameUi(activity) : undefined;
             const points = activity.type === 'game' ? getActivityPoints(activity.type, activity) : undefined;
+            const gameCardCopy = activity.type === 'game' ? getGameCardCopy(activity.id, activity.title) : null;
 
             metaById.set(activity.id, {
                 isCompleted,
                 progressValue,
                 progressText,
                 vocabType,
+                vocabUnitNumber,
                 vocabThemeChip: showDetailChips ? getVocabThemeChip(activity) : null,
                 vocabWordsChip: showDetailChips ? getVocabWordsChip(activity) : null,
                 verbQuizWordsChip: showDetailChips ? getVerbQuizWordsChip(activity) : null,
                 activityCardTitle,
                 grammarChipCopy,
+                gameCardCopy,
                 points,
                 gameEmoji: gameUi
                     ? getGameEmojiForActivity({ activityId: activity.id, title: activity.title, gameUi })
@@ -1791,6 +2054,7 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                 points={cardMeta.points}
                 tenseTexture={texture}
                 vocabType={cardMeta.vocabType}
+                vocabUnitNumber={cardMeta.vocabUnitNumber}
                 vocabThemeChip={cardMeta.vocabThemeChip}
                 vocabWordsChip={cardMeta.vocabWordsChip}
                 verbQuizWordsChip={cardMeta.verbQuizWordsChip}
@@ -1939,9 +2203,303 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                         )}
                                     </div>
                                 )}
-                                <div className={`space-y-2.5 ${filterCategory === 'games' ? 'grid grid-cols-1 sm:grid-cols-2 gap-3 space-y-0' : ''}`}>
-                                    {sortedActivities.map(activity => renderActivityCard(activity, accentColor, true, section.label))}
-                                </div>
+                                {/* Card carousel layout for featured learning categories */}
+                                {(filterCategory === 'grammar' || filterCategory === 'vocabulary' || filterCategory === 'games' || filterCategory === 'pronunciation') ? (
+                                    <DesktopCarousel ariaLabel={section.label || `${filterCategory || 'activities'} cards`}>
+                                        {sortedActivities.map((activity) => {
+                                            const isCompleted = isCompletedForActivity(activity);
+                                            const progress = progressMap?.[activity.id]?.progress ?? 0;
+                                            const hasProgress = progress > 0 && progress < 100;
+                                            const isGameCard = filterCategory === 'games';
+                                            const showCompletedState = isCompleted && !isGameCard;
+                                            const showProgressState = hasProgress && !isGameCard;
+                                            const texture = getActivityTextureForCard(activity, section.label || '', filterCategory);
+                                            const cardTitle = displayTitle(activity.title);
+                                            const grammarCopy = getGrammarChipCopyForActivity(activity);
+                                            const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
+                                            const cardMeta = activityCardMetaById.get(activity.id);
+                                            const points = getActivityPoints(activity.type, { id: activity.id, ui: activity.ui ?? undefined, content: activity.content ?? undefined });
+                                            const vocabTheme = cardMeta?.vocabThemeChip ? capitalizeFirstLetter(cardMeta.vocabThemeChip) : 'Build topic vocabulary';
+                                            const vocabSupport = cardMeta?.vocabWordsChip || activity.description || 'Study and use key words in context.';
+                                            const gameCopy = cardMeta?.gameCardCopy;
+                                            const pronunciationCopy = getPronunciationCardCopy(activity.id, activity.title);
+
+                                            return (
+                                                <ActivityLink
+                                                    key={activity.id}
+                                                    activityId={activity.id}
+                                                    className="activity-carousel-card block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-2xl"
+                                                >
+                                                        <div
+                                                            className={`relative rounded-2xl border bg-white overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] h-full
+                                                            ${showProgressState
+                                                                ? 'border-primary/30'
+                                                                : 'border-border-subtle hover:border-primary/40'
+                                                            }`}
+                                                        style={{
+                                                            borderTopWidth: '3px',
+                                                            borderTopColor: texture?.color ?? 'var(--primary-color)',
+                                                        }}
+                                                    >
+                                                        {/* Texture gradient background - always show */}
+                                                        {texture && (
+                                                            <div
+                                                                className="absolute inset-0 pointer-events-none"
+                                                                style={{
+                                                                    background: texture.gradient,
+                                                                    opacity: 0.8
+                                                                }}
+                                                            />
+                                                        )}
+
+                                                        {/* SVG Pattern overlays */}
+                                                        {texture?.pattern === 'wave' && (
+                                                            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.10]" preserveAspectRatio="none">
+                                                                <defs>
+                                                                    <pattern id={`carousel-wave-${activity.id}`} x="0" y="0" width="40" height="20" patternUnits="userSpaceOnUse">
+                                                                        <path d="M0 10 Q10 0, 20 10 T40 10" fill="none" stroke={texture.color} strokeWidth="2" />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="100%" height="100%" fill={`url(#carousel-wave-${activity.id})`} />
+                                                            </svg>
+                                                        )}
+                                                        {texture?.pattern === 'dots' && (
+                                                            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.15]" preserveAspectRatio="none">
+                                                                <defs>
+                                                                    <pattern id={`carousel-dots-${activity.id}`} x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                                                                        <circle cx="8" cy="8" r="1.5" fill={texture.color} />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="100%" height="100%" fill={`url(#carousel-dots-${activity.id})`} />
+                                                            </svg>
+                                                        )}
+                                                        {texture?.pattern === 'diagonal' && (
+                                                            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" preserveAspectRatio="none">
+                                                                <defs>
+                                                                    <pattern id={`carousel-diagonal-${activity.id}`} x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+                                                                        <path d="M0 12 L12 0" stroke={texture.color} strokeWidth="1" />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="100%" height="100%" fill={`url(#carousel-diagonal-${activity.id})`} />
+                                                            </svg>
+                                                        )}
+                                                        {texture?.pattern === 'mixed' && (
+                                                            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.10]" preserveAspectRatio="none">
+                                                                <defs>
+                                                                    <pattern id={`carousel-mixed-${activity.id}`} x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+                                                                        <circle cx="6" cy="6" r="1" fill={texture.color} />
+                                                                        <circle cx="18" cy="18" r="1" fill={texture.color} />
+                                                                        <path d="M12 0 L12 24" stroke={texture.color} strokeWidth="0.5" strokeDasharray="2,4" />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="100%" height="100%" fill={`url(#carousel-mixed-${activity.id})`} />
+                                                            </svg>
+                                                        )}
+                                                        {texture?.pattern === 'solid' && (
+                                                            <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.08]" preserveAspectRatio="none">
+                                                                <defs>
+                                                                    <pattern id={`carousel-solid-${activity.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                                        <circle cx="10" cy="10" r="1" fill={texture.color} />
+                                                                    </pattern>
+                                                                </defs>
+                                                                <rect width="100%" height="100%" fill={`url(#carousel-solid-${activity.id})`} />
+                                                            </svg>
+                                                        )}
+
+                                                        {/* Card Content - tighter padding */}
+                                                        <div className="relative z-10 p-3 flex flex-col h-full min-h-[156px]">
+                                                            {/* Top row: Tense badge + completion check */}
+                                                            <div className="flex items-start justify-between mb-1">
+                                                                <span
+                                                                    className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide"
+                                                                    style={{
+                                                                        backgroundColor: `${texture?.color ?? '#d97757'}14`,
+                                                                        color: texture?.color ?? '#d97757',
+                                                                    }}
+                                                                >
+                                                                    {(() => {
+                                                                    const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
+                                                                    return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
+                                                                  })()}
+                                                                </span>
+
+                                                                {isCompleted && (
+                                                                    <div className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center shadow-sm flex-shrink-0">
+                                                                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                                                        </svg>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+
+                                                            {/* Grammar / vocabulary visual */}
+                                                            {filterCategory === 'grammar' && hasGrammarVisual && (
+                                                                <div className="mb-1 -mx-1">
+                                                                    <GrammarGuideVisual title={activity.title} isCompleted={isCompleted} />
+                                                                </div>
+                                                            )}
+                                                            {filterCategory === 'vocabulary' && (
+                                                                <div className="mb-1 -mx-1">
+                                                                    <VocabActivityVisual
+                                                                        activityId={activity.id}
+                                                                        title={activity.title}
+                                                                        unitNumber={cardMeta?.vocabUnitNumber}
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                            {filterCategory === 'games' && (
+                                                                <div className="mb-1 -mx-1">
+                                                                    <GameActivityVisual activityId={activity.id} title={activity.title} />
+                                                                </div>
+                                                            )}
+                                                            {filterCategory === 'pronunciation' && (
+                                                                <div className="mb-1 -mx-1">
+                                                                    <PronunciationActivityVisual activityId={activity.id} title={activity.title} />
+                                                                </div>
+                                                            )}
+
+                                                            {/* Learning outcome / description - PRIMARY FOCUS */}
+                                                            <div className="flex-1">
+                                                                {filterCategory === 'grammar' && grammarCopy ? (
+                                                                    <>
+                                                                        <p
+                                                                            className="text-sm font-semibold leading-snug mb-1"
+                                                                            style={{ color: 'var(--text-color)' }}
+                                                                        >
+                                                                            {grammarCopy.friendlyTitle}
+                                                                        </p>
+                                                                        <p
+                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                        >
+                                                                            <span
+                                                                                aria-hidden="true"
+                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                            />
+                                                                            {grammarCopy.useThisFor}
+                                                                        </p>
+                                                                    </>
+                                                                ) : filterCategory === 'vocabulary' ? (
+                                                                    <>
+                                                                        <p
+                                                                            className="text-sm font-semibold leading-snug mb-1"
+                                                                            style={{ color: isCompleted ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                        >
+                                                                            {vocabTheme}
+                                                                        </p>
+                                                                        <p
+                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                        >
+                                                                            <span
+                                                                                aria-hidden="true"
+                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                            />
+                                                                            {vocabSupport}
+                                                                        </p>
+                                                                    </>
+                                                                ) : filterCategory === 'games' && gameCopy ? (
+                                                                    <>
+                                                                        <p
+                                                                            className="text-sm font-semibold leading-snug mb-1"
+                                                                            style={{ color: isCompleted ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                        >
+                                                                            {gameCopy.friendlyTitle}
+                                                                        </p>
+                                                                        <p
+                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                        >
+                                                                            <span
+                                                                                aria-hidden="true"
+                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                            />
+                                                                            {gameCopy.useThisFor}
+                                                                        </p>
+                                                                    </>
+                                                                ) : filterCategory === 'pronunciation' ? (
+                                                                    <>
+                                                                        <p
+                                                                            className="text-sm font-semibold leading-snug mb-1"
+                                                                            style={{ color: isCompleted ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                        >
+                                                                            {pronunciationCopy.friendlyTitle}
+                                                                        </p>
+                                                                        <p
+                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                        >
+                                                                            <span
+                                                                                aria-hidden="true"
+                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                            />
+                                                                            {pronunciationCopy.useThisFor}
+                                                                        </p>
+                                                                    </>
+                                                                ) : (
+                                                                    <p
+                                                                        className="text-sm font-medium leading-snug"
+                                                                        style={{ color: 'var(--text-color)' }}
+                                                                    >
+                                                                        {cardTitle}
+                                                                    </p>
+                                                                )}
+                                                            </div>
+
+                                                            {/* Bottom row: Progress / Points */}
+                                                            <div className="flex items-center justify-between mt-2 pt-2 border-t border-border-subtle/50">
+                                                                {showCompletedState ? (
+                                                                    <span className="text-[11px] font-semibold text-secondary">
+                                                                        Completed
+                                                                    </span>
+                                                                ) : showProgressState ? (
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                                                            <div
+                                                                                className="h-full rounded-full transition-all"
+                                                                                style={{
+                                                                                    width: `${progress}%`,
+                                                                                    backgroundColor: texture?.color ?? 'var(--primary-color)',
+                                                                                }}
+                                                                            />
+                                                                        </div>
+                                                                        <span className="text-[10px] font-medium text-text-muted">
+                                                                            {progress}%
+                                                                        </span>
+                                                                    </div>
+                                                                ) : !isGameCard ? (
+                                                                    <span className="text-[11px] font-medium text-text-muted">
+                                                                        Not started
+                                                                    </span>
+                                                                ) : <span />}
+
+                                                                {!showCompletedState && points > 0 && (
+                                                                    <span
+                                                                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+                                                                        style={{
+                                                                            backgroundColor: 'rgba(244, 211, 94, 0.15)',
+                                                                            color: '#92400e',
+                                                                        }}
+                                                                    >
+                                                                        +{points} pts
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ActivityLink>
+                                            );
+                                        })}
+                                    </DesktopCarousel>
+                                ) : (
+                                    <div className={`space-y-2.5 ${filterCategory === 'games' ? 'grid grid-cols-1 sm:grid-cols-2 gap-3 space-y-0' : ''}`}>
+                                        {sortedActivities.map(activity => renderActivityCard(activity, accentColor, true, section.label))}
+                                    </div>
+                                )}
                             </div>
                         );
                     })}
@@ -2033,45 +2591,281 @@ export const ActivityCategories = React.memo(function ActivityCategories({
                                                         subCategory.subCategories ? (
                                                             // Has sub-subcategories (like Verb Tenses -> Simple, Continuous, etc.)
                                                             subCategory.name === 'Tenses' ? (
-                                                                <div className="divide-y divide-border/10">
+                                                                // Carousel layout for Tenses - each tense family as horizontal scroll
+                                                                <div className="px-4 py-4 space-y-6 bg-white/30">
                                                                     {subCategory.subCategories
                                                                         ?.filter((subSubCategory) => subSubCategory.activities.length > 0)
                                                                         .map((subSubCategory) => {
                                                                             const subSubKey = `${subKey}-${subSubCategory.name}`;
-                                                                            const isSubSubExpanded = expandedSubCategories.has(subSubKey);
+                                                                            const subtitle = getSubcategorySubtitle(subSubCategory.name.toUpperCase());
+                                                                            const sectionTexture = getSectionTexture(subSubCategory.name.toLowerCase(), filterCategory);
 
                                                                             return (
                                                                                 <div key={subSubKey}>
-                                                                                    <button
-                                                                                        onClick={() => toggleSubCategory(subSubKey)}
-                                                                                        className="w-full flex items-center justify-between p-3 pl-16 hover:bg-white/30 transition-colors group cursor-pointer touch-manipulation"
-                                                                                        style={{
-                                                                                            touchAction: 'manipulation'
-                                                                                        }}
-                                                                                    >
-                                                                                        <div className="flex items-center gap-2">
-                                                                                            <span className="text-sm font-bold text-text group-hover:text-primary transition-colors pointer-events-none">
-                                                                                                {subSubCategory.name}
-                                                                                            </span>
-                                                                                            <span className="text-xs text-text-muted font-medium bg-white px-2 py-0.5 rounded-full pointer-events-none">
-                                                                                                {subSubCategory.activities.length}
-                                                                                            </span>
-                                                                                        </div>
-                                                                                        <svg
-                                                                                            className={`w-4 h-4 text-text-muted transition-transform duration-300 pointer-events-none ${isSubSubExpanded ? 'rotate-180' : ''}`}
-                                                                                            fill="none"
-                                                                                            stroke="currentColor"
-                                                                                            viewBox="0 0 24 24"
+                                                                                    {/* Section Header - Dual line */}
+                                                                                    <div className="mb-3">
+                                                                                        <div
+                                                                                            className="text-[10px] font-bold tracking-widest uppercase"
+                                                                                            style={{ color: sectionTexture?.color ?? 'var(--text-color-muted)' }}
                                                                                         >
-                                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                                                        </svg>
-                                                                                    </button>
-
-                                                                                    {isSubSubExpanded && subSubCategory.activities.length > 0 && (
-                                                                                        <div className="pl-20 pr-4 pb-3 space-y-2">
-                                                                                            {subSubCategory.activities.map((a) => renderActivityCard(a))}
+                                                                                            {subSubCategory.name}
                                                                                         </div>
-                                                                                    )}
+                                                                                        {subtitle && (
+                                                                                            <div
+                                                                                                className="text-base font-semibold mt-0.5"
+                                                                                                style={{ color: 'var(--text-color)' }}
+                                                                                            >
+                                                                                                {subtitle}
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </div>
+
+                                                                                    {/* Horizontal Carousel */}
+                                                                                    <DesktopCarousel ariaLabel={subSubCategory.name}>
+                                                                                        {subSubCategory.activities.map((activity) => {
+                                                                                            const isCompleted = completedActivityIds?.has(activity.id) || completedActivityTitles?.has(activity.title);
+                                                                                            const progress = progressMap?.[activity.id]?.progress ?? 0;
+                                                                                            const hasProgress = progress > 0 && progress < 100;
+                                                                                            const isGameCard = filterCategory === 'games';
+                                                                                            const showCompletedState = isCompleted && !isGameCard;
+                                                                                            const showProgressState = hasProgress && !isGameCard;
+                                                                                            const texture = getActivityTextureForCard(activity, subSubCategory.name, filterCategory);
+                                                                                            const cardTitle = displayTitle(activity.title);
+                                                                                            const grammarCopy = getGrammarChipCopyForActivity(activity);
+                                                                                            const hasGrammarVisual = hasGrammarGuideVisual(activity.title);
+                                                                                            const points = getActivityPoints(activity.type, { id: activity.id, ui: activity.ui ?? undefined, content: activity.content ?? undefined });
+                                                                                            const pronunciationCopy = getPronunciationCardCopy(activity.id, activity.title);
+
+                                                                                            return (
+                                                                                                <ActivityLink
+                                                                                                    key={activity.id}
+                                                                                                    activityId={activity.id}
+                                                                                                    className="activity-carousel-card block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 rounded-2xl"
+                                                                                                >
+                                                                                                    <div
+                                                                                                        className={`relative rounded-2xl border bg-white overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 active:scale-[0.98] h-full
+                                                                                                            ${showCompletedState
+                                                                                                                ? 'border-secondary/30 bg-secondary/[0.02]'
+                                                                                                                : hasProgress
+                                                                                                                    ? 'border-primary/30'
+                                                                                                                    : 'border-border-subtle hover:border-primary/40'
+                                                                                                            }`}
+                                                                                                        style={{
+                                                                                                            borderTopWidth: '3px',
+                                                                                                            borderTopColor: showCompletedState
+                                                                                                                ? 'var(--secondary-color)'
+                                                                                                                : texture?.color ?? 'var(--primary-color)',
+                                                                                                        }}
+                                                                                                    >
+                                                                                                        {/* Texture gradient background */}
+                                                                                                        {texture && !showCompletedState && (
+                                                                                                            <div
+                                                                                                                className="absolute inset-0 pointer-events-none opacity-60"
+                                                                                                                style={{ background: texture.gradient }}
+                                                                                                            />
+                                                                                                        )}
+
+                                                                                                        {/* Completed state background */}
+                                                        {showCompletedState && (
+                                                            <div className="absolute inset-0 bg-secondary/[0.04] pointer-events-none" />
+                                                        )}
+
+                                                                                                        {/* Card Content */}
+                                                                                                        <div className="relative z-10 p-4 flex flex-col h-full min-h-[180px]">
+                                                                                                            {/* Top row: Tense badge + completion check */}
+                                                                                                            <div className="flex items-start justify-between mb-2">
+                                                                                                                <span
+                                                                                                                    className="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide"
+                                                                                                                    style={{
+                                                                                                                        backgroundColor: showCompletedState
+                                                                                                                            ? 'rgba(123, 168, 132, 0.12)'
+                                                                                                                            : `${texture?.color ?? '#d97757'}14`,
+                                                                                                                        color: showCompletedState
+                                                                                                                            ? 'var(--secondary-color)'
+                                                                                                                            : texture?.color ?? '#d97757',
+                                                                                                                    }}
+                                                                                                                >
+                                                                                                                    {(() => {
+                                                                    const shortened = cardTitle.replace(/ Guide$/i, '').replace(/ Review$/i, '');
+                                                                    return shortened === 'Cycle 1' ? 'Cycle 1 Review' : shortened;
+                                                                  })()}
+                                                                                                                </span>
+
+                                                                {showCompletedState && (
+                                                                    <div className="w-5 h-5 rounded-full bg-secondary flex items-center justify-center shadow-sm flex-shrink-0">
+                                                                                                                        <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                                                                                                        </svg>
+                                                                                                                    </div>
+                                                                                                                )}
+                                                                                                            </div>
+
+                                                                                                            {/* Grammar / vocabulary visual */}
+                                                                                                            {filterCategory === 'grammar' && hasGrammarVisual && (
+                                                                                                                <div className="mb-2 -mx-1">
+                                                                                                                    <GrammarGuideVisual title={activity.title} isCompleted={isCompleted} />
+                                                                                                                </div>
+                                                                                                            )}
+                                                                                                            {filterCategory === 'vocabulary' && (
+                                                                                                                <div className="mb-2 -mx-1">
+                                                                                                                    <VocabActivityVisual
+                                                                                                                        activityId={activity.id}
+                                                                                                                        title={activity.title}
+                                                                                                                        unitNumber={activityCardMetaById.get(activity.id)?.vocabUnitNumber}
+                                                                                                                    />
+                                                                                                                </div>
+                                                                                                            )}
+                                                                                                            {filterCategory === 'games' && (
+                                                                                                                <div className="mb-2 -mx-1">
+                                                                                                                    <GameActivityVisual activityId={activity.id} title={activity.title} />
+                                                                                                                </div>
+                                                                                                            )}
+                                                                                                            {filterCategory === 'pronunciation' && (
+                                                                                                                <div className="mb-2 -mx-1">
+                                                                                                                    <PronunciationActivityVisual activityId={activity.id} title={activity.title} />
+                                                                                                                </div>
+                                                                                                            )}
+
+                                                                                                            {/* Learning outcome / description - PRIMARY FOCUS */}
+                                                                                                            <div className="flex-1">
+                                                                                                                {filterCategory === 'grammar' && grammarCopy ? (
+                                                                                                                    <>
+                                                                                                                        <p
+                                                                                                                            className="text-sm font-semibold leading-snug mb-1"
+                                                                            style={{ color: showCompletedState ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                                                                        >
+                                                                                                                            {grammarCopy.friendlyTitle}
+                                                                                                                        </p>
+                                                                                                                        <p
+                                                                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                                                                        >
+                                                                                                                            <span
+                                                                                                                                aria-hidden="true"
+                                                                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                                                                            />
+                                                                                                                            {grammarCopy.useThisFor}
+                                                                                                                        </p>
+                                                                                                                    </>
+                                                                                                                ) : filterCategory === 'vocabulary' ? (
+                                                                                                                    <>
+                                                                                                                        <p
+                                                                                                                            className="text-sm font-semibold leading-snug mb-1"
+                                                                            style={{ color: showCompletedState ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                                                                        >
+                                                                                                                            {(() => {
+                                                                                                                                const theme = activityCardMetaById.get(activity.id)?.vocabThemeChip;
+                                                                                                                                return theme ? capitalizeFirstLetter(theme) : 'Build topic vocabulary';
+                                                                                                                            })()}
+                                                                                                                        </p>
+                                                                                                                        <p
+                                                                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                                                                        >
+                                                                                                                            <span
+                                                                                                                                aria-hidden="true"
+                                                                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                                                                            />
+                                                                                                                            {activityCardMetaById.get(activity.id)?.vocabWordsChip || activity.description || 'Study and use key words in context.'}
+                                                                                                                        </p>
+                                                                                                                    </>
+                                                                                                                ) : filterCategory === 'games' && activityCardMetaById.get(activity.id)?.gameCardCopy ? (
+                                                                                                                    <>
+                                                                                                                        <p
+                                                                                                                           className="text-sm font-semibold leading-snug mb-1"
+                                                                                                                            style={{ color: showCompletedState ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                                                                        >
+                                                                                                                            {activityCardMetaById.get(activity.id)?.gameCardCopy?.friendlyTitle}
+                                                                                                                        </p>
+                                                                                                                        <p
+                                                                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                                                                        >
+                                                                                                                            <span
+                                                                                                                                aria-hidden="true"
+                                                                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                                                                            />
+                                                                                                                            {activityCardMetaById.get(activity.id)?.gameCardCopy?.useThisFor}
+                                                                                                                        </p>
+                                                                                                                    </>
+                                                                                                                ) : filterCategory === 'pronunciation' ? (
+                                                                                                                    <>
+                                                                                                                        <p
+                                                                                                                           className="text-sm font-semibold leading-snug mb-1"
+                                                                                                                            style={{ color: showCompletedState ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                                                                        >
+                                                                                                                            {pronunciationCopy.friendlyTitle}
+                                                                                                                        </p>
+                                                                                                                        <p
+                                                                                                                            className="text-xs leading-relaxed pl-4 relative"
+                                                                                                                            style={{ color: 'var(--text-color-muted)' }}
+                                                                                                                        >
+                                                                                                                            <span
+                                                                                                                                aria-hidden="true"
+                                                                                                                                className="absolute left-0 top-[0.45rem] block h-px w-2.5"
+                                                                                                                                style={{ backgroundColor: 'currentColor', opacity: 0.45 }}
+                                                                                                                            />
+                                                                                                                            {pronunciationCopy.useThisFor}
+                                                                                                                        </p>
+                                                                                                                    </>
+                                                                                                                ) : (
+                                                                                                                    <p
+                                                                                                                       className="text-sm font-medium leading-snug"
+                                                                                                                        style={{ color: showCompletedState ? 'var(--secondary-color)' : 'var(--text-color)' }}
+                                                                                                                    >
+                                                                                                                        {cardTitle}
+                                                                                                                    </p>
+                                                                                                                )}
+                                                                                                            </div>
+
+                                                                                                            {/* Bottom row: Progress / Points */}
+                                                                                                           <div className="flex items-center justify-between mt-3 pt-2 border-t border-border-subtle/50">
+                                                                {showCompletedState ? (
+                                                                    <span className="text-[11px] font-semibold text-secondary">
+                                                                        Completed
+                                                                    </span>
+                                                                ) : showProgressState ? (
+                                                                    <div className="flex items-center gap-2">
+                                                                                                                        <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                                                                                                            <div
+                                                                                                                                className="h-full rounded-full transition-all"
+                                                                                                                                style={{
+                                                                                                                                    width: `${progress}%`,
+                                                                                                                                    backgroundColor: texture?.color ?? 'var(--primary-color)',
+                                                                                                                                }}
+                                                                                                                            />
+                                                                                                                        </div>
+                                                                                                                        <span className="text-[10px] font-medium text-text-muted">
+                                                                                                                            {progress}%
+                                                                                                                        </span>
+                                                                                                                    </div>
+                                                                                                                ) : filterCategory !== 'games' ? (
+                                                                                                                    <span className="text-[11px] font-medium text-text-muted">
+                                                                                                                        Not started
+                                                                                                                    </span>
+                                                                                                                ) : <span />}
+
+                                                                {!showCompletedState && points > 0 && (
+                                                                    <span
+                                                                        className="px-2 py-0.5 rounded-full text-[10px] font-semibold"
+                                                                        style={{
+                                                                            backgroundColor: 'rgba(244, 211, 94, 0.15)',
+                                                                            color: '#92400e',
+                                                                        }}
+                                                                    >
+                                                                        +{points} pts
+                                                                    </span>
+                                                                )}
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </ActivityLink>
+                                                                                            );
+                                                                                        })}
+                                                                                    </DesktopCarousel>
                                                                                 </div>
                                                                             );
                                                                         })}

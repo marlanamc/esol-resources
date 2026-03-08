@@ -219,23 +219,23 @@ export const futureContinuousContent: InteractiveGuideContent = {
                 <div style="background: white; border: 2px solid #06b6d4; border-radius: 0.75rem; padding: 1.5rem; margin: 1.5rem 0;">
                     <h4 style="text-align: center; margin-top: 0; color: #06b6d4;">Future Timeline Snapshot</h4>
 
-                    <div style="position: relative; margin: 2rem auto 1.25rem auto; max-width: 680px; height: 180px;">
-                        <div style="position: absolute; top: 50%; left: 8%; right: 8%; height: 4px; background: linear-gradient(to right, #e2e8f0, #06b6d4 40%, #06b6d4 60%, #e2e8f0); transform: translateY(-50%);"></div>
+                    <div class="gc-timeline-future-snapshot" style="position: relative; margin: 2rem auto 1.25rem auto; max-width: 680px; height: 180px;">
+                        <div class="gc-timeline-line" style="position: absolute; top: 50%; left: 8%; right: 8%; height: 4px; background: linear-gradient(to right, #e2e8f0, #06b6d4 40%, #06b6d4 60%, #e2e8f0); transform: translateY(-50%);"></div>
 
-                        <div style="position: absolute; top: calc(50% - 18px); left: 31%; right: 16%; height: 36px; background: linear-gradient(90deg, rgba(8, 145, 178, 0.38), rgba(14, 116, 144, 0.96)); border-radius: 18px; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.9rem; padding-right: 6rem; box-shadow: 0 4px 14px rgba(14, 116, 144, 0.32); overflow: hidden;">
-                            <span style="display: inline-block; background: rgba(8, 47, 73, 0.76); color: #ffffff; font-weight: 800; font-size: 0.93rem; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; padding: 0.42rem 0.72rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);">
+                        <div class="gc-timeline-bar" style="position: absolute; top: calc(50% - 18px); left: 31%; right: 16%; height: 36px; background: linear-gradient(90deg, rgba(8, 145, 178, 0.38), rgba(14, 116, 144, 0.96)); border-radius: 18px; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.9rem; padding-right: 6rem; box-shadow: 0 4px 14px rgba(14, 116, 144, 0.32); overflow: hidden;">
+                            <span style="position: absolute; left: calc(62% - 31% - 92px); top: -0.05rem; display: inline-block; background: rgba(8, 47, 73, 0.76); color: #ffffff; font-weight: 800; font-size: 0.93rem; line-height: 1; letter-spacing: 0.01em; white-space: nowrap; padding: 0.42rem 0.72rem; border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.5); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);">
                                 will be driving...
                             </span>
                         </div>
 
-                        <div style="position: absolute; top: calc(50% - 52px); left: calc(62% - 35px); text-align: center;">
+                        <div class="gc-timeline-circle" style="position: absolute; top: calc(50% - 52px); left: calc(62% - 35px); text-align: center;">
                             <div style="width: 70px; height: 70px; border-radius: 50%; background: #06b6d4; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem; border: 4px solid white; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);">
                                 8 PM
                             </div>
                         </div>
 
-                        <div style="position: absolute; top: calc(50% + 34px); left: 18%; font-size: 0.78rem; color: #64748b;">starts before 8 PM</div>
-                        <div style="position: absolute; top: calc(50% + 34px); right: 14%; font-size: 0.78rem; color: #64748b;">continues after 8 PM</div>
+                        <div class="gc-timeline-label-left" style="position: absolute; top: calc(50% + 34px); left: 18%; font-size: 0.78rem; color: #64748b;">starts before 8 PM</div>
+                        <div class="gc-timeline-label-right" style="position: absolute; top: calc(50% + 34px); right: 14%; font-size: 0.78rem; color: #64748b;">continues after 8 PM</div>
                     </div>
 
                     <div style="margin-top: 2rem; background: #ecfeff; border-left: 4px solid #06b6d4; padding: 1rem; border-radius: 0.5rem;">
