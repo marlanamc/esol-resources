@@ -109,9 +109,9 @@ export default function LoginForm() {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${isLoading ? "bg-[var(--color-text-muted)] cursor-not-allowed" : "bg-primary hover:bg-primary-dark cursor-pointer"}`}
+                    className={`w-full min-h-[52px] py-3 px-4 rounded-xl text-base font-semibold text-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 shadow-sm ${isLoading ? "bg-[var(--color-text-muted)] cursor-not-allowed pointer-events-none" : "bg-primary hover:bg-primary-dark cursor-pointer relative z-10 block"}`}
                 >
-                    {isLoading ? 'Signing in…' : 'Sign In'}
+                    <span className="relative z-20 pointer-events-none">{isLoading ? 'Signing in…' : 'Sign In'}</span>
                 </button>
                 <p className="text-xs sm:text-sm text-center leading-5 text-[var(--color-text-muted)]">
                     First time today? Use your temporary password first.

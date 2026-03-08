@@ -8,7 +8,8 @@ async function loginAsStudent(page: Page) {
     await page.waitForLoadState("networkidle");
     await page.getByLabel(/username/i).fill("e2e-student");
     await page.getByLabel(/password/i).fill("password123");
-    await page.getByRole("button", { name: /sign in/i }).click();
+    await page.waitForTimeout(500);
+    await page.getByRole("button", { name: /sign in/i }).tap({ position: { x: 50, y: 25 } });
 
     try {
       await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });

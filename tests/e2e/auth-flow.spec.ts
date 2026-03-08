@@ -6,7 +6,8 @@ test.describe("Auth flow", () => {
 
     await page.getByLabel(/username/i).fill("e2e-teacher");
     await page.getByLabel(/password/i).fill("password123");
-    await page.getByRole("button", { name: /sign in/i }).click();
+    await page.waitForTimeout(500);
+    await page.getByRole("button", { name: /sign in/i }).tap({ position: { x: 50, y: 25 } });
 
     await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
     await expect(page.getByRole("heading", { name: /dashboard|class|welcome/i })).toBeVisible({ timeout: 10000 });
@@ -17,7 +18,8 @@ test.describe("Auth flow", () => {
 
     await page.getByLabel(/username/i).fill("nonexistent");
     await page.getByLabel(/password/i).fill("wrongpassword");
-    await page.getByRole("button", { name: /sign in/i }).click();
+    await page.waitForTimeout(500);
+    await page.getByRole("button", { name: /sign in/i }).tap({ position: { x: 50, y: 25 } });
 
     await expect(page).toHaveURL(/\/login/);
     await expect(page.getByText(/invalid credentials/i)).toBeVisible({ timeout: 5000 });
