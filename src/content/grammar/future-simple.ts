@@ -554,7 +554,7 @@ export const futureSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ your daughter ___ (study) online next term?",
+                            label: "_________ (your daughter/study) online next term?",
                             expectedAnswer: "Will your daughter study",
                         },
                         {

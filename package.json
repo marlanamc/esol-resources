@@ -37,6 +37,8 @@
     "check:nullable-upserts": "node scripts/checks/check-null-assignment-upserts.mjs",
     "check:repo-hygiene": "node scripts/check-repo-hygiene.mjs",
     "typecheck": "tsc --noEmit",
+    "ci:db:prepare": "prisma migrate deploy",
+    "ci:e2e:setup": "npm run ci:db:prepare && npm run db:seed && npx tsx scripts/e2e-seed.ts",
     "db:seed": "npm run db:seed:grammar",
     "db:seed:grammar": "npx tsx prisma/seed-grammar-only.ts && node prisma/seed.js",
     "db:seed:minimal-pairs": "npx tsx prisma/seed-minimal-pairs.ts",

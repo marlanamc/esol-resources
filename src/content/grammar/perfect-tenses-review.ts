@@ -841,7 +841,7 @@ export const perfectTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ you ever ___ (try) Korean food?",
+                            label: "_________ (you/ever try) Korean food?",
                             expectedAnswer: "Have you ever tried",
                         },
                         {

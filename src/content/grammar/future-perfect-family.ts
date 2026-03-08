@@ -823,22 +823,22 @@ export const futurePerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "___ you ___ (finish) the project by Friday? [result form]",
+                            label: "_________ (you/finish) the project by Friday? [result form]",
                             expectedAnswer: "Will you have finished",
                         },
                         {
                             type: "text",
-                            label: "How long ___ she ___ (work) here by December? [duration form]",
+                            label: "How long __________ (she/work) here by December? [duration form]",
                             expectedAnswer: "will she have been working",
                         },
                         {
                             type: "text",
-                            label: "___ the package ___ (arrive) by tomorrow? [result form]",
+                            label: "_________ (the package/arrive) by tomorrow? [result form]",
                             expectedAnswer: "Will the package have arrived",
                         },
                         {
                             type: "text",
-                            label: "___ they ___ (live) there for 5 years by next month? [duration form]",
+                            label: "_________ (they/live) there for 5 years by next month? [duration form]",
                             expectedAnswer: "Will they have been living",
                         },
                     ],

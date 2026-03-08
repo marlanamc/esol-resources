@@ -844,7 +844,7 @@ export const presentContinuousContent: InteractiveGuideContent = {
                     instructions: "Form questions with am/is/are + subject + verb-ing.",
                     items: [
                         { type: "text", label: "___ the library ___ (offer) free workshops this month?", expectedAnswer: "Is the library offering" },
-                        { type: "text", label: "___ your cousins ___ (visit) next week?", expectedAnswer: "Are your cousins visiting" },
+                        { type: "text", label: "_________ (your cousins/visit) next week?", expectedAnswer: "Are your cousins visiting" },
                         { type: "text", label: "___ the city ___ (repair) the sidewalks in our neighborhood?", expectedAnswer: "Is the city repairing" },
                     ],
                 },

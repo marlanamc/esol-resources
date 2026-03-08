@@ -714,7 +714,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "___ your parents ___ (celebrate) their anniversary in June?",
+                            label: "_________ (your parents/celebrate) their anniversary in June?",
                             expectedAnswer: "Do your parents celebrate",
                         },
                         {
@@ -724,7 +724,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ you ___ (belong) to any sports clubs or fitness centers?",
+                            label: "_________ (you/belong) to any sports clubs or fitness centers?",
                             expectedAnswer: "Do you belong",
                         },
                         {
@@ -734,7 +734,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ it ___ (rain) a lot during springtime in your country?",
+                            label: "_________ (it/rain) a lot during springtime in your country?",
                             expectedAnswer: "Does it rain",
                         },
                     ],
@@ -852,7 +852,7 @@ export const presentSimpleContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ your neighbor ___ (take) care of your plants when you travel? (question)",
+                            label: "_________ (your neighbor/take) care of your plants when you travel? (question)",
                             expectedAnswer: "Does your neighbor take",
                         },
                     ],

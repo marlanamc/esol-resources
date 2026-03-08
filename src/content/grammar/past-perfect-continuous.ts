@@ -449,17 +449,17 @@ export const pastPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "How long ___ you ___ (wait) before the train arrived?",
+                            label: "How long __________ (you/wait) before the train arrived?",
                             expectedAnswer: "had you been waiting",
                         },
                         {
                             type: "text",
-                            label: "___ she ___ (work) there long before she got promoted?",
+                            label: "_________ (she/work) there long before she got promoted?",
                             expectedAnswer: "Had she been working",
                         },
                         {
                             type: "text",
-                            label: "What ___ they ___ (do) before the accident happened?",
+                            label: "What __________ (they/do) before the accident happened?",
                             expectedAnswer: "had they been doing",
                         },
                     ],

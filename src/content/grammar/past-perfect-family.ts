@@ -821,22 +821,22 @@ export const pastPerfectFamilyContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "___ you ___ (see) the movie before? [result form]",
+                            label: "_________ (you/see) the movie before? [result form]",
                             expectedAnswer: "Had you seen",
                         },
                         {
                             type: "text",
-                            label: "How long ___ she ___ (work) there before she quit? [duration form]",
+                            label: "How long __________ (she/work) there before she quit? [duration form]",
                             expectedAnswer: "had she been working",
                         },
                         {
                             type: "text",
-                            label: "___ they ___ (meet) before the wedding? [result form]",
+                            label: "_________ (they/meet) before the wedding? [result form]",
                             expectedAnswer: "Had they met",
                         },
                         {
                             type: "text",
-                            label: "___ you ___ (wait) long when the bus came? [duration form]",
+                            label: "_________ (you/wait) long when the bus came? [duration form]",
                             expectedAnswer: "Had you been waiting",
                         },
                     ],

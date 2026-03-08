@@ -623,7 +623,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ you ___ (help) me with this?",
+                            label: "_________ (you/help) me with this?",
                             expectedAnswer: "Will you help",
                         },
                     ],
@@ -729,7 +729,7 @@ export const simpleTensesReviewContent: InteractiveGuideContent = {
                         { type: "text", label: "She ___ (call) her parents every Sunday. (positive present)", expectedAnswer: "calls" },
                         { type: "text", label: "They ___ (finish) the project yesterday. (positive past)", expectedAnswer: "finished" },
                         { type: "text", label: "I ___ (not see) the movie last week. (negative past)", expectedAnswer: "didn't see" },
-                        { type: "text", label: "___ you ___ (help) me tomorrow? (question future)", expectedAnswer: "Will you help" },
+                        { type: "text", label: "_________ (you/help) me tomorrow? (question future)", expectedAnswer: "Will you help" },
                         { type: "text", label: "He ___ (not work) on Fridays. (negative present)", expectedAnswer: "doesn't work" },
                     ],
                 },

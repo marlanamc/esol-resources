@@ -400,12 +400,12 @@ export const futurePerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "How long ___ you ___ (work) here by next June?",
+                            label: "How long __________ (you/work) here by next June?",
                             expectedAnswer: "will you have been working",
                         },
                         {
                             type: "text",
-                            label: "___ she ___ (study) long enough by the exam?",
+                            label: "_________ (she/study) long enough by the exam?",
                             expectedAnswer: "Will she have been studying",
                         },
                     ],

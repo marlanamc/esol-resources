@@ -468,7 +468,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "How long ___ you ___ (study) when you passed the exam? (past, question)",
+                            label: "How long __________ (you/study) when you passed the exam? (past, question)",
                             expectedAnswer: "had you been studying",
                         },
                     ],
@@ -604,7 +604,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "How long ___ you ___ (wait)? (present)",
+                            label: "How long __________ (you/wait)? (present)",
                             expectedAnswer: "have you been waiting",
                         },
                         {
@@ -619,7 +619,7 @@ export const perfectContinuousTensesReviewContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "Your eyes are red. ___ you ___ (cry)? (present)",
+                            label: "Your eyes are red. __________ (you/cry)? (present)",
                             expectedAnswer: "Have you been crying",
                         },
                         {

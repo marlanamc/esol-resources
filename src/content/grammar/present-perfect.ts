@@ -1115,7 +1115,7 @@ export const presentPerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "___ they ___ (be) to the community garden? (question)",
+                            label: "_________ (they/be) to the community garden? (question)",
                             expectedAnswer: "Have they been",
                         },
                     ],

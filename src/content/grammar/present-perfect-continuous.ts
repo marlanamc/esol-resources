@@ -439,17 +439,17 @@ export const presentPerfectContinuousContent: InteractiveGuideContent = {
                     items: [
                         {
                             type: "text",
-                            label: "How long ___ you ___ (wait)?",
+                            label: "How long __________ (you/wait)?",
                             expectedAnswer: "have you been waiting",
                         },
                         {
                             type: "text",
-                            label: "___ she ___ (work) here long?",
+                            label: "_________ (she/work) here long?",
                             expectedAnswer: "Has she been working",
                         },
                         {
                             type: "text",
-                            label: "What ___ they ___ (do) all morning?",
+                            label: "What __________ (they/do) all morning?",
                             expectedAnswer: "have they been doing",
                         },
                     ],

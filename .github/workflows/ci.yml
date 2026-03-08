@@ -6,6 +6,12 @@ on:
       - "**"
   pull_request:
 
+env:
+  POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
+  NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+  AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
+  NEXTAUTH_URL: http://localhost:3000
+
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -45,26 +51,52 @@ jobs:
       - name: Dependency audit
         run: npm audit --audit-level=high
 
-      - name: Critical tests
-        env:
-          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
-        run: npm run test:critical
+      - name: Prepare database schema
+        run: npm run ci:db:prepare
+
+      - name: Critical tests - gamification helpers
+        run: npm run test:gamification
+
+      - name: Critical tests - activity submit assignmentId
+        run: npm run test:activity-submit
+
+      - name: Critical tests - exercise answer normalization
+        run: npm run test:exercise-answer-normalization
+
+      - name: Critical tests - activity submit contract
+        run: npm run test:activity-submit:contract
+
+      - name: Critical tests - activity progress merge
+        run: npm run test:activity-progress:merge
+
+      - name: Critical tests - activity progress points
+        run: npm run test:activity-progress:points
+
+      - name: Critical tests - assignments featured
+        run: npm run test:assignments-featured
+
+      - name: Critical tests - classes join
+        run: npm run test:classes-join
+
+      - name: Critical tests - submission points claim
+        run: npm run test:submission-points-claim
+
+      - name: Critical tests - sanitize
+        run: npm run test:sanitize
+
+      - name: Critical tests - validators env
+        run: npm run test:validators-env
 
       - name: Vitest coverage
-        env:
-          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
         run: npm run test:coverage
 
       - name: Build
-        env:
-          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
-          NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
-          AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
-          NEXTAUTH_URL: http://localhost:3000
-        run: npx prisma migrate deploy && npm run build
+        run: npm run build
 
   e2e:
     runs-on: ubuntu-latest
+    env:
+      DEV_SEED_ACCOUNT_PASSWORD: ci-seed-password-1234
     services:
       postgres:
         image: postgres:16
@@ -95,18 +127,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Setup database
-        env:
-          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
-          NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
-          AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
-          NEXTAUTH_URL: http://localhost:3000
-        run: npx prisma migrate deploy && npm run db:seed && npx tsx scripts/e2e-seed.ts
+      - name: Prepare database schema
+        run: npm run ci:db:prepare
+
+      - name: Seed application data
+        run: npm run db:seed
+
+      - name: Seed E2E accounts
+        run: npx tsx scripts/e2e-seed.ts
 
       - name: Run E2E tests
-        env:
-          POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/test
-          NEXTAUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
-          AUTH_SECRET: test-secret-at-least-32-chars-long-for-ci
-          NEXTAUTH_URL: http://localhost:3000
         run: npm run test:e2e:smoke

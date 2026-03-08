@@ -421,7 +421,7 @@ export const futurePerfectContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "Question: ___ you ___ (complete) the assignment by Friday?",
+                            label: "Question: _________ (you/complete) the assignment by Friday?",
                             expectedAnswer: "Will you have completed",
                         },
                     ],

@@ -929,7 +929,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     instructions: "Complete with the correct negative or question form.",
                     items: [
                         { type: "text", label: "The library ___ (not offer) late hours during summer break.", expectedAnswer: "is not offering" },
-                        { type: "text", label: "___ your daughter ___ (apply) to graduate schools this course?", expectedAnswer: "Is your daughter applying" },
+                        { type: "text", label: "_________ (your daughter/apply) to graduate schools this course?", expectedAnswer: "Is your daughter applying" },
                         { type: "text", label: "The museum ___ (not charge) admission this weekend for the anniversary.", expectedAnswer: "is not charging" },
                         { type: "text", label: "___ the neighbors ___ (renovate) their kitchen right now?", expectedAnswer: "Are the neighbors renovating" },
                     ],
@@ -980,9 +980,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     instructions: "Complete with the correct negative or question form.",
                     items: [
                         { type: "text", label: "I ___ (not sleep) when the alarm went off.", expectedAnswer: "was not sleeping" },
-                        { type: "text", label: "___ you ___ (work) late last night?", expectedAnswer: "Were you working" },
+                        { type: "text", label: "_________ (you/work) late last night?", expectedAnswer: "Were you working" },
                         { type: "text", label: "She ___ (not listen) to music while studying.", expectedAnswer: "was not listening" },
-                        { type: "text", label: "___ they ___ (watch) TV when you called?", expectedAnswer: "Were they watching" },
+                        { type: "text", label: "_________ (they/watch) TV when you called?", expectedAnswer: "Were they watching" },
                     ],
                 },
             ],
@@ -1031,9 +1031,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     instructions: "Complete with the correct negative or question form.",
                     items: [
                         { type: "text", label: "I ___ (not work) tomorrow - it's Saturday.", expectedAnswer: "won't be working" },
-                        { type: "text", label: "___ you ___ (sleep) when I call?", expectedAnswer: "Will you be sleeping" },
+                        { type: "text", label: "_________ (you/sleep) when I call?", expectedAnswer: "Will you be sleeping" },
                         { type: "text", label: "She ___ (not travel) during the summer.", expectedAnswer: "won't be traveling" },
-                        { type: "text", label: "___ they ___ (wait) for us?", expectedAnswer: "Will they be waiting" },
+                        { type: "text", label: "_________ (they/wait) for us?", expectedAnswer: "Will they be waiting" },
                     ],
                 },
             ],
@@ -1054,7 +1054,7 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     items: [
                         { type: "text", label: "I ___ (not work) right now - I'm on break. (present negative)", expectedAnswer: "am not working" },
                         { type: "text", label: "She ___ (study) when the power went out. (past positive)", expectedAnswer: "was studying" },
-                        { type: "text", label: "___ you ___ (sleep) when I call tonight? (future question)", expectedAnswer: "Will you be sleeping" },
+                        { type: "text", label: "_________ (you/sleep) when I call tonight? (future question)", expectedAnswer: "Will you be sleeping" },
                         { type: "text", label: "They ___ (not travel) during the holidays this year. (future negative)", expectedAnswer: "won't be traveling" },
                         { type: "text", label: "He ___ (cook) dinner when I arrived home. (past positive)", expectedAnswer: "was cooking" },
                         { type: "text", label: "We ___ (watch) a movie right now. (present positive)", expectedAnswer: "are watching" },
@@ -1287,9 +1287,9 @@ export const continuousTensesReviewContent: InteractiveGuideContent = {
                     title: "Real Conversation: Fill in the Blanks",
                     instructions: "Complete this phone conversation with the correct continuous forms.",
                     items: [
-                        { type: "text", label: "A: Hey! What ___ you ___ (do) right now?", expectedAnswer: "are you doing" },
+                        { type: "text", label: "A: Hey! What __________ (you/do) right now?", expectedAnswer: "are you doing" },
                         { type: "text", label: "B: I ___ (cook) dinner. What about you?", expectedAnswer: "am cooking" },
-                        { type: "text", label: "A: I ___ (drive) home from work. ___ you ___ (make) pasta?", expectedAnswer: "am driving" },
+                        { type: "text", label: "A: I ___ (drive) home from work. _________ (you/make) pasta?", expectedAnswer: "am driving" },
                         { type: "text", label: "B: No, I ___ (try) a new recipe for chicken.", expectedAnswer: "am trying" },
                         { type: "text", label: "A: Great! I ___ (join) you for dinner tomorrow?", expectedAnswer: "will be joining" },
                     ],

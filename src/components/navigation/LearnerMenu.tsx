@@ -3,9 +3,11 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
 import { BookOpen, ClipboardList, Gamepad2, Map, Menu, Mic, PenLine, PenTool, Volume2, X } from "lucide-react";
 import { BookOpenIcon, HomeIcon, StarIcon, TrophyIcon } from "@/components/icons/Icons";
+import { useDocumentScrollLock } from "@/hooks/useDocumentScrollLock";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getLearnerCategoryTone } from "@/lib/learner-theme";
 
@@ -88,7 +90,11 @@ export function LearnerMenu({
     const [isOpen, setIsOpen] = useState(false);
     const [availableSubjects, setAvailableSubjects] = useState<Record<string, boolean>>({});
     const [isMounted, setIsMounted] = useState(false);
+    const pathname = usePathname();
+    const searchKey = useSearchParams().toString();
     const mobileName = userName.trim().split(/\s+/)[0] || "Student";
+
+    useDocumentScrollLock(isOpen);
 
     useEffect(() => {
         setIsMounted(true);
@@ -107,19 +113,28 @@ export function LearnerMenu({
     }, []);
 
     useEffect(() => {
-        if (isOpen) {
-            document.body.classList.add("overflow-hidden");
-            const main = document.querySelector("main");
-            if (main) main.setAttribute("inert", "");
-            return () => {
-                document.body.classList.remove("overflow-hidden");
-                if (main) main.removeAttribute("inert");
-            };
-        }
+        setIsOpen(false);
+    }, [pathname, searchKey]);
 
-        document.body.classList.remove("overflow-hidden");
-        const main = document.querySelector("main");
-        if (main) main.removeAttribute("inert");
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handlePageHide = () => {
+            setIsOpen(false);
+        };
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === "hidden") {
+                setIsOpen(false);
+            }
+        };
+
+        window.addEventListener("pagehide", handlePageHide);
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        return () => {
+            window.removeEventListener("pagehide", handlePageHide);
+            document.removeEventListener("visibilitychange", handleVisibilityChange);
+        };
     }, [isOpen]);
 
     useEffect(() => {
@@ -200,12 +215,13 @@ export function LearnerMenu({
 
                   <div
                       className={`fixed top-0 left-0 bottom-0 z-[310] w-[280px] sm:w-[320px] shadow-2xl border-r flex flex-col transform transition-transform duration-300 ease-in-out ${
-                          isOpen ? "translate-x-0" : "-translate-x-full"
+                          isOpen ? "translate-x-0 pointer-events-auto" : "-translate-x-full pointer-events-none"
                       }`}
                       style={{ background: 'linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface-overlay) 100%)', borderColor: 'var(--border-subtle)' }}
                       role="dialog"
-                      aria-modal="true"
+                      aria-modal={isOpen}
                       aria-label="Navigation Menu"
+                      aria-hidden={!isOpen}
                   >
                       <div className="p-5 border-b flex items-center justify-between mt-[env(safe-area-inset-top,0px)]" style={{ borderColor: 'var(--border-subtle)' }}>
                           <Link

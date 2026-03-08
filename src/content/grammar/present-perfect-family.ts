@@ -993,7 +993,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "Question: How long ___ you ___ (wait)?",
+                            label: "Question: How long __________ (you/wait)?",
                             expectedAnswer: "have you been waiting"
                         },
                          {
@@ -1452,7 +1452,7 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         },
                         {
                             type: "text",
-                            label: "A: How many apartments ___ you ___ (visit)? B: About 5 so far.",
+                            label: "A: How many apartments __________ (you/visit)? B: About 5 so far.",
                             expectedAnswer: "have you visited",
                         },
                         {
