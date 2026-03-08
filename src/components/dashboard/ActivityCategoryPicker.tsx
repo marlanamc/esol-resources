@@ -32,12 +32,6 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
         icon: <PenLine className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
     },
     {
-        key: 'games',
-        name: 'Games',
-        subtitle: 'Practice + fun',
-        icon: <Gamepad2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
-    },
-    {
         key: 'vocabulary',
         name: 'Vocabulary',
         subtitle: 'Words · Meaning · Use',
@@ -48,6 +42,12 @@ const CATEGORY_CARDS: CategoryCardDef[] = [
         name: 'Quizzes',
         subtitle: 'Points · Grades',
         icon: <ClipboardList className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
+    },
+    {
+        key: 'games',
+        name: 'Games',
+        subtitle: 'Practice + fun',
+        icon: <Gamepad2 className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />,
     },
     {
         key: 'speaking',
