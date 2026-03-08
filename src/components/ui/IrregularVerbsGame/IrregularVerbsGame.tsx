@@ -45,19 +45,6 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   }, [state.phase, state.roundResults, saveProgress]);
 
   useEffect(() => {
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    const previousBodyOverflow = document.body.style.overflow;
-
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.documentElement.style.overflow = previousHtmlOverflow;
-      document.body.style.overflow = previousBodyOverflow;
-    };
-  }, []);
-
-  useEffect(() => {
     contentScrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
   }, [state.phase, state.currentExerciseIndex, state.selectedGroup?.id]);
 
@@ -119,7 +106,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   }
 
   return (
-    <div className="h-full min-h-0 overflow-hidden bg-bg">
+    <div className="fixed inset-0 overflow-hidden bg-bg touch-manipulation md:relative md:inset-auto md:h-full md:min-h-0">
       {/* Subtle grain texture overlay using CSS noise (GPU-friendly) */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
@@ -166,8 +153,9 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
         <div
           ref={contentScrollRef}
           className={`min-h-0 flex-1 ${
-            state.phase === 'exercise' ? 'overflow-hidden' : 'overflow-y-auto'
+            state.phase === 'exercise' ? 'overflow-hidden' : 'overflow-y-auto overscroll-contain'
           }`}
+          style={{ WebkitOverflowScrolling: 'touch' }}
         >
           <AnimatePresence mode="wait">
             {state.phase === 'selection' && (
