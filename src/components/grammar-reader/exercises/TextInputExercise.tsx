@@ -4,6 +4,7 @@ import type { ExerciseItem } from "@/types/activity";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, XCircle, Sparkles } from "lucide-react";
 import { sanitizeHtml } from "@/utils/sanitize";
+import { getSafeExercisePlaceholder } from "@/utils/exercisePlaceholder";
 
 interface TextInputExerciseProps {
     item: Extract<ExerciseItem, { type: "text" }>;
@@ -47,7 +48,7 @@ export function TextInputExercise({
                     type="text"
                     value={userAnswer}
                     onChange={(e) => onChange(e.target.value)}
-                    placeholder={item.placeholder || defaultPlaceholder || "Type your answer..."}
+                    placeholder={getSafeExercisePlaceholder(item, defaultPlaceholder || "Type your answer...")}
                     disabled={submitted}
                     className={`w-full px-4 py-3 border-2 rounded-lg transition-[border-color,background-color] ${submitted
                             ? isCorrect

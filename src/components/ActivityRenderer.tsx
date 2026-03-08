@@ -68,6 +68,8 @@ interface Props {
 
 export default function ActivityRenderer({ activity, assignmentId, existingSubmission }: Props) {
     const content = parseActivityContent(activity.content);
+    const isFullHeightIrregularVerbsGame =
+        activity.type === "game" && resolveActivityGameUi(activity) === "irregular-verbs";
     if (!content && activity.type === "resource") {
         return (
             <ResourceRenderer
@@ -190,11 +192,7 @@ export default function ActivityRenderer({ activity, assignmentId, existingSubmi
         }
     };
 
-    return (
-        <div className="space-y-6">
-            {renderActivityContent()}
-        </div>
-    );
+    return <div className={isFullHeightIrregularVerbsGame ? "h-full min-h-0" : "space-y-6"}>{renderActivityContent()}</div>;
 }
 
 function QuizRenderer({

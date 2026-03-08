@@ -670,26 +670,22 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "I ___ (not / finish) my homework yet. Can I go out later?",
-                            expectedAnswer: "haven't finished",
-                            placeholder: "haven't finished"
+                            expectedAnswer: "haven't finished"
                         },
                         {
                             type: "text",
                             label: "She looks tired. She ___ (not / sleep) well lately.",
-                            expectedAnswer: "hasn't been sleeping",
-                            placeholder: "hasn't been sleeping"
+                            expectedAnswer: "hasn't been sleeping"
                         },
                         {
                             type: "text",
                             label: "We ___ (not / decide) where to go on vacation yet.",
-                            expectedAnswer: "haven't decided",
-                            placeholder: "haven't decided"
+                            expectedAnswer: "haven't decided"
                         },
                         {
                             type: "text",
                             label: "You ___ (not / practice) the piano enough this week!",
-                            expectedAnswer: "haven't been practicing",
-                            placeholder: "haven't been practicing"
+                            expectedAnswer: "haven't been practicing"
                         }
                     ]
                 }
@@ -988,26 +984,22 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                         {
                             type: "text",
                             label: "Result form: She ___ (write) three letters.",
-                            expectedAnswer: "has written",
-                            placeholder: "has written"
+                            expectedAnswer: "has written"
                         },
                         {
                             type: "text",
                             label: "Duration form: They ___ (play) soccer for 2 hours.",
-                            expectedAnswer: "have been playing",
-                            placeholder: "have been playing"
+                            expectedAnswer: "have been playing"
                         },
                         {
                             type: "text",
                             label: "Question: How long ___ you ___ (wait)?",
-                            expectedAnswer: "have you been waiting",
-                            placeholder: "have you been waiting"
+                            expectedAnswer: "have you been waiting"
                         },
                          {
                             type: "text",
                             label: "Negative: I ___ (not / see) him today.",
-                            expectedAnswer: "haven't seen",
-                            placeholder: "haven't seen"
+                            expectedAnswer: "haven't seen"
                         },
                     ],
                 },
@@ -1457,25 +1449,21 @@ export const presentPerfectFamilyContent: InteractiveGuideContent = {
                             type: "text",
                             label: "A: You look tired! B: I ___ (study) all night for my exam.",
                             expectedAnswer: "have been studying",
-                            placeholder: "have been studying",
                         },
                         {
                             type: "text",
                             label: "A: How many apartments ___ you ___ (visit)? B: About 5 so far.",
                             expectedAnswer: "have you visited",
-                            placeholder: "have you visited",
                         },
                         {
                             type: "text",
                             label: "A: I ___ (know) Maria since high school. (state verb)",
                             expectedAnswer: "have known",
-                            placeholder: "have known",
                         },
                         {
                             type: "text",
                             label: "A: Why are your hands so dirty? B: I ___ (work) in the garden.",
                             expectedAnswer: "have been working",
-                            placeholder: "have been working",
                         },
                     ],
                 },

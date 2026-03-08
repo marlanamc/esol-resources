@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertCircle, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -23,6 +23,7 @@ interface IrregularVerbsGameProps {
 
 export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   const router = useRouter();
+  const contentScrollRef = useRef<HTMLDivElement | null>(null);
   const { preferences } = useVerbPreferences();
   const {
     state,
@@ -42,6 +43,23 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
       saveProgress(state.roundResults);
     }
   }, [state.phase, state.roundResults, saveProgress]);
+
+  useEffect(() => {
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
+    contentScrollRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+  }, [state.phase, state.currentExerciseIndex, state.selectedGroup?.id]);
 
   // Loading state - elegant spinner
   if (state.loading) {
@@ -101,7 +119,7 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
   }
 
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="h-full min-h-0 overflow-hidden bg-bg">
       {/* Subtle grain texture overlay using CSS noise (GPU-friendly) */}
       <div
         className="fixed inset-0 pointer-events-none opacity-[0.04] z-0"
@@ -114,10 +132,10 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`relative z-10 mx-auto ${
+        className={`relative z-10 mx-auto flex h-full min-h-0 flex-col ${
           state.phase === 'exercise'
             ? 'w-full max-w-none px-0 py-2 sm:max-w-5xl sm:px-6 sm:py-10'
-            : 'max-w-5xl px-4 sm:px-6 py-6 sm:py-10'
+            : 'max-w-5xl px-4 py-6 sm:px-6 sm:py-10'
         }`}
       >
         {/* Back button - hidden during exercise/intro phase on mobile (integrated into header there) */}
@@ -145,88 +163,96 @@ export function IrregularVerbsGame({ activityId }: IrregularVerbsGameProps) {
           </div>
         )}
 
-        <AnimatePresence mode="wait">
-          {state.phase === 'selection' && (
-            <motion.div
-              key="selection"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <GroupSelectionScreen
-                categoryData={state.categoryData}
-                onSelectGroup={(group: VerbGroup) => selectGroup(group)}
-              />
-            </motion.div>
-          )}
+        <div
+          ref={contentScrollRef}
+          className={`min-h-0 flex-1 ${
+            state.phase === 'exercise' ? 'overflow-hidden' : 'overflow-y-auto'
+          }`}
+        >
+          <AnimatePresence mode="wait">
+            {state.phase === 'selection' && (
+              <motion.div
+                key="selection"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <GroupSelectionScreen
+                  categoryData={state.categoryData}
+                  onSelectGroup={(group: VerbGroup) => selectGroup(group)}
+                />
+              </motion.div>
+            )}
 
-          {state.phase === 'exercise' && state.selectedGroup && (
-            <motion.div
-              key="exercise"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <ExerciseScreen
-                group={state.selectedGroup}
-                exercises={state.exercises}
-                currentIndex={state.currentExerciseIndex}
-                showPattern={!preferences?.hideVerbExplanations || preferences === undefined}
-                onAnswer={submitAnswer}
-                onBack={returnToGroupIntro}
-              />
-            </motion.div>
-          )}
+            {state.phase === 'exercise' && state.selectedGroup && (
+              <motion.div
+                key="exercise"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="flex h-full min-h-0 flex-col"
+              >
+                <ExerciseScreen
+                  group={state.selectedGroup}
+                  exercises={state.exercises}
+                  currentIndex={state.currentExerciseIndex}
+                  showPattern={!preferences?.hideVerbExplanations || preferences === undefined}
+                  onAnswer={submitAnswer}
+                  onBack={returnToGroupIntro}
+                />
+              </motion.div>
+            )}
 
-          {state.phase === 'intro' && state.selectedGroup && (
-            <motion.div
-              key="intro"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <IntroScreen
-                group={state.selectedGroup}
-                onStartChallenge={startGroupChallenge}
-                onBack={quitGame}
-              />
-            </motion.div>
-          )}
+            {state.phase === 'intro' && state.selectedGroup && (
+              <motion.div
+                key="intro"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <IntroScreen
+                  group={state.selectedGroup}
+                  onStartChallenge={startGroupChallenge}
+                  onBack={quitGame}
+                />
+              </motion.div>
+            )}
 
-          {state.phase === 'results' && state.selectedGroup && state.roundResults && (
-            <motion.div
-              key="results"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            >
-              <ResultsScreen
-                group={state.selectedGroup}
-                results={state.roundResults}
-                nextGroup={(() => {
-                  if (!state.roundResults.unlocked || !state.selectedGroup) return null;
-                  const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
-                  if (currentIndex < 0) return null;
+            {state.phase === 'results' && state.selectedGroup && state.roundResults && (
+              <motion.div
+                key="results"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+              >
+                <ResultsScreen
+                  group={state.selectedGroup}
+                  results={state.roundResults}
+                  nextGroup={(() => {
+                    if (!state.roundResults.unlocked || !state.selectedGroup) return null;
+                    const currentIndex = VERB_GROUPS.findIndex(g => g.id === state.selectedGroup!.id);
+                    if (currentIndex < 0) return null;
 
-                  const nextRegularGroup = VERB_GROUPS[currentIndex + 1] ?? null;
-                  if (nextRegularGroup) {
-                    return nextRegularGroup;
-                  }
+                    const nextRegularGroup = VERB_GROUPS[currentIndex + 1] ?? null;
+                    if (nextRegularGroup) {
+                      return nextRegularGroup;
+                    }
 
-                  return hasCompletedAllRegularVerbGroups(state.categoryData)
-                    ? ALL_PATTERNS_GROUP
-                    : null;
-                })()}
-                onRetry={retryGroup}
-                onContinue={continueToNext}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+                    return hasCompletedAllRegularVerbGroups(state.categoryData)
+                      ? ALL_PATTERNS_GROUP
+                      : null;
+                  })()}
+                  onRetry={retryGroup}
+                  onContinue={continueToNext}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </div>
   );

@@ -271,7 +271,10 @@ function renderImmersiveActivity(
     userRole: string | null | undefined,
     shouldShowHeaderProgressBadge: boolean
 ) {
-    const shouldRenderImmersiveHeader = !(activity.type === "vocabulary" && activity.ui);
+    const immersiveGameUi = activity.type === "game" ? resolveActivityGameUi(activity) : null;
+    const shouldRenderImmersiveHeader =
+        !(activity.type === "vocabulary" && activity.ui) &&
+        immersiveGameUi !== "irregular-verbs";
 
     return (
         <div className="min-h-screen bg-bg flex flex-col">

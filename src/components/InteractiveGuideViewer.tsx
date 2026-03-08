@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import type { InteractiveGuideContent, FormulaPart, Exercise } from "@/types/activity";
 import { BackButton } from "@/components/ui/BackButton";
 import { applyGrammarDarkClasses } from "@/utils/grammarDarkModeClasses";
+import { getSafeExercisePlaceholder } from "@/utils/exercisePlaceholder";
 
 interface Props {
     content: InteractiveGuideContent;
@@ -264,7 +265,7 @@ function ExerciseGroup({ exercise, index }: { exercise: Exercise, index: number 
                         {item.type === 'text' && (
                             <input
                                 type="text"
-                                placeholder={item.placeholder || "Type your answer…"}
+                                placeholder={getSafeExercisePlaceholder(item, "Type your answer…")}
                                 className="w-full p-3 rounded-lg border border-border dark:border-white/20 bg-white dark:bg-white/5 text-text focus:ring-2 focus:ring-secondary/20 focus:border-secondary outline-none transition-[border-color] shadow-sm focus-visible:ring-2 focus-visible:ring-secondary/50 focus-visible:ring-offset-2"
                             />
                         )}
