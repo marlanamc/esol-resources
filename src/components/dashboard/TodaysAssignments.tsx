@@ -124,8 +124,9 @@ const CHECKLIST_GROUPS: Array<{
 function formatWeekRangeLabel(referenceDate: Date): string {
     const weekStart = new Date(referenceDate);
     const day = weekStart.getDay();
-    const offsetToMonday = day === 0 ? -6 : 1 - day;
-    weekStart.setDate(weekStart.getDate() + offsetToMonday);
+    // Week runs Tuesday–Monday (not Monday–Sunday)
+    const offsetToTuesday = day <= 1 ? -5 - day : 2 - day;
+    weekStart.setDate(weekStart.getDate() + offsetToTuesday);
     weekStart.setHours(0, 0, 0, 0);
 
     const weekEnd = new Date(weekStart);
