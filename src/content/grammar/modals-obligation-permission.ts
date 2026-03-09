@@ -1089,9 +1089,9 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "Asking your manager for a big favor (extra polite): _____ I possibly leave early today?",
-                            options: ["Can", "May", "Could"],
-                            expectedAnswer: "Could",
+                            label: "Your coworker asks how to save money. You give them advice: You _____ bring your lunch to work.",
+                            options: ["must not", "should", "have to"],
+                            expectedAnswer: "should",
                         },
                     ],
                 },
