@@ -24,18 +24,6 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <li><strong>Advocate for yourself</strong> - Request changes without sounding demanding</li>
                 </ul>
 
-                <div style="background: rgba(122, 143, 124, 0.15); border-left: 4px solid #7ba884; padding: 1rem 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
-                    <h3 style="color: #7ba884; margin-top: 0; margin-bottom: 0.75rem; font-size: 1.1rem;">🗣️ When You'll Use This Grammar</h3>
-                    <p style="margin-bottom: 0.5rem;"><strong>In class:</strong></p>
-                    <ul style="margin: 0.5rem 0;">
-                        <li>Writing your resume and cover letter ("I should highlight my skills")</li>
-                        <li>Having workplace conversations ("Could I ask you a question?" "May I leave early?")</li>
-                        <li>Understanding workplace rules ("You must clock in" vs "You should arrive early")</li>
-                        <li>Practicing polite requests in speaking games</li>
-                    </ul>
-                    <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💼 Remember: The way you ask for something at work can be just as important as what you're asking for!</p>
-                </div>
-
                 <div style="background: rgba(200, 107, 81, 0.08); padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
                     <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem;">💪 Modal Strength Meter: How Strong Is It?</h3>
                     <div style="display: flex; flex-direction: column; gap: 0.5rem;">
