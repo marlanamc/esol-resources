@@ -40,6 +40,27 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </ul>
                     <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💼 Remember: The way you ask for something at work can be just as important as what you're asking for!</p>
                 </div>
+
+                <div style="background: rgba(200, 107, 81, 0.08); padding: 1.25rem; border-radius: 0.5rem; margin-top: 1.5rem;">
+                    <h3 style="margin-top: 0; margin-bottom: 1rem; font-size: 1.1rem;">💪 Modal Strength Meter: How Strong Is It?</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(220, 38, 38, 0.15); border-radius: 0.25rem;">
+                            <span style="font-size: 1.25rem;">💪💪💪</span>
+                            <span><strong>STRONG:</strong> must, have to</span>
+                            <span style="color: #666; font-size: 0.9rem;">(required - no choice!)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(249, 115, 22, 0.15); border-radius: 0.25rem;">
+                            <span style="font-size: 1.25rem;">💪💪</span>
+                            <span><strong>MEDIUM:</strong> should</span>
+                            <span style="color: #666; font-size: 0.9rem;">(recommended - good idea)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; background: rgba(34, 197, 94, 0.15); border-radius: 0.25rem;">
+                            <span style="font-size: 1.25rem;">💪</span>
+                            <span><strong>SOFT:</strong> can, may, could</span>
+                            <span style="color: #666; font-size: 0.9rem;">(permission - asking politely)</span>
+                        </div>
+                    </div>
+                </div>
             `,
             exercises: [
                 {
@@ -72,26 +93,25 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
             ],
         },
 
-        // Modals Overview
+        // Modals Overview - Condensed
         {
             id: "modals-overview",
             stepNumber: 1,
             title: "What Are Modals?",
             icon: "🔑",
             explanation: `
-                <h3>Special Helping Verbs That Change Everything</h3>
-                <p>Modals are special verbs that come before the main verb and change its meaning. They express things like:</p>
+                <h3>Small Words, Big Power</h3>
+                <p>Modals are special helping verbs that change how your sentence feels. Compare:</p>
 
-                <div style="margin-top: 1.5rem; background: rgba(200, 107, 81, 0.1); padding: 1.5rem; border-radius: 0.5rem;">
-                    <ul>
-                        <li><strong>Obligation:</strong> must, have to (you're required to do it)</li>
-                        <li><strong>Permission:</strong> can, may, could (you're allowed to do it)</li>
-                        <li><strong>Advice:</strong> should, ought to (it's a good idea)</li>
-                        <li><strong>Possibility:</strong> might, could (it may happen)</li>
-                    </ul>
+                <div style="margin: 1rem 0; padding: 1rem; background: rgba(200, 107, 81, 0.1); border-radius: 0.5rem;">
+                    <p style="margin: 0 0 0.5rem 0;"><strong>Without modal:</strong> "I work Saturday." (just a fact)</p>
+                    <p style="margin: 0 0 0.5rem 0;"><strong>With modal:</strong> "I <span style="color: #d97757; font-weight: 600;">have to</span> work Saturday." (my boss scheduled me)</p>
+                    <p style="margin: 0;"><strong>Different modal:</strong> "I <span style="color: #d97757; font-weight: 600;">can</span> work Saturday." (I'm available if needed)</p>
                 </div>
 
-                <h4>Important Pattern:</h4>
+                <p>In this guide, you'll learn the most important modals for work: <strong>must</strong>, <strong>have to</strong>, <strong>should</strong>, <strong>can</strong>, <strong>may</strong>, and <strong>could</strong>.</p>
+
+                <h4>🎯 The One Rule You Need:</h4>
                 <div style="margin: 1rem 0; padding: 1rem; background: white; border-radius: 0.5rem; border: 2px solid #7ba884;">
                     <p style="margin: 0; font-size: 1.125rem; text-align: center;">
                         <span style="color: #3b82f6;">Subject</span> +
@@ -135,7 +155,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Grammar Rule",
                 content:
-                    "Modals don't change form! No -s, no -ed, no -ing. 'She cans'? NO. 'She musted'? NO. 'I am musting'? DEFINITELY NO. Just: She can, She must, I am required to.",
+                    "Modals don't change form! No -s, no -ed, no -ing. 'She cans'? NO. 'She musted'? NO. Just: She can, She must.",
             },
         },
 
@@ -175,11 +195,35 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <li><strong>Signs/Written rules:</strong> "Employees must wear hairnets"</li>
                     <li><strong>Spoken/Everyday:</strong> "I have to wear a hairnet at work"</li>
                 </ul>
+
+                <div style="margin-top: 2rem; border: 3px solid #ef4444; border-radius: 0.75rem; overflow: hidden;">
+                    <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 0.75rem 1rem; border-bottom: 2px dashed #ef4444;">
+                        <h4 style="margin: 0; color: #dc2626; font-size: 1.1rem;">🚨 DANGER ZONE: Don't Confuse These!</h4>
+                    </div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-bottom: 2px solid rgba(0,0,0,0.1);">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span style="font-size: 1.5rem;">✅</span>
+                                <strong style="color: #16a34a; font-size: 1.1rem;">GREEN ZONE: "don't have to"</strong>
+                            </div>
+                            <p style="margin: 0 0 0.5rem 0; font-size: 1rem;"><strong>= Optional!</strong> Your choice! 🎉</p>
+                            <p style="margin: 0; font-style: italic; color: #374151;">"You <strong>don't have to</strong> come early." → You CAN come early if you want, but it's not required.</p>
+                        </div>
+                        <div style="padding: 1rem; background: rgba(239, 68, 68, 0.1);">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span style="font-size: 1.5rem;">🚫</span>
+                                <strong style="color: #dc2626; font-size: 1.1rem;">RED ZONE: "must not"</strong>
+                            </div>
+                            <p style="margin: 0 0 0.5rem 0; font-size: 1rem;"><strong>= Forbidden!</strong> Not allowed! ⛔</p>
+                            <p style="margin: 0; font-style: italic; color: #374151;">"You <strong>must not</strong> be late." → Being late is NOT okay. Don't do it!</p>
+                        </div>
+                    </div>
+                </div>
             `,
             tipBox: {
-                title: "💡 Don't Have To vs Must Not",
+                title: "💡 Quick Memory Trick",
                 content:
-                    "IMPORTANT: 'don't have to' = not necessary (you can choose). 'must not' = forbidden (you can't do it). Example: 'You don't have to come early' (optional) vs 'You must not be late' (prohibited).",
+                    "Think of a red traffic light 🚦: 'Must NOT' = STOP, don't do it. But 'don't have to' = green light, go if you want!",
             },
             exercises: [
                 {
@@ -214,6 +258,32 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                                 { value: "have-to", label: "have to" },
                             ],
                             expectedAnswer: "must",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-must-have-scramble",
+                    title: "🧩 Word Scramble: Build the Sentence",
+                    instructions:
+                        "Put the words in the correct order to make a sentence.",
+                    items: [
+                        {
+                            type: "word-scramble",
+                            label: "Unscramble this workplace rule:",
+                            words: ["must", "badge", "wear", "You", "your"],
+                            correctAnswer: "You must wear your badge",
+                        },
+                        {
+                            type: "word-scramble",
+                            label: "Unscramble this sentence about a schedule:",
+                            words: ["have", "Saturday", "to", "work", "I"],
+                            correctAnswer: "I have to work Saturday",
+                        },
+                        {
+                            type: "word-scramble",
+                            label: "Unscramble this about optional rules:",
+                            words: ["have", "don't", "to", "You", "early", "come"],
+                            correctAnswer: "You don't have to come early",
                         },
                     ],
                 },
@@ -264,6 +334,16 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
 
                 <h4>In American English:</h4>
                 <p>"Can I...?" is by far the most common in everyday workplace situations. "May I...?" sounds more formal but is still perfectly acceptable. "Could I...?" is extra polite for sensitive requests.</p>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                    <h4 style="color: #f97316; margin-top: 0;">💡 "Can" Has Two Meanings!</h4>
+                    <p style="margin: 0.5rem 0;">Don't confuse them:</p>
+                    <ul style="margin: 0.5rem 0 0 0;">
+                        <li><strong>Permission:</strong> "<strong>Can I</strong> leave early?" (Am I allowed to?)</li>
+                        <li><strong>Ability:</strong> "I <strong>can</strong> speak Spanish." (I have the skill.)</li>
+                    </ul>
+                    <p style="margin: 0.75rem 0 0 0; font-style: italic; color: #666;">Context usually makes it clear which meaning you intend!</p>
+                </div>
             `,
             exercises: [
                 {
@@ -390,13 +470,168 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         } as ExerciseItem,
                     ],
                 },
+                {
+                    id: "ex-should-sorting",
+                    title: "🎯 Sort It Out: Required vs Recommended vs Optional",
+                    instructions:
+                        "Categorize each statement. Is it REQUIRED (must/have to), RECOMMENDED (should), or OPTIONAL (don't have to)?",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "\"You must clock in by 8 AM.\"",
+                            options: [
+                                { value: "required", label: "🔴 REQUIRED (must do it)" },
+                                { value: "recommended", label: "🟡 RECOMMENDED (good idea)" },
+                                { value: "optional", label: "🟢 OPTIONAL (your choice)" },
+                            ],
+                            expectedAnswer: "required",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"You should arrive 10 minutes early on your first day.\"",
+                            options: [
+                                { value: "required", label: "🔴 REQUIRED (must do it)" },
+                                { value: "recommended", label: "🟡 RECOMMENDED (good idea)" },
+                                { value: "optional", label: "🟢 OPTIONAL (your choice)" },
+                            ],
+                            expectedAnswer: "recommended",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"You don't have to wear a tie to the office.\"",
+                            options: [
+                                { value: "required", label: "🔴 REQUIRED (must do it)" },
+                                { value: "recommended", label: "🟡 RECOMMENDED (good idea)" },
+                                { value: "optional", label: "🟢 OPTIONAL (your choice)" },
+                            ],
+                            expectedAnswer: "optional",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"Employees have to complete safety training before starting.\"",
+                            options: [
+                                { value: "required", label: "🔴 REQUIRED (must do it)" },
+                                { value: "recommended", label: "🟡 RECOMMENDED (good idea)" },
+                                { value: "optional", label: "🟢 OPTIONAL (your choice)" },
+                            ],
+                            expectedAnswer: "required",
+                        },
+                        {
+                            type: "radio",
+                            label: "\"You should double-check your work before submitting.\"",
+                            options: [
+                                { value: "required", label: "🔴 REQUIRED (must do it)" },
+                                { value: "recommended", label: "🟡 RECOMMENDED (good idea)" },
+                                { value: "optional", label: "🟢 OPTIONAL (your choice)" },
+                            ],
+                            expectedAnswer: "recommended",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Modal Decision Flowchart - New Visual Section
+        {
+            id: "modal-flowchart",
+            stepNumber: 5,
+            title: "Which Modal Should I Use? A Decision Guide",
+            icon: "🗺️",
+            explanation: `
+                <h3>🚦 Choose Your Own Modal Adventure!</h3>
+                <p>Not sure which modal to use? Follow this flowchart:</p>
+
+                <div style="background: linear-gradient(135deg, rgba(200, 107, 81, 0.08) 0%, rgba(110, 145, 118, 0.08) 100%); padding: 1.5rem; border-radius: 0.75rem; margin: 1.5rem 0;">
+
+                    <div style="text-align: center; padding: 1rem; background: rgba(59, 130, 246, 0.15); border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <strong style="font-size: 1.1rem;">🎯 START: What do you need to express?</strong>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+
+                        <div style="padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 0.5rem; border-left: 4px solid #dc2626;">
+                            <strong style="color: #dc2626;">🔴 It's REQUIRED (no choice)</strong>
+                            <div style="margin-left: 1rem; margin-top: 0.5rem;">
+                                <p style="margin: 0.25rem 0;">↳ Is it written on a sign or official rule?</p>
+                                <div style="margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <span>📋 <strong>Yes</strong> → Use <strong style="color: #dc2626;">MUST</strong></span>
+                                    <span>👔 <strong>No</strong> (boss/schedule) → Use <strong style="color: #dc2626;">HAVE TO</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 0.5rem; border-left: 4px solid #f97316;">
+                            <strong style="color: #f97316;">🟡 It's a GOOD IDEA (advice/recommendation)</strong>
+                            <div style="margin-left: 1rem; margin-top: 0.5rem;">
+                                <span>💡 Use <strong style="color: #f97316;">SHOULD</strong></span>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.5rem; border-left: 4px solid #22c55e;">
+                            <strong style="color: #22c55e;">🟢 You're asking PERMISSION</strong>
+                            <div style="margin-left: 1rem; margin-top: 0.5rem;">
+                                <p style="margin: 0.25rem 0;">↳ How polite do you need to be?</p>
+                                <div style="margin-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem;">
+                                    <span>😊 <strong>Casual</strong> (friend/coworker) → Use <strong style="color: #22c55e;">CAN</strong></span>
+                                    <span>🤝 <strong>Formal</strong> (HR/manager) → Use <strong style="color: #22c55e;">MAY</strong></span>
+                                    <span>🙏 <strong>Very polite</strong> (big ask) → Use <strong style="color: #22c55e;">COULD</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div style="background: rgba(168, 85, 247, 0.1); padding: 1rem; border-radius: 0.5rem; margin-top: 1rem;">
+                    <p style="margin: 0; text-align: center;"><strong>🎓 Pro Tip:</strong> When in doubt, <strong>COULD</strong> is almost always safe. It works for permission AND polite requests!</p>
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-flowchart-1",
+                    title: "Practice: Use the Flowchart",
+                    instructions:
+                        "Choose the best modal for each situation using the flowchart above.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "The company policy says all visitors need to sign in. (official rule)",
+                            options: [
+                                { value: "must", label: "must" },
+                                { value: "have-to", label: "have to" },
+                                { value: "should", label: "should" },
+                            ],
+                            expectedAnswer: "must",
+                        },
+                        {
+                            type: "radio",
+                            label: "Your friend recommends bringing lunch to save money. (good idea)",
+                            options: [
+                                { value: "must", label: "must" },
+                                { value: "should", label: "should" },
+                                { value: "can", label: "can" },
+                            ],
+                            expectedAnswer: "should",
+                        },
+                        {
+                            type: "radio",
+                            label: "Asking the CEO if you can present your idea. (very polite, big ask)",
+                            options: [
+                                { value: "can", label: "Can I..." },
+                                { value: "could", label: "Could I..." },
+                                { value: "may", label: "May I..." },
+                            ],
+                            expectedAnswer: "could",
+                        },
+                    ],
+                },
             ],
         },
 
         // Politeness Levels
         {
             id: "politeness-levels",
-            stepNumber: 5,
+            stepNumber: 6,
             title: "The Politeness Ladder: Making Requests at Work",
             icon: "🪜",
             explanation: `
@@ -432,14 +667,39 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     </div>
                 </div>
 
-                <h4>Modal Politeness Scale for Requests:</h4>
-                <ol style="background: white; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid rgba(0,0,0,0.1);">
-                    <li><strong>Can you...?</strong> (casual, direct)</li>
-                    <li><strong>Could you...?</strong> (polite, standard)</li>
-                    <li><strong>Would you...?</strong> (more polite)</li>
-                    <li><strong>Would you mind...?</strong> (very polite)</li>
-                    <li><strong>I was wondering if you could...?</strong> (extremely polite)</li>
-                </ol>
+                <h4>🌡️ The Politeness Thermometer</h4>
+                <p>Think of it like temperature - warmer = more polite!</p>
+
+                <div style="background: linear-gradient(to bottom, rgba(168, 85, 247, 0.2), rgba(59, 130, 246, 0.15), rgba(34, 197, 94, 0.15), rgba(249, 115, 22, 0.15), rgba(220, 38, 38, 0.2)); padding: 1.5rem; border-radius: 0.75rem; margin: 1rem 0; border: 2px solid rgba(0,0,0,0.1);">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
+                            <span style="font-size: 1.25rem;">🔥🔥🔥</span>
+                            <span><strong>HOT:</strong> "I was wondering if you could..."</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
+                            <span style="font-size: 1.25rem;">🔥🔥</span>
+                            <span><strong>WARM:</strong> "Would you mind...?"</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
+                            <span style="font-size: 1.25rem;">🔥</span>
+                            <span><strong>COMFORTABLE:</strong> "Would you...?" / "Could you...?"</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
+                            <span style="font-size: 1.25rem;">😐</span>
+                            <span><strong>ROOM TEMP:</strong> "Can you...?"</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
+                            <span style="font-size: 1.25rem;">❄️</span>
+                            <span><strong>COLD:</strong> Direct command ("Do this.")</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem;">
+                            <span style="font-size: 1.25rem;">🥶</span>
+                            <span><strong>FREEZING:</strong> Rude! ("Give me that now!")</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="font-style: italic; color: #666;">💡 <strong>Remember:</strong> At work, aim for at least "comfortable" with supervisors and customers!</p>
             `,
             exercises: [
                 {
@@ -465,13 +725,51 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         },
                     ],
                 },
+                {
+                    id: "ex-politeness-match",
+                    title: "🎯 Match the Politeness Level",
+                    instructions:
+                        "Match each situation to the best politeness level.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Asking your close coworker (a friend) to cover your lunch:",
+                            options: [
+                                { value: "can", label: "😐 Can you cover my lunch?" },
+                                { value: "could", label: "🔥 Could you possibly cover my lunch?" },
+                                { value: "wondering", label: "🔥🔥🔥 I was wondering if you might be able to..." },
+                            ],
+                            expectedAnswer: "can",
+                        },
+                        {
+                            type: "radio",
+                            label: "Asking your supervisor for a day off next week:",
+                            options: [
+                                { value: "can", label: "😐 Can I have Friday off?" },
+                                { value: "could", label: "🔥 Could I have Friday off?" },
+                                { value: "wondering", label: "🔥🔥🔥 I was wondering if I could have Friday off?" },
+                            ],
+                            expectedAnswer: "could",
+                        },
+                        {
+                            type: "radio",
+                            label: "Asking the company CEO for a meeting about your idea:",
+                            options: [
+                                { value: "can", label: "😐 Can I meet with you?" },
+                                { value: "could", label: "🔥 Could I meet with you?" },
+                                { value: "wondering", label: "🔥🔥🔥 I was wondering if I might be able to schedule a brief meeting..." },
+                            ],
+                            expectedAnswer: "wondering",
+                        },
+                    ],
+                },
             ],
         },
 
         // Workplace Scenarios
         {
             id: "workplace-scenarios",
-            stepNumber: 6,
+            stepNumber: 7,
             title: "Real Workplace Situations: Choosing the Right Modal",
             icon: "💼",
             explanation: `
@@ -544,6 +842,161 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                                 { value: "c", label: "Tell me about breaks." },
                             ],
                             expectedAnswer: "b",
+                        },
+                    ],
+                },
+                {
+                    id: "ex-fix-email",
+                    title: "📧 Fix the Email: Make It Professional",
+                    instructions:
+                        "Each email below is too casual or rude. Choose the best way to make it more professional.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Original email: \"Hey, I need friday off. Let me know.\"",
+                            options: [
+                                { value: "a", label: "Hi, I need Friday off. Tell me if that works." },
+                                { value: "b", label: "Could I request Friday off? I have a personal appointment. Please let me know if this works. Thank you!" },
+                                { value: "c", label: "I'm taking Friday off." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Original email: \"Where's the report? Send it now.\"",
+                            options: [
+                                { value: "a", label: "I need the report. Can you send it?" },
+                                { value: "b", label: "Give me the report today." },
+                                { value: "c", label: "Could you send me the report when you have a chance? I would like to review it before the meeting. Thank you!" },
+                            ],
+                            expectedAnswer: "c",
+                        },
+                        {
+                            type: "radio",
+                            label: "Original email: \"I don't understand this. Explain it.\"",
+                            options: [
+                                { value: "a", label: "I was wondering if you could help clarify this for me? I want to make sure I understand correctly." },
+                                { value: "b", label: "What does this mean? I don't get it." },
+                                { value: "c", label: "This is confusing. Fix it." },
+                            ],
+                            expectedAnswer: "a",
+                        },
+                    ],
+                },
+            ],
+        },
+
+        // Mistakes to Avoid Section
+        {
+            id: "mistakes-to-avoid",
+            stepNumber: 8,
+            title: "Common Mistakes to Avoid",
+            icon: "🚫",
+            explanation: `
+                <h3>Don't Make These Errors!</h3>
+                <p>Here are the most common mistakes learners make with modals - and how to fix them:</p>
+
+                <div style="margin: 1.5rem 0;">
+
+                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
+                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #1: Adding -s to modals</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">She cans help.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">He musts work.</span>
+                        </div>
+                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> She <strong>can</strong> help. He <strong>must</strong> work.</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Modals NEVER change form - no matter who the subject is!</p>
+                    </div>
+
+                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
+                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #2: Using "to" after must/can/should</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">I must to go.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">She can to swim.</span>
+                        </div>
+                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> I <strong>must go</strong>. She <strong>can swim</strong>.</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Use "to" with "have to" but NOT with must, can, should, could, may!</p>
+                    </div>
+
+                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
+                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #3: Using -ing after modals</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">Could you helping me?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">I must leaving now.</span>
+                        </div>
+                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> Could you <strong>help</strong> me? I must <strong>leave</strong> now.</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Always use the BASE verb (no -ing, no -ed, no -s) after modals!</p>
+                    </div>
+
+                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
+                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #4: Confusing "don't have to" and "must not"</h4>
+                        <p style="margin: 0.5rem 0;">Saying "You don't have to be late" when you mean "You must not be late"</p>
+                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 0.25rem;">
+                            <p style="margin: 0;"><strong>don't have to</strong> = optional (you can choose)</p>
+                        </div>
+                        <div style="margin: 0.5rem 0; padding: 0.5rem; background: rgba(239, 68, 68, 0.1); border-radius: 0.25rem;">
+                            <p style="margin: 0;"><strong>must not</strong> = forbidden (don't do it!)</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444;">
+                        <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #5: Wrong question word order</h4>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">I can leave early?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">Do I can help you?</span>
+                        </div>
+                        <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> <strong>Can I</strong> leave early? <strong>Can I</strong> help you?</p>
+                        <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">For questions: Modal + Subject + Base Verb (Can I...? Should we...? Could you...?)</p>
+                    </div>
+
+                </div>
+            `,
+            exercises: [
+                {
+                    id: "ex-mistakes-fix",
+                    title: "🔧 Fix the Mistake",
+                    instructions:
+                        "Choose the correct version of each sentence.",
+                    items: [
+                        {
+                            type: "radio",
+                            label: "Which is correct?",
+                            options: [
+                                { value: "a", label: "She musts finish the report." },
+                                { value: "b", label: "She must finish the report." },
+                                { value: "c", label: "She must to finish the report." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which is correct?",
+                            options: [
+                                { value: "a", label: "Could you helping me with this?" },
+                                { value: "b", label: "Could you help me with this?" },
+                                { value: "c", label: "Do you could help me with this?" },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which sentence means \"it's optional\" (not required)?",
+                            options: [
+                                { value: "a", label: "You must not bring your lunch." },
+                                { value: "b", label: "You don't have to bring your lunch." },
+                                { value: "c", label: "You can't bring your lunch." },
+                            ],
+                            expectedAnswer: "b",
+                        },
+                        {
+                            type: "radio",
+                            label: "Which is the correct way to ask a question?",
+                            options: [
+                                { value: "a", label: "I may ask a question?" },
+                                { value: "b", label: "Do I may ask a question?" },
+                                { value: "c", label: "May I ask a question?" },
+                            ],
+                            expectedAnswer: "c",
                         },
                     ],
                 },
