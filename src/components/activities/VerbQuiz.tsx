@@ -276,20 +276,20 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="rounded-2xl border border-[#d9cfc0] bg-[#fffdf9] p-5 shadow-lg"
+        className="rounded-2xl border border-[var(--color-border-subtle)] bg-[var(--color-surface-elevated)] p-5 shadow-lg"
       >
         <div className="flex flex-col items-center gap-3">
           <button
             onClick={handleSubmit}
             disabled={!isComplete || isSubmitting}
             className={`
-              px-8 py-4 rounded-xl font-semibold text-white text-lg
-              transition-[transform,box-shadow] duration-300 transform hover:scale-105
-              shadow-lg hover:shadow-xl
+              px-8 py-4 rounded-xl font-semibold text-lg
+              transition-[background-color,color,transform,box-shadow] duration-300 transform
+              shadow-lg
               flex items-center gap-3
               ${isComplete && !isSubmitting
-                ? 'bg-terracotta hover:bg-terracotta/90'
-                : 'bg-neutral-300 cursor-not-allowed'
+                ? 'bg-terracotta text-white hover:scale-105 hover:bg-terracotta/90 hover:shadow-xl'
+                : 'bg-[var(--color-bg-light)] text-[var(--color-text-muted)] cursor-not-allowed shadow-none'
               }
             `}
           >
@@ -307,7 +307,7 @@ export default function VerbQuiz({ content, activityId, activityTitle, onComplet
           </button>
 
           {!isComplete && (
-            <p className="text-center text-sm text-[#5e6f80]">
+            <p className="text-center text-sm text-[var(--color-text-muted)]">
               Complete all fields to submit your quiz
             </p>
           )}
