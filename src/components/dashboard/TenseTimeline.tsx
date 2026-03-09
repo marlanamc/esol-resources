@@ -75,6 +75,7 @@ export function TenseTimeline({
 
   // Calculate marker positions (percentage along timeline)
   const pastX = 15;
+  const pastReferenceX = 42;
   const presentX = 50;
   const futureX = 85;
 
@@ -291,7 +292,7 @@ export function TenseTimeline({
       // Perfect tenses all connect an earlier action to a reference point,
       // but the anchor and destination should feel different per tense.
       const startX = position === 'past-to-present' ? pastX : position === 'present-to-future' ? presentX : pastX;
-      const endX = position === 'past-to-present' ? presentX : position === 'present-to-future' ? futureX : presentX;
+      const endX = position === 'past-to-present' ? presentX : position === 'present-to-future' ? futureX : pastReferenceX;
       const arrowY = lineY - (isSmall ? 12 : 16);
       const haloR = isSmall ? 4.5 : 6;
       const connectorStart = startX + 3;
@@ -359,6 +360,13 @@ export function TenseTimeline({
                 strokeWidth={isSmall ? 1.4 : 1.8}
               />
               <circle
+                cx={`${endX}%`}
+                cy={arrowY}
+                r={isSmall ? 1.9 : 2.5}
+                fill={color}
+                fillOpacity={0.88}
+              />
+              <circle
                 cx={`${startX}%`}
                 cy={arrowY}
                 r={haloR}
@@ -413,7 +421,7 @@ export function TenseTimeline({
     if (markerStyle === 'wave-arrow') {
       // Wave ending at arrow for perfect continuous
       const startX = position === 'past-to-present' ? pastX : pastX;
-      const endX = position === 'past-to-present' ? presentX : presentX;
+      const endX = position === 'past-to-present' ? presentX : pastReferenceX;
 
       return (
         <g>
