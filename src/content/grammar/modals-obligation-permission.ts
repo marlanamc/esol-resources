@@ -884,8 +884,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
                         <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #1: Adding -s to modals</h4>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">She cans help.</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">He musts work.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ She cans help.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ He musts work.</span>
                         </div>
                         <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> She <strong>can</strong> help. He <strong>must</strong> work.</p>
                         <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Modals NEVER change form - no matter who the subject is!</p>
@@ -894,8 +894,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
                         <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #2: Using "to" after must/can/should</h4>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">I must to go.</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">She can to swim.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ I must to go.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ She can to swim.</span>
                         </div>
                         <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> I <strong>must go</strong>. She <strong>can swim</strong>.</p>
                         <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Use "to" with "have to" but NOT with must, can, should, could, may!</p>
@@ -904,8 +904,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border-left: 4px solid #ef4444;">
                         <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #3: Using -ing after modals</h4>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">Could you helping me?</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">I must leaving now.</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ Could you helping me?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ I must leaving now.</span>
                         </div>
                         <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> Could you <strong>help</strong> me? I must <strong>leave</strong> now.</p>
                         <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">Always use the BASE verb (no -ing, no -ed, no -s) after modals!</p>
@@ -925,8 +925,8 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                     <div style="background: rgba(239, 68, 68, 0.08); padding: 1rem; border-radius: 0.5rem; border-left: 4px solid #ef4444;">
                         <h4 style="margin-top: 0; color: #dc2626;">❌ Mistake #5: Wrong question word order</h4>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;">
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">I can leave early?</span>
-                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem; text-decoration: line-through;">Do I can help you?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ I can leave early?</span>
+                            <span style="background: rgba(239, 68, 68, 0.2); padding: 0.25rem 0.5rem; border-radius: 0.25rem;">❌ Do I can help you?</span>
                         </div>
                         <p style="margin: 0.5rem 0 0 0;"><strong style="color: #16a34a;">✅ Correct:</strong> <strong>Can I</strong> leave early? <strong>Can I</strong> help you?</p>
                         <p style="margin: 0.25rem 0 0 0; font-style: italic; color: #666;">For questions: Modal + Subject + Base Verb (Can I...? Should we...? Could you...?)</p>
@@ -1073,7 +1073,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
             tipBox: {
                 title: "💡 Real-World Tip",
                 content:
-                    "When in doubt at work, err on the side of being MORE polite. 'Could you...?' and 'Would you...?' are safe choices for almost any workplace request. Save 'Can you...?' for coworkers you know well.",
+                    "When you're not sure at work, it's better to be MORE polite. 'Could you...?' and 'Would you...?' are safe choices for almost any workplace request. Save 'Can you...?' for coworkers you know well.",
             },
             exercises: [
                 {
@@ -1089,7 +1089,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         },
                         {
                             type: "select",
-                            label: "You want to be very polite to your manager: _____ I leave early today?",
+                            label: "Asking your manager for a big favor (extra polite): _____ I possibly leave early today?",
                             options: ["Can", "May", "Could"],
                             expectedAnswer: "Could",
                         },
@@ -1213,7 +1213,7 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
       {
         id: "quiz-7",
         question:
-          "Your boss put you on the schedule for Saturday. Which sentence matches this situation?",
+          "Your boss put you on the schedule for Saturday. You must work or find someone to cover your shift. Which sentence matches this situation?",
         options: [
           { value: "a", label: "I must relax on Saturday." },
           { value: "c", label: "I can work on Saturday if I feel like it." },
@@ -1224,30 +1224,6 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
           "'Have to' fits external rules or schedules made by someone else, like a boss.",
         skillTag: "meaning-obligation-have-to-external",
         difficulty: "easy",
-      },
-      {
-        id: "quiz-8",
-        question:
-          "Choose the best sentence about something that is NOT necessary:",
-        options: [
-          {
-            value: "a",
-            label: "You must not come to the meeting if you are busy.",
-          },
-          {
-            value: "b",
-            label: "You do not have to come to the meeting if you are busy.",
-          },
-          {
-            value: "c",
-            label: "You should not come to the meeting if you are busy.",
-          },
-        ],
-        correctAnswer: "b",
-        explanation:
-          "'Do not have to' means something is optional. 'Must not' means it is forbidden.",
-        skillTag: "meaning-not-necessary-dont-have-to",
-        difficulty: "medium",
       },
       {
         id: "quiz-9",
@@ -1306,24 +1282,23 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
       {
         id: "quiz-12",
         question:
-          "Which request is the most polite way to ask a busy supervisor for help?",
+          "Your coworker says: 'You don't have to finish that today.' What does this mean?",
         options: [
-          { value: "a", label: "Help me with this report." },
+          { value: "a", label: "You are forbidden from finishing today." },
           {
             value: "b",
-            label: "Could you help me with this report when you have time?",
+            label: "It's optional - you can finish today or wait.",
           },
           {
             value: "c",
-            label:
-              "I was wondering if you might be able to help me with this report when you have a moment?",
+            label: "You should definitely finish today.",
           },
         ],
-        correctAnswer: "c",
+        correctAnswer: "b",
         explanation:
-          "Using 'I was wondering if you might be able to...' is very polite and softens the request.",
-        skillTag: "politeness-ladder-indirect-request",
-        difficulty: "hard",
+          "'Don't have to' means something is optional - you have a choice. It does NOT mean forbidden.",
+        skillTag: "meaning-not-necessary-dont-have-to",
+        difficulty: "medium",
       },
       {
         id: "quiz-13",
