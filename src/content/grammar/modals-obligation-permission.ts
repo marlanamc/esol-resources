@@ -33,11 +33,6 @@ export const modalsObligationPermissionContent: InteractiveGuideContent = {
                         <li>Understanding workplace rules ("You must clock in" vs "You should arrive early")</li>
                         <li>Practicing polite requests in speaking games</li>
                     </ul>
-                    <p style="margin: 1rem 0 0.5rem 0;"><strong>You'll also use this when:</strong></p>
-                    <ul style="margin: 0.5rem 0 0 0;">
-                        <li><strong> Negotiating at work and self-advocacy</li>
-                        <li><strong> Asking your doctor polite questions ("Could I ask about side effects?")</li>
-                    </ul>
                     <p style="margin-top: 0.75rem; font-style: italic; color: #3a3a3a;">💼 Remember: The way you ask for something at work can be just as important as what you're asking for!</p>
                 </div>
 
